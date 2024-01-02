@@ -12,21 +12,76 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Allows for creating and managing hardcoded attribute mappers for Keycloak identity provider.
+//
+// The identity provider hardcoded attribute mapper will set the specified value to the IDP attribute.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/oidc"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			oidcIdentityProvider, err := oidc.NewIdentityProvider(ctx, "oidcIdentityProvider", &oidc.IdentityProviderArgs{
+//				Realm:            realm.ID(),
+//				Alias:            pulumi.String("my-idp"),
+//				AuthorizationUrl: pulumi.String("https://authorizationurl.com"),
+//				ClientId:         pulumi.String("clientID"),
+//				ClientSecret:     pulumi.String("clientSecret"),
+//				TokenUrl:         pulumi.String("https://tokenurl.com"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = keycloak.NewHardcodedAttributeIdentityProviderMapper(ctx, "oidcHardcodedAttributeIdentityProviderMapper", &keycloak.HardcodedAttributeIdentityProviderMapperArgs{
+//				Realm:                 realm.ID(),
+//				IdentityProviderAlias: oidcIdentityProvider.Alias,
+//				AttributeName:         pulumi.String("attribute"),
+//				AttributeValue:        pulumi.String("value"),
+//				UserSession:           pulumi.Bool(true),
+//				ExtraConfig: pulumi.Map{
+//					"syncMode": pulumi.Any("INHERIT"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type HardcodedAttributeIdentityProviderMapper struct {
 	pulumi.CustomResourceState
 
-	// OIDC Claim
+	// The name of the IDP attribute to set.
 	AttributeName pulumi.StringPtrOutput `pulumi:"attributeName"`
-	// User Attribute
+	// The value to set to the attribute. You can hardcode any value like 'foo'.
 	AttributeValue pulumi.StringPtrOutput `pulumi:"attributeValue"`
 	ExtraConfig    pulumi.MapOutput       `pulumi:"extraConfig"`
-	// IDP Alias
+	// The IDP alias of the attribute to set.
 	IdentityProviderAlias pulumi.StringOutput `pulumi:"identityProviderAlias"`
-	// IDP Mapper Name
+	// Display name of this mapper when displayed in the console.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// Realm Name
+	// The realm ID that this mapper will exist in.
 	Realm pulumi.StringOutput `pulumi:"realm"`
-	// Is Attribute Related To a User Session
+	// Is Attribute related to a User Session.
 	UserSession pulumi.BoolOutput `pulumi:"userSession"`
 }
 
@@ -69,34 +124,34 @@ func GetHardcodedAttributeIdentityProviderMapper(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering HardcodedAttributeIdentityProviderMapper resources.
 type hardcodedAttributeIdentityProviderMapperState struct {
-	// OIDC Claim
+	// The name of the IDP attribute to set.
 	AttributeName *string `pulumi:"attributeName"`
-	// User Attribute
+	// The value to set to the attribute. You can hardcode any value like 'foo'.
 	AttributeValue *string                `pulumi:"attributeValue"`
 	ExtraConfig    map[string]interface{} `pulumi:"extraConfig"`
-	// IDP Alias
+	// The IDP alias of the attribute to set.
 	IdentityProviderAlias *string `pulumi:"identityProviderAlias"`
-	// IDP Mapper Name
+	// Display name of this mapper when displayed in the console.
 	Name *string `pulumi:"name"`
-	// Realm Name
+	// The realm ID that this mapper will exist in.
 	Realm *string `pulumi:"realm"`
-	// Is Attribute Related To a User Session
+	// Is Attribute related to a User Session.
 	UserSession *bool `pulumi:"userSession"`
 }
 
 type HardcodedAttributeIdentityProviderMapperState struct {
-	// OIDC Claim
+	// The name of the IDP attribute to set.
 	AttributeName pulumi.StringPtrInput
-	// User Attribute
+	// The value to set to the attribute. You can hardcode any value like 'foo'.
 	AttributeValue pulumi.StringPtrInput
 	ExtraConfig    pulumi.MapInput
-	// IDP Alias
+	// The IDP alias of the attribute to set.
 	IdentityProviderAlias pulumi.StringPtrInput
-	// IDP Mapper Name
+	// Display name of this mapper when displayed in the console.
 	Name pulumi.StringPtrInput
-	// Realm Name
+	// The realm ID that this mapper will exist in.
 	Realm pulumi.StringPtrInput
-	// Is Attribute Related To a User Session
+	// Is Attribute related to a User Session.
 	UserSession pulumi.BoolPtrInput
 }
 
@@ -105,35 +160,35 @@ func (HardcodedAttributeIdentityProviderMapperState) ElementType() reflect.Type 
 }
 
 type hardcodedAttributeIdentityProviderMapperArgs struct {
-	// OIDC Claim
+	// The name of the IDP attribute to set.
 	AttributeName *string `pulumi:"attributeName"`
-	// User Attribute
+	// The value to set to the attribute. You can hardcode any value like 'foo'.
 	AttributeValue *string                `pulumi:"attributeValue"`
 	ExtraConfig    map[string]interface{} `pulumi:"extraConfig"`
-	// IDP Alias
+	// The IDP alias of the attribute to set.
 	IdentityProviderAlias string `pulumi:"identityProviderAlias"`
-	// IDP Mapper Name
+	// Display name of this mapper when displayed in the console.
 	Name *string `pulumi:"name"`
-	// Realm Name
+	// The realm ID that this mapper will exist in.
 	Realm string `pulumi:"realm"`
-	// Is Attribute Related To a User Session
+	// Is Attribute related to a User Session.
 	UserSession bool `pulumi:"userSession"`
 }
 
 // The set of arguments for constructing a HardcodedAttributeIdentityProviderMapper resource.
 type HardcodedAttributeIdentityProviderMapperArgs struct {
-	// OIDC Claim
+	// The name of the IDP attribute to set.
 	AttributeName pulumi.StringPtrInput
-	// User Attribute
+	// The value to set to the attribute. You can hardcode any value like 'foo'.
 	AttributeValue pulumi.StringPtrInput
 	ExtraConfig    pulumi.MapInput
-	// IDP Alias
+	// The IDP alias of the attribute to set.
 	IdentityProviderAlias pulumi.StringInput
-	// IDP Mapper Name
+	// Display name of this mapper when displayed in the console.
 	Name pulumi.StringPtrInput
-	// Realm Name
+	// The realm ID that this mapper will exist in.
 	Realm pulumi.StringInput
-	// Is Attribute Related To a User Session
+	// Is Attribute related to a User Session.
 	UserSession pulumi.BoolInput
 }
 
@@ -224,12 +279,12 @@ func (o HardcodedAttributeIdentityProviderMapperOutput) ToHardcodedAttributeIden
 	return o
 }
 
-// OIDC Claim
+// The name of the IDP attribute to set.
 func (o HardcodedAttributeIdentityProviderMapperOutput) AttributeName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *HardcodedAttributeIdentityProviderMapper) pulumi.StringPtrOutput { return v.AttributeName }).(pulumi.StringPtrOutput)
 }
 
-// User Attribute
+// The value to set to the attribute. You can hardcode any value like 'foo'.
 func (o HardcodedAttributeIdentityProviderMapperOutput) AttributeValue() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *HardcodedAttributeIdentityProviderMapper) pulumi.StringPtrOutput { return v.AttributeValue }).(pulumi.StringPtrOutput)
 }
@@ -238,22 +293,22 @@ func (o HardcodedAttributeIdentityProviderMapperOutput) ExtraConfig() pulumi.Map
 	return o.ApplyT(func(v *HardcodedAttributeIdentityProviderMapper) pulumi.MapOutput { return v.ExtraConfig }).(pulumi.MapOutput)
 }
 
-// IDP Alias
+// The IDP alias of the attribute to set.
 func (o HardcodedAttributeIdentityProviderMapperOutput) IdentityProviderAlias() pulumi.StringOutput {
 	return o.ApplyT(func(v *HardcodedAttributeIdentityProviderMapper) pulumi.StringOutput { return v.IdentityProviderAlias }).(pulumi.StringOutput)
 }
 
-// IDP Mapper Name
+// Display name of this mapper when displayed in the console.
 func (o HardcodedAttributeIdentityProviderMapperOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *HardcodedAttributeIdentityProviderMapper) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// Realm Name
+// The realm ID that this mapper will exist in.
 func (o HardcodedAttributeIdentityProviderMapperOutput) Realm() pulumi.StringOutput {
 	return o.ApplyT(func(v *HardcodedAttributeIdentityProviderMapper) pulumi.StringOutput { return v.Realm }).(pulumi.StringOutput)
 }
 
-// Is Attribute Related To a User Session
+// Is Attribute related to a User Session.
 func (o HardcodedAttributeIdentityProviderMapperOutput) UserSession() pulumi.BoolOutput {
 	return o.ApplyT(func(v *HardcodedAttributeIdentityProviderMapper) pulumi.BoolOutput { return v.UserSession }).(pulumi.BoolOutput)
 }

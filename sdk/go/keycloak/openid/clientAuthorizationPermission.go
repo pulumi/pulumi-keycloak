@@ -12,6 +12,115 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## # openid.ClientAuthorizationPermission
+//
+// Allows you to manage openid Client Authorization Permissions.
+//
+// ### Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/openid"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+// Realm: pulumi.String("my-realm"),
+// Enabled: pulumi.Bool(true),
+// })
+// if err != nil {
+// return err
+// }
+// testClient, err := openid.NewClient(ctx, "testClient", &openid.ClientArgs{
+// ClientId: pulumi.String("client_id"),
+// RealmId: realm.ID(),
+// AccessType: pulumi.String("CONFIDENTIAL"),
+// ServiceAccountsEnabled: pulumi.Bool(true),
+// Authorization: &openid.ClientAuthorizationArgs{
+// PolicyEnforcementMode: pulumi.String("ENFORCING"),
+// },
+// })
+// if err != nil {
+// return err
+// }
+// _default := openid.GetClientAuthorizationPolicyOutput(ctx, openid.GetClientAuthorizationPolicyOutputArgs{
+// RealmId: realm.ID(),
+// ResourceServerId: testClient.ResourceServerId,
+// Name: pulumi.String("default"),
+// }, nil);
+// testClientAuthorizationResource, err := openid.NewClientAuthorizationResource(ctx, "testClientAuthorizationResource", &openid.ClientAuthorizationResourceArgs{
+// ResourceServerId: testClient.ResourceServerId,
+// RealmId: realm.ID(),
+// Uris: pulumi.StringArray{
+// pulumi.String("/endpoint/*"),
+// },
+// })
+// if err != nil {
+// return err
+// }
+// _, err = openid.NewClientAuthorizationScope(ctx, "testClientAuthorizationScope", &openid.ClientAuthorizationScopeArgs{
+// ResourceServerId: testClient.ResourceServerId,
+// RealmId: realm.ID(),
+// })
+// if err != nil {
+// return err
+// }
+// _, err = openid.NewClientAuthorizationPermission(ctx, "testClientAuthorizationPermission", &openid.ClientAuthorizationPermissionArgs{
+// ResourceServerId: testClient.ResourceServerId,
+// RealmId: realm.ID(),
+// Policies: pulumi.StringArray{
+// _default.ApplyT(func(_default openid.GetClientAuthorizationPolicyResult) (*string, error) {
+// return &default.Id, nil
+// }).(pulumi.StringPtrOutput),
+// },
+// Resources: pulumi.StringArray{
+// testClientAuthorizationResource.ID(),
+// },
+// })
+// if err != nil {
+// return err
+// }
+// return nil
+// })
+// }
+// ```
+//
+// ### Argument Reference
+//
+// The following arguments are supported:
+//
+// - `realmId` - (Required) The realm this group exists in.
+// - `resourceServerId` - (Required) The ID of the resource server.
+// - `name` - (Required) The name of the permission.
+// - `description` - (Optional) A description for the authorization permission.
+// - `decisionStrategy` - (Optional) The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`. Defaults to `UNANIMOUS`.
+// - `policies` - (Optional) A list of policy IDs that must be applied to the scopes defined by this permission.
+// - `resources` - (Optional) A list of resource IDs that this permission must be applied to. Conflicts with `resourceType`.
+// - `resourceType` - (Optional) When specified, this permission will be evaluated for all instances of a given resource type. Conflicts with `resources`.
+// - `scopes` - (Optional) A list of scope IDs that this permission must be applied to.
+// - `type` - (Optional) The type of permission, can be one of `resource` or `scope`.
+//
+// ### Attributes Reference
+//
+// In addition to the arguments listed above, the following computed attributes are exported:
+//
+// - `id` - Permission ID representing the permission.
+//
+// ## Import
+//
+// Client authorization permissions can be imported using the format`{{realmId}}/{{resourceServerId}}/{{permissionId}}`. Examplebash
+//
+// ```sh
+//
+//	$ pulumi import keycloak:openid/clientAuthorizationPermission:ClientAuthorizationPermission test my-realm/3bd4a686-1062-4b59-97b8-e4e3f10b99da/63b3cde8-987d-4cd9-9306-1955579281d9
+//
+// ```
 type ClientAuthorizationPermission struct {
 	pulumi.CustomResourceState
 

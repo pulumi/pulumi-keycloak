@@ -21,10 +21,10 @@ class HardcodedRoleIdentityMapperArgs:
                  role: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a HardcodedRoleIdentityMapper resource.
-        :param pulumi.Input[str] identity_provider_alias: IDP Alias
-        :param pulumi.Input[str] realm: Realm Name
-        :param pulumi.Input[str] name: IDP Mapper Name
-        :param pulumi.Input[str] role: Role Name
+        :param pulumi.Input[str] identity_provider_alias: The IDP alias of the attribute to set.
+        :param pulumi.Input[str] realm: The realm ID that this mapper will exist in.
+        :param pulumi.Input[str] name: Display name of this mapper when displayed in the console.
+        :param pulumi.Input[str] role: The name of the role which should be assigned to the users.
         """
         pulumi.set(__self__, "identity_provider_alias", identity_provider_alias)
         pulumi.set(__self__, "realm", realm)
@@ -39,7 +39,7 @@ class HardcodedRoleIdentityMapperArgs:
     @pulumi.getter(name="identityProviderAlias")
     def identity_provider_alias(self) -> pulumi.Input[str]:
         """
-        IDP Alias
+        The IDP alias of the attribute to set.
         """
         return pulumi.get(self, "identity_provider_alias")
 
@@ -51,7 +51,7 @@ class HardcodedRoleIdentityMapperArgs:
     @pulumi.getter
     def realm(self) -> pulumi.Input[str]:
         """
-        Realm Name
+        The realm ID that this mapper will exist in.
         """
         return pulumi.get(self, "realm")
 
@@ -72,7 +72,7 @@ class HardcodedRoleIdentityMapperArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        IDP Mapper Name
+        Display name of this mapper when displayed in the console.
         """
         return pulumi.get(self, "name")
 
@@ -84,7 +84,7 @@ class HardcodedRoleIdentityMapperArgs:
     @pulumi.getter
     def role(self) -> Optional[pulumi.Input[str]]:
         """
-        Role Name
+        The name of the role which should be assigned to the users.
         """
         return pulumi.get(self, "role")
 
@@ -103,10 +103,10 @@ class _HardcodedRoleIdentityMapperState:
                  role: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering HardcodedRoleIdentityMapper resources.
-        :param pulumi.Input[str] identity_provider_alias: IDP Alias
-        :param pulumi.Input[str] name: IDP Mapper Name
-        :param pulumi.Input[str] realm: Realm Name
-        :param pulumi.Input[str] role: Role Name
+        :param pulumi.Input[str] identity_provider_alias: The IDP alias of the attribute to set.
+        :param pulumi.Input[str] name: Display name of this mapper when displayed in the console.
+        :param pulumi.Input[str] realm: The realm ID that this mapper will exist in.
+        :param pulumi.Input[str] role: The name of the role which should be assigned to the users.
         """
         if extra_config is not None:
             pulumi.set(__self__, "extra_config", extra_config)
@@ -132,7 +132,7 @@ class _HardcodedRoleIdentityMapperState:
     @pulumi.getter(name="identityProviderAlias")
     def identity_provider_alias(self) -> Optional[pulumi.Input[str]]:
         """
-        IDP Alias
+        The IDP alias of the attribute to set.
         """
         return pulumi.get(self, "identity_provider_alias")
 
@@ -144,7 +144,7 @@ class _HardcodedRoleIdentityMapperState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        IDP Mapper Name
+        Display name of this mapper when displayed in the console.
         """
         return pulumi.get(self, "name")
 
@@ -156,7 +156,7 @@ class _HardcodedRoleIdentityMapperState:
     @pulumi.getter
     def realm(self) -> Optional[pulumi.Input[str]]:
         """
-        Realm Name
+        The realm ID that this mapper will exist in.
         """
         return pulumi.get(self, "realm")
 
@@ -168,7 +168,7 @@ class _HardcodedRoleIdentityMapperState:
     @pulumi.getter
     def role(self) -> Optional[pulumi.Input[str]]:
         """
-        Role Name
+        The name of the role which should be assigned to the users.
         """
         return pulumi.get(self, "role")
 
@@ -189,13 +189,44 @@ class HardcodedRoleIdentityMapper(pulumi.CustomResource):
                  role: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a HardcodedRoleIdentityMapper resource with the given unique name, props, and options.
+        Allows for creating and managing hardcoded role mappers for Keycloak identity provider.
+
+        The identity provider hardcoded role mapper grants a specified Keycloak role to each Keycloak user from the LDAP provider.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        oidc_identity_provider = keycloak.oidc.IdentityProvider("oidcIdentityProvider",
+            realm=realm.id,
+            alias="my-idp",
+            authorization_url="https://authorizationurl.com",
+            client_id="clientID",
+            client_secret="clientSecret",
+            token_url="https://tokenurl.com")
+        realm_role = keycloak.Role("realmRole",
+            realm_id=realm.id,
+            description="My Realm Role")
+        oidc_hardcoded_role_identity_mapper = keycloak.HardcodedRoleIdentityMapper("oidcHardcodedRoleIdentityMapper",
+            realm=realm.id,
+            identity_provider_alias=oidc_identity_provider.alias,
+            role="my-realm-role",
+            extra_config={
+                "syncMode": "INHERIT",
+            })
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] identity_provider_alias: IDP Alias
-        :param pulumi.Input[str] name: IDP Mapper Name
-        :param pulumi.Input[str] realm: Realm Name
-        :param pulumi.Input[str] role: Role Name
+        :param pulumi.Input[str] identity_provider_alias: The IDP alias of the attribute to set.
+        :param pulumi.Input[str] name: Display name of this mapper when displayed in the console.
+        :param pulumi.Input[str] realm: The realm ID that this mapper will exist in.
+        :param pulumi.Input[str] role: The name of the role which should be assigned to the users.
         """
         ...
     @overload
@@ -204,7 +235,38 @@ class HardcodedRoleIdentityMapper(pulumi.CustomResource):
                  args: HardcodedRoleIdentityMapperArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a HardcodedRoleIdentityMapper resource with the given unique name, props, and options.
+        Allows for creating and managing hardcoded role mappers for Keycloak identity provider.
+
+        The identity provider hardcoded role mapper grants a specified Keycloak role to each Keycloak user from the LDAP provider.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        oidc_identity_provider = keycloak.oidc.IdentityProvider("oidcIdentityProvider",
+            realm=realm.id,
+            alias="my-idp",
+            authorization_url="https://authorizationurl.com",
+            client_id="clientID",
+            client_secret="clientSecret",
+            token_url="https://tokenurl.com")
+        realm_role = keycloak.Role("realmRole",
+            realm_id=realm.id,
+            description="My Realm Role")
+        oidc_hardcoded_role_identity_mapper = keycloak.HardcodedRoleIdentityMapper("oidcHardcodedRoleIdentityMapper",
+            realm=realm.id,
+            identity_provider_alias=oidc_identity_provider.alias,
+            role="my-realm-role",
+            extra_config={
+                "syncMode": "INHERIT",
+            })
+        ```
+
         :param str resource_name: The name of the resource.
         :param HardcodedRoleIdentityMapperArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -265,10 +327,10 @@ class HardcodedRoleIdentityMapper(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] identity_provider_alias: IDP Alias
-        :param pulumi.Input[str] name: IDP Mapper Name
-        :param pulumi.Input[str] realm: Realm Name
-        :param pulumi.Input[str] role: Role Name
+        :param pulumi.Input[str] identity_provider_alias: The IDP alias of the attribute to set.
+        :param pulumi.Input[str] name: Display name of this mapper when displayed in the console.
+        :param pulumi.Input[str] realm: The realm ID that this mapper will exist in.
+        :param pulumi.Input[str] role: The name of the role which should be assigned to the users.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -290,7 +352,7 @@ class HardcodedRoleIdentityMapper(pulumi.CustomResource):
     @pulumi.getter(name="identityProviderAlias")
     def identity_provider_alias(self) -> pulumi.Output[str]:
         """
-        IDP Alias
+        The IDP alias of the attribute to set.
         """
         return pulumi.get(self, "identity_provider_alias")
 
@@ -298,7 +360,7 @@ class HardcodedRoleIdentityMapper(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        IDP Mapper Name
+        Display name of this mapper when displayed in the console.
         """
         return pulumi.get(self, "name")
 
@@ -306,7 +368,7 @@ class HardcodedRoleIdentityMapper(pulumi.CustomResource):
     @pulumi.getter
     def realm(self) -> pulumi.Output[str]:
         """
-        Realm Name
+        The realm ID that this mapper will exist in.
         """
         return pulumi.get(self, "realm")
 
@@ -314,7 +376,7 @@ class HardcodedRoleIdentityMapper(pulumi.CustomResource):
     @pulumi.getter
     def role(self) -> pulumi.Output[Optional[str]]:
         """
-        Role Name
+        The name of the role which should be assigned to the users.
         """
         return pulumi.get(self, "role")
 

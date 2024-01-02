@@ -282,7 +282,73 @@ class ClientAuthorizationPermission(pulumi.CustomResource):
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a ClientAuthorizationPermission resource with the given unique name, props, and options.
+        ## # openid.ClientAuthorizationPermission
+
+        Allows you to manage openid Client Authorization Permissions.
+
+        ### Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        test_client = keycloak.openid.Client("testClient",
+            client_id="client_id",
+            realm_id=realm.id,
+            access_type="CONFIDENTIAL",
+            service_accounts_enabled=True,
+            authorization=keycloak.openid.ClientAuthorizationArgs(
+                policy_enforcement_mode="ENFORCING",
+            ))
+        default = keycloak.openid.get_client_authorization_policy_output(realm_id=realm.id,
+            resource_server_id=test_client.resource_server_id,
+            name="default")
+        test_client_authorization_resource = keycloak.openid.ClientAuthorizationResource("testClientAuthorizationResource",
+            resource_server_id=test_client.resource_server_id,
+            realm_id=realm.id,
+            uris=["/endpoint/*"])
+        test_client_authorization_scope = keycloak.openid.ClientAuthorizationScope("testClientAuthorizationScope",
+            resource_server_id=test_client.resource_server_id,
+            realm_id=realm.id)
+        test_client_authorization_permission = keycloak.openid.ClientAuthorizationPermission("testClientAuthorizationPermission",
+            resource_server_id=test_client.resource_server_id,
+            realm_id=realm.id,
+            policies=[default.id],
+            resources=[test_client_authorization_resource.id])
+        ```
+
+        ### Argument Reference
+
+        The following arguments are supported:
+
+        - `realm_id` - (Required) The realm this group exists in.
+        - `resource_server_id` - (Required) The ID of the resource server.
+        - `name` - (Required) The name of the permission.
+        - `description` - (Optional) A description for the authorization permission.
+        - `decision_strategy` - (Optional) The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`. Defaults to `UNANIMOUS`.
+        - `policies` - (Optional) A list of policy IDs that must be applied to the scopes defined by this permission.
+        - `resources` - (Optional) A list of resource IDs that this permission must be applied to. Conflicts with `resource_type`.
+        - `resource_type` - (Optional) When specified, this permission will be evaluated for all instances of a given resource type. Conflicts with `resources`.
+        - `scopes` - (Optional) A list of scope IDs that this permission must be applied to.
+        - `type` - (Optional) The type of permission, can be one of `resource` or `scope`.
+
+        ### Attributes Reference
+
+        In addition to the arguments listed above, the following computed attributes are exported:
+
+        - `id` - Permission ID representing the permission.
+
+        ## Import
+
+        Client authorization permissions can be imported using the format`{{realmId}}/{{resourceServerId}}/{{permissionId}}`. Examplebash
+
+        ```sh
+         $ pulumi import keycloak:openid/clientAuthorizationPermission:ClientAuthorizationPermission test my-realm/3bd4a686-1062-4b59-97b8-e4e3f10b99da/63b3cde8-987d-4cd9-9306-1955579281d9
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
@@ -293,7 +359,73 @@ class ClientAuthorizationPermission(pulumi.CustomResource):
                  args: ClientAuthorizationPermissionArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a ClientAuthorizationPermission resource with the given unique name, props, and options.
+        ## # openid.ClientAuthorizationPermission
+
+        Allows you to manage openid Client Authorization Permissions.
+
+        ### Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        test_client = keycloak.openid.Client("testClient",
+            client_id="client_id",
+            realm_id=realm.id,
+            access_type="CONFIDENTIAL",
+            service_accounts_enabled=True,
+            authorization=keycloak.openid.ClientAuthorizationArgs(
+                policy_enforcement_mode="ENFORCING",
+            ))
+        default = keycloak.openid.get_client_authorization_policy_output(realm_id=realm.id,
+            resource_server_id=test_client.resource_server_id,
+            name="default")
+        test_client_authorization_resource = keycloak.openid.ClientAuthorizationResource("testClientAuthorizationResource",
+            resource_server_id=test_client.resource_server_id,
+            realm_id=realm.id,
+            uris=["/endpoint/*"])
+        test_client_authorization_scope = keycloak.openid.ClientAuthorizationScope("testClientAuthorizationScope",
+            resource_server_id=test_client.resource_server_id,
+            realm_id=realm.id)
+        test_client_authorization_permission = keycloak.openid.ClientAuthorizationPermission("testClientAuthorizationPermission",
+            resource_server_id=test_client.resource_server_id,
+            realm_id=realm.id,
+            policies=[default.id],
+            resources=[test_client_authorization_resource.id])
+        ```
+
+        ### Argument Reference
+
+        The following arguments are supported:
+
+        - `realm_id` - (Required) The realm this group exists in.
+        - `resource_server_id` - (Required) The ID of the resource server.
+        - `name` - (Required) The name of the permission.
+        - `description` - (Optional) A description for the authorization permission.
+        - `decision_strategy` - (Optional) The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`. Defaults to `UNANIMOUS`.
+        - `policies` - (Optional) A list of policy IDs that must be applied to the scopes defined by this permission.
+        - `resources` - (Optional) A list of resource IDs that this permission must be applied to. Conflicts with `resource_type`.
+        - `resource_type` - (Optional) When specified, this permission will be evaluated for all instances of a given resource type. Conflicts with `resources`.
+        - `scopes` - (Optional) A list of scope IDs that this permission must be applied to.
+        - `type` - (Optional) The type of permission, can be one of `resource` or `scope`.
+
+        ### Attributes Reference
+
+        In addition to the arguments listed above, the following computed attributes are exported:
+
+        - `id` - Permission ID representing the permission.
+
+        ## Import
+
+        Client authorization permissions can be imported using the format`{{realmId}}/{{resourceServerId}}/{{permissionId}}`. Examplebash
+
+        ```sh
+         $ pulumi import keycloak:openid/clientAuthorizationPermission:ClientAuthorizationPermission test my-realm/3bd4a686-1062-4b59-97b8-e4e3f10b99da/63b3cde8-987d-4cd9-9306-1955579281d9
+        ```
+
         :param str resource_name: The name of the resource.
         :param ClientAuthorizationPermissionArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -12,6 +12,140 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## # openid.ClientPermissions
+//
+// Allows you to manage all openid client Scope Based Permissions.
+//
+// This is part of a preview keycloak feature. You need to enable this feature to be able to use this resource. More
+// information about enabling the preview feature can be found
+// here: https://www.keycloak.org/docs/latest/securing_apps/index.html#_token-exchange
+//
+// When enabling Openid Client Permissions, Keycloak does several things automatically:
+//
+//  1. Enable Authorization on build-in realm-management client
+//  2. Create scopes "view", "manage", "configure", "map-roles", "map-roles-client-scope", "map-roles-composite", "
+//     token-exchange"
+//  3. Create a resource representing the openid client
+//  4. Create all scope based permission for the scopes and openid client resource
+//
+// If the realm-management Authorization is not enable, you have to ceate a dependency (`dependsOn`) with the policy and
+// the openid client.
+//
+// ### Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/openid"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm: pulumi.String("realm"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			myOpenidClient, err := openid.NewClient(ctx, "myOpenidClient", &openid.ClientArgs{
+//				RealmId:             realm.ID(),
+//				ClientId:            pulumi.String("my_openid_client"),
+//				ClientSecret:        pulumi.String("secret"),
+//				AccessType:          pulumi.String("CONFIDENTIAL"),
+//				StandardFlowEnabled: pulumi.Bool(true),
+//				ValidRedirectUris: pulumi.StringArray{
+//					pulumi.String("http://localhost:8080/*"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			realmManagement := openid.LookupClientOutput(ctx, openid.GetClientOutputArgs{
+//				RealmId:  realm.ID(),
+//				ClientId: pulumi.String("realm-management"),
+//			}, nil)
+//			testUser, err := keycloak.NewUser(ctx, "testUser", &keycloak.UserArgs{
+//				RealmId:   realm.ID(),
+//				Username:  pulumi.String("test-user"),
+//				Email:     pulumi.String("test-user@fakedomain.com"),
+//				FirstName: pulumi.String("Testy"),
+//				LastName:  pulumi.String("Tester"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			testClientUserPolicy, err := openid.NewClientUserPolicy(ctx, "testClientUserPolicy", &openid.ClientUserPolicyArgs{
+//				ResourceServerId: realmManagement.ApplyT(func(realmManagement openid.GetClientResult) (*string, error) {
+//					return &realmManagement.Id, nil
+//				}).(pulumi.StringPtrOutput),
+//				RealmId: realm.ID(),
+//				Users: pulumi.StringArray{
+//					testUser.ID(),
+//				},
+//				Logic:            pulumi.String("POSITIVE"),
+//				DecisionStrategy: pulumi.String("UNANIMOUS"),
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				myOpenidClient,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			_, err = openid.NewClientPermissions(ctx, "myPermission", &openid.ClientPermissionsArgs{
+//				RealmId:  realm.ID(),
+//				ClientId: myOpenidClient.ID(),
+//				ViewScope: &openid.ClientPermissionsViewScopeArgs{
+//					Policies: pulumi.StringArray{
+//						testClientUserPolicy.ID(),
+//					},
+//					Description:      pulumi.String("my description"),
+//					DecisionStrategy: pulumi.String("UNANIMOUS"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Argument Reference
+//
+// The following arguments are supported:
+//
+// - `realmId` - (Required) The realm this group exists in.
+// - `clientId` - (Required) The id of the client that provides the role.
+//
+// #### Permission Scopes
+//
+// Permission scopes can be defined using the following attributes:
+//
+// - `viewScope`
+// - `manageScope`
+// - `configureScope`
+// - `mapRolesScope`
+// - `mapRolesClientScopeScope`
+// - `mapRolesCompositeScope`
+// - `tokenExchangeScope`
+//
+// Each of these attributes have the following schema:
+//
+// - `policies` - (Optional) A list of policy IDs
+// - `description` - (Optional) A description for the permission scope
+// - `decisionStrategy` - (Optional) The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`.
+//
+// ### Attributes Reference
+//
+// In addition to the arguments listed above, the following computed attributes are exported:
+//
+//   - `authorizationResourceServerId` - Resource server id representing the realm management client on which this
+//     permission is managed.
 type ClientPermissions struct {
 	pulumi.CustomResourceState
 

@@ -9,29 +9,90 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak.Ldap
 {
+    /// <summary>
+    /// Allows for creating and managing hardcoded group mappers for Keycloak users federated via LDAP.
+    /// 
+    /// The LDAP hardcoded group mapper will grant a specified Keycloak group to each Keycloak user linked with LDAP.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
+    /// 
+    ///     var ldapUserFederation = new Keycloak.Ldap.UserFederation("ldapUserFederation", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         UsernameLdapAttribute = "cn",
+    ///         RdnLdapAttribute = "cn",
+    ///         UuidLdapAttribute = "entryDN",
+    ///         UserObjectClasses = new[]
+    ///         {
+    ///             "simpleSecurityObject",
+    ///             "organizationalRole",
+    ///         },
+    ///         ConnectionUrl = "ldap://openldap",
+    ///         UsersDn = "dc=example,dc=org",
+    ///         BindDn = "cn=admin,dc=example,dc=org",
+    ///         BindCredential = "admin",
+    ///     });
+    /// 
+    ///     var realmGroup = new Keycloak.Group("realmGroup", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///     });
+    /// 
+    ///     var assignGroupToUsers = new Keycloak.Ldap.HardcodedGroupMapper("assignGroupToUsers", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         LdapUserFederationId = ldapUserFederation.Id,
+    ///         Group = realmGroup.Name,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// LDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`. The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs. Examplebash
+    /// 
+    /// ```sh
+    ///  $ pulumi import keycloak:ldap/hardcodedGroupMapper:HardcodedGroupMapper assign_group_to_users my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
+    /// ```
+    /// </summary>
     [KeycloakResourceType("keycloak:ldap/hardcodedGroupMapper:HardcodedGroupMapper")]
     public partial class HardcodedGroupMapper : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Group to grant to user.
+        /// The name of the group which should be assigned to the users.
         /// </summary>
         [Output("group")]
         public Output<string> Group { get; private set; } = null!;
 
         /// <summary>
-        /// The ldap user federation provider to attach this mapper to.
+        /// The ID of the LDAP user federation provider to attach this mapper to.
         /// </summary>
         [Output("ldapUserFederationId")]
         public Output<string> LdapUserFederationId { get; private set; } = null!;
 
         /// <summary>
-        /// Display name of the mapper when displayed in the console.
+        /// Display name of this mapper when displayed in the console.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The realm in which the ldap user federation provider exists.
+        /// The realm that this LDAP mapper will exist in.
         /// </summary>
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
@@ -83,25 +144,25 @@ namespace Pulumi.Keycloak.Ldap
     public sealed class HardcodedGroupMapperArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Group to grant to user.
+        /// The name of the group which should be assigned to the users.
         /// </summary>
         [Input("group", required: true)]
         public Input<string> Group { get; set; } = null!;
 
         /// <summary>
-        /// The ldap user federation provider to attach this mapper to.
+        /// The ID of the LDAP user federation provider to attach this mapper to.
         /// </summary>
         [Input("ldapUserFederationId", required: true)]
         public Input<string> LdapUserFederationId { get; set; } = null!;
 
         /// <summary>
-        /// Display name of the mapper when displayed in the console.
+        /// Display name of this mapper when displayed in the console.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The realm in which the ldap user federation provider exists.
+        /// The realm that this LDAP mapper will exist in.
         /// </summary>
         [Input("realmId", required: true)]
         public Input<string> RealmId { get; set; } = null!;
@@ -115,25 +176,25 @@ namespace Pulumi.Keycloak.Ldap
     public sealed class HardcodedGroupMapperState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Group to grant to user.
+        /// The name of the group which should be assigned to the users.
         /// </summary>
         [Input("group")]
         public Input<string>? Group { get; set; }
 
         /// <summary>
-        /// The ldap user federation provider to attach this mapper to.
+        /// The ID of the LDAP user federation provider to attach this mapper to.
         /// </summary>
         [Input("ldapUserFederationId")]
         public Input<string>? LdapUserFederationId { get; set; }
 
         /// <summary>
-        /// Display name of the mapper when displayed in the console.
+        /// Display name of this mapper when displayed in the console.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The realm in which the ldap user federation provider exists.
+        /// The realm that this LDAP mapper will exist in.
         /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }

@@ -26,15 +26,16 @@ class AttributeToRoleIdentityMapperArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a AttributeToRoleIdentityMapper resource.
-        :param pulumi.Input[str] identity_provider_alias: IDP Alias
-        :param pulumi.Input[str] realm: Realm Name
-        :param pulumi.Input[str] role: Role Name
-        :param pulumi.Input[str] attribute_friendly_name: Attribute Friendly Name
-        :param pulumi.Input[str] attribute_name: Attribute Name
-        :param pulumi.Input[str] attribute_value: Attribute Value
+        :param pulumi.Input[str] identity_provider_alias: The alias of the associated identity provider.
+        :param pulumi.Input[str] realm: The name of the realm.
+        :param pulumi.Input[str] role: Role Name.
+        :param pulumi.Input[str] attribute_friendly_name: Attribute Friendly Name. Conflicts with `attribute_name`.
+        :param pulumi.Input[str] attribute_name: Attribute Name.
+        :param pulumi.Input[str] attribute_value: Attribute Value.
         :param pulumi.Input[str] claim_name: OIDC Claim Name
         :param pulumi.Input[str] claim_value: OIDC Claim Value
-        :param pulumi.Input[str] name: IDP Mapper Name
+        :param pulumi.Input[Mapping[str, Any]] extra_config: Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
+        :param pulumi.Input[str] name: The name of the mapper.
         """
         pulumi.set(__self__, "identity_provider_alias", identity_provider_alias)
         pulumi.set(__self__, "realm", realm)
@@ -58,7 +59,7 @@ class AttributeToRoleIdentityMapperArgs:
     @pulumi.getter(name="identityProviderAlias")
     def identity_provider_alias(self) -> pulumi.Input[str]:
         """
-        IDP Alias
+        The alias of the associated identity provider.
         """
         return pulumi.get(self, "identity_provider_alias")
 
@@ -70,7 +71,7 @@ class AttributeToRoleIdentityMapperArgs:
     @pulumi.getter
     def realm(self) -> pulumi.Input[str]:
         """
-        Realm Name
+        The name of the realm.
         """
         return pulumi.get(self, "realm")
 
@@ -82,7 +83,7 @@ class AttributeToRoleIdentityMapperArgs:
     @pulumi.getter
     def role(self) -> pulumi.Input[str]:
         """
-        Role Name
+        Role Name.
         """
         return pulumi.get(self, "role")
 
@@ -94,7 +95,7 @@ class AttributeToRoleIdentityMapperArgs:
     @pulumi.getter(name="attributeFriendlyName")
     def attribute_friendly_name(self) -> Optional[pulumi.Input[str]]:
         """
-        Attribute Friendly Name
+        Attribute Friendly Name. Conflicts with `attribute_name`.
         """
         return pulumi.get(self, "attribute_friendly_name")
 
@@ -106,7 +107,7 @@ class AttributeToRoleIdentityMapperArgs:
     @pulumi.getter(name="attributeName")
     def attribute_name(self) -> Optional[pulumi.Input[str]]:
         """
-        Attribute Name
+        Attribute Name.
         """
         return pulumi.get(self, "attribute_name")
 
@@ -118,7 +119,7 @@ class AttributeToRoleIdentityMapperArgs:
     @pulumi.getter(name="attributeValue")
     def attribute_value(self) -> Optional[pulumi.Input[str]]:
         """
-        Attribute Value
+        Attribute Value.
         """
         return pulumi.get(self, "attribute_value")
 
@@ -153,6 +154,9 @@ class AttributeToRoleIdentityMapperArgs:
     @property
     @pulumi.getter(name="extraConfig")
     def extra_config(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
+        """
         return pulumi.get(self, "extra_config")
 
     @extra_config.setter
@@ -163,7 +167,7 @@ class AttributeToRoleIdentityMapperArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        IDP Mapper Name
+        The name of the mapper.
         """
         return pulumi.get(self, "name")
 
@@ -187,15 +191,16 @@ class _AttributeToRoleIdentityMapperState:
                  role: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering AttributeToRoleIdentityMapper resources.
-        :param pulumi.Input[str] attribute_friendly_name: Attribute Friendly Name
-        :param pulumi.Input[str] attribute_name: Attribute Name
-        :param pulumi.Input[str] attribute_value: Attribute Value
+        :param pulumi.Input[str] attribute_friendly_name: Attribute Friendly Name. Conflicts with `attribute_name`.
+        :param pulumi.Input[str] attribute_name: Attribute Name.
+        :param pulumi.Input[str] attribute_value: Attribute Value.
         :param pulumi.Input[str] claim_name: OIDC Claim Name
         :param pulumi.Input[str] claim_value: OIDC Claim Value
-        :param pulumi.Input[str] identity_provider_alias: IDP Alias
-        :param pulumi.Input[str] name: IDP Mapper Name
-        :param pulumi.Input[str] realm: Realm Name
-        :param pulumi.Input[str] role: Role Name
+        :param pulumi.Input[Mapping[str, Any]] extra_config: Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
+        :param pulumi.Input[str] identity_provider_alias: The alias of the associated identity provider.
+        :param pulumi.Input[str] name: The name of the mapper.
+        :param pulumi.Input[str] realm: The name of the realm.
+        :param pulumi.Input[str] role: Role Name.
         """
         if attribute_friendly_name is not None:
             pulumi.set(__self__, "attribute_friendly_name", attribute_friendly_name)
@@ -222,7 +227,7 @@ class _AttributeToRoleIdentityMapperState:
     @pulumi.getter(name="attributeFriendlyName")
     def attribute_friendly_name(self) -> Optional[pulumi.Input[str]]:
         """
-        Attribute Friendly Name
+        Attribute Friendly Name. Conflicts with `attribute_name`.
         """
         return pulumi.get(self, "attribute_friendly_name")
 
@@ -234,7 +239,7 @@ class _AttributeToRoleIdentityMapperState:
     @pulumi.getter(name="attributeName")
     def attribute_name(self) -> Optional[pulumi.Input[str]]:
         """
-        Attribute Name
+        Attribute Name.
         """
         return pulumi.get(self, "attribute_name")
 
@@ -246,7 +251,7 @@ class _AttributeToRoleIdentityMapperState:
     @pulumi.getter(name="attributeValue")
     def attribute_value(self) -> Optional[pulumi.Input[str]]:
         """
-        Attribute Value
+        Attribute Value.
         """
         return pulumi.get(self, "attribute_value")
 
@@ -281,6 +286,9 @@ class _AttributeToRoleIdentityMapperState:
     @property
     @pulumi.getter(name="extraConfig")
     def extra_config(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+        """
+        Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
+        """
         return pulumi.get(self, "extra_config")
 
     @extra_config.setter
@@ -291,7 +299,7 @@ class _AttributeToRoleIdentityMapperState:
     @pulumi.getter(name="identityProviderAlias")
     def identity_provider_alias(self) -> Optional[pulumi.Input[str]]:
         """
-        IDP Alias
+        The alias of the associated identity provider.
         """
         return pulumi.get(self, "identity_provider_alias")
 
@@ -303,7 +311,7 @@ class _AttributeToRoleIdentityMapperState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        IDP Mapper Name
+        The name of the mapper.
         """
         return pulumi.get(self, "name")
 
@@ -315,7 +323,7 @@ class _AttributeToRoleIdentityMapperState:
     @pulumi.getter
     def realm(self) -> Optional[pulumi.Input[str]]:
         """
-        Realm Name
+        The name of the realm.
         """
         return pulumi.get(self, "realm")
 
@@ -327,7 +335,7 @@ class _AttributeToRoleIdentityMapperState:
     @pulumi.getter
     def role(self) -> Optional[pulumi.Input[str]]:
         """
-        Role Name
+        Role Name.
         """
         return pulumi.get(self, "role")
 
@@ -353,18 +361,61 @@ class AttributeToRoleIdentityMapper(pulumi.CustomResource):
                  role: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a AttributeToRoleIdentityMapper resource with the given unique name, props, and options.
+        Allows for creating and managing an attribute to role identity provider mapper within Keycloak.
+
+        > If you are using Keycloak 10 or higher, you will need to specify the `extra_config` argument in order to define a `syncMode` for the mapper.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        oidc_identity_provider = keycloak.oidc.IdentityProvider("oidcIdentityProvider",
+            realm=realm.id,
+            alias="oidc",
+            authorization_url="https://example.com/auth",
+            token_url="https://example.com/token",
+            client_id="example_id",
+            client_secret="example_token",
+            default_scopes="openid random profile")
+        realm_role = keycloak.Role("realmRole",
+            realm_id=realm.id,
+            description="My Realm Role")
+        oidc_attribute_to_role_identity_mapper = keycloak.AttributeToRoleIdentityMapper("oidcAttributeToRoleIdentityMapper",
+            realm=realm.id,
+            identity_provider_alias=oidc_identity_provider.alias,
+            role="my-realm-role",
+            claim_name="my-claim",
+            claim_value="my-value",
+            extra_config={
+                "syncMode": "INHERIT",
+            })
+        ```
+
+        ## Import
+
+        Identity provider mappers can be imported using the format `{{realm_id}}/{{idp_alias}}/{{idp_mapper_id}}`, where `idp_alias` is the identity provider alias, and `idp_mapper_id` is the unique ID that Keycloak assigns to the mapper upon creation. This value can be found in the URI when editing this mapper in the GUI, and is typically a GUID. Examplebash
+
+        ```sh
+         $ pulumi import keycloak:index/attributeToRoleIdentityMapper:AttributeToRoleIdentityMapper test_mapper my-realm/my-mapper/f446db98-7133-4e30-b18a-3d28fde7ca1b
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] attribute_friendly_name: Attribute Friendly Name
-        :param pulumi.Input[str] attribute_name: Attribute Name
-        :param pulumi.Input[str] attribute_value: Attribute Value
+        :param pulumi.Input[str] attribute_friendly_name: Attribute Friendly Name. Conflicts with `attribute_name`.
+        :param pulumi.Input[str] attribute_name: Attribute Name.
+        :param pulumi.Input[str] attribute_value: Attribute Value.
         :param pulumi.Input[str] claim_name: OIDC Claim Name
         :param pulumi.Input[str] claim_value: OIDC Claim Value
-        :param pulumi.Input[str] identity_provider_alias: IDP Alias
-        :param pulumi.Input[str] name: IDP Mapper Name
-        :param pulumi.Input[str] realm: Realm Name
-        :param pulumi.Input[str] role: Role Name
+        :param pulumi.Input[Mapping[str, Any]] extra_config: Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
+        :param pulumi.Input[str] identity_provider_alias: The alias of the associated identity provider.
+        :param pulumi.Input[str] name: The name of the mapper.
+        :param pulumi.Input[str] realm: The name of the realm.
+        :param pulumi.Input[str] role: Role Name.
         """
         ...
     @overload
@@ -373,7 +424,49 @@ class AttributeToRoleIdentityMapper(pulumi.CustomResource):
                  args: AttributeToRoleIdentityMapperArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a AttributeToRoleIdentityMapper resource with the given unique name, props, and options.
+        Allows for creating and managing an attribute to role identity provider mapper within Keycloak.
+
+        > If you are using Keycloak 10 or higher, you will need to specify the `extra_config` argument in order to define a `syncMode` for the mapper.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        oidc_identity_provider = keycloak.oidc.IdentityProvider("oidcIdentityProvider",
+            realm=realm.id,
+            alias="oidc",
+            authorization_url="https://example.com/auth",
+            token_url="https://example.com/token",
+            client_id="example_id",
+            client_secret="example_token",
+            default_scopes="openid random profile")
+        realm_role = keycloak.Role("realmRole",
+            realm_id=realm.id,
+            description="My Realm Role")
+        oidc_attribute_to_role_identity_mapper = keycloak.AttributeToRoleIdentityMapper("oidcAttributeToRoleIdentityMapper",
+            realm=realm.id,
+            identity_provider_alias=oidc_identity_provider.alias,
+            role="my-realm-role",
+            claim_name="my-claim",
+            claim_value="my-value",
+            extra_config={
+                "syncMode": "INHERIT",
+            })
+        ```
+
+        ## Import
+
+        Identity provider mappers can be imported using the format `{{realm_id}}/{{idp_alias}}/{{idp_mapper_id}}`, where `idp_alias` is the identity provider alias, and `idp_mapper_id` is the unique ID that Keycloak assigns to the mapper upon creation. This value can be found in the URI when editing this mapper in the GUI, and is typically a GUID. Examplebash
+
+        ```sh
+         $ pulumi import keycloak:index/attributeToRoleIdentityMapper:AttributeToRoleIdentityMapper test_mapper my-realm/my-mapper/f446db98-7133-4e30-b18a-3d28fde7ca1b
+        ```
+
         :param str resource_name: The name of the resource.
         :param AttributeToRoleIdentityMapperArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -451,15 +544,16 @@ class AttributeToRoleIdentityMapper(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] attribute_friendly_name: Attribute Friendly Name
-        :param pulumi.Input[str] attribute_name: Attribute Name
-        :param pulumi.Input[str] attribute_value: Attribute Value
+        :param pulumi.Input[str] attribute_friendly_name: Attribute Friendly Name. Conflicts with `attribute_name`.
+        :param pulumi.Input[str] attribute_name: Attribute Name.
+        :param pulumi.Input[str] attribute_value: Attribute Value.
         :param pulumi.Input[str] claim_name: OIDC Claim Name
         :param pulumi.Input[str] claim_value: OIDC Claim Value
-        :param pulumi.Input[str] identity_provider_alias: IDP Alias
-        :param pulumi.Input[str] name: IDP Mapper Name
-        :param pulumi.Input[str] realm: Realm Name
-        :param pulumi.Input[str] role: Role Name
+        :param pulumi.Input[Mapping[str, Any]] extra_config: Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
+        :param pulumi.Input[str] identity_provider_alias: The alias of the associated identity provider.
+        :param pulumi.Input[str] name: The name of the mapper.
+        :param pulumi.Input[str] realm: The name of the realm.
+        :param pulumi.Input[str] role: Role Name.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -481,7 +575,7 @@ class AttributeToRoleIdentityMapper(pulumi.CustomResource):
     @pulumi.getter(name="attributeFriendlyName")
     def attribute_friendly_name(self) -> pulumi.Output[Optional[str]]:
         """
-        Attribute Friendly Name
+        Attribute Friendly Name. Conflicts with `attribute_name`.
         """
         return pulumi.get(self, "attribute_friendly_name")
 
@@ -489,7 +583,7 @@ class AttributeToRoleIdentityMapper(pulumi.CustomResource):
     @pulumi.getter(name="attributeName")
     def attribute_name(self) -> pulumi.Output[Optional[str]]:
         """
-        Attribute Name
+        Attribute Name.
         """
         return pulumi.get(self, "attribute_name")
 
@@ -497,7 +591,7 @@ class AttributeToRoleIdentityMapper(pulumi.CustomResource):
     @pulumi.getter(name="attributeValue")
     def attribute_value(self) -> pulumi.Output[Optional[str]]:
         """
-        Attribute Value
+        Attribute Value.
         """
         return pulumi.get(self, "attribute_value")
 
@@ -520,13 +614,16 @@ class AttributeToRoleIdentityMapper(pulumi.CustomResource):
     @property
     @pulumi.getter(name="extraConfig")
     def extra_config(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
+        """
+        Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
+        """
         return pulumi.get(self, "extra_config")
 
     @property
     @pulumi.getter(name="identityProviderAlias")
     def identity_provider_alias(self) -> pulumi.Output[str]:
         """
-        IDP Alias
+        The alias of the associated identity provider.
         """
         return pulumi.get(self, "identity_provider_alias")
 
@@ -534,7 +631,7 @@ class AttributeToRoleIdentityMapper(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        IDP Mapper Name
+        The name of the mapper.
         """
         return pulumi.get(self, "name")
 
@@ -542,7 +639,7 @@ class AttributeToRoleIdentityMapper(pulumi.CustomResource):
     @pulumi.getter
     def realm(self) -> pulumi.Output[str]:
         """
-        Realm Name
+        The name of the realm.
         """
         return pulumi.get(self, "realm")
 
@@ -550,7 +647,7 @@ class AttributeToRoleIdentityMapper(pulumi.CustomResource):
     @pulumi.getter
     def role(self) -> pulumi.Output[str]:
         """
-        Role Name
+        Role Name.
         """
         return pulumi.get(self, "role")
 

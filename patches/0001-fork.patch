@@ -1,0 +1,2854 @@
+diff --git b/website/docs/d/keycloak_group.html.markdown a/website/docs/d/keycloak_group.html.markdown
+new file mode 100644
+index 0000000..2cfaf67
+--- /dev/null
++++ a/website/docs/d/keycloak_group.html.markdown
+@@ -0,0 +1,47 @@
++# keycloak_group data source
++
++This data source can be used to fetch properties of a Keycloak group for
++usage with other resources, such as `keycloak_group_roles`.
++
++### Example Usage
++
++```hcl
++resource "keycloak_realm" "realm" {
++    realm   = "my-realm"
++    enabled = true
++}
++
++data "keycloak_role" "offline_access" {
++    realm_id = "${keycloak_realm.realm.id}"
++    name     = "offline_access"
++}
++
++data "keycloak_group" "group" {
++    realm_id = "${keycloak_realm.realm.id}"
++    name     = "group"
++}
++
++resource "keycloak_group_roles" "group_roles" {
++    realm_id = "${keycloak_realm.realm.id}"
++    group_id = "${data.keycloak_group.group.id}"
++
++    roles = [
++        "${data.keycloak_role.offline_access.id}"
++    ]
++}
++```
++
++### Argument Reference
++
++The following arguments are supported:
++
++- `realm_id` - (Required) The realm this group exists within.
++- `name` - (Required) The name of the group
++
++### Attributes Reference
++
++In addition to the arguments listed above, the following computed attributes are exported:
++
++- `id` - The unique ID of the group, which can be used as an argument to
++  other resources supported by this provider.
++
+diff --git b/website/docs/d/keycloak_openid_client.html.markdown a/website/docs/d/keycloak_openid_client.html.markdown
+new file mode 100644
+index 0000000..bd38e9e
+--- /dev/null
++++ a/website/docs/d/keycloak_openid_client.html.markdown
+@@ -0,0 +1,30 @@
++# keycloak_openid_client data source
++
++This data source can be used to fetch properties of a Keycloak OpenID client for usage with other resources.
++
++### Example Usage
++
++```hcl
++data "keycloak_openid_client" "realm_management" {
++  realm_id = "my-realm"
++  client_id = "realm-management"
++}
++
++# use the data source
++data "keycloak_role" "admin" {
++  realm_id = "my-realm"
++  client_id = data.keycloak_openid_client.realm_management.id
++  name = "realm-admin"
++}
++```
++
++### Argument Reference
++
++The following arguments are supported:
++
++- `realm_id` - (Required) The realm id.
++- `client_id` - (Required) The client id.
++
++### Attributes Reference
++
++See the docs for the [`keycloak_openid_client` resource](../resources/keycloak_openid_client.md) for details on the exported attributes.
+diff --git b/website/docs/d/keycloak_realm.html.markdown a/website/docs/d/keycloak_realm.html.markdown
+new file mode 100644
+index 0000000..f373cb6
+--- /dev/null
++++ a/website/docs/d/keycloak_realm.html.markdown
+@@ -0,0 +1,30 @@
++# keycloak_realm data source
++
++This data source can be used to fetch properties of a Keycloak realm for
++usage with other resources.
++
++### Example Usage
++
++```hcl
++data "keycloak_realm" "realm" {
++    realm   = "my-realm"
++}
++
++# use the data source
++
++resource "keycloak_role" "group" {
++    realm_id = "${data.keycloak_realm.id}"
++    name     = "group"
++}
++
++```
++
++### Argument Reference
++
++The following arguments are supported:
++
++- `realm` - (Required) The realm name.
++
++### Attributes Reference
++
++See the docs for the [`keycloak_realm` resource](../resources/keycloak_realm.md) for details on the exported attributes.
+diff --git b/website/docs/d/keycloak_realm_keys.html.markdown a/website/docs/d/keycloak_realm_keys.html.markdown
+new file mode 100644
+index 0000000..50e41b3
+--- /dev/null
++++ a/website/docs/d/keycloak_realm_keys.html.markdown
+@@ -0,0 +1,38 @@
++# keycloak_realm_keys data source
++
++Use this data source to get the keys of a realm. Keys can be filtered by algorithm and status.
++
++Remarks:
++
++- A key must meet all filter criteria
++- This datasource may return more than one value.
++- If no key matches the filter criteria, then an error is returned.
++
++### Example Usage
++
++```hcl
++resource "keycloak_realm" "realm" {
++    realm   = "my-realm"
++    enabled = true
++}
++
++data "keycloak_realm_keys" "keys" {
++  realm_id  = keycloak_realm.realm
++  algorithms = ["AES", "RS256"]
++  status = ["ACTIVE", "PASSIVE"]
++}
++
++# show certificate of first key:
++output "certificate" {
++  value = data.keycloak_realm_keys.realm.keys[0].certificate
++}
++
++```
++
++### Argument Reference
++
++The following arguments are supported:
++
++- `realm_id` - (Required) The realm of which the keys are retrieved.
++- `algorithms` - (Optional) When specified, keys are filtered by algorithm (values for algorithm: `HS256`, `RS256`,`AES`, ...)
++- `status` - (Optional) When specified, keys are filtered by status (values for status: `ACTIVE`, `DISABLED` and `PASSIVE`)
+diff --git b/website/docs/d/keycloak_role.html.markdown a/website/docs/d/keycloak_role.html.markdown
+new file mode 100644
+index 0000000..7dfc4f9
+--- /dev/null
++++ a/website/docs/d/keycloak_role.html.markdown
+@@ -0,0 +1,51 @@
++# keycloak_role data source
++
++This data source can be used to fetch properties of a Keycloak role for
++usage with other resources, such as `keycloak_group_roles`.
++
++### Example Usage
++
++```hcl
++resource "keycloak_realm" "realm" {
++    realm   = "my-realm"
++    enabled = true
++}
++
++data "keycloak_role" "offline_access" {
++    realm_id = "${keycloak_realm.realm.id}"
++    name     = "offline_access"
++}
++
++# use the data source
++
++resource "keycloak_group" "group" {
++    realm_id = "${keycloak_realm.realm.id}"
++    name     = "group"
++}
++
++resource "keycloak_group_roles" "group_roles" {
++    realm_id = "${keycloak_realm.realm.id}"
++    group_id = "${keycloak_group.group.id}"
++
++    roles = [
++        "${data.keycloak_role.offline_access.id}"
++    ]
++}
++```
++
++### Argument Reference
++
++The following arguments are supported:
++
++- `realm_id` - (Required) The realm this role exists within.
++- `client_id` - (Optional) When specified, this role is assumed to be a
++  client role belonging to the client with the provided ID
++- `name` - (Required) The name of the role
++  
++### Attributes Reference
++
++In addition to the arguments listed above, the following computed attributes are exported:
++
++- `id` - The unique ID of the role, which can be used as an argument to
++  other resources supported by this provider.
++- `description` - The description of the role.
+diff --git b/website/docs/r/keycloak_attribute_importer_identity_provider_mapper.html.markdown a/website/docs/r/keycloak_attribute_importer_identity_provider_mapper.html.markdown
+new file mode 100644
+index 0000000..80ef892
+--- /dev/null
++++ a/website/docs/r/keycloak_attribute_importer_identity_provider_mapper.html.markdown
+@@ -0,0 +1,38 @@
++# keycloak_attribute_importer_identity_provider_mapper
++
++Allows to create and manage identity provider mappers within Keycloak.
++
++### Example Usage
++
++```hcl
++resource "keycloak_attribute_importer_identity_provider_mapper" "test_mapper" {
++  realm = "my-realm"
++  name = "my-mapper"
++  identity_provider_alias = "idp_alias"
++  attribute_name = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname"
++  user_attribute = "lastName"
++}
++```
++
++### Argument Reference
++
++The following arguments are supported:
++
++- `realm` - (Required) The name of the realm.
++- `name` - (Required) The name of the mapper.
++- `identity_provider_alias` - (Required) The alias of the associated identity provider.
++- `user_attribute` - (Required) The user attribute name to store SAML attribute.
++- `attribute_name` - (Optional) The Name of attribute to search for in assertion. You can leave this blank and specify a friendly name instead.
++- `attribute_friendly_name` - (Optional) The friendly name of attribute to search for in assertion.  You can leave this blank and specify an attribute name instead.
++- `claim_name` - (Optional) The claim name.
++
++### Import
++
++Identity provider mapper can be imported using the format `{{realm_id}}/{{idp_alias}}/{{idp_mapper_id}}`, where `idp_alias` is the identity provider alias, and `idp_mapper_id` is the unique ID that Keycloak
++assigns to the mapper upon creation. This value can be found in the URI when editing this mapper in the GUI, and is typically a GUID.
++
++Example:
++
++```bash
++$ terraform import keycloak_attribute_importer_identity_provider_mapper.test_mapper my-realm/my-mapper/f446db98-7133-4e30-b18a-3d28fde7ca1b
++```
+diff --git b/website/docs/r/keycloak_custom_user_federation.html.markdown a/website/docs/r/keycloak_custom_user_federation.html.markdown
+new file mode 100644
+index 0000000..523a2a3
+--- /dev/null
++++ a/website/docs/r/keycloak_custom_user_federation.html.markdown
+@@ -0,0 +1,44 @@
++# keycloak_custom_user_federation
++
++Allows for creating and managing custom user federation providers within Keycloak.
++
++A custom user federation provider is an implementation of Keycloak's
++[User Storage SPI](https://www.keycloak.org/docs/4.2/server_development/index.html#_user-storage-spi).
++An example of this implementation can be found [here](https://github.com/mrparkers/terraform-provider-keycloak/tree/master/custom-user-federation-example).
++
++### Example Usage
++
++```hcl
++resource "keycloak_realm" "realm" {
++    realm   = "test"
++    enabled = true
++}
++
++resource "keycloak_custom_user_federation" "custom_user_federation" {
++    name        = "custom"
++    realm_id    = "${keycloak_realm.realm.id}"
++    provider_id = "custom"
++
++    enabled     = true
++}
++```
++
++### Argument Reference
++
++The following arguments are supported:
++
++- `realm_id` - (Required) The realm that this provider will provide user federation for.
++- `name` - (Required) Display name of the provider when displayed in the console.
++- `provider_id` - (Required) The unique ID of the custom provider, specified in the `getId` implementation for the `UserStorageProviderFactory` interface.
++- `enabled` - (Optional) When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
++- `priority` - (Optional) Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
++- `cache_policy` - (Optional) Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
++
++### Import
++
++Custom user federation providers can be imported using the format `{{realm_id}}/{{custom_user_federation_id}}`.
++The ID of the custom user federation provider can be found within the Keycloak GUI and is typically a GUID:
++
++```bash
++$ terraform import keycloak_custom_user_federation.custom_user_federation my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860
++```
+diff --git b/website/docs/r/keycloak_default_groups.html.markdown a/website/docs/r/keycloak_default_groups.html.markdown
+new file mode 100644
+index 0000000..491e41b
+--- /dev/null
++++ a/website/docs/r/keycloak_default_groups.html.markdown
+@@ -0,0 +1,42 @@
++# keycloak_default_groups
++
++Allows for managing a realm's default groups.
++
++Note that you should not use `keycloak_default_groups` with a group with memberships managed
++by `keycloak_group_memberships`.
++
++### Example Usage
++
++```hcl
++resource "keycloak_realm" "realm" {
++    realm   = "my-realm"
++    enabled = true
++}
++
++resource "keycloak_group" "group" {
++    realm_id = "${keycloak_realm.realm.id}"
++    name     = "my-group"
++}
++
++resource "keycloak_default_groups" "default" {
++    realm_id  = "${keycloak_realm.realm.id}"
++    group_ids = ["${keycloak_group.group.id}"]
++} 
++```
++
++### Argument Reference
++
++The following arguments are supported:
++
++- `realm_id` - (Required) The realm this group exists in.
++- `group_ids` - (Required) A set of group ids that should be default groups on the realm referenced by `realm_id`.
++
++### Import
++
++Groups can be imported using the format `{{realm_id}}` where `realm_id` is the realm the group exists in.
++
++Example:
++
++```bash
++$ terraform import keycloak_default_groups.default my-realm
++```
+\ No newline at end of file
+diff --git b/website/docs/r/keycloak_generic_client_protocol_mapper.html.markdown a/website/docs/r/keycloak_generic_client_protocol_mapper.html.markdown
+new file mode 100644
+index 0000000..2746481
+--- /dev/null
++++ a/website/docs/r/keycloak_generic_client_protocol_mapper.html.markdown
+@@ -0,0 +1,60 @@
++# keycloak_generic_client_protocol_mapper
++
++Allows for creating and managing protocol mapper for both types of clients (openid-connect and saml) within Keycloak.
++
++There are two uses cases for using this resource:
++* If you implemented a custom protocol mapper, this resource can be used to configure it
++* If the provider doesn't support a particular protocol mapper, this resource can be used instead.
++
++Due to the generic nature of this mapper, it is less user-friendly and more prone to configuration errors. 
++Therefore, if possible, a specific mapper should be used.
++
++### Example Usage
++
++```hcl
++resource "keycloak_realm" "realm" {
++    realm   = "my-realm"
++    enabled = true
++}
++
++resource "keycloak_saml_client" "saml_client" {
++  realm_id  = "${keycloak_realm.realm.id}"
++  client_id = "test-client"
++}
++
++resource "keycloak_generic_client_protocol_mapper" "saml_hardcode_attribute_mapper" {
++  realm_id        = "${keycloak_realm.realm.id}"
++  client_id       = "${keycloak_saml_client.saml_client.id}"
++  name            = "tes-mapper"
++  protocol        = "saml"
++  protocol_mapper = "saml-hardcode-attribute-mapper"
++  config = {
++    "attribute.name"       = "name"
++    "attribute.nameformat" = "Basic"
++    "attribute.value"      = "value"
++    "friendly.name"        = "display name"
++  }
++}
++```
++
++### Argument Reference
++
++The following arguments are supported:
++
++- `realm_id` - (Required) The realm this protocol mapper exists within.
++- `client_id` - (Required) The client this protocol mapper is attached to.
++- `name` - (Required) The display name of this protocol mapper in the GUI.
++- `protocol` - (Required) The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
++- `protocol_mapper` - (Required) The name of the protocol mapper. The protocol mapper must be
++   compatible with the specified client.
++- `config` - (Required) A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
++
++### Import
++
++Protocol mappers can be imported using the following format: `{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}`
++
++Example:
++
++```bash
++$ terraform import keycloak_generic_client_protocol_mapper.saml_hardcode_attribute_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
++```
+diff --git b/website/docs/r/keycloak_group.html.markdown a/website/docs/r/keycloak_group.html.markdown
+new file mode 100644
+index 0000000..f6f03b3
+--- /dev/null
++++ a/website/docs/r/keycloak_group.html.markdown
+@@ -0,0 +1,68 @@
++# keycloak_group
++
++Allows for creating and managing Groups within Keycloak.
++
++Groups provide a logical wrapping for users within Keycloak. Users within a
++group can share attributes and roles, and group membership can be mapped
++to a claim.
++
++Attributes can also be defined on Groups.
++
++Groups can also be federated from external data sources, such as LDAP or Active Directory.
++This resource **should not** be used to manage groups that were created this way.
++
++### Example Usage
++
++```hcl
++resource "keycloak_realm" "realm" {
++    realm   = "my-realm"
++    enabled = true
++}
++
++resource "keycloak_group" "parent_group" {
++    realm_id = "${keycloak_realm.realm.id}"
++    name     = "parent-group"
++}
++
++resource "keycloak_group" "child_group" {
++    realm_id  = "${keycloak_realm.realm.id}"
++    parent_id = "${keycloak_group.parent_group.id}"
++    name      = "child-group"
++}
++
++resource "keycloak_group" "child_group_with_optional_attributes" {
++    realm_id  = "${keycloak_realm.realm.id}"
++    parent_id = "${keycloak_group.parent_group.id}"
++    name      = "child-group-with-optional-attributes"
++    attributes = {
++		"key1" = "value1"
++		"key2" = "value2"
++    }
++}
++```
++
++### Argument Reference
++
++The following arguments are supported:
++
++- `realm_id` - (Required) The realm this group exists in.
++- `parent_id` - (Optional) The ID of this group's parent. If omitted, this group will be defined at the root level.
++- `name` - (Required) The name of the group.
++- `attributes` - (Optional) A dict of key/value pairs to set as custom attributes for the group.
++
++### Attributes Reference
++
++In addition to the arguments listed above, the following computed attributes are exported:
++
++- `path` - The complete path of the group. For example, the child group's path in the example configuration would be `/parent-group/child-group`.
++
++### Import
++
++Groups can be imported using the format `{{realm_id}}/{{group_id}}`, where `group_id` is the unique ID that Keycloak
++assigns to the group upon creation. This value can be found in the URI when editing this group in the GUI, and is typically a GUID.
++
++Example:
++
++```bash
++$ terraform import keycloak_group.child_group my-realm/934a4a4e-28bd-4703-a0fa-332df153aabd
++```
+diff --git b/website/docs/r/keycloak_group_memberships.html.markdown a/website/docs/r/keycloak_group_memberships.html.markdown
+new file mode 100644
+index 0000000..19c2c39
+--- /dev/null
++++ a/website/docs/r/keycloak_group_memberships.html.markdown
+@@ -0,0 +1,56 @@
++# keycloak_group_memberships
++
++Allows for managing a Keycloak group's members.
++
++Note that this resource attempts to be an **authoritative** source over group members.
++When this resource takes control over a group's members, users that are manually added
++to the group will be removed, and users that are manually removed from the group will
++be added upon the next run of `terraform apply`.  Eventually, a non-authoritative resource
++for group membership will be added to this provider.
++
++Also note that you should not use `keycloak_group_memberships` with a group has been assigned
++as a default group via `keycloak_default_groups`.
++
++This resource **should not** be used to control membership of a group that has its members
++federated from an external source via group mapping.
++
++### Example Usage
++
++```hcl
++resource "keycloak_realm" "realm" {
++    realm   = "my-realm"
++    enabled = true
++}
++
++resource "keycloak_group" "group" {
++    realm_id = "${keycloak_realm.realm.id}"
++    name     = "my-group"
++}
++
++resource "keycloak_user" "user" {
++	realm_id = "${keycloak_realm.realm.id}"
++	username = "my-user"
++}
++
++resource "keycloak_group_memberships" "group_members" {
++	realm_id = "${keycloak_realm.realm.id}"
++	group_id = "${keycloak_group.group.id}"
++
++	members  = [
++		"${keycloak_user.user.username}"
++	]
++}
++```
++
++### Argument Reference
++
++The following arguments are supported:
++
++- `realm_id` - (Required) The realm this group exists in.
++- `group_id` - (Required) The ID of the group this resource should manage memberships for.
++- `members` - (Required) An array of usernames that belong to this group.
++
++### Import
++
++This resource does not support import. Instead of importing, feel free to create this resource
++as if it did not already exist on the server.
+diff --git b/website/docs/r/keycloak_group_roles.html.markdown a/website/docs/r/keycloak_group_roles.html.markdown
+new file mode 100644
+index 0000000..e0903cf
+--- /dev/null
++++ a/website/docs/r/keycloak_group_roles.html.markdown
+@@ -0,0 +1,83 @@
++# keycloak_group_roles
++
++Allows you to manage roles assigned to a Keycloak group.
++
++Note that this resource attempts to be an **authoritative** source over
++group roles. When this resource takes control over a group's roles,
++roles that are manually added to the group will be removed, and roles
++that are manually removed from the group will be added upon the next run
++of `terraform apply`.
++
++Note that when assigning composite roles to a group, you may see a
++non-empty plan following a `terraform apply` if you assign a role and a
++composite that includes that role to the same group.
++
++### Example Usage
++
++```hcl
++resource "keycloak_realm" "realm" {
++  realm   = "my-realm"
++  enabled = true
++}
++
++resource "keycloak_role" "realm_role" {
++  realm_id    = "${keycloak_realm.realm.id}"
++  name        = "my-realm-role"
++  description = "My Realm Role"
++}
++
++resource "keycloak_openid_client" "client" {
++  realm_id  = "${keycloak_realm.realm.id}"
++  client_id = "client"
++  name      = "client"
++
++  enabled = true
++
++  access_type = "BEARER-ONLY"
++}
++
++resource "keycloak_role" "client_role" {
++  realm_id    = "${keycloak_realm.realm.id}"
++  client_id   = "${keycloak_client.client.id}"
++  name        = "my-client-role"
++  description = "My Client Role"
++}
++
++resource "keycloak_group" "group" {
++  realm_id = "${keycloak_realm.realm.id}"
++  name     = "my-group"
++}
++
++resource "keycloak_group_roles" "group_roles" {
++  realm_id = "${keycloak_realm.realm.id}"
++  group_id = "${keycloak_group.group.id}"
++  
++  role_ids = [
++    "${keycloak_role.realm_role.id}",
++    "${keycloak_role.client_role.id}",
++  ]
++}
++```
++
++### Argument Reference
++
++The following arguments are supported:
++
++- `realm_id` - (Required) The realm this group exists in.
++- `group_id` - (Required) The ID of the group this resource should
++  manage roles for.
++- `role_ids` - (Required) A list of role IDs to map to the group
++
++### Import
++
++This resource can be imported using the format
++`{{realm_id}}/{{group_id}}`, where `group_id` is the unique ID that
++Keycloak assigns to the group upon creation. This value can be found in
++the URI when editing this group in the GUI, and is typically a GUID.
++
++Example:
++
++```bash
++$ terraform import keycloak_group_roles.group_roles my-realm/18cc6b87-2ce7-4e59-bdc8-b9d49ec98a94
++```
++
+diff --git b/website/docs/r/keycloak_ldap_full_name_mapper.html.markdown a/website/docs/r/keycloak_ldap_full_name_mapper.html.markdown
+new file mode 100644
+index 0000000..f2655c2
+--- /dev/null
++++ a/website/docs/r/keycloak_ldap_full_name_mapper.html.markdown
+@@ -0,0 +1,61 @@
++# keycloak_ldap_full_name_mapper
++
++Allows for creating and managing full name mappers for Keycloak users federated
++via LDAP.
++
++The LDAP full name mapper can map a user's full name from an LDAP attribute
++to the first and last name attributes of a Keycloak user.
++
++### Example Usage
++
++```hcl
++resource "keycloak_realm" "realm" {
++    realm   = "test"
++    enabled = true
++}
++
++resource "keycloak_ldap_user_federation" "ldap_user_federation" {
++	name                    = "openldap"
++	realm_id                = "${keycloak_realm.realm.id}"
++
++	username_ldap_attribute = "cn"
++	rdn_ldap_attribute      = "cn"
++	uuid_ldap_attribute     = "entryDN"
++	user_object_classes     = [
++		"simpleSecurityObject",
++		"organizationalRole"
++	]
++	connection_url          = "ldap://openldap"
++	users_dn                = "dc=example,dc=org"
++	bind_dn                 = "cn=admin,dc=example,dc=org"
++	bind_credential         = "admin"
++}
++
++resource "keycloak_ldap_full_name_mapper" "ldap_full_name_mapper" {
++	realm_id                 = "${keycloak_realm.realm.id}"
++	ldap_user_federation_id  = "${keycloak_ldap_user_federation.ldap_user_federation.id}"
++	name                     = "full-name-mapper"
++	ldap_full_name_attribute = "cn"
++}
++```
++
++### Argument Reference
++
++The following arguments are supported:
++
++- `realm_id` - (Required) The realm that this LDAP mapper will exist in.
++- `ldap_user_federation_id` - (Required) The ID of the LDAP user federation provider to attach this mapper to.
++- `name` - (Required) Display name of this mapper when displayed in the console.
++- `ldap_full_name_attribute` - (Required) The name of the LDAP attribute containing the user's full name.
++- `read_only` - (Optional) When `true`, updates to a user within Keycloak will not be written back to LDAP. Defaults to `false`.
++- `write_only` - (Optional) When `true`, this mapper will only be used to write updates to LDAP. Defaults to `false`.
++
++### Import
++
++LDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`.
++The ID of the LDAP user federation provider and the mapper can be found within
++the Keycloak GUI, and they are typically GUIDs:
++
++```bash
++$ terraform import keycloak_ldap_full_name_mapper.ldap_full_name_mapper my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
++```
+diff --git b/website/docs/r/keycloak_ldap_group_mapper.html.markdown a/website/docs/r/keycloak_ldap_group_mapper.html.markdown
+new file mode 100644
+index 0000000..0f21461
+--- /dev/null
++++ a/website/docs/r/keycloak_ldap_group_mapper.html.markdown
+@@ -0,0 +1,82 @@
++# keycloak_ldap_group_mapper
++
++Allows for creating and managing group mappers for Keycloak users federated
++via LDAP.
++
++The LDAP group mapper can be used to map an LDAP user's groups from some DN
++to Keycloak groups. This group mapper will also create the groups within Keycloak
++if they do not already exist.
++
++### Example Usage
++
++```hcl
++resource "keycloak_realm" "realm" {
++    realm   = "test"
++    enabled = true
++}
++
++resource "keycloak_ldap_user_federation" "ldap_user_federation" {
++	name                    = "openldap"
++	realm_id                = "${keycloak_realm.realm.id}"
++
++	username_ldap_attribute = "cn"
++	rdn_ldap_attribute      = "cn"
++	uuid_ldap_attribute     = "entryDN"
++	user_object_classes     = [
++		"simpleSecurityObject",
++		"organizationalRole"
++	]
++	connection_url          = "ldap://openldap"
++	users_dn                = "dc=example,dc=org"
++	bind_dn                 = "cn=admin,dc=example,dc=org"
++	bind_credential         = "admin"
++}
++
++resource "keycloak_ldap_group_mapper" "ldap_group_mapper" {
++	realm_id                       = "${keycloak_realm.realm.id}"
++	ldap_user_federation_id        = "${keycloak_ldap_user_federation.ldap_user_federation.id}"
++	name                           = "group-mapper"
++
++	ldap_groups_dn                 = "dc=example,dc=org"
++	group_name_ldap_attribute      = "cn"
++	group_object_classes           = [
++		"groupOfNames"
++	]
++	membership_attribute_type      = "DN"
++	membership_ldap_attribute      = "member"
++	membership_user_ldap_attribute = "cn"
++	memberof_ldap_attribute        = "memberOf"
++}
++```
++
++### Argument Reference
++
++The following arguments are supported:
++
++- `realm_id` - (Required) The realm that this LDAP mapper will exist in.
++- `ldap_user_federation_id` - (Required) The ID of the LDAP user federation provider to attach this mapper to.
++- `name` - (Required) Display name of this mapper when displayed in the console.
++- `ldap_groups_dn` - (Required) The LDAP DN where groups can be found.
++- `group_name_ldap_attribute` - (Required) The name of the LDAP attribute that is used in group objects for the name and RDN of the group. Typically `cn`.
++- `group_object_classes` - (Required) Array of strings representing the object classes for the group. Must contain at least one.
++- `preserve_group_inheritance` - (Optional) When `true`, group inheritance will be propagated from LDAP to Keycloak. When `false`, all LDAP groups will be propagated as top level groups within Keycloak.
++- `ignore_missing_groups` - (Optional) When `true`, missing groups in the hierarchy will be ignored.
++- `membership_ldap_attribute` - (Required) The name of the LDAP attribute that is used for membership mappings.
++- `membership_attribute_type` - (Optional) Can be one of `DN` or `UID`. Defaults to `DN`.
++- `membership_user_ldap_attribute` - (Required) The name of the LDAP attribute on a user that is used for membership mappings.
++- `groups_ldap_filter` - (Optional) When specified, adds an additional custom filter to be used when querying for groups. Must start with `(` and end with `)`.
++- `mode` - (Optional) Can be one of `READ_ONLY` or `LDAP_ONLY`. Defaults to `READ_ONLY`.
++- `user_roles_retrieve_strategy` - (Optional) Can be one of `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE`, `GET_GROUPS_FROM_USER_MEMBEROF_ATTRIBUTE`, or `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE_RECURSIVELY`. Defaults to `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE`.
++- `memberof_ldap_attribute` - (Optional) Specifies the name of the LDAP attribute on the LDAP user that contains the groups the user is a member of. Defaults to `memberOf`.
++- `mapped_group_attributes` - (Optional) Array of strings representing attributes on the LDAP group which will be mapped to attributes on the Keycloak group.
++- `drop_non_existing_groups_during_sync` - (Optional) When `true`, groups that no longer exist within LDAP will be dropped in Keycloak during sync. Defaults to `false`.
++
++### Import
++
++LDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`.
++The ID of the LDAP user federation provider and the mapper can be found within
++the Keycloak GUI, and they are typically GUIDs:
++
++```bash
++$ terraform import keycloak_ldap_group_mapper.ldap_group_mapper my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
++```
+diff --git b/website/docs/r/keycloak_ldap_hardcoded_role_mapper.html.markdown a/website/docs/r/keycloak_ldap_hardcoded_role_mapper.html.markdown
+new file mode 100644
+index 0000000..2ec6556
+--- /dev/null
++++ a/website/docs/r/keycloak_ldap_hardcoded_role_mapper.html.markdown
+@@ -0,0 +1,55 @@
++# keycloak_ldap_hardcoded_role_mapper
++
++This mapper will grant a specified Keycloak role to each Keycloak user linked with LDAP.
++
++### Example Usage
++
++```hcl
++resource "keycloak_realm" "realm" {
++    realm   = "test"
++    enabled = true
++}
++
++resource "keycloak_ldap_user_federation" "ldap_user_federation" {
++    name                    = "openldap"
++    realm_id                = keycloak_realm.realm.id
++
++    username_ldap_attribute = "cn"
++    rdn_ldap_attribute      = "cn"
++    uuid_ldap_attribute     = "entryDN"
++    user_object_classes     = [
++        "simpleSecurityObject",
++        "organizationalRole"
++    ]
++    connection_url          = "ldap://openldap"
++    users_dn                = "dc=example,dc=org"
++    bind_dn                 = "cn=admin,dc=example,dc=org"
++    bind_credential         = "admin"
++}
++
++resource "keycloak_ldap_hardcoded_role_mapper" "assign_admin_role_to_all_users" {
++  realm_id                = keycloak_realm.realm.id
++  ldap_user_federation_id = keycloak_ldap_user_federation.ldap_user_federation.id
++  name                    = "assign-admin-role-to-all-users"
++  role                    = "admin"
++}
++```
++
++### Argument Reference
++
++The following arguments are supported:
++
++- `realm_id` - (Required) The realm that this LDAP mapper will exist in.
++- `ldap_user_federation_id` - (Required) The ID of the LDAP user federation provider to attach this mapper to.
++- `name` - (Required) Display name of this mapper when displayed in the console.
++- `role` - (Required) The role which should be assigned to the users.
++
++### Import
++
++LDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`.
++The ID of the LDAP user federation provider and the mapper can be found within
++the Keycloak GUI, and they are typically GUIDs:
++
++```bash
++$ terraform import keycloak_ldap_hardcoded_role_mapper.ldap_hardcoded_role_mapper my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
++```
+diff --git b/website/docs/r/keycloak_ldap_msad_user_account_control_mapper.html.markdown a/website/docs/r/keycloak_ldap_msad_user_account_control_mapper.html.markdown
+new file mode 100644
+index 0000000..d4dc9f7
+--- /dev/null
++++ a/website/docs/r/keycloak_ldap_msad_user_account_control_mapper.html.markdown
+@@ -0,0 +1,61 @@
++# keycloak_ldap_msad_user_account_control_mapper
++
++Allows for creating and managing MSAD user account control mappers for Keycloak
++users federated via LDAP.
++
++The MSAD (Microsoft Active Directory) user account control mapper is specific
++to LDAP user federation providers that are pulling from AD, and it can propagate
++AD user state to Keycloak in order to enforce settings like expired passwords
++or disabled accounts.
++
++### Example Usage
++
++```hcl
++resource "keycloak_realm" "realm" {
++    realm   = "test"
++    enabled = true
++}
++
++resource "keycloak_ldap_user_federation" "ldap_user_federation" {
++	name                    = "ad"
++	realm_id                = "${keycloak_realm.realm.id}"
++
++	username_ldap_attribute = "cn"
++	rdn_ldap_attribute      = "cn"
++	uuid_ldap_attribute     = "objectGUID"
++	user_object_classes     = [
++		"person",
++		"organizationalPerson",
++		"user"
++	]
++	connection_url          = "ldap://my-ad-server"
++	users_dn                = "dc=example,dc=org"
++	bind_dn                 = "cn=admin,dc=example,dc=org"
++	bind_credential         = "admin"
++}
++
++resource "keycloak_ldap_msad_user_account_control_mapper" "msad_user_account_control_mapper" {
++	realm_id                 = "${keycloak_realm.realm.id}"
++	ldap_user_federation_id  = "${keycloak_ldap_user_federation.ldap_user_federation.id}"
++	name                     = "msad-user-account-control-mapper"
++}
++```
++
++### Argument Reference
++
++The following arguments are supported:
++
++- `realm_id` - (Required) The realm that this LDAP mapper will exist in.
++- `ldap_user_federation_id` - (Required) The ID of the LDAP user federation provider to attach this mapper to.
++- `name` - (Required) Display name of this mapper when displayed in the console.
++- `ldap_password_policy_hints_enabled` - (Optional) When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
++
++### Import
++
++LDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`.
++The ID of the LDAP user federation provider and the mapper can be found within
++the Keycloak GUI, and they are typically GUIDs:
++
++```bash
++$ terraform import keycloak_ldap_msad_user_account_control_mapper.msad_user_account_control_mapper my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
++```
+diff --git b/website/docs/r/keycloak_ldap_user_attribute_mapper.html.markdown a/website/docs/r/keycloak_ldap_user_attribute_mapper.html.markdown
+new file mode 100644
+index 0000000..89e0c18
+--- /dev/null
++++ a/website/docs/r/keycloak_ldap_user_attribute_mapper.html.markdown
+@@ -0,0 +1,65 @@
++# keycloak_ldap_user_attribute_mapper
++
++Allows for creating and managing user attribute mappers for Keycloak users
++federated via LDAP.
++
++The LDAP user attribute mapper can be used to map a single LDAP attribute
++to an attribute on the Keycloak user model.
++
++### Example Usage
++
++```hcl
++resource "keycloak_realm" "realm" {
++    realm   = "test"
++    enabled = true
++}
++
++resource "keycloak_ldap_user_federation" "ldap_user_federation" {
++	name                    = "openldap"
++	realm_id                = "${keycloak_realm.realm.id}"
++
++	username_ldap_attribute = "cn"
++	rdn_ldap_attribute      = "cn"
++	uuid_ldap_attribute     = "entryDN"
++	user_object_classes     = [
++		"simpleSecurityObject",
++		"organizationalRole"
++	]
++	connection_url          = "ldap://openldap"
++	users_dn                = "dc=example,dc=org"
++	bind_dn                 = "cn=admin,dc=example,dc=org"
++	bind_credential         = "admin"
++}
++
++resource "keycloak_ldap_user_attribute_mapper" "ldap_user_attribute_mapper" {
++	realm_id                = "${keycloak_realm.realm.id}"
++	ldap_user_federation_id = "${keycloak_ldap_user_federation.ldap_user_federation.id}"
++	name                    = "user-attribute-mapper"
++
++	user_model_attribute    = "foo"
++	ldap_attribute          = "bar"
++}
++```
++
++### Argument Reference
++
++The following arguments are supported:
++
++- `realm_id` - (Required) The realm that this LDAP mapper will exist in.
++- `ldap_user_federation_id` - (Required) The ID of the LDAP user federation provider to attach this mapper to.
++- `name` - (Required) Display name of this mapper when displayed in the console.
++- `user_model_attribute` - (Required) Name of the user property or attribute you want to map the LDAP attribute into.
++- `ldap_attribute` - (Required) Name of the mapped attribute on the LDAP object.
++- `read_only` - (Optional) When `true`, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak. Defaults to `false`.
++- `always_read_value_from_ldap` - (Optional) When `true`, the value fetched from LDAP will override the value stored in Keycloak. Defaults to `false`.
++- `is_mandatory_in_ldap` - (Optional) When `true`, this attribute must exist in LDAP. Defaults to `false`.
++
++### Import
++
++LDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`.
++The ID of the LDAP user federation provider and the mapper can be found within
++the Keycloak GUI, and they are typically GUIDs:
++
++```bash
++$ terraform import keycloak_ldap_user_attribute_mapper.ldap_user_attribute_mapper my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
++```
+diff --git b/website/docs/r/keycloak_ldap_user_federation.html.markdown a/website/docs/r/keycloak_ldap_user_federation.html.markdown
+new file mode 100644
+index 0000000..d399887
+--- /dev/null
++++ a/website/docs/r/keycloak_ldap_user_federation.html.markdown
+@@ -0,0 +1,85 @@
++# keycloak_ldap_user_federation
++
++Allows for creating and managing LDAP user federation providers within Keycloak.
++
++Keycloak can use an LDAP user federation provider to federate users to Keycloak
++from a directory system such as LDAP or Active Directory. Federated users
++will exist within the realm and will be able to log in to clients. Federated
++users can have their attributes defined using mappers.
++
++### Example Usage
++
++```hcl
++resource "keycloak_realm" "realm" {
++    realm   = "test"
++    enabled = true
++}
++
++resource "keycloak_ldap_user_federation" "ldap_user_federation" {
++	name                    = "openldap"
++	realm_id                = "${keycloak_realm.realm.id}"
++
++	enabled                 = true
++
++	username_ldap_attribute = "cn"
++	rdn_ldap_attribute      = "cn"
++	uuid_ldap_attribute     = "entryDN"
++	user_object_classes     = [
++		"simpleSecurityObject",
++		"organizationalRole"
++	]
++	connection_url          = "ldap://openldap"
++	users_dn                = "dc=example,dc=org"
++	bind_dn                 = "cn=admin,dc=example,dc=org"
++	bind_credential         = "admin"
++
++	connection_timeout      = "5s"
++	read_timeout            = "10s"
++}
++```
++
++### Argument Reference
++
++The following arguments are supported:
++
++- `realm_id` - (Required) The realm that this provider will provide user federation for.
++- `name` - (Required) Display name of the provider when displayed in the console.
++- `enabled` - (Optional) When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
++- `priority` - (Optional) Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
++- `import_enabled` - (Optional) When `true`, LDAP users will be imported into the Keycloak database. Defaults to `true`.
++- `edit_mode` - (Optional) Can be one of `READ_ONLY`, `WRITABLE`, or `UNSYNCED`. `UNSYNCED` allows user data to be imported but not synced back to LDAP. Defaults to `READ_ONLY`.
++- `sync_registrations` - (Optional) When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
++- `vendor` - (Optional) Can be one of `OTHER`, `EDIRECTORY`, `AD`, `RHDS`, or `TIVOLI`. When this is selected in the GUI, it provides reasonable defaults for other fields. When used with the Keycloak API, this attribute does nothing, but is still required. Defaults to `OPTIONAL`.
++- `username_ldap_attribute` - (Required) Name of the LDAP attribute to use as the Keycloak username.
++- `rdn_ldap_attribute` - (Required) Name of the LDAP attribute to use as the relative distinguished name.
++- `uuid_ldap_attribute` - (Required) Name of the LDAP attribute to use as a unique object identifier for objects in LDAP.
++- `user_object_classes` - (Required) Array of all values of LDAP objectClass attribute for users in LDAP. Must contain at least one.
++- `connection_url` - (Required) Connection URL to the LDAP server.
++- `users_dn` - (Required) Full DN of LDAP tree where your users are.
++- `bind_dn` - (Optional) DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` is set.
++- `bind_credential` - (Optional) Password of LDAP admin. This attribute must be set if `bind_dn` is set.
++- `custom_user_search_filter` - (Optional) Additional LDAP filter for filtering searched users. Must begin with `(` and end with `)`.
++- `search_scope` - (Optional) Can be one of `ONE_LEVEL` or `SUBTREE`:
++    - `ONE_LEVEL`: Only search for users in the DN specified by `user_dn`.
++    - `SUBTREE`: Search entire LDAP subtree.
++- `validate_password_policy` - (Optional) When `true`, Keycloak will validate passwords using the realm policy before updating it.
++- `use_truststore_spi` - (Optional) Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
++    - `ALWAYS` - Always use the truststore SPI for LDAP connections.
++    - `NEVER` - Never use the truststore SPI for LDAP connections.
++    - `ONLY_FOR_LDAPS` - Only use the truststore SPI if your LDAP connection uses the ldaps protocol.
++- `connection_timeout` - (Optional) LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
++- `read_timeout` - (Optional) LDAP read timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
++- `pagination` - (Optional) When true, Keycloak assumes the LDAP server supports pagination. Defaults to `true`.
++- `batch_size_for_sync` - (Optional) The number of users to sync within a single transaction. Defaults to `1000`.
++- `full_sync_period` - (Optional) How frequently Keycloak should sync all LDAP users, in seconds. Omit this property to disable periodic full sync.
++- `changed_sync_period` - (Optional) How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
++- `cache_policy` - (Optional) Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
++
++### Import
++
++LDAP user federation providers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}`.
++The ID of the LDAP user federation provider can be found within the Keycloak GUI and is typically a GUID:
++
++```bash
++$ terraform import keycloak_ldap_user_federation.ldap_user_federation my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860
++```
+diff --git b/website/docs/r/keycloak_openid_audience_protocol_mapper.html.markdown a/website/docs/r/keycloak_openid_audience_protocol_mapper.html.markdown
+new file mode 100644
+index 0000000..4d7b6b3
+--- /dev/null
++++ a/website/docs/r/keycloak_openid_audience_protocol_mapper.html.markdown
+@@ -0,0 +1,86 @@
++# keycloak_openid_audience_protocol_mapper
++
++Allows for creating and managing audience protocol mappers within
++Keycloak. This mapper was added in Keycloak v4.6.0.Final.
++
++Audience protocol mappers allow you add audiences to the `aud` claim
++within issued tokens. The audience can be a custom string, or it can be
++mapped to the ID of a pre-existing client.
++
++### Example Usage (Client)
++
++```hcl
++resource "keycloak_realm" "realm" {
++    realm   = "my-realm"
++    enabled = true
++}
++
++resource "keycloak_openid_client" "openid_client" {
++    realm_id            = "${keycloak_realm.realm.id}"
++    client_id           = "test-client"
++
++    name                = "test client"
++    enabled             = true
++
++    access_type         = "CONFIDENTIAL"
++    valid_redirect_uris = [
++        "http://localhost:8080/openid-callback"
++    ]
++}
++
++resource "keycloak_openid_audience_protocol_mapper" "audience_mapper" {
++    realm_id                 = "${keycloak_realm.realm.id}"
++    client_id                = "${keycloak_openid_client.openid_client.id}"
++    name                     = "audience-mapper"
++
++    included_custom_audience = "foo"
++}
++```
++
++### Example Usage (Client Scope)
++
++```hcl
++resource "keycloak_realm" "realm" {
++    realm   = "my-realm"
++    enabled = true
++}
++
++resource "keycloak_openid_client_scope" "client_scope" {
++    realm_id = "${keycloak_realm.realm.id}"
++    name     = "test-client-scope"
++}
++
++resource "keycloak_openid_audience_protocol_mapper" "audience_mapper" {
++    realm_id                 = "${keycloak_realm.realm.id}"
++    client_scope_id          = "${keycloak_openid_client_scope.client_scope.id}"
++    name                     = "audience-mapper"
++
++    included_custom_audience = "foo"
++}
++```
++
++### Argument Reference
++
++The following arguments are supported:
++
++- `realm_id` - (Required) The realm this protocol mapper exists within.
++- `client_id` - (Required if `client_scope_id` is not specified) The client this protocol mapper is attached to.
++- `client_scope_id` - (Required if `client_id` is not specified) The client scope this protocol mapper is attached to.
++- `name` - (Required) The display name of this protocol mapper in the GUI.
++- `included_client_audience` - (Required if `included_custom_audience` is not specified) A client ID to include within the token's `aud` claim.
++- `included_custom_audience` - (Required if `included_client_audience` is not specified) A custom audience to include within the token's `aud` claim.
++- `add_to_id_token` - (Optional) Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
++- `add_to_access_token` - (Optional) Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
++
++### Import
++
++Protocol mappers can be imported using one of the following formats:
++- Client: `{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}`
++- Client Scope: `{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}`
++
++Example:
++
++```bash
++$ terraform import keycloak_openid_audience_protocol_mapper.audience_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
++$ terraform import keycloak_openid_audience_protocol_mapper.audience_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
++```
+diff --git b/website/docs/r/keycloak_openid_client.html.markdown a/website/docs/r/keycloak_openid_client.html.markdown
+new file mode 100644
+index 0000000..ae8c9fb
+--- /dev/null
++++ a/website/docs/r/keycloak_openid_client.html.markdown
+@@ -0,0 +1,77 @@
++# keycloak_openid_client
++
++Allows for creating and managing Keycloak clients that use the OpenID Connect protocol.
++
++Clients are entities that can use Keycloak for user authentication. Typically,
++clients are applications that redirect users to Keycloak for authentication
++in order to take advantage of Keycloak's user sessions for SSO.
++
++### Example Usage
++
++```hcl
++resource "keycloak_realm" "realm" {
++    realm   = "my-realm"
++    enabled = true
++}
++
++resource "keycloak_openid_client" "openid_client" {
++    realm_id            = "${keycloak_realm.realm.id}"
++    client_id           = "test-client"
++
++    name                = "test client"
++    enabled             = true
++
++    access_type         = "CONFIDENTIAL"
++    valid_redirect_uris = [
++        "http://localhost:8080/openid-callback"
++    ]
++}
++```
++
++### Argument Reference
++
++The following arguments are supported:
++
++- `realm_id` - (Required) The realm this client is attached to.
++- `client_id` - (Required) The unique ID of this client, referenced in the URI during authentication and in issued tokens.
++- `name` - (Optional) The display name of this client in the GUI.
++- `enabled` - (Optional) When false, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
++- `description` - (Optional) The description of this client in the GUI.
++- `access_type` - (Required) Specifies the type of client, which can be one of the following:
++    - `CONFIDENTIAL` - Used for server-side clients that require both client ID and secret when authenticating.
++      This client should be used for applications using the Authorization Code or Client Credentials grant flows.
++    - `PUBLIC` - Used for browser-only applications that do not require a client secret, and instead rely only on authorized redirect
++      URIs for security. This client should be used for applications using the Implicit grant flow.
++    - `BEARER-ONLY` - Used for services that never initiate a login. This client will only allow bearer token requests.
++- `client_secret` - (Optional) The secret for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. This value is sensitive and
++should be treated with the same care as a password. If omitted, Keycloak will generate a GUID for this attribute.
++- `standard_flow_enabled` - (Optional) When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
++- `implicit_flow_enabled` - (Optional) When `true`, the OAuth2 Implicit Grant will be enabled for this client. Defaults to `false`.
++- `direct_access_grants_enabled` - (Optional) When `true`, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to `false`.
++- `service_accounts_enabled` - (Optional) When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
++- `valid_redirect_uris` - (Optional) A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
++wildcards in the form of an asterisk can be used here. This attribute must be set if either `standard_flow_enabled` or `implicit_flow_enabled`
++is set to `true`.
++- `web_origins` - (Optional) A list of allowed CORS origins. `+` can be used to permit all valid redirect URIs, and `*` can be used to permit all origins.
++- `admin_url` - (Optional) URL to the admin interface of the client.
++- `base_url` - (Optional) Default URL to use when the auth server needs to redirect or link back to the client.
++- `pkce_code_challenge_method` - (Optional) The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
++- `full_scope_allowed` - (Optional) - Allow to include all roles mappings in the access token.
++
++### Attributes Reference
++
++In addition to the arguments listed above, the following computed attributes are exported:
++
++- `service_account_user_id` - When service accounts are enabled for this client, this attribute is the unique ID for the Keycloak user that represents this service account.
++
++
++### Import
++
++Clients can be imported using the format `{{realm_id}}/{{client_keycloak_id}}`, where `client_keycloak_id` is the unique ID that Keycloak
++assigns to the client upon creation. This value can be found in the URI when editing this client in the GUI, and is typically a GUID.
++
++Example:
++
++```bash
++$ terraform import keycloak_openid_client.openid_client my-realm/dcbc4c73-e478-4928-ae2e-d5e420223352
++```
+diff --git b/website/docs/r/keycloak_openid_client_default_scopes.html.markdown a/website/docs/r/keycloak_openid_client_default_scopes.html.markdown
+new file mode 100644
+index 0000000..56c05ea
+--- /dev/null
++++ a/website/docs/r/keycloak_openid_client_default_scopes.html.markdown
+@@ -0,0 +1,65 @@
++# keycloak_openid_client_default_scopes
++
++Allows for managing a Keycloak client's default client scopes. A default
++scope that is attached to a client using the OpenID Connect protocol will
++automatically use the protocol mappers defined within that scope to build
++claims for this client regardless of the provided OAuth2.0 `scope` parameter.
++
++Note that this resource attempts to be an **authoritative** source over
++default scopes for a Keycloak client using the OpenID Connect protocol.
++This means that once Terraform controls a particular client's default scopes,
++it will attempt to remove any default scopes that were attached manually,
++and it will attempt to add any default scopes that were detached manually.
++
++By default, Keycloak sets the `profile`, `email`, `roles`, and `web-origins`
++scopes as default scopes for every newly created client. If you create this
++resource for the first time and do not include these scopes, a following run
++of `terraform plan` will result in changes.
++
++### Example Usage
++
++```hcl
++resource "keycloak_realm" "realm" {
++    realm   = "my-realm"
++    enabled = true
++}
++
++resource "keycloak_openid_client" "client" {
++    realm_id    = "${keycloak_realm.realm.id}"
++    client_id   = "test-client"
++
++    access_type = "CONFIDENTIAL"
++}
++
++resource "keycloak_openid_client_scope" "client_scope" {
++    realm_id = "${keycloak_realm.realm.id}"
++    name     = "test-client-scope"
++}
++
++resource "keycloak_openid_client_default_scopes" "client_default_scopes" {
++    realm_id       = "${keycloak_realm.realm.id}"
++    client_id      = "${keycloak_openid_client.client.id}"
++
++    default_scopes = [
++        "profile",
++        "email",
++        "roles",
++        "web-origins",
++        "${keycloak_openid_client_scope.client_scope.name}"
++    ]
++}
++
++```
++
++### Argument Reference
++
++The following arguments are supported:
++
++- `realm_id` - (Required) The realm this client and scopes exists in.
++- `client_id` - (Required) The ID of the client to attach default scopes to. Note that this is the unique ID of the client generated by Keycloak.
++- `default_scopes` - (Required) An array of client scope names to attach to this client.
++
++### Import
++
++This resource does not support import. Instead of importing, feel free to create this resource
++as if it did not already exist on the server.
+diff --git b/website/docs/r/keycloak_openid_client_optional_scopes.html.markdown a/website/docs/r/keycloak_openid_client_optional_scopes.html.markdown
+new file mode 100644
+index 0000000..960a3a8
+--- /dev/null
++++ a/website/docs/r/keycloak_openid_client_optional_scopes.html.markdown
+@@ -0,0 +1,65 @@
++# keycloak_openid_client_optional_scopes
++
++Allows for managing a Keycloak client's optional client scopes. An optional
++scope that is attached to a client using the OpenID Connect protocol will
++allow a client to request it using the OAuth 2.0 `scope` parameter. When
++requested, the scope's protocol mappers defined within that scope will be
++used to build claims for this client.
++
++Note that this resource attempts to be an **authoritative** source over
++optional scopes for a Keycloak client using the OpenID Connect protocol.
++This means that once Terraform controls a particular client's optional scopes,
++it will attempt to remove any optional scopes that were attached manually,
++and it will attempt to add any optional scopes that were detached manually.
++
++By default, Keycloak sets the `address`, `phone` and `offline_access` scopes as
++optional scopes for every newly created client. If you create this resource for
++the first time and do not include these scopes, a following run of `terraform plan`
++will result in changes.
++
++### Example Usage
++
++```hcl
++resource "keycloak_realm" "realm" {
++    realm   = "my-realm"
++    enabled = true
++}
++
++resource "keycloak_openid_client" "client" {
++    realm_id    = "${keycloak_realm.realm.id}"
++    client_id   = "test-client"
++
++    access_type = "CONFIDENTIAL"
++}
++
++resource "keycloak_openid_client_scope" "client_scope" {
++    realm_id = "${keycloak_realm.realm.id}"
++    name     = "test-client-scope"
++}
++
++resource "keycloak_openid_client_optional_scopes" "client_optional_scopes" {
++    realm_id       = "${keycloak_realm.realm.id}"
++    client_id      = "${keycloak_openid_client.client.id}"
++
++    optional_scopes = [
++        "address",
++        "phone",
++        "offline_access",
++        "${keycloak_openid_client_scope.client_scope.name}"
++    ]
++}
++
++```
++
++### Argument Reference
++
++The following arguments are supported:
++
++- `realm_id` - (Required) The realm this client and scopes exists in.
++- `client_id` - (Required) The ID of the client to attach optional scopes to. Note that this is the unique ID of the client generated by Keycloak.
++- `optional_scopes` - (Required) An array of client scope names to attach to this client as optional scopes.
++
++### Import
++
++This resource does not support import. Instead of importing, feel free to create this resource
++as if it did not already exist on the server.
+diff --git b/website/docs/r/keycloak_openid_client_scope.html.markdown a/website/docs/r/keycloak_openid_client_scope.html.markdown
+new file mode 100644
+index 0000000..81e6026
+--- /dev/null
++++ a/website/docs/r/keycloak_openid_client_scope.html.markdown
+@@ -0,0 +1,45 @@
++# keycloak_openid_client_scope
++
++Allows for creating and managing Keycloak client scopes that can be attached to
++clients that use the OpenID Connect protocol.
++
++Client Scopes can be used to share common protocol and role mappings between multiple
++clients within a realm. They can also be used by clients to conditionally request
++claims or roles for a user based on the OAuth 2.0 `scope` parameter.
++
++### Example Usage
++
++```hcl
++resource "keycloak_realm" "realm" {
++    realm   = "my-realm"
++    enabled = true
++}
++
++resource "keycloak_openid_client_scope" "openid_client_scope" {
++    realm_id    = "${keycloak_realm.realm.id}"
++    name        = "groups"
++    description = "When requested, this scope will map a user's group memberships to a claim"
++}
++```
++
++### Argument Reference
++
++The following arguments are supported:
++
++- `realm_id` - (Required) The realm this client scope belongs to.
++- `name` - (Required) The display name of this client scope in the GUI.
++- `description` - (Optional) The description of this client scope in the GUI.
++- `consent_screen_text` - (Optional) When set, a consent screen will be displayed to users
++authenticating to clients with this scope attached. The consent screen will display the string
++value of this attribute.
++
++### Import
++
++Client scopes can be imported using the format `{{realm_id}}/{{client_scope_id}}`, where `client_scope_id` is the unique ID that Keycloak
++assigns to the client scope upon creation. This value can be found in the URI when editing this client scope in the GUI, and is typically a GUID.
++
++Example:
++
++```bash
++$ terraform import keycloak_openid_client_scope.openid_client_scope my-realm/8e8f7fe1-df9b-40ed-bed3-4597aa0dac52
++```
+diff --git b/website/docs/r/keycloak_openid_full_name_protocol_mapper.html.markdown a/website/docs/r/keycloak_openid_full_name_protocol_mapper.html.markdown
+new file mode 100644
+index 0000000..8b904e0
+--- /dev/null
++++ a/website/docs/r/keycloak_openid_full_name_protocol_mapper.html.markdown
+@@ -0,0 +1,82 @@
++# keycloak_openid_full_name_protocol_mapper
++
++Allows for creating and managing full name protocol mappers within
++Keycloak.
++
++Full name protocol mappers allow you to map a user's first and last name
++to the OpenID Connect `name` claim in a token. Protocol mappers can be defined
++for a single client, or they can be defined for a client scope which can
++be shared between multiple different clients.
++
++### Example Usage (Client)
++
++```hcl
++resource "keycloak_realm" "realm" {
++    realm   = "my-realm"
++    enabled = true
++}
++
++resource "keycloak_openid_client" "openid_client" {
++    realm_id            = "${keycloak_realm.realm.id}"
++    client_id           = "test-client"
++
++    name                = "test client"
++    enabled             = true
++
++    access_type         = "CONFIDENTIAL"
++    valid_redirect_uris = [
++        "http://localhost:8080/openid-callback"
++    ]
++}
++
++resource "keycloak_openid_full_name_protocol_mapper" "full_name_mapper" {
++    realm_id       = "${keycloak_realm.realm.id}"
++    client_id      = "${keycloak_openid_client.openid_client.id}"
++    name           = "full-name-mapper"
++}
++```
++
++### Example Usage (Client Scope)
++
++```hcl
++resource "keycloak_realm" "realm" {
++    realm   = "my-realm"
++    enabled = true
++}
++
++resource "keycloak_openid_client_scope" "client_scope" {
++    realm_id = "${keycloak_realm.realm.id}"
++    name     = "test-client-scope"
++}
++
++resource "keycloak_openid_full_name_protocol_mapper" "full_name_mapper" {
++    realm_id        = "${keycloak_realm.realm.id}"
++    client_scope_id = "${keycloak_openid_client_scope.client_scope.id}"
++    name            = "full-name-mapper"
++}
++```
++
++### Argument Reference
++
++The following arguments are supported:
++
++- `realm_id` - (Required) The realm this protocol mapper exists within.
++- `client_id` - (Required if `client_scope_id` is not specified) The client this protocol mapper is attached to.
++- `client_scope_id` - (Required if `client_id` is not specified) The client scope this protocol mapper is attached to.
++- `name` - (Required) The display name of this protocol mapper in the GUI.
++- `add_to_id_token` - (Optional) Indicates if the user's full name should be added as a claim to the id token. Defaults to `true`.
++- `add_to_access_token` - (Optional) Indicates if the user's full name should be added as a claim to the access token. Defaults to `true`.
++- `add_to_userinfo` - (Optional) Indicates if the user's full name should be added as a claim to the UserInfo response body. Defaults to `true`.
++
++### Import
++
++Protocol mappers can be imported using one of the following formats:
++- Client: `{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}`
++- Client Scope: `{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}`
++
++Example:
++
++```bash
++$ terraform import keycloak_openid_full_name_protocol_mapper.full_name_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
++$ terraform import keycloak_openid_full_name_protocol_mapper.full_name_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
++```
+diff --git b/website/docs/r/keycloak_openid_group_membership_protocol_mapper.html.markdown a/website/docs/r/keycloak_openid_group_membership_protocol_mapper.html.markdown
+new file mode 100644
+index 0000000..070b510
+--- /dev/null
++++ a/website/docs/r/keycloak_openid_group_membership_protocol_mapper.html.markdown
+@@ -0,0 +1,88 @@
++# keycloak_openid_group_membership_protocol_mapper
++
++Allows for creating and managing group membership protocol mappers within
++Keycloak.
++
++Group membership protocol mappers allow you to map a user's group memberships
++to a claim in a token. Protocol mappers can be defined for a single client,
++or they can be defined for a client scope which can be shared between multiple
++different clients.
++
++### Example Usage (Client)
++
++```hcl
++resource "keycloak_realm" "realm" {
++    realm   = "my-realm"
++    enabled = true
++}
++
++resource "keycloak_openid_client" "openid_client" {
++    realm_id            = "${keycloak_realm.realm.id}"
++    client_id           = "test-client"
++
++    name                = "test client"
++    enabled             = true
++
++    access_type         = "CONFIDENTIAL"
++    valid_redirect_uris = [
++        "http://localhost:8080/openid-callback"
++    ]
++}
++
++resource "keycloak_openid_group_membership_protocol_mapper" "group_membership_mapper" {
++    realm_id       = "${keycloak_realm.realm.id}"
++    client_id      = "${keycloak_openid_client.openid_client.id}"
++    name           = "group-membership-mapper"
++
++    claim_name     = "groups"
++}
++```
++
++### Example Usage (Client Scope)
++
++```hcl
++resource "keycloak_realm" "realm" {
++    realm   = "my-realm"
++    enabled = true
++}
++
++resource "keycloak_openid_client_scope" "client_scope" {
++    realm_id = "${keycloak_realm.realm.id}"
++    name     = "test-client-scope"
++}
++
++resource "keycloak_openid_group_membership_protocol_mapper" "group_membership_mapper" {
++    realm_id        = "${keycloak_realm.realm.id}"
++    client_scope_id = "${keycloak_openid_client_scope.client_scope.id}"
++    name            = "group-membership-mapper"
++
++    claim_name      = "groups"
++}
++```
++
++### Argument Reference
++
++The following arguments are supported:
++
++- `realm_id` - (Required) The realm this protocol mapper exists within.
++- `client_id` - (Required if `client_scope_id` is not specified) The client this protocol mapper is attached to.
++- `client_scope_id` - (Required if `client_id` is not specified) The client scope this protocol mapper is attached to.
++- `name` - (Required) The display name of this protocol mapper in the GUI.
++- `claim_name` - (Required) The name of the claim to insert into a token.
++- `full_path` - (Optional) Indicates whether the full path of the group including its parents will be used. Defaults to `true`.
++- `add_to_id_token` - (Optional) Indicates if the property should be added as a claim to the id token. Defaults to `true`.
++- `add_to_access_token` - (Optional) Indicates if the property should be added as a claim to the access token. Defaults to `true`.
++- `add_to_userinfo` - (Optional) Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
++
++### Import
++
++Protocol mappers can be imported using one of the following formats:
++- Client: `{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}`
++- Client Scope: `{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}`
++
++Example:
++
++```bash
++$ terraform import keycloak_openid_group_membership_protocol_mapper.group_membership_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
++$ terraform import keycloak_openid_group_membership_protocol_mapper.group_membership_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
++```
+diff --git b/website/docs/r/keycloak_openid_hardcoded_claim_protocol_mapper.html.markdown a/website/docs/r/keycloak_openid_hardcoded_claim_protocol_mapper.html.markdown
+new file mode 100644
+index 0000000..d2b8bc4
+--- /dev/null
++++ a/website/docs/r/keycloak_openid_hardcoded_claim_protocol_mapper.html.markdown
+@@ -0,0 +1,91 @@
++# keycloak_openid_hardcoded_claim_protocol_mapper
++
++Allows for creating and managing hardcoded claim protocol mappers within
++Keycloak.
++
++Hardcoded claim protocol mappers allow you to define a claim with a hardcoded
++value. Protocol mappers can be defined for a single client, or they can
++be defined for a client scope which can be shared between multiple different
++clients.
++
++### Example Usage (Client)
++
++```hcl
++resource "keycloak_realm" "realm" {
++    realm   = "my-realm"
++    enabled = true
++}
++
++resource "keycloak_openid_client" "openid_client" {
++    realm_id            = "${keycloak_realm.realm.id}"
++    client_id           = "test-client"
++
++    name                = "test client"
++    enabled             = true
++
++    access_type         = "CONFIDENTIAL"
++    valid_redirect_uris = [
++        "http://localhost:8080/openid-callback"
++    ]
++}
++
++resource "keycloak_openid_hardcoded_claim_protocol_mapper" "hardcoded_claim_mapper" {
++    realm_id    = "${keycloak_realm.realm.id}"
++    client_id   = "${keycloak_openid_client.openid_client.id}"
++    name        = "hardcoded-claim-mapper"
++
++    claim_name  = "foo"
++    claim_value = "bar"
++}
++```
++
++### Example Usage (Client Scope)
++
++```hcl
++resource "keycloak_realm" "realm" {
++    realm   = "my-realm"
++    enabled = true
++}
++
++resource "keycloak_openid_client_scope" "client_scope" {
++    realm_id = "${keycloak_realm.realm.id}"
++    name     = "test-client-scope"
++}
++
++resource "keycloak_openid_hardcoded_claim_protocol_mapper" "hardcoded_claim_mapper" {
++    realm_id        = "${keycloak_realm.realm.id}"
++    client_scope_id = "${keycloak_openid_client_scope.client_scope.id}"
++    name            = "hardcoded-claim-mapper"
++
++    claim_name      = "foo"
++    claim_value     = "bar"
++}
++```
++
++### Argument Reference
++
++The following arguments are supported:
++
++- `realm_id` - (Required) The realm this protocol mapper exists within.
++- `client_id` - (Required if `client_scope_id` is not specified) The client this protocol mapper is attached to.
++- `client_scope_id` - (Required if `client_id` is not specified) The client scope this protocol mapper is attached to.
++- `name` - (Required) The display name of this protocol mapper in the GUI.
++- `claim_name` - (Required) The name of the claim to insert into a token.
++- `claim_value` - (Required) The hardcoded value of the claim.
++- `claim_value_type` - (Optional) The claim type used when serializing JSON tokens. Can be one of `String`, `long`, `int`, or `boolean`. Defaults to `String`.
++- `add_to_id_token` - (Optional) Indicates if the property should be added as a claim to the id token. Defaults to `true`.
++- `add_to_access_token` - (Optional) Indicates if the property should be added as a claim to the access token. Defaults to `true`.
++- `add_to_userinfo` - (Optional) Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
++
++### Import
++
++Protocol mappers can be imported using one of the following formats:
++- Client: `{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}`
++- Client Scope: `{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}`
++
++Example:
++
++```bash
++$ terraform import keycloak_openid_hardcoded_claim_protocol_mapper.hardcoded_claim_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
++$ terraform import keycloak_openid_hardcoded_claim_protocol_mapper.hardcoded_claim_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
++```
+diff --git b/website/docs/r/keycloak_openid_hardcoded_role_protocol_mapper.html.markdown a/website/docs/r/keycloak_openid_hardcoded_role_protocol_mapper.html.markdown
+new file mode 100644
+index 0000000..c13a07c
+--- /dev/null
++++ a/website/docs/r/keycloak_openid_hardcoded_role_protocol_mapper.html.markdown
+@@ -0,0 +1,93 @@
++# keycloak_openid_hardcoded_role_protocol_mapper
++
++Allows for creating and managing hardcoded role protocol mappers within
++Keycloak.
++
++Hardcoded role protocol mappers allow you to specify a single role to
++always map to an access token for a client. Protocol mappers can be
++defined for a single client, or they can be defined for a client scope
++which can be shared between multiple different clients.
++
++### Example Usage (Client)
++
++```hcl
++resource "keycloak_realm" "realm" {
++    realm   = "my-realm"
++    enabled = true
++}
++
++resource "keycloak_role" "role" {
++    realm_id = "${keycloak_realm.realm.id}"
++    name     = "my-role"
++}
++
++resource "keycloak_openid_client" "openid_client" {
++    realm_id            = "${keycloak_realm.realm.id}"
++    client_id           = "test-client"
++
++    name                = "test client"
++    enabled             = true
++
++    access_type         = "CONFIDENTIAL"
++    valid_redirect_uris = [
++        "http://localhost:8080/openid-callback"
++    ]
++}
++
++resource "keycloak_openid_hardcoded_role_protocol_mapper" "hardcoded_role_mapper" {
++    realm_id  = "${keycloak_realm.realm.id}"
++    client_id = "${keycloak_openid_client.openid_client.id}"
++    name      = "hardcoded-role-mapper"
++    role_id   = "${keycloak_role.role.id}"
++}
++```
++
++### Example Usage (Client Scope)
++
++```hcl
++resource "keycloak_realm" "realm" {
++    realm   = "my-realm"
++    enabled = true
++}
++
++resource "keycloak_role" "role" {
++    realm_id = "${keycloak_realm.realm.id}"
++    name     = "my-role"
++}
++
++resource "keycloak_openid_client_scope" "client_scope" {
++    realm_id = "${keycloak_realm.realm.id}"
++    name     = "test-client-scope"
++}
++
++resource "keycloak_openid_hardcoded_role_protocol_mapper" "hardcoded_role_mapper" {
++    realm_id        = "${keycloak_realm.realm.id}"
++    client_scope_id = "${keycloak_openid_client_scope.client_scope.id}"
++    name            = "hardcoded-role-mapper"
++    role_id         = "${keycloak_role.role.id}"
++}
++```
++
++### Argument Reference
++
++The following arguments are supported:
++
++- `realm_id` - (Required) The realm this protocol mapper exists within.
++- `client_id` - (Required if `client_scope_id` is not specified) The client this protocol mapper is attached to.
++- `client_scope_id` - (Required if `client_id` is not specified) The client scope this protocol mapper is attached to.
++- `name` - (Required) The display name of this protocol mapper in the
++  GUI.
++- `role_id` - (Required) The ID of the role to map to an access token.
++
++### Import
++
++Protocol mappers can be imported using one of the following formats:
++- Client: `{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}`
++- Client Scope: `{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}`
++
++Example:
++
++```bash
++$ terraform import keycloak_openid_hardcoded_role_protocol_mapper.hardcoded_role_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
++$ terraform import keycloak_openid_hardcoded_role_protocol_mapper.hardcoded_role_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
++```
+diff --git b/website/docs/r/keycloak_openid_user_attribute_protocol_mapper.html.markdown a/website/docs/r/keycloak_openid_user_attribute_protocol_mapper.html.markdown
+new file mode 100644
+index 0000000..bc302b6
+--- /dev/null
++++ a/website/docs/r/keycloak_openid_user_attribute_protocol_mapper.html.markdown
+@@ -0,0 +1,92 @@
++# keycloak_openid_user_attribute_protocol_mapper
++
++Allows for creating and managing user attribute protocol mappers within
++Keycloak.
++
++User attribute protocol mappers allow you to map custom attributes defined
++for a user within Keycloak to a claim in a token. Protocol mappers can be
++defined for a single client, or they can be defined for a client scope which
++can be shared between multiple different clients.
++
++### Example Usage (Client)
++
++```hcl
++resource "keycloak_realm" "realm" {
++    realm   = "my-realm"
++    enabled = true
++}
++
++resource "keycloak_openid_client" "openid_client" {
++    realm_id            = "${keycloak_realm.realm.id}"
++    client_id           = "test-client"
++
++    name                = "test client"
++    enabled             = true
++
++    access_type         = "CONFIDENTIAL"
++    valid_redirect_uris = [
++        "http://localhost:8080/openid-callback"
++    ]
++}
++
++resource "keycloak_openid_user_attribute_protocol_mapper" "user_attribute_mapper" {
++    realm_id       = "${keycloak_realm.realm.id}"
++    client_id      = "${keycloak_openid_client.openid_client.id}"
++    name           = "test-mapper"
++
++    user_attribute = "foo"
++    claim_name     = "bar"
++}
++```
++
++### Example Usage (Client Scope)
++
++```hcl
++resource "keycloak_realm" "realm" {
++    realm   = "my-realm"
++    enabled = true
++}
++
++resource "keycloak_openid_client_scope" "client_scope" {
++    realm_id = "${keycloak_realm.realm.id}"
++    name     = "test-client-scope"
++}
++
++resource "keycloak_openid_user_attribute_protocol_mapper" "user_attribute_mapper" {
++    realm_id        = "${keycloak_realm.realm.id}"
++    client_scope_id = "${keycloak_openid_client_scope.client_scope.id}"
++    name            = "test-mapper"
++
++    user_attribute  = "foo"
++    claim_name      = "bar"
++}
++```
++
++### Argument Reference
++
++The following arguments are supported:
++
++- `realm_id` - (Required) The realm this protocol mapper exists within.
++- `client_id` - (Required if `client_scope_id` is not specified) The client this protocol mapper is attached to.
++- `client_scope_id` - (Required if `client_id` is not specified) The client scope this protocol mapper is attached to.
++- `name` - (Required) The display name of this protocol mapper in the GUI.
++- `user_attribute` - (Required) The custom user attribute to map a claim for.
++- `claim_name` - (Required) The name of the claim to insert into a token.
++- `claim_value_type` - (Optional) The claim type used when serializing JSON tokens. Can be one of `String`, `long`, `int`, or `boolean`. Defaults to `String`.
++- `multivalued` - (Optional) Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
++- `add_to_id_token` - (Optional) Indicates if the attribute should be added as a claim to the id token. Defaults to `true`.
++- `add_to_access_token` - (Optional) Indicates if the attribute should be added as a claim to the access token. Defaults to `true`.
++- `add_to_userinfo` - (Optional) Indicates if the attribute should be added as a claim to the UserInfo response body. Defaults to `true`.
++
++### Import
++
++Protocol mappers can be imported using one of the following formats:
++- Client: `{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}`
++- Client Scope: `{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}`
++
++Example:
++
++```bash
++$ terraform import keycloak_openid_user_attribute_protocol_mapper.user_attribute_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
++$ terraform import keycloak_openid_user_attribute_protocol_mapper.user_attribute_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
++```
+diff --git b/website/docs/r/keycloak_openid_user_property_protocol_mapper.html.markdown a/website/docs/r/keycloak_openid_user_property_protocol_mapper.html.markdown
+new file mode 100644
+index 0000000..c010fb6
+--- /dev/null
++++ a/website/docs/r/keycloak_openid_user_property_protocol_mapper.html.markdown
+@@ -0,0 +1,91 @@
++# keycloak_openid_user_property_protocol_mapper
++
++Allows for creating and managing user property protocol mappers within
++Keycloak.
++
++User property protocol mappers allow you to map built in properties defined
++on the Keycloak user interface to a claim in a token. Protocol mappers can be
++defined for a single client, or they can be defined for a client scope which
++can be shared between multiple different clients.
++
++### Example Usage (Client)
++
++```hcl
++resource "keycloak_realm" "realm" {
++    realm   = "my-realm"
++    enabled = true
++}
++
++resource "keycloak_openid_client" "openid_client" {
++    realm_id            = "${keycloak_realm.realm.id}"
++    client_id           = "test-client"
++
++    name                = "test client"
++    enabled             = true
++
++    access_type         = "CONFIDENTIAL"
++    valid_redirect_uris = [
++        "http://localhost:8080/openid-callback"
++    ]
++}
++
++resource "keycloak_openid_user_property_protocol_mapper" "user_property_mapper" {
++    realm_id       = "${keycloak_realm.realm.id}"
++    client_id      = "${keycloak_openid_client.openid_client.id}"
++    name           = "test-mapper"
++
++    user_property  = "email"
++    claim_name     = "email"
++}
++```
++
++### Example Usage (Client Scope)
++
++```hcl
++resource "keycloak_realm" "realm" {
++    realm   = "my-realm"
++    enabled = true
++}
++
++resource "keycloak_openid_client_scope" "client_scope" {
++    realm_id = "${keycloak_realm.realm.id}"
++    name     = "test-client-scope"
++}
++
++resource "keycloak_openid_user_property_protocol_mapper" "user_property_mapper" {
++    realm_id        = "${keycloak_realm.realm.id}"
++    client_scope_id = "${keycloak_openid_client_scope.client_scope.id}"
++    name            = "test-mapper"
++
++    user_property   = "email"
++    claim_name      = "email"
++}
++```
++
++### Argument Reference
++
++The following arguments are supported:
++
++- `realm_id` - (Required) The realm this protocol mapper exists within.
++- `client_id` - (Required if `client_scope_id` is not specified) The client this protocol mapper is attached to.
++- `client_scope_id` - (Required if `client_id` is not specified) The client scope this protocol mapper is attached to.
++- `name` - (Required) The display name of this protocol mapper in the GUI.
++- `user_property` - (Required) The built in user property (such as email) to map a claim for.
++- `claim_name` - (Required) The name of the claim to insert into a token.
++- `claim_value_type` - (Optional) The claim type used when serializing JSON tokens. Can be one of `String`, `long`, `int`, or `boolean`. Defaults to `String`.
++- `add_to_id_token` - (Optional) Indicates if the property should be added as a claim to the id token. Defaults to `true`.
++- `add_to_access_token` - (Optional) Indicates if the property should be added as a claim to the access token. Defaults to `true`.
++- `add_to_userinfo` - (Optional) Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
++
++### Import
++
++Protocol mappers can be imported using one of the following formats:
++- Client: `{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}`
++- Client Scope: `{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}`
++
++Example:
++
++```bash
++$ terraform import keycloak_openid_user_property_protocol_mapper.user_property_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
++$ terraform import keycloak_openid_user_property_protocol_mapper.user_property_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
++```
+diff --git b/website/docs/r/keycloak_openid_user_realm_role_protocol_mapper.html.markdown a/website/docs/r/keycloak_openid_user_realm_role_protocol_mapper.html.markdown
+new file mode 100644
+index 0000000..e1df531
+--- /dev/null
++++ a/website/docs/r/keycloak_openid_user_realm_role_protocol_mapper.html.markdown
+@@ -0,0 +1,90 @@
++# keycloak_openid_user_realm_role_protocol_mapper
++
++Allows for creating and managing user realm role protocol mappers within
++Keycloak.
++
++User realm role protocol mappers allow you to define a claim containing the list of the realm roles.
++Protocol mappers can be defined for a single client, or they can
++be defined for a client scope which can be shared between multiple different
++clients.
++
++### Example Usage (Client)
++
++```hcl
++resource "keycloak_realm" "realm" {
++    realm   = "my-realm"
++    enabled = true
++}
++
++resource "keycloak_openid_client" "openid_client" {
++    realm_id            = "${keycloak_realm.realm.id}"
++    client_id           = "test-client"
++
++    name                = "test client"
++    enabled             = true
++
++    access_type         = "CONFIDENTIAL"
++    valid_redirect_uris = [
++        "http://localhost:8080/openid-callback"
++    ]
++}
++
++resource "keycloak_openid_user_realm_role_protocol_mapper" "user_realm_role_mapper" {
++    realm_id    = "${keycloak_realm.realm.id}"
++    client_id   = "${keycloak_openid_client.openid_client.id}"
++    name        = "user-realm-role-mapper"
++
++    claim_name  = "foo"
++}
++```
++
++### Example Usage (Client Scope)
++
++```hcl
++resource "keycloak_realm" "realm" {
++    realm   = "my-realm"
++    enabled = true
++}
++
++resource "keycloak_openid_client_scope" "client_scope" {
++    realm_id = "${keycloak_realm.realm.id}"
++    name     = "test-client-scope"
++}
++
++resource "keycloak_openid_user_realm_role_protocol_mapper" "user_realm_role_mapper" {
++    realm_id        = "${keycloak_realm.realm.id}"
++    client_scope_id = "${keycloak_openid_client_scope.client_scope.id}"
++    name            = "user-realm-role-mapper"
++
++    claim_name      = "foo"
++}
++```
++
++### Argument Reference
++
++The following arguments are supported:
++
++- `realm_id` - (Required) The realm this protocol mapper exists within.
++- `client_id` - (Required if `client_scope_id` is not specified) The client this protocol mapper is attached to.
++- `client_scope_id` - (Required if `client_id` is not specified) The client scope this protocol mapper is attached to.
++- `name` - (Required) The display name of this protocol mapper in the GUI.
++- `claim_name` - (Required) The name of the claim to insert into a token.
++- `claim_value_type` - (Optional) The claim type used when serializing JSON tokens. Can be one of `String`, `long`, `int`, or `boolean`. Defaults to `String`.
++- `multivalued` - (Optional) Indicates if attribute supports multiple values. If true, then the list of all values of this attribute will be set as claim. If false, then just first value will be set as claim. Defaults to `true`.
++- `realm_role_prefix` - (Optional) A prefix for each Realm Role.
++- `add_to_id_token` - (Optional) Indicates if the property should be added as a claim to the id token. Defaults to `true`.
++- `add_to_access_token` - (Optional) Indicates if the property should be added as a claim to the access token. Defaults to `true`.
++- `add_to_userinfo` - (Optional) Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
++
++### Import
++
++Protocol mappers can be imported using one of the following formats:
++- Client: `{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}`
++- Client Scope: `{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}`
++
++Example:
++
++```bash
++$ terraform import keycloak_openid_user_realm_role_protocol_mapper.user_realm_role_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
++$ terraform import keycloak_openid_user_realm_role_protocol_mapper.user_realm_role_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
++```
+diff --git b/website/docs/r/keycloak_realm.html.markdown a/website/docs/r/keycloak_realm.html.markdown
+new file mode 100644
+index 0000000..23e4d35
+--- /dev/null
++++ a/website/docs/r/keycloak_realm.html.markdown
+@@ -0,0 +1,161 @@
++# keycloak_realm
++
++Allows for creating and managing Realms within Keycloak.
++
++A realm manages a logical collection of users, credentials, roles, and groups.
++Users log in to realms and can be federated from multiple sources.
++
++### Example Usage
++
++```hcl
++resource "keycloak_realm" "realm" {
++    realm                   = "test"
++    enabled                 = true
++    display_name            = "test realm"
++    display_name_html       = "<b>test realm</b>"
++
++    login_theme          = "base"
++
++    access_code_lifespan = "1h"
++    ssl_required  = "external"
++    password_policy = "upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername"
++    attributes = {
++      mycustomAttribute = "myCustomValue"
++    }
++
++    smtp_server {
++        host = "smtp.example.com"
++        from = "example@example.com"
++
++        auth {
++        	username = "tom"
++        	password = "password"
++        }
++    }
++
++    internationalization {
++        supported_locales = [
++            "en",
++            "de",
++            "es"
++        ]
++        default_locale    = "en"
++    }
++
++    security_defenses {
++        headers {
++            x_frame_options                     = "DENY"
++            content_security_policy             = "frame-src 'self'; frame-ancestors 'self'; object-src 'none';"
++            content_security_policy_report_only = ""
++            x_content_type_options              = "nosniff"
++            x_robots_tag                        = "none"
++            x_xss_protection                    = "1; mode=block"
++            strict_transport_security           = "max-age=31536000; includeSubDomains"
++        }
++        brute_force_detection {
++            permanent_lockout                 = false
++            max_login_failures                = 30
++            wait_increment_seconds            = 60
++            quick_login_check_milli_seconds   = 1000
++            minimum_quick_login_wait_seconds  = 60
++            max_failure_wait_seconds          = 900
++            failure_reset_time_seconds        = 43200
++        }
++    }
++}
++```
++
++### Argument Reference
++
++The following arguments are supported:
++
++- `realm` - (Required) The name of the realm. This is unique across Keycloak.
++- `enabled` - (Optional) When false, users and clients will not be able to access this realm. Defaults to `true`.
++- `display_name` - (Optional) The display name for the realm that is shown when logging in to the admin console.
++- `display_name_html` - (Optional) The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.
++
++##### Login Settings
++
++The following attributes are all booleans, and can be found in the "Login" tab within the realm settings.
++If any of these attributes are not specified, they will default to Keycloak's default settings.
++
++- `registration_allowed` - (Optional) When true, user registration will be enabled, and a link for registration will be displayed on the login page.
++- `registration_email_as_username` - (Optional) When true, the user's email will be used as their username during registration.
++- `edit_username_allowed` - (Optional) When true, the username field is editable.
++- `reset_password_allowed` - (Optional) When true, a "forgot password" link will be displayed on the login page.
++- `remember_me` - (Optional) When true, a "remember me" checkbox will be displayed on the login page, and the user's session will not expire between browser restarts.
++- `verify_email` - (Optional) When true, users are required to verify their email address after registration and after email address changes.
++- `login_with_email_allowed` - (Optional) When true, users may log in with their email address.
++- `duplicate_emails_allowed` - (Optional) When true, multiple users will be allowed to have the same email address. This attribute must be set to `false` if `login_with_email_allowed` is set to `true`.
++- `ssl_required` - (Optional) Can be one of following values: 'none, 'external' or 'all'
++
++##### Themes
++
++The following attributes can be used to configure themes for the realm. Custom themes can be specified here.
++If any of these attributes are not specified, they will default to Keycloak's default settings. Typically the `keycloak` theme is used by default.
++
++- `login_theme` - (Optional) Used for the login, forgot password, and registration pages.
++- `account_theme` - (Optional) Used for account management pages.
++- `admin_theme` - (Optional) Used for the admin console.
++- `email_theme` - (Optional) Used for emails that are sent by Keycloak.
++
++##### Tokens
++
++The following attributes can be found in the "Tokens" tab within the realm settings.
++
++- `revoke_refresh_token` - (Optional) If enabled a refresh token can only be used number of times specified in 'refresh_token_max_reuse' before they are revoked. If unspecified, refresh tokens can be reused.
++- `refresh_token_max_reuse` - (Optional) Maximum number of times a refresh token can be reused before they are revoked. If unspecified and 'revoke_refresh_token' is enabled the default value is 0 and refresh tokens can not be reused.
++
++The attributes below should be specified as [Go duration strings](https://golang.org/pkg/time/#Duration.String). They will default to Keycloak's default settings.
++
++- `sso_session_idle_timeout` - (Optional) The amount of time a session can be idle before it expires.
++- `sso_session_max_lifespan` - (Optional) The maximum amount of time before a session expires regardless of activity.
++- `offline_session_idle_timeout` - (Optional) The amount of time an offline session can be idle before it expires.
++- `offline_session_max_lifespan` - (Optional) The maximum amount of time before an offline session expires regardless of activity.
++- `access_token_lifespan` - (Optional) The amount of time an access token can be used before it expires.
++- `access_token_lifespan_for_implicit_flow` - (Optional) The amount of time an access token issued with the OpenID Connect Implicit Flow can be used before it expires.
++- `access_code_lifespan` - (Optional) The maximum amount of time a client has to finish the authorization code flow.
++- `access_code_lifespan_login` - (Optional) The maximum amount of time a user is permitted to stay on the login page before the authentication process must be restarted.
++- `access_code_lifespan_user_action` - (Optional) The maximum amount of time a user has to complete login related actions, such as updating a password.
++- `action_token_generated_by_user_lifespan` - (Optional) The maximum time a user has to use a user-generated permit before it expires.
++- `action_token_generated_by_admin_lifespan` - (Optional) The maximum time a user has to use an admin-generated permit before it expires.
++
++##### SMTP
++
++The `smtp_server` block can be used to configure the realm's SMTP settings, which can be found in the "Email" tab in the GUI.
++This block supports the following attributes:
++
++- `host` - (Required) The host of the SMTP server.
++- `port` - (Optional) The port of the SMTP server (defaults to 25).
++- `from` - (Required) The email address for the sender.
++- `from_display_name` - (Optional) The display name of the sender email address.
++- `reply_to` - (Optional) The "reply to" email address.
++- `reply_to_display_name` - (Optional) The display name of the "reply to" email address.
++- `envelope_from` - (Optional) The email address uses for bounces.
++- `starttls` - (Optional) When `true`, enables StartTLS. Defaults to `false`.
++- `ssl` - (Optional) When `true`, enables SSL. Defaults to `false`.
++- `auth` - (Optional) Enables authentication to the SMTP server.  This block supports the following attributes:
++    - `username`- (Required) The SMTP server username.
++    - `password` - (Required) The SMTP server password.
++
++##### Internationalization
++
++Internationalization support can be configured by using the `internationalization` block, which supports the following attributes:
++
++- `supported_locales` - (Required) A list of [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) locale codes that the realm should support.
++- `default_locale` - (Required) The locale to use by default. This locale code must be present within the `supported_locales` list.
++
++##### Security Defenses Headers
++
++Header configuration support for browser security settings and brute force detection
++
++#### Atributes
++Map, can be used to add custom attributes to a realm. Or perhaps influence a certain attribute that is not supported in this terraform-provider
++
++### Import
++
++Realms can be imported using their name:
++
++```bash
++$ terraform import keycloak_realm.realm test
++```
+diff --git b/website/docs/r/keycloak_realm_events.html.markdown a/website/docs/r/keycloak_realm_events.html.markdown
+new file mode 100644
+index 0000000..025f34c
+--- /dev/null
++++ a/website/docs/r/keycloak_realm_events.html.markdown
+@@ -0,0 +1,43 @@
++# keycloak_realm_events
++
++Allows for managing Realm Events settings within Keycloak.
++
++### Example Usage
++
++```hcl
++resource "keycloak_realm" "realm" {
++  realm = "test"
++}
++
++resource "keycloak_realm_events" "realm_events" {
++  realm_id = "${keycloak_realm.realm.id}"
++
++  events_enabled       = true
++  events_expiration    = 3600
++
++  admin_events_enabled         = true
++  admin_events_details_enabled = true
++
++  # When omitted or left empty, keycloak will enable all event types
++  enabled_event_types = [
++    "LOGIN",
++    "LOGOUT",
++  ]
++
++  events_listeners = [
++    "jboss-logging", # keycloak enables the 'jboss-logging' event listener by default.
++  ]
++}
++```
++
++### Argument Reference
++
++The following arguments are supported:
++
++- `realm_id` - (Required) The name of the realm the event settings apply to.
++- `admin_events_enabled` - (Optional) When true, admin events are saved to the database, making them available through the admin console. Defaults to `false`.
++- `admin_events_details_enabled` - (Optional) When true, saved admin events will included detailed information for create/update requests. Defaults to `false`.
++- `events_enabled` - (Optional) When true, events from `enabled_event_types` are saved to the database, making them available through the admin console. Defaults to `false`.
++- `events_expiration` - (Optional) The amount of time in seconds events will be saved in the database. Defaults to `0` or never.
++- `enabled_event_types` - (Optional) The event types that will be saved to the database. Omitting this field enables all event types. Defaults to `[]` or all event types.
++- `events_listeners` - (Optional) The event listeners that events should be sent to. Defaults to `[]` or none. Note that new realms enable the `jboss-logging` listener by default, and this resource will remove that unless it is specified.
+diff --git b/website/docs/r/keycloak_role.html.markdown a/website/docs/r/keycloak_role.html.markdown
+new file mode 100644
+index 0000000..a9f7eaa
+--- /dev/null
++++ a/website/docs/r/keycloak_role.html.markdown
+@@ -0,0 +1,136 @@
++# keycloak_role
++
++Allows for creating and managing roles within Keycloak.
++
++Roles allow you define privileges within Keycloak and map them to users
++and groups.
++
++### Example Usage (Realm role)
++
++```hcl
++resource "keycloak_realm" "realm" {
++    realm   = "my-realm"
++    enabled = true
++}
++
++resource "keycloak_role" "realm_role" {
++    realm_id    = "${keycloak_realm.realm.id}"
++    name        = "my-realm-role"
++    description = "My Realm Role"
++}
++```
++
++### Example Usage (Client role)
++
++```hcl
++resource "keycloak_realm" "realm" {
++    realm   = "my-realm"
++    enabled = true
++}
++
++resource "keycloak_openid_client" "client" {
++  realm_id  = "${keycloak_realm.realm.id}"
++  client_id = "client"
++  name      = "client"
++
++  enabled = true
++
++  access_type = "BEARER-ONLY"
++}
++
++resource "keycloak_role" "client_role" {
++    realm_id    = "${keycloak_realm.realm.id}"
++    client_id   = "${keycloak_client.client.id}"
++    name        = "my-client-role"
++    description = "My Client Role"
++}
++```
++
++### Example Usage (Composite role)
++
++```hcl
++resource "keycloak_realm" "realm" {
++    realm   = "my-realm"
++    enabled = true
++}
++
++# realm roles
++
++resource "keycloak_role" "create_role" {
++    realm_id    = "${keycloak_realm.realm.id}"
++    name        = "create"
++}
++
++resource "keycloak_role" "read_role" {
++    realm_id    = "${keycloak_realm.realm.id}"
++    name        = "read"
++}
++
++resource "keycloak_role" "update_role" {
++    realm_id    = "${keycloak_realm.realm.id}"
++    name        = "update"
++}
++
++resource "keycloak_role" "delete_role" {
++    realm_id    = "${keycloak_realm.realm.id}"
++    name        = "delete"
++}
++
++# client role
++
++resource "keycloak_openid_client" "client" {
++  realm_id  = "${keycloak_realm.realm.id}"
++  client_id = "client"
++  name      = "client"
++
++  enabled = true
++
++  access_type = "BEARER-ONLY"
++}
++
++resource "keycloak_role" "client_role" {
++    realm_id    = "${keycloak_realm.realm.id}"
++    client_id   = "${keycloak_client.client.id}"
++    name        = "my-client-role"
++    description = "My Client Role"
++}
++
++resource "keycloak_role" "admin_role" {
++    realm_id        = "${keycloak_realm.realm.id}"
++    name            = "admin"
++    composite_roles = [
++      "{keycloak_role.create_role.id}",
++      "{keycloak_role.read_role.id}",
++      "{keycloak_role.update_role.id}",
++      "{keycloak_role.delete_role.id}",
++      "{keycloak_role.client_role.id}",
++    ]
++}
++```
++
++### Argument Reference
++
++The following arguments are supported:
++
++- `realm_id` - (Required) The realm this role exists within.
++- `client_id` - (Optional) When specified, this role will be created as
++  a client role attached to the client with the provided ID
++- `name` - (Required) The name of the role
++- `description` - (Optional) The description of the role
++- `composite_roles` - (Optional) When specified, this role will be a
++  composite role, composed of all roles that have an ID present within
++  this list.
++
++
++### Import
++
++Roles can be imported using the format `{{realm_id}}/{{role_id}}`, where
++`role_id` is the unique ID that Keycloak assigns to the role. The ID is
++not easy to find in the GUI, but it appears in the URL when editing the
++role.
++
++Example:
++
++```bash
++$ terraform import keycloak_role.role my-realm/7e8cf32a-8acb-4d34-89c4-04fb1d10ccad
++```
+diff --git b/website/docs/r/keycloak_saml_client.html.markdown a/website/docs/r/keycloak_saml_client.html.markdown
+new file mode 100644
+index 0000000..3eec0de
+--- /dev/null
++++ a/website/docs/r/keycloak_saml_client.html.markdown
+@@ -0,0 +1,70 @@
++# keycloak_saml_client
++
++Allows for creating and managing Keycloak clients that use the SAML protocol.
++
++Clients are entities that can use Keycloak for user authentication. Typically,
++clients are applications that redirect users to Keycloak for authentication
++in order to take advantage of Keycloak's user sessions for SSO.
++
++### Example Usage
++
++```hcl
++resource "keycloak_realm" "realm" {
++    realm   = "my-realm"
++    enabled = true
++}
++
++resource "keycloak_saml_client" "saml_client" {
++	realm_id                = "${keycloak_realm.realm.id}"
++	client_id               = "test-saml-client"
++	name                    = "test-saml-client"
++
++	sign_documents          = false
++	sign_assertions         = true
++	include_authn_statement = true
++
++	signing_certificate = "${file("saml-cert.pem")}"
++	signing_private_key = "${file("saml-key.pem")}"
++}
++```
++
++### Argument Reference
++
++The following arguments are supported:
++
++- `realm_id` - (Required) The realm this client is attached to.
++- `client_id` - (Required) The unique ID of this client, referenced in the URI during authentication and in issued tokens.
++- `name` - (Optional) The display name of this client in the GUI.
++- `enabled` - (Optional) When false, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
++- `description` - (Optional) The description of this client in the GUI.
++- `include_authn_statement` - (Optional) When `true`, an `AuthnStatement` will be included in the SAML response.
++- `sign_documents` - (Optional) When `true`, the SAML document will be signed by Keycloak using the realm's private key.
++- `sign_assertions` - (Optional) When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response.
++- `client_signature_required` - (Optional) When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signing_certificate` and `signing_private_key`.
++- `force_post_binding` - (Optional) When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding.
++- `front_channel_logout` - (Optional) When `true`, this client will require a browser redirect in order to perform a logout.
++- `name_id_format` - (Optional) Sets the Name ID format for the subject.
++- `root_url` - (Optional) When specified, this value is prepended to all relative URLs.
++- `valid_redirect_uris` - (Optional) When specified, Keycloak will use this list to validate given Assertion Consumer URLs specified in the authentication request.
++- `base_url` - (Optional) When specified, this URL will be used whenever Keycloak needs to link to this client.
++- `master_saml_processing_url` - (Optional) When specified, this URL will be used for all SAML requests.
++- `signing_certificate` - (Optional) If documents or assertions from the client are signed, this certificate will be used to verify the signature.
++- `signing_private_key` - (Optional) If documents or assertions from the client are signed, this private key will be used to verify the signature.
++- `idp_initiated_sso_url_name` - (Optional) URL fragment name to reference client when you want to do IDP Initiated SSO.
++- `idp_initiated_sso_relay_state` - (Optional) Relay state you want to send with SAML request when you want to do IDP Initiated SSO.
++- `assertion_consumer_post_url` - (Optional) SAML POST Binding URL for the client's assertion consumer service (login responses).
++- `assertion_consumer_redirect_url` - (Optional) SAML Redirect Binding URL for the client's assertion consumer service (login responses).
++- `logout_service_post_binding_url` - (Optional) SAML POST Binding URL for the client's single logout service.
++- `logout_service_redirect_binding_url` - (Optional) SAML Redirect Binding URL for the client's single logout service.
++- `full_scope_allowed` - (Optional) - Allow to include all roles mappings in the access token
++
++### Import
++
++Clients can be imported using the format `{{realm_id}}/{{client_keycloak_id}}`, where `client_keycloak_id` is the unique ID that Keycloak
++assigns to the client upon creation. This value can be found in the URI when editing this client in the GUI, and is typically a GUID.
++
++Example:
++
++```bash
++$ terraform import keycloak_saml_client.saml_client my-realm/dcbc4c73-e478-4928-ae2e-d5e420223352
++```
+diff --git b/website/docs/r/keycloak_saml_identity_provider.html.markdown a/website/docs/r/keycloak_saml_identity_provider.html.markdown
+new file mode 100644
+index 0000000..755a072
+--- /dev/null
++++ a/website/docs/r/keycloak_saml_identity_provider.html.markdown
+@@ -0,0 +1,67 @@
++# keycloak_saml_identity_provider
++
++Allows to create and manage SAML Identity Providers within Keycloak.
++
++SAML (Security Assertion Markup Language) identity providers allows to authenticate through a third-party system, using SAML standard.
++
++### Example Usage
++
++```hcl
++resource "keycloak_saml_identity_provider" "realm_identity_provider" {
++  realm = "my-realm"
++  alias = "my-idp"
++  single_sign_on_service_url = "https://domain.com/adfs/ls/"
++  single_logout_service_url = "https://domain.com/adfs/ls/?wa=wsignout1.0"
++  backchannel_supported = true
++  post_binding_response = true
++  post_binding_logout = true
++  post_binding_authn_request = true
++  store_token = false
++  trust_email = true
++  force_authn = true
++}
++```
++
++### Argument Reference
++
++The following arguments are supported:
++
++- `realm` - (Required) The name of the realm. This is unique across Keycloak.
++- `alias` - (Optional) The uniq name of identity provider.
++- `enabled` - (Optional) When false, users and clients will not be able to access this realm. Defaults to `true`.
++- `display_name` - (Optional) The display name for the realm that is shown when logging in to the admin console.
++- `store_token` - (Optional) Enable/disable if tokens must be stored after authenticating users. Defaults to `true`.
++- `add_read_token_role_on_create` - (Optional) Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role. Defaults to `false`.
++- `trust_email` - (Optional) If enabled then email provided by this provider is not verified even if verification is enabled for the realm. Defaults to `false`.
++- `link_only` - (Optional) If true, users cannot log in through this provider. They can only link to this provider. This is useful if you don't want to allow login from the provider, but want to integrate with a provider. Defaults to `false`.
++- `hide_on_login_page` - (Optional) If hidden, then login with this provider is possible only if requested explicitly, e.g. using the 'kc_idp_hint' parameter.
++- `first_broker_login_flow_alias` - (Optional) Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
++- `post_broker_login_flow_alias` - (Optional) Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it. Defaults to empty.
++- `authenticate_by_default` - (Optional) Authenticate users by default. Defaults to `false`.
++
++#### SAML Configuration
++
++- `single_sign_on_service_url` - (Optional) The Url that must be used to send authentication requests (SAML AuthnRequest).
++- `single_logout_service_url` - (Optional) The Url that must be used to send logout requests.
++- `backchannel_supported` - (Optional) Does the external IDP support back-channel logout ?.
++- `name_id_policy_format` - (Optional) Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
++- `post_binding_response` - (Optional) Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
++- `post_binding_authn_request` - (Optional) Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
++- `post_binding_logout` - (Optional) Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
++- `want_assertions_signed` - (Optional) Indicates whether this service provider expects a signed Assertion.
++- `want_assertions_encrypted` - (Optional) Indicates whether this service provider expects an encrypted Assertion.
++- `force_authn` - (Optional) Indicates whether the identity provider must authenticate the presenter directly rather than rely on a previous security context.
++- `validate_signature` - (Optional) Enable/disable signature validation of SAML responses.
++- `signing_certificate` - (Optional) Signing Certificate.
++- `signature_algorithm` - (Optional) Signing Algorithm. Defaults to empty.
++- `xml_sign_key_info_key_name_transformer` - (Optional) Sign Key Transformer. Defaults to empty.
++
++### Import
++
++Identity providers can be imported using the format `{{realm_id}}/{{idp_alias}}`, where `idp_alias` is the identity provider alias.
++
++Example:
++
++```bash
++$ terraform import keycloak_saml_identity_provider.realm_identity_provider my-realm/my-idp
++```
+diff --git b/website/docs/r/keycloak_saml_user_attribute_protocol_mapper.html.markdown a/website/docs/r/keycloak_saml_user_attribute_protocol_mapper.html.markdown
+new file mode 100644
+index 0000000..a0feaf9
+--- /dev/null
++++ a/website/docs/r/keycloak_saml_user_attribute_protocol_mapper.html.markdown
+@@ -0,0 +1,60 @@
++# keycloak_saml_user_attribute_protocol_mapper
++
++Allows for creating and managing user attribute protocol mappers for
++SAML clients within Keycloak.
++
++SAML user attribute protocol mappers allow you to map custom attributes defined
++for a user within Keycloak to an attribute in a SAML assertion. Protocol mappers
++can be defined for a single client, or they can be defined for a client scope which
++can be shared between multiple different clients.
++
++### Example Usage (Client)
++
++```hcl
++resource "keycloak_realm" "realm" {
++    realm   = "my-realm"
++    enabled = true
++}
++
++resource "keycloak_saml_client" "saml_client" {
++    realm_id  = "${keycloak_realm.test.id}"
++    client_id = "test-saml-client"
++    name      = "test-saml-client"
++}
++
++resource "keycloak_saml_user_attribute_protocol_mapper" "saml_user_attribute_mapper" {
++    realm_id                   = "${keycloak_realm.test.id}"
++    client_id                  = "${keycloak_saml_client.saml_client.id}"
++    name                       = "displayname-user-attribute-mapper"
++
++    user_attribute             = "displayName"
++    saml_attribute_name        = "displayName"
++    saml_attribute_name_format = "Unspecified"
++}
++```
++
++### Argument Reference
++
++The following arguments are supported:
++
++- `realm_id` - (Required) The realm this protocol mapper exists within.
++- `client_id` - (Required if `client_scope_id` is not specified) The SAML client this protocol mapper is attached to.
++- `client_scope_id` - (Required if `client_id` is not specified) The SAML client scope this protocol mapper is attached to.
++- `name` - (Required) The display name of this protocol mapper in the GUI.
++- `user_attribute` - (Required) The custom user attribute to map.
++- `friendly_name` - (Optional) An optional human-friendly name for this attribute.
++- `saml_attribute_name` - (Required) The name of the SAML attribute.
++- `saml_attribute_name_format` - (Required) The SAML attribute Name Format. Can be one of `Unspecified`, `Basic`, or `URI Reference`.
++
++### Import
++
++Protocol mappers can be imported using one of the following formats:
++- Client: `{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}`
++- Client Scope: `{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}`
++
++Example:
++
++```bash
++$ terraform import keycloak_saml_user_attribute_protocol_mapper.saml_user_attribute_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
++$ terraform import keycloak_saml_user_attribute_protocol_mapper.saml_user_attribute_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
++```
+diff --git b/website/docs/r/keycloak_saml_user_property_protocol_mapper.html.markdown a/website/docs/r/keycloak_saml_user_property_protocol_mapper.html.markdown
+new file mode 100644
+index 0000000..b74209b
+--- /dev/null
++++ a/website/docs/r/keycloak_saml_user_property_protocol_mapper.html.markdown
+@@ -0,0 +1,60 @@
++# keycloak_saml_user_property_protocol_mapper
++
++Allows for creating and managing user property protocol mappers for
++SAML clients within Keycloak.
++
++SAML user property protocol mappers allow you to map properties of the Keycloak
++user model to an attribute in a SAML assertion. Protocol mappers
++can be defined for a single client, or they can be defined for a client scope which
++can be shared between multiple different clients.
++
++### Example Usage (Client)
++
++```hcl
++resource "keycloak_realm" "realm" {
++    realm   = "my-realm"
++    enabled = true
++}
++
++resource "keycloak_saml_client" "saml_client" {
++    realm_id  = "${keycloak_realm.test.id}"
++    client_id = "test-saml-client"
++    name      = "test-saml-client"
++}
++
++resource "keycloak_saml_user_property_protocol_mapper" "saml_user_property_mapper" {
++    realm_id                   = "${keycloak_realm.test.id}"
++    client_id                  = "${keycloak_saml_client.saml_client.id}"
++    name                       = "email-user-property-mapper"
++
++    user_property              = "email"
++    saml_attribute_name        = "email"
++    saml_attribute_name_format = "Unspecified"
++}
++```
++
++### Argument Reference
++
++The following arguments are supported:
++
++- `realm_id` - (Required) The realm this protocol mapper exists within.
++- `client_id` - (Required if `client_scope_id` is not specified) The SAML client this protocol mapper is attached to.
++- `client_scope_id` - (Required if `client_id` is not specified) The SAML client scope this protocol mapper is attached to.
++- `name` - (Required) The display name of this protocol mapper in the GUI.
++- `user_property` - (Required) The property of the Keycloak user model to map.
++- `friendly_name` - (Optional) An optional human-friendly name for this attribute.
++- `saml_attribute_name` - (Required) The name of the SAML attribute.
++- `saml_attribute_name_format` - (Required) The SAML attribute Name Format. Can be one of `Unspecified`, `Basic`, or `URI Reference`.
++
++### Import
++
++Protocol mappers can be imported using one of the following formats:
++- Client: `{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}`
++- Client Scope: `{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}`
++
++Example:
++
++```bash
++$ terraform import keycloak_saml_user_property_protocol_mapper.saml_user_property_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
++$ terraform import keycloak_saml_user_property_protocol_mapper.saml_user_property_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
++```
+diff --git b/website/docs/r/keycloak_user.html.markdown a/website/docs/r/keycloak_user.html.markdown
+new file mode 100644
+index 0000000..03de8b1
+--- /dev/null
++++ a/website/docs/r/keycloak_user.html.markdown
+@@ -0,0 +1,67 @@
++# keycloak_user
++
++Allows for creating and managing Users within Keycloak.
++
++This resource was created primarily to enable the acceptance tests for the `keycloak_group` resource.
++Creating users within Keycloak is not recommended. Instead, users should be federated from external sources
++by configuring user federation providers or identity providers.
++
++### Example Usage
++
++```hcl
++resource "keycloak_realm" "realm" {
++    realm   = "my-realm"
++    enabled = true
++}
++
++resource "keycloak_user" "user" {
++    realm_id   = "${keycloak_realm.realm.id}"
++    username   = "bob"
++    enabled    = true
++    
++    email      = "bob@domain.com"
++    first_name = "Bob"
++    last_name  = "Bobson"
++}
++
++resource "keycloak_user" "user_with_initial_password" {
++    realm_id   = "${keycloak_realm.realm.id}"
++    username   = "alice"
++    enabled    = true
++    
++    email      = "alice@domain.com"
++    first_name = "Alice"
++    last_name  = "Aliceberg"
++
++    initial_password {
++      value     = "some password"
++      temporary = true
++    }
++}
++```
++
++### Argument Reference
++
++The following arguments are supported:
++
++- `realm_id` - (Required) The realm this user belongs to.
++- `username` - (Required) The unique username of this user.
++- `initial_password` (Optional) When given, the user's initial password will be set.
++   This attribute is only respected during initial user creation.
++    - `value` (Required) The initial password.
++    - `temporary` (Optional) If set to `true`, the initial password is set up for renewal on first use. Default to `false`.
++- `enabled` - (Optional) When false, this user cannot log in. Defaults to `true`.
++- `email` - (Optional) The user's email.
++- `first_name` - (Optional) The user's first name.
++- `last_name` - (Optional) The user's last name.
++
++### Import
++
++Users can be imported using the format `{{realm_id}}/{{user_id}}`, where `user_id` is the unique ID that Keycloak
++assigns to the user upon creation. This value can be found in the GUI when editing the user.
++
++Example:
++
++```bash
++$ terraform import keycloak_user.user my-realm/60c3f971-b1d3-4b3a-9035-d16d7540a5e4
++```

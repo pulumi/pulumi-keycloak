@@ -15,6 +15,117 @@ import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * ## # keycloak.openid.ClientAuthorizationPermission
+ * 
+ * Allows you to manage openid Client Authorization Permissions.
+ * 
+ * ### Example Usage
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.keycloak.Realm;
+ * import com.pulumi.keycloak.RealmArgs;
+ * import com.pulumi.keycloak.openid.Client;
+ * import com.pulumi.keycloak.openid.ClientArgs;
+ * import com.pulumi.keycloak.openid.inputs.ClientAuthorizationArgs;
+ * import com.pulumi.keycloak.openid.OpenidFunctions;
+ * import com.pulumi.keycloak.openid.inputs.GetClientAuthorizationPolicyArgs;
+ * import com.pulumi.keycloak.openid.ClientAuthorizationResource;
+ * import com.pulumi.keycloak.openid.ClientAuthorizationResourceArgs;
+ * import com.pulumi.keycloak.openid.ClientAuthorizationScope;
+ * import com.pulumi.keycloak.openid.ClientAuthorizationScopeArgs;
+ * import com.pulumi.keycloak.openid.ClientAuthorizationPermission;
+ * import com.pulumi.keycloak.openid.ClientAuthorizationPermissionArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
+ *             .realm(&#34;my-realm&#34;)
+ *             .enabled(true)
+ *             .build());
+ * 
+ *         var testClient = new Client(&#34;testClient&#34;, ClientArgs.builder()        
+ *             .clientId(&#34;client_id&#34;)
+ *             .realmId(realm.id())
+ *             .accessType(&#34;CONFIDENTIAL&#34;)
+ *             .serviceAccountsEnabled(true)
+ *             .authorization(ClientAuthorizationArgs.builder()
+ *                 .policyEnforcementMode(&#34;ENFORCING&#34;)
+ *                 .build())
+ *             .build());
+ * 
+ *         final var default = OpenidFunctions.getClientAuthorizationPolicy(GetClientAuthorizationPolicyArgs.builder()
+ *             .realmId(realm.id())
+ *             .resourceServerId(testClient.resourceServerId())
+ *             .name(&#34;default&#34;)
+ *             .build());
+ * 
+ *         var testClientAuthorizationResource = new ClientAuthorizationResource(&#34;testClientAuthorizationResource&#34;, ClientAuthorizationResourceArgs.builder()        
+ *             .resourceServerId(testClient.resourceServerId())
+ *             .realmId(realm.id())
+ *             .uris(&#34;/endpoint/*&#34;)
+ *             .build());
+ * 
+ *         var testClientAuthorizationScope = new ClientAuthorizationScope(&#34;testClientAuthorizationScope&#34;, ClientAuthorizationScopeArgs.builder()        
+ *             .resourceServerId(testClient.resourceServerId())
+ *             .realmId(realm.id())
+ *             .build());
+ * 
+ *         var testClientAuthorizationPermission = new ClientAuthorizationPermission(&#34;testClientAuthorizationPermission&#34;, ClientAuthorizationPermissionArgs.builder()        
+ *             .resourceServerId(testClient.resourceServerId())
+ *             .realmId(realm.id())
+ *             .policies(default_.applyValue(default_ -&gt; default_.id()))
+ *             .resources(testClientAuthorizationResource.id())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ * ### Argument Reference
+ * 
+ * The following arguments are supported:
+ * 
+ * - `realm_id` - (Required) The realm this group exists in.
+ * - `resource_server_id` - (Required) The ID of the resource server.
+ * - `name` - (Required) The name of the permission.
+ * - `description` - (Optional) A description for the authorization permission.
+ * - `decision_strategy` - (Optional) The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`. Defaults to `UNANIMOUS`.
+ * - `policies` - (Optional) A list of policy IDs that must be applied to the scopes defined by this permission.
+ * - `resources` - (Optional) A list of resource IDs that this permission must be applied to. Conflicts with `resource_type`.
+ * - `resource_type` - (Optional) When specified, this permission will be evaluated for all instances of a given resource type. Conflicts with `resources`.
+ * - `scopes` - (Optional) A list of scope IDs that this permission must be applied to.
+ * - `type` - (Optional) The type of permission, can be one of `resource` or `scope`.
+ * 
+ * ### Attributes Reference
+ * 
+ * In addition to the arguments listed above, the following computed attributes are exported:
+ * 
+ * - `id` - Permission ID representing the permission.
+ * 
+ * ## Import
+ * 
+ * Client authorization permissions can be imported using the format`{{realmId}}/{{resourceServerId}}/{{permissionId}}`. Examplebash
+ * 
+ * ```sh
+ *  $ pulumi import keycloak:openid/clientAuthorizationPermission:ClientAuthorizationPermission test my-realm/3bd4a686-1062-4b59-97b8-e4e3f10b99da/63b3cde8-987d-4cd9-9306-1955579281d9
+ * ```
+ * 
+ */
 @ResourceType(type="keycloak:openid/clientAuthorizationPermission:ClientAuthorizationPermission")
 public class ClientAuthorizationPermission extends com.pulumi.resources.CustomResource {
     @Export(name="decisionStrategy", refs={String.class}, tree="[0]")

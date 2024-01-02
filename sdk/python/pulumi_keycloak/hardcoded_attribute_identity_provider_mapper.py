@@ -23,12 +23,12 @@ class HardcodedAttributeIdentityProviderMapperArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a HardcodedAttributeIdentityProviderMapper resource.
-        :param pulumi.Input[str] identity_provider_alias: IDP Alias
-        :param pulumi.Input[str] realm: Realm Name
-        :param pulumi.Input[bool] user_session: Is Attribute Related To a User Session
-        :param pulumi.Input[str] attribute_name: OIDC Claim
-        :param pulumi.Input[str] attribute_value: User Attribute
-        :param pulumi.Input[str] name: IDP Mapper Name
+        :param pulumi.Input[str] identity_provider_alias: The IDP alias of the attribute to set.
+        :param pulumi.Input[str] realm: The realm ID that this mapper will exist in.
+        :param pulumi.Input[bool] user_session: Is Attribute related to a User Session.
+        :param pulumi.Input[str] attribute_name: The name of the IDP attribute to set.
+        :param pulumi.Input[str] attribute_value: The value to set to the attribute. You can hardcode any value like 'foo'.
+        :param pulumi.Input[str] name: Display name of this mapper when displayed in the console.
         """
         pulumi.set(__self__, "identity_provider_alias", identity_provider_alias)
         pulumi.set(__self__, "realm", realm)
@@ -46,7 +46,7 @@ class HardcodedAttributeIdentityProviderMapperArgs:
     @pulumi.getter(name="identityProviderAlias")
     def identity_provider_alias(self) -> pulumi.Input[str]:
         """
-        IDP Alias
+        The IDP alias of the attribute to set.
         """
         return pulumi.get(self, "identity_provider_alias")
 
@@ -58,7 +58,7 @@ class HardcodedAttributeIdentityProviderMapperArgs:
     @pulumi.getter
     def realm(self) -> pulumi.Input[str]:
         """
-        Realm Name
+        The realm ID that this mapper will exist in.
         """
         return pulumi.get(self, "realm")
 
@@ -70,7 +70,7 @@ class HardcodedAttributeIdentityProviderMapperArgs:
     @pulumi.getter(name="userSession")
     def user_session(self) -> pulumi.Input[bool]:
         """
-        Is Attribute Related To a User Session
+        Is Attribute related to a User Session.
         """
         return pulumi.get(self, "user_session")
 
@@ -82,7 +82,7 @@ class HardcodedAttributeIdentityProviderMapperArgs:
     @pulumi.getter(name="attributeName")
     def attribute_name(self) -> Optional[pulumi.Input[str]]:
         """
-        OIDC Claim
+        The name of the IDP attribute to set.
         """
         return pulumi.get(self, "attribute_name")
 
@@ -94,7 +94,7 @@ class HardcodedAttributeIdentityProviderMapperArgs:
     @pulumi.getter(name="attributeValue")
     def attribute_value(self) -> Optional[pulumi.Input[str]]:
         """
-        User Attribute
+        The value to set to the attribute. You can hardcode any value like 'foo'.
         """
         return pulumi.get(self, "attribute_value")
 
@@ -115,7 +115,7 @@ class HardcodedAttributeIdentityProviderMapperArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        IDP Mapper Name
+        Display name of this mapper when displayed in the console.
         """
         return pulumi.get(self, "name")
 
@@ -136,12 +136,12 @@ class _HardcodedAttributeIdentityProviderMapperState:
                  user_session: Optional[pulumi.Input[bool]] = None):
         """
         Input properties used for looking up and filtering HardcodedAttributeIdentityProviderMapper resources.
-        :param pulumi.Input[str] attribute_name: OIDC Claim
-        :param pulumi.Input[str] attribute_value: User Attribute
-        :param pulumi.Input[str] identity_provider_alias: IDP Alias
-        :param pulumi.Input[str] name: IDP Mapper Name
-        :param pulumi.Input[str] realm: Realm Name
-        :param pulumi.Input[bool] user_session: Is Attribute Related To a User Session
+        :param pulumi.Input[str] attribute_name: The name of the IDP attribute to set.
+        :param pulumi.Input[str] attribute_value: The value to set to the attribute. You can hardcode any value like 'foo'.
+        :param pulumi.Input[str] identity_provider_alias: The IDP alias of the attribute to set.
+        :param pulumi.Input[str] name: Display name of this mapper when displayed in the console.
+        :param pulumi.Input[str] realm: The realm ID that this mapper will exist in.
+        :param pulumi.Input[bool] user_session: Is Attribute related to a User Session.
         """
         if attribute_name is not None:
             pulumi.set(__self__, "attribute_name", attribute_name)
@@ -162,7 +162,7 @@ class _HardcodedAttributeIdentityProviderMapperState:
     @pulumi.getter(name="attributeName")
     def attribute_name(self) -> Optional[pulumi.Input[str]]:
         """
-        OIDC Claim
+        The name of the IDP attribute to set.
         """
         return pulumi.get(self, "attribute_name")
 
@@ -174,7 +174,7 @@ class _HardcodedAttributeIdentityProviderMapperState:
     @pulumi.getter(name="attributeValue")
     def attribute_value(self) -> Optional[pulumi.Input[str]]:
         """
-        User Attribute
+        The value to set to the attribute. You can hardcode any value like 'foo'.
         """
         return pulumi.get(self, "attribute_value")
 
@@ -195,7 +195,7 @@ class _HardcodedAttributeIdentityProviderMapperState:
     @pulumi.getter(name="identityProviderAlias")
     def identity_provider_alias(self) -> Optional[pulumi.Input[str]]:
         """
-        IDP Alias
+        The IDP alias of the attribute to set.
         """
         return pulumi.get(self, "identity_provider_alias")
 
@@ -207,7 +207,7 @@ class _HardcodedAttributeIdentityProviderMapperState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        IDP Mapper Name
+        Display name of this mapper when displayed in the console.
         """
         return pulumi.get(self, "name")
 
@@ -219,7 +219,7 @@ class _HardcodedAttributeIdentityProviderMapperState:
     @pulumi.getter
     def realm(self) -> Optional[pulumi.Input[str]]:
         """
-        Realm Name
+        The realm ID that this mapper will exist in.
         """
         return pulumi.get(self, "realm")
 
@@ -231,7 +231,7 @@ class _HardcodedAttributeIdentityProviderMapperState:
     @pulumi.getter(name="userSession")
     def user_session(self) -> Optional[pulumi.Input[bool]]:
         """
-        Is Attribute Related To a User Session
+        Is Attribute related to a User Session.
         """
         return pulumi.get(self, "user_session")
 
@@ -254,15 +254,45 @@ class HardcodedAttributeIdentityProviderMapper(pulumi.CustomResource):
                  user_session: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
-        Create a HardcodedAttributeIdentityProviderMapper resource with the given unique name, props, and options.
+        Allows for creating and managing hardcoded attribute mappers for Keycloak identity provider.
+
+        The identity provider hardcoded attribute mapper will set the specified value to the IDP attribute.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        oidc_identity_provider = keycloak.oidc.IdentityProvider("oidcIdentityProvider",
+            realm=realm.id,
+            alias="my-idp",
+            authorization_url="https://authorizationurl.com",
+            client_id="clientID",
+            client_secret="clientSecret",
+            token_url="https://tokenurl.com")
+        oidc_hardcoded_attribute_identity_provider_mapper = keycloak.HardcodedAttributeIdentityProviderMapper("oidcHardcodedAttributeIdentityProviderMapper",
+            realm=realm.id,
+            identity_provider_alias=oidc_identity_provider.alias,
+            attribute_name="attribute",
+            attribute_value="value",
+            user_session=True,
+            extra_config={
+                "syncMode": "INHERIT",
+            })
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] attribute_name: OIDC Claim
-        :param pulumi.Input[str] attribute_value: User Attribute
-        :param pulumi.Input[str] identity_provider_alias: IDP Alias
-        :param pulumi.Input[str] name: IDP Mapper Name
-        :param pulumi.Input[str] realm: Realm Name
-        :param pulumi.Input[bool] user_session: Is Attribute Related To a User Session
+        :param pulumi.Input[str] attribute_name: The name of the IDP attribute to set.
+        :param pulumi.Input[str] attribute_value: The value to set to the attribute. You can hardcode any value like 'foo'.
+        :param pulumi.Input[str] identity_provider_alias: The IDP alias of the attribute to set.
+        :param pulumi.Input[str] name: Display name of this mapper when displayed in the console.
+        :param pulumi.Input[str] realm: The realm ID that this mapper will exist in.
+        :param pulumi.Input[bool] user_session: Is Attribute related to a User Session.
         """
         ...
     @overload
@@ -271,7 +301,37 @@ class HardcodedAttributeIdentityProviderMapper(pulumi.CustomResource):
                  args: HardcodedAttributeIdentityProviderMapperArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a HardcodedAttributeIdentityProviderMapper resource with the given unique name, props, and options.
+        Allows for creating and managing hardcoded attribute mappers for Keycloak identity provider.
+
+        The identity provider hardcoded attribute mapper will set the specified value to the IDP attribute.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        oidc_identity_provider = keycloak.oidc.IdentityProvider("oidcIdentityProvider",
+            realm=realm.id,
+            alias="my-idp",
+            authorization_url="https://authorizationurl.com",
+            client_id="clientID",
+            client_secret="clientSecret",
+            token_url="https://tokenurl.com")
+        oidc_hardcoded_attribute_identity_provider_mapper = keycloak.HardcodedAttributeIdentityProviderMapper("oidcHardcodedAttributeIdentityProviderMapper",
+            realm=realm.id,
+            identity_provider_alias=oidc_identity_provider.alias,
+            attribute_name="attribute",
+            attribute_value="value",
+            user_session=True,
+            extra_config={
+                "syncMode": "INHERIT",
+            })
+        ```
+
         :param str resource_name: The name of the resource.
         :param HardcodedAttributeIdentityProviderMapperArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -340,12 +400,12 @@ class HardcodedAttributeIdentityProviderMapper(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] attribute_name: OIDC Claim
-        :param pulumi.Input[str] attribute_value: User Attribute
-        :param pulumi.Input[str] identity_provider_alias: IDP Alias
-        :param pulumi.Input[str] name: IDP Mapper Name
-        :param pulumi.Input[str] realm: Realm Name
-        :param pulumi.Input[bool] user_session: Is Attribute Related To a User Session
+        :param pulumi.Input[str] attribute_name: The name of the IDP attribute to set.
+        :param pulumi.Input[str] attribute_value: The value to set to the attribute. You can hardcode any value like 'foo'.
+        :param pulumi.Input[str] identity_provider_alias: The IDP alias of the attribute to set.
+        :param pulumi.Input[str] name: Display name of this mapper when displayed in the console.
+        :param pulumi.Input[str] realm: The realm ID that this mapper will exist in.
+        :param pulumi.Input[bool] user_session: Is Attribute related to a User Session.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -364,7 +424,7 @@ class HardcodedAttributeIdentityProviderMapper(pulumi.CustomResource):
     @pulumi.getter(name="attributeName")
     def attribute_name(self) -> pulumi.Output[Optional[str]]:
         """
-        OIDC Claim
+        The name of the IDP attribute to set.
         """
         return pulumi.get(self, "attribute_name")
 
@@ -372,7 +432,7 @@ class HardcodedAttributeIdentityProviderMapper(pulumi.CustomResource):
     @pulumi.getter(name="attributeValue")
     def attribute_value(self) -> pulumi.Output[Optional[str]]:
         """
-        User Attribute
+        The value to set to the attribute. You can hardcode any value like 'foo'.
         """
         return pulumi.get(self, "attribute_value")
 
@@ -385,7 +445,7 @@ class HardcodedAttributeIdentityProviderMapper(pulumi.CustomResource):
     @pulumi.getter(name="identityProviderAlias")
     def identity_provider_alias(self) -> pulumi.Output[str]:
         """
-        IDP Alias
+        The IDP alias of the attribute to set.
         """
         return pulumi.get(self, "identity_provider_alias")
 
@@ -393,7 +453,7 @@ class HardcodedAttributeIdentityProviderMapper(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        IDP Mapper Name
+        Display name of this mapper when displayed in the console.
         """
         return pulumi.get(self, "name")
 
@@ -401,7 +461,7 @@ class HardcodedAttributeIdentityProviderMapper(pulumi.CustomResource):
     @pulumi.getter
     def realm(self) -> pulumi.Output[str]:
         """
-        Realm Name
+        The realm ID that this mapper will exist in.
         """
         return pulumi.get(self, "realm")
 
@@ -409,7 +469,7 @@ class HardcodedAttributeIdentityProviderMapper(pulumi.CustomResource):
     @pulumi.getter(name="userSession")
     def user_session(self) -> pulumi.Output[bool]:
         """
-        Is Attribute Related To a User Session
+        Is Attribute related to a User Session.
         """
         return pulumi.get(self, "user_session")
 

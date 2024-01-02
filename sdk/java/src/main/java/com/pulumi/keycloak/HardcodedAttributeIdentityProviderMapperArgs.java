@@ -19,14 +19,14 @@ public final class HardcodedAttributeIdentityProviderMapperArgs extends com.pulu
     public static final HardcodedAttributeIdentityProviderMapperArgs Empty = new HardcodedAttributeIdentityProviderMapperArgs();
 
     /**
-     * OIDC Claim
+     * The name of the IDP attribute to set.
      * 
      */
     @Import(name="attributeName")
     private @Nullable Output<String> attributeName;
 
     /**
-     * @return OIDC Claim
+     * @return The name of the IDP attribute to set.
      * 
      */
     public Optional<Output<String>> attributeName() {
@@ -34,14 +34,14 @@ public final class HardcodedAttributeIdentityProviderMapperArgs extends com.pulu
     }
 
     /**
-     * User Attribute
+     * The value to set to the attribute. You can hardcode any value like &#39;foo&#39;.
      * 
      */
     @Import(name="attributeValue")
     private @Nullable Output<String> attributeValue;
 
     /**
-     * @return User Attribute
+     * @return The value to set to the attribute. You can hardcode any value like &#39;foo&#39;.
      * 
      */
     public Optional<Output<String>> attributeValue() {
@@ -56,14 +56,14 @@ public final class HardcodedAttributeIdentityProviderMapperArgs extends com.pulu
     }
 
     /**
-     * IDP Alias
+     * The IDP alias of the attribute to set.
      * 
      */
     @Import(name="identityProviderAlias", required=true)
     private Output<String> identityProviderAlias;
 
     /**
-     * @return IDP Alias
+     * @return The IDP alias of the attribute to set.
      * 
      */
     public Output<String> identityProviderAlias() {
@@ -71,14 +71,14 @@ public final class HardcodedAttributeIdentityProviderMapperArgs extends com.pulu
     }
 
     /**
-     * IDP Mapper Name
+     * Display name of this mapper when displayed in the console.
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return IDP Mapper Name
+     * @return Display name of this mapper when displayed in the console.
      * 
      */
     public Optional<Output<String>> name() {
@@ -86,14 +86,14 @@ public final class HardcodedAttributeIdentityProviderMapperArgs extends com.pulu
     }
 
     /**
-     * Realm Name
+     * The realm ID that this mapper will exist in.
      * 
      */
     @Import(name="realm", required=true)
     private Output<String> realm;
 
     /**
-     * @return Realm Name
+     * @return The realm ID that this mapper will exist in.
      * 
      */
     public Output<String> realm() {
@@ -101,14 +101,14 @@ public final class HardcodedAttributeIdentityProviderMapperArgs extends com.pulu
     }
 
     /**
-     * Is Attribute Related To a User Session
+     * Is Attribute related to a User Session.
      * 
      */
     @Import(name="userSession", required=true)
     private Output<Boolean> userSession;
 
     /**
-     * @return Is Attribute Related To a User Session
+     * @return Is Attribute related to a User Session.
      * 
      */
     public Output<Boolean> userSession() {
@@ -146,7 +146,7 @@ public final class HardcodedAttributeIdentityProviderMapperArgs extends com.pulu
         }
 
         /**
-         * @param attributeName OIDC Claim
+         * @param attributeName The name of the IDP attribute to set.
          * 
          * @return builder
          * 
@@ -157,7 +157,7 @@ public final class HardcodedAttributeIdentityProviderMapperArgs extends com.pulu
         }
 
         /**
-         * @param attributeName OIDC Claim
+         * @param attributeName The name of the IDP attribute to set.
          * 
          * @return builder
          * 
@@ -167,7 +167,7 @@ public final class HardcodedAttributeIdentityProviderMapperArgs extends com.pulu
         }
 
         /**
-         * @param attributeValue User Attribute
+         * @param attributeValue The value to set to the attribute. You can hardcode any value like &#39;foo&#39;.
          * 
          * @return builder
          * 
@@ -178,7 +178,7 @@ public final class HardcodedAttributeIdentityProviderMapperArgs extends com.pulu
         }
 
         /**
-         * @param attributeValue User Attribute
+         * @param attributeValue The value to set to the attribute. You can hardcode any value like &#39;foo&#39;.
          * 
          * @return builder
          * 
@@ -197,7 +197,7 @@ public final class HardcodedAttributeIdentityProviderMapperArgs extends com.pulu
         }
 
         /**
-         * @param identityProviderAlias IDP Alias
+         * @param identityProviderAlias The IDP alias of the attribute to set.
          * 
          * @return builder
          * 
@@ -208,7 +208,7 @@ public final class HardcodedAttributeIdentityProviderMapperArgs extends com.pulu
         }
 
         /**
-         * @param identityProviderAlias IDP Alias
+         * @param identityProviderAlias The IDP alias of the attribute to set.
          * 
          * @return builder
          * 
@@ -218,7 +218,7 @@ public final class HardcodedAttributeIdentityProviderMapperArgs extends com.pulu
         }
 
         /**
-         * @param name IDP Mapper Name
+         * @param name Display name of this mapper when displayed in the console.
          * 
          * @return builder
          * 
@@ -229,7 +229,7 @@ public final class HardcodedAttributeIdentityProviderMapperArgs extends com.pulu
         }
 
         /**
-         * @param name IDP Mapper Name
+         * @param name Display name of this mapper when displayed in the console.
          * 
          * @return builder
          * 
@@ -239,7 +239,7 @@ public final class HardcodedAttributeIdentityProviderMapperArgs extends com.pulu
         }
 
         /**
-         * @param realm Realm Name
+         * @param realm The realm ID that this mapper will exist in.
          * 
          * @return builder
          * 
@@ -250,7 +250,7 @@ public final class HardcodedAttributeIdentityProviderMapperArgs extends com.pulu
         }
 
         /**
-         * @param realm Realm Name
+         * @param realm The realm ID that this mapper will exist in.
          * 
          * @return builder
          * 
@@ -260,7 +260,7 @@ public final class HardcodedAttributeIdentityProviderMapperArgs extends com.pulu
         }
 
         /**
-         * @param userSession Is Attribute Related To a User Session
+         * @param userSession Is Attribute related to a User Session.
          * 
          * @return builder
          * 
@@ -271,7 +271,7 @@ public final class HardcodedAttributeIdentityProviderMapperArgs extends com.pulu
         }
 
         /**
-         * @param userSession Is Attribute Related To a User Session
+         * @param userSession Is Attribute related to a User Session.
          * 
          * @return builder
          * 

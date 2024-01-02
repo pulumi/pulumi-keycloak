@@ -9,23 +9,85 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak
 {
+    /// <summary>
+    /// Allows for creating and managing an attribute to role identity provider mapper within Keycloak.
+    /// 
+    /// &gt; If you are using Keycloak 10 or higher, you will need to specify the `extra_config` argument in order to define a `syncMode` for the mapper.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
+    /// 
+    ///     var oidcIdentityProvider = new Keycloak.Oidc.IdentityProvider("oidcIdentityProvider", new()
+    ///     {
+    ///         Realm = realm.Id,
+    ///         Alias = "oidc",
+    ///         AuthorizationUrl = "https://example.com/auth",
+    ///         TokenUrl = "https://example.com/token",
+    ///         ClientId = "example_id",
+    ///         ClientSecret = "example_token",
+    ///         DefaultScopes = "openid random profile",
+    ///     });
+    /// 
+    ///     var realmRole = new Keycloak.Role("realmRole", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Description = "My Realm Role",
+    ///     });
+    /// 
+    ///     var oidcAttributeToRoleIdentityMapper = new Keycloak.AttributeToRoleIdentityMapper("oidcAttributeToRoleIdentityMapper", new()
+    ///     {
+    ///         Realm = realm.Id,
+    ///         IdentityProviderAlias = oidcIdentityProvider.Alias,
+    ///         Role = "my-realm-role",
+    ///         ClaimName = "my-claim",
+    ///         ClaimValue = "my-value",
+    ///         ExtraConfig = 
+    ///         {
+    ///             { "syncMode", "INHERIT" },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Identity provider mappers can be imported using the format `{{realm_id}}/{{idp_alias}}/{{idp_mapper_id}}`, where `idp_alias` is the identity provider alias, and `idp_mapper_id` is the unique ID that Keycloak assigns to the mapper upon creation. This value can be found in the URI when editing this mapper in the GUI, and is typically a GUID. Examplebash
+    /// 
+    /// ```sh
+    ///  $ pulumi import keycloak:index/attributeToRoleIdentityMapper:AttributeToRoleIdentityMapper test_mapper my-realm/my-mapper/f446db98-7133-4e30-b18a-3d28fde7ca1b
+    /// ```
+    /// </summary>
     [KeycloakResourceType("keycloak:index/attributeToRoleIdentityMapper:AttributeToRoleIdentityMapper")]
     public partial class AttributeToRoleIdentityMapper : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Attribute Friendly Name
+        /// Attribute Friendly Name. Conflicts with `attribute_name`.
         /// </summary>
         [Output("attributeFriendlyName")]
         public Output<string?> AttributeFriendlyName { get; private set; } = null!;
 
         /// <summary>
-        /// Attribute Name
+        /// Attribute Name.
         /// </summary>
         [Output("attributeName")]
         public Output<string?> AttributeName { get; private set; } = null!;
 
         /// <summary>
-        /// Attribute Value
+        /// Attribute Value.
         /// </summary>
         [Output("attributeValue")]
         public Output<string?> AttributeValue { get; private set; } = null!;
@@ -42,29 +104,32 @@ namespace Pulumi.Keycloak
         [Output("claimValue")]
         public Output<string?> ClaimValue { get; private set; } = null!;
 
+        /// <summary>
+        /// Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
+        /// </summary>
         [Output("extraConfig")]
         public Output<ImmutableDictionary<string, object>?> ExtraConfig { get; private set; } = null!;
 
         /// <summary>
-        /// IDP Alias
+        /// The alias of the associated identity provider.
         /// </summary>
         [Output("identityProviderAlias")]
         public Output<string> IdentityProviderAlias { get; private set; } = null!;
 
         /// <summary>
-        /// IDP Mapper Name
+        /// The name of the mapper.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Realm Name
+        /// The name of the realm.
         /// </summary>
         [Output("realm")]
         public Output<string> Realm { get; private set; } = null!;
 
         /// <summary>
-        /// Role Name
+        /// Role Name.
         /// </summary>
         [Output("role")]
         public Output<string> Role { get; private set; } = null!;
@@ -116,19 +181,19 @@ namespace Pulumi.Keycloak
     public sealed class AttributeToRoleIdentityMapperArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Attribute Friendly Name
+        /// Attribute Friendly Name. Conflicts with `attribute_name`.
         /// </summary>
         [Input("attributeFriendlyName")]
         public Input<string>? AttributeFriendlyName { get; set; }
 
         /// <summary>
-        /// Attribute Name
+        /// Attribute Name.
         /// </summary>
         [Input("attributeName")]
         public Input<string>? AttributeName { get; set; }
 
         /// <summary>
-        /// Attribute Value
+        /// Attribute Value.
         /// </summary>
         [Input("attributeValue")]
         public Input<string>? AttributeValue { get; set; }
@@ -147,6 +212,10 @@ namespace Pulumi.Keycloak
 
         [Input("extraConfig")]
         private InputMap<object>? _extraConfig;
+
+        /// <summary>
+        /// Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
+        /// </summary>
         public InputMap<object> ExtraConfig
         {
             get => _extraConfig ?? (_extraConfig = new InputMap<object>());
@@ -154,25 +223,25 @@ namespace Pulumi.Keycloak
         }
 
         /// <summary>
-        /// IDP Alias
+        /// The alias of the associated identity provider.
         /// </summary>
         [Input("identityProviderAlias", required: true)]
         public Input<string> IdentityProviderAlias { get; set; } = null!;
 
         /// <summary>
-        /// IDP Mapper Name
+        /// The name of the mapper.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Realm Name
+        /// The name of the realm.
         /// </summary>
         [Input("realm", required: true)]
         public Input<string> Realm { get; set; } = null!;
 
         /// <summary>
-        /// Role Name
+        /// Role Name.
         /// </summary>
         [Input("role", required: true)]
         public Input<string> Role { get; set; } = null!;
@@ -186,19 +255,19 @@ namespace Pulumi.Keycloak
     public sealed class AttributeToRoleIdentityMapperState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Attribute Friendly Name
+        /// Attribute Friendly Name. Conflicts with `attribute_name`.
         /// </summary>
         [Input("attributeFriendlyName")]
         public Input<string>? AttributeFriendlyName { get; set; }
 
         /// <summary>
-        /// Attribute Name
+        /// Attribute Name.
         /// </summary>
         [Input("attributeName")]
         public Input<string>? AttributeName { get; set; }
 
         /// <summary>
-        /// Attribute Value
+        /// Attribute Value.
         /// </summary>
         [Input("attributeValue")]
         public Input<string>? AttributeValue { get; set; }
@@ -217,6 +286,10 @@ namespace Pulumi.Keycloak
 
         [Input("extraConfig")]
         private InputMap<object>? _extraConfig;
+
+        /// <summary>
+        /// Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
+        /// </summary>
         public InputMap<object> ExtraConfig
         {
             get => _extraConfig ?? (_extraConfig = new InputMap<object>());
@@ -224,25 +297,25 @@ namespace Pulumi.Keycloak
         }
 
         /// <summary>
-        /// IDP Alias
+        /// The alias of the associated identity provider.
         /// </summary>
         [Input("identityProviderAlias")]
         public Input<string>? IdentityProviderAlias { get; set; }
 
         /// <summary>
-        /// IDP Mapper Name
+        /// The name of the mapper.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Realm Name
+        /// The name of the realm.
         /// </summary>
         [Input("realm")]
         public Input<string>? Realm { get; set; }
 
         /// <summary>
-        /// Role Name
+        /// Role Name.
         /// </summary>
         [Input("role")]
         public Input<string>? Role { get; set; }

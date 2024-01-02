@@ -16,45 +16,120 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * Allows for creating and managing an attribute to role identity provider mapper within Keycloak.
+ * 
+ * &gt; If you are using Keycloak 10 or higher, you will need to specify the `extra_config` argument in order to define a `syncMode` for the mapper.
+ * 
+ * ## Example Usage
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.keycloak.Realm;
+ * import com.pulumi.keycloak.RealmArgs;
+ * import com.pulumi.keycloak.oidc.IdentityProvider;
+ * import com.pulumi.keycloak.oidc.IdentityProviderArgs;
+ * import com.pulumi.keycloak.Role;
+ * import com.pulumi.keycloak.RoleArgs;
+ * import com.pulumi.keycloak.AttributeToRoleIdentityMapper;
+ * import com.pulumi.keycloak.AttributeToRoleIdentityMapperArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
+ *             .realm(&#34;my-realm&#34;)
+ *             .enabled(true)
+ *             .build());
+ * 
+ *         var oidcIdentityProvider = new IdentityProvider(&#34;oidcIdentityProvider&#34;, IdentityProviderArgs.builder()        
+ *             .realm(realm.id())
+ *             .alias(&#34;oidc&#34;)
+ *             .authorizationUrl(&#34;https://example.com/auth&#34;)
+ *             .tokenUrl(&#34;https://example.com/token&#34;)
+ *             .clientId(&#34;example_id&#34;)
+ *             .clientSecret(&#34;example_token&#34;)
+ *             .defaultScopes(&#34;openid random profile&#34;)
+ *             .build());
+ * 
+ *         var realmRole = new Role(&#34;realmRole&#34;, RoleArgs.builder()        
+ *             .realmId(realm.id())
+ *             .description(&#34;My Realm Role&#34;)
+ *             .build());
+ * 
+ *         var oidcAttributeToRoleIdentityMapper = new AttributeToRoleIdentityMapper(&#34;oidcAttributeToRoleIdentityMapper&#34;, AttributeToRoleIdentityMapperArgs.builder()        
+ *             .realm(realm.id())
+ *             .identityProviderAlias(oidcIdentityProvider.alias())
+ *             .role(&#34;my-realm-role&#34;)
+ *             .claimName(&#34;my-claim&#34;)
+ *             .claimValue(&#34;my-value&#34;)
+ *             .extraConfig(Map.of(&#34;syncMode&#34;, &#34;INHERIT&#34;))
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ * ## Import
+ * 
+ * Identity provider mappers can be imported using the format `{{realm_id}}/{{idp_alias}}/{{idp_mapper_id}}`, where `idp_alias` is the identity provider alias, and `idp_mapper_id` is the unique ID that Keycloak assigns to the mapper upon creation. This value can be found in the URI when editing this mapper in the GUI, and is typically a GUID. Examplebash
+ * 
+ * ```sh
+ *  $ pulumi import keycloak:index/attributeToRoleIdentityMapper:AttributeToRoleIdentityMapper test_mapper my-realm/my-mapper/f446db98-7133-4e30-b18a-3d28fde7ca1b
+ * ```
+ * 
+ */
 @ResourceType(type="keycloak:index/attributeToRoleIdentityMapper:AttributeToRoleIdentityMapper")
 public class AttributeToRoleIdentityMapper extends com.pulumi.resources.CustomResource {
     /**
-     * Attribute Friendly Name
+     * Attribute Friendly Name. Conflicts with `attribute_name`.
      * 
      */
     @Export(name="attributeFriendlyName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> attributeFriendlyName;
 
     /**
-     * @return Attribute Friendly Name
+     * @return Attribute Friendly Name. Conflicts with `attribute_name`.
      * 
      */
     public Output<Optional<String>> attributeFriendlyName() {
         return Codegen.optional(this.attributeFriendlyName);
     }
     /**
-     * Attribute Name
+     * Attribute Name.
      * 
      */
     @Export(name="attributeName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> attributeName;
 
     /**
-     * @return Attribute Name
+     * @return Attribute Name.
      * 
      */
     public Output<Optional<String>> attributeName() {
         return Codegen.optional(this.attributeName);
     }
     /**
-     * Attribute Value
+     * Attribute Value.
      * 
      */
     @Export(name="attributeValue", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> attributeValue;
 
     /**
-     * @return Attribute Value
+     * @return Attribute Value.
      * 
      */
     public Output<Optional<String>> attributeValue() {
@@ -88,63 +163,71 @@ public class AttributeToRoleIdentityMapper extends com.pulumi.resources.CustomRe
     public Output<Optional<String>> claimValue() {
         return Codegen.optional(this.claimValue);
     }
+    /**
+     * Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
+     * 
+     */
     @Export(name="extraConfig", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
     private Output</* @Nullable */ Map<String,Object>> extraConfig;
 
+    /**
+     * @return Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
+     * 
+     */
     public Output<Optional<Map<String,Object>>> extraConfig() {
         return Codegen.optional(this.extraConfig);
     }
     /**
-     * IDP Alias
+     * The alias of the associated identity provider.
      * 
      */
     @Export(name="identityProviderAlias", refs={String.class}, tree="[0]")
     private Output<String> identityProviderAlias;
 
     /**
-     * @return IDP Alias
+     * @return The alias of the associated identity provider.
      * 
      */
     public Output<String> identityProviderAlias() {
         return this.identityProviderAlias;
     }
     /**
-     * IDP Mapper Name
+     * The name of the mapper.
      * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
-     * @return IDP Mapper Name
+     * @return The name of the mapper.
      * 
      */
     public Output<String> name() {
         return this.name;
     }
     /**
-     * Realm Name
+     * The name of the realm.
      * 
      */
     @Export(name="realm", refs={String.class}, tree="[0]")
     private Output<String> realm;
 
     /**
-     * @return Realm Name
+     * @return The name of the realm.
      * 
      */
     public Output<String> realm() {
         return this.realm;
     }
     /**
-     * Role Name
+     * Role Name.
      * 
      */
     @Export(name="role", refs={String.class}, tree="[0]")
     private Output<String> role;
 
     /**
-     * @return Role Name
+     * @return Role Name.
      * 
      */
     public Output<String> role() {

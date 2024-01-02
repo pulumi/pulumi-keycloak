@@ -9,17 +9,64 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak
 {
+    /// <summary>
+    /// Allows for creating and managing hardcoded attribute mappers for Keycloak identity provider.
+    /// 
+    /// The identity provider hardcoded attribute mapper will set the specified value to the IDP attribute.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
+    /// 
+    ///     var oidcIdentityProvider = new Keycloak.Oidc.IdentityProvider("oidcIdentityProvider", new()
+    ///     {
+    ///         Realm = realm.Id,
+    ///         Alias = "my-idp",
+    ///         AuthorizationUrl = "https://authorizationurl.com",
+    ///         ClientId = "clientID",
+    ///         ClientSecret = "clientSecret",
+    ///         TokenUrl = "https://tokenurl.com",
+    ///     });
+    /// 
+    ///     var oidcHardcodedAttributeIdentityProviderMapper = new Keycloak.HardcodedAttributeIdentityProviderMapper("oidcHardcodedAttributeIdentityProviderMapper", new()
+    ///     {
+    ///         Realm = realm.Id,
+    ///         IdentityProviderAlias = oidcIdentityProvider.Alias,
+    ///         AttributeName = "attribute",
+    ///         AttributeValue = "value",
+    ///         UserSession = true,
+    ///         ExtraConfig = 
+    ///         {
+    ///             { "syncMode", "INHERIT" },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [KeycloakResourceType("keycloak:index/hardcodedAttributeIdentityProviderMapper:HardcodedAttributeIdentityProviderMapper")]
     public partial class HardcodedAttributeIdentityProviderMapper : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// OIDC Claim
+        /// The name of the IDP attribute to set.
         /// </summary>
         [Output("attributeName")]
         public Output<string?> AttributeName { get; private set; } = null!;
 
         /// <summary>
-        /// User Attribute
+        /// The value to set to the attribute. You can hardcode any value like 'foo'.
         /// </summary>
         [Output("attributeValue")]
         public Output<string?> AttributeValue { get; private set; } = null!;
@@ -28,25 +75,25 @@ namespace Pulumi.Keycloak
         public Output<ImmutableDictionary<string, object>?> ExtraConfig { get; private set; } = null!;
 
         /// <summary>
-        /// IDP Alias
+        /// The IDP alias of the attribute to set.
         /// </summary>
         [Output("identityProviderAlias")]
         public Output<string> IdentityProviderAlias { get; private set; } = null!;
 
         /// <summary>
-        /// IDP Mapper Name
+        /// Display name of this mapper when displayed in the console.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Realm Name
+        /// The realm ID that this mapper will exist in.
         /// </summary>
         [Output("realm")]
         public Output<string> Realm { get; private set; } = null!;
 
         /// <summary>
-        /// Is Attribute Related To a User Session
+        /// Is Attribute related to a User Session.
         /// </summary>
         [Output("userSession")]
         public Output<bool> UserSession { get; private set; } = null!;
@@ -98,13 +145,13 @@ namespace Pulumi.Keycloak
     public sealed class HardcodedAttributeIdentityProviderMapperArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// OIDC Claim
+        /// The name of the IDP attribute to set.
         /// </summary>
         [Input("attributeName")]
         public Input<string>? AttributeName { get; set; }
 
         /// <summary>
-        /// User Attribute
+        /// The value to set to the attribute. You can hardcode any value like 'foo'.
         /// </summary>
         [Input("attributeValue")]
         public Input<string>? AttributeValue { get; set; }
@@ -118,25 +165,25 @@ namespace Pulumi.Keycloak
         }
 
         /// <summary>
-        /// IDP Alias
+        /// The IDP alias of the attribute to set.
         /// </summary>
         [Input("identityProviderAlias", required: true)]
         public Input<string> IdentityProviderAlias { get; set; } = null!;
 
         /// <summary>
-        /// IDP Mapper Name
+        /// Display name of this mapper when displayed in the console.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Realm Name
+        /// The realm ID that this mapper will exist in.
         /// </summary>
         [Input("realm", required: true)]
         public Input<string> Realm { get; set; } = null!;
 
         /// <summary>
-        /// Is Attribute Related To a User Session
+        /// Is Attribute related to a User Session.
         /// </summary>
         [Input("userSession", required: true)]
         public Input<bool> UserSession { get; set; } = null!;
@@ -150,13 +197,13 @@ namespace Pulumi.Keycloak
     public sealed class HardcodedAttributeIdentityProviderMapperState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// OIDC Claim
+        /// The name of the IDP attribute to set.
         /// </summary>
         [Input("attributeName")]
         public Input<string>? AttributeName { get; set; }
 
         /// <summary>
-        /// User Attribute
+        /// The value to set to the attribute. You can hardcode any value like 'foo'.
         /// </summary>
         [Input("attributeValue")]
         public Input<string>? AttributeValue { get; set; }
@@ -170,25 +217,25 @@ namespace Pulumi.Keycloak
         }
 
         /// <summary>
-        /// IDP Alias
+        /// The IDP alias of the attribute to set.
         /// </summary>
         [Input("identityProviderAlias")]
         public Input<string>? IdentityProviderAlias { get; set; }
 
         /// <summary>
-        /// IDP Mapper Name
+        /// Display name of this mapper when displayed in the console.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Realm Name
+        /// The realm ID that this mapper will exist in.
         /// </summary>
         [Input("realm")]
         public Input<string>? Realm { get; set; }
 
         /// <summary>
-        /// Is Attribute Related To a User Session
+        /// Is Attribute related to a User Session.
         /// </summary>
         [Input("userSession")]
         public Input<bool>? UserSession { get; set; }

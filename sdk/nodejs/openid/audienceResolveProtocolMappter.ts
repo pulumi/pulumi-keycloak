@@ -5,63 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * Allows for creating the "Audience Resolve" OIDC protocol mapper within Keycloak.
- *
- * This protocol mapper is useful to avoid manual management of audiences, instead relying on the presence of client roles
- * to imply which audiences are appropriate for the token. See the
- * [Keycloak docs](https://www.keycloak.org/docs/latest/server_admin/#_audience_resolve) for more details.
- *
- * ## Example Usage
- * ### Client)
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as keycloak from "@pulumi/keycloak";
- *
- * const realm = new keycloak.Realm("realm", {
- *     realm: "my-realm",
- *     enabled: true,
- * });
- * const openidClient = new keycloak.openid.Client("openidClient", {
- *     realmId: realm.id,
- *     clientId: "client",
- *     enabled: true,
- *     accessType: "CONFIDENTIAL",
- *     validRedirectUris: ["http://localhost:8080/openid-callback"],
- * });
- * const audienceMapper = new keycloak.openid.AudienceResolveProtocolMappter("audienceMapper", {
- *     realmId: realm.id,
- *     clientId: openidClient.id,
- * });
- * ```
- * ### Client Scope)
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as keycloak from "@pulumi/keycloak";
- *
- * const realm = new keycloak.Realm("realm", {
- *     realm: "my-realm",
- *     enabled: true,
- * });
- * const clientScope = new keycloak.openid.ClientScope("clientScope", {realmId: realm.id});
- * const audienceMapper = new keycloak.openid.AudienceProtocolMapper("audienceMapper", {
- *     realmId: realm.id,
- *     clientScopeId: clientScope.id,
- * });
- * ```
- *
- * ## Import
- *
- * Protocol mappers can be imported using one of the following formats- Client`{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}` - Client Scope`{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}` Examplebash
- *
- * ```sh
- *  $ pulumi import keycloak:openid/audienceResolveProtocolMappter:AudienceResolveProtocolMappter audience_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
- * ```
- *
- * ```sh
- *  $ pulumi import keycloak:openid/audienceResolveProtocolMappter:AudienceResolveProtocolMappter audience_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
- * ```
+ * @deprecated keycloak.openid/audienceresolveprotocolmappter.AudienceResolveProtocolMappter has been deprecated in favor of keycloak.openid/audienceresolveprotocolmapper.AudienceResolveProtocolMapper
  */
 export class AudienceResolveProtocolMappter extends pulumi.CustomResource {
     /**
@@ -74,6 +18,7 @@ export class AudienceResolveProtocolMappter extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: AudienceResolveProtocolMappterState, opts?: pulumi.CustomResourceOptions): AudienceResolveProtocolMappter {
+        pulumi.log.warn("AudienceResolveProtocolMappter is deprecated: keycloak.openid/audienceresolveprotocolmappter.AudienceResolveProtocolMappter has been deprecated in favor of keycloak.openid/audienceresolveprotocolmapper.AudienceResolveProtocolMapper")
         return new AudienceResolveProtocolMappter(name, <any>state, { ...opts, id: id });
     }
 
@@ -92,19 +37,19 @@ export class AudienceResolveProtocolMappter extends pulumi.CustomResource {
     }
 
     /**
-     * The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
+     * The mapper's associated client. Cannot be used at the same time as client_scope_id.
      */
     public readonly clientId!: pulumi.Output<string | undefined>;
     /**
-     * The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
+     * The mapper's associated client scope. Cannot be used at the same time as client_id.
      */
     public readonly clientScopeId!: pulumi.Output<string | undefined>;
     /**
-     * The display name of this protocol mapper in the GUI. Defaults to "audience resolve".
+     * A human-friendly name that will appear in the Keycloak console.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The realm this protocol mapper exists within.
+     * The realm id where the associated client or client scope exists.
      */
     public readonly realmId!: pulumi.Output<string>;
 
@@ -115,8 +60,11 @@ export class AudienceResolveProtocolMappter extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated keycloak.openid/audienceresolveprotocolmappter.AudienceResolveProtocolMappter has been deprecated in favor of keycloak.openid/audienceresolveprotocolmapper.AudienceResolveProtocolMapper */
     constructor(name: string, args: AudienceResolveProtocolMappterArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated keycloak.openid/audienceresolveprotocolmappter.AudienceResolveProtocolMappter has been deprecated in favor of keycloak.openid/audienceresolveprotocolmapper.AudienceResolveProtocolMapper */
     constructor(name: string, argsOrState?: AudienceResolveProtocolMappterArgs | AudienceResolveProtocolMappterState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("AudienceResolveProtocolMappter is deprecated: keycloak.openid/audienceresolveprotocolmappter.AudienceResolveProtocolMappter has been deprecated in favor of keycloak.openid/audienceresolveprotocolmapper.AudienceResolveProtocolMapper")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
@@ -145,19 +93,19 @@ export class AudienceResolveProtocolMappter extends pulumi.CustomResource {
  */
 export interface AudienceResolveProtocolMappterState {
     /**
-     * The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
+     * The mapper's associated client. Cannot be used at the same time as client_scope_id.
      */
     clientId?: pulumi.Input<string>;
     /**
-     * The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
+     * The mapper's associated client scope. Cannot be used at the same time as client_id.
      */
     clientScopeId?: pulumi.Input<string>;
     /**
-     * The display name of this protocol mapper in the GUI. Defaults to "audience resolve".
+     * A human-friendly name that will appear in the Keycloak console.
      */
     name?: pulumi.Input<string>;
     /**
-     * The realm this protocol mapper exists within.
+     * The realm id where the associated client or client scope exists.
      */
     realmId?: pulumi.Input<string>;
 }
@@ -167,19 +115,19 @@ export interface AudienceResolveProtocolMappterState {
  */
 export interface AudienceResolveProtocolMappterArgs {
     /**
-     * The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
+     * The mapper's associated client. Cannot be used at the same time as client_scope_id.
      */
     clientId?: pulumi.Input<string>;
     /**
-     * The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
+     * The mapper's associated client scope. Cannot be used at the same time as client_id.
      */
     clientScopeId?: pulumi.Input<string>;
     /**
-     * The display name of this protocol mapper in the GUI. Defaults to "audience resolve".
+     * A human-friendly name that will appear in the Keycloak console.
      */
     name?: pulumi.Input<string>;
     /**
-     * The realm this protocol mapper exists within.
+     * The realm id where the associated client or client scope exists.
      */
     realmId: pulumi.Input<string>;
 }

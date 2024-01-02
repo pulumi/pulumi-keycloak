@@ -9,115 +9,30 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak.OpenId
 {
-    /// <summary>
-    /// Allows for creating the "Audience Resolve" OIDC protocol mapper within Keycloak.
-    /// 
-    /// This protocol mapper is useful to avoid manual management of audiences, instead relying on the presence of client roles
-    /// to imply which audiences are appropriate for the token. See the
-    /// [Keycloak docs](https://www.keycloak.org/docs/latest/server_admin/#_audience_resolve) for more details.
-    /// 
-    /// ## Example Usage
-    /// ### Client)
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Keycloak = Pulumi.Keycloak;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var realm = new Keycloak.Realm("realm", new()
-    ///     {
-    ///         RealmName = "my-realm",
-    ///         Enabled = true,
-    ///     });
-    /// 
-    ///     var openidClient = new Keycloak.OpenId.Client("openidClient", new()
-    ///     {
-    ///         RealmId = realm.Id,
-    ///         ClientId = "client",
-    ///         Enabled = true,
-    ///         AccessType = "CONFIDENTIAL",
-    ///         ValidRedirectUris = new[]
-    ///         {
-    ///             "http://localhost:8080/openid-callback",
-    ///         },
-    ///     });
-    /// 
-    ///     var audienceMapper = new Keycloak.OpenId.AudienceResolveProtocolMappter("audienceMapper", new()
-    ///     {
-    ///         RealmId = realm.Id,
-    ///         ClientId = openidClient.Id,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// ### Client Scope)
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Keycloak = Pulumi.Keycloak;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var realm = new Keycloak.Realm("realm", new()
-    ///     {
-    ///         RealmName = "my-realm",
-    ///         Enabled = true,
-    ///     });
-    /// 
-    ///     var clientScope = new Keycloak.OpenId.ClientScope("clientScope", new()
-    ///     {
-    ///         RealmId = realm.Id,
-    ///     });
-    /// 
-    ///     var audienceMapper = new Keycloak.OpenId.AudienceProtocolMapper("audienceMapper", new()
-    ///     {
-    ///         RealmId = realm.Id,
-    ///         ClientScopeId = clientScope.Id,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// ## Import
-    /// 
-    /// Protocol mappers can be imported using one of the following formats- Client`{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}` - Client Scope`{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}` Examplebash
-    /// 
-    /// ```sh
-    ///  $ pulumi import keycloak:openid/audienceResolveProtocolMappter:AudienceResolveProtocolMappter audience_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
-    /// ```
-    /// 
-    /// ```sh
-    ///  $ pulumi import keycloak:openid/audienceResolveProtocolMappter:AudienceResolveProtocolMappter audience_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
-    /// ```
-    /// </summary>
+    [Obsolete(@"keycloak.openid/audienceresolveprotocolmappter.AudienceResolveProtocolMappter has been deprecated in favor of keycloak.openid/audienceresolveprotocolmapper.AudienceResolveProtocolMapper")]
     [KeycloakResourceType("keycloak:openid/audienceResolveProtocolMappter:AudienceResolveProtocolMappter")]
     public partial class AudienceResolveProtocolMappter : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+        /// The mapper's associated client. Cannot be used at the same time as client_scope_id.
         /// </summary>
         [Output("clientId")]
         public Output<string?> ClientId { get; private set; } = null!;
 
         /// <summary>
-        /// The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+        /// The mapper's associated client scope. Cannot be used at the same time as client_id.
         /// </summary>
         [Output("clientScopeId")]
         public Output<string?> ClientScopeId { get; private set; } = null!;
 
         /// <summary>
-        /// The display name of this protocol mapper in the GUI. Defaults to "audience resolve".
+        /// A human-friendly name that will appear in the Keycloak console.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The realm this protocol mapper exists within.
+        /// The realm id where the associated client or client scope exists.
         /// </summary>
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
@@ -169,25 +84,25 @@ namespace Pulumi.Keycloak.OpenId
     public sealed class AudienceResolveProtocolMappterArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+        /// The mapper's associated client. Cannot be used at the same time as client_scope_id.
         /// </summary>
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
 
         /// <summary>
-        /// The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+        /// The mapper's associated client scope. Cannot be used at the same time as client_id.
         /// </summary>
         [Input("clientScopeId")]
         public Input<string>? ClientScopeId { get; set; }
 
         /// <summary>
-        /// The display name of this protocol mapper in the GUI. Defaults to "audience resolve".
+        /// A human-friendly name that will appear in the Keycloak console.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The realm this protocol mapper exists within.
+        /// The realm id where the associated client or client scope exists.
         /// </summary>
         [Input("realmId", required: true)]
         public Input<string> RealmId { get; set; } = null!;
@@ -201,25 +116,25 @@ namespace Pulumi.Keycloak.OpenId
     public sealed class AudienceResolveProtocolMappterState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+        /// The mapper's associated client. Cannot be used at the same time as client_scope_id.
         /// </summary>
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
 
         /// <summary>
-        /// The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+        /// The mapper's associated client scope. Cannot be used at the same time as client_id.
         /// </summary>
         [Input("clientScopeId")]
         public Input<string>? ClientScopeId { get; set; }
 
         /// <summary>
-        /// The display name of this protocol mapper in the GUI. Defaults to "audience resolve".
+        /// A human-friendly name that will appear in the Keycloak console.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The realm this protocol mapper exists within.
+        /// The realm id where the associated client or client scope exists.
         /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }

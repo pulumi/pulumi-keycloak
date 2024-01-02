@@ -19,14 +19,14 @@ public final class HardcodedAttributeIdentityProviderMapperState extends com.pul
     public static final HardcodedAttributeIdentityProviderMapperState Empty = new HardcodedAttributeIdentityProviderMapperState();
 
     /**
-     * OIDC Claim
+     * The name of the IDP attribute to set.
      * 
      */
     @Import(name="attributeName")
     private @Nullable Output<String> attributeName;
 
     /**
-     * @return OIDC Claim
+     * @return The name of the IDP attribute to set.
      * 
      */
     public Optional<Output<String>> attributeName() {
@@ -34,14 +34,14 @@ public final class HardcodedAttributeIdentityProviderMapperState extends com.pul
     }
 
     /**
-     * User Attribute
+     * The value to set to the attribute. You can hardcode any value like &#39;foo&#39;.
      * 
      */
     @Import(name="attributeValue")
     private @Nullable Output<String> attributeValue;
 
     /**
-     * @return User Attribute
+     * @return The value to set to the attribute. You can hardcode any value like &#39;foo&#39;.
      * 
      */
     public Optional<Output<String>> attributeValue() {
@@ -56,14 +56,14 @@ public final class HardcodedAttributeIdentityProviderMapperState extends com.pul
     }
 
     /**
-     * IDP Alias
+     * The IDP alias of the attribute to set.
      * 
      */
     @Import(name="identityProviderAlias")
     private @Nullable Output<String> identityProviderAlias;
 
     /**
-     * @return IDP Alias
+     * @return The IDP alias of the attribute to set.
      * 
      */
     public Optional<Output<String>> identityProviderAlias() {
@@ -71,14 +71,14 @@ public final class HardcodedAttributeIdentityProviderMapperState extends com.pul
     }
 
     /**
-     * IDP Mapper Name
+     * Display name of this mapper when displayed in the console.
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return IDP Mapper Name
+     * @return Display name of this mapper when displayed in the console.
      * 
      */
     public Optional<Output<String>> name() {
@@ -86,14 +86,14 @@ public final class HardcodedAttributeIdentityProviderMapperState extends com.pul
     }
 
     /**
-     * Realm Name
+     * The realm ID that this mapper will exist in.
      * 
      */
     @Import(name="realm")
     private @Nullable Output<String> realm;
 
     /**
-     * @return Realm Name
+     * @return The realm ID that this mapper will exist in.
      * 
      */
     public Optional<Output<String>> realm() {
@@ -101,14 +101,14 @@ public final class HardcodedAttributeIdentityProviderMapperState extends com.pul
     }
 
     /**
-     * Is Attribute Related To a User Session
+     * Is Attribute related to a User Session.
      * 
      */
     @Import(name="userSession")
     private @Nullable Output<Boolean> userSession;
 
     /**
-     * @return Is Attribute Related To a User Session
+     * @return Is Attribute related to a User Session.
      * 
      */
     public Optional<Output<Boolean>> userSession() {
@@ -146,7 +146,7 @@ public final class HardcodedAttributeIdentityProviderMapperState extends com.pul
         }
 
         /**
-         * @param attributeName OIDC Claim
+         * @param attributeName The name of the IDP attribute to set.
          * 
          * @return builder
          * 
@@ -157,7 +157,7 @@ public final class HardcodedAttributeIdentityProviderMapperState extends com.pul
         }
 
         /**
-         * @param attributeName OIDC Claim
+         * @param attributeName The name of the IDP attribute to set.
          * 
          * @return builder
          * 
@@ -167,7 +167,7 @@ public final class HardcodedAttributeIdentityProviderMapperState extends com.pul
         }
 
         /**
-         * @param attributeValue User Attribute
+         * @param attributeValue The value to set to the attribute. You can hardcode any value like &#39;foo&#39;.
          * 
          * @return builder
          * 
@@ -178,7 +178,7 @@ public final class HardcodedAttributeIdentityProviderMapperState extends com.pul
         }
 
         /**
-         * @param attributeValue User Attribute
+         * @param attributeValue The value to set to the attribute. You can hardcode any value like &#39;foo&#39;.
          * 
          * @return builder
          * 
@@ -197,7 +197,7 @@ public final class HardcodedAttributeIdentityProviderMapperState extends com.pul
         }
 
         /**
-         * @param identityProviderAlias IDP Alias
+         * @param identityProviderAlias The IDP alias of the attribute to set.
          * 
          * @return builder
          * 
@@ -208,7 +208,7 @@ public final class HardcodedAttributeIdentityProviderMapperState extends com.pul
         }
 
         /**
-         * @param identityProviderAlias IDP Alias
+         * @param identityProviderAlias The IDP alias of the attribute to set.
          * 
          * @return builder
          * 
@@ -218,7 +218,7 @@ public final class HardcodedAttributeIdentityProviderMapperState extends com.pul
         }
 
         /**
-         * @param name IDP Mapper Name
+         * @param name Display name of this mapper when displayed in the console.
          * 
          * @return builder
          * 
@@ -229,7 +229,7 @@ public final class HardcodedAttributeIdentityProviderMapperState extends com.pul
         }
 
         /**
-         * @param name IDP Mapper Name
+         * @param name Display name of this mapper when displayed in the console.
          * 
          * @return builder
          * 
@@ -239,7 +239,7 @@ public final class HardcodedAttributeIdentityProviderMapperState extends com.pul
         }
 
         /**
-         * @param realm Realm Name
+         * @param realm The realm ID that this mapper will exist in.
          * 
          * @return builder
          * 
@@ -250,7 +250,7 @@ public final class HardcodedAttributeIdentityProviderMapperState extends com.pul
         }
 
         /**
-         * @param realm Realm Name
+         * @param realm The realm ID that this mapper will exist in.
          * 
          * @return builder
          * 
@@ -260,7 +260,7 @@ public final class HardcodedAttributeIdentityProviderMapperState extends com.pul
         }
 
         /**
-         * @param userSession Is Attribute Related To a User Session
+         * @param userSession Is Attribute related to a User Session.
          * 
          * @return builder
          * 
@@ -271,7 +271,7 @@ public final class HardcodedAttributeIdentityProviderMapperState extends com.pul
         }
 
         /**
-         * @param userSession Is Attribute Related To a User Session
+         * @param userSession Is Attribute related to a User Session.
          * 
          * @return builder
          * 
