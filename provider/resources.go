@@ -18,6 +18,7 @@ import (
 	"fmt"
 	"path"
 	"strings"
+
 	// embed is used to store bridge-metadata.json in the compiled binary
 	_ "embed"
 
@@ -120,6 +121,9 @@ func Provider() tfbridge.ProviderInfo {
 			"keycloak_ldap_hardcoded_group_mapper": {
 				Docs: &tfbridge.DocInfo{AllowMissing: true},
 			},
+			"keycloak_openid_client_authorization_scope": {
+				Docs: &tfbridge.DocInfo{AllowMissing: true},
+			},
 			"keycloak_openid_client_authorization_permission": {
 				Docs: &tfbridge.DocInfo{AllowMissing: true},
 			},
@@ -147,6 +151,9 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"keycloak_openid_client_permissions": {
 				Docs: &tfbridge.DocInfo{AllowMissing: true},
+			},
+			"keycloak_openid_audience_resolve_protocol_mapper": {
+				Docs: &tfbridge.DocInfo{Source: "openid_audience_resolve_protocol_mapper.md"},
 			},
 
 			"keycloak_saml_client_default_scopes": {Tok: makeResource(samlMod, "ClientDefaultScope")},
