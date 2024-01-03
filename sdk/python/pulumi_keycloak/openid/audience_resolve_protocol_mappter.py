@@ -20,10 +20,10 @@ class AudienceResolveProtocolMappterArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a AudienceResolveProtocolMappter resource.
-        :param pulumi.Input[str] realm_id: The realm id where the associated client or client scope exists.
-        :param pulumi.Input[str] client_id: The mapper's associated client. Cannot be used at the same time as client_scope_id.
-        :param pulumi.Input[str] client_scope_id: The mapper's associated client scope. Cannot be used at the same time as client_id.
-        :param pulumi.Input[str] name: A human-friendly name that will appear in the Keycloak console.
+        :param pulumi.Input[str] realm_id: The realm this protocol mapper exists within.
+        :param pulumi.Input[str] client_id: The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+        :param pulumi.Input[str] client_scope_id: The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+        :param pulumi.Input[str] name: The display name of this protocol mapper in the GUI. Defaults to "audience resolve".
         """
         pulumi.set(__self__, "realm_id", realm_id)
         if client_id is not None:
@@ -37,7 +37,7 @@ class AudienceResolveProtocolMappterArgs:
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Input[str]:
         """
-        The realm id where the associated client or client scope exists.
+        The realm this protocol mapper exists within.
         """
         return pulumi.get(self, "realm_id")
 
@@ -49,7 +49,7 @@ class AudienceResolveProtocolMappterArgs:
     @pulumi.getter(name="clientId")
     def client_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The mapper's associated client. Cannot be used at the same time as client_scope_id.
+        The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
         """
         return pulumi.get(self, "client_id")
 
@@ -61,7 +61,7 @@ class AudienceResolveProtocolMappterArgs:
     @pulumi.getter(name="clientScopeId")
     def client_scope_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The mapper's associated client scope. Cannot be used at the same time as client_id.
+        The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
         """
         return pulumi.get(self, "client_scope_id")
 
@@ -73,7 +73,7 @@ class AudienceResolveProtocolMappterArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        A human-friendly name that will appear in the Keycloak console.
+        The display name of this protocol mapper in the GUI. Defaults to "audience resolve".
         """
         return pulumi.get(self, "name")
 
@@ -91,10 +91,10 @@ class _AudienceResolveProtocolMappterState:
                  realm_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering AudienceResolveProtocolMappter resources.
-        :param pulumi.Input[str] client_id: The mapper's associated client. Cannot be used at the same time as client_scope_id.
-        :param pulumi.Input[str] client_scope_id: The mapper's associated client scope. Cannot be used at the same time as client_id.
-        :param pulumi.Input[str] name: A human-friendly name that will appear in the Keycloak console.
-        :param pulumi.Input[str] realm_id: The realm id where the associated client or client scope exists.
+        :param pulumi.Input[str] client_id: The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+        :param pulumi.Input[str] client_scope_id: The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+        :param pulumi.Input[str] name: The display name of this protocol mapper in the GUI. Defaults to "audience resolve".
+        :param pulumi.Input[str] realm_id: The realm this protocol mapper exists within.
         """
         if client_id is not None:
             pulumi.set(__self__, "client_id", client_id)
@@ -109,7 +109,7 @@ class _AudienceResolveProtocolMappterState:
     @pulumi.getter(name="clientId")
     def client_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The mapper's associated client. Cannot be used at the same time as client_scope_id.
+        The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
         """
         return pulumi.get(self, "client_id")
 
@@ -121,7 +121,7 @@ class _AudienceResolveProtocolMappterState:
     @pulumi.getter(name="clientScopeId")
     def client_scope_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The mapper's associated client scope. Cannot be used at the same time as client_id.
+        The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
         """
         return pulumi.get(self, "client_scope_id")
 
@@ -133,7 +133,7 @@ class _AudienceResolveProtocolMappterState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        A human-friendly name that will appear in the Keycloak console.
+        The display name of this protocol mapper in the GUI. Defaults to "audience resolve".
         """
         return pulumi.get(self, "name")
 
@@ -145,7 +145,7 @@ class _AudienceResolveProtocolMappterState:
     @pulumi.getter(name="realmId")
     def realm_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The realm id where the associated client or client scope exists.
+        The realm this protocol mapper exists within.
         """
         return pulumi.get(self, "realm_id")
 
@@ -170,13 +170,65 @@ class AudienceResolveProtocolMappter(pulumi.CustomResource):
                  realm_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a AudienceResolveProtocolMappter resource with the given unique name, props, and options.
+        Allows for creating the "Audience Resolve" OIDC protocol mapper within Keycloak.
+
+        This protocol mapper is useful to avoid manual management of audiences, instead relying on the presence of client roles
+        to imply which audiences are appropriate for the token. See the
+        [Keycloak docs](https://www.keycloak.org/docs/latest/server_admin/#_audience_resolve) for more details.
+
+        ## Example Usage
+        ### Client)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        openid_client = keycloak.openid.Client("openidClient",
+            realm_id=realm.id,
+            client_id="client",
+            enabled=True,
+            access_type="CONFIDENTIAL",
+            valid_redirect_uris=["http://localhost:8080/openid-callback"])
+        audience_mapper = keycloak.openid.AudienceResolveProtocolMapper("audienceMapper",
+            realm_id=realm.id,
+            client_id=openid_client.id)
+        ```
+        ### Client Scope)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        client_scope = keycloak.openid.ClientScope("clientScope", realm_id=realm.id)
+        audience_mapper = keycloak.openid.AudienceProtocolMapper("audienceMapper",
+            realm_id=realm.id,
+            client_scope_id=client_scope.id)
+        ```
+
+        ## Import
+
+        Protocol mappers can be imported using one of the following formats- Client`{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}` - Client Scope`{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}` Examplebash
+
+        ```sh
+         $ pulumi import keycloak:openid/audienceResolveProtocolMappter:AudienceResolveProtocolMappter audience_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+        ```
+
+        ```sh
+         $ pulumi import keycloak:openid/audienceResolveProtocolMappter:AudienceResolveProtocolMappter audience_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] client_id: The mapper's associated client. Cannot be used at the same time as client_scope_id.
-        :param pulumi.Input[str] client_scope_id: The mapper's associated client scope. Cannot be used at the same time as client_id.
-        :param pulumi.Input[str] name: A human-friendly name that will appear in the Keycloak console.
-        :param pulumi.Input[str] realm_id: The realm id where the associated client or client scope exists.
+        :param pulumi.Input[str] client_id: The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+        :param pulumi.Input[str] client_scope_id: The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+        :param pulumi.Input[str] name: The display name of this protocol mapper in the GUI. Defaults to "audience resolve".
+        :param pulumi.Input[str] realm_id: The realm this protocol mapper exists within.
         """
         ...
     @overload
@@ -185,7 +237,59 @@ class AudienceResolveProtocolMappter(pulumi.CustomResource):
                  args: AudienceResolveProtocolMappterArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a AudienceResolveProtocolMappter resource with the given unique name, props, and options.
+        Allows for creating the "Audience Resolve" OIDC protocol mapper within Keycloak.
+
+        This protocol mapper is useful to avoid manual management of audiences, instead relying on the presence of client roles
+        to imply which audiences are appropriate for the token. See the
+        [Keycloak docs](https://www.keycloak.org/docs/latest/server_admin/#_audience_resolve) for more details.
+
+        ## Example Usage
+        ### Client)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        openid_client = keycloak.openid.Client("openidClient",
+            realm_id=realm.id,
+            client_id="client",
+            enabled=True,
+            access_type="CONFIDENTIAL",
+            valid_redirect_uris=["http://localhost:8080/openid-callback"])
+        audience_mapper = keycloak.openid.AudienceResolveProtocolMapper("audienceMapper",
+            realm_id=realm.id,
+            client_id=openid_client.id)
+        ```
+        ### Client Scope)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        client_scope = keycloak.openid.ClientScope("clientScope", realm_id=realm.id)
+        audience_mapper = keycloak.openid.AudienceProtocolMapper("audienceMapper",
+            realm_id=realm.id,
+            client_scope_id=client_scope.id)
+        ```
+
+        ## Import
+
+        Protocol mappers can be imported using one of the following formats- Client`{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}` - Client Scope`{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}` Examplebash
+
+        ```sh
+         $ pulumi import keycloak:openid/audienceResolveProtocolMappter:AudienceResolveProtocolMappter audience_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+        ```
+
+        ```sh
+         $ pulumi import keycloak:openid/audienceResolveProtocolMappter:AudienceResolveProtocolMappter audience_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+        ```
+
         :param str resource_name: The name of the resource.
         :param AudienceResolveProtocolMappterArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -242,10 +346,10 @@ class AudienceResolveProtocolMappter(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] client_id: The mapper's associated client. Cannot be used at the same time as client_scope_id.
-        :param pulumi.Input[str] client_scope_id: The mapper's associated client scope. Cannot be used at the same time as client_id.
-        :param pulumi.Input[str] name: A human-friendly name that will appear in the Keycloak console.
-        :param pulumi.Input[str] realm_id: The realm id where the associated client or client scope exists.
+        :param pulumi.Input[str] client_id: The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+        :param pulumi.Input[str] client_scope_id: The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+        :param pulumi.Input[str] name: The display name of this protocol mapper in the GUI. Defaults to "audience resolve".
+        :param pulumi.Input[str] realm_id: The realm this protocol mapper exists within.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -261,7 +365,7 @@ class AudienceResolveProtocolMappter(pulumi.CustomResource):
     @pulumi.getter(name="clientId")
     def client_id(self) -> pulumi.Output[Optional[str]]:
         """
-        The mapper's associated client. Cannot be used at the same time as client_scope_id.
+        The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
         """
         return pulumi.get(self, "client_id")
 
@@ -269,7 +373,7 @@ class AudienceResolveProtocolMappter(pulumi.CustomResource):
     @pulumi.getter(name="clientScopeId")
     def client_scope_id(self) -> pulumi.Output[Optional[str]]:
         """
-        The mapper's associated client scope. Cannot be used at the same time as client_id.
+        The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
         """
         return pulumi.get(self, "client_scope_id")
 
@@ -277,7 +381,7 @@ class AudienceResolveProtocolMappter(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        A human-friendly name that will appear in the Keycloak console.
+        The display name of this protocol mapper in the GUI. Defaults to "audience resolve".
         """
         return pulumi.get(self, "name")
 
@@ -285,7 +389,7 @@ class AudienceResolveProtocolMappter(pulumi.CustomResource):
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Output[str]:
         """
-        The realm id where the associated client or client scope exists.
+        The realm this protocol mapper exists within.
         """
         return pulumi.get(self, "realm_id")
 

@@ -16,14 +16,14 @@ public final class AudienceResolveProtocolMappterArgs extends com.pulumi.resourc
     public static final AudienceResolveProtocolMappterArgs Empty = new AudienceResolveProtocolMappterArgs();
 
     /**
-     * The mapper&#39;s associated client. Cannot be used at the same time as client_scope_id.
+     * The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
      * 
      */
     @Import(name="clientId")
     private @Nullable Output<String> clientId;
 
     /**
-     * @return The mapper&#39;s associated client. Cannot be used at the same time as client_scope_id.
+     * @return The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
      * 
      */
     public Optional<Output<String>> clientId() {
@@ -31,14 +31,14 @@ public final class AudienceResolveProtocolMappterArgs extends com.pulumi.resourc
     }
 
     /**
-     * The mapper&#39;s associated client scope. Cannot be used at the same time as client_id.
+     * The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
      * 
      */
     @Import(name="clientScopeId")
     private @Nullable Output<String> clientScopeId;
 
     /**
-     * @return The mapper&#39;s associated client scope. Cannot be used at the same time as client_id.
+     * @return The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
      * 
      */
     public Optional<Output<String>> clientScopeId() {
@@ -46,14 +46,14 @@ public final class AudienceResolveProtocolMappterArgs extends com.pulumi.resourc
     }
 
     /**
-     * A human-friendly name that will appear in the Keycloak console.
+     * The display name of this protocol mapper in the GUI. Defaults to &#34;audience resolve&#34;.
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return A human-friendly name that will appear in the Keycloak console.
+     * @return The display name of this protocol mapper in the GUI. Defaults to &#34;audience resolve&#34;.
      * 
      */
     public Optional<Output<String>> name() {
@@ -61,14 +61,14 @@ public final class AudienceResolveProtocolMappterArgs extends com.pulumi.resourc
     }
 
     /**
-     * The realm id where the associated client or client scope exists.
+     * The realm this protocol mapper exists within.
      * 
      */
     @Import(name="realmId", required=true)
     private Output<String> realmId;
 
     /**
-     * @return The realm id where the associated client or client scope exists.
+     * @return The realm this protocol mapper exists within.
      * 
      */
     public Output<String> realmId() {
@@ -103,7 +103,7 @@ public final class AudienceResolveProtocolMappterArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param clientId The mapper&#39;s associated client. Cannot be used at the same time as client_scope_id.
+         * @param clientId The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
          * 
          * @return builder
          * 
@@ -114,7 +114,7 @@ public final class AudienceResolveProtocolMappterArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param clientId The mapper&#39;s associated client. Cannot be used at the same time as client_scope_id.
+         * @param clientId The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
          * 
          * @return builder
          * 
@@ -124,7 +124,7 @@ public final class AudienceResolveProtocolMappterArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param clientScopeId The mapper&#39;s associated client scope. Cannot be used at the same time as client_id.
+         * @param clientScopeId The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
          * 
          * @return builder
          * 
@@ -135,7 +135,7 @@ public final class AudienceResolveProtocolMappterArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param clientScopeId The mapper&#39;s associated client scope. Cannot be used at the same time as client_id.
+         * @param clientScopeId The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
          * 
          * @return builder
          * 
@@ -145,7 +145,7 @@ public final class AudienceResolveProtocolMappterArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param name A human-friendly name that will appear in the Keycloak console.
+         * @param name The display name of this protocol mapper in the GUI. Defaults to &#34;audience resolve&#34;.
          * 
          * @return builder
          * 
@@ -156,7 +156,7 @@ public final class AudienceResolveProtocolMappterArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param name A human-friendly name that will appear in the Keycloak console.
+         * @param name The display name of this protocol mapper in the GUI. Defaults to &#34;audience resolve&#34;.
          * 
          * @return builder
          * 
@@ -166,7 +166,7 @@ public final class AudienceResolveProtocolMappterArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param realmId The realm id where the associated client or client scope exists.
+         * @param realmId The realm this protocol mapper exists within.
          * 
          * @return builder
          * 
@@ -177,7 +177,7 @@ public final class AudienceResolveProtocolMappterArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param realmId The realm id where the associated client or client scope exists.
+         * @param realmId The realm this protocol mapper exists within.
          * 
          * @return builder
          * 
