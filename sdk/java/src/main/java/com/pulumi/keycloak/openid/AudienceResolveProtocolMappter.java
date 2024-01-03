@@ -15,6 +15,116 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * Allows for creating the &#34;Audience Resolve&#34; OIDC protocol mapper within Keycloak.
+ * 
+ * This protocol mapper is useful to avoid manual management of audiences, instead relying on the presence of client roles
+ * to imply which audiences are appropriate for the token. See the
+ * [Keycloak docs](https://www.keycloak.org/docs/latest/server_admin/#_audience_resolve) for more details.
+ * 
+ * ## Example Usage
+ * ### Client)
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.keycloak.Realm;
+ * import com.pulumi.keycloak.RealmArgs;
+ * import com.pulumi.keycloak.openid.Client;
+ * import com.pulumi.keycloak.openid.ClientArgs;
+ * import com.pulumi.keycloak.openid.AudienceResolveProtocolMapper;
+ * import com.pulumi.keycloak.openid.AudienceResolveProtocolMapperArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
+ *             .realm(&#34;my-realm&#34;)
+ *             .enabled(true)
+ *             .build());
+ * 
+ *         var openidClient = new Client(&#34;openidClient&#34;, ClientArgs.builder()        
+ *             .realmId(realm.id())
+ *             .clientId(&#34;client&#34;)
+ *             .enabled(true)
+ *             .accessType(&#34;CONFIDENTIAL&#34;)
+ *             .validRedirectUris(&#34;http://localhost:8080/openid-callback&#34;)
+ *             .build());
+ * 
+ *         var audienceMapper = new AudienceResolveProtocolMapper(&#34;audienceMapper&#34;, AudienceResolveProtocolMapperArgs.builder()        
+ *             .realmId(realm.id())
+ *             .clientId(openidClient.id())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * ### Client Scope)
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.keycloak.Realm;
+ * import com.pulumi.keycloak.RealmArgs;
+ * import com.pulumi.keycloak.openid.ClientScope;
+ * import com.pulumi.keycloak.openid.ClientScopeArgs;
+ * import com.pulumi.keycloak.openid.AudienceProtocolMapper;
+ * import com.pulumi.keycloak.openid.AudienceProtocolMapperArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
+ *             .realm(&#34;my-realm&#34;)
+ *             .enabled(true)
+ *             .build());
+ * 
+ *         var clientScope = new ClientScope(&#34;clientScope&#34;, ClientScopeArgs.builder()        
+ *             .realmId(realm.id())
+ *             .build());
+ * 
+ *         var audienceMapper = new AudienceProtocolMapper(&#34;audienceMapper&#34;, AudienceProtocolMapperArgs.builder()        
+ *             .realmId(realm.id())
+ *             .clientScopeId(clientScope.id())
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ * ## Import
+ * 
+ * Protocol mappers can be imported using one of the following formats- Client`{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}` - Client Scope`{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}` Examplebash
+ * 
+ * ```sh
+ *  $ pulumi import keycloak:openid/audienceResolveProtocolMappter:AudienceResolveProtocolMappter audience_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+ * ```
+ * 
+ * ```sh
+ *  $ pulumi import keycloak:openid/audienceResolveProtocolMappter:AudienceResolveProtocolMappter audience_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+ * ```
+ * 
  * @deprecated
  * keycloak.openid/audienceresolveprotocolmappter.AudienceResolveProtocolMappter has been deprecated in favor of keycloak.openid/audienceresolveprotocolmapper.AudienceResolveProtocolMapper
  * 
@@ -23,56 +133,56 @@ import javax.annotation.Nullable;
 @ResourceType(type="keycloak:openid/audienceResolveProtocolMappter:AudienceResolveProtocolMappter")
 public class AudienceResolveProtocolMappter extends com.pulumi.resources.CustomResource {
     /**
-     * The mapper&#39;s associated client. Cannot be used at the same time as client_scope_id.
+     * The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
      * 
      */
     @Export(name="clientId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientId;
 
     /**
-     * @return The mapper&#39;s associated client. Cannot be used at the same time as client_scope_id.
+     * @return The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
      * 
      */
     public Output<Optional<String>> clientId() {
         return Codegen.optional(this.clientId);
     }
     /**
-     * The mapper&#39;s associated client scope. Cannot be used at the same time as client_id.
+     * The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
      * 
      */
     @Export(name="clientScopeId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientScopeId;
 
     /**
-     * @return The mapper&#39;s associated client scope. Cannot be used at the same time as client_id.
+     * @return The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
      * 
      */
     public Output<Optional<String>> clientScopeId() {
         return Codegen.optional(this.clientScopeId);
     }
     /**
-     * A human-friendly name that will appear in the Keycloak console.
+     * The display name of this protocol mapper in the GUI. Defaults to &#34;audience resolve&#34;.
      * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
-     * @return A human-friendly name that will appear in the Keycloak console.
+     * @return The display name of this protocol mapper in the GUI. Defaults to &#34;audience resolve&#34;.
      * 
      */
     public Output<String> name() {
         return this.name;
     }
     /**
-     * The realm id where the associated client or client scope exists.
+     * The realm this protocol mapper exists within.
      * 
      */
     @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**
-     * @return The realm id where the associated client or client scope exists.
+     * @return The realm this protocol mapper exists within.
      * 
      */
     public Output<String> realmId() {

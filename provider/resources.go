@@ -18,16 +18,16 @@ import (
 	"fmt"
 	"path"
 	"strings"
+
 	// embed is used to store bridge-metadata.json in the compiled binary
 	_ "embed"
 
 	"github.com/mrparkers/terraform-provider-keycloak/provider"
+	"github.com/pulumi/pulumi-keycloak/provider/v5/pkg/version"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	tks "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-
-	"github.com/pulumi/pulumi-keycloak/provider/v5/pkg/version"
 )
 
 // all of the token components used below.
@@ -120,6 +120,9 @@ func Provider() tfbridge.ProviderInfo {
 			"keycloak_ldap_hardcoded_group_mapper": {
 				Docs: &tfbridge.DocInfo{AllowMissing: true},
 			},
+			"keycloak_openid_client_authorization_scope": {
+				Docs: &tfbridge.DocInfo{AllowMissing: true},
+			},
 			"keycloak_openid_client_authorization_permission": {
 				Docs: &tfbridge.DocInfo{AllowMissing: true},
 			},
@@ -147,6 +150,9 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"keycloak_openid_client_permissions": {
 				Docs: &tfbridge.DocInfo{AllowMissing: true},
+			},
+			"keycloak_openid_audience_resolve_protocol_mapper": {
+				Docs: &tfbridge.DocInfo{Source: "openid_audience_resolve_protocol_mapper.md"},
 			},
 
 			"keycloak_saml_client_default_scopes": {Tok: makeResource(samlMod, "ClientDefaultScope")},

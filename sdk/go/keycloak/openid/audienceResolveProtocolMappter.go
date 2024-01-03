@@ -12,17 +12,127 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Allows for creating the "Audience Resolve" OIDC protocol mapper within Keycloak.
+//
+// This protocol mapper is useful to avoid manual management of audiences, instead relying on the presence of client roles
+// to imply which audiences are appropriate for the token. See the
+// [Keycloak docs](https://www.keycloak.org/docs/latest/server_admin/#_audience_resolve) for more details.
+//
+// ## Example Usage
+// ### Client)
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/openid"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			openidClient, err := openid.NewClient(ctx, "openidClient", &openid.ClientArgs{
+//				RealmId:    realm.ID(),
+//				ClientId:   pulumi.String("client"),
+//				Enabled:    pulumi.Bool(true),
+//				AccessType: pulumi.String("CONFIDENTIAL"),
+//				ValidRedirectUris: pulumi.StringArray{
+//					pulumi.String("http://localhost:8080/openid-callback"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = openid.NewAudienceResolveProtocolMapper(ctx, "audienceMapper", &openid.AudienceResolveProtocolMapperArgs{
+//				RealmId:  realm.ID(),
+//				ClientId: openidClient.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// ### Client Scope)
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/openid"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			clientScope, err := openid.NewClientScope(ctx, "clientScope", &openid.ClientScopeArgs{
+//				RealmId: realm.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = openid.NewAudienceProtocolMapper(ctx, "audienceMapper", &openid.AudienceProtocolMapperArgs{
+//				RealmId:       realm.ID(),
+//				ClientScopeId: clientScope.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// Protocol mappers can be imported using one of the following formats- Client`{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}` - Client Scope`{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}` Examplebash
+//
+// ```sh
+//
+//	$ pulumi import keycloak:openid/audienceResolveProtocolMappter:AudienceResolveProtocolMappter audience_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+//
+// ```
+//
+// ```sh
+//
+//	$ pulumi import keycloak:openid/audienceResolveProtocolMappter:AudienceResolveProtocolMappter audience_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+//
+// ```
+//
 // Deprecated: keycloak.openid/audienceresolveprotocolmappter.AudienceResolveProtocolMappter has been deprecated in favor of keycloak.openid/audienceresolveprotocolmapper.AudienceResolveProtocolMapper
 type AudienceResolveProtocolMappter struct {
 	pulumi.CustomResourceState
 
-	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
+	// The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
 	ClientId pulumi.StringPtrOutput `pulumi:"clientId"`
-	// The mapper's associated client scope. Cannot be used at the same time as client_id.
+	// The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
 	ClientScopeId pulumi.StringPtrOutput `pulumi:"clientScopeId"`
-	// A human-friendly name that will appear in the Keycloak console.
+	// The display name of this protocol mapper in the GUI. Defaults to "audience resolve".
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The realm id where the associated client or client scope exists.
+	// The realm this protocol mapper exists within.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
 }
 
@@ -59,24 +169,24 @@ func GetAudienceResolveProtocolMappter(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering AudienceResolveProtocolMappter resources.
 type audienceResolveProtocolMappterState struct {
-	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
+	// The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
 	ClientId *string `pulumi:"clientId"`
-	// The mapper's associated client scope. Cannot be used at the same time as client_id.
+	// The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
 	ClientScopeId *string `pulumi:"clientScopeId"`
-	// A human-friendly name that will appear in the Keycloak console.
+	// The display name of this protocol mapper in the GUI. Defaults to "audience resolve".
 	Name *string `pulumi:"name"`
-	// The realm id where the associated client or client scope exists.
+	// The realm this protocol mapper exists within.
 	RealmId *string `pulumi:"realmId"`
 }
 
 type AudienceResolveProtocolMappterState struct {
-	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
+	// The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
 	ClientId pulumi.StringPtrInput
-	// The mapper's associated client scope. Cannot be used at the same time as client_id.
+	// The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
 	ClientScopeId pulumi.StringPtrInput
-	// A human-friendly name that will appear in the Keycloak console.
+	// The display name of this protocol mapper in the GUI. Defaults to "audience resolve".
 	Name pulumi.StringPtrInput
-	// The realm id where the associated client or client scope exists.
+	// The realm this protocol mapper exists within.
 	RealmId pulumi.StringPtrInput
 }
 
@@ -85,25 +195,25 @@ func (AudienceResolveProtocolMappterState) ElementType() reflect.Type {
 }
 
 type audienceResolveProtocolMappterArgs struct {
-	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
+	// The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
 	ClientId *string `pulumi:"clientId"`
-	// The mapper's associated client scope. Cannot be used at the same time as client_id.
+	// The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
 	ClientScopeId *string `pulumi:"clientScopeId"`
-	// A human-friendly name that will appear in the Keycloak console.
+	// The display name of this protocol mapper in the GUI. Defaults to "audience resolve".
 	Name *string `pulumi:"name"`
-	// The realm id where the associated client or client scope exists.
+	// The realm this protocol mapper exists within.
 	RealmId string `pulumi:"realmId"`
 }
 
 // The set of arguments for constructing a AudienceResolveProtocolMappter resource.
 type AudienceResolveProtocolMappterArgs struct {
-	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
+	// The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
 	ClientId pulumi.StringPtrInput
-	// The mapper's associated client scope. Cannot be used at the same time as client_id.
+	// The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
 	ClientScopeId pulumi.StringPtrInput
-	// A human-friendly name that will appear in the Keycloak console.
+	// The display name of this protocol mapper in the GUI. Defaults to "audience resolve".
 	Name pulumi.StringPtrInput
-	// The realm id where the associated client or client scope exists.
+	// The realm this protocol mapper exists within.
 	RealmId pulumi.StringInput
 }
 
@@ -194,22 +304,22 @@ func (o AudienceResolveProtocolMappterOutput) ToAudienceResolveProtocolMappterOu
 	return o
 }
 
-// The mapper's associated client. Cannot be used at the same time as client_scope_id.
+// The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
 func (o AudienceResolveProtocolMappterOutput) ClientId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AudienceResolveProtocolMappter) pulumi.StringPtrOutput { return v.ClientId }).(pulumi.StringPtrOutput)
 }
 
-// The mapper's associated client scope. Cannot be used at the same time as client_id.
+// The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
 func (o AudienceResolveProtocolMappterOutput) ClientScopeId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AudienceResolveProtocolMappter) pulumi.StringPtrOutput { return v.ClientScopeId }).(pulumi.StringPtrOutput)
 }
 
-// A human-friendly name that will appear in the Keycloak console.
+// The display name of this protocol mapper in the GUI. Defaults to "audience resolve".
 func (o AudienceResolveProtocolMappterOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *AudienceResolveProtocolMappter) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The realm id where the associated client or client scope exists.
+// The realm this protocol mapper exists within.
 func (o AudienceResolveProtocolMappterOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *AudienceResolveProtocolMappter) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
 }
