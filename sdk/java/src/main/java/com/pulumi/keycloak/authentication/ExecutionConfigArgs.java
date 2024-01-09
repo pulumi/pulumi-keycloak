@@ -5,6 +5,7 @@ package com.pulumi.keycloak.authentication;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -186,10 +187,18 @@ public final class ExecutionConfigArgs extends com.pulumi.resources.ResourceArgs
         }
 
         public ExecutionConfigArgs build() {
-            $.alias = Objects.requireNonNull($.alias, "expected parameter 'alias' to be non-null");
-            $.config = Objects.requireNonNull($.config, "expected parameter 'config' to be non-null");
-            $.executionId = Objects.requireNonNull($.executionId, "expected parameter 'executionId' to be non-null");
-            $.realmId = Objects.requireNonNull($.realmId, "expected parameter 'realmId' to be non-null");
+            if ($.alias == null) {
+                throw new MissingRequiredPropertyException("ExecutionConfigArgs", "alias");
+            }
+            if ($.config == null) {
+                throw new MissingRequiredPropertyException("ExecutionConfigArgs", "config");
+            }
+            if ($.executionId == null) {
+                throw new MissingRequiredPropertyException("ExecutionConfigArgs", "executionId");
+            }
+            if ($.realmId == null) {
+                throw new MissingRequiredPropertyException("ExecutionConfigArgs", "realmId");
+            }
             return $;
         }
     }

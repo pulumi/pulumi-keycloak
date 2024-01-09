@@ -4,6 +4,7 @@
 package com.pulumi.keycloak.openid.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -40,12 +41,18 @@ public final class GetClientAuthenticationFlowBindingOverride {
 
         @CustomType.Setter
         public Builder browserId(String browserId) {
-            this.browserId = Objects.requireNonNull(browserId);
+            if (browserId == null) {
+              throw new MissingRequiredPropertyException("GetClientAuthenticationFlowBindingOverride", "browserId");
+            }
+            this.browserId = browserId;
             return this;
         }
         @CustomType.Setter
         public Builder directGrantId(String directGrantId) {
-            this.directGrantId = Objects.requireNonNull(directGrantId);
+            if (directGrantId == null) {
+              throw new MissingRequiredPropertyException("GetClientAuthenticationFlowBindingOverride", "directGrantId");
+            }
+            this.directGrantId = directGrantId;
             return this;
         }
         public GetClientAuthenticationFlowBindingOverride build() {

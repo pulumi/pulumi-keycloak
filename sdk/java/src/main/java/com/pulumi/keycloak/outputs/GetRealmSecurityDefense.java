@@ -4,6 +4,7 @@
 package com.pulumi.keycloak.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.keycloak.outputs.GetRealmSecurityDefenseBruteForceDetection;
 import com.pulumi.keycloak.outputs.GetRealmSecurityDefenseHeader;
 import java.util.List;
@@ -42,7 +43,10 @@ public final class GetRealmSecurityDefense {
 
         @CustomType.Setter
         public Builder bruteForceDetections(List<GetRealmSecurityDefenseBruteForceDetection> bruteForceDetections) {
-            this.bruteForceDetections = Objects.requireNonNull(bruteForceDetections);
+            if (bruteForceDetections == null) {
+              throw new MissingRequiredPropertyException("GetRealmSecurityDefense", "bruteForceDetections");
+            }
+            this.bruteForceDetections = bruteForceDetections;
             return this;
         }
         public Builder bruteForceDetections(GetRealmSecurityDefenseBruteForceDetection... bruteForceDetections) {
@@ -50,7 +54,10 @@ public final class GetRealmSecurityDefense {
         }
         @CustomType.Setter
         public Builder headers(List<GetRealmSecurityDefenseHeader> headers) {
-            this.headers = Objects.requireNonNull(headers);
+            if (headers == null) {
+              throw new MissingRequiredPropertyException("GetRealmSecurityDefense", "headers");
+            }
+            this.headers = headers;
             return this;
         }
         public Builder headers(GetRealmSecurityDefenseHeader... headers) {

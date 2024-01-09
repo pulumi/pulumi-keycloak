@@ -101,26 +101,31 @@ public final class UserFederationCache {
 
         @CustomType.Setter
         public Builder evictionDay(@Nullable Integer evictionDay) {
+
             this.evictionDay = evictionDay;
             return this;
         }
         @CustomType.Setter
         public Builder evictionHour(@Nullable Integer evictionHour) {
+
             this.evictionHour = evictionHour;
             return this;
         }
         @CustomType.Setter
         public Builder evictionMinute(@Nullable Integer evictionMinute) {
+
             this.evictionMinute = evictionMinute;
             return this;
         }
         @CustomType.Setter
         public Builder maxLifespan(@Nullable String maxLifespan) {
+
             this.maxLifespan = maxLifespan;
             return this;
         }
         @CustomType.Setter
         public Builder policy(@Nullable String policy) {
+
             this.policy = policy;
             return this;
         }

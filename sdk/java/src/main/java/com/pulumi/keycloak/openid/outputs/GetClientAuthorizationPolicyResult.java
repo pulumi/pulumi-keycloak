@@ -4,6 +4,7 @@
 package com.pulumi.keycloak.openid.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -159,32 +160,50 @@ public final class GetClientAuthorizationPolicyResult {
 
         @CustomType.Setter
         public Builder decisionStrategy(String decisionStrategy) {
-            this.decisionStrategy = Objects.requireNonNull(decisionStrategy);
+            if (decisionStrategy == null) {
+              throw new MissingRequiredPropertyException("GetClientAuthorizationPolicyResult", "decisionStrategy");
+            }
+            this.decisionStrategy = decisionStrategy;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetClientAuthorizationPolicyResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder logic(String logic) {
-            this.logic = Objects.requireNonNull(logic);
+            if (logic == null) {
+              throw new MissingRequiredPropertyException("GetClientAuthorizationPolicyResult", "logic");
+            }
+            this.logic = logic;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("GetClientAuthorizationPolicyResult", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder owner(String owner) {
-            this.owner = Objects.requireNonNull(owner);
+            if (owner == null) {
+              throw new MissingRequiredPropertyException("GetClientAuthorizationPolicyResult", "owner");
+            }
+            this.owner = owner;
             return this;
         }
         @CustomType.Setter
         public Builder policies(List<String> policies) {
-            this.policies = Objects.requireNonNull(policies);
+            if (policies == null) {
+              throw new MissingRequiredPropertyException("GetClientAuthorizationPolicyResult", "policies");
+            }
+            this.policies = policies;
             return this;
         }
         public Builder policies(String... policies) {
@@ -192,17 +211,26 @@ public final class GetClientAuthorizationPolicyResult {
         }
         @CustomType.Setter
         public Builder realmId(String realmId) {
-            this.realmId = Objects.requireNonNull(realmId);
+            if (realmId == null) {
+              throw new MissingRequiredPropertyException("GetClientAuthorizationPolicyResult", "realmId");
+            }
+            this.realmId = realmId;
             return this;
         }
         @CustomType.Setter
         public Builder resourceServerId(String resourceServerId) {
-            this.resourceServerId = Objects.requireNonNull(resourceServerId);
+            if (resourceServerId == null) {
+              throw new MissingRequiredPropertyException("GetClientAuthorizationPolicyResult", "resourceServerId");
+            }
+            this.resourceServerId = resourceServerId;
             return this;
         }
         @CustomType.Setter
         public Builder resources(List<String> resources) {
-            this.resources = Objects.requireNonNull(resources);
+            if (resources == null) {
+              throw new MissingRequiredPropertyException("GetClientAuthorizationPolicyResult", "resources");
+            }
+            this.resources = resources;
             return this;
         }
         public Builder resources(String... resources) {
@@ -210,7 +238,10 @@ public final class GetClientAuthorizationPolicyResult {
         }
         @CustomType.Setter
         public Builder scopes(List<String> scopes) {
-            this.scopes = Objects.requireNonNull(scopes);
+            if (scopes == null) {
+              throw new MissingRequiredPropertyException("GetClientAuthorizationPolicyResult", "scopes");
+            }
+            this.scopes = scopes;
             return this;
         }
         public Builder scopes(String... scopes) {
@@ -218,7 +249,10 @@ public final class GetClientAuthorizationPolicyResult {
         }
         @CustomType.Setter
         public Builder type(String type) {
-            this.type = Objects.requireNonNull(type);
+            if (type == null) {
+              throw new MissingRequiredPropertyException("GetClientAuthorizationPolicyResult", "type");
+            }
+            this.type = type;
             return this;
         }
         public GetClientAuthorizationPolicyResult build() {

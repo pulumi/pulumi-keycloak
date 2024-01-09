@@ -104,6 +104,8 @@ type User struct {
 	LastName pulumi.StringPtrOutput `pulumi:"lastName"`
 	// The realm this user belongs to.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// A list of required user actions.
+	RequiredActions pulumi.StringArrayOutput `pulumi:"requiredActions"`
 	// The unique username of this user.
 	Username pulumi.StringOutput `pulumi:"username"`
 }
@@ -161,6 +163,8 @@ type userState struct {
 	LastName *string `pulumi:"lastName"`
 	// The realm this user belongs to.
 	RealmId *string `pulumi:"realmId"`
+	// A list of required user actions.
+	RequiredActions []string `pulumi:"requiredActions"`
 	// The unique username of this user.
 	Username *string `pulumi:"username"`
 }
@@ -183,6 +187,8 @@ type UserState struct {
 	LastName pulumi.StringPtrInput
 	// The realm this user belongs to.
 	RealmId pulumi.StringPtrInput
+	// A list of required user actions.
+	RequiredActions pulumi.StringArrayInput
 	// The unique username of this user.
 	Username pulumi.StringPtrInput
 }
@@ -209,6 +215,8 @@ type userArgs struct {
 	LastName *string `pulumi:"lastName"`
 	// The realm this user belongs to.
 	RealmId string `pulumi:"realmId"`
+	// A list of required user actions.
+	RequiredActions []string `pulumi:"requiredActions"`
 	// The unique username of this user.
 	Username string `pulumi:"username"`
 }
@@ -232,6 +240,8 @@ type UserArgs struct {
 	LastName pulumi.StringPtrInput
 	// The realm this user belongs to.
 	RealmId pulumi.StringInput
+	// A list of required user actions.
+	RequiredActions pulumi.StringArrayInput
 	// The unique username of this user.
 	Username pulumi.StringInput
 }
@@ -365,6 +375,11 @@ func (o UserOutput) LastName() pulumi.StringPtrOutput {
 // The realm this user belongs to.
 func (o UserOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *User) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// A list of required user actions.
+func (o UserOutput) RequiredActions() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *User) pulumi.StringArrayOutput { return v.RequiredActions }).(pulumi.StringArrayOutput)
 }
 
 // The unique username of this user.

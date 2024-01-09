@@ -4,6 +4,7 @@
 package com.pulumi.keycloak.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.keycloak.outputs.GetRealmKeysKey;
 import java.lang.String;
 import java.util.List;
@@ -85,6 +86,7 @@ public final class GetRealmKeysResult {
 
         @CustomType.Setter
         public Builder algorithms(@Nullable List<String> algorithms) {
+
             this.algorithms = algorithms;
             return this;
         }
@@ -93,12 +95,18 @@ public final class GetRealmKeysResult {
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetRealmKeysResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder keys(List<GetRealmKeysKey> keys) {
-            this.keys = Objects.requireNonNull(keys);
+            if (keys == null) {
+              throw new MissingRequiredPropertyException("GetRealmKeysResult", "keys");
+            }
+            this.keys = keys;
             return this;
         }
         public Builder keys(GetRealmKeysKey... keys) {
@@ -106,11 +114,15 @@ public final class GetRealmKeysResult {
         }
         @CustomType.Setter
         public Builder realmId(String realmId) {
-            this.realmId = Objects.requireNonNull(realmId);
+            if (realmId == null) {
+              throw new MissingRequiredPropertyException("GetRealmKeysResult", "realmId");
+            }
+            this.realmId = realmId;
             return this;
         }
         @CustomType.Setter
         public Builder statuses(@Nullable List<String> statuses) {
+
             this.statuses = statuses;
             return this;
         }

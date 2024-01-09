@@ -4,6 +4,7 @@
 package com.pulumi.keycloak.inputs;
 
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -177,16 +178,36 @@ public final class GetRealmWebAuthnPasswordlessPolicy extends com.pulumi.resourc
         }
 
         public GetRealmWebAuthnPasswordlessPolicy build() {
-            $.acceptableAaguids = Objects.requireNonNull($.acceptableAaguids, "expected parameter 'acceptableAaguids' to be non-null");
-            $.attestationConveyancePreference = Objects.requireNonNull($.attestationConveyancePreference, "expected parameter 'attestationConveyancePreference' to be non-null");
-            $.authenticatorAttachment = Objects.requireNonNull($.authenticatorAttachment, "expected parameter 'authenticatorAttachment' to be non-null");
-            $.avoidSameAuthenticatorRegister = Objects.requireNonNull($.avoidSameAuthenticatorRegister, "expected parameter 'avoidSameAuthenticatorRegister' to be non-null");
-            $.createTimeout = Objects.requireNonNull($.createTimeout, "expected parameter 'createTimeout' to be non-null");
-            $.relyingPartyEntityName = Objects.requireNonNull($.relyingPartyEntityName, "expected parameter 'relyingPartyEntityName' to be non-null");
-            $.relyingPartyId = Objects.requireNonNull($.relyingPartyId, "expected parameter 'relyingPartyId' to be non-null");
-            $.requireResidentKey = Objects.requireNonNull($.requireResidentKey, "expected parameter 'requireResidentKey' to be non-null");
-            $.signatureAlgorithms = Objects.requireNonNull($.signatureAlgorithms, "expected parameter 'signatureAlgorithms' to be non-null");
-            $.userVerificationRequirement = Objects.requireNonNull($.userVerificationRequirement, "expected parameter 'userVerificationRequirement' to be non-null");
+            if ($.acceptableAaguids == null) {
+                throw new MissingRequiredPropertyException("GetRealmWebAuthnPasswordlessPolicy", "acceptableAaguids");
+            }
+            if ($.attestationConveyancePreference == null) {
+                throw new MissingRequiredPropertyException("GetRealmWebAuthnPasswordlessPolicy", "attestationConveyancePreference");
+            }
+            if ($.authenticatorAttachment == null) {
+                throw new MissingRequiredPropertyException("GetRealmWebAuthnPasswordlessPolicy", "authenticatorAttachment");
+            }
+            if ($.avoidSameAuthenticatorRegister == null) {
+                throw new MissingRequiredPropertyException("GetRealmWebAuthnPasswordlessPolicy", "avoidSameAuthenticatorRegister");
+            }
+            if ($.createTimeout == null) {
+                throw new MissingRequiredPropertyException("GetRealmWebAuthnPasswordlessPolicy", "createTimeout");
+            }
+            if ($.relyingPartyEntityName == null) {
+                throw new MissingRequiredPropertyException("GetRealmWebAuthnPasswordlessPolicy", "relyingPartyEntityName");
+            }
+            if ($.relyingPartyId == null) {
+                throw new MissingRequiredPropertyException("GetRealmWebAuthnPasswordlessPolicy", "relyingPartyId");
+            }
+            if ($.requireResidentKey == null) {
+                throw new MissingRequiredPropertyException("GetRealmWebAuthnPasswordlessPolicy", "requireResidentKey");
+            }
+            if ($.signatureAlgorithms == null) {
+                throw new MissingRequiredPropertyException("GetRealmWebAuthnPasswordlessPolicy", "signatureAlgorithms");
+            }
+            if ($.userVerificationRequirement == null) {
+                throw new MissingRequiredPropertyException("GetRealmWebAuthnPasswordlessPolicy", "userVerificationRequirement");
+            }
             return $;
         }
     }

@@ -4,6 +4,7 @@
 package com.pulumi.keycloak.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.keycloak.outputs.GetClientDescriptionConverterProtocolMapper;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -270,67 +271,106 @@ public final class GetClientDescriptionConverterResult {
 
         @CustomType.Setter
         public Builder access(Map<String,Object> access) {
-            this.access = Objects.requireNonNull(access);
+            if (access == null) {
+              throw new MissingRequiredPropertyException("GetClientDescriptionConverterResult", "access");
+            }
+            this.access = access;
             return this;
         }
         @CustomType.Setter
         public Builder adminUrl(String adminUrl) {
-            this.adminUrl = Objects.requireNonNull(adminUrl);
+            if (adminUrl == null) {
+              throw new MissingRequiredPropertyException("GetClientDescriptionConverterResult", "adminUrl");
+            }
+            this.adminUrl = adminUrl;
             return this;
         }
         @CustomType.Setter
         public Builder attributes(Map<String,Object> attributes) {
-            this.attributes = Objects.requireNonNull(attributes);
+            if (attributes == null) {
+              throw new MissingRequiredPropertyException("GetClientDescriptionConverterResult", "attributes");
+            }
+            this.attributes = attributes;
             return this;
         }
         @CustomType.Setter
         public Builder authenticationFlowBindingOverrides(Map<String,Object> authenticationFlowBindingOverrides) {
-            this.authenticationFlowBindingOverrides = Objects.requireNonNull(authenticationFlowBindingOverrides);
+            if (authenticationFlowBindingOverrides == null) {
+              throw new MissingRequiredPropertyException("GetClientDescriptionConverterResult", "authenticationFlowBindingOverrides");
+            }
+            this.authenticationFlowBindingOverrides = authenticationFlowBindingOverrides;
             return this;
         }
         @CustomType.Setter
         public Builder authorizationServicesEnabled(Boolean authorizationServicesEnabled) {
-            this.authorizationServicesEnabled = Objects.requireNonNull(authorizationServicesEnabled);
+            if (authorizationServicesEnabled == null) {
+              throw new MissingRequiredPropertyException("GetClientDescriptionConverterResult", "authorizationServicesEnabled");
+            }
+            this.authorizationServicesEnabled = authorizationServicesEnabled;
             return this;
         }
         @CustomType.Setter
         public Builder authorizationSettings(Map<String,Object> authorizationSettings) {
-            this.authorizationSettings = Objects.requireNonNull(authorizationSettings);
+            if (authorizationSettings == null) {
+              throw new MissingRequiredPropertyException("GetClientDescriptionConverterResult", "authorizationSettings");
+            }
+            this.authorizationSettings = authorizationSettings;
             return this;
         }
         @CustomType.Setter
         public Builder baseUrl(String baseUrl) {
-            this.baseUrl = Objects.requireNonNull(baseUrl);
+            if (baseUrl == null) {
+              throw new MissingRequiredPropertyException("GetClientDescriptionConverterResult", "baseUrl");
+            }
+            this.baseUrl = baseUrl;
             return this;
         }
         @CustomType.Setter
         public Builder bearerOnly(Boolean bearerOnly) {
-            this.bearerOnly = Objects.requireNonNull(bearerOnly);
+            if (bearerOnly == null) {
+              throw new MissingRequiredPropertyException("GetClientDescriptionConverterResult", "bearerOnly");
+            }
+            this.bearerOnly = bearerOnly;
             return this;
         }
         @CustomType.Setter
         public Builder body(String body) {
-            this.body = Objects.requireNonNull(body);
+            if (body == null) {
+              throw new MissingRequiredPropertyException("GetClientDescriptionConverterResult", "body");
+            }
+            this.body = body;
             return this;
         }
         @CustomType.Setter
         public Builder clientAuthenticatorType(String clientAuthenticatorType) {
-            this.clientAuthenticatorType = Objects.requireNonNull(clientAuthenticatorType);
+            if (clientAuthenticatorType == null) {
+              throw new MissingRequiredPropertyException("GetClientDescriptionConverterResult", "clientAuthenticatorType");
+            }
+            this.clientAuthenticatorType = clientAuthenticatorType;
             return this;
         }
         @CustomType.Setter
         public Builder clientId(String clientId) {
-            this.clientId = Objects.requireNonNull(clientId);
+            if (clientId == null) {
+              throw new MissingRequiredPropertyException("GetClientDescriptionConverterResult", "clientId");
+            }
+            this.clientId = clientId;
             return this;
         }
         @CustomType.Setter
         public Builder consentRequired(String consentRequired) {
-            this.consentRequired = Objects.requireNonNull(consentRequired);
+            if (consentRequired == null) {
+              throw new MissingRequiredPropertyException("GetClientDescriptionConverterResult", "consentRequired");
+            }
+            this.consentRequired = consentRequired;
             return this;
         }
         @CustomType.Setter
         public Builder defaultClientScopes(List<String> defaultClientScopes) {
-            this.defaultClientScopes = Objects.requireNonNull(defaultClientScopes);
+            if (defaultClientScopes == null) {
+              throw new MissingRequiredPropertyException("GetClientDescriptionConverterResult", "defaultClientScopes");
+            }
+            this.defaultClientScopes = defaultClientScopes;
             return this;
         }
         public Builder defaultClientScopes(String... defaultClientScopes) {
@@ -338,7 +378,10 @@ public final class GetClientDescriptionConverterResult {
         }
         @CustomType.Setter
         public Builder defaultRoles(List<String> defaultRoles) {
-            this.defaultRoles = Objects.requireNonNull(defaultRoles);
+            if (defaultRoles == null) {
+              throw new MissingRequiredPropertyException("GetClientDescriptionConverterResult", "defaultRoles");
+            }
+            this.defaultRoles = defaultRoles;
             return this;
         }
         public Builder defaultRoles(String... defaultRoles) {
@@ -346,52 +389,82 @@ public final class GetClientDescriptionConverterResult {
         }
         @CustomType.Setter
         public Builder description(String description) {
-            this.description = Objects.requireNonNull(description);
+            if (description == null) {
+              throw new MissingRequiredPropertyException("GetClientDescriptionConverterResult", "description");
+            }
+            this.description = description;
             return this;
         }
         @CustomType.Setter
         public Builder directAccessGrantsEnabled(Boolean directAccessGrantsEnabled) {
-            this.directAccessGrantsEnabled = Objects.requireNonNull(directAccessGrantsEnabled);
+            if (directAccessGrantsEnabled == null) {
+              throw new MissingRequiredPropertyException("GetClientDescriptionConverterResult", "directAccessGrantsEnabled");
+            }
+            this.directAccessGrantsEnabled = directAccessGrantsEnabled;
             return this;
         }
         @CustomType.Setter
         public Builder enabled(Boolean enabled) {
-            this.enabled = Objects.requireNonNull(enabled);
+            if (enabled == null) {
+              throw new MissingRequiredPropertyException("GetClientDescriptionConverterResult", "enabled");
+            }
+            this.enabled = enabled;
             return this;
         }
         @CustomType.Setter
         public Builder frontchannelLogout(Boolean frontchannelLogout) {
-            this.frontchannelLogout = Objects.requireNonNull(frontchannelLogout);
+            if (frontchannelLogout == null) {
+              throw new MissingRequiredPropertyException("GetClientDescriptionConverterResult", "frontchannelLogout");
+            }
+            this.frontchannelLogout = frontchannelLogout;
             return this;
         }
         @CustomType.Setter
         public Builder fullScopeAllowed(Boolean fullScopeAllowed) {
-            this.fullScopeAllowed = Objects.requireNonNull(fullScopeAllowed);
+            if (fullScopeAllowed == null) {
+              throw new MissingRequiredPropertyException("GetClientDescriptionConverterResult", "fullScopeAllowed");
+            }
+            this.fullScopeAllowed = fullScopeAllowed;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetClientDescriptionConverterResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder implicitFlowEnabled(Boolean implicitFlowEnabled) {
-            this.implicitFlowEnabled = Objects.requireNonNull(implicitFlowEnabled);
+            if (implicitFlowEnabled == null) {
+              throw new MissingRequiredPropertyException("GetClientDescriptionConverterResult", "implicitFlowEnabled");
+            }
+            this.implicitFlowEnabled = implicitFlowEnabled;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("GetClientDescriptionConverterResult", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder notBefore(Integer notBefore) {
-            this.notBefore = Objects.requireNonNull(notBefore);
+            if (notBefore == null) {
+              throw new MissingRequiredPropertyException("GetClientDescriptionConverterResult", "notBefore");
+            }
+            this.notBefore = notBefore;
             return this;
         }
         @CustomType.Setter
         public Builder optionalClientScopes(List<String> optionalClientScopes) {
-            this.optionalClientScopes = Objects.requireNonNull(optionalClientScopes);
+            if (optionalClientScopes == null) {
+              throw new MissingRequiredPropertyException("GetClientDescriptionConverterResult", "optionalClientScopes");
+            }
+            this.optionalClientScopes = optionalClientScopes;
             return this;
         }
         public Builder optionalClientScopes(String... optionalClientScopes) {
@@ -399,17 +472,26 @@ public final class GetClientDescriptionConverterResult {
         }
         @CustomType.Setter
         public Builder origin(String origin) {
-            this.origin = Objects.requireNonNull(origin);
+            if (origin == null) {
+              throw new MissingRequiredPropertyException("GetClientDescriptionConverterResult", "origin");
+            }
+            this.origin = origin;
             return this;
         }
         @CustomType.Setter
         public Builder protocol(String protocol) {
-            this.protocol = Objects.requireNonNull(protocol);
+            if (protocol == null) {
+              throw new MissingRequiredPropertyException("GetClientDescriptionConverterResult", "protocol");
+            }
+            this.protocol = protocol;
             return this;
         }
         @CustomType.Setter
         public Builder protocolMappers(List<GetClientDescriptionConverterProtocolMapper> protocolMappers) {
-            this.protocolMappers = Objects.requireNonNull(protocolMappers);
+            if (protocolMappers == null) {
+              throw new MissingRequiredPropertyException("GetClientDescriptionConverterResult", "protocolMappers");
+            }
+            this.protocolMappers = protocolMappers;
             return this;
         }
         public Builder protocolMappers(GetClientDescriptionConverterProtocolMapper... protocolMappers) {
@@ -417,17 +499,26 @@ public final class GetClientDescriptionConverterResult {
         }
         @CustomType.Setter
         public Builder publicClient(Boolean publicClient) {
-            this.publicClient = Objects.requireNonNull(publicClient);
+            if (publicClient == null) {
+              throw new MissingRequiredPropertyException("GetClientDescriptionConverterResult", "publicClient");
+            }
+            this.publicClient = publicClient;
             return this;
         }
         @CustomType.Setter
         public Builder realmId(String realmId) {
-            this.realmId = Objects.requireNonNull(realmId);
+            if (realmId == null) {
+              throw new MissingRequiredPropertyException("GetClientDescriptionConverterResult", "realmId");
+            }
+            this.realmId = realmId;
             return this;
         }
         @CustomType.Setter
         public Builder redirectUris(List<String> redirectUris) {
-            this.redirectUris = Objects.requireNonNull(redirectUris);
+            if (redirectUris == null) {
+              throw new MissingRequiredPropertyException("GetClientDescriptionConverterResult", "redirectUris");
+            }
+            this.redirectUris = redirectUris;
             return this;
         }
         public Builder redirectUris(String... redirectUris) {
@@ -435,42 +526,66 @@ public final class GetClientDescriptionConverterResult {
         }
         @CustomType.Setter
         public Builder registeredNodes(Map<String,Object> registeredNodes) {
-            this.registeredNodes = Objects.requireNonNull(registeredNodes);
+            if (registeredNodes == null) {
+              throw new MissingRequiredPropertyException("GetClientDescriptionConverterResult", "registeredNodes");
+            }
+            this.registeredNodes = registeredNodes;
             return this;
         }
         @CustomType.Setter
         public Builder registrationAccessToken(String registrationAccessToken) {
-            this.registrationAccessToken = Objects.requireNonNull(registrationAccessToken);
+            if (registrationAccessToken == null) {
+              throw new MissingRequiredPropertyException("GetClientDescriptionConverterResult", "registrationAccessToken");
+            }
+            this.registrationAccessToken = registrationAccessToken;
             return this;
         }
         @CustomType.Setter
         public Builder rootUrl(String rootUrl) {
-            this.rootUrl = Objects.requireNonNull(rootUrl);
+            if (rootUrl == null) {
+              throw new MissingRequiredPropertyException("GetClientDescriptionConverterResult", "rootUrl");
+            }
+            this.rootUrl = rootUrl;
             return this;
         }
         @CustomType.Setter
         public Builder secret(String secret) {
-            this.secret = Objects.requireNonNull(secret);
+            if (secret == null) {
+              throw new MissingRequiredPropertyException("GetClientDescriptionConverterResult", "secret");
+            }
+            this.secret = secret;
             return this;
         }
         @CustomType.Setter
         public Builder serviceAccountsEnabled(Boolean serviceAccountsEnabled) {
-            this.serviceAccountsEnabled = Objects.requireNonNull(serviceAccountsEnabled);
+            if (serviceAccountsEnabled == null) {
+              throw new MissingRequiredPropertyException("GetClientDescriptionConverterResult", "serviceAccountsEnabled");
+            }
+            this.serviceAccountsEnabled = serviceAccountsEnabled;
             return this;
         }
         @CustomType.Setter
         public Builder standardFlowEnabled(Boolean standardFlowEnabled) {
-            this.standardFlowEnabled = Objects.requireNonNull(standardFlowEnabled);
+            if (standardFlowEnabled == null) {
+              throw new MissingRequiredPropertyException("GetClientDescriptionConverterResult", "standardFlowEnabled");
+            }
+            this.standardFlowEnabled = standardFlowEnabled;
             return this;
         }
         @CustomType.Setter
         public Builder surrogateAuthRequired(Boolean surrogateAuthRequired) {
-            this.surrogateAuthRequired = Objects.requireNonNull(surrogateAuthRequired);
+            if (surrogateAuthRequired == null) {
+              throw new MissingRequiredPropertyException("GetClientDescriptionConverterResult", "surrogateAuthRequired");
+            }
+            this.surrogateAuthRequired = surrogateAuthRequired;
             return this;
         }
         @CustomType.Setter
         public Builder webOrigins(List<String> webOrigins) {
-            this.webOrigins = Objects.requireNonNull(webOrigins);
+            if (webOrigins == null) {
+              throw new MissingRequiredPropertyException("GetClientDescriptionConverterResult", "webOrigins");
+            }
+            this.webOrigins = webOrigins;
             return this;
         }
         public Builder webOrigins(String... webOrigins) {

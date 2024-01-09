@@ -33,14 +33,14 @@ public final class RealmKeystoreRsaState extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * Intended algorithm for the key. Defaults to `RS256`
+     * Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
      * 
      */
     @Import(name="algorithm")
     private @Nullable Output<String> algorithm;
 
     /**
-     * @return Intended algorithm for the key. Defaults to `RS256`
+     * @return Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
      * 
      */
     public Optional<Output<String>> algorithm() {
@@ -123,6 +123,21 @@ public final class RealmKeystoreRsaState extends com.pulumi.resources.ResourceAr
     }
 
     /**
+     * Use `rsa` for signing keys, `rsa-enc` for encryption keys
+     * 
+     */
+    @Import(name="providerId")
+    private @Nullable Output<String> providerId;
+
+    /**
+     * @return Use `rsa` for signing keys, `rsa-enc` for encryption keys
+     * 
+     */
+    public Optional<Output<String>> providerId() {
+        return Optional.ofNullable(this.providerId);
+    }
+
+    /**
      * The realm this keystore exists in.
      * 
      */
@@ -147,6 +162,7 @@ public final class RealmKeystoreRsaState extends com.pulumi.resources.ResourceAr
         this.name = $.name;
         this.priority = $.priority;
         this.privateKey = $.privateKey;
+        this.providerId = $.providerId;
         this.realmId = $.realmId;
     }
 
@@ -190,7 +206,7 @@ public final class RealmKeystoreRsaState extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param algorithm Intended algorithm for the key. Defaults to `RS256`
+         * @param algorithm Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
          * 
          * @return builder
          * 
@@ -201,7 +217,7 @@ public final class RealmKeystoreRsaState extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param algorithm Intended algorithm for the key. Defaults to `RS256`
+         * @param algorithm Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
          * 
          * @return builder
          * 
@@ -313,6 +329,27 @@ public final class RealmKeystoreRsaState extends com.pulumi.resources.ResourceAr
          */
         public Builder privateKey(String privateKey) {
             return privateKey(Output.of(privateKey));
+        }
+
+        /**
+         * @param providerId Use `rsa` for signing keys, `rsa-enc` for encryption keys
+         * 
+         * @return builder
+         * 
+         */
+        public Builder providerId(@Nullable Output<String> providerId) {
+            $.providerId = providerId;
+            return this;
+        }
+
+        /**
+         * @param providerId Use `rsa` for signing keys, `rsa-enc` for encryption keys
+         * 
+         * @return builder
+         * 
+         */
+        public Builder providerId(String providerId) {
+            return providerId(Output.of(providerId));
         }
 
         /**

@@ -5,6 +5,7 @@ package com.pulumi.keycloak.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.keycloak.inputs.GetRealmSmtpServerAuthArgs;
 import java.lang.Boolean;
 import java.lang.String;
@@ -214,16 +215,36 @@ public final class GetRealmSmtpServerArgs extends com.pulumi.resources.ResourceA
         }
 
         public GetRealmSmtpServerArgs build() {
-            $.auths = Objects.requireNonNull($.auths, "expected parameter 'auths' to be non-null");
-            $.envelopeFrom = Objects.requireNonNull($.envelopeFrom, "expected parameter 'envelopeFrom' to be non-null");
-            $.from = Objects.requireNonNull($.from, "expected parameter 'from' to be non-null");
-            $.fromDisplayName = Objects.requireNonNull($.fromDisplayName, "expected parameter 'fromDisplayName' to be non-null");
-            $.host = Objects.requireNonNull($.host, "expected parameter 'host' to be non-null");
-            $.port = Objects.requireNonNull($.port, "expected parameter 'port' to be non-null");
-            $.replyTo = Objects.requireNonNull($.replyTo, "expected parameter 'replyTo' to be non-null");
-            $.replyToDisplayName = Objects.requireNonNull($.replyToDisplayName, "expected parameter 'replyToDisplayName' to be non-null");
-            $.ssl = Objects.requireNonNull($.ssl, "expected parameter 'ssl' to be non-null");
-            $.starttls = Objects.requireNonNull($.starttls, "expected parameter 'starttls' to be non-null");
+            if ($.auths == null) {
+                throw new MissingRequiredPropertyException("GetRealmSmtpServerArgs", "auths");
+            }
+            if ($.envelopeFrom == null) {
+                throw new MissingRequiredPropertyException("GetRealmSmtpServerArgs", "envelopeFrom");
+            }
+            if ($.from == null) {
+                throw new MissingRequiredPropertyException("GetRealmSmtpServerArgs", "from");
+            }
+            if ($.fromDisplayName == null) {
+                throw new MissingRequiredPropertyException("GetRealmSmtpServerArgs", "fromDisplayName");
+            }
+            if ($.host == null) {
+                throw new MissingRequiredPropertyException("GetRealmSmtpServerArgs", "host");
+            }
+            if ($.port == null) {
+                throw new MissingRequiredPropertyException("GetRealmSmtpServerArgs", "port");
+            }
+            if ($.replyTo == null) {
+                throw new MissingRequiredPropertyException("GetRealmSmtpServerArgs", "replyTo");
+            }
+            if ($.replyToDisplayName == null) {
+                throw new MissingRequiredPropertyException("GetRealmSmtpServerArgs", "replyToDisplayName");
+            }
+            if ($.ssl == null) {
+                throw new MissingRequiredPropertyException("GetRealmSmtpServerArgs", "ssl");
+            }
+            if ($.starttls == null) {
+                throw new MissingRequiredPropertyException("GetRealmSmtpServerArgs", "starttls");
+            }
             return $;
         }
     }

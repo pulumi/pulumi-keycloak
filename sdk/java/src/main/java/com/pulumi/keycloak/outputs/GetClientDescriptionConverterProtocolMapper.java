@@ -4,6 +4,7 @@
 package com.pulumi.keycloak.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
@@ -60,27 +61,42 @@ public final class GetClientDescriptionConverterProtocolMapper {
 
         @CustomType.Setter
         public Builder config(Map<String,Object> config) {
-            this.config = Objects.requireNonNull(config);
+            if (config == null) {
+              throw new MissingRequiredPropertyException("GetClientDescriptionConverterProtocolMapper", "config");
+            }
+            this.config = config;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetClientDescriptionConverterProtocolMapper", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("GetClientDescriptionConverterProtocolMapper", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder protocol(String protocol) {
-            this.protocol = Objects.requireNonNull(protocol);
+            if (protocol == null) {
+              throw new MissingRequiredPropertyException("GetClientDescriptionConverterProtocolMapper", "protocol");
+            }
+            this.protocol = protocol;
             return this;
         }
         @CustomType.Setter
         public Builder protocolMapper(String protocolMapper) {
-            this.protocolMapper = Objects.requireNonNull(protocolMapper);
+            if (protocolMapper == null) {
+              throw new MissingRequiredPropertyException("GetClientDescriptionConverterProtocolMapper", "protocolMapper");
+            }
+            this.protocolMapper = protocolMapper;
             return this;
         }
         public GetClientDescriptionConverterProtocolMapper build() {

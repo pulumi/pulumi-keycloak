@@ -4,6 +4,7 @@
 package com.pulumi.keycloak.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.keycloak.outputs.RealmUserProfileAttributePermissions;
 import com.pulumi.keycloak.outputs.RealmUserProfileAttributeValidator;
 import java.lang.String;
@@ -160,16 +161,19 @@ public final class RealmUserProfileAttribute {
 
         @CustomType.Setter
         public Builder annotations(@Nullable Map<String,String> annotations) {
+
             this.annotations = annotations;
             return this;
         }
         @CustomType.Setter
         public Builder displayName(@Nullable String displayName) {
+
             this.displayName = displayName;
             return this;
         }
         @CustomType.Setter
         public Builder enabledWhenScopes(@Nullable List<String> enabledWhenScopes) {
+
             this.enabledWhenScopes = enabledWhenScopes;
             return this;
         }
@@ -178,21 +182,27 @@ public final class RealmUserProfileAttribute {
         }
         @CustomType.Setter
         public Builder group(@Nullable String group) {
+
             this.group = group;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("RealmUserProfileAttribute", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder permissions(@Nullable RealmUserProfileAttributePermissions permissions) {
+
             this.permissions = permissions;
             return this;
         }
         @CustomType.Setter
         public Builder requiredForRoles(@Nullable List<String> requiredForRoles) {
+
             this.requiredForRoles = requiredForRoles;
             return this;
         }
@@ -201,6 +211,7 @@ public final class RealmUserProfileAttribute {
         }
         @CustomType.Setter
         public Builder requiredForScopes(@Nullable List<String> requiredForScopes) {
+
             this.requiredForScopes = requiredForScopes;
             return this;
         }
@@ -209,6 +220,7 @@ public final class RealmUserProfileAttribute {
         }
         @CustomType.Setter
         public Builder validators(@Nullable List<RealmUserProfileAttributeValidator> validators) {
+
             this.validators = validators;
             return this;
         }

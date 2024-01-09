@@ -5,6 +5,7 @@ package com.pulumi.keycloak.openid;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -163,10 +164,18 @@ public final class ClientAggregatePolicyArgs extends com.pulumi.resources.Resour
         }
 
         public ClientAggregatePolicyArgs build() {
-            $.decisionStrategy = Objects.requireNonNull($.decisionStrategy, "expected parameter 'decisionStrategy' to be non-null");
-            $.policies = Objects.requireNonNull($.policies, "expected parameter 'policies' to be non-null");
-            $.realmId = Objects.requireNonNull($.realmId, "expected parameter 'realmId' to be non-null");
-            $.resourceServerId = Objects.requireNonNull($.resourceServerId, "expected parameter 'resourceServerId' to be non-null");
+            if ($.decisionStrategy == null) {
+                throw new MissingRequiredPropertyException("ClientAggregatePolicyArgs", "decisionStrategy");
+            }
+            if ($.policies == null) {
+                throw new MissingRequiredPropertyException("ClientAggregatePolicyArgs", "policies");
+            }
+            if ($.realmId == null) {
+                throw new MissingRequiredPropertyException("ClientAggregatePolicyArgs", "realmId");
+            }
+            if ($.resourceServerId == null) {
+                throw new MissingRequiredPropertyException("ClientAggregatePolicyArgs", "resourceServerId");
+            }
             return $;
         }
     }

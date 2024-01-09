@@ -382,6 +382,14 @@ _utilities.register(
  },
  {
   "pkg": "keycloak",
+  "mod": "ldap/customMapper",
+  "fqn": "pulumi_keycloak.ldap",
+  "classes": {
+   "keycloak:ldap/customMapper:CustomMapper": "CustomMapper"
+  }
+ },
+ {
+  "pkg": "keycloak",
   "mod": "ldap/fullNameMapper",
   "fqn": "pulumi_keycloak.ldap",
   "classes": {

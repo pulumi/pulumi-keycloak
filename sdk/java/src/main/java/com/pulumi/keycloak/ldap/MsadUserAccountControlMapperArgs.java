@@ -5,6 +5,7 @@ package com.pulumi.keycloak.ldap;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -188,8 +189,12 @@ public final class MsadUserAccountControlMapperArgs extends com.pulumi.resources
         }
 
         public MsadUserAccountControlMapperArgs build() {
-            $.ldapUserFederationId = Objects.requireNonNull($.ldapUserFederationId, "expected parameter 'ldapUserFederationId' to be non-null");
-            $.realmId = Objects.requireNonNull($.realmId, "expected parameter 'realmId' to be non-null");
+            if ($.ldapUserFederationId == null) {
+                throw new MissingRequiredPropertyException("MsadUserAccountControlMapperArgs", "ldapUserFederationId");
+            }
+            if ($.realmId == null) {
+                throw new MissingRequiredPropertyException("MsadUserAccountControlMapperArgs", "realmId");
+            }
             return $;
         }
     }

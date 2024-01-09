@@ -173,6 +173,7 @@ public final class RealmWebAuthnPasswordlessPolicy {
 
         @CustomType.Setter
         public Builder acceptableAaguids(@Nullable List<String> acceptableAaguids) {
+
             this.acceptableAaguids = acceptableAaguids;
             return this;
         }
@@ -181,41 +182,49 @@ public final class RealmWebAuthnPasswordlessPolicy {
         }
         @CustomType.Setter
         public Builder attestationConveyancePreference(@Nullable String attestationConveyancePreference) {
+
             this.attestationConveyancePreference = attestationConveyancePreference;
             return this;
         }
         @CustomType.Setter
         public Builder authenticatorAttachment(@Nullable String authenticatorAttachment) {
+
             this.authenticatorAttachment = authenticatorAttachment;
             return this;
         }
         @CustomType.Setter
         public Builder avoidSameAuthenticatorRegister(@Nullable Boolean avoidSameAuthenticatorRegister) {
+
             this.avoidSameAuthenticatorRegister = avoidSameAuthenticatorRegister;
             return this;
         }
         @CustomType.Setter
         public Builder createTimeout(@Nullable Integer createTimeout) {
+
             this.createTimeout = createTimeout;
             return this;
         }
         @CustomType.Setter
         public Builder relyingPartyEntityName(@Nullable String relyingPartyEntityName) {
+
             this.relyingPartyEntityName = relyingPartyEntityName;
             return this;
         }
         @CustomType.Setter
         public Builder relyingPartyId(@Nullable String relyingPartyId) {
+
             this.relyingPartyId = relyingPartyId;
             return this;
         }
         @CustomType.Setter
         public Builder requireResidentKey(@Nullable String requireResidentKey) {
+
             this.requireResidentKey = requireResidentKey;
             return this;
         }
         @CustomType.Setter
         public Builder signatureAlgorithms(@Nullable List<String> signatureAlgorithms) {
+
             this.signatureAlgorithms = signatureAlgorithms;
             return this;
         }
@@ -224,6 +233,7 @@ public final class RealmWebAuthnPasswordlessPolicy {
         }
         @CustomType.Setter
         public Builder userVerificationRequirement(@Nullable String userVerificationRequirement) {
+
             this.userVerificationRequirement = userVerificationRequirement;
             return this;
         }

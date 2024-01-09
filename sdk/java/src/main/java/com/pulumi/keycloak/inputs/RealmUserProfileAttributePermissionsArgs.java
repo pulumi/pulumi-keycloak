@@ -5,6 +5,7 @@ package com.pulumi.keycloak.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -132,8 +133,12 @@ public final class RealmUserProfileAttributePermissionsArgs extends com.pulumi.r
         }
 
         public RealmUserProfileAttributePermissionsArgs build() {
-            $.edits = Objects.requireNonNull($.edits, "expected parameter 'edits' to be non-null");
-            $.views = Objects.requireNonNull($.views, "expected parameter 'views' to be non-null");
+            if ($.edits == null) {
+                throw new MissingRequiredPropertyException("RealmUserProfileAttributePermissionsArgs", "edits");
+            }
+            if ($.views == null) {
+                throw new MissingRequiredPropertyException("RealmUserProfileAttributePermissionsArgs", "views");
+            }
             return $;
         }
     }

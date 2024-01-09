@@ -115,31 +115,37 @@ public final class RealmOtpPolicy {
 
         @CustomType.Setter
         public Builder algorithm(@Nullable String algorithm) {
+
             this.algorithm = algorithm;
             return this;
         }
         @CustomType.Setter
         public Builder digits(@Nullable Integer digits) {
+
             this.digits = digits;
             return this;
         }
         @CustomType.Setter
         public Builder initialCounter(@Nullable Integer initialCounter) {
+
             this.initialCounter = initialCounter;
             return this;
         }
         @CustomType.Setter
         public Builder lookAheadWindow(@Nullable Integer lookAheadWindow) {
+
             this.lookAheadWindow = lookAheadWindow;
             return this;
         }
         @CustomType.Setter
         public Builder period(@Nullable Integer period) {
+
             this.period = period;
             return this;
         }
         @CustomType.Setter
         public Builder type(@Nullable String type) {
+
             this.type = type;
             return this;
         }

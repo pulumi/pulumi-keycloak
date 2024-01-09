@@ -50,7 +50,7 @@ export class RealmKeystoreRsa extends pulumi.CustomResource {
      */
     public readonly active!: pulumi.Output<boolean | undefined>;
     /**
-     * Intended algorithm for the key. Defaults to `RS256`
+     * Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
      */
     public readonly algorithm!: pulumi.Output<string | undefined>;
     /**
@@ -73,6 +73,10 @@ export class RealmKeystoreRsa extends pulumi.CustomResource {
      * Private RSA Key encoded in PEM format.
      */
     public readonly privateKey!: pulumi.Output<string>;
+    /**
+     * Use `rsa` for signing keys, `rsa-enc` for encryption keys
+     */
+    public readonly providerId!: pulumi.Output<string | undefined>;
     /**
      * The realm this keystore exists in.
      */
@@ -98,6 +102,7 @@ export class RealmKeystoreRsa extends pulumi.CustomResource {
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["priority"] = state ? state.priority : undefined;
             resourceInputs["privateKey"] = state ? state.privateKey : undefined;
+            resourceInputs["providerId"] = state ? state.providerId : undefined;
             resourceInputs["realmId"] = state ? state.realmId : undefined;
         } else {
             const args = argsOrState as RealmKeystoreRsaArgs | undefined;
@@ -117,6 +122,7 @@ export class RealmKeystoreRsa extends pulumi.CustomResource {
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["priority"] = args ? args.priority : undefined;
             resourceInputs["privateKey"] = args ? args.privateKey : undefined;
+            resourceInputs["providerId"] = args ? args.providerId : undefined;
             resourceInputs["realmId"] = args ? args.realmId : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -133,7 +139,7 @@ export interface RealmKeystoreRsaState {
      */
     active?: pulumi.Input<boolean>;
     /**
-     * Intended algorithm for the key. Defaults to `RS256`
+     * Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
      */
     algorithm?: pulumi.Input<string>;
     /**
@@ -157,6 +163,10 @@ export interface RealmKeystoreRsaState {
      */
     privateKey?: pulumi.Input<string>;
     /**
+     * Use `rsa` for signing keys, `rsa-enc` for encryption keys
+     */
+    providerId?: pulumi.Input<string>;
+    /**
      * The realm this keystore exists in.
      */
     realmId?: pulumi.Input<string>;
@@ -171,7 +181,7 @@ export interface RealmKeystoreRsaArgs {
      */
     active?: pulumi.Input<boolean>;
     /**
-     * Intended algorithm for the key. Defaults to `RS256`
+     * Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
      */
     algorithm?: pulumi.Input<string>;
     /**
@@ -194,6 +204,10 @@ export interface RealmKeystoreRsaArgs {
      * Private RSA Key encoded in PEM format.
      */
     privateKey: pulumi.Input<string>;
+    /**
+     * Use `rsa` for signing keys, `rsa-enc` for encryption keys
+     */
+    providerId?: pulumi.Input<string>;
     /**
      * The realm this keystore exists in.
      */

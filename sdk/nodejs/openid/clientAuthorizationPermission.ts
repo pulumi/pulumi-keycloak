@@ -5,71 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * ## # keycloak.openid.ClientAuthorizationPermission
- *
  * Allows you to manage openid Client Authorization Permissions.
- *
- * ### Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as keycloak from "@pulumi/keycloak";
- *
- * const realm = new keycloak.Realm("realm", {
- *     realm: "my-realm",
- *     enabled: true,
- * });
- * const testClient = new keycloak.openid.Client("testClient", {
- *     clientId: "client_id",
- *     realmId: realm.id,
- *     accessType: "CONFIDENTIAL",
- *     serviceAccountsEnabled: true,
- *     authorization: {
- *         policyEnforcementMode: "ENFORCING",
- *     },
- * });
- * const default = keycloak.openid.getClientAuthorizationPolicyOutput({
- *     realmId: realm.id,
- *     resourceServerId: testClient.resourceServerId,
- *     name: "default",
- * });
- * const testClientAuthorizationResource = new keycloak.openid.ClientAuthorizationResource("testClientAuthorizationResource", {
- *     resourceServerId: testClient.resourceServerId,
- *     realmId: realm.id,
- *     uris: ["/endpoint/*"],
- * });
- * const testClientAuthorizationScope = new keycloak.openid.ClientAuthorizationScope("testClientAuthorizationScope", {
- *     resourceServerId: testClient.resourceServerId,
- *     realmId: realm.id,
- * });
- * const testClientAuthorizationPermission = new keycloak.openid.ClientAuthorizationPermission("testClientAuthorizationPermission", {
- *     resourceServerId: testClient.resourceServerId,
- *     realmId: realm.id,
- *     policies: [_default.apply(_default => _default.id)],
- *     resources: [testClientAuthorizationResource.id],
- * });
- * ```
- *
- * ### Argument Reference
- *
- * The following arguments are supported:
- *
- * - `realmId` - (Required) The realm this group exists in.
- * - `resourceServerId` - (Required) The ID of the resource server.
- * - `name` - (Required) The name of the permission.
- * - `description` - (Optional) A description for the authorization permission.
- * - `decisionStrategy` - (Optional) The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`. Defaults to `UNANIMOUS`.
- * - `policies` - (Optional) A list of policy IDs that must be applied to the scopes defined by this permission.
- * - `resources` - (Optional) A list of resource IDs that this permission must be applied to. Conflicts with `resourceType`.
- * - `resourceType` - (Optional) When specified, this permission will be evaluated for all instances of a given resource type. Conflicts with `resources`.
- * - `scopes` - (Optional) A list of scope IDs that this permission must be applied to.
- * - `type` - (Optional) The type of permission, can be one of `resource` or `scope`.
- *
- * ### Attributes Reference
- *
- * In addition to the arguments listed above, the following computed attributes are exported:
- *
- * - `id` - Permission ID representing the permission.
  *
  * ## Import
  *

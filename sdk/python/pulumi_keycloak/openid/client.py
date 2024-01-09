@@ -73,7 +73,7 @@ class ClientArgs:
         :param pulumi.Input[bool] backchannel_logout_session_required: When `true`, a sid (session ID) claim will be included in the logout token when the backchannel logout URL is used. Defaults to `true`.
         :param pulumi.Input[str] backchannel_logout_url: The URL that will cause the client to log itself out when a logout request is sent to this realm. If omitted, no logout request will be sent to the client is this case.
         :param pulumi.Input[str] base_url: Default URL to use when the auth server needs to redirect or link back to the client.
-        :param pulumi.Input[str] client_authenticator_type: Defaults to `client-secret` The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:
+        :param pulumi.Input[str] client_authenticator_type: Defaults to `client-secret`. The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. A default Keycloak installation will have the following available types:
                - `client-secret` (Default) Use client id and client secret to authenticate client.
                - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = <alg>`
                - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extra_config` with `attributes.x509.subjectdn = <subjectDn>`
@@ -334,7 +334,7 @@ class ClientArgs:
     @pulumi.getter(name="clientAuthenticatorType")
     def client_authenticator_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Defaults to `client-secret` The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:
+        Defaults to `client-secret`. The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. A default Keycloak installation will have the following available types:
         - `client-secret` (Default) Use client id and client secret to authenticate client.
         - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = <alg>`
         - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extra_config` with `attributes.x509.subjectdn = <subjectDn>`
@@ -790,7 +790,7 @@ class _ClientState:
         :param pulumi.Input[bool] backchannel_logout_session_required: When `true`, a sid (session ID) claim will be included in the logout token when the backchannel logout URL is used. Defaults to `true`.
         :param pulumi.Input[str] backchannel_logout_url: The URL that will cause the client to log itself out when a logout request is sent to this realm. If omitted, no logout request will be sent to the client is this case.
         :param pulumi.Input[str] base_url: Default URL to use when the auth server needs to redirect or link back to the client.
-        :param pulumi.Input[str] client_authenticator_type: Defaults to `client-secret` The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:
+        :param pulumi.Input[str] client_authenticator_type: Defaults to `client-secret`. The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. A default Keycloak installation will have the following available types:
                - `client-secret` (Default) Use client id and client secret to authenticate client.
                - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = <alg>`
                - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extra_config` with `attributes.x509.subjectdn = <subjectDn>`
@@ -1038,7 +1038,7 @@ class _ClientState:
     @pulumi.getter(name="clientAuthenticatorType")
     def client_authenticator_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Defaults to `client-secret` The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:
+        Defaults to `client-secret`. The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. A default Keycloak installation will have the following available types:
         - `client-secret` (Default) Use client id and client secret to authenticate client.
         - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = <alg>`
         - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extra_config` with `attributes.x509.subjectdn = <subjectDn>`
@@ -1580,7 +1580,7 @@ class Client(pulumi.CustomResource):
         :param pulumi.Input[bool] backchannel_logout_session_required: When `true`, a sid (session ID) claim will be included in the logout token when the backchannel logout URL is used. Defaults to `true`.
         :param pulumi.Input[str] backchannel_logout_url: The URL that will cause the client to log itself out when a logout request is sent to this realm. If omitted, no logout request will be sent to the client is this case.
         :param pulumi.Input[str] base_url: Default URL to use when the auth server needs to redirect or link back to the client.
-        :param pulumi.Input[str] client_authenticator_type: Defaults to `client-secret` The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:
+        :param pulumi.Input[str] client_authenticator_type: Defaults to `client-secret`. The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. A default Keycloak installation will have the following available types:
                - `client-secret` (Default) Use client id and client secret to authenticate client.
                - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = <alg>`
                - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extra_config` with `attributes.x509.subjectdn = <subjectDn>`
@@ -1858,7 +1858,7 @@ class Client(pulumi.CustomResource):
         :param pulumi.Input[bool] backchannel_logout_session_required: When `true`, a sid (session ID) claim will be included in the logout token when the backchannel logout URL is used. Defaults to `true`.
         :param pulumi.Input[str] backchannel_logout_url: The URL that will cause the client to log itself out when a logout request is sent to this realm. If omitted, no logout request will be sent to the client is this case.
         :param pulumi.Input[str] base_url: Default URL to use when the auth server needs to redirect or link back to the client.
-        :param pulumi.Input[str] client_authenticator_type: Defaults to `client-secret` The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:
+        :param pulumi.Input[str] client_authenticator_type: Defaults to `client-secret`. The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. A default Keycloak installation will have the following available types:
                - `client-secret` (Default) Use client id and client secret to authenticate client.
                - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = <alg>`
                - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extra_config` with `attributes.x509.subjectdn = <subjectDn>`
@@ -2029,7 +2029,7 @@ class Client(pulumi.CustomResource):
     @pulumi.getter(name="clientAuthenticatorType")
     def client_authenticator_type(self) -> pulumi.Output[Optional[str]]:
         """
-        Defaults to `client-secret` The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:
+        Defaults to `client-secret`. The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. A default Keycloak installation will have the following available types:
         - `client-secret` (Default) Use client id and client secret to authenticate client.
         - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = <alg>`
         - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extra_config` with `attributes.x509.subjectdn = <subjectDn>`

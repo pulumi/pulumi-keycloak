@@ -5,6 +5,7 @@ package com.pulumi.keycloak.ldap;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -727,13 +728,27 @@ public final class GroupMapperArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public GroupMapperArgs build() {
-            $.groupNameLdapAttribute = Objects.requireNonNull($.groupNameLdapAttribute, "expected parameter 'groupNameLdapAttribute' to be non-null");
-            $.groupObjectClasses = Objects.requireNonNull($.groupObjectClasses, "expected parameter 'groupObjectClasses' to be non-null");
-            $.ldapGroupsDn = Objects.requireNonNull($.ldapGroupsDn, "expected parameter 'ldapGroupsDn' to be non-null");
-            $.ldapUserFederationId = Objects.requireNonNull($.ldapUserFederationId, "expected parameter 'ldapUserFederationId' to be non-null");
-            $.membershipLdapAttribute = Objects.requireNonNull($.membershipLdapAttribute, "expected parameter 'membershipLdapAttribute' to be non-null");
-            $.membershipUserLdapAttribute = Objects.requireNonNull($.membershipUserLdapAttribute, "expected parameter 'membershipUserLdapAttribute' to be non-null");
-            $.realmId = Objects.requireNonNull($.realmId, "expected parameter 'realmId' to be non-null");
+            if ($.groupNameLdapAttribute == null) {
+                throw new MissingRequiredPropertyException("GroupMapperArgs", "groupNameLdapAttribute");
+            }
+            if ($.groupObjectClasses == null) {
+                throw new MissingRequiredPropertyException("GroupMapperArgs", "groupObjectClasses");
+            }
+            if ($.ldapGroupsDn == null) {
+                throw new MissingRequiredPropertyException("GroupMapperArgs", "ldapGroupsDn");
+            }
+            if ($.ldapUserFederationId == null) {
+                throw new MissingRequiredPropertyException("GroupMapperArgs", "ldapUserFederationId");
+            }
+            if ($.membershipLdapAttribute == null) {
+                throw new MissingRequiredPropertyException("GroupMapperArgs", "membershipLdapAttribute");
+            }
+            if ($.membershipUserLdapAttribute == null) {
+                throw new MissingRequiredPropertyException("GroupMapperArgs", "membershipUserLdapAttribute");
+            }
+            if ($.realmId == null) {
+                throw new MissingRequiredPropertyException("GroupMapperArgs", "realmId");
+            }
             return $;
         }
     }

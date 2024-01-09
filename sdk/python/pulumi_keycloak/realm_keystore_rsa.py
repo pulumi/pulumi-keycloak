@@ -21,17 +21,19 @@ class RealmKeystoreRsaArgs:
                  algorithm: Optional[pulumi.Input[str]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 priority: Optional[pulumi.Input[int]] = None):
+                 priority: Optional[pulumi.Input[int]] = None,
+                 provider_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a RealmKeystoreRsa resource.
         :param pulumi.Input[str] certificate: X509 Certificate encoded in PEM format.
         :param pulumi.Input[str] private_key: Private RSA Key encoded in PEM format.
         :param pulumi.Input[str] realm_id: The realm this keystore exists in.
         :param pulumi.Input[bool] active: When `false`, key in not used for signing. Defaults to `true`.
-        :param pulumi.Input[str] algorithm: Intended algorithm for the key. Defaults to `RS256`
+        :param pulumi.Input[str] algorithm: Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
         :param pulumi.Input[bool] enabled: When `false`, key is not accessible in this realm. Defaults to `true`.
         :param pulumi.Input[str] name: Display name of provider when linked in admin console.
         :param pulumi.Input[int] priority: Priority for the provider. Defaults to `0`
+        :param pulumi.Input[str] provider_id: Use `rsa` for signing keys, `rsa-enc` for encryption keys
         """
         pulumi.set(__self__, "certificate", certificate)
         pulumi.set(__self__, "private_key", private_key)
@@ -46,6 +48,8 @@ class RealmKeystoreRsaArgs:
             pulumi.set(__self__, "name", name)
         if priority is not None:
             pulumi.set(__self__, "priority", priority)
+        if provider_id is not None:
+            pulumi.set(__self__, "provider_id", provider_id)
 
     @property
     @pulumi.getter
@@ -99,7 +103,7 @@ class RealmKeystoreRsaArgs:
     @pulumi.getter
     def algorithm(self) -> Optional[pulumi.Input[str]]:
         """
-        Intended algorithm for the key. Defaults to `RS256`
+        Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
         """
         return pulumi.get(self, "algorithm")
 
@@ -143,6 +147,18 @@ class RealmKeystoreRsaArgs:
     def priority(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "priority", value)
 
+    @property
+    @pulumi.getter(name="providerId")
+    def provider_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Use `rsa` for signing keys, `rsa-enc` for encryption keys
+        """
+        return pulumi.get(self, "provider_id")
+
+    @provider_id.setter
+    def provider_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "provider_id", value)
+
 
 @pulumi.input_type
 class _RealmKeystoreRsaState:
@@ -154,16 +170,18 @@ class _RealmKeystoreRsaState:
                  name: Optional[pulumi.Input[str]] = None,
                  priority: Optional[pulumi.Input[int]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
+                 provider_id: Optional[pulumi.Input[str]] = None,
                  realm_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering RealmKeystoreRsa resources.
         :param pulumi.Input[bool] active: When `false`, key in not used for signing. Defaults to `true`.
-        :param pulumi.Input[str] algorithm: Intended algorithm for the key. Defaults to `RS256`
+        :param pulumi.Input[str] algorithm: Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
         :param pulumi.Input[str] certificate: X509 Certificate encoded in PEM format.
         :param pulumi.Input[bool] enabled: When `false`, key is not accessible in this realm. Defaults to `true`.
         :param pulumi.Input[str] name: Display name of provider when linked in admin console.
         :param pulumi.Input[int] priority: Priority for the provider. Defaults to `0`
         :param pulumi.Input[str] private_key: Private RSA Key encoded in PEM format.
+        :param pulumi.Input[str] provider_id: Use `rsa` for signing keys, `rsa-enc` for encryption keys
         :param pulumi.Input[str] realm_id: The realm this keystore exists in.
         """
         if active is not None:
@@ -180,6 +198,8 @@ class _RealmKeystoreRsaState:
             pulumi.set(__self__, "priority", priority)
         if private_key is not None:
             pulumi.set(__self__, "private_key", private_key)
+        if provider_id is not None:
+            pulumi.set(__self__, "provider_id", provider_id)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
 
@@ -199,7 +219,7 @@ class _RealmKeystoreRsaState:
     @pulumi.getter
     def algorithm(self) -> Optional[pulumi.Input[str]]:
         """
-        Intended algorithm for the key. Defaults to `RS256`
+        Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
         """
         return pulumi.get(self, "algorithm")
 
@@ -268,6 +288,18 @@ class _RealmKeystoreRsaState:
         pulumi.set(self, "private_key", value)
 
     @property
+    @pulumi.getter(name="providerId")
+    def provider_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Use `rsa` for signing keys, `rsa-enc` for encryption keys
+        """
+        return pulumi.get(self, "provider_id")
+
+    @provider_id.setter
+    def provider_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "provider_id", value)
+
+    @property
     @pulumi.getter(name="realmId")
     def realm_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -292,6 +324,7 @@ class RealmKeystoreRsa(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  priority: Optional[pulumi.Input[int]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
+                 provider_id: Optional[pulumi.Input[str]] = None,
                  realm_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -310,12 +343,13 @@ class RealmKeystoreRsa(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] active: When `false`, key in not used for signing. Defaults to `true`.
-        :param pulumi.Input[str] algorithm: Intended algorithm for the key. Defaults to `RS256`
+        :param pulumi.Input[str] algorithm: Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
         :param pulumi.Input[str] certificate: X509 Certificate encoded in PEM format.
         :param pulumi.Input[bool] enabled: When `false`, key is not accessible in this realm. Defaults to `true`.
         :param pulumi.Input[str] name: Display name of provider when linked in admin console.
         :param pulumi.Input[int] priority: Priority for the provider. Defaults to `0`
         :param pulumi.Input[str] private_key: Private RSA Key encoded in PEM format.
+        :param pulumi.Input[str] provider_id: Use `rsa` for signing keys, `rsa-enc` for encryption keys
         :param pulumi.Input[str] realm_id: The realm this keystore exists in.
         """
         ...
@@ -359,6 +393,7 @@ class RealmKeystoreRsa(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  priority: Optional[pulumi.Input[int]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
+                 provider_id: Optional[pulumi.Input[str]] = None,
                  realm_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -380,6 +415,7 @@ class RealmKeystoreRsa(pulumi.CustomResource):
             if private_key is None and not opts.urn:
                 raise TypeError("Missing required property 'private_key'")
             __props__.__dict__["private_key"] = private_key
+            __props__.__dict__["provider_id"] = provider_id
             if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
@@ -400,6 +436,7 @@ class RealmKeystoreRsa(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             priority: Optional[pulumi.Input[int]] = None,
             private_key: Optional[pulumi.Input[str]] = None,
+            provider_id: Optional[pulumi.Input[str]] = None,
             realm_id: Optional[pulumi.Input[str]] = None) -> 'RealmKeystoreRsa':
         """
         Get an existing RealmKeystoreRsa resource's state with the given name, id, and optional extra
@@ -409,12 +446,13 @@ class RealmKeystoreRsa(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] active: When `false`, key in not used for signing. Defaults to `true`.
-        :param pulumi.Input[str] algorithm: Intended algorithm for the key. Defaults to `RS256`
+        :param pulumi.Input[str] algorithm: Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
         :param pulumi.Input[str] certificate: X509 Certificate encoded in PEM format.
         :param pulumi.Input[bool] enabled: When `false`, key is not accessible in this realm. Defaults to `true`.
         :param pulumi.Input[str] name: Display name of provider when linked in admin console.
         :param pulumi.Input[int] priority: Priority for the provider. Defaults to `0`
         :param pulumi.Input[str] private_key: Private RSA Key encoded in PEM format.
+        :param pulumi.Input[str] provider_id: Use `rsa` for signing keys, `rsa-enc` for encryption keys
         :param pulumi.Input[str] realm_id: The realm this keystore exists in.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -428,6 +466,7 @@ class RealmKeystoreRsa(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["priority"] = priority
         __props__.__dict__["private_key"] = private_key
+        __props__.__dict__["provider_id"] = provider_id
         __props__.__dict__["realm_id"] = realm_id
         return RealmKeystoreRsa(resource_name, opts=opts, __props__=__props__)
 
@@ -443,7 +482,7 @@ class RealmKeystoreRsa(pulumi.CustomResource):
     @pulumi.getter
     def algorithm(self) -> pulumi.Output[Optional[str]]:
         """
-        Intended algorithm for the key. Defaults to `RS256`
+        Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
         """
         return pulumi.get(self, "algorithm")
 
@@ -486,6 +525,14 @@ class RealmKeystoreRsa(pulumi.CustomResource):
         Private RSA Key encoded in PEM format.
         """
         return pulumi.get(self, "private_key")
+
+    @property
+    @pulumi.getter(name="providerId")
+    def provider_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        Use `rsa` for signing keys, `rsa-enc` for encryption keys
+        """
+        return pulumi.get(self, "provider_id")
 
     @property
     @pulumi.getter(name="realmId")

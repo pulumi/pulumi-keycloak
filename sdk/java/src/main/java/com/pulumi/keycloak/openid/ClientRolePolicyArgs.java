@@ -5,6 +5,7 @@ package com.pulumi.keycloak.openid;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.keycloak.openid.inputs.ClientRolePolicyRoleArgs;
 import java.lang.String;
 import java.util.List;
@@ -181,10 +182,18 @@ public final class ClientRolePolicyArgs extends com.pulumi.resources.ResourceArg
         }
 
         public ClientRolePolicyArgs build() {
-            $.realmId = Objects.requireNonNull($.realmId, "expected parameter 'realmId' to be non-null");
-            $.resourceServerId = Objects.requireNonNull($.resourceServerId, "expected parameter 'resourceServerId' to be non-null");
-            $.roles = Objects.requireNonNull($.roles, "expected parameter 'roles' to be non-null");
-            $.type = Objects.requireNonNull($.type, "expected parameter 'type' to be non-null");
+            if ($.realmId == null) {
+                throw new MissingRequiredPropertyException("ClientRolePolicyArgs", "realmId");
+            }
+            if ($.resourceServerId == null) {
+                throw new MissingRequiredPropertyException("ClientRolePolicyArgs", "resourceServerId");
+            }
+            if ($.roles == null) {
+                throw new MissingRequiredPropertyException("ClientRolePolicyArgs", "roles");
+            }
+            if ($.type == null) {
+                throw new MissingRequiredPropertyException("ClientRolePolicyArgs", "type");
+            }
             return $;
         }
     }

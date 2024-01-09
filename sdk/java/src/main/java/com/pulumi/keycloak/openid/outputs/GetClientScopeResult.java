@@ -4,6 +4,7 @@
 package com.pulumi.keycloak.openid.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -80,37 +81,58 @@ public final class GetClientScopeResult {
 
         @CustomType.Setter
         public Builder consentScreenText(String consentScreenText) {
-            this.consentScreenText = Objects.requireNonNull(consentScreenText);
+            if (consentScreenText == null) {
+              throw new MissingRequiredPropertyException("GetClientScopeResult", "consentScreenText");
+            }
+            this.consentScreenText = consentScreenText;
             return this;
         }
         @CustomType.Setter
         public Builder description(String description) {
-            this.description = Objects.requireNonNull(description);
+            if (description == null) {
+              throw new MissingRequiredPropertyException("GetClientScopeResult", "description");
+            }
+            this.description = description;
             return this;
         }
         @CustomType.Setter
         public Builder guiOrder(Integer guiOrder) {
-            this.guiOrder = Objects.requireNonNull(guiOrder);
+            if (guiOrder == null) {
+              throw new MissingRequiredPropertyException("GetClientScopeResult", "guiOrder");
+            }
+            this.guiOrder = guiOrder;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetClientScopeResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder includeInTokenScope(Boolean includeInTokenScope) {
-            this.includeInTokenScope = Objects.requireNonNull(includeInTokenScope);
+            if (includeInTokenScope == null) {
+              throw new MissingRequiredPropertyException("GetClientScopeResult", "includeInTokenScope");
+            }
+            this.includeInTokenScope = includeInTokenScope;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("GetClientScopeResult", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder realmId(String realmId) {
-            this.realmId = Objects.requireNonNull(realmId);
+            if (realmId == null) {
+              throw new MissingRequiredPropertyException("GetClientScopeResult", "realmId");
+            }
+            this.realmId = realmId;
             return this;
         }
         public GetClientScopeResult build() {

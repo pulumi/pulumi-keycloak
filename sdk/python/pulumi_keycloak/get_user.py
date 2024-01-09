@@ -21,7 +21,7 @@ class GetUserResult:
     """
     A collection of values returned by getUser.
     """
-    def __init__(__self__, attributes=None, email=None, email_verified=None, enabled=None, federated_identities=None, first_name=None, id=None, last_name=None, realm_id=None, username=None):
+    def __init__(__self__, attributes=None, email=None, email_verified=None, enabled=None, federated_identities=None, first_name=None, id=None, last_name=None, realm_id=None, required_actions=None, username=None):
         if attributes and not isinstance(attributes, dict):
             raise TypeError("Expected argument 'attributes' to be a dict")
         pulumi.set(__self__, "attributes", attributes)
@@ -49,6 +49,9 @@ class GetUserResult:
         if realm_id and not isinstance(realm_id, str):
             raise TypeError("Expected argument 'realm_id' to be a str")
         pulumi.set(__self__, "realm_id", realm_id)
+        if required_actions and not isinstance(required_actions, list):
+            raise TypeError("Expected argument 'required_actions' to be a list")
+        pulumi.set(__self__, "required_actions", required_actions)
         if username and not isinstance(username, str):
             raise TypeError("Expected argument 'username' to be a str")
         pulumi.set(__self__, "username", username)
@@ -123,6 +126,11 @@ class GetUserResult:
         return pulumi.get(self, "realm_id")
 
     @property
+    @pulumi.getter(name="requiredActions")
+    def required_actions(self) -> Sequence[str]:
+        return pulumi.get(self, "required_actions")
+
+    @property
     @pulumi.getter
     def username(self) -> str:
         return pulumi.get(self, "username")
@@ -143,6 +151,7 @@ class AwaitableGetUserResult(GetUserResult):
             id=self.id,
             last_name=self.last_name,
             realm_id=self.realm_id,
+            required_actions=self.required_actions,
             username=self.username)
 
 
@@ -184,6 +193,7 @@ def get_user(realm_id: Optional[str] = None,
         id=pulumi.get(__ret__, 'id'),
         last_name=pulumi.get(__ret__, 'last_name'),
         realm_id=pulumi.get(__ret__, 'realm_id'),
+        required_actions=pulumi.get(__ret__, 'required_actions'),
         username=pulumi.get(__ret__, 'username'))
 
 

@@ -5,6 +5,7 @@ package com.pulumi.keycloak.openid.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Object;
 import java.lang.String;
@@ -218,8 +219,12 @@ public final class GetClientArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         public GetClientArgs build() {
-            $.clientId = Objects.requireNonNull($.clientId, "expected parameter 'clientId' to be non-null");
-            $.realmId = Objects.requireNonNull($.realmId, "expected parameter 'realmId' to be non-null");
+            if ($.clientId == null) {
+                throw new MissingRequiredPropertyException("GetClientArgs", "clientId");
+            }
+            if ($.realmId == null) {
+                throw new MissingRequiredPropertyException("GetClientArgs", "realmId");
+            }
             return $;
         }
     }

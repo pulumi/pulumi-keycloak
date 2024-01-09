@@ -4,6 +4,7 @@
 package com.pulumi.keycloak.openid.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -53,22 +54,34 @@ public final class GetClientAuthorization {
 
         @CustomType.Setter
         public Builder allowRemoteResourceManagement(Boolean allowRemoteResourceManagement) {
-            this.allowRemoteResourceManagement = Objects.requireNonNull(allowRemoteResourceManagement);
+            if (allowRemoteResourceManagement == null) {
+              throw new MissingRequiredPropertyException("GetClientAuthorization", "allowRemoteResourceManagement");
+            }
+            this.allowRemoteResourceManagement = allowRemoteResourceManagement;
             return this;
         }
         @CustomType.Setter
         public Builder decisionStrategy(String decisionStrategy) {
-            this.decisionStrategy = Objects.requireNonNull(decisionStrategy);
+            if (decisionStrategy == null) {
+              throw new MissingRequiredPropertyException("GetClientAuthorization", "decisionStrategy");
+            }
+            this.decisionStrategy = decisionStrategy;
             return this;
         }
         @CustomType.Setter
         public Builder keepDefaults(Boolean keepDefaults) {
-            this.keepDefaults = Objects.requireNonNull(keepDefaults);
+            if (keepDefaults == null) {
+              throw new MissingRequiredPropertyException("GetClientAuthorization", "keepDefaults");
+            }
+            this.keepDefaults = keepDefaults;
             return this;
         }
         @CustomType.Setter
         public Builder policyEnforcementMode(String policyEnforcementMode) {
-            this.policyEnforcementMode = Objects.requireNonNull(policyEnforcementMode);
+            if (policyEnforcementMode == null) {
+              throw new MissingRequiredPropertyException("GetClientAuthorization", "policyEnforcementMode");
+            }
+            this.policyEnforcementMode = policyEnforcementMode;
             return this;
         }
         public GetClientAuthorization build() {

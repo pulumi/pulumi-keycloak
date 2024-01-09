@@ -5,6 +5,7 @@ package com.pulumi.keycloak.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -148,9 +149,15 @@ public final class UserFederatedIdentityArgs extends com.pulumi.resources.Resour
         }
 
         public UserFederatedIdentityArgs build() {
-            $.identityProvider = Objects.requireNonNull($.identityProvider, "expected parameter 'identityProvider' to be non-null");
-            $.userId = Objects.requireNonNull($.userId, "expected parameter 'userId' to be non-null");
-            $.userName = Objects.requireNonNull($.userName, "expected parameter 'userName' to be non-null");
+            if ($.identityProvider == null) {
+                throw new MissingRequiredPropertyException("UserFederatedIdentityArgs", "identityProvider");
+            }
+            if ($.userId == null) {
+                throw new MissingRequiredPropertyException("UserFederatedIdentityArgs", "userId");
+            }
+            if ($.userName == null) {
+                throw new MissingRequiredPropertyException("UserFederatedIdentityArgs", "userName");
+            }
             return $;
         }
     }

@@ -4,6 +4,7 @@
 package com.pulumi.keycloak.openid.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.keycloak.openid.outputs.GetClientAuthenticationFlowBindingOverride;
 import com.pulumi.keycloak.openid.outputs.GetClientAuthorization;
 import java.lang.Boolean;
@@ -320,22 +321,34 @@ public final class GetClientResult {
 
         @CustomType.Setter
         public Builder accessTokenLifespan(String accessTokenLifespan) {
-            this.accessTokenLifespan = Objects.requireNonNull(accessTokenLifespan);
+            if (accessTokenLifespan == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "accessTokenLifespan");
+            }
+            this.accessTokenLifespan = accessTokenLifespan;
             return this;
         }
         @CustomType.Setter
         public Builder accessType(String accessType) {
-            this.accessType = Objects.requireNonNull(accessType);
+            if (accessType == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "accessType");
+            }
+            this.accessType = accessType;
             return this;
         }
         @CustomType.Setter
         public Builder adminUrl(String adminUrl) {
-            this.adminUrl = Objects.requireNonNull(adminUrl);
+            if (adminUrl == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "adminUrl");
+            }
+            this.adminUrl = adminUrl;
             return this;
         }
         @CustomType.Setter
         public Builder authenticationFlowBindingOverrides(List<GetClientAuthenticationFlowBindingOverride> authenticationFlowBindingOverrides) {
-            this.authenticationFlowBindingOverrides = Objects.requireNonNull(authenticationFlowBindingOverrides);
+            if (authenticationFlowBindingOverrides == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "authenticationFlowBindingOverrides");
+            }
+            this.authenticationFlowBindingOverrides = authenticationFlowBindingOverrides;
             return this;
         }
         public Builder authenticationFlowBindingOverrides(GetClientAuthenticationFlowBindingOverride... authenticationFlowBindingOverrides) {
@@ -343,7 +356,10 @@ public final class GetClientResult {
         }
         @CustomType.Setter
         public Builder authorizations(List<GetClientAuthorization> authorizations) {
-            this.authorizations = Objects.requireNonNull(authorizations);
+            if (authorizations == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "authorizations");
+            }
+            this.authorizations = authorizations;
             return this;
         }
         public Builder authorizations(GetClientAuthorization... authorizations) {
@@ -351,197 +367,304 @@ public final class GetClientResult {
         }
         @CustomType.Setter
         public Builder backchannelLogoutRevokeOfflineSessions(Boolean backchannelLogoutRevokeOfflineSessions) {
-            this.backchannelLogoutRevokeOfflineSessions = Objects.requireNonNull(backchannelLogoutRevokeOfflineSessions);
+            if (backchannelLogoutRevokeOfflineSessions == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "backchannelLogoutRevokeOfflineSessions");
+            }
+            this.backchannelLogoutRevokeOfflineSessions = backchannelLogoutRevokeOfflineSessions;
             return this;
         }
         @CustomType.Setter
         public Builder backchannelLogoutSessionRequired(Boolean backchannelLogoutSessionRequired) {
-            this.backchannelLogoutSessionRequired = Objects.requireNonNull(backchannelLogoutSessionRequired);
+            if (backchannelLogoutSessionRequired == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "backchannelLogoutSessionRequired");
+            }
+            this.backchannelLogoutSessionRequired = backchannelLogoutSessionRequired;
             return this;
         }
         @CustomType.Setter
         public Builder backchannelLogoutUrl(String backchannelLogoutUrl) {
-            this.backchannelLogoutUrl = Objects.requireNonNull(backchannelLogoutUrl);
+            if (backchannelLogoutUrl == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "backchannelLogoutUrl");
+            }
+            this.backchannelLogoutUrl = backchannelLogoutUrl;
             return this;
         }
         @CustomType.Setter
         public Builder baseUrl(String baseUrl) {
-            this.baseUrl = Objects.requireNonNull(baseUrl);
+            if (baseUrl == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "baseUrl");
+            }
+            this.baseUrl = baseUrl;
             return this;
         }
         @CustomType.Setter
         public Builder clientAuthenticatorType(String clientAuthenticatorType) {
-            this.clientAuthenticatorType = Objects.requireNonNull(clientAuthenticatorType);
+            if (clientAuthenticatorType == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "clientAuthenticatorType");
+            }
+            this.clientAuthenticatorType = clientAuthenticatorType;
             return this;
         }
         @CustomType.Setter
         public Builder clientId(String clientId) {
-            this.clientId = Objects.requireNonNull(clientId);
+            if (clientId == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "clientId");
+            }
+            this.clientId = clientId;
             return this;
         }
         @CustomType.Setter
         public Builder clientOfflineSessionIdleTimeout(String clientOfflineSessionIdleTimeout) {
-            this.clientOfflineSessionIdleTimeout = Objects.requireNonNull(clientOfflineSessionIdleTimeout);
+            if (clientOfflineSessionIdleTimeout == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "clientOfflineSessionIdleTimeout");
+            }
+            this.clientOfflineSessionIdleTimeout = clientOfflineSessionIdleTimeout;
             return this;
         }
         @CustomType.Setter
         public Builder clientOfflineSessionMaxLifespan(String clientOfflineSessionMaxLifespan) {
-            this.clientOfflineSessionMaxLifespan = Objects.requireNonNull(clientOfflineSessionMaxLifespan);
+            if (clientOfflineSessionMaxLifespan == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "clientOfflineSessionMaxLifespan");
+            }
+            this.clientOfflineSessionMaxLifespan = clientOfflineSessionMaxLifespan;
             return this;
         }
         @CustomType.Setter
         public Builder clientSecret(String clientSecret) {
-            this.clientSecret = Objects.requireNonNull(clientSecret);
+            if (clientSecret == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "clientSecret");
+            }
+            this.clientSecret = clientSecret;
             return this;
         }
         @CustomType.Setter
         public Builder clientSessionIdleTimeout(String clientSessionIdleTimeout) {
-            this.clientSessionIdleTimeout = Objects.requireNonNull(clientSessionIdleTimeout);
+            if (clientSessionIdleTimeout == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "clientSessionIdleTimeout");
+            }
+            this.clientSessionIdleTimeout = clientSessionIdleTimeout;
             return this;
         }
         @CustomType.Setter
         public Builder clientSessionMaxLifespan(String clientSessionMaxLifespan) {
-            this.clientSessionMaxLifespan = Objects.requireNonNull(clientSessionMaxLifespan);
+            if (clientSessionMaxLifespan == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "clientSessionMaxLifespan");
+            }
+            this.clientSessionMaxLifespan = clientSessionMaxLifespan;
             return this;
         }
         @CustomType.Setter
         public Builder consentRequired(Boolean consentRequired) {
-            this.consentRequired = Objects.requireNonNull(consentRequired);
+            if (consentRequired == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "consentRequired");
+            }
+            this.consentRequired = consentRequired;
             return this;
         }
         @CustomType.Setter
         public Builder consentScreenText(@Nullable String consentScreenText) {
+
             this.consentScreenText = consentScreenText;
             return this;
         }
         @CustomType.Setter
         public Builder description(String description) {
-            this.description = Objects.requireNonNull(description);
+            if (description == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "description");
+            }
+            this.description = description;
             return this;
         }
         @CustomType.Setter
         public Builder directAccessGrantsEnabled(Boolean directAccessGrantsEnabled) {
-            this.directAccessGrantsEnabled = Objects.requireNonNull(directAccessGrantsEnabled);
+            if (directAccessGrantsEnabled == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "directAccessGrantsEnabled");
+            }
+            this.directAccessGrantsEnabled = directAccessGrantsEnabled;
             return this;
         }
         @CustomType.Setter
         public Builder displayOnConsentScreen(@Nullable Boolean displayOnConsentScreen) {
+
             this.displayOnConsentScreen = displayOnConsentScreen;
             return this;
         }
         @CustomType.Setter
         public Builder enabled(Boolean enabled) {
-            this.enabled = Objects.requireNonNull(enabled);
+            if (enabled == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "enabled");
+            }
+            this.enabled = enabled;
             return this;
         }
         @CustomType.Setter
         public Builder excludeSessionStateFromAuthResponse(Boolean excludeSessionStateFromAuthResponse) {
-            this.excludeSessionStateFromAuthResponse = Objects.requireNonNull(excludeSessionStateFromAuthResponse);
+            if (excludeSessionStateFromAuthResponse == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "excludeSessionStateFromAuthResponse");
+            }
+            this.excludeSessionStateFromAuthResponse = excludeSessionStateFromAuthResponse;
             return this;
         }
         @CustomType.Setter
         public Builder extraConfig(Map<String,Object> extraConfig) {
-            this.extraConfig = Objects.requireNonNull(extraConfig);
+            if (extraConfig == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "extraConfig");
+            }
+            this.extraConfig = extraConfig;
             return this;
         }
         @CustomType.Setter
         public Builder frontchannelLogoutEnabled(Boolean frontchannelLogoutEnabled) {
-            this.frontchannelLogoutEnabled = Objects.requireNonNull(frontchannelLogoutEnabled);
+            if (frontchannelLogoutEnabled == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "frontchannelLogoutEnabled");
+            }
+            this.frontchannelLogoutEnabled = frontchannelLogoutEnabled;
             return this;
         }
         @CustomType.Setter
         public Builder frontchannelLogoutUrl(String frontchannelLogoutUrl) {
-            this.frontchannelLogoutUrl = Objects.requireNonNull(frontchannelLogoutUrl);
+            if (frontchannelLogoutUrl == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "frontchannelLogoutUrl");
+            }
+            this.frontchannelLogoutUrl = frontchannelLogoutUrl;
             return this;
         }
         @CustomType.Setter
         public Builder fullScopeAllowed(Boolean fullScopeAllowed) {
-            this.fullScopeAllowed = Objects.requireNonNull(fullScopeAllowed);
+            if (fullScopeAllowed == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "fullScopeAllowed");
+            }
+            this.fullScopeAllowed = fullScopeAllowed;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder implicitFlowEnabled(Boolean implicitFlowEnabled) {
-            this.implicitFlowEnabled = Objects.requireNonNull(implicitFlowEnabled);
+            if (implicitFlowEnabled == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "implicitFlowEnabled");
+            }
+            this.implicitFlowEnabled = implicitFlowEnabled;
             return this;
         }
         @CustomType.Setter
         public Builder loginTheme(String loginTheme) {
-            this.loginTheme = Objects.requireNonNull(loginTheme);
+            if (loginTheme == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "loginTheme");
+            }
+            this.loginTheme = loginTheme;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder oauth2DeviceAuthorizationGrantEnabled(@Nullable Boolean oauth2DeviceAuthorizationGrantEnabled) {
+
             this.oauth2DeviceAuthorizationGrantEnabled = oauth2DeviceAuthorizationGrantEnabled;
             return this;
         }
         @CustomType.Setter
         public Builder oauth2DeviceCodeLifespan(@Nullable String oauth2DeviceCodeLifespan) {
+
             this.oauth2DeviceCodeLifespan = oauth2DeviceCodeLifespan;
             return this;
         }
         @CustomType.Setter
         public Builder oauth2DevicePollingInterval(@Nullable String oauth2DevicePollingInterval) {
+
             this.oauth2DevicePollingInterval = oauth2DevicePollingInterval;
             return this;
         }
         @CustomType.Setter
         public Builder pkceCodeChallengeMethod(String pkceCodeChallengeMethod) {
-            this.pkceCodeChallengeMethod = Objects.requireNonNull(pkceCodeChallengeMethod);
+            if (pkceCodeChallengeMethod == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "pkceCodeChallengeMethod");
+            }
+            this.pkceCodeChallengeMethod = pkceCodeChallengeMethod;
             return this;
         }
         @CustomType.Setter
         public Builder realmId(String realmId) {
-            this.realmId = Objects.requireNonNull(realmId);
+            if (realmId == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "realmId");
+            }
+            this.realmId = realmId;
             return this;
         }
         @CustomType.Setter
         public Builder resourceServerId(String resourceServerId) {
-            this.resourceServerId = Objects.requireNonNull(resourceServerId);
+            if (resourceServerId == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "resourceServerId");
+            }
+            this.resourceServerId = resourceServerId;
             return this;
         }
         @CustomType.Setter
         public Builder rootUrl(String rootUrl) {
-            this.rootUrl = Objects.requireNonNull(rootUrl);
+            if (rootUrl == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "rootUrl");
+            }
+            this.rootUrl = rootUrl;
             return this;
         }
         @CustomType.Setter
         public Builder serviceAccountUserId(String serviceAccountUserId) {
-            this.serviceAccountUserId = Objects.requireNonNull(serviceAccountUserId);
+            if (serviceAccountUserId == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "serviceAccountUserId");
+            }
+            this.serviceAccountUserId = serviceAccountUserId;
             return this;
         }
         @CustomType.Setter
         public Builder serviceAccountsEnabled(Boolean serviceAccountsEnabled) {
-            this.serviceAccountsEnabled = Objects.requireNonNull(serviceAccountsEnabled);
+            if (serviceAccountsEnabled == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "serviceAccountsEnabled");
+            }
+            this.serviceAccountsEnabled = serviceAccountsEnabled;
             return this;
         }
         @CustomType.Setter
         public Builder standardFlowEnabled(Boolean standardFlowEnabled) {
-            this.standardFlowEnabled = Objects.requireNonNull(standardFlowEnabled);
+            if (standardFlowEnabled == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "standardFlowEnabled");
+            }
+            this.standardFlowEnabled = standardFlowEnabled;
             return this;
         }
         @CustomType.Setter
         public Builder useRefreshTokens(Boolean useRefreshTokens) {
-            this.useRefreshTokens = Objects.requireNonNull(useRefreshTokens);
+            if (useRefreshTokens == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "useRefreshTokens");
+            }
+            this.useRefreshTokens = useRefreshTokens;
             return this;
         }
         @CustomType.Setter
         public Builder useRefreshTokensClientCredentials(Boolean useRefreshTokensClientCredentials) {
-            this.useRefreshTokensClientCredentials = Objects.requireNonNull(useRefreshTokensClientCredentials);
+            if (useRefreshTokensClientCredentials == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "useRefreshTokensClientCredentials");
+            }
+            this.useRefreshTokensClientCredentials = useRefreshTokensClientCredentials;
             return this;
         }
         @CustomType.Setter
         public Builder validPostLogoutRedirectUris(List<String> validPostLogoutRedirectUris) {
-            this.validPostLogoutRedirectUris = Objects.requireNonNull(validPostLogoutRedirectUris);
+            if (validPostLogoutRedirectUris == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "validPostLogoutRedirectUris");
+            }
+            this.validPostLogoutRedirectUris = validPostLogoutRedirectUris;
             return this;
         }
         public Builder validPostLogoutRedirectUris(String... validPostLogoutRedirectUris) {
@@ -549,7 +672,10 @@ public final class GetClientResult {
         }
         @CustomType.Setter
         public Builder validRedirectUris(List<String> validRedirectUris) {
-            this.validRedirectUris = Objects.requireNonNull(validRedirectUris);
+            if (validRedirectUris == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "validRedirectUris");
+            }
+            this.validRedirectUris = validRedirectUris;
             return this;
         }
         public Builder validRedirectUris(String... validRedirectUris) {
@@ -557,7 +683,10 @@ public final class GetClientResult {
         }
         @CustomType.Setter
         public Builder webOrigins(List<String> webOrigins) {
-            this.webOrigins = Objects.requireNonNull(webOrigins);
+            if (webOrigins == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "webOrigins");
+            }
+            this.webOrigins = webOrigins;
             return this;
         }
         public Builder webOrigins(String... webOrigins) {

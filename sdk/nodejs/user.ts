@@ -119,6 +119,10 @@ export class User extends pulumi.CustomResource {
      */
     public readonly realmId!: pulumi.Output<string>;
     /**
+     * A list of required user actions.
+     */
+    public readonly requiredActions!: pulumi.Output<string[] | undefined>;
+    /**
      * The unique username of this user.
      */
     public readonly username!: pulumi.Output<string>;
@@ -145,6 +149,7 @@ export class User extends pulumi.CustomResource {
             resourceInputs["initialPassword"] = state ? state.initialPassword : undefined;
             resourceInputs["lastName"] = state ? state.lastName : undefined;
             resourceInputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["requiredActions"] = state ? state.requiredActions : undefined;
             resourceInputs["username"] = state ? state.username : undefined;
         } else {
             const args = argsOrState as UserArgs | undefined;
@@ -163,6 +168,7 @@ export class User extends pulumi.CustomResource {
             resourceInputs["initialPassword"] = args ? args.initialPassword : undefined;
             resourceInputs["lastName"] = args ? args.lastName : undefined;
             resourceInputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["requiredActions"] = args ? args.requiredActions : undefined;
             resourceInputs["username"] = args ? args.username : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -208,6 +214,10 @@ export interface UserState {
      */
     realmId?: pulumi.Input<string>;
     /**
+     * A list of required user actions.
+     */
+    requiredActions?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * The unique username of this user.
      */
     username?: pulumi.Input<string>;
@@ -250,6 +260,10 @@ export interface UserArgs {
      * The realm this user belongs to.
      */
     realmId: pulumi.Input<string>;
+    /**
+     * A list of required user actions.
+     */
+    requiredActions?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The unique username of this user.
      */

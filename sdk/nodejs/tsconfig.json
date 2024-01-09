@@ -48,6 +48,7 @@
         "hardcodedRoleIdentityMapper.ts",
         "identityProviderTokenExchangeScopePermission.ts",
         "index.ts",
+        "ldap/customMapper.ts",
         "ldap/fullNameMapper.ts",
         "ldap/groupMapper.ts",
         "ldap/hardcodedAttributeMapper.ts",

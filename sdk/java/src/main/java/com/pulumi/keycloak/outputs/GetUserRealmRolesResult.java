@@ -4,6 +4,7 @@
 package com.pulumi.keycloak.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -69,17 +70,26 @@ public final class GetUserRealmRolesResult {
 
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetUserRealmRolesResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder realmId(String realmId) {
-            this.realmId = Objects.requireNonNull(realmId);
+            if (realmId == null) {
+              throw new MissingRequiredPropertyException("GetUserRealmRolesResult", "realmId");
+            }
+            this.realmId = realmId;
             return this;
         }
         @CustomType.Setter
         public Builder roleNames(List<String> roleNames) {
-            this.roleNames = Objects.requireNonNull(roleNames);
+            if (roleNames == null) {
+              throw new MissingRequiredPropertyException("GetUserRealmRolesResult", "roleNames");
+            }
+            this.roleNames = roleNames;
             return this;
         }
         public Builder roleNames(String... roleNames) {
@@ -87,7 +97,10 @@ public final class GetUserRealmRolesResult {
         }
         @CustomType.Setter
         public Builder userId(String userId) {
-            this.userId = Objects.requireNonNull(userId);
+            if (userId == null) {
+              throw new MissingRequiredPropertyException("GetUserRealmRolesResult", "userId");
+            }
+            this.userId = userId;
             return this;
         }
         public GetUserRealmRolesResult build() {

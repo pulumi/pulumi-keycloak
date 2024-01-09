@@ -4,6 +4,7 @@
 package com.pulumi.keycloak.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Object;
 import java.lang.String;
@@ -54,6 +55,7 @@ public final class GetUserResult {
      */
     private String lastName;
     private String realmId;
+    private List<String> requiredActions;
     private String username;
 
     private GetUserResult() {}
@@ -116,6 +118,9 @@ public final class GetUserResult {
     public String realmId() {
         return this.realmId;
     }
+    public List<String> requiredActions() {
+        return this.requiredActions;
+    }
     public String username() {
         return this.username;
     }
@@ -138,6 +143,7 @@ public final class GetUserResult {
         private String id;
         private String lastName;
         private String realmId;
+        private List<String> requiredActions;
         private String username;
         public Builder() {}
         public Builder(GetUserResult defaults) {
@@ -151,32 +157,48 @@ public final class GetUserResult {
     	      this.id = defaults.id;
     	      this.lastName = defaults.lastName;
     	      this.realmId = defaults.realmId;
+    	      this.requiredActions = defaults.requiredActions;
     	      this.username = defaults.username;
         }
 
         @CustomType.Setter
         public Builder attributes(Map<String,Object> attributes) {
-            this.attributes = Objects.requireNonNull(attributes);
+            if (attributes == null) {
+              throw new MissingRequiredPropertyException("GetUserResult", "attributes");
+            }
+            this.attributes = attributes;
             return this;
         }
         @CustomType.Setter
         public Builder email(String email) {
-            this.email = Objects.requireNonNull(email);
+            if (email == null) {
+              throw new MissingRequiredPropertyException("GetUserResult", "email");
+            }
+            this.email = email;
             return this;
         }
         @CustomType.Setter
         public Builder emailVerified(Boolean emailVerified) {
-            this.emailVerified = Objects.requireNonNull(emailVerified);
+            if (emailVerified == null) {
+              throw new MissingRequiredPropertyException("GetUserResult", "emailVerified");
+            }
+            this.emailVerified = emailVerified;
             return this;
         }
         @CustomType.Setter
         public Builder enabled(Boolean enabled) {
-            this.enabled = Objects.requireNonNull(enabled);
+            if (enabled == null) {
+              throw new MissingRequiredPropertyException("GetUserResult", "enabled");
+            }
+            this.enabled = enabled;
             return this;
         }
         @CustomType.Setter
         public Builder federatedIdentities(List<String> federatedIdentities) {
-            this.federatedIdentities = Objects.requireNonNull(federatedIdentities);
+            if (federatedIdentities == null) {
+              throw new MissingRequiredPropertyException("GetUserResult", "federatedIdentities");
+            }
+            this.federatedIdentities = federatedIdentities;
             return this;
         }
         public Builder federatedIdentities(String... federatedIdentities) {
@@ -184,27 +206,53 @@ public final class GetUserResult {
         }
         @CustomType.Setter
         public Builder firstName(String firstName) {
-            this.firstName = Objects.requireNonNull(firstName);
+            if (firstName == null) {
+              throw new MissingRequiredPropertyException("GetUserResult", "firstName");
+            }
+            this.firstName = firstName;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetUserResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder lastName(String lastName) {
-            this.lastName = Objects.requireNonNull(lastName);
+            if (lastName == null) {
+              throw new MissingRequiredPropertyException("GetUserResult", "lastName");
+            }
+            this.lastName = lastName;
             return this;
         }
         @CustomType.Setter
         public Builder realmId(String realmId) {
-            this.realmId = Objects.requireNonNull(realmId);
+            if (realmId == null) {
+              throw new MissingRequiredPropertyException("GetUserResult", "realmId");
+            }
+            this.realmId = realmId;
             return this;
         }
         @CustomType.Setter
+        public Builder requiredActions(List<String> requiredActions) {
+            if (requiredActions == null) {
+              throw new MissingRequiredPropertyException("GetUserResult", "requiredActions");
+            }
+            this.requiredActions = requiredActions;
+            return this;
+        }
+        public Builder requiredActions(String... requiredActions) {
+            return requiredActions(List.of(requiredActions));
+        }
+        @CustomType.Setter
         public Builder username(String username) {
-            this.username = Objects.requireNonNull(username);
+            if (username == null) {
+              throw new MissingRequiredPropertyException("GetUserResult", "username");
+            }
+            this.username = username;
             return this;
         }
         public GetUserResult build() {
@@ -218,6 +266,7 @@ public final class GetUserResult {
             _resultValue.id = id;
             _resultValue.lastName = lastName;
             _resultValue.realmId = realmId;
+            _resultValue.requiredActions = requiredActions;
             _resultValue.username = username;
             return _resultValue;
         }

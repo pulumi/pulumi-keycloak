@@ -43,11 +43,13 @@ public final class RealmSecurityDefenses {
 
         @CustomType.Setter
         public Builder bruteForceDetection(@Nullable RealmSecurityDefensesBruteForceDetection bruteForceDetection) {
+
             this.bruteForceDetection = bruteForceDetection;
             return this;
         }
         @CustomType.Setter
         public Builder headers(@Nullable RealmSecurityDefensesHeaders headers) {
+
             this.headers = headers;
             return this;
         }

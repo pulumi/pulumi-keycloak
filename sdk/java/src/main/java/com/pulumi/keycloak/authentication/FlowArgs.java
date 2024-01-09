@@ -5,6 +5,7 @@ package com.pulumi.keycloak.authentication;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -187,8 +188,12 @@ public final class FlowArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public FlowArgs build() {
-            $.alias = Objects.requireNonNull($.alias, "expected parameter 'alias' to be non-null");
-            $.realmId = Objects.requireNonNull($.realmId, "expected parameter 'realmId' to be non-null");
+            if ($.alias == null) {
+                throw new MissingRequiredPropertyException("FlowArgs", "alias");
+            }
+            if ($.realmId == null) {
+                throw new MissingRequiredPropertyException("FlowArgs", "realmId");
+            }
             return $;
         }
     }

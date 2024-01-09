@@ -5,6 +5,7 @@ package com.pulumi.keycloak;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
@@ -226,9 +227,15 @@ public final class CustomIdentityProviderMappingArgs extends com.pulumi.resource
         }
 
         public CustomIdentityProviderMappingArgs build() {
-            $.identityProviderAlias = Objects.requireNonNull($.identityProviderAlias, "expected parameter 'identityProviderAlias' to be non-null");
-            $.identityProviderMapper = Objects.requireNonNull($.identityProviderMapper, "expected parameter 'identityProviderMapper' to be non-null");
-            $.realm = Objects.requireNonNull($.realm, "expected parameter 'realm' to be non-null");
+            if ($.identityProviderAlias == null) {
+                throw new MissingRequiredPropertyException("CustomIdentityProviderMappingArgs", "identityProviderAlias");
+            }
+            if ($.identityProviderMapper == null) {
+                throw new MissingRequiredPropertyException("CustomIdentityProviderMappingArgs", "identityProviderMapper");
+            }
+            if ($.realm == null) {
+                throw new MissingRequiredPropertyException("CustomIdentityProviderMappingArgs", "realm");
+            }
             return $;
         }
     }

@@ -5,6 +5,7 @@ package com.pulumi.keycloak.openid;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Object;
 import java.lang.String;
@@ -221,8 +222,12 @@ public final class ClientAuthorizationResourceArgs extends com.pulumi.resources.
         }
 
         public ClientAuthorizationResourceArgs build() {
-            $.realmId = Objects.requireNonNull($.realmId, "expected parameter 'realmId' to be non-null");
-            $.resourceServerId = Objects.requireNonNull($.resourceServerId, "expected parameter 'resourceServerId' to be non-null");
+            if ($.realmId == null) {
+                throw new MissingRequiredPropertyException("ClientAuthorizationResourceArgs", "realmId");
+            }
+            if ($.resourceServerId == null) {
+                throw new MissingRequiredPropertyException("ClientAuthorizationResourceArgs", "resourceServerId");
+            }
             return $;
         }
     }

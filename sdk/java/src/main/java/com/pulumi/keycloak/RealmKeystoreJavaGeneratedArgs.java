@@ -5,6 +5,7 @@ package com.pulumi.keycloak;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -411,11 +412,21 @@ public final class RealmKeystoreJavaGeneratedArgs extends com.pulumi.resources.R
         }
 
         public RealmKeystoreJavaGeneratedArgs build() {
-            $.keyAlias = Objects.requireNonNull($.keyAlias, "expected parameter 'keyAlias' to be non-null");
-            $.keyPassword = Objects.requireNonNull($.keyPassword, "expected parameter 'keyPassword' to be non-null");
-            $.keystore = Objects.requireNonNull($.keystore, "expected parameter 'keystore' to be non-null");
-            $.keystorePassword = Objects.requireNonNull($.keystorePassword, "expected parameter 'keystorePassword' to be non-null");
-            $.realmId = Objects.requireNonNull($.realmId, "expected parameter 'realmId' to be non-null");
+            if ($.keyAlias == null) {
+                throw new MissingRequiredPropertyException("RealmKeystoreJavaGeneratedArgs", "keyAlias");
+            }
+            if ($.keyPassword == null) {
+                throw new MissingRequiredPropertyException("RealmKeystoreJavaGeneratedArgs", "keyPassword");
+            }
+            if ($.keystore == null) {
+                throw new MissingRequiredPropertyException("RealmKeystoreJavaGeneratedArgs", "keystore");
+            }
+            if ($.keystorePassword == null) {
+                throw new MissingRequiredPropertyException("RealmKeystoreJavaGeneratedArgs", "keystorePassword");
+            }
+            if ($.realmId == null) {
+                throw new MissingRequiredPropertyException("RealmKeystoreJavaGeneratedArgs", "realmId");
+            }
             return $;
         }
     }

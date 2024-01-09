@@ -5,6 +5,7 @@ package com.pulumi.keycloak;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.keycloak.inputs.UserFederatedIdentityArgs;
 import com.pulumi.keycloak.inputs.UserInitialPasswordArgs;
 import java.lang.Boolean;
@@ -149,6 +150,21 @@ public final class UserArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * A list of required user actions.
+     * 
+     */
+    @Import(name="requiredActions")
+    private @Nullable Output<List<String>> requiredActions;
+
+    /**
+     * @return A list of required user actions.
+     * 
+     */
+    public Optional<Output<List<String>>> requiredActions() {
+        return Optional.ofNullable(this.requiredActions);
+    }
+
+    /**
      * The unique username of this user.
      * 
      */
@@ -175,6 +191,7 @@ public final class UserArgs extends com.pulumi.resources.ResourceArgs {
         this.initialPassword = $.initialPassword;
         this.lastName = $.lastName;
         this.realmId = $.realmId;
+        this.requiredActions = $.requiredActions;
         this.username = $.username;
     }
 
@@ -378,6 +395,37 @@ public final class UserArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param requiredActions A list of required user actions.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder requiredActions(@Nullable Output<List<String>> requiredActions) {
+            $.requiredActions = requiredActions;
+            return this;
+        }
+
+        /**
+         * @param requiredActions A list of required user actions.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder requiredActions(List<String> requiredActions) {
+            return requiredActions(Output.of(requiredActions));
+        }
+
+        /**
+         * @param requiredActions A list of required user actions.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder requiredActions(String... requiredActions) {
+            return requiredActions(List.of(requiredActions));
+        }
+
+        /**
          * @param username The unique username of this user.
          * 
          * @return builder
@@ -399,8 +447,12 @@ public final class UserArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public UserArgs build() {
-            $.realmId = Objects.requireNonNull($.realmId, "expected parameter 'realmId' to be non-null");
-            $.username = Objects.requireNonNull($.username, "expected parameter 'username' to be non-null");
+            if ($.realmId == null) {
+                throw new MissingRequiredPropertyException("UserArgs", "realmId");
+            }
+            if ($.username == null) {
+                throw new MissingRequiredPropertyException("UserArgs", "username");
+            }
             return $;
         }
     }

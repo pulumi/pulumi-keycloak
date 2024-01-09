@@ -5,6 +5,7 @@ package com.pulumi.keycloak;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
@@ -300,10 +301,18 @@ public final class GenericClientProtocolMapperArgs extends com.pulumi.resources.
         }
 
         public GenericClientProtocolMapperArgs build() {
-            $.config = Objects.requireNonNull($.config, "expected parameter 'config' to be non-null");
-            $.protocol = Objects.requireNonNull($.protocol, "expected parameter 'protocol' to be non-null");
-            $.protocolMapper = Objects.requireNonNull($.protocolMapper, "expected parameter 'protocolMapper' to be non-null");
-            $.realmId = Objects.requireNonNull($.realmId, "expected parameter 'realmId' to be non-null");
+            if ($.config == null) {
+                throw new MissingRequiredPropertyException("GenericClientProtocolMapperArgs", "config");
+            }
+            if ($.protocol == null) {
+                throw new MissingRequiredPropertyException("GenericClientProtocolMapperArgs", "protocol");
+            }
+            if ($.protocolMapper == null) {
+                throw new MissingRequiredPropertyException("GenericClientProtocolMapperArgs", "protocolMapper");
+            }
+            if ($.realmId == null) {
+                throw new MissingRequiredPropertyException("GenericClientProtocolMapperArgs", "realmId");
+            }
             return $;
         }
     }

@@ -5,6 +5,7 @@ package com.pulumi.keycloak.saml;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -335,10 +336,18 @@ public final class UserPropertyProtocolMapperArgs extends com.pulumi.resources.R
         }
 
         public UserPropertyProtocolMapperArgs build() {
-            $.realmId = Objects.requireNonNull($.realmId, "expected parameter 'realmId' to be non-null");
-            $.samlAttributeName = Objects.requireNonNull($.samlAttributeName, "expected parameter 'samlAttributeName' to be non-null");
-            $.samlAttributeNameFormat = Objects.requireNonNull($.samlAttributeNameFormat, "expected parameter 'samlAttributeNameFormat' to be non-null");
-            $.userProperty = Objects.requireNonNull($.userProperty, "expected parameter 'userProperty' to be non-null");
+            if ($.realmId == null) {
+                throw new MissingRequiredPropertyException("UserPropertyProtocolMapperArgs", "realmId");
+            }
+            if ($.samlAttributeName == null) {
+                throw new MissingRequiredPropertyException("UserPropertyProtocolMapperArgs", "samlAttributeName");
+            }
+            if ($.samlAttributeNameFormat == null) {
+                throw new MissingRequiredPropertyException("UserPropertyProtocolMapperArgs", "samlAttributeNameFormat");
+            }
+            if ($.userProperty == null) {
+                throw new MissingRequiredPropertyException("UserPropertyProtocolMapperArgs", "userProperty");
+            }
             return $;
         }
     }

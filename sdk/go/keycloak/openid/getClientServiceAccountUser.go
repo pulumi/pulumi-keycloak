@@ -104,10 +104,11 @@ type GetClientServiceAccountUserResult struct {
 	FederatedIdentities []GetClientServiceAccountUserFederatedIdentity `pulumi:"federatedIdentities"`
 	FirstName           string                                         `pulumi:"firstName"`
 	// The provider-assigned unique ID for this managed resource.
-	Id       string `pulumi:"id"`
-	LastName string `pulumi:"lastName"`
-	RealmId  string `pulumi:"realmId"`
-	Username string `pulumi:"username"`
+	Id              string   `pulumi:"id"`
+	LastName        string   `pulumi:"lastName"`
+	RealmId         string   `pulumi:"realmId"`
+	RequiredActions []string `pulumi:"requiredActions"`
+	Username        string   `pulumi:"username"`
 }
 
 func GetClientServiceAccountUserOutput(ctx *pulumi.Context, args GetClientServiceAccountUserOutputArgs, opts ...pulumi.InvokeOption) GetClientServiceAccountUserResultOutput {
@@ -191,6 +192,10 @@ func (o GetClientServiceAccountUserResultOutput) LastName() pulumi.StringOutput 
 
 func (o GetClientServiceAccountUserResultOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClientServiceAccountUserResult) string { return v.RealmId }).(pulumi.StringOutput)
+}
+
+func (o GetClientServiceAccountUserResultOutput) RequiredActions() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetClientServiceAccountUserResult) []string { return v.RequiredActions }).(pulumi.StringArrayOutput)
 }
 
 func (o GetClientServiceAccountUserResultOutput) Username() pulumi.StringOutput {

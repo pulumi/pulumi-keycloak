@@ -4,6 +4,7 @@
 package com.pulumi.keycloak.openid.inputs;
 
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -90,8 +91,12 @@ public final class GetClientScopePlainArgs extends com.pulumi.resources.InvokeAr
         }
 
         public GetClientScopePlainArgs build() {
-            $.name = Objects.requireNonNull($.name, "expected parameter 'name' to be non-null");
-            $.realmId = Objects.requireNonNull($.realmId, "expected parameter 'realmId' to be non-null");
+            if ($.name == null) {
+                throw new MissingRequiredPropertyException("GetClientScopePlainArgs", "name");
+            }
+            if ($.realmId == null) {
+                throw new MissingRequiredPropertyException("GetClientScopePlainArgs", "realmId");
+            }
             return $;
         }
     }

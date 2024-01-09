@@ -4,6 +4,7 @@
 package com.pulumi.keycloak.inputs;
 
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.util.Objects;
@@ -128,13 +129,27 @@ public final class GetRealmSecurityDefenseBruteForceDetection extends com.pulumi
         }
 
         public GetRealmSecurityDefenseBruteForceDetection build() {
-            $.failureResetTimeSeconds = Objects.requireNonNull($.failureResetTimeSeconds, "expected parameter 'failureResetTimeSeconds' to be non-null");
-            $.maxFailureWaitSeconds = Objects.requireNonNull($.maxFailureWaitSeconds, "expected parameter 'maxFailureWaitSeconds' to be non-null");
-            $.maxLoginFailures = Objects.requireNonNull($.maxLoginFailures, "expected parameter 'maxLoginFailures' to be non-null");
-            $.minimumQuickLoginWaitSeconds = Objects.requireNonNull($.minimumQuickLoginWaitSeconds, "expected parameter 'minimumQuickLoginWaitSeconds' to be non-null");
-            $.permanentLockout = Objects.requireNonNull($.permanentLockout, "expected parameter 'permanentLockout' to be non-null");
-            $.quickLoginCheckMilliSeconds = Objects.requireNonNull($.quickLoginCheckMilliSeconds, "expected parameter 'quickLoginCheckMilliSeconds' to be non-null");
-            $.waitIncrementSeconds = Objects.requireNonNull($.waitIncrementSeconds, "expected parameter 'waitIncrementSeconds' to be non-null");
+            if ($.failureResetTimeSeconds == null) {
+                throw new MissingRequiredPropertyException("GetRealmSecurityDefenseBruteForceDetection", "failureResetTimeSeconds");
+            }
+            if ($.maxFailureWaitSeconds == null) {
+                throw new MissingRequiredPropertyException("GetRealmSecurityDefenseBruteForceDetection", "maxFailureWaitSeconds");
+            }
+            if ($.maxLoginFailures == null) {
+                throw new MissingRequiredPropertyException("GetRealmSecurityDefenseBruteForceDetection", "maxLoginFailures");
+            }
+            if ($.minimumQuickLoginWaitSeconds == null) {
+                throw new MissingRequiredPropertyException("GetRealmSecurityDefenseBruteForceDetection", "minimumQuickLoginWaitSeconds");
+            }
+            if ($.permanentLockout == null) {
+                throw new MissingRequiredPropertyException("GetRealmSecurityDefenseBruteForceDetection", "permanentLockout");
+            }
+            if ($.quickLoginCheckMilliSeconds == null) {
+                throw new MissingRequiredPropertyException("GetRealmSecurityDefenseBruteForceDetection", "quickLoginCheckMilliSeconds");
+            }
+            if ($.waitIncrementSeconds == null) {
+                throw new MissingRequiredPropertyException("GetRealmSecurityDefenseBruteForceDetection", "waitIncrementSeconds");
+            }
             return $;
         }
     }

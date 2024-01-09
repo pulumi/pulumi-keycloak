@@ -25,7 +25,8 @@ class UserArgs:
                  federated_identities: Optional[pulumi.Input[Sequence[pulumi.Input['UserFederatedIdentityArgs']]]] = None,
                  first_name: Optional[pulumi.Input[str]] = None,
                  initial_password: Optional[pulumi.Input['UserInitialPasswordArgs']] = None,
-                 last_name: Optional[pulumi.Input[str]] = None):
+                 last_name: Optional[pulumi.Input[str]] = None,
+                 required_actions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a User resource.
         :param pulumi.Input[str] realm_id: The realm this user belongs to.
@@ -37,6 +38,7 @@ class UserArgs:
         :param pulumi.Input[str] first_name: The user's first name.
         :param pulumi.Input['UserInitialPasswordArgs'] initial_password: When given, the user's initial password will be set. This attribute is only respected during initial user creation.
         :param pulumi.Input[str] last_name: The user's last name.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] required_actions: A list of required user actions.
         """
         pulumi.set(__self__, "realm_id", realm_id)
         pulumi.set(__self__, "username", username)
@@ -56,6 +58,8 @@ class UserArgs:
             pulumi.set(__self__, "initial_password", initial_password)
         if last_name is not None:
             pulumi.set(__self__, "last_name", last_name)
+        if required_actions is not None:
+            pulumi.set(__self__, "required_actions", required_actions)
 
     @property
     @pulumi.getter(name="realmId")
@@ -174,6 +178,18 @@ class UserArgs:
     def last_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "last_name", value)
 
+    @property
+    @pulumi.getter(name="requiredActions")
+    def required_actions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A list of required user actions.
+        """
+        return pulumi.get(self, "required_actions")
+
+    @required_actions.setter
+    def required_actions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "required_actions", value)
+
 
 @pulumi.input_type
 class _UserState:
@@ -187,6 +203,7 @@ class _UserState:
                  initial_password: Optional[pulumi.Input['UserInitialPasswordArgs']] = None,
                  last_name: Optional[pulumi.Input[str]] = None,
                  realm_id: Optional[pulumi.Input[str]] = None,
+                 required_actions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  username: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering User resources.
@@ -198,6 +215,7 @@ class _UserState:
         :param pulumi.Input['UserInitialPasswordArgs'] initial_password: When given, the user's initial password will be set. This attribute is only respected during initial user creation.
         :param pulumi.Input[str] last_name: The user's last name.
         :param pulumi.Input[str] realm_id: The realm this user belongs to.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] required_actions: A list of required user actions.
         :param pulumi.Input[str] username: The unique username of this user.
         """
         if attributes is not None:
@@ -218,6 +236,8 @@ class _UserState:
             pulumi.set(__self__, "last_name", last_name)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
+        if required_actions is not None:
+            pulumi.set(__self__, "required_actions", required_actions)
         if username is not None:
             pulumi.set(__self__, "username", username)
 
@@ -327,6 +347,18 @@ class _UserState:
         pulumi.set(self, "realm_id", value)
 
     @property
+    @pulumi.getter(name="requiredActions")
+    def required_actions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A list of required user actions.
+        """
+        return pulumi.get(self, "required_actions")
+
+    @required_actions.setter
+    def required_actions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "required_actions", value)
+
+    @property
     @pulumi.getter
     def username(self) -> Optional[pulumi.Input[str]]:
         """
@@ -353,6 +385,7 @@ class User(pulumi.CustomResource):
                  initial_password: Optional[pulumi.Input[pulumi.InputType['UserInitialPasswordArgs']]] = None,
                  last_name: Optional[pulumi.Input[str]] = None,
                  realm_id: Optional[pulumi.Input[str]] = None,
+                 required_actions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  username: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -413,6 +446,7 @@ class User(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['UserInitialPasswordArgs']] initial_password: When given, the user's initial password will be set. This attribute is only respected during initial user creation.
         :param pulumi.Input[str] last_name: The user's last name.
         :param pulumi.Input[str] realm_id: The realm this user belongs to.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] required_actions: A list of required user actions.
         :param pulumi.Input[str] username: The unique username of this user.
         """
         ...
@@ -493,6 +527,7 @@ class User(pulumi.CustomResource):
                  initial_password: Optional[pulumi.Input[pulumi.InputType['UserInitialPasswordArgs']]] = None,
                  last_name: Optional[pulumi.Input[str]] = None,
                  realm_id: Optional[pulumi.Input[str]] = None,
+                 required_actions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  username: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -514,6 +549,7 @@ class User(pulumi.CustomResource):
             if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["required_actions"] = required_actions
             if username is None and not opts.urn:
                 raise TypeError("Missing required property 'username'")
             __props__.__dict__["username"] = username
@@ -536,6 +572,7 @@ class User(pulumi.CustomResource):
             initial_password: Optional[pulumi.Input[pulumi.InputType['UserInitialPasswordArgs']]] = None,
             last_name: Optional[pulumi.Input[str]] = None,
             realm_id: Optional[pulumi.Input[str]] = None,
+            required_actions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             username: Optional[pulumi.Input[str]] = None) -> 'User':
         """
         Get an existing User resource's state with the given name, id, and optional extra
@@ -552,6 +589,7 @@ class User(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['UserInitialPasswordArgs']] initial_password: When given, the user's initial password will be set. This attribute is only respected during initial user creation.
         :param pulumi.Input[str] last_name: The user's last name.
         :param pulumi.Input[str] realm_id: The realm this user belongs to.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] required_actions: A list of required user actions.
         :param pulumi.Input[str] username: The unique username of this user.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -567,6 +605,7 @@ class User(pulumi.CustomResource):
         __props__.__dict__["initial_password"] = initial_password
         __props__.__dict__["last_name"] = last_name
         __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["required_actions"] = required_actions
         __props__.__dict__["username"] = username
         return User(resource_name, opts=opts, __props__=__props__)
 
@@ -638,6 +677,14 @@ class User(pulumi.CustomResource):
         The realm this user belongs to.
         """
         return pulumi.get(self, "realm_id")
+
+    @property
+    @pulumi.getter(name="requiredActions")
+    def required_actions(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        A list of required user actions.
+        """
+        return pulumi.get(self, "required_actions")
 
     @property
     @pulumi.getter

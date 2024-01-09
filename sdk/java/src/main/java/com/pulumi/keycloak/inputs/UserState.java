@@ -149,6 +149,21 @@ public final class UserState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * A list of required user actions.
+     * 
+     */
+    @Import(name="requiredActions")
+    private @Nullable Output<List<String>> requiredActions;
+
+    /**
+     * @return A list of required user actions.
+     * 
+     */
+    public Optional<Output<List<String>>> requiredActions() {
+        return Optional.ofNullable(this.requiredActions);
+    }
+
+    /**
      * The unique username of this user.
      * 
      */
@@ -175,6 +190,7 @@ public final class UserState extends com.pulumi.resources.ResourceArgs {
         this.initialPassword = $.initialPassword;
         this.lastName = $.lastName;
         this.realmId = $.realmId;
+        this.requiredActions = $.requiredActions;
         this.username = $.username;
     }
 
@@ -375,6 +391,37 @@ public final class UserState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder realmId(String realmId) {
             return realmId(Output.of(realmId));
+        }
+
+        /**
+         * @param requiredActions A list of required user actions.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder requiredActions(@Nullable Output<List<String>> requiredActions) {
+            $.requiredActions = requiredActions;
+            return this;
+        }
+
+        /**
+         * @param requiredActions A list of required user actions.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder requiredActions(List<String> requiredActions) {
+            return requiredActions(Output.of(requiredActions));
+        }
+
+        /**
+         * @param requiredActions A list of required user actions.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder requiredActions(String... requiredActions) {
+            return requiredActions(List.of(requiredActions));
         }
 
         /**

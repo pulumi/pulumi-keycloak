@@ -5,6 +5,7 @@ package com.pulumi.keycloak;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -198,9 +199,15 @@ public final class IdentityProviderTokenExchangeScopePermissionArgs extends com.
         }
 
         public IdentityProviderTokenExchangeScopePermissionArgs build() {
-            $.clients = Objects.requireNonNull($.clients, "expected parameter 'clients' to be non-null");
-            $.providerAlias = Objects.requireNonNull($.providerAlias, "expected parameter 'providerAlias' to be non-null");
-            $.realmId = Objects.requireNonNull($.realmId, "expected parameter 'realmId' to be non-null");
+            if ($.clients == null) {
+                throw new MissingRequiredPropertyException("IdentityProviderTokenExchangeScopePermissionArgs", "clients");
+            }
+            if ($.providerAlias == null) {
+                throw new MissingRequiredPropertyException("IdentityProviderTokenExchangeScopePermissionArgs", "providerAlias");
+            }
+            if ($.realmId == null) {
+                throw new MissingRequiredPropertyException("IdentityProviderTokenExchangeScopePermissionArgs", "realmId");
+            }
             return $;
         }
     }

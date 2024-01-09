@@ -5,6 +5,7 @@ package com.pulumi.keycloak.saml;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -373,10 +374,18 @@ public final class ScriptProtocolMapperArgs extends com.pulumi.resources.Resourc
         }
 
         public ScriptProtocolMapperArgs build() {
-            $.realmId = Objects.requireNonNull($.realmId, "expected parameter 'realmId' to be non-null");
-            $.samlAttributeName = Objects.requireNonNull($.samlAttributeName, "expected parameter 'samlAttributeName' to be non-null");
-            $.samlAttributeNameFormat = Objects.requireNonNull($.samlAttributeNameFormat, "expected parameter 'samlAttributeNameFormat' to be non-null");
-            $.script = Objects.requireNonNull($.script, "expected parameter 'script' to be non-null");
+            if ($.realmId == null) {
+                throw new MissingRequiredPropertyException("ScriptProtocolMapperArgs", "realmId");
+            }
+            if ($.samlAttributeName == null) {
+                throw new MissingRequiredPropertyException("ScriptProtocolMapperArgs", "samlAttributeName");
+            }
+            if ($.samlAttributeNameFormat == null) {
+                throw new MissingRequiredPropertyException("ScriptProtocolMapperArgs", "samlAttributeNameFormat");
+            }
+            if ($.script == null) {
+                throw new MissingRequiredPropertyException("ScriptProtocolMapperArgs", "script");
+            }
             return $;
         }
     }

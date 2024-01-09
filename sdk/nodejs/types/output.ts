@@ -80,6 +80,7 @@ export interface GetRealmSecurityDefenseBruteForceDetection {
 export interface GetRealmSecurityDefenseHeader {
     contentSecurityPolicy: string;
     contentSecurityPolicyReportOnly: string;
+    referrerPolicy: string;
     strictTransportSecurity: string;
     xContentTypeOptions: string;
     xFrameOptions: string;
@@ -242,6 +243,10 @@ export interface RealmSecurityDefensesHeaders {
      * Used for testing Content Security Policies.
      */
     contentSecurityPolicyReportOnly?: string;
+    /**
+     * The Referrer-Policy HTTP header controls how much referrer information (sent with the Referer header) should be included with requests.
+     */
+    referrerPolicy?: string;
     /**
      * The Script-Transport-Security HTTP header tells browsers to always use HTTPS.
      */

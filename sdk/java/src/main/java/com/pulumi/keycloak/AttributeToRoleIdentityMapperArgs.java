@@ -5,6 +5,7 @@ package com.pulumi.keycloak;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
@@ -411,9 +412,15 @@ public final class AttributeToRoleIdentityMapperArgs extends com.pulumi.resource
         }
 
         public AttributeToRoleIdentityMapperArgs build() {
-            $.identityProviderAlias = Objects.requireNonNull($.identityProviderAlias, "expected parameter 'identityProviderAlias' to be non-null");
-            $.realm = Objects.requireNonNull($.realm, "expected parameter 'realm' to be non-null");
-            $.role = Objects.requireNonNull($.role, "expected parameter 'role' to be non-null");
+            if ($.identityProviderAlias == null) {
+                throw new MissingRequiredPropertyException("AttributeToRoleIdentityMapperArgs", "identityProviderAlias");
+            }
+            if ($.realm == null) {
+                throw new MissingRequiredPropertyException("AttributeToRoleIdentityMapperArgs", "realm");
+            }
+            if ($.role == null) {
+                throw new MissingRequiredPropertyException("AttributeToRoleIdentityMapperArgs", "role");
+            }
             return $;
         }
     }

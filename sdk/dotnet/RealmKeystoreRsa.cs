@@ -32,7 +32,7 @@ namespace Pulumi.Keycloak
         public Output<bool?> Active { get; private set; } = null!;
 
         /// <summary>
-        /// Intended algorithm for the key. Defaults to `RS256`
+        /// Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
         /// </summary>
         [Output("algorithm")]
         public Output<string?> Algorithm { get; private set; } = null!;
@@ -66,6 +66,12 @@ namespace Pulumi.Keycloak
         /// </summary>
         [Output("privateKey")]
         public Output<string> PrivateKey { get; private set; } = null!;
+
+        /// <summary>
+        /// Use `rsa` for signing keys, `rsa-enc` for encryption keys
+        /// </summary>
+        [Output("providerId")]
+        public Output<string?> ProviderId { get; private set; } = null!;
 
         /// <summary>
         /// The realm this keystore exists in.
@@ -126,7 +132,7 @@ namespace Pulumi.Keycloak
         public Input<bool>? Active { get; set; }
 
         /// <summary>
-        /// Intended algorithm for the key. Defaults to `RS256`
+        /// Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
         /// </summary>
         [Input("algorithm")]
         public Input<string>? Algorithm { get; set; }
@@ -162,6 +168,12 @@ namespace Pulumi.Keycloak
         public Input<string> PrivateKey { get; set; } = null!;
 
         /// <summary>
+        /// Use `rsa` for signing keys, `rsa-enc` for encryption keys
+        /// </summary>
+        [Input("providerId")]
+        public Input<string>? ProviderId { get; set; }
+
+        /// <summary>
         /// The realm this keystore exists in.
         /// </summary>
         [Input("realmId", required: true)]
@@ -182,7 +194,7 @@ namespace Pulumi.Keycloak
         public Input<bool>? Active { get; set; }
 
         /// <summary>
-        /// Intended algorithm for the key. Defaults to `RS256`
+        /// Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
         /// </summary>
         [Input("algorithm")]
         public Input<string>? Algorithm { get; set; }
@@ -216,6 +228,12 @@ namespace Pulumi.Keycloak
         /// </summary>
         [Input("privateKey")]
         public Input<string>? PrivateKey { get; set; }
+
+        /// <summary>
+        /// Use `rsa` for signing keys, `rsa-enc` for encryption keys
+        /// </summary>
+        [Input("providerId")]
+        public Input<string>? ProviderId { get; set; }
 
         /// <summary>
         /// The realm this keystore exists in.

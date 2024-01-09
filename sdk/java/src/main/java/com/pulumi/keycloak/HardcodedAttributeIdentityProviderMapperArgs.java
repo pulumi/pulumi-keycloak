@@ -5,6 +5,7 @@ package com.pulumi.keycloak;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Object;
 import java.lang.String;
@@ -281,9 +282,15 @@ public final class HardcodedAttributeIdentityProviderMapperArgs extends com.pulu
         }
 
         public HardcodedAttributeIdentityProviderMapperArgs build() {
-            $.identityProviderAlias = Objects.requireNonNull($.identityProviderAlias, "expected parameter 'identityProviderAlias' to be non-null");
-            $.realm = Objects.requireNonNull($.realm, "expected parameter 'realm' to be non-null");
-            $.userSession = Objects.requireNonNull($.userSession, "expected parameter 'userSession' to be non-null");
+            if ($.identityProviderAlias == null) {
+                throw new MissingRequiredPropertyException("HardcodedAttributeIdentityProviderMapperArgs", "identityProviderAlias");
+            }
+            if ($.realm == null) {
+                throw new MissingRequiredPropertyException("HardcodedAttributeIdentityProviderMapperArgs", "realm");
+            }
+            if ($.userSession == null) {
+                throw new MissingRequiredPropertyException("HardcodedAttributeIdentityProviderMapperArgs", "userSession");
+            }
             return $;
         }
     }

@@ -5,6 +5,7 @@ package com.pulumi.keycloak.openid;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.keycloak.openid.inputs.ClientGroupPolicyGroupArgs;
 import java.lang.String;
 import java.util.List;
@@ -181,10 +182,18 @@ public final class ClientGroupPolicyArgs extends com.pulumi.resources.ResourceAr
         }
 
         public ClientGroupPolicyArgs build() {
-            $.decisionStrategy = Objects.requireNonNull($.decisionStrategy, "expected parameter 'decisionStrategy' to be non-null");
-            $.groups = Objects.requireNonNull($.groups, "expected parameter 'groups' to be non-null");
-            $.realmId = Objects.requireNonNull($.realmId, "expected parameter 'realmId' to be non-null");
-            $.resourceServerId = Objects.requireNonNull($.resourceServerId, "expected parameter 'resourceServerId' to be non-null");
+            if ($.decisionStrategy == null) {
+                throw new MissingRequiredPropertyException("ClientGroupPolicyArgs", "decisionStrategy");
+            }
+            if ($.groups == null) {
+                throw new MissingRequiredPropertyException("ClientGroupPolicyArgs", "groups");
+            }
+            if ($.realmId == null) {
+                throw new MissingRequiredPropertyException("ClientGroupPolicyArgs", "realmId");
+            }
+            if ($.resourceServerId == null) {
+                throw new MissingRequiredPropertyException("ClientGroupPolicyArgs", "resourceServerId");
+            }
             return $;
         }
     }

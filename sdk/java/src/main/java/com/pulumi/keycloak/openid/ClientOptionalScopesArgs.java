@@ -5,6 +5,7 @@ package com.pulumi.keycloak.openid;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -159,9 +160,15 @@ public final class ClientOptionalScopesArgs extends com.pulumi.resources.Resourc
         }
 
         public ClientOptionalScopesArgs build() {
-            $.clientId = Objects.requireNonNull($.clientId, "expected parameter 'clientId' to be non-null");
-            $.optionalScopes = Objects.requireNonNull($.optionalScopes, "expected parameter 'optionalScopes' to be non-null");
-            $.realmId = Objects.requireNonNull($.realmId, "expected parameter 'realmId' to be non-null");
+            if ($.clientId == null) {
+                throw new MissingRequiredPropertyException("ClientOptionalScopesArgs", "clientId");
+            }
+            if ($.optionalScopes == null) {
+                throw new MissingRequiredPropertyException("ClientOptionalScopesArgs", "optionalScopes");
+            }
+            if ($.realmId == null) {
+                throw new MissingRequiredPropertyException("ClientOptionalScopesArgs", "realmId");
+            }
             return $;
         }
     }

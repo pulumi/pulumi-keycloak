@@ -5,6 +5,7 @@ package com.pulumi.keycloak;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Object;
 import java.lang.String;
 import java.util.List;
@@ -274,7 +275,9 @@ public final class RoleArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public RoleArgs build() {
-            $.realmId = Objects.requireNonNull($.realmId, "expected parameter 'realmId' to be non-null");
+            if ($.realmId == null) {
+                throw new MissingRequiredPropertyException("RoleArgs", "realmId");
+            }
             return $;
         }
     }

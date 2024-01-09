@@ -5,6 +5,7 @@ package com.pulumi.keycloak.oidc;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Object;
 import java.lang.String;
@@ -836,9 +837,15 @@ public final class GoogleIdentityProviderArgs extends com.pulumi.resources.Resou
         }
 
         public GoogleIdentityProviderArgs build() {
-            $.clientId = Objects.requireNonNull($.clientId, "expected parameter 'clientId' to be non-null");
-            $.clientSecret = Objects.requireNonNull($.clientSecret, "expected parameter 'clientSecret' to be non-null");
-            $.realm = Objects.requireNonNull($.realm, "expected parameter 'realm' to be non-null");
+            if ($.clientId == null) {
+                throw new MissingRequiredPropertyException("GoogleIdentityProviderArgs", "clientId");
+            }
+            if ($.clientSecret == null) {
+                throw new MissingRequiredPropertyException("GoogleIdentityProviderArgs", "clientSecret");
+            }
+            if ($.realm == null) {
+                throw new MissingRequiredPropertyException("GoogleIdentityProviderArgs", "realm");
+            }
             return $;
         }
     }

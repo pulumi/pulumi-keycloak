@@ -46,6 +46,21 @@ public final class RealmSecurityDefensesHeadersArgs extends com.pulumi.resources
     }
 
     /**
+     * The Referrer-Policy HTTP header controls how much referrer information (sent with the Referer header) should be included with requests.
+     * 
+     */
+    @Import(name="referrerPolicy")
+    private @Nullable Output<String> referrerPolicy;
+
+    /**
+     * @return The Referrer-Policy HTTP header controls how much referrer information (sent with the Referer header) should be included with requests.
+     * 
+     */
+    public Optional<Output<String>> referrerPolicy() {
+        return Optional.ofNullable(this.referrerPolicy);
+    }
+
+    /**
      * The Script-Transport-Security HTTP header tells browsers to always use HTTPS.
      * 
      */
@@ -125,6 +140,7 @@ public final class RealmSecurityDefensesHeadersArgs extends com.pulumi.resources
     private RealmSecurityDefensesHeadersArgs(RealmSecurityDefensesHeadersArgs $) {
         this.contentSecurityPolicy = $.contentSecurityPolicy;
         this.contentSecurityPolicyReportOnly = $.contentSecurityPolicyReportOnly;
+        this.referrerPolicy = $.referrerPolicy;
         this.strictTransportSecurity = $.strictTransportSecurity;
         this.xContentTypeOptions = $.xContentTypeOptions;
         this.xFrameOptions = $.xFrameOptions;
@@ -190,6 +206,27 @@ public final class RealmSecurityDefensesHeadersArgs extends com.pulumi.resources
          */
         public Builder contentSecurityPolicyReportOnly(String contentSecurityPolicyReportOnly) {
             return contentSecurityPolicyReportOnly(Output.of(contentSecurityPolicyReportOnly));
+        }
+
+        /**
+         * @param referrerPolicy The Referrer-Policy HTTP header controls how much referrer information (sent with the Referer header) should be included with requests.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder referrerPolicy(@Nullable Output<String> referrerPolicy) {
+            $.referrerPolicy = referrerPolicy;
+            return this;
+        }
+
+        /**
+         * @param referrerPolicy The Referrer-Policy HTTP header controls how much referrer information (sent with the Referer header) should be included with requests.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder referrerPolicy(String referrerPolicy) {
+            return referrerPolicy(Output.of(referrerPolicy));
         }
 
         /**

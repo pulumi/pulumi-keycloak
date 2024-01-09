@@ -5,6 +5,7 @@ package com.pulumi.keycloak.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.keycloak.inputs.RealmSmtpServerAuthArgs;
 import java.lang.Boolean;
 import java.lang.String;
@@ -411,8 +412,12 @@ public final class RealmSmtpServerArgs extends com.pulumi.resources.ResourceArgs
         }
 
         public RealmSmtpServerArgs build() {
-            $.from = Objects.requireNonNull($.from, "expected parameter 'from' to be non-null");
-            $.host = Objects.requireNonNull($.host, "expected parameter 'host' to be non-null");
+            if ($.from == null) {
+                throw new MissingRequiredPropertyException("RealmSmtpServerArgs", "from");
+            }
+            if ($.host == null) {
+                throw new MissingRequiredPropertyException("RealmSmtpServerArgs", "host");
+            }
             return $;
         }
     }

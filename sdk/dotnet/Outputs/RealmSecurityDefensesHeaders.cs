@@ -22,6 +22,10 @@ namespace Pulumi.Keycloak.Outputs
         /// </summary>
         public readonly string? ContentSecurityPolicyReportOnly;
         /// <summary>
+        /// The Referrer-Policy HTTP header controls how much referrer information (sent with the Referer header) should be included with requests.
+        /// </summary>
+        public readonly string? ReferrerPolicy;
+        /// <summary>
         /// The Script-Transport-Security HTTP header tells browsers to always use HTTPS.
         /// </summary>
         public readonly string? StrictTransportSecurity;
@@ -48,6 +52,8 @@ namespace Pulumi.Keycloak.Outputs
 
             string? contentSecurityPolicyReportOnly,
 
+            string? referrerPolicy,
+
             string? strictTransportSecurity,
 
             string? xContentTypeOptions,
@@ -60,6 +66,7 @@ namespace Pulumi.Keycloak.Outputs
         {
             ContentSecurityPolicy = contentSecurityPolicy;
             ContentSecurityPolicyReportOnly = contentSecurityPolicyReportOnly;
+            ReferrerPolicy = referrerPolicy;
             StrictTransportSecurity = strictTransportSecurity;
             XContentTypeOptions = xContentTypeOptions;
             XFrameOptions = xFrameOptions;

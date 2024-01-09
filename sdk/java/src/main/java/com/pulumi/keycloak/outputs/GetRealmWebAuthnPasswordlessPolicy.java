@@ -4,6 +4,7 @@
 package com.pulumi.keycloak.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -91,7 +92,10 @@ public final class GetRealmWebAuthnPasswordlessPolicy {
 
         @CustomType.Setter
         public Builder acceptableAaguids(List<String> acceptableAaguids) {
-            this.acceptableAaguids = Objects.requireNonNull(acceptableAaguids);
+            if (acceptableAaguids == null) {
+              throw new MissingRequiredPropertyException("GetRealmWebAuthnPasswordlessPolicy", "acceptableAaguids");
+            }
+            this.acceptableAaguids = acceptableAaguids;
             return this;
         }
         public Builder acceptableAaguids(String... acceptableAaguids) {
@@ -99,42 +103,66 @@ public final class GetRealmWebAuthnPasswordlessPolicy {
         }
         @CustomType.Setter
         public Builder attestationConveyancePreference(String attestationConveyancePreference) {
-            this.attestationConveyancePreference = Objects.requireNonNull(attestationConveyancePreference);
+            if (attestationConveyancePreference == null) {
+              throw new MissingRequiredPropertyException("GetRealmWebAuthnPasswordlessPolicy", "attestationConveyancePreference");
+            }
+            this.attestationConveyancePreference = attestationConveyancePreference;
             return this;
         }
         @CustomType.Setter
         public Builder authenticatorAttachment(String authenticatorAttachment) {
-            this.authenticatorAttachment = Objects.requireNonNull(authenticatorAttachment);
+            if (authenticatorAttachment == null) {
+              throw new MissingRequiredPropertyException("GetRealmWebAuthnPasswordlessPolicy", "authenticatorAttachment");
+            }
+            this.authenticatorAttachment = authenticatorAttachment;
             return this;
         }
         @CustomType.Setter
         public Builder avoidSameAuthenticatorRegister(Boolean avoidSameAuthenticatorRegister) {
-            this.avoidSameAuthenticatorRegister = Objects.requireNonNull(avoidSameAuthenticatorRegister);
+            if (avoidSameAuthenticatorRegister == null) {
+              throw new MissingRequiredPropertyException("GetRealmWebAuthnPasswordlessPolicy", "avoidSameAuthenticatorRegister");
+            }
+            this.avoidSameAuthenticatorRegister = avoidSameAuthenticatorRegister;
             return this;
         }
         @CustomType.Setter
         public Builder createTimeout(Integer createTimeout) {
-            this.createTimeout = Objects.requireNonNull(createTimeout);
+            if (createTimeout == null) {
+              throw new MissingRequiredPropertyException("GetRealmWebAuthnPasswordlessPolicy", "createTimeout");
+            }
+            this.createTimeout = createTimeout;
             return this;
         }
         @CustomType.Setter
         public Builder relyingPartyEntityName(String relyingPartyEntityName) {
-            this.relyingPartyEntityName = Objects.requireNonNull(relyingPartyEntityName);
+            if (relyingPartyEntityName == null) {
+              throw new MissingRequiredPropertyException("GetRealmWebAuthnPasswordlessPolicy", "relyingPartyEntityName");
+            }
+            this.relyingPartyEntityName = relyingPartyEntityName;
             return this;
         }
         @CustomType.Setter
         public Builder relyingPartyId(String relyingPartyId) {
-            this.relyingPartyId = Objects.requireNonNull(relyingPartyId);
+            if (relyingPartyId == null) {
+              throw new MissingRequiredPropertyException("GetRealmWebAuthnPasswordlessPolicy", "relyingPartyId");
+            }
+            this.relyingPartyId = relyingPartyId;
             return this;
         }
         @CustomType.Setter
         public Builder requireResidentKey(String requireResidentKey) {
-            this.requireResidentKey = Objects.requireNonNull(requireResidentKey);
+            if (requireResidentKey == null) {
+              throw new MissingRequiredPropertyException("GetRealmWebAuthnPasswordlessPolicy", "requireResidentKey");
+            }
+            this.requireResidentKey = requireResidentKey;
             return this;
         }
         @CustomType.Setter
         public Builder signatureAlgorithms(List<String> signatureAlgorithms) {
-            this.signatureAlgorithms = Objects.requireNonNull(signatureAlgorithms);
+            if (signatureAlgorithms == null) {
+              throw new MissingRequiredPropertyException("GetRealmWebAuthnPasswordlessPolicy", "signatureAlgorithms");
+            }
+            this.signatureAlgorithms = signatureAlgorithms;
             return this;
         }
         public Builder signatureAlgorithms(String... signatureAlgorithms) {
@@ -142,7 +170,10 @@ public final class GetRealmWebAuthnPasswordlessPolicy {
         }
         @CustomType.Setter
         public Builder userVerificationRequirement(String userVerificationRequirement) {
-            this.userVerificationRequirement = Objects.requireNonNull(userVerificationRequirement);
+            if (userVerificationRequirement == null) {
+              throw new MissingRequiredPropertyException("GetRealmWebAuthnPasswordlessPolicy", "userVerificationRequirement");
+            }
+            this.userVerificationRequirement = userVerificationRequirement;
             return this;
         }
         public GetRealmWebAuthnPasswordlessPolicy build() {

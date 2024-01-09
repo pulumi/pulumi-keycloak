@@ -59,6 +59,7 @@ import javax.annotation.Nullable;
  *             .priority(100)
  *             .algorithm(&#34;RS256&#34;)
  *             .keystoreSize(2048)
+ *             .providerId(&#34;rsa&#34;)
  *             .build());
  * 
  *     }
@@ -91,14 +92,14 @@ public class RealmKeystoreRsa extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.active);
     }
     /**
-     * Intended algorithm for the key. Defaults to `RS256`
+     * Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
      * 
      */
     @Export(name="algorithm", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> algorithm;
 
     /**
-     * @return Intended algorithm for the key. Defaults to `RS256`
+     * @return Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
      * 
      */
     public Output<Optional<String>> algorithm() {
@@ -173,6 +174,20 @@ public class RealmKeystoreRsa extends com.pulumi.resources.CustomResource {
      */
     public Output<String> privateKey() {
         return this.privateKey;
+    }
+    /**
+     * Use `rsa` for signing keys, `rsa-enc` for encryption keys
+     * 
+     */
+    @Export(name="providerId", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> providerId;
+
+    /**
+     * @return Use `rsa` for signing keys, `rsa-enc` for encryption keys
+     * 
+     */
+    public Output<Optional<String>> providerId() {
+        return Codegen.optional(this.providerId);
     }
     /**
      * The realm this keystore exists in.

@@ -4,6 +4,7 @@
 package com.pulumi.keycloak.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.keycloak.outputs.GetRealmSmtpServerAuth;
 import java.lang.Boolean;
 import java.lang.String;
@@ -91,7 +92,10 @@ public final class GetRealmSmtpServer {
 
         @CustomType.Setter
         public Builder auths(List<GetRealmSmtpServerAuth> auths) {
-            this.auths = Objects.requireNonNull(auths);
+            if (auths == null) {
+              throw new MissingRequiredPropertyException("GetRealmSmtpServer", "auths");
+            }
+            this.auths = auths;
             return this;
         }
         public Builder auths(GetRealmSmtpServerAuth... auths) {
@@ -99,47 +103,74 @@ public final class GetRealmSmtpServer {
         }
         @CustomType.Setter
         public Builder envelopeFrom(String envelopeFrom) {
-            this.envelopeFrom = Objects.requireNonNull(envelopeFrom);
+            if (envelopeFrom == null) {
+              throw new MissingRequiredPropertyException("GetRealmSmtpServer", "envelopeFrom");
+            }
+            this.envelopeFrom = envelopeFrom;
             return this;
         }
         @CustomType.Setter
         public Builder from(String from) {
-            this.from = Objects.requireNonNull(from);
+            if (from == null) {
+              throw new MissingRequiredPropertyException("GetRealmSmtpServer", "from");
+            }
+            this.from = from;
             return this;
         }
         @CustomType.Setter
         public Builder fromDisplayName(String fromDisplayName) {
-            this.fromDisplayName = Objects.requireNonNull(fromDisplayName);
+            if (fromDisplayName == null) {
+              throw new MissingRequiredPropertyException("GetRealmSmtpServer", "fromDisplayName");
+            }
+            this.fromDisplayName = fromDisplayName;
             return this;
         }
         @CustomType.Setter
         public Builder host(String host) {
-            this.host = Objects.requireNonNull(host);
+            if (host == null) {
+              throw new MissingRequiredPropertyException("GetRealmSmtpServer", "host");
+            }
+            this.host = host;
             return this;
         }
         @CustomType.Setter
         public Builder port(String port) {
-            this.port = Objects.requireNonNull(port);
+            if (port == null) {
+              throw new MissingRequiredPropertyException("GetRealmSmtpServer", "port");
+            }
+            this.port = port;
             return this;
         }
         @CustomType.Setter
         public Builder replyTo(String replyTo) {
-            this.replyTo = Objects.requireNonNull(replyTo);
+            if (replyTo == null) {
+              throw new MissingRequiredPropertyException("GetRealmSmtpServer", "replyTo");
+            }
+            this.replyTo = replyTo;
             return this;
         }
         @CustomType.Setter
         public Builder replyToDisplayName(String replyToDisplayName) {
-            this.replyToDisplayName = Objects.requireNonNull(replyToDisplayName);
+            if (replyToDisplayName == null) {
+              throw new MissingRequiredPropertyException("GetRealmSmtpServer", "replyToDisplayName");
+            }
+            this.replyToDisplayName = replyToDisplayName;
             return this;
         }
         @CustomType.Setter
         public Builder ssl(Boolean ssl) {
-            this.ssl = Objects.requireNonNull(ssl);
+            if (ssl == null) {
+              throw new MissingRequiredPropertyException("GetRealmSmtpServer", "ssl");
+            }
+            this.ssl = ssl;
             return this;
         }
         @CustomType.Setter
         public Builder starttls(Boolean starttls) {
-            this.starttls = Objects.requireNonNull(starttls);
+            if (starttls == null) {
+              throw new MissingRequiredPropertyException("GetRealmSmtpServer", "starttls");
+            }
+            this.starttls = starttls;
             return this;
         }
         public GetRealmSmtpServer build() {

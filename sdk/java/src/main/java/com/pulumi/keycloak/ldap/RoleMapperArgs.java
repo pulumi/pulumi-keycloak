@@ -5,6 +5,7 @@ package com.pulumi.keycloak.ldap;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -606,13 +607,27 @@ public final class RoleMapperArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public RoleMapperArgs build() {
-            $.ldapRolesDn = Objects.requireNonNull($.ldapRolesDn, "expected parameter 'ldapRolesDn' to be non-null");
-            $.ldapUserFederationId = Objects.requireNonNull($.ldapUserFederationId, "expected parameter 'ldapUserFederationId' to be non-null");
-            $.membershipLdapAttribute = Objects.requireNonNull($.membershipLdapAttribute, "expected parameter 'membershipLdapAttribute' to be non-null");
-            $.membershipUserLdapAttribute = Objects.requireNonNull($.membershipUserLdapAttribute, "expected parameter 'membershipUserLdapAttribute' to be non-null");
-            $.realmId = Objects.requireNonNull($.realmId, "expected parameter 'realmId' to be non-null");
-            $.roleNameLdapAttribute = Objects.requireNonNull($.roleNameLdapAttribute, "expected parameter 'roleNameLdapAttribute' to be non-null");
-            $.roleObjectClasses = Objects.requireNonNull($.roleObjectClasses, "expected parameter 'roleObjectClasses' to be non-null");
+            if ($.ldapRolesDn == null) {
+                throw new MissingRequiredPropertyException("RoleMapperArgs", "ldapRolesDn");
+            }
+            if ($.ldapUserFederationId == null) {
+                throw new MissingRequiredPropertyException("RoleMapperArgs", "ldapUserFederationId");
+            }
+            if ($.membershipLdapAttribute == null) {
+                throw new MissingRequiredPropertyException("RoleMapperArgs", "membershipLdapAttribute");
+            }
+            if ($.membershipUserLdapAttribute == null) {
+                throw new MissingRequiredPropertyException("RoleMapperArgs", "membershipUserLdapAttribute");
+            }
+            if ($.realmId == null) {
+                throw new MissingRequiredPropertyException("RoleMapperArgs", "realmId");
+            }
+            if ($.roleNameLdapAttribute == null) {
+                throw new MissingRequiredPropertyException("RoleMapperArgs", "roleNameLdapAttribute");
+            }
+            if ($.roleObjectClasses == null) {
+                throw new MissingRequiredPropertyException("RoleMapperArgs", "roleObjectClasses");
+            }
             return $;
         }
     }

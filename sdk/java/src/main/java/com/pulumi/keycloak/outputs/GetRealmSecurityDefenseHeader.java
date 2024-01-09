@@ -4,6 +4,7 @@
 package com.pulumi.keycloak.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -11,6 +12,7 @@ import java.util.Objects;
 public final class GetRealmSecurityDefenseHeader {
     private String contentSecurityPolicy;
     private String contentSecurityPolicyReportOnly;
+    private String referrerPolicy;
     private String strictTransportSecurity;
     private String xContentTypeOptions;
     private String xFrameOptions;
@@ -23,6 +25,9 @@ public final class GetRealmSecurityDefenseHeader {
     }
     public String contentSecurityPolicyReportOnly() {
         return this.contentSecurityPolicyReportOnly;
+    }
+    public String referrerPolicy() {
+        return this.referrerPolicy;
     }
     public String strictTransportSecurity() {
         return this.strictTransportSecurity;
@@ -51,6 +56,7 @@ public final class GetRealmSecurityDefenseHeader {
     public static final class Builder {
         private String contentSecurityPolicy;
         private String contentSecurityPolicyReportOnly;
+        private String referrerPolicy;
         private String strictTransportSecurity;
         private String xContentTypeOptions;
         private String xFrameOptions;
@@ -61,6 +67,7 @@ public final class GetRealmSecurityDefenseHeader {
     	      Objects.requireNonNull(defaults);
     	      this.contentSecurityPolicy = defaults.contentSecurityPolicy;
     	      this.contentSecurityPolicyReportOnly = defaults.contentSecurityPolicyReportOnly;
+    	      this.referrerPolicy = defaults.referrerPolicy;
     	      this.strictTransportSecurity = defaults.strictTransportSecurity;
     	      this.xContentTypeOptions = defaults.xContentTypeOptions;
     	      this.xFrameOptions = defaults.xFrameOptions;
@@ -70,43 +77,73 @@ public final class GetRealmSecurityDefenseHeader {
 
         @CustomType.Setter
         public Builder contentSecurityPolicy(String contentSecurityPolicy) {
-            this.contentSecurityPolicy = Objects.requireNonNull(contentSecurityPolicy);
+            if (contentSecurityPolicy == null) {
+              throw new MissingRequiredPropertyException("GetRealmSecurityDefenseHeader", "contentSecurityPolicy");
+            }
+            this.contentSecurityPolicy = contentSecurityPolicy;
             return this;
         }
         @CustomType.Setter
         public Builder contentSecurityPolicyReportOnly(String contentSecurityPolicyReportOnly) {
-            this.contentSecurityPolicyReportOnly = Objects.requireNonNull(contentSecurityPolicyReportOnly);
+            if (contentSecurityPolicyReportOnly == null) {
+              throw new MissingRequiredPropertyException("GetRealmSecurityDefenseHeader", "contentSecurityPolicyReportOnly");
+            }
+            this.contentSecurityPolicyReportOnly = contentSecurityPolicyReportOnly;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder referrerPolicy(String referrerPolicy) {
+            if (referrerPolicy == null) {
+              throw new MissingRequiredPropertyException("GetRealmSecurityDefenseHeader", "referrerPolicy");
+            }
+            this.referrerPolicy = referrerPolicy;
             return this;
         }
         @CustomType.Setter
         public Builder strictTransportSecurity(String strictTransportSecurity) {
-            this.strictTransportSecurity = Objects.requireNonNull(strictTransportSecurity);
+            if (strictTransportSecurity == null) {
+              throw new MissingRequiredPropertyException("GetRealmSecurityDefenseHeader", "strictTransportSecurity");
+            }
+            this.strictTransportSecurity = strictTransportSecurity;
             return this;
         }
         @CustomType.Setter
         public Builder xContentTypeOptions(String xContentTypeOptions) {
-            this.xContentTypeOptions = Objects.requireNonNull(xContentTypeOptions);
+            if (xContentTypeOptions == null) {
+              throw new MissingRequiredPropertyException("GetRealmSecurityDefenseHeader", "xContentTypeOptions");
+            }
+            this.xContentTypeOptions = xContentTypeOptions;
             return this;
         }
         @CustomType.Setter
         public Builder xFrameOptions(String xFrameOptions) {
-            this.xFrameOptions = Objects.requireNonNull(xFrameOptions);
+            if (xFrameOptions == null) {
+              throw new MissingRequiredPropertyException("GetRealmSecurityDefenseHeader", "xFrameOptions");
+            }
+            this.xFrameOptions = xFrameOptions;
             return this;
         }
         @CustomType.Setter
         public Builder xRobotsTag(String xRobotsTag) {
-            this.xRobotsTag = Objects.requireNonNull(xRobotsTag);
+            if (xRobotsTag == null) {
+              throw new MissingRequiredPropertyException("GetRealmSecurityDefenseHeader", "xRobotsTag");
+            }
+            this.xRobotsTag = xRobotsTag;
             return this;
         }
         @CustomType.Setter
         public Builder xXssProtection(String xXssProtection) {
-            this.xXssProtection = Objects.requireNonNull(xXssProtection);
+            if (xXssProtection == null) {
+              throw new MissingRequiredPropertyException("GetRealmSecurityDefenseHeader", "xXssProtection");
+            }
+            this.xXssProtection = xXssProtection;
             return this;
         }
         public GetRealmSecurityDefenseHeader build() {
             final var _resultValue = new GetRealmSecurityDefenseHeader();
             _resultValue.contentSecurityPolicy = contentSecurityPolicy;
             _resultValue.contentSecurityPolicyReportOnly = contentSecurityPolicyReportOnly;
+            _resultValue.referrerPolicy = referrerPolicy;
             _resultValue.strictTransportSecurity = strictTransportSecurity;
             _resultValue.xContentTypeOptions = xContentTypeOptions;
             _resultValue.xFrameOptions = xFrameOptions;

@@ -123,36 +123,43 @@ public final class RealmSecurityDefensesBruteForceDetection {
 
         @CustomType.Setter
         public Builder failureResetTimeSeconds(@Nullable Integer failureResetTimeSeconds) {
+
             this.failureResetTimeSeconds = failureResetTimeSeconds;
             return this;
         }
         @CustomType.Setter
         public Builder maxFailureWaitSeconds(@Nullable Integer maxFailureWaitSeconds) {
+
             this.maxFailureWaitSeconds = maxFailureWaitSeconds;
             return this;
         }
         @CustomType.Setter
         public Builder maxLoginFailures(@Nullable Integer maxLoginFailures) {
+
             this.maxLoginFailures = maxLoginFailures;
             return this;
         }
         @CustomType.Setter
         public Builder minimumQuickLoginWaitSeconds(@Nullable Integer minimumQuickLoginWaitSeconds) {
+
             this.minimumQuickLoginWaitSeconds = minimumQuickLoginWaitSeconds;
             return this;
         }
         @CustomType.Setter
         public Builder permanentLockout(@Nullable Boolean permanentLockout) {
+
             this.permanentLockout = permanentLockout;
             return this;
         }
         @CustomType.Setter
         public Builder quickLoginCheckMilliSeconds(@Nullable Integer quickLoginCheckMilliSeconds) {
+
             this.quickLoginCheckMilliSeconds = quickLoginCheckMilliSeconds;
             return this;
         }
         @CustomType.Setter
         public Builder waitIncrementSeconds(@Nullable Integer waitIncrementSeconds) {
+
             this.waitIncrementSeconds = waitIncrementSeconds;
             return this;
         }

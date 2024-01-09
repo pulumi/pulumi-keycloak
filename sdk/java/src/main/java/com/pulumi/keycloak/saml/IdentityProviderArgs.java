@@ -5,6 +5,7 @@ package com.pulumi.keycloak.saml;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Object;
 import java.lang.String;
@@ -1412,10 +1413,18 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         public IdentityProviderArgs build() {
-            $.alias = Objects.requireNonNull($.alias, "expected parameter 'alias' to be non-null");
-            $.entityId = Objects.requireNonNull($.entityId, "expected parameter 'entityId' to be non-null");
-            $.realm = Objects.requireNonNull($.realm, "expected parameter 'realm' to be non-null");
-            $.singleSignOnServiceUrl = Objects.requireNonNull($.singleSignOnServiceUrl, "expected parameter 'singleSignOnServiceUrl' to be non-null");
+            if ($.alias == null) {
+                throw new MissingRequiredPropertyException("IdentityProviderArgs", "alias");
+            }
+            if ($.entityId == null) {
+                throw new MissingRequiredPropertyException("IdentityProviderArgs", "entityId");
+            }
+            if ($.realm == null) {
+                throw new MissingRequiredPropertyException("IdentityProviderArgs", "realm");
+            }
+            if ($.singleSignOnServiceUrl == null) {
+                throw new MissingRequiredPropertyException("IdentityProviderArgs", "singleSignOnServiceUrl");
+            }
             return $;
         }
     }

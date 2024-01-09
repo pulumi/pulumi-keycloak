@@ -4,6 +4,7 @@
 package com.pulumi.keycloak.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.keycloak.outputs.RealmSmtpServerAuth;
 import java.lang.Boolean;
 import java.lang.String;
@@ -172,51 +173,65 @@ public final class RealmSmtpServer {
 
         @CustomType.Setter
         public Builder auth(@Nullable RealmSmtpServerAuth auth) {
+
             this.auth = auth;
             return this;
         }
         @CustomType.Setter
         public Builder envelopeFrom(@Nullable String envelopeFrom) {
+
             this.envelopeFrom = envelopeFrom;
             return this;
         }
         @CustomType.Setter
         public Builder from(String from) {
-            this.from = Objects.requireNonNull(from);
+            if (from == null) {
+              throw new MissingRequiredPropertyException("RealmSmtpServer", "from");
+            }
+            this.from = from;
             return this;
         }
         @CustomType.Setter
         public Builder fromDisplayName(@Nullable String fromDisplayName) {
+
             this.fromDisplayName = fromDisplayName;
             return this;
         }
         @CustomType.Setter
         public Builder host(String host) {
-            this.host = Objects.requireNonNull(host);
+            if (host == null) {
+              throw new MissingRequiredPropertyException("RealmSmtpServer", "host");
+            }
+            this.host = host;
             return this;
         }
         @CustomType.Setter
         public Builder port(@Nullable String port) {
+
             this.port = port;
             return this;
         }
         @CustomType.Setter
         public Builder replyTo(@Nullable String replyTo) {
+
             this.replyTo = replyTo;
             return this;
         }
         @CustomType.Setter
         public Builder replyToDisplayName(@Nullable String replyToDisplayName) {
+
             this.replyToDisplayName = replyToDisplayName;
             return this;
         }
         @CustomType.Setter
         public Builder ssl(@Nullable Boolean ssl) {
+
             this.ssl = ssl;
             return this;
         }
         @CustomType.Setter
         public Builder starttls(@Nullable Boolean starttls) {
+
             this.starttls = starttls;
             return this;
         }

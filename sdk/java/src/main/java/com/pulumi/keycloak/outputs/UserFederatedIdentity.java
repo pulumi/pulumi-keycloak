@@ -4,6 +4,7 @@
 package com.pulumi.keycloak.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -70,17 +71,26 @@ public final class UserFederatedIdentity {
 
         @CustomType.Setter
         public Builder identityProvider(String identityProvider) {
-            this.identityProvider = Objects.requireNonNull(identityProvider);
+            if (identityProvider == null) {
+              throw new MissingRequiredPropertyException("UserFederatedIdentity", "identityProvider");
+            }
+            this.identityProvider = identityProvider;
             return this;
         }
         @CustomType.Setter
         public Builder userId(String userId) {
-            this.userId = Objects.requireNonNull(userId);
+            if (userId == null) {
+              throw new MissingRequiredPropertyException("UserFederatedIdentity", "userId");
+            }
+            this.userId = userId;
             return this;
         }
         @CustomType.Setter
         public Builder userName(String userName) {
-            this.userName = Objects.requireNonNull(userName);
+            if (userName == null) {
+              throw new MissingRequiredPropertyException("UserFederatedIdentity", "userName");
+            }
+            this.userName = userName;
             return this;
         }
         public UserFederatedIdentity build() {

@@ -5,6 +5,7 @@ package com.pulumi.keycloak.authentication;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -298,7 +299,9 @@ public final class BindingsArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public BindingsArgs build() {
-            $.realmId = Objects.requireNonNull($.realmId, "expected parameter 'realmId' to be non-null");
+            if ($.realmId == null) {
+                throw new MissingRequiredPropertyException("BindingsArgs", "realmId");
+            }
             return $;
         }
     }

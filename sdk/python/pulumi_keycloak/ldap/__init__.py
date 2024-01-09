@@ -5,6 +5,7 @@
 from .. import _utilities
 import typing
 # Export this package's modules as members:
+from .custom_mapper import *
 from .full_name_mapper import *
 from .group_mapper import *
 from .hardcoded_attribute_mapper import *
