@@ -5,6 +5,7 @@ package com.pulumi.keycloak.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -111,8 +112,12 @@ public final class GetUserArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         public GetUserArgs build() {
-            $.realmId = Objects.requireNonNull($.realmId, "expected parameter 'realmId' to be non-null");
-            $.username = Objects.requireNonNull($.username, "expected parameter 'username' to be non-null");
+            if ($.realmId == null) {
+                throw new MissingRequiredPropertyException("GetUserArgs", "realmId");
+            }
+            if ($.username == null) {
+                throw new MissingRequiredPropertyException("GetUserArgs", "username");
+            }
             return $;
         }
     }

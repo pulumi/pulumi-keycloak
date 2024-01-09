@@ -4,6 +4,7 @@
 package com.pulumi.keycloak.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
@@ -74,32 +75,50 @@ public final class GetGroupResult {
 
         @CustomType.Setter
         public Builder attributes(Map<String,Object> attributes) {
-            this.attributes = Objects.requireNonNull(attributes);
+            if (attributes == null) {
+              throw new MissingRequiredPropertyException("GetGroupResult", "attributes");
+            }
+            this.attributes = attributes;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetGroupResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("GetGroupResult", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder parentId(String parentId) {
-            this.parentId = Objects.requireNonNull(parentId);
+            if (parentId == null) {
+              throw new MissingRequiredPropertyException("GetGroupResult", "parentId");
+            }
+            this.parentId = parentId;
             return this;
         }
         @CustomType.Setter
         public Builder path(String path) {
-            this.path = Objects.requireNonNull(path);
+            if (path == null) {
+              throw new MissingRequiredPropertyException("GetGroupResult", "path");
+            }
+            this.path = path;
             return this;
         }
         @CustomType.Setter
         public Builder realmId(String realmId) {
-            this.realmId = Objects.requireNonNull(realmId);
+            if (realmId == null) {
+              throw new MissingRequiredPropertyException("GetGroupResult", "realmId");
+            }
+            this.realmId = realmId;
             return this;
         }
         public GetGroupResult build() {

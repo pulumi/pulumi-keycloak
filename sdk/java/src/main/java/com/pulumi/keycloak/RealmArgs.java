@@ -5,6 +5,7 @@ package com.pulumi.keycloak;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.keycloak.inputs.RealmInternationalizationArgs;
 import com.pulumi.keycloak.inputs.RealmOtpPolicyArgs;
 import com.pulumi.keycloak.inputs.RealmSecurityDefensesArgs;
@@ -2042,7 +2043,9 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public RealmArgs build() {
-            $.realm = Objects.requireNonNull($.realm, "expected parameter 'realm' to be non-null");
+            if ($.realm == null) {
+                throw new MissingRequiredPropertyException("RealmArgs", "realm");
+            }
             return $;
         }
     }

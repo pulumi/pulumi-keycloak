@@ -49,16 +49,19 @@ public final class UsersPermissionsUserImpersonatedScope {
 
         @CustomType.Setter
         public Builder decisionStrategy(@Nullable String decisionStrategy) {
+
             this.decisionStrategy = decisionStrategy;
             return this;
         }
         @CustomType.Setter
         public Builder description(@Nullable String description) {
+
             this.description = description;
             return this;
         }
         @CustomType.Setter
         public Builder policies(@Nullable List<String> policies) {
+
             this.policies = policies;
             return this;
         }

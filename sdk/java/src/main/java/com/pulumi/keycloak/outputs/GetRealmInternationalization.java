@@ -4,6 +4,7 @@
 package com.pulumi.keycloak.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -41,12 +42,18 @@ public final class GetRealmInternationalization {
 
         @CustomType.Setter
         public Builder defaultLocale(String defaultLocale) {
-            this.defaultLocale = Objects.requireNonNull(defaultLocale);
+            if (defaultLocale == null) {
+              throw new MissingRequiredPropertyException("GetRealmInternationalization", "defaultLocale");
+            }
+            this.defaultLocale = defaultLocale;
             return this;
         }
         @CustomType.Setter
         public Builder supportedLocales(List<String> supportedLocales) {
-            this.supportedLocales = Objects.requireNonNull(supportedLocales);
+            if (supportedLocales == null) {
+              throw new MissingRequiredPropertyException("GetRealmInternationalization", "supportedLocales");
+            }
+            this.supportedLocales = supportedLocales;
             return this;
         }
         public Builder supportedLocales(String... supportedLocales) {

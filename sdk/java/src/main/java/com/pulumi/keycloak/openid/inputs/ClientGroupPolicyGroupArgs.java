@@ -5,6 +5,7 @@ package com.pulumi.keycloak.openid.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -89,9 +90,15 @@ public final class ClientGroupPolicyGroupArgs extends com.pulumi.resources.Resou
         }
 
         public ClientGroupPolicyGroupArgs build() {
-            $.extendChildren = Objects.requireNonNull($.extendChildren, "expected parameter 'extendChildren' to be non-null");
-            $.id = Objects.requireNonNull($.id, "expected parameter 'id' to be non-null");
-            $.path = Objects.requireNonNull($.path, "expected parameter 'path' to be non-null");
+            if ($.extendChildren == null) {
+                throw new MissingRequiredPropertyException("ClientGroupPolicyGroupArgs", "extendChildren");
+            }
+            if ($.id == null) {
+                throw new MissingRequiredPropertyException("ClientGroupPolicyGroupArgs", "id");
+            }
+            if ($.path == null) {
+                throw new MissingRequiredPropertyException("ClientGroupPolicyGroupArgs", "path");
+            }
             return $;
         }
     }

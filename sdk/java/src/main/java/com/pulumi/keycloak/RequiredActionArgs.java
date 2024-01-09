@@ -5,6 +5,7 @@ package com.pulumi.keycloak;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -263,8 +264,12 @@ public final class RequiredActionArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         public RequiredActionArgs build() {
-            $.alias = Objects.requireNonNull($.alias, "expected parameter 'alias' to be non-null");
-            $.realmId = Objects.requireNonNull($.realmId, "expected parameter 'realmId' to be non-null");
+            if ($.alias == null) {
+                throw new MissingRequiredPropertyException("RequiredActionArgs", "alias");
+            }
+            if ($.realmId == null) {
+                throw new MissingRequiredPropertyException("RequiredActionArgs", "realmId");
+            }
             return $;
         }
     }

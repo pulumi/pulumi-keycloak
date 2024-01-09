@@ -4,6 +4,7 @@
 package com.pulumi.keycloak.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -87,22 +88,28 @@ public final class RealmUserProfileGroup {
 
         @CustomType.Setter
         public Builder annotations(@Nullable Map<String,String> annotations) {
+
             this.annotations = annotations;
             return this;
         }
         @CustomType.Setter
         public Builder displayDescription(@Nullable String displayDescription) {
+
             this.displayDescription = displayDescription;
             return this;
         }
         @CustomType.Setter
         public Builder displayHeader(@Nullable String displayHeader) {
+
             this.displayHeader = displayHeader;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("RealmUserProfileGroup", "name");
+            }
+            this.name = name;
             return this;
         }
         public RealmUserProfileGroup build() {

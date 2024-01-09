@@ -5,6 +5,7 @@ package com.pulumi.keycloak.openid;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -410,9 +411,15 @@ public final class HardcodedClaimProtocolMapperArgs extends com.pulumi.resources
         }
 
         public HardcodedClaimProtocolMapperArgs build() {
-            $.claimName = Objects.requireNonNull($.claimName, "expected parameter 'claimName' to be non-null");
-            $.claimValue = Objects.requireNonNull($.claimValue, "expected parameter 'claimValue' to be non-null");
-            $.realmId = Objects.requireNonNull($.realmId, "expected parameter 'realmId' to be non-null");
+            if ($.claimName == null) {
+                throw new MissingRequiredPropertyException("HardcodedClaimProtocolMapperArgs", "claimName");
+            }
+            if ($.claimValue == null) {
+                throw new MissingRequiredPropertyException("HardcodedClaimProtocolMapperArgs", "claimValue");
+            }
+            if ($.realmId == null) {
+                throw new MissingRequiredPropertyException("HardcodedClaimProtocolMapperArgs", "realmId");
+            }
             return $;
         }
     }

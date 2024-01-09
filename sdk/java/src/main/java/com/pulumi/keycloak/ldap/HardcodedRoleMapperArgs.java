@@ -5,6 +5,7 @@ package com.pulumi.keycloak.ldap;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -187,9 +188,15 @@ public final class HardcodedRoleMapperArgs extends com.pulumi.resources.Resource
         }
 
         public HardcodedRoleMapperArgs build() {
-            $.ldapUserFederationId = Objects.requireNonNull($.ldapUserFederationId, "expected parameter 'ldapUserFederationId' to be non-null");
-            $.realmId = Objects.requireNonNull($.realmId, "expected parameter 'realmId' to be non-null");
-            $.role = Objects.requireNonNull($.role, "expected parameter 'role' to be non-null");
+            if ($.ldapUserFederationId == null) {
+                throw new MissingRequiredPropertyException("HardcodedRoleMapperArgs", "ldapUserFederationId");
+            }
+            if ($.realmId == null) {
+                throw new MissingRequiredPropertyException("HardcodedRoleMapperArgs", "realmId");
+            }
+            if ($.role == null) {
+                throw new MissingRequiredPropertyException("HardcodedRoleMapperArgs", "role");
+            }
             return $;
         }
     }

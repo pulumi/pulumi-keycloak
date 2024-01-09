@@ -1620,6 +1620,8 @@ type RealmSecurityDefensesHeaders struct {
 	ContentSecurityPolicy *string `pulumi:"contentSecurityPolicy"`
 	// Used for testing Content Security Policies.
 	ContentSecurityPolicyReportOnly *string `pulumi:"contentSecurityPolicyReportOnly"`
+	// The Referrer-Policy HTTP header controls how much referrer information (sent with the Referer header) should be included with requests.
+	ReferrerPolicy *string `pulumi:"referrerPolicy"`
 	// The Script-Transport-Security HTTP header tells browsers to always use HTTPS.
 	StrictTransportSecurity *string `pulumi:"strictTransportSecurity"`
 	// Sets the X-Content-Type-Options, which can be used for prevent MIME-sniffing a response away from the declared content-type
@@ -1648,6 +1650,8 @@ type RealmSecurityDefensesHeadersArgs struct {
 	ContentSecurityPolicy pulumi.StringPtrInput `pulumi:"contentSecurityPolicy"`
 	// Used for testing Content Security Policies.
 	ContentSecurityPolicyReportOnly pulumi.StringPtrInput `pulumi:"contentSecurityPolicyReportOnly"`
+	// The Referrer-Policy HTTP header controls how much referrer information (sent with the Referer header) should be included with requests.
+	ReferrerPolicy pulumi.StringPtrInput `pulumi:"referrerPolicy"`
 	// The Script-Transport-Security HTTP header tells browsers to always use HTTPS.
 	StrictTransportSecurity pulumi.StringPtrInput `pulumi:"strictTransportSecurity"`
 	// Sets the X-Content-Type-Options, which can be used for prevent MIME-sniffing a response away from the declared content-type
@@ -1747,6 +1751,11 @@ func (o RealmSecurityDefensesHeadersOutput) ContentSecurityPolicyReportOnly() pu
 	return o.ApplyT(func(v RealmSecurityDefensesHeaders) *string { return v.ContentSecurityPolicyReportOnly }).(pulumi.StringPtrOutput)
 }
 
+// The Referrer-Policy HTTP header controls how much referrer information (sent with the Referer header) should be included with requests.
+func (o RealmSecurityDefensesHeadersOutput) ReferrerPolicy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RealmSecurityDefensesHeaders) *string { return v.ReferrerPolicy }).(pulumi.StringPtrOutput)
+}
+
 // The Script-Transport-Security HTTP header tells browsers to always use HTTPS.
 func (o RealmSecurityDefensesHeadersOutput) StrictTransportSecurity() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RealmSecurityDefensesHeaders) *string { return v.StrictTransportSecurity }).(pulumi.StringPtrOutput)
@@ -1813,6 +1822,16 @@ func (o RealmSecurityDefensesHeadersPtrOutput) ContentSecurityPolicyReportOnly()
 			return nil
 		}
 		return v.ContentSecurityPolicyReportOnly
+	}).(pulumi.StringPtrOutput)
+}
+
+// The Referrer-Policy HTTP header controls how much referrer information (sent with the Referer header) should be included with requests.
+func (o RealmSecurityDefensesHeadersPtrOutput) ReferrerPolicy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RealmSecurityDefensesHeaders) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ReferrerPolicy
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -5571,6 +5590,7 @@ func (o GetRealmSecurityDefenseBruteForceDetectionArrayOutput) Index(i pulumi.In
 type GetRealmSecurityDefenseHeader struct {
 	ContentSecurityPolicy           string `pulumi:"contentSecurityPolicy"`
 	ContentSecurityPolicyReportOnly string `pulumi:"contentSecurityPolicyReportOnly"`
+	ReferrerPolicy                  string `pulumi:"referrerPolicy"`
 	StrictTransportSecurity         string `pulumi:"strictTransportSecurity"`
 	XContentTypeOptions             string `pulumi:"xContentTypeOptions"`
 	XFrameOptions                   string `pulumi:"xFrameOptions"`
@@ -5592,6 +5612,7 @@ type GetRealmSecurityDefenseHeaderInput interface {
 type GetRealmSecurityDefenseHeaderArgs struct {
 	ContentSecurityPolicy           pulumi.StringInput `pulumi:"contentSecurityPolicy"`
 	ContentSecurityPolicyReportOnly pulumi.StringInput `pulumi:"contentSecurityPolicyReportOnly"`
+	ReferrerPolicy                  pulumi.StringInput `pulumi:"referrerPolicy"`
 	StrictTransportSecurity         pulumi.StringInput `pulumi:"strictTransportSecurity"`
 	XContentTypeOptions             pulumi.StringInput `pulumi:"xContentTypeOptions"`
 	XFrameOptions                   pulumi.StringInput `pulumi:"xFrameOptions"`
@@ -5656,6 +5677,10 @@ func (o GetRealmSecurityDefenseHeaderOutput) ContentSecurityPolicy() pulumi.Stri
 
 func (o GetRealmSecurityDefenseHeaderOutput) ContentSecurityPolicyReportOnly() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRealmSecurityDefenseHeader) string { return v.ContentSecurityPolicyReportOnly }).(pulumi.StringOutput)
+}
+
+func (o GetRealmSecurityDefenseHeaderOutput) ReferrerPolicy() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRealmSecurityDefenseHeader) string { return v.ReferrerPolicy }).(pulumi.StringOutput)
 }
 
 func (o GetRealmSecurityDefenseHeaderOutput) StrictTransportSecurity() pulumi.StringOutput {

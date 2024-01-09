@@ -4,6 +4,7 @@
 package com.pulumi.keycloak.inputs;
 
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -119,8 +120,12 @@ public final class GetRolePlainArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         public GetRolePlainArgs build() {
-            $.name = Objects.requireNonNull($.name, "expected parameter 'name' to be non-null");
-            $.realmId = Objects.requireNonNull($.realmId, "expected parameter 'realmId' to be non-null");
+            if ($.name == null) {
+                throw new MissingRequiredPropertyException("GetRolePlainArgs", "name");
+            }
+            if ($.realmId == null) {
+                throw new MissingRequiredPropertyException("GetRolePlainArgs", "realmId");
+            }
             return $;
         }
     }

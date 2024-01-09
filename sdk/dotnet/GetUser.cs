@@ -166,6 +166,7 @@ namespace Pulumi.Keycloak
         /// </summary>
         public readonly string LastName;
         public readonly string RealmId;
+        public readonly ImmutableArray<string> RequiredActions;
         public readonly string Username;
 
         [OutputConstructor]
@@ -188,6 +189,8 @@ namespace Pulumi.Keycloak
 
             string realmId,
 
+            ImmutableArray<string> requiredActions,
+
             string username)
         {
             Attributes = attributes;
@@ -199,6 +202,7 @@ namespace Pulumi.Keycloak
             Id = id;
             LastName = lastName;
             RealmId = realmId;
+            RequiredActions = requiredActions;
             Username = username;
         }
     }

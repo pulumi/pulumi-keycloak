@@ -119,7 +119,7 @@ namespace Pulumi.Keycloak.OpenId
         public Output<string> BaseUrl { get; private set; } = null!;
 
         /// <summary>
-        /// Defaults to `client-secret` The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:
+        /// Defaults to `client-secret`. The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. A default Keycloak installation will have the following available types:
         /// - `client-secret` (Default) Use client id and client secret to authenticate client.
         /// - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
         /// - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extra_config` with `attributes.x509.subjectdn = &lt;subjectDn&gt;`
@@ -448,7 +448,7 @@ namespace Pulumi.Keycloak.OpenId
         public Input<string>? BaseUrl { get; set; }
 
         /// <summary>
-        /// Defaults to `client-secret` The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:
+        /// Defaults to `client-secret`. The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. A default Keycloak installation will have the following available types:
         /// - `client-secret` (Default) Use client id and client secret to authenticate client.
         /// - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
         /// - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extra_config` with `attributes.x509.subjectdn = &lt;subjectDn&gt;`
@@ -756,7 +756,7 @@ namespace Pulumi.Keycloak.OpenId
         public Input<string>? BaseUrl { get; set; }
 
         /// <summary>
-        /// Defaults to `client-secret` The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:
+        /// Defaults to `client-secret`. The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. A default Keycloak installation will have the following available types:
         /// - `client-secret` (Default) Use client id and client secret to authenticate client.
         /// - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
         /// - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extra_config` with `attributes.x509.subjectdn = &lt;subjectDn&gt;`

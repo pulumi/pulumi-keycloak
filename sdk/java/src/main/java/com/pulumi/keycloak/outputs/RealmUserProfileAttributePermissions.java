@@ -4,6 +4,7 @@
 package com.pulumi.keycloak.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -57,7 +58,10 @@ public final class RealmUserProfileAttributePermissions {
 
         @CustomType.Setter
         public Builder edits(List<String> edits) {
-            this.edits = Objects.requireNonNull(edits);
+            if (edits == null) {
+              throw new MissingRequiredPropertyException("RealmUserProfileAttributePermissions", "edits");
+            }
+            this.edits = edits;
             return this;
         }
         public Builder edits(String... edits) {
@@ -65,7 +69,10 @@ public final class RealmUserProfileAttributePermissions {
         }
         @CustomType.Setter
         public Builder views(List<String> views) {
-            this.views = Objects.requireNonNull(views);
+            if (views == null) {
+              throw new MissingRequiredPropertyException("RealmUserProfileAttributePermissions", "views");
+            }
+            this.views = views;
             return this;
         }
         public Builder views(String... views) {

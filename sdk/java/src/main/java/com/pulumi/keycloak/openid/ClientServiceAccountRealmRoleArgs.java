@@ -5,6 +5,7 @@ package com.pulumi.keycloak.openid;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -148,9 +149,15 @@ public final class ClientServiceAccountRealmRoleArgs extends com.pulumi.resource
         }
 
         public ClientServiceAccountRealmRoleArgs build() {
-            $.realmId = Objects.requireNonNull($.realmId, "expected parameter 'realmId' to be non-null");
-            $.role = Objects.requireNonNull($.role, "expected parameter 'role' to be non-null");
-            $.serviceAccountUserId = Objects.requireNonNull($.serviceAccountUserId, "expected parameter 'serviceAccountUserId' to be non-null");
+            if ($.realmId == null) {
+                throw new MissingRequiredPropertyException("ClientServiceAccountRealmRoleArgs", "realmId");
+            }
+            if ($.role == null) {
+                throw new MissingRequiredPropertyException("ClientServiceAccountRealmRoleArgs", "role");
+            }
+            if ($.serviceAccountUserId == null) {
+                throw new MissingRequiredPropertyException("ClientServiceAccountRealmRoleArgs", "serviceAccountUserId");
+            }
             return $;
         }
     }

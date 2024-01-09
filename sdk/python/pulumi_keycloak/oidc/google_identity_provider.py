@@ -824,7 +824,11 @@ class GoogleIdentityProvider(pulumi.CustomResource):
 
         ## Import
 
-        This resource does not yet support importing.
+        Google Identity providers can be imported using the format {{realm_id}}/{{idp_alias}}, where idp_alias is the identity provider alias. Examplebash
+
+        ```sh
+         $ pulumi import keycloak:oidc/googleIdentityProvider:GoogleIdentityProvider google_identity_provider my-realm/my-google-idp
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -884,7 +888,11 @@ class GoogleIdentityProvider(pulumi.CustomResource):
 
         ## Import
 
-        This resource does not yet support importing.
+        Google Identity providers can be imported using the format {{realm_id}}/{{idp_alias}}, where idp_alias is the identity provider alias. Examplebash
+
+        ```sh
+         $ pulumi import keycloak:oidc/googleIdentityProvider:GoogleIdentityProvider google_identity_provider my-realm/my-google-idp
+        ```
 
         :param str resource_name: The name of the resource.
         :param GoogleIdentityProviderArgs args: The arguments to use to populate this resource's properties.

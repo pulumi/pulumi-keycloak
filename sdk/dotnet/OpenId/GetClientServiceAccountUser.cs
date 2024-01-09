@@ -198,6 +198,7 @@ namespace Pulumi.Keycloak.OpenId
         public readonly string Id;
         public readonly string LastName;
         public readonly string RealmId;
+        public readonly ImmutableArray<string> RequiredActions;
         public readonly string Username;
 
         [OutputConstructor]
@@ -222,6 +223,8 @@ namespace Pulumi.Keycloak.OpenId
 
             string realmId,
 
+            ImmutableArray<string> requiredActions,
+
             string username)
         {
             Attributes = attributes;
@@ -234,6 +237,7 @@ namespace Pulumi.Keycloak.OpenId
             Id = id;
             LastName = lastName;
             RealmId = realmId;
+            RequiredActions = requiredActions;
             Username = username;
         }
     }

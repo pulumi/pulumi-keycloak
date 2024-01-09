@@ -5,6 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export { CustomMapperArgs, CustomMapperState } from "./customMapper";
+export type CustomMapper = import("./customMapper").CustomMapper;
+export const CustomMapper: typeof import("./customMapper").CustomMapper = null as any;
+utilities.lazyLoad(exports, ["CustomMapper"], () => require("./customMapper"));
+
 export { FullNameMapperArgs, FullNameMapperState } from "./fullNameMapper";
 export type FullNameMapper = import("./fullNameMapper").FullNameMapper;
 export const FullNameMapper: typeof import("./fullNameMapper").FullNameMapper = null as any;
@@ -60,6 +65,8 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "keycloak:ldap/customMapper:CustomMapper":
+                return new CustomMapper(name, <any>undefined, { urn })
             case "keycloak:ldap/fullNameMapper:FullNameMapper":
                 return new FullNameMapper(name, <any>undefined, { urn })
             case "keycloak:ldap/groupMapper:GroupMapper":
@@ -85,6 +92,7 @@ const _module = {
         }
     },
 };
+pulumi.runtime.registerResourceModule("keycloak", "ldap/customMapper", _module)
 pulumi.runtime.registerResourceModule("keycloak", "ldap/fullNameMapper", _module)
 pulumi.runtime.registerResourceModule("keycloak", "ldap/groupMapper", _module)
 pulumi.runtime.registerResourceModule("keycloak", "ldap/hardcodedAttributeMapper", _module)

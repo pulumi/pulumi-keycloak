@@ -4,6 +4,7 @@
 package com.pulumi.keycloak.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.keycloak.outputs.GetRealmInternationalization;
 import com.pulumi.keycloak.outputs.GetRealmOtpPolicy;
 import com.pulumi.keycloak.outputs.GetRealmSecurityDefense;
@@ -391,77 +392,122 @@ public final class GetRealmResult {
 
         @CustomType.Setter
         public Builder accessCodeLifespan(String accessCodeLifespan) {
-            this.accessCodeLifespan = Objects.requireNonNull(accessCodeLifespan);
+            if (accessCodeLifespan == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "accessCodeLifespan");
+            }
+            this.accessCodeLifespan = accessCodeLifespan;
             return this;
         }
         @CustomType.Setter
         public Builder accessCodeLifespanLogin(String accessCodeLifespanLogin) {
-            this.accessCodeLifespanLogin = Objects.requireNonNull(accessCodeLifespanLogin);
+            if (accessCodeLifespanLogin == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "accessCodeLifespanLogin");
+            }
+            this.accessCodeLifespanLogin = accessCodeLifespanLogin;
             return this;
         }
         @CustomType.Setter
         public Builder accessCodeLifespanUserAction(String accessCodeLifespanUserAction) {
-            this.accessCodeLifespanUserAction = Objects.requireNonNull(accessCodeLifespanUserAction);
+            if (accessCodeLifespanUserAction == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "accessCodeLifespanUserAction");
+            }
+            this.accessCodeLifespanUserAction = accessCodeLifespanUserAction;
             return this;
         }
         @CustomType.Setter
         public Builder accessTokenLifespan(String accessTokenLifespan) {
-            this.accessTokenLifespan = Objects.requireNonNull(accessTokenLifespan);
+            if (accessTokenLifespan == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "accessTokenLifespan");
+            }
+            this.accessTokenLifespan = accessTokenLifespan;
             return this;
         }
         @CustomType.Setter
         public Builder accessTokenLifespanForImplicitFlow(String accessTokenLifespanForImplicitFlow) {
-            this.accessTokenLifespanForImplicitFlow = Objects.requireNonNull(accessTokenLifespanForImplicitFlow);
+            if (accessTokenLifespanForImplicitFlow == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "accessTokenLifespanForImplicitFlow");
+            }
+            this.accessTokenLifespanForImplicitFlow = accessTokenLifespanForImplicitFlow;
             return this;
         }
         @CustomType.Setter
         public Builder accountTheme(String accountTheme) {
-            this.accountTheme = Objects.requireNonNull(accountTheme);
+            if (accountTheme == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "accountTheme");
+            }
+            this.accountTheme = accountTheme;
             return this;
         }
         @CustomType.Setter
         public Builder actionTokenGeneratedByAdminLifespan(String actionTokenGeneratedByAdminLifespan) {
-            this.actionTokenGeneratedByAdminLifespan = Objects.requireNonNull(actionTokenGeneratedByAdminLifespan);
+            if (actionTokenGeneratedByAdminLifespan == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "actionTokenGeneratedByAdminLifespan");
+            }
+            this.actionTokenGeneratedByAdminLifespan = actionTokenGeneratedByAdminLifespan;
             return this;
         }
         @CustomType.Setter
         public Builder actionTokenGeneratedByUserLifespan(String actionTokenGeneratedByUserLifespan) {
-            this.actionTokenGeneratedByUserLifespan = Objects.requireNonNull(actionTokenGeneratedByUserLifespan);
+            if (actionTokenGeneratedByUserLifespan == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "actionTokenGeneratedByUserLifespan");
+            }
+            this.actionTokenGeneratedByUserLifespan = actionTokenGeneratedByUserLifespan;
             return this;
         }
         @CustomType.Setter
         public Builder adminTheme(String adminTheme) {
-            this.adminTheme = Objects.requireNonNull(adminTheme);
+            if (adminTheme == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "adminTheme");
+            }
+            this.adminTheme = adminTheme;
             return this;
         }
         @CustomType.Setter
         public Builder attributes(Map<String,Object> attributes) {
-            this.attributes = Objects.requireNonNull(attributes);
+            if (attributes == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "attributes");
+            }
+            this.attributes = attributes;
             return this;
         }
         @CustomType.Setter
         public Builder browserFlow(String browserFlow) {
-            this.browserFlow = Objects.requireNonNull(browserFlow);
+            if (browserFlow == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "browserFlow");
+            }
+            this.browserFlow = browserFlow;
             return this;
         }
         @CustomType.Setter
         public Builder clientAuthenticationFlow(String clientAuthenticationFlow) {
-            this.clientAuthenticationFlow = Objects.requireNonNull(clientAuthenticationFlow);
+            if (clientAuthenticationFlow == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "clientAuthenticationFlow");
+            }
+            this.clientAuthenticationFlow = clientAuthenticationFlow;
             return this;
         }
         @CustomType.Setter
         public Builder clientSessionIdleTimeout(String clientSessionIdleTimeout) {
-            this.clientSessionIdleTimeout = Objects.requireNonNull(clientSessionIdleTimeout);
+            if (clientSessionIdleTimeout == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "clientSessionIdleTimeout");
+            }
+            this.clientSessionIdleTimeout = clientSessionIdleTimeout;
             return this;
         }
         @CustomType.Setter
         public Builder clientSessionMaxLifespan(String clientSessionMaxLifespan) {
-            this.clientSessionMaxLifespan = Objects.requireNonNull(clientSessionMaxLifespan);
+            if (clientSessionMaxLifespan == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "clientSessionMaxLifespan");
+            }
+            this.clientSessionMaxLifespan = clientSessionMaxLifespan;
             return this;
         }
         @CustomType.Setter
         public Builder defaultDefaultClientScopes(List<String> defaultDefaultClientScopes) {
-            this.defaultDefaultClientScopes = Objects.requireNonNull(defaultDefaultClientScopes);
+            if (defaultDefaultClientScopes == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "defaultDefaultClientScopes");
+            }
+            this.defaultDefaultClientScopes = defaultDefaultClientScopes;
             return this;
         }
         public Builder defaultDefaultClientScopes(String... defaultDefaultClientScopes) {
@@ -469,7 +515,10 @@ public final class GetRealmResult {
         }
         @CustomType.Setter
         public Builder defaultOptionalClientScopes(List<String> defaultOptionalClientScopes) {
-            this.defaultOptionalClientScopes = Objects.requireNonNull(defaultOptionalClientScopes);
+            if (defaultOptionalClientScopes == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "defaultOptionalClientScopes");
+            }
+            this.defaultOptionalClientScopes = defaultOptionalClientScopes;
             return this;
         }
         public Builder defaultOptionalClientScopes(String... defaultOptionalClientScopes) {
@@ -477,62 +526,96 @@ public final class GetRealmResult {
         }
         @CustomType.Setter
         public Builder defaultSignatureAlgorithm(String defaultSignatureAlgorithm) {
-            this.defaultSignatureAlgorithm = Objects.requireNonNull(defaultSignatureAlgorithm);
+            if (defaultSignatureAlgorithm == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "defaultSignatureAlgorithm");
+            }
+            this.defaultSignatureAlgorithm = defaultSignatureAlgorithm;
             return this;
         }
         @CustomType.Setter
         public Builder directGrantFlow(String directGrantFlow) {
-            this.directGrantFlow = Objects.requireNonNull(directGrantFlow);
+            if (directGrantFlow == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "directGrantFlow");
+            }
+            this.directGrantFlow = directGrantFlow;
             return this;
         }
         @CustomType.Setter
         public Builder displayName(String displayName) {
-            this.displayName = Objects.requireNonNull(displayName);
+            if (displayName == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "displayName");
+            }
+            this.displayName = displayName;
             return this;
         }
         @CustomType.Setter
         public Builder displayNameHtml(@Nullable String displayNameHtml) {
+
             this.displayNameHtml = displayNameHtml;
             return this;
         }
         @CustomType.Setter
         public Builder dockerAuthenticationFlow(String dockerAuthenticationFlow) {
-            this.dockerAuthenticationFlow = Objects.requireNonNull(dockerAuthenticationFlow);
+            if (dockerAuthenticationFlow == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "dockerAuthenticationFlow");
+            }
+            this.dockerAuthenticationFlow = dockerAuthenticationFlow;
             return this;
         }
         @CustomType.Setter
         public Builder duplicateEmailsAllowed(Boolean duplicateEmailsAllowed) {
-            this.duplicateEmailsAllowed = Objects.requireNonNull(duplicateEmailsAllowed);
+            if (duplicateEmailsAllowed == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "duplicateEmailsAllowed");
+            }
+            this.duplicateEmailsAllowed = duplicateEmailsAllowed;
             return this;
         }
         @CustomType.Setter
         public Builder editUsernameAllowed(Boolean editUsernameAllowed) {
-            this.editUsernameAllowed = Objects.requireNonNull(editUsernameAllowed);
+            if (editUsernameAllowed == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "editUsernameAllowed");
+            }
+            this.editUsernameAllowed = editUsernameAllowed;
             return this;
         }
         @CustomType.Setter
         public Builder emailTheme(String emailTheme) {
-            this.emailTheme = Objects.requireNonNull(emailTheme);
+            if (emailTheme == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "emailTheme");
+            }
+            this.emailTheme = emailTheme;
             return this;
         }
         @CustomType.Setter
         public Builder enabled(Boolean enabled) {
-            this.enabled = Objects.requireNonNull(enabled);
+            if (enabled == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "enabled");
+            }
+            this.enabled = enabled;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder internalId(String internalId) {
-            this.internalId = Objects.requireNonNull(internalId);
+            if (internalId == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "internalId");
+            }
+            this.internalId = internalId;
             return this;
         }
         @CustomType.Setter
         public Builder internationalizations(List<GetRealmInternationalization> internationalizations) {
-            this.internationalizations = Objects.requireNonNull(internationalizations);
+            if (internationalizations == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "internationalizations");
+            }
+            this.internationalizations = internationalizations;
             return this;
         }
         public Builder internationalizations(GetRealmInternationalization... internationalizations) {
@@ -540,97 +623,154 @@ public final class GetRealmResult {
         }
         @CustomType.Setter
         public Builder loginTheme(String loginTheme) {
-            this.loginTheme = Objects.requireNonNull(loginTheme);
+            if (loginTheme == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "loginTheme");
+            }
+            this.loginTheme = loginTheme;
             return this;
         }
         @CustomType.Setter
         public Builder loginWithEmailAllowed(Boolean loginWithEmailAllowed) {
-            this.loginWithEmailAllowed = Objects.requireNonNull(loginWithEmailAllowed);
+            if (loginWithEmailAllowed == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "loginWithEmailAllowed");
+            }
+            this.loginWithEmailAllowed = loginWithEmailAllowed;
             return this;
         }
         @CustomType.Setter
         public Builder oauth2DeviceCodeLifespan(String oauth2DeviceCodeLifespan) {
-            this.oauth2DeviceCodeLifespan = Objects.requireNonNull(oauth2DeviceCodeLifespan);
+            if (oauth2DeviceCodeLifespan == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "oauth2DeviceCodeLifespan");
+            }
+            this.oauth2DeviceCodeLifespan = oauth2DeviceCodeLifespan;
             return this;
         }
         @CustomType.Setter
         public Builder oauth2DevicePollingInterval(Integer oauth2DevicePollingInterval) {
-            this.oauth2DevicePollingInterval = Objects.requireNonNull(oauth2DevicePollingInterval);
+            if (oauth2DevicePollingInterval == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "oauth2DevicePollingInterval");
+            }
+            this.oauth2DevicePollingInterval = oauth2DevicePollingInterval;
             return this;
         }
         @CustomType.Setter
         public Builder offlineSessionIdleTimeout(String offlineSessionIdleTimeout) {
-            this.offlineSessionIdleTimeout = Objects.requireNonNull(offlineSessionIdleTimeout);
+            if (offlineSessionIdleTimeout == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "offlineSessionIdleTimeout");
+            }
+            this.offlineSessionIdleTimeout = offlineSessionIdleTimeout;
             return this;
         }
         @CustomType.Setter
         public Builder offlineSessionMaxLifespan(String offlineSessionMaxLifespan) {
-            this.offlineSessionMaxLifespan = Objects.requireNonNull(offlineSessionMaxLifespan);
+            if (offlineSessionMaxLifespan == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "offlineSessionMaxLifespan");
+            }
+            this.offlineSessionMaxLifespan = offlineSessionMaxLifespan;
             return this;
         }
         @CustomType.Setter
         public Builder offlineSessionMaxLifespanEnabled(Boolean offlineSessionMaxLifespanEnabled) {
-            this.offlineSessionMaxLifespanEnabled = Objects.requireNonNull(offlineSessionMaxLifespanEnabled);
+            if (offlineSessionMaxLifespanEnabled == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "offlineSessionMaxLifespanEnabled");
+            }
+            this.offlineSessionMaxLifespanEnabled = offlineSessionMaxLifespanEnabled;
             return this;
         }
         @CustomType.Setter
         public Builder otpPolicy(GetRealmOtpPolicy otpPolicy) {
-            this.otpPolicy = Objects.requireNonNull(otpPolicy);
+            if (otpPolicy == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "otpPolicy");
+            }
+            this.otpPolicy = otpPolicy;
             return this;
         }
         @CustomType.Setter
         public Builder passwordPolicy(String passwordPolicy) {
-            this.passwordPolicy = Objects.requireNonNull(passwordPolicy);
+            if (passwordPolicy == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "passwordPolicy");
+            }
+            this.passwordPolicy = passwordPolicy;
             return this;
         }
         @CustomType.Setter
         public Builder realm(String realm) {
-            this.realm = Objects.requireNonNull(realm);
+            if (realm == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "realm");
+            }
+            this.realm = realm;
             return this;
         }
         @CustomType.Setter
         public Builder refreshTokenMaxReuse(Integer refreshTokenMaxReuse) {
-            this.refreshTokenMaxReuse = Objects.requireNonNull(refreshTokenMaxReuse);
+            if (refreshTokenMaxReuse == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "refreshTokenMaxReuse");
+            }
+            this.refreshTokenMaxReuse = refreshTokenMaxReuse;
             return this;
         }
         @CustomType.Setter
         public Builder registrationAllowed(Boolean registrationAllowed) {
-            this.registrationAllowed = Objects.requireNonNull(registrationAllowed);
+            if (registrationAllowed == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "registrationAllowed");
+            }
+            this.registrationAllowed = registrationAllowed;
             return this;
         }
         @CustomType.Setter
         public Builder registrationEmailAsUsername(Boolean registrationEmailAsUsername) {
-            this.registrationEmailAsUsername = Objects.requireNonNull(registrationEmailAsUsername);
+            if (registrationEmailAsUsername == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "registrationEmailAsUsername");
+            }
+            this.registrationEmailAsUsername = registrationEmailAsUsername;
             return this;
         }
         @CustomType.Setter
         public Builder registrationFlow(String registrationFlow) {
-            this.registrationFlow = Objects.requireNonNull(registrationFlow);
+            if (registrationFlow == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "registrationFlow");
+            }
+            this.registrationFlow = registrationFlow;
             return this;
         }
         @CustomType.Setter
         public Builder rememberMe(Boolean rememberMe) {
-            this.rememberMe = Objects.requireNonNull(rememberMe);
+            if (rememberMe == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "rememberMe");
+            }
+            this.rememberMe = rememberMe;
             return this;
         }
         @CustomType.Setter
         public Builder resetCredentialsFlow(String resetCredentialsFlow) {
-            this.resetCredentialsFlow = Objects.requireNonNull(resetCredentialsFlow);
+            if (resetCredentialsFlow == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "resetCredentialsFlow");
+            }
+            this.resetCredentialsFlow = resetCredentialsFlow;
             return this;
         }
         @CustomType.Setter
         public Builder resetPasswordAllowed(Boolean resetPasswordAllowed) {
-            this.resetPasswordAllowed = Objects.requireNonNull(resetPasswordAllowed);
+            if (resetPasswordAllowed == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "resetPasswordAllowed");
+            }
+            this.resetPasswordAllowed = resetPasswordAllowed;
             return this;
         }
         @CustomType.Setter
         public Builder revokeRefreshToken(Boolean revokeRefreshToken) {
-            this.revokeRefreshToken = Objects.requireNonNull(revokeRefreshToken);
+            if (revokeRefreshToken == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "revokeRefreshToken");
+            }
+            this.revokeRefreshToken = revokeRefreshToken;
             return this;
         }
         @CustomType.Setter
         public Builder securityDefenses(List<GetRealmSecurityDefense> securityDefenses) {
-            this.securityDefenses = Objects.requireNonNull(securityDefenses);
+            if (securityDefenses == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "securityDefenses");
+            }
+            this.securityDefenses = securityDefenses;
             return this;
         }
         public Builder securityDefenses(GetRealmSecurityDefense... securityDefenses) {
@@ -638,7 +778,10 @@ public final class GetRealmResult {
         }
         @CustomType.Setter
         public Builder smtpServers(List<GetRealmSmtpServer> smtpServers) {
-            this.smtpServers = Objects.requireNonNull(smtpServers);
+            if (smtpServers == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "smtpServers");
+            }
+            this.smtpServers = smtpServers;
             return this;
         }
         public Builder smtpServers(GetRealmSmtpServer... smtpServers) {
@@ -646,47 +789,74 @@ public final class GetRealmResult {
         }
         @CustomType.Setter
         public Builder sslRequired(String sslRequired) {
-            this.sslRequired = Objects.requireNonNull(sslRequired);
+            if (sslRequired == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "sslRequired");
+            }
+            this.sslRequired = sslRequired;
             return this;
         }
         @CustomType.Setter
         public Builder ssoSessionIdleTimeout(String ssoSessionIdleTimeout) {
-            this.ssoSessionIdleTimeout = Objects.requireNonNull(ssoSessionIdleTimeout);
+            if (ssoSessionIdleTimeout == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "ssoSessionIdleTimeout");
+            }
+            this.ssoSessionIdleTimeout = ssoSessionIdleTimeout;
             return this;
         }
         @CustomType.Setter
         public Builder ssoSessionIdleTimeoutRememberMe(String ssoSessionIdleTimeoutRememberMe) {
-            this.ssoSessionIdleTimeoutRememberMe = Objects.requireNonNull(ssoSessionIdleTimeoutRememberMe);
+            if (ssoSessionIdleTimeoutRememberMe == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "ssoSessionIdleTimeoutRememberMe");
+            }
+            this.ssoSessionIdleTimeoutRememberMe = ssoSessionIdleTimeoutRememberMe;
             return this;
         }
         @CustomType.Setter
         public Builder ssoSessionMaxLifespan(String ssoSessionMaxLifespan) {
-            this.ssoSessionMaxLifespan = Objects.requireNonNull(ssoSessionMaxLifespan);
+            if (ssoSessionMaxLifespan == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "ssoSessionMaxLifespan");
+            }
+            this.ssoSessionMaxLifespan = ssoSessionMaxLifespan;
             return this;
         }
         @CustomType.Setter
         public Builder ssoSessionMaxLifespanRememberMe(String ssoSessionMaxLifespanRememberMe) {
-            this.ssoSessionMaxLifespanRememberMe = Objects.requireNonNull(ssoSessionMaxLifespanRememberMe);
+            if (ssoSessionMaxLifespanRememberMe == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "ssoSessionMaxLifespanRememberMe");
+            }
+            this.ssoSessionMaxLifespanRememberMe = ssoSessionMaxLifespanRememberMe;
             return this;
         }
         @CustomType.Setter
         public Builder userManagedAccess(Boolean userManagedAccess) {
-            this.userManagedAccess = Objects.requireNonNull(userManagedAccess);
+            if (userManagedAccess == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "userManagedAccess");
+            }
+            this.userManagedAccess = userManagedAccess;
             return this;
         }
         @CustomType.Setter
         public Builder verifyEmail(Boolean verifyEmail) {
-            this.verifyEmail = Objects.requireNonNull(verifyEmail);
+            if (verifyEmail == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "verifyEmail");
+            }
+            this.verifyEmail = verifyEmail;
             return this;
         }
         @CustomType.Setter
         public Builder webAuthnPasswordlessPolicy(GetRealmWebAuthnPasswordlessPolicy webAuthnPasswordlessPolicy) {
-            this.webAuthnPasswordlessPolicy = Objects.requireNonNull(webAuthnPasswordlessPolicy);
+            if (webAuthnPasswordlessPolicy == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "webAuthnPasswordlessPolicy");
+            }
+            this.webAuthnPasswordlessPolicy = webAuthnPasswordlessPolicy;
             return this;
         }
         @CustomType.Setter
         public Builder webAuthnPolicy(GetRealmWebAuthnPolicy webAuthnPolicy) {
-            this.webAuthnPolicy = Objects.requireNonNull(webAuthnPolicy);
+            if (webAuthnPolicy == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "webAuthnPolicy");
+            }
+            this.webAuthnPolicy = webAuthnPolicy;
             return this;
         }
         public GetRealmResult build() {

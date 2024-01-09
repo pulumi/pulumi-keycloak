@@ -4,6 +4,7 @@
 package com.pulumi.keycloak.saml.inputs;
 
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -117,9 +118,15 @@ public final class GetClientInstallationProviderPlainArgs extends com.pulumi.res
         }
 
         public GetClientInstallationProviderPlainArgs build() {
-            $.clientId = Objects.requireNonNull($.clientId, "expected parameter 'clientId' to be non-null");
-            $.providerId = Objects.requireNonNull($.providerId, "expected parameter 'providerId' to be non-null");
-            $.realmId = Objects.requireNonNull($.realmId, "expected parameter 'realmId' to be non-null");
+            if ($.clientId == null) {
+                throw new MissingRequiredPropertyException("GetClientInstallationProviderPlainArgs", "clientId");
+            }
+            if ($.providerId == null) {
+                throw new MissingRequiredPropertyException("GetClientInstallationProviderPlainArgs", "providerId");
+            }
+            if ($.realmId == null) {
+                throw new MissingRequiredPropertyException("GetClientInstallationProviderPlainArgs", "realmId");
+            }
             return $;
         }
     }

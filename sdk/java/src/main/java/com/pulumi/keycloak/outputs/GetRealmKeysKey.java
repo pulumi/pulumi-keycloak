@@ -4,6 +4,7 @@
 package com.pulumi.keycloak.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -141,42 +142,66 @@ public final class GetRealmKeysKey {
 
         @CustomType.Setter
         public Builder algorithm(String algorithm) {
-            this.algorithm = Objects.requireNonNull(algorithm);
+            if (algorithm == null) {
+              throw new MissingRequiredPropertyException("GetRealmKeysKey", "algorithm");
+            }
+            this.algorithm = algorithm;
             return this;
         }
         @CustomType.Setter
         public Builder certificate(String certificate) {
-            this.certificate = Objects.requireNonNull(certificate);
+            if (certificate == null) {
+              throw new MissingRequiredPropertyException("GetRealmKeysKey", "certificate");
+            }
+            this.certificate = certificate;
             return this;
         }
         @CustomType.Setter
         public Builder kid(String kid) {
-            this.kid = Objects.requireNonNull(kid);
+            if (kid == null) {
+              throw new MissingRequiredPropertyException("GetRealmKeysKey", "kid");
+            }
+            this.kid = kid;
             return this;
         }
         @CustomType.Setter
         public Builder providerId(String providerId) {
-            this.providerId = Objects.requireNonNull(providerId);
+            if (providerId == null) {
+              throw new MissingRequiredPropertyException("GetRealmKeysKey", "providerId");
+            }
+            this.providerId = providerId;
             return this;
         }
         @CustomType.Setter
         public Builder providerPriority(Integer providerPriority) {
-            this.providerPriority = Objects.requireNonNull(providerPriority);
+            if (providerPriority == null) {
+              throw new MissingRequiredPropertyException("GetRealmKeysKey", "providerPriority");
+            }
+            this.providerPriority = providerPriority;
             return this;
         }
         @CustomType.Setter
         public Builder publicKey(String publicKey) {
-            this.publicKey = Objects.requireNonNull(publicKey);
+            if (publicKey == null) {
+              throw new MissingRequiredPropertyException("GetRealmKeysKey", "publicKey");
+            }
+            this.publicKey = publicKey;
             return this;
         }
         @CustomType.Setter
         public Builder status(String status) {
-            this.status = Objects.requireNonNull(status);
+            if (status == null) {
+              throw new MissingRequiredPropertyException("GetRealmKeysKey", "status");
+            }
+            this.status = status;
             return this;
         }
         @CustomType.Setter
         public Builder type(String type) {
-            this.type = Objects.requireNonNull(type);
+            if (type == null) {
+              throw new MissingRequiredPropertyException("GetRealmKeysKey", "type");
+            }
+            this.type = type;
             return this;
         }
         public GetRealmKeysKey build() {

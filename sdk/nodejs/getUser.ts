@@ -83,6 +83,7 @@ export interface GetUserResult {
      */
     readonly lastName: string;
     readonly realmId: string;
+    readonly requiredActions: string[];
     readonly username: string;
 }
 /**

@@ -25,6 +25,12 @@ namespace Pulumi.Keycloak.Inputs
         public Input<string>? ContentSecurityPolicyReportOnly { get; set; }
 
         /// <summary>
+        /// The Referrer-Policy HTTP header controls how much referrer information (sent with the Referer header) should be included with requests.
+        /// </summary>
+        [Input("referrerPolicy")]
+        public Input<string>? ReferrerPolicy { get; set; }
+
+        /// <summary>
         /// The Script-Transport-Security HTTP header tells browsers to always use HTTPS.
         /// </summary>
         [Input("strictTransportSecurity")]

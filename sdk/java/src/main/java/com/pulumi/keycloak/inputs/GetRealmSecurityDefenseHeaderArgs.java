@@ -5,6 +5,7 @@ package com.pulumi.keycloak.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -25,6 +26,13 @@ public final class GetRealmSecurityDefenseHeaderArgs extends com.pulumi.resource
 
     public Output<String> contentSecurityPolicyReportOnly() {
         return this.contentSecurityPolicyReportOnly;
+    }
+
+    @Import(name="referrerPolicy", required=true)
+    private Output<String> referrerPolicy;
+
+    public Output<String> referrerPolicy() {
+        return this.referrerPolicy;
     }
 
     @Import(name="strictTransportSecurity", required=true)
@@ -67,6 +75,7 @@ public final class GetRealmSecurityDefenseHeaderArgs extends com.pulumi.resource
     private GetRealmSecurityDefenseHeaderArgs(GetRealmSecurityDefenseHeaderArgs $) {
         this.contentSecurityPolicy = $.contentSecurityPolicy;
         this.contentSecurityPolicyReportOnly = $.contentSecurityPolicyReportOnly;
+        this.referrerPolicy = $.referrerPolicy;
         this.strictTransportSecurity = $.strictTransportSecurity;
         this.xContentTypeOptions = $.xContentTypeOptions;
         this.xFrameOptions = $.xFrameOptions;
@@ -108,6 +117,15 @@ public final class GetRealmSecurityDefenseHeaderArgs extends com.pulumi.resource
 
         public Builder contentSecurityPolicyReportOnly(String contentSecurityPolicyReportOnly) {
             return contentSecurityPolicyReportOnly(Output.of(contentSecurityPolicyReportOnly));
+        }
+
+        public Builder referrerPolicy(Output<String> referrerPolicy) {
+            $.referrerPolicy = referrerPolicy;
+            return this;
+        }
+
+        public Builder referrerPolicy(String referrerPolicy) {
+            return referrerPolicy(Output.of(referrerPolicy));
         }
 
         public Builder strictTransportSecurity(Output<String> strictTransportSecurity) {
@@ -156,13 +174,30 @@ public final class GetRealmSecurityDefenseHeaderArgs extends com.pulumi.resource
         }
 
         public GetRealmSecurityDefenseHeaderArgs build() {
-            $.contentSecurityPolicy = Objects.requireNonNull($.contentSecurityPolicy, "expected parameter 'contentSecurityPolicy' to be non-null");
-            $.contentSecurityPolicyReportOnly = Objects.requireNonNull($.contentSecurityPolicyReportOnly, "expected parameter 'contentSecurityPolicyReportOnly' to be non-null");
-            $.strictTransportSecurity = Objects.requireNonNull($.strictTransportSecurity, "expected parameter 'strictTransportSecurity' to be non-null");
-            $.xContentTypeOptions = Objects.requireNonNull($.xContentTypeOptions, "expected parameter 'xContentTypeOptions' to be non-null");
-            $.xFrameOptions = Objects.requireNonNull($.xFrameOptions, "expected parameter 'xFrameOptions' to be non-null");
-            $.xRobotsTag = Objects.requireNonNull($.xRobotsTag, "expected parameter 'xRobotsTag' to be non-null");
-            $.xXssProtection = Objects.requireNonNull($.xXssProtection, "expected parameter 'xXssProtection' to be non-null");
+            if ($.contentSecurityPolicy == null) {
+                throw new MissingRequiredPropertyException("GetRealmSecurityDefenseHeaderArgs", "contentSecurityPolicy");
+            }
+            if ($.contentSecurityPolicyReportOnly == null) {
+                throw new MissingRequiredPropertyException("GetRealmSecurityDefenseHeaderArgs", "contentSecurityPolicyReportOnly");
+            }
+            if ($.referrerPolicy == null) {
+                throw new MissingRequiredPropertyException("GetRealmSecurityDefenseHeaderArgs", "referrerPolicy");
+            }
+            if ($.strictTransportSecurity == null) {
+                throw new MissingRequiredPropertyException("GetRealmSecurityDefenseHeaderArgs", "strictTransportSecurity");
+            }
+            if ($.xContentTypeOptions == null) {
+                throw new MissingRequiredPropertyException("GetRealmSecurityDefenseHeaderArgs", "xContentTypeOptions");
+            }
+            if ($.xFrameOptions == null) {
+                throw new MissingRequiredPropertyException("GetRealmSecurityDefenseHeaderArgs", "xFrameOptions");
+            }
+            if ($.xRobotsTag == null) {
+                throw new MissingRequiredPropertyException("GetRealmSecurityDefenseHeaderArgs", "xRobotsTag");
+            }
+            if ($.xXssProtection == null) {
+                throw new MissingRequiredPropertyException("GetRealmSecurityDefenseHeaderArgs", "xXssProtection");
+            }
             return $;
         }
     }

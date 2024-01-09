@@ -287,8 +287,6 @@ class ClientPermissions(pulumi.CustomResource):
                  view_scope: Optional[pulumi.Input[pulumi.InputType['ClientPermissionsViewScopeArgs']]] = None,
                  __props__=None):
         """
-        ## # openid.ClientPermissions
-
         Allows you to manage all openid client Scope Based Permissions.
 
         This is part of a preview keycloak feature. You need to enable this feature to be able to use this resource. More
@@ -305,77 +303,6 @@ class ClientPermissions(pulumi.CustomResource):
 
         If the realm-management Authorization is not enable, you have to ceate a dependency (`depends_on`) with the policy and
         the openid client.
-
-        ### Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_keycloak as keycloak
-
-        realm = keycloak.Realm("realm", realm="realm")
-        my_openid_client = keycloak.openid.Client("myOpenidClient",
-            realm_id=realm.id,
-            client_id="my_openid_client",
-            client_secret="secret",
-            access_type="CONFIDENTIAL",
-            standard_flow_enabled=True,
-            valid_redirect_uris=["http://localhost:8080/*"])
-        realm_management = keycloak.openid.get_client_output(realm_id=realm.id,
-            client_id="realm-management")
-        test_user = keycloak.User("testUser",
-            realm_id=realm.id,
-            username="test-user",
-            email="test-user@fakedomain.com",
-            first_name="Testy",
-            last_name="Tester")
-        test_client_user_policy = keycloak.openid.ClientUserPolicy("testClientUserPolicy",
-            resource_server_id=realm_management.id,
-            realm_id=realm.id,
-            users=[test_user.id],
-            logic="POSITIVE",
-            decision_strategy="UNANIMOUS",
-            opts=pulumi.ResourceOptions(depends_on=[my_openid_client]))
-        my_permission = keycloak.openid.ClientPermissions("myPermission",
-            realm_id=realm.id,
-            client_id=my_openid_client.id,
-            view_scope=keycloak.openid.ClientPermissionsViewScopeArgs(
-                policies=[test_client_user_policy.id],
-                description="my description",
-                decision_strategy="UNANIMOUS",
-            ))
-        ```
-
-        ### Argument Reference
-
-        The following arguments are supported:
-
-        - `realm_id` - (Required) The realm this group exists in.
-        - `client_id` - (Required) The id of the client that provides the role.
-
-        #### Permission Scopes
-
-        Permission scopes can be defined using the following attributes:
-
-        - `view_scope`
-        - `manage_scope`
-        - `configure_scope`
-        - `map_roles_scope`
-        - `map_roles_client_scope_scope`
-        - `map_roles_composite_scope`
-        - `token_exchange_scope`
-
-        Each of these attributes have the following schema:
-
-        - `policies` - (Optional) A list of policy IDs
-        - `description` - (Optional) A description for the permission scope
-        - `decision_strategy` - (Optional) The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`.
-
-        ### Attributes Reference
-
-        In addition to the arguments listed above, the following computed attributes are exported:
-
-        - `authorization_resource_server_id` - Resource server id representing the realm management client on which this
-          permission is managed.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -387,8 +314,6 @@ class ClientPermissions(pulumi.CustomResource):
                  args: ClientPermissionsArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # openid.ClientPermissions
-
         Allows you to manage all openid client Scope Based Permissions.
 
         This is part of a preview keycloak feature. You need to enable this feature to be able to use this resource. More
@@ -405,77 +330,6 @@ class ClientPermissions(pulumi.CustomResource):
 
         If the realm-management Authorization is not enable, you have to ceate a dependency (`depends_on`) with the policy and
         the openid client.
-
-        ### Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_keycloak as keycloak
-
-        realm = keycloak.Realm("realm", realm="realm")
-        my_openid_client = keycloak.openid.Client("myOpenidClient",
-            realm_id=realm.id,
-            client_id="my_openid_client",
-            client_secret="secret",
-            access_type="CONFIDENTIAL",
-            standard_flow_enabled=True,
-            valid_redirect_uris=["http://localhost:8080/*"])
-        realm_management = keycloak.openid.get_client_output(realm_id=realm.id,
-            client_id="realm-management")
-        test_user = keycloak.User("testUser",
-            realm_id=realm.id,
-            username="test-user",
-            email="test-user@fakedomain.com",
-            first_name="Testy",
-            last_name="Tester")
-        test_client_user_policy = keycloak.openid.ClientUserPolicy("testClientUserPolicy",
-            resource_server_id=realm_management.id,
-            realm_id=realm.id,
-            users=[test_user.id],
-            logic="POSITIVE",
-            decision_strategy="UNANIMOUS",
-            opts=pulumi.ResourceOptions(depends_on=[my_openid_client]))
-        my_permission = keycloak.openid.ClientPermissions("myPermission",
-            realm_id=realm.id,
-            client_id=my_openid_client.id,
-            view_scope=keycloak.openid.ClientPermissionsViewScopeArgs(
-                policies=[test_client_user_policy.id],
-                description="my description",
-                decision_strategy="UNANIMOUS",
-            ))
-        ```
-
-        ### Argument Reference
-
-        The following arguments are supported:
-
-        - `realm_id` - (Required) The realm this group exists in.
-        - `client_id` - (Required) The id of the client that provides the role.
-
-        #### Permission Scopes
-
-        Permission scopes can be defined using the following attributes:
-
-        - `view_scope`
-        - `manage_scope`
-        - `configure_scope`
-        - `map_roles_scope`
-        - `map_roles_client_scope_scope`
-        - `map_roles_composite_scope`
-        - `token_exchange_scope`
-
-        Each of these attributes have the following schema:
-
-        - `policies` - (Optional) A list of policy IDs
-        - `description` - (Optional) A description for the permission scope
-        - `decision_strategy` - (Optional) The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`.
-
-        ### Attributes Reference
-
-        In addition to the arguments listed above, the following computed attributes are exported:
-
-        - `authorization_resource_server_id` - Resource server id representing the realm management client on which this
-          permission is managed.
 
         :param str resource_name: The name of the resource.
         :param ClientPermissionsArgs args: The arguments to use to populate this resource's properties.

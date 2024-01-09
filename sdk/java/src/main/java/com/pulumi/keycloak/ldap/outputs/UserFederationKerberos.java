@@ -4,6 +4,7 @@
 package com.pulumi.keycloak.ldap.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -87,21 +88,31 @@ public final class UserFederationKerberos {
 
         @CustomType.Setter
         public Builder kerberosRealm(String kerberosRealm) {
-            this.kerberosRealm = Objects.requireNonNull(kerberosRealm);
+            if (kerberosRealm == null) {
+              throw new MissingRequiredPropertyException("UserFederationKerberos", "kerberosRealm");
+            }
+            this.kerberosRealm = kerberosRealm;
             return this;
         }
         @CustomType.Setter
         public Builder keyTab(String keyTab) {
-            this.keyTab = Objects.requireNonNull(keyTab);
+            if (keyTab == null) {
+              throw new MissingRequiredPropertyException("UserFederationKerberos", "keyTab");
+            }
+            this.keyTab = keyTab;
             return this;
         }
         @CustomType.Setter
         public Builder serverPrincipal(String serverPrincipal) {
-            this.serverPrincipal = Objects.requireNonNull(serverPrincipal);
+            if (serverPrincipal == null) {
+              throw new MissingRequiredPropertyException("UserFederationKerberos", "serverPrincipal");
+            }
+            this.serverPrincipal = serverPrincipal;
             return this;
         }
         @CustomType.Setter
         public Builder useKerberosForPasswordAuthentication(@Nullable Boolean useKerberosForPasswordAuthentication) {
+
             this.useKerberosForPasswordAuthentication = useKerberosForPasswordAuthentication;
             return this;
         }

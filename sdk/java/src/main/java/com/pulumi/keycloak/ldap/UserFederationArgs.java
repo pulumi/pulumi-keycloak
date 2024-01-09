@@ -5,6 +5,7 @@ package com.pulumi.keycloak.ldap;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.keycloak.ldap.inputs.UserFederationCacheArgs;
 import com.pulumi.keycloak.ldap.inputs.UserFederationKerberosArgs;
 import java.lang.Boolean;
@@ -1238,13 +1239,27 @@ public final class UserFederationArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         public UserFederationArgs build() {
-            $.connectionUrl = Objects.requireNonNull($.connectionUrl, "expected parameter 'connectionUrl' to be non-null");
-            $.rdnLdapAttribute = Objects.requireNonNull($.rdnLdapAttribute, "expected parameter 'rdnLdapAttribute' to be non-null");
-            $.realmId = Objects.requireNonNull($.realmId, "expected parameter 'realmId' to be non-null");
-            $.userObjectClasses = Objects.requireNonNull($.userObjectClasses, "expected parameter 'userObjectClasses' to be non-null");
-            $.usernameLdapAttribute = Objects.requireNonNull($.usernameLdapAttribute, "expected parameter 'usernameLdapAttribute' to be non-null");
-            $.usersDn = Objects.requireNonNull($.usersDn, "expected parameter 'usersDn' to be non-null");
-            $.uuidLdapAttribute = Objects.requireNonNull($.uuidLdapAttribute, "expected parameter 'uuidLdapAttribute' to be non-null");
+            if ($.connectionUrl == null) {
+                throw new MissingRequiredPropertyException("UserFederationArgs", "connectionUrl");
+            }
+            if ($.rdnLdapAttribute == null) {
+                throw new MissingRequiredPropertyException("UserFederationArgs", "rdnLdapAttribute");
+            }
+            if ($.realmId == null) {
+                throw new MissingRequiredPropertyException("UserFederationArgs", "realmId");
+            }
+            if ($.userObjectClasses == null) {
+                throw new MissingRequiredPropertyException("UserFederationArgs", "userObjectClasses");
+            }
+            if ($.usernameLdapAttribute == null) {
+                throw new MissingRequiredPropertyException("UserFederationArgs", "usernameLdapAttribute");
+            }
+            if ($.usersDn == null) {
+                throw new MissingRequiredPropertyException("UserFederationArgs", "usersDn");
+            }
+            if ($.uuidLdapAttribute == null) {
+                throw new MissingRequiredPropertyException("UserFederationArgs", "uuidLdapAttribute");
+            }
             return $;
         }
     }

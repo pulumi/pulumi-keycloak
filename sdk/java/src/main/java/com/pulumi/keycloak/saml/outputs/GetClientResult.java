@@ -4,6 +4,7 @@
 package com.pulumi.keycloak.saml.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.keycloak.saml.outputs.GetClientAuthenticationFlowBindingOverride;
 import java.lang.Boolean;
 import java.lang.Object;
@@ -275,17 +276,26 @@ public final class GetClientResult {
 
         @CustomType.Setter
         public Builder assertionConsumerPostUrl(String assertionConsumerPostUrl) {
-            this.assertionConsumerPostUrl = Objects.requireNonNull(assertionConsumerPostUrl);
+            if (assertionConsumerPostUrl == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "assertionConsumerPostUrl");
+            }
+            this.assertionConsumerPostUrl = assertionConsumerPostUrl;
             return this;
         }
         @CustomType.Setter
         public Builder assertionConsumerRedirectUrl(String assertionConsumerRedirectUrl) {
-            this.assertionConsumerRedirectUrl = Objects.requireNonNull(assertionConsumerRedirectUrl);
+            if (assertionConsumerRedirectUrl == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "assertionConsumerRedirectUrl");
+            }
+            this.assertionConsumerRedirectUrl = assertionConsumerRedirectUrl;
             return this;
         }
         @CustomType.Setter
         public Builder authenticationFlowBindingOverrides(List<GetClientAuthenticationFlowBindingOverride> authenticationFlowBindingOverrides) {
-            this.authenticationFlowBindingOverrides = Objects.requireNonNull(authenticationFlowBindingOverrides);
+            if (authenticationFlowBindingOverrides == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "authenticationFlowBindingOverrides");
+            }
+            this.authenticationFlowBindingOverrides = authenticationFlowBindingOverrides;
             return this;
         }
         public Builder authenticationFlowBindingOverrides(GetClientAuthenticationFlowBindingOverride... authenticationFlowBindingOverrides) {
@@ -293,182 +303,290 @@ public final class GetClientResult {
         }
         @CustomType.Setter
         public Builder baseUrl(String baseUrl) {
-            this.baseUrl = Objects.requireNonNull(baseUrl);
+            if (baseUrl == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "baseUrl");
+            }
+            this.baseUrl = baseUrl;
             return this;
         }
         @CustomType.Setter
         public Builder canonicalizationMethod(String canonicalizationMethod) {
-            this.canonicalizationMethod = Objects.requireNonNull(canonicalizationMethod);
+            if (canonicalizationMethod == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "canonicalizationMethod");
+            }
+            this.canonicalizationMethod = canonicalizationMethod;
             return this;
         }
         @CustomType.Setter
         public Builder clientId(String clientId) {
-            this.clientId = Objects.requireNonNull(clientId);
+            if (clientId == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "clientId");
+            }
+            this.clientId = clientId;
             return this;
         }
         @CustomType.Setter
         public Builder clientSignatureRequired(Boolean clientSignatureRequired) {
-            this.clientSignatureRequired = Objects.requireNonNull(clientSignatureRequired);
+            if (clientSignatureRequired == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "clientSignatureRequired");
+            }
+            this.clientSignatureRequired = clientSignatureRequired;
             return this;
         }
         @CustomType.Setter
         public Builder description(String description) {
-            this.description = Objects.requireNonNull(description);
+            if (description == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "description");
+            }
+            this.description = description;
             return this;
         }
         @CustomType.Setter
         public Builder enabled(Boolean enabled) {
-            this.enabled = Objects.requireNonNull(enabled);
+            if (enabled == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "enabled");
+            }
+            this.enabled = enabled;
             return this;
         }
         @CustomType.Setter
         public Builder encryptAssertions(Boolean encryptAssertions) {
-            this.encryptAssertions = Objects.requireNonNull(encryptAssertions);
+            if (encryptAssertions == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "encryptAssertions");
+            }
+            this.encryptAssertions = encryptAssertions;
             return this;
         }
         @CustomType.Setter
         public Builder encryptionCertificate(String encryptionCertificate) {
-            this.encryptionCertificate = Objects.requireNonNull(encryptionCertificate);
+            if (encryptionCertificate == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "encryptionCertificate");
+            }
+            this.encryptionCertificate = encryptionCertificate;
             return this;
         }
         @CustomType.Setter
         public Builder encryptionCertificateSha1(String encryptionCertificateSha1) {
-            this.encryptionCertificateSha1 = Objects.requireNonNull(encryptionCertificateSha1);
+            if (encryptionCertificateSha1 == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "encryptionCertificateSha1");
+            }
+            this.encryptionCertificateSha1 = encryptionCertificateSha1;
             return this;
         }
         @CustomType.Setter
         public Builder extraConfig(Map<String,Object> extraConfig) {
-            this.extraConfig = Objects.requireNonNull(extraConfig);
+            if (extraConfig == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "extraConfig");
+            }
+            this.extraConfig = extraConfig;
             return this;
         }
         @CustomType.Setter
         public Builder forceNameIdFormat(Boolean forceNameIdFormat) {
-            this.forceNameIdFormat = Objects.requireNonNull(forceNameIdFormat);
+            if (forceNameIdFormat == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "forceNameIdFormat");
+            }
+            this.forceNameIdFormat = forceNameIdFormat;
             return this;
         }
         @CustomType.Setter
         public Builder forcePostBinding(Boolean forcePostBinding) {
-            this.forcePostBinding = Objects.requireNonNull(forcePostBinding);
+            if (forcePostBinding == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "forcePostBinding");
+            }
+            this.forcePostBinding = forcePostBinding;
             return this;
         }
         @CustomType.Setter
         public Builder frontChannelLogout(Boolean frontChannelLogout) {
-            this.frontChannelLogout = Objects.requireNonNull(frontChannelLogout);
+            if (frontChannelLogout == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "frontChannelLogout");
+            }
+            this.frontChannelLogout = frontChannelLogout;
             return this;
         }
         @CustomType.Setter
         public Builder fullScopeAllowed(Boolean fullScopeAllowed) {
-            this.fullScopeAllowed = Objects.requireNonNull(fullScopeAllowed);
+            if (fullScopeAllowed == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "fullScopeAllowed");
+            }
+            this.fullScopeAllowed = fullScopeAllowed;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder idpInitiatedSsoRelayState(String idpInitiatedSsoRelayState) {
-            this.idpInitiatedSsoRelayState = Objects.requireNonNull(idpInitiatedSsoRelayState);
+            if (idpInitiatedSsoRelayState == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "idpInitiatedSsoRelayState");
+            }
+            this.idpInitiatedSsoRelayState = idpInitiatedSsoRelayState;
             return this;
         }
         @CustomType.Setter
         public Builder idpInitiatedSsoUrlName(String idpInitiatedSsoUrlName) {
-            this.idpInitiatedSsoUrlName = Objects.requireNonNull(idpInitiatedSsoUrlName);
+            if (idpInitiatedSsoUrlName == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "idpInitiatedSsoUrlName");
+            }
+            this.idpInitiatedSsoUrlName = idpInitiatedSsoUrlName;
             return this;
         }
         @CustomType.Setter
         public Builder includeAuthnStatement(Boolean includeAuthnStatement) {
-            this.includeAuthnStatement = Objects.requireNonNull(includeAuthnStatement);
+            if (includeAuthnStatement == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "includeAuthnStatement");
+            }
+            this.includeAuthnStatement = includeAuthnStatement;
             return this;
         }
         @CustomType.Setter
         public Builder loginTheme(String loginTheme) {
-            this.loginTheme = Objects.requireNonNull(loginTheme);
+            if (loginTheme == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "loginTheme");
+            }
+            this.loginTheme = loginTheme;
             return this;
         }
         @CustomType.Setter
         public Builder logoutServicePostBindingUrl(String logoutServicePostBindingUrl) {
-            this.logoutServicePostBindingUrl = Objects.requireNonNull(logoutServicePostBindingUrl);
+            if (logoutServicePostBindingUrl == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "logoutServicePostBindingUrl");
+            }
+            this.logoutServicePostBindingUrl = logoutServicePostBindingUrl;
             return this;
         }
         @CustomType.Setter
         public Builder logoutServiceRedirectBindingUrl(String logoutServiceRedirectBindingUrl) {
-            this.logoutServiceRedirectBindingUrl = Objects.requireNonNull(logoutServiceRedirectBindingUrl);
+            if (logoutServiceRedirectBindingUrl == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "logoutServiceRedirectBindingUrl");
+            }
+            this.logoutServiceRedirectBindingUrl = logoutServiceRedirectBindingUrl;
             return this;
         }
         @CustomType.Setter
         public Builder masterSamlProcessingUrl(String masterSamlProcessingUrl) {
-            this.masterSamlProcessingUrl = Objects.requireNonNull(masterSamlProcessingUrl);
+            if (masterSamlProcessingUrl == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "masterSamlProcessingUrl");
+            }
+            this.masterSamlProcessingUrl = masterSamlProcessingUrl;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder nameIdFormat(String nameIdFormat) {
-            this.nameIdFormat = Objects.requireNonNull(nameIdFormat);
+            if (nameIdFormat == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "nameIdFormat");
+            }
+            this.nameIdFormat = nameIdFormat;
             return this;
         }
         @CustomType.Setter
         public Builder realmId(String realmId) {
-            this.realmId = Objects.requireNonNull(realmId);
+            if (realmId == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "realmId");
+            }
+            this.realmId = realmId;
             return this;
         }
         @CustomType.Setter
         public Builder rootUrl(String rootUrl) {
-            this.rootUrl = Objects.requireNonNull(rootUrl);
+            if (rootUrl == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "rootUrl");
+            }
+            this.rootUrl = rootUrl;
             return this;
         }
         @CustomType.Setter
         public Builder samlSignatureKeyName(String samlSignatureKeyName) {
-            this.samlSignatureKeyName = Objects.requireNonNull(samlSignatureKeyName);
+            if (samlSignatureKeyName == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "samlSignatureKeyName");
+            }
+            this.samlSignatureKeyName = samlSignatureKeyName;
             return this;
         }
         @CustomType.Setter
         public Builder signAssertions(Boolean signAssertions) {
-            this.signAssertions = Objects.requireNonNull(signAssertions);
+            if (signAssertions == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "signAssertions");
+            }
+            this.signAssertions = signAssertions;
             return this;
         }
         @CustomType.Setter
         public Builder signDocuments(Boolean signDocuments) {
-            this.signDocuments = Objects.requireNonNull(signDocuments);
+            if (signDocuments == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "signDocuments");
+            }
+            this.signDocuments = signDocuments;
             return this;
         }
         @CustomType.Setter
         public Builder signatureAlgorithm(String signatureAlgorithm) {
-            this.signatureAlgorithm = Objects.requireNonNull(signatureAlgorithm);
+            if (signatureAlgorithm == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "signatureAlgorithm");
+            }
+            this.signatureAlgorithm = signatureAlgorithm;
             return this;
         }
         @CustomType.Setter
         public Builder signatureKeyName(String signatureKeyName) {
-            this.signatureKeyName = Objects.requireNonNull(signatureKeyName);
+            if (signatureKeyName == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "signatureKeyName");
+            }
+            this.signatureKeyName = signatureKeyName;
             return this;
         }
         @CustomType.Setter
         public Builder signingCertificate(String signingCertificate) {
-            this.signingCertificate = Objects.requireNonNull(signingCertificate);
+            if (signingCertificate == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "signingCertificate");
+            }
+            this.signingCertificate = signingCertificate;
             return this;
         }
         @CustomType.Setter
         public Builder signingCertificateSha1(String signingCertificateSha1) {
-            this.signingCertificateSha1 = Objects.requireNonNull(signingCertificateSha1);
+            if (signingCertificateSha1 == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "signingCertificateSha1");
+            }
+            this.signingCertificateSha1 = signingCertificateSha1;
             return this;
         }
         @CustomType.Setter
         public Builder signingPrivateKey(String signingPrivateKey) {
-            this.signingPrivateKey = Objects.requireNonNull(signingPrivateKey);
+            if (signingPrivateKey == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "signingPrivateKey");
+            }
+            this.signingPrivateKey = signingPrivateKey;
             return this;
         }
         @CustomType.Setter
         public Builder signingPrivateKeySha1(String signingPrivateKeySha1) {
-            this.signingPrivateKeySha1 = Objects.requireNonNull(signingPrivateKeySha1);
+            if (signingPrivateKeySha1 == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "signingPrivateKeySha1");
+            }
+            this.signingPrivateKeySha1 = signingPrivateKeySha1;
             return this;
         }
         @CustomType.Setter
         public Builder validRedirectUris(List<String> validRedirectUris) {
-            this.validRedirectUris = Objects.requireNonNull(validRedirectUris);
+            if (validRedirectUris == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "validRedirectUris");
+            }
+            this.validRedirectUris = validRedirectUris;
             return this;
         }
         public Builder validRedirectUris(String... validRedirectUris) {

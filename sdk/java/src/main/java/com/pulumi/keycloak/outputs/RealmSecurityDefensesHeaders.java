@@ -22,6 +22,11 @@ public final class RealmSecurityDefensesHeaders {
      */
     private @Nullable String contentSecurityPolicyReportOnly;
     /**
+     * @return The Referrer-Policy HTTP header controls how much referrer information (sent with the Referer header) should be included with requests.
+     * 
+     */
+    private @Nullable String referrerPolicy;
+    /**
      * @return The Script-Transport-Security HTTP header tells browsers to always use HTTPS.
      * 
      */
@@ -61,6 +66,13 @@ public final class RealmSecurityDefensesHeaders {
      */
     public Optional<String> contentSecurityPolicyReportOnly() {
         return Optional.ofNullable(this.contentSecurityPolicyReportOnly);
+    }
+    /**
+     * @return The Referrer-Policy HTTP header controls how much referrer information (sent with the Referer header) should be included with requests.
+     * 
+     */
+    public Optional<String> referrerPolicy() {
+        return Optional.ofNullable(this.referrerPolicy);
     }
     /**
      * @return The Script-Transport-Security HTTP header tells browsers to always use HTTPS.
@@ -109,6 +121,7 @@ public final class RealmSecurityDefensesHeaders {
     public static final class Builder {
         private @Nullable String contentSecurityPolicy;
         private @Nullable String contentSecurityPolicyReportOnly;
+        private @Nullable String referrerPolicy;
         private @Nullable String strictTransportSecurity;
         private @Nullable String xContentTypeOptions;
         private @Nullable String xFrameOptions;
@@ -119,6 +132,7 @@ public final class RealmSecurityDefensesHeaders {
     	      Objects.requireNonNull(defaults);
     	      this.contentSecurityPolicy = defaults.contentSecurityPolicy;
     	      this.contentSecurityPolicyReportOnly = defaults.contentSecurityPolicyReportOnly;
+    	      this.referrerPolicy = defaults.referrerPolicy;
     	      this.strictTransportSecurity = defaults.strictTransportSecurity;
     	      this.xContentTypeOptions = defaults.xContentTypeOptions;
     	      this.xFrameOptions = defaults.xFrameOptions;
@@ -128,36 +142,49 @@ public final class RealmSecurityDefensesHeaders {
 
         @CustomType.Setter
         public Builder contentSecurityPolicy(@Nullable String contentSecurityPolicy) {
+
             this.contentSecurityPolicy = contentSecurityPolicy;
             return this;
         }
         @CustomType.Setter
         public Builder contentSecurityPolicyReportOnly(@Nullable String contentSecurityPolicyReportOnly) {
+
             this.contentSecurityPolicyReportOnly = contentSecurityPolicyReportOnly;
             return this;
         }
         @CustomType.Setter
+        public Builder referrerPolicy(@Nullable String referrerPolicy) {
+
+            this.referrerPolicy = referrerPolicy;
+            return this;
+        }
+        @CustomType.Setter
         public Builder strictTransportSecurity(@Nullable String strictTransportSecurity) {
+
             this.strictTransportSecurity = strictTransportSecurity;
             return this;
         }
         @CustomType.Setter
         public Builder xContentTypeOptions(@Nullable String xContentTypeOptions) {
+
             this.xContentTypeOptions = xContentTypeOptions;
             return this;
         }
         @CustomType.Setter
         public Builder xFrameOptions(@Nullable String xFrameOptions) {
+
             this.xFrameOptions = xFrameOptions;
             return this;
         }
         @CustomType.Setter
         public Builder xRobotsTag(@Nullable String xRobotsTag) {
+
             this.xRobotsTag = xRobotsTag;
             return this;
         }
         @CustomType.Setter
         public Builder xXssProtection(@Nullable String xXssProtection) {
+
             this.xXssProtection = xXssProtection;
             return this;
         }
@@ -165,6 +192,7 @@ public final class RealmSecurityDefensesHeaders {
             final var _resultValue = new RealmSecurityDefensesHeaders();
             _resultValue.contentSecurityPolicy = contentSecurityPolicy;
             _resultValue.contentSecurityPolicyReportOnly = contentSecurityPolicyReportOnly;
+            _resultValue.referrerPolicy = referrerPolicy;
             _resultValue.strictTransportSecurity = strictTransportSecurity;
             _resultValue.xContentTypeOptions = xContentTypeOptions;
             _resultValue.xFrameOptions = xFrameOptions;

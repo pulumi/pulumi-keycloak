@@ -6,6 +6,7 @@ package com.pulumi.keycloak;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.core.internal.Codegen;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -392,9 +393,13 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public ProviderArgs build() {
-            $.clientId = Objects.requireNonNull($.clientId, "expected parameter 'clientId' to be non-null");
+            if ($.clientId == null) {
+                throw new MissingRequiredPropertyException("ProviderArgs", "clientId");
+            }
             $.clientTimeout = Codegen.integerProp("clientTimeout").output().arg($.clientTimeout).env("KEYCLOAK_CLIENT_TIMEOUT").def(5).getNullable();
-            $.url = Objects.requireNonNull($.url, "expected parameter 'url' to be non-null");
+            if ($.url == null) {
+                throw new MissingRequiredPropertyException("ProviderArgs", "url");
+            }
             return $;
         }
     }

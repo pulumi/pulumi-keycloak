@@ -217,6 +217,20 @@ public class User extends com.pulumi.resources.CustomResource {
         return this.realmId;
     }
     /**
+     * A list of required user actions.
+     * 
+     */
+    @Export(name="requiredActions", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> requiredActions;
+
+    /**
+     * @return A list of required user actions.
+     * 
+     */
+    public Output<Optional<List<String>>> requiredActions() {
+        return Codegen.optional(this.requiredActions);
+    }
+    /**
      * The unique username of this user.
      * 
      */

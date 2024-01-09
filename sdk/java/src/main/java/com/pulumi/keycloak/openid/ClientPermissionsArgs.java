@@ -5,6 +5,7 @@ package com.pulumi.keycloak.openid;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.keycloak.openid.inputs.ClientPermissionsConfigureScopeArgs;
 import com.pulumi.keycloak.openid.inputs.ClientPermissionsManageScopeArgs;
 import com.pulumi.keycloak.openid.inputs.ClientPermissionsMapRolesClientScopeScopeArgs;
@@ -199,8 +200,12 @@ public final class ClientPermissionsArgs extends com.pulumi.resources.ResourceAr
         }
 
         public ClientPermissionsArgs build() {
-            $.clientId = Objects.requireNonNull($.clientId, "expected parameter 'clientId' to be non-null");
-            $.realmId = Objects.requireNonNull($.realmId, "expected parameter 'realmId' to be non-null");
+            if ($.clientId == null) {
+                throw new MissingRequiredPropertyException("ClientPermissionsArgs", "clientId");
+            }
+            if ($.realmId == null) {
+                throw new MissingRequiredPropertyException("ClientPermissionsArgs", "realmId");
+            }
             return $;
         }
     }

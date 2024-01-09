@@ -5,6 +5,7 @@ package com.pulumi.keycloak.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -140,12 +141,24 @@ public final class GetRealmOtpPolicyArgs extends com.pulumi.resources.ResourceAr
         }
 
         public GetRealmOtpPolicyArgs build() {
-            $.algorithm = Objects.requireNonNull($.algorithm, "expected parameter 'algorithm' to be non-null");
-            $.digits = Objects.requireNonNull($.digits, "expected parameter 'digits' to be non-null");
-            $.initialCounter = Objects.requireNonNull($.initialCounter, "expected parameter 'initialCounter' to be non-null");
-            $.lookAheadWindow = Objects.requireNonNull($.lookAheadWindow, "expected parameter 'lookAheadWindow' to be non-null");
-            $.period = Objects.requireNonNull($.period, "expected parameter 'period' to be non-null");
-            $.type = Objects.requireNonNull($.type, "expected parameter 'type' to be non-null");
+            if ($.algorithm == null) {
+                throw new MissingRequiredPropertyException("GetRealmOtpPolicyArgs", "algorithm");
+            }
+            if ($.digits == null) {
+                throw new MissingRequiredPropertyException("GetRealmOtpPolicyArgs", "digits");
+            }
+            if ($.initialCounter == null) {
+                throw new MissingRequiredPropertyException("GetRealmOtpPolicyArgs", "initialCounter");
+            }
+            if ($.lookAheadWindow == null) {
+                throw new MissingRequiredPropertyException("GetRealmOtpPolicyArgs", "lookAheadWindow");
+            }
+            if ($.period == null) {
+                throw new MissingRequiredPropertyException("GetRealmOtpPolicyArgs", "period");
+            }
+            if ($.type == null) {
+                throw new MissingRequiredPropertyException("GetRealmOtpPolicyArgs", "type");
+            }
             return $;
         }
     }

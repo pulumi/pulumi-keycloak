@@ -85,6 +85,7 @@ export interface GetClientServiceAccountUserResult {
     readonly id: string;
     readonly lastName: string;
     readonly realmId: string;
+    readonly requiredActions: string[];
     readonly username: string;
 }
 /**

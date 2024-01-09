@@ -128,6 +128,12 @@ namespace Pulumi.Keycloak
         public Output<string> RealmId { get; private set; } = null!;
 
         /// <summary>
+        /// A list of required user actions.
+        /// </summary>
+        [Output("requiredActions")]
+        public Output<ImmutableArray<string>> RequiredActions { get; private set; } = null!;
+
+        /// <summary>
         /// The unique username of this user.
         /// </summary>
         [Output("username")]
@@ -241,6 +247,18 @@ namespace Pulumi.Keycloak
         [Input("realmId", required: true)]
         public Input<string> RealmId { get; set; } = null!;
 
+        [Input("requiredActions")]
+        private InputList<string>? _requiredActions;
+
+        /// <summary>
+        /// A list of required user actions.
+        /// </summary>
+        public InputList<string> RequiredActions
+        {
+            get => _requiredActions ?? (_requiredActions = new InputList<string>());
+            set => _requiredActions = value;
+        }
+
         /// <summary>
         /// The unique username of this user.
         /// </summary>
@@ -316,6 +334,18 @@ namespace Pulumi.Keycloak
         /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
+
+        [Input("requiredActions")]
+        private InputList<string>? _requiredActions;
+
+        /// <summary>
+        /// A list of required user actions.
+        /// </summary>
+        public InputList<string> RequiredActions
+        {
+            get => _requiredActions ?? (_requiredActions = new InputList<string>());
+            set => _requiredActions = value;
+        }
 
         /// <summary>
         /// The unique username of this user.

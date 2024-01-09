@@ -7,8 +7,6 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * ## # keycloak.openid.ClientPermissions
- *
  * Allows you to manage all openid client Scope Based Permissions.
  *
  * This is part of a preview keycloak feature. You need to enable this feature to be able to use this resource. More
@@ -25,84 +23,6 @@ import * as utilities from "../utilities";
  *
  * If the realm-management Authorization is not enable, you have to ceate a dependency (`dependsOn`) with the policy and
  * the openid client.
- *
- * ### Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as keycloak from "@pulumi/keycloak";
- *
- * const realm = new keycloak.Realm("realm", {realm: "realm"});
- * const myOpenidClient = new keycloak.openid.Client("myOpenidClient", {
- *     realmId: realm.id,
- *     clientId: "my_openid_client",
- *     clientSecret: "secret",
- *     accessType: "CONFIDENTIAL",
- *     standardFlowEnabled: true,
- *     validRedirectUris: ["http://localhost:8080/*"],
- * });
- * const realmManagement = keycloak.openid.getClientOutput({
- *     realmId: realm.id,
- *     clientId: "realm-management",
- * });
- * const testUser = new keycloak.User("testUser", {
- *     realmId: realm.id,
- *     username: "test-user",
- *     email: "test-user@fakedomain.com",
- *     firstName: "Testy",
- *     lastName: "Tester",
- * });
- * const testClientUserPolicy = new keycloak.openid.ClientUserPolicy("testClientUserPolicy", {
- *     resourceServerId: realmManagement.apply(realmManagement => realmManagement.id),
- *     realmId: realm.id,
- *     users: [testUser.id],
- *     logic: "POSITIVE",
- *     decisionStrategy: "UNANIMOUS",
- * }, {
- *     dependsOn: [myOpenidClient],
- * });
- * const myPermission = new keycloak.openid.ClientPermissions("myPermission", {
- *     realmId: realm.id,
- *     clientId: myOpenidClient.id,
- *     viewScope: {
- *         policies: [testClientUserPolicy.id],
- *         description: "my description",
- *         decisionStrategy: "UNANIMOUS",
- *     },
- * });
- * ```
- *
- * ### Argument Reference
- *
- * The following arguments are supported:
- *
- * - `realmId` - (Required) The realm this group exists in.
- * - `clientId` - (Required) The id of the client that provides the role.
- *
- * #### Permission Scopes
- *
- * Permission scopes can be defined using the following attributes:
- *
- * - `viewScope`
- * - `manageScope`
- * - `configureScope`
- * - `mapRolesScope`
- * - `mapRolesClientScopeScope`
- * - `mapRolesCompositeScope`
- * - `tokenExchangeScope`
- *
- * Each of these attributes have the following schema:
- *
- * - `policies` - (Optional) A list of policy IDs
- * - `description` - (Optional) A description for the permission scope
- * - `decisionStrategy` - (Optional) The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`.
- *
- * ### Attributes Reference
- *
- * In addition to the arguments listed above, the following computed attributes are exported:
- *
- * - `authorizationResourceServerId` - Resource server id representing the realm management client on which this
- *   permission is managed.
  */
 export class ClientPermissions extends pulumi.CustomResource {
     /**

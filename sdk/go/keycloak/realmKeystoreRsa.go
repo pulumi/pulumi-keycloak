@@ -30,7 +30,7 @@ type RealmKeystoreRsa struct {
 
 	// When `false`, key in not used for signing. Defaults to `true`.
 	Active pulumi.BoolPtrOutput `pulumi:"active"`
-	// Intended algorithm for the key. Defaults to `RS256`
+	// Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
 	Algorithm pulumi.StringPtrOutput `pulumi:"algorithm"`
 	// X509 Certificate encoded in PEM format.
 	Certificate pulumi.StringOutput `pulumi:"certificate"`
@@ -42,6 +42,8 @@ type RealmKeystoreRsa struct {
 	Priority pulumi.IntPtrOutput `pulumi:"priority"`
 	// Private RSA Key encoded in PEM format.
 	PrivateKey pulumi.StringOutput `pulumi:"privateKey"`
+	// Use `rsa` for signing keys, `rsa-enc` for encryption keys
+	ProviderId pulumi.StringPtrOutput `pulumi:"providerId"`
 	// The realm this keystore exists in.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
 }
@@ -87,7 +89,7 @@ func GetRealmKeystoreRsa(ctx *pulumi.Context,
 type realmKeystoreRsaState struct {
 	// When `false`, key in not used for signing. Defaults to `true`.
 	Active *bool `pulumi:"active"`
-	// Intended algorithm for the key. Defaults to `RS256`
+	// Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
 	Algorithm *string `pulumi:"algorithm"`
 	// X509 Certificate encoded in PEM format.
 	Certificate *string `pulumi:"certificate"`
@@ -99,6 +101,8 @@ type realmKeystoreRsaState struct {
 	Priority *int `pulumi:"priority"`
 	// Private RSA Key encoded in PEM format.
 	PrivateKey *string `pulumi:"privateKey"`
+	// Use `rsa` for signing keys, `rsa-enc` for encryption keys
+	ProviderId *string `pulumi:"providerId"`
 	// The realm this keystore exists in.
 	RealmId *string `pulumi:"realmId"`
 }
@@ -106,7 +110,7 @@ type realmKeystoreRsaState struct {
 type RealmKeystoreRsaState struct {
 	// When `false`, key in not used for signing. Defaults to `true`.
 	Active pulumi.BoolPtrInput
-	// Intended algorithm for the key. Defaults to `RS256`
+	// Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
 	Algorithm pulumi.StringPtrInput
 	// X509 Certificate encoded in PEM format.
 	Certificate pulumi.StringPtrInput
@@ -118,6 +122,8 @@ type RealmKeystoreRsaState struct {
 	Priority pulumi.IntPtrInput
 	// Private RSA Key encoded in PEM format.
 	PrivateKey pulumi.StringPtrInput
+	// Use `rsa` for signing keys, `rsa-enc` for encryption keys
+	ProviderId pulumi.StringPtrInput
 	// The realm this keystore exists in.
 	RealmId pulumi.StringPtrInput
 }
@@ -129,7 +135,7 @@ func (RealmKeystoreRsaState) ElementType() reflect.Type {
 type realmKeystoreRsaArgs struct {
 	// When `false`, key in not used for signing. Defaults to `true`.
 	Active *bool `pulumi:"active"`
-	// Intended algorithm for the key. Defaults to `RS256`
+	// Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
 	Algorithm *string `pulumi:"algorithm"`
 	// X509 Certificate encoded in PEM format.
 	Certificate string `pulumi:"certificate"`
@@ -141,6 +147,8 @@ type realmKeystoreRsaArgs struct {
 	Priority *int `pulumi:"priority"`
 	// Private RSA Key encoded in PEM format.
 	PrivateKey string `pulumi:"privateKey"`
+	// Use `rsa` for signing keys, `rsa-enc` for encryption keys
+	ProviderId *string `pulumi:"providerId"`
 	// The realm this keystore exists in.
 	RealmId string `pulumi:"realmId"`
 }
@@ -149,7 +157,7 @@ type realmKeystoreRsaArgs struct {
 type RealmKeystoreRsaArgs struct {
 	// When `false`, key in not used for signing. Defaults to `true`.
 	Active pulumi.BoolPtrInput
-	// Intended algorithm for the key. Defaults to `RS256`
+	// Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
 	Algorithm pulumi.StringPtrInput
 	// X509 Certificate encoded in PEM format.
 	Certificate pulumi.StringInput
@@ -161,6 +169,8 @@ type RealmKeystoreRsaArgs struct {
 	Priority pulumi.IntPtrInput
 	// Private RSA Key encoded in PEM format.
 	PrivateKey pulumi.StringInput
+	// Use `rsa` for signing keys, `rsa-enc` for encryption keys
+	ProviderId pulumi.StringPtrInput
 	// The realm this keystore exists in.
 	RealmId pulumi.StringInput
 }
@@ -257,7 +267,7 @@ func (o RealmKeystoreRsaOutput) Active() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *RealmKeystoreRsa) pulumi.BoolPtrOutput { return v.Active }).(pulumi.BoolPtrOutput)
 }
 
-// Intended algorithm for the key. Defaults to `RS256`
+// Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
 func (o RealmKeystoreRsaOutput) Algorithm() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RealmKeystoreRsa) pulumi.StringPtrOutput { return v.Algorithm }).(pulumi.StringPtrOutput)
 }
@@ -285,6 +295,11 @@ func (o RealmKeystoreRsaOutput) Priority() pulumi.IntPtrOutput {
 // Private RSA Key encoded in PEM format.
 func (o RealmKeystoreRsaOutput) PrivateKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *RealmKeystoreRsa) pulumi.StringOutput { return v.PrivateKey }).(pulumi.StringOutput)
+}
+
+// Use `rsa` for signing keys, `rsa-enc` for encryption keys
+func (o RealmKeystoreRsaOutput) ProviderId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RealmKeystoreRsa) pulumi.StringPtrOutput { return v.ProviderId }).(pulumi.StringPtrOutput)
 }
 
 // The realm this keystore exists in.

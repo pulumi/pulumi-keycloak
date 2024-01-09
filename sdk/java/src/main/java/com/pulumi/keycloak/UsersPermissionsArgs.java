@@ -5,6 +5,7 @@ package com.pulumi.keycloak;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.keycloak.inputs.UsersPermissionsImpersonateScopeArgs;
 import com.pulumi.keycloak.inputs.UsersPermissionsManageGroupMembershipScopeArgs;
 import com.pulumi.keycloak.inputs.UsersPermissionsManageScopeArgs;
@@ -164,7 +165,9 @@ public final class UsersPermissionsArgs extends com.pulumi.resources.ResourceArg
         }
 
         public UsersPermissionsArgs build() {
-            $.realmId = Objects.requireNonNull($.realmId, "expected parameter 'realmId' to be non-null");
+            if ($.realmId == null) {
+                throw new MissingRequiredPropertyException("UsersPermissionsArgs", "realmId");
+            }
             return $;
         }
     }

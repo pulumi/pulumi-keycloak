@@ -5,6 +5,7 @@ package com.pulumi.keycloak.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.keycloak.inputs.GetRealmSecurityDefenseBruteForceDetectionArgs;
 import com.pulumi.keycloak.inputs.GetRealmSecurityDefenseHeaderArgs;
 import java.util.List;
@@ -81,8 +82,12 @@ public final class GetRealmSecurityDefenseArgs extends com.pulumi.resources.Reso
         }
 
         public GetRealmSecurityDefenseArgs build() {
-            $.bruteForceDetections = Objects.requireNonNull($.bruteForceDetections, "expected parameter 'bruteForceDetections' to be non-null");
-            $.headers = Objects.requireNonNull($.headers, "expected parameter 'headers' to be non-null");
+            if ($.bruteForceDetections == null) {
+                throw new MissingRequiredPropertyException("GetRealmSecurityDefenseArgs", "bruteForceDetections");
+            }
+            if ($.headers == null) {
+                throw new MissingRequiredPropertyException("GetRealmSecurityDefenseArgs", "headers");
+            }
             return $;
         }
     }

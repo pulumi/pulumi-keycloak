@@ -5,6 +5,7 @@ package com.pulumi.keycloak.authentication;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -310,9 +311,15 @@ public final class SubflowArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public SubflowArgs build() {
-            $.alias = Objects.requireNonNull($.alias, "expected parameter 'alias' to be non-null");
-            $.parentFlowAlias = Objects.requireNonNull($.parentFlowAlias, "expected parameter 'parentFlowAlias' to be non-null");
-            $.realmId = Objects.requireNonNull($.realmId, "expected parameter 'realmId' to be non-null");
+            if ($.alias == null) {
+                throw new MissingRequiredPropertyException("SubflowArgs", "alias");
+            }
+            if ($.parentFlowAlias == null) {
+                throw new MissingRequiredPropertyException("SubflowArgs", "parentFlowAlias");
+            }
+            if ($.realmId == null) {
+                throw new MissingRequiredPropertyException("SubflowArgs", "realmId");
+            }
             return $;
         }
     }

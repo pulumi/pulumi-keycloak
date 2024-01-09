@@ -21,6 +21,8 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "keycloak:ldap/customMapper:CustomMapper":
+		r = &CustomMapper{}
 	case "keycloak:ldap/fullNameMapper:FullNameMapper":
 		r = &FullNameMapper{}
 	case "keycloak:ldap/groupMapper:GroupMapper":
@@ -54,6 +56,11 @@ func init() {
 	if err != nil {
 		version = semver.Version{Major: 1}
 	}
+	pulumi.RegisterResourceModule(
+		"keycloak",
+		"ldap/customMapper",
+		&module{version},
+	)
 	pulumi.RegisterResourceModule(
 		"keycloak",
 		"ldap/fullNameMapper",

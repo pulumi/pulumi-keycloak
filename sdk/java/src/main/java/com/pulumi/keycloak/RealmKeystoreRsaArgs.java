@@ -5,6 +5,7 @@ package com.pulumi.keycloak;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -33,14 +34,14 @@ public final class RealmKeystoreRsaArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Intended algorithm for the key. Defaults to `RS256`
+     * Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
      * 
      */
     @Import(name="algorithm")
     private @Nullable Output<String> algorithm;
 
     /**
-     * @return Intended algorithm for the key. Defaults to `RS256`
+     * @return Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
      * 
      */
     public Optional<Output<String>> algorithm() {
@@ -123,6 +124,21 @@ public final class RealmKeystoreRsaArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
+     * Use `rsa` for signing keys, `rsa-enc` for encryption keys
+     * 
+     */
+    @Import(name="providerId")
+    private @Nullable Output<String> providerId;
+
+    /**
+     * @return Use `rsa` for signing keys, `rsa-enc` for encryption keys
+     * 
+     */
+    public Optional<Output<String>> providerId() {
+        return Optional.ofNullable(this.providerId);
+    }
+
+    /**
      * The realm this keystore exists in.
      * 
      */
@@ -147,6 +163,7 @@ public final class RealmKeystoreRsaArgs extends com.pulumi.resources.ResourceArg
         this.name = $.name;
         this.priority = $.priority;
         this.privateKey = $.privateKey;
+        this.providerId = $.providerId;
         this.realmId = $.realmId;
     }
 
@@ -190,7 +207,7 @@ public final class RealmKeystoreRsaArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param algorithm Intended algorithm for the key. Defaults to `RS256`
+         * @param algorithm Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
          * 
          * @return builder
          * 
@@ -201,7 +218,7 @@ public final class RealmKeystoreRsaArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param algorithm Intended algorithm for the key. Defaults to `RS256`
+         * @param algorithm Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
          * 
          * @return builder
          * 
@@ -316,6 +333,27 @@ public final class RealmKeystoreRsaArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
+         * @param providerId Use `rsa` for signing keys, `rsa-enc` for encryption keys
+         * 
+         * @return builder
+         * 
+         */
+        public Builder providerId(@Nullable Output<String> providerId) {
+            $.providerId = providerId;
+            return this;
+        }
+
+        /**
+         * @param providerId Use `rsa` for signing keys, `rsa-enc` for encryption keys
+         * 
+         * @return builder
+         * 
+         */
+        public Builder providerId(String providerId) {
+            return providerId(Output.of(providerId));
+        }
+
+        /**
          * @param realmId The realm this keystore exists in.
          * 
          * @return builder
@@ -337,9 +375,15 @@ public final class RealmKeystoreRsaArgs extends com.pulumi.resources.ResourceArg
         }
 
         public RealmKeystoreRsaArgs build() {
-            $.certificate = Objects.requireNonNull($.certificate, "expected parameter 'certificate' to be non-null");
-            $.privateKey = Objects.requireNonNull($.privateKey, "expected parameter 'privateKey' to be non-null");
-            $.realmId = Objects.requireNonNull($.realmId, "expected parameter 'realmId' to be non-null");
+            if ($.certificate == null) {
+                throw new MissingRequiredPropertyException("RealmKeystoreRsaArgs", "certificate");
+            }
+            if ($.privateKey == null) {
+                throw new MissingRequiredPropertyException("RealmKeystoreRsaArgs", "privateKey");
+            }
+            if ($.realmId == null) {
+                throw new MissingRequiredPropertyException("RealmKeystoreRsaArgs", "realmId");
+            }
             return $;
         }
     }

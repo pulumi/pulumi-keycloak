@@ -5,6 +5,7 @@ package com.pulumi.keycloak;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.Object;
@@ -413,8 +414,12 @@ public final class CustomUserFederationArgs extends com.pulumi.resources.Resourc
         }
 
         public CustomUserFederationArgs build() {
-            $.providerId = Objects.requireNonNull($.providerId, "expected parameter 'providerId' to be non-null");
-            $.realmId = Objects.requireNonNull($.realmId, "expected parameter 'realmId' to be non-null");
+            if ($.providerId == null) {
+                throw new MissingRequiredPropertyException("CustomUserFederationArgs", "providerId");
+            }
+            if ($.realmId == null) {
+                throw new MissingRequiredPropertyException("CustomUserFederationArgs", "realmId");
+            }
             return $;
         }
     }

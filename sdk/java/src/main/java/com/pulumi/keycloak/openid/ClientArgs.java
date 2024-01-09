@@ -5,6 +5,7 @@ package com.pulumi.keycloak.openid;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.keycloak.openid.inputs.ClientAuthenticationFlowBindingOverridesArgs;
 import com.pulumi.keycloak.openid.inputs.ClientAuthorizationArgs;
 import java.lang.Boolean;
@@ -157,7 +158,7 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Defaults to `client-secret` The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:
+     * Defaults to `client-secret`. The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. A default Keycloak installation will have the following available types:
      * - `client-secret` (Default) Use client id and client secret to authenticate client.
      * - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
      * - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extra_config` with `attributes.x509.subjectdn = &lt;subjectDn&gt;`
@@ -168,7 +169,7 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
     private @Nullable Output<String> clientAuthenticatorType;
 
     /**
-     * @return Defaults to `client-secret` The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:
+     * @return Defaults to `client-secret`. The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. A default Keycloak installation will have the following available types:
      * - `client-secret` (Default) Use client id and client secret to authenticate client.
      * - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
      * - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extra_config` with `attributes.x509.subjectdn = &lt;subjectDn&gt;`
@@ -942,7 +943,7 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param clientAuthenticatorType Defaults to `client-secret` The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:
+         * @param clientAuthenticatorType Defaults to `client-secret`. The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. A default Keycloak installation will have the following available types:
          * - `client-secret` (Default) Use client id and client secret to authenticate client.
          * - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
          * - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extra_config` with `attributes.x509.subjectdn = &lt;subjectDn&gt;`
@@ -957,7 +958,7 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param clientAuthenticatorType Defaults to `client-secret` The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:
+         * @param clientAuthenticatorType Defaults to `client-secret`. The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. A default Keycloak installation will have the following available types:
          * - `client-secret` (Default) Use client id and client secret to authenticate client.
          * - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
          * - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extra_config` with `attributes.x509.subjectdn = &lt;subjectDn&gt;`
@@ -1709,9 +1710,15 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public ClientArgs build() {
-            $.accessType = Objects.requireNonNull($.accessType, "expected parameter 'accessType' to be non-null");
-            $.clientId = Objects.requireNonNull($.clientId, "expected parameter 'clientId' to be non-null");
-            $.realmId = Objects.requireNonNull($.realmId, "expected parameter 'realmId' to be non-null");
+            if ($.accessType == null) {
+                throw new MissingRequiredPropertyException("ClientArgs", "accessType");
+            }
+            if ($.clientId == null) {
+                throw new MissingRequiredPropertyException("ClientArgs", "clientId");
+            }
+            if ($.realmId == null) {
+                throw new MissingRequiredPropertyException("ClientArgs", "realmId");
+            }
             return $;
         }
     }

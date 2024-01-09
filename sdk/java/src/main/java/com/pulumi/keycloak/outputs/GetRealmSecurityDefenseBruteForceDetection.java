@@ -4,6 +4,7 @@
 package com.pulumi.keycloak.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.util.Objects;
@@ -71,37 +72,58 @@ public final class GetRealmSecurityDefenseBruteForceDetection {
 
         @CustomType.Setter
         public Builder failureResetTimeSeconds(Integer failureResetTimeSeconds) {
-            this.failureResetTimeSeconds = Objects.requireNonNull(failureResetTimeSeconds);
+            if (failureResetTimeSeconds == null) {
+              throw new MissingRequiredPropertyException("GetRealmSecurityDefenseBruteForceDetection", "failureResetTimeSeconds");
+            }
+            this.failureResetTimeSeconds = failureResetTimeSeconds;
             return this;
         }
         @CustomType.Setter
         public Builder maxFailureWaitSeconds(Integer maxFailureWaitSeconds) {
-            this.maxFailureWaitSeconds = Objects.requireNonNull(maxFailureWaitSeconds);
+            if (maxFailureWaitSeconds == null) {
+              throw new MissingRequiredPropertyException("GetRealmSecurityDefenseBruteForceDetection", "maxFailureWaitSeconds");
+            }
+            this.maxFailureWaitSeconds = maxFailureWaitSeconds;
             return this;
         }
         @CustomType.Setter
         public Builder maxLoginFailures(Integer maxLoginFailures) {
-            this.maxLoginFailures = Objects.requireNonNull(maxLoginFailures);
+            if (maxLoginFailures == null) {
+              throw new MissingRequiredPropertyException("GetRealmSecurityDefenseBruteForceDetection", "maxLoginFailures");
+            }
+            this.maxLoginFailures = maxLoginFailures;
             return this;
         }
         @CustomType.Setter
         public Builder minimumQuickLoginWaitSeconds(Integer minimumQuickLoginWaitSeconds) {
-            this.minimumQuickLoginWaitSeconds = Objects.requireNonNull(minimumQuickLoginWaitSeconds);
+            if (minimumQuickLoginWaitSeconds == null) {
+              throw new MissingRequiredPropertyException("GetRealmSecurityDefenseBruteForceDetection", "minimumQuickLoginWaitSeconds");
+            }
+            this.minimumQuickLoginWaitSeconds = minimumQuickLoginWaitSeconds;
             return this;
         }
         @CustomType.Setter
         public Builder permanentLockout(Boolean permanentLockout) {
-            this.permanentLockout = Objects.requireNonNull(permanentLockout);
+            if (permanentLockout == null) {
+              throw new MissingRequiredPropertyException("GetRealmSecurityDefenseBruteForceDetection", "permanentLockout");
+            }
+            this.permanentLockout = permanentLockout;
             return this;
         }
         @CustomType.Setter
         public Builder quickLoginCheckMilliSeconds(Integer quickLoginCheckMilliSeconds) {
-            this.quickLoginCheckMilliSeconds = Objects.requireNonNull(quickLoginCheckMilliSeconds);
+            if (quickLoginCheckMilliSeconds == null) {
+              throw new MissingRequiredPropertyException("GetRealmSecurityDefenseBruteForceDetection", "quickLoginCheckMilliSeconds");
+            }
+            this.quickLoginCheckMilliSeconds = quickLoginCheckMilliSeconds;
             return this;
         }
         @CustomType.Setter
         public Builder waitIncrementSeconds(Integer waitIncrementSeconds) {
-            this.waitIncrementSeconds = Objects.requireNonNull(waitIncrementSeconds);
+            if (waitIncrementSeconds == null) {
+              throw new MissingRequiredPropertyException("GetRealmSecurityDefenseBruteForceDetection", "waitIncrementSeconds");
+            }
+            this.waitIncrementSeconds = waitIncrementSeconds;
             return this;
         }
         public GetRealmSecurityDefenseBruteForceDetection build() {

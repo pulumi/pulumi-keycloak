@@ -5,6 +5,7 @@ package com.pulumi.keycloak.ldap.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -188,9 +189,15 @@ public final class UserFederationKerberosArgs extends com.pulumi.resources.Resou
         }
 
         public UserFederationKerberosArgs build() {
-            $.kerberosRealm = Objects.requireNonNull($.kerberosRealm, "expected parameter 'kerberosRealm' to be non-null");
-            $.keyTab = Objects.requireNonNull($.keyTab, "expected parameter 'keyTab' to be non-null");
-            $.serverPrincipal = Objects.requireNonNull($.serverPrincipal, "expected parameter 'serverPrincipal' to be non-null");
+            if ($.kerberosRealm == null) {
+                throw new MissingRequiredPropertyException("UserFederationKerberosArgs", "kerberosRealm");
+            }
+            if ($.keyTab == null) {
+                throw new MissingRequiredPropertyException("UserFederationKerberosArgs", "keyTab");
+            }
+            if ($.serverPrincipal == null) {
+                throw new MissingRequiredPropertyException("UserFederationKerberosArgs", "serverPrincipal");
+            }
             return $;
         }
     }

@@ -93,7 +93,7 @@ type Client struct {
 	BackchannelLogoutUrl pulumi.StringPtrOutput `pulumi:"backchannelLogoutUrl"`
 	// Default URL to use when the auth server needs to redirect or link back to the client.
 	BaseUrl pulumi.StringOutput `pulumi:"baseUrl"`
-	// Defaults to `client-secret` The authenticator type for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:
+	// Defaults to `client-secret`. The authenticator type for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. A default Keycloak installation will have the following available types:
 	// - `client-secret` (Default) Use client id and client secret to authenticate client.
 	// - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extraConfig` with `attributes.token.endpoint.auth.signing.alg = <alg>`
 	// - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extraConfig` with `attributes.x509.subjectdn = <subjectDn>`
@@ -238,7 +238,7 @@ type clientState struct {
 	BackchannelLogoutUrl *string `pulumi:"backchannelLogoutUrl"`
 	// Default URL to use when the auth server needs to redirect or link back to the client.
 	BaseUrl *string `pulumi:"baseUrl"`
-	// Defaults to `client-secret` The authenticator type for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:
+	// Defaults to `client-secret`. The authenticator type for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. A default Keycloak installation will have the following available types:
 	// - `client-secret` (Default) Use client id and client secret to authenticate client.
 	// - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extraConfig` with `attributes.token.endpoint.auth.signing.alg = <alg>`
 	// - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extraConfig` with `attributes.x509.subjectdn = <subjectDn>`
@@ -338,7 +338,7 @@ type ClientState struct {
 	BackchannelLogoutUrl pulumi.StringPtrInput
 	// Default URL to use when the auth server needs to redirect or link back to the client.
 	BaseUrl pulumi.StringPtrInput
-	// Defaults to `client-secret` The authenticator type for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:
+	// Defaults to `client-secret`. The authenticator type for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. A default Keycloak installation will have the following available types:
 	// - `client-secret` (Default) Use client id and client secret to authenticate client.
 	// - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extraConfig` with `attributes.token.endpoint.auth.signing.alg = <alg>`
 	// - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extraConfig` with `attributes.x509.subjectdn = <subjectDn>`
@@ -442,7 +442,7 @@ type clientArgs struct {
 	BackchannelLogoutUrl *string `pulumi:"backchannelLogoutUrl"`
 	// Default URL to use when the auth server needs to redirect or link back to the client.
 	BaseUrl *string `pulumi:"baseUrl"`
-	// Defaults to `client-secret` The authenticator type for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:
+	// Defaults to `client-secret`. The authenticator type for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. A default Keycloak installation will have the following available types:
 	// - `client-secret` (Default) Use client id and client secret to authenticate client.
 	// - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extraConfig` with `attributes.token.endpoint.auth.signing.alg = <alg>`
 	// - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extraConfig` with `attributes.x509.subjectdn = <subjectDn>`
@@ -539,7 +539,7 @@ type ClientArgs struct {
 	BackchannelLogoutUrl pulumi.StringPtrInput
 	// Default URL to use when the auth server needs to redirect or link back to the client.
 	BaseUrl pulumi.StringPtrInput
-	// Defaults to `client-secret` The authenticator type for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:
+	// Defaults to `client-secret`. The authenticator type for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. A default Keycloak installation will have the following available types:
 	// - `client-secret` (Default) Use client id and client secret to authenticate client.
 	// - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extraConfig` with `attributes.token.endpoint.auth.signing.alg = <alg>`
 	// - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extraConfig` with `attributes.x509.subjectdn = <subjectDn>`
@@ -750,7 +750,7 @@ func (o ClientOutput) BaseUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v *Client) pulumi.StringOutput { return v.BaseUrl }).(pulumi.StringOutput)
 }
 
-// Defaults to `client-secret` The authenticator type for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. Can be one of the following:
+// Defaults to `client-secret`. The authenticator type for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. A default Keycloak installation will have the following available types:
 // - `client-secret` (Default) Use client id and client secret to authenticate client.
 // - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extraConfig` with `attributes.token.endpoint.auth.signing.alg = <alg>`
 // - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extraConfig` with `attributes.x509.subjectdn = <subjectDn>`

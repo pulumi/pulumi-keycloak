@@ -66,6 +66,7 @@ export interface GetRealmSecurityDefenseBruteForceDetectionArgs {
 export interface GetRealmSecurityDefenseHeader {
     contentSecurityPolicy?: string;
     contentSecurityPolicyReportOnly?: string;
+    referrerPolicy?: string;
     strictTransportSecurity?: string;
     xContentTypeOptions?: string;
     xFrameOptions?: string;
@@ -76,6 +77,7 @@ export interface GetRealmSecurityDefenseHeader {
 export interface GetRealmSecurityDefenseHeaderArgs {
     contentSecurityPolicy?: pulumi.Input<string>;
     contentSecurityPolicyReportOnly?: pulumi.Input<string>;
+    referrerPolicy?: pulumi.Input<string>;
     strictTransportSecurity?: pulumi.Input<string>;
     xContentTypeOptions?: pulumi.Input<string>;
     xFrameOptions?: pulumi.Input<string>;
@@ -282,6 +284,10 @@ export interface RealmSecurityDefensesHeaders {
      * Used for testing Content Security Policies.
      */
     contentSecurityPolicyReportOnly?: pulumi.Input<string>;
+    /**
+     * The Referrer-Policy HTTP header controls how much referrer information (sent with the Referer header) should be included with requests.
+     */
+    referrerPolicy?: pulumi.Input<string>;
     /**
      * The Script-Transport-Security HTTP header tells browsers to always use HTTPS.
      */

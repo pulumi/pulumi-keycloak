@@ -5,6 +5,7 @@ package com.pulumi.keycloak.ldap;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -410,10 +411,18 @@ public final class UserAttributeMapperArgs extends com.pulumi.resources.Resource
         }
 
         public UserAttributeMapperArgs build() {
-            $.ldapAttribute = Objects.requireNonNull($.ldapAttribute, "expected parameter 'ldapAttribute' to be non-null");
-            $.ldapUserFederationId = Objects.requireNonNull($.ldapUserFederationId, "expected parameter 'ldapUserFederationId' to be non-null");
-            $.realmId = Objects.requireNonNull($.realmId, "expected parameter 'realmId' to be non-null");
-            $.userModelAttribute = Objects.requireNonNull($.userModelAttribute, "expected parameter 'userModelAttribute' to be non-null");
+            if ($.ldapAttribute == null) {
+                throw new MissingRequiredPropertyException("UserAttributeMapperArgs", "ldapAttribute");
+            }
+            if ($.ldapUserFederationId == null) {
+                throw new MissingRequiredPropertyException("UserAttributeMapperArgs", "ldapUserFederationId");
+            }
+            if ($.realmId == null) {
+                throw new MissingRequiredPropertyException("UserAttributeMapperArgs", "realmId");
+            }
+            if ($.userModelAttribute == null) {
+                throw new MissingRequiredPropertyException("UserAttributeMapperArgs", "userModelAttribute");
+            }
             return $;
         }
     }

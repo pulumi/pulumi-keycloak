@@ -81,9 +81,10 @@ type LookupUserResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// (Computed) The user's last name.
-	LastName string `pulumi:"lastName"`
-	RealmId  string `pulumi:"realmId"`
-	Username string `pulumi:"username"`
+	LastName        string   `pulumi:"lastName"`
+	RealmId         string   `pulumi:"realmId"`
+	RequiredActions []string `pulumi:"requiredActions"`
+	Username        string   `pulumi:"username"`
 }
 
 func LookupUserOutput(ctx *pulumi.Context, args LookupUserOutputArgs, opts ...pulumi.InvokeOption) LookupUserResultOutput {
@@ -168,6 +169,10 @@ func (o LookupUserResultOutput) LastName() pulumi.StringOutput {
 
 func (o LookupUserResultOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupUserResult) string { return v.RealmId }).(pulumi.StringOutput)
+}
+
+func (o LookupUserResultOutput) RequiredActions() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupUserResult) []string { return v.RequiredActions }).(pulumi.StringArrayOutput)
 }
 
 func (o LookupUserResultOutput) Username() pulumi.StringOutput {

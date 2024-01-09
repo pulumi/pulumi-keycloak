@@ -5,6 +5,7 @@ package com.pulumi.keycloak.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -114,7 +115,9 @@ public final class UserInitialPasswordArgs extends com.pulumi.resources.Resource
         }
 
         public UserInitialPasswordArgs build() {
-            $.value = Objects.requireNonNull($.value, "expected parameter 'value' to be non-null");
+            if ($.value == null) {
+                throw new MissingRequiredPropertyException("UserInitialPasswordArgs", "value");
+            }
             return $;
         }
     }

@@ -15,6 +15,7 @@ namespace Pulumi.Keycloak.Outputs
     {
         public readonly string ContentSecurityPolicy;
         public readonly string ContentSecurityPolicyReportOnly;
+        public readonly string ReferrerPolicy;
         public readonly string StrictTransportSecurity;
         public readonly string XContentTypeOptions;
         public readonly string XFrameOptions;
@@ -26,6 +27,8 @@ namespace Pulumi.Keycloak.Outputs
             string contentSecurityPolicy,
 
             string contentSecurityPolicyReportOnly,
+
+            string referrerPolicy,
 
             string strictTransportSecurity,
 
@@ -39,6 +42,7 @@ namespace Pulumi.Keycloak.Outputs
         {
             ContentSecurityPolicy = contentSecurityPolicy;
             ContentSecurityPolicyReportOnly = contentSecurityPolicyReportOnly;
+            ReferrerPolicy = referrerPolicy;
             StrictTransportSecurity = strictTransportSecurity;
             XContentTypeOptions = xContentTypeOptions;
             XFrameOptions = xFrameOptions;

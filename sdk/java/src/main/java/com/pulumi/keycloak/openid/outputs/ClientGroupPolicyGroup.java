@@ -4,6 +4,7 @@
 package com.pulumi.keycloak.openid.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -47,17 +48,26 @@ public final class ClientGroupPolicyGroup {
 
         @CustomType.Setter
         public Builder extendChildren(Boolean extendChildren) {
-            this.extendChildren = Objects.requireNonNull(extendChildren);
+            if (extendChildren == null) {
+              throw new MissingRequiredPropertyException("ClientGroupPolicyGroup", "extendChildren");
+            }
+            this.extendChildren = extendChildren;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("ClientGroupPolicyGroup", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder path(String path) {
-            this.path = Objects.requireNonNull(path);
+            if (path == null) {
+              throw new MissingRequiredPropertyException("ClientGroupPolicyGroup", "path");
+            }
+            this.path = path;
             return this;
         }
         public ClientGroupPolicyGroup build() {

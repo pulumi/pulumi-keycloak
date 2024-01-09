@@ -5,6 +5,7 @@ package com.pulumi.keycloak.ldap;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -187,9 +188,15 @@ public final class HardcodedGroupMapperArgs extends com.pulumi.resources.Resourc
         }
 
         public HardcodedGroupMapperArgs build() {
-            $.group = Objects.requireNonNull($.group, "expected parameter 'group' to be non-null");
-            $.ldapUserFederationId = Objects.requireNonNull($.ldapUserFederationId, "expected parameter 'ldapUserFederationId' to be non-null");
-            $.realmId = Objects.requireNonNull($.realmId, "expected parameter 'realmId' to be non-null");
+            if ($.group == null) {
+                throw new MissingRequiredPropertyException("HardcodedGroupMapperArgs", "group");
+            }
+            if ($.ldapUserFederationId == null) {
+                throw new MissingRequiredPropertyException("HardcodedGroupMapperArgs", "ldapUserFederationId");
+            }
+            if ($.realmId == null) {
+                throw new MissingRequiredPropertyException("HardcodedGroupMapperArgs", "realmId");
+            }
             return $;
         }
     }

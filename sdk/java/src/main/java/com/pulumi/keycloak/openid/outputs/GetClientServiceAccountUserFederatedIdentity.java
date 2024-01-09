@@ -4,6 +4,7 @@
 package com.pulumi.keycloak.openid.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -46,17 +47,26 @@ public final class GetClientServiceAccountUserFederatedIdentity {
 
         @CustomType.Setter
         public Builder identityProvider(String identityProvider) {
-            this.identityProvider = Objects.requireNonNull(identityProvider);
+            if (identityProvider == null) {
+              throw new MissingRequiredPropertyException("GetClientServiceAccountUserFederatedIdentity", "identityProvider");
+            }
+            this.identityProvider = identityProvider;
             return this;
         }
         @CustomType.Setter
         public Builder userId(String userId) {
-            this.userId = Objects.requireNonNull(userId);
+            if (userId == null) {
+              throw new MissingRequiredPropertyException("GetClientServiceAccountUserFederatedIdentity", "userId");
+            }
+            this.userId = userId;
             return this;
         }
         @CustomType.Setter
         public Builder userName(String userName) {
-            this.userName = Objects.requireNonNull(userName);
+            if (userName == null) {
+              throw new MissingRequiredPropertyException("GetClientServiceAccountUserFederatedIdentity", "userName");
+            }
+            this.userName = userName;
             return this;
         }
         public GetClientServiceAccountUserFederatedIdentity build() {

@@ -4,6 +4,7 @@
 package com.pulumi.keycloak.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Object;
 import java.lang.String;
 import java.util.List;
@@ -91,17 +92,24 @@ public final class GetRoleResult {
 
         @CustomType.Setter
         public Builder attributes(Map<String,Object> attributes) {
-            this.attributes = Objects.requireNonNull(attributes);
+            if (attributes == null) {
+              throw new MissingRequiredPropertyException("GetRoleResult", "attributes");
+            }
+            this.attributes = attributes;
             return this;
         }
         @CustomType.Setter
         public Builder clientId(@Nullable String clientId) {
+
             this.clientId = clientId;
             return this;
         }
         @CustomType.Setter
         public Builder compositeRoles(List<String> compositeRoles) {
-            this.compositeRoles = Objects.requireNonNull(compositeRoles);
+            if (compositeRoles == null) {
+              throw new MissingRequiredPropertyException("GetRoleResult", "compositeRoles");
+            }
+            this.compositeRoles = compositeRoles;
             return this;
         }
         public Builder compositeRoles(String... compositeRoles) {
@@ -109,22 +117,34 @@ public final class GetRoleResult {
         }
         @CustomType.Setter
         public Builder description(String description) {
-            this.description = Objects.requireNonNull(description);
+            if (description == null) {
+              throw new MissingRequiredPropertyException("GetRoleResult", "description");
+            }
+            this.description = description;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetRoleResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("GetRoleResult", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder realmId(String realmId) {
-            this.realmId = Objects.requireNonNull(realmId);
+            if (realmId == null) {
+              throw new MissingRequiredPropertyException("GetRoleResult", "realmId");
+            }
+            this.realmId = realmId;
             return this;
         }
         public GetRoleResult build() {

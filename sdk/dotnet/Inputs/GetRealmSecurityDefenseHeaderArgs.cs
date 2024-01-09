@@ -18,6 +18,9 @@ namespace Pulumi.Keycloak.Inputs
         [Input("contentSecurityPolicyReportOnly", required: true)]
         public Input<string> ContentSecurityPolicyReportOnly { get; set; } = null!;
 
+        [Input("referrerPolicy", required: true)]
+        public Input<string> ReferrerPolicy { get; set; } = null!;
+
         [Input("strictTransportSecurity", required: true)]
         public Input<string> StrictTransportSecurity { get; set; } = null!;
 

@@ -4,6 +4,7 @@
 package com.pulumi.keycloak.inputs;
 
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -67,8 +68,12 @@ public final class GetRealmInternationalization extends com.pulumi.resources.Inv
         }
 
         public GetRealmInternationalization build() {
-            $.defaultLocale = Objects.requireNonNull($.defaultLocale, "expected parameter 'defaultLocale' to be non-null");
-            $.supportedLocales = Objects.requireNonNull($.supportedLocales, "expected parameter 'supportedLocales' to be non-null");
+            if ($.defaultLocale == null) {
+                throw new MissingRequiredPropertyException("GetRealmInternationalization", "defaultLocale");
+            }
+            if ($.supportedLocales == null) {
+                throw new MissingRequiredPropertyException("GetRealmInternationalization", "supportedLocales");
+            }
             return $;
         }
     }

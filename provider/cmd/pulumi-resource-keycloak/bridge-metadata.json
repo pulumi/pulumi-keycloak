@@ -166,6 +166,10 @@
                     }
                 }
             },
+            "keycloak_ldap_custom_mapper": {
+                "current": "keycloak:ldap/customMapper:CustomMapper",
+                "majorVersion": 5
+            },
             "keycloak_ldap_full_name_mapper": {
                 "current": "keycloak:ldap/fullNameMapper:FullNameMapper",
                 "majorVersion": 5
@@ -726,6 +730,9 @@
                     },
                     "initial_password": {
                         "maxItemsOne": true
+                    },
+                    "required_actions": {
+                        "maxItemsOne": false
                     }
                 }
             },
@@ -901,6 +908,9 @@
                 "fields": {
                     "federated_identity": {
                         "maxItemsOne": false
+                    },
+                    "required_actions": {
+                        "maxItemsOne": false
                     }
                 }
             },
@@ -1024,6 +1034,9 @@
                 "fields": {
                     "federated_identity": {
                         "maxItemsOne": false
+                    },
+                    "required_actions": {
+                        "maxItemsOne": false
                     }
                 }
             },
@@ -1087,6 +1100,7 @@
             "keycloak:index/userRoles:UserRoles": "keycloak_user_roles",
             "keycloak:index/userTemplateImporterIdentityProviderMapper:UserTemplateImporterIdentityProviderMapper": "keycloak_user_template_importer_identity_provider_mapper",
             "keycloak:index/usersPermissions:UsersPermissions": "keycloak_users_permissions",
+            "keycloak:ldap/customMapper:CustomMapper": "keycloak_ldap_custom_mapper",
             "keycloak:ldap/fullNameMapper:FullNameMapper": "keycloak_ldap_full_name_mapper",
             "keycloak:ldap/groupMapper:GroupMapper": "keycloak_ldap_group_mapper",
             "keycloak:ldap/hardcodedAttributeMapper:HardcodedAttributeMapper": "keycloak_ldap_hardcoded_attribute_mapper",
@@ -1219,6 +1233,7 @@
             "keycloak:index/RealmSecurityDefensesHeaders:RealmSecurityDefensesHeaders": {
                 "contentSecurityPolicy": "content_security_policy",
                 "contentSecurityPolicyReportOnly": "content_security_policy_report_only",
+                "referrerPolicy": "referrer_policy",
                 "strictTransportSecurity": "strict_transport_security",
                 "xContentTypeOptions": "x_content_type_options",
                 "xFrameOptions": "x_frame_options",
@@ -1487,6 +1502,7 @@
             "keycloak:index/getRealmSecurityDefenseHeader:getRealmSecurityDefenseHeader": {
                 "contentSecurityPolicy": "content_security_policy",
                 "contentSecurityPolicyReportOnly": "content_security_policy_report_only",
+                "referrerPolicy": "referrer_policy",
                 "strictTransportSecurity": "strict_transport_security",
                 "xContentTypeOptions": "x_content_type_options",
                 "xFrameOptions": "x_frame_options",
@@ -1534,7 +1550,8 @@
                 "federatedIdentities": "federated_identity",
                 "firstName": "first_name",
                 "lastName": "last_name",
-                "realmId": "realm_id"
+                "realmId": "realm_id",
+                "requiredActions": "required_actions"
             },
             "keycloak:index/getUserRealmRoles:getUserRealmRoles": {
                 "realmId": "realm_id",
@@ -1667,6 +1684,7 @@
             },
             "keycloak:index/realmKeystoreRsa:RealmKeystoreRsa": {
                 "privateKey": "private_key",
+                "providerId": "provider_id",
                 "realmId": "realm_id"
             },
             "keycloak:index/realmKeystoreRsaGenerated:RealmKeystoreRsaGenerated": {
@@ -1693,7 +1711,8 @@
                 "firstName": "first_name",
                 "initialPassword": "initial_password",
                 "lastName": "last_name",
-                "realmId": "realm_id"
+                "realmId": "realm_id",
+                "requiredActions": "required_actions"
             },
             "keycloak:index/userGroups:UserGroups": {
                 "groupIds": "group_ids",
@@ -1741,6 +1760,12 @@
                 "keyTab": "key_tab",
                 "serverPrincipal": "server_principal",
                 "useKerberosForPasswordAuthentication": "use_kerberos_for_password_authentication"
+            },
+            "keycloak:ldap/customMapper:CustomMapper": {
+                "ldapUserFederationId": "ldap_user_federation_id",
+                "providerId": "provider_id",
+                "providerType": "provider_type",
+                "realmId": "realm_id"
             },
             "keycloak:ldap/fullNameMapper:FullNameMapper": {
                 "ldapFullNameAttribute": "ldap_full_name_attribute",
@@ -2173,7 +2198,8 @@
                 "federatedIdentities": "federated_identity",
                 "firstName": "first_name",
                 "lastName": "last_name",
-                "realmId": "realm_id"
+                "realmId": "realm_id",
+                "requiredActions": "required_actions"
             },
             "keycloak:openid/getClientServiceAccountUserFederatedIdentity:getClientServiceAccountUserFederatedIdentity": {
                 "identityProvider": "identity_provider",

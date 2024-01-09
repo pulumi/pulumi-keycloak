@@ -5,6 +5,7 @@ package com.pulumi.keycloak.openid;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -309,9 +310,15 @@ public final class ClientPolicyArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public ClientPolicyArgs build() {
-            $.clients = Objects.requireNonNull($.clients, "expected parameter 'clients' to be non-null");
-            $.realmId = Objects.requireNonNull($.realmId, "expected parameter 'realmId' to be non-null");
-            $.resourceServerId = Objects.requireNonNull($.resourceServerId, "expected parameter 'resourceServerId' to be non-null");
+            if ($.clients == null) {
+                throw new MissingRequiredPropertyException("ClientPolicyArgs", "clients");
+            }
+            if ($.realmId == null) {
+                throw new MissingRequiredPropertyException("ClientPolicyArgs", "realmId");
+            }
+            if ($.resourceServerId == null) {
+                throw new MissingRequiredPropertyException("ClientPolicyArgs", "resourceServerId");
+            }
             return $;
         }
     }

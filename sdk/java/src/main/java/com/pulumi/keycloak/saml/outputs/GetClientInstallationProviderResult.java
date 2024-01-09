@@ -4,6 +4,7 @@
 package com.pulumi.keycloak.saml.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -74,27 +75,42 @@ public final class GetClientInstallationProviderResult {
 
         @CustomType.Setter
         public Builder clientId(String clientId) {
-            this.clientId = Objects.requireNonNull(clientId);
+            if (clientId == null) {
+              throw new MissingRequiredPropertyException("GetClientInstallationProviderResult", "clientId");
+            }
+            this.clientId = clientId;
             return this;
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetClientInstallationProviderResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder providerId(String providerId) {
-            this.providerId = Objects.requireNonNull(providerId);
+            if (providerId == null) {
+              throw new MissingRequiredPropertyException("GetClientInstallationProviderResult", "providerId");
+            }
+            this.providerId = providerId;
             return this;
         }
         @CustomType.Setter
         public Builder realmId(String realmId) {
-            this.realmId = Objects.requireNonNull(realmId);
+            if (realmId == null) {
+              throw new MissingRequiredPropertyException("GetClientInstallationProviderResult", "realmId");
+            }
+            this.realmId = realmId;
             return this;
         }
         @CustomType.Setter
         public Builder value(String value) {
-            this.value = Objects.requireNonNull(value);
+            if (value == null) {
+              throw new MissingRequiredPropertyException("GetClientInstallationProviderResult", "value");
+            }
+            this.value = value;
             return this;
         }
         public GetClientInstallationProviderResult build() {

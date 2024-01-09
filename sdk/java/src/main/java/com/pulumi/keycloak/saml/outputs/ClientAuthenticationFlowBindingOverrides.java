@@ -58,11 +58,13 @@ public final class ClientAuthenticationFlowBindingOverrides {
 
         @CustomType.Setter
         public Builder browserId(@Nullable String browserId) {
+
             this.browserId = browserId;
             return this;
         }
         @CustomType.Setter
         public Builder directGrantId(@Nullable String directGrantId) {
+
             this.directGrantId = directGrantId;
             return this;
         }

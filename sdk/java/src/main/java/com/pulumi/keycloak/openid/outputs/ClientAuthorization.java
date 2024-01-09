@@ -4,6 +4,7 @@
 package com.pulumi.keycloak.openid.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -87,22 +88,28 @@ public final class ClientAuthorization {
 
         @CustomType.Setter
         public Builder allowRemoteResourceManagement(@Nullable Boolean allowRemoteResourceManagement) {
+
             this.allowRemoteResourceManagement = allowRemoteResourceManagement;
             return this;
         }
         @CustomType.Setter
         public Builder decisionStrategy(@Nullable String decisionStrategy) {
+
             this.decisionStrategy = decisionStrategy;
             return this;
         }
         @CustomType.Setter
         public Builder keepDefaults(@Nullable Boolean keepDefaults) {
+
             this.keepDefaults = keepDefaults;
             return this;
         }
         @CustomType.Setter
         public Builder policyEnforcementMode(String policyEnforcementMode) {
-            this.policyEnforcementMode = Objects.requireNonNull(policyEnforcementMode);
+            if (policyEnforcementMode == null) {
+              throw new MissingRequiredPropertyException("ClientAuthorization", "policyEnforcementMode");
+            }
+            this.policyEnforcementMode = policyEnforcementMode;
             return this;
         }
         public ClientAuthorization build() {

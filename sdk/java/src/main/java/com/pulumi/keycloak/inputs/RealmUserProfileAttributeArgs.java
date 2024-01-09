@@ -5,6 +5,7 @@ package com.pulumi.keycloak.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.keycloak.inputs.RealmUserProfileAttributePermissionsArgs;
 import com.pulumi.keycloak.inputs.RealmUserProfileAttributeValidatorArgs;
 import java.lang.String;
@@ -416,7 +417,9 @@ public final class RealmUserProfileAttributeArgs extends com.pulumi.resources.Re
         }
 
         public RealmUserProfileAttributeArgs build() {
-            $.name = Objects.requireNonNull($.name, "expected parameter 'name' to be non-null");
+            if ($.name == null) {
+                throw new MissingRequiredPropertyException("RealmUserProfileAttributeArgs", "name");
+            }
             return $;
         }
     }

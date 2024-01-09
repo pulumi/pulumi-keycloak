@@ -591,6 +591,8 @@ class RealmSecurityDefensesHeaders(dict):
             suggest = "content_security_policy"
         elif key == "contentSecurityPolicyReportOnly":
             suggest = "content_security_policy_report_only"
+        elif key == "referrerPolicy":
+            suggest = "referrer_policy"
         elif key == "strictTransportSecurity":
             suggest = "strict_transport_security"
         elif key == "xContentTypeOptions":
@@ -616,6 +618,7 @@ class RealmSecurityDefensesHeaders(dict):
     def __init__(__self__, *,
                  content_security_policy: Optional[str] = None,
                  content_security_policy_report_only: Optional[str] = None,
+                 referrer_policy: Optional[str] = None,
                  strict_transport_security: Optional[str] = None,
                  x_content_type_options: Optional[str] = None,
                  x_frame_options: Optional[str] = None,
@@ -624,6 +627,7 @@ class RealmSecurityDefensesHeaders(dict):
         """
         :param str content_security_policy: Sets the Content Security Policy, which can be used for prevent pages from being included by non-origin iframes. More information can be found in the [W3C-CSP](https://www.w3.org/TR/CSP/) Abstract.
         :param str content_security_policy_report_only: Used for testing Content Security Policies.
+        :param str referrer_policy: The Referrer-Policy HTTP header controls how much referrer information (sent with the Referer header) should be included with requests.
         :param str strict_transport_security: The Script-Transport-Security HTTP header tells browsers to always use HTTPS.
         :param str x_content_type_options: Sets the X-Content-Type-Options, which can be used for prevent MIME-sniffing a response away from the declared content-type
         :param str x_frame_options: Sets the x-frame-option, which can be used to prevent pages from being included by non-origin iframes. More information can be found in the [RFC7034](https://tools.ietf.org/html/rfc7034)
@@ -634,6 +638,8 @@ class RealmSecurityDefensesHeaders(dict):
             pulumi.set(__self__, "content_security_policy", content_security_policy)
         if content_security_policy_report_only is not None:
             pulumi.set(__self__, "content_security_policy_report_only", content_security_policy_report_only)
+        if referrer_policy is not None:
+            pulumi.set(__self__, "referrer_policy", referrer_policy)
         if strict_transport_security is not None:
             pulumi.set(__self__, "strict_transport_security", strict_transport_security)
         if x_content_type_options is not None:
@@ -660,6 +666,14 @@ class RealmSecurityDefensesHeaders(dict):
         Used for testing Content Security Policies.
         """
         return pulumi.get(self, "content_security_policy_report_only")
+
+    @property
+    @pulumi.getter(name="referrerPolicy")
+    def referrer_policy(self) -> Optional[str]:
+        """
+        The Referrer-Policy HTTP header controls how much referrer information (sent with the Referer header) should be included with requests.
+        """
+        return pulumi.get(self, "referrer_policy")
 
     @property
     @pulumi.getter(name="strictTransportSecurity")
@@ -2120,6 +2134,7 @@ class GetRealmSecurityDefenseHeaderResult(dict):
     def __init__(__self__, *,
                  content_security_policy: str,
                  content_security_policy_report_only: str,
+                 referrer_policy: str,
                  strict_transport_security: str,
                  x_content_type_options: str,
                  x_frame_options: str,
@@ -2127,6 +2142,7 @@ class GetRealmSecurityDefenseHeaderResult(dict):
                  x_xss_protection: str):
         pulumi.set(__self__, "content_security_policy", content_security_policy)
         pulumi.set(__self__, "content_security_policy_report_only", content_security_policy_report_only)
+        pulumi.set(__self__, "referrer_policy", referrer_policy)
         pulumi.set(__self__, "strict_transport_security", strict_transport_security)
         pulumi.set(__self__, "x_content_type_options", x_content_type_options)
         pulumi.set(__self__, "x_frame_options", x_frame_options)
@@ -2142,6 +2158,11 @@ class GetRealmSecurityDefenseHeaderResult(dict):
     @pulumi.getter(name="contentSecurityPolicyReportOnly")
     def content_security_policy_report_only(self) -> str:
         return pulumi.get(self, "content_security_policy_report_only")
+
+    @property
+    @pulumi.getter(name="referrerPolicy")
+    def referrer_policy(self) -> str:
+        return pulumi.get(self, "referrer_policy")
 
     @property
     @pulumi.getter(name="strictTransportSecurity")

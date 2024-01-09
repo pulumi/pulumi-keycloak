@@ -4,6 +4,7 @@
 package com.pulumi.keycloak.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -65,32 +66,50 @@ public final class GetRealmOtpPolicy {
 
         @CustomType.Setter
         public Builder algorithm(String algorithm) {
-            this.algorithm = Objects.requireNonNull(algorithm);
+            if (algorithm == null) {
+              throw new MissingRequiredPropertyException("GetRealmOtpPolicy", "algorithm");
+            }
+            this.algorithm = algorithm;
             return this;
         }
         @CustomType.Setter
         public Builder digits(Integer digits) {
-            this.digits = Objects.requireNonNull(digits);
+            if (digits == null) {
+              throw new MissingRequiredPropertyException("GetRealmOtpPolicy", "digits");
+            }
+            this.digits = digits;
             return this;
         }
         @CustomType.Setter
         public Builder initialCounter(Integer initialCounter) {
-            this.initialCounter = Objects.requireNonNull(initialCounter);
+            if (initialCounter == null) {
+              throw new MissingRequiredPropertyException("GetRealmOtpPolicy", "initialCounter");
+            }
+            this.initialCounter = initialCounter;
             return this;
         }
         @CustomType.Setter
         public Builder lookAheadWindow(Integer lookAheadWindow) {
-            this.lookAheadWindow = Objects.requireNonNull(lookAheadWindow);
+            if (lookAheadWindow == null) {
+              throw new MissingRequiredPropertyException("GetRealmOtpPolicy", "lookAheadWindow");
+            }
+            this.lookAheadWindow = lookAheadWindow;
             return this;
         }
         @CustomType.Setter
         public Builder period(Integer period) {
-            this.period = Objects.requireNonNull(period);
+            if (period == null) {
+              throw new MissingRequiredPropertyException("GetRealmOtpPolicy", "period");
+            }
+            this.period = period;
             return this;
         }
         @CustomType.Setter
         public Builder type(String type) {
-            this.type = Objects.requireNonNull(type);
+            if (type == null) {
+              throw new MissingRequiredPropertyException("GetRealmOtpPolicy", "type");
+            }
+            this.type = type;
             return this;
         }
         public GetRealmOtpPolicy build() {

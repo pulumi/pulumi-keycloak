@@ -5,6 +5,7 @@ package com.pulumi.keycloak.oidc;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Object;
 import java.lang.String;
@@ -1169,12 +1170,24 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         public IdentityProviderArgs build() {
-            $.alias = Objects.requireNonNull($.alias, "expected parameter 'alias' to be non-null");
-            $.authorizationUrl = Objects.requireNonNull($.authorizationUrl, "expected parameter 'authorizationUrl' to be non-null");
-            $.clientId = Objects.requireNonNull($.clientId, "expected parameter 'clientId' to be non-null");
-            $.clientSecret = Objects.requireNonNull($.clientSecret, "expected parameter 'clientSecret' to be non-null");
-            $.realm = Objects.requireNonNull($.realm, "expected parameter 'realm' to be non-null");
-            $.tokenUrl = Objects.requireNonNull($.tokenUrl, "expected parameter 'tokenUrl' to be non-null");
+            if ($.alias == null) {
+                throw new MissingRequiredPropertyException("IdentityProviderArgs", "alias");
+            }
+            if ($.authorizationUrl == null) {
+                throw new MissingRequiredPropertyException("IdentityProviderArgs", "authorizationUrl");
+            }
+            if ($.clientId == null) {
+                throw new MissingRequiredPropertyException("IdentityProviderArgs", "clientId");
+            }
+            if ($.clientSecret == null) {
+                throw new MissingRequiredPropertyException("IdentityProviderArgs", "clientSecret");
+            }
+            if ($.realm == null) {
+                throw new MissingRequiredPropertyException("IdentityProviderArgs", "realm");
+            }
+            if ($.tokenUrl == null) {
+                throw new MissingRequiredPropertyException("IdentityProviderArgs", "tokenUrl");
+            }
             return $;
         }
     }

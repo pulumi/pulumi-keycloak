@@ -4,6 +4,7 @@
 package com.pulumi.keycloak.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -60,22 +61,34 @@ public final class GetAuthenticationExecutionResult {
 
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetAuthenticationExecutionResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder parentFlowAlias(String parentFlowAlias) {
-            this.parentFlowAlias = Objects.requireNonNull(parentFlowAlias);
+            if (parentFlowAlias == null) {
+              throw new MissingRequiredPropertyException("GetAuthenticationExecutionResult", "parentFlowAlias");
+            }
+            this.parentFlowAlias = parentFlowAlias;
             return this;
         }
         @CustomType.Setter
         public Builder providerId(String providerId) {
-            this.providerId = Objects.requireNonNull(providerId);
+            if (providerId == null) {
+              throw new MissingRequiredPropertyException("GetAuthenticationExecutionResult", "providerId");
+            }
+            this.providerId = providerId;
             return this;
         }
         @CustomType.Setter
         public Builder realmId(String realmId) {
-            this.realmId = Objects.requireNonNull(realmId);
+            if (realmId == null) {
+              throw new MissingRequiredPropertyException("GetAuthenticationExecutionResult", "realmId");
+            }
+            this.realmId = realmId;
             return this;
         }
         public GetAuthenticationExecutionResult build() {
