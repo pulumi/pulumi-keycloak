@@ -94,7 +94,8 @@ type User struct {
 	// Whether the email address was validated or not. Default to `false`.
 	EmailVerified pulumi.BoolPtrOutput `pulumi:"emailVerified"`
 	// When false, this user cannot log in. Defaults to `true`.
-	Enabled             pulumi.BoolPtrOutput             `pulumi:"enabled"`
+	Enabled pulumi.BoolPtrOutput `pulumi:"enabled"`
+	// When specified, the user will be linked to a federated identity provider. Refer to the federated user example for more details.
 	FederatedIdentities UserFederatedIdentityArrayOutput `pulumi:"federatedIdentities"`
 	// The user's first name.
 	FirstName pulumi.StringPtrOutput `pulumi:"firstName"`
@@ -153,7 +154,8 @@ type userState struct {
 	// Whether the email address was validated or not. Default to `false`.
 	EmailVerified *bool `pulumi:"emailVerified"`
 	// When false, this user cannot log in. Defaults to `true`.
-	Enabled             *bool                   `pulumi:"enabled"`
+	Enabled *bool `pulumi:"enabled"`
+	// When specified, the user will be linked to a federated identity provider. Refer to the federated user example for more details.
 	FederatedIdentities []UserFederatedIdentity `pulumi:"federatedIdentities"`
 	// The user's first name.
 	FirstName *string `pulumi:"firstName"`
@@ -177,7 +179,8 @@ type UserState struct {
 	// Whether the email address was validated or not. Default to `false`.
 	EmailVerified pulumi.BoolPtrInput
 	// When false, this user cannot log in. Defaults to `true`.
-	Enabled             pulumi.BoolPtrInput
+	Enabled pulumi.BoolPtrInput
+	// When specified, the user will be linked to a federated identity provider. Refer to the federated user example for more details.
 	FederatedIdentities UserFederatedIdentityArrayInput
 	// The user's first name.
 	FirstName pulumi.StringPtrInput
@@ -205,7 +208,8 @@ type userArgs struct {
 	// Whether the email address was validated or not. Default to `false`.
 	EmailVerified *bool `pulumi:"emailVerified"`
 	// When false, this user cannot log in. Defaults to `true`.
-	Enabled             *bool                   `pulumi:"enabled"`
+	Enabled *bool `pulumi:"enabled"`
+	// When specified, the user will be linked to a federated identity provider. Refer to the federated user example for more details.
 	FederatedIdentities []UserFederatedIdentity `pulumi:"federatedIdentities"`
 	// The user's first name.
 	FirstName *string `pulumi:"firstName"`
@@ -230,7 +234,8 @@ type UserArgs struct {
 	// Whether the email address was validated or not. Default to `false`.
 	EmailVerified pulumi.BoolPtrInput
 	// When false, this user cannot log in. Defaults to `true`.
-	Enabled             pulumi.BoolPtrInput
+	Enabled pulumi.BoolPtrInput
+	// When specified, the user will be linked to a federated identity provider. Refer to the federated user example for more details.
 	FederatedIdentities UserFederatedIdentityArrayInput
 	// The user's first name.
 	FirstName pulumi.StringPtrInput
@@ -353,6 +358,7 @@ func (o UserOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *User) pulumi.BoolPtrOutput { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
 
+// When specified, the user will be linked to a federated identity provider. Refer to the federated user example for more details.
 func (o UserOutput) FederatedIdentities() UserFederatedIdentityArrayOutput {
 	return o.ApplyT(func(v *User) UserFederatedIdentityArrayOutput { return v.FederatedIdentities }).(UserFederatedIdentityArrayOutput)
 }

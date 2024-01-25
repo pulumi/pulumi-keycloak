@@ -10,6 +10,20 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak
 {
     /// <summary>
+    /// Allows you to manage fine-grained permissions for all users in a realm: https://www.keycloak.org/docs/latest/server_admin/#_users-permissions
+    /// 
+    /// This is part of a preview Keycloak feature: `admin_fine_grained_authz` (see https://www.keycloak.org/docs/latest/server_admin/#_fine_grain_permissions).
+    /// This feature can be enabled with the Keycloak option `-Dkeycloak.profile.feature.admin_fine_grained_authz=enabled`. See the
+    /// example `docker-compose.yml` file for an example.
+    /// 
+    /// When enabling fine-grained permissions for users, Keycloak does several things automatically:
+    /// 1. Enable Authorization on built-in `realm-management` client (if not already enabled).
+    /// 2. Create a resource representing the users permissions.
+    /// 3. Create scopes `view`, `manage`, `map-roles`, `manage-group-membership`, `impersonate`, and `user-impersonated`.
+    /// 4. Create all scope based permission for the scopes and users resources.
+    /// 
+    /// &gt; This resource should only be created once per realm.
+    /// 
     /// ## Example Usage
     /// ### Argument Reference
     /// 

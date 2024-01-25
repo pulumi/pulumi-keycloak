@@ -19,6 +19,11 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * Allows for creating and managing custom user federation providers within Keycloak.
+ * 
+ * A custom user federation provider is an implementation of Keycloak&#39;s [User Storage SPI](https://www.keycloak.org/docs/4.2/server_development/index.html#_user-storage-spi).
+ * An example of this implementation can be found here.
+ * 
  * ## Example Usage
  * ```java
  * package generated_program;
