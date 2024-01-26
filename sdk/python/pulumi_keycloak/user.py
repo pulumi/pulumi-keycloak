@@ -35,6 +35,7 @@ class UserArgs:
         :param pulumi.Input[str] email: The user's email.
         :param pulumi.Input[bool] email_verified: Whether the email address was validated or not. Default to `false`.
         :param pulumi.Input[bool] enabled: When false, this user cannot log in. Defaults to `true`.
+        :param pulumi.Input[Sequence[pulumi.Input['UserFederatedIdentityArgs']]] federated_identities: When specified, the user will be linked to a federated identity provider. Refer to the federated user example for more details.
         :param pulumi.Input[str] first_name: The user's first name.
         :param pulumi.Input['UserInitialPasswordArgs'] initial_password: When given, the user's initial password will be set. This attribute is only respected during initial user creation.
         :param pulumi.Input[str] last_name: The user's last name.
@@ -136,6 +137,9 @@ class UserArgs:
     @property
     @pulumi.getter(name="federatedIdentities")
     def federated_identities(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['UserFederatedIdentityArgs']]]]:
+        """
+        When specified, the user will be linked to a federated identity provider. Refer to the federated user example for more details.
+        """
         return pulumi.get(self, "federated_identities")
 
     @federated_identities.setter
@@ -211,6 +215,7 @@ class _UserState:
         :param pulumi.Input[str] email: The user's email.
         :param pulumi.Input[bool] email_verified: Whether the email address was validated or not. Default to `false`.
         :param pulumi.Input[bool] enabled: When false, this user cannot log in. Defaults to `true`.
+        :param pulumi.Input[Sequence[pulumi.Input['UserFederatedIdentityArgs']]] federated_identities: When specified, the user will be linked to a federated identity provider. Refer to the federated user example for more details.
         :param pulumi.Input[str] first_name: The user's first name.
         :param pulumi.Input['UserInitialPasswordArgs'] initial_password: When given, the user's initial password will be set. This attribute is only respected during initial user creation.
         :param pulumi.Input[str] last_name: The user's last name.
@@ -292,6 +297,9 @@ class _UserState:
     @property
     @pulumi.getter(name="federatedIdentities")
     def federated_identities(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['UserFederatedIdentityArgs']]]]:
+        """
+        When specified, the user will be linked to a federated identity provider. Refer to the federated user example for more details.
+        """
         return pulumi.get(self, "federated_identities")
 
     @federated_identities.setter
@@ -442,6 +450,7 @@ class User(pulumi.CustomResource):
         :param pulumi.Input[str] email: The user's email.
         :param pulumi.Input[bool] email_verified: Whether the email address was validated or not. Default to `false`.
         :param pulumi.Input[bool] enabled: When false, this user cannot log in. Defaults to `true`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['UserFederatedIdentityArgs']]]] federated_identities: When specified, the user will be linked to a federated identity provider. Refer to the federated user example for more details.
         :param pulumi.Input[str] first_name: The user's first name.
         :param pulumi.Input[pulumi.InputType['UserInitialPasswordArgs']] initial_password: When given, the user's initial password will be set. This attribute is only respected during initial user creation.
         :param pulumi.Input[str] last_name: The user's last name.
@@ -585,6 +594,7 @@ class User(pulumi.CustomResource):
         :param pulumi.Input[str] email: The user's email.
         :param pulumi.Input[bool] email_verified: Whether the email address was validated or not. Default to `false`.
         :param pulumi.Input[bool] enabled: When false, this user cannot log in. Defaults to `true`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['UserFederatedIdentityArgs']]]] federated_identities: When specified, the user will be linked to a federated identity provider. Refer to the federated user example for more details.
         :param pulumi.Input[str] first_name: The user's first name.
         :param pulumi.Input[pulumi.InputType['UserInitialPasswordArgs']] initial_password: When given, the user's initial password will be set. This attribute is only respected during initial user creation.
         :param pulumi.Input[str] last_name: The user's last name.
@@ -644,6 +654,9 @@ class User(pulumi.CustomResource):
     @property
     @pulumi.getter(name="federatedIdentities")
     def federated_identities(self) -> pulumi.Output[Optional[Sequence['outputs.UserFederatedIdentity']]]:
+        """
+        When specified, the user will be linked to a federated identity provider. Refer to the federated user example for more details.
+        """
         return pulumi.get(self, "federated_identities")
 
     @property

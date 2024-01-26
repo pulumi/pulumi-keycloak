@@ -20,6 +20,20 @@ import java.lang.String;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * Allows you to manage all group Scope Based Permissions https://www.keycloak.org/docs/latest/server_admin/#group.
+ * 
+ * This is part of a preview Keycloak feature: `admin_fine_grained_authz` (see https://www.keycloak.org/docs/latest/server_admin/#_fine_grain_permissions).
+ * This feature can be enabled with the Keycloak option `-Dkeycloak.profile.feature.admin_fine_grained_authz=enabled`. See the
+ * example `docker-compose.yml` file for an example.
+ * 
+ * When enabling Roles Permissions, Keycloak does several things automatically:
+ * 1. Enable Authorization on built-in `realm-management` client (if not already enabled).
+ * 2. Create a resource representing the role permissions.
+ * 3. Create scopes `view`, `manage`, `view-members`, `manage-members`, `manage-membership`.
+ * 4. Create all scope based permission for the scopes and role resource
+ * 
+ */
 @ResourceType(type="keycloak:index/groupPermissions:GroupPermissions")
 public class GroupPermissions extends com.pulumi.resources.CustomResource {
     /**

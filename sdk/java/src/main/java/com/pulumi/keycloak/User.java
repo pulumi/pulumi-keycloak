@@ -154,9 +154,17 @@ public class User extends com.pulumi.resources.CustomResource {
     public Output<Optional<Boolean>> enabled() {
         return Codegen.optional(this.enabled);
     }
+    /**
+     * When specified, the user will be linked to a federated identity provider. Refer to the federated user example for more details.
+     * 
+     */
     @Export(name="federatedIdentities", refs={List.class,UserFederatedIdentity.class}, tree="[0,1]")
     private Output</* @Nullable */ List<UserFederatedIdentity>> federatedIdentities;
 
+    /**
+     * @return When specified, the user will be linked to a federated identity provider. Refer to the federated user example for more details.
+     * 
+     */
     public Output<Optional<List<UserFederatedIdentity>>> federatedIdentities() {
         return Codegen.optional(this.federatedIdentities);
     }
