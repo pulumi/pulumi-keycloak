@@ -82,9 +82,17 @@ public final class UserArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.enabled);
     }
 
+    /**
+     * When specified, the user will be linked to a federated identity provider. Refer to the federated user example for more details.
+     * 
+     */
     @Import(name="federatedIdentities")
     private @Nullable Output<List<UserFederatedIdentityArgs>> federatedIdentities;
 
+    /**
+     * @return When specified, the user will be linked to a federated identity provider. Refer to the federated user example for more details.
+     * 
+     */
     public Optional<Output<List<UserFederatedIdentityArgs>>> federatedIdentities() {
         return Optional.ofNullable(this.federatedIdentities);
     }
@@ -297,15 +305,33 @@ public final class UserArgs extends com.pulumi.resources.ResourceArgs {
             return enabled(Output.of(enabled));
         }
 
+        /**
+         * @param federatedIdentities When specified, the user will be linked to a federated identity provider. Refer to the federated user example for more details.
+         * 
+         * @return builder
+         * 
+         */
         public Builder federatedIdentities(@Nullable Output<List<UserFederatedIdentityArgs>> federatedIdentities) {
             $.federatedIdentities = federatedIdentities;
             return this;
         }
 
+        /**
+         * @param federatedIdentities When specified, the user will be linked to a federated identity provider. Refer to the federated user example for more details.
+         * 
+         * @return builder
+         * 
+         */
         public Builder federatedIdentities(List<UserFederatedIdentityArgs> federatedIdentities) {
             return federatedIdentities(Output.of(federatedIdentities));
         }
 
+        /**
+         * @param federatedIdentities When specified, the user will be linked to a federated identity provider. Refer to the federated user example for more details.
+         * 
+         * @return builder
+         * 
+         */
         public Builder federatedIdentities(UserFederatedIdentityArgs... federatedIdentities) {
             return federatedIdentities(List.of(federatedIdentities));
         }

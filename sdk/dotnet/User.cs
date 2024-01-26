@@ -100,6 +100,9 @@ namespace Pulumi.Keycloak
         [Output("enabled")]
         public Output<bool?> Enabled { get; private set; } = null!;
 
+        /// <summary>
+        /// When specified, the user will be linked to a federated identity provider. Refer to the federated user example for more details.
+        /// </summary>
         [Output("federatedIdentities")]
         public Output<ImmutableArray<Outputs.UserFederatedIdentity>> FederatedIdentities { get; private set; } = null!;
 
@@ -217,6 +220,10 @@ namespace Pulumi.Keycloak
 
         [Input("federatedIdentities")]
         private InputList<Inputs.UserFederatedIdentityArgs>? _federatedIdentities;
+
+        /// <summary>
+        /// When specified, the user will be linked to a federated identity provider. Refer to the federated user example for more details.
+        /// </summary>
         public InputList<Inputs.UserFederatedIdentityArgs> FederatedIdentities
         {
             get => _federatedIdentities ?? (_federatedIdentities = new InputList<Inputs.UserFederatedIdentityArgs>());
@@ -305,6 +312,10 @@ namespace Pulumi.Keycloak
 
         [Input("federatedIdentities")]
         private InputList<Inputs.UserFederatedIdentityGetArgs>? _federatedIdentities;
+
+        /// <summary>
+        /// When specified, the user will be linked to a federated identity provider. Refer to the federated user example for more details.
+        /// </summary>
         public InputList<Inputs.UserFederatedIdentityGetArgs> FederatedIdentities
         {
             get => _federatedIdentities ?? (_federatedIdentities = new InputList<Inputs.UserFederatedIdentityGetArgs>());

@@ -101,6 +101,9 @@ export class User extends pulumi.CustomResource {
      * When false, this user cannot log in. Defaults to `true`.
      */
     public readonly enabled!: pulumi.Output<boolean | undefined>;
+    /**
+     * When specified, the user will be linked to a federated identity provider. Refer to the federated user example for more details.
+     */
     public readonly federatedIdentities!: pulumi.Output<outputs.UserFederatedIdentity[] | undefined>;
     /**
      * The user's first name.
@@ -196,6 +199,9 @@ export interface UserState {
      * When false, this user cannot log in. Defaults to `true`.
      */
     enabled?: pulumi.Input<boolean>;
+    /**
+     * When specified, the user will be linked to a federated identity provider. Refer to the federated user example for more details.
+     */
     federatedIdentities?: pulumi.Input<pulumi.Input<inputs.UserFederatedIdentity>[]>;
     /**
      * The user's first name.
@@ -243,6 +249,9 @@ export interface UserArgs {
      * When false, this user cannot log in. Defaults to `true`.
      */
     enabled?: pulumi.Input<boolean>;
+    /**
+     * When specified, the user will be linked to a federated identity provider. Refer to the federated user example for more details.
+     */
     federatedIdentities?: pulumi.Input<pulumi.Input<inputs.UserFederatedIdentity>[]>;
     /**
      * The user's first name.
