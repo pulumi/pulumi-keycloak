@@ -288,7 +288,7 @@ class Provider(pulumi.ProviderResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ProviderArgs.__new__(ProviderArgs)
 
-            __props__.__dict__["additional_headers"] = pulumi.Output.from_input(additional_headers).apply(pulumi.runtime.to_json) if additional_headers is not None else None
+            __props__.__dict__["additional_headers"] = additional_headers
             __props__.__dict__["base_path"] = base_path
             if client_id is None and not opts.urn:
                 raise TypeError("Missing required property 'client_id'")
@@ -296,13 +296,13 @@ class Provider(pulumi.ProviderResource):
             __props__.__dict__["client_secret"] = client_secret
             if client_timeout is None:
                 client_timeout = (_utilities.get_env_int('KEYCLOAK_CLIENT_TIMEOUT') or 5)
-            __props__.__dict__["client_timeout"] = pulumi.Output.from_input(client_timeout).apply(pulumi.runtime.to_json) if client_timeout is not None else None
-            __props__.__dict__["initial_login"] = pulumi.Output.from_input(initial_login).apply(pulumi.runtime.to_json) if initial_login is not None else None
+            __props__.__dict__["client_timeout"] = client_timeout
+            __props__.__dict__["initial_login"] = initial_login
             __props__.__dict__["password"] = password
             __props__.__dict__["realm"] = realm
-            __props__.__dict__["red_hat_sso"] = pulumi.Output.from_input(red_hat_sso).apply(pulumi.runtime.to_json) if red_hat_sso is not None else None
+            __props__.__dict__["red_hat_sso"] = red_hat_sso
             __props__.__dict__["root_ca_certificate"] = root_ca_certificate
-            __props__.__dict__["tls_insecure_skip_verify"] = pulumi.Output.from_input(tls_insecure_skip_verify).apply(pulumi.runtime.to_json) if tls_insecure_skip_verify is not None else None
+            __props__.__dict__["tls_insecure_skip_verify"] = tls_insecure_skip_verify
             if url is None and not opts.urn:
                 raise TypeError("Missing required property 'url'")
             __props__.__dict__["url"] = url
