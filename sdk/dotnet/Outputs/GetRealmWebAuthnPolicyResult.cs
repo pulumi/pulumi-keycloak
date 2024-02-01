@@ -14,14 +14,29 @@ namespace Pulumi.Keycloak.Outputs
     public sealed class GetRealmWebAuthnPolicyResult
     {
         public readonly ImmutableArray<string> AcceptableAaguids;
+        /// <summary>
+        /// Either none, indirect or direct
+        /// </summary>
         public readonly string AttestationConveyancePreference;
+        /// <summary>
+        /// Either platform or cross-platform
+        /// </summary>
         public readonly string AuthenticatorAttachment;
         public readonly bool AvoidSameAuthenticatorRegister;
         public readonly int CreateTimeout;
         public readonly string RelyingPartyEntityName;
         public readonly string RelyingPartyId;
+        /// <summary>
+        /// Either Yes or No
+        /// </summary>
         public readonly string RequireResidentKey;
+        /// <summary>
+        /// Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
+        /// </summary>
         public readonly ImmutableArray<string> SignatureAlgorithms;
+        /// <summary>
+        /// Either required, preferred or discouraged
+        /// </summary>
         public readonly string UserVerificationRequirement;
 
         [OutputConstructor]

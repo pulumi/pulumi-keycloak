@@ -123,53 +123,113 @@ export interface GetRealmSmtpServerAuthArgs {
 
 export interface GetRealmWebAuthnPasswordlessPolicy {
     acceptableAaguids?: string[];
+    /**
+     * Either none, indirect or direct
+     */
     attestationConveyancePreference?: string;
+    /**
+     * Either platform or cross-platform
+     */
     authenticatorAttachment?: string;
     avoidSameAuthenticatorRegister?: boolean;
     createTimeout?: number;
     relyingPartyEntityName?: string;
     relyingPartyId?: string;
+    /**
+     * Either Yes or No
+     */
     requireResidentKey?: string;
+    /**
+     * Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
+     */
     signatureAlgorithms?: string[];
+    /**
+     * Either required, preferred or discouraged
+     */
     userVerificationRequirement?: string;
 }
 
 export interface GetRealmWebAuthnPasswordlessPolicyArgs {
     acceptableAaguids?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Either none, indirect or direct
+     */
     attestationConveyancePreference?: pulumi.Input<string>;
+    /**
+     * Either platform or cross-platform
+     */
     authenticatorAttachment?: pulumi.Input<string>;
     avoidSameAuthenticatorRegister?: pulumi.Input<boolean>;
     createTimeout?: pulumi.Input<number>;
     relyingPartyEntityName?: pulumi.Input<string>;
     relyingPartyId?: pulumi.Input<string>;
+    /**
+     * Either Yes or No
+     */
     requireResidentKey?: pulumi.Input<string>;
+    /**
+     * Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
+     */
     signatureAlgorithms?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Either required, preferred or discouraged
+     */
     userVerificationRequirement?: pulumi.Input<string>;
 }
 
 export interface GetRealmWebAuthnPolicy {
     acceptableAaguids?: string[];
+    /**
+     * Either none, indirect or direct
+     */
     attestationConveyancePreference?: string;
+    /**
+     * Either platform or cross-platform
+     */
     authenticatorAttachment?: string;
     avoidSameAuthenticatorRegister?: boolean;
     createTimeout?: number;
     relyingPartyEntityName?: string;
     relyingPartyId?: string;
+    /**
+     * Either Yes or No
+     */
     requireResidentKey?: string;
+    /**
+     * Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
+     */
     signatureAlgorithms?: string[];
+    /**
+     * Either required, preferred or discouraged
+     */
     userVerificationRequirement?: string;
 }
 
 export interface GetRealmWebAuthnPolicyArgs {
     acceptableAaguids?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Either none, indirect or direct
+     */
     attestationConveyancePreference?: pulumi.Input<string>;
+    /**
+     * Either platform or cross-platform
+     */
     authenticatorAttachment?: pulumi.Input<string>;
     avoidSameAuthenticatorRegister?: pulumi.Input<boolean>;
     createTimeout?: pulumi.Input<number>;
     relyingPartyEntityName?: pulumi.Input<string>;
     relyingPartyId?: pulumi.Input<string>;
+    /**
+     * Either Yes or No
+     */
     requireResidentKey?: pulumi.Input<string>;
+    /**
+     * Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
+     */
     signatureAlgorithms?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Either required, preferred or discouraged
+     */
     userVerificationRequirement?: pulumi.Input<string>;
 }
 

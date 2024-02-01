@@ -5972,16 +5972,21 @@ func (o GetRealmSmtpServerAuthArrayOutput) Index(i pulumi.IntInput) GetRealmSmtp
 }
 
 type GetRealmWebAuthnPasswordlessPolicy struct {
-	AcceptableAaguids               []string `pulumi:"acceptableAaguids"`
-	AttestationConveyancePreference string   `pulumi:"attestationConveyancePreference"`
-	AuthenticatorAttachment         string   `pulumi:"authenticatorAttachment"`
-	AvoidSameAuthenticatorRegister  bool     `pulumi:"avoidSameAuthenticatorRegister"`
-	CreateTimeout                   int      `pulumi:"createTimeout"`
-	RelyingPartyEntityName          string   `pulumi:"relyingPartyEntityName"`
-	RelyingPartyId                  string   `pulumi:"relyingPartyId"`
-	RequireResidentKey              string   `pulumi:"requireResidentKey"`
-	SignatureAlgorithms             []string `pulumi:"signatureAlgorithms"`
-	UserVerificationRequirement     string   `pulumi:"userVerificationRequirement"`
+	AcceptableAaguids []string `pulumi:"acceptableAaguids"`
+	// Either none, indirect or direct
+	AttestationConveyancePreference string `pulumi:"attestationConveyancePreference"`
+	// Either platform or cross-platform
+	AuthenticatorAttachment        string `pulumi:"authenticatorAttachment"`
+	AvoidSameAuthenticatorRegister bool   `pulumi:"avoidSameAuthenticatorRegister"`
+	CreateTimeout                  int    `pulumi:"createTimeout"`
+	RelyingPartyEntityName         string `pulumi:"relyingPartyEntityName"`
+	RelyingPartyId                 string `pulumi:"relyingPartyId"`
+	// Either Yes or No
+	RequireResidentKey string `pulumi:"requireResidentKey"`
+	// Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
+	SignatureAlgorithms []string `pulumi:"signatureAlgorithms"`
+	// Either required, preferred or discouraged
+	UserVerificationRequirement string `pulumi:"userVerificationRequirement"`
 }
 
 // GetRealmWebAuthnPasswordlessPolicyInput is an input type that accepts GetRealmWebAuthnPasswordlessPolicyArgs and GetRealmWebAuthnPasswordlessPolicyOutput values.
@@ -5996,16 +6001,21 @@ type GetRealmWebAuthnPasswordlessPolicyInput interface {
 }
 
 type GetRealmWebAuthnPasswordlessPolicyArgs struct {
-	AcceptableAaguids               pulumi.StringArrayInput `pulumi:"acceptableAaguids"`
-	AttestationConveyancePreference pulumi.StringInput      `pulumi:"attestationConveyancePreference"`
-	AuthenticatorAttachment         pulumi.StringInput      `pulumi:"authenticatorAttachment"`
-	AvoidSameAuthenticatorRegister  pulumi.BoolInput        `pulumi:"avoidSameAuthenticatorRegister"`
-	CreateTimeout                   pulumi.IntInput         `pulumi:"createTimeout"`
-	RelyingPartyEntityName          pulumi.StringInput      `pulumi:"relyingPartyEntityName"`
-	RelyingPartyId                  pulumi.StringInput      `pulumi:"relyingPartyId"`
-	RequireResidentKey              pulumi.StringInput      `pulumi:"requireResidentKey"`
-	SignatureAlgorithms             pulumi.StringArrayInput `pulumi:"signatureAlgorithms"`
-	UserVerificationRequirement     pulumi.StringInput      `pulumi:"userVerificationRequirement"`
+	AcceptableAaguids pulumi.StringArrayInput `pulumi:"acceptableAaguids"`
+	// Either none, indirect or direct
+	AttestationConveyancePreference pulumi.StringInput `pulumi:"attestationConveyancePreference"`
+	// Either platform or cross-platform
+	AuthenticatorAttachment        pulumi.StringInput `pulumi:"authenticatorAttachment"`
+	AvoidSameAuthenticatorRegister pulumi.BoolInput   `pulumi:"avoidSameAuthenticatorRegister"`
+	CreateTimeout                  pulumi.IntInput    `pulumi:"createTimeout"`
+	RelyingPartyEntityName         pulumi.StringInput `pulumi:"relyingPartyEntityName"`
+	RelyingPartyId                 pulumi.StringInput `pulumi:"relyingPartyId"`
+	// Either Yes or No
+	RequireResidentKey pulumi.StringInput `pulumi:"requireResidentKey"`
+	// Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
+	SignatureAlgorithms pulumi.StringArrayInput `pulumi:"signatureAlgorithms"`
+	// Either required, preferred or discouraged
+	UserVerificationRequirement pulumi.StringInput `pulumi:"userVerificationRequirement"`
 }
 
 func (GetRealmWebAuthnPasswordlessPolicyArgs) ElementType() reflect.Type {
@@ -6089,10 +6099,12 @@ func (o GetRealmWebAuthnPasswordlessPolicyOutput) AcceptableAaguids() pulumi.Str
 	return o.ApplyT(func(v GetRealmWebAuthnPasswordlessPolicy) []string { return v.AcceptableAaguids }).(pulumi.StringArrayOutput)
 }
 
+// Either none, indirect or direct
 func (o GetRealmWebAuthnPasswordlessPolicyOutput) AttestationConveyancePreference() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRealmWebAuthnPasswordlessPolicy) string { return v.AttestationConveyancePreference }).(pulumi.StringOutput)
 }
 
+// Either platform or cross-platform
 func (o GetRealmWebAuthnPasswordlessPolicyOutput) AuthenticatorAttachment() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRealmWebAuthnPasswordlessPolicy) string { return v.AuthenticatorAttachment }).(pulumi.StringOutput)
 }
@@ -6113,14 +6125,17 @@ func (o GetRealmWebAuthnPasswordlessPolicyOutput) RelyingPartyId() pulumi.String
 	return o.ApplyT(func(v GetRealmWebAuthnPasswordlessPolicy) string { return v.RelyingPartyId }).(pulumi.StringOutput)
 }
 
+// Either Yes or No
 func (o GetRealmWebAuthnPasswordlessPolicyOutput) RequireResidentKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRealmWebAuthnPasswordlessPolicy) string { return v.RequireResidentKey }).(pulumi.StringOutput)
 }
 
+// Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
 func (o GetRealmWebAuthnPasswordlessPolicyOutput) SignatureAlgorithms() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetRealmWebAuthnPasswordlessPolicy) []string { return v.SignatureAlgorithms }).(pulumi.StringArrayOutput)
 }
 
+// Either required, preferred or discouraged
 func (o GetRealmWebAuthnPasswordlessPolicyOutput) UserVerificationRequirement() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRealmWebAuthnPasswordlessPolicy) string { return v.UserVerificationRequirement }).(pulumi.StringOutput)
 }
@@ -6158,6 +6173,7 @@ func (o GetRealmWebAuthnPasswordlessPolicyPtrOutput) AcceptableAaguids() pulumi.
 	}).(pulumi.StringArrayOutput)
 }
 
+// Either none, indirect or direct
 func (o GetRealmWebAuthnPasswordlessPolicyPtrOutput) AttestationConveyancePreference() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GetRealmWebAuthnPasswordlessPolicy) *string {
 		if v == nil {
@@ -6167,6 +6183,7 @@ func (o GetRealmWebAuthnPasswordlessPolicyPtrOutput) AttestationConveyancePrefer
 	}).(pulumi.StringPtrOutput)
 }
 
+// Either platform or cross-platform
 func (o GetRealmWebAuthnPasswordlessPolicyPtrOutput) AuthenticatorAttachment() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GetRealmWebAuthnPasswordlessPolicy) *string {
 		if v == nil {
@@ -6212,6 +6229,7 @@ func (o GetRealmWebAuthnPasswordlessPolicyPtrOutput) RelyingPartyId() pulumi.Str
 	}).(pulumi.StringPtrOutput)
 }
 
+// Either Yes or No
 func (o GetRealmWebAuthnPasswordlessPolicyPtrOutput) RequireResidentKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GetRealmWebAuthnPasswordlessPolicy) *string {
 		if v == nil {
@@ -6221,6 +6239,7 @@ func (o GetRealmWebAuthnPasswordlessPolicyPtrOutput) RequireResidentKey() pulumi
 	}).(pulumi.StringPtrOutput)
 }
 
+// Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
 func (o GetRealmWebAuthnPasswordlessPolicyPtrOutput) SignatureAlgorithms() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *GetRealmWebAuthnPasswordlessPolicy) []string {
 		if v == nil {
@@ -6230,6 +6249,7 @@ func (o GetRealmWebAuthnPasswordlessPolicyPtrOutput) SignatureAlgorithms() pulum
 	}).(pulumi.StringArrayOutput)
 }
 
+// Either required, preferred or discouraged
 func (o GetRealmWebAuthnPasswordlessPolicyPtrOutput) UserVerificationRequirement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GetRealmWebAuthnPasswordlessPolicy) *string {
 		if v == nil {
@@ -6240,16 +6260,21 @@ func (o GetRealmWebAuthnPasswordlessPolicyPtrOutput) UserVerificationRequirement
 }
 
 type GetRealmWebAuthnPolicy struct {
-	AcceptableAaguids               []string `pulumi:"acceptableAaguids"`
-	AttestationConveyancePreference string   `pulumi:"attestationConveyancePreference"`
-	AuthenticatorAttachment         string   `pulumi:"authenticatorAttachment"`
-	AvoidSameAuthenticatorRegister  bool     `pulumi:"avoidSameAuthenticatorRegister"`
-	CreateTimeout                   int      `pulumi:"createTimeout"`
-	RelyingPartyEntityName          string   `pulumi:"relyingPartyEntityName"`
-	RelyingPartyId                  string   `pulumi:"relyingPartyId"`
-	RequireResidentKey              string   `pulumi:"requireResidentKey"`
-	SignatureAlgorithms             []string `pulumi:"signatureAlgorithms"`
-	UserVerificationRequirement     string   `pulumi:"userVerificationRequirement"`
+	AcceptableAaguids []string `pulumi:"acceptableAaguids"`
+	// Either none, indirect or direct
+	AttestationConveyancePreference string `pulumi:"attestationConveyancePreference"`
+	// Either platform or cross-platform
+	AuthenticatorAttachment        string `pulumi:"authenticatorAttachment"`
+	AvoidSameAuthenticatorRegister bool   `pulumi:"avoidSameAuthenticatorRegister"`
+	CreateTimeout                  int    `pulumi:"createTimeout"`
+	RelyingPartyEntityName         string `pulumi:"relyingPartyEntityName"`
+	RelyingPartyId                 string `pulumi:"relyingPartyId"`
+	// Either Yes or No
+	RequireResidentKey string `pulumi:"requireResidentKey"`
+	// Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
+	SignatureAlgorithms []string `pulumi:"signatureAlgorithms"`
+	// Either required, preferred or discouraged
+	UserVerificationRequirement string `pulumi:"userVerificationRequirement"`
 }
 
 // GetRealmWebAuthnPolicyInput is an input type that accepts GetRealmWebAuthnPolicyArgs and GetRealmWebAuthnPolicyOutput values.
@@ -6264,16 +6289,21 @@ type GetRealmWebAuthnPolicyInput interface {
 }
 
 type GetRealmWebAuthnPolicyArgs struct {
-	AcceptableAaguids               pulumi.StringArrayInput `pulumi:"acceptableAaguids"`
-	AttestationConveyancePreference pulumi.StringInput      `pulumi:"attestationConveyancePreference"`
-	AuthenticatorAttachment         pulumi.StringInput      `pulumi:"authenticatorAttachment"`
-	AvoidSameAuthenticatorRegister  pulumi.BoolInput        `pulumi:"avoidSameAuthenticatorRegister"`
-	CreateTimeout                   pulumi.IntInput         `pulumi:"createTimeout"`
-	RelyingPartyEntityName          pulumi.StringInput      `pulumi:"relyingPartyEntityName"`
-	RelyingPartyId                  pulumi.StringInput      `pulumi:"relyingPartyId"`
-	RequireResidentKey              pulumi.StringInput      `pulumi:"requireResidentKey"`
-	SignatureAlgorithms             pulumi.StringArrayInput `pulumi:"signatureAlgorithms"`
-	UserVerificationRequirement     pulumi.StringInput      `pulumi:"userVerificationRequirement"`
+	AcceptableAaguids pulumi.StringArrayInput `pulumi:"acceptableAaguids"`
+	// Either none, indirect or direct
+	AttestationConveyancePreference pulumi.StringInput `pulumi:"attestationConveyancePreference"`
+	// Either platform or cross-platform
+	AuthenticatorAttachment        pulumi.StringInput `pulumi:"authenticatorAttachment"`
+	AvoidSameAuthenticatorRegister pulumi.BoolInput   `pulumi:"avoidSameAuthenticatorRegister"`
+	CreateTimeout                  pulumi.IntInput    `pulumi:"createTimeout"`
+	RelyingPartyEntityName         pulumi.StringInput `pulumi:"relyingPartyEntityName"`
+	RelyingPartyId                 pulumi.StringInput `pulumi:"relyingPartyId"`
+	// Either Yes or No
+	RequireResidentKey pulumi.StringInput `pulumi:"requireResidentKey"`
+	// Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
+	SignatureAlgorithms pulumi.StringArrayInput `pulumi:"signatureAlgorithms"`
+	// Either required, preferred or discouraged
+	UserVerificationRequirement pulumi.StringInput `pulumi:"userVerificationRequirement"`
 }
 
 func (GetRealmWebAuthnPolicyArgs) ElementType() reflect.Type {
@@ -6357,10 +6387,12 @@ func (o GetRealmWebAuthnPolicyOutput) AcceptableAaguids() pulumi.StringArrayOutp
 	return o.ApplyT(func(v GetRealmWebAuthnPolicy) []string { return v.AcceptableAaguids }).(pulumi.StringArrayOutput)
 }
 
+// Either none, indirect or direct
 func (o GetRealmWebAuthnPolicyOutput) AttestationConveyancePreference() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRealmWebAuthnPolicy) string { return v.AttestationConveyancePreference }).(pulumi.StringOutput)
 }
 
+// Either platform or cross-platform
 func (o GetRealmWebAuthnPolicyOutput) AuthenticatorAttachment() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRealmWebAuthnPolicy) string { return v.AuthenticatorAttachment }).(pulumi.StringOutput)
 }
@@ -6381,14 +6413,17 @@ func (o GetRealmWebAuthnPolicyOutput) RelyingPartyId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRealmWebAuthnPolicy) string { return v.RelyingPartyId }).(pulumi.StringOutput)
 }
 
+// Either Yes or No
 func (o GetRealmWebAuthnPolicyOutput) RequireResidentKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRealmWebAuthnPolicy) string { return v.RequireResidentKey }).(pulumi.StringOutput)
 }
 
+// Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
 func (o GetRealmWebAuthnPolicyOutput) SignatureAlgorithms() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetRealmWebAuthnPolicy) []string { return v.SignatureAlgorithms }).(pulumi.StringArrayOutput)
 }
 
+// Either required, preferred or discouraged
 func (o GetRealmWebAuthnPolicyOutput) UserVerificationRequirement() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRealmWebAuthnPolicy) string { return v.UserVerificationRequirement }).(pulumi.StringOutput)
 }
@@ -6426,6 +6461,7 @@ func (o GetRealmWebAuthnPolicyPtrOutput) AcceptableAaguids() pulumi.StringArrayO
 	}).(pulumi.StringArrayOutput)
 }
 
+// Either none, indirect or direct
 func (o GetRealmWebAuthnPolicyPtrOutput) AttestationConveyancePreference() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GetRealmWebAuthnPolicy) *string {
 		if v == nil {
@@ -6435,6 +6471,7 @@ func (o GetRealmWebAuthnPolicyPtrOutput) AttestationConveyancePreference() pulum
 	}).(pulumi.StringPtrOutput)
 }
 
+// Either platform or cross-platform
 func (o GetRealmWebAuthnPolicyPtrOutput) AuthenticatorAttachment() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GetRealmWebAuthnPolicy) *string {
 		if v == nil {
@@ -6480,6 +6517,7 @@ func (o GetRealmWebAuthnPolicyPtrOutput) RelyingPartyId() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
+// Either Yes or No
 func (o GetRealmWebAuthnPolicyPtrOutput) RequireResidentKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GetRealmWebAuthnPolicy) *string {
 		if v == nil {
@@ -6489,6 +6527,7 @@ func (o GetRealmWebAuthnPolicyPtrOutput) RequireResidentKey() pulumi.StringPtrOu
 	}).(pulumi.StringPtrOutput)
 }
 
+// Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
 func (o GetRealmWebAuthnPolicyPtrOutput) SignatureAlgorithms() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *GetRealmWebAuthnPolicy) []string {
 		if v == nil {
@@ -6498,6 +6537,7 @@ func (o GetRealmWebAuthnPolicyPtrOutput) SignatureAlgorithms() pulumi.StringArra
 	}).(pulumi.StringArrayOutput)
 }
 
+// Either required, preferred or discouraged
 func (o GetRealmWebAuthnPolicyPtrOutput) UserVerificationRequirement() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GetRealmWebAuthnPolicy) *string {
 		if v == nil {
