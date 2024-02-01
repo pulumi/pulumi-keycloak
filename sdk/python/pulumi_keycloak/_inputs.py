@@ -2295,6 +2295,13 @@ class GetRealmWebAuthnPasswordlessPolicyArgs:
                  require_resident_key: str,
                  signature_algorithms: Sequence[str],
                  user_verification_requirement: str):
+        """
+        :param str attestation_conveyance_preference: Either none, indirect or direct
+        :param str authenticator_attachment: Either platform or cross-platform
+        :param str require_resident_key: Either Yes or No
+        :param Sequence[str] signature_algorithms: Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
+        :param str user_verification_requirement: Either required, preferred or discouraged
+        """
         pulumi.set(__self__, "acceptable_aaguids", acceptable_aaguids)
         pulumi.set(__self__, "attestation_conveyance_preference", attestation_conveyance_preference)
         pulumi.set(__self__, "authenticator_attachment", authenticator_attachment)
@@ -2318,6 +2325,9 @@ class GetRealmWebAuthnPasswordlessPolicyArgs:
     @property
     @pulumi.getter(name="attestationConveyancePreference")
     def attestation_conveyance_preference(self) -> str:
+        """
+        Either none, indirect or direct
+        """
         return pulumi.get(self, "attestation_conveyance_preference")
 
     @attestation_conveyance_preference.setter
@@ -2327,6 +2337,9 @@ class GetRealmWebAuthnPasswordlessPolicyArgs:
     @property
     @pulumi.getter(name="authenticatorAttachment")
     def authenticator_attachment(self) -> str:
+        """
+        Either platform or cross-platform
+        """
         return pulumi.get(self, "authenticator_attachment")
 
     @authenticator_attachment.setter
@@ -2372,6 +2385,9 @@ class GetRealmWebAuthnPasswordlessPolicyArgs:
     @property
     @pulumi.getter(name="requireResidentKey")
     def require_resident_key(self) -> str:
+        """
+        Either Yes or No
+        """
         return pulumi.get(self, "require_resident_key")
 
     @require_resident_key.setter
@@ -2381,6 +2397,9 @@ class GetRealmWebAuthnPasswordlessPolicyArgs:
     @property
     @pulumi.getter(name="signatureAlgorithms")
     def signature_algorithms(self) -> Sequence[str]:
+        """
+        Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
+        """
         return pulumi.get(self, "signature_algorithms")
 
     @signature_algorithms.setter
@@ -2390,6 +2409,9 @@ class GetRealmWebAuthnPasswordlessPolicyArgs:
     @property
     @pulumi.getter(name="userVerificationRequirement")
     def user_verification_requirement(self) -> str:
+        """
+        Either required, preferred or discouraged
+        """
         return pulumi.get(self, "user_verification_requirement")
 
     @user_verification_requirement.setter
@@ -2410,6 +2432,13 @@ class GetRealmWebAuthnPolicyArgs:
                  require_resident_key: str,
                  signature_algorithms: Sequence[str],
                  user_verification_requirement: str):
+        """
+        :param str attestation_conveyance_preference: Either none, indirect or direct
+        :param str authenticator_attachment: Either platform or cross-platform
+        :param str require_resident_key: Either Yes or No
+        :param Sequence[str] signature_algorithms: Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
+        :param str user_verification_requirement: Either required, preferred or discouraged
+        """
         pulumi.set(__self__, "acceptable_aaguids", acceptable_aaguids)
         pulumi.set(__self__, "attestation_conveyance_preference", attestation_conveyance_preference)
         pulumi.set(__self__, "authenticator_attachment", authenticator_attachment)
@@ -2433,6 +2462,9 @@ class GetRealmWebAuthnPolicyArgs:
     @property
     @pulumi.getter(name="attestationConveyancePreference")
     def attestation_conveyance_preference(self) -> str:
+        """
+        Either none, indirect or direct
+        """
         return pulumi.get(self, "attestation_conveyance_preference")
 
     @attestation_conveyance_preference.setter
@@ -2442,6 +2474,9 @@ class GetRealmWebAuthnPolicyArgs:
     @property
     @pulumi.getter(name="authenticatorAttachment")
     def authenticator_attachment(self) -> str:
+        """
+        Either platform or cross-platform
+        """
         return pulumi.get(self, "authenticator_attachment")
 
     @authenticator_attachment.setter
@@ -2487,6 +2522,9 @@ class GetRealmWebAuthnPolicyArgs:
     @property
     @pulumi.getter(name="requireResidentKey")
     def require_resident_key(self) -> str:
+        """
+        Either Yes or No
+        """
         return pulumi.get(self, "require_resident_key")
 
     @require_resident_key.setter
@@ -2496,6 +2534,9 @@ class GetRealmWebAuthnPolicyArgs:
     @property
     @pulumi.getter(name="signatureAlgorithms")
     def signature_algorithms(self) -> Sequence[str]:
+        """
+        Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
+        """
         return pulumi.get(self, "signature_algorithms")
 
     @signature_algorithms.setter
@@ -2505,6 +2546,9 @@ class GetRealmWebAuthnPolicyArgs:
     @property
     @pulumi.getter(name="userVerificationRequirement")
     def user_verification_requirement(self) -> str:
+        """
+        Either required, preferred or discouraged
+        """
         return pulumi.get(self, "user_verification_requirement")
 
     @user_verification_requirement.setter
