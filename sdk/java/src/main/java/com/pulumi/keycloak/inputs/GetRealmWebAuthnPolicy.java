@@ -23,16 +23,32 @@ public final class GetRealmWebAuthnPolicy extends com.pulumi.resources.InvokeArg
         return this.acceptableAaguids;
     }
 
+    /**
+     * Either none, indirect or direct
+     * 
+     */
     @Import(name="attestationConveyancePreference", required=true)
     private String attestationConveyancePreference;
 
+    /**
+     * @return Either none, indirect or direct
+     * 
+     */
     public String attestationConveyancePreference() {
         return this.attestationConveyancePreference;
     }
 
+    /**
+     * Either platform or cross-platform
+     * 
+     */
     @Import(name="authenticatorAttachment", required=true)
     private String authenticatorAttachment;
 
+    /**
+     * @return Either platform or cross-platform
+     * 
+     */
     public String authenticatorAttachment() {
         return this.authenticatorAttachment;
     }
@@ -65,23 +81,47 @@ public final class GetRealmWebAuthnPolicy extends com.pulumi.resources.InvokeArg
         return this.relyingPartyId;
     }
 
+    /**
+     * Either Yes or No
+     * 
+     */
     @Import(name="requireResidentKey", required=true)
     private String requireResidentKey;
 
+    /**
+     * @return Either Yes or No
+     * 
+     */
     public String requireResidentKey() {
         return this.requireResidentKey;
     }
 
+    /**
+     * Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
+     * 
+     */
     @Import(name="signatureAlgorithms", required=true)
     private List<String> signatureAlgorithms;
 
+    /**
+     * @return Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
+     * 
+     */
     public List<String> signatureAlgorithms() {
         return this.signatureAlgorithms;
     }
 
+    /**
+     * Either required, preferred or discouraged
+     * 
+     */
     @Import(name="userVerificationRequirement", required=true)
     private String userVerificationRequirement;
 
+    /**
+     * @return Either required, preferred or discouraged
+     * 
+     */
     public String userVerificationRequirement() {
         return this.userVerificationRequirement;
     }
@@ -128,11 +168,23 @@ public final class GetRealmWebAuthnPolicy extends com.pulumi.resources.InvokeArg
             return acceptableAaguids(List.of(acceptableAaguids));
         }
 
+        /**
+         * @param attestationConveyancePreference Either none, indirect or direct
+         * 
+         * @return builder
+         * 
+         */
         public Builder attestationConveyancePreference(String attestationConveyancePreference) {
             $.attestationConveyancePreference = attestationConveyancePreference;
             return this;
         }
 
+        /**
+         * @param authenticatorAttachment Either platform or cross-platform
+         * 
+         * @return builder
+         * 
+         */
         public Builder authenticatorAttachment(String authenticatorAttachment) {
             $.authenticatorAttachment = authenticatorAttachment;
             return this;
@@ -158,20 +210,44 @@ public final class GetRealmWebAuthnPolicy extends com.pulumi.resources.InvokeArg
             return this;
         }
 
+        /**
+         * @param requireResidentKey Either Yes or No
+         * 
+         * @return builder
+         * 
+         */
         public Builder requireResidentKey(String requireResidentKey) {
             $.requireResidentKey = requireResidentKey;
             return this;
         }
 
+        /**
+         * @param signatureAlgorithms Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
+         * 
+         * @return builder
+         * 
+         */
         public Builder signatureAlgorithms(List<String> signatureAlgorithms) {
             $.signatureAlgorithms = signatureAlgorithms;
             return this;
         }
 
+        /**
+         * @param signatureAlgorithms Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
+         * 
+         * @return builder
+         * 
+         */
         public Builder signatureAlgorithms(String... signatureAlgorithms) {
             return signatureAlgorithms(List.of(signatureAlgorithms));
         }
 
+        /**
+         * @param userVerificationRequirement Either required, preferred or discouraged
+         * 
+         * @return builder
+         * 
+         */
         public Builder userVerificationRequirement(String userVerificationRequirement) {
             $.userVerificationRequirement = userVerificationRequirement;
             return this;

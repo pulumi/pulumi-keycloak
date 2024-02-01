@@ -14,23 +14,51 @@ import java.util.Objects;
 @CustomType
 public final class GetRealmWebAuthnPasswordlessPolicy {
     private List<String> acceptableAaguids;
+    /**
+     * @return Either none, indirect or direct
+     * 
+     */
     private String attestationConveyancePreference;
+    /**
+     * @return Either platform or cross-platform
+     * 
+     */
     private String authenticatorAttachment;
     private Boolean avoidSameAuthenticatorRegister;
     private Integer createTimeout;
     private String relyingPartyEntityName;
     private String relyingPartyId;
+    /**
+     * @return Either Yes or No
+     * 
+     */
     private String requireResidentKey;
+    /**
+     * @return Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
+     * 
+     */
     private List<String> signatureAlgorithms;
+    /**
+     * @return Either required, preferred or discouraged
+     * 
+     */
     private String userVerificationRequirement;
 
     private GetRealmWebAuthnPasswordlessPolicy() {}
     public List<String> acceptableAaguids() {
         return this.acceptableAaguids;
     }
+    /**
+     * @return Either none, indirect or direct
+     * 
+     */
     public String attestationConveyancePreference() {
         return this.attestationConveyancePreference;
     }
+    /**
+     * @return Either platform or cross-platform
+     * 
+     */
     public String authenticatorAttachment() {
         return this.authenticatorAttachment;
     }
@@ -46,12 +74,24 @@ public final class GetRealmWebAuthnPasswordlessPolicy {
     public String relyingPartyId() {
         return this.relyingPartyId;
     }
+    /**
+     * @return Either Yes or No
+     * 
+     */
     public String requireResidentKey() {
         return this.requireResidentKey;
     }
+    /**
+     * @return Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
+     * 
+     */
     public List<String> signatureAlgorithms() {
         return this.signatureAlgorithms;
     }
+    /**
+     * @return Either required, preferred or discouraged
+     * 
+     */
     public String userVerificationRequirement() {
         return this.userVerificationRequirement;
     }

@@ -1127,10 +1127,12 @@
                     }
                 },
                 "attestationConveyancePreference": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Either none, indirect or direct\n"
                 },
                 "authenticatorAttachment": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Either platform or cross-platform\n"
                 },
                 "avoidSameAuthenticatorRegister": {
                     "type": "boolean"
@@ -1145,16 +1147,19 @@
                     "type": "string"
                 },
                 "requireResidentKey": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Either Yes or No\n"
                 },
                 "signatureAlgorithms": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing\n"
                 },
                 "userVerificationRequirement": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Either required, preferred or discouraged\n"
                 }
             },
             "type": "object",
@@ -1185,10 +1190,12 @@
                     }
                 },
                 "attestationConveyancePreference": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Either none, indirect or direct\n"
                 },
                 "authenticatorAttachment": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Either platform or cross-platform\n"
                 },
                 "avoidSameAuthenticatorRegister": {
                     "type": "boolean"
@@ -1203,16 +1210,19 @@
                     "type": "string"
                 },
                 "requireResidentKey": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Either Yes or No\n"
                 },
                 "signatureAlgorithms": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing\n"
                 },
                 "userVerificationRequirement": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Either required, preferred or discouraged\n"
                 }
             },
             "type": "object",

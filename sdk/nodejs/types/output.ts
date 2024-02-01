@@ -108,27 +108,57 @@ export interface GetRealmSmtpServerAuth {
 
 export interface GetRealmWebAuthnPasswordlessPolicy {
     acceptableAaguids: string[];
+    /**
+     * Either none, indirect or direct
+     */
     attestationConveyancePreference: string;
+    /**
+     * Either platform or cross-platform
+     */
     authenticatorAttachment: string;
     avoidSameAuthenticatorRegister: boolean;
     createTimeout: number;
     relyingPartyEntityName: string;
     relyingPartyId: string;
+    /**
+     * Either Yes or No
+     */
     requireResidentKey: string;
+    /**
+     * Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
+     */
     signatureAlgorithms: string[];
+    /**
+     * Either required, preferred or discouraged
+     */
     userVerificationRequirement: string;
 }
 
 export interface GetRealmWebAuthnPolicy {
     acceptableAaguids: string[];
+    /**
+     * Either none, indirect or direct
+     */
     attestationConveyancePreference: string;
+    /**
+     * Either platform or cross-platform
+     */
     authenticatorAttachment: string;
     avoidSameAuthenticatorRegister: boolean;
     createTimeout: number;
     relyingPartyEntityName: string;
     relyingPartyId: string;
+    /**
+     * Either Yes or No
+     */
     requireResidentKey: string;
+    /**
+     * Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
+     */
     signatureAlgorithms: string[];
+    /**
+     * Either required, preferred or discouraged
+     */
     userVerificationRequirement: string;
 }
 
