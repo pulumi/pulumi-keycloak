@@ -20,9 +20,15 @@ namespace Pulumi.Keycloak.Inputs
             set => _acceptableAaguids = value;
         }
 
+        /// <summary>
+        /// Either none, indirect or direct
+        /// </summary>
         [Input("attestationConveyancePreference", required: true)]
         public Input<string> AttestationConveyancePreference { get; set; } = null!;
 
+        /// <summary>
+        /// Either platform or cross-platform
+        /// </summary>
         [Input("authenticatorAttachment", required: true)]
         public Input<string> AuthenticatorAttachment { get; set; } = null!;
 
@@ -38,17 +44,27 @@ namespace Pulumi.Keycloak.Inputs
         [Input("relyingPartyId", required: true)]
         public Input<string> RelyingPartyId { get; set; } = null!;
 
+        /// <summary>
+        /// Either Yes or No
+        /// </summary>
         [Input("requireResidentKey", required: true)]
         public Input<string> RequireResidentKey { get; set; } = null!;
 
         [Input("signatureAlgorithms", required: true)]
         private InputList<string>? _signatureAlgorithms;
+
+        /// <summary>
+        /// Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
+        /// </summary>
         public InputList<string> SignatureAlgorithms
         {
             get => _signatureAlgorithms ?? (_signatureAlgorithms = new InputList<string>());
             set => _signatureAlgorithms = value;
         }
 
+        /// <summary>
+        /// Either required, preferred or discouraged
+        /// </summary>
         [Input("userVerificationRequirement", required: true)]
         public Input<string> UserVerificationRequirement { get; set; } = null!;
 
