@@ -57,7 +57,9 @@ namespace Pulumi.Keycloak.OpenId
     /// 
     /// ## Import
     /// 
-    /// This resource does not support import. Instead of importing, feel free to create this resource as if it did not already exist on the server.
+    /// This resource does not support import. Instead of importing, feel free to create this resource
+    /// 
+    ///  as if it did not already exist on the server.
     /// </summary>
     [KeycloakResourceType("keycloak:openid/clientDefaultScopes:ClientDefaultScopes")]
     public partial class ClientDefaultScopes : global::Pulumi.CustomResource

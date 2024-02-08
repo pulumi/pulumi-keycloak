@@ -44,10 +44,14 @@ namespace Pulumi.Keycloak
     /// 
     /// ## Import
     /// 
-    /// Realm keys can be imported using realm name and keystore id, you can find it in web UI. Examplebash
+    /// Realm keys can be imported using realm name and keystore id, you can find it in web UI.
+    /// 
+    ///  Example:
+    /// 
+    ///  bash
     /// 
     /// ```sh
-    ///  $ pulumi import keycloak:index/realmKeystoreHmacGenerated:RealmKeystoreHmacGenerated keystore_hmac_generated my-realm/618cfba7-49aa-4c09-9a19-2f699b576f0b
+    /// $ pulumi import keycloak:index/realmKeystoreHmacGenerated:RealmKeystoreHmacGenerated keystore_hmac_generated my-realm/618cfba7-49aa-4c09-9a19-2f699b576f0b
     /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:index/realmKeystoreHmacGenerated:RealmKeystoreHmacGenerated")]

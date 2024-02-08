@@ -1086,10 +1086,14 @@ class IdentityProvider(pulumi.CustomResource):
 
         ## Import
 
-        Identity providers can be imported using the format `{{realm_id}}/{{idp_alias}}`, where `idp_alias` is the identity provider alias. Examplebash
+        Identity providers can be imported using the format `{{realm_id}}/{{idp_alias}}`, where `idp_alias` is the identity provider alias.
+
+         Example:
+
+         bash
 
         ```sh
-         $ pulumi import keycloak:oidc/identityProvider:IdentityProvider realm_identity_provider my-realm/my-idp
+        $ pulumi import keycloak:oidc/identityProvider:IdentityProvider realm_identity_provider my-realm/my-idp
         ```
 
         :param str resource_name: The name of the resource.
@@ -1159,10 +1163,14 @@ class IdentityProvider(pulumi.CustomResource):
 
         ## Import
 
-        Identity providers can be imported using the format `{{realm_id}}/{{idp_alias}}`, where `idp_alias` is the identity provider alias. Examplebash
+        Identity providers can be imported using the format `{{realm_id}}/{{idp_alias}}`, where `idp_alias` is the identity provider alias.
+
+         Example:
+
+         bash
 
         ```sh
-         $ pulumi import keycloak:oidc/identityProvider:IdentityProvider realm_identity_provider my-realm/my-idp
+        $ pulumi import keycloak:oidc/identityProvider:IdentityProvider realm_identity_provider my-realm/my-idp
         ```
 
         :param str resource_name: The name of the resource.
