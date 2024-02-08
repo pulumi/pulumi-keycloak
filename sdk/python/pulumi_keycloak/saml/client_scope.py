@@ -219,10 +219,16 @@ class ClientScope(pulumi.CustomResource):
 
         ## Import
 
-        Client scopes can be imported using the format `{{realm_id}}/{{client_scope_id}}`, where `client_scope_id` is the unique ID that Keycloak assigns to the client scope upon creation. This value can be found in the URI when editing this client scope in the GUI, and is typically a GUID. Examplebash
+        Client scopes can be imported using the format `{{realm_id}}/{{client_scope_id}}`, where `client_scope_id` is the unique ID that Keycloak
+
+         assigns to the client scope upon creation. This value can be found in the URI when editing this client scope in the GUI, and is typically a GUID.
+
+         Example:
+
+         bash
 
         ```sh
-         $ pulumi import keycloak:saml/clientScope:ClientScope saml_client_scope my-realm/e8a5d115-6985-4de3-a0f5-732e1be4525e
+        $ pulumi import keycloak:saml/clientScope:ClientScope saml_client_scope my-realm/e8a5d115-6985-4de3-a0f5-732e1be4525e
         ```
 
         :param str resource_name: The name of the resource.
@@ -261,10 +267,16 @@ class ClientScope(pulumi.CustomResource):
 
         ## Import
 
-        Client scopes can be imported using the format `{{realm_id}}/{{client_scope_id}}`, where `client_scope_id` is the unique ID that Keycloak assigns to the client scope upon creation. This value can be found in the URI when editing this client scope in the GUI, and is typically a GUID. Examplebash
+        Client scopes can be imported using the format `{{realm_id}}/{{client_scope_id}}`, where `client_scope_id` is the unique ID that Keycloak
+
+         assigns to the client scope upon creation. This value can be found in the URI when editing this client scope in the GUI, and is typically a GUID.
+
+         Example:
+
+         bash
 
         ```sh
-         $ pulumi import keycloak:saml/clientScope:ClientScope saml_client_scope my-realm/e8a5d115-6985-4de3-a0f5-732e1be4525e
+        $ pulumi import keycloak:saml/clientScope:ClientScope saml_client_scope my-realm/e8a5d115-6985-4de3-a0f5-732e1be4525e
         ```
 
         :param str resource_name: The name of the resource.

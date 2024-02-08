@@ -73,10 +73,14 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * Identity providers can be imported using the format `{{realm_id}}/{{idp_alias}}`, where `idp_alias` is the identity provider alias. Examplebash
+ * Identity providers can be imported using the format `{{realm_id}}/{{idp_alias}}`, where `idp_alias` is the identity provider alias.
+ * 
+ *  Example:
+ * 
+ *  bash
  * 
  * ```sh
- *  $ pulumi import keycloak:saml/identityProvider:IdentityProvider realm_saml_identity_provider my-realm/my-saml-idp
+ * $ pulumi import keycloak:saml/identityProvider:IdentityProvider realm_saml_identity_provider my-realm/my-saml-idp
  * ```
  * 
  */

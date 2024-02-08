@@ -62,7 +62,9 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * This resource does not support import. Instead of importing, feel free to create this resource as if it did not already exist on the server.
+ * This resource does not support import. Instead of importing, feel free to create this resource
+ *
+ *  as if it did not already exist on the server.
  */
 export class UserGroups extends pulumi.CustomResource {
     /**

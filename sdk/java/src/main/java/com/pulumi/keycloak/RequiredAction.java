@@ -62,10 +62,14 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * Authentication executions can be imported using the formats`{{realm}}/{{alias}}`. Examplebash
+ * Authentication executions can be imported using the formats: `{{realm}}/{{alias}}`.
+ * 
+ *  Example:
+ * 
+ *  bash
  * 
  * ```sh
- *  $ pulumi import keycloak:index/requiredAction:RequiredAction required_action my-realm/my-default-action-alias
+ * $ pulumi import keycloak:index/requiredAction:RequiredAction required_action my-realm/my-default-action-alias
  * ```
  * 
  */

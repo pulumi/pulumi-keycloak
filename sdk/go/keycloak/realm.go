@@ -103,12 +103,14 @@ import (
 //
 // ## Import
 //
-// Realms can be imported using their name. Examplebash
+// Realms can be imported using their name.
+//
+//	Example:
+//
+//	bash
 //
 // ```sh
-//
-//	$ pulumi import keycloak:index/realm:Realm realm my-realm
-//
+// $ pulumi import keycloak:index/realm:Realm realm my-realm
 // ```
 type Realm struct {
 	pulumi.CustomResourceState
