@@ -1942,10 +1942,14 @@ class Realm(pulumi.CustomResource):
 
         ## Import
 
-        Realms can be imported using their name. Examplebash
+        Realms can be imported using their name.
+
+         Example:
+
+         bash
 
         ```sh
-         $ pulumi import keycloak:index/realm:Realm realm my-realm
+        $ pulumi import keycloak:index/realm:Realm realm my-realm
         ```
 
         :param str resource_name: The name of the resource.
@@ -2091,10 +2095,14 @@ class Realm(pulumi.CustomResource):
 
         ## Import
 
-        Realms can be imported using their name. Examplebash
+        Realms can be imported using their name.
+
+         Example:
+
+         bash
 
         ```sh
-         $ pulumi import keycloak:index/realm:Realm realm my-realm
+        $ pulumi import keycloak:index/realm:Realm realm my-realm
         ```
 
         :param str resource_name: The name of the resource.

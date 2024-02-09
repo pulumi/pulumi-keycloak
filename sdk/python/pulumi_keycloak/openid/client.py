@@ -1563,10 +1563,16 @@ class Client(pulumi.CustomResource):
 
         ## Import
 
-        Clients can be imported using the format `{{realm_id}}/{{client_keycloak_id}}`, where `client_keycloak_id` is the unique ID that Keycloak assigns to the client upon creation. This value can be found in the URI when editing this client in the GUI, and is typically a GUID. Examplebash
+        Clients can be imported using the format `{{realm_id}}/{{client_keycloak_id}}`, where `client_keycloak_id` is the unique ID that Keycloak
+
+         assigns to the client upon creation. This value can be found in the URI when editing this client in the GUI, and is typically a GUID.
+
+         Example:
+
+         bash
 
         ```sh
-         $ pulumi import keycloak:openid/client:Client openid_client my-realm/dcbc4c73-e478-4928-ae2e-d5e420223352
+        $ pulumi import keycloak:openid/client:Client openid_client my-realm/dcbc4c73-e478-4928-ae2e-d5e420223352
         ```
 
         :param str resource_name: The name of the resource.
@@ -1658,10 +1664,16 @@ class Client(pulumi.CustomResource):
 
         ## Import
 
-        Clients can be imported using the format `{{realm_id}}/{{client_keycloak_id}}`, where `client_keycloak_id` is the unique ID that Keycloak assigns to the client upon creation. This value can be found in the URI when editing this client in the GUI, and is typically a GUID. Examplebash
+        Clients can be imported using the format `{{realm_id}}/{{client_keycloak_id}}`, where `client_keycloak_id` is the unique ID that Keycloak
+
+         assigns to the client upon creation. This value can be found in the URI when editing this client in the GUI, and is typically a GUID.
+
+         Example:
+
+         bash
 
         ```sh
-         $ pulumi import keycloak:openid/client:Client openid_client my-realm/dcbc4c73-e478-4928-ae2e-d5e420223352
+        $ pulumi import keycloak:openid/client:Client openid_client my-realm/dcbc4c73-e478-4928-ae2e-d5e420223352
         ```
 
         :param str resource_name: The name of the resource.

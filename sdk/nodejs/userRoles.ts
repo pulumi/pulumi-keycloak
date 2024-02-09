@@ -60,10 +60,16 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * This resource can be imported using the format `{{realm_id}}/{{user_id}}`, where `user_id` is the unique ID that Keycloak assigns to the user upon creation. This value can be found in the GUI when editing the user, and is typically a GUID. Examplebash
+ * This resource can be imported using the format `{{realm_id}}/{{user_id}}`, where `user_id` is the unique ID that Keycloak
+ *
+ *  assigns to the user upon creation. This value can be found in the GUI when editing the user, and is typically a GUID.
+ *
+ *  Example:
+ *
+ *  bash
  *
  * ```sh
- *  $ pulumi import keycloak:index/userRoles:UserRoles user_roles my-realm/b0ae6924-1bd5-4655-9e38-dae7c5e42924
+ * $ pulumi import keycloak:index/userRoles:UserRoles user_roles my-realm/b0ae6924-1bd5-4655-9e38-dae7c5e42924
  * ```
  */
 export class UserRoles extends pulumi.CustomResource {

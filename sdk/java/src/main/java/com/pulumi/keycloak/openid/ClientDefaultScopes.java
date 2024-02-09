@@ -75,7 +75,9 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * This resource does not support import. Instead of importing, feel free to create this resource as if it did not already exist on the server.
+ * This resource does not support import. Instead of importing, feel free to create this resource
+ * 
+ *  as if it did not already exist on the server.
  * 
  */
 @ResourceType(type="keycloak:openid/clientDefaultScopes:ClientDefaultScopes")

@@ -86,7 +86,11 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * This resource does not support import. Instead of importing, feel free to create this resource as if it did not already exist on the server. [1]providers/mrparkers/keycloak/latest/docs/resources/group_memberships
+ * This resource does not support import. Instead of importing, feel free to create this resource
+ * 
+ *  as if it did not already exist on the server.
+ * 
+ * [1]: providers/mrparkers/keycloak/latest/docs/resources/group_memberships
  * 
  */
 @ResourceType(type="keycloak:index/groupMemberships:GroupMemberships")

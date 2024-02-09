@@ -159,7 +159,9 @@ class ClientDefaultScope(pulumi.CustomResource):
 
         ## Import
 
-        This resource does not support import. Instead of importing, feel free to create this resource as if it did not already exist on the server.
+        This resource does not support import. Instead of importing, feel free to create this resource as if it did not already exist
+
+         on the server.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -203,7 +205,9 @@ class ClientDefaultScope(pulumi.CustomResource):
 
         ## Import
 
-        This resource does not support import. Instead of importing, feel free to create this resource as if it did not already exist on the server.
+        This resource does not support import. Instead of importing, feel free to create this resource as if it did not already exist
+
+         on the server.
 
         :param str resource_name: The name of the resource.
         :param ClientDefaultScopeArgs args: The arguments to use to populate this resource's properties.
