@@ -28,10 +28,18 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Default roles can be imported using the format `{{realm_id}}/{{default_role_id}}`, where `default_role_id` is the unique ID of the composite role that Keycloak uses to control default realm level roles. The ID is not easy to find in the GUI, but it appears in the dev tools when editing the default roles. Examplebash
+ * Default roles can be imported using the format `{{realm_id}}/{{default_role_id}}`, where `default_role_id` is the unique ID of the composite
+ *
+ *  role that Keycloak uses to control default realm level roles. The ID is not easy to find in the GUI, but it appears in the dev tools when editing
+ *
+ *  the default roles.
+ *
+ *  Example:
+ *
+ *  bash
  *
  * ```sh
- *  $ pulumi import keycloak:index/defaultRoles:DefaultRoles default_roles my-realm/a04c35c2-e95a-4dc5-bd32-e83a21be9e7d
+ * $ pulumi import keycloak:index/defaultRoles:DefaultRoles default_roles my-realm/a04c35c2-e95a-4dc5-bd32-e83a21be9e7d
  * ```
  */
 export class DefaultRoles extends pulumi.CustomResource {

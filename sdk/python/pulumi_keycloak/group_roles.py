@@ -239,10 +239,18 @@ class GroupRoles(pulumi.CustomResource):
 
         ## Import
 
-        This resource can be imported using the format `{{realm_id}}/{{group_id}}`, where `group_id` is the unique ID that Keycloak assigns to the group upon creation. This value can be found in the URI when editing this group in the GUI, and is typically a GUID. Examplebash
+        This resource can be imported using the format `{{realm_id}}/{{group_id}}`, where `group_id` is the unique ID that Keycloak
+
+         assigns to the group upon creation. This value can be found in the URI when editing this group in the GUI, and is typically
+
+         a GUID.
+
+         Example:
+
+         bash
 
         ```sh
-         $ pulumi import keycloak:index/groupRoles:GroupRoles group_roles my-realm/18cc6b87-2ce7-4e59-bdc8-b9d49ec98a94
+        $ pulumi import keycloak:index/groupRoles:GroupRoles group_roles my-realm/18cc6b87-2ce7-4e59-bdc8-b9d49ec98a94
         ```
 
         :param str resource_name: The name of the resource.
@@ -335,10 +343,18 @@ class GroupRoles(pulumi.CustomResource):
 
         ## Import
 
-        This resource can be imported using the format `{{realm_id}}/{{group_id}}`, where `group_id` is the unique ID that Keycloak assigns to the group upon creation. This value can be found in the URI when editing this group in the GUI, and is typically a GUID. Examplebash
+        This resource can be imported using the format `{{realm_id}}/{{group_id}}`, where `group_id` is the unique ID that Keycloak
+
+         assigns to the group upon creation. This value can be found in the URI when editing this group in the GUI, and is typically
+
+         a GUID.
+
+         Example:
+
+         bash
 
         ```sh
-         $ pulumi import keycloak:index/groupRoles:GroupRoles group_roles my-realm/18cc6b87-2ce7-4e59-bdc8-b9d49ec98a94
+        $ pulumi import keycloak:index/groupRoles:GroupRoles group_roles my-realm/18cc6b87-2ce7-4e59-bdc8-b9d49ec98a94
         ```
 
         :param str resource_name: The name of the resource.

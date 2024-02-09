@@ -82,10 +82,16 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * This resource can be imported using the format `{{realm_id}}/{{provider_alias}}`, where `provider_alias` is the alias that you assign to the identity provider upon creation. Examplebash
+ * This resource can be imported using the format `{{realm_id}}/{{provider_alias}}`, where `provider_alias` is the alias that
+ * 
+ *  you assign to the identity provider upon creation.
+ * 
+ *  Example:
+ * 
+ *  bash
  * 
  * ```sh
- *  $ pulumi import keycloak:index/identityProviderTokenExchangeScopePermission:IdentityProviderTokenExchangeScopePermission oidc_idp_permission my-realm/myIdp
+ * $ pulumi import keycloak:index/identityProviderTokenExchangeScopePermission:IdentityProviderTokenExchangeScopePermission oidc_idp_permission my-realm/myIdp
  * ```
  * 
  */
