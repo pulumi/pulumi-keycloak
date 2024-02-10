@@ -57,17 +57,17 @@ export class Provider extends pulumi.ProviderResource {
             if ((!args || args.url === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'url'");
             }
-            resourceInputs["additionalHeaders"] = pulumi.output(args ? args.additionalHeaders : undefined).apply(JSON.stringify);
+            resourceInputs["additionalHeaders"] = args ? args.additionalHeaders : undefined;
             resourceInputs["basePath"] = args ? args.basePath : undefined;
             resourceInputs["clientId"] = args ? args.clientId : undefined;
             resourceInputs["clientSecret"] = args ? args.clientSecret : undefined;
-            resourceInputs["clientTimeout"] = pulumi.output((args ? args.clientTimeout : undefined) ?? (utilities.getEnvNumber("KEYCLOAK_CLIENT_TIMEOUT") || 5)).apply(JSON.stringify);
-            resourceInputs["initialLogin"] = pulumi.output(args ? args.initialLogin : undefined).apply(JSON.stringify);
+            resourceInputs["clientTimeout"] = (args ? args.clientTimeout : undefined) ?? (utilities.getEnvNumber("KEYCLOAK_CLIENT_TIMEOUT") || 5);
+            resourceInputs["initialLogin"] = args ? args.initialLogin : undefined;
             resourceInputs["password"] = args ? args.password : undefined;
             resourceInputs["realm"] = args ? args.realm : undefined;
-            resourceInputs["redHatSso"] = pulumi.output(args ? args.redHatSso : undefined).apply(JSON.stringify);
+            resourceInputs["redHatSso"] = args ? args.redHatSso : undefined;
             resourceInputs["rootCaCertificate"] = args ? args.rootCaCertificate : undefined;
-            resourceInputs["tlsInsecureSkipVerify"] = pulumi.output(args ? args.tlsInsecureSkipVerify : undefined).apply(JSON.stringify);
+            resourceInputs["tlsInsecureSkipVerify"] = args ? args.tlsInsecureSkipVerify : undefined;
             resourceInputs["url"] = args ? args.url : undefined;
             resourceInputs["username"] = args ? args.username : undefined;
         }
