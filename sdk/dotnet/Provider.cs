@@ -76,7 +76,7 @@ namespace Pulumi.Keycloak
 
     public sealed class ProviderArgs : global::Pulumi.ResourceArgs
     {
-        [Input("additionalHeaders", json: true)]
+        [Input("additionalHeaders")]
         private InputMap<string>? _additionalHeaders;
         public InputMap<string> AdditionalHeaders
         {
@@ -96,13 +96,13 @@ namespace Pulumi.Keycloak
         /// <summary>
         /// Timeout (in seconds) of the Keycloak client
         /// </summary>
-        [Input("clientTimeout", json: true)]
+        [Input("clientTimeout")]
         public Input<int>? ClientTimeout { get; set; }
 
         /// <summary>
         /// Whether or not to login to Keycloak instance on provider initialization
         /// </summary>
-        [Input("initialLogin", json: true)]
+        [Input("initialLogin")]
         public Input<bool>? InitialLogin { get; set; }
 
         [Input("password")]
@@ -115,7 +115,7 @@ namespace Pulumi.Keycloak
         /// When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version
         /// returned from the /serverinfo API endpoint.
         /// </summary>
-        [Input("redHatSso", json: true)]
+        [Input("redHatSso")]
         public Input<bool>? RedHatSso { get; set; }
 
         /// <summary>
@@ -128,7 +128,7 @@ namespace Pulumi.Keycloak
         /// Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and
         /// should be avoided.
         /// </summary>
-        [Input("tlsInsecureSkipVerify", json: true)]
+        [Input("tlsInsecureSkipVerify")]
         public Input<bool>? TlsInsecureSkipVerify { get; set; }
 
         /// <summary>
