@@ -11,7 +11,7 @@ replace (
 require (
 	github.com/mrparkers/terraform-provider-keycloak v0.0.0-00010101000000-000000000000
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.74.0
-	github.com/pulumi/pulumi/sdk/v3 v3.105.0
+	github.com/pulumi/pulumi/sdk/v3 v3.107.0
 )
 
 require (
@@ -241,3 +241,7 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	lukechampine.com/frand v1.4.2 // indirect
 )
+
+replace github.com/pulumi/pulumi/pkg/v3 => github.com/pulumi/pulumi/pkg/v3 v3.78.2-0.20240223010641-eaf5c3bf34ff
+
+replace github.com/pulumi/pulumi/sdk/v3 => github.com/pulumi/pulumi/sdk/v3 v3.107.1-0.20240223010641-eaf5c3bf34ff
