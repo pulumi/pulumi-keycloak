@@ -55,6 +55,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// first execution
 //			executionOne, err := authentication.NewExecution(ctx, "executionOne", &authentication.ExecutionArgs{
 //				RealmId:         realm.ID(),
 //				ParentFlowAlias: flow.Alias,
@@ -64,6 +65,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// second execution
 //			_, err = authentication.NewExecution(ctx, "executionTwo", &authentication.ExecutionArgs{
 //				RealmId:         realm.ID(),
 //				ParentFlowAlias: flow.Alias,

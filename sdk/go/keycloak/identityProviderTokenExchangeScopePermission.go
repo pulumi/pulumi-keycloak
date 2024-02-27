@@ -61,6 +61,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// relevant part
 //			_, err = keycloak.NewIdentityProviderTokenExchangeScopePermission(ctx, "oidcIdpPermission", &keycloak.IdentityProviderTokenExchangeScopePermissionArgs{
 //				RealmId:       tokenExchangeRealm.ID(),
 //				ProviderAlias: tokenExchangeMyOidcIdp.Alias,
