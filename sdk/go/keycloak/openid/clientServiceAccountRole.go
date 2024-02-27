@@ -40,6 +40,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// client1 provides a role to other clients
 //			client1, err := openid.NewClient(ctx, "client1", &openid.ClientArgs{
 //				RealmId: realm.ID(),
 //			})
@@ -54,6 +55,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// client2 is assigned the role of client1
 //			client2, err := openid.NewClient(ctx, "client2", &openid.ClientArgs{
 //				RealmId:                realm.ID(),
 //				ServiceAccountsEnabled: pulumi.Bool(true),
