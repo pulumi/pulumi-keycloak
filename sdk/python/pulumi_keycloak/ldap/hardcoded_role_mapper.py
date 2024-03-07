@@ -168,8 +168,10 @@ class HardcodedRoleMapper(pulumi.CustomResource):
         The LDAP hardcoded role mapper will grant a specified Keycloak role to each Keycloak user linked with LDAP.
 
         ## Example Usage
+
         ### Realm Role)
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -198,8 +200,11 @@ class HardcodedRoleMapper(pulumi.CustomResource):
             ldap_user_federation_id=ldap_user_federation.id,
             role=realm_admin_role.name)
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Client Role)
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -230,16 +235,17 @@ class HardcodedRoleMapper(pulumi.CustomResource):
             ldap_user_federation_id=ldap_user_federation.id,
             role=pulumi.Output.all(realm_management, create_client).apply(lambda realm_management, create_client: f"{realm_management.client_id}.{create_client.name}"))
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         LDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`.
 
-         The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs.
+        The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs.
 
-         Example:
+        Example:
 
-         bash
+        bash
 
         ```sh
         $ pulumi import keycloak:ldap/hardcodedRoleMapper:HardcodedRoleMapper assign_admin_role_to_all_users my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
@@ -264,8 +270,10 @@ class HardcodedRoleMapper(pulumi.CustomResource):
         The LDAP hardcoded role mapper will grant a specified Keycloak role to each Keycloak user linked with LDAP.
 
         ## Example Usage
+
         ### Realm Role)
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -294,8 +302,11 @@ class HardcodedRoleMapper(pulumi.CustomResource):
             ldap_user_federation_id=ldap_user_federation.id,
             role=realm_admin_role.name)
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Client Role)
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -326,16 +337,17 @@ class HardcodedRoleMapper(pulumi.CustomResource):
             ldap_user_federation_id=ldap_user_federation.id,
             role=pulumi.Output.all(realm_management, create_client).apply(lambda realm_management, create_client: f"{realm_management.client_id}.{create_client.name}"))
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         LDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`.
 
-         The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs.
+        The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs.
 
-         Example:
+        Example:
 
-         bash
+        bash
 
         ```sh
         $ pulumi import keycloak:ldap/hardcodedRoleMapper:HardcodedRoleMapper assign_admin_role_to_all_users my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67

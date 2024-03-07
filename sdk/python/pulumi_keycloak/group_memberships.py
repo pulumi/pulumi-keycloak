@@ -149,6 +149,7 @@ class GroupMemberships(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -165,12 +166,13 @@ class GroupMemberships(pulumi.CustomResource):
             group_id=group.id,
             members=[user.username])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         This resource does not support import. Instead of importing, feel free to create this resource
 
-         as if it did not already exist on the server.
+        as if it did not already exist on the server.
 
         [1]: providers/mrparkers/keycloak/latest/docs/resources/group_memberships
 
@@ -205,6 +207,7 @@ class GroupMemberships(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -221,12 +224,13 @@ class GroupMemberships(pulumi.CustomResource):
             group_id=group.id,
             members=[user.username])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         This resource does not support import. Instead of importing, feel free to create this resource
 
-         as if it did not already exist on the server.
+        as if it did not already exist on the server.
 
         [1]: providers/mrparkers/keycloak/latest/docs/resources/group_memberships
 

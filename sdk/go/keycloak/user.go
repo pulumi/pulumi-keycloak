@@ -20,6 +20,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -74,16 +75,17 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // Users can be imported using the format `{{realm_id}}/{{user_id}}`, where `user_id` is the unique ID that Keycloak
 //
-//	assigns to the user upon creation. This value can be found in the GUI when editing the user.
+// assigns to the user upon creation. This value can be found in the GUI when editing the user.
 //
-//	Example:
+// Example:
 //
-//	bash
+// bash
 //
 // ```sh
 // $ pulumi import keycloak:index/user:User user my-realm/60c3f971-b1d3-4b3a-9035-d16d7540a5e4

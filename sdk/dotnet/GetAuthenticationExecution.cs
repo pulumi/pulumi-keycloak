@@ -14,10 +14,9 @@ namespace Pulumi.Keycloak
         /// <summary>
         /// This data source can be used to fetch the ID of an authentication execution within Keycloak.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -41,8 +40,7 @@ namespace Pulumi.Keycloak
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetAuthenticationExecutionResult> InvokeAsync(GetAuthenticationExecutionArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAuthenticationExecutionResult>("keycloak:index/getAuthenticationExecution:getAuthenticationExecution", args ?? new GetAuthenticationExecutionArgs(), options.WithDefaults());
@@ -50,10 +48,9 @@ namespace Pulumi.Keycloak
         /// <summary>
         /// This data source can be used to fetch the ID of an authentication execution within Keycloak.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -77,8 +74,7 @@ namespace Pulumi.Keycloak
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetAuthenticationExecutionResult> Invoke(GetAuthenticationExecutionInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAuthenticationExecutionResult>("keycloak:index/getAuthenticationExecution:getAuthenticationExecution", args ?? new GetAuthenticationExecutionInvokeArgs(), options.WithDefaults());

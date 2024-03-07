@@ -10,8 +10,10 @@ import * as utilities from "./utilities";
  * Roles allow you define privileges within Keycloak and map them to users and groups.
  *
  * ## Example Usage
+ *
  * ### Realm Role)
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -29,8 +31,11 @@ import * as utilities from "./utilities";
  *     },
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ### Client Role)
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -55,8 +60,11 @@ import * as utilities from "./utilities";
  *     },
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ### Composite Role)
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -120,16 +128,17 @@ import * as utilities from "./utilities";
  *     },
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * Roles can be imported using the format `{{realm_id}}/{{role_id}}`, where `role_id` is the unique ID that Keycloak assigns
  *
- *  to the role. The ID is not easy to find in the GUI, but it appears in the URL when editing the role.
+ * to the role. The ID is not easy to find in the GUI, but it appears in the URL when editing the role.
  *
- *  Example:
+ * Example:
  *
- *  bash
+ * bash
  *
  * ```sh
  * $ pulumi import keycloak:index/role:Role role my-realm/7e8cf32a-8acb-4d34-89c4-04fb1d10ccad

@@ -803,6 +803,7 @@ class GoogleIdentityProvider(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -821,14 +822,15 @@ class GoogleIdentityProvider(pulumi.CustomResource):
                 "myCustomConfigKey": "myValue",
             })
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Google Identity providers can be imported using the format {{realm_id}}/{{idp_alias}}, where idp_alias is the identity provider alias.
 
-         Example:
+        Example:
 
-         bash
+        bash
 
         ```sh
         $ pulumi import keycloak:oidc/googleIdentityProvider:GoogleIdentityProvider google_identity_provider my-realm/my-google-idp
@@ -871,6 +873,7 @@ class GoogleIdentityProvider(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -889,14 +892,15 @@ class GoogleIdentityProvider(pulumi.CustomResource):
                 "myCustomConfigKey": "myValue",
             })
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Google Identity providers can be imported using the format {{realm_id}}/{{idp_alias}}, where idp_alias is the identity provider alias.
 
-         Example:
+        Example:
 
-         bash
+        bash
 
         ```sh
         $ pulumi import keycloak:oidc/googleIdentityProvider:GoogleIdentityProvider google_identity_provider my-realm/my-google-idp

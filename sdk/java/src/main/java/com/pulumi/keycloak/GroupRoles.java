@@ -27,7 +27,10 @@ import javax.annotation.Nullable;
  * assign a role and a composite that includes that role to the same group.
  * 
  * ## Example Usage
+ * 
  * ### Exhaustive Roles)
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -95,7 +98,11 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
  * ### Non Exhaustive Roles)
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -169,18 +176,19 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * This resource can be imported using the format `{{realm_id}}/{{group_id}}`, where `group_id` is the unique ID that Keycloak
  * 
- *  assigns to the group upon creation. This value can be found in the URI when editing this group in the GUI, and is typically
+ * assigns to the group upon creation. This value can be found in the URI when editing this group in the GUI, and is typically
  * 
- *  a GUID.
+ * a GUID.
  * 
- *  Example:
+ * Example:
  * 
- *  bash
+ * bash
  * 
  * ```sh
  * $ pulumi import keycloak:index/groupRoles:GroupRoles group_roles my-realm/18cc6b87-2ce7-4e59-bdc8-b9d49ec98a94

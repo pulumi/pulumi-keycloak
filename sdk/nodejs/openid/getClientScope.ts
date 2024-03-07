@@ -9,6 +9,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -24,6 +25,7 @@ import * as utilities from "../utilities";
  *     includedCustomAudience: "foo",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getClientScope(args: GetClientScopeArgs, opts?: pulumi.InvokeOptions): Promise<GetClientScopeResult> {
 
@@ -68,6 +70,7 @@ export interface GetClientScopeResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -83,6 +86,7 @@ export interface GetClientScopeResult {
  *     includedCustomAudience: "foo",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getClientScopeOutput(args: GetClientScopeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetClientScopeResult> {
     return pulumi.output(args).apply((a: any) => getClientScope(a, opts))

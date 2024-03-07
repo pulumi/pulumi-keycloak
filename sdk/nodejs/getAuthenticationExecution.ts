@@ -9,6 +9,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -23,6 +24,7 @@ import * as utilities from "./utilities";
  *     providerId: "auth-cookie",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getAuthenticationExecution(args: GetAuthenticationExecutionArgs, opts?: pulumi.InvokeOptions): Promise<GetAuthenticationExecutionResult> {
 
@@ -69,6 +71,7 @@ export interface GetAuthenticationExecutionResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -83,6 +86,7 @@ export interface GetAuthenticationExecutionResult {
  *     providerId: "auth-cookie",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getAuthenticationExecutionOutput(args: GetAuthenticationExecutionOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAuthenticationExecutionResult> {
     return pulumi.output(args).apply((a: any) => getAuthenticationExecution(a, opts))

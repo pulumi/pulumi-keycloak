@@ -30,6 +30,8 @@ import javax.annotation.Nullable;
  * It can be done via the administration UI, or by setting the `userProfileEnabled` realm attribute to `true`.
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -126,6 +128,7 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 

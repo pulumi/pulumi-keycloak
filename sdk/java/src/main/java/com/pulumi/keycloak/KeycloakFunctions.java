@@ -42,6 +42,8 @@ public final class KeycloakFunctions {
      * This data source can be used to fetch the ID of an authentication execution within Keycloak.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -79,6 +81,7 @@ public final class KeycloakFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetAuthenticationExecutionResult> getAuthenticationExecution(GetAuthenticationExecutionArgs args) {
@@ -88,6 +91,8 @@ public final class KeycloakFunctions {
      * This data source can be used to fetch the ID of an authentication execution within Keycloak.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -125,6 +130,7 @@ public final class KeycloakFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetAuthenticationExecutionResult> getAuthenticationExecutionPlain(GetAuthenticationExecutionPlainArgs args) {
@@ -134,6 +140,8 @@ public final class KeycloakFunctions {
      * This data source can be used to fetch the ID of an authentication execution within Keycloak.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -171,6 +179,7 @@ public final class KeycloakFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetAuthenticationExecutionResult> getAuthenticationExecution(GetAuthenticationExecutionArgs args, InvokeOptions options) {
@@ -180,6 +189,8 @@ public final class KeycloakFunctions {
      * This data source can be used to fetch the ID of an authentication execution within Keycloak.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -217,6 +228,7 @@ public final class KeycloakFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetAuthenticationExecutionResult> getAuthenticationExecutionPlain(GetAuthenticationExecutionPlainArgs args, InvokeOptions options) {
@@ -226,6 +238,8 @@ public final class KeycloakFunctions {
      * This data source can be used to fetch the ID of an authentication flow within Keycloak.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -262,6 +276,7 @@ public final class KeycloakFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetAuthenticationFlowResult> getAuthenticationFlow(GetAuthenticationFlowArgs args) {
@@ -271,6 +286,8 @@ public final class KeycloakFunctions {
      * This data source can be used to fetch the ID of an authentication flow within Keycloak.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -307,6 +324,7 @@ public final class KeycloakFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetAuthenticationFlowResult> getAuthenticationFlowPlain(GetAuthenticationFlowPlainArgs args) {
@@ -316,6 +334,8 @@ public final class KeycloakFunctions {
      * This data source can be used to fetch the ID of an authentication flow within Keycloak.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -352,6 +372,7 @@ public final class KeycloakFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetAuthenticationFlowResult> getAuthenticationFlow(GetAuthenticationFlowArgs args, InvokeOptions options) {
@@ -361,6 +382,8 @@ public final class KeycloakFunctions {
      * This data source can be used to fetch the ID of an authentication flow within Keycloak.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -397,6 +420,7 @@ public final class KeycloakFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetAuthenticationFlowResult> getAuthenticationFlowPlain(GetAuthenticationFlowPlainArgs args, InvokeOptions options) {
@@ -407,6 +431,8 @@ public final class KeycloakFunctions {
      * client. This data can then be used to manage the client within Keycloak.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -478,6 +504,7 @@ public final class KeycloakFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetClientDescriptionConverterResult> getClientDescriptionConverter(GetClientDescriptionConverterArgs args) {
@@ -488,6 +515,8 @@ public final class KeycloakFunctions {
      * client. This data can then be used to manage the client within Keycloak.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -559,6 +588,7 @@ public final class KeycloakFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetClientDescriptionConverterResult> getClientDescriptionConverterPlain(GetClientDescriptionConverterPlainArgs args) {
@@ -569,6 +599,8 @@ public final class KeycloakFunctions {
      * client. This data can then be used to manage the client within Keycloak.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -640,6 +672,7 @@ public final class KeycloakFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetClientDescriptionConverterResult> getClientDescriptionConverter(GetClientDescriptionConverterArgs args, InvokeOptions options) {
@@ -650,6 +683,8 @@ public final class KeycloakFunctions {
      * client. This data can then be used to manage the client within Keycloak.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -721,6 +756,7 @@ public final class KeycloakFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetClientDescriptionConverterResult> getClientDescriptionConverterPlain(GetClientDescriptionConverterPlainArgs args, InvokeOptions options) {
@@ -731,6 +767,8 @@ public final class KeycloakFunctions {
      * usage with other resources, such as `keycloak.GroupRoles`.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -781,6 +819,7 @@ public final class KeycloakFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetGroupResult> getGroup(GetGroupArgs args) {
@@ -791,6 +830,8 @@ public final class KeycloakFunctions {
      * usage with other resources, such as `keycloak.GroupRoles`.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -841,6 +882,7 @@ public final class KeycloakFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetGroupResult> getGroupPlain(GetGroupPlainArgs args) {
@@ -851,6 +893,8 @@ public final class KeycloakFunctions {
      * usage with other resources, such as `keycloak.GroupRoles`.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -901,6 +945,7 @@ public final class KeycloakFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetGroupResult> getGroup(GetGroupArgs args, InvokeOptions options) {
@@ -911,6 +956,8 @@ public final class KeycloakFunctions {
      * usage with other resources, such as `keycloak.GroupRoles`.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -961,6 +1008,7 @@ public final class KeycloakFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetGroupResult> getGroupPlain(GetGroupPlainArgs args, InvokeOptions options) {
@@ -971,6 +1019,8 @@ public final class KeycloakFunctions {
      * usage with other resources.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1005,6 +1055,7 @@ public final class KeycloakFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetRealmResult> getRealm(GetRealmArgs args) {
@@ -1015,6 +1066,8 @@ public final class KeycloakFunctions {
      * usage with other resources.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1049,6 +1102,7 @@ public final class KeycloakFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetRealmResult> getRealmPlain(GetRealmPlainArgs args) {
@@ -1059,6 +1113,8 @@ public final class KeycloakFunctions {
      * usage with other resources.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1093,6 +1149,7 @@ public final class KeycloakFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetRealmResult> getRealm(GetRealmArgs args, InvokeOptions options) {
@@ -1103,6 +1160,8 @@ public final class KeycloakFunctions {
      * usage with other resources.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1137,6 +1196,7 @@ public final class KeycloakFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetRealmResult> getRealmPlain(GetRealmPlainArgs args, InvokeOptions options) {
@@ -1199,6 +1259,8 @@ public final class KeycloakFunctions {
      * usage with other resources, such as `keycloak.GroupRoles`.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1249,6 +1311,7 @@ public final class KeycloakFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetRoleResult> getRole(GetRoleArgs args) {
@@ -1259,6 +1322,8 @@ public final class KeycloakFunctions {
      * usage with other resources, such as `keycloak.GroupRoles`.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1309,6 +1374,7 @@ public final class KeycloakFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetRoleResult> getRolePlain(GetRolePlainArgs args) {
@@ -1319,6 +1385,8 @@ public final class KeycloakFunctions {
      * usage with other resources, such as `keycloak.GroupRoles`.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1369,6 +1437,7 @@ public final class KeycloakFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetRoleResult> getRole(GetRoleArgs args, InvokeOptions options) {
@@ -1379,6 +1448,8 @@ public final class KeycloakFunctions {
      * usage with other resources, such as `keycloak.GroupRoles`.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1429,6 +1500,7 @@ public final class KeycloakFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetRoleResult> getRolePlain(GetRolePlainArgs args, InvokeOptions options) {
@@ -1438,6 +1510,8 @@ public final class KeycloakFunctions {
      * This data source can be used to fetch properties of a user within Keycloak.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1473,6 +1547,7 @@ public final class KeycloakFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetUserResult> getUser(GetUserArgs args) {
@@ -1482,6 +1557,8 @@ public final class KeycloakFunctions {
      * This data source can be used to fetch properties of a user within Keycloak.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1517,6 +1594,7 @@ public final class KeycloakFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetUserResult> getUserPlain(GetUserPlainArgs args) {
@@ -1526,6 +1604,8 @@ public final class KeycloakFunctions {
      * This data source can be used to fetch properties of a user within Keycloak.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1561,6 +1641,7 @@ public final class KeycloakFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetUserResult> getUser(GetUserArgs args, InvokeOptions options) {
@@ -1570,6 +1651,8 @@ public final class KeycloakFunctions {
      * This data source can be used to fetch properties of a user within Keycloak.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1605,6 +1688,7 @@ public final class KeycloakFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetUserResult> getUserPlain(GetUserPlainArgs args, InvokeOptions options) {
@@ -1614,6 +1698,8 @@ public final class KeycloakFunctions {
      * This data source can be used to fetch the realm roles of a user within Keycloak.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1655,6 +1741,7 @@ public final class KeycloakFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetUserRealmRolesResult> getUserRealmRoles(GetUserRealmRolesArgs args) {
@@ -1664,6 +1751,8 @@ public final class KeycloakFunctions {
      * This data source can be used to fetch the realm roles of a user within Keycloak.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1705,6 +1794,7 @@ public final class KeycloakFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetUserRealmRolesResult> getUserRealmRolesPlain(GetUserRealmRolesPlainArgs args) {
@@ -1714,6 +1804,8 @@ public final class KeycloakFunctions {
      * This data source can be used to fetch the realm roles of a user within Keycloak.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1755,6 +1847,7 @@ public final class KeycloakFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetUserRealmRolesResult> getUserRealmRoles(GetUserRealmRolesArgs args, InvokeOptions options) {
@@ -1764,6 +1857,8 @@ public final class KeycloakFunctions {
      * This data source can be used to fetch the realm roles of a user within Keycloak.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1805,6 +1900,7 @@ public final class KeycloakFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetUserRealmRolesResult> getUserRealmRolesPlain(GetUserRealmRolesPlainArgs args, InvokeOptions options) {

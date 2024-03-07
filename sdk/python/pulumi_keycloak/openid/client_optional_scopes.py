@@ -132,6 +132,7 @@ class ClientOptionalScopes(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -155,12 +156,13 @@ class ClientOptionalScopes(pulumi.CustomResource):
                 client_scope.name,
             ])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         This resource does not support import. Instead of importing, feel free to create this resource
 
-         as if it did not already exist on the server.
+        as if it did not already exist on the server.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -177,6 +179,7 @@ class ClientOptionalScopes(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -200,12 +203,13 @@ class ClientOptionalScopes(pulumi.CustomResource):
                 client_scope.name,
             ])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         This resource does not support import. Instead of importing, feel free to create this resource
 
-         as if it did not already exist on the server.
+        as if it did not already exist on the server.
 
         :param str resource_name: The name of the resource.
         :param ClientOptionalScopesArgs args: The arguments to use to populate this resource's properties.

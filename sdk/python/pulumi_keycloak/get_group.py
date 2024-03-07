@@ -98,6 +98,7 @@ def get_group(name: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_keycloak as keycloak
@@ -114,6 +115,7 @@ def get_group(name: Optional[str] = None,
         group_id=group.id,
         role_ids=[offline_access.id])
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str name: The name of the group. If there are multiple groups match `name`, the first result will be returned.
@@ -144,6 +146,7 @@ def get_group_output(name: Optional[pulumi.Input[str]] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_keycloak as keycloak
@@ -160,6 +163,7 @@ def get_group_output(name: Optional[pulumi.Input[str]] = None,
         group_id=group.id,
         role_ids=[offline_access.id])
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str name: The name of the group. If there are multiple groups match `name`, the first result will be returned.

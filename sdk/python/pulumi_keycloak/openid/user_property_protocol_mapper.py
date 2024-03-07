@@ -370,8 +370,10 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
         multiple different clients.
 
         ## Example Usage
+
         ### Client)
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -391,8 +393,11 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
             user_property="email",
             claim_name="email")
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Client Scope)
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -407,18 +412,19 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
             user_property="email",
             claim_name="email")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Protocol mappers can be imported using one of the following formats:
 
-         - Client: `{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}`
+        - Client: `{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}`
 
-         - Client Scope: `{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}`
+        - Client Scope: `{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}`
 
-         Example:
+        Example:
 
-         bash
+        bash
 
         ```sh
         $ pulumi import keycloak:openid/userPropertyProtocolMapper:UserPropertyProtocolMapper user_property_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
@@ -457,8 +463,10 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
         multiple different clients.
 
         ## Example Usage
+
         ### Client)
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -478,8 +486,11 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
             user_property="email",
             claim_name="email")
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Client Scope)
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -494,18 +505,19 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
             user_property="email",
             claim_name="email")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Protocol mappers can be imported using one of the following formats:
 
-         - Client: `{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}`
+        - Client: `{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}`
 
-         - Client Scope: `{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}`
+        - Client Scope: `{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}`
 
-         Example:
+        Example:
 
-         bash
+        bash
 
         ```sh
         $ pulumi import keycloak:openid/userPropertyProtocolMapper:UserPropertyProtocolMapper user_property_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4

@@ -30,6 +30,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -77,12 +78,13 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // This resource does not support import. Instead of importing, feel free to create this resource
 //
-//	as if it did not already exist on the server.
+// as if it did not already exist on the server.
 //
 // [1]: providers/mrparkers/keycloak/latest/docs/resources/group_memberships
 type GroupMemberships struct {

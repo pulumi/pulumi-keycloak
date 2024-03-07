@@ -252,35 +252,6 @@ class UsersPermissions(pulumi.CustomResource):
 
         > This resource should only be created once per realm.
 
-        ## Example Usage
-        ### Argument Reference
-
-        The following arguments are supported:
-
-        - `realm_id` - (Required) The realm in which to manage fine-grained user permissions.
-
-        Each of the scopes that can be managed are defined below:
-
-        - `view_scope` - (Optional) When specified, set the scope based view permission.
-        - `manage_scope` - (Optional) When specified, set the scope based manage permission.
-        - `map_roles_scope` - (Optional) When specified, set the scope based map_roles permission.
-        - `manage_group_membership_scope` - (Optional) When specified, set the scope based manage_group_membership permission.
-        - `impersonate_scope` - (Optional) When specified, set the scope based impersonate permission.
-        - `user_impersonated_scope` - (Optional) When specified, set the scope based user_impersonated permission.
-
-        The configuration block for each of these scopes supports the following arguments:
-
-        - `policies` - (Optional) Assigned policies to the permission. Each element within this list should be a policy ID.
-        - `description` - (Optional) Description of the permission.
-        - `decision_strategy` - (Optional) Decision strategy of the permission.
-
-        ### Attributes Reference
-
-        In addition to the arguments listed above, the following computed attributes are exported:
-
-        - `enabled` - When true, this indicates that fine-grained user permissions are enabled. This will always be `true`.
-        - `authorization_resource_server_id` - Resource server id representing the realm management client on which these permissions are managed.
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
@@ -304,35 +275,6 @@ class UsersPermissions(pulumi.CustomResource):
         4. Create all scope based permission for the scopes and users resources.
 
         > This resource should only be created once per realm.
-
-        ## Example Usage
-        ### Argument Reference
-
-        The following arguments are supported:
-
-        - `realm_id` - (Required) The realm in which to manage fine-grained user permissions.
-
-        Each of the scopes that can be managed are defined below:
-
-        - `view_scope` - (Optional) When specified, set the scope based view permission.
-        - `manage_scope` - (Optional) When specified, set the scope based manage permission.
-        - `map_roles_scope` - (Optional) When specified, set the scope based map_roles permission.
-        - `manage_group_membership_scope` - (Optional) When specified, set the scope based manage_group_membership permission.
-        - `impersonate_scope` - (Optional) When specified, set the scope based impersonate permission.
-        - `user_impersonated_scope` - (Optional) When specified, set the scope based user_impersonated permission.
-
-        The configuration block for each of these scopes supports the following arguments:
-
-        - `policies` - (Optional) Assigned policies to the permission. Each element within this list should be a policy ID.
-        - `description` - (Optional) Description of the permission.
-        - `decision_strategy` - (Optional) Decision strategy of the permission.
-
-        ### Attributes Reference
-
-        In addition to the arguments listed above, the following computed attributes are exported:
-
-        - `enabled` - When true, this indicates that fine-grained user permissions are enabled. This will always be `true`.
-        - `authorization_resource_server_id` - Resource server id representing the realm management client on which these permissions are managed.
 
         :param str resource_name: The name of the resource.
         :param UsersPermissionsArgs args: The arguments to use to populate this resource's properties.

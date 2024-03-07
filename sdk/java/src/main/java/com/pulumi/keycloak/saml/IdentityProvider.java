@@ -24,6 +24,8 @@ import javax.annotation.Nullable;
  * SAML (Security Assertion Markup Language) identity providers allows users to authenticate through a third-party system using the SAML protocol.
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -70,14 +72,15 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * Identity providers can be imported using the format `{{realm_id}}/{{idp_alias}}`, where `idp_alias` is the identity provider alias.
  * 
- *  Example:
+ * Example:
  * 
- *  bash
+ * bash
  * 
  * ```sh
  * $ pulumi import keycloak:saml/identityProvider:IdentityProvider realm_saml_identity_provider my-realm/my-saml-idp

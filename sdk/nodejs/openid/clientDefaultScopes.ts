@@ -7,6 +7,7 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -33,12 +34,13 @@ import * as utilities from "../utilities";
  *     ],
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * This resource does not support import. Instead of importing, feel free to create this resource
  *
- *  as if it did not already exist on the server.
+ * as if it did not already exist on the server.
  */
 export class ClientDefaultScopes extends pulumi.CustomResource {
     /**

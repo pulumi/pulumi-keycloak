@@ -32,6 +32,8 @@ import javax.annotation.Nullable;
  * from multiple sources.
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -117,6 +119,8 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
  * ## Default Client Scopes
  * 
  * - `default_default_client_scopes` - (Optional) A list of default default client scopes to be used for client definitions. Defaults to `[]` or keycloak&#39;s built-in default default client-scopes.
@@ -126,9 +130,9 @@ import javax.annotation.Nullable;
  * 
  * Realms can be imported using their name.
  * 
- *  Example:
+ * Example:
  * 
- *  bash
+ * bash
  * 
  * ```sh
  * $ pulumi import keycloak:index/realm:Realm realm my-realm

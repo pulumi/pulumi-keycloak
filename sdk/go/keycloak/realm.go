@@ -19,6 +19,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -96,6 +97,8 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
+//
 // ## Default Client Scopes
 //
 // - `defaultDefaultClientScopes` - (Optional) A list of default default client scopes to be used for client definitions. Defaults to `[]` or keycloak's built-in default default client-scopes.
@@ -105,9 +108,9 @@ import (
 //
 // Realms can be imported using their name.
 //
-//	Example:
+// Example:
 //
-//	bash
+// bash
 //
 // ```sh
 // $ pulumi import keycloak:index/realm:Realm realm my-realm

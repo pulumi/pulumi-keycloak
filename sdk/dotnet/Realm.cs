@@ -17,6 +17,7 @@ namespace Pulumi.Keycloak
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -96,6 +97,8 @@ namespace Pulumi.Keycloak
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
     /// ## Default Client Scopes
     /// 
     /// - `default_default_client_scopes` - (Optional) A list of default default client scopes to be used for client definitions. Defaults to `[]` or keycloak's built-in default default client-scopes.
@@ -105,9 +108,9 @@ namespace Pulumi.Keycloak
     /// 
     /// Realms can be imported using their name.
     /// 
-    ///  Example:
+    /// Example:
     /// 
-    ///  bash
+    /// bash
     /// 
     /// ```sh
     /// $ pulumi import keycloak:index/realm:Realm realm my-realm

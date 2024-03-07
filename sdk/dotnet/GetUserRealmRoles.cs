@@ -14,10 +14,9 @@ namespace Pulumi.Keycloak
         /// <summary>
         /// This data source can be used to fetch the realm roles of a user within Keycloak.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -49,8 +48,7 @@ namespace Pulumi.Keycloak
         ///     };
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetUserRealmRolesResult> InvokeAsync(GetUserRealmRolesArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetUserRealmRolesResult>("keycloak:index/getUserRealmRoles:getUserRealmRoles", args ?? new GetUserRealmRolesArgs(), options.WithDefaults());
@@ -58,10 +56,9 @@ namespace Pulumi.Keycloak
         /// <summary>
         /// This data source can be used to fetch the realm roles of a user within Keycloak.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -93,8 +90,7 @@ namespace Pulumi.Keycloak
         ///     };
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetUserRealmRolesResult> Invoke(GetUserRealmRolesInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetUserRealmRolesResult>("keycloak:index/getUserRealmRoles:getUserRealmRoles", args ?? new GetUserRealmRolesInvokeArgs(), options.WithDefaults());

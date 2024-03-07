@@ -1094,6 +1094,7 @@ class UserFederation(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -1123,14 +1124,15 @@ class UserFederation(pulumi.CustomResource):
                 key_tab="/etc/host.keytab",
             ))
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         LDAP user federation providers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}`.
 
-         The ID of the LDAP user federation provider can be found within the Keycloak GUI and is typically a GUID:
+        The ID of the LDAP user federation provider can be found within the Keycloak GUI and is typically a GUID:
 
-         bash
+        bash
 
         ```sh
         $ pulumi import keycloak:ldap/userFederation:UserFederation ldap_user_federation my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860
@@ -1187,6 +1189,7 @@ class UserFederation(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -1216,14 +1219,15 @@ class UserFederation(pulumi.CustomResource):
                 key_tab="/etc/host.keytab",
             ))
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         LDAP user federation providers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}`.
 
-         The ID of the LDAP user federation provider can be found within the Keycloak GUI and is typically a GUID:
+        The ID of the LDAP user federation provider can be found within the Keycloak GUI and is typically a GUID:
 
-         bash
+        bash
 
         ```sh
         $ pulumi import keycloak:ldap/userFederation:UserFederation ldap_user_federation my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860

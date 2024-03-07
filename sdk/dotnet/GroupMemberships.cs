@@ -28,6 +28,7 @@ namespace Pulumi.Keycloak
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -65,12 +66,13 @@ namespace Pulumi.Keycloak
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// This resource does not support import. Instead of importing, feel free to create this resource
     /// 
-    ///  as if it did not already exist on the server.
+    /// as if it did not already exist on the server.
     /// 
     /// [1]: providers/mrparkers/keycloak/latest/docs/resources/group_memberships
     /// </summary>

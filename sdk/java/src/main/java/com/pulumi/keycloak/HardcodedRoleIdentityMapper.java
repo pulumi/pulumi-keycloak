@@ -22,6 +22,8 @@ import javax.annotation.Nullable;
  * The identity provider hardcoded role mapper grants a specified Keycloak role to each Keycloak user from the LDAP provider.
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -78,6 +80,7 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */
 @ResourceType(type="keycloak:index/hardcodedRoleIdentityMapper:HardcodedRoleIdentityMapper")

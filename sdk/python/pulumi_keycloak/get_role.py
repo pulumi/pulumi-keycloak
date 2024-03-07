@@ -111,6 +111,7 @@ def get_role(client_id: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_keycloak as keycloak
@@ -126,6 +127,7 @@ def get_role(client_id: Optional[str] = None,
         group_id=group.id,
         role_ids=[offline_access.id])
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str client_id: When specified, this role is assumed to be a client role belonging to the client with the provided ID. The `id` attribute of a `keycloak_client` resource should be used here.
@@ -160,6 +162,7 @@ def get_role_output(client_id: Optional[pulumi.Input[Optional[str]]] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_keycloak as keycloak
@@ -175,6 +178,7 @@ def get_role_output(client_id: Optional[pulumi.Input[Optional[str]]] = None,
         group_id=group.id,
         role_ids=[offline_access.id])
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str client_id: When specified, this role is assumed to be a client role belonging to the client with the provided ID. The `id` attribute of a `keycloak_client` resource should be used here.

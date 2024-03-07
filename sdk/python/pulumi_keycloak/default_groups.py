@@ -104,6 +104,7 @@ class DefaultGroups(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -116,14 +117,15 @@ class DefaultGroups(pulumi.CustomResource):
             realm_id=realm.id,
             group_ids=[group.id])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Default groups can be imported using the format `{{realm_id}}` where `realm_id` is the realm the group exists in.
 
-         Example:
+        Example:
 
-         bash
+        bash
 
         ```sh
         $ pulumi import keycloak:index/defaultGroups:DefaultGroups default my-realm
@@ -147,6 +149,7 @@ class DefaultGroups(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -159,14 +162,15 @@ class DefaultGroups(pulumi.CustomResource):
             realm_id=realm.id,
             group_ids=[group.id])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Default groups can be imported using the format `{{realm_id}}` where `realm_id` is the realm the group exists in.
 
-         Example:
+        Example:
 
-         bash
+        bash
 
         ```sh
         $ pulumi import keycloak:index/defaultGroups:DefaultGroups default my-realm

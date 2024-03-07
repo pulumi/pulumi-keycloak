@@ -14,6 +14,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -76,6 +77,8 @@ import * as utilities from "./utilities";
  *     },
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ## Default Client Scopes
  *
  * - `defaultDefaultClientScopes` - (Optional) A list of default default client scopes to be used for client definitions. Defaults to `[]` or keycloak's built-in default default client-scopes.
@@ -85,9 +88,9 @@ import * as utilities from "./utilities";
  *
  * Realms can be imported using their name.
  *
- *  Example:
+ * Example:
  *
- *  bash
+ * bash
  *
  * ```sh
  * $ pulumi import keycloak:index/realm:Realm realm my-realm

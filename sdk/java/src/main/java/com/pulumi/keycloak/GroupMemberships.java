@@ -33,6 +33,8 @@ import javax.annotation.Nullable;
  * This resource paginates its data loading on refresh by 50 items.
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -83,12 +85,13 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * This resource does not support import. Instead of importing, feel free to create this resource
  * 
- *  as if it did not already exist on the server.
+ * as if it did not already exist on the server.
  * 
  * [1]: providers/mrparkers/keycloak/latest/docs/resources/group_memberships
  * 

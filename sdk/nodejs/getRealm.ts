@@ -12,6 +12,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -21,6 +22,7 @@ import * as utilities from "./utilities";
  * });
  * const group = new keycloak.Role("group", {realmId: realm.then(realm => realm.id)});
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getRealm(args: GetRealmArgs, opts?: pulumi.InvokeOptions): Promise<GetRealmResult> {
 
@@ -131,6 +133,7 @@ export interface GetRealmResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -140,6 +143,7 @@ export interface GetRealmResult {
  * });
  * const group = new keycloak.Role("group", {realmId: realm.then(realm => realm.id)});
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getRealmOutput(args: GetRealmOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRealmResult> {
     return pulumi.output(args).apply((a: any) => getRealm(a, opts))

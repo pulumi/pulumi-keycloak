@@ -464,6 +464,7 @@ def get_client(client_id: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_keycloak as keycloak
@@ -474,6 +475,7 @@ def get_client(client_id: Optional[str] = None,
         client_id=realm_management.id,
         name="realm-admin")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str client_id: The client id (not its unique ID).
@@ -555,6 +557,7 @@ def get_client_output(client_id: Optional[pulumi.Input[str]] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_keycloak as keycloak
@@ -565,6 +568,7 @@ def get_client_output(client_id: Optional[pulumi.Input[str]] = None,
         client_id=realm_management.id,
         name="realm-admin")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str client_id: The client id (not its unique ID).

@@ -173,8 +173,10 @@ class GenericClientRoleMapper(pulumi.CustomResource):
         inside an access token for a client.
 
         ## Example Usage
+
         ### Realm Role To Client)
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -195,8 +197,11 @@ class GenericClientRoleMapper(pulumi.CustomResource):
             client_id=client.id,
             role_id=realm_role.id)
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Client Role To Client)
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -228,8 +233,11 @@ class GenericClientRoleMapper(pulumi.CustomResource):
             client_id=client_b.id,
             role_id=client_role_a.id)
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Realm Role To Client Scope)
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -246,8 +254,11 @@ class GenericClientRoleMapper(pulumi.CustomResource):
             client_scope_id=client_scope.id,
             role_id=realm_role.id)
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Client Role To Client Scope)
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -270,18 +281,19 @@ class GenericClientRoleMapper(pulumi.CustomResource):
             client_scope_id=client_scope.id,
             role_id=client_role.id)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Generic client role mappers can be imported using one of the following two formats:
 
-         - When mapping a role to a client, use the format `{{realmId}}/client/{{clientId}}/scope-mappings/{{roleClientId}}/{{roleId}}`
+        - When mapping a role to a client, use the format `{{realmId}}/client/{{clientId}}/scope-mappings/{{roleClientId}}/{{roleId}}`
 
-         - When mapping a role to a client scope, use the format `{{realmId}}/client-scope/{{clientScopeId}}/scope-mappings/{{roleClientId}}/{{roleId}}`
+        - When mapping a role to a client scope, use the format `{{realmId}}/client-scope/{{clientScopeId}}/scope-mappings/{{roleClientId}}/{{roleId}}`
 
-         Example:
+        Example:
 
-         bash
+        bash
 
         ```sh
         $ pulumi import keycloak:index/genericClientRoleMapper:GenericClientRoleMapper client_role_mapper my-realm/client/23888550-5dcd-41f6-85ba-554233021e9c/scope-mappings/ce51f004-bdfb-4dd5-a963-c4487d2dec5b/ff3aa49f-bc07-4030-8783-41918c3614a3
@@ -310,8 +322,10 @@ class GenericClientRoleMapper(pulumi.CustomResource):
         inside an access token for a client.
 
         ## Example Usage
+
         ### Realm Role To Client)
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -332,8 +346,11 @@ class GenericClientRoleMapper(pulumi.CustomResource):
             client_id=client.id,
             role_id=realm_role.id)
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Client Role To Client)
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -365,8 +382,11 @@ class GenericClientRoleMapper(pulumi.CustomResource):
             client_id=client_b.id,
             role_id=client_role_a.id)
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Realm Role To Client Scope)
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -383,8 +403,11 @@ class GenericClientRoleMapper(pulumi.CustomResource):
             client_scope_id=client_scope.id,
             role_id=realm_role.id)
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Client Role To Client Scope)
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -407,18 +430,19 @@ class GenericClientRoleMapper(pulumi.CustomResource):
             client_scope_id=client_scope.id,
             role_id=client_role.id)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Generic client role mappers can be imported using one of the following two formats:
 
-         - When mapping a role to a client, use the format `{{realmId}}/client/{{clientId}}/scope-mappings/{{roleClientId}}/{{roleId}}`
+        - When mapping a role to a client, use the format `{{realmId}}/client/{{clientId}}/scope-mappings/{{roleClientId}}/{{roleId}}`
 
-         - When mapping a role to a client scope, use the format `{{realmId}}/client-scope/{{clientScopeId}}/scope-mappings/{{roleClientId}}/{{roleId}}`
+        - When mapping a role to a client scope, use the format `{{realmId}}/client-scope/{{clientScopeId}}/scope-mappings/{{roleClientId}}/{{roleId}}`
 
-         Example:
+        Example:
 
-         bash
+        bash
 
         ```sh
         $ pulumi import keycloak:index/genericClientRoleMapper:GenericClientRoleMapper client_role_mapper my-realm/client/23888550-5dcd-41f6-85ba-554233021e9c/scope-mappings/ce51f004-bdfb-4dd5-a963-c4487d2dec5b/ff3aa49f-bc07-4030-8783-41918c3614a3

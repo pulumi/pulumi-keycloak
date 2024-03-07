@@ -28,6 +28,8 @@ import javax.annotation.Nullable;
  * be used to manage groups that were created this way.
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -77,16 +79,17 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * Groups can be imported using the format `{{realm_id}}/{{group_id}}`, where `group_id` is the unique ID that Keycloak
  * 
- *  assigns to the group upon creation. This value can be found in the URI when editing this group in the GUI, and is typically a GUID.
+ * assigns to the group upon creation. This value can be found in the URI when editing this group in the GUI, and is typically a GUID.
  * 
- *  Example:
+ * Example:
  * 
- *  bash
+ * bash
  * 
  * ```sh
  * $ pulumi import keycloak:index/group:Group child_group my-realm/934a4a4e-28bd-4703-a0fa-332df153aabd

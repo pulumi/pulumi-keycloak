@@ -28,6 +28,8 @@ import javax.annotation.Nullable;
  * in order to take advantage of Keycloak&#39;s user sessions for SSO.
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -72,16 +74,17 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * Clients can be imported using the format `{{realm_id}}/{{client_keycloak_id}}`, where `client_keycloak_id` is the unique ID that Keycloak
  * 
- *  assigns to the client upon creation. This value can be found in the URI when editing this client in the GUI, and is typically a GUID.
+ * assigns to the client upon creation. This value can be found in the URI when editing this client in the GUI, and is typically a GUID.
  * 
- *  Example:
+ * Example:
  * 
- *  bash
+ * bash
  * 
  * ```sh
  * $ pulumi import keycloak:openid/client:Client openid_client my-realm/dcbc4c73-e478-4928-ae2e-d5e420223352

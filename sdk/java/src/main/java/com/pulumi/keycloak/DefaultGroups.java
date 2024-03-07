@@ -20,6 +20,8 @@ import javax.annotation.Nullable;
  * &gt; You should not use `keycloak.DefaultGroups` with a group whose members are managed by `keycloak.GroupMemberships`.
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -62,14 +64,15 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * Default groups can be imported using the format `{{realm_id}}` where `realm_id` is the realm the group exists in.
  * 
- *  Example:
+ * Example:
  * 
- *  bash
+ * bash
  * 
  * ```sh
  * $ pulumi import keycloak:index/defaultGroups:DefaultGroups default my-realm

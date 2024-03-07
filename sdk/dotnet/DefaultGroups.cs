@@ -16,6 +16,7 @@ namespace Pulumi.Keycloak
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -46,14 +47,15 @@ namespace Pulumi.Keycloak
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// Default groups can be imported using the format `{{realm_id}}` where `realm_id` is the realm the group exists in.
     /// 
-    ///  Example:
+    /// Example:
     /// 
-    ///  bash
+    /// bash
     /// 
     /// ```sh
     /// $ pulumi import keycloak:index/defaultGroups:DefaultGroups default my-realm

@@ -16,6 +16,7 @@ namespace Pulumi.Keycloak.OpenId
     /// 
     /// In this example, we'll create a new OpenID client, then enabled permissions for the client. A client without permissions disabled cannot be assigned by a client policy. We'll use the `keycloak.openid.ClientPolicy` resource to create a new client policy, which could be applied to many clients, for a realm and a resource_server_id.
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -64,6 +65,7 @@ namespace Pulumi.Keycloak.OpenId
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [KeycloakResourceType("keycloak:openid/clientPolicy:ClientPolicy")]
     public partial class ClientPolicy : global::Pulumi.CustomResource

@@ -268,6 +268,7 @@ class RealmEvents(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -287,6 +288,7 @@ class RealmEvents(pulumi.CustomResource):
             ],
             events_listeners=["jboss-logging"])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -313,6 +315,7 @@ class RealmEvents(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -332,6 +335,7 @@ class RealmEvents(pulumi.CustomResource):
             ],
             events_listeners=["jboss-logging"])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
