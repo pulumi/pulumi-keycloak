@@ -16,14 +16,14 @@ public final class HardcodedRoleProtocolMapperState extends com.pulumi.resources
     public static final HardcodedRoleProtocolMapperState Empty = new HardcodedRoleProtocolMapperState();
 
     /**
-     * The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+     * The mapper&#39;s associated client. Cannot be used at the same time as client_scope_id.
      * 
      */
     @Import(name="clientId")
     private @Nullable Output<String> clientId;
 
     /**
-     * @return The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+     * @return The mapper&#39;s associated client. Cannot be used at the same time as client_scope_id.
      * 
      */
     public Optional<Output<String>> clientId() {
@@ -31,14 +31,14 @@ public final class HardcodedRoleProtocolMapperState extends com.pulumi.resources
     }
 
     /**
-     * The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+     * The mapper&#39;s associated client scope. Cannot be used at the same time as client_id.
      * 
      */
     @Import(name="clientScopeId")
     private @Nullable Output<String> clientScopeId;
 
     /**
-     * @return The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+     * @return The mapper&#39;s associated client scope. Cannot be used at the same time as client_id.
      * 
      */
     public Optional<Output<String>> clientScopeId() {
@@ -46,14 +46,14 @@ public final class HardcodedRoleProtocolMapperState extends com.pulumi.resources
     }
 
     /**
-     * The display name of this protocol mapper in the GUI.
+     * A human-friendly name that will appear in the Keycloak console.
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return The display name of this protocol mapper in the GUI.
+     * @return A human-friendly name that will appear in the Keycloak console.
      * 
      */
     public Optional<Output<String>> name() {
@@ -61,31 +61,23 @@ public final class HardcodedRoleProtocolMapperState extends com.pulumi.resources
     }
 
     /**
-     * The realm this protocol mapper exists within.
+     * The realm id where the associated client or client scope exists.
      * 
      */
     @Import(name="realmId")
     private @Nullable Output<String> realmId;
 
     /**
-     * @return The realm this protocol mapper exists within.
+     * @return The realm id where the associated client or client scope exists.
      * 
      */
     public Optional<Output<String>> realmId() {
         return Optional.ofNullable(this.realmId);
     }
 
-    /**
-     * The ID of the role to map to an access token.
-     * 
-     */
     @Import(name="roleId")
     private @Nullable Output<String> roleId;
 
-    /**
-     * @return The ID of the role to map to an access token.
-     * 
-     */
     public Optional<Output<String>> roleId() {
         return Optional.ofNullable(this.roleId);
     }
@@ -119,7 +111,7 @@ public final class HardcodedRoleProtocolMapperState extends com.pulumi.resources
         }
 
         /**
-         * @param clientId The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+         * @param clientId The mapper&#39;s associated client. Cannot be used at the same time as client_scope_id.
          * 
          * @return builder
          * 
@@ -130,7 +122,7 @@ public final class HardcodedRoleProtocolMapperState extends com.pulumi.resources
         }
 
         /**
-         * @param clientId The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+         * @param clientId The mapper&#39;s associated client. Cannot be used at the same time as client_scope_id.
          * 
          * @return builder
          * 
@@ -140,7 +132,7 @@ public final class HardcodedRoleProtocolMapperState extends com.pulumi.resources
         }
 
         /**
-         * @param clientScopeId The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+         * @param clientScopeId The mapper&#39;s associated client scope. Cannot be used at the same time as client_id.
          * 
          * @return builder
          * 
@@ -151,7 +143,7 @@ public final class HardcodedRoleProtocolMapperState extends com.pulumi.resources
         }
 
         /**
-         * @param clientScopeId The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+         * @param clientScopeId The mapper&#39;s associated client scope. Cannot be used at the same time as client_id.
          * 
          * @return builder
          * 
@@ -161,7 +153,7 @@ public final class HardcodedRoleProtocolMapperState extends com.pulumi.resources
         }
 
         /**
-         * @param name The display name of this protocol mapper in the GUI.
+         * @param name A human-friendly name that will appear in the Keycloak console.
          * 
          * @return builder
          * 
@@ -172,7 +164,7 @@ public final class HardcodedRoleProtocolMapperState extends com.pulumi.resources
         }
 
         /**
-         * @param name The display name of this protocol mapper in the GUI.
+         * @param name A human-friendly name that will appear in the Keycloak console.
          * 
          * @return builder
          * 
@@ -182,7 +174,7 @@ public final class HardcodedRoleProtocolMapperState extends com.pulumi.resources
         }
 
         /**
-         * @param realmId The realm this protocol mapper exists within.
+         * @param realmId The realm id where the associated client or client scope exists.
          * 
          * @return builder
          * 
@@ -193,7 +185,7 @@ public final class HardcodedRoleProtocolMapperState extends com.pulumi.resources
         }
 
         /**
-         * @param realmId The realm this protocol mapper exists within.
+         * @param realmId The realm id where the associated client or client scope exists.
          * 
          * @return builder
          * 
@@ -202,23 +194,11 @@ public final class HardcodedRoleProtocolMapperState extends com.pulumi.resources
             return realmId(Output.of(realmId));
         }
 
-        /**
-         * @param roleId The ID of the role to map to an access token.
-         * 
-         * @return builder
-         * 
-         */
         public Builder roleId(@Nullable Output<String> roleId) {
             $.roleId = roleId;
             return this;
         }
 
-        /**
-         * @param roleId The ID of the role to map to an access token.
-         * 
-         * @return builder
-         * 
-         */
         public Builder roleId(String roleId) {
             return roleId(Output.of(roleId));
         }

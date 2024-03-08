@@ -5,38 +5,44 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * ## # keycloak.DefaultGroups
+ *
  * Allows for managing a realm's default groups.
  *
- * > You should not use `keycloak.DefaultGroups` with a group whose members are managed by `keycloak.GroupMemberships`.
+ * Note that you should not use `keycloak.DefaultGroups` with a group with memberships managed
+ * by `keycloak.GroupMemberships`.
  *
- * ## Example Usage
+ * ### Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {
- *     realm: "my-realm",
  *     enabled: true,
+ *     realm: "my-realm",
  * });
  * const group = new keycloak.Group("group", {realmId: realm.id});
  * const _default = new keycloak.DefaultGroups("default", {
- *     realmId: realm.id,
  *     groupIds: [group.id],
+ *     realmId: realm.id,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
- * ## Import
+ * ### Argument Reference
  *
- * Default groups can be imported using the format `{{realm_id}}` where `realm_id` is the realm the group exists in.
+ * The following arguments are supported:
  *
- *  Example:
+ * - `realmId` - (Required) The realm this group exists in.
+ * - `groupIds` - (Required) A set of group ids that should be default groups on the realm referenced by `realmId`.
  *
- *  bash
+ * ### Import
  *
- * ```sh
- * $ pulumi import keycloak:index/defaultGroups:DefaultGroups default my-realm
- * ```
+ * Groups can be imported using the format `{{realm_id}}` where `realmId` is the realm the group exists in.
+ *
+ * Example:
  */
 export class DefaultGroups extends pulumi.CustomResource {
     /**
@@ -66,13 +72,7 @@ export class DefaultGroups extends pulumi.CustomResource {
         return obj['__pulumiType'] === DefaultGroups.__pulumiType;
     }
 
-    /**
-     * A set of group ids that should be default groups on the realm referenced by `realmId`.
-     */
     public readonly groupIds!: pulumi.Output<string[]>;
-    /**
-     * The realm this group exists in.
-     */
     public readonly realmId!: pulumi.Output<string>;
 
     /**
@@ -110,13 +110,7 @@ export class DefaultGroups extends pulumi.CustomResource {
  * Input properties used for looking up and filtering DefaultGroups resources.
  */
 export interface DefaultGroupsState {
-    /**
-     * A set of group ids that should be default groups on the realm referenced by `realmId`.
-     */
     groupIds?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * The realm this group exists in.
-     */
     realmId?: pulumi.Input<string>;
 }
 
@@ -124,12 +118,6 @@ export interface DefaultGroupsState {
  * The set of arguments for constructing a DefaultGroups resource.
  */
 export interface DefaultGroupsArgs {
-    /**
-     * A set of group ids that should be default groups on the realm referenced by `realmId`.
-     */
     groupIds: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * The realm this group exists in.
-     */
     realmId: pulumi.Input<string>;
 }

@@ -1065,6 +1065,7 @@ class IdentityProvider(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -1083,14 +1084,15 @@ class IdentityProvider(pulumi.CustomResource):
                 "clientAuthMethod": "client_secret_post",
             })
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Identity providers can be imported using the format `{{realm_id}}/{{idp_alias}}`, where `idp_alias` is the identity provider alias.
 
-         Example:
+        Example:
 
-         bash
+        bash
 
         ```sh
         $ pulumi import keycloak:oidc/identityProvider:IdentityProvider realm_identity_provider my-realm/my-idp
@@ -1142,6 +1144,7 @@ class IdentityProvider(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -1160,14 +1163,15 @@ class IdentityProvider(pulumi.CustomResource):
                 "clientAuthMethod": "client_secret_post",
             })
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Identity providers can be imported using the format `{{realm_id}}/{{idp_alias}}`, where `idp_alias` is the identity provider alias.
 
-         Example:
+        Example:
 
-         bash
+        bash
 
         ```sh
         $ pulumi import keycloak:oidc/identityProvider:IdentityProvider realm_identity_provider my-realm/my-idp

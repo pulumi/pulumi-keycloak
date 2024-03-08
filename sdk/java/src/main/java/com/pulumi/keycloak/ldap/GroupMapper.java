@@ -17,12 +17,18 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Allows for creating and managing group mappers for Keycloak users federated via LDAP.
+ * ## # keycloak.ldap.GroupMapper
  * 
- * The LDAP group mapper can be used to map an LDAP user&#39;s groups from some DN to Keycloak groups. This group mapper will also
- * create the groups within Keycloak if they do not already exist.
+ * Allows for creating and managing group mappers for Keycloak users federated
+ * via LDAP.
  * 
- * ## Example Usage
+ * The LDAP group mapper can be used to map an LDAP user&#39;s groups from some DN
+ * to Keycloak groups. This group mapper will also create the groups within Keycloak
+ * if they do not already exist.
+ * 
+ * ### Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -49,306 +55,201 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
  *             .enabled(true)
+ *             .realm(&#34;test&#34;)
  *             .build());
  * 
  *         var ldapUserFederation = new UserFederation(&#34;ldapUserFederation&#34;, UserFederationArgs.builder()        
- *             .realmId(realm.id())
- *             .usernameLdapAttribute(&#34;cn&#34;)
+ *             .bindCredential(&#34;admin&#34;)
+ *             .bindDn(&#34;cn=admin,dc=example,dc=org&#34;)
+ *             .connectionUrl(&#34;ldap://openldap&#34;)
  *             .rdnLdapAttribute(&#34;cn&#34;)
- *             .uuidLdapAttribute(&#34;entryDN&#34;)
+ *             .realmId(realm.id())
  *             .userObjectClasses(            
  *                 &#34;simpleSecurityObject&#34;,
  *                 &#34;organizationalRole&#34;)
- *             .connectionUrl(&#34;ldap://openldap&#34;)
+ *             .usernameLdapAttribute(&#34;cn&#34;)
  *             .usersDn(&#34;dc=example,dc=org&#34;)
- *             .bindDn(&#34;cn=admin,dc=example,dc=org&#34;)
- *             .bindCredential(&#34;admin&#34;)
+ *             .uuidLdapAttribute(&#34;entryDN&#34;)
  *             .build());
  * 
  *         var ldapGroupMapper = new GroupMapper(&#34;ldapGroupMapper&#34;, GroupMapperArgs.builder()        
- *             .realmId(realm.id())
- *             .ldapUserFederationId(ldapUserFederation.id())
- *             .ldapGroupsDn(&#34;dc=example,dc=org&#34;)
  *             .groupNameLdapAttribute(&#34;cn&#34;)
  *             .groupObjectClasses(&#34;groupOfNames&#34;)
+ *             .ldapGroupsDn(&#34;dc=example,dc=org&#34;)
+ *             .ldapUserFederationId(ldapUserFederation.id())
+ *             .memberofLdapAttribute(&#34;memberOf&#34;)
  *             .membershipAttributeType(&#34;DN&#34;)
  *             .membershipLdapAttribute(&#34;member&#34;)
  *             .membershipUserLdapAttribute(&#34;cn&#34;)
- *             .memberofLdapAttribute(&#34;memberOf&#34;)
+ *             .realmId(realm.id())
  *             .build());
  * 
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * ## Import
+ * ### Argument Reference
+ * 
+ * The following arguments are supported:
+ * 
+ * - `realm_id` - (Required) The realm that this LDAP mapper will exist in.
+ * - `ldap_user_federation_id` - (Required) The ID of the LDAP user federation provider to attach this mapper to.
+ * - `name` - (Required) Display name of this mapper when displayed in the console.
+ * - `ldap_groups_dn` - (Required) The LDAP DN where groups can be found.
+ * - `group_name_ldap_attribute` - (Required) The name of the LDAP attribute that is used in group objects for the name and RDN of the group. Typically `cn`.
+ * - `group_object_classes` - (Required) Array of strings representing the object classes for the group. Must contain at least one.
+ * - `preserve_group_inheritance` - (Optional) When `true`, group inheritance will be propagated from LDAP to Keycloak. When `false`, all LDAP groups will be propagated as top level groups within Keycloak.
+ * - `ignore_missing_groups` - (Optional) When `true`, missing groups in the hierarchy will be ignored.
+ * - `membership_ldap_attribute` - (Required) The name of the LDAP attribute that is used for membership mappings.
+ * - `membership_attribute_type` - (Optional) Can be one of `DN` or `UID`. Defaults to `DN`.
+ * - `membership_user_ldap_attribute` - (Required) The name of the LDAP attribute on a user that is used for membership mappings.
+ * - `groups_ldap_filter` - (Optional) When specified, adds an additional custom filter to be used when querying for groups. Must start with `(` and end with `)`.
+ * - `mode` - (Optional) Can be one of `READ_ONLY` or `LDAP_ONLY`. Defaults to `READ_ONLY`.
+ * - `user_roles_retrieve_strategy` - (Optional) Can be one of `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE`, `GET_GROUPS_FROM_USER_MEMBEROF_ATTRIBUTE`, or `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE_RECURSIVELY`. Defaults to `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE`.
+ * - `memberof_ldap_attribute` - (Optional) Specifies the name of the LDAP attribute on the LDAP user that contains the groups the user is a member of. Defaults to `memberOf`.
+ * - `mapped_group_attributes` - (Optional) Array of strings representing attributes on the LDAP group which will be mapped to attributes on the Keycloak group.
+ * - `drop_non_existing_groups_during_sync` - (Optional) When `true`, groups that no longer exist within LDAP will be dropped in Keycloak during sync. Defaults to `false`.
+ * 
+ * ### Import
  * 
  * LDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`.
- * 
- *  The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs.
- * 
- *  Example:
- * 
- *  bash
- * 
- * ```sh
- * $ pulumi import keycloak:ldap/groupMapper:GroupMapper ldap_group_mapper my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
- * ```
+ * The ID of the LDAP user federation provider and the mapper can be found within
+ * the Keycloak GUI, and they are typically GUIDs:
  * 
  */
 @ResourceType(type="keycloak:ldap/groupMapper:GroupMapper")
 public class GroupMapper extends com.pulumi.resources.CustomResource {
-    /**
-     * When `true`, groups that no longer exist within LDAP will be dropped in Keycloak during sync. Defaults to `false`.
-     * 
-     */
     @Export(name="dropNonExistingGroupsDuringSync", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> dropNonExistingGroupsDuringSync;
 
-    /**
-     * @return When `true`, groups that no longer exist within LDAP will be dropped in Keycloak during sync. Defaults to `false`.
-     * 
-     */
     public Output<Optional<Boolean>> dropNonExistingGroupsDuringSync() {
         return Codegen.optional(this.dropNonExistingGroupsDuringSync);
     }
-    /**
-     * The name of the LDAP attribute that is used in group objects for the name and RDN of the group. Typically `cn`.
-     * 
-     */
     @Export(name="groupNameLdapAttribute", refs={String.class}, tree="[0]")
     private Output<String> groupNameLdapAttribute;
 
-    /**
-     * @return The name of the LDAP attribute that is used in group objects for the name and RDN of the group. Typically `cn`.
-     * 
-     */
     public Output<String> groupNameLdapAttribute() {
         return this.groupNameLdapAttribute;
     }
-    /**
-     * List of strings representing the object classes for the group. Must contain at least one.
-     * 
-     */
     @Export(name="groupObjectClasses", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> groupObjectClasses;
 
-    /**
-     * @return List of strings representing the object classes for the group. Must contain at least one.
-     * 
-     */
     public Output<List<String>> groupObjectClasses() {
         return this.groupObjectClasses;
     }
-    /**
-     * When specified, adds an additional custom filter to be used when querying for groups. Must start with `(` and end with `)`.
-     * 
-     */
     @Export(name="groupsLdapFilter", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> groupsLdapFilter;
 
-    /**
-     * @return When specified, adds an additional custom filter to be used when querying for groups. Must start with `(` and end with `)`.
-     * 
-     */
     public Output<Optional<String>> groupsLdapFilter() {
         return Codegen.optional(this.groupsLdapFilter);
     }
-    /**
-     * Keycloak group path the LDAP groups are added to. For example if value `/Applications/App1` is used, then LDAP groups will be available in Keycloak under group `App1`, which is the child of top level group `Applications`. The configured group path must already exist in Keycloak when creating this mapper.
-     * 
-     */
     @Export(name="groupsPath", refs={String.class}, tree="[0]")
     private Output<String> groupsPath;
 
-    /**
-     * @return Keycloak group path the LDAP groups are added to. For example if value `/Applications/App1` is used, then LDAP groups will be available in Keycloak under group `App1`, which is the child of top level group `Applications`. The configured group path must already exist in Keycloak when creating this mapper.
-     * 
-     */
     public Output<String> groupsPath() {
         return this.groupsPath;
     }
-    /**
-     * When `true`, missing groups in the hierarchy will be ignored.
-     * 
-     */
     @Export(name="ignoreMissingGroups", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> ignoreMissingGroups;
 
-    /**
-     * @return When `true`, missing groups in the hierarchy will be ignored.
-     * 
-     */
     public Output<Optional<Boolean>> ignoreMissingGroups() {
         return Codegen.optional(this.ignoreMissingGroups);
     }
-    /**
-     * The LDAP DN where groups can be found.
-     * 
-     */
     @Export(name="ldapGroupsDn", refs={String.class}, tree="[0]")
     private Output<String> ldapGroupsDn;
 
-    /**
-     * @return The LDAP DN where groups can be found.
-     * 
-     */
     public Output<String> ldapGroupsDn() {
         return this.ldapGroupsDn;
     }
     /**
-     * The ID of the LDAP user federation provider to attach this mapper to.
+     * The ldap user federation provider to attach this mapper to.
      * 
      */
     @Export(name="ldapUserFederationId", refs={String.class}, tree="[0]")
     private Output<String> ldapUserFederationId;
 
     /**
-     * @return The ID of the LDAP user federation provider to attach this mapper to.
+     * @return The ldap user federation provider to attach this mapper to.
      * 
      */
     public Output<String> ldapUserFederationId() {
         return this.ldapUserFederationId;
     }
-    /**
-     * Array of strings representing attributes on the LDAP group which will be mapped to attributes on the Keycloak group.
-     * 
-     */
     @Export(name="mappedGroupAttributes", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> mappedGroupAttributes;
 
-    /**
-     * @return Array of strings representing attributes on the LDAP group which will be mapped to attributes on the Keycloak group.
-     * 
-     */
     public Output<Optional<List<String>>> mappedGroupAttributes() {
         return Codegen.optional(this.mappedGroupAttributes);
     }
-    /**
-     * Specifies the name of the LDAP attribute on the LDAP user that contains the groups the user is a member of. Defaults to `memberOf`.
-     * 
-     */
     @Export(name="memberofLdapAttribute", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> memberofLdapAttribute;
 
-    /**
-     * @return Specifies the name of the LDAP attribute on the LDAP user that contains the groups the user is a member of. Defaults to `memberOf`.
-     * 
-     */
     public Output<Optional<String>> memberofLdapAttribute() {
         return Codegen.optional(this.memberofLdapAttribute);
     }
-    /**
-     * Can be one of `DN` or `UID`. Defaults to `DN`.
-     * 
-     */
     @Export(name="membershipAttributeType", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> membershipAttributeType;
 
-    /**
-     * @return Can be one of `DN` or `UID`. Defaults to `DN`.
-     * 
-     */
     public Output<Optional<String>> membershipAttributeType() {
         return Codegen.optional(this.membershipAttributeType);
     }
-    /**
-     * The name of the LDAP attribute that is used for membership mappings.
-     * 
-     */
     @Export(name="membershipLdapAttribute", refs={String.class}, tree="[0]")
     private Output<String> membershipLdapAttribute;
 
-    /**
-     * @return The name of the LDAP attribute that is used for membership mappings.
-     * 
-     */
     public Output<String> membershipLdapAttribute() {
         return this.membershipLdapAttribute;
     }
-    /**
-     * The name of the LDAP attribute on a user that is used for membership mappings.
-     * 
-     */
     @Export(name="membershipUserLdapAttribute", refs={String.class}, tree="[0]")
     private Output<String> membershipUserLdapAttribute;
 
-    /**
-     * @return The name of the LDAP attribute on a user that is used for membership mappings.
-     * 
-     */
     public Output<String> membershipUserLdapAttribute() {
         return this.membershipUserLdapAttribute;
     }
-    /**
-     * Can be one of `READ_ONLY`, `LDAP_ONLY` or `IMPORT`. Defaults to `READ_ONLY`.
-     * 
-     */
     @Export(name="mode", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> mode;
 
-    /**
-     * @return Can be one of `READ_ONLY`, `LDAP_ONLY` or `IMPORT`. Defaults to `READ_ONLY`.
-     * 
-     */
     public Output<Optional<String>> mode() {
         return Codegen.optional(this.mode);
     }
     /**
-     * Display name of this mapper when displayed in the console.
+     * Display name of the mapper when displayed in the console.
      * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
-     * @return Display name of this mapper when displayed in the console.
+     * @return Display name of the mapper when displayed in the console.
      * 
      */
     public Output<String> name() {
         return this.name;
     }
-    /**
-     * When `true`, group inheritance will be propagated from LDAP to Keycloak. When `false`, all LDAP groups will be propagated as top level groups within Keycloak.
-     * 
-     */
     @Export(name="preserveGroupInheritance", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> preserveGroupInheritance;
 
-    /**
-     * @return When `true`, group inheritance will be propagated from LDAP to Keycloak. When `false`, all LDAP groups will be propagated as top level groups within Keycloak.
-     * 
-     */
     public Output<Optional<Boolean>> preserveGroupInheritance() {
         return Codegen.optional(this.preserveGroupInheritance);
     }
     /**
-     * The realm that this LDAP mapper will exist in.
+     * The realm in which the ldap user federation provider exists.
      * 
      */
     @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**
-     * @return The realm that this LDAP mapper will exist in.
+     * @return The realm in which the ldap user federation provider exists.
      * 
      */
     public Output<String> realmId() {
         return this.realmId;
     }
-    /**
-     * Can be one of `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE`, `GET_GROUPS_FROM_USER_MEMBEROF_ATTRIBUTE`, or `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE_RECURSIVELY`. Defaults to `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE`.
-     * 
-     */
     @Export(name="userRolesRetrieveStrategy", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> userRolesRetrieveStrategy;
 
-    /**
-     * @return Can be one of `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE`, `GET_GROUPS_FROM_USER_MEMBEROF_ATTRIBUTE`, or `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE_RECURSIVELY`. Defaults to `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE`.
-     * 
-     */
     public Output<Optional<String>> userRolesRetrieveStrategy() {
         return Codegen.optional(this.userRolesRetrieveStrategy);
     }

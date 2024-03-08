@@ -10,9 +10,9 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak
 {
     /// <summary>
-    /// !&gt; **WARNING:** This resource is deprecated and will be removed in the next major version. Please use `keycloak.GenericProtocolMapper` instead.
+    /// ## # keycloak.GenericClientProtocolMapper
     /// 
-    /// Allows for creating and managing protocol mappers for both types of clients (openid-connect and saml) within Keycloak.
+    /// Allows for creating and managing protocol mapper for both types of clients (openid-connect and saml) within Keycloak.
     /// 
     /// There are two uses cases for using this resource:
     /// * If you implemented a custom protocol mapper, this resource can be used to configure it
@@ -21,8 +21,9 @@ namespace Pulumi.Keycloak
     /// Due to the generic nature of this mapper, it is less user-friendly and more prone to configuration errors.
     /// Therefore, if possible, a specific mapper should be used.
     /// 
-    /// ## Example Usage
+    /// ### Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -33,22 +34,19 @@ namespace Pulumi.Keycloak
     /// {
     ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         RealmName = "my-realm",
     ///         Enabled = true,
+    ///         RealmName = "my-realm",
     ///     });
     /// 
     ///     var samlClient = new Keycloak.Saml.Client("samlClient", new()
     ///     {
-    ///         RealmId = realm.Id,
     ///         ClientId = "test-client",
+    ///         RealmId = realm.Id,
     ///     });
     /// 
     ///     var samlHardcodeAttributeMapper = new Keycloak.GenericClientProtocolMapper("samlHardcodeAttributeMapper", new()
     ///     {
-    ///         RealmId = realm.Id,
     ///         ClientId = samlClient.Id,
-    ///         Protocol = "saml",
-    ///         ProtocolMapper = "saml-hardcode-attribute-mapper",
     ///         Config = 
     ///         {
     ///             { "attribute.name", "name" },
@@ -56,28 +54,38 @@ namespace Pulumi.Keycloak
     ///             { "attribute.value", "value" },
     ///             { "friendly.name", "display name" },
     ///         },
+    ///         Protocol = "saml",
+    ///         ProtocolMapper = "saml-hardcode-attribute-mapper",
+    ///         RealmId = realm.Id,
     ///     });
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
-    /// ## Import
+    /// ### Argument Reference
+    /// 
+    /// The following arguments are supported:
+    /// 
+    /// - `realm_id` - (Required) The realm this protocol mapper exists within.
+    /// - `client_id` - (Required) The client this protocol mapper is attached to.
+    /// - `name` - (Required) The display name of this protocol mapper in the GUI.
+    /// - `protocol` - (Required) The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
+    /// - `protocol_mapper` - (Required) The name of the protocol mapper. The protocol mapper must be
+    ///    compatible with the specified client.
+    /// - `config` - (Required) A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
+    /// 
+    /// ### Import
     /// 
     /// Protocol mappers can be imported using the following format: `{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}`
     /// 
-    ///  Example:
-    /// 
-    ///  bash
-    /// 
-    /// ```sh
-    /// $ pulumi import keycloak:index/genericClientProtocolMapper:GenericClientProtocolMapper saml_hardcode_attribute_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
-    /// ```
+    /// Example:
     /// </summary>
     [KeycloakResourceType("keycloak:index/genericClientProtocolMapper:GenericClientProtocolMapper")]
     public partial class GenericClientProtocolMapper : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The client this protocol mapper is attached to.
+        /// The mapper's associated client. Cannot be used at the same time as client_scope_id.
         /// </summary>
         [Output("clientId")]
         public Output<string?> ClientId { get; private set; } = null!;
@@ -88,32 +96,29 @@ namespace Pulumi.Keycloak
         [Output("clientScopeId")]
         public Output<string?> ClientScopeId { get; private set; } = null!;
 
-        /// <summary>
-        /// A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
-        /// </summary>
         [Output("config")]
         public Output<ImmutableDictionary<string, object>> Config { get; private set; } = null!;
 
         /// <summary>
-        /// The display name of this protocol mapper in the GUI.
+        /// A human-friendly name that will appear in the Keycloak console.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
+        /// The protocol of the client (openid-connect / saml).
         /// </summary>
         [Output("protocol")]
         public Output<string> Protocol { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the protocol mapper. The protocol mapper must be compatible with the specified client.
+        /// The type of the protocol mapper.
         /// </summary>
         [Output("protocolMapper")]
         public Output<string> ProtocolMapper { get; private set; } = null!;
 
         /// <summary>
-        /// The realm this protocol mapper exists within.
+        /// The realm id where the associated client or client scope exists.
         /// </summary>
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
@@ -165,7 +170,7 @@ namespace Pulumi.Keycloak
     public sealed class GenericClientProtocolMapperArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The client this protocol mapper is attached to.
+        /// The mapper's associated client. Cannot be used at the same time as client_scope_id.
         /// </summary>
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
@@ -178,10 +183,6 @@ namespace Pulumi.Keycloak
 
         [Input("config", required: true)]
         private InputMap<object>? _config;
-
-        /// <summary>
-        /// A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
-        /// </summary>
         public InputMap<object> Config
         {
             get => _config ?? (_config = new InputMap<object>());
@@ -189,25 +190,25 @@ namespace Pulumi.Keycloak
         }
 
         /// <summary>
-        /// The display name of this protocol mapper in the GUI.
+        /// A human-friendly name that will appear in the Keycloak console.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
+        /// The protocol of the client (openid-connect / saml).
         /// </summary>
         [Input("protocol", required: true)]
         public Input<string> Protocol { get; set; } = null!;
 
         /// <summary>
-        /// The name of the protocol mapper. The protocol mapper must be compatible with the specified client.
+        /// The type of the protocol mapper.
         /// </summary>
         [Input("protocolMapper", required: true)]
         public Input<string> ProtocolMapper { get; set; } = null!;
 
         /// <summary>
-        /// The realm this protocol mapper exists within.
+        /// The realm id where the associated client or client scope exists.
         /// </summary>
         [Input("realmId", required: true)]
         public Input<string> RealmId { get; set; } = null!;
@@ -221,7 +222,7 @@ namespace Pulumi.Keycloak
     public sealed class GenericClientProtocolMapperState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The client this protocol mapper is attached to.
+        /// The mapper's associated client. Cannot be used at the same time as client_scope_id.
         /// </summary>
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
@@ -234,10 +235,6 @@ namespace Pulumi.Keycloak
 
         [Input("config")]
         private InputMap<object>? _config;
-
-        /// <summary>
-        /// A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
-        /// </summary>
         public InputMap<object> Config
         {
             get => _config ?? (_config = new InputMap<object>());
@@ -245,25 +242,25 @@ namespace Pulumi.Keycloak
         }
 
         /// <summary>
-        /// The display name of this protocol mapper in the GUI.
+        /// A human-friendly name that will appear in the Keycloak console.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
+        /// The protocol of the client (openid-connect / saml).
         /// </summary>
         [Input("protocol")]
         public Input<string>? Protocol { get; set; }
 
         /// <summary>
-        /// The name of the protocol mapper. The protocol mapper must be compatible with the specified client.
+        /// The type of the protocol mapper.
         /// </summary>
         [Input("protocolMapper")]
         public Input<string>? ProtocolMapper { get; set; }
 
         /// <summary>
-        /// The realm this protocol mapper exists within.
+        /// The realm id where the associated client or client scope exists.
         /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }

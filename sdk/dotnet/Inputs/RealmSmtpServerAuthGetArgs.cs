@@ -14,10 +14,6 @@ namespace Pulumi.Keycloak.Inputs
     {
         [Input("password", required: true)]
         private Input<string>? _password;
-
-        /// <summary>
-        /// The SMTP server password.
-        /// </summary>
         public Input<string>? Password
         {
             get => _password;
@@ -28,9 +24,6 @@ namespace Pulumi.Keycloak.Inputs
             }
         }
 
-        /// <summary>
-        /// The SMTP server username.
-        /// </summary>
         [Input("username", required: true)]
         public Input<string> Username { get; set; } = null!;
 

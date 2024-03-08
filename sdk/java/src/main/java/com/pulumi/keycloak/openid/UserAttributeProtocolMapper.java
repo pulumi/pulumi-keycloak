@@ -16,15 +16,19 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Allows for creating and managing user attribute protocol mappers within Keycloak.
+ * ## # keycloak.openid.UserAttributeProtocolMapper
  * 
- * User attribute protocol mappers allow you to map custom attributes defined for a user within Keycloak to a claim in a token.
+ * Allows for creating and managing user attribute protocol mappers within
+ * Keycloak.
  * 
- * Protocol mappers can be defined for a single client, or they can be defined for a client scope which can be shared between
- * multiple different clients.
+ * User attribute protocol mappers allow you to map custom attributes defined
+ * for a user within Keycloak to a claim in a token. Protocol mappers can be
+ * defined for a single client, or they can be defined for a client scope which
+ * can be shared between multiple different clients.
  * 
- * ## Example Usage
- * ### Client)
+ * ### Example Usage (Client)
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -51,29 +55,33 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
  *             .enabled(true)
+ *             .realm(&#34;my-realm&#34;)
  *             .build());
  * 
  *         var openidClient = new Client(&#34;openidClient&#34;, ClientArgs.builder()        
- *             .realmId(realm.id())
- *             .clientId(&#34;client&#34;)
- *             .enabled(true)
  *             .accessType(&#34;CONFIDENTIAL&#34;)
+ *             .clientId(&#34;test-client&#34;)
+ *             .enabled(true)
+ *             .realmId(realm.id())
  *             .validRedirectUris(&#34;http://localhost:8080/openid-callback&#34;)
  *             .build());
  * 
  *         var userAttributeMapper = new UserAttributeProtocolMapper(&#34;userAttributeMapper&#34;, UserAttributeProtocolMapperArgs.builder()        
- *             .realmId(realm.id())
- *             .clientId(openidClient.id())
- *             .userAttribute(&#34;foo&#34;)
  *             .claimName(&#34;bar&#34;)
+ *             .clientId(openidClient.id())
+ *             .realmId(realm.id())
+ *             .userAttribute(&#34;foo&#34;)
  *             .build());
  * 
  *     }
  * }
  * ```
- * ### Client Scope)
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * ### Example Usage (Client Scope)
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -100,8 +108,8 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
  *             .enabled(true)
+ *             .realm(&#34;my-realm&#34;)
  *             .build());
  * 
  *         var clientScope = new ClientScope(&#34;clientScope&#34;, ClientScopeArgs.builder()        
@@ -109,204 +117,193 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var userAttributeMapper = new UserAttributeProtocolMapper(&#34;userAttributeMapper&#34;, UserAttributeProtocolMapperArgs.builder()        
- *             .realmId(realm.id())
- *             .clientScopeId(clientScope.id())
- *             .userAttribute(&#34;foo&#34;)
  *             .claimName(&#34;bar&#34;)
+ *             .clientScopeId(clientScope.id())
+ *             .realmId(realm.id())
+ *             .userAttribute(&#34;foo&#34;)
  *             .build());
  * 
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * ## Import
+ * ### Argument Reference
+ * 
+ * The following arguments are supported:
+ * 
+ * - `realm_id` - (Required) The realm this protocol mapper exists within.
+ * - `client_id` - (Required if `client_scope_id` is not specified) The client this protocol mapper is attached to.
+ * - `client_scope_id` - (Required if `client_id` is not specified) The client scope this protocol mapper is attached to.
+ * - `name` - (Required) The display name of this protocol mapper in the GUI.
+ * - `user_attribute` - (Required) The custom user attribute to map a claim for.
+ * - `claim_name` - (Required) The name of the claim to insert into a token.
+ * - `claim_value_type` - (Optional) The claim type used when serializing JSON tokens. Can be one of `String`, `long`, `int`, or `boolean`. Defaults to `String`.
+ * - `multivalued` - (Optional) Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
+ * - `add_to_id_token` - (Optional) Indicates if the attribute should be added as a claim to the id token. Defaults to `true`.
+ * - `add_to_access_token` - (Optional) Indicates if the attribute should be added as a claim to the access token. Defaults to `true`.
+ * - `add_to_userinfo` - (Optional) Indicates if the attribute should be added as a claim to the UserInfo response body. Defaults to `true`.
+ * 
+ * ### Import
  * 
  * Protocol mappers can be imported using one of the following formats:
+ * - Client: `{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}`
+ * - Client Scope: `{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}`
  * 
- *  - Client: `{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}`
- * 
- *  - Client Scope: `{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}`
- * 
- *  Example:
- * 
- *  bash
- * 
- * ```sh
- * $ pulumi import keycloak:openid/userAttributeProtocolMapper:UserAttributeProtocolMapper user_attribute_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
- * ```
- * 
- * ```sh
- * $ pulumi import keycloak:openid/userAttributeProtocolMapper:UserAttributeProtocolMapper user_attribute_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
- * ```
+ * Example:
  * 
  */
 @ResourceType(type="keycloak:openid/userAttributeProtocolMapper:UserAttributeProtocolMapper")
 public class UserAttributeProtocolMapper extends com.pulumi.resources.CustomResource {
     /**
-     * Indicates if the attribute should be added as a claim to the access token. Defaults to `true`.
+     * Indicates if the attribute should be a claim in the access token.
      * 
      */
     @Export(name="addToAccessToken", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> addToAccessToken;
 
     /**
-     * @return Indicates if the attribute should be added as a claim to the access token. Defaults to `true`.
+     * @return Indicates if the attribute should be a claim in the access token.
      * 
      */
     public Output<Optional<Boolean>> addToAccessToken() {
         return Codegen.optional(this.addToAccessToken);
     }
     /**
-     * Indicates if the attribute should be added as a claim to the id token. Defaults to `true`.
+     * Indicates if the attribute should be a claim in the id token.
      * 
      */
     @Export(name="addToIdToken", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> addToIdToken;
 
     /**
-     * @return Indicates if the attribute should be added as a claim to the id token. Defaults to `true`.
+     * @return Indicates if the attribute should be a claim in the id token.
      * 
      */
     public Output<Optional<Boolean>> addToIdToken() {
         return Codegen.optional(this.addToIdToken);
     }
     /**
-     * Indicates if the attribute should be added as a claim to the UserInfo response body. Defaults to `true`.
+     * Indicates if the attribute should appear in the userinfo response body.
      * 
      */
     @Export(name="addToUserinfo", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> addToUserinfo;
 
     /**
-     * @return Indicates if the attribute should be added as a claim to the UserInfo response body. Defaults to `true`.
+     * @return Indicates if the attribute should appear in the userinfo response body.
      * 
      */
     public Output<Optional<Boolean>> addToUserinfo() {
         return Codegen.optional(this.addToUserinfo);
     }
     /**
-     * Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
+     * Indicates if attribute values should be aggregated within the group attributes
      * 
      */
     @Export(name="aggregateAttributes", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> aggregateAttributes;
 
     /**
-     * @return Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
+     * @return Indicates if attribute values should be aggregated within the group attributes
      * 
      */
     public Output<Optional<Boolean>> aggregateAttributes() {
         return Codegen.optional(this.aggregateAttributes);
     }
-    /**
-     * The name of the claim to insert into a token.
-     * 
-     */
     @Export(name="claimName", refs={String.class}, tree="[0]")
     private Output<String> claimName;
 
-    /**
-     * @return The name of the claim to insert into a token.
-     * 
-     */
     public Output<String> claimName() {
         return this.claimName;
     }
     /**
-     * The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
+     * Claim type used when serializing tokens.
      * 
      */
     @Export(name="claimValueType", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> claimValueType;
 
     /**
-     * @return The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
+     * @return Claim type used when serializing tokens.
      * 
      */
     public Output<Optional<String>> claimValueType() {
         return Codegen.optional(this.claimValueType);
     }
     /**
-     * The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+     * The mapper&#39;s associated client. Cannot be used at the same time as client_scope_id.
      * 
      */
     @Export(name="clientId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientId;
 
     /**
-     * @return The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+     * @return The mapper&#39;s associated client. Cannot be used at the same time as client_scope_id.
      * 
      */
     public Output<Optional<String>> clientId() {
         return Codegen.optional(this.clientId);
     }
     /**
-     * The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+     * The mapper&#39;s associated client scope. Cannot be used at the same time as client_id.
      * 
      */
     @Export(name="clientScopeId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientScopeId;
 
     /**
-     * @return The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+     * @return The mapper&#39;s associated client scope. Cannot be used at the same time as client_id.
      * 
      */
     public Output<Optional<String>> clientScopeId() {
         return Codegen.optional(this.clientScopeId);
     }
     /**
-     * Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
+     * Indicates whether this attribute is a single value or an array of values.
      * 
      */
     @Export(name="multivalued", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> multivalued;
 
     /**
-     * @return Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
+     * @return Indicates whether this attribute is a single value or an array of values.
      * 
      */
     public Output<Optional<Boolean>> multivalued() {
         return Codegen.optional(this.multivalued);
     }
     /**
-     * The display name of this protocol mapper in the GUI.
+     * A human-friendly name that will appear in the Keycloak console.
      * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
-     * @return The display name of this protocol mapper in the GUI.
+     * @return A human-friendly name that will appear in the Keycloak console.
      * 
      */
     public Output<String> name() {
         return this.name;
     }
     /**
-     * The realm this protocol mapper exists within.
+     * The realm id where the associated client or client scope exists.
      * 
      */
     @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**
-     * @return The realm this protocol mapper exists within.
+     * @return The realm id where the associated client or client scope exists.
      * 
      */
     public Output<String> realmId() {
         return this.realmId;
     }
-    /**
-     * The custom user attribute to map a claim for.
-     * 
-     */
     @Export(name="userAttribute", refs={String.class}, tree="[0]")
     private Output<String> userAttribute;
 
-    /**
-     * @return The custom user attribute to map a claim for.
-     * 
-     */
     public Output<String> userAttribute() {
         return this.userAttribute;
     }

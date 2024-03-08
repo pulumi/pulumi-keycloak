@@ -19,12 +19,17 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * ## # keycloak.CustomUserFederation
+ * 
  * Allows for creating and managing custom user federation providers within Keycloak.
  * 
- * A custom user federation provider is an implementation of Keycloak&#39;s [User Storage SPI](https://www.keycloak.org/docs/4.2/server_development/index.html#_user-storage-spi).
+ * A custom user federation provider is an implementation of Keycloak&#39;s
+ * [User Storage SPI](https://www.keycloak.org/docs/4.2/server_development/index.html#_user-storage-spi).
  * An example of this implementation can be found here.
  * 
- * ## Example Usage
+ * ### Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -49,91 +54,77 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;test&#34;)
  *             .enabled(true)
+ *             .realm(&#34;test&#34;)
  *             .build());
  * 
  *         var customUserFederation = new CustomUserFederation(&#34;customUserFederation&#34;, CustomUserFederationArgs.builder()        
- *             .realmId(realm.id())
- *             .providerId(&#34;custom&#34;)
  *             .enabled(true)
- *             .config(Map.ofEntries(
- *                 Map.entry(&#34;dummyString&#34;, &#34;foobar&#34;),
- *                 Map.entry(&#34;dummyBool&#34;, true),
- *                 Map.entry(&#34;multivalue&#34;, &#34;value1##value2&#34;)
- *             ))
+ *             .providerId(&#34;custom&#34;)
+ *             .realmId(realm.id())
  *             .build());
  * 
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * ## Import
+ * ### Argument Reference
+ * 
+ * The following arguments are supported:
+ * 
+ * - `realm_id` - (Required) The realm that this provider will provide user federation for.
+ * - `name` - (Required) Display name of the provider when displayed in the console.
+ * - `provider_id` - (Required) The unique ID of the custom provider, specified in the `getId` implementation for the `UserStorageProviderFactory` interface.
+ * - `enabled` - (Optional) When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
+ * - `priority` - (Optional) Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
+ * - `cache_policy` - (Optional) Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
+ * 
+ * ### Import
  * 
  * Custom user federation providers can be imported using the format `{{realm_id}}/{{custom_user_federation_id}}`.
- * 
- *  The ID of the custom user federation provider can be found within the Keycloak GUI and is typically a GUID:
- * 
- *  bash
- * 
- * ```sh
- * $ pulumi import keycloak:index/customUserFederation:CustomUserFederation custom_user_federation my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860
- * ```
+ * The ID of the custom user federation provider can be found within the Keycloak GUI and is typically a GUID:
  * 
  */
 @ResourceType(type="keycloak:index/customUserFederation:CustomUserFederation")
 public class CustomUserFederation extends com.pulumi.resources.CustomResource {
-    /**
-     * Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
-     * 
-     */
     @Export(name="cachePolicy", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> cachePolicy;
 
-    /**
-     * @return Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
-     * 
-     */
     public Output<Optional<String>> cachePolicy() {
         return Codegen.optional(this.cachePolicy);
     }
     /**
-     * How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users sync.
+     * How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users
+     * sync.
      * 
      */
     @Export(name="changedSyncPeriod", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> changedSyncPeriod;
 
     /**
-     * @return How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users sync.
+     * @return How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users
+     * sync.
      * 
      */
     public Output<Optional<Integer>> changedSyncPeriod() {
         return Codegen.optional(this.changedSyncPeriod);
     }
-    /**
-     * The provider configuration handed over to your custom user federation provider. In order to add multivalue settings, use `##` to seperate the values.
-     * 
-     */
     @Export(name="config", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
     private Output</* @Nullable */ Map<String,Object>> config;
 
-    /**
-     * @return The provider configuration handed over to your custom user federation provider. In order to add multivalue settings, use `##` to seperate the values.
-     * 
-     */
     public Output<Optional<Map<String,Object>>> config() {
         return Codegen.optional(this.config);
     }
     /**
-     * When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
+     * When false, this provider will not be used when performing queries for users.
      * 
      */
     @Export(name="enabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> enabled;
 
     /**
-     * @return When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
+     * @return When false, this provider will not be used when performing queries for users.
      * 
      */
     public Output<Optional<Boolean>> enabled() {
@@ -168,56 +159,58 @@ public class CustomUserFederation extends com.pulumi.resources.CustomResource {
         return this.name;
     }
     /**
-     * Must be set to the realms&#39; `internal_id`  when it differs from the realm. This can happen when existing resources are imported into the state.
+     * The parent_id of the generated component. will use realm_id if not specified.
      * 
      */
     @Export(name="parentId", refs={String.class}, tree="[0]")
     private Output<String> parentId;
 
     /**
-     * @return Must be set to the realms&#39; `internal_id`  when it differs from the realm. This can happen when existing resources are imported into the state.
+     * @return The parent_id of the generated component. will use realm_id if not specified.
      * 
      */
     public Output<String> parentId() {
         return this.parentId;
     }
     /**
-     * Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
+     * Priority of this provider when looking up users. Lower values are first.
      * 
      */
     @Export(name="priority", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> priority;
 
     /**
-     * @return Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
+     * @return Priority of this provider when looking up users. Lower values are first.
      * 
      */
     public Output<Optional<Integer>> priority() {
         return Codegen.optional(this.priority);
     }
     /**
-     * The unique ID of the custom provider, specified in the `getId` implementation for the `UserStorageProviderFactory` interface.
+     * The unique ID of the custom provider, specified in the `getId` implementation for the UserStorageProviderFactory
+     * interface
      * 
      */
     @Export(name="providerId", refs={String.class}, tree="[0]")
     private Output<String> providerId;
 
     /**
-     * @return The unique ID of the custom provider, specified in the `getId` implementation for the `UserStorageProviderFactory` interface.
+     * @return The unique ID of the custom provider, specified in the `getId` implementation for the UserStorageProviderFactory
+     * interface
      * 
      */
     public Output<String> providerId() {
         return this.providerId;
     }
     /**
-     * The realm that this provider will provide user federation for.
+     * The realm (name) this provider will provide user federation for.
      * 
      */
     @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**
-     * @return The realm that this provider will provide user federation for.
+     * @return The realm (name) this provider will provide user federation for.
      * 
      */
     public Output<String> realmId() {

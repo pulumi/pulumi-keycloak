@@ -13,7 +13,7 @@ import javax.annotation.Nullable;
 @CustomType
 public final class UserFederationCache {
     /**
-     * @return Day of the week the entry will become invalid on
+     * @return Day of the week the entry will become invalid on.
      * 
      */
     private @Nullable Integer evictionDay;
@@ -32,15 +32,11 @@ public final class UserFederationCache {
      * 
      */
     private @Nullable String maxLifespan;
-    /**
-     * @return Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
-     * 
-     */
     private @Nullable String policy;
 
     private UserFederationCache() {}
     /**
-     * @return Day of the week the entry will become invalid on
+     * @return Day of the week the entry will become invalid on.
      * 
      */
     public Optional<Integer> evictionDay() {
@@ -67,10 +63,6 @@ public final class UserFederationCache {
     public Optional<String> maxLifespan() {
         return Optional.ofNullable(this.maxLifespan);
     }
-    /**
-     * @return Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
-     * 
-     */
     public Optional<String> policy() {
         return Optional.ofNullable(this.policy);
     }

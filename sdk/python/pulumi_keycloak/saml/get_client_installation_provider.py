@@ -94,6 +94,7 @@ def get_client_installation_provider(client_id: Optional[str] = None,
 
     In the example below, we extract the SAML metadata IDPSSODescriptor to pass it to the AWS IAM SAML Provider.
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_aws as aws
@@ -115,6 +116,7 @@ def get_client_installation_provider(client_id: Optional[str] = None,
         provider_id="saml-idp-descriptor")
     default = aws.iam.SamlProvider("default", saml_metadata_document=saml_idp_descriptor.value)
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str client_id: The ID of the SAML client. The `id` attribute of a `keycloak_client` resource should be used here.
@@ -148,6 +150,7 @@ def get_client_installation_provider_output(client_id: Optional[pulumi.Input[str
 
     In the example below, we extract the SAML metadata IDPSSODescriptor to pass it to the AWS IAM SAML Provider.
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_aws as aws
@@ -169,6 +172,7 @@ def get_client_installation_provider_output(client_id: Optional[pulumi.Input[str
         provider_id="saml-idp-descriptor")
     default = aws.iam.SamlProvider("default", saml_metadata_document=saml_idp_descriptor.value)
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str client_id: The ID of the SAML client. The `id` attribute of a `keycloak_client` resource should be used here.

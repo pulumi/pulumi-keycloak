@@ -16,6 +16,8 @@ import javax.annotation.Nullable;
 
 /**
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -73,12 +75,13 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * This resource does not support import. Instead of importing, feel free to create this resource as if it did not already exist
  * 
- *  on the server.
+ * on the server.
  * 
  */
 @ResourceType(type="keycloak:saml/clientDefaultScope:ClientDefaultScope")

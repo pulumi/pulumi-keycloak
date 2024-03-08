@@ -15,10 +15,9 @@ namespace Pulumi.Keycloak
         /// This data source uses the [ClientDescriptionConverter](https://www.keycloak.org/docs-api/6.0/javadocs/org/keycloak/exportimport/ClientDescriptionConverter.html) API to convert a generic client description into a Keycloak
         /// client. This data can then be used to manage the client within Keycloak.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -74,8 +73,7 @@ namespace Pulumi.Keycloak
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetClientDescriptionConverterResult> InvokeAsync(GetClientDescriptionConverterArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetClientDescriptionConverterResult>("keycloak:index/getClientDescriptionConverter:getClientDescriptionConverter", args ?? new GetClientDescriptionConverterArgs(), options.WithDefaults());
@@ -84,10 +82,9 @@ namespace Pulumi.Keycloak
         /// This data source uses the [ClientDescriptionConverter](https://www.keycloak.org/docs-api/6.0/javadocs/org/keycloak/exportimport/ClientDescriptionConverter.html) API to convert a generic client description into a Keycloak
         /// client. This data can then be used to manage the client within Keycloak.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -143,8 +140,7 @@ namespace Pulumi.Keycloak
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetClientDescriptionConverterResult> Invoke(GetClientDescriptionConverterInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetClientDescriptionConverterResult>("keycloak:index/getClientDescriptionConverter:getClientDescriptionConverter", args ?? new GetClientDescriptionConverterInvokeArgs(), options.WithDefaults());

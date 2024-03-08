@@ -138,6 +138,7 @@ class ClientServiceAccountRealmRole(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -154,14 +155,15 @@ class ClientServiceAccountRealmRole(pulumi.CustomResource):
             service_account_user_id=client.service_account_user_id,
             role=realm_role.name)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         This resource can be imported using the format `{{realmId}}/{{serviceAccountUserId}}/{{roleId}}`.
 
-         Example:
+        Example:
 
-         bash
+        bash
 
         ```sh
         $ pulumi import keycloak:openid/clientServiceAccountRealmRole:ClientServiceAccountRealmRole client_service_account_role my-realm/489ba513-1ceb-49ba-ae0b-1ab1f5099ebf/c7230ab7-8e4e-4135-995d-e81b50696ad8
@@ -188,6 +190,7 @@ class ClientServiceAccountRealmRole(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -204,14 +207,15 @@ class ClientServiceAccountRealmRole(pulumi.CustomResource):
             service_account_user_id=client.service_account_user_id,
             role=realm_role.name)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         This resource can be imported using the format `{{realmId}}/{{serviceAccountUserId}}/{{roleId}}`.
 
-         Example:
+        Example:
 
-         bash
+        bash
 
         ```sh
         $ pulumi import keycloak:openid/clientServiceAccountRealmRole:ClientServiceAccountRealmRole client_service_account_role my-realm/489ba513-1ceb-49ba-ae0b-1ab1f5099ebf/c7230ab7-8e4e-4135-995d-e81b50696ad8

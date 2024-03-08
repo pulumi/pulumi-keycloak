@@ -21,6 +21,8 @@ public final class SamlFunctions {
      * This data source can be used to fetch properties of a Keycloak client that uses the SAML protocol.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -58,6 +60,7 @@ public final class SamlFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetClientResult> getClient(GetClientArgs args) {
@@ -67,6 +70,8 @@ public final class SamlFunctions {
      * This data source can be used to fetch properties of a Keycloak client that uses the SAML protocol.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -104,6 +109,7 @@ public final class SamlFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetClientResult> getClientPlain(GetClientPlainArgs args) {
@@ -113,6 +119,8 @@ public final class SamlFunctions {
      * This data source can be used to fetch properties of a Keycloak client that uses the SAML protocol.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -150,6 +158,7 @@ public final class SamlFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetClientResult> getClient(GetClientArgs args, InvokeOptions options) {
@@ -159,6 +168,8 @@ public final class SamlFunctions {
      * This data source can be used to fetch properties of a Keycloak client that uses the SAML protocol.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -196,6 +207,7 @@ public final class SamlFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetClientResult> getClientPlain(GetClientPlainArgs args, InvokeOptions options) {
@@ -207,6 +219,8 @@ public final class SamlFunctions {
      * ## Example Usage
      * 
      * In the example below, we extract the SAML metadata IDPSSODescriptor to pass it to the AWS IAM SAML Provider.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -262,6 +276,7 @@ public final class SamlFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetClientInstallationProviderResult> getClientInstallationProvider(GetClientInstallationProviderArgs args) {
@@ -273,6 +288,8 @@ public final class SamlFunctions {
      * ## Example Usage
      * 
      * In the example below, we extract the SAML metadata IDPSSODescriptor to pass it to the AWS IAM SAML Provider.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -328,6 +345,7 @@ public final class SamlFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetClientInstallationProviderResult> getClientInstallationProviderPlain(GetClientInstallationProviderPlainArgs args) {
@@ -339,6 +357,8 @@ public final class SamlFunctions {
      * ## Example Usage
      * 
      * In the example below, we extract the SAML metadata IDPSSODescriptor to pass it to the AWS IAM SAML Provider.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -394,6 +414,7 @@ public final class SamlFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetClientInstallationProviderResult> getClientInstallationProvider(GetClientInstallationProviderArgs args, InvokeOptions options) {
@@ -405,6 +426,8 @@ public final class SamlFunctions {
      * ## Example Usage
      * 
      * In the example below, we extract the SAML metadata IDPSSODescriptor to pass it to the AWS IAM SAML Provider.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -460,6 +483,7 @@ public final class SamlFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetClientInstallationProviderResult> getClientInstallationProviderPlain(GetClientInstallationProviderPlainArgs args, InvokeOptions options) {

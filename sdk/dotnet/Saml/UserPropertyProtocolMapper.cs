@@ -10,16 +10,19 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Saml
 {
     /// <summary>
-    /// Allows for creating and managing user property protocol mappers for SAML clients within Keycloak.
+    /// ## # keycloak.saml.UserPropertyProtocolMapper
+    /// 
+    /// Allows for creating and managing user property protocol mappers for
+    /// SAML clients within Keycloak.
     /// 
     /// SAML user property protocol mappers allow you to map properties of the Keycloak
-    /// user model to an attribute in a SAML assertion.
+    /// user model to an attribute in a SAML assertion. Protocol mappers
+    /// can be defined for a single client, or they can be defined for a client scope which
+    /// can be shared between multiple different clients.
     /// 
-    /// Protocol mappers can be defined for a single client, or they can be defined for a client scope which can be shared between
-    /// multiple different clients.
+    /// ### Example Usage (Client)
     /// 
-    /// ## Example Usage
-    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -30,96 +33,74 @@ namespace Pulumi.Keycloak.Saml
     /// {
     ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         RealmName = "my-realm",
     ///         Enabled = true,
+    ///         RealmName = "my-realm",
     ///     });
     /// 
     ///     var samlClient = new Keycloak.Saml.Client("samlClient", new()
     ///     {
-    ///         RealmId = realm.Id,
-    ///         ClientId = "saml-client",
+    ///         ClientId = "test-saml-client",
+    ///         RealmId = keycloak_realm.Test.Id,
     ///     });
     /// 
     ///     var samlUserPropertyMapper = new Keycloak.Saml.UserPropertyProtocolMapper("samlUserPropertyMapper", new()
     ///     {
-    ///         RealmId = realm.Id,
     ///         ClientId = samlClient.Id,
-    ///         UserProperty = "email",
+    ///         RealmId = keycloak_realm.Test.Id,
     ///         SamlAttributeName = "email",
     ///         SamlAttributeNameFormat = "Unspecified",
+    ///         UserProperty = "email",
     ///     });
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
-    /// ## Import
+    /// ### Argument Reference
+    /// 
+    /// The following arguments are supported:
+    /// 
+    /// - `realm_id` - (Required) The realm this protocol mapper exists within.
+    /// - `client_id` - (Required if `client_scope_id` is not specified) The SAML client this protocol mapper is attached to.
+    /// - `client_scope_id` - (Required if `client_id` is not specified) The SAML client scope this protocol mapper is attached to.
+    /// - `name` - (Required) The display name of this protocol mapper in the GUI.
+    /// - `user_property` - (Required) The property of the Keycloak user model to map.
+    /// - `friendly_name` - (Optional) An optional human-friendly name for this attribute.
+    /// - `saml_attribute_name` - (Required) The name of the SAML attribute.
+    /// - `saml_attribute_name_format` - (Required) The SAML attribute Name Format. Can be one of `Unspecified`, `Basic`, or `URI Reference`.
+    /// 
+    /// ### Import
     /// 
     /// Protocol mappers can be imported using one of the following formats:
+    /// - Client: `{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}`
+    /// - Client Scope: `{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}`
     /// 
-    ///  - Client: `{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}`
-    /// 
-    ///  - Client Scope: `{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}`
-    /// 
-    ///  Example:
-    /// 
-    ///  bash
-    /// 
-    /// ```sh
-    /// $ pulumi import keycloak:saml/userPropertyProtocolMapper:UserPropertyProtocolMapper saml_user_property_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
-    /// ```
-    /// 
-    /// ```sh
-    /// $ pulumi import keycloak:saml/userPropertyProtocolMapper:UserPropertyProtocolMapper saml_user_property_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
-    /// ```
+    /// Example:
     /// </summary>
     [KeycloakResourceType("keycloak:saml/userPropertyProtocolMapper:UserPropertyProtocolMapper")]
     public partial class UserPropertyProtocolMapper : global::Pulumi.CustomResource
     {
-        /// <summary>
-        /// The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
-        /// </summary>
         [Output("clientId")]
         public Output<string?> ClientId { get; private set; } = null!;
 
-        /// <summary>
-        /// The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
-        /// </summary>
         [Output("clientScopeId")]
         public Output<string?> ClientScopeId { get; private set; } = null!;
 
-        /// <summary>
-        /// An optional human-friendly name for this attribute.
-        /// </summary>
         [Output("friendlyName")]
         public Output<string?> FriendlyName { get; private set; } = null!;
 
-        /// <summary>
-        /// The display name of this protocol mapper in the GUI.
-        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
-        /// <summary>
-        /// The realm this protocol mapper exists within.
-        /// </summary>
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
 
-        /// <summary>
-        /// The name of the SAML attribute.
-        /// </summary>
         [Output("samlAttributeName")]
         public Output<string> SamlAttributeName { get; private set; } = null!;
 
-        /// <summary>
-        /// The SAML attribute Name Format. Can be one of `Unspecified`, `Basic`, or `URI Reference`.
-        /// </summary>
         [Output("samlAttributeNameFormat")]
         public Output<string> SamlAttributeNameFormat { get; private set; } = null!;
 
-        /// <summary>
-        /// The property of the Keycloak user model to map.
-        /// </summary>
         [Output("userProperty")]
         public Output<string> UserProperty { get; private set; } = null!;
 
@@ -169,51 +150,27 @@ namespace Pulumi.Keycloak.Saml
 
     public sealed class UserPropertyProtocolMapperArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
-        /// </summary>
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
 
-        /// <summary>
-        /// The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
-        /// </summary>
         [Input("clientScopeId")]
         public Input<string>? ClientScopeId { get; set; }
 
-        /// <summary>
-        /// An optional human-friendly name for this attribute.
-        /// </summary>
         [Input("friendlyName")]
         public Input<string>? FriendlyName { get; set; }
 
-        /// <summary>
-        /// The display name of this protocol mapper in the GUI.
-        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        /// <summary>
-        /// The realm this protocol mapper exists within.
-        /// </summary>
         [Input("realmId", required: true)]
         public Input<string> RealmId { get; set; } = null!;
 
-        /// <summary>
-        /// The name of the SAML attribute.
-        /// </summary>
         [Input("samlAttributeName", required: true)]
         public Input<string> SamlAttributeName { get; set; } = null!;
 
-        /// <summary>
-        /// The SAML attribute Name Format. Can be one of `Unspecified`, `Basic`, or `URI Reference`.
-        /// </summary>
         [Input("samlAttributeNameFormat", required: true)]
         public Input<string> SamlAttributeNameFormat { get; set; } = null!;
 
-        /// <summary>
-        /// The property of the Keycloak user model to map.
-        /// </summary>
         [Input("userProperty", required: true)]
         public Input<string> UserProperty { get; set; } = null!;
 
@@ -225,51 +182,27 @@ namespace Pulumi.Keycloak.Saml
 
     public sealed class UserPropertyProtocolMapperState : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
-        /// </summary>
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
 
-        /// <summary>
-        /// The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
-        /// </summary>
         [Input("clientScopeId")]
         public Input<string>? ClientScopeId { get; set; }
 
-        /// <summary>
-        /// An optional human-friendly name for this attribute.
-        /// </summary>
         [Input("friendlyName")]
         public Input<string>? FriendlyName { get; set; }
 
-        /// <summary>
-        /// The display name of this protocol mapper in the GUI.
-        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        /// <summary>
-        /// The realm this protocol mapper exists within.
-        /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
 
-        /// <summary>
-        /// The name of the SAML attribute.
-        /// </summary>
         [Input("samlAttributeName")]
         public Input<string>? SamlAttributeName { get; set; }
 
-        /// <summary>
-        /// The SAML attribute Name Format. Can be one of `Unspecified`, `Basic`, or `URI Reference`.
-        /// </summary>
         [Input("samlAttributeNameFormat")]
         public Input<string>? SamlAttributeNameFormat { get; set; }
 
-        /// <summary>
-        /// The property of the Keycloak user model to map.
-        /// </summary>
         [Input("userProperty")]
         public Input<string>? UserProperty { get; set; }
 

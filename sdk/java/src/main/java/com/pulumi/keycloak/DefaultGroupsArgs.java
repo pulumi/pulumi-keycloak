@@ -15,32 +15,16 @@ public final class DefaultGroupsArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final DefaultGroupsArgs Empty = new DefaultGroupsArgs();
 
-    /**
-     * A set of group ids that should be default groups on the realm referenced by `realm_id`.
-     * 
-     */
     @Import(name="groupIds", required=true)
     private Output<List<String>> groupIds;
 
-    /**
-     * @return A set of group ids that should be default groups on the realm referenced by `realm_id`.
-     * 
-     */
     public Output<List<String>> groupIds() {
         return this.groupIds;
     }
 
-    /**
-     * The realm this group exists in.
-     * 
-     */
     @Import(name="realmId", required=true)
     private Output<String> realmId;
 
-    /**
-     * @return The realm this group exists in.
-     * 
-     */
     public Output<String> realmId() {
         return this.realmId;
     }
@@ -70,54 +54,24 @@ public final class DefaultGroupsArgs extends com.pulumi.resources.ResourceArgs {
             $ = new DefaultGroupsArgs(Objects.requireNonNull(defaults));
         }
 
-        /**
-         * @param groupIds A set of group ids that should be default groups on the realm referenced by `realm_id`.
-         * 
-         * @return builder
-         * 
-         */
         public Builder groupIds(Output<List<String>> groupIds) {
             $.groupIds = groupIds;
             return this;
         }
 
-        /**
-         * @param groupIds A set of group ids that should be default groups on the realm referenced by `realm_id`.
-         * 
-         * @return builder
-         * 
-         */
         public Builder groupIds(List<String> groupIds) {
             return groupIds(Output.of(groupIds));
         }
 
-        /**
-         * @param groupIds A set of group ids that should be default groups on the realm referenced by `realm_id`.
-         * 
-         * @return builder
-         * 
-         */
         public Builder groupIds(String... groupIds) {
             return groupIds(List.of(groupIds));
         }
 
-        /**
-         * @param realmId The realm this group exists in.
-         * 
-         * @return builder
-         * 
-         */
         public Builder realmId(Output<String> realmId) {
             $.realmId = realmId;
             return this;
         }
 
-        /**
-         * @param realmId The realm this group exists in.
-         * 
-         * @return builder
-         * 
-         */
         public Builder realmId(String realmId) {
             return realmId(Output.of(realmId));
         }

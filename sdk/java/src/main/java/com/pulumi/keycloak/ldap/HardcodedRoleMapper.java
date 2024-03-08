@@ -14,12 +14,13 @@ import java.lang.String;
 import javax.annotation.Nullable;
 
 /**
- * Allows for creating and managing hardcoded role mappers for Keycloak users federated via LDAP.
+ * ## # keycloak.ldap.HardcodedRoleMapper
  * 
- * The LDAP hardcoded role mapper will grant a specified Keycloak role to each Keycloak user linked with LDAP.
+ * This mapper will grant a specified Keycloak role to each Keycloak user linked with LDAP.
  * 
- * ## Example Usage
- * ### Realm Role)
+ * ### Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -30,8 +31,6 @@ import javax.annotation.Nullable;
  * import com.pulumi.keycloak.RealmArgs;
  * import com.pulumi.keycloak.ldap.UserFederation;
  * import com.pulumi.keycloak.ldap.UserFederationArgs;
- * import com.pulumi.keycloak.Role;
- * import com.pulumi.keycloak.RoleArgs;
  * import com.pulumi.keycloak.ldap.HardcodedRoleMapper;
  * import com.pulumi.keycloak.ldap.HardcodedRoleMapperArgs;
  * import java.util.List;
@@ -48,7 +47,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
+ *             .realm(&#34;test&#34;)
  *             .enabled(true)
  *             .build());
  * 
@@ -66,162 +65,86 @@ import javax.annotation.Nullable;
  *             .bindCredential(&#34;admin&#34;)
  *             .build());
  * 
- *         var realmAdminRole = new Role(&#34;realmAdminRole&#34;, RoleArgs.builder()        
- *             .realmId(realm.id())
- *             .description(&#34;My Realm Role&#34;)
- *             .build());
- * 
  *         var assignAdminRoleToAllUsers = new HardcodedRoleMapper(&#34;assignAdminRoleToAllUsers&#34;, HardcodedRoleMapperArgs.builder()        
  *             .realmId(realm.id())
  *             .ldapUserFederationId(ldapUserFederation.id())
- *             .role(realmAdminRole.name())
+ *             .role(&#34;admin&#34;)
  *             .build());
  * 
  *     }
  * }
  * ```
- * ### Client Role)
- * ```java
- * package generated_program;
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.keycloak.Realm;
- * import com.pulumi.keycloak.RealmArgs;
- * import com.pulumi.keycloak.ldap.UserFederation;
- * import com.pulumi.keycloak.ldap.UserFederationArgs;
- * import com.pulumi.keycloak.openid.OpenidFunctions;
- * import com.pulumi.keycloak.openid.inputs.GetClientArgs;
- * import com.pulumi.keycloak.KeycloakFunctions;
- * import com.pulumi.keycloak.inputs.GetRoleArgs;
- * import com.pulumi.keycloak.ldap.HardcodedRoleMapper;
- * import com.pulumi.keycloak.ldap.HardcodedRoleMapperArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
+ * ### Argument Reference
  * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
+ * The following arguments are supported:
  * 
- *     public static void stack(Context ctx) {
- *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
- *             .enabled(true)
- *             .build());
+ * - `realm_id` - (Required) The realm that this LDAP mapper will exist in.
+ * - `ldap_user_federation_id` - (Required) The ID of the LDAP user federation provider to attach this mapper to.
+ * - `name` - (Required) Display name of this mapper when displayed in the console.
+ * - `role` - (Required) The role which should be assigned to the users.
  * 
- *         var ldapUserFederation = new UserFederation(&#34;ldapUserFederation&#34;, UserFederationArgs.builder()        
- *             .realmId(realm.id())
- *             .usernameLdapAttribute(&#34;cn&#34;)
- *             .rdnLdapAttribute(&#34;cn&#34;)
- *             .uuidLdapAttribute(&#34;entryDN&#34;)
- *             .userObjectClasses(            
- *                 &#34;simpleSecurityObject&#34;,
- *                 &#34;organizationalRole&#34;)
- *             .connectionUrl(&#34;ldap://openldap&#34;)
- *             .usersDn(&#34;dc=example,dc=org&#34;)
- *             .bindDn(&#34;cn=admin,dc=example,dc=org&#34;)
- *             .bindCredential(&#34;admin&#34;)
- *             .build());
- * 
- *         final var realmManagement = OpenidFunctions.getClient(GetClientArgs.builder()
- *             .realmId(realm.id())
- *             .clientId(&#34;realm-management&#34;)
- *             .build());
- * 
- *         final var createClient = KeycloakFunctions.getRole(GetRoleArgs.builder()
- *             .realmId(realm.id())
- *             .clientId(realmManagement.applyValue(getClientResult -&gt; getClientResult).applyValue(realmManagement -&gt; realmManagement.applyValue(getClientResult -&gt; getClientResult.id())))
- *             .name(&#34;create-client&#34;)
- *             .build());
- * 
- *         var assignAdminRoleToAllUsers = new HardcodedRoleMapper(&#34;assignAdminRoleToAllUsers&#34;, HardcodedRoleMapperArgs.builder()        
- *             .realmId(realm.id())
- *             .ldapUserFederationId(ldapUserFederation.id())
- *             .role(Output.tuple(realmManagement.applyValue(getClientResult -&gt; getClientResult), createClient.applyValue(getRoleResult -&gt; getRoleResult)).applyValue(values -&gt; {
- *                 var realmManagement = values.t1;
- *                 var createClient = values.t2;
- *                 return String.format(&#34;%s.%s&#34;, realmManagement.applyValue(getClientResult -&gt; getClientResult.clientId()),createClient.applyValue(getRoleResult -&gt; getRoleResult.name()));
- *             }))
- *             .build());
- * 
- *     }
- * }
- * ```
- * 
- * ## Import
+ * ### Import
  * 
  * LDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`.
- * 
- *  The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs.
- * 
- *  Example:
- * 
- *  bash
- * 
- * ```sh
- * $ pulumi import keycloak:ldap/hardcodedRoleMapper:HardcodedRoleMapper assign_admin_role_to_all_users my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
- * ```
+ * The ID of the LDAP user federation provider and the mapper can be found within
+ * the Keycloak GUI, and they are typically GUIDs:
  * 
  */
 @ResourceType(type="keycloak:ldap/hardcodedRoleMapper:HardcodedRoleMapper")
 public class HardcodedRoleMapper extends com.pulumi.resources.CustomResource {
     /**
-     * The ID of the LDAP user federation provider to attach this mapper to.
+     * The ldap user federation provider to attach this mapper to.
      * 
      */
     @Export(name="ldapUserFederationId", refs={String.class}, tree="[0]")
     private Output<String> ldapUserFederationId;
 
     /**
-     * @return The ID of the LDAP user federation provider to attach this mapper to.
+     * @return The ldap user federation provider to attach this mapper to.
      * 
      */
     public Output<String> ldapUserFederationId() {
         return this.ldapUserFederationId;
     }
     /**
-     * Display name of this mapper when displayed in the console.
+     * Display name of the mapper when displayed in the console.
      * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
-     * @return Display name of this mapper when displayed in the console.
+     * @return Display name of the mapper when displayed in the console.
      * 
      */
     public Output<String> name() {
         return this.name;
     }
     /**
-     * The realm that this LDAP mapper will exist in.
+     * The realm in which the ldap user federation provider exists.
      * 
      */
     @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**
-     * @return The realm that this LDAP mapper will exist in.
+     * @return The realm in which the ldap user federation provider exists.
      * 
      */
     public Output<String> realmId() {
         return this.realmId;
     }
     /**
-     * The name of the role which should be assigned to the users. Client roles should use the format `{{client_id}}.{{client_role_name}}`.
+     * Role to grant to user.
      * 
      */
     @Export(name="role", refs={String.class}, tree="[0]")
     private Output<String> role;
 
     /**
-     * @return The name of the role which should be assigned to the users. Client roles should use the format `{{client_id}}.{{client_role_name}}`.
+     * @return Role to grant to user.
      * 
      */
     public Output<String> role() {

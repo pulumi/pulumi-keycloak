@@ -16,14 +16,14 @@ public final class HardcodedRoleMapperState extends com.pulumi.resources.Resourc
     public static final HardcodedRoleMapperState Empty = new HardcodedRoleMapperState();
 
     /**
-     * The ID of the LDAP user federation provider to attach this mapper to.
+     * The ldap user federation provider to attach this mapper to.
      * 
      */
     @Import(name="ldapUserFederationId")
     private @Nullable Output<String> ldapUserFederationId;
 
     /**
-     * @return The ID of the LDAP user federation provider to attach this mapper to.
+     * @return The ldap user federation provider to attach this mapper to.
      * 
      */
     public Optional<Output<String>> ldapUserFederationId() {
@@ -31,14 +31,14 @@ public final class HardcodedRoleMapperState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Display name of this mapper when displayed in the console.
+     * Display name of the mapper when displayed in the console.
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return Display name of this mapper when displayed in the console.
+     * @return Display name of the mapper when displayed in the console.
      * 
      */
     public Optional<Output<String>> name() {
@@ -46,14 +46,14 @@ public final class HardcodedRoleMapperState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * The realm that this LDAP mapper will exist in.
+     * The realm in which the ldap user federation provider exists.
      * 
      */
     @Import(name="realmId")
     private @Nullable Output<String> realmId;
 
     /**
-     * @return The realm that this LDAP mapper will exist in.
+     * @return The realm in which the ldap user federation provider exists.
      * 
      */
     public Optional<Output<String>> realmId() {
@@ -61,14 +61,14 @@ public final class HardcodedRoleMapperState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * The name of the role which should be assigned to the users. Client roles should use the format `{{client_id}}.{{client_role_name}}`.
+     * Role to grant to user.
      * 
      */
     @Import(name="role")
     private @Nullable Output<String> role;
 
     /**
-     * @return The name of the role which should be assigned to the users. Client roles should use the format `{{client_id}}.{{client_role_name}}`.
+     * @return Role to grant to user.
      * 
      */
     public Optional<Output<String>> role() {
@@ -103,7 +103,7 @@ public final class HardcodedRoleMapperState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param ldapUserFederationId The ID of the LDAP user federation provider to attach this mapper to.
+         * @param ldapUserFederationId The ldap user federation provider to attach this mapper to.
          * 
          * @return builder
          * 
@@ -114,7 +114,7 @@ public final class HardcodedRoleMapperState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param ldapUserFederationId The ID of the LDAP user federation provider to attach this mapper to.
+         * @param ldapUserFederationId The ldap user federation provider to attach this mapper to.
          * 
          * @return builder
          * 
@@ -124,7 +124,7 @@ public final class HardcodedRoleMapperState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param name Display name of this mapper when displayed in the console.
+         * @param name Display name of the mapper when displayed in the console.
          * 
          * @return builder
          * 
@@ -135,7 +135,7 @@ public final class HardcodedRoleMapperState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param name Display name of this mapper when displayed in the console.
+         * @param name Display name of the mapper when displayed in the console.
          * 
          * @return builder
          * 
@@ -145,7 +145,7 @@ public final class HardcodedRoleMapperState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param realmId The realm that this LDAP mapper will exist in.
+         * @param realmId The realm in which the ldap user federation provider exists.
          * 
          * @return builder
          * 
@@ -156,7 +156,7 @@ public final class HardcodedRoleMapperState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param realmId The realm that this LDAP mapper will exist in.
+         * @param realmId The realm in which the ldap user federation provider exists.
          * 
          * @return builder
          * 
@@ -166,7 +166,7 @@ public final class HardcodedRoleMapperState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param role The name of the role which should be assigned to the users. Client roles should use the format `{{client_id}}.{{client_role_name}}`.
+         * @param role Role to grant to user.
          * 
          * @return builder
          * 
@@ -177,7 +177,7 @@ public final class HardcodedRoleMapperState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param role The name of the role which should be assigned to the users. Client roles should use the format `{{client_id}}.{{client_role_name}}`.
+         * @param role Role to grant to user.
          * 
          * @return builder
          * 

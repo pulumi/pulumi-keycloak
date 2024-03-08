@@ -18,14 +18,14 @@ public final class AttributeImporterIdentityProviderMapperState extends com.pulu
     public static final AttributeImporterIdentityProviderMapperState Empty = new AttributeImporterIdentityProviderMapperState();
 
     /**
-     * For SAML based providers, this is the friendly name of the attribute to search for in the assertion. Conflicts with `attribute_name`.
+     * Attribute Friendly Name
      * 
      */
     @Import(name="attributeFriendlyName")
     private @Nullable Output<String> attributeFriendlyName;
 
     /**
-     * @return For SAML based providers, this is the friendly name of the attribute to search for in the assertion. Conflicts with `attribute_name`.
+     * @return Attribute Friendly Name
      * 
      */
     public Optional<Output<String>> attributeFriendlyName() {
@@ -33,14 +33,14 @@ public final class AttributeImporterIdentityProviderMapperState extends com.pulu
     }
 
     /**
-     * For SAML based providers, this is the name of the attribute to search for in the assertion. Conflicts with `attribute_friendly_name`.
+     * Attribute Name
      * 
      */
     @Import(name="attributeName")
     private @Nullable Output<String> attributeName;
 
     /**
-     * @return For SAML based providers, this is the name of the attribute to search for in the assertion. Conflicts with `attribute_friendly_name`.
+     * @return Attribute Name
      * 
      */
     public Optional<Output<String>> attributeName() {
@@ -48,44 +48,36 @@ public final class AttributeImporterIdentityProviderMapperState extends com.pulu
     }
 
     /**
-     * For OIDC based providers, this is the name of the claim to use.
+     * Claim Name
      * 
      */
     @Import(name="claimName")
     private @Nullable Output<String> claimName;
 
     /**
-     * @return For OIDC based providers, this is the name of the claim to use.
+     * @return Claim Name
      * 
      */
     public Optional<Output<String>> claimName() {
         return Optional.ofNullable(this.claimName);
     }
 
-    /**
-     * Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
-     * 
-     */
     @Import(name="extraConfig")
     private @Nullable Output<Map<String,Object>> extraConfig;
 
-    /**
-     * @return Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
-     * 
-     */
     public Optional<Output<Map<String,Object>>> extraConfig() {
         return Optional.ofNullable(this.extraConfig);
     }
 
     /**
-     * The alias of the associated identity provider.
+     * IDP Alias
      * 
      */
     @Import(name="identityProviderAlias")
     private @Nullable Output<String> identityProviderAlias;
 
     /**
-     * @return The alias of the associated identity provider.
+     * @return IDP Alias
      * 
      */
     public Optional<Output<String>> identityProviderAlias() {
@@ -93,14 +85,14 @@ public final class AttributeImporterIdentityProviderMapperState extends com.pulu
     }
 
     /**
-     * The name of the mapper.
+     * IDP Mapper Name
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return The name of the mapper.
+     * @return IDP Mapper Name
      * 
      */
     public Optional<Output<String>> name() {
@@ -108,14 +100,14 @@ public final class AttributeImporterIdentityProviderMapperState extends com.pulu
     }
 
     /**
-     * The name of the realm.
+     * Realm Name
      * 
      */
     @Import(name="realm")
     private @Nullable Output<String> realm;
 
     /**
-     * @return The name of the realm.
+     * @return Realm Name
      * 
      */
     public Optional<Output<String>> realm() {
@@ -123,14 +115,14 @@ public final class AttributeImporterIdentityProviderMapperState extends com.pulu
     }
 
     /**
-     * The user attribute or property name to store the mapped result.
+     * User Attribute
      * 
      */
     @Import(name="userAttribute")
     private @Nullable Output<String> userAttribute;
 
     /**
-     * @return The user attribute or property name to store the mapped result.
+     * @return User Attribute
      * 
      */
     public Optional<Output<String>> userAttribute() {
@@ -169,7 +161,7 @@ public final class AttributeImporterIdentityProviderMapperState extends com.pulu
         }
 
         /**
-         * @param attributeFriendlyName For SAML based providers, this is the friendly name of the attribute to search for in the assertion. Conflicts with `attribute_name`.
+         * @param attributeFriendlyName Attribute Friendly Name
          * 
          * @return builder
          * 
@@ -180,7 +172,7 @@ public final class AttributeImporterIdentityProviderMapperState extends com.pulu
         }
 
         /**
-         * @param attributeFriendlyName For SAML based providers, this is the friendly name of the attribute to search for in the assertion. Conflicts with `attribute_name`.
+         * @param attributeFriendlyName Attribute Friendly Name
          * 
          * @return builder
          * 
@@ -190,7 +182,7 @@ public final class AttributeImporterIdentityProviderMapperState extends com.pulu
         }
 
         /**
-         * @param attributeName For SAML based providers, this is the name of the attribute to search for in the assertion. Conflicts with `attribute_friendly_name`.
+         * @param attributeName Attribute Name
          * 
          * @return builder
          * 
@@ -201,7 +193,7 @@ public final class AttributeImporterIdentityProviderMapperState extends com.pulu
         }
 
         /**
-         * @param attributeName For SAML based providers, this is the name of the attribute to search for in the assertion. Conflicts with `attribute_friendly_name`.
+         * @param attributeName Attribute Name
          * 
          * @return builder
          * 
@@ -211,7 +203,7 @@ public final class AttributeImporterIdentityProviderMapperState extends com.pulu
         }
 
         /**
-         * @param claimName For OIDC based providers, this is the name of the claim to use.
+         * @param claimName Claim Name
          * 
          * @return builder
          * 
@@ -222,7 +214,7 @@ public final class AttributeImporterIdentityProviderMapperState extends com.pulu
         }
 
         /**
-         * @param claimName For OIDC based providers, this is the name of the claim to use.
+         * @param claimName Claim Name
          * 
          * @return builder
          * 
@@ -231,29 +223,17 @@ public final class AttributeImporterIdentityProviderMapperState extends com.pulu
             return claimName(Output.of(claimName));
         }
 
-        /**
-         * @param extraConfig Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
-         * 
-         * @return builder
-         * 
-         */
         public Builder extraConfig(@Nullable Output<Map<String,Object>> extraConfig) {
             $.extraConfig = extraConfig;
             return this;
         }
 
-        /**
-         * @param extraConfig Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
-         * 
-         * @return builder
-         * 
-         */
         public Builder extraConfig(Map<String,Object> extraConfig) {
             return extraConfig(Output.of(extraConfig));
         }
 
         /**
-         * @param identityProviderAlias The alias of the associated identity provider.
+         * @param identityProviderAlias IDP Alias
          * 
          * @return builder
          * 
@@ -264,7 +244,7 @@ public final class AttributeImporterIdentityProviderMapperState extends com.pulu
         }
 
         /**
-         * @param identityProviderAlias The alias of the associated identity provider.
+         * @param identityProviderAlias IDP Alias
          * 
          * @return builder
          * 
@@ -274,7 +254,7 @@ public final class AttributeImporterIdentityProviderMapperState extends com.pulu
         }
 
         /**
-         * @param name The name of the mapper.
+         * @param name IDP Mapper Name
          * 
          * @return builder
          * 
@@ -285,7 +265,7 @@ public final class AttributeImporterIdentityProviderMapperState extends com.pulu
         }
 
         /**
-         * @param name The name of the mapper.
+         * @param name IDP Mapper Name
          * 
          * @return builder
          * 
@@ -295,7 +275,7 @@ public final class AttributeImporterIdentityProviderMapperState extends com.pulu
         }
 
         /**
-         * @param realm The name of the realm.
+         * @param realm Realm Name
          * 
          * @return builder
          * 
@@ -306,7 +286,7 @@ public final class AttributeImporterIdentityProviderMapperState extends com.pulu
         }
 
         /**
-         * @param realm The name of the realm.
+         * @param realm Realm Name
          * 
          * @return builder
          * 
@@ -316,7 +296,7 @@ public final class AttributeImporterIdentityProviderMapperState extends com.pulu
         }
 
         /**
-         * @param userAttribute The user attribute or property name to store the mapped result.
+         * @param userAttribute User Attribute
          * 
          * @return builder
          * 
@@ -327,7 +307,7 @@ public final class AttributeImporterIdentityProviderMapperState extends com.pulu
         }
 
         /**
-         * @param userAttribute The user attribute or property name to store the mapped result.
+         * @param userAttribute User Attribute
          * 
          * @return builder
          * 

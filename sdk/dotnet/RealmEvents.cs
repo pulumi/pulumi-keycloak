@@ -10,10 +10,13 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak
 {
     /// <summary>
+    /// ## # keycloak.RealmEvents
+    /// 
     /// Allows for managing Realm Events settings within Keycloak.
     /// 
-    /// ## Example Usage
+    /// ### Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -24,77 +27,64 @@ namespace Pulumi.Keycloak
     /// {
     ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         RealmName = "my-realm",
-    ///         Enabled = true,
+    ///         RealmName = "test",
     ///     });
     /// 
     ///     var realmEvents = new Keycloak.RealmEvents("realmEvents", new()
     ///     {
-    ///         RealmId = realm.Id,
-    ///         EventsEnabled = true,
-    ///         EventsExpiration = 3600,
-    ///         AdminEventsEnabled = true,
     ///         AdminEventsDetailsEnabled = true,
+    ///         AdminEventsEnabled = true,
     ///         EnabledEventTypes = new[]
     ///         {
     ///             "LOGIN",
     ///             "LOGOUT",
     ///         },
+    ///         EventsEnabled = true,
+    ///         EventsExpiration = 3600,
     ///         EventsListeners = new[]
     ///         {
     ///             "jboss-logging",
     ///         },
+    ///         RealmId = realm.Id,
     ///     });
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
-    /// ## Import
+    /// ### Argument Reference
     /// 
-    /// This resource currently does not support importing.
+    /// The following arguments are supported:
+    /// 
+    /// - `realm_id` - (Required) The name of the realm the event settings apply to.
+    /// - `admin_events_enabled` - (Optional) When true, admin events are saved to the database, making them available through the admin console. Defaults to `false`.
+    /// - `admin_events_details_enabled` - (Optional) When true, saved admin events will included detailed information for create/update requests. Defaults to `false`.
+    /// - `events_enabled` - (Optional) When true, events from `enabled_event_types` are saved to the database, making them available through the admin console. Defaults to `false`.
+    /// - `events_expiration` - (Optional) The amount of time in seconds events will be saved in the database. Defaults to `0` or never.
+    /// - `enabled_event_types` - (Optional) The event types that will be saved to the database. Omitting this field enables all event types. Defaults to `[]` or all event types.
+    /// - `events_listeners` - (Optional) The event listeners that events should be sent to. Defaults to `[]` or none. Note that new realms enable the `jboss-logging` listener by default, and this resource will remove that unless it is specified.
     /// </summary>
     [KeycloakResourceType("keycloak:index/realmEvents:RealmEvents")]
     public partial class RealmEvents : global::Pulumi.CustomResource
     {
-        /// <summary>
-        /// When `true`, saved admin events will included detailed information for create/update requests. Defaults to `false`.
-        /// </summary>
         [Output("adminEventsDetailsEnabled")]
         public Output<bool?> AdminEventsDetailsEnabled { get; private set; } = null!;
 
-        /// <summary>
-        /// When `true`, admin events are saved to the database, making them available through the admin console. Defaults to `false`.
-        /// </summary>
         [Output("adminEventsEnabled")]
         public Output<bool?> AdminEventsEnabled { get; private set; } = null!;
 
-        /// <summary>
-        /// The event types that will be saved to the database. Omitting this field enables all event types. Defaults to `[]` or all event types.
-        /// </summary>
         [Output("enabledEventTypes")]
         public Output<ImmutableArray<string>> EnabledEventTypes { get; private set; } = null!;
 
-        /// <summary>
-        /// When `true`, events from `enabled_event_types` are saved to the database, making them available through the admin console. Defaults to `false`.
-        /// </summary>
         [Output("eventsEnabled")]
         public Output<bool?> EventsEnabled { get; private set; } = null!;
 
-        /// <summary>
-        /// The amount of time in seconds events will be saved in the database. Defaults to `0` or never.
-        /// </summary>
         [Output("eventsExpiration")]
         public Output<int?> EventsExpiration { get; private set; } = null!;
 
-        /// <summary>
-        /// The event listeners that events should be sent to. Defaults to `[]` or none. Note that new realms enable the `jboss-logging` listener by default, and this resource will remove that unless it is specified.
-        /// </summary>
         [Output("eventsListeners")]
         public Output<ImmutableArray<string>> EventsListeners { get; private set; } = null!;
 
-        /// <summary>
-        /// The name of the realm the event settings apply to.
-        /// </summary>
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
 
@@ -144,57 +134,34 @@ namespace Pulumi.Keycloak
 
     public sealed class RealmEventsArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// When `true`, saved admin events will included detailed information for create/update requests. Defaults to `false`.
-        /// </summary>
         [Input("adminEventsDetailsEnabled")]
         public Input<bool>? AdminEventsDetailsEnabled { get; set; }
 
-        /// <summary>
-        /// When `true`, admin events are saved to the database, making them available through the admin console. Defaults to `false`.
-        /// </summary>
         [Input("adminEventsEnabled")]
         public Input<bool>? AdminEventsEnabled { get; set; }
 
         [Input("enabledEventTypes")]
         private InputList<string>? _enabledEventTypes;
-
-        /// <summary>
-        /// The event types that will be saved to the database. Omitting this field enables all event types. Defaults to `[]` or all event types.
-        /// </summary>
         public InputList<string> EnabledEventTypes
         {
             get => _enabledEventTypes ?? (_enabledEventTypes = new InputList<string>());
             set => _enabledEventTypes = value;
         }
 
-        /// <summary>
-        /// When `true`, events from `enabled_event_types` are saved to the database, making them available through the admin console. Defaults to `false`.
-        /// </summary>
         [Input("eventsEnabled")]
         public Input<bool>? EventsEnabled { get; set; }
 
-        /// <summary>
-        /// The amount of time in seconds events will be saved in the database. Defaults to `0` or never.
-        /// </summary>
         [Input("eventsExpiration")]
         public Input<int>? EventsExpiration { get; set; }
 
         [Input("eventsListeners")]
         private InputList<string>? _eventsListeners;
-
-        /// <summary>
-        /// The event listeners that events should be sent to. Defaults to `[]` or none. Note that new realms enable the `jboss-logging` listener by default, and this resource will remove that unless it is specified.
-        /// </summary>
         public InputList<string> EventsListeners
         {
             get => _eventsListeners ?? (_eventsListeners = new InputList<string>());
             set => _eventsListeners = value;
         }
 
-        /// <summary>
-        /// The name of the realm the event settings apply to.
-        /// </summary>
         [Input("realmId", required: true)]
         public Input<string> RealmId { get; set; } = null!;
 
@@ -206,57 +173,34 @@ namespace Pulumi.Keycloak
 
     public sealed class RealmEventsState : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// When `true`, saved admin events will included detailed information for create/update requests. Defaults to `false`.
-        /// </summary>
         [Input("adminEventsDetailsEnabled")]
         public Input<bool>? AdminEventsDetailsEnabled { get; set; }
 
-        /// <summary>
-        /// When `true`, admin events are saved to the database, making them available through the admin console. Defaults to `false`.
-        /// </summary>
         [Input("adminEventsEnabled")]
         public Input<bool>? AdminEventsEnabled { get; set; }
 
         [Input("enabledEventTypes")]
         private InputList<string>? _enabledEventTypes;
-
-        /// <summary>
-        /// The event types that will be saved to the database. Omitting this field enables all event types. Defaults to `[]` or all event types.
-        /// </summary>
         public InputList<string> EnabledEventTypes
         {
             get => _enabledEventTypes ?? (_enabledEventTypes = new InputList<string>());
             set => _enabledEventTypes = value;
         }
 
-        /// <summary>
-        /// When `true`, events from `enabled_event_types` are saved to the database, making them available through the admin console. Defaults to `false`.
-        /// </summary>
         [Input("eventsEnabled")]
         public Input<bool>? EventsEnabled { get; set; }
 
-        /// <summary>
-        /// The amount of time in seconds events will be saved in the database. Defaults to `0` or never.
-        /// </summary>
         [Input("eventsExpiration")]
         public Input<int>? EventsExpiration { get; set; }
 
         [Input("eventsListeners")]
         private InputList<string>? _eventsListeners;
-
-        /// <summary>
-        /// The event listeners that events should be sent to. Defaults to `[]` or none. Note that new realms enable the `jboss-logging` listener by default, and this resource will remove that unless it is specified.
-        /// </summary>
         public InputList<string> EventsListeners
         {
             get => _eventsListeners ?? (_eventsListeners = new InputList<string>());
             set => _eventsListeners = value;
         }
 
-        /// <summary>
-        /// The name of the realm the event settings apply to.
-        /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
 

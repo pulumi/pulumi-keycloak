@@ -167,6 +167,7 @@ class ExecutionConfig(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -189,18 +190,19 @@ class ExecutionConfig(pulumi.CustomResource):
                 "defaultProvider": "my-config-default-idp",
             })
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Configurations can be imported using the format `{{realm}}/{{authenticationExecutionId}}/{{authenticationExecutionConfigId}}`.
 
-         If the `authenticationExecutionId` is incorrect, the import will still be successful.
+        If the `authenticationExecutionId` is incorrect, the import will still be successful.
 
-         A subsequent apply will change the `authenticationExecutionId` to the correct one, which causes the configuration to be replaced.
+        A subsequent apply will change the `authenticationExecutionId` to the correct one, which causes the configuration to be replaced.
 
-         Example:
+        Example:
 
-         bash
+        bash
 
         ```sh
         $ pulumi import keycloak:authentication/executionConfig:ExecutionConfig config my-realm/be081463-ddbf-4b42-9eff-9c97886f24ff/30559fcf-6fb8-45ea-8c46-2b86f46ebc17
@@ -225,6 +227,7 @@ class ExecutionConfig(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -247,18 +250,19 @@ class ExecutionConfig(pulumi.CustomResource):
                 "defaultProvider": "my-config-default-idp",
             })
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Configurations can be imported using the format `{{realm}}/{{authenticationExecutionId}}/{{authenticationExecutionConfigId}}`.
 
-         If the `authenticationExecutionId` is incorrect, the import will still be successful.
+        If the `authenticationExecutionId` is incorrect, the import will still be successful.
 
-         A subsequent apply will change the `authenticationExecutionId` to the correct one, which causes the configuration to be replaced.
+        A subsequent apply will change the `authenticationExecutionId` to the correct one, which causes the configuration to be replaced.
 
-         Example:
+        Example:
 
-         bash
+        bash
 
         ```sh
         $ pulumi import keycloak:authentication/executionConfig:ExecutionConfig config my-realm/be081463-ddbf-4b42-9eff-9c97886f24ff/30559fcf-6fb8-45ea-8c46-2b86f46ebc17

@@ -5,54 +5,67 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * ## # keycloak.Group
+ *
  * Allows for creating and managing Groups within Keycloak.
  *
- * Groups provide a logical wrapping for users within Keycloak. Users within a group can share attributes and roles, and
- * group membership can be mapped to a claim.
+ * Groups provide a logical wrapping for users within Keycloak. Users within a
+ * group can share attributes and roles, and group membership can be mapped
+ * to a claim.
  *
  * Attributes can also be defined on Groups.
  *
- * Groups can also be federated from external data sources, such as LDAP or Active Directory. This resource **should not**
- * be used to manage groups that were created this way.
+ * Groups can also be federated from external data sources, such as LDAP or Active Directory.
+ * This resource **should not** be used to manage groups that were created this way.
  *
- * ## Example Usage
+ * ### Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {
- *     realm: "my-realm",
  *     enabled: true,
+ *     realm: "my-realm",
  * });
  * const parentGroup = new keycloak.Group("parentGroup", {realmId: realm.id});
  * const childGroup = new keycloak.Group("childGroup", {
- *     realmId: realm.id,
  *     parentId: parentGroup.id,
+ *     realmId: realm.id,
  * });
  * const childGroupWithOptionalAttributes = new keycloak.Group("childGroupWithOptionalAttributes", {
- *     realmId: realm.id,
- *     parentId: parentGroup.id,
  *     attributes: {
- *         foo: "bar",
- *         multivalue: "value1##value2",
+ *         key1: "value1",
+ *         key2: "value2",
  *     },
+ *     parentId: parentGroup.id,
+ *     realmId: realm.id,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
- * ## Import
+ * ### Argument Reference
  *
- * Groups can be imported using the format `{{realm_id}}/{{group_id}}`, where `group_id` is the unique ID that Keycloak
+ * The following arguments are supported:
  *
- *  assigns to the group upon creation. This value can be found in the URI when editing this group in the GUI, and is typically a GUID.
+ * - `realmId` - (Required) The realm this group exists in.
+ * - `parentId` - (Optional) The ID of this group's parent. If omitted, this group will be defined at the root level.
+ * - `name` - (Required) The name of the group.
+ * - `attributes` - (Optional) A dict of key/value pairs to set as custom attributes for the group.
  *
- *  Example:
+ * ### Attributes Reference
  *
- *  bash
+ * In addition to the arguments listed above, the following computed attributes are exported:
  *
- * ```sh
- * $ pulumi import keycloak:index/group:Group child_group my-realm/934a4a4e-28bd-4703-a0fa-332df153aabd
- * ```
+ * - `path` - The complete path of the group. For example, the child group's path in the example configuration would be `/parent-group/child-group`.
+ *
+ * ### Import
+ *
+ * Groups can be imported using the format `{{realm_id}}/{{group_id}}`, where `groupId` is the unique ID that Keycloak
+ * assigns to the group upon creation. This value can be found in the URI when editing this group in the GUI, and is typically a GUID.
+ *
+ * Example:
  */
 export class Group extends pulumi.CustomResource {
     /**
@@ -82,25 +95,10 @@ export class Group extends pulumi.CustomResource {
         return obj['__pulumiType'] === Group.__pulumiType;
     }
 
-    /**
-     * A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
-     */
     public readonly attributes!: pulumi.Output<{[key: string]: any} | undefined>;
-    /**
-     * The name of the group.
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * The ID of this group's parent. If omitted, this group will be defined at the root level.
-     */
     public readonly parentId!: pulumi.Output<string | undefined>;
-    /**
-     * (Computed) The complete path of the group. For example, the child group's path in the example configuration would be `/parent-group/child-group`.
-     */
     public /*out*/ readonly path!: pulumi.Output<string>;
-    /**
-     * The realm this group exists in.
-     */
     public readonly realmId!: pulumi.Output<string>;
 
     /**
@@ -141,25 +139,10 @@ export class Group extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Group resources.
  */
 export interface GroupState {
-    /**
-     * A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
-     */
     attributes?: pulumi.Input<{[key: string]: any}>;
-    /**
-     * The name of the group.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * The ID of this group's parent. If omitted, this group will be defined at the root level.
-     */
     parentId?: pulumi.Input<string>;
-    /**
-     * (Computed) The complete path of the group. For example, the child group's path in the example configuration would be `/parent-group/child-group`.
-     */
     path?: pulumi.Input<string>;
-    /**
-     * The realm this group exists in.
-     */
     realmId?: pulumi.Input<string>;
 }
 
@@ -167,20 +150,8 @@ export interface GroupState {
  * The set of arguments for constructing a Group resource.
  */
 export interface GroupArgs {
-    /**
-     * A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
-     */
     attributes?: pulumi.Input<{[key: string]: any}>;
-    /**
-     * The name of the group.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * The ID of this group's parent. If omitted, this group will be defined at the root level.
-     */
     parentId?: pulumi.Input<string>;
-    /**
-     * The realm this group exists in.
-     */
     realmId: pulumi.Input<string>;
 }

@@ -17,14 +17,14 @@ public final class UserAttributeProtocolMapperState extends com.pulumi.resources
     public static final UserAttributeProtocolMapperState Empty = new UserAttributeProtocolMapperState();
 
     /**
-     * Indicates if the attribute should be added as a claim to the access token. Defaults to `true`.
+     * Indicates if the attribute should be a claim in the access token.
      * 
      */
     @Import(name="addToAccessToken")
     private @Nullable Output<Boolean> addToAccessToken;
 
     /**
-     * @return Indicates if the attribute should be added as a claim to the access token. Defaults to `true`.
+     * @return Indicates if the attribute should be a claim in the access token.
      * 
      */
     public Optional<Output<Boolean>> addToAccessToken() {
@@ -32,14 +32,14 @@ public final class UserAttributeProtocolMapperState extends com.pulumi.resources
     }
 
     /**
-     * Indicates if the attribute should be added as a claim to the id token. Defaults to `true`.
+     * Indicates if the attribute should be a claim in the id token.
      * 
      */
     @Import(name="addToIdToken")
     private @Nullable Output<Boolean> addToIdToken;
 
     /**
-     * @return Indicates if the attribute should be added as a claim to the id token. Defaults to `true`.
+     * @return Indicates if the attribute should be a claim in the id token.
      * 
      */
     public Optional<Output<Boolean>> addToIdToken() {
@@ -47,14 +47,14 @@ public final class UserAttributeProtocolMapperState extends com.pulumi.resources
     }
 
     /**
-     * Indicates if the attribute should be added as a claim to the UserInfo response body. Defaults to `true`.
+     * Indicates if the attribute should appear in the userinfo response body.
      * 
      */
     @Import(name="addToUserinfo")
     private @Nullable Output<Boolean> addToUserinfo;
 
     /**
-     * @return Indicates if the attribute should be added as a claim to the UserInfo response body. Defaults to `true`.
+     * @return Indicates if the attribute should appear in the userinfo response body.
      * 
      */
     public Optional<Output<Boolean>> addToUserinfo() {
@@ -62,44 +62,36 @@ public final class UserAttributeProtocolMapperState extends com.pulumi.resources
     }
 
     /**
-     * Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
+     * Indicates if attribute values should be aggregated within the group attributes
      * 
      */
     @Import(name="aggregateAttributes")
     private @Nullable Output<Boolean> aggregateAttributes;
 
     /**
-     * @return Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
+     * @return Indicates if attribute values should be aggregated within the group attributes
      * 
      */
     public Optional<Output<Boolean>> aggregateAttributes() {
         return Optional.ofNullable(this.aggregateAttributes);
     }
 
-    /**
-     * The name of the claim to insert into a token.
-     * 
-     */
     @Import(name="claimName")
     private @Nullable Output<String> claimName;
 
-    /**
-     * @return The name of the claim to insert into a token.
-     * 
-     */
     public Optional<Output<String>> claimName() {
         return Optional.ofNullable(this.claimName);
     }
 
     /**
-     * The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
+     * Claim type used when serializing tokens.
      * 
      */
     @Import(name="claimValueType")
     private @Nullable Output<String> claimValueType;
 
     /**
-     * @return The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
+     * @return Claim type used when serializing tokens.
      * 
      */
     public Optional<Output<String>> claimValueType() {
@@ -107,14 +99,14 @@ public final class UserAttributeProtocolMapperState extends com.pulumi.resources
     }
 
     /**
-     * The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+     * The mapper&#39;s associated client. Cannot be used at the same time as client_scope_id.
      * 
      */
     @Import(name="clientId")
     private @Nullable Output<String> clientId;
 
     /**
-     * @return The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+     * @return The mapper&#39;s associated client. Cannot be used at the same time as client_scope_id.
      * 
      */
     public Optional<Output<String>> clientId() {
@@ -122,14 +114,14 @@ public final class UserAttributeProtocolMapperState extends com.pulumi.resources
     }
 
     /**
-     * The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+     * The mapper&#39;s associated client scope. Cannot be used at the same time as client_id.
      * 
      */
     @Import(name="clientScopeId")
     private @Nullable Output<String> clientScopeId;
 
     /**
-     * @return The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+     * @return The mapper&#39;s associated client scope. Cannot be used at the same time as client_id.
      * 
      */
     public Optional<Output<String>> clientScopeId() {
@@ -137,14 +129,14 @@ public final class UserAttributeProtocolMapperState extends com.pulumi.resources
     }
 
     /**
-     * Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
+     * Indicates whether this attribute is a single value or an array of values.
      * 
      */
     @Import(name="multivalued")
     private @Nullable Output<Boolean> multivalued;
 
     /**
-     * @return Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
+     * @return Indicates whether this attribute is a single value or an array of values.
      * 
      */
     public Optional<Output<Boolean>> multivalued() {
@@ -152,14 +144,14 @@ public final class UserAttributeProtocolMapperState extends com.pulumi.resources
     }
 
     /**
-     * The display name of this protocol mapper in the GUI.
+     * A human-friendly name that will appear in the Keycloak console.
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return The display name of this protocol mapper in the GUI.
+     * @return A human-friendly name that will appear in the Keycloak console.
      * 
      */
     public Optional<Output<String>> name() {
@@ -167,31 +159,23 @@ public final class UserAttributeProtocolMapperState extends com.pulumi.resources
     }
 
     /**
-     * The realm this protocol mapper exists within.
+     * The realm id where the associated client or client scope exists.
      * 
      */
     @Import(name="realmId")
     private @Nullable Output<String> realmId;
 
     /**
-     * @return The realm this protocol mapper exists within.
+     * @return The realm id where the associated client or client scope exists.
      * 
      */
     public Optional<Output<String>> realmId() {
         return Optional.ofNullable(this.realmId);
     }
 
-    /**
-     * The custom user attribute to map a claim for.
-     * 
-     */
     @Import(name="userAttribute")
     private @Nullable Output<String> userAttribute;
 
-    /**
-     * @return The custom user attribute to map a claim for.
-     * 
-     */
     public Optional<Output<String>> userAttribute() {
         return Optional.ofNullable(this.userAttribute);
     }
@@ -232,7 +216,7 @@ public final class UserAttributeProtocolMapperState extends com.pulumi.resources
         }
 
         /**
-         * @param addToAccessToken Indicates if the attribute should be added as a claim to the access token. Defaults to `true`.
+         * @param addToAccessToken Indicates if the attribute should be a claim in the access token.
          * 
          * @return builder
          * 
@@ -243,7 +227,7 @@ public final class UserAttributeProtocolMapperState extends com.pulumi.resources
         }
 
         /**
-         * @param addToAccessToken Indicates if the attribute should be added as a claim to the access token. Defaults to `true`.
+         * @param addToAccessToken Indicates if the attribute should be a claim in the access token.
          * 
          * @return builder
          * 
@@ -253,7 +237,7 @@ public final class UserAttributeProtocolMapperState extends com.pulumi.resources
         }
 
         /**
-         * @param addToIdToken Indicates if the attribute should be added as a claim to the id token. Defaults to `true`.
+         * @param addToIdToken Indicates if the attribute should be a claim in the id token.
          * 
          * @return builder
          * 
@@ -264,7 +248,7 @@ public final class UserAttributeProtocolMapperState extends com.pulumi.resources
         }
 
         /**
-         * @param addToIdToken Indicates if the attribute should be added as a claim to the id token. Defaults to `true`.
+         * @param addToIdToken Indicates if the attribute should be a claim in the id token.
          * 
          * @return builder
          * 
@@ -274,7 +258,7 @@ public final class UserAttributeProtocolMapperState extends com.pulumi.resources
         }
 
         /**
-         * @param addToUserinfo Indicates if the attribute should be added as a claim to the UserInfo response body. Defaults to `true`.
+         * @param addToUserinfo Indicates if the attribute should appear in the userinfo response body.
          * 
          * @return builder
          * 
@@ -285,7 +269,7 @@ public final class UserAttributeProtocolMapperState extends com.pulumi.resources
         }
 
         /**
-         * @param addToUserinfo Indicates if the attribute should be added as a claim to the UserInfo response body. Defaults to `true`.
+         * @param addToUserinfo Indicates if the attribute should appear in the userinfo response body.
          * 
          * @return builder
          * 
@@ -295,7 +279,7 @@ public final class UserAttributeProtocolMapperState extends com.pulumi.resources
         }
 
         /**
-         * @param aggregateAttributes Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
+         * @param aggregateAttributes Indicates if attribute values should be aggregated within the group attributes
          * 
          * @return builder
          * 
@@ -306,7 +290,7 @@ public final class UserAttributeProtocolMapperState extends com.pulumi.resources
         }
 
         /**
-         * @param aggregateAttributes Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
+         * @param aggregateAttributes Indicates if attribute values should be aggregated within the group attributes
          * 
          * @return builder
          * 
@@ -315,29 +299,17 @@ public final class UserAttributeProtocolMapperState extends com.pulumi.resources
             return aggregateAttributes(Output.of(aggregateAttributes));
         }
 
-        /**
-         * @param claimName The name of the claim to insert into a token.
-         * 
-         * @return builder
-         * 
-         */
         public Builder claimName(@Nullable Output<String> claimName) {
             $.claimName = claimName;
             return this;
         }
 
-        /**
-         * @param claimName The name of the claim to insert into a token.
-         * 
-         * @return builder
-         * 
-         */
         public Builder claimName(String claimName) {
             return claimName(Output.of(claimName));
         }
 
         /**
-         * @param claimValueType The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
+         * @param claimValueType Claim type used when serializing tokens.
          * 
          * @return builder
          * 
@@ -348,7 +320,7 @@ public final class UserAttributeProtocolMapperState extends com.pulumi.resources
         }
 
         /**
-         * @param claimValueType The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
+         * @param claimValueType Claim type used when serializing tokens.
          * 
          * @return builder
          * 
@@ -358,7 +330,7 @@ public final class UserAttributeProtocolMapperState extends com.pulumi.resources
         }
 
         /**
-         * @param clientId The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+         * @param clientId The mapper&#39;s associated client. Cannot be used at the same time as client_scope_id.
          * 
          * @return builder
          * 
@@ -369,7 +341,7 @@ public final class UserAttributeProtocolMapperState extends com.pulumi.resources
         }
 
         /**
-         * @param clientId The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+         * @param clientId The mapper&#39;s associated client. Cannot be used at the same time as client_scope_id.
          * 
          * @return builder
          * 
@@ -379,7 +351,7 @@ public final class UserAttributeProtocolMapperState extends com.pulumi.resources
         }
 
         /**
-         * @param clientScopeId The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+         * @param clientScopeId The mapper&#39;s associated client scope. Cannot be used at the same time as client_id.
          * 
          * @return builder
          * 
@@ -390,7 +362,7 @@ public final class UserAttributeProtocolMapperState extends com.pulumi.resources
         }
 
         /**
-         * @param clientScopeId The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+         * @param clientScopeId The mapper&#39;s associated client scope. Cannot be used at the same time as client_id.
          * 
          * @return builder
          * 
@@ -400,7 +372,7 @@ public final class UserAttributeProtocolMapperState extends com.pulumi.resources
         }
 
         /**
-         * @param multivalued Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
+         * @param multivalued Indicates whether this attribute is a single value or an array of values.
          * 
          * @return builder
          * 
@@ -411,7 +383,7 @@ public final class UserAttributeProtocolMapperState extends com.pulumi.resources
         }
 
         /**
-         * @param multivalued Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
+         * @param multivalued Indicates whether this attribute is a single value or an array of values.
          * 
          * @return builder
          * 
@@ -421,7 +393,7 @@ public final class UserAttributeProtocolMapperState extends com.pulumi.resources
         }
 
         /**
-         * @param name The display name of this protocol mapper in the GUI.
+         * @param name A human-friendly name that will appear in the Keycloak console.
          * 
          * @return builder
          * 
@@ -432,7 +404,7 @@ public final class UserAttributeProtocolMapperState extends com.pulumi.resources
         }
 
         /**
-         * @param name The display name of this protocol mapper in the GUI.
+         * @param name A human-friendly name that will appear in the Keycloak console.
          * 
          * @return builder
          * 
@@ -442,7 +414,7 @@ public final class UserAttributeProtocolMapperState extends com.pulumi.resources
         }
 
         /**
-         * @param realmId The realm this protocol mapper exists within.
+         * @param realmId The realm id where the associated client or client scope exists.
          * 
          * @return builder
          * 
@@ -453,7 +425,7 @@ public final class UserAttributeProtocolMapperState extends com.pulumi.resources
         }
 
         /**
-         * @param realmId The realm this protocol mapper exists within.
+         * @param realmId The realm id where the associated client or client scope exists.
          * 
          * @return builder
          * 
@@ -462,23 +434,11 @@ public final class UserAttributeProtocolMapperState extends com.pulumi.resources
             return realmId(Output.of(realmId));
         }
 
-        /**
-         * @param userAttribute The custom user attribute to map a claim for.
-         * 
-         * @return builder
-         * 
-         */
         public Builder userAttribute(@Nullable Output<String> userAttribute) {
             $.userAttribute = userAttribute;
             return this;
         }
 
-        /**
-         * @param userAttribute The custom user attribute to map a claim for.
-         * 
-         * @return builder
-         * 
-         */
         public Builder userAttribute(String userAttribute) {
             return userAttribute(Output.of(userAttribute));
         }

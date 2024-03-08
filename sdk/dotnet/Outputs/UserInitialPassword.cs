@@ -13,13 +13,7 @@ namespace Pulumi.Keycloak.Outputs
     [OutputType]
     public sealed class UserInitialPassword
     {
-        /// <summary>
-        /// If set to `true`, the initial password is set up for renewal on first use. Default to `false`.
-        /// </summary>
         public readonly bool? Temporary;
-        /// <summary>
-        /// The initial password.
-        /// </summary>
         public readonly string Value;
 
         [OutputConstructor]

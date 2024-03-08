@@ -29,17 +29,6 @@ class UserArgs:
                  required_actions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a User resource.
-        :param pulumi.Input[str] realm_id: The realm this user belongs to.
-        :param pulumi.Input[str] username: The unique username of this user.
-        :param pulumi.Input[Mapping[str, Any]] attributes: A map representing attributes for the user. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
-        :param pulumi.Input[str] email: The user's email.
-        :param pulumi.Input[bool] email_verified: Whether the email address was validated or not. Default to `false`.
-        :param pulumi.Input[bool] enabled: When false, this user cannot log in. Defaults to `true`.
-        :param pulumi.Input[Sequence[pulumi.Input['UserFederatedIdentityArgs']]] federated_identities: When specified, the user will be linked to a federated identity provider. Refer to the federated user example for more details.
-        :param pulumi.Input[str] first_name: The user's first name.
-        :param pulumi.Input['UserInitialPasswordArgs'] initial_password: When given, the user's initial password will be set. This attribute is only respected during initial user creation.
-        :param pulumi.Input[str] last_name: The user's last name.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] required_actions: A list of required user actions.
         """
         pulumi.set(__self__, "realm_id", realm_id)
         pulumi.set(__self__, "username", username)
@@ -65,9 +54,6 @@ class UserArgs:
     @property
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Input[str]:
-        """
-        The realm this user belongs to.
-        """
         return pulumi.get(self, "realm_id")
 
     @realm_id.setter
@@ -77,9 +63,6 @@ class UserArgs:
     @property
     @pulumi.getter
     def username(self) -> pulumi.Input[str]:
-        """
-        The unique username of this user.
-        """
         return pulumi.get(self, "username")
 
     @username.setter
@@ -89,9 +72,6 @@ class UserArgs:
     @property
     @pulumi.getter
     def attributes(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
-        """
-        A map representing attributes for the user. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
-        """
         return pulumi.get(self, "attributes")
 
     @attributes.setter
@@ -101,9 +81,6 @@ class UserArgs:
     @property
     @pulumi.getter
     def email(self) -> Optional[pulumi.Input[str]]:
-        """
-        The user's email.
-        """
         return pulumi.get(self, "email")
 
     @email.setter
@@ -113,9 +90,6 @@ class UserArgs:
     @property
     @pulumi.getter(name="emailVerified")
     def email_verified(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Whether the email address was validated or not. Default to `false`.
-        """
         return pulumi.get(self, "email_verified")
 
     @email_verified.setter
@@ -125,9 +99,6 @@ class UserArgs:
     @property
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input[bool]]:
-        """
-        When false, this user cannot log in. Defaults to `true`.
-        """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
@@ -137,9 +108,6 @@ class UserArgs:
     @property
     @pulumi.getter(name="federatedIdentities")
     def federated_identities(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['UserFederatedIdentityArgs']]]]:
-        """
-        When specified, the user will be linked to a federated identity provider. Refer to the federated user example for more details.
-        """
         return pulumi.get(self, "federated_identities")
 
     @federated_identities.setter
@@ -149,9 +117,6 @@ class UserArgs:
     @property
     @pulumi.getter(name="firstName")
     def first_name(self) -> Optional[pulumi.Input[str]]:
-        """
-        The user's first name.
-        """
         return pulumi.get(self, "first_name")
 
     @first_name.setter
@@ -161,9 +126,6 @@ class UserArgs:
     @property
     @pulumi.getter(name="initialPassword")
     def initial_password(self) -> Optional[pulumi.Input['UserInitialPasswordArgs']]:
-        """
-        When given, the user's initial password will be set. This attribute is only respected during initial user creation.
-        """
         return pulumi.get(self, "initial_password")
 
     @initial_password.setter
@@ -173,9 +135,6 @@ class UserArgs:
     @property
     @pulumi.getter(name="lastName")
     def last_name(self) -> Optional[pulumi.Input[str]]:
-        """
-        The user's last name.
-        """
         return pulumi.get(self, "last_name")
 
     @last_name.setter
@@ -185,9 +144,6 @@ class UserArgs:
     @property
     @pulumi.getter(name="requiredActions")
     def required_actions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        A list of required user actions.
-        """
         return pulumi.get(self, "required_actions")
 
     @required_actions.setter
@@ -211,17 +167,6 @@ class _UserState:
                  username: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering User resources.
-        :param pulumi.Input[Mapping[str, Any]] attributes: A map representing attributes for the user. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
-        :param pulumi.Input[str] email: The user's email.
-        :param pulumi.Input[bool] email_verified: Whether the email address was validated or not. Default to `false`.
-        :param pulumi.Input[bool] enabled: When false, this user cannot log in. Defaults to `true`.
-        :param pulumi.Input[Sequence[pulumi.Input['UserFederatedIdentityArgs']]] federated_identities: When specified, the user will be linked to a federated identity provider. Refer to the federated user example for more details.
-        :param pulumi.Input[str] first_name: The user's first name.
-        :param pulumi.Input['UserInitialPasswordArgs'] initial_password: When given, the user's initial password will be set. This attribute is only respected during initial user creation.
-        :param pulumi.Input[str] last_name: The user's last name.
-        :param pulumi.Input[str] realm_id: The realm this user belongs to.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] required_actions: A list of required user actions.
-        :param pulumi.Input[str] username: The unique username of this user.
         """
         if attributes is not None:
             pulumi.set(__self__, "attributes", attributes)
@@ -249,9 +194,6 @@ class _UserState:
     @property
     @pulumi.getter
     def attributes(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
-        """
-        A map representing attributes for the user. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
-        """
         return pulumi.get(self, "attributes")
 
     @attributes.setter
@@ -261,9 +203,6 @@ class _UserState:
     @property
     @pulumi.getter
     def email(self) -> Optional[pulumi.Input[str]]:
-        """
-        The user's email.
-        """
         return pulumi.get(self, "email")
 
     @email.setter
@@ -273,9 +212,6 @@ class _UserState:
     @property
     @pulumi.getter(name="emailVerified")
     def email_verified(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Whether the email address was validated or not. Default to `false`.
-        """
         return pulumi.get(self, "email_verified")
 
     @email_verified.setter
@@ -285,9 +221,6 @@ class _UserState:
     @property
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input[bool]]:
-        """
-        When false, this user cannot log in. Defaults to `true`.
-        """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
@@ -297,9 +230,6 @@ class _UserState:
     @property
     @pulumi.getter(name="federatedIdentities")
     def federated_identities(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['UserFederatedIdentityArgs']]]]:
-        """
-        When specified, the user will be linked to a federated identity provider. Refer to the federated user example for more details.
-        """
         return pulumi.get(self, "federated_identities")
 
     @federated_identities.setter
@@ -309,9 +239,6 @@ class _UserState:
     @property
     @pulumi.getter(name="firstName")
     def first_name(self) -> Optional[pulumi.Input[str]]:
-        """
-        The user's first name.
-        """
         return pulumi.get(self, "first_name")
 
     @first_name.setter
@@ -321,9 +248,6 @@ class _UserState:
     @property
     @pulumi.getter(name="initialPassword")
     def initial_password(self) -> Optional[pulumi.Input['UserInitialPasswordArgs']]:
-        """
-        When given, the user's initial password will be set. This attribute is only respected during initial user creation.
-        """
         return pulumi.get(self, "initial_password")
 
     @initial_password.setter
@@ -333,9 +257,6 @@ class _UserState:
     @property
     @pulumi.getter(name="lastName")
     def last_name(self) -> Optional[pulumi.Input[str]]:
-        """
-        The user's last name.
-        """
         return pulumi.get(self, "last_name")
 
     @last_name.setter
@@ -345,9 +266,6 @@ class _UserState:
     @property
     @pulumi.getter(name="realmId")
     def realm_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        The realm this user belongs to.
-        """
         return pulumi.get(self, "realm_id")
 
     @realm_id.setter
@@ -357,9 +275,6 @@ class _UserState:
     @property
     @pulumi.getter(name="requiredActions")
     def required_actions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        A list of required user actions.
-        """
         return pulumi.get(self, "required_actions")
 
     @required_actions.setter
@@ -369,9 +284,6 @@ class _UserState:
     @property
     @pulumi.getter
     def username(self) -> Optional[pulumi.Input[str]]:
-        """
-        The unique username of this user.
-        """
         return pulumi.get(self, "username")
 
     @username.setter
@@ -397,72 +309,69 @@ class User(pulumi.CustomResource):
                  username: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        ## # User
+
         Allows for creating and managing Users within Keycloak.
 
-        This resource was created primarily to enable the acceptance tests for the `Group` resource. Creating users within
-        Keycloak is not recommended. Instead, users should be federated from external sources by configuring user federation providers
-        or identity providers.
+        This resource was created primarily to enable the acceptance tests for the `Group` resource.
+        Creating users within Keycloak is not recommended. Instead, users should be federated from external sources
+        by configuring user federation providers or identity providers.
 
-        ## Example Usage
+        ### Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
+            enabled=True,
+            realm="my-realm")
         user = keycloak.User("user",
-            realm_id=realm.id,
-            username="bob",
-            enabled=True,
             email="bob@domain.com",
-            first_name="Bob",
-            last_name="Bobson")
-        user_with_initial_password = keycloak.User("userWithInitialPassword",
-            realm_id=realm.id,
-            username="alice",
             enabled=True,
+            first_name="Bob",
+            last_name="Bobson",
+            realm_id=realm.id,
+            username="bob")
+        user_with_initial_password = keycloak.User("userWithInitialPassword",
             email="alice@domain.com",
+            enabled=True,
             first_name="Alice",
-            last_name="Aliceberg",
-            attributes={
-                "foo": "bar",
-                "multivalue": "value1##value2",
-            },
             initial_password=keycloak.UserInitialPasswordArgs(
-                value="some password",
                 temporary=True,
-            ))
+                value="some password",
+            ),
+            last_name="Aliceberg",
+            realm_id=realm.id,
+            username="alice")
         ```
+        <!--End PulumiCodeChooser -->
 
-        ## Import
+        ### Argument Reference
+
+        The following arguments are supported:
+
+        - `realm_id` - (Required) The realm this user belongs to.
+        - `username` - (Required) The unique username of this user.
+        - `initial_password` (Optional) When given, the user's initial password will be set.
+           This attribute is only respected during initial user creation.
+            - `value` (Required) The initial password.
+            - `temporary` (Optional) If set to `true`, the initial password is set up for renewal on first use. Default to `false`.
+        - `enabled` - (Optional) When false, this user cannot log in. Defaults to `true`.
+        - `email` - (Optional) The user's email.
+        - `first_name` - (Optional) The user's first name.
+        - `last_name` - (Optional) The user's last name.
+
+        ### Import
 
         Users can be imported using the format `{{realm_id}}/{{user_id}}`, where `user_id` is the unique ID that Keycloak
+        assigns to the user upon creation. This value can be found in the GUI when editing the user.
 
-         assigns to the user upon creation. This value can be found in the GUI when editing the user.
-
-         Example:
-
-         bash
-
-        ```sh
-        $ pulumi import keycloak:index/user:User user my-realm/60c3f971-b1d3-4b3a-9035-d16d7540a5e4
-        ```
+        Example:
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Mapping[str, Any]] attributes: A map representing attributes for the user. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
-        :param pulumi.Input[str] email: The user's email.
-        :param pulumi.Input[bool] email_verified: Whether the email address was validated or not. Default to `false`.
-        :param pulumi.Input[bool] enabled: When false, this user cannot log in. Defaults to `true`.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['UserFederatedIdentityArgs']]]] federated_identities: When specified, the user will be linked to a federated identity provider. Refer to the federated user example for more details.
-        :param pulumi.Input[str] first_name: The user's first name.
-        :param pulumi.Input[pulumi.InputType['UserInitialPasswordArgs']] initial_password: When given, the user's initial password will be set. This attribute is only respected during initial user creation.
-        :param pulumi.Input[str] last_name: The user's last name.
-        :param pulumi.Input[str] realm_id: The realm this user belongs to.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] required_actions: A list of required user actions.
-        :param pulumi.Input[str] username: The unique username of this user.
         """
         ...
     @overload
@@ -471,58 +380,66 @@ class User(pulumi.CustomResource):
                  args: UserArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## # User
+
         Allows for creating and managing Users within Keycloak.
 
-        This resource was created primarily to enable the acceptance tests for the `Group` resource. Creating users within
-        Keycloak is not recommended. Instead, users should be federated from external sources by configuring user federation providers
-        or identity providers.
+        This resource was created primarily to enable the acceptance tests for the `Group` resource.
+        Creating users within Keycloak is not recommended. Instead, users should be federated from external sources
+        by configuring user federation providers or identity providers.
 
-        ## Example Usage
+        ### Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
+            enabled=True,
+            realm="my-realm")
         user = keycloak.User("user",
-            realm_id=realm.id,
-            username="bob",
-            enabled=True,
             email="bob@domain.com",
-            first_name="Bob",
-            last_name="Bobson")
-        user_with_initial_password = keycloak.User("userWithInitialPassword",
-            realm_id=realm.id,
-            username="alice",
             enabled=True,
+            first_name="Bob",
+            last_name="Bobson",
+            realm_id=realm.id,
+            username="bob")
+        user_with_initial_password = keycloak.User("userWithInitialPassword",
             email="alice@domain.com",
+            enabled=True,
             first_name="Alice",
-            last_name="Aliceberg",
-            attributes={
-                "foo": "bar",
-                "multivalue": "value1##value2",
-            },
             initial_password=keycloak.UserInitialPasswordArgs(
-                value="some password",
                 temporary=True,
-            ))
+                value="some password",
+            ),
+            last_name="Aliceberg",
+            realm_id=realm.id,
+            username="alice")
         ```
+        <!--End PulumiCodeChooser -->
 
-        ## Import
+        ### Argument Reference
+
+        The following arguments are supported:
+
+        - `realm_id` - (Required) The realm this user belongs to.
+        - `username` - (Required) The unique username of this user.
+        - `initial_password` (Optional) When given, the user's initial password will be set.
+           This attribute is only respected during initial user creation.
+            - `value` (Required) The initial password.
+            - `temporary` (Optional) If set to `true`, the initial password is set up for renewal on first use. Default to `false`.
+        - `enabled` - (Optional) When false, this user cannot log in. Defaults to `true`.
+        - `email` - (Optional) The user's email.
+        - `first_name` - (Optional) The user's first name.
+        - `last_name` - (Optional) The user's last name.
+
+        ### Import
 
         Users can be imported using the format `{{realm_id}}/{{user_id}}`, where `user_id` is the unique ID that Keycloak
+        assigns to the user upon creation. This value can be found in the GUI when editing the user.
 
-         assigns to the user upon creation. This value can be found in the GUI when editing the user.
-
-         Example:
-
-         bash
-
-        ```sh
-        $ pulumi import keycloak:index/user:User user my-realm/60c3f971-b1d3-4b3a-9035-d16d7540a5e4
-        ```
+        Example:
 
         :param str resource_name: The name of the resource.
         :param UserArgs args: The arguments to use to populate this resource's properties.
@@ -602,17 +519,6 @@ class User(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Mapping[str, Any]] attributes: A map representing attributes for the user. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
-        :param pulumi.Input[str] email: The user's email.
-        :param pulumi.Input[bool] email_verified: Whether the email address was validated or not. Default to `false`.
-        :param pulumi.Input[bool] enabled: When false, this user cannot log in. Defaults to `true`.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['UserFederatedIdentityArgs']]]] federated_identities: When specified, the user will be linked to a federated identity provider. Refer to the federated user example for more details.
-        :param pulumi.Input[str] first_name: The user's first name.
-        :param pulumi.Input[pulumi.InputType['UserInitialPasswordArgs']] initial_password: When given, the user's initial password will be set. This attribute is only respected during initial user creation.
-        :param pulumi.Input[str] last_name: The user's last name.
-        :param pulumi.Input[str] realm_id: The realm this user belongs to.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] required_actions: A list of required user actions.
-        :param pulumi.Input[str] username: The unique username of this user.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -634,88 +540,55 @@ class User(pulumi.CustomResource):
     @property
     @pulumi.getter
     def attributes(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
-        """
-        A map representing attributes for the user. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
-        """
         return pulumi.get(self, "attributes")
 
     @property
     @pulumi.getter
     def email(self) -> pulumi.Output[Optional[str]]:
-        """
-        The user's email.
-        """
         return pulumi.get(self, "email")
 
     @property
     @pulumi.getter(name="emailVerified")
     def email_verified(self) -> pulumi.Output[Optional[bool]]:
-        """
-        Whether the email address was validated or not. Default to `false`.
-        """
         return pulumi.get(self, "email_verified")
 
     @property
     @pulumi.getter
     def enabled(self) -> pulumi.Output[Optional[bool]]:
-        """
-        When false, this user cannot log in. Defaults to `true`.
-        """
         return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter(name="federatedIdentities")
     def federated_identities(self) -> pulumi.Output[Optional[Sequence['outputs.UserFederatedIdentity']]]:
-        """
-        When specified, the user will be linked to a federated identity provider. Refer to the federated user example for more details.
-        """
         return pulumi.get(self, "federated_identities")
 
     @property
     @pulumi.getter(name="firstName")
     def first_name(self) -> pulumi.Output[Optional[str]]:
-        """
-        The user's first name.
-        """
         return pulumi.get(self, "first_name")
 
     @property
     @pulumi.getter(name="initialPassword")
     def initial_password(self) -> pulumi.Output[Optional['outputs.UserInitialPassword']]:
-        """
-        When given, the user's initial password will be set. This attribute is only respected during initial user creation.
-        """
         return pulumi.get(self, "initial_password")
 
     @property
     @pulumi.getter(name="lastName")
     def last_name(self) -> pulumi.Output[Optional[str]]:
-        """
-        The user's last name.
-        """
         return pulumi.get(self, "last_name")
 
     @property
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Output[str]:
-        """
-        The realm this user belongs to.
-        """
         return pulumi.get(self, "realm_id")
 
     @property
     @pulumi.getter(name="requiredActions")
     def required_actions(self) -> pulumi.Output[Optional[Sequence[str]]]:
-        """
-        A list of required user actions.
-        """
         return pulumi.get(self, "required_actions")
 
     @property
     @pulumi.getter
     def username(self) -> pulumi.Output[str]:
-        """
-        The unique username of this user.
-        """
         return pulumi.get(self, "username")
 

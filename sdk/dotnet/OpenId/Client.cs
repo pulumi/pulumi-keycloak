@@ -10,14 +10,17 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.OpenId
 {
     /// <summary>
+    /// ## # keycloak.openid.Client
+    /// 
     /// Allows for creating and managing Keycloak clients that use the OpenID Connect protocol.
     /// 
     /// Clients are entities that can use Keycloak for user authentication. Typically,
     /// clients are applications that redirect users to Keycloak for authentication
     /// in order to take advantage of Keycloak's user sessions for SSO.
     /// 
-    /// ## Example Usage
+    /// ### Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -28,324 +31,207 @@ namespace Pulumi.Keycloak.OpenId
     /// {
     ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         RealmName = "my-realm",
     ///         Enabled = true,
+    ///         RealmName = "my-realm",
     ///     });
     /// 
     ///     var openidClient = new Keycloak.OpenId.Client("openidClient", new()
     ///     {
-    ///         RealmId = realm.Id,
+    ///         AccessType = "CONFIDENTIAL",
     ///         ClientId = "test-client",
     ///         Enabled = true,
-    ///         AccessType = "CONFIDENTIAL",
+    ///         RealmId = realm.Id,
     ///         ValidRedirectUris = new[]
     ///         {
     ///             "http://localhost:8080/openid-callback",
-    ///         },
-    ///         LoginTheme = "keycloak",
-    ///         ExtraConfig = 
-    ///         {
-    ///             { "key1", "value1" },
-    ///             { "key2", "value2" },
     ///         },
     ///     });
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
-    /// ## Import
+    /// ### Argument Reference
+    /// 
+    /// The following arguments are supported:
+    /// 
+    /// - `realm_id` - (Required) The realm this client is attached to.
+    /// - `client_id` - (Required) The unique ID of this client, referenced in the URI during authentication and in issued tokens.
+    /// - `name` - (Optional) The display name of this client in the GUI.
+    /// - `enabled` - (Optional) When false, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
+    /// - `description` - (Optional) The description of this client in the GUI.
+    /// - `access_type` - (Required) Specifies the type of client, which can be one of the following:
+    ///     - `CONFIDENTIAL` - Used for server-side clients that require both client ID and secret when authenticating.
+    ///       This client should be used for applications using the Authorization Code or Client Credentials grant flows.
+    ///     - `PUBLIC` - Used for browser-only applications that do not require a client secret, and instead rely only on authorized redirect
+    ///       URIs for security. This client should be used for applications using the Implicit grant flow.
+    ///     - `BEARER-ONLY` - Used for services that never initiate a login. This client will only allow bearer token requests.
+    /// - `client_secret` - (Optional) The secret for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. This value is sensitive and
+    ///   should be treated with the same care as a password. If omitted, Keycloak will generate a GUID for this attribute.
+    /// - `standard_flow_enabled` - (Optional) When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
+    /// - `implicit_flow_enabled` - (Optional) When `true`, the OAuth2 Implicit Grant will be enabled for this client. Defaults to `false`.
+    /// - `direct_access_grants_enabled` - (Optional) When `true`, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to `false`.
+    /// - `service_accounts_enabled` - (Optional) When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
+    /// - `valid_redirect_uris` - (Optional) A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
+    ///   wildcards in the form of an asterisk can be used here. This attribute must be set if either `standard_flow_enabled` or `implicit_flow_enabled`
+    ///   is set to `true`.
+    /// - `web_origins` - (Optional) A list of allowed CORS origins. `+` can be used to permit all valid redirect URIs, and `*` can be used to permit all origins.
+    /// - `admin_url` - (Optional) URL to the admin interface of the client.
+    /// - `base_url` - (Optional) Default URL to use when the auth server needs to redirect or link back to the client.
+    /// - `pkce_code_challenge_method` - (Optional) The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
+    /// - `full_scope_allowed` - (Optional) - Allow to include all roles mappings in the access token.
+    /// 
+    /// ### Attributes Reference
+    /// 
+    /// In addition to the arguments listed above, the following computed attributes are exported:
+    /// 
+    /// - `service_account_user_id` - When service accounts are enabled for this client, this attribute is the unique ID for the Keycloak user that represents this service account.
+    /// 
+    /// ### Import
     /// 
     /// Clients can be imported using the format `{{realm_id}}/{{client_keycloak_id}}`, where `client_keycloak_id` is the unique ID that Keycloak
+    /// assigns to the client upon creation. This value can be found in the URI when editing this client in the GUI, and is typically a GUID.
     /// 
-    ///  assigns to the client upon creation. This value can be found in the URI when editing this client in the GUI, and is typically a GUID.
-    /// 
-    ///  Example:
-    /// 
-    ///  bash
-    /// 
-    /// ```sh
-    /// $ pulumi import keycloak:openid/client:Client openid_client my-realm/dcbc4c73-e478-4928-ae2e-d5e420223352
-    /// ```
+    /// Example:
     /// </summary>
     [KeycloakResourceType("keycloak:openid/client:Client")]
     public partial class Client : global::Pulumi.CustomResource
     {
-        /// <summary>
-        /// The amount of time in seconds before an access token expires. This will override the default for the realm.
-        /// </summary>
         [Output("accessTokenLifespan")]
         public Output<string> AccessTokenLifespan { get; private set; } = null!;
 
-        /// <summary>
-        /// Specifies the type of client, which can be one of the following:
-        /// </summary>
         [Output("accessType")]
         public Output<string> AccessType { get; private set; } = null!;
 
-        /// <summary>
-        /// URL to the admin interface of the client.
-        /// </summary>
         [Output("adminUrl")]
         public Output<string> AdminUrl { get; private set; } = null!;
 
-        /// <summary>
-        /// Override realm authentication flow bindings
-        /// </summary>
         [Output("authenticationFlowBindingOverrides")]
         public Output<Outputs.ClientAuthenticationFlowBindingOverrides?> AuthenticationFlowBindingOverrides { get; private set; } = null!;
 
-        /// <summary>
-        /// When this block is present, fine-grained authorization will be enabled for this client. The client's `access_type` must be `CONFIDENTIAL`, and `service_accounts_enabled` must be `true`. This block has the following arguments:
-        /// </summary>
         [Output("authorization")]
         public Output<Outputs.ClientAuthorization?> Authorization { get; private set; } = null!;
 
-        /// <summary>
-        /// Specifying whether a "revoke_offline_access" event is included in the Logout Token when the Backchannel Logout URL is used. Keycloak will revoke offline sessions when receiving a Logout Token with this event.
-        /// </summary>
         [Output("backchannelLogoutRevokeOfflineSessions")]
         public Output<bool?> BackchannelLogoutRevokeOfflineSessions { get; private set; } = null!;
 
-        /// <summary>
-        /// When `true`, a sid (session ID) claim will be included in the logout token when the backchannel logout URL is used. Defaults to `true`.
-        /// </summary>
         [Output("backchannelLogoutSessionRequired")]
         public Output<bool?> BackchannelLogoutSessionRequired { get; private set; } = null!;
 
-        /// <summary>
-        /// The URL that will cause the client to log itself out when a logout request is sent to this realm. If omitted, no logout request will be sent to the client is this case.
-        /// </summary>
         [Output("backchannelLogoutUrl")]
         public Output<string?> BackchannelLogoutUrl { get; private set; } = null!;
 
-        /// <summary>
-        /// Default URL to use when the auth server needs to redirect or link back to the client.
-        /// </summary>
         [Output("baseUrl")]
         public Output<string> BaseUrl { get; private set; } = null!;
 
-        /// <summary>
-        /// Defaults to `client-secret`. The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. A default Keycloak installation will have the following available types:
-        /// - `client-secret` (Default) Use client id and client secret to authenticate client.
-        /// - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
-        /// - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extra_config` with `attributes.x509.subjectdn = &lt;subjectDn&gt;`
-        /// - `client-secret-jwt` Use signed JWT with client secret to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
-        /// </summary>
         [Output("clientAuthenticatorType")]
         public Output<string?> ClientAuthenticatorType { get; private set; } = null!;
 
-        /// <summary>
-        /// The Client ID for this client, referenced in the URI during authentication and in issued tokens.
-        /// </summary>
         [Output("clientId")]
         public Output<string> ClientId { get; private set; } = null!;
 
-        /// <summary>
-        /// Time a client session is allowed to be idle before it expires. Tokens are invalidated when a client session is expired. If not set it uses the standard SSO Session Idle value.
-        /// </summary>
         [Output("clientOfflineSessionIdleTimeout")]
         public Output<string> ClientOfflineSessionIdleTimeout { get; private set; } = null!;
 
-        /// <summary>
-        /// Max time before a client session is expired. Tokens are invalidated when a client session is expired. If not set, it uses the standard SSO Session Max value.
-        /// </summary>
         [Output("clientOfflineSessionMaxLifespan")]
         public Output<string> ClientOfflineSessionMaxLifespan { get; private set; } = null!;
 
-        /// <summary>
-        /// The secret for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. This value is sensitive and should be treated with the same care as a password. If omitted, this will be generated by Keycloak.
-        /// </summary>
         [Output("clientSecret")]
         public Output<string> ClientSecret { get; private set; } = null!;
 
-        /// <summary>
-        /// Time a client offline session is allowed to be idle before it expires. Offline tokens are invalidated when a client offline session is expired. If not set it uses the Offline Session Idle value.
-        /// </summary>
         [Output("clientSessionIdleTimeout")]
         public Output<string> ClientSessionIdleTimeout { get; private set; } = null!;
 
-        /// <summary>
-        /// Max time before a client offline session is expired. Offline tokens are invalidated when a client offline session is expired. If not set, it uses the Offline Session Max value.
-        /// </summary>
         [Output("clientSessionMaxLifespan")]
         public Output<string> ClientSessionMaxLifespan { get; private set; } = null!;
 
-        /// <summary>
-        /// When `true`, users have to consent to client access. Defaults to `false`.
-        /// </summary>
         [Output("consentRequired")]
         public Output<bool> ConsentRequired { get; private set; } = null!;
 
-        /// <summary>
-        /// The text to display on the consent screen about permissions specific to this client. This is applicable only when `display_on_consent_screen` is `true`.
-        /// </summary>
         [Output("consentScreenText")]
         public Output<string> ConsentScreenText { get; private set; } = null!;
 
-        /// <summary>
-        /// The description of this client in the GUI.
-        /// </summary>
         [Output("description")]
         public Output<string> Description { get; private set; } = null!;
 
-        /// <summary>
-        /// When `true`, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to `false`.
-        /// </summary>
         [Output("directAccessGrantsEnabled")]
         public Output<bool> DirectAccessGrantsEnabled { get; private set; } = null!;
 
-        /// <summary>
-        /// When `true`, the consent screen will display information about the client itself. Defaults to `false`. This is applicable only when `consent_required` is `true`.
-        /// </summary>
         [Output("displayOnConsentScreen")]
         public Output<bool> DisplayOnConsentScreen { get; private set; } = null!;
 
-        /// <summary>
-        /// When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
-        /// </summary>
         [Output("enabled")]
         public Output<bool?> Enabled { get; private set; } = null!;
 
-        /// <summary>
-        /// When `true`, the parameter `session_state` will not be included in OpenID Connect Authentication Response.
-        /// </summary>
         [Output("excludeSessionStateFromAuthResponse")]
         public Output<bool> ExcludeSessionStateFromAuthResponse { get; private set; } = null!;
 
         [Output("extraConfig")]
         public Output<ImmutableDictionary<string, object>?> ExtraConfig { get; private set; } = null!;
 
-        /// <summary>
-        /// When `true`, frontchannel logout will be enabled for this client. Specify the url with `frontchannel_logout_url`. Defaults to `false`.
-        /// </summary>
         [Output("frontchannelLogoutEnabled")]
         public Output<bool> FrontchannelLogoutEnabled { get; private set; } = null!;
 
-        /// <summary>
-        /// The frontchannel logout url. This is applicable only when `frontchannel_logout_enabled` is `true`.
-        /// </summary>
         [Output("frontchannelLogoutUrl")]
         public Output<string?> FrontchannelLogoutUrl { get; private set; } = null!;
 
-        /// <summary>
-        /// Allow to include all roles mappings in the access token.
-        /// </summary>
         [Output("fullScopeAllowed")]
         public Output<bool?> FullScopeAllowed { get; private set; } = null!;
 
-        /// <summary>
-        /// When `true`, the OAuth2 Implicit Grant will be enabled for this client. Defaults to `false`.
-        /// </summary>
         [Output("implicitFlowEnabled")]
         public Output<bool> ImplicitFlowEnabled { get; private set; } = null!;
 
-        /// <summary>
-        /// When `true`, the client with the specified `client_id` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with clients that Keycloak creates automatically during realm creation, such as `account` and `admin-cli`. Note, that the client will not be removed during destruction if `import` is `true`.
-        /// </summary>
         [Output("import")]
         public Output<bool?> Import { get; private set; } = null!;
 
-        /// <summary>
-        /// The client login theme. This will override the default theme for the realm.
-        /// </summary>
         [Output("loginTheme")]
         public Output<string?> LoginTheme { get; private set; } = null!;
 
-        /// <summary>
-        /// The display name of this client in the GUI.
-        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
-        /// <summary>
-        /// Enables support for OAuth 2.0 Device Authorization Grant, which means that client is an application on device that has limited input capabilities or lack a suitable browser.
-        /// </summary>
         [Output("oauth2DeviceAuthorizationGrantEnabled")]
         public Output<bool?> Oauth2DeviceAuthorizationGrantEnabled { get; private set; } = null!;
 
-        /// <summary>
-        /// The maximum amount of time a client has to finish the device code flow before it expires.
-        /// </summary>
         [Output("oauth2DeviceCodeLifespan")]
         public Output<string?> Oauth2DeviceCodeLifespan { get; private set; } = null!;
 
-        /// <summary>
-        /// The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
-        /// </summary>
         [Output("oauth2DevicePollingInterval")]
         public Output<string?> Oauth2DevicePollingInterval { get; private set; } = null!;
 
-        /// <summary>
-        /// The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
-        /// </summary>
         [Output("pkceCodeChallengeMethod")]
         public Output<string?> PkceCodeChallengeMethod { get; private set; } = null!;
 
-        /// <summary>
-        /// The realm this client is attached to.
-        /// </summary>
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
 
-        /// <summary>
-        /// (Computed) When authorization is enabled for this client, this attribute is the unique ID for the client (the same value as the `.id` attribute).
-        /// </summary>
         [Output("resourceServerId")]
         public Output<string> ResourceServerId { get; private set; } = null!;
 
-        /// <summary>
-        /// When specified, this URL is prepended to any relative URLs found within `valid_redirect_uris`, `web_origins`, and `admin_url`. NOTE: Due to limitations in the Keycloak API, when the `root_url` attribute is used, the `valid_redirect_uris`, `web_origins`, and `admin_url` attributes will be required.
-        /// </summary>
         [Output("rootUrl")]
         public Output<string> RootUrl { get; private set; } = null!;
 
-        /// <summary>
-        /// (Computed) When service accounts are enabled for this client, this attribute is the unique ID for the Keycloak user that represents this service account.
-        /// </summary>
         [Output("serviceAccountUserId")]
         public Output<string> ServiceAccountUserId { get; private set; } = null!;
 
-        /// <summary>
-        /// When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
-        /// </summary>
         [Output("serviceAccountsEnabled")]
         public Output<bool> ServiceAccountsEnabled { get; private set; } = null!;
 
-        /// <summary>
-        /// When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
-        /// </summary>
         [Output("standardFlowEnabled")]
         public Output<bool> StandardFlowEnabled { get; private set; } = null!;
 
-        /// <summary>
-        /// If this is `true`, a refresh_token will be created and added to the token response. If this is `false` then no refresh_token will be generated.  Defaults to `true`.
-        /// </summary>
         [Output("useRefreshTokens")]
         public Output<bool?> UseRefreshTokens { get; private set; } = null!;
 
-        /// <summary>
-        /// If this is `true`, a refresh_token will be created and added to the token response if the client_credentials grant is used and a user session will be created. If this is `false` then no refresh_token will be generated and the associated user session will be removed, in accordance with OAuth 2.0 RFC6749 Section 4.4.3. Defaults to `false`.
-        /// </summary>
         [Output("useRefreshTokensClientCredentials")]
         public Output<bool?> UseRefreshTokensClientCredentials { get; private set; } = null!;
 
-        /// <summary>
-        /// A list of valid URIs a browser is permitted to redirect to after a successful logout.
-        /// </summary>
         [Output("validPostLogoutRedirectUris")]
         public Output<ImmutableArray<string>> ValidPostLogoutRedirectUris { get; private set; } = null!;
 
-        /// <summary>
-        /// A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
-        /// wildcards in the form of an asterisk can be used here. This attribute must be set if either `standard_flow_enabled` or `implicit_flow_enabled`
-        /// is set to `true`.
-        /// </summary>
         [Output("validRedirectUris")]
         public Output<ImmutableArray<string>> ValidRedirectUris { get; private set; } = null!;
 
-        /// <summary>
-        /// A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`."
-        /// </summary>
         [Output("webOrigins")]
         public Output<ImmutableArray<string>> WebOrigins { get; private set; } = null!;
 
@@ -399,94 +285,47 @@ namespace Pulumi.Keycloak.OpenId
 
     public sealed class ClientArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// The amount of time in seconds before an access token expires. This will override the default for the realm.
-        /// </summary>
         [Input("accessTokenLifespan")]
         public Input<string>? AccessTokenLifespan { get; set; }
 
-        /// <summary>
-        /// Specifies the type of client, which can be one of the following:
-        /// </summary>
         [Input("accessType", required: true)]
         public Input<string> AccessType { get; set; } = null!;
 
-        /// <summary>
-        /// URL to the admin interface of the client.
-        /// </summary>
         [Input("adminUrl")]
         public Input<string>? AdminUrl { get; set; }
 
-        /// <summary>
-        /// Override realm authentication flow bindings
-        /// </summary>
         [Input("authenticationFlowBindingOverrides")]
         public Input<Inputs.ClientAuthenticationFlowBindingOverridesArgs>? AuthenticationFlowBindingOverrides { get; set; }
 
-        /// <summary>
-        /// When this block is present, fine-grained authorization will be enabled for this client. The client's `access_type` must be `CONFIDENTIAL`, and `service_accounts_enabled` must be `true`. This block has the following arguments:
-        /// </summary>
         [Input("authorization")]
         public Input<Inputs.ClientAuthorizationArgs>? Authorization { get; set; }
 
-        /// <summary>
-        /// Specifying whether a "revoke_offline_access" event is included in the Logout Token when the Backchannel Logout URL is used. Keycloak will revoke offline sessions when receiving a Logout Token with this event.
-        /// </summary>
         [Input("backchannelLogoutRevokeOfflineSessions")]
         public Input<bool>? BackchannelLogoutRevokeOfflineSessions { get; set; }
 
-        /// <summary>
-        /// When `true`, a sid (session ID) claim will be included in the logout token when the backchannel logout URL is used. Defaults to `true`.
-        /// </summary>
         [Input("backchannelLogoutSessionRequired")]
         public Input<bool>? BackchannelLogoutSessionRequired { get; set; }
 
-        /// <summary>
-        /// The URL that will cause the client to log itself out when a logout request is sent to this realm. If omitted, no logout request will be sent to the client is this case.
-        /// </summary>
         [Input("backchannelLogoutUrl")]
         public Input<string>? BackchannelLogoutUrl { get; set; }
 
-        /// <summary>
-        /// Default URL to use when the auth server needs to redirect or link back to the client.
-        /// </summary>
         [Input("baseUrl")]
         public Input<string>? BaseUrl { get; set; }
 
-        /// <summary>
-        /// Defaults to `client-secret`. The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. A default Keycloak installation will have the following available types:
-        /// - `client-secret` (Default) Use client id and client secret to authenticate client.
-        /// - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
-        /// - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extra_config` with `attributes.x509.subjectdn = &lt;subjectDn&gt;`
-        /// - `client-secret-jwt` Use signed JWT with client secret to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
-        /// </summary>
         [Input("clientAuthenticatorType")]
         public Input<string>? ClientAuthenticatorType { get; set; }
 
-        /// <summary>
-        /// The Client ID for this client, referenced in the URI during authentication and in issued tokens.
-        /// </summary>
         [Input("clientId", required: true)]
         public Input<string> ClientId { get; set; } = null!;
 
-        /// <summary>
-        /// Time a client session is allowed to be idle before it expires. Tokens are invalidated when a client session is expired. If not set it uses the standard SSO Session Idle value.
-        /// </summary>
         [Input("clientOfflineSessionIdleTimeout")]
         public Input<string>? ClientOfflineSessionIdleTimeout { get; set; }
 
-        /// <summary>
-        /// Max time before a client session is expired. Tokens are invalidated when a client session is expired. If not set, it uses the standard SSO Session Max value.
-        /// </summary>
         [Input("clientOfflineSessionMaxLifespan")]
         public Input<string>? ClientOfflineSessionMaxLifespan { get; set; }
 
         [Input("clientSecret")]
         private Input<string>? _clientSecret;
-
-        /// <summary>
-        /// The secret for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. This value is sensitive and should be treated with the same care as a password. If omitted, this will be generated by Keycloak.
-        /// </summary>
         public Input<string>? ClientSecret
         {
             get => _clientSecret;
@@ -497,57 +336,30 @@ namespace Pulumi.Keycloak.OpenId
             }
         }
 
-        /// <summary>
-        /// Time a client offline session is allowed to be idle before it expires. Offline tokens are invalidated when a client offline session is expired. If not set it uses the Offline Session Idle value.
-        /// </summary>
         [Input("clientSessionIdleTimeout")]
         public Input<string>? ClientSessionIdleTimeout { get; set; }
 
-        /// <summary>
-        /// Max time before a client offline session is expired. Offline tokens are invalidated when a client offline session is expired. If not set, it uses the Offline Session Max value.
-        /// </summary>
         [Input("clientSessionMaxLifespan")]
         public Input<string>? ClientSessionMaxLifespan { get; set; }
 
-        /// <summary>
-        /// When `true`, users have to consent to client access. Defaults to `false`.
-        /// </summary>
         [Input("consentRequired")]
         public Input<bool>? ConsentRequired { get; set; }
 
-        /// <summary>
-        /// The text to display on the consent screen about permissions specific to this client. This is applicable only when `display_on_consent_screen` is `true`.
-        /// </summary>
         [Input("consentScreenText")]
         public Input<string>? ConsentScreenText { get; set; }
 
-        /// <summary>
-        /// The description of this client in the GUI.
-        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
-        /// <summary>
-        /// When `true`, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to `false`.
-        /// </summary>
         [Input("directAccessGrantsEnabled")]
         public Input<bool>? DirectAccessGrantsEnabled { get; set; }
 
-        /// <summary>
-        /// When `true`, the consent screen will display information about the client itself. Defaults to `false`. This is applicable only when `consent_required` is `true`.
-        /// </summary>
         [Input("displayOnConsentScreen")]
         public Input<bool>? DisplayOnConsentScreen { get; set; }
 
-        /// <summary>
-        /// When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
-        /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
-        /// <summary>
-        /// When `true`, the parameter `session_state` will not be included in OpenID Connect Authentication Response.
-        /// </summary>
         [Input("excludeSessionStateFromAuthResponse")]
         public Input<bool>? ExcludeSessionStateFromAuthResponse { get; set; }
 
@@ -559,114 +371,59 @@ namespace Pulumi.Keycloak.OpenId
             set => _extraConfig = value;
         }
 
-        /// <summary>
-        /// When `true`, frontchannel logout will be enabled for this client. Specify the url with `frontchannel_logout_url`. Defaults to `false`.
-        /// </summary>
         [Input("frontchannelLogoutEnabled")]
         public Input<bool>? FrontchannelLogoutEnabled { get; set; }
 
-        /// <summary>
-        /// The frontchannel logout url. This is applicable only when `frontchannel_logout_enabled` is `true`.
-        /// </summary>
         [Input("frontchannelLogoutUrl")]
         public Input<string>? FrontchannelLogoutUrl { get; set; }
 
-        /// <summary>
-        /// Allow to include all roles mappings in the access token.
-        /// </summary>
         [Input("fullScopeAllowed")]
         public Input<bool>? FullScopeAllowed { get; set; }
 
-        /// <summary>
-        /// When `true`, the OAuth2 Implicit Grant will be enabled for this client. Defaults to `false`.
-        /// </summary>
         [Input("implicitFlowEnabled")]
         public Input<bool>? ImplicitFlowEnabled { get; set; }
 
-        /// <summary>
-        /// When `true`, the client with the specified `client_id` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with clients that Keycloak creates automatically during realm creation, such as `account` and `admin-cli`. Note, that the client will not be removed during destruction if `import` is `true`.
-        /// </summary>
         [Input("import")]
         public Input<bool>? Import { get; set; }
 
-        /// <summary>
-        /// The client login theme. This will override the default theme for the realm.
-        /// </summary>
         [Input("loginTheme")]
         public Input<string>? LoginTheme { get; set; }
 
-        /// <summary>
-        /// The display name of this client in the GUI.
-        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        /// <summary>
-        /// Enables support for OAuth 2.0 Device Authorization Grant, which means that client is an application on device that has limited input capabilities or lack a suitable browser.
-        /// </summary>
         [Input("oauth2DeviceAuthorizationGrantEnabled")]
         public Input<bool>? Oauth2DeviceAuthorizationGrantEnabled { get; set; }
 
-        /// <summary>
-        /// The maximum amount of time a client has to finish the device code flow before it expires.
-        /// </summary>
         [Input("oauth2DeviceCodeLifespan")]
         public Input<string>? Oauth2DeviceCodeLifespan { get; set; }
 
-        /// <summary>
-        /// The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
-        /// </summary>
         [Input("oauth2DevicePollingInterval")]
         public Input<string>? Oauth2DevicePollingInterval { get; set; }
 
-        /// <summary>
-        /// The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
-        /// </summary>
         [Input("pkceCodeChallengeMethod")]
         public Input<string>? PkceCodeChallengeMethod { get; set; }
 
-        /// <summary>
-        /// The realm this client is attached to.
-        /// </summary>
         [Input("realmId", required: true)]
         public Input<string> RealmId { get; set; } = null!;
 
-        /// <summary>
-        /// When specified, this URL is prepended to any relative URLs found within `valid_redirect_uris`, `web_origins`, and `admin_url`. NOTE: Due to limitations in the Keycloak API, when the `root_url` attribute is used, the `valid_redirect_uris`, `web_origins`, and `admin_url` attributes will be required.
-        /// </summary>
         [Input("rootUrl")]
         public Input<string>? RootUrl { get; set; }
 
-        /// <summary>
-        /// When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
-        /// </summary>
         [Input("serviceAccountsEnabled")]
         public Input<bool>? ServiceAccountsEnabled { get; set; }
 
-        /// <summary>
-        /// When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
-        /// </summary>
         [Input("standardFlowEnabled")]
         public Input<bool>? StandardFlowEnabled { get; set; }
 
-        /// <summary>
-        /// If this is `true`, a refresh_token will be created and added to the token response. If this is `false` then no refresh_token will be generated.  Defaults to `true`.
-        /// </summary>
         [Input("useRefreshTokens")]
         public Input<bool>? UseRefreshTokens { get; set; }
 
-        /// <summary>
-        /// If this is `true`, a refresh_token will be created and added to the token response if the client_credentials grant is used and a user session will be created. If this is `false` then no refresh_token will be generated and the associated user session will be removed, in accordance with OAuth 2.0 RFC6749 Section 4.4.3. Defaults to `false`.
-        /// </summary>
         [Input("useRefreshTokensClientCredentials")]
         public Input<bool>? UseRefreshTokensClientCredentials { get; set; }
 
         [Input("validPostLogoutRedirectUris")]
         private InputList<string>? _validPostLogoutRedirectUris;
-
-        /// <summary>
-        /// A list of valid URIs a browser is permitted to redirect to after a successful logout.
-        /// </summary>
         public InputList<string> ValidPostLogoutRedirectUris
         {
             get => _validPostLogoutRedirectUris ?? (_validPostLogoutRedirectUris = new InputList<string>());
@@ -675,12 +432,6 @@ namespace Pulumi.Keycloak.OpenId
 
         [Input("validRedirectUris")]
         private InputList<string>? _validRedirectUris;
-
-        /// <summary>
-        /// A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
-        /// wildcards in the form of an asterisk can be used here. This attribute must be set if either `standard_flow_enabled` or `implicit_flow_enabled`
-        /// is set to `true`.
-        /// </summary>
         public InputList<string> ValidRedirectUris
         {
             get => _validRedirectUris ?? (_validRedirectUris = new InputList<string>());
@@ -689,10 +440,6 @@ namespace Pulumi.Keycloak.OpenId
 
         [Input("webOrigins")]
         private InputList<string>? _webOrigins;
-
-        /// <summary>
-        /// A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`."
-        /// </summary>
         public InputList<string> WebOrigins
         {
             get => _webOrigins ?? (_webOrigins = new InputList<string>());
@@ -707,94 +454,47 @@ namespace Pulumi.Keycloak.OpenId
 
     public sealed class ClientState : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// The amount of time in seconds before an access token expires. This will override the default for the realm.
-        /// </summary>
         [Input("accessTokenLifespan")]
         public Input<string>? AccessTokenLifespan { get; set; }
 
-        /// <summary>
-        /// Specifies the type of client, which can be one of the following:
-        /// </summary>
         [Input("accessType")]
         public Input<string>? AccessType { get; set; }
 
-        /// <summary>
-        /// URL to the admin interface of the client.
-        /// </summary>
         [Input("adminUrl")]
         public Input<string>? AdminUrl { get; set; }
 
-        /// <summary>
-        /// Override realm authentication flow bindings
-        /// </summary>
         [Input("authenticationFlowBindingOverrides")]
         public Input<Inputs.ClientAuthenticationFlowBindingOverridesGetArgs>? AuthenticationFlowBindingOverrides { get; set; }
 
-        /// <summary>
-        /// When this block is present, fine-grained authorization will be enabled for this client. The client's `access_type` must be `CONFIDENTIAL`, and `service_accounts_enabled` must be `true`. This block has the following arguments:
-        /// </summary>
         [Input("authorization")]
         public Input<Inputs.ClientAuthorizationGetArgs>? Authorization { get; set; }
 
-        /// <summary>
-        /// Specifying whether a "revoke_offline_access" event is included in the Logout Token when the Backchannel Logout URL is used. Keycloak will revoke offline sessions when receiving a Logout Token with this event.
-        /// </summary>
         [Input("backchannelLogoutRevokeOfflineSessions")]
         public Input<bool>? BackchannelLogoutRevokeOfflineSessions { get; set; }
 
-        /// <summary>
-        /// When `true`, a sid (session ID) claim will be included in the logout token when the backchannel logout URL is used. Defaults to `true`.
-        /// </summary>
         [Input("backchannelLogoutSessionRequired")]
         public Input<bool>? BackchannelLogoutSessionRequired { get; set; }
 
-        /// <summary>
-        /// The URL that will cause the client to log itself out when a logout request is sent to this realm. If omitted, no logout request will be sent to the client is this case.
-        /// </summary>
         [Input("backchannelLogoutUrl")]
         public Input<string>? BackchannelLogoutUrl { get; set; }
 
-        /// <summary>
-        /// Default URL to use when the auth server needs to redirect or link back to the client.
-        /// </summary>
         [Input("baseUrl")]
         public Input<string>? BaseUrl { get; set; }
 
-        /// <summary>
-        /// Defaults to `client-secret`. The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. A default Keycloak installation will have the following available types:
-        /// - `client-secret` (Default) Use client id and client secret to authenticate client.
-        /// - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
-        /// - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extra_config` with `attributes.x509.subjectdn = &lt;subjectDn&gt;`
-        /// - `client-secret-jwt` Use signed JWT with client secret to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
-        /// </summary>
         [Input("clientAuthenticatorType")]
         public Input<string>? ClientAuthenticatorType { get; set; }
 
-        /// <summary>
-        /// The Client ID for this client, referenced in the URI during authentication and in issued tokens.
-        /// </summary>
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
 
-        /// <summary>
-        /// Time a client session is allowed to be idle before it expires. Tokens are invalidated when a client session is expired. If not set it uses the standard SSO Session Idle value.
-        /// </summary>
         [Input("clientOfflineSessionIdleTimeout")]
         public Input<string>? ClientOfflineSessionIdleTimeout { get; set; }
 
-        /// <summary>
-        /// Max time before a client session is expired. Tokens are invalidated when a client session is expired. If not set, it uses the standard SSO Session Max value.
-        /// </summary>
         [Input("clientOfflineSessionMaxLifespan")]
         public Input<string>? ClientOfflineSessionMaxLifespan { get; set; }
 
         [Input("clientSecret")]
         private Input<string>? _clientSecret;
-
-        /// <summary>
-        /// The secret for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. This value is sensitive and should be treated with the same care as a password. If omitted, this will be generated by Keycloak.
-        /// </summary>
         public Input<string>? ClientSecret
         {
             get => _clientSecret;
@@ -805,57 +505,30 @@ namespace Pulumi.Keycloak.OpenId
             }
         }
 
-        /// <summary>
-        /// Time a client offline session is allowed to be idle before it expires. Offline tokens are invalidated when a client offline session is expired. If not set it uses the Offline Session Idle value.
-        /// </summary>
         [Input("clientSessionIdleTimeout")]
         public Input<string>? ClientSessionIdleTimeout { get; set; }
 
-        /// <summary>
-        /// Max time before a client offline session is expired. Offline tokens are invalidated when a client offline session is expired. If not set, it uses the Offline Session Max value.
-        /// </summary>
         [Input("clientSessionMaxLifespan")]
         public Input<string>? ClientSessionMaxLifespan { get; set; }
 
-        /// <summary>
-        /// When `true`, users have to consent to client access. Defaults to `false`.
-        /// </summary>
         [Input("consentRequired")]
         public Input<bool>? ConsentRequired { get; set; }
 
-        /// <summary>
-        /// The text to display on the consent screen about permissions specific to this client. This is applicable only when `display_on_consent_screen` is `true`.
-        /// </summary>
         [Input("consentScreenText")]
         public Input<string>? ConsentScreenText { get; set; }
 
-        /// <summary>
-        /// The description of this client in the GUI.
-        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
-        /// <summary>
-        /// When `true`, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to `false`.
-        /// </summary>
         [Input("directAccessGrantsEnabled")]
         public Input<bool>? DirectAccessGrantsEnabled { get; set; }
 
-        /// <summary>
-        /// When `true`, the consent screen will display information about the client itself. Defaults to `false`. This is applicable only when `consent_required` is `true`.
-        /// </summary>
         [Input("displayOnConsentScreen")]
         public Input<bool>? DisplayOnConsentScreen { get; set; }
 
-        /// <summary>
-        /// When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
-        /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
-        /// <summary>
-        /// When `true`, the parameter `session_state` will not be included in OpenID Connect Authentication Response.
-        /// </summary>
         [Input("excludeSessionStateFromAuthResponse")]
         public Input<bool>? ExcludeSessionStateFromAuthResponse { get; set; }
 
@@ -867,126 +540,65 @@ namespace Pulumi.Keycloak.OpenId
             set => _extraConfig = value;
         }
 
-        /// <summary>
-        /// When `true`, frontchannel logout will be enabled for this client. Specify the url with `frontchannel_logout_url`. Defaults to `false`.
-        /// </summary>
         [Input("frontchannelLogoutEnabled")]
         public Input<bool>? FrontchannelLogoutEnabled { get; set; }
 
-        /// <summary>
-        /// The frontchannel logout url. This is applicable only when `frontchannel_logout_enabled` is `true`.
-        /// </summary>
         [Input("frontchannelLogoutUrl")]
         public Input<string>? FrontchannelLogoutUrl { get; set; }
 
-        /// <summary>
-        /// Allow to include all roles mappings in the access token.
-        /// </summary>
         [Input("fullScopeAllowed")]
         public Input<bool>? FullScopeAllowed { get; set; }
 
-        /// <summary>
-        /// When `true`, the OAuth2 Implicit Grant will be enabled for this client. Defaults to `false`.
-        /// </summary>
         [Input("implicitFlowEnabled")]
         public Input<bool>? ImplicitFlowEnabled { get; set; }
 
-        /// <summary>
-        /// When `true`, the client with the specified `client_id` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with clients that Keycloak creates automatically during realm creation, such as `account` and `admin-cli`. Note, that the client will not be removed during destruction if `import` is `true`.
-        /// </summary>
         [Input("import")]
         public Input<bool>? Import { get; set; }
 
-        /// <summary>
-        /// The client login theme. This will override the default theme for the realm.
-        /// </summary>
         [Input("loginTheme")]
         public Input<string>? LoginTheme { get; set; }
 
-        /// <summary>
-        /// The display name of this client in the GUI.
-        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        /// <summary>
-        /// Enables support for OAuth 2.0 Device Authorization Grant, which means that client is an application on device that has limited input capabilities or lack a suitable browser.
-        /// </summary>
         [Input("oauth2DeviceAuthorizationGrantEnabled")]
         public Input<bool>? Oauth2DeviceAuthorizationGrantEnabled { get; set; }
 
-        /// <summary>
-        /// The maximum amount of time a client has to finish the device code flow before it expires.
-        /// </summary>
         [Input("oauth2DeviceCodeLifespan")]
         public Input<string>? Oauth2DeviceCodeLifespan { get; set; }
 
-        /// <summary>
-        /// The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
-        /// </summary>
         [Input("oauth2DevicePollingInterval")]
         public Input<string>? Oauth2DevicePollingInterval { get; set; }
 
-        /// <summary>
-        /// The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
-        /// </summary>
         [Input("pkceCodeChallengeMethod")]
         public Input<string>? PkceCodeChallengeMethod { get; set; }
 
-        /// <summary>
-        /// The realm this client is attached to.
-        /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
 
-        /// <summary>
-        /// (Computed) When authorization is enabled for this client, this attribute is the unique ID for the client (the same value as the `.id` attribute).
-        /// </summary>
         [Input("resourceServerId")]
         public Input<string>? ResourceServerId { get; set; }
 
-        /// <summary>
-        /// When specified, this URL is prepended to any relative URLs found within `valid_redirect_uris`, `web_origins`, and `admin_url`. NOTE: Due to limitations in the Keycloak API, when the `root_url` attribute is used, the `valid_redirect_uris`, `web_origins`, and `admin_url` attributes will be required.
-        /// </summary>
         [Input("rootUrl")]
         public Input<string>? RootUrl { get; set; }
 
-        /// <summary>
-        /// (Computed) When service accounts are enabled for this client, this attribute is the unique ID for the Keycloak user that represents this service account.
-        /// </summary>
         [Input("serviceAccountUserId")]
         public Input<string>? ServiceAccountUserId { get; set; }
 
-        /// <summary>
-        /// When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
-        /// </summary>
         [Input("serviceAccountsEnabled")]
         public Input<bool>? ServiceAccountsEnabled { get; set; }
 
-        /// <summary>
-        /// When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
-        /// </summary>
         [Input("standardFlowEnabled")]
         public Input<bool>? StandardFlowEnabled { get; set; }
 
-        /// <summary>
-        /// If this is `true`, a refresh_token will be created and added to the token response. If this is `false` then no refresh_token will be generated.  Defaults to `true`.
-        /// </summary>
         [Input("useRefreshTokens")]
         public Input<bool>? UseRefreshTokens { get; set; }
 
-        /// <summary>
-        /// If this is `true`, a refresh_token will be created and added to the token response if the client_credentials grant is used and a user session will be created. If this is `false` then no refresh_token will be generated and the associated user session will be removed, in accordance with OAuth 2.0 RFC6749 Section 4.4.3. Defaults to `false`.
-        /// </summary>
         [Input("useRefreshTokensClientCredentials")]
         public Input<bool>? UseRefreshTokensClientCredentials { get; set; }
 
         [Input("validPostLogoutRedirectUris")]
         private InputList<string>? _validPostLogoutRedirectUris;
-
-        /// <summary>
-        /// A list of valid URIs a browser is permitted to redirect to after a successful logout.
-        /// </summary>
         public InputList<string> ValidPostLogoutRedirectUris
         {
             get => _validPostLogoutRedirectUris ?? (_validPostLogoutRedirectUris = new InputList<string>());
@@ -995,12 +607,6 @@ namespace Pulumi.Keycloak.OpenId
 
         [Input("validRedirectUris")]
         private InputList<string>? _validRedirectUris;
-
-        /// <summary>
-        /// A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
-        /// wildcards in the form of an asterisk can be used here. This attribute must be set if either `standard_flow_enabled` or `implicit_flow_enabled`
-        /// is set to `true`.
-        /// </summary>
         public InputList<string> ValidRedirectUris
         {
             get => _validRedirectUris ?? (_validRedirectUris = new InputList<string>());
@@ -1009,10 +615,6 @@ namespace Pulumi.Keycloak.OpenId
 
         [Input("webOrigins")]
         private InputList<string>? _webOrigins;
-
-        /// <summary>
-        /// A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`."
-        /// </summary>
         public InputList<string> WebOrigins
         {
             get => _webOrigins ?? (_webOrigins = new InputList<string>());

@@ -15,6 +15,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -43,6 +44,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func GetAuthenticationFlow(ctx *pulumi.Context, args *GetAuthenticationFlowArgs, opts ...pulumi.InvokeOption) (*GetAuthenticationFlowResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetAuthenticationFlowResult

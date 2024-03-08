@@ -11,7 +11,9 @@ import * as utilities from "./utilities";
  * If `exhaustive` is false, this resource is a partial assignation of groups to a user. As a result, you can get multiple `keycloak.UserGroups` for the same `userId`.
  *
  * ## Example Usage
+ *
  * ### Exhaustive Groups)
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -31,7 +33,10 @@ import * as utilities from "./utilities";
  *     groupIds: [group.id],
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
+ *
  * ### Non Exhaustive Groups)
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -59,12 +64,13 @@ import * as utilities from "./utilities";
  *     groupIds: [groupBar.id],
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * This resource does not support import. Instead of importing, feel free to create this resource
  *
- *  as if it did not already exist on the server.
+ * as if it did not already exist on the server.
  */
 export class UserGroups extends pulumi.CustomResource {
     /**

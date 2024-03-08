@@ -18,8 +18,6 @@ class DefaultGroupsArgs:
                  realm_id: pulumi.Input[str]):
         """
         The set of arguments for constructing a DefaultGroups resource.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] group_ids: A set of group ids that should be default groups on the realm referenced by `realm_id`.
-        :param pulumi.Input[str] realm_id: The realm this group exists in.
         """
         pulumi.set(__self__, "group_ids", group_ids)
         pulumi.set(__self__, "realm_id", realm_id)
@@ -27,9 +25,6 @@ class DefaultGroupsArgs:
     @property
     @pulumi.getter(name="groupIds")
     def group_ids(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
-        """
-        A set of group ids that should be default groups on the realm referenced by `realm_id`.
-        """
         return pulumi.get(self, "group_ids")
 
     @group_ids.setter
@@ -39,9 +34,6 @@ class DefaultGroupsArgs:
     @property
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Input[str]:
-        """
-        The realm this group exists in.
-        """
         return pulumi.get(self, "realm_id")
 
     @realm_id.setter
@@ -56,8 +48,6 @@ class _DefaultGroupsState:
                  realm_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering DefaultGroups resources.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] group_ids: A set of group ids that should be default groups on the realm referenced by `realm_id`.
-        :param pulumi.Input[str] realm_id: The realm this group exists in.
         """
         if group_ids is not None:
             pulumi.set(__self__, "group_ids", group_ids)
@@ -67,9 +57,6 @@ class _DefaultGroupsState:
     @property
     @pulumi.getter(name="groupIds")
     def group_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        A set of group ids that should be default groups on the realm referenced by `realm_id`.
-        """
         return pulumi.get(self, "group_ids")
 
     @group_ids.setter
@@ -79,9 +66,6 @@ class _DefaultGroupsState:
     @property
     @pulumi.getter(name="realmId")
     def realm_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        The realm this group exists in.
-        """
         return pulumi.get(self, "realm_id")
 
     @realm_id.setter
@@ -98,41 +82,45 @@ class DefaultGroups(pulumi.CustomResource):
                  realm_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        ## # DefaultGroups
+
         Allows for managing a realm's default groups.
 
-        > You should not use `DefaultGroups` with a group whose members are managed by `GroupMemberships`.
+        Note that you should not use `DefaultGroups` with a group with memberships managed
+        by `GroupMemberships`.
 
-        ## Example Usage
+        ### Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
+            enabled=True,
+            realm="my-realm")
         group = keycloak.Group("group", realm_id=realm.id)
         default = keycloak.DefaultGroups("default",
-            realm_id=realm.id,
-            group_ids=[group.id])
+            group_ids=[group.id],
+            realm_id=realm.id)
         ```
+        <!--End PulumiCodeChooser -->
 
-        ## Import
+        ### Argument Reference
 
-        Default groups can be imported using the format `{{realm_id}}` where `realm_id` is the realm the group exists in.
+        The following arguments are supported:
 
-         Example:
+        - `realm_id` - (Required) The realm this group exists in.
+        - `group_ids` - (Required) A set of group ids that should be default groups on the realm referenced by `realm_id`.
 
-         bash
+        ### Import
 
-        ```sh
-        $ pulumi import keycloak:index/defaultGroups:DefaultGroups default my-realm
-        ```
+        Groups can be imported using the format `{{realm_id}}` where `realm_id` is the realm the group exists in.
+
+        Example:
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] group_ids: A set of group ids that should be default groups on the realm referenced by `realm_id`.
-        :param pulumi.Input[str] realm_id: The realm this group exists in.
         """
         ...
     @overload
@@ -141,36 +129,42 @@ class DefaultGroups(pulumi.CustomResource):
                  args: DefaultGroupsArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## # DefaultGroups
+
         Allows for managing a realm's default groups.
 
-        > You should not use `DefaultGroups` with a group whose members are managed by `GroupMemberships`.
+        Note that you should not use `DefaultGroups` with a group with memberships managed
+        by `GroupMemberships`.
 
-        ## Example Usage
+        ### Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
+            enabled=True,
+            realm="my-realm")
         group = keycloak.Group("group", realm_id=realm.id)
         default = keycloak.DefaultGroups("default",
-            realm_id=realm.id,
-            group_ids=[group.id])
+            group_ids=[group.id],
+            realm_id=realm.id)
         ```
+        <!--End PulumiCodeChooser -->
 
-        ## Import
+        ### Argument Reference
 
-        Default groups can be imported using the format `{{realm_id}}` where `realm_id` is the realm the group exists in.
+        The following arguments are supported:
 
-         Example:
+        - `realm_id` - (Required) The realm this group exists in.
+        - `group_ids` - (Required) A set of group ids that should be default groups on the realm referenced by `realm_id`.
 
-         bash
+        ### Import
 
-        ```sh
-        $ pulumi import keycloak:index/defaultGroups:DefaultGroups default my-realm
-        ```
+        Groups can be imported using the format `{{realm_id}}` where `realm_id` is the realm the group exists in.
+
+        Example:
 
         :param str resource_name: The name of the resource.
         :param DefaultGroupsArgs args: The arguments to use to populate this resource's properties.
@@ -223,8 +217,6 @@ class DefaultGroups(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] group_ids: A set of group ids that should be default groups on the realm referenced by `realm_id`.
-        :param pulumi.Input[str] realm_id: The realm this group exists in.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -237,16 +229,10 @@ class DefaultGroups(pulumi.CustomResource):
     @property
     @pulumi.getter(name="groupIds")
     def group_ids(self) -> pulumi.Output[Sequence[str]]:
-        """
-        A set of group ids that should be default groups on the realm referenced by `realm_id`.
-        """
         return pulumi.get(self, "group_ids")
 
     @property
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Output[str]:
-        """
-        The realm this group exists in.
-        """
         return pulumi.get(self, "realm_id")
 

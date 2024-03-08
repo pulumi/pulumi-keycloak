@@ -13,13 +13,7 @@ namespace Pulumi.Keycloak.Outputs
     [OutputType]
     public sealed class RealmInternationalization
     {
-        /// <summary>
-        /// The locale to use by default. This locale code must be present within the `supported_locales` list.
-        /// </summary>
         public readonly string DefaultLocale;
-        /// <summary>
-        /// A list of [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) locale codes that the realm should support.
-        /// </summary>
         public readonly ImmutableArray<string> SupportedLocales;
 
         [OutputConstructor]

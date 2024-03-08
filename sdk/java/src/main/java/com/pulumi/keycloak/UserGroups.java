@@ -23,7 +23,9 @@ import javax.annotation.Nullable;
  * If `exhaustive` is false, this resource is a partial assignation of groups to a user. As a result, you can get multiple `keycloak.UserGroups` for the same `user_id`.
  * 
  * ## Example Usage
+ * 
  * ### Exhaustive Groups)
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -74,7 +76,10 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
  * ### Non Exhaustive Groups)
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -137,12 +142,13 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * This resource does not support import. Instead of importing, feel free to create this resource
  * 
- *  as if it did not already exist on the server.
+ * as if it did not already exist on the server.
  * 
  */
 @ResourceType(type="keycloak:index/userGroups:UserGroups")

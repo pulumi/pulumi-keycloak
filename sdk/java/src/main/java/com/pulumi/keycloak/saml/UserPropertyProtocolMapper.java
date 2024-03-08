@@ -15,15 +15,19 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Allows for creating and managing user property protocol mappers for SAML clients within Keycloak.
+ * ## # keycloak.saml.UserPropertyProtocolMapper
+ * 
+ * Allows for creating and managing user property protocol mappers for
+ * SAML clients within Keycloak.
  * 
  * SAML user property protocol mappers allow you to map properties of the Keycloak
- * user model to an attribute in a SAML assertion.
+ * user model to an attribute in a SAML assertion. Protocol mappers
+ * can be defined for a single client, or they can be defined for a client scope which
+ * can be shared between multiple different clients.
  * 
- * Protocol mappers can be defined for a single client, or they can be defined for a client scope which can be shared between
- * multiple different clients.
+ * ### Example Usage (Client)
  * 
- * ## Example Usage
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -50,159 +54,97 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
  *             .enabled(true)
+ *             .realm(&#34;my-realm&#34;)
  *             .build());
  * 
  *         var samlClient = new Client(&#34;samlClient&#34;, ClientArgs.builder()        
- *             .realmId(realm.id())
- *             .clientId(&#34;saml-client&#34;)
+ *             .clientId(&#34;test-saml-client&#34;)
+ *             .realmId(keycloak_realm.test().id())
  *             .build());
  * 
  *         var samlUserPropertyMapper = new UserPropertyProtocolMapper(&#34;samlUserPropertyMapper&#34;, UserPropertyProtocolMapperArgs.builder()        
- *             .realmId(realm.id())
  *             .clientId(samlClient.id())
- *             .userProperty(&#34;email&#34;)
+ *             .realmId(keycloak_realm.test().id())
  *             .samlAttributeName(&#34;email&#34;)
  *             .samlAttributeNameFormat(&#34;Unspecified&#34;)
+ *             .userProperty(&#34;email&#34;)
  *             .build());
  * 
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * ## Import
+ * ### Argument Reference
+ * 
+ * The following arguments are supported:
+ * 
+ * - `realm_id` - (Required) The realm this protocol mapper exists within.
+ * - `client_id` - (Required if `client_scope_id` is not specified) The SAML client this protocol mapper is attached to.
+ * - `client_scope_id` - (Required if `client_id` is not specified) The SAML client scope this protocol mapper is attached to.
+ * - `name` - (Required) The display name of this protocol mapper in the GUI.
+ * - `user_property` - (Required) The property of the Keycloak user model to map.
+ * - `friendly_name` - (Optional) An optional human-friendly name for this attribute.
+ * - `saml_attribute_name` - (Required) The name of the SAML attribute.
+ * - `saml_attribute_name_format` - (Required) The SAML attribute Name Format. Can be one of `Unspecified`, `Basic`, or `URI Reference`.
+ * 
+ * ### Import
  * 
  * Protocol mappers can be imported using one of the following formats:
+ * - Client: `{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}`
+ * - Client Scope: `{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}`
  * 
- *  - Client: `{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}`
- * 
- *  - Client Scope: `{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}`
- * 
- *  Example:
- * 
- *  bash
- * 
- * ```sh
- * $ pulumi import keycloak:saml/userPropertyProtocolMapper:UserPropertyProtocolMapper saml_user_property_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
- * ```
- * 
- * ```sh
- * $ pulumi import keycloak:saml/userPropertyProtocolMapper:UserPropertyProtocolMapper saml_user_property_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
- * ```
+ * Example:
  * 
  */
 @ResourceType(type="keycloak:saml/userPropertyProtocolMapper:UserPropertyProtocolMapper")
 public class UserPropertyProtocolMapper extends com.pulumi.resources.CustomResource {
-    /**
-     * The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
-     * 
-     */
     @Export(name="clientId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientId;
 
-    /**
-     * @return The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
-     * 
-     */
     public Output<Optional<String>> clientId() {
         return Codegen.optional(this.clientId);
     }
-    /**
-     * The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
-     * 
-     */
     @Export(name="clientScopeId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientScopeId;
 
-    /**
-     * @return The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
-     * 
-     */
     public Output<Optional<String>> clientScopeId() {
         return Codegen.optional(this.clientScopeId);
     }
-    /**
-     * An optional human-friendly name for this attribute.
-     * 
-     */
     @Export(name="friendlyName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> friendlyName;
 
-    /**
-     * @return An optional human-friendly name for this attribute.
-     * 
-     */
     public Output<Optional<String>> friendlyName() {
         return Codegen.optional(this.friendlyName);
     }
-    /**
-     * The display name of this protocol mapper in the GUI.
-     * 
-     */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
-    /**
-     * @return The display name of this protocol mapper in the GUI.
-     * 
-     */
     public Output<String> name() {
         return this.name;
     }
-    /**
-     * The realm this protocol mapper exists within.
-     * 
-     */
     @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
-    /**
-     * @return The realm this protocol mapper exists within.
-     * 
-     */
     public Output<String> realmId() {
         return this.realmId;
     }
-    /**
-     * The name of the SAML attribute.
-     * 
-     */
     @Export(name="samlAttributeName", refs={String.class}, tree="[0]")
     private Output<String> samlAttributeName;
 
-    /**
-     * @return The name of the SAML attribute.
-     * 
-     */
     public Output<String> samlAttributeName() {
         return this.samlAttributeName;
     }
-    /**
-     * The SAML attribute Name Format. Can be one of `Unspecified`, `Basic`, or `URI Reference`.
-     * 
-     */
     @Export(name="samlAttributeNameFormat", refs={String.class}, tree="[0]")
     private Output<String> samlAttributeNameFormat;
 
-    /**
-     * @return The SAML attribute Name Format. Can be one of `Unspecified`, `Basic`, or `URI Reference`.
-     * 
-     */
     public Output<String> samlAttributeNameFormat() {
         return this.samlAttributeNameFormat;
     }
-    /**
-     * The property of the Keycloak user model to map.
-     * 
-     */
     @Export(name="userProperty", refs={String.class}, tree="[0]")
     private Output<String> userProperty;
 
-    /**
-     * @return The property of the Keycloak user model to map.
-     * 
-     */
     public Output<String> userProperty() {
         return this.userProperty;
     }

@@ -10,14 +10,17 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Ldap
 {
     /// <summary>
+    /// ## # keycloak.ldap.UserAttributeMapper
+    /// 
     /// Allows for creating and managing user attribute mappers for Keycloak users
     /// federated via LDAP.
     /// 
     /// The LDAP user attribute mapper can be used to map a single LDAP attribute
     /// to an attribute on the Keycloak user model.
     /// 
-    /// ## Example Usage
+    /// ### Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -28,111 +31,117 @@ namespace Pulumi.Keycloak.Ldap
     /// {
     ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         RealmName = "my-realm",
     ///         Enabled = true,
+    ///         RealmName = "test",
     ///     });
     /// 
     ///     var ldapUserFederation = new Keycloak.Ldap.UserFederation("ldapUserFederation", new()
     ///     {
-    ///         RealmId = realm.Id,
-    ///         UsernameLdapAttribute = "cn",
+    ///         BindCredential = "admin",
+    ///         BindDn = "cn=admin,dc=example,dc=org",
+    ///         ConnectionUrl = "ldap://openldap",
     ///         RdnLdapAttribute = "cn",
-    ///         UuidLdapAttribute = "entryDN",
+    ///         RealmId = realm.Id,
     ///         UserObjectClasses = new[]
     ///         {
     ///             "simpleSecurityObject",
     ///             "organizationalRole",
     ///         },
-    ///         ConnectionUrl = "ldap://openldap",
+    ///         UsernameLdapAttribute = "cn",
     ///         UsersDn = "dc=example,dc=org",
-    ///         BindDn = "cn=admin,dc=example,dc=org",
-    ///         BindCredential = "admin",
+    ///         UuidLdapAttribute = "entryDN",
     ///     });
     /// 
     ///     var ldapUserAttributeMapper = new Keycloak.Ldap.UserAttributeMapper("ldapUserAttributeMapper", new()
     ///     {
-    ///         RealmId = realm.Id,
-    ///         LdapUserFederationId = ldapUserFederation.Id,
-    ///         UserModelAttribute = "foo",
     ///         LdapAttribute = "bar",
+    ///         LdapUserFederationId = ldapUserFederation.Id,
+    ///         RealmId = realm.Id,
+    ///         UserModelAttribute = "foo",
     ///     });
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
-    /// ## Import
+    /// ### Argument Reference
+    /// 
+    /// The following arguments are supported:
+    /// 
+    /// - `realm_id` - (Required) The realm that this LDAP mapper will exist in.
+    /// - `ldap_user_federation_id` - (Required) The ID of the LDAP user federation provider to attach this mapper to.
+    /// - `name` - (Required) Display name of this mapper when displayed in the console.
+    /// - `user_model_attribute` - (Required) Name of the user property or attribute you want to map the LDAP attribute into.
+    /// - `ldap_attribute` - (Required) Name of the mapped attribute on the LDAP object.
+    /// - `read_only` - (Optional) When `true`, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak. Defaults to `false`.
+    /// - `always_read_value_from_ldap` - (Optional) When `true`, the value fetched from LDAP will override the value stored in Keycloak. Defaults to `false`.
+    /// - `is_mandatory_in_ldap` - (Optional) When `true`, this attribute must exist in LDAP. Defaults to `false`.
+    /// 
+    /// ### Import
     /// 
     /// LDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`.
-    /// 
-    ///  The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs.
-    /// 
-    ///  Example:
-    /// 
-    ///  bash
-    /// 
-    /// ```sh
-    /// $ pulumi import keycloak:ldap/userAttributeMapper:UserAttributeMapper ldap_user_attribute_mapper my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
-    /// ```
+    /// The ID of the LDAP user federation provider and the mapper can be found within
+    /// the Keycloak GUI, and they are typically GUIDs:
     /// </summary>
     [KeycloakResourceType("keycloak:ldap/userAttributeMapper:UserAttributeMapper")]
     public partial class UserAttributeMapper : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// When `true`, the value fetched from LDAP will override the value stored in Keycloak. Defaults to `false`.
+        /// When true, the value fetched from LDAP will override the value stored in Keycloak.
         /// </summary>
         [Output("alwaysReadValueFromLdap")]
         public Output<bool?> AlwaysReadValueFromLdap { get; private set; } = null!;
 
         /// <summary>
-        /// Default value to set in LDAP if `is_mandatory_in_ldap` is true and the value is empty.
+        /// Default value to set in LDAP if is_mandatory_in_ldap and the value is empty
         /// </summary>
         [Output("attributeDefaultValue")]
         public Output<string?> AttributeDefaultValue { get; private set; } = null!;
 
         /// <summary>
-        /// Should be true for binary LDAP attributes.
+        /// Should be true for binary LDAP attributes
         /// </summary>
         [Output("isBinaryAttribute")]
         public Output<bool?> IsBinaryAttribute { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, this attribute must exist in LDAP. Defaults to `false`.
+        /// When true, this attribute must exist in LDAP.
         /// </summary>
         [Output("isMandatoryInLdap")]
         public Output<bool?> IsMandatoryInLdap { get; private set; } = null!;
 
         /// <summary>
-        /// Name of the mapped attribute on the LDAP object.
+        /// Name of the mapped attribute on LDAP object.
         /// </summary>
         [Output("ldapAttribute")]
         public Output<string> LdapAttribute { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the LDAP user federation provider to attach this mapper to.
+        /// The ldap user federation provider to attach this mapper to.
         /// </summary>
         [Output("ldapUserFederationId")]
         public Output<string> LdapUserFederationId { get; private set; } = null!;
 
         /// <summary>
-        /// Display name of this mapper when displayed in the console.
+        /// Display name of the mapper when displayed in the console.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak. Defaults to `false`.
+        /// When true, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak.
         /// </summary>
         [Output("readOnly")]
         public Output<bool?> ReadOnly { get; private set; } = null!;
 
         /// <summary>
-        /// The realm that this LDAP mapper will exist in.
+        /// The realm in which the ldap user federation provider exists.
         /// </summary>
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
 
         /// <summary>
-        /// Name of the user property or attribute you want to map the LDAP attribute into.
+        /// Name of the UserModel property or attribute you want to map the LDAP attribute into.
         /// </summary>
         [Output("userModelAttribute")]
         public Output<string> UserModelAttribute { get; private set; } = null!;
@@ -184,61 +193,61 @@ namespace Pulumi.Keycloak.Ldap
     public sealed class UserAttributeMapperArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// When `true`, the value fetched from LDAP will override the value stored in Keycloak. Defaults to `false`.
+        /// When true, the value fetched from LDAP will override the value stored in Keycloak.
         /// </summary>
         [Input("alwaysReadValueFromLdap")]
         public Input<bool>? AlwaysReadValueFromLdap { get; set; }
 
         /// <summary>
-        /// Default value to set in LDAP if `is_mandatory_in_ldap` is true and the value is empty.
+        /// Default value to set in LDAP if is_mandatory_in_ldap and the value is empty
         /// </summary>
         [Input("attributeDefaultValue")]
         public Input<string>? AttributeDefaultValue { get; set; }
 
         /// <summary>
-        /// Should be true for binary LDAP attributes.
+        /// Should be true for binary LDAP attributes
         /// </summary>
         [Input("isBinaryAttribute")]
         public Input<bool>? IsBinaryAttribute { get; set; }
 
         /// <summary>
-        /// When `true`, this attribute must exist in LDAP. Defaults to `false`.
+        /// When true, this attribute must exist in LDAP.
         /// </summary>
         [Input("isMandatoryInLdap")]
         public Input<bool>? IsMandatoryInLdap { get; set; }
 
         /// <summary>
-        /// Name of the mapped attribute on the LDAP object.
+        /// Name of the mapped attribute on LDAP object.
         /// </summary>
         [Input("ldapAttribute", required: true)]
         public Input<string> LdapAttribute { get; set; } = null!;
 
         /// <summary>
-        /// The ID of the LDAP user federation provider to attach this mapper to.
+        /// The ldap user federation provider to attach this mapper to.
         /// </summary>
         [Input("ldapUserFederationId", required: true)]
         public Input<string> LdapUserFederationId { get; set; } = null!;
 
         /// <summary>
-        /// Display name of this mapper when displayed in the console.
+        /// Display name of the mapper when displayed in the console.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// When `true`, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak. Defaults to `false`.
+        /// When true, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak.
         /// </summary>
         [Input("readOnly")]
         public Input<bool>? ReadOnly { get; set; }
 
         /// <summary>
-        /// The realm that this LDAP mapper will exist in.
+        /// The realm in which the ldap user federation provider exists.
         /// </summary>
         [Input("realmId", required: true)]
         public Input<string> RealmId { get; set; } = null!;
 
         /// <summary>
-        /// Name of the user property or attribute you want to map the LDAP attribute into.
+        /// Name of the UserModel property or attribute you want to map the LDAP attribute into.
         /// </summary>
         [Input("userModelAttribute", required: true)]
         public Input<string> UserModelAttribute { get; set; } = null!;
@@ -252,61 +261,61 @@ namespace Pulumi.Keycloak.Ldap
     public sealed class UserAttributeMapperState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// When `true`, the value fetched from LDAP will override the value stored in Keycloak. Defaults to `false`.
+        /// When true, the value fetched from LDAP will override the value stored in Keycloak.
         /// </summary>
         [Input("alwaysReadValueFromLdap")]
         public Input<bool>? AlwaysReadValueFromLdap { get; set; }
 
         /// <summary>
-        /// Default value to set in LDAP if `is_mandatory_in_ldap` is true and the value is empty.
+        /// Default value to set in LDAP if is_mandatory_in_ldap and the value is empty
         /// </summary>
         [Input("attributeDefaultValue")]
         public Input<string>? AttributeDefaultValue { get; set; }
 
         /// <summary>
-        /// Should be true for binary LDAP attributes.
+        /// Should be true for binary LDAP attributes
         /// </summary>
         [Input("isBinaryAttribute")]
         public Input<bool>? IsBinaryAttribute { get; set; }
 
         /// <summary>
-        /// When `true`, this attribute must exist in LDAP. Defaults to `false`.
+        /// When true, this attribute must exist in LDAP.
         /// </summary>
         [Input("isMandatoryInLdap")]
         public Input<bool>? IsMandatoryInLdap { get; set; }
 
         /// <summary>
-        /// Name of the mapped attribute on the LDAP object.
+        /// Name of the mapped attribute on LDAP object.
         /// </summary>
         [Input("ldapAttribute")]
         public Input<string>? LdapAttribute { get; set; }
 
         /// <summary>
-        /// The ID of the LDAP user federation provider to attach this mapper to.
+        /// The ldap user federation provider to attach this mapper to.
         /// </summary>
         [Input("ldapUserFederationId")]
         public Input<string>? LdapUserFederationId { get; set; }
 
         /// <summary>
-        /// Display name of this mapper when displayed in the console.
+        /// Display name of the mapper when displayed in the console.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// When `true`, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak. Defaults to `false`.
+        /// When true, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak.
         /// </summary>
         [Input("readOnly")]
         public Input<bool>? ReadOnly { get; set; }
 
         /// <summary>
-        /// The realm that this LDAP mapper will exist in.
+        /// The realm in which the ldap user federation provider exists.
         /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
 
         /// <summary>
-        /// Name of the user property or attribute you want to map the LDAP attribute into.
+        /// Name of the UserModel property or attribute you want to map the LDAP attribute into.
         /// </summary>
         [Input("userModelAttribute")]
         public Input<string>? UserModelAttribute { get; set; }

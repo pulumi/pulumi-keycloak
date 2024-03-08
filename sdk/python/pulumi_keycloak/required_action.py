@@ -236,6 +236,7 @@ class RequiredAction(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -248,14 +249,15 @@ class RequiredAction(pulumi.CustomResource):
             alias="webauthn-register",
             enabled=True)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Authentication executions can be imported using the formats: `{{realm}}/{{alias}}`.
 
-         Example:
+        Example:
 
-         bash
+        bash
 
         ```sh
         $ pulumi import keycloak:index/requiredAction:RequiredAction required_action my-realm/my-default-action-alias
@@ -283,6 +285,7 @@ class RequiredAction(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -295,14 +298,15 @@ class RequiredAction(pulumi.CustomResource):
             alias="webauthn-register",
             enabled=True)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Authentication executions can be imported using the formats: `{{realm}}/{{alias}}`.
 
-         Example:
+        Example:
 
-         bash
+        bash
 
         ```sh
         $ pulumi import keycloak:index/requiredAction:RequiredAction required_action my-realm/my-default-action-alias

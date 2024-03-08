@@ -16,60 +16,36 @@ public final class FullNameProtocolMapperState extends com.pulumi.resources.Reso
 
     public static final FullNameProtocolMapperState Empty = new FullNameProtocolMapperState();
 
-    /**
-     * Indicates if the user&#39;s full name should be added as a claim to the access token. Defaults to `true`.
-     * 
-     */
     @Import(name="addToAccessToken")
     private @Nullable Output<Boolean> addToAccessToken;
 
-    /**
-     * @return Indicates if the user&#39;s full name should be added as a claim to the access token. Defaults to `true`.
-     * 
-     */
     public Optional<Output<Boolean>> addToAccessToken() {
         return Optional.ofNullable(this.addToAccessToken);
     }
 
-    /**
-     * Indicates if the user&#39;s full name should be added as a claim to the id token. Defaults to `true`.
-     * 
-     */
     @Import(name="addToIdToken")
     private @Nullable Output<Boolean> addToIdToken;
 
-    /**
-     * @return Indicates if the user&#39;s full name should be added as a claim to the id token. Defaults to `true`.
-     * 
-     */
     public Optional<Output<Boolean>> addToIdToken() {
         return Optional.ofNullable(this.addToIdToken);
     }
 
-    /**
-     * Indicates if the user&#39;s full name should be added as a claim to the UserInfo response body. Defaults to `true`.
-     * 
-     */
     @Import(name="addToUserinfo")
     private @Nullable Output<Boolean> addToUserinfo;
 
-    /**
-     * @return Indicates if the user&#39;s full name should be added as a claim to the UserInfo response body. Defaults to `true`.
-     * 
-     */
     public Optional<Output<Boolean>> addToUserinfo() {
         return Optional.ofNullable(this.addToUserinfo);
     }
 
     /**
-     * The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+     * The mapper&#39;s associated client. Cannot be used at the same time as client_scope_id.
      * 
      */
     @Import(name="clientId")
     private @Nullable Output<String> clientId;
 
     /**
-     * @return The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+     * @return The mapper&#39;s associated client. Cannot be used at the same time as client_scope_id.
      * 
      */
     public Optional<Output<String>> clientId() {
@@ -77,14 +53,14 @@ public final class FullNameProtocolMapperState extends com.pulumi.resources.Reso
     }
 
     /**
-     * The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+     * The mapper&#39;s associated client scope. Cannot be used at the same time as client_id.
      * 
      */
     @Import(name="clientScopeId")
     private @Nullable Output<String> clientScopeId;
 
     /**
-     * @return The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+     * @return The mapper&#39;s associated client scope. Cannot be used at the same time as client_id.
      * 
      */
     public Optional<Output<String>> clientScopeId() {
@@ -92,14 +68,14 @@ public final class FullNameProtocolMapperState extends com.pulumi.resources.Reso
     }
 
     /**
-     * The display name of this protocol mapper in the GUI.
+     * A human-friendly name that will appear in the Keycloak console.
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return The display name of this protocol mapper in the GUI.
+     * @return A human-friendly name that will appear in the Keycloak console.
      * 
      */
     public Optional<Output<String>> name() {
@@ -107,14 +83,14 @@ public final class FullNameProtocolMapperState extends com.pulumi.resources.Reso
     }
 
     /**
-     * The realm this protocol mapper exists within.
+     * The realm id where the associated client or client scope exists.
      * 
      */
     @Import(name="realmId")
     private @Nullable Output<String> realmId;
 
     /**
-     * @return The realm this protocol mapper exists within.
+     * @return The realm id where the associated client or client scope exists.
      * 
      */
     public Optional<Output<String>> realmId() {
@@ -151,71 +127,35 @@ public final class FullNameProtocolMapperState extends com.pulumi.resources.Reso
             $ = new FullNameProtocolMapperState(Objects.requireNonNull(defaults));
         }
 
-        /**
-         * @param addToAccessToken Indicates if the user&#39;s full name should be added as a claim to the access token. Defaults to `true`.
-         * 
-         * @return builder
-         * 
-         */
         public Builder addToAccessToken(@Nullable Output<Boolean> addToAccessToken) {
             $.addToAccessToken = addToAccessToken;
             return this;
         }
 
-        /**
-         * @param addToAccessToken Indicates if the user&#39;s full name should be added as a claim to the access token. Defaults to `true`.
-         * 
-         * @return builder
-         * 
-         */
         public Builder addToAccessToken(Boolean addToAccessToken) {
             return addToAccessToken(Output.of(addToAccessToken));
         }
 
-        /**
-         * @param addToIdToken Indicates if the user&#39;s full name should be added as a claim to the id token. Defaults to `true`.
-         * 
-         * @return builder
-         * 
-         */
         public Builder addToIdToken(@Nullable Output<Boolean> addToIdToken) {
             $.addToIdToken = addToIdToken;
             return this;
         }
 
-        /**
-         * @param addToIdToken Indicates if the user&#39;s full name should be added as a claim to the id token. Defaults to `true`.
-         * 
-         * @return builder
-         * 
-         */
         public Builder addToIdToken(Boolean addToIdToken) {
             return addToIdToken(Output.of(addToIdToken));
         }
 
-        /**
-         * @param addToUserinfo Indicates if the user&#39;s full name should be added as a claim to the UserInfo response body. Defaults to `true`.
-         * 
-         * @return builder
-         * 
-         */
         public Builder addToUserinfo(@Nullable Output<Boolean> addToUserinfo) {
             $.addToUserinfo = addToUserinfo;
             return this;
         }
 
-        /**
-         * @param addToUserinfo Indicates if the user&#39;s full name should be added as a claim to the UserInfo response body. Defaults to `true`.
-         * 
-         * @return builder
-         * 
-         */
         public Builder addToUserinfo(Boolean addToUserinfo) {
             return addToUserinfo(Output.of(addToUserinfo));
         }
 
         /**
-         * @param clientId The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+         * @param clientId The mapper&#39;s associated client. Cannot be used at the same time as client_scope_id.
          * 
          * @return builder
          * 
@@ -226,7 +166,7 @@ public final class FullNameProtocolMapperState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param clientId The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+         * @param clientId The mapper&#39;s associated client. Cannot be used at the same time as client_scope_id.
          * 
          * @return builder
          * 
@@ -236,7 +176,7 @@ public final class FullNameProtocolMapperState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param clientScopeId The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+         * @param clientScopeId The mapper&#39;s associated client scope. Cannot be used at the same time as client_id.
          * 
          * @return builder
          * 
@@ -247,7 +187,7 @@ public final class FullNameProtocolMapperState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param clientScopeId The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+         * @param clientScopeId The mapper&#39;s associated client scope. Cannot be used at the same time as client_id.
          * 
          * @return builder
          * 
@@ -257,7 +197,7 @@ public final class FullNameProtocolMapperState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param name The display name of this protocol mapper in the GUI.
+         * @param name A human-friendly name that will appear in the Keycloak console.
          * 
          * @return builder
          * 
@@ -268,7 +208,7 @@ public final class FullNameProtocolMapperState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param name The display name of this protocol mapper in the GUI.
+         * @param name A human-friendly name that will appear in the Keycloak console.
          * 
          * @return builder
          * 
@@ -278,7 +218,7 @@ public final class FullNameProtocolMapperState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param realmId The realm this protocol mapper exists within.
+         * @param realmId The realm id where the associated client or client scope exists.
          * 
          * @return builder
          * 
@@ -289,7 +229,7 @@ public final class FullNameProtocolMapperState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param realmId The realm this protocol mapper exists within.
+         * @param realmId The realm id where the associated client or client scope exists.
          * 
          * @return builder
          * 

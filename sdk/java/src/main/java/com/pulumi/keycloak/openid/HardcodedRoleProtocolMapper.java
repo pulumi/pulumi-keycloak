@@ -15,15 +15,19 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Allows for creating and managing hardcoded role protocol mappers within Keycloak.
+ * ## # keycloak.openid.HardcodedRoleProtocolMapper
  * 
- * Hardcoded role protocol mappers allow you to specify a single role to always map to an access token for a client.
+ * Allows for creating and managing hardcoded role protocol mappers within
+ * Keycloak.
  * 
- * Protocol mappers can be defined for a single client, or they can be defined for a client scope which can be shared between
- * multiple different clients.
+ * Hardcoded role protocol mappers allow you to specify a single role to
+ * always map to an access token for a client. Protocol mappers can be
+ * defined for a single client, or they can be defined for a client scope
+ * which can be shared between multiple different clients.
  * 
- * ## Example Usage
- * ### Client)
+ * ### Example Usage (Client)
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -52,8 +56,8 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
  *             .enabled(true)
+ *             .realm(&#34;my-realm&#34;)
  *             .build());
  * 
  *         var role = new Role(&#34;role&#34;, RoleArgs.builder()        
@@ -61,23 +65,27 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var openidClient = new Client(&#34;openidClient&#34;, ClientArgs.builder()        
- *             .realmId(realm.id())
- *             .clientId(&#34;client&#34;)
- *             .enabled(true)
  *             .accessType(&#34;CONFIDENTIAL&#34;)
+ *             .clientId(&#34;test-client&#34;)
+ *             .enabled(true)
+ *             .realmId(realm.id())
  *             .validRedirectUris(&#34;http://localhost:8080/openid-callback&#34;)
  *             .build());
  * 
  *         var hardcodedRoleMapper = new HardcodedRoleProtocolMapper(&#34;hardcodedRoleMapper&#34;, HardcodedRoleProtocolMapperArgs.builder()        
- *             .realmId(realm.id())
  *             .clientId(openidClient.id())
+ *             .realmId(realm.id())
  *             .roleId(role.id())
  *             .build());
  * 
  *     }
  * }
  * ```
- * ### Client Scope)
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * ### Example Usage (Client Scope)
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -106,8 +114,8 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
  *             .enabled(true)
+ *             .realm(&#34;my-realm&#34;)
  *             .build());
  * 
  *         var role = new Role(&#34;role&#34;, RoleArgs.builder()        
@@ -119,105 +127,97 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var hardcodedRoleMapper = new HardcodedRoleProtocolMapper(&#34;hardcodedRoleMapper&#34;, HardcodedRoleProtocolMapperArgs.builder()        
- *             .realmId(realm.id())
  *             .clientScopeId(clientScope.id())
+ *             .realmId(realm.id())
  *             .roleId(role.id())
  *             .build());
  * 
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * ## Import
+ * ### Argument Reference
+ * 
+ * The following arguments are supported:
+ * 
+ * - `realm_id` - (Required) The realm this protocol mapper exists within.
+ * - `client_id` - (Required if `client_scope_id` is not specified) The client this protocol mapper is attached to.
+ * - `client_scope_id` - (Required if `client_id` is not specified) The client scope this protocol mapper is attached to.
+ * - `name` - (Required) The display name of this protocol mapper in the
+ *   GUI.
+ * - `role_id` - (Required) The ID of the role to map to an access token.
+ * 
+ * ### Import
  * 
  * Protocol mappers can be imported using one of the following formats:
+ * - Client: `{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}`
+ * - Client Scope: `{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}`
  * 
- *  - Client: `{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}`
- * 
- *  - Client Scope: `{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}`
- * 
- *  Example:
- * 
- *  bash
- * 
- * ```sh
- * $ pulumi import keycloak:openid/hardcodedRoleProtocolMapper:HardcodedRoleProtocolMapper hardcoded_role_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
- * ```
- * 
- * ```sh
- * $ pulumi import keycloak:openid/hardcodedRoleProtocolMapper:HardcodedRoleProtocolMapper hardcoded_role_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
- * ```
+ * Example:
  * 
  */
 @ResourceType(type="keycloak:openid/hardcodedRoleProtocolMapper:HardcodedRoleProtocolMapper")
 public class HardcodedRoleProtocolMapper extends com.pulumi.resources.CustomResource {
     /**
-     * The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+     * The mapper&#39;s associated client. Cannot be used at the same time as client_scope_id.
      * 
      */
     @Export(name="clientId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientId;
 
     /**
-     * @return The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+     * @return The mapper&#39;s associated client. Cannot be used at the same time as client_scope_id.
      * 
      */
     public Output<Optional<String>> clientId() {
         return Codegen.optional(this.clientId);
     }
     /**
-     * The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+     * The mapper&#39;s associated client scope. Cannot be used at the same time as client_id.
      * 
      */
     @Export(name="clientScopeId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientScopeId;
 
     /**
-     * @return The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+     * @return The mapper&#39;s associated client scope. Cannot be used at the same time as client_id.
      * 
      */
     public Output<Optional<String>> clientScopeId() {
         return Codegen.optional(this.clientScopeId);
     }
     /**
-     * The display name of this protocol mapper in the GUI.
+     * A human-friendly name that will appear in the Keycloak console.
      * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
-     * @return The display name of this protocol mapper in the GUI.
+     * @return A human-friendly name that will appear in the Keycloak console.
      * 
      */
     public Output<String> name() {
         return this.name;
     }
     /**
-     * The realm this protocol mapper exists within.
+     * The realm id where the associated client or client scope exists.
      * 
      */
     @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**
-     * @return The realm this protocol mapper exists within.
+     * @return The realm id where the associated client or client scope exists.
      * 
      */
     public Output<String> realmId() {
         return this.realmId;
     }
-    /**
-     * The ID of the role to map to an access token.
-     * 
-     */
     @Export(name="roleId", refs={String.class}, tree="[0]")
     private Output<String> roleId;
 
-    /**
-     * @return The ID of the role to map to an access token.
-     * 
-     */
     public Output<String> roleId() {
         return this.roleId;
     }

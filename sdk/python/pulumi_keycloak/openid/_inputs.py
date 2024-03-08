@@ -28,10 +28,6 @@ class ClientAuthenticationFlowBindingOverridesArgs:
     def __init__(__self__, *,
                  browser_id: Optional[pulumi.Input[str]] = None,
                  direct_grant_id: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] browser_id: Browser flow id, (flow needs to exist)
-        :param pulumi.Input[str] direct_grant_id: Direct grant flow id (flow needs to exist)
-        """
         if browser_id is not None:
             pulumi.set(__self__, "browser_id", browser_id)
         if direct_grant_id is not None:
@@ -40,9 +36,6 @@ class ClientAuthenticationFlowBindingOverridesArgs:
     @property
     @pulumi.getter(name="browserId")
     def browser_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        Browser flow id, (flow needs to exist)
-        """
         return pulumi.get(self, "browser_id")
 
     @browser_id.setter
@@ -52,9 +45,6 @@ class ClientAuthenticationFlowBindingOverridesArgs:
     @property
     @pulumi.getter(name="directGrantId")
     def direct_grant_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        Direct grant flow id (flow needs to exist)
-        """
         return pulumi.get(self, "direct_grant_id")
 
     @direct_grant_id.setter
@@ -69,12 +59,6 @@ class ClientAuthorizationArgs:
                  allow_remote_resource_management: Optional[pulumi.Input[bool]] = None,
                  decision_strategy: Optional[pulumi.Input[str]] = None,
                  keep_defaults: Optional[pulumi.Input[bool]] = None):
-        """
-        :param pulumi.Input[str] policy_enforcement_mode: Dictates how policies are enforced when evaluating authorization requests. Can be one of `ENFORCING`, `PERMISSIVE`, or `DISABLED`.
-        :param pulumi.Input[bool] allow_remote_resource_management: When `true`, resources can be managed remotely by the resource server. Defaults to `false`.
-        :param pulumi.Input[str] decision_strategy: Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.
-        :param pulumi.Input[bool] keep_defaults: When `true`, defaults set by Keycloak will be respected. Defaults to `false`.
-        """
         pulumi.set(__self__, "policy_enforcement_mode", policy_enforcement_mode)
         if allow_remote_resource_management is not None:
             pulumi.set(__self__, "allow_remote_resource_management", allow_remote_resource_management)
@@ -86,9 +70,6 @@ class ClientAuthorizationArgs:
     @property
     @pulumi.getter(name="policyEnforcementMode")
     def policy_enforcement_mode(self) -> pulumi.Input[str]:
-        """
-        Dictates how policies are enforced when evaluating authorization requests. Can be one of `ENFORCING`, `PERMISSIVE`, or `DISABLED`.
-        """
         return pulumi.get(self, "policy_enforcement_mode")
 
     @policy_enforcement_mode.setter
@@ -98,9 +79,6 @@ class ClientAuthorizationArgs:
     @property
     @pulumi.getter(name="allowRemoteResourceManagement")
     def allow_remote_resource_management(self) -> Optional[pulumi.Input[bool]]:
-        """
-        When `true`, resources can be managed remotely by the resource server. Defaults to `false`.
-        """
         return pulumi.get(self, "allow_remote_resource_management")
 
     @allow_remote_resource_management.setter
@@ -110,9 +88,6 @@ class ClientAuthorizationArgs:
     @property
     @pulumi.getter(name="decisionStrategy")
     def decision_strategy(self) -> Optional[pulumi.Input[str]]:
-        """
-        Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.
-        """
         return pulumi.get(self, "decision_strategy")
 
     @decision_strategy.setter
@@ -122,9 +97,6 @@ class ClientAuthorizationArgs:
     @property
     @pulumi.getter(name="keepDefaults")
     def keep_defaults(self) -> Optional[pulumi.Input[bool]]:
-        """
-        When `true`, defaults set by Keycloak will be respected. Defaults to `false`.
-        """
         return pulumi.get(self, "keep_defaults")
 
     @keep_defaults.setter

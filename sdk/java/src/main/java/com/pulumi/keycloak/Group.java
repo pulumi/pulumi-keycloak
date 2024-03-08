@@ -17,17 +17,22 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * ## # keycloak.Group
+ * 
  * Allows for creating and managing Groups within Keycloak.
  * 
- * Groups provide a logical wrapping for users within Keycloak. Users within a group can share attributes and roles, and
- * group membership can be mapped to a claim.
+ * Groups provide a logical wrapping for users within Keycloak. Users within a
+ * group can share attributes and roles, and group membership can be mapped
+ * to a claim.
  * 
  * Attributes can also be defined on Groups.
  * 
- * Groups can also be federated from external data sources, such as LDAP or Active Directory. This resource **should not**
- * be used to manage groups that were created this way.
+ * Groups can also be federated from external data sources, such as LDAP or Active Directory.
+ * This resource **should not** be used to manage groups that were created this way.
  * 
- * ## Example Usage
+ * ### Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -52,8 +57,8 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
  *             .enabled(true)
+ *             .realm(&#34;my-realm&#34;)
  *             .build());
  * 
  *         var parentGroup = new Group(&#34;parentGroup&#34;, GroupArgs.builder()        
@@ -61,107 +66,76 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var childGroup = new Group(&#34;childGroup&#34;, GroupArgs.builder()        
- *             .realmId(realm.id())
  *             .parentId(parentGroup.id())
+ *             .realmId(realm.id())
  *             .build());
  * 
  *         var childGroupWithOptionalAttributes = new Group(&#34;childGroupWithOptionalAttributes&#34;, GroupArgs.builder()        
- *             .realmId(realm.id())
- *             .parentId(parentGroup.id())
  *             .attributes(Map.ofEntries(
- *                 Map.entry(&#34;foo&#34;, &#34;bar&#34;),
- *                 Map.entry(&#34;multivalue&#34;, &#34;value1##value2&#34;)
+ *                 Map.entry(&#34;key1&#34;, &#34;value1&#34;),
+ *                 Map.entry(&#34;key2&#34;, &#34;value2&#34;)
  *             ))
+ *             .parentId(parentGroup.id())
+ *             .realmId(realm.id())
  *             .build());
  * 
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * ## Import
+ * ### Argument Reference
+ * 
+ * The following arguments are supported:
+ * 
+ * - `realm_id` - (Required) The realm this group exists in.
+ * - `parent_id` - (Optional) The ID of this group&#39;s parent. If omitted, this group will be defined at the root level.
+ * - `name` - (Required) The name of the group.
+ * - `attributes` - (Optional) A dict of key/value pairs to set as custom attributes for the group.
+ * 
+ * ### Attributes Reference
+ * 
+ * In addition to the arguments listed above, the following computed attributes are exported:
+ * 
+ * - `path` - The complete path of the group. For example, the child group&#39;s path in the example configuration would be `/parent-group/child-group`.
+ * 
+ * ### Import
  * 
  * Groups can be imported using the format `{{realm_id}}/{{group_id}}`, where `group_id` is the unique ID that Keycloak
+ * assigns to the group upon creation. This value can be found in the URI when editing this group in the GUI, and is typically a GUID.
  * 
- *  assigns to the group upon creation. This value can be found in the URI when editing this group in the GUI, and is typically a GUID.
- * 
- *  Example:
- * 
- *  bash
- * 
- * ```sh
- * $ pulumi import keycloak:index/group:Group child_group my-realm/934a4a4e-28bd-4703-a0fa-332df153aabd
- * ```
+ * Example:
  * 
  */
 @ResourceType(type="keycloak:index/group:Group")
 public class Group extends com.pulumi.resources.CustomResource {
-    /**
-     * A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
-     * 
-     */
     @Export(name="attributes", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
     private Output</* @Nullable */ Map<String,Object>> attributes;
 
-    /**
-     * @return A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
-     * 
-     */
     public Output<Optional<Map<String,Object>>> attributes() {
         return Codegen.optional(this.attributes);
     }
-    /**
-     * The name of the group.
-     * 
-     */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
-    /**
-     * @return The name of the group.
-     * 
-     */
     public Output<String> name() {
         return this.name;
     }
-    /**
-     * The ID of this group&#39;s parent. If omitted, this group will be defined at the root level.
-     * 
-     */
     @Export(name="parentId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> parentId;
 
-    /**
-     * @return The ID of this group&#39;s parent. If omitted, this group will be defined at the root level.
-     * 
-     */
     public Output<Optional<String>> parentId() {
         return Codegen.optional(this.parentId);
     }
-    /**
-     * (Computed) The complete path of the group. For example, the child group&#39;s path in the example configuration would be `/parent-group/child-group`.
-     * 
-     */
     @Export(name="path", refs={String.class}, tree="[0]")
     private Output<String> path;
 
-    /**
-     * @return (Computed) The complete path of the group. For example, the child group&#39;s path in the example configuration would be `/parent-group/child-group`.
-     * 
-     */
     public Output<String> path() {
         return this.path;
     }
-    /**
-     * The realm this group exists in.
-     * 
-     */
     @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
-    /**
-     * @return The realm this group exists in.
-     * 
-     */
     public Output<String> realmId() {
         return this.realmId;
     }

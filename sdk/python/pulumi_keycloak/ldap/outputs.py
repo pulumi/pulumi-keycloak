@@ -46,11 +46,10 @@ class UserFederationCache(dict):
                  max_lifespan: Optional[str] = None,
                  policy: Optional[str] = None):
         """
-        :param int eviction_day: Day of the week the entry will become invalid on
+        :param int eviction_day: Day of the week the entry will become invalid on.
         :param int eviction_hour: Hour of day the entry will become invalid on.
         :param int eviction_minute: Minute of day the entry will become invalid on.
         :param str max_lifespan: Max lifespan of cache entry (duration string).
-        :param str policy: Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
         """
         if eviction_day is not None:
             pulumi.set(__self__, "eviction_day", eviction_day)
@@ -67,7 +66,7 @@ class UserFederationCache(dict):
     @pulumi.getter(name="evictionDay")
     def eviction_day(self) -> Optional[int]:
         """
-        Day of the week the entry will become invalid on
+        Day of the week the entry will become invalid on.
         """
         return pulumi.get(self, "eviction_day")
 
@@ -98,9 +97,6 @@ class UserFederationCache(dict):
     @property
     @pulumi.getter
     def policy(self) -> Optional[str]:
-        """
-        Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
-        """
         return pulumi.get(self, "policy")
 
 
@@ -135,7 +131,7 @@ class UserFederationKerberos(dict):
                  server_principal: str,
                  use_kerberos_for_password_authentication: Optional[bool] = None):
         """
-        :param str kerberos_realm: The name of the kerberos realm, e.g. FOO.LOCAL.
+        :param str kerberos_realm: The name of the kerberos realm, e.g. FOO.LOCAL
         :param str key_tab: Path to the kerberos keytab file on the server with credentials of the service principal.
         :param str server_principal: The kerberos server principal, e.g. 'HTTP/host.foo.com@FOO.LOCAL'.
         :param bool use_kerberos_for_password_authentication: Use kerberos login module instead of ldap service api. Defaults to `false`.
@@ -150,7 +146,7 @@ class UserFederationKerberos(dict):
     @pulumi.getter(name="kerberosRealm")
     def kerberos_realm(self) -> str:
         """
-        The name of the kerberos realm, e.g. FOO.LOCAL.
+        The name of the kerberos realm, e.g. FOO.LOCAL
         """
         return pulumi.get(self, "kerberos_realm")
 

@@ -82,6 +82,7 @@ def get_user_realm_roles(realm_id: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_keycloak as keycloak
@@ -93,6 +94,7 @@ def get_user_realm_roles(realm_id: Optional[str] = None,
         user_id=default_admin_user.id)
     pulumi.export("keycloakUserRoleNames", user_realm_roles.role_names)
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str realm_id: The realm this user belongs to.
@@ -120,6 +122,7 @@ def get_user_realm_roles_output(realm_id: Optional[pulumi.Input[str]] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_keycloak as keycloak
@@ -131,6 +134,7 @@ def get_user_realm_roles_output(realm_id: Optional[pulumi.Input[str]] = None,
         user_id=default_admin_user.id)
     pulumi.export("keycloakUserRoleNames", user_realm_roles.role_names)
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str realm_id: The realm this user belongs to.

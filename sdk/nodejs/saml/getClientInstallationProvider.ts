@@ -11,6 +11,7 @@ import * as utilities from "../utilities";
  *
  * In the example below, we extract the SAML metadata IDPSSODescriptor to pass it to the AWS IAM SAML Provider.
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
@@ -37,6 +38,7 @@ import * as utilities from "../utilities";
  * });
  * const _default = new aws.iam.SamlProvider("default", {samlMetadataDocument: samlIdpDescriptor.apply(samlIdpDescriptor => samlIdpDescriptor.value)});
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getClientInstallationProvider(args: GetClientInstallationProviderArgs, opts?: pulumi.InvokeOptions): Promise<GetClientInstallationProviderResult> {
 
@@ -89,6 +91,7 @@ export interface GetClientInstallationProviderResult {
  *
  * In the example below, we extract the SAML metadata IDPSSODescriptor to pass it to the AWS IAM SAML Provider.
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as aws from "@pulumi/aws";
@@ -115,6 +118,7 @@ export interface GetClientInstallationProviderResult {
  * });
  * const _default = new aws.iam.SamlProvider("default", {samlMetadataDocument: samlIdpDescriptor.apply(samlIdpDescriptor => samlIdpDescriptor.value)});
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getClientInstallationProviderOutput(args: GetClientInstallationProviderOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetClientInstallationProviderResult> {
     return pulumi.output(args).apply((a: any) => getClientInstallationProvider(a, opts))

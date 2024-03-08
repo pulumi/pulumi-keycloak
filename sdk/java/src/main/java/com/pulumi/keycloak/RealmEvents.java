@@ -18,9 +18,13 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * ## # keycloak.RealmEvents
+ * 
  * Allows for managing Realm Events settings within Keycloak.
  * 
- * ## Example Usage
+ * ### Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -45,128 +49,80 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
- *             .enabled(true)
+ *             .realm(&#34;test&#34;)
  *             .build());
  * 
  *         var realmEvents = new RealmEvents(&#34;realmEvents&#34;, RealmEventsArgs.builder()        
- *             .realmId(realm.id())
- *             .eventsEnabled(true)
- *             .eventsExpiration(3600)
- *             .adminEventsEnabled(true)
  *             .adminEventsDetailsEnabled(true)
+ *             .adminEventsEnabled(true)
  *             .enabledEventTypes(            
  *                 &#34;LOGIN&#34;,
  *                 &#34;LOGOUT&#34;)
+ *             .eventsEnabled(true)
+ *             .eventsExpiration(3600)
  *             .eventsListeners(&#34;jboss-logging&#34;)
+ *             .realmId(realm.id())
  *             .build());
  * 
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * ## Import
+ * ### Argument Reference
  * 
- * This resource currently does not support importing.
+ * The following arguments are supported:
+ * 
+ * - `realm_id` - (Required) The name of the realm the event settings apply to.
+ * - `admin_events_enabled` - (Optional) When true, admin events are saved to the database, making them available through the admin console. Defaults to `false`.
+ * - `admin_events_details_enabled` - (Optional) When true, saved admin events will included detailed information for create/update requests. Defaults to `false`.
+ * - `events_enabled` - (Optional) When true, events from `enabled_event_types` are saved to the database, making them available through the admin console. Defaults to `false`.
+ * - `events_expiration` - (Optional) The amount of time in seconds events will be saved in the database. Defaults to `0` or never.
+ * - `enabled_event_types` - (Optional) The event types that will be saved to the database. Omitting this field enables all event types. Defaults to `[]` or all event types.
+ * - `events_listeners` - (Optional) The event listeners that events should be sent to. Defaults to `[]` or none. Note that new realms enable the `jboss-logging` listener by default, and this resource will remove that unless it is specified.
  * 
  */
 @ResourceType(type="keycloak:index/realmEvents:RealmEvents")
 public class RealmEvents extends com.pulumi.resources.CustomResource {
-    /**
-     * When `true`, saved admin events will included detailed information for create/update requests. Defaults to `false`.
-     * 
-     */
     @Export(name="adminEventsDetailsEnabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> adminEventsDetailsEnabled;
 
-    /**
-     * @return When `true`, saved admin events will included detailed information for create/update requests. Defaults to `false`.
-     * 
-     */
     public Output<Optional<Boolean>> adminEventsDetailsEnabled() {
         return Codegen.optional(this.adminEventsDetailsEnabled);
     }
-    /**
-     * When `true`, admin events are saved to the database, making them available through the admin console. Defaults to `false`.
-     * 
-     */
     @Export(name="adminEventsEnabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> adminEventsEnabled;
 
-    /**
-     * @return When `true`, admin events are saved to the database, making them available through the admin console. Defaults to `false`.
-     * 
-     */
     public Output<Optional<Boolean>> adminEventsEnabled() {
         return Codegen.optional(this.adminEventsEnabled);
     }
-    /**
-     * The event types that will be saved to the database. Omitting this field enables all event types. Defaults to `[]` or all event types.
-     * 
-     */
     @Export(name="enabledEventTypes", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> enabledEventTypes;
 
-    /**
-     * @return The event types that will be saved to the database. Omitting this field enables all event types. Defaults to `[]` or all event types.
-     * 
-     */
     public Output<Optional<List<String>>> enabledEventTypes() {
         return Codegen.optional(this.enabledEventTypes);
     }
-    /**
-     * When `true`, events from `enabled_event_types` are saved to the database, making them available through the admin console. Defaults to `false`.
-     * 
-     */
     @Export(name="eventsEnabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> eventsEnabled;
 
-    /**
-     * @return When `true`, events from `enabled_event_types` are saved to the database, making them available through the admin console. Defaults to `false`.
-     * 
-     */
     public Output<Optional<Boolean>> eventsEnabled() {
         return Codegen.optional(this.eventsEnabled);
     }
-    /**
-     * The amount of time in seconds events will be saved in the database. Defaults to `0` or never.
-     * 
-     */
     @Export(name="eventsExpiration", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> eventsExpiration;
 
-    /**
-     * @return The amount of time in seconds events will be saved in the database. Defaults to `0` or never.
-     * 
-     */
     public Output<Optional<Integer>> eventsExpiration() {
         return Codegen.optional(this.eventsExpiration);
     }
-    /**
-     * The event listeners that events should be sent to. Defaults to `[]` or none. Note that new realms enable the `jboss-logging` listener by default, and this resource will remove that unless it is specified.
-     * 
-     */
     @Export(name="eventsListeners", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> eventsListeners;
 
-    /**
-     * @return The event listeners that events should be sent to. Defaults to `[]` or none. Note that new realms enable the `jboss-logging` listener by default, and this resource will remove that unless it is specified.
-     * 
-     */
     public Output<Optional<List<String>>> eventsListeners() {
         return Codegen.optional(this.eventsListeners);
     }
-    /**
-     * The name of the realm the event settings apply to.
-     * 
-     */
     @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
-    /**
-     * @return The name of the realm the event settings apply to.
-     * 
-     */
     public Output<String> realmId() {
         return this.realmId;
     }

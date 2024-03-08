@@ -18,30 +18,22 @@ public final class RealmWebAuthnPolicyArgs extends com.pulumi.resources.Resource
 
     public static final RealmWebAuthnPolicyArgs Empty = new RealmWebAuthnPolicyArgs();
 
-    /**
-     * A set of AAGUIDs for which an authenticator can be registered.
-     * 
-     */
     @Import(name="acceptableAaguids")
     private @Nullable Output<List<String>> acceptableAaguids;
 
-    /**
-     * @return A set of AAGUIDs for which an authenticator can be registered.
-     * 
-     */
     public Optional<Output<List<String>>> acceptableAaguids() {
         return Optional.ofNullable(this.acceptableAaguids);
     }
 
     /**
-     * The preference of how to generate a WebAuthn attestation statement. Valid options are `not specified`, `none`, `indirect`, `direct`, or `enterprise`. Defaults to `not specified`.
+     * Either none, indirect or direct
      * 
      */
     @Import(name="attestationConveyancePreference")
     private @Nullable Output<String> attestationConveyancePreference;
 
     /**
-     * @return The preference of how to generate a WebAuthn attestation statement. Valid options are `not specified`, `none`, `indirect`, `direct`, or `enterprise`. Defaults to `not specified`.
+     * @return Either none, indirect or direct
      * 
      */
     public Optional<Output<String>> attestationConveyancePreference() {
@@ -49,89 +41,57 @@ public final class RealmWebAuthnPolicyArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * The acceptable attachment pattern for the WebAuthn authenticator. Valid options are `not specified`, `platform`, or `cross-platform`. Defaults to `not specified`.
+     * Either platform or cross-platform
      * 
      */
     @Import(name="authenticatorAttachment")
     private @Nullable Output<String> authenticatorAttachment;
 
     /**
-     * @return The acceptable attachment pattern for the WebAuthn authenticator. Valid options are `not specified`, `platform`, or `cross-platform`. Defaults to `not specified`.
+     * @return Either platform or cross-platform
      * 
      */
     public Optional<Output<String>> authenticatorAttachment() {
         return Optional.ofNullable(this.authenticatorAttachment);
     }
 
-    /**
-     * When `true`, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to `false`.
-     * 
-     */
     @Import(name="avoidSameAuthenticatorRegister")
     private @Nullable Output<Boolean> avoidSameAuthenticatorRegister;
 
-    /**
-     * @return When `true`, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to `false`.
-     * 
-     */
     public Optional<Output<Boolean>> avoidSameAuthenticatorRegister() {
         return Optional.ofNullable(this.avoidSameAuthenticatorRegister);
     }
 
-    /**
-     * The timeout value for creating a user&#39;s public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
-     * 
-     */
     @Import(name="createTimeout")
     private @Nullable Output<Integer> createTimeout;
 
-    /**
-     * @return The timeout value for creating a user&#39;s public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
-     * 
-     */
     public Optional<Output<Integer>> createTimeout() {
         return Optional.ofNullable(this.createTimeout);
     }
 
-    /**
-     * A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
-     * 
-     */
     @Import(name="relyingPartyEntityName")
     private @Nullable Output<String> relyingPartyEntityName;
 
-    /**
-     * @return A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
-     * 
-     */
     public Optional<Output<String>> relyingPartyEntityName() {
         return Optional.ofNullable(this.relyingPartyEntityName);
     }
 
-    /**
-     * The WebAuthn relying party ID.
-     * 
-     */
     @Import(name="relyingPartyId")
     private @Nullable Output<String> relyingPartyId;
 
-    /**
-     * @return The WebAuthn relying party ID.
-     * 
-     */
     public Optional<Output<String>> relyingPartyId() {
         return Optional.ofNullable(this.relyingPartyId);
     }
 
     /**
-     * Specifies whether or not a public key should be created to represent the resident key. Valid options are `not specified`, `Yes`, or `No`. Defaults to `not specified`.
+     * Either Yes or No
      * 
      */
     @Import(name="requireResidentKey")
     private @Nullable Output<String> requireResidentKey;
 
     /**
-     * @return Specifies whether or not a public key should be created to represent the resident key. Valid options are `not specified`, `Yes`, or `No`. Defaults to `not specified`.
+     * @return Either Yes or No
      * 
      */
     public Optional<Output<String>> requireResidentKey() {
@@ -139,14 +99,14 @@ public final class RealmWebAuthnPolicyArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * A set of signature algorithms that should be used for the authentication assertion. Valid options at the time these docs were written are `ES256`, `ES384`, `ES512`, `RS256`, `RS384`, `RS512`, and `RS1`.
+     * Keycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing
      * 
      */
     @Import(name="signatureAlgorithms")
     private @Nullable Output<List<String>> signatureAlgorithms;
 
     /**
-     * @return A set of signature algorithms that should be used for the authentication assertion. Valid options at the time these docs were written are `ES256`, `ES384`, `ES512`, `RS256`, `RS384`, `RS512`, and `RS1`.
+     * @return Keycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing
      * 
      */
     public Optional<Output<List<String>>> signatureAlgorithms() {
@@ -154,14 +114,14 @@ public final class RealmWebAuthnPolicyArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * Specifies the policy for verifying a user logging in via WebAuthn. Valid options are `not specified`, `required`, `preferred`, or `discouraged`. Defaults to `not specified`.
+     * Either required, preferred or discouraged
      * 
      */
     @Import(name="userVerificationRequirement")
     private @Nullable Output<String> userVerificationRequirement;
 
     /**
-     * @return Specifies the policy for verifying a user logging in via WebAuthn. Valid options are `not specified`, `required`, `preferred`, or `discouraged`. Defaults to `not specified`.
+     * @return Either required, preferred or discouraged
      * 
      */
     public Optional<Output<String>> userVerificationRequirement() {
@@ -201,39 +161,21 @@ public final class RealmWebAuthnPolicyArgs extends com.pulumi.resources.Resource
             $ = new RealmWebAuthnPolicyArgs(Objects.requireNonNull(defaults));
         }
 
-        /**
-         * @param acceptableAaguids A set of AAGUIDs for which an authenticator can be registered.
-         * 
-         * @return builder
-         * 
-         */
         public Builder acceptableAaguids(@Nullable Output<List<String>> acceptableAaguids) {
             $.acceptableAaguids = acceptableAaguids;
             return this;
         }
 
-        /**
-         * @param acceptableAaguids A set of AAGUIDs for which an authenticator can be registered.
-         * 
-         * @return builder
-         * 
-         */
         public Builder acceptableAaguids(List<String> acceptableAaguids) {
             return acceptableAaguids(Output.of(acceptableAaguids));
         }
 
-        /**
-         * @param acceptableAaguids A set of AAGUIDs for which an authenticator can be registered.
-         * 
-         * @return builder
-         * 
-         */
         public Builder acceptableAaguids(String... acceptableAaguids) {
             return acceptableAaguids(List.of(acceptableAaguids));
         }
 
         /**
-         * @param attestationConveyancePreference The preference of how to generate a WebAuthn attestation statement. Valid options are `not specified`, `none`, `indirect`, `direct`, or `enterprise`. Defaults to `not specified`.
+         * @param attestationConveyancePreference Either none, indirect or direct
          * 
          * @return builder
          * 
@@ -244,7 +186,7 @@ public final class RealmWebAuthnPolicyArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param attestationConveyancePreference The preference of how to generate a WebAuthn attestation statement. Valid options are `not specified`, `none`, `indirect`, `direct`, or `enterprise`. Defaults to `not specified`.
+         * @param attestationConveyancePreference Either none, indirect or direct
          * 
          * @return builder
          * 
@@ -254,7 +196,7 @@ public final class RealmWebAuthnPolicyArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param authenticatorAttachment The acceptable attachment pattern for the WebAuthn authenticator. Valid options are `not specified`, `platform`, or `cross-platform`. Defaults to `not specified`.
+         * @param authenticatorAttachment Either platform or cross-platform
          * 
          * @return builder
          * 
@@ -265,7 +207,7 @@ public final class RealmWebAuthnPolicyArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param authenticatorAttachment The acceptable attachment pattern for the WebAuthn authenticator. Valid options are `not specified`, `platform`, or `cross-platform`. Defaults to `not specified`.
+         * @param authenticatorAttachment Either platform or cross-platform
          * 
          * @return builder
          * 
@@ -274,92 +216,44 @@ public final class RealmWebAuthnPolicyArgs extends com.pulumi.resources.Resource
             return authenticatorAttachment(Output.of(authenticatorAttachment));
         }
 
-        /**
-         * @param avoidSameAuthenticatorRegister When `true`, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to `false`.
-         * 
-         * @return builder
-         * 
-         */
         public Builder avoidSameAuthenticatorRegister(@Nullable Output<Boolean> avoidSameAuthenticatorRegister) {
             $.avoidSameAuthenticatorRegister = avoidSameAuthenticatorRegister;
             return this;
         }
 
-        /**
-         * @param avoidSameAuthenticatorRegister When `true`, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to `false`.
-         * 
-         * @return builder
-         * 
-         */
         public Builder avoidSameAuthenticatorRegister(Boolean avoidSameAuthenticatorRegister) {
             return avoidSameAuthenticatorRegister(Output.of(avoidSameAuthenticatorRegister));
         }
 
-        /**
-         * @param createTimeout The timeout value for creating a user&#39;s public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
-         * 
-         * @return builder
-         * 
-         */
         public Builder createTimeout(@Nullable Output<Integer> createTimeout) {
             $.createTimeout = createTimeout;
             return this;
         }
 
-        /**
-         * @param createTimeout The timeout value for creating a user&#39;s public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
-         * 
-         * @return builder
-         * 
-         */
         public Builder createTimeout(Integer createTimeout) {
             return createTimeout(Output.of(createTimeout));
         }
 
-        /**
-         * @param relyingPartyEntityName A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
-         * 
-         * @return builder
-         * 
-         */
         public Builder relyingPartyEntityName(@Nullable Output<String> relyingPartyEntityName) {
             $.relyingPartyEntityName = relyingPartyEntityName;
             return this;
         }
 
-        /**
-         * @param relyingPartyEntityName A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
-         * 
-         * @return builder
-         * 
-         */
         public Builder relyingPartyEntityName(String relyingPartyEntityName) {
             return relyingPartyEntityName(Output.of(relyingPartyEntityName));
         }
 
-        /**
-         * @param relyingPartyId The WebAuthn relying party ID.
-         * 
-         * @return builder
-         * 
-         */
         public Builder relyingPartyId(@Nullable Output<String> relyingPartyId) {
             $.relyingPartyId = relyingPartyId;
             return this;
         }
 
-        /**
-         * @param relyingPartyId The WebAuthn relying party ID.
-         * 
-         * @return builder
-         * 
-         */
         public Builder relyingPartyId(String relyingPartyId) {
             return relyingPartyId(Output.of(relyingPartyId));
         }
 
         /**
-         * @param requireResidentKey Specifies whether or not a public key should be created to represent the resident key. Valid options are `not specified`, `Yes`, or `No`. Defaults to `not specified`.
+         * @param requireResidentKey Either Yes or No
          * 
          * @return builder
          * 
@@ -370,7 +264,7 @@ public final class RealmWebAuthnPolicyArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param requireResidentKey Specifies whether or not a public key should be created to represent the resident key. Valid options are `not specified`, `Yes`, or `No`. Defaults to `not specified`.
+         * @param requireResidentKey Either Yes or No
          * 
          * @return builder
          * 
@@ -380,7 +274,7 @@ public final class RealmWebAuthnPolicyArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param signatureAlgorithms A set of signature algorithms that should be used for the authentication assertion. Valid options at the time these docs were written are `ES256`, `ES384`, `ES512`, `RS256`, `RS384`, `RS512`, and `RS1`.
+         * @param signatureAlgorithms Keycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing
          * 
          * @return builder
          * 
@@ -391,7 +285,7 @@ public final class RealmWebAuthnPolicyArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param signatureAlgorithms A set of signature algorithms that should be used for the authentication assertion. Valid options at the time these docs were written are `ES256`, `ES384`, `ES512`, `RS256`, `RS384`, `RS512`, and `RS1`.
+         * @param signatureAlgorithms Keycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing
          * 
          * @return builder
          * 
@@ -401,7 +295,7 @@ public final class RealmWebAuthnPolicyArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param signatureAlgorithms A set of signature algorithms that should be used for the authentication assertion. Valid options at the time these docs were written are `ES256`, `ES384`, `ES512`, `RS256`, `RS384`, `RS512`, and `RS1`.
+         * @param signatureAlgorithms Keycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing
          * 
          * @return builder
          * 
@@ -411,7 +305,7 @@ public final class RealmWebAuthnPolicyArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param userVerificationRequirement Specifies the policy for verifying a user logging in via WebAuthn. Valid options are `not specified`, `required`, `preferred`, or `discouraged`. Defaults to `not specified`.
+         * @param userVerificationRequirement Either required, preferred or discouraged
          * 
          * @return builder
          * 
@@ -422,7 +316,7 @@ public final class RealmWebAuthnPolicyArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param userVerificationRequirement Specifies the policy for verifying a user logging in via WebAuthn. Valid options are `not specified`, `required`, `preferred`, or `discouraged`. Defaults to `not specified`.
+         * @param userVerificationRequirement Either required, preferred or discouraged
          * 
          * @return builder
          * 

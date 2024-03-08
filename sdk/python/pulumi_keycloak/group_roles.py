@@ -20,10 +20,6 @@ class GroupRolesArgs:
                  exhaustive: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a GroupRoles resource.
-        :param pulumi.Input[str] group_id: The ID of the group this resource should manage roles for.
-        :param pulumi.Input[str] realm_id: The realm this group exists in.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_ids: A list of role IDs to map to the group.
-        :param pulumi.Input[bool] exhaustive: Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `true`.
         """
         pulumi.set(__self__, "group_id", group_id)
         pulumi.set(__self__, "realm_id", realm_id)
@@ -34,9 +30,6 @@ class GroupRolesArgs:
     @property
     @pulumi.getter(name="groupId")
     def group_id(self) -> pulumi.Input[str]:
-        """
-        The ID of the group this resource should manage roles for.
-        """
         return pulumi.get(self, "group_id")
 
     @group_id.setter
@@ -46,9 +39,6 @@ class GroupRolesArgs:
     @property
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Input[str]:
-        """
-        The realm this group exists in.
-        """
         return pulumi.get(self, "realm_id")
 
     @realm_id.setter
@@ -58,9 +48,6 @@ class GroupRolesArgs:
     @property
     @pulumi.getter(name="roleIds")
     def role_ids(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
-        """
-        A list of role IDs to map to the group.
-        """
         return pulumi.get(self, "role_ids")
 
     @role_ids.setter
@@ -70,9 +57,6 @@ class GroupRolesArgs:
     @property
     @pulumi.getter
     def exhaustive(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `true`.
-        """
         return pulumi.get(self, "exhaustive")
 
     @exhaustive.setter
@@ -89,10 +73,6 @@ class _GroupRolesState:
                  role_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering GroupRoles resources.
-        :param pulumi.Input[bool] exhaustive: Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `true`.
-        :param pulumi.Input[str] group_id: The ID of the group this resource should manage roles for.
-        :param pulumi.Input[str] realm_id: The realm this group exists in.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_ids: A list of role IDs to map to the group.
         """
         if exhaustive is not None:
             pulumi.set(__self__, "exhaustive", exhaustive)
@@ -106,9 +86,6 @@ class _GroupRolesState:
     @property
     @pulumi.getter
     def exhaustive(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `true`.
-        """
         return pulumi.get(self, "exhaustive")
 
     @exhaustive.setter
@@ -118,9 +95,6 @@ class _GroupRolesState:
     @property
     @pulumi.getter(name="groupId")
     def group_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        The ID of the group this resource should manage roles for.
-        """
         return pulumi.get(self, "group_id")
 
     @group_id.setter
@@ -130,9 +104,6 @@ class _GroupRolesState:
     @property
     @pulumi.getter(name="realmId")
     def realm_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        The realm this group exists in.
-        """
         return pulumi.get(self, "realm_id")
 
     @realm_id.setter
@@ -142,9 +113,6 @@ class _GroupRolesState:
     @property
     @pulumi.getter(name="roleIds")
     def role_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        A list of role IDs to map to the group.
-        """
         return pulumi.get(self, "role_ids")
 
     @role_ids.setter
@@ -163,102 +131,73 @@ class GroupRoles(pulumi.CustomResource):
                  role_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
+        ## # GroupRoles
+
         Allows you to manage roles assigned to a Keycloak group.
 
-        If `exhaustive` is true, this resource attempts to be an **authoritative** source over group roles: roles that are manually added to the group will be removed, and roles that are manually removed from the
-        group will be added upon the next run of `pulumi up`.
-        If `exhaustive` is false, this resource is a partial assignation of roles to a group. As a result, you can get multiple `GroupRoles` for the same `group_id`.
+        Note that this resource attempts to be an **authoritative** source over
+        group roles. When this resource takes control over a group's roles,
+        roles that are manually added to the group will be removed, and roles
+        that are manually removed from the group will be added upon the next run
+        of `pulumi up`.
 
-        Note that when assigning composite roles to a group, you may see a non-empty plan following a `pulumi up` if you
-        assign a role and a composite that includes that role to the same group.
+        Note that when assigning composite roles to a group, you may see a
+        non-empty plan following a `pulumi up` if you assign a role and a
+        composite that includes that role to the same group.
 
-        ## Example Usage
-        ### Exhaustive Roles)
+        ### Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
+            enabled=True,
+            realm="my-realm")
         realm_role = keycloak.Role("realmRole",
-            realm_id=realm.id,
-            description="My Realm Role")
+            description="My Realm Role",
+            realm_id=realm.id)
         client = keycloak.openid.Client("client",
-            realm_id=realm.id,
+            access_type="BEARER-ONLY",
             client_id="client",
             enabled=True,
-            access_type="BEARER-ONLY")
+            realm_id=realm.id)
         client_role = keycloak.Role("clientRole",
-            realm_id=realm.id,
             client_id=keycloak_client["client"]["id"],
-            description="My Client Role")
+            description="My Client Role",
+            realm_id=realm.id)
         group = keycloak.Group("group", realm_id=realm.id)
         group_roles = keycloak.GroupRoles("groupRoles",
-            realm_id=realm.id,
             group_id=group.id,
+            realm_id=realm.id,
             role_ids=[
                 realm_role.id,
                 client_role.id,
             ])
         ```
-        ### Non Exhaustive Roles)
+        <!--End PulumiCodeChooser -->
 
-        ```python
-        import pulumi
-        import pulumi_keycloak as keycloak
+        ### Argument Reference
 
-        realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
-        realm_role = keycloak.Role("realmRole",
-            realm_id=realm.id,
-            description="My Realm Role")
-        client = keycloak.openid.Client("client",
-            realm_id=realm.id,
-            client_id="client",
-            enabled=True,
-            access_type="BEARER-ONLY")
-        client_role = keycloak.Role("clientRole",
-            realm_id=realm.id,
-            client_id=keycloak_client["client"]["id"],
-            description="My Client Role")
-        group = keycloak.Group("group", realm_id=realm.id)
-        group_role_association1 = keycloak.GroupRoles("groupRoleAssociation1",
-            realm_id=realm.id,
-            group_id=group.id,
-            exhaustive=False,
-            role_ids=[realm_role.id])
-        group_role_association2 = keycloak.GroupRoles("groupRoleAssociation2",
-            realm_id=realm.id,
-            group_id=group.id,
-            exhaustive=False,
-            role_ids=[client_role.id])
-        ```
+        The following arguments are supported:
 
-        ## Import
+        - `realm_id` - (Required) The realm this group exists in.
+        - `group_id` - (Required) The ID of the group this resource should
+          manage roles for.
+        - `role_ids` - (Required) A list of role IDs to map to the group
 
-        This resource can be imported using the format `{{realm_id}}/{{group_id}}`, where `group_id` is the unique ID that Keycloak
+        ### Import
 
-         assigns to the group upon creation. This value can be found in the URI when editing this group in the GUI, and is typically
+        This resource can be imported using the format
+        `{{realm_id}}/{{group_id}}`, where `group_id` is the unique ID that
+        Keycloak assigns to the group upon creation. This value can be found in
+        the URI when editing this group in the GUI, and is typically a GUID.
 
-         a GUID.
-
-         Example:
-
-         bash
-
-        ```sh
-        $ pulumi import keycloak:index/groupRoles:GroupRoles group_roles my-realm/18cc6b87-2ce7-4e59-bdc8-b9d49ec98a94
-        ```
+        Example:
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] exhaustive: Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `true`.
-        :param pulumi.Input[str] group_id: The ID of the group this resource should manage roles for.
-        :param pulumi.Input[str] realm_id: The realm this group exists in.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_ids: A list of role IDs to map to the group.
         """
         ...
     @overload
@@ -267,95 +206,70 @@ class GroupRoles(pulumi.CustomResource):
                  args: GroupRolesArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## # GroupRoles
+
         Allows you to manage roles assigned to a Keycloak group.
 
-        If `exhaustive` is true, this resource attempts to be an **authoritative** source over group roles: roles that are manually added to the group will be removed, and roles that are manually removed from the
-        group will be added upon the next run of `pulumi up`.
-        If `exhaustive` is false, this resource is a partial assignation of roles to a group. As a result, you can get multiple `GroupRoles` for the same `group_id`.
+        Note that this resource attempts to be an **authoritative** source over
+        group roles. When this resource takes control over a group's roles,
+        roles that are manually added to the group will be removed, and roles
+        that are manually removed from the group will be added upon the next run
+        of `pulumi up`.
 
-        Note that when assigning composite roles to a group, you may see a non-empty plan following a `pulumi up` if you
-        assign a role and a composite that includes that role to the same group.
+        Note that when assigning composite roles to a group, you may see a
+        non-empty plan following a `pulumi up` if you assign a role and a
+        composite that includes that role to the same group.
 
-        ## Example Usage
-        ### Exhaustive Roles)
+        ### Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
+            enabled=True,
+            realm="my-realm")
         realm_role = keycloak.Role("realmRole",
-            realm_id=realm.id,
-            description="My Realm Role")
+            description="My Realm Role",
+            realm_id=realm.id)
         client = keycloak.openid.Client("client",
-            realm_id=realm.id,
+            access_type="BEARER-ONLY",
             client_id="client",
             enabled=True,
-            access_type="BEARER-ONLY")
+            realm_id=realm.id)
         client_role = keycloak.Role("clientRole",
-            realm_id=realm.id,
             client_id=keycloak_client["client"]["id"],
-            description="My Client Role")
+            description="My Client Role",
+            realm_id=realm.id)
         group = keycloak.Group("group", realm_id=realm.id)
         group_roles = keycloak.GroupRoles("groupRoles",
-            realm_id=realm.id,
             group_id=group.id,
+            realm_id=realm.id,
             role_ids=[
                 realm_role.id,
                 client_role.id,
             ])
         ```
-        ### Non Exhaustive Roles)
+        <!--End PulumiCodeChooser -->
 
-        ```python
-        import pulumi
-        import pulumi_keycloak as keycloak
+        ### Argument Reference
 
-        realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
-        realm_role = keycloak.Role("realmRole",
-            realm_id=realm.id,
-            description="My Realm Role")
-        client = keycloak.openid.Client("client",
-            realm_id=realm.id,
-            client_id="client",
-            enabled=True,
-            access_type="BEARER-ONLY")
-        client_role = keycloak.Role("clientRole",
-            realm_id=realm.id,
-            client_id=keycloak_client["client"]["id"],
-            description="My Client Role")
-        group = keycloak.Group("group", realm_id=realm.id)
-        group_role_association1 = keycloak.GroupRoles("groupRoleAssociation1",
-            realm_id=realm.id,
-            group_id=group.id,
-            exhaustive=False,
-            role_ids=[realm_role.id])
-        group_role_association2 = keycloak.GroupRoles("groupRoleAssociation2",
-            realm_id=realm.id,
-            group_id=group.id,
-            exhaustive=False,
-            role_ids=[client_role.id])
-        ```
+        The following arguments are supported:
 
-        ## Import
+        - `realm_id` - (Required) The realm this group exists in.
+        - `group_id` - (Required) The ID of the group this resource should
+          manage roles for.
+        - `role_ids` - (Required) A list of role IDs to map to the group
 
-        This resource can be imported using the format `{{realm_id}}/{{group_id}}`, where `group_id` is the unique ID that Keycloak
+        ### Import
 
-         assigns to the group upon creation. This value can be found in the URI when editing this group in the GUI, and is typically
+        This resource can be imported using the format
+        `{{realm_id}}/{{group_id}}`, where `group_id` is the unique ID that
+        Keycloak assigns to the group upon creation. This value can be found in
+        the URI when editing this group in the GUI, and is typically a GUID.
 
-         a GUID.
-
-         Example:
-
-         bash
-
-        ```sh
-        $ pulumi import keycloak:index/groupRoles:GroupRoles group_roles my-realm/18cc6b87-2ce7-4e59-bdc8-b9d49ec98a94
-        ```
+        Example:
 
         :param str resource_name: The name of the resource.
         :param GroupRolesArgs args: The arguments to use to populate this resource's properties.
@@ -416,10 +330,6 @@ class GroupRoles(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] exhaustive: Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `true`.
-        :param pulumi.Input[str] group_id: The ID of the group this resource should manage roles for.
-        :param pulumi.Input[str] realm_id: The realm this group exists in.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] role_ids: A list of role IDs to map to the group.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -434,32 +344,20 @@ class GroupRoles(pulumi.CustomResource):
     @property
     @pulumi.getter
     def exhaustive(self) -> pulumi.Output[Optional[bool]]:
-        """
-        Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `true`.
-        """
         return pulumi.get(self, "exhaustive")
 
     @property
     @pulumi.getter(name="groupId")
     def group_id(self) -> pulumi.Output[str]:
-        """
-        The ID of the group this resource should manage roles for.
-        """
         return pulumi.get(self, "group_id")
 
     @property
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Output[str]:
-        """
-        The realm this group exists in.
-        """
         return pulumi.get(self, "realm_id")
 
     @property
     @pulumi.getter(name="roleIds")
     def role_ids(self) -> pulumi.Output[Sequence[str]]:
-        """
-        A list of role IDs to map to the group.
-        """
         return pulumi.get(self, "role_ids")
 
