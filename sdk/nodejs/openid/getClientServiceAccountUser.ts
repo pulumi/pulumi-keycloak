@@ -16,6 +16,7 @@ import * as utilities from "../utilities";
  * that represents the service account. We'll use this data source to grab this user's ID in order to assign some roles to this
  * user, using the `keycloak.UserRoles` resource.
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -44,6 +45,7 @@ import * as utilities from "../utilities";
  *     roleIds: [offlineAccess.apply(offlineAccess => offlineAccess.id)],
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getClientServiceAccountUser(args: GetClientServiceAccountUserArgs, opts?: pulumi.InvokeOptions): Promise<GetClientServiceAccountUserResult> {
 
@@ -98,6 +100,7 @@ export interface GetClientServiceAccountUserResult {
  * that represents the service account. We'll use this data source to grab this user's ID in order to assign some roles to this
  * user, using the `keycloak.UserRoles` resource.
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -126,6 +129,7 @@ export interface GetClientServiceAccountUserResult {
  *     roleIds: [offlineAccess.apply(offlineAccess => offlineAccess.id)],
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getClientServiceAccountUserOutput(args: GetClientServiceAccountUserOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetClientServiceAccountUserResult> {
     return pulumi.output(args).apply((a: any) => getClientServiceAccountUser(a, opts))

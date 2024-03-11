@@ -29,6 +29,8 @@ import javax.annotation.Nullable;
  * and this resource to manage authentication flow bindings, you should choose one or the other.
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -91,6 +93,7 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */
 @ResourceType(type="keycloak:authentication/bindings:Bindings")

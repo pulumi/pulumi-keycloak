@@ -10,41 +10,17 @@ import java.util.Objects;
 
 @CustomType
 public final class UserFederatedIdentity {
-    /**
-     * @return The name of the identity provider
-     * 
-     */
     private String identityProvider;
-    /**
-     * @return The ID of the user defined in the identity provider
-     * 
-     */
     private String userId;
-    /**
-     * @return The user name of the user defined in the identity provider
-     * 
-     */
     private String userName;
 
     private UserFederatedIdentity() {}
-    /**
-     * @return The name of the identity provider
-     * 
-     */
     public String identityProvider() {
         return this.identityProvider;
     }
-    /**
-     * @return The ID of the user defined in the identity provider
-     * 
-     */
     public String userId() {
         return this.userId;
     }
-    /**
-     * @return The user name of the user defined in the identity provider
-     * 
-     */
     public String userName() {
         return this.userName;
     }

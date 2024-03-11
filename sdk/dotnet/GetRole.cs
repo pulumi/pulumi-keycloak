@@ -12,103 +12,19 @@ namespace Pulumi.Keycloak
     public static class GetRole
     {
         /// <summary>
+        /// ## # keycloak.Role data source
+        /// 
         /// This data source can be used to fetch properties of a Keycloak role for
         /// usage with other resources, such as `keycloak.GroupRoles`.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Keycloak = Pulumi.Keycloak;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var realm = new Keycloak.Realm("realm", new()
-        ///     {
-        ///         RealmName = "my-realm",
-        ///         Enabled = true,
-        ///     });
-        /// 
-        ///     var offlineAccess = Keycloak.GetRole.Invoke(new()
-        ///     {
-        ///         RealmId = realm.Id,
-        ///         Name = "offline_access",
-        ///     });
-        /// 
-        ///     var @group = new Keycloak.Group("group", new()
-        ///     {
-        ///         RealmId = realm.Id,
-        ///     });
-        /// 
-        ///     var groupRoles = new Keycloak.GroupRoles("groupRoles", new()
-        ///     {
-        ///         RealmId = realm.Id,
-        ///         GroupId = @group.Id,
-        ///         RoleIds = new[]
-        ///         {
-        ///             offlineAccess.Apply(getRoleResult =&gt; getRoleResult.Id),
-        ///         },
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetRoleResult> InvokeAsync(GetRoleArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetRoleResult>("keycloak:index/getRole:getRole", args ?? new GetRoleArgs(), options.WithDefaults());
 
         /// <summary>
+        /// ## # keycloak.Role data source
+        /// 
         /// This data source can be used to fetch properties of a Keycloak role for
         /// usage with other resources, such as `keycloak.GroupRoles`.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Keycloak = Pulumi.Keycloak;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var realm = new Keycloak.Realm("realm", new()
-        ///     {
-        ///         RealmName = "my-realm",
-        ///         Enabled = true,
-        ///     });
-        /// 
-        ///     var offlineAccess = Keycloak.GetRole.Invoke(new()
-        ///     {
-        ///         RealmId = realm.Id,
-        ///         Name = "offline_access",
-        ///     });
-        /// 
-        ///     var @group = new Keycloak.Group("group", new()
-        ///     {
-        ///         RealmId = realm.Id,
-        ///     });
-        /// 
-        ///     var groupRoles = new Keycloak.GroupRoles("groupRoles", new()
-        ///     {
-        ///         RealmId = realm.Id,
-        ///         GroupId = @group.Id,
-        ///         RoleIds = new[]
-        ///         {
-        ///             offlineAccess.Apply(getRoleResult =&gt; getRoleResult.Id),
-        ///         },
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetRoleResult> Invoke(GetRoleInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetRoleResult>("keycloak:index/getRole:getRole", args ?? new GetRoleInvokeArgs(), options.WithDefaults());
@@ -117,21 +33,12 @@ namespace Pulumi.Keycloak
 
     public sealed class GetRoleArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// When specified, this role is assumed to be a client role belonging to the client with the provided ID. The `id` attribute of a `keycloak_client` resource should be used here.
-        /// </summary>
         [Input("clientId")]
         public string? ClientId { get; set; }
 
-        /// <summary>
-        /// The name of the role.
-        /// </summary>
         [Input("name", required: true)]
         public string Name { get; set; } = null!;
 
-        /// <summary>
-        /// The realm this role exists within.
-        /// </summary>
         [Input("realmId", required: true)]
         public string RealmId { get; set; } = null!;
 
@@ -143,21 +50,12 @@ namespace Pulumi.Keycloak
 
     public sealed class GetRoleInvokeArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// When specified, this role is assumed to be a client role belonging to the client with the provided ID. The `id` attribute of a `keycloak_client` resource should be used here.
-        /// </summary>
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
 
-        /// <summary>
-        /// The name of the role.
-        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
-        /// <summary>
-        /// The realm this role exists within.
-        /// </summary>
         [Input("realmId", required: true)]
         public Input<string> RealmId { get; set; } = null!;
 
@@ -174,9 +72,6 @@ namespace Pulumi.Keycloak
         public readonly ImmutableDictionary<string, object> Attributes;
         public readonly string? ClientId;
         public readonly ImmutableArray<string> CompositeRoles;
-        /// <summary>
-        /// (Computed) The description of the role.
-        /// </summary>
         public readonly string Description;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.

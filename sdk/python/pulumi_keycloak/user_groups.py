@@ -169,7 +169,9 @@ class UserGroups(pulumi.CustomResource):
         If `exhaustive` is false, this resource is a partial assignation of groups to a user. As a result, you can get multiple `UserGroups` for the same `user_id`.
 
         ## Example Usage
+
         ### Exhaustive Groups)
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -186,7 +188,10 @@ class UserGroups(pulumi.CustomResource):
             user_id=user.id,
             group_ids=[group.id])
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Non Exhaustive Groups)
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -210,12 +215,13 @@ class UserGroups(pulumi.CustomResource):
             exhaustive=False,
             group_ids=[group_bar.id])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         This resource does not support import. Instead of importing, feel free to create this resource
 
-         as if it did not already exist on the server.
+        as if it did not already exist on the server.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -237,7 +243,9 @@ class UserGroups(pulumi.CustomResource):
         If `exhaustive` is false, this resource is a partial assignation of groups to a user. As a result, you can get multiple `UserGroups` for the same `user_id`.
 
         ## Example Usage
+
         ### Exhaustive Groups)
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -254,7 +262,10 @@ class UserGroups(pulumi.CustomResource):
             user_id=user.id,
             group_ids=[group.id])
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Non Exhaustive Groups)
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -278,12 +289,13 @@ class UserGroups(pulumi.CustomResource):
             exhaustive=False,
             group_ids=[group_bar.id])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         This resource does not support import. Instead of importing, feel free to create this resource
 
-         as if it did not already exist on the server.
+        as if it did not already exist on the server.
 
         :param str resource_name: The name of the resource.
         :param UserGroupsArgs args: The arguments to use to populate this resource's properties.

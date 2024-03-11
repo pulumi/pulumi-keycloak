@@ -9,6 +9,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -22,6 +23,7 @@ import * as utilities from "./utilities";
  * }));
  * export const keycloakUserId = defaultAdminUser.then(defaultAdminUser => defaultAdminUser.id);
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getUser(args: GetUserArgs, opts?: pulumi.InvokeOptions): Promise<GetUserResult> {
 
@@ -91,6 +93,7 @@ export interface GetUserResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -104,6 +107,7 @@ export interface GetUserResult {
  * }));
  * export const keycloakUserId = defaultAdminUser.then(defaultAdminUser => defaultAdminUser.id);
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getUserOutput(args: GetUserOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetUserResult> {
     return pulumi.output(args).apply((a: any) => getUser(a, opts))

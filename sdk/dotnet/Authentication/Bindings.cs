@@ -26,6 +26,7 @@ namespace Pulumi.Keycloak.Authentication
     /// 
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -78,6 +79,7 @@ namespace Pulumi.Keycloak.Authentication
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [KeycloakResourceType("keycloak:authentication/bindings:Bindings")]
     public partial class Bindings : global::Pulumi.CustomResource

@@ -12,13 +12,18 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Allows for creating and managing Keycloak client scopes that can be attached to clients that use the OpenID Connect protocol.
+// ## # openid.ClientScope
 //
-// Client Scopes can be used to share common protocol and role mappings between multiple clients within a realm. They can also
-// be used by clients to conditionally request claims or roles for a user based on the OAuth 2.0 `scope` parameter.
+// Allows for creating and managing Keycloak client scopes that can be attached to
+// clients that use the OpenID Connect protocol.
 //
-// ## Example Usage
+// Client Scopes can be used to share common protocol and role mappings between multiple
+// clients within a realm. They can also be used by clients to conditionally request
+// claims or roles for a user based on the OAuth 2.0 `scope` parameter.
 //
+// ### Example Usage
+//
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -33,17 +38,15 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-//				Realm:   pulumi.String("my-realm"),
 //				Enabled: pulumi.Bool(true),
+//				Realm:   pulumi.String("my-realm"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = openid.NewClientScope(ctx, "openidClientScope", &openid.ClientScopeArgs{
-//				RealmId:             realm.ID(),
-//				Description:         pulumi.String("When requested, this scope will map a user's group memberships to a claim"),
-//				IncludeInTokenScope: pulumi.Bool(true),
-//				GuiOrder:            pulumi.Int(1),
+//				Description: pulumi.String("When requested, this scope will map a user's group memberships to a claim"),
+//				RealmId:     realm.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -53,35 +56,34 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
-// ## Import
+// ### Argument Reference
 //
-// Client scopes can be imported using the format `{{realm_id}}/{{client_scope_id}}`, where `client_scope_id` is the unique ID that Keycloak
+// The following arguments are supported:
 //
-//	assigns to the client scope upon creation. This value can be found in the URI when editing this client scope in the GUI, and is typically a GUID.
+//   - `realmId` - (Required) The realm this client scope belongs to.
+//   - `name` - (Required) The display name of this client scope in the GUI.
+//   - `description` - (Optional) The description of this client scope in the GUI.
+//   - `consentScreenText` - (Optional) When set, a consent screen will be displayed to users
+//     authenticating to clients with this scope attached. The consent screen will display the string
+//     value of this attribute.
 //
-//	Example:
+// ### Import
 //
-//	bash
+// Client scopes can be imported using the format `{{realm_id}}/{{client_scope_id}}`, where `clientScopeId` is the unique ID that Keycloak
+// assigns to the client scope upon creation. This value can be found in the URI when editing this client scope in the GUI, and is typically a GUID.
 //
-// ```sh
-// $ pulumi import keycloak:openid/clientScope:ClientScope openid_client_scope my-realm/8e8f7fe1-df9b-40ed-bed3-4597aa0dac52
-// ```
+// Example:
 type ClientScope struct {
 	pulumi.CustomResourceState
 
-	// When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
-	ConsentScreenText pulumi.StringPtrOutput `pulumi:"consentScreenText"`
-	// The description of this client scope in the GUI.
-	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// Specify order of the client scope in GUI (such as in Consent page) as integer.
-	GuiOrder pulumi.IntPtrOutput `pulumi:"guiOrder"`
-	// When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response.
-	IncludeInTokenScope pulumi.BoolPtrOutput `pulumi:"includeInTokenScope"`
-	// The display name of this client scope in the GUI.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// The realm this client scope belongs to.
-	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	ConsentScreenText   pulumi.StringPtrOutput `pulumi:"consentScreenText"`
+	Description         pulumi.StringPtrOutput `pulumi:"description"`
+	GuiOrder            pulumi.IntPtrOutput    `pulumi:"guiOrder"`
+	IncludeInTokenScope pulumi.BoolPtrOutput   `pulumi:"includeInTokenScope"`
+	Name                pulumi.StringOutput    `pulumi:"name"`
+	RealmId             pulumi.StringOutput    `pulumi:"realmId"`
 }
 
 // NewClientScope registers a new resource with the given unique name, arguments, and options.
@@ -117,33 +119,21 @@ func GetClientScope(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ClientScope resources.
 type clientScopeState struct {
-	// When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
-	ConsentScreenText *string `pulumi:"consentScreenText"`
-	// The description of this client scope in the GUI.
-	Description *string `pulumi:"description"`
-	// Specify order of the client scope in GUI (such as in Consent page) as integer.
-	GuiOrder *int `pulumi:"guiOrder"`
-	// When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response.
-	IncludeInTokenScope *bool `pulumi:"includeInTokenScope"`
-	// The display name of this client scope in the GUI.
-	Name *string `pulumi:"name"`
-	// The realm this client scope belongs to.
-	RealmId *string `pulumi:"realmId"`
+	ConsentScreenText   *string `pulumi:"consentScreenText"`
+	Description         *string `pulumi:"description"`
+	GuiOrder            *int    `pulumi:"guiOrder"`
+	IncludeInTokenScope *bool   `pulumi:"includeInTokenScope"`
+	Name                *string `pulumi:"name"`
+	RealmId             *string `pulumi:"realmId"`
 }
 
 type ClientScopeState struct {
-	// When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
-	ConsentScreenText pulumi.StringPtrInput
-	// The description of this client scope in the GUI.
-	Description pulumi.StringPtrInput
-	// Specify order of the client scope in GUI (such as in Consent page) as integer.
-	GuiOrder pulumi.IntPtrInput
-	// When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response.
+	ConsentScreenText   pulumi.StringPtrInput
+	Description         pulumi.StringPtrInput
+	GuiOrder            pulumi.IntPtrInput
 	IncludeInTokenScope pulumi.BoolPtrInput
-	// The display name of this client scope in the GUI.
-	Name pulumi.StringPtrInput
-	// The realm this client scope belongs to.
-	RealmId pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	RealmId             pulumi.StringPtrInput
 }
 
 func (ClientScopeState) ElementType() reflect.Type {
@@ -151,34 +141,22 @@ func (ClientScopeState) ElementType() reflect.Type {
 }
 
 type clientScopeArgs struct {
-	// When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
-	ConsentScreenText *string `pulumi:"consentScreenText"`
-	// The description of this client scope in the GUI.
-	Description *string `pulumi:"description"`
-	// Specify order of the client scope in GUI (such as in Consent page) as integer.
-	GuiOrder *int `pulumi:"guiOrder"`
-	// When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response.
-	IncludeInTokenScope *bool `pulumi:"includeInTokenScope"`
-	// The display name of this client scope in the GUI.
-	Name *string `pulumi:"name"`
-	// The realm this client scope belongs to.
-	RealmId string `pulumi:"realmId"`
+	ConsentScreenText   *string `pulumi:"consentScreenText"`
+	Description         *string `pulumi:"description"`
+	GuiOrder            *int    `pulumi:"guiOrder"`
+	IncludeInTokenScope *bool   `pulumi:"includeInTokenScope"`
+	Name                *string `pulumi:"name"`
+	RealmId             string  `pulumi:"realmId"`
 }
 
 // The set of arguments for constructing a ClientScope resource.
 type ClientScopeArgs struct {
-	// When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
-	ConsentScreenText pulumi.StringPtrInput
-	// The description of this client scope in the GUI.
-	Description pulumi.StringPtrInput
-	// Specify order of the client scope in GUI (such as in Consent page) as integer.
-	GuiOrder pulumi.IntPtrInput
-	// When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response.
+	ConsentScreenText   pulumi.StringPtrInput
+	Description         pulumi.StringPtrInput
+	GuiOrder            pulumi.IntPtrInput
 	IncludeInTokenScope pulumi.BoolPtrInput
-	// The display name of this client scope in the GUI.
-	Name pulumi.StringPtrInput
-	// The realm this client scope belongs to.
-	RealmId pulumi.StringInput
+	Name                pulumi.StringPtrInput
+	RealmId             pulumi.StringInput
 }
 
 func (ClientScopeArgs) ElementType() reflect.Type {
@@ -268,32 +246,26 @@ func (o ClientScopeOutput) ToClientScopeOutputWithContext(ctx context.Context) C
 	return o
 }
 
-// When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
 func (o ClientScopeOutput) ConsentScreenText() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ClientScope) pulumi.StringPtrOutput { return v.ConsentScreenText }).(pulumi.StringPtrOutput)
 }
 
-// The description of this client scope in the GUI.
 func (o ClientScopeOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ClientScope) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
-// Specify order of the client scope in GUI (such as in Consent page) as integer.
 func (o ClientScopeOutput) GuiOrder() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ClientScope) pulumi.IntPtrOutput { return v.GuiOrder }).(pulumi.IntPtrOutput)
 }
 
-// When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response.
 func (o ClientScopeOutput) IncludeInTokenScope() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ClientScope) pulumi.BoolPtrOutput { return v.IncludeInTokenScope }).(pulumi.BoolPtrOutput)
 }
 
-// The display name of this client scope in the GUI.
 func (o ClientScopeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *ClientScope) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The realm this client scope belongs to.
 func (o ClientScopeOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ClientScope) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
 }

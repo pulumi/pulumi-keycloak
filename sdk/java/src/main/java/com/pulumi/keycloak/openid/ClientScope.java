@@ -17,12 +17,18 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Allows for creating and managing Keycloak client scopes that can be attached to clients that use the OpenID Connect protocol.
+ * ## # keycloak.openid.ClientScope
  * 
- * Client Scopes can be used to share common protocol and role mappings between multiple clients within a realm. They can also
- * be used by clients to conditionally request claims or roles for a user based on the OAuth 2.0 `scope` parameter.
+ * Allows for creating and managing Keycloak client scopes that can be attached to
+ * clients that use the OpenID Connect protocol.
  * 
- * ## Example Usage
+ * Client Scopes can be used to share common protocol and role mappings between multiple
+ * clients within a realm. They can also be used by clients to conditionally request
+ * claims or roles for a user based on the OAuth 2.0 `scope` parameter.
+ * 
+ * ### Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -47,119 +53,74 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
  *             .enabled(true)
+ *             .realm(&#34;my-realm&#34;)
  *             .build());
  * 
  *         var openidClientScope = new ClientScope(&#34;openidClientScope&#34;, ClientScopeArgs.builder()        
- *             .realmId(realm.id())
  *             .description(&#34;When requested, this scope will map a user&#39;s group memberships to a claim&#34;)
- *             .includeInTokenScope(true)
- *             .guiOrder(1)
+ *             .realmId(realm.id())
  *             .build());
  * 
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * ## Import
+ * ### Argument Reference
+ * 
+ * The following arguments are supported:
+ * 
+ * - `realm_id` - (Required) The realm this client scope belongs to.
+ * - `name` - (Required) The display name of this client scope in the GUI.
+ * - `description` - (Optional) The description of this client scope in the GUI.
+ * - `consent_screen_text` - (Optional) When set, a consent screen will be displayed to users
+ *   authenticating to clients with this scope attached. The consent screen will display the string
+ *   value of this attribute.
+ * 
+ * ### Import
  * 
  * Client scopes can be imported using the format `{{realm_id}}/{{client_scope_id}}`, where `client_scope_id` is the unique ID that Keycloak
+ * assigns to the client scope upon creation. This value can be found in the URI when editing this client scope in the GUI, and is typically a GUID.
  * 
- *  assigns to the client scope upon creation. This value can be found in the URI when editing this client scope in the GUI, and is typically a GUID.
- * 
- *  Example:
- * 
- *  bash
- * 
- * ```sh
- * $ pulumi import keycloak:openid/clientScope:ClientScope openid_client_scope my-realm/8e8f7fe1-df9b-40ed-bed3-4597aa0dac52
- * ```
+ * Example:
  * 
  */
 @ResourceType(type="keycloak:openid/clientScope:ClientScope")
 public class ClientScope extends com.pulumi.resources.CustomResource {
-    /**
-     * When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
-     * 
-     */
     @Export(name="consentScreenText", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> consentScreenText;
 
-    /**
-     * @return When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
-     * 
-     */
     public Output<Optional<String>> consentScreenText() {
         return Codegen.optional(this.consentScreenText);
     }
-    /**
-     * The description of this client scope in the GUI.
-     * 
-     */
     @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
-    /**
-     * @return The description of this client scope in the GUI.
-     * 
-     */
     public Output<Optional<String>> description() {
         return Codegen.optional(this.description);
     }
-    /**
-     * Specify order of the client scope in GUI (such as in Consent page) as integer.
-     * 
-     */
     @Export(name="guiOrder", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> guiOrder;
 
-    /**
-     * @return Specify order of the client scope in GUI (such as in Consent page) as integer.
-     * 
-     */
     public Output<Optional<Integer>> guiOrder() {
         return Codegen.optional(this.guiOrder);
     }
-    /**
-     * When `true`, the name of this client scope will be added to the access token property &#39;scope&#39; as well as to the Token Introspection Endpoint response.
-     * 
-     */
     @Export(name="includeInTokenScope", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> includeInTokenScope;
 
-    /**
-     * @return When `true`, the name of this client scope will be added to the access token property &#39;scope&#39; as well as to the Token Introspection Endpoint response.
-     * 
-     */
     public Output<Optional<Boolean>> includeInTokenScope() {
         return Codegen.optional(this.includeInTokenScope);
     }
-    /**
-     * The display name of this client scope in the GUI.
-     * 
-     */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
-    /**
-     * @return The display name of this client scope in the GUI.
-     * 
-     */
     public Output<String> name() {
         return this.name;
     }
-    /**
-     * The realm this client scope belongs to.
-     * 
-     */
     @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
-    /**
-     * @return The realm this client scope belongs to.
-     * 
-     */
     public Output<String> realmId() {
         return this.realmId;
     }

@@ -10,13 +10,13 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Ldap
 {
     /// <summary>
-    /// Allows for creating and managing hardcoded role mappers for Keycloak users federated via LDAP.
+    /// ## # keycloak.ldap.HardcodedRoleMapper
     /// 
-    /// The LDAP hardcoded role mapper will grant a specified Keycloak role to each Keycloak user linked with LDAP.
+    /// This mapper will grant a specified Keycloak role to each Keycloak user linked with LDAP.
     /// 
-    /// ## Example Usage
-    /// ### Realm Role)
+    /// ### Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -27,7 +27,7 @@ namespace Pulumi.Keycloak.Ldap
     /// {
     ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         RealmName = "my-realm",
+    ///         RealmName = "test",
     ///         Enabled = true,
     ///     });
     /// 
@@ -48,119 +48,55 @@ namespace Pulumi.Keycloak.Ldap
     ///         BindCredential = "admin",
     ///     });
     /// 
-    ///     var realmAdminRole = new Keycloak.Role("realmAdminRole", new()
-    ///     {
-    ///         RealmId = realm.Id,
-    ///         Description = "My Realm Role",
-    ///     });
-    /// 
     ///     var assignAdminRoleToAllUsers = new Keycloak.Ldap.HardcodedRoleMapper("assignAdminRoleToAllUsers", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         LdapUserFederationId = ldapUserFederation.Id,
-    ///         Role = realmAdminRole.Name,
+    ///         Role = "admin",
     ///     });
     /// 
     /// });
     /// ```
-    /// ### Client Role)
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Keycloak = Pulumi.Keycloak;
+    /// ### Argument Reference
     /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var realm = new Keycloak.Realm("realm", new()
-    ///     {
-    ///         RealmName = "my-realm",
-    ///         Enabled = true,
-    ///     });
+    /// The following arguments are supported:
     /// 
-    ///     var ldapUserFederation = new Keycloak.Ldap.UserFederation("ldapUserFederation", new()
-    ///     {
-    ///         RealmId = realm.Id,
-    ///         UsernameLdapAttribute = "cn",
-    ///         RdnLdapAttribute = "cn",
-    ///         UuidLdapAttribute = "entryDN",
-    ///         UserObjectClasses = new[]
-    ///         {
-    ///             "simpleSecurityObject",
-    ///             "organizationalRole",
-    ///         },
-    ///         ConnectionUrl = "ldap://openldap",
-    ///         UsersDn = "dc=example,dc=org",
-    ///         BindDn = "cn=admin,dc=example,dc=org",
-    ///         BindCredential = "admin",
-    ///     });
+    /// - `realm_id` - (Required) The realm that this LDAP mapper will exist in.
+    /// - `ldap_user_federation_id` - (Required) The ID of the LDAP user federation provider to attach this mapper to.
+    /// - `name` - (Required) Display name of this mapper when displayed in the console.
+    /// - `role` - (Required) The role which should be assigned to the users.
     /// 
-    ///     var realmManagement = Keycloak.OpenId.GetClient.Invoke(new()
-    ///     {
-    ///         RealmId = realm.Id,
-    ///         ClientId = "realm-management",
-    ///     });
-    /// 
-    ///     var createClient = Keycloak.GetRole.Invoke(new()
-    ///     {
-    ///         RealmId = realm.Id,
-    ///         ClientId = realmManagement.Apply(getClientResult =&gt; getClientResult.Id),
-    ///         Name = "create-client",
-    ///     });
-    /// 
-    ///     var assignAdminRoleToAllUsers = new Keycloak.Ldap.HardcodedRoleMapper("assignAdminRoleToAllUsers", new()
-    ///     {
-    ///         RealmId = realm.Id,
-    ///         LdapUserFederationId = ldapUserFederation.Id,
-    ///         Role = Output.Tuple(realmManagement, createClient).Apply(values =&gt;
-    ///         {
-    ///             var realmManagement = values.Item1;
-    ///             var createClient = values.Item2;
-    ///             return $"{realmManagement.Apply(getClientResult =&gt; getClientResult.ClientId)}.{createClient.Apply(getRoleResult =&gt; getRoleResult.Name)}";
-    ///         }),
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// ## Import
+    /// ### Import
     /// 
     /// LDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`.
-    /// 
-    ///  The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs.
-    /// 
-    ///  Example:
-    /// 
-    ///  bash
-    /// 
-    /// ```sh
-    /// $ pulumi import keycloak:ldap/hardcodedRoleMapper:HardcodedRoleMapper assign_admin_role_to_all_users my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
-    /// ```
+    /// The ID of the LDAP user federation provider and the mapper can be found within
+    /// the Keycloak GUI, and they are typically GUIDs:
     /// </summary>
     [KeycloakResourceType("keycloak:ldap/hardcodedRoleMapper:HardcodedRoleMapper")]
     public partial class HardcodedRoleMapper : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The ID of the LDAP user federation provider to attach this mapper to.
+        /// The ldap user federation provider to attach this mapper to.
         /// </summary>
         [Output("ldapUserFederationId")]
         public Output<string> LdapUserFederationId { get; private set; } = null!;
 
         /// <summary>
-        /// Display name of this mapper when displayed in the console.
+        /// Display name of the mapper when displayed in the console.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The realm that this LDAP mapper will exist in.
+        /// The realm in which the ldap user federation provider exists.
         /// </summary>
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the role which should be assigned to the users. Client roles should use the format `{{client_id}}.{{client_role_name}}`.
+        /// Role to grant to user.
         /// </summary>
         [Output("role")]
         public Output<string> Role { get; private set; } = null!;
@@ -212,25 +148,25 @@ namespace Pulumi.Keycloak.Ldap
     public sealed class HardcodedRoleMapperArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The ID of the LDAP user federation provider to attach this mapper to.
+        /// The ldap user federation provider to attach this mapper to.
         /// </summary>
         [Input("ldapUserFederationId", required: true)]
         public Input<string> LdapUserFederationId { get; set; } = null!;
 
         /// <summary>
-        /// Display name of this mapper when displayed in the console.
+        /// Display name of the mapper when displayed in the console.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The realm that this LDAP mapper will exist in.
+        /// The realm in which the ldap user federation provider exists.
         /// </summary>
         [Input("realmId", required: true)]
         public Input<string> RealmId { get; set; } = null!;
 
         /// <summary>
-        /// The name of the role which should be assigned to the users. Client roles should use the format `{{client_id}}.{{client_role_name}}`.
+        /// Role to grant to user.
         /// </summary>
         [Input("role", required: true)]
         public Input<string> Role { get; set; } = null!;
@@ -244,25 +180,25 @@ namespace Pulumi.Keycloak.Ldap
     public sealed class HardcodedRoleMapperState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The ID of the LDAP user federation provider to attach this mapper to.
+        /// The ldap user federation provider to attach this mapper to.
         /// </summary>
         [Input("ldapUserFederationId")]
         public Input<string>? LdapUserFederationId { get; set; }
 
         /// <summary>
-        /// Display name of this mapper when displayed in the console.
+        /// Display name of the mapper when displayed in the console.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The realm that this LDAP mapper will exist in.
+        /// The realm in which the ldap user federation provider exists.
         /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
 
         /// <summary>
-        /// The name of the role which should be assigned to the users. Client roles should use the format `{{client_id}}.{{client_role_name}}`.
+        /// Role to grant to user.
         /// </summary>
         [Input("role")]
         public Input<string>? Role { get; set; }

@@ -14,10 +14,9 @@ namespace Pulumi.Keycloak.OpenId
         /// <summary>
         /// This data source can be used to fetch properties of a Keycloak OpenID client scope for usage with other resources.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -42,8 +41,7 @@ namespace Pulumi.Keycloak.OpenId
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetClientScopeResult> InvokeAsync(GetClientScopeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetClientScopeResult>("keycloak:openid/getClientScope:getClientScope", args ?? new GetClientScopeArgs(), options.WithDefaults());
@@ -51,10 +49,9 @@ namespace Pulumi.Keycloak.OpenId
         /// <summary>
         /// This data source can be used to fetch properties of a Keycloak OpenID client scope for usage with other resources.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -79,8 +76,7 @@ namespace Pulumi.Keycloak.OpenId
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetClientScopeResult> Invoke(GetClientScopeInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetClientScopeResult>("keycloak:openid/getClientScope:getClientScope", args ?? new GetClientScopeInvokeArgs(), options.WithDefaults());

@@ -42,6 +42,8 @@ public final class KeycloakFunctions {
      * This data source can be used to fetch the ID of an authentication execution within Keycloak.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -79,6 +81,7 @@ public final class KeycloakFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetAuthenticationExecutionResult> getAuthenticationExecution(GetAuthenticationExecutionArgs args) {
@@ -88,6 +91,8 @@ public final class KeycloakFunctions {
      * This data source can be used to fetch the ID of an authentication execution within Keycloak.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -125,6 +130,7 @@ public final class KeycloakFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetAuthenticationExecutionResult> getAuthenticationExecutionPlain(GetAuthenticationExecutionPlainArgs args) {
@@ -134,6 +140,8 @@ public final class KeycloakFunctions {
      * This data source can be used to fetch the ID of an authentication execution within Keycloak.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -171,6 +179,7 @@ public final class KeycloakFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetAuthenticationExecutionResult> getAuthenticationExecution(GetAuthenticationExecutionArgs args, InvokeOptions options) {
@@ -180,6 +189,8 @@ public final class KeycloakFunctions {
      * This data source can be used to fetch the ID of an authentication execution within Keycloak.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -217,6 +228,7 @@ public final class KeycloakFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetAuthenticationExecutionResult> getAuthenticationExecutionPlain(GetAuthenticationExecutionPlainArgs args, InvokeOptions options) {
@@ -226,6 +238,8 @@ public final class KeycloakFunctions {
      * This data source can be used to fetch the ID of an authentication flow within Keycloak.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -262,6 +276,7 @@ public final class KeycloakFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetAuthenticationFlowResult> getAuthenticationFlow(GetAuthenticationFlowArgs args) {
@@ -271,6 +286,8 @@ public final class KeycloakFunctions {
      * This data source can be used to fetch the ID of an authentication flow within Keycloak.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -307,6 +324,7 @@ public final class KeycloakFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetAuthenticationFlowResult> getAuthenticationFlowPlain(GetAuthenticationFlowPlainArgs args) {
@@ -316,6 +334,8 @@ public final class KeycloakFunctions {
      * This data source can be used to fetch the ID of an authentication flow within Keycloak.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -352,6 +372,7 @@ public final class KeycloakFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetAuthenticationFlowResult> getAuthenticationFlow(GetAuthenticationFlowArgs args, InvokeOptions options) {
@@ -361,6 +382,8 @@ public final class KeycloakFunctions {
      * This data source can be used to fetch the ID of an authentication flow within Keycloak.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -397,6 +420,7 @@ public final class KeycloakFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetAuthenticationFlowResult> getAuthenticationFlowPlain(GetAuthenticationFlowPlainArgs args, InvokeOptions options) {
@@ -407,6 +431,8 @@ public final class KeycloakFunctions {
      * client. This data can then be used to manage the client within Keycloak.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -478,6 +504,7 @@ public final class KeycloakFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetClientDescriptionConverterResult> getClientDescriptionConverter(GetClientDescriptionConverterArgs args) {
@@ -488,6 +515,8 @@ public final class KeycloakFunctions {
      * client. This data can then be used to manage the client within Keycloak.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -559,6 +588,7 @@ public final class KeycloakFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetClientDescriptionConverterResult> getClientDescriptionConverterPlain(GetClientDescriptionConverterPlainArgs args) {
@@ -569,6 +599,8 @@ public final class KeycloakFunctions {
      * client. This data can then be used to manage the client within Keycloak.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -640,6 +672,7 @@ public final class KeycloakFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetClientDescriptionConverterResult> getClientDescriptionConverter(GetClientDescriptionConverterArgs args, InvokeOptions options) {
@@ -650,6 +683,8 @@ public final class KeycloakFunctions {
      * client. This data can then be used to manage the client within Keycloak.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -721,16 +756,21 @@ public final class KeycloakFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetClientDescriptionConverterResult> getClientDescriptionConverterPlain(GetClientDescriptionConverterPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("keycloak:index/getClientDescriptionConverter:getClientDescriptionConverter", TypeShape.of(GetClientDescriptionConverterResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * ## # keycloak.Group data source
+     * 
      * This data source can be used to fetch properties of a Keycloak group for
      * usage with other resources, such as `keycloak.GroupRoles`.
      * 
-     * ## Example Usage
+     * ### Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -758,39 +798,58 @@ public final class KeycloakFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
-     *             .realm(&#34;my-realm&#34;)
      *             .enabled(true)
+     *             .realm(&#34;my-realm&#34;)
      *             .build());
      * 
      *         final var offlineAccess = KeycloakFunctions.getRole(GetRoleArgs.builder()
-     *             .realmId(realm.id())
      *             .name(&#34;offline_access&#34;)
+     *             .realmId(realm.id())
      *             .build());
      * 
      *         final var group = KeycloakFunctions.getGroup(GetGroupArgs.builder()
-     *             .realmId(realm.id())
      *             .name(&#34;group&#34;)
+     *             .realmId(realm.id())
      *             .build());
      * 
      *         var groupRoles = new GroupRoles(&#34;groupRoles&#34;, GroupRolesArgs.builder()        
-     *             .realmId(realm.id())
      *             .groupId(group.applyValue(getGroupResult -&gt; getGroupResult).applyValue(group -&gt; group.applyValue(getGroupResult -&gt; getGroupResult.id())))
-     *             .roleIds(offlineAccess.applyValue(getRoleResult -&gt; getRoleResult).applyValue(offlineAccess -&gt; offlineAccess.applyValue(getRoleResult -&gt; getRoleResult.id())))
+     *             .realmId(realm.id())
+     *             .roles(offlineAccess.applyValue(getRoleResult -&gt; getRoleResult).applyValue(offlineAccess -&gt; offlineAccess.applyValue(getRoleResult -&gt; getRoleResult.id())))
      *             .build());
      * 
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Argument Reference
+     * 
+     * The following arguments are supported:
+     * 
+     * - `realm_id` - (Required) The realm this group exists within.
+     * - `name` - (Required) The name of the group
+     * 
+     * ### Attributes Reference
+     * 
+     * In addition to the arguments listed above, the following computed attributes are exported:
+     * 
+     * - `id` - The unique ID of the group, which can be used as an argument to
+     *   other resources supported by this provider.
      * 
      */
     public static Output<GetGroupResult> getGroup(GetGroupArgs args) {
         return getGroup(args, InvokeOptions.Empty);
     }
     /**
+     * ## # keycloak.Group data source
+     * 
      * This data source can be used to fetch properties of a Keycloak group for
      * usage with other resources, such as `keycloak.GroupRoles`.
      * 
-     * ## Example Usage
+     * ### Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -818,39 +877,58 @@ public final class KeycloakFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
-     *             .realm(&#34;my-realm&#34;)
      *             .enabled(true)
+     *             .realm(&#34;my-realm&#34;)
      *             .build());
      * 
      *         final var offlineAccess = KeycloakFunctions.getRole(GetRoleArgs.builder()
-     *             .realmId(realm.id())
      *             .name(&#34;offline_access&#34;)
+     *             .realmId(realm.id())
      *             .build());
      * 
      *         final var group = KeycloakFunctions.getGroup(GetGroupArgs.builder()
-     *             .realmId(realm.id())
      *             .name(&#34;group&#34;)
+     *             .realmId(realm.id())
      *             .build());
      * 
      *         var groupRoles = new GroupRoles(&#34;groupRoles&#34;, GroupRolesArgs.builder()        
-     *             .realmId(realm.id())
      *             .groupId(group.applyValue(getGroupResult -&gt; getGroupResult).applyValue(group -&gt; group.applyValue(getGroupResult -&gt; getGroupResult.id())))
-     *             .roleIds(offlineAccess.applyValue(getRoleResult -&gt; getRoleResult).applyValue(offlineAccess -&gt; offlineAccess.applyValue(getRoleResult -&gt; getRoleResult.id())))
+     *             .realmId(realm.id())
+     *             .roles(offlineAccess.applyValue(getRoleResult -&gt; getRoleResult).applyValue(offlineAccess -&gt; offlineAccess.applyValue(getRoleResult -&gt; getRoleResult.id())))
      *             .build());
      * 
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Argument Reference
+     * 
+     * The following arguments are supported:
+     * 
+     * - `realm_id` - (Required) The realm this group exists within.
+     * - `name` - (Required) The name of the group
+     * 
+     * ### Attributes Reference
+     * 
+     * In addition to the arguments listed above, the following computed attributes are exported:
+     * 
+     * - `id` - The unique ID of the group, which can be used as an argument to
+     *   other resources supported by this provider.
      * 
      */
     public static CompletableFuture<GetGroupResult> getGroupPlain(GetGroupPlainArgs args) {
         return getGroupPlain(args, InvokeOptions.Empty);
     }
     /**
+     * ## # keycloak.Group data source
+     * 
      * This data source can be used to fetch properties of a Keycloak group for
      * usage with other resources, such as `keycloak.GroupRoles`.
      * 
-     * ## Example Usage
+     * ### Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -878,39 +956,58 @@ public final class KeycloakFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
-     *             .realm(&#34;my-realm&#34;)
      *             .enabled(true)
+     *             .realm(&#34;my-realm&#34;)
      *             .build());
      * 
      *         final var offlineAccess = KeycloakFunctions.getRole(GetRoleArgs.builder()
-     *             .realmId(realm.id())
      *             .name(&#34;offline_access&#34;)
+     *             .realmId(realm.id())
      *             .build());
      * 
      *         final var group = KeycloakFunctions.getGroup(GetGroupArgs.builder()
-     *             .realmId(realm.id())
      *             .name(&#34;group&#34;)
+     *             .realmId(realm.id())
      *             .build());
      * 
      *         var groupRoles = new GroupRoles(&#34;groupRoles&#34;, GroupRolesArgs.builder()        
-     *             .realmId(realm.id())
      *             .groupId(group.applyValue(getGroupResult -&gt; getGroupResult).applyValue(group -&gt; group.applyValue(getGroupResult -&gt; getGroupResult.id())))
-     *             .roleIds(offlineAccess.applyValue(getRoleResult -&gt; getRoleResult).applyValue(offlineAccess -&gt; offlineAccess.applyValue(getRoleResult -&gt; getRoleResult.id())))
+     *             .realmId(realm.id())
+     *             .roles(offlineAccess.applyValue(getRoleResult -&gt; getRoleResult).applyValue(offlineAccess -&gt; offlineAccess.applyValue(getRoleResult -&gt; getRoleResult.id())))
      *             .build());
      * 
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Argument Reference
+     * 
+     * The following arguments are supported:
+     * 
+     * - `realm_id` - (Required) The realm this group exists within.
+     * - `name` - (Required) The name of the group
+     * 
+     * ### Attributes Reference
+     * 
+     * In addition to the arguments listed above, the following computed attributes are exported:
+     * 
+     * - `id` - The unique ID of the group, which can be used as an argument to
+     *   other resources supported by this provider.
      * 
      */
     public static Output<GetGroupResult> getGroup(GetGroupArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("keycloak:index/getGroup:getGroup", TypeShape.of(GetGroupResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * ## # keycloak.Group data source
+     * 
      * This data source can be used to fetch properties of a Keycloak group for
      * usage with other resources, such as `keycloak.GroupRoles`.
      * 
-     * ## Example Usage
+     * ### Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -938,39 +1035,58 @@ public final class KeycloakFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
-     *             .realm(&#34;my-realm&#34;)
      *             .enabled(true)
+     *             .realm(&#34;my-realm&#34;)
      *             .build());
      * 
      *         final var offlineAccess = KeycloakFunctions.getRole(GetRoleArgs.builder()
-     *             .realmId(realm.id())
      *             .name(&#34;offline_access&#34;)
+     *             .realmId(realm.id())
      *             .build());
      * 
      *         final var group = KeycloakFunctions.getGroup(GetGroupArgs.builder()
-     *             .realmId(realm.id())
      *             .name(&#34;group&#34;)
+     *             .realmId(realm.id())
      *             .build());
      * 
      *         var groupRoles = new GroupRoles(&#34;groupRoles&#34;, GroupRolesArgs.builder()        
-     *             .realmId(realm.id())
      *             .groupId(group.applyValue(getGroupResult -&gt; getGroupResult).applyValue(group -&gt; group.applyValue(getGroupResult -&gt; getGroupResult.id())))
-     *             .roleIds(offlineAccess.applyValue(getRoleResult -&gt; getRoleResult).applyValue(offlineAccess -&gt; offlineAccess.applyValue(getRoleResult -&gt; getRoleResult.id())))
+     *             .realmId(realm.id())
+     *             .roles(offlineAccess.applyValue(getRoleResult -&gt; getRoleResult).applyValue(offlineAccess -&gt; offlineAccess.applyValue(getRoleResult -&gt; getRoleResult.id())))
      *             .build());
      * 
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Argument Reference
+     * 
+     * The following arguments are supported:
+     * 
+     * - `realm_id` - (Required) The realm this group exists within.
+     * - `name` - (Required) The name of the group
+     * 
+     * ### Attributes Reference
+     * 
+     * In addition to the arguments listed above, the following computed attributes are exported:
+     * 
+     * - `id` - The unique ID of the group, which can be used as an argument to
+     *   other resources supported by this provider.
      * 
      */
     public static CompletableFuture<GetGroupResult> getGroupPlain(GetGroupPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("keycloak:index/getGroup:getGroup", TypeShape.of(GetGroupResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * ## # keycloak.Realm data source
+     * 
      * This data source can be used to fetch properties of a Keycloak realm for
      * usage with other resources.
      * 
-     * ## Example Usage
+     * ### Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -999,22 +1115,37 @@ public final class KeycloakFunctions {
      *             .build());
      * 
      *         var group = new Role(&#34;group&#34;, RoleArgs.builder()        
-     *             .realmId(realm.applyValue(getRealmResult -&gt; getRealmResult.id()))
+     *             .realmId(data.keycloak_realm().id())
      *             .build());
      * 
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Argument Reference
+     * 
+     * The following arguments are supported:
+     * 
+     * - `realm` - (Required) The realm name.
+     * 
+     * ### Attributes Reference
+     * 
+     * See the docs for the `keycloak.Realm` resource for details on the exported attributes.
      * 
      */
     public static Output<GetRealmResult> getRealm(GetRealmArgs args) {
         return getRealm(args, InvokeOptions.Empty);
     }
     /**
+     * ## # keycloak.Realm data source
+     * 
      * This data source can be used to fetch properties of a Keycloak realm for
      * usage with other resources.
      * 
-     * ## Example Usage
+     * ### Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1043,22 +1174,37 @@ public final class KeycloakFunctions {
      *             .build());
      * 
      *         var group = new Role(&#34;group&#34;, RoleArgs.builder()        
-     *             .realmId(realm.applyValue(getRealmResult -&gt; getRealmResult.id()))
+     *             .realmId(data.keycloak_realm().id())
      *             .build());
      * 
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Argument Reference
+     * 
+     * The following arguments are supported:
+     * 
+     * - `realm` - (Required) The realm name.
+     * 
+     * ### Attributes Reference
+     * 
+     * See the docs for the `keycloak.Realm` resource for details on the exported attributes.
      * 
      */
     public static CompletableFuture<GetRealmResult> getRealmPlain(GetRealmPlainArgs args) {
         return getRealmPlain(args, InvokeOptions.Empty);
     }
     /**
+     * ## # keycloak.Realm data source
+     * 
      * This data source can be used to fetch properties of a Keycloak realm for
      * usage with other resources.
      * 
-     * ## Example Usage
+     * ### Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1087,22 +1233,37 @@ public final class KeycloakFunctions {
      *             .build());
      * 
      *         var group = new Role(&#34;group&#34;, RoleArgs.builder()        
-     *             .realmId(realm.applyValue(getRealmResult -&gt; getRealmResult.id()))
+     *             .realmId(data.keycloak_realm().id())
      *             .build());
      * 
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Argument Reference
+     * 
+     * The following arguments are supported:
+     * 
+     * - `realm` - (Required) The realm name.
+     * 
+     * ### Attributes Reference
+     * 
+     * See the docs for the `keycloak.Realm` resource for details on the exported attributes.
      * 
      */
     public static Output<GetRealmResult> getRealm(GetRealmArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("keycloak:index/getRealm:getRealm", TypeShape.of(GetRealmResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * ## # keycloak.Realm data source
+     * 
      * This data source can be used to fetch properties of a Keycloak realm for
      * usage with other resources.
      * 
-     * ## Example Usage
+     * ### Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1131,74 +1292,97 @@ public final class KeycloakFunctions {
      *             .build());
      * 
      *         var group = new Role(&#34;group&#34;, RoleArgs.builder()        
-     *             .realmId(realm.applyValue(getRealmResult -&gt; getRealmResult.id()))
+     *             .realmId(data.keycloak_realm().id())
      *             .build());
      * 
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Argument Reference
+     * 
+     * The following arguments are supported:
+     * 
+     * - `realm` - (Required) The realm name.
+     * 
+     * ### Attributes Reference
+     * 
+     * See the docs for the `keycloak.Realm` resource for details on the exported attributes.
      * 
      */
     public static CompletableFuture<GetRealmResult> getRealmPlain(GetRealmPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("keycloak:index/getRealm:getRealm", TypeShape.of(GetRealmResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * ## # keycloak.getRealmKeys data source
+     * 
      * Use this data source to get the keys of a realm. Keys can be filtered by algorithm and status.
      * 
      * Remarks:
      * 
      * - A key must meet all filter criteria
-     * - This data source may return more than one value.
-     * - If no key matches the filter criteria, then an error will be returned.
+     * - This datasource may return more than one value.
+     * - If no key matches the filter criteria, then an error is returned.
      * 
      */
     public static Output<GetRealmKeysResult> getRealmKeys(GetRealmKeysArgs args) {
         return getRealmKeys(args, InvokeOptions.Empty);
     }
     /**
+     * ## # keycloak.getRealmKeys data source
+     * 
      * Use this data source to get the keys of a realm. Keys can be filtered by algorithm and status.
      * 
      * Remarks:
      * 
      * - A key must meet all filter criteria
-     * - This data source may return more than one value.
-     * - If no key matches the filter criteria, then an error will be returned.
+     * - This datasource may return more than one value.
+     * - If no key matches the filter criteria, then an error is returned.
      * 
      */
     public static CompletableFuture<GetRealmKeysResult> getRealmKeysPlain(GetRealmKeysPlainArgs args) {
         return getRealmKeysPlain(args, InvokeOptions.Empty);
     }
     /**
+     * ## # keycloak.getRealmKeys data source
+     * 
      * Use this data source to get the keys of a realm. Keys can be filtered by algorithm and status.
      * 
      * Remarks:
      * 
      * - A key must meet all filter criteria
-     * - This data source may return more than one value.
-     * - If no key matches the filter criteria, then an error will be returned.
+     * - This datasource may return more than one value.
+     * - If no key matches the filter criteria, then an error is returned.
      * 
      */
     public static Output<GetRealmKeysResult> getRealmKeys(GetRealmKeysArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("keycloak:index/getRealmKeys:getRealmKeys", TypeShape.of(GetRealmKeysResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * ## # keycloak.getRealmKeys data source
+     * 
      * Use this data source to get the keys of a realm. Keys can be filtered by algorithm and status.
      * 
      * Remarks:
      * 
      * - A key must meet all filter criteria
-     * - This data source may return more than one value.
-     * - If no key matches the filter criteria, then an error will be returned.
+     * - This datasource may return more than one value.
+     * - If no key matches the filter criteria, then an error is returned.
      * 
      */
     public static CompletableFuture<GetRealmKeysResult> getRealmKeysPlain(GetRealmKeysPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("keycloak:index/getRealmKeys:getRealmKeys", TypeShape.of(GetRealmKeysResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * ## # keycloak.Role data source
+     * 
      * This data source can be used to fetch properties of a Keycloak role for
      * usage with other resources, such as `keycloak.GroupRoles`.
      * 
-     * ## Example Usage
+     * ### Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1227,13 +1411,13 @@ public final class KeycloakFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
-     *             .realm(&#34;my-realm&#34;)
      *             .enabled(true)
+     *             .realm(&#34;my-realm&#34;)
      *             .build());
      * 
      *         final var offlineAccess = KeycloakFunctions.getRole(GetRoleArgs.builder()
-     *             .realmId(realm.id())
      *             .name(&#34;offline_access&#34;)
+     *             .realmId(realm.id())
      *             .build());
      * 
      *         var group = new Group(&#34;group&#34;, GroupArgs.builder()        
@@ -1241,24 +1425,46 @@ public final class KeycloakFunctions {
      *             .build());
      * 
      *         var groupRoles = new GroupRoles(&#34;groupRoles&#34;, GroupRolesArgs.builder()        
-     *             .realmId(realm.id())
      *             .groupId(group.id())
-     *             .roleIds(offlineAccess.applyValue(getRoleResult -&gt; getRoleResult).applyValue(offlineAccess -&gt; offlineAccess.applyValue(getRoleResult -&gt; getRoleResult.id())))
+     *             .realmId(realm.id())
+     *             .roles(offlineAccess.applyValue(getRoleResult -&gt; getRoleResult).applyValue(offlineAccess -&gt; offlineAccess.applyValue(getRoleResult -&gt; getRoleResult.id())))
      *             .build());
      * 
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Argument Reference
+     * 
+     * The following arguments are supported:
+     * 
+     * - `realm_id` - (Required) The realm this role exists within.
+     * - `client_id` - (Optional) When specified, this role is assumed to be a
+     *   client role belonging to the client with the provided ID
+     * - `name` - (Required) The name of the role
+     * 
+     * ### Attributes Reference
+     * 
+     * In addition to the arguments listed above, the following computed attributes are exported:
+     * 
+     * - `id` - The unique ID of the role, which can be used as an argument to
+     *   other resources supported by this provider.
+     * - `description` - The description of the role.
      * 
      */
     public static Output<GetRoleResult> getRole(GetRoleArgs args) {
         return getRole(args, InvokeOptions.Empty);
     }
     /**
+     * ## # keycloak.Role data source
+     * 
      * This data source can be used to fetch properties of a Keycloak role for
      * usage with other resources, such as `keycloak.GroupRoles`.
      * 
-     * ## Example Usage
+     * ### Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1287,13 +1493,13 @@ public final class KeycloakFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
-     *             .realm(&#34;my-realm&#34;)
      *             .enabled(true)
+     *             .realm(&#34;my-realm&#34;)
      *             .build());
      * 
      *         final var offlineAccess = KeycloakFunctions.getRole(GetRoleArgs.builder()
-     *             .realmId(realm.id())
      *             .name(&#34;offline_access&#34;)
+     *             .realmId(realm.id())
      *             .build());
      * 
      *         var group = new Group(&#34;group&#34;, GroupArgs.builder()        
@@ -1301,24 +1507,46 @@ public final class KeycloakFunctions {
      *             .build());
      * 
      *         var groupRoles = new GroupRoles(&#34;groupRoles&#34;, GroupRolesArgs.builder()        
-     *             .realmId(realm.id())
      *             .groupId(group.id())
-     *             .roleIds(offlineAccess.applyValue(getRoleResult -&gt; getRoleResult).applyValue(offlineAccess -&gt; offlineAccess.applyValue(getRoleResult -&gt; getRoleResult.id())))
+     *             .realmId(realm.id())
+     *             .roles(offlineAccess.applyValue(getRoleResult -&gt; getRoleResult).applyValue(offlineAccess -&gt; offlineAccess.applyValue(getRoleResult -&gt; getRoleResult.id())))
      *             .build());
      * 
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Argument Reference
+     * 
+     * The following arguments are supported:
+     * 
+     * - `realm_id` - (Required) The realm this role exists within.
+     * - `client_id` - (Optional) When specified, this role is assumed to be a
+     *   client role belonging to the client with the provided ID
+     * - `name` - (Required) The name of the role
+     * 
+     * ### Attributes Reference
+     * 
+     * In addition to the arguments listed above, the following computed attributes are exported:
+     * 
+     * - `id` - The unique ID of the role, which can be used as an argument to
+     *   other resources supported by this provider.
+     * - `description` - The description of the role.
      * 
      */
     public static CompletableFuture<GetRoleResult> getRolePlain(GetRolePlainArgs args) {
         return getRolePlain(args, InvokeOptions.Empty);
     }
     /**
+     * ## # keycloak.Role data source
+     * 
      * This data source can be used to fetch properties of a Keycloak role for
      * usage with other resources, such as `keycloak.GroupRoles`.
      * 
-     * ## Example Usage
+     * ### Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1347,13 +1575,13 @@ public final class KeycloakFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
-     *             .realm(&#34;my-realm&#34;)
      *             .enabled(true)
+     *             .realm(&#34;my-realm&#34;)
      *             .build());
      * 
      *         final var offlineAccess = KeycloakFunctions.getRole(GetRoleArgs.builder()
-     *             .realmId(realm.id())
      *             .name(&#34;offline_access&#34;)
+     *             .realmId(realm.id())
      *             .build());
      * 
      *         var group = new Group(&#34;group&#34;, GroupArgs.builder()        
@@ -1361,24 +1589,46 @@ public final class KeycloakFunctions {
      *             .build());
      * 
      *         var groupRoles = new GroupRoles(&#34;groupRoles&#34;, GroupRolesArgs.builder()        
-     *             .realmId(realm.id())
      *             .groupId(group.id())
-     *             .roleIds(offlineAccess.applyValue(getRoleResult -&gt; getRoleResult).applyValue(offlineAccess -&gt; offlineAccess.applyValue(getRoleResult -&gt; getRoleResult.id())))
+     *             .realmId(realm.id())
+     *             .roles(offlineAccess.applyValue(getRoleResult -&gt; getRoleResult).applyValue(offlineAccess -&gt; offlineAccess.applyValue(getRoleResult -&gt; getRoleResult.id())))
      *             .build());
      * 
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Argument Reference
+     * 
+     * The following arguments are supported:
+     * 
+     * - `realm_id` - (Required) The realm this role exists within.
+     * - `client_id` - (Optional) When specified, this role is assumed to be a
+     *   client role belonging to the client with the provided ID
+     * - `name` - (Required) The name of the role
+     * 
+     * ### Attributes Reference
+     * 
+     * In addition to the arguments listed above, the following computed attributes are exported:
+     * 
+     * - `id` - The unique ID of the role, which can be used as an argument to
+     *   other resources supported by this provider.
+     * - `description` - The description of the role.
      * 
      */
     public static Output<GetRoleResult> getRole(GetRoleArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("keycloak:index/getRole:getRole", TypeShape.of(GetRoleResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * ## # keycloak.Role data source
+     * 
      * This data source can be used to fetch properties of a Keycloak role for
      * usage with other resources, such as `keycloak.GroupRoles`.
      * 
-     * ## Example Usage
+     * ### Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1407,13 +1657,13 @@ public final class KeycloakFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
-     *             .realm(&#34;my-realm&#34;)
      *             .enabled(true)
+     *             .realm(&#34;my-realm&#34;)
      *             .build());
      * 
      *         final var offlineAccess = KeycloakFunctions.getRole(GetRoleArgs.builder()
-     *             .realmId(realm.id())
      *             .name(&#34;offline_access&#34;)
+     *             .realmId(realm.id())
      *             .build());
      * 
      *         var group = new Group(&#34;group&#34;, GroupArgs.builder()        
@@ -1421,14 +1671,32 @@ public final class KeycloakFunctions {
      *             .build());
      * 
      *         var groupRoles = new GroupRoles(&#34;groupRoles&#34;, GroupRolesArgs.builder()        
-     *             .realmId(realm.id())
      *             .groupId(group.id())
-     *             .roleIds(offlineAccess.applyValue(getRoleResult -&gt; getRoleResult).applyValue(offlineAccess -&gt; offlineAccess.applyValue(getRoleResult -&gt; getRoleResult.id())))
+     *             .realmId(realm.id())
+     *             .roles(offlineAccess.applyValue(getRoleResult -&gt; getRoleResult).applyValue(offlineAccess -&gt; offlineAccess.applyValue(getRoleResult -&gt; getRoleResult.id())))
      *             .build());
      * 
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Argument Reference
+     * 
+     * The following arguments are supported:
+     * 
+     * - `realm_id` - (Required) The realm this role exists within.
+     * - `client_id` - (Optional) When specified, this role is assumed to be a
+     *   client role belonging to the client with the provided ID
+     * - `name` - (Required) The name of the role
+     * 
+     * ### Attributes Reference
+     * 
+     * In addition to the arguments listed above, the following computed attributes are exported:
+     * 
+     * - `id` - The unique ID of the role, which can be used as an argument to
+     *   other resources supported by this provider.
+     * - `description` - The description of the role.
      * 
      */
     public static CompletableFuture<GetRoleResult> getRolePlain(GetRolePlainArgs args, InvokeOptions options) {
@@ -1438,6 +1706,8 @@ public final class KeycloakFunctions {
      * This data source can be used to fetch properties of a user within Keycloak.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1473,6 +1743,7 @@ public final class KeycloakFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetUserResult> getUser(GetUserArgs args) {
@@ -1482,6 +1753,8 @@ public final class KeycloakFunctions {
      * This data source can be used to fetch properties of a user within Keycloak.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1517,6 +1790,7 @@ public final class KeycloakFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetUserResult> getUserPlain(GetUserPlainArgs args) {
@@ -1526,6 +1800,8 @@ public final class KeycloakFunctions {
      * This data source can be used to fetch properties of a user within Keycloak.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1561,6 +1837,7 @@ public final class KeycloakFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetUserResult> getUser(GetUserArgs args, InvokeOptions options) {
@@ -1570,6 +1847,8 @@ public final class KeycloakFunctions {
      * This data source can be used to fetch properties of a user within Keycloak.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1605,6 +1884,7 @@ public final class KeycloakFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetUserResult> getUserPlain(GetUserPlainArgs args, InvokeOptions options) {
@@ -1614,6 +1894,8 @@ public final class KeycloakFunctions {
      * This data source can be used to fetch the realm roles of a user within Keycloak.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1655,6 +1937,7 @@ public final class KeycloakFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetUserRealmRolesResult> getUserRealmRoles(GetUserRealmRolesArgs args) {
@@ -1664,6 +1947,8 @@ public final class KeycloakFunctions {
      * This data source can be used to fetch the realm roles of a user within Keycloak.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1705,6 +1990,7 @@ public final class KeycloakFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetUserRealmRolesResult> getUserRealmRolesPlain(GetUserRealmRolesPlainArgs args) {
@@ -1714,6 +2000,8 @@ public final class KeycloakFunctions {
      * This data source can be used to fetch the realm roles of a user within Keycloak.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1755,6 +2043,7 @@ public final class KeycloakFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetUserRealmRolesResult> getUserRealmRoles(GetUserRealmRolesArgs args, InvokeOptions options) {
@@ -1764,6 +2053,8 @@ public final class KeycloakFunctions {
      * This data source can be used to fetch the realm roles of a user within Keycloak.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1805,6 +2096,7 @@ public final class KeycloakFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetUserRealmRolesResult> getUserRealmRolesPlain(GetUserRealmRolesPlainArgs args, InvokeOptions options) {

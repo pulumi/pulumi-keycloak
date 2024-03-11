@@ -19,9 +19,6 @@ class GroupMembershipsArgs:
                  group_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a GroupMemberships resource.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] members: A list of usernames that belong to this group.
-        :param pulumi.Input[str] realm_id: The realm this group exists in.
-        :param pulumi.Input[str] group_id: The ID of the group this resource should manage memberships for.
         """
         pulumi.set(__self__, "members", members)
         pulumi.set(__self__, "realm_id", realm_id)
@@ -31,9 +28,6 @@ class GroupMembershipsArgs:
     @property
     @pulumi.getter
     def members(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
-        """
-        A list of usernames that belong to this group.
-        """
         return pulumi.get(self, "members")
 
     @members.setter
@@ -43,9 +37,6 @@ class GroupMembershipsArgs:
     @property
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Input[str]:
-        """
-        The realm this group exists in.
-        """
         return pulumi.get(self, "realm_id")
 
     @realm_id.setter
@@ -55,9 +46,6 @@ class GroupMembershipsArgs:
     @property
     @pulumi.getter(name="groupId")
     def group_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        The ID of the group this resource should manage memberships for.
-        """
         return pulumi.get(self, "group_id")
 
     @group_id.setter
@@ -73,9 +61,6 @@ class _GroupMembershipsState:
                  realm_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering GroupMemberships resources.
-        :param pulumi.Input[str] group_id: The ID of the group this resource should manage memberships for.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] members: A list of usernames that belong to this group.
-        :param pulumi.Input[str] realm_id: The realm this group exists in.
         """
         if group_id is not None:
             pulumi.set(__self__, "group_id", group_id)
@@ -87,9 +72,6 @@ class _GroupMembershipsState:
     @property
     @pulumi.getter(name="groupId")
     def group_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        The ID of the group this resource should manage memberships for.
-        """
         return pulumi.get(self, "group_id")
 
     @group_id.setter
@@ -99,9 +81,6 @@ class _GroupMembershipsState:
     @property
     @pulumi.getter
     def members(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        A list of usernames that belong to this group.
-        """
         return pulumi.get(self, "members")
 
     @members.setter
@@ -111,9 +90,6 @@ class _GroupMembershipsState:
     @property
     @pulumi.getter(name="realmId")
     def realm_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        The realm this group exists in.
-        """
         return pulumi.get(self, "realm_id")
 
     @realm_id.setter
@@ -131,54 +107,58 @@ class GroupMemberships(pulumi.CustomResource):
                  realm_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        ## # GroupMemberships
+
         Allows for managing a Keycloak group's members.
 
-        Note that this resource attempts to be an **authoritative** source over group members. When this resource takes control
-        over a group's members, users that are manually added to the group will be removed, and users that are manually removed
-        from the group will be added upon the next run of `pulumi up`.
+        Note that this resource attempts to be an **authoritative** source over group members.
+        When this resource takes control over a group's members, users that are manually added
+        to the group will be removed, and users that are manually removed from the group will
+        be added upon the next run of `pulumi up`.  Eventually, a non-authoritative resource
+        for group membership will be added to this provider.
 
-        Also note that you should not use `GroupMemberships` with a group has been assigned as a default group via
-        `DefaultGroups`.
+        Also note that you should not use `GroupMemberships` with a group has been assigned
+        as a default group via `DefaultGroups`.
 
-        This resource **should not** be used to control membership of a group that has its members federated from an external
-        source via group mapping.
+        This resource **should not** be used to control membership of a group that has its members
+        federated from an external source via group mapping.
 
-        To non-exclusively manage the group's of a user, see the [`UserGroups` resource][1]
+        ### Example Usage
 
-        This resource paginates its data loading on refresh by 50 items.
-
-        ## Example Usage
-
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
+            enabled=True,
+            realm="my-realm")
         group = keycloak.Group("group", realm_id=realm.id)
         user = keycloak.User("user",
             realm_id=realm.id,
             username="my-user")
         group_members = keycloak.GroupMemberships("groupMembers",
-            realm_id=realm.id,
             group_id=group.id,
-            members=[user.username])
+            members=[user.username],
+            realm_id=realm.id)
         ```
+        <!--End PulumiCodeChooser -->
 
-        ## Import
+        ### Argument Reference
+
+        The following arguments are supported:
+
+        - `realm_id` - (Required) The realm this group exists in.
+        - `group_id` - (Required) The ID of the group this resource should manage memberships for.
+        - `members` - (Required) An array of usernames that belong to this group.
+
+        ### Import
 
         This resource does not support import. Instead of importing, feel free to create this resource
-
-         as if it did not already exist on the server.
-
-        [1]: providers/mrparkers/keycloak/latest/docs/resources/group_memberships
+        as if it did not already exist on the server.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] group_id: The ID of the group this resource should manage memberships for.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] members: A list of usernames that belong to this group.
-        :param pulumi.Input[str] realm_id: The realm this group exists in.
         """
         ...
     @overload
@@ -187,48 +167,55 @@ class GroupMemberships(pulumi.CustomResource):
                  args: GroupMembershipsArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## # GroupMemberships
+
         Allows for managing a Keycloak group's members.
 
-        Note that this resource attempts to be an **authoritative** source over group members. When this resource takes control
-        over a group's members, users that are manually added to the group will be removed, and users that are manually removed
-        from the group will be added upon the next run of `pulumi up`.
+        Note that this resource attempts to be an **authoritative** source over group members.
+        When this resource takes control over a group's members, users that are manually added
+        to the group will be removed, and users that are manually removed from the group will
+        be added upon the next run of `pulumi up`.  Eventually, a non-authoritative resource
+        for group membership will be added to this provider.
 
-        Also note that you should not use `GroupMemberships` with a group has been assigned as a default group via
-        `DefaultGroups`.
+        Also note that you should not use `GroupMemberships` with a group has been assigned
+        as a default group via `DefaultGroups`.
 
-        This resource **should not** be used to control membership of a group that has its members federated from an external
-        source via group mapping.
+        This resource **should not** be used to control membership of a group that has its members
+        federated from an external source via group mapping.
 
-        To non-exclusively manage the group's of a user, see the [`UserGroups` resource][1]
+        ### Example Usage
 
-        This resource paginates its data loading on refresh by 50 items.
-
-        ## Example Usage
-
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
+            enabled=True,
+            realm="my-realm")
         group = keycloak.Group("group", realm_id=realm.id)
         user = keycloak.User("user",
             realm_id=realm.id,
             username="my-user")
         group_members = keycloak.GroupMemberships("groupMembers",
-            realm_id=realm.id,
             group_id=group.id,
-            members=[user.username])
+            members=[user.username],
+            realm_id=realm.id)
         ```
+        <!--End PulumiCodeChooser -->
 
-        ## Import
+        ### Argument Reference
+
+        The following arguments are supported:
+
+        - `realm_id` - (Required) The realm this group exists in.
+        - `group_id` - (Required) The ID of the group this resource should manage memberships for.
+        - `members` - (Required) An array of usernames that belong to this group.
+
+        ### Import
 
         This resource does not support import. Instead of importing, feel free to create this resource
-
-         as if it did not already exist on the server.
-
-        [1]: providers/mrparkers/keycloak/latest/docs/resources/group_memberships
+        as if it did not already exist on the server.
 
         :param str resource_name: The name of the resource.
         :param GroupMembershipsArgs args: The arguments to use to populate this resource's properties.
@@ -284,9 +271,6 @@ class GroupMemberships(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] group_id: The ID of the group this resource should manage memberships for.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] members: A list of usernames that belong to this group.
-        :param pulumi.Input[str] realm_id: The realm this group exists in.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -300,24 +284,15 @@ class GroupMemberships(pulumi.CustomResource):
     @property
     @pulumi.getter(name="groupId")
     def group_id(self) -> pulumi.Output[Optional[str]]:
-        """
-        The ID of the group this resource should manage memberships for.
-        """
         return pulumi.get(self, "group_id")
 
     @property
     @pulumi.getter
     def members(self) -> pulumi.Output[Sequence[str]]:
-        """
-        A list of usernames that belong to this group.
-        """
         return pulumi.get(self, "members")
 
     @property
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Output[str]:
-        """
-        The realm this group exists in.
-        """
         return pulumi.get(self, "realm_id")
 

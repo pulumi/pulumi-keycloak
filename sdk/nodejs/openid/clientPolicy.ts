@@ -11,6 +11,7 @@ import * as utilities from "../utilities";
  *
  * In this example, we'll create a new OpenID client, then enabled permissions for the client. A client without permissions disabled cannot be assigned by a client policy. We'll use the `keycloak.openid.ClientPolicy` resource to create a new client policy, which could be applied to many clients, for a realm and a resource_server_id.
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -41,6 +42,7 @@ import * as utilities from "../utilities";
  *     clients: [openidClient.id],
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export class ClientPolicy extends pulumi.CustomResource {
     /**

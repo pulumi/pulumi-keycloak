@@ -264,39 +264,21 @@ export interface GroupPermissionsViewScope {
 }
 
 export interface RealmInternationalization {
-    /**
-     * The locale to use by default. This locale code must be present within the `supportedLocales` list.
-     */
     defaultLocale: pulumi.Input<string>;
-    /**
-     * A list of [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) locale codes that the realm should support.
-     */
     supportedLocales: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface RealmOtpPolicy {
     /**
-     * What hashing algorithm should be used to generate the OTP, Valid options are `HmacSHA1`,`HmacSHA256` and `HmacSHA512`. Defaults to `HmacSHA1`.
+     * What hashing algorithm should be used to generate the OTP.
      */
     algorithm?: pulumi.Input<string>;
-    /**
-     * How many digits the OTP have. Defaults to `6`.
-     */
     digits?: pulumi.Input<number>;
-    /**
-     * What should the initial counter value be. Defaults to `2`.
-     */
     initialCounter?: pulumi.Input<number>;
-    /**
-     * How far ahead should the server look just in case the token generator and server are out of time sync or counter sync. Defaults to `1`.
-     */
     lookAheadWindow?: pulumi.Input<number>;
-    /**
-     * How many seconds should an OTP token be valid. Defaults to `30`.
-     */
     period?: pulumi.Input<number>;
     /**
-     * One Time Password Type, supported Values are `totp` for Time-Based One Time Password and `hotp` for Counter Based. Defaults to `totp`.
+     * OTP Type, totp for Time-Based One Time Password or hotp for counter base one time password
      */
     type?: pulumi.Input<string>;
 }
@@ -307,120 +289,41 @@ export interface RealmSecurityDefenses {
 }
 
 export interface RealmSecurityDefensesBruteForceDetection {
-    /**
-     * When will failure count be reset?
-     */
     failureResetTimeSeconds?: pulumi.Input<number>;
     maxFailureWaitSeconds?: pulumi.Input<number>;
-    /**
-     * How many failures before wait is triggered.
-     */
     maxLoginFailures?: pulumi.Input<number>;
-    /**
-     * How long to wait after a quick login failure.
-     * - `maxFailureWaitSeconds ` - (Optional) Max. time a user will be locked out.
-     */
     minimumQuickLoginWaitSeconds?: pulumi.Input<number>;
-    /**
-     * When `true`, this will lock the user permanently when the user exceeds the maximum login failures.
-     */
     permanentLockout?: pulumi.Input<boolean>;
-    /**
-     * Configures the amount of time, in milliseconds, for consecutive failures to lock a user out.
-     */
     quickLoginCheckMilliSeconds?: pulumi.Input<number>;
-    /**
-     * This represents the amount of time a user should be locked out when the login failure threshold has been met.
-     */
     waitIncrementSeconds?: pulumi.Input<number>;
 }
 
 export interface RealmSecurityDefensesHeaders {
-    /**
-     * Sets the Content Security Policy, which can be used for prevent pages from being included by non-origin iframes. More information can be found in the [W3C-CSP](https://www.w3.org/TR/CSP/) Abstract.
-     */
     contentSecurityPolicy?: pulumi.Input<string>;
-    /**
-     * Used for testing Content Security Policies.
-     */
     contentSecurityPolicyReportOnly?: pulumi.Input<string>;
-    /**
-     * The Referrer-Policy HTTP header controls how much referrer information (sent with the Referer header) should be included with requests.
-     */
     referrerPolicy?: pulumi.Input<string>;
-    /**
-     * The Script-Transport-Security HTTP header tells browsers to always use HTTPS.
-     */
     strictTransportSecurity?: pulumi.Input<string>;
-    /**
-     * Sets the X-Content-Type-Options, which can be used for prevent MIME-sniffing a response away from the declared content-type
-     */
     xContentTypeOptions?: pulumi.Input<string>;
-    /**
-     * Sets the x-frame-option, which can be used to prevent pages from being included by non-origin iframes. More information can be found in the [RFC7034](https://tools.ietf.org/html/rfc7034)
-     */
     xFrameOptions?: pulumi.Input<string>;
-    /**
-     * Prevent pages from appearing in search engines.
-     */
     xRobotsTag?: pulumi.Input<string>;
-    /**
-     * This header configures the Cross-site scripting (XSS) filter in your browser.
-     */
     xXssProtection?: pulumi.Input<string>;
 }
 
 export interface RealmSmtpServer {
-    /**
-     * Enables authentication to the SMTP server.  This block supports the following arguments:
-     */
     auth?: pulumi.Input<inputs.RealmSmtpServerAuth>;
-    /**
-     * The email address uses for bounces.
-     */
     envelopeFrom?: pulumi.Input<string>;
-    /**
-     * The email address for the sender.
-     */
     from: pulumi.Input<string>;
-    /**
-     * The display name of the sender email address.
-     */
     fromDisplayName?: pulumi.Input<string>;
-    /**
-     * The host of the SMTP server.
-     */
     host: pulumi.Input<string>;
-    /**
-     * The port of the SMTP server (defaults to 25).
-     */
     port?: pulumi.Input<string>;
-    /**
-     * The "reply to" email address.
-     */
     replyTo?: pulumi.Input<string>;
-    /**
-     * The display name of the "reply to" email address.
-     */
     replyToDisplayName?: pulumi.Input<string>;
-    /**
-     * When `true`, enables SSL. Defaults to `false`.
-     */
     ssl?: pulumi.Input<boolean>;
-    /**
-     * When `true`, enables StartTLS. Defaults to `false`.
-     */
     starttls?: pulumi.Input<boolean>;
 }
 
 export interface RealmSmtpServerAuth {
-    /**
-     * The SMTP server password.
-     */
     password: pulumi.Input<string>;
-    /**
-     * The SMTP server username.
-     */
     username: pulumi.Input<string>;
 }
 
@@ -505,114 +408,69 @@ export interface RealmUserProfileGroup {
 }
 
 export interface RealmWebAuthnPasswordlessPolicy {
-    /**
-     * A set of AAGUIDs for which an authenticator can be registered.
-     */
     acceptableAaguids?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The preference of how to generate a WebAuthn attestation statement. Valid options are `not specified`, `none`, `indirect`, `direct`, or `enterprise`. Defaults to `not specified`.
+     * Either none, indirect or direct
      */
     attestationConveyancePreference?: pulumi.Input<string>;
     /**
-     * The acceptable attachment pattern for the WebAuthn authenticator. Valid options are `not specified`, `platform`, or `cross-platform`. Defaults to `not specified`.
+     * Either platform or cross-platform
      */
     authenticatorAttachment?: pulumi.Input<string>;
-    /**
-     * When `true`, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to `false`.
-     */
     avoidSameAuthenticatorRegister?: pulumi.Input<boolean>;
-    /**
-     * The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
-     */
     createTimeout?: pulumi.Input<number>;
-    /**
-     * A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
-     */
     relyingPartyEntityName?: pulumi.Input<string>;
-    /**
-     * The WebAuthn relying party ID.
-     */
     relyingPartyId?: pulumi.Input<string>;
     /**
-     * Specifies whether or not a public key should be created to represent the resident key. Valid options are `not specified`, `Yes`, or `No`. Defaults to `not specified`.
+     * Either Yes or No
      */
     requireResidentKey?: pulumi.Input<string>;
     /**
-     * A set of signature algorithms that should be used for the authentication assertion. Valid options at the time these docs were written are `ES256`, `ES384`, `ES512`, `RS256`, `RS384`, `RS512`, and `RS1`.
+     * Keycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing
      */
     signatureAlgorithms?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Specifies the policy for verifying a user logging in via WebAuthn. Valid options are `not specified`, `required`, `preferred`, or `discouraged`. Defaults to `not specified`.
+     * Either required, preferred or discouraged
      */
     userVerificationRequirement?: pulumi.Input<string>;
 }
 
 export interface RealmWebAuthnPolicy {
-    /**
-     * A set of AAGUIDs for which an authenticator can be registered.
-     */
     acceptableAaguids?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The preference of how to generate a WebAuthn attestation statement. Valid options are `not specified`, `none`, `indirect`, `direct`, or `enterprise`. Defaults to `not specified`.
+     * Either none, indirect or direct
      */
     attestationConveyancePreference?: pulumi.Input<string>;
     /**
-     * The acceptable attachment pattern for the WebAuthn authenticator. Valid options are `not specified`, `platform`, or `cross-platform`. Defaults to `not specified`.
+     * Either platform or cross-platform
      */
     authenticatorAttachment?: pulumi.Input<string>;
-    /**
-     * When `true`, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to `false`.
-     */
     avoidSameAuthenticatorRegister?: pulumi.Input<boolean>;
-    /**
-     * The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
-     */
     createTimeout?: pulumi.Input<number>;
-    /**
-     * A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
-     */
     relyingPartyEntityName?: pulumi.Input<string>;
-    /**
-     * The WebAuthn relying party ID.
-     */
     relyingPartyId?: pulumi.Input<string>;
     /**
-     * Specifies whether or not a public key should be created to represent the resident key. Valid options are `not specified`, `Yes`, or `No`. Defaults to `not specified`.
+     * Either Yes or No
      */
     requireResidentKey?: pulumi.Input<string>;
     /**
-     * A set of signature algorithms that should be used for the authentication assertion. Valid options at the time these docs were written are `ES256`, `ES384`, `ES512`, `RS256`, `RS384`, `RS512`, and `RS1`.
+     * Keycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing
      */
     signatureAlgorithms?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Specifies the policy for verifying a user logging in via WebAuthn. Valid options are `not specified`, `required`, `preferred`, or `discouraged`. Defaults to `not specified`.
+     * Either required, preferred or discouraged
      */
     userVerificationRequirement?: pulumi.Input<string>;
 }
 
 export interface UserFederatedIdentity {
-    /**
-     * The name of the identity provider
-     */
     identityProvider: pulumi.Input<string>;
-    /**
-     * The ID of the user defined in the identity provider
-     */
     userId: pulumi.Input<string>;
-    /**
-     * The user name of the user defined in the identity provider
-     */
     userName: pulumi.Input<string>;
 }
 
 export interface UserInitialPassword {
-    /**
-     * If set to `true`, the initial password is set up for renewal on first use. Default to `false`.
-     */
     temporary?: pulumi.Input<boolean>;
-    /**
-     * The initial password.
-     */
     value: pulumi.Input<string>;
 }
 
@@ -654,7 +512,7 @@ export interface UsersPermissionsViewScope {
 export namespace ldap {
     export interface UserFederationCache {
         /**
-         * Day of the week the entry will become invalid on
+         * Day of the week the entry will become invalid on.
          */
         evictionDay?: pulumi.Input<number>;
         /**
@@ -669,15 +527,12 @@ export namespace ldap {
          * Max lifespan of cache entry (duration string).
          */
         maxLifespan?: pulumi.Input<string>;
-        /**
-         * Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
-         */
         policy?: pulumi.Input<string>;
     }
 
     export interface UserFederationKerberos {
         /**
-         * The name of the kerberos realm, e.g. FOO.LOCAL.
+         * The name of the kerberos realm, e.g. FOO.LOCAL
          */
         kerberosRealm: pulumi.Input<string>;
         /**
@@ -697,32 +552,14 @@ export namespace ldap {
 
 export namespace openid {
     export interface ClientAuthenticationFlowBindingOverrides {
-        /**
-         * Browser flow id, (flow needs to exist)
-         */
         browserId?: pulumi.Input<string>;
-        /**
-         * Direct grant flow id (flow needs to exist)
-         */
         directGrantId?: pulumi.Input<string>;
     }
 
     export interface ClientAuthorization {
-        /**
-         * When `true`, resources can be managed remotely by the resource server. Defaults to `false`.
-         */
         allowRemoteResourceManagement?: pulumi.Input<boolean>;
-        /**
-         * Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.
-         */
         decisionStrategy?: pulumi.Input<string>;
-        /**
-         * When `true`, defaults set by Keycloak will be respected. Defaults to `false`.
-         */
         keepDefaults?: pulumi.Input<boolean>;
-        /**
-         * Dictates how policies are enforced when evaluating authorization requests. Can be one of `ENFORCING`, `PERMISSIVE`, or `DISABLED`.
-         */
         policyEnforcementMode: pulumi.Input<string>;
     }
 
@@ -783,13 +620,7 @@ export namespace openid {
 
 export namespace saml {
     export interface ClientAuthenticationFlowBindingOverrides {
-        /**
-         * Browser flow id, (flow needs to exist)
-         */
         browserId?: pulumi.Input<string>;
-        /**
-         * Direct grant flow id (flow needs to exist)
-         */
         directGrantId?: pulumi.Input<string>;
     }
 

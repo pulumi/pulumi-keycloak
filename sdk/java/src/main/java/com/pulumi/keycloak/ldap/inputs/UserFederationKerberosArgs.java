@@ -18,14 +18,14 @@ public final class UserFederationKerberosArgs extends com.pulumi.resources.Resou
     public static final UserFederationKerberosArgs Empty = new UserFederationKerberosArgs();
 
     /**
-     * The name of the kerberos realm, e.g. FOO.LOCAL.
+     * The name of the kerberos realm, e.g. FOO.LOCAL
      * 
      */
     @Import(name="kerberosRealm", required=true)
     private Output<String> kerberosRealm;
 
     /**
-     * @return The name of the kerberos realm, e.g. FOO.LOCAL.
+     * @return The name of the kerberos realm, e.g. FOO.LOCAL
      * 
      */
     public Output<String> kerberosRealm() {
@@ -105,7 +105,7 @@ public final class UserFederationKerberosArgs extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param kerberosRealm The name of the kerberos realm, e.g. FOO.LOCAL.
+         * @param kerberosRealm The name of the kerberos realm, e.g. FOO.LOCAL
          * 
          * @return builder
          * 
@@ -116,7 +116,7 @@ public final class UserFederationKerberosArgs extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param kerberosRealm The name of the kerberos realm, e.g. FOO.LOCAL.
+         * @param kerberosRealm The name of the kerberos realm, e.g. FOO.LOCAL
          * 
          * @return builder
          * 

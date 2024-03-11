@@ -387,6 +387,7 @@ def get_client_description_converter(body: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_keycloak as keycloak
@@ -427,6 +428,7 @@ def get_client_description_converter(body: Optional[str] = None,
         realm_id=realm.id,
         client_id=saml_client_client_description_converter.client_id)
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str body: The body of the request to convert.
@@ -489,6 +491,7 @@ def get_client_description_converter_output(body: Optional[pulumi.Input[str]] = 
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_keycloak as keycloak
@@ -529,6 +532,7 @@ def get_client_description_converter_output(body: Optional[pulumi.Input[str]] = 
         realm_id=realm.id,
         client_id=saml_client_client_description_converter.client_id)
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str body: The body of the request to convert.

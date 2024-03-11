@@ -14,9 +14,7 @@ import (
 var _ = internal.GetEnvOrDefault
 
 type ClientAuthenticationFlowBindingOverrides struct {
-	// Browser flow id, (flow needs to exist)
-	BrowserId *string `pulumi:"browserId"`
-	// Direct grant flow id (flow needs to exist)
+	BrowserId     *string `pulumi:"browserId"`
 	DirectGrantId *string `pulumi:"directGrantId"`
 }
 
@@ -32,9 +30,7 @@ type ClientAuthenticationFlowBindingOverridesInput interface {
 }
 
 type ClientAuthenticationFlowBindingOverridesArgs struct {
-	// Browser flow id, (flow needs to exist)
-	BrowserId pulumi.StringPtrInput `pulumi:"browserId"`
-	// Direct grant flow id (flow needs to exist)
+	BrowserId     pulumi.StringPtrInput `pulumi:"browserId"`
 	DirectGrantId pulumi.StringPtrInput `pulumi:"directGrantId"`
 }
 
@@ -115,12 +111,10 @@ func (o ClientAuthenticationFlowBindingOverridesOutput) ToClientAuthenticationFl
 	}).(ClientAuthenticationFlowBindingOverridesPtrOutput)
 }
 
-// Browser flow id, (flow needs to exist)
 func (o ClientAuthenticationFlowBindingOverridesOutput) BrowserId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClientAuthenticationFlowBindingOverrides) *string { return v.BrowserId }).(pulumi.StringPtrOutput)
 }
 
-// Direct grant flow id (flow needs to exist)
 func (o ClientAuthenticationFlowBindingOverridesOutput) DirectGrantId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClientAuthenticationFlowBindingOverrides) *string { return v.DirectGrantId }).(pulumi.StringPtrOutput)
 }
@@ -149,7 +143,6 @@ func (o ClientAuthenticationFlowBindingOverridesPtrOutput) Elem() ClientAuthenti
 	}).(ClientAuthenticationFlowBindingOverridesOutput)
 }
 
-// Browser flow id, (flow needs to exist)
 func (o ClientAuthenticationFlowBindingOverridesPtrOutput) BrowserId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ClientAuthenticationFlowBindingOverrides) *string {
 		if v == nil {
@@ -159,7 +152,6 @@ func (o ClientAuthenticationFlowBindingOverridesPtrOutput) BrowserId() pulumi.St
 	}).(pulumi.StringPtrOutput)
 }
 
-// Direct grant flow id (flow needs to exist)
 func (o ClientAuthenticationFlowBindingOverridesPtrOutput) DirectGrantId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ClientAuthenticationFlowBindingOverrides) *string {
 		if v == nil {
@@ -170,14 +162,10 @@ func (o ClientAuthenticationFlowBindingOverridesPtrOutput) DirectGrantId() pulum
 }
 
 type ClientAuthorization struct {
-	// When `true`, resources can be managed remotely by the resource server. Defaults to `false`.
-	AllowRemoteResourceManagement *bool `pulumi:"allowRemoteResourceManagement"`
-	// Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.
-	DecisionStrategy *string `pulumi:"decisionStrategy"`
-	// When `true`, defaults set by Keycloak will be respected. Defaults to `false`.
-	KeepDefaults *bool `pulumi:"keepDefaults"`
-	// Dictates how policies are enforced when evaluating authorization requests. Can be one of `ENFORCING`, `PERMISSIVE`, or `DISABLED`.
-	PolicyEnforcementMode string `pulumi:"policyEnforcementMode"`
+	AllowRemoteResourceManagement *bool   `pulumi:"allowRemoteResourceManagement"`
+	DecisionStrategy              *string `pulumi:"decisionStrategy"`
+	KeepDefaults                  *bool   `pulumi:"keepDefaults"`
+	PolicyEnforcementMode         string  `pulumi:"policyEnforcementMode"`
 }
 
 // ClientAuthorizationInput is an input type that accepts ClientAuthorizationArgs and ClientAuthorizationOutput values.
@@ -192,14 +180,10 @@ type ClientAuthorizationInput interface {
 }
 
 type ClientAuthorizationArgs struct {
-	// When `true`, resources can be managed remotely by the resource server. Defaults to `false`.
-	AllowRemoteResourceManagement pulumi.BoolPtrInput `pulumi:"allowRemoteResourceManagement"`
-	// Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.
-	DecisionStrategy pulumi.StringPtrInput `pulumi:"decisionStrategy"`
-	// When `true`, defaults set by Keycloak will be respected. Defaults to `false`.
-	KeepDefaults pulumi.BoolPtrInput `pulumi:"keepDefaults"`
-	// Dictates how policies are enforced when evaluating authorization requests. Can be one of `ENFORCING`, `PERMISSIVE`, or `DISABLED`.
-	PolicyEnforcementMode pulumi.StringInput `pulumi:"policyEnforcementMode"`
+	AllowRemoteResourceManagement pulumi.BoolPtrInput   `pulumi:"allowRemoteResourceManagement"`
+	DecisionStrategy              pulumi.StringPtrInput `pulumi:"decisionStrategy"`
+	KeepDefaults                  pulumi.BoolPtrInput   `pulumi:"keepDefaults"`
+	PolicyEnforcementMode         pulumi.StringInput    `pulumi:"policyEnforcementMode"`
 }
 
 func (ClientAuthorizationArgs) ElementType() reflect.Type {
@@ -279,22 +263,18 @@ func (o ClientAuthorizationOutput) ToClientAuthorizationPtrOutputWithContext(ctx
 	}).(ClientAuthorizationPtrOutput)
 }
 
-// When `true`, resources can be managed remotely by the resource server. Defaults to `false`.
 func (o ClientAuthorizationOutput) AllowRemoteResourceManagement() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ClientAuthorization) *bool { return v.AllowRemoteResourceManagement }).(pulumi.BoolPtrOutput)
 }
 
-// Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.
 func (o ClientAuthorizationOutput) DecisionStrategy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClientAuthorization) *string { return v.DecisionStrategy }).(pulumi.StringPtrOutput)
 }
 
-// When `true`, defaults set by Keycloak will be respected. Defaults to `false`.
 func (o ClientAuthorizationOutput) KeepDefaults() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ClientAuthorization) *bool { return v.KeepDefaults }).(pulumi.BoolPtrOutput)
 }
 
-// Dictates how policies are enforced when evaluating authorization requests. Can be one of `ENFORCING`, `PERMISSIVE`, or `DISABLED`.
 func (o ClientAuthorizationOutput) PolicyEnforcementMode() pulumi.StringOutput {
 	return o.ApplyT(func(v ClientAuthorization) string { return v.PolicyEnforcementMode }).(pulumi.StringOutput)
 }
@@ -323,7 +303,6 @@ func (o ClientAuthorizationPtrOutput) Elem() ClientAuthorizationOutput {
 	}).(ClientAuthorizationOutput)
 }
 
-// When `true`, resources can be managed remotely by the resource server. Defaults to `false`.
 func (o ClientAuthorizationPtrOutput) AllowRemoteResourceManagement() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ClientAuthorization) *bool {
 		if v == nil {
@@ -333,7 +312,6 @@ func (o ClientAuthorizationPtrOutput) AllowRemoteResourceManagement() pulumi.Boo
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.
 func (o ClientAuthorizationPtrOutput) DecisionStrategy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ClientAuthorization) *string {
 		if v == nil {
@@ -343,7 +321,6 @@ func (o ClientAuthorizationPtrOutput) DecisionStrategy() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
-// When `true`, defaults set by Keycloak will be respected. Defaults to `false`.
 func (o ClientAuthorizationPtrOutput) KeepDefaults() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ClientAuthorization) *bool {
 		if v == nil {
@@ -353,7 +330,6 @@ func (o ClientAuthorizationPtrOutput) KeepDefaults() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Dictates how policies are enforced when evaluating authorization requests. Can be one of `ENFORCING`, `PERMISSIVE`, or `DISABLED`.
 func (o ClientAuthorizationPtrOutput) PolicyEnforcementMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ClientAuthorization) *string {
 		if v == nil {

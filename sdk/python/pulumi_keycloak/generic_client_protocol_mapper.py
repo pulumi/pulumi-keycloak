@@ -23,13 +23,12 @@ class GenericClientProtocolMapperArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a GenericClientProtocolMapper resource.
-        :param pulumi.Input[Mapping[str, Any]] config: A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
-        :param pulumi.Input[str] protocol: The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
-        :param pulumi.Input[str] protocol_mapper: The name of the protocol mapper. The protocol mapper must be compatible with the specified client.
-        :param pulumi.Input[str] realm_id: The realm this protocol mapper exists within.
-        :param pulumi.Input[str] client_id: The client this protocol mapper is attached to.
+        :param pulumi.Input[str] protocol: The protocol of the client (openid-connect / saml).
+        :param pulumi.Input[str] protocol_mapper: The type of the protocol mapper.
+        :param pulumi.Input[str] realm_id: The realm id where the associated client or client scope exists.
+        :param pulumi.Input[str] client_id: The mapper's associated client. Cannot be used at the same time as client_scope_id.
         :param pulumi.Input[str] client_scope_id: The mapper's associated client scope. Cannot be used at the same time as client_id.
-        :param pulumi.Input[str] name: The display name of this protocol mapper in the GUI.
+        :param pulumi.Input[str] name: A human-friendly name that will appear in the Keycloak console.
         """
         pulumi.set(__self__, "config", config)
         pulumi.set(__self__, "protocol", protocol)
@@ -45,9 +44,6 @@ class GenericClientProtocolMapperArgs:
     @property
     @pulumi.getter
     def config(self) -> pulumi.Input[Mapping[str, Any]]:
-        """
-        A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
-        """
         return pulumi.get(self, "config")
 
     @config.setter
@@ -58,7 +54,7 @@ class GenericClientProtocolMapperArgs:
     @pulumi.getter
     def protocol(self) -> pulumi.Input[str]:
         """
-        The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
+        The protocol of the client (openid-connect / saml).
         """
         return pulumi.get(self, "protocol")
 
@@ -70,7 +66,7 @@ class GenericClientProtocolMapperArgs:
     @pulumi.getter(name="protocolMapper")
     def protocol_mapper(self) -> pulumi.Input[str]:
         """
-        The name of the protocol mapper. The protocol mapper must be compatible with the specified client.
+        The type of the protocol mapper.
         """
         return pulumi.get(self, "protocol_mapper")
 
@@ -82,7 +78,7 @@ class GenericClientProtocolMapperArgs:
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Input[str]:
         """
-        The realm this protocol mapper exists within.
+        The realm id where the associated client or client scope exists.
         """
         return pulumi.get(self, "realm_id")
 
@@ -94,7 +90,7 @@ class GenericClientProtocolMapperArgs:
     @pulumi.getter(name="clientId")
     def client_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The client this protocol mapper is attached to.
+        The mapper's associated client. Cannot be used at the same time as client_scope_id.
         """
         return pulumi.get(self, "client_id")
 
@@ -118,7 +114,7 @@ class GenericClientProtocolMapperArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The display name of this protocol mapper in the GUI.
+        A human-friendly name that will appear in the Keycloak console.
         """
         return pulumi.get(self, "name")
 
@@ -139,13 +135,12 @@ class _GenericClientProtocolMapperState:
                  realm_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering GenericClientProtocolMapper resources.
-        :param pulumi.Input[str] client_id: The client this protocol mapper is attached to.
+        :param pulumi.Input[str] client_id: The mapper's associated client. Cannot be used at the same time as client_scope_id.
         :param pulumi.Input[str] client_scope_id: The mapper's associated client scope. Cannot be used at the same time as client_id.
-        :param pulumi.Input[Mapping[str, Any]] config: A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
-        :param pulumi.Input[str] name: The display name of this protocol mapper in the GUI.
-        :param pulumi.Input[str] protocol: The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
-        :param pulumi.Input[str] protocol_mapper: The name of the protocol mapper. The protocol mapper must be compatible with the specified client.
-        :param pulumi.Input[str] realm_id: The realm this protocol mapper exists within.
+        :param pulumi.Input[str] name: A human-friendly name that will appear in the Keycloak console.
+        :param pulumi.Input[str] protocol: The protocol of the client (openid-connect / saml).
+        :param pulumi.Input[str] protocol_mapper: The type of the protocol mapper.
+        :param pulumi.Input[str] realm_id: The realm id where the associated client or client scope exists.
         """
         if client_id is not None:
             pulumi.set(__self__, "client_id", client_id)
@@ -166,7 +161,7 @@ class _GenericClientProtocolMapperState:
     @pulumi.getter(name="clientId")
     def client_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The client this protocol mapper is attached to.
+        The mapper's associated client. Cannot be used at the same time as client_scope_id.
         """
         return pulumi.get(self, "client_id")
 
@@ -189,9 +184,6 @@ class _GenericClientProtocolMapperState:
     @property
     @pulumi.getter
     def config(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
-        """
-        A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
-        """
         return pulumi.get(self, "config")
 
     @config.setter
@@ -202,7 +194,7 @@ class _GenericClientProtocolMapperState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The display name of this protocol mapper in the GUI.
+        A human-friendly name that will appear in the Keycloak console.
         """
         return pulumi.get(self, "name")
 
@@ -214,7 +206,7 @@ class _GenericClientProtocolMapperState:
     @pulumi.getter
     def protocol(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
+        The protocol of the client (openid-connect / saml).
         """
         return pulumi.get(self, "protocol")
 
@@ -226,7 +218,7 @@ class _GenericClientProtocolMapperState:
     @pulumi.getter(name="protocolMapper")
     def protocol_mapper(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the protocol mapper. The protocol mapper must be compatible with the specified client.
+        The type of the protocol mapper.
         """
         return pulumi.get(self, "protocol_mapper")
 
@@ -238,7 +230,7 @@ class _GenericClientProtocolMapperState:
     @pulumi.getter(name="realmId")
     def realm_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The realm this protocol mapper exists within.
+        The realm id where the associated client or client scope exists.
         """
         return pulumi.get(self, "realm_id")
 
@@ -261,9 +253,9 @@ class GenericClientProtocolMapper(pulumi.CustomResource):
                  realm_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        !> **WARNING:** This resource is deprecated and will be removed in the next major version. Please use `GenericProtocolMapper` instead.
+        ## # GenericClientProtocolMapper
 
-        Allows for creating and managing protocol mappers for both types of clients (openid-connect and saml) within Keycloak.
+        Allows for creating and managing protocol mapper for both types of clients (openid-connect and saml) within Keycloak.
 
         There are two uses cases for using this resource:
         * If you implemented a custom protocol mapper, this resource can be used to configure it
@@ -272,52 +264,59 @@ class GenericClientProtocolMapper(pulumi.CustomResource):
         Due to the generic nature of this mapper, it is less user-friendly and more prone to configuration errors.
         Therefore, if possible, a specific mapper should be used.
 
-        ## Example Usage
+        ### Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
+            enabled=True,
+            realm="my-realm")
         saml_client = keycloak.saml.Client("samlClient",
-            realm_id=realm.id,
-            client_id="test-client")
+            client_id="test-client",
+            realm_id=realm.id)
         saml_hardcode_attribute_mapper = keycloak.GenericClientProtocolMapper("samlHardcodeAttributeMapper",
-            realm_id=realm.id,
             client_id=saml_client.id,
-            protocol="saml",
-            protocol_mapper="saml-hardcode-attribute-mapper",
             config={
                 "attribute.name": "name",
                 "attribute.nameformat": "Basic",
                 "attribute.value": "value",
                 "friendly.name": "display name",
-            })
+            },
+            protocol="saml",
+            protocol_mapper="saml-hardcode-attribute-mapper",
+            realm_id=realm.id)
         ```
+        <!--End PulumiCodeChooser -->
 
-        ## Import
+        ### Argument Reference
+
+        The following arguments are supported:
+
+        - `realm_id` - (Required) The realm this protocol mapper exists within.
+        - `client_id` - (Required) The client this protocol mapper is attached to.
+        - `name` - (Required) The display name of this protocol mapper in the GUI.
+        - `protocol` - (Required) The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
+        - `protocol_mapper` - (Required) The name of the protocol mapper. The protocol mapper must be
+           compatible with the specified client.
+        - `config` - (Required) A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
+
+        ### Import
 
         Protocol mappers can be imported using the following format: `{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}`
 
-         Example:
-
-         bash
-
-        ```sh
-        $ pulumi import keycloak:index/genericClientProtocolMapper:GenericClientProtocolMapper saml_hardcode_attribute_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
-        ```
+        Example:
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] client_id: The client this protocol mapper is attached to.
+        :param pulumi.Input[str] client_id: The mapper's associated client. Cannot be used at the same time as client_scope_id.
         :param pulumi.Input[str] client_scope_id: The mapper's associated client scope. Cannot be used at the same time as client_id.
-        :param pulumi.Input[Mapping[str, Any]] config: A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
-        :param pulumi.Input[str] name: The display name of this protocol mapper in the GUI.
-        :param pulumi.Input[str] protocol: The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
-        :param pulumi.Input[str] protocol_mapper: The name of the protocol mapper. The protocol mapper must be compatible with the specified client.
-        :param pulumi.Input[str] realm_id: The realm this protocol mapper exists within.
+        :param pulumi.Input[str] name: A human-friendly name that will appear in the Keycloak console.
+        :param pulumi.Input[str] protocol: The protocol of the client (openid-connect / saml).
+        :param pulumi.Input[str] protocol_mapper: The type of the protocol mapper.
+        :param pulumi.Input[str] realm_id: The realm id where the associated client or client scope exists.
         """
         ...
     @overload
@@ -326,9 +325,9 @@ class GenericClientProtocolMapper(pulumi.CustomResource):
                  args: GenericClientProtocolMapperArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        !> **WARNING:** This resource is deprecated and will be removed in the next major version. Please use `GenericProtocolMapper` instead.
+        ## # GenericClientProtocolMapper
 
-        Allows for creating and managing protocol mappers for both types of clients (openid-connect and saml) within Keycloak.
+        Allows for creating and managing protocol mapper for both types of clients (openid-connect and saml) within Keycloak.
 
         There are two uses cases for using this resource:
         * If you implemented a custom protocol mapper, this resource can be used to configure it
@@ -337,42 +336,50 @@ class GenericClientProtocolMapper(pulumi.CustomResource):
         Due to the generic nature of this mapper, it is less user-friendly and more prone to configuration errors.
         Therefore, if possible, a specific mapper should be used.
 
-        ## Example Usage
+        ### Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
+            enabled=True,
+            realm="my-realm")
         saml_client = keycloak.saml.Client("samlClient",
-            realm_id=realm.id,
-            client_id="test-client")
+            client_id="test-client",
+            realm_id=realm.id)
         saml_hardcode_attribute_mapper = keycloak.GenericClientProtocolMapper("samlHardcodeAttributeMapper",
-            realm_id=realm.id,
             client_id=saml_client.id,
-            protocol="saml",
-            protocol_mapper="saml-hardcode-attribute-mapper",
             config={
                 "attribute.name": "name",
                 "attribute.nameformat": "Basic",
                 "attribute.value": "value",
                 "friendly.name": "display name",
-            })
+            },
+            protocol="saml",
+            protocol_mapper="saml-hardcode-attribute-mapper",
+            realm_id=realm.id)
         ```
+        <!--End PulumiCodeChooser -->
 
-        ## Import
+        ### Argument Reference
+
+        The following arguments are supported:
+
+        - `realm_id` - (Required) The realm this protocol mapper exists within.
+        - `client_id` - (Required) The client this protocol mapper is attached to.
+        - `name` - (Required) The display name of this protocol mapper in the GUI.
+        - `protocol` - (Required) The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
+        - `protocol_mapper` - (Required) The name of the protocol mapper. The protocol mapper must be
+           compatible with the specified client.
+        - `config` - (Required) A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
+
+        ### Import
 
         Protocol mappers can be imported using the following format: `{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}`
 
-         Example:
-
-         bash
-
-        ```sh
-        $ pulumi import keycloak:index/genericClientProtocolMapper:GenericClientProtocolMapper saml_hardcode_attribute_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
-        ```
+        Example:
 
         :param str resource_name: The name of the resource.
         :param GenericClientProtocolMapperArgs args: The arguments to use to populate this resource's properties.
@@ -444,13 +451,12 @@ class GenericClientProtocolMapper(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] client_id: The client this protocol mapper is attached to.
+        :param pulumi.Input[str] client_id: The mapper's associated client. Cannot be used at the same time as client_scope_id.
         :param pulumi.Input[str] client_scope_id: The mapper's associated client scope. Cannot be used at the same time as client_id.
-        :param pulumi.Input[Mapping[str, Any]] config: A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
-        :param pulumi.Input[str] name: The display name of this protocol mapper in the GUI.
-        :param pulumi.Input[str] protocol: The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
-        :param pulumi.Input[str] protocol_mapper: The name of the protocol mapper. The protocol mapper must be compatible with the specified client.
-        :param pulumi.Input[str] realm_id: The realm this protocol mapper exists within.
+        :param pulumi.Input[str] name: A human-friendly name that will appear in the Keycloak console.
+        :param pulumi.Input[str] protocol: The protocol of the client (openid-connect / saml).
+        :param pulumi.Input[str] protocol_mapper: The type of the protocol mapper.
+        :param pulumi.Input[str] realm_id: The realm id where the associated client or client scope exists.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -469,7 +475,7 @@ class GenericClientProtocolMapper(pulumi.CustomResource):
     @pulumi.getter(name="clientId")
     def client_id(self) -> pulumi.Output[Optional[str]]:
         """
-        The client this protocol mapper is attached to.
+        The mapper's associated client. Cannot be used at the same time as client_scope_id.
         """
         return pulumi.get(self, "client_id")
 
@@ -484,16 +490,13 @@ class GenericClientProtocolMapper(pulumi.CustomResource):
     @property
     @pulumi.getter
     def config(self) -> pulumi.Output[Mapping[str, Any]]:
-        """
-        A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
-        """
         return pulumi.get(self, "config")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The display name of this protocol mapper in the GUI.
+        A human-friendly name that will appear in the Keycloak console.
         """
         return pulumi.get(self, "name")
 
@@ -501,7 +504,7 @@ class GenericClientProtocolMapper(pulumi.CustomResource):
     @pulumi.getter
     def protocol(self) -> pulumi.Output[str]:
         """
-        The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
+        The protocol of the client (openid-connect / saml).
         """
         return pulumi.get(self, "protocol")
 
@@ -509,7 +512,7 @@ class GenericClientProtocolMapper(pulumi.CustomResource):
     @pulumi.getter(name="protocolMapper")
     def protocol_mapper(self) -> pulumi.Output[str]:
         """
-        The name of the protocol mapper. The protocol mapper must be compatible with the specified client.
+        The type of the protocol mapper.
         """
         return pulumi.get(self, "protocol_mapper")
 
@@ -517,7 +520,7 @@ class GenericClientProtocolMapper(pulumi.CustomResource):
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Output[str]:
         """
-        The realm this protocol mapper exists within.
+        The realm id where the associated client or client scope exists.
         """
         return pulumi.get(self, "realm_id")
 

@@ -12,6 +12,7 @@ namespace Pulumi.Keycloak.Saml
     /// <summary>
     /// ## Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.IO;
@@ -56,12 +57,13 @@ namespace Pulumi.Keycloak.Saml
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// This resource does not support import. Instead of importing, feel free to create this resource as if it did not already exist
     /// 
-    ///  on the server.
+    /// on the server.
     /// </summary>
     [KeycloakResourceType("keycloak:saml/clientDefaultScope:ClientDefaultScope")]
     public partial class ClientDefaultScope : global::Pulumi.CustomResource

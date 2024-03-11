@@ -563,21 +563,32 @@ def get_realm(attributes: Optional[Mapping[str, Any]] = None,
               web_authn_policy: Optional[pulumi.InputType['GetRealmWebAuthnPolicyArgs']] = None,
               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRealmResult:
     """
+    ## # Realm data source
+
     This data source can be used to fetch properties of a Keycloak realm for
     usage with other resources.
 
-    ## Example Usage
+    ### Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_keycloak as keycloak
 
     realm = keycloak.get_realm(realm="my-realm")
-    group = keycloak.Role("group", realm_id=realm.id)
+    group = keycloak.Role("group", realm_id=data["keycloak_realm"]["id"])
     ```
+    <!--End PulumiCodeChooser -->
 
+    ### Argument Reference
 
-    :param str realm: The realm name.
+    The following arguments are supported:
+
+    - `realm` - (Required) The realm name.
+
+    ### Attributes Reference
+
+    See the docs for the `Realm` resource for details on the exported attributes.
     """
     __args__ = dict()
     __args__['attributes'] = attributes
@@ -668,20 +679,31 @@ def get_realm_output(attributes: Optional[pulumi.Input[Optional[Mapping[str, Any
                      web_authn_policy: Optional[pulumi.Input[Optional[pulumi.InputType['GetRealmWebAuthnPolicyArgs']]]] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRealmResult]:
     """
+    ## # Realm data source
+
     This data source can be used to fetch properties of a Keycloak realm for
     usage with other resources.
 
-    ## Example Usage
+    ### Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_keycloak as keycloak
 
     realm = keycloak.get_realm(realm="my-realm")
-    group = keycloak.Role("group", realm_id=realm.id)
+    group = keycloak.Role("group", realm_id=data["keycloak_realm"]["id"])
     ```
+    <!--End PulumiCodeChooser -->
 
+    ### Argument Reference
 
-    :param str realm: The realm name.
+    The following arguments are supported:
+
+    - `realm` - (Required) The realm name.
+
+    ### Attributes Reference
+
+    See the docs for the `Realm` resource for details on the exported attributes.
     """
     ...

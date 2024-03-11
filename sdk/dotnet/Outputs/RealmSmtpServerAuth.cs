@@ -13,13 +13,7 @@ namespace Pulumi.Keycloak.Outputs
     [OutputType]
     public sealed class RealmSmtpServerAuth
     {
-        /// <summary>
-        /// The SMTP server password.
-        /// </summary>
         public readonly string Password;
-        /// <summary>
-        /// The SMTP server username.
-        /// </summary>
         public readonly string Username;
 
         [OutputConstructor]

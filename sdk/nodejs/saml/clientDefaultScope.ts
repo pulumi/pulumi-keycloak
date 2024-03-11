@@ -7,6 +7,7 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fs from "fs";
@@ -35,12 +36,13 @@ import * as utilities from "../utilities";
  *     ],
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * This resource does not support import. Instead of importing, feel free to create this resource as if it did not already exist
  *
- *  on the server.
+ * on the server.
  */
 export class ClientDefaultScope extends pulumi.CustomResource {
     /**

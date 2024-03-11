@@ -172,6 +172,7 @@ class Execution(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -196,14 +197,15 @@ class Execution(pulumi.CustomResource):
             requirement="ALTERNATIVE",
             opts=pulumi.ResourceOptions(depends_on=[execution_one]))
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Authentication executions can be imported using the formats: `{{realmId}}/{{parentFlowAlias}}/{{authenticationExecutionId}}`.
 
-         Example:
+        Example:
 
-         bash
+        bash
 
         ```sh
         $ pulumi import keycloak:authentication/execution:Execution execution_one my-realm/my-flow-alias/30559fcf-6fb8-45ea-8c46-2b86f46ebc17
@@ -232,6 +234,7 @@ class Execution(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -256,14 +259,15 @@ class Execution(pulumi.CustomResource):
             requirement="ALTERNATIVE",
             opts=pulumi.ResourceOptions(depends_on=[execution_one]))
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Authentication executions can be imported using the formats: `{{realmId}}/{{parentFlowAlias}}/{{authenticationExecutionId}}`.
 
-         Example:
+        Example:
 
-         bash
+        bash
 
         ```sh
         $ pulumi import keycloak:authentication/execution:Execution execution_one my-realm/my-flow-alias/30559fcf-6fb8-45ea-8c46-2b86f46ebc17

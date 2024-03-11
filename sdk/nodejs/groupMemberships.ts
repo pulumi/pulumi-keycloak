@@ -5,31 +5,32 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * ## # keycloak.GroupMemberships
+ *
  * Allows for managing a Keycloak group's members.
  *
- * Note that this resource attempts to be an **authoritative** source over group members. When this resource takes control
- * over a group's members, users that are manually added to the group will be removed, and users that are manually removed
- * from the group will be added upon the next run of `pulumi up`.
+ * Note that this resource attempts to be an **authoritative** source over group members.
+ * When this resource takes control over a group's members, users that are manually added
+ * to the group will be removed, and users that are manually removed from the group will
+ * be added upon the next run of `pulumi up`.  Eventually, a non-authoritative resource
+ * for group membership will be added to this provider.
  *
- * Also note that you should not use `keycloak.GroupMemberships` with a group has been assigned as a default group via
- * `keycloak.DefaultGroups`.
+ * Also note that you should not use `keycloak.GroupMemberships` with a group has been assigned
+ * as a default group via `keycloak.DefaultGroups`.
  *
- * This resource **should not** be used to control membership of a group that has its members federated from an external
- * source via group mapping.
+ * This resource **should not** be used to control membership of a group that has its members
+ * federated from an external source via group mapping.
  *
- * To non-exclusively manage the group's of a user, see the [`keycloak.UserGroups` resource][1]
+ * ### Example Usage
  *
- * This resource paginates its data loading on refresh by 50 items.
- *
- * ## Example Usage
- *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {
- *     realm: "my-realm",
  *     enabled: true,
+ *     realm: "my-realm",
  * });
  * const group = new keycloak.Group("group", {realmId: realm.id});
  * const user = new keycloak.User("user", {
@@ -37,19 +38,25 @@ import * as utilities from "./utilities";
  *     username: "my-user",
  * });
  * const groupMembers = new keycloak.GroupMemberships("groupMembers", {
- *     realmId: realm.id,
  *     groupId: group.id,
  *     members: [user.username],
+ *     realmId: realm.id,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
- * ## Import
+ * ### Argument Reference
+ *
+ * The following arguments are supported:
+ *
+ * - `realmId` - (Required) The realm this group exists in.
+ * - `groupId` - (Required) The ID of the group this resource should manage memberships for.
+ * - `members` - (Required) An array of usernames that belong to this group.
+ *
+ * ### Import
  *
  * This resource does not support import. Instead of importing, feel free to create this resource
- *
- *  as if it did not already exist on the server.
- *
- * [1]: providers/mrparkers/keycloak/latest/docs/resources/group_memberships
+ * as if it did not already exist on the server.
  */
 export class GroupMemberships extends pulumi.CustomResource {
     /**
@@ -79,17 +86,8 @@ export class GroupMemberships extends pulumi.CustomResource {
         return obj['__pulumiType'] === GroupMemberships.__pulumiType;
     }
 
-    /**
-     * The ID of the group this resource should manage memberships for.
-     */
     public readonly groupId!: pulumi.Output<string | undefined>;
-    /**
-     * A list of usernames that belong to this group.
-     */
     public readonly members!: pulumi.Output<string[]>;
-    /**
-     * The realm this group exists in.
-     */
     public readonly realmId!: pulumi.Output<string>;
 
     /**
@@ -129,17 +127,8 @@ export class GroupMemberships extends pulumi.CustomResource {
  * Input properties used for looking up and filtering GroupMemberships resources.
  */
 export interface GroupMembershipsState {
-    /**
-     * The ID of the group this resource should manage memberships for.
-     */
     groupId?: pulumi.Input<string>;
-    /**
-     * A list of usernames that belong to this group.
-     */
     members?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * The realm this group exists in.
-     */
     realmId?: pulumi.Input<string>;
 }
 
@@ -147,16 +136,7 @@ export interface GroupMembershipsState {
  * The set of arguments for constructing a GroupMemberships resource.
  */
 export interface GroupMembershipsArgs {
-    /**
-     * The ID of the group this resource should manage memberships for.
-     */
     groupId?: pulumi.Input<string>;
-    /**
-     * A list of usernames that belong to this group.
-     */
     members: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * The realm this group exists in.
-     */
     realmId: pulumi.Input<string>;
 }

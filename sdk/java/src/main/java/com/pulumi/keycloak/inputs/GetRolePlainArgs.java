@@ -15,47 +15,23 @@ public final class GetRolePlainArgs extends com.pulumi.resources.InvokeArgs {
 
     public static final GetRolePlainArgs Empty = new GetRolePlainArgs();
 
-    /**
-     * When specified, this role is assumed to be a client role belonging to the client with the provided ID. The `id` attribute of a `keycloak_client` resource should be used here.
-     * 
-     */
     @Import(name="clientId")
     private @Nullable String clientId;
 
-    /**
-     * @return When specified, this role is assumed to be a client role belonging to the client with the provided ID. The `id` attribute of a `keycloak_client` resource should be used here.
-     * 
-     */
     public Optional<String> clientId() {
         return Optional.ofNullable(this.clientId);
     }
 
-    /**
-     * The name of the role.
-     * 
-     */
     @Import(name="name", required=true)
     private String name;
 
-    /**
-     * @return The name of the role.
-     * 
-     */
     public String name() {
         return this.name;
     }
 
-    /**
-     * The realm this role exists within.
-     * 
-     */
     @Import(name="realmId", required=true)
     private String realmId;
 
-    /**
-     * @return The realm this role exists within.
-     * 
-     */
     public String realmId() {
         return this.realmId;
     }
@@ -86,34 +62,16 @@ public final class GetRolePlainArgs extends com.pulumi.resources.InvokeArgs {
             $ = new GetRolePlainArgs(Objects.requireNonNull(defaults));
         }
 
-        /**
-         * @param clientId When specified, this role is assumed to be a client role belonging to the client with the provided ID. The `id` attribute of a `keycloak_client` resource should be used here.
-         * 
-         * @return builder
-         * 
-         */
         public Builder clientId(@Nullable String clientId) {
             $.clientId = clientId;
             return this;
         }
 
-        /**
-         * @param name The name of the role.
-         * 
-         * @return builder
-         * 
-         */
         public Builder name(String name) {
             $.name = name;
             return this;
         }
 
-        /**
-         * @param realmId The realm this role exists within.
-         * 
-         * @return builder
-         * 
-         */
         public Builder realmId(String realmId) {
             $.realmId = realmId;
             return this;

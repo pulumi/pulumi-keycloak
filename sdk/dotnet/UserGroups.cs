@@ -16,7 +16,9 @@ namespace Pulumi.Keycloak
     /// If `exhaustive` is false, this resource is a partial assignation of groups to a user. As a result, you can get multiple `keycloak.UserGroups` for the same `user_id`.
     /// 
     /// ## Example Usage
+    /// 
     /// ### Exhaustive Groups)
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -54,7 +56,10 @@ namespace Pulumi.Keycloak
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
     /// ### Non Exhaustive Groups)
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -109,12 +114,13 @@ namespace Pulumi.Keycloak
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 
     /// This resource does not support import. Instead of importing, feel free to create this resource
     /// 
-    ///  as if it did not already exist on the server.
+    /// as if it did not already exist on the server.
     /// </summary>
     [KeycloakResourceType("keycloak:index/userGroups:UserGroups")]
     public partial class UserGroups : global::Pulumi.CustomResource

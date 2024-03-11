@@ -15,14 +15,13 @@ namespace Pulumi.Keycloak.OpenId
         /// This data source can be used to fetch information about the service account user that is associated with an OpenID client
         /// that has service accounts enabled.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// In this example, we'll create an OpenID client with service accounts enabled. This causes Keycloak to create a special user
         /// that represents the service account. We'll use this data source to grab this user's ID in order to assign some roles to this
         /// user, using the `keycloak.UserRoles` resource.
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -69,8 +68,7 @@ namespace Pulumi.Keycloak.OpenId
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetClientServiceAccountUserResult> InvokeAsync(GetClientServiceAccountUserArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetClientServiceAccountUserResult>("keycloak:openid/getClientServiceAccountUser:getClientServiceAccountUser", args ?? new GetClientServiceAccountUserArgs(), options.WithDefaults());
@@ -79,14 +77,13 @@ namespace Pulumi.Keycloak.OpenId
         /// This data source can be used to fetch information about the service account user that is associated with an OpenID client
         /// that has service accounts enabled.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// In this example, we'll create an OpenID client with service accounts enabled. This causes Keycloak to create a special user
         /// that represents the service account. We'll use this data source to grab this user's ID in order to assign some roles to this
         /// user, using the `keycloak.UserRoles` resource.
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -133,8 +130,7 @@ namespace Pulumi.Keycloak.OpenId
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetClientServiceAccountUserResult> Invoke(GetClientServiceAccountUserInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetClientServiceAccountUserResult>("keycloak:openid/getClientServiceAccountUser:getClientServiceAccountUser", args ?? new GetClientServiceAccountUserInvokeArgs(), options.WithDefaults());

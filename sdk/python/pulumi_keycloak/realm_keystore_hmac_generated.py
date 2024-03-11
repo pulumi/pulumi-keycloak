@@ -270,6 +270,7 @@ class RealmKeystoreHmacGenerated(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -283,14 +284,15 @@ class RealmKeystoreHmacGenerated(pulumi.CustomResource):
             algorithm="HS256",
             secret_size=64)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Realm keys can be imported using realm name and keystore id, you can find it in web UI.
 
-         Example:
+        Example:
 
-         bash
+        bash
 
         ```sh
         $ pulumi import keycloak:index/realmKeystoreHmacGenerated:RealmKeystoreHmacGenerated keystore_hmac_generated my-realm/618cfba7-49aa-4c09-9a19-2f699b576f0b
@@ -319,6 +321,7 @@ class RealmKeystoreHmacGenerated(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -332,14 +335,15 @@ class RealmKeystoreHmacGenerated(pulumi.CustomResource):
             algorithm="HS256",
             secret_size=64)
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Realm keys can be imported using realm name and keystore id, you can find it in web UI.
 
-         Example:
+        Example:
 
-         bash
+        bash
 
         ```sh
         $ pulumi import keycloak:index/realmKeystoreHmacGenerated:RealmKeystoreHmacGenerated keystore_hmac_generated my-realm/618cfba7-49aa-4c09-9a19-2f699b576f0b

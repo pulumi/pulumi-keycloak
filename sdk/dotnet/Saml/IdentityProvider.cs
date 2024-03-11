@@ -10,12 +10,15 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Saml
 {
     /// <summary>
-    /// Allows for creating and managing SAML Identity Providers within Keycloak.
+    /// ## # keycloak.saml.IdentityProvider
     /// 
-    /// SAML (Security Assertion Markup Language) identity providers allows users to authenticate through a third-party system using the SAML protocol.
+    /// Allows to create and manage SAML Identity Providers within Keycloak.
     /// 
-    /// ## Example Usage
+    /// SAML (Security Assertion Markup Language) identity providers allows to authenticate through a third-party system, using SAML standard.
     /// 
+    /// ### Example Usage
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -24,96 +27,118 @@ namespace Pulumi.Keycloak.Saml
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     var realmIdentityProvider = new Keycloak.Saml.IdentityProvider("realmIdentityProvider", new()
     ///     {
-    ///         RealmName = "my-realm",
-    ///         Enabled = true,
-    ///     });
-    /// 
-    ///     var realmSamlIdentityProvider = new Keycloak.Saml.IdentityProvider("realmSamlIdentityProvider", new()
-    ///     {
-    ///         Realm = realm.Id,
-    ///         Alias = "my-saml-idp",
-    ///         EntityId = "https://domain.com/entity_id",
-    ///         SingleSignOnServiceUrl = "https://domain.com/adfs/ls/",
-    ///         SingleLogoutServiceUrl = "https://domain.com/adfs/ls/?wa=wsignout1.0",
+    ///         Alias = "my-idp",
     ///         BackchannelSupported = true,
-    ///         PostBindingResponse = true,
-    ///         PostBindingLogout = true,
+    ///         ForceAuthn = true,
     ///         PostBindingAuthnRequest = true,
+    ///         PostBindingLogout = true,
+    ///         PostBindingResponse = true,
+    ///         Realm = "my-realm",
+    ///         SingleLogoutServiceUrl = "https://domain.com/adfs/ls/?wa=wsignout1.0",
+    ///         SingleSignOnServiceUrl = "https://domain.com/adfs/ls/",
     ///         StoreToken = false,
     ///         TrustEmail = true,
-    ///         ForceAuthn = true,
     ///     });
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
-    /// ## Import
+    /// ### Argument Reference
+    /// 
+    /// The following arguments are supported:
+    /// 
+    /// - `realm` - (Required) The name of the realm. This is unique across Keycloak.
+    /// - `alias` - (Optional) The uniq name of identity provider.
+    /// - `enabled` - (Optional) When false, users and clients will not be able to access this realm. Defaults to `true`.
+    /// - `display_name` - (Optional) The display name for the realm that is shown when logging in to the admin console.
+    /// - `store_token` - (Optional) Enable/disable if tokens must be stored after authenticating users. Defaults to `true`.
+    /// - `add_read_token_role_on_create` - (Optional) Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role. Defaults to `false`.
+    /// - `trust_email` - (Optional) If enabled then email provided by this provider is not verified even if verification is enabled for the realm. Defaults to `false`.
+    /// - `link_only` - (Optional) If true, users cannot log in through this provider. They can only link to this provider. This is useful if you don't want to allow login from the provider, but want to integrate with a provider. Defaults to `false`.
+    /// - `hide_on_login_page` - (Optional) If hidden, then login with this provider is possible only if requested explicitly, e.g. using the 'kc_idp_hint' parameter.
+    /// - `first_broker_login_flow_alias` - (Optional) Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
+    /// - `post_broker_login_flow_alias` - (Optional) Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it. Defaults to empty.
+    /// - `authenticate_by_default` - (Optional) Authenticate users by default. Defaults to `false`.
+    /// 
+    /// #### SAML Configuration
+    /// 
+    /// - `single_sign_on_service_url` - (Optional) The Url that must be used to send authentication requests (SAML AuthnRequest).
+    /// - `single_logout_service_url` - (Optional) The Url that must be used to send logout requests.
+    /// - `backchannel_supported` - (Optional) Does the external IDP support back-channel logout ?.
+    /// - `name_id_policy_format` - (Optional) Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
+    /// - `post_binding_response` - (Optional) Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
+    /// - `post_binding_authn_request` - (Optional) Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
+    /// - `post_binding_logout` - (Optional) Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
+    /// - `want_assertions_signed` - (Optional) Indicates whether this service provider expects a signed Assertion.
+    /// - `want_assertions_encrypted` - (Optional) Indicates whether this service provider expects an encrypted Assertion.
+    /// - `force_authn` - (Optional) Indicates whether the identity provider must authenticate the presenter directly rather than rely on a previous security context.
+    /// - `validate_signature` - (Optional) Enable/disable signature validation of SAML responses.
+    /// - `signing_certificate` - (Optional) Signing Certificate.
+    /// - `signature_algorithm` - (Optional) Signing Algorithm. Defaults to empty.
+    /// - `xml_sign_key_info_key_name_transformer` - (Optional) Sign Key Transformer. Defaults to empty.
+    /// 
+    /// ### Import
     /// 
     /// Identity providers can be imported using the format `{{realm_id}}/{{idp_alias}}`, where `idp_alias` is the identity provider alias.
     /// 
-    ///  Example:
-    /// 
-    ///  bash
-    /// 
-    /// ```sh
-    /// $ pulumi import keycloak:saml/identityProvider:IdentityProvider realm_saml_identity_provider my-realm/my-saml-idp
-    /// ```
+    /// Example:
     /// </summary>
     [KeycloakResourceType("keycloak:saml/identityProvider:IdentityProvider")]
     public partial class IdentityProvider : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
+        /// Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role.
         /// </summary>
         [Output("addReadTokenRoleOnCreate")]
         public Output<bool?> AddReadTokenRoleOnCreate { get; private set; } = null!;
 
         /// <summary>
-        /// The unique name of identity provider.
+        /// The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
         /// </summary>
         [Output("alias")]
         public Output<string> Alias { get; private set; } = null!;
 
         /// <summary>
-        /// Authenticate users by default. Defaults to `false`.
+        /// Enable/disable authenticate users by default.
         /// </summary>
         [Output("authenticateByDefault")]
         public Output<bool?> AuthenticateByDefault { get; private set; } = null!;
 
         /// <summary>
-        /// Ordered list of requested AuthnContext ClassRefs.
+        /// AuthnContext ClassRefs
         /// </summary>
         [Output("authnContextClassRefs")]
         public Output<ImmutableArray<string>> AuthnContextClassRefs { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies the comparison method used to evaluate the requested context classes or statements.
+        /// AuthnContext Comparison
         /// </summary>
         [Output("authnContextComparisonType")]
         public Output<string?> AuthnContextComparisonType { get; private set; } = null!;
 
         /// <summary>
-        /// Ordered list of requested AuthnContext DeclRefs.
+        /// AuthnContext DeclRefs
         /// </summary>
         [Output("authnContextDeclRefs")]
         public Output<ImmutableArray<string>> AuthnContextDeclRefs { get; private set; } = null!;
 
         /// <summary>
-        /// Does the external IDP support backchannel logout?. Defaults to `false`.
+        /// Does the external IDP support backchannel logout?
         /// </summary>
         [Output("backchannelSupported")]
         public Output<bool?> BackchannelSupported { get; private set; } = null!;
 
         /// <summary>
-        /// The display name for the realm that is shown when logging in to the admin console.
+        /// Friendly name for Identity Providers.
         /// </summary>
         [Output("displayName")]
         public Output<string?> DisplayName { get; private set; } = null!;
 
         /// <summary>
-        /// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
+        /// Enable/disable this identity provider.
         /// </summary>
         [Output("enabled")]
         public Output<bool?> Enabled { get; private set; } = null!;
@@ -128,25 +153,26 @@ namespace Pulumi.Keycloak.Saml
         public Output<ImmutableDictionary<string, object>?> ExtraConfig { get; private set; } = null!;
 
         /// <summary>
-        /// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
+        /// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
+        /// that there is not yet existing Keycloak account linked with the authenticated identity provider account.
         /// </summary>
         [Output("firstBrokerLoginFlowAlias")]
         public Output<string?> FirstBrokerLoginFlowAlias { get; private set; } = null!;
 
         /// <summary>
-        /// Indicates whether the identity provider must authenticate the presenter directly rather than rely on a previous security context.
+        /// Require Force Authn.
         /// </summary>
         [Output("forceAuthn")]
         public Output<bool?> ForceAuthn { get; private set; } = null!;
 
         /// <summary>
-        /// A number defining the order of this identity provider in the GUI.
+        /// GUI Order
         /// </summary>
         [Output("guiOrder")]
         public Output<string?> GuiOrder { get; private set; } = null!;
 
         /// <summary>
-        /// If hidden, then login with this provider is possible only if requested explicitly, e.g. using the 'kc_idp_hint' parameter.
+        /// Hide On Login Page.
         /// </summary>
         [Output("hideOnLoginPage")]
         public Output<bool?> HideOnLoginPage { get; private set; } = null!;
@@ -158,7 +184,8 @@ namespace Pulumi.Keycloak.Saml
         public Output<string> InternalId { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+        /// If true, users cannot log in through this provider. They can only link to this provider. This is useful if you don't
+        /// want to allow login from the provider, but want to integrate with a provider
         /// </summary>
         [Output("linkOnly")]
         public Output<bool?> LinkOnly { get; private set; } = null!;
@@ -170,61 +197,64 @@ namespace Pulumi.Keycloak.Saml
         public Output<string?> LoginHint { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
+        /// Name ID Policy Format.
         /// </summary>
         [Output("nameIdPolicyFormat")]
         public Output<string?> NameIdPolicyFormat { get; private set; } = null!;
 
         /// <summary>
-        /// Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
+        /// Post Binding Authn Request.
         /// </summary>
         [Output("postBindingAuthnRequest")]
         public Output<bool?> PostBindingAuthnRequest { get; private set; } = null!;
 
         /// <summary>
-        /// Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
+        /// Post Binding Logout.
         /// </summary>
         [Output("postBindingLogout")]
         public Output<bool?> PostBindingLogout { get; private set; } = null!;
 
         /// <summary>
-        /// Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
+        /// Post Binding Response.
         /// </summary>
         [Output("postBindingResponse")]
         public Output<bool?> PostBindingResponse { get; private set; } = null!;
 
         /// <summary>
-        /// Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it. Defaults to empty.
+        /// Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want
+        /// additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if
+        /// you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that
+        /// authenticator implementations must assume that user is already set in ClientSession as identity provider already set it.
         /// </summary>
         [Output("postBrokerLoginFlowAlias")]
         public Output<string?> PostBrokerLoginFlowAlias { get; private set; } = null!;
 
         /// <summary>
-        /// The principal attribute.
+        /// Principal Attribute
         /// </summary>
         [Output("principalAttribute")]
         public Output<string?> PrincipalAttribute { get; private set; } = null!;
 
         /// <summary>
-        /// The principal type. Can be one of `SUBJECT`, `ATTRIBUTE` or `FRIENDLY_ATTRIBUTE`.
+        /// Principal Type
         /// </summary>
         [Output("principalType")]
         public Output<string?> PrincipalType { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the identity provider to use. Defaults to `saml`, which should be used unless you have extended Keycloak and provided your own implementation.
+        /// provider id, is always saml, unless you have a custom implementation
         /// </summary>
         [Output("providerId")]
         public Output<string?> ProviderId { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the realm. This is unique across Keycloak.
+        /// Realm Name
         /// </summary>
         [Output("realm")]
         public Output<string> Realm { get; private set; } = null!;
 
         /// <summary>
-        /// Signing Algorithm. Defaults to empty.
+        /// Signing Algorithm.
         /// </summary>
         [Output("signatureAlgorithm")]
         public Output<string?> SignatureAlgorithm { get; private set; } = null!;
@@ -236,31 +266,31 @@ namespace Pulumi.Keycloak.Saml
         public Output<string?> SigningCertificate { get; private set; } = null!;
 
         /// <summary>
-        /// The Url that must be used to send logout requests.
+        /// Logout URL.
         /// </summary>
         [Output("singleLogoutServiceUrl")]
         public Output<string?> SingleLogoutServiceUrl { get; private set; } = null!;
 
         /// <summary>
-        /// The Url that must be used to send authentication requests (SAML AuthnRequest).
+        /// SSO Logout URL.
         /// </summary>
         [Output("singleSignOnServiceUrl")]
         public Output<string> SingleSignOnServiceUrl { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, tokens will be stored after authenticating users. Defaults to `true`.
+        /// Enable/disable if tokens must be stored after authenticating users.
         /// </summary>
         [Output("storeToken")]
         public Output<bool?> StoreToken { get; private set; } = null!;
 
         /// <summary>
-        /// The default sync mode to use for all mappers attached to this identity provider. Can be one of `IMPORT`, `FORCE`, or `LEGACY`.
+        /// Sync Mode
         /// </summary>
         [Output("syncMode")]
         public Output<string?> SyncMode { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
+        /// If enabled then email provided by this provider is not verified even if verification is enabled for the realm.
         /// </summary>
         [Output("trustEmail")]
         public Output<bool?> TrustEmail { get; private set; } = null!;
@@ -272,19 +302,19 @@ namespace Pulumi.Keycloak.Saml
         public Output<bool?> ValidateSignature { get; private set; } = null!;
 
         /// <summary>
-        /// Indicates whether this service provider expects an encrypted Assertion.
+        /// Want Assertions Encrypted.
         /// </summary>
         [Output("wantAssertionsEncrypted")]
         public Output<bool?> WantAssertionsEncrypted { get; private set; } = null!;
 
         /// <summary>
-        /// Indicates whether this service provider expects a signed Assertion.
+        /// Want Assertions Signed.
         /// </summary>
         [Output("wantAssertionsSigned")]
         public Output<bool?> WantAssertionsSigned { get; private set; } = null!;
 
         /// <summary>
-        /// The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.
+        /// Sign Key Transformer.
         /// </summary>
         [Output("xmlSignKeyInfoKeyNameTransformer")]
         public Output<string?> XmlSignKeyInfoKeyNameTransformer { get; private set; } = null!;
@@ -336,19 +366,19 @@ namespace Pulumi.Keycloak.Saml
     public sealed class IdentityProviderArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
+        /// Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role.
         /// </summary>
         [Input("addReadTokenRoleOnCreate")]
         public Input<bool>? AddReadTokenRoleOnCreate { get; set; }
 
         /// <summary>
-        /// The unique name of identity provider.
+        /// The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
         /// </summary>
         [Input("alias", required: true)]
         public Input<string> Alias { get; set; } = null!;
 
         /// <summary>
-        /// Authenticate users by default. Defaults to `false`.
+        /// Enable/disable authenticate users by default.
         /// </summary>
         [Input("authenticateByDefault")]
         public Input<bool>? AuthenticateByDefault { get; set; }
@@ -357,7 +387,7 @@ namespace Pulumi.Keycloak.Saml
         private InputList<string>? _authnContextClassRefs;
 
         /// <summary>
-        /// Ordered list of requested AuthnContext ClassRefs.
+        /// AuthnContext ClassRefs
         /// </summary>
         public InputList<string> AuthnContextClassRefs
         {
@@ -366,7 +396,7 @@ namespace Pulumi.Keycloak.Saml
         }
 
         /// <summary>
-        /// Specifies the comparison method used to evaluate the requested context classes or statements.
+        /// AuthnContext Comparison
         /// </summary>
         [Input("authnContextComparisonType")]
         public Input<string>? AuthnContextComparisonType { get; set; }
@@ -375,7 +405,7 @@ namespace Pulumi.Keycloak.Saml
         private InputList<string>? _authnContextDeclRefs;
 
         /// <summary>
-        /// Ordered list of requested AuthnContext DeclRefs.
+        /// AuthnContext DeclRefs
         /// </summary>
         public InputList<string> AuthnContextDeclRefs
         {
@@ -384,19 +414,19 @@ namespace Pulumi.Keycloak.Saml
         }
 
         /// <summary>
-        /// Does the external IDP support backchannel logout?. Defaults to `false`.
+        /// Does the external IDP support backchannel logout?
         /// </summary>
         [Input("backchannelSupported")]
         public Input<bool>? BackchannelSupported { get; set; }
 
         /// <summary>
-        /// The display name for the realm that is shown when logging in to the admin console.
+        /// Friendly name for Identity Providers.
         /// </summary>
         [Input("displayName")]
         public Input<string>? DisplayName { get; set; }
 
         /// <summary>
-        /// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
+        /// Enable/disable this identity provider.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
@@ -416,31 +446,33 @@ namespace Pulumi.Keycloak.Saml
         }
 
         /// <summary>
-        /// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
+        /// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
+        /// that there is not yet existing Keycloak account linked with the authenticated identity provider account.
         /// </summary>
         [Input("firstBrokerLoginFlowAlias")]
         public Input<string>? FirstBrokerLoginFlowAlias { get; set; }
 
         /// <summary>
-        /// Indicates whether the identity provider must authenticate the presenter directly rather than rely on a previous security context.
+        /// Require Force Authn.
         /// </summary>
         [Input("forceAuthn")]
         public Input<bool>? ForceAuthn { get; set; }
 
         /// <summary>
-        /// A number defining the order of this identity provider in the GUI.
+        /// GUI Order
         /// </summary>
         [Input("guiOrder")]
         public Input<string>? GuiOrder { get; set; }
 
         /// <summary>
-        /// If hidden, then login with this provider is possible only if requested explicitly, e.g. using the 'kc_idp_hint' parameter.
+        /// Hide On Login Page.
         /// </summary>
         [Input("hideOnLoginPage")]
         public Input<bool>? HideOnLoginPage { get; set; }
 
         /// <summary>
-        /// When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+        /// If true, users cannot log in through this provider. They can only link to this provider. This is useful if you don't
+        /// want to allow login from the provider, but want to integrate with a provider
         /// </summary>
         [Input("linkOnly")]
         public Input<bool>? LinkOnly { get; set; }
@@ -452,61 +484,64 @@ namespace Pulumi.Keycloak.Saml
         public Input<string>? LoginHint { get; set; }
 
         /// <summary>
-        /// Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
+        /// Name ID Policy Format.
         /// </summary>
         [Input("nameIdPolicyFormat")]
         public Input<string>? NameIdPolicyFormat { get; set; }
 
         /// <summary>
-        /// Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
+        /// Post Binding Authn Request.
         /// </summary>
         [Input("postBindingAuthnRequest")]
         public Input<bool>? PostBindingAuthnRequest { get; set; }
 
         /// <summary>
-        /// Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
+        /// Post Binding Logout.
         /// </summary>
         [Input("postBindingLogout")]
         public Input<bool>? PostBindingLogout { get; set; }
 
         /// <summary>
-        /// Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
+        /// Post Binding Response.
         /// </summary>
         [Input("postBindingResponse")]
         public Input<bool>? PostBindingResponse { get; set; }
 
         /// <summary>
-        /// Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it. Defaults to empty.
+        /// Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want
+        /// additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if
+        /// you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that
+        /// authenticator implementations must assume that user is already set in ClientSession as identity provider already set it.
         /// </summary>
         [Input("postBrokerLoginFlowAlias")]
         public Input<string>? PostBrokerLoginFlowAlias { get; set; }
 
         /// <summary>
-        /// The principal attribute.
+        /// Principal Attribute
         /// </summary>
         [Input("principalAttribute")]
         public Input<string>? PrincipalAttribute { get; set; }
 
         /// <summary>
-        /// The principal type. Can be one of `SUBJECT`, `ATTRIBUTE` or `FRIENDLY_ATTRIBUTE`.
+        /// Principal Type
         /// </summary>
         [Input("principalType")]
         public Input<string>? PrincipalType { get; set; }
 
         /// <summary>
-        /// The ID of the identity provider to use. Defaults to `saml`, which should be used unless you have extended Keycloak and provided your own implementation.
+        /// provider id, is always saml, unless you have a custom implementation
         /// </summary>
         [Input("providerId")]
         public Input<string>? ProviderId { get; set; }
 
         /// <summary>
-        /// The name of the realm. This is unique across Keycloak.
+        /// Realm Name
         /// </summary>
         [Input("realm", required: true)]
         public Input<string> Realm { get; set; } = null!;
 
         /// <summary>
-        /// Signing Algorithm. Defaults to empty.
+        /// Signing Algorithm.
         /// </summary>
         [Input("signatureAlgorithm")]
         public Input<string>? SignatureAlgorithm { get; set; }
@@ -518,31 +553,31 @@ namespace Pulumi.Keycloak.Saml
         public Input<string>? SigningCertificate { get; set; }
 
         /// <summary>
-        /// The Url that must be used to send logout requests.
+        /// Logout URL.
         /// </summary>
         [Input("singleLogoutServiceUrl")]
         public Input<string>? SingleLogoutServiceUrl { get; set; }
 
         /// <summary>
-        /// The Url that must be used to send authentication requests (SAML AuthnRequest).
+        /// SSO Logout URL.
         /// </summary>
         [Input("singleSignOnServiceUrl", required: true)]
         public Input<string> SingleSignOnServiceUrl { get; set; } = null!;
 
         /// <summary>
-        /// When `true`, tokens will be stored after authenticating users. Defaults to `true`.
+        /// Enable/disable if tokens must be stored after authenticating users.
         /// </summary>
         [Input("storeToken")]
         public Input<bool>? StoreToken { get; set; }
 
         /// <summary>
-        /// The default sync mode to use for all mappers attached to this identity provider. Can be one of `IMPORT`, `FORCE`, or `LEGACY`.
+        /// Sync Mode
         /// </summary>
         [Input("syncMode")]
         public Input<string>? SyncMode { get; set; }
 
         /// <summary>
-        /// When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
+        /// If enabled then email provided by this provider is not verified even if verification is enabled for the realm.
         /// </summary>
         [Input("trustEmail")]
         public Input<bool>? TrustEmail { get; set; }
@@ -554,19 +589,19 @@ namespace Pulumi.Keycloak.Saml
         public Input<bool>? ValidateSignature { get; set; }
 
         /// <summary>
-        /// Indicates whether this service provider expects an encrypted Assertion.
+        /// Want Assertions Encrypted.
         /// </summary>
         [Input("wantAssertionsEncrypted")]
         public Input<bool>? WantAssertionsEncrypted { get; set; }
 
         /// <summary>
-        /// Indicates whether this service provider expects a signed Assertion.
+        /// Want Assertions Signed.
         /// </summary>
         [Input("wantAssertionsSigned")]
         public Input<bool>? WantAssertionsSigned { get; set; }
 
         /// <summary>
-        /// The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.
+        /// Sign Key Transformer.
         /// </summary>
         [Input("xmlSignKeyInfoKeyNameTransformer")]
         public Input<string>? XmlSignKeyInfoKeyNameTransformer { get; set; }
@@ -580,19 +615,19 @@ namespace Pulumi.Keycloak.Saml
     public sealed class IdentityProviderState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
+        /// Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role.
         /// </summary>
         [Input("addReadTokenRoleOnCreate")]
         public Input<bool>? AddReadTokenRoleOnCreate { get; set; }
 
         /// <summary>
-        /// The unique name of identity provider.
+        /// The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
         /// </summary>
         [Input("alias")]
         public Input<string>? Alias { get; set; }
 
         /// <summary>
-        /// Authenticate users by default. Defaults to `false`.
+        /// Enable/disable authenticate users by default.
         /// </summary>
         [Input("authenticateByDefault")]
         public Input<bool>? AuthenticateByDefault { get; set; }
@@ -601,7 +636,7 @@ namespace Pulumi.Keycloak.Saml
         private InputList<string>? _authnContextClassRefs;
 
         /// <summary>
-        /// Ordered list of requested AuthnContext ClassRefs.
+        /// AuthnContext ClassRefs
         /// </summary>
         public InputList<string> AuthnContextClassRefs
         {
@@ -610,7 +645,7 @@ namespace Pulumi.Keycloak.Saml
         }
 
         /// <summary>
-        /// Specifies the comparison method used to evaluate the requested context classes or statements.
+        /// AuthnContext Comparison
         /// </summary>
         [Input("authnContextComparisonType")]
         public Input<string>? AuthnContextComparisonType { get; set; }
@@ -619,7 +654,7 @@ namespace Pulumi.Keycloak.Saml
         private InputList<string>? _authnContextDeclRefs;
 
         /// <summary>
-        /// Ordered list of requested AuthnContext DeclRefs.
+        /// AuthnContext DeclRefs
         /// </summary>
         public InputList<string> AuthnContextDeclRefs
         {
@@ -628,19 +663,19 @@ namespace Pulumi.Keycloak.Saml
         }
 
         /// <summary>
-        /// Does the external IDP support backchannel logout?. Defaults to `false`.
+        /// Does the external IDP support backchannel logout?
         /// </summary>
         [Input("backchannelSupported")]
         public Input<bool>? BackchannelSupported { get; set; }
 
         /// <summary>
-        /// The display name for the realm that is shown when logging in to the admin console.
+        /// Friendly name for Identity Providers.
         /// </summary>
         [Input("displayName")]
         public Input<string>? DisplayName { get; set; }
 
         /// <summary>
-        /// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
+        /// Enable/disable this identity provider.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
@@ -660,25 +695,26 @@ namespace Pulumi.Keycloak.Saml
         }
 
         /// <summary>
-        /// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
+        /// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
+        /// that there is not yet existing Keycloak account linked with the authenticated identity provider account.
         /// </summary>
         [Input("firstBrokerLoginFlowAlias")]
         public Input<string>? FirstBrokerLoginFlowAlias { get; set; }
 
         /// <summary>
-        /// Indicates whether the identity provider must authenticate the presenter directly rather than rely on a previous security context.
+        /// Require Force Authn.
         /// </summary>
         [Input("forceAuthn")]
         public Input<bool>? ForceAuthn { get; set; }
 
         /// <summary>
-        /// A number defining the order of this identity provider in the GUI.
+        /// GUI Order
         /// </summary>
         [Input("guiOrder")]
         public Input<string>? GuiOrder { get; set; }
 
         /// <summary>
-        /// If hidden, then login with this provider is possible only if requested explicitly, e.g. using the 'kc_idp_hint' parameter.
+        /// Hide On Login Page.
         /// </summary>
         [Input("hideOnLoginPage")]
         public Input<bool>? HideOnLoginPage { get; set; }
@@ -690,7 +726,8 @@ namespace Pulumi.Keycloak.Saml
         public Input<string>? InternalId { get; set; }
 
         /// <summary>
-        /// When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+        /// If true, users cannot log in through this provider. They can only link to this provider. This is useful if you don't
+        /// want to allow login from the provider, but want to integrate with a provider
         /// </summary>
         [Input("linkOnly")]
         public Input<bool>? LinkOnly { get; set; }
@@ -702,61 +739,64 @@ namespace Pulumi.Keycloak.Saml
         public Input<string>? LoginHint { get; set; }
 
         /// <summary>
-        /// Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
+        /// Name ID Policy Format.
         /// </summary>
         [Input("nameIdPolicyFormat")]
         public Input<string>? NameIdPolicyFormat { get; set; }
 
         /// <summary>
-        /// Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
+        /// Post Binding Authn Request.
         /// </summary>
         [Input("postBindingAuthnRequest")]
         public Input<bool>? PostBindingAuthnRequest { get; set; }
 
         /// <summary>
-        /// Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
+        /// Post Binding Logout.
         /// </summary>
         [Input("postBindingLogout")]
         public Input<bool>? PostBindingLogout { get; set; }
 
         /// <summary>
-        /// Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
+        /// Post Binding Response.
         /// </summary>
         [Input("postBindingResponse")]
         public Input<bool>? PostBindingResponse { get; set; }
 
         /// <summary>
-        /// Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it. Defaults to empty.
+        /// Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want
+        /// additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if
+        /// you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that
+        /// authenticator implementations must assume that user is already set in ClientSession as identity provider already set it.
         /// </summary>
         [Input("postBrokerLoginFlowAlias")]
         public Input<string>? PostBrokerLoginFlowAlias { get; set; }
 
         /// <summary>
-        /// The principal attribute.
+        /// Principal Attribute
         /// </summary>
         [Input("principalAttribute")]
         public Input<string>? PrincipalAttribute { get; set; }
 
         /// <summary>
-        /// The principal type. Can be one of `SUBJECT`, `ATTRIBUTE` or `FRIENDLY_ATTRIBUTE`.
+        /// Principal Type
         /// </summary>
         [Input("principalType")]
         public Input<string>? PrincipalType { get; set; }
 
         /// <summary>
-        /// The ID of the identity provider to use. Defaults to `saml`, which should be used unless you have extended Keycloak and provided your own implementation.
+        /// provider id, is always saml, unless you have a custom implementation
         /// </summary>
         [Input("providerId")]
         public Input<string>? ProviderId { get; set; }
 
         /// <summary>
-        /// The name of the realm. This is unique across Keycloak.
+        /// Realm Name
         /// </summary>
         [Input("realm")]
         public Input<string>? Realm { get; set; }
 
         /// <summary>
-        /// Signing Algorithm. Defaults to empty.
+        /// Signing Algorithm.
         /// </summary>
         [Input("signatureAlgorithm")]
         public Input<string>? SignatureAlgorithm { get; set; }
@@ -768,31 +808,31 @@ namespace Pulumi.Keycloak.Saml
         public Input<string>? SigningCertificate { get; set; }
 
         /// <summary>
-        /// The Url that must be used to send logout requests.
+        /// Logout URL.
         /// </summary>
         [Input("singleLogoutServiceUrl")]
         public Input<string>? SingleLogoutServiceUrl { get; set; }
 
         /// <summary>
-        /// The Url that must be used to send authentication requests (SAML AuthnRequest).
+        /// SSO Logout URL.
         /// </summary>
         [Input("singleSignOnServiceUrl")]
         public Input<string>? SingleSignOnServiceUrl { get; set; }
 
         /// <summary>
-        /// When `true`, tokens will be stored after authenticating users. Defaults to `true`.
+        /// Enable/disable if tokens must be stored after authenticating users.
         /// </summary>
         [Input("storeToken")]
         public Input<bool>? StoreToken { get; set; }
 
         /// <summary>
-        /// The default sync mode to use for all mappers attached to this identity provider. Can be one of `IMPORT`, `FORCE`, or `LEGACY`.
+        /// Sync Mode
         /// </summary>
         [Input("syncMode")]
         public Input<string>? SyncMode { get; set; }
 
         /// <summary>
-        /// When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
+        /// If enabled then email provided by this provider is not verified even if verification is enabled for the realm.
         /// </summary>
         [Input("trustEmail")]
         public Input<bool>? TrustEmail { get; set; }
@@ -804,19 +844,19 @@ namespace Pulumi.Keycloak.Saml
         public Input<bool>? ValidateSignature { get; set; }
 
         /// <summary>
-        /// Indicates whether this service provider expects an encrypted Assertion.
+        /// Want Assertions Encrypted.
         /// </summary>
         [Input("wantAssertionsEncrypted")]
         public Input<bool>? WantAssertionsEncrypted { get; set; }
 
         /// <summary>
-        /// Indicates whether this service provider expects a signed Assertion.
+        /// Want Assertions Signed.
         /// </summary>
         [Input("wantAssertionsSigned")]
         public Input<bool>? WantAssertionsSigned { get; set; }
 
         /// <summary>
-        /// The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.
+        /// Sign Key Transformer.
         /// </summary>
         [Input("xmlSignKeyInfoKeyNameTransformer")]
         public Input<string>? XmlSignKeyInfoKeyNameTransformer { get; set; }

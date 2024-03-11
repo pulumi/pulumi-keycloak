@@ -16,12 +16,17 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Allows for creating and managing full name mappers for Keycloak users federated via LDAP.
+ * ## # keycloak.ldap.FullNameMapper
  * 
- * The LDAP full name mapper can map a user&#39;s full name from an LDAP attribute to the first and last name attributes of a
- * Keycloak user.
+ * Allows for creating and managing full name mappers for Keycloak users federated
+ * via LDAP.
  * 
- * ## Example Usage
+ * The LDAP full name mapper can map a user&#39;s full name from an LDAP attribute
+ * to the first and last name attributes of a Keycloak user.
+ * 
+ * ### Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -48,132 +53,112 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
  *             .enabled(true)
+ *             .realm(&#34;test&#34;)
  *             .build());
  * 
  *         var ldapUserFederation = new UserFederation(&#34;ldapUserFederation&#34;, UserFederationArgs.builder()        
- *             .realmId(realm.id())
- *             .usernameLdapAttribute(&#34;cn&#34;)
+ *             .bindCredential(&#34;admin&#34;)
+ *             .bindDn(&#34;cn=admin,dc=example,dc=org&#34;)
+ *             .connectionUrl(&#34;ldap://openldap&#34;)
  *             .rdnLdapAttribute(&#34;cn&#34;)
- *             .uuidLdapAttribute(&#34;entryDN&#34;)
+ *             .realmId(realm.id())
  *             .userObjectClasses(            
  *                 &#34;simpleSecurityObject&#34;,
  *                 &#34;organizationalRole&#34;)
- *             .connectionUrl(&#34;ldap://openldap&#34;)
+ *             .usernameLdapAttribute(&#34;cn&#34;)
  *             .usersDn(&#34;dc=example,dc=org&#34;)
- *             .bindDn(&#34;cn=admin,dc=example,dc=org&#34;)
- *             .bindCredential(&#34;admin&#34;)
+ *             .uuidLdapAttribute(&#34;entryDN&#34;)
  *             .build());
  * 
  *         var ldapFullNameMapper = new FullNameMapper(&#34;ldapFullNameMapper&#34;, FullNameMapperArgs.builder()        
- *             .realmId(realm.id())
- *             .ldapUserFederationId(ldapUserFederation.id())
  *             .ldapFullNameAttribute(&#34;cn&#34;)
+ *             .ldapUserFederationId(ldapUserFederation.id())
+ *             .realmId(realm.id())
  *             .build());
  * 
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * ## Import
+ * ### Argument Reference
+ * 
+ * The following arguments are supported:
+ * 
+ * - `realm_id` - (Required) The realm that this LDAP mapper will exist in.
+ * - `ldap_user_federation_id` - (Required) The ID of the LDAP user federation provider to attach this mapper to.
+ * - `name` - (Required) Display name of this mapper when displayed in the console.
+ * - `ldap_full_name_attribute` - (Required) The name of the LDAP attribute containing the user&#39;s full name.
+ * - `read_only` - (Optional) When `true`, updates to a user within Keycloak will not be written back to LDAP. Defaults to `false`.
+ * - `write_only` - (Optional) When `true`, this mapper will only be used to write updates to LDAP. Defaults to `false`.
+ * 
+ * ### Import
  * 
  * LDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`.
- * 
- *  The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs.
- * 
- *  Example:
- * 
- *  bash
- * 
- * ```sh
- * $ pulumi import keycloak:ldap/fullNameMapper:FullNameMapper ldap_full_name_mapper my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
- * ```
+ * The ID of the LDAP user federation provider and the mapper can be found within
+ * the Keycloak GUI, and they are typically GUIDs:
  * 
  */
 @ResourceType(type="keycloak:ldap/fullNameMapper:FullNameMapper")
 public class FullNameMapper extends com.pulumi.resources.CustomResource {
-    /**
-     * The name of the LDAP attribute containing the user&#39;s full name.
-     * 
-     */
     @Export(name="ldapFullNameAttribute", refs={String.class}, tree="[0]")
     private Output<String> ldapFullNameAttribute;
 
-    /**
-     * @return The name of the LDAP attribute containing the user&#39;s full name.
-     * 
-     */
     public Output<String> ldapFullNameAttribute() {
         return this.ldapFullNameAttribute;
     }
     /**
-     * The ID of the LDAP user federation provider to attach this mapper to.
+     * The ldap user federation provider to attach this mapper to.
      * 
      */
     @Export(name="ldapUserFederationId", refs={String.class}, tree="[0]")
     private Output<String> ldapUserFederationId;
 
     /**
-     * @return The ID of the LDAP user federation provider to attach this mapper to.
+     * @return The ldap user federation provider to attach this mapper to.
      * 
      */
     public Output<String> ldapUserFederationId() {
         return this.ldapUserFederationId;
     }
     /**
-     * Display name of this mapper when displayed in the console.
+     * Display name of the mapper when displayed in the console.
      * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
-     * @return Display name of this mapper when displayed in the console.
+     * @return Display name of the mapper when displayed in the console.
      * 
      */
     public Output<String> name() {
         return this.name;
     }
-    /**
-     * When `true`, updates to a user within Keycloak will not be written back to LDAP. Defaults to `false`.
-     * 
-     */
     @Export(name="readOnly", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> readOnly;
 
-    /**
-     * @return When `true`, updates to a user within Keycloak will not be written back to LDAP. Defaults to `false`.
-     * 
-     */
     public Output<Optional<Boolean>> readOnly() {
         return Codegen.optional(this.readOnly);
     }
     /**
-     * The realm that this LDAP mapper will exist in.
+     * The realm in which the ldap user federation provider exists.
      * 
      */
     @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**
-     * @return The realm that this LDAP mapper will exist in.
+     * @return The realm in which the ldap user federation provider exists.
      * 
      */
     public Output<String> realmId() {
         return this.realmId;
     }
-    /**
-     * When `true`, this mapper will only be used to write updates to LDAP. Defaults to `false`.
-     * 
-     */
     @Export(name="writeOnly", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> writeOnly;
 
-    /**
-     * @return When `true`, this mapper will only be used to write updates to LDAP. Defaults to `false`.
-     * 
-     */
     public Output<Optional<Boolean>> writeOnly() {
         return Codegen.optional(this.writeOnly);
     }

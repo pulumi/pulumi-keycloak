@@ -19,60 +19,46 @@ public final class CustomUserFederationState extends com.pulumi.resources.Resour
 
     public static final CustomUserFederationState Empty = new CustomUserFederationState();
 
-    /**
-     * Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
-     * 
-     */
     @Import(name="cachePolicy")
     private @Nullable Output<String> cachePolicy;
 
-    /**
-     * @return Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
-     * 
-     */
     public Optional<Output<String>> cachePolicy() {
         return Optional.ofNullable(this.cachePolicy);
     }
 
     /**
-     * How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users sync.
+     * How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users
+     * sync.
      * 
      */
     @Import(name="changedSyncPeriod")
     private @Nullable Output<Integer> changedSyncPeriod;
 
     /**
-     * @return How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users sync.
+     * @return How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users
+     * sync.
      * 
      */
     public Optional<Output<Integer>> changedSyncPeriod() {
         return Optional.ofNullable(this.changedSyncPeriod);
     }
 
-    /**
-     * The provider configuration handed over to your custom user federation provider. In order to add multivalue settings, use `##` to seperate the values.
-     * 
-     */
     @Import(name="config")
     private @Nullable Output<Map<String,Object>> config;
 
-    /**
-     * @return The provider configuration handed over to your custom user federation provider. In order to add multivalue settings, use `##` to seperate the values.
-     * 
-     */
     public Optional<Output<Map<String,Object>>> config() {
         return Optional.ofNullable(this.config);
     }
 
     /**
-     * When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
+     * When false, this provider will not be used when performing queries for users.
      * 
      */
     @Import(name="enabled")
     private @Nullable Output<Boolean> enabled;
 
     /**
-     * @return When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
+     * @return When false, this provider will not be used when performing queries for users.
      * 
      */
     public Optional<Output<Boolean>> enabled() {
@@ -110,14 +96,14 @@ public final class CustomUserFederationState extends com.pulumi.resources.Resour
     }
 
     /**
-     * Must be set to the realms&#39; `internal_id`  when it differs from the realm. This can happen when existing resources are imported into the state.
+     * The parent_id of the generated component. will use realm_id if not specified.
      * 
      */
     @Import(name="parentId")
     private @Nullable Output<String> parentId;
 
     /**
-     * @return Must be set to the realms&#39; `internal_id`  when it differs from the realm. This can happen when existing resources are imported into the state.
+     * @return The parent_id of the generated component. will use realm_id if not specified.
      * 
      */
     public Optional<Output<String>> parentId() {
@@ -125,14 +111,14 @@ public final class CustomUserFederationState extends com.pulumi.resources.Resour
     }
 
     /**
-     * Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
+     * Priority of this provider when looking up users. Lower values are first.
      * 
      */
     @Import(name="priority")
     private @Nullable Output<Integer> priority;
 
     /**
-     * @return Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
+     * @return Priority of this provider when looking up users. Lower values are first.
      * 
      */
     public Optional<Output<Integer>> priority() {
@@ -140,14 +126,16 @@ public final class CustomUserFederationState extends com.pulumi.resources.Resour
     }
 
     /**
-     * The unique ID of the custom provider, specified in the `getId` implementation for the `UserStorageProviderFactory` interface.
+     * The unique ID of the custom provider, specified in the `getId` implementation for the UserStorageProviderFactory
+     * interface
      * 
      */
     @Import(name="providerId")
     private @Nullable Output<String> providerId;
 
     /**
-     * @return The unique ID of the custom provider, specified in the `getId` implementation for the `UserStorageProviderFactory` interface.
+     * @return The unique ID of the custom provider, specified in the `getId` implementation for the UserStorageProviderFactory
+     * interface
      * 
      */
     public Optional<Output<String>> providerId() {
@@ -155,14 +143,14 @@ public final class CustomUserFederationState extends com.pulumi.resources.Resour
     }
 
     /**
-     * The realm that this provider will provide user federation for.
+     * The realm (name) this provider will provide user federation for.
      * 
      */
     @Import(name="realmId")
     private @Nullable Output<String> realmId;
 
     /**
-     * @return The realm that this provider will provide user federation for.
+     * @return The realm (name) this provider will provide user federation for.
      * 
      */
     public Optional<Output<String>> realmId() {
@@ -202,29 +190,18 @@ public final class CustomUserFederationState extends com.pulumi.resources.Resour
             $ = new CustomUserFederationState(Objects.requireNonNull(defaults));
         }
 
-        /**
-         * @param cachePolicy Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
-         * 
-         * @return builder
-         * 
-         */
         public Builder cachePolicy(@Nullable Output<String> cachePolicy) {
             $.cachePolicy = cachePolicy;
             return this;
         }
 
-        /**
-         * @param cachePolicy Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
-         * 
-         * @return builder
-         * 
-         */
         public Builder cachePolicy(String cachePolicy) {
             return cachePolicy(Output.of(cachePolicy));
         }
 
         /**
-         * @param changedSyncPeriod How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users sync.
+         * @param changedSyncPeriod How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users
+         * sync.
          * 
          * @return builder
          * 
@@ -235,7 +212,8 @@ public final class CustomUserFederationState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param changedSyncPeriod How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users sync.
+         * @param changedSyncPeriod How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users
+         * sync.
          * 
          * @return builder
          * 
@@ -244,29 +222,17 @@ public final class CustomUserFederationState extends com.pulumi.resources.Resour
             return changedSyncPeriod(Output.of(changedSyncPeriod));
         }
 
-        /**
-         * @param config The provider configuration handed over to your custom user federation provider. In order to add multivalue settings, use `##` to seperate the values.
-         * 
-         * @return builder
-         * 
-         */
         public Builder config(@Nullable Output<Map<String,Object>> config) {
             $.config = config;
             return this;
         }
 
-        /**
-         * @param config The provider configuration handed over to your custom user federation provider. In order to add multivalue settings, use `##` to seperate the values.
-         * 
-         * @return builder
-         * 
-         */
         public Builder config(Map<String,Object> config) {
             return config(Output.of(config));
         }
 
         /**
-         * @param enabled When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
+         * @param enabled When false, this provider will not be used when performing queries for users.
          * 
          * @return builder
          * 
@@ -277,7 +243,7 @@ public final class CustomUserFederationState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param enabled When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
+         * @param enabled When false, this provider will not be used when performing queries for users.
          * 
          * @return builder
          * 
@@ -329,7 +295,7 @@ public final class CustomUserFederationState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param parentId Must be set to the realms&#39; `internal_id`  when it differs from the realm. This can happen when existing resources are imported into the state.
+         * @param parentId The parent_id of the generated component. will use realm_id if not specified.
          * 
          * @return builder
          * 
@@ -340,7 +306,7 @@ public final class CustomUserFederationState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param parentId Must be set to the realms&#39; `internal_id`  when it differs from the realm. This can happen when existing resources are imported into the state.
+         * @param parentId The parent_id of the generated component. will use realm_id if not specified.
          * 
          * @return builder
          * 
@@ -350,7 +316,7 @@ public final class CustomUserFederationState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param priority Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
+         * @param priority Priority of this provider when looking up users. Lower values are first.
          * 
          * @return builder
          * 
@@ -361,7 +327,7 @@ public final class CustomUserFederationState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param priority Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
+         * @param priority Priority of this provider when looking up users. Lower values are first.
          * 
          * @return builder
          * 
@@ -371,7 +337,8 @@ public final class CustomUserFederationState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param providerId The unique ID of the custom provider, specified in the `getId` implementation for the `UserStorageProviderFactory` interface.
+         * @param providerId The unique ID of the custom provider, specified in the `getId` implementation for the UserStorageProviderFactory
+         * interface
          * 
          * @return builder
          * 
@@ -382,7 +349,8 @@ public final class CustomUserFederationState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param providerId The unique ID of the custom provider, specified in the `getId` implementation for the `UserStorageProviderFactory` interface.
+         * @param providerId The unique ID of the custom provider, specified in the `getId` implementation for the UserStorageProviderFactory
+         * interface
          * 
          * @return builder
          * 
@@ -392,7 +360,7 @@ public final class CustomUserFederationState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param realmId The realm that this provider will provide user federation for.
+         * @param realmId The realm (name) this provider will provide user federation for.
          * 
          * @return builder
          * 
@@ -403,7 +371,7 @@ public final class CustomUserFederationState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param realmId The realm that this provider will provide user federation for.
+         * @param realmId The realm (name) this provider will provide user federation for.
          * 
          * @return builder
          * 

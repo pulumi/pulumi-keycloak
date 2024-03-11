@@ -17,9 +17,9 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * !&gt; **WARNING:** This resource is deprecated and will be removed in the next major version. Please use `keycloak.GenericProtocolMapper` instead.
+ * ## # keycloak.GenericClientProtocolMapper
  * 
- * Allows for creating and managing protocol mappers for both types of clients (openid-connect and saml) within Keycloak.
+ * Allows for creating and managing protocol mapper for both types of clients (openid-connect and saml) within Keycloak.
  * 
  * There are two uses cases for using this resource:
  * * If you implemented a custom protocol mapper, this resource can be used to configure it
@@ -28,7 +28,9 @@ import javax.annotation.Nullable;
  * Due to the generic nature of this mapper, it is less user-friendly and more prone to configuration errors.
  * Therefore, if possible, a specific mapper should be used.
  * 
- * ## Example Usage
+ * ### Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -55,56 +57,63 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
  *             .enabled(true)
+ *             .realm(&#34;my-realm&#34;)
  *             .build());
  * 
  *         var samlClient = new Client(&#34;samlClient&#34;, ClientArgs.builder()        
- *             .realmId(realm.id())
  *             .clientId(&#34;test-client&#34;)
+ *             .realmId(realm.id())
  *             .build());
  * 
  *         var samlHardcodeAttributeMapper = new GenericClientProtocolMapper(&#34;samlHardcodeAttributeMapper&#34;, GenericClientProtocolMapperArgs.builder()        
- *             .realmId(realm.id())
  *             .clientId(samlClient.id())
- *             .protocol(&#34;saml&#34;)
- *             .protocolMapper(&#34;saml-hardcode-attribute-mapper&#34;)
  *             .config(Map.ofEntries(
  *                 Map.entry(&#34;attribute.name&#34;, &#34;name&#34;),
  *                 Map.entry(&#34;attribute.nameformat&#34;, &#34;Basic&#34;),
  *                 Map.entry(&#34;attribute.value&#34;, &#34;value&#34;),
  *                 Map.entry(&#34;friendly.name&#34;, &#34;display name&#34;)
  *             ))
+ *             .protocol(&#34;saml&#34;)
+ *             .protocolMapper(&#34;saml-hardcode-attribute-mapper&#34;)
+ *             .realmId(realm.id())
  *             .build());
  * 
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * ## Import
+ * ### Argument Reference
+ * 
+ * The following arguments are supported:
+ * 
+ * - `realm_id` - (Required) The realm this protocol mapper exists within.
+ * - `client_id` - (Required) The client this protocol mapper is attached to.
+ * - `name` - (Required) The display name of this protocol mapper in the GUI.
+ * - `protocol` - (Required) The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
+ * - `protocol_mapper` - (Required) The name of the protocol mapper. The protocol mapper must be
+ *    compatible with the specified client.
+ * - `config` - (Required) A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
+ * 
+ * ### Import
  * 
  * Protocol mappers can be imported using the following format: `{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}`
  * 
- *  Example:
- * 
- *  bash
- * 
- * ```sh
- * $ pulumi import keycloak:index/genericClientProtocolMapper:GenericClientProtocolMapper saml_hardcode_attribute_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
- * ```
+ * Example:
  * 
  */
 @ResourceType(type="keycloak:index/genericClientProtocolMapper:GenericClientProtocolMapper")
 public class GenericClientProtocolMapper extends com.pulumi.resources.CustomResource {
     /**
-     * The client this protocol mapper is attached to.
+     * The mapper&#39;s associated client. Cannot be used at the same time as client_scope_id.
      * 
      */
     @Export(name="clientId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientId;
 
     /**
-     * @return The client this protocol mapper is attached to.
+     * @return The mapper&#39;s associated client. Cannot be used at the same time as client_scope_id.
      * 
      */
     public Output<Optional<String>> clientId() {
@@ -124,71 +133,63 @@ public class GenericClientProtocolMapper extends com.pulumi.resources.CustomReso
     public Output<Optional<String>> clientScopeId() {
         return Codegen.optional(this.clientScopeId);
     }
-    /**
-     * A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
-     * 
-     */
     @Export(name="config", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
     private Output<Map<String,Object>> config;
 
-    /**
-     * @return A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
-     * 
-     */
     public Output<Map<String,Object>> config() {
         return this.config;
     }
     /**
-     * The display name of this protocol mapper in the GUI.
+     * A human-friendly name that will appear in the Keycloak console.
      * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
-     * @return The display name of this protocol mapper in the GUI.
+     * @return A human-friendly name that will appear in the Keycloak console.
      * 
      */
     public Output<String> name() {
         return this.name;
     }
     /**
-     * The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
+     * The protocol of the client (openid-connect / saml).
      * 
      */
     @Export(name="protocol", refs={String.class}, tree="[0]")
     private Output<String> protocol;
 
     /**
-     * @return The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
+     * @return The protocol of the client (openid-connect / saml).
      * 
      */
     public Output<String> protocol() {
         return this.protocol;
     }
     /**
-     * The name of the protocol mapper. The protocol mapper must be compatible with the specified client.
+     * The type of the protocol mapper.
      * 
      */
     @Export(name="protocolMapper", refs={String.class}, tree="[0]")
     private Output<String> protocolMapper;
 
     /**
-     * @return The name of the protocol mapper. The protocol mapper must be compatible with the specified client.
+     * @return The type of the protocol mapper.
      * 
      */
     public Output<String> protocolMapper() {
         return this.protocolMapper;
     }
     /**
-     * The realm this protocol mapper exists within.
+     * The realm id where the associated client or client scope exists.
      * 
      */
     @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**
-     * @return The realm this protocol mapper exists within.
+     * @return The realm id where the associated client or client scope exists.
      * 
      */
     public Output<String> realmId() {

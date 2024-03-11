@@ -16,13 +16,18 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Allows for creating and managing audience protocol mappers within Keycloak.
+ * ## # keycloak.openid.AudienceProtocolMapper
  * 
- * Audience protocol mappers allow you add audiences to the `aud` claim within issued tokens. The audience can be a custom
- * string, or it can be mapped to the ID of a pre-existing client.
+ * Allows for creating and managing audience protocol mappers within
+ * Keycloak. This mapper was added in Keycloak v4.6.0.Final.
  * 
- * ## Example Usage
- * ### Client)
+ * Audience protocol mappers allow you add audiences to the `aud` claim
+ * within issued tokens. The audience can be a custom string, or it can be
+ * mapped to the ID of a pre-existing client.
+ * 
+ * ### Example Usage (Client)
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -49,28 +54,32 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
  *             .enabled(true)
+ *             .realm(&#34;my-realm&#34;)
  *             .build());
  * 
  *         var openidClient = new Client(&#34;openidClient&#34;, ClientArgs.builder()        
- *             .realmId(realm.id())
- *             .clientId(&#34;client&#34;)
- *             .enabled(true)
  *             .accessType(&#34;CONFIDENTIAL&#34;)
+ *             .clientId(&#34;test-client&#34;)
+ *             .enabled(true)
+ *             .realmId(realm.id())
  *             .validRedirectUris(&#34;http://localhost:8080/openid-callback&#34;)
  *             .build());
  * 
  *         var audienceMapper = new AudienceProtocolMapper(&#34;audienceMapper&#34;, AudienceProtocolMapperArgs.builder()        
- *             .realmId(realm.id())
  *             .clientId(openidClient.id())
  *             .includedCustomAudience(&#34;foo&#34;)
+ *             .realmId(realm.id())
  *             .build());
  * 
  *     }
  * }
  * ```
- * ### Client Scope)
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * ### Example Usage (Client Scope)
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -97,8 +106,8 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
  *             .enabled(true)
+ *             .realm(&#34;my-realm&#34;)
  *             .build());
  * 
  *         var clientScope = new ClientScope(&#34;clientScope&#34;, ClientScopeArgs.builder()        
@@ -106,145 +115,147 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var audienceMapper = new AudienceProtocolMapper(&#34;audienceMapper&#34;, AudienceProtocolMapperArgs.builder()        
- *             .realmId(realm.id())
  *             .clientScopeId(clientScope.id())
  *             .includedCustomAudience(&#34;foo&#34;)
+ *             .realmId(realm.id())
  *             .build());
  * 
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * ## Import
+ * ### Argument Reference
+ * 
+ * The following arguments are supported:
+ * 
+ * - `realm_id` - (Required) The realm this protocol mapper exists within.
+ * - `client_id` - (Required if `client_scope_id` is not specified) The client this protocol mapper is attached to.
+ * - `client_scope_id` - (Required if `client_id` is not specified) The client scope this protocol mapper is attached to.
+ * - `name` - (Required) The display name of this protocol mapper in the GUI.
+ * - `included_client_audience` - (Required if `included_custom_audience` is not specified) A client ID to include within the token&#39;s `aud` claim.
+ * - `included_custom_audience` - (Required if `included_client_audience` is not specified) A custom audience to include within the token&#39;s `aud` claim.
+ * - `add_to_id_token` - (Optional) Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
+ * - `add_to_access_token` - (Optional) Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
+ * 
+ * ### Import
  * 
  * Protocol mappers can be imported using one of the following formats:
+ * - Client: `{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}`
+ * - Client Scope: `{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}`
  * 
- *  - Client: `{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}`
- * 
- *  - Client Scope: `{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}`
- * 
- *  Example:
- * 
- *  bash
- * 
- * ```sh
- * $ pulumi import keycloak:openid/audienceProtocolMapper:AudienceProtocolMapper audience_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
- * ```
- * 
- * ```sh
- * $ pulumi import keycloak:openid/audienceProtocolMapper:AudienceProtocolMapper audience_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
- * ```
+ * Example:
  * 
  */
 @ResourceType(type="keycloak:openid/audienceProtocolMapper:AudienceProtocolMapper")
 public class AudienceProtocolMapper extends com.pulumi.resources.CustomResource {
     /**
-     * Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
+     * Indicates if this claim should be added to the access token.
      * 
      */
     @Export(name="addToAccessToken", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> addToAccessToken;
 
     /**
-     * @return Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
+     * @return Indicates if this claim should be added to the access token.
      * 
      */
     public Output<Optional<Boolean>> addToAccessToken() {
         return Codegen.optional(this.addToAccessToken);
     }
     /**
-     * Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
+     * Indicates if this claim should be added to the id token.
      * 
      */
     @Export(name="addToIdToken", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> addToIdToken;
 
     /**
-     * @return Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
+     * @return Indicates if this claim should be added to the id token.
      * 
      */
     public Output<Optional<Boolean>> addToIdToken() {
         return Codegen.optional(this.addToIdToken);
     }
     /**
-     * The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+     * The mapper&#39;s associated client. Cannot be used at the same time as client_scope_id.
      * 
      */
     @Export(name="clientId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientId;
 
     /**
-     * @return The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+     * @return The mapper&#39;s associated client. Cannot be used at the same time as client_scope_id.
      * 
      */
     public Output<Optional<String>> clientId() {
         return Codegen.optional(this.clientId);
     }
     /**
-     * The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+     * The mapper&#39;s associated client scope. Cannot be used at the same time as client_id.
      * 
      */
     @Export(name="clientScopeId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientScopeId;
 
     /**
-     * @return The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+     * @return The mapper&#39;s associated client scope. Cannot be used at the same time as client_id.
      * 
      */
     public Output<Optional<String>> clientScopeId() {
         return Codegen.optional(this.clientScopeId);
     }
     /**
-     * A client ID to include within the token&#39;s `aud` claim. Conflicts with `included_custom_audience`. One of `included_client_audience` or `included_custom_audience` must be specified.
+     * A client ID to include within the token&#39;s `aud` claim. Cannot be used with included_custom_audience
      * 
      */
     @Export(name="includedClientAudience", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> includedClientAudience;
 
     /**
-     * @return A client ID to include within the token&#39;s `aud` claim. Conflicts with `included_custom_audience`. One of `included_client_audience` or `included_custom_audience` must be specified.
+     * @return A client ID to include within the token&#39;s `aud` claim. Cannot be used with included_custom_audience
      * 
      */
     public Output<Optional<String>> includedClientAudience() {
         return Codegen.optional(this.includedClientAudience);
     }
     /**
-     * A custom audience to include within the token&#39;s `aud` claim. Conflicts with `included_client_audience`. One of `included_client_audience` or `included_custom_audience` must be specified.
+     * A custom audience to include within the token&#39;s `aud` claim. Cannot be used with included_custom_audience
      * 
      */
     @Export(name="includedCustomAudience", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> includedCustomAudience;
 
     /**
-     * @return A custom audience to include within the token&#39;s `aud` claim. Conflicts with `included_client_audience`. One of `included_client_audience` or `included_custom_audience` must be specified.
+     * @return A custom audience to include within the token&#39;s `aud` claim. Cannot be used with included_custom_audience
      * 
      */
     public Output<Optional<String>> includedCustomAudience() {
         return Codegen.optional(this.includedCustomAudience);
     }
     /**
-     * The display name of this protocol mapper in the GUI.
+     * A human-friendly name that will appear in the Keycloak console.
      * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
-     * @return The display name of this protocol mapper in the GUI.
+     * @return A human-friendly name that will appear in the Keycloak console.
      * 
      */
     public Output<String> name() {
         return this.name;
     }
     /**
-     * The realm this protocol mapper exists within.
+     * The realm id where the associated client or client scope exists.
      * 
      */
     @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**
-     * @return The realm this protocol mapper exists within.
+     * @return The realm id where the associated client or client scope exists.
      * 
      */
     public Output<String> realmId() {

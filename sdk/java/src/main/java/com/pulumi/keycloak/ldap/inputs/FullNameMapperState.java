@@ -16,30 +16,22 @@ public final class FullNameMapperState extends com.pulumi.resources.ResourceArgs
 
     public static final FullNameMapperState Empty = new FullNameMapperState();
 
-    /**
-     * The name of the LDAP attribute containing the user&#39;s full name.
-     * 
-     */
     @Import(name="ldapFullNameAttribute")
     private @Nullable Output<String> ldapFullNameAttribute;
 
-    /**
-     * @return The name of the LDAP attribute containing the user&#39;s full name.
-     * 
-     */
     public Optional<Output<String>> ldapFullNameAttribute() {
         return Optional.ofNullable(this.ldapFullNameAttribute);
     }
 
     /**
-     * The ID of the LDAP user federation provider to attach this mapper to.
+     * The ldap user federation provider to attach this mapper to.
      * 
      */
     @Import(name="ldapUserFederationId")
     private @Nullable Output<String> ldapUserFederationId;
 
     /**
-     * @return The ID of the LDAP user federation provider to attach this mapper to.
+     * @return The ldap user federation provider to attach this mapper to.
      * 
      */
     public Optional<Output<String>> ldapUserFederationId() {
@@ -47,61 +39,45 @@ public final class FullNameMapperState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Display name of this mapper when displayed in the console.
+     * Display name of the mapper when displayed in the console.
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return Display name of this mapper when displayed in the console.
+     * @return Display name of the mapper when displayed in the console.
      * 
      */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
     }
 
-    /**
-     * When `true`, updates to a user within Keycloak will not be written back to LDAP. Defaults to `false`.
-     * 
-     */
     @Import(name="readOnly")
     private @Nullable Output<Boolean> readOnly;
 
-    /**
-     * @return When `true`, updates to a user within Keycloak will not be written back to LDAP. Defaults to `false`.
-     * 
-     */
     public Optional<Output<Boolean>> readOnly() {
         return Optional.ofNullable(this.readOnly);
     }
 
     /**
-     * The realm that this LDAP mapper will exist in.
+     * The realm in which the ldap user federation provider exists.
      * 
      */
     @Import(name="realmId")
     private @Nullable Output<String> realmId;
 
     /**
-     * @return The realm that this LDAP mapper will exist in.
+     * @return The realm in which the ldap user federation provider exists.
      * 
      */
     public Optional<Output<String>> realmId() {
         return Optional.ofNullable(this.realmId);
     }
 
-    /**
-     * When `true`, this mapper will only be used to write updates to LDAP. Defaults to `false`.
-     * 
-     */
     @Import(name="writeOnly")
     private @Nullable Output<Boolean> writeOnly;
 
-    /**
-     * @return When `true`, this mapper will only be used to write updates to LDAP. Defaults to `false`.
-     * 
-     */
     public Optional<Output<Boolean>> writeOnly() {
         return Optional.ofNullable(this.writeOnly);
     }
@@ -135,29 +111,17 @@ public final class FullNameMapperState extends com.pulumi.resources.ResourceArgs
             $ = new FullNameMapperState(Objects.requireNonNull(defaults));
         }
 
-        /**
-         * @param ldapFullNameAttribute The name of the LDAP attribute containing the user&#39;s full name.
-         * 
-         * @return builder
-         * 
-         */
         public Builder ldapFullNameAttribute(@Nullable Output<String> ldapFullNameAttribute) {
             $.ldapFullNameAttribute = ldapFullNameAttribute;
             return this;
         }
 
-        /**
-         * @param ldapFullNameAttribute The name of the LDAP attribute containing the user&#39;s full name.
-         * 
-         * @return builder
-         * 
-         */
         public Builder ldapFullNameAttribute(String ldapFullNameAttribute) {
             return ldapFullNameAttribute(Output.of(ldapFullNameAttribute));
         }
 
         /**
-         * @param ldapUserFederationId The ID of the LDAP user federation provider to attach this mapper to.
+         * @param ldapUserFederationId The ldap user federation provider to attach this mapper to.
          * 
          * @return builder
          * 
@@ -168,7 +132,7 @@ public final class FullNameMapperState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param ldapUserFederationId The ID of the LDAP user federation provider to attach this mapper to.
+         * @param ldapUserFederationId The ldap user federation provider to attach this mapper to.
          * 
          * @return builder
          * 
@@ -178,7 +142,7 @@ public final class FullNameMapperState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param name Display name of this mapper when displayed in the console.
+         * @param name Display name of the mapper when displayed in the console.
          * 
          * @return builder
          * 
@@ -189,7 +153,7 @@ public final class FullNameMapperState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param name Display name of this mapper when displayed in the console.
+         * @param name Display name of the mapper when displayed in the console.
          * 
          * @return builder
          * 
@@ -198,29 +162,17 @@ public final class FullNameMapperState extends com.pulumi.resources.ResourceArgs
             return name(Output.of(name));
         }
 
-        /**
-         * @param readOnly When `true`, updates to a user within Keycloak will not be written back to LDAP. Defaults to `false`.
-         * 
-         * @return builder
-         * 
-         */
         public Builder readOnly(@Nullable Output<Boolean> readOnly) {
             $.readOnly = readOnly;
             return this;
         }
 
-        /**
-         * @param readOnly When `true`, updates to a user within Keycloak will not be written back to LDAP. Defaults to `false`.
-         * 
-         * @return builder
-         * 
-         */
         public Builder readOnly(Boolean readOnly) {
             return readOnly(Output.of(readOnly));
         }
 
         /**
-         * @param realmId The realm that this LDAP mapper will exist in.
+         * @param realmId The realm in which the ldap user federation provider exists.
          * 
          * @return builder
          * 
@@ -231,7 +183,7 @@ public final class FullNameMapperState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param realmId The realm that this LDAP mapper will exist in.
+         * @param realmId The realm in which the ldap user federation provider exists.
          * 
          * @return builder
          * 
@@ -240,23 +192,11 @@ public final class FullNameMapperState extends com.pulumi.resources.ResourceArgs
             return realmId(Output.of(realmId));
         }
 
-        /**
-         * @param writeOnly When `true`, this mapper will only be used to write updates to LDAP. Defaults to `false`.
-         * 
-         * @return builder
-         * 
-         */
         public Builder writeOnly(@Nullable Output<Boolean> writeOnly) {
             $.writeOnly = writeOnly;
             return this;
         }
 
-        /**
-         * @param writeOnly When `true`, this mapper will only be used to write updates to LDAP. Defaults to `false`.
-         * 
-         * @return builder
-         * 
-         */
         public Builder writeOnly(Boolean writeOnly) {
             return writeOnly(Output.of(writeOnly));
         }

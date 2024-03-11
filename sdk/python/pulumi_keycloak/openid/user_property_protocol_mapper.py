@@ -26,16 +26,14 @@ class UserPropertyProtocolMapperArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a UserPropertyProtocolMapper resource.
-        :param pulumi.Input[str] claim_name: The name of the claim to insert into a token.
-        :param pulumi.Input[str] realm_id: The realm this protocol mapper exists within.
-        :param pulumi.Input[str] user_property: The built in user property (such as email) to map a claim for.
-        :param pulumi.Input[bool] add_to_access_token: Indicates if the property should be added as a claim to the access token. Defaults to `true`.
-        :param pulumi.Input[bool] add_to_id_token: Indicates if the property should be added as a claim to the id token. Defaults to `true`.
-        :param pulumi.Input[bool] add_to_userinfo: Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
-        :param pulumi.Input[str] claim_value_type: The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
-        :param pulumi.Input[str] client_id: The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
-        :param pulumi.Input[str] client_scope_id: The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified. `client_scope_id` - (Required if `client_id` is not specified) The client scope this protocol mapper is attached to.
-        :param pulumi.Input[str] name: The display name of this protocol mapper in the GUI.
+        :param pulumi.Input[str] realm_id: The realm id where the associated client or client scope exists.
+        :param pulumi.Input[bool] add_to_access_token: Indicates if the property should be a claim in the access token.
+        :param pulumi.Input[bool] add_to_id_token: Indicates if the property should be a claim in the id token.
+        :param pulumi.Input[bool] add_to_userinfo: Indicates if the property should appear in the userinfo response body.
+        :param pulumi.Input[str] claim_value_type: Claim type used when serializing tokens.
+        :param pulumi.Input[str] client_id: The mapper's associated client. Cannot be used at the same time as client_scope_id.
+        :param pulumi.Input[str] client_scope_id: The mapper's associated client scope. Cannot be used at the same time as client_id.
+        :param pulumi.Input[str] name: A human-friendly name that will appear in the Keycloak console.
         """
         pulumi.set(__self__, "claim_name", claim_name)
         pulumi.set(__self__, "realm_id", realm_id)
@@ -58,9 +56,6 @@ class UserPropertyProtocolMapperArgs:
     @property
     @pulumi.getter(name="claimName")
     def claim_name(self) -> pulumi.Input[str]:
-        """
-        The name of the claim to insert into a token.
-        """
         return pulumi.get(self, "claim_name")
 
     @claim_name.setter
@@ -71,7 +66,7 @@ class UserPropertyProtocolMapperArgs:
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Input[str]:
         """
-        The realm this protocol mapper exists within.
+        The realm id where the associated client or client scope exists.
         """
         return pulumi.get(self, "realm_id")
 
@@ -82,9 +77,6 @@ class UserPropertyProtocolMapperArgs:
     @property
     @pulumi.getter(name="userProperty")
     def user_property(self) -> pulumi.Input[str]:
-        """
-        The built in user property (such as email) to map a claim for.
-        """
         return pulumi.get(self, "user_property")
 
     @user_property.setter
@@ -95,7 +87,7 @@ class UserPropertyProtocolMapperArgs:
     @pulumi.getter(name="addToAccessToken")
     def add_to_access_token(self) -> Optional[pulumi.Input[bool]]:
         """
-        Indicates if the property should be added as a claim to the access token. Defaults to `true`.
+        Indicates if the property should be a claim in the access token.
         """
         return pulumi.get(self, "add_to_access_token")
 
@@ -107,7 +99,7 @@ class UserPropertyProtocolMapperArgs:
     @pulumi.getter(name="addToIdToken")
     def add_to_id_token(self) -> Optional[pulumi.Input[bool]]:
         """
-        Indicates if the property should be added as a claim to the id token. Defaults to `true`.
+        Indicates if the property should be a claim in the id token.
         """
         return pulumi.get(self, "add_to_id_token")
 
@@ -119,7 +111,7 @@ class UserPropertyProtocolMapperArgs:
     @pulumi.getter(name="addToUserinfo")
     def add_to_userinfo(self) -> Optional[pulumi.Input[bool]]:
         """
-        Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
+        Indicates if the property should appear in the userinfo response body.
         """
         return pulumi.get(self, "add_to_userinfo")
 
@@ -131,7 +123,7 @@ class UserPropertyProtocolMapperArgs:
     @pulumi.getter(name="claimValueType")
     def claim_value_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
+        Claim type used when serializing tokens.
         """
         return pulumi.get(self, "claim_value_type")
 
@@ -143,7 +135,7 @@ class UserPropertyProtocolMapperArgs:
     @pulumi.getter(name="clientId")
     def client_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+        The mapper's associated client. Cannot be used at the same time as client_scope_id.
         """
         return pulumi.get(self, "client_id")
 
@@ -155,7 +147,7 @@ class UserPropertyProtocolMapperArgs:
     @pulumi.getter(name="clientScopeId")
     def client_scope_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified. `client_scope_id` - (Required if `client_id` is not specified) The client scope this protocol mapper is attached to.
+        The mapper's associated client scope. Cannot be used at the same time as client_id.
         """
         return pulumi.get(self, "client_scope_id")
 
@@ -167,7 +159,7 @@ class UserPropertyProtocolMapperArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The display name of this protocol mapper in the GUI.
+        A human-friendly name that will appear in the Keycloak console.
         """
         return pulumi.get(self, "name")
 
@@ -191,16 +183,14 @@ class _UserPropertyProtocolMapperState:
                  user_property: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering UserPropertyProtocolMapper resources.
-        :param pulumi.Input[bool] add_to_access_token: Indicates if the property should be added as a claim to the access token. Defaults to `true`.
-        :param pulumi.Input[bool] add_to_id_token: Indicates if the property should be added as a claim to the id token. Defaults to `true`.
-        :param pulumi.Input[bool] add_to_userinfo: Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
-        :param pulumi.Input[str] claim_name: The name of the claim to insert into a token.
-        :param pulumi.Input[str] claim_value_type: The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
-        :param pulumi.Input[str] client_id: The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
-        :param pulumi.Input[str] client_scope_id: The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified. `client_scope_id` - (Required if `client_id` is not specified) The client scope this protocol mapper is attached to.
-        :param pulumi.Input[str] name: The display name of this protocol mapper in the GUI.
-        :param pulumi.Input[str] realm_id: The realm this protocol mapper exists within.
-        :param pulumi.Input[str] user_property: The built in user property (such as email) to map a claim for.
+        :param pulumi.Input[bool] add_to_access_token: Indicates if the property should be a claim in the access token.
+        :param pulumi.Input[bool] add_to_id_token: Indicates if the property should be a claim in the id token.
+        :param pulumi.Input[bool] add_to_userinfo: Indicates if the property should appear in the userinfo response body.
+        :param pulumi.Input[str] claim_value_type: Claim type used when serializing tokens.
+        :param pulumi.Input[str] client_id: The mapper's associated client. Cannot be used at the same time as client_scope_id.
+        :param pulumi.Input[str] client_scope_id: The mapper's associated client scope. Cannot be used at the same time as client_id.
+        :param pulumi.Input[str] name: A human-friendly name that will appear in the Keycloak console.
+        :param pulumi.Input[str] realm_id: The realm id where the associated client or client scope exists.
         """
         if add_to_access_token is not None:
             pulumi.set(__self__, "add_to_access_token", add_to_access_token)
@@ -227,7 +217,7 @@ class _UserPropertyProtocolMapperState:
     @pulumi.getter(name="addToAccessToken")
     def add_to_access_token(self) -> Optional[pulumi.Input[bool]]:
         """
-        Indicates if the property should be added as a claim to the access token. Defaults to `true`.
+        Indicates if the property should be a claim in the access token.
         """
         return pulumi.get(self, "add_to_access_token")
 
@@ -239,7 +229,7 @@ class _UserPropertyProtocolMapperState:
     @pulumi.getter(name="addToIdToken")
     def add_to_id_token(self) -> Optional[pulumi.Input[bool]]:
         """
-        Indicates if the property should be added as a claim to the id token. Defaults to `true`.
+        Indicates if the property should be a claim in the id token.
         """
         return pulumi.get(self, "add_to_id_token")
 
@@ -251,7 +241,7 @@ class _UserPropertyProtocolMapperState:
     @pulumi.getter(name="addToUserinfo")
     def add_to_userinfo(self) -> Optional[pulumi.Input[bool]]:
         """
-        Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
+        Indicates if the property should appear in the userinfo response body.
         """
         return pulumi.get(self, "add_to_userinfo")
 
@@ -262,9 +252,6 @@ class _UserPropertyProtocolMapperState:
     @property
     @pulumi.getter(name="claimName")
     def claim_name(self) -> Optional[pulumi.Input[str]]:
-        """
-        The name of the claim to insert into a token.
-        """
         return pulumi.get(self, "claim_name")
 
     @claim_name.setter
@@ -275,7 +262,7 @@ class _UserPropertyProtocolMapperState:
     @pulumi.getter(name="claimValueType")
     def claim_value_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
+        Claim type used when serializing tokens.
         """
         return pulumi.get(self, "claim_value_type")
 
@@ -287,7 +274,7 @@ class _UserPropertyProtocolMapperState:
     @pulumi.getter(name="clientId")
     def client_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+        The mapper's associated client. Cannot be used at the same time as client_scope_id.
         """
         return pulumi.get(self, "client_id")
 
@@ -299,7 +286,7 @@ class _UserPropertyProtocolMapperState:
     @pulumi.getter(name="clientScopeId")
     def client_scope_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified. `client_scope_id` - (Required if `client_id` is not specified) The client scope this protocol mapper is attached to.
+        The mapper's associated client scope. Cannot be used at the same time as client_id.
         """
         return pulumi.get(self, "client_scope_id")
 
@@ -311,7 +298,7 @@ class _UserPropertyProtocolMapperState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The display name of this protocol mapper in the GUI.
+        A human-friendly name that will appear in the Keycloak console.
         """
         return pulumi.get(self, "name")
 
@@ -323,7 +310,7 @@ class _UserPropertyProtocolMapperState:
     @pulumi.getter(name="realmId")
     def realm_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The realm this protocol mapper exists within.
+        The realm id where the associated client or client scope exists.
         """
         return pulumi.get(self, "realm_id")
 
@@ -334,9 +321,6 @@ class _UserPropertyProtocolMapperState:
     @property
     @pulumi.getter(name="userProperty")
     def user_property(self) -> Optional[pulumi.Input[str]]:
-        """
-        The built in user property (such as email) to map a claim for.
-        """
         return pulumi.get(self, "user_property")
 
     @user_property.setter
@@ -361,85 +345,92 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
                  user_property: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Allows for creating and managing user property protocol mappers within Keycloak.
+        ## # openid.UserPropertyProtocolMapper
 
-        User property protocol mappers allow you to map built in properties defined on the Keycloak user interface to a claim in
-        a token.
+        Allows for creating and managing user property protocol mappers within
+        Keycloak.
 
-        Protocol mappers can be defined for a single client, or they can be defined for a client scope which can be shared between
-        multiple different clients.
+        User property protocol mappers allow you to map built in properties defined
+        on the Keycloak user interface to a claim in a token. Protocol mappers can be
+        defined for a single client, or they can be defined for a client scope which
+        can be shared between multiple different clients.
 
-        ## Example Usage
-        ### Client)
+        ### Example Usage (Client)
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
-        openid_client = keycloak.openid.Client("openidClient",
-            realm_id=realm.id,
-            client_id="client",
             enabled=True,
+            realm="my-realm")
+        openid_client = keycloak.openid.Client("openidClient",
             access_type="CONFIDENTIAL",
+            client_id="test-client",
+            enabled=True,
+            realm_id=realm.id,
             valid_redirect_uris=["http://localhost:8080/openid-callback"])
         user_property_mapper = keycloak.openid.UserPropertyProtocolMapper("userPropertyMapper",
-            realm_id=realm.id,
+            claim_name="email",
             client_id=openid_client.id,
-            user_property="email",
-            claim_name="email")
+            realm_id=realm.id,
+            user_property="email")
         ```
-        ### Client Scope)
+        <!--End PulumiCodeChooser -->
 
+        ### Example Usage (Client Scope)
+
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
+            enabled=True,
+            realm="my-realm")
         client_scope = keycloak.openid.ClientScope("clientScope", realm_id=realm.id)
         user_property_mapper = keycloak.openid.UserPropertyProtocolMapper("userPropertyMapper",
-            realm_id=realm.id,
+            claim_name="email",
             client_scope_id=client_scope.id,
-            user_property="email",
-            claim_name="email")
+            realm_id=realm.id,
+            user_property="email")
         ```
+        <!--End PulumiCodeChooser -->
 
-        ## Import
+        ### Argument Reference
+
+        The following arguments are supported:
+
+        - `realm_id` - (Required) The realm this protocol mapper exists within.
+        - `client_id` - (Required if `client_scope_id` is not specified) The client this protocol mapper is attached to.
+        - `client_scope_id` - (Required if `client_id` is not specified) The client scope this protocol mapper is attached to.
+        - `name` - (Required) The display name of this protocol mapper in the GUI.
+        - `user_property` - (Required) The built in user property (such as email) to map a claim for.
+        - `claim_name` - (Required) The name of the claim to insert into a token.
+        - `claim_value_type` - (Optional) The claim type used when serializing JSON tokens. Can be one of `String`, `long`, `int`, or `boolean`. Defaults to `String`.
+        - `add_to_id_token` - (Optional) Indicates if the property should be added as a claim to the id token. Defaults to `true`.
+        - `add_to_access_token` - (Optional) Indicates if the property should be added as a claim to the access token. Defaults to `true`.
+        - `add_to_userinfo` - (Optional) Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
+
+        ### Import
 
         Protocol mappers can be imported using one of the following formats:
+        - Client: `{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}`
+        - Client Scope: `{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}`
 
-         - Client: `{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}`
-
-         - Client Scope: `{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}`
-
-         Example:
-
-         bash
-
-        ```sh
-        $ pulumi import keycloak:openid/userPropertyProtocolMapper:UserPropertyProtocolMapper user_property_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
-        ```
-
-        ```sh
-        $ pulumi import keycloak:openid/userPropertyProtocolMapper:UserPropertyProtocolMapper user_property_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
-        ```
+        Example:
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] add_to_access_token: Indicates if the property should be added as a claim to the access token. Defaults to `true`.
-        :param pulumi.Input[bool] add_to_id_token: Indicates if the property should be added as a claim to the id token. Defaults to `true`.
-        :param pulumi.Input[bool] add_to_userinfo: Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
-        :param pulumi.Input[str] claim_name: The name of the claim to insert into a token.
-        :param pulumi.Input[str] claim_value_type: The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
-        :param pulumi.Input[str] client_id: The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
-        :param pulumi.Input[str] client_scope_id: The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified. `client_scope_id` - (Required if `client_id` is not specified) The client scope this protocol mapper is attached to.
-        :param pulumi.Input[str] name: The display name of this protocol mapper in the GUI.
-        :param pulumi.Input[str] realm_id: The realm this protocol mapper exists within.
-        :param pulumi.Input[str] user_property: The built in user property (such as email) to map a claim for.
+        :param pulumi.Input[bool] add_to_access_token: Indicates if the property should be a claim in the access token.
+        :param pulumi.Input[bool] add_to_id_token: Indicates if the property should be a claim in the id token.
+        :param pulumi.Input[bool] add_to_userinfo: Indicates if the property should appear in the userinfo response body.
+        :param pulumi.Input[str] claim_value_type: Claim type used when serializing tokens.
+        :param pulumi.Input[str] client_id: The mapper's associated client. Cannot be used at the same time as client_scope_id.
+        :param pulumi.Input[str] client_scope_id: The mapper's associated client scope. Cannot be used at the same time as client_id.
+        :param pulumi.Input[str] name: A human-friendly name that will appear in the Keycloak console.
+        :param pulumi.Input[str] realm_id: The realm id where the associated client or client scope exists.
         """
         ...
     @overload
@@ -448,72 +439,81 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
                  args: UserPropertyProtocolMapperArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Allows for creating and managing user property protocol mappers within Keycloak.
+        ## # openid.UserPropertyProtocolMapper
 
-        User property protocol mappers allow you to map built in properties defined on the Keycloak user interface to a claim in
-        a token.
+        Allows for creating and managing user property protocol mappers within
+        Keycloak.
 
-        Protocol mappers can be defined for a single client, or they can be defined for a client scope which can be shared between
-        multiple different clients.
+        User property protocol mappers allow you to map built in properties defined
+        on the Keycloak user interface to a claim in a token. Protocol mappers can be
+        defined for a single client, or they can be defined for a client scope which
+        can be shared between multiple different clients.
 
-        ## Example Usage
-        ### Client)
+        ### Example Usage (Client)
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
-        openid_client = keycloak.openid.Client("openidClient",
-            realm_id=realm.id,
-            client_id="client",
             enabled=True,
+            realm="my-realm")
+        openid_client = keycloak.openid.Client("openidClient",
             access_type="CONFIDENTIAL",
+            client_id="test-client",
+            enabled=True,
+            realm_id=realm.id,
             valid_redirect_uris=["http://localhost:8080/openid-callback"])
         user_property_mapper = keycloak.openid.UserPropertyProtocolMapper("userPropertyMapper",
-            realm_id=realm.id,
+            claim_name="email",
             client_id=openid_client.id,
-            user_property="email",
-            claim_name="email")
+            realm_id=realm.id,
+            user_property="email")
         ```
-        ### Client Scope)
+        <!--End PulumiCodeChooser -->
 
+        ### Example Usage (Client Scope)
+
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
+            enabled=True,
+            realm="my-realm")
         client_scope = keycloak.openid.ClientScope("clientScope", realm_id=realm.id)
         user_property_mapper = keycloak.openid.UserPropertyProtocolMapper("userPropertyMapper",
-            realm_id=realm.id,
+            claim_name="email",
             client_scope_id=client_scope.id,
-            user_property="email",
-            claim_name="email")
+            realm_id=realm.id,
+            user_property="email")
         ```
+        <!--End PulumiCodeChooser -->
 
-        ## Import
+        ### Argument Reference
+
+        The following arguments are supported:
+
+        - `realm_id` - (Required) The realm this protocol mapper exists within.
+        - `client_id` - (Required if `client_scope_id` is not specified) The client this protocol mapper is attached to.
+        - `client_scope_id` - (Required if `client_id` is not specified) The client scope this protocol mapper is attached to.
+        - `name` - (Required) The display name of this protocol mapper in the GUI.
+        - `user_property` - (Required) The built in user property (such as email) to map a claim for.
+        - `claim_name` - (Required) The name of the claim to insert into a token.
+        - `claim_value_type` - (Optional) The claim type used when serializing JSON tokens. Can be one of `String`, `long`, `int`, or `boolean`. Defaults to `String`.
+        - `add_to_id_token` - (Optional) Indicates if the property should be added as a claim to the id token. Defaults to `true`.
+        - `add_to_access_token` - (Optional) Indicates if the property should be added as a claim to the access token. Defaults to `true`.
+        - `add_to_userinfo` - (Optional) Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
+
+        ### Import
 
         Protocol mappers can be imported using one of the following formats:
+        - Client: `{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}`
+        - Client Scope: `{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}`
 
-         - Client: `{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}`
-
-         - Client Scope: `{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}`
-
-         Example:
-
-         bash
-
-        ```sh
-        $ pulumi import keycloak:openid/userPropertyProtocolMapper:UserPropertyProtocolMapper user_property_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
-        ```
-
-        ```sh
-        $ pulumi import keycloak:openid/userPropertyProtocolMapper:UserPropertyProtocolMapper user_property_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
-        ```
+        Example:
 
         :param str resource_name: The name of the resource.
         :param UserPropertyProtocolMapperArgs args: The arguments to use to populate this resource's properties.
@@ -592,16 +592,14 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] add_to_access_token: Indicates if the property should be added as a claim to the access token. Defaults to `true`.
-        :param pulumi.Input[bool] add_to_id_token: Indicates if the property should be added as a claim to the id token. Defaults to `true`.
-        :param pulumi.Input[bool] add_to_userinfo: Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
-        :param pulumi.Input[str] claim_name: The name of the claim to insert into a token.
-        :param pulumi.Input[str] claim_value_type: The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
-        :param pulumi.Input[str] client_id: The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
-        :param pulumi.Input[str] client_scope_id: The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified. `client_scope_id` - (Required if `client_id` is not specified) The client scope this protocol mapper is attached to.
-        :param pulumi.Input[str] name: The display name of this protocol mapper in the GUI.
-        :param pulumi.Input[str] realm_id: The realm this protocol mapper exists within.
-        :param pulumi.Input[str] user_property: The built in user property (such as email) to map a claim for.
+        :param pulumi.Input[bool] add_to_access_token: Indicates if the property should be a claim in the access token.
+        :param pulumi.Input[bool] add_to_id_token: Indicates if the property should be a claim in the id token.
+        :param pulumi.Input[bool] add_to_userinfo: Indicates if the property should appear in the userinfo response body.
+        :param pulumi.Input[str] claim_value_type: Claim type used when serializing tokens.
+        :param pulumi.Input[str] client_id: The mapper's associated client. Cannot be used at the same time as client_scope_id.
+        :param pulumi.Input[str] client_scope_id: The mapper's associated client scope. Cannot be used at the same time as client_id.
+        :param pulumi.Input[str] name: A human-friendly name that will appear in the Keycloak console.
+        :param pulumi.Input[str] realm_id: The realm id where the associated client or client scope exists.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -623,7 +621,7 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
     @pulumi.getter(name="addToAccessToken")
     def add_to_access_token(self) -> pulumi.Output[Optional[bool]]:
         """
-        Indicates if the property should be added as a claim to the access token. Defaults to `true`.
+        Indicates if the property should be a claim in the access token.
         """
         return pulumi.get(self, "add_to_access_token")
 
@@ -631,7 +629,7 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
     @pulumi.getter(name="addToIdToken")
     def add_to_id_token(self) -> pulumi.Output[Optional[bool]]:
         """
-        Indicates if the property should be added as a claim to the id token. Defaults to `true`.
+        Indicates if the property should be a claim in the id token.
         """
         return pulumi.get(self, "add_to_id_token")
 
@@ -639,23 +637,20 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
     @pulumi.getter(name="addToUserinfo")
     def add_to_userinfo(self) -> pulumi.Output[Optional[bool]]:
         """
-        Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
+        Indicates if the property should appear in the userinfo response body.
         """
         return pulumi.get(self, "add_to_userinfo")
 
     @property
     @pulumi.getter(name="claimName")
     def claim_name(self) -> pulumi.Output[str]:
-        """
-        The name of the claim to insert into a token.
-        """
         return pulumi.get(self, "claim_name")
 
     @property
     @pulumi.getter(name="claimValueType")
     def claim_value_type(self) -> pulumi.Output[Optional[str]]:
         """
-        The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
+        Claim type used when serializing tokens.
         """
         return pulumi.get(self, "claim_value_type")
 
@@ -663,7 +658,7 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
     @pulumi.getter(name="clientId")
     def client_id(self) -> pulumi.Output[Optional[str]]:
         """
-        The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+        The mapper's associated client. Cannot be used at the same time as client_scope_id.
         """
         return pulumi.get(self, "client_id")
 
@@ -671,7 +666,7 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
     @pulumi.getter(name="clientScopeId")
     def client_scope_id(self) -> pulumi.Output[Optional[str]]:
         """
-        The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified. `client_scope_id` - (Required if `client_id` is not specified) The client scope this protocol mapper is attached to.
+        The mapper's associated client scope. Cannot be used at the same time as client_id.
         """
         return pulumi.get(self, "client_scope_id")
 
@@ -679,7 +674,7 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The display name of this protocol mapper in the GUI.
+        A human-friendly name that will appear in the Keycloak console.
         """
         return pulumi.get(self, "name")
 
@@ -687,15 +682,12 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Output[str]:
         """
-        The realm this protocol mapper exists within.
+        The realm id where the associated client or client scope exists.
         """
         return pulumi.get(self, "realm_id")
 
     @property
     @pulumi.getter(name="userProperty")
     def user_property(self) -> pulumi.Output[str]:
-        """
-        The built in user property (such as email) to map a claim for.
-        """
         return pulumi.get(self, "user_property")
 

@@ -12,223 +12,75 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Allows for creating and managing Realms within Keycloak.
-//
-// A realm manages a logical collection of users, credentials, roles, and groups. Users log in to realms and can be federated
-// from multiple sources.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-//				AccessCodeLifespan: pulumi.String("1h"),
-//				Attributes: pulumi.Map{
-//					"mycustomAttribute": pulumi.Any("myCustomValue"),
-//				},
-//				DisplayName:     pulumi.String("my realm"),
-//				DisplayNameHtml: pulumi.String("<b>my realm</b>"),
-//				Enabled:         pulumi.Bool(true),
-//				Internationalization: &keycloak.RealmInternationalizationArgs{
-//					DefaultLocale: pulumi.String("en"),
-//					SupportedLocales: pulumi.StringArray{
-//						pulumi.String("en"),
-//						pulumi.String("de"),
-//						pulumi.String("es"),
-//					},
-//				},
-//				LoginTheme:     pulumi.String("base"),
-//				PasswordPolicy: pulumi.String("upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername"),
-//				Realm:          pulumi.String("my-realm"),
-//				SecurityDefenses: &keycloak.RealmSecurityDefensesArgs{
-//					BruteForceDetection: &keycloak.RealmSecurityDefensesBruteForceDetectionArgs{
-//						FailureResetTimeSeconds:      pulumi.Int(43200),
-//						MaxFailureWaitSeconds:        pulumi.Int(900),
-//						MaxLoginFailures:             pulumi.Int(30),
-//						MinimumQuickLoginWaitSeconds: pulumi.Int(60),
-//						PermanentLockout:             pulumi.Bool(false),
-//						QuickLoginCheckMilliSeconds:  pulumi.Int(1000),
-//						WaitIncrementSeconds:         pulumi.Int(60),
-//					},
-//					Headers: &keycloak.RealmSecurityDefensesHeadersArgs{
-//						ContentSecurityPolicy:           pulumi.String("frame-src 'self'; frame-ancestors 'self'; object-src 'none';"),
-//						ContentSecurityPolicyReportOnly: pulumi.String(""),
-//						StrictTransportSecurity:         pulumi.String("max-age=31536000; includeSubDomains"),
-//						XContentTypeOptions:             pulumi.String("nosniff"),
-//						XFrameOptions:                   pulumi.String("DENY"),
-//						XRobotsTag:                      pulumi.String("none"),
-//						XXssProtection:                  pulumi.String("1; mode=block"),
-//					},
-//				},
-//				SmtpServer: &keycloak.RealmSmtpServerArgs{
-//					Auth: &keycloak.RealmSmtpServerAuthArgs{
-//						Password: pulumi.String("password"),
-//						Username: pulumi.String("tom"),
-//					},
-//					From: pulumi.String("example@example.com"),
-//					Host: pulumi.String("smtp.example.com"),
-//				},
-//				SslRequired: pulumi.String("external"),
-//				WebAuthnPolicy: &keycloak.RealmWebAuthnPolicyArgs{
-//					RelyingPartyEntityName: pulumi.String("Example"),
-//					RelyingPartyId:         pulumi.String("keycloak.example.com"),
-//					SignatureAlgorithms: pulumi.StringArray{
-//						pulumi.String("ES256"),
-//						pulumi.String("RS256"),
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// ## Default Client Scopes
-//
-// - `defaultDefaultClientScopes` - (Optional) A list of default default client scopes to be used for client definitions. Defaults to `[]` or keycloak's built-in default default client-scopes.
-// - `defaultOptionalClientScopes` - (Optional) A list of default optional client scopes to be used for client definitions. Defaults to `[]` or keycloak's built-in default optional client-scopes.
-//
-// ## Import
-//
-// Realms can be imported using their name.
-//
-//	Example:
-//
-//	bash
-//
-// ```sh
-// $ pulumi import keycloak:index/realm:Realm realm my-realm
-// ```
 type Realm struct {
 	pulumi.CustomResourceState
 
-	// The maximum amount of time a client has to finish the authorization code flow.
-	AccessCodeLifespan pulumi.StringOutput `pulumi:"accessCodeLifespan"`
-	// The maximum amount of time a user is permitted to stay on the login page before the authentication process must be restarted.
-	AccessCodeLifespanLogin pulumi.StringOutput `pulumi:"accessCodeLifespanLogin"`
-	// The maximum amount of time a user has to complete login related actions, such as updating a password.
-	AccessCodeLifespanUserAction pulumi.StringOutput `pulumi:"accessCodeLifespanUserAction"`
-	// The amount of time an access token can be used before it expires.
-	AccessTokenLifespan pulumi.StringOutput `pulumi:"accessTokenLifespan"`
-	// The amount of time an access token issued with the OpenID Connect Implicit Flow can be used before it expires.
-	AccessTokenLifespanForImplicitFlow pulumi.StringOutput `pulumi:"accessTokenLifespanForImplicitFlow"`
-	// Used for account management pages.
-	AccountTheme pulumi.StringPtrOutput `pulumi:"accountTheme"`
-	// The maximum time a user has to use an admin-generated permit before it expires.
-	ActionTokenGeneratedByAdminLifespan pulumi.StringOutput `pulumi:"actionTokenGeneratedByAdminLifespan"`
-	// The maximum time a user has to use a user-generated permit before it expires.
-	ActionTokenGeneratedByUserLifespan pulumi.StringOutput `pulumi:"actionTokenGeneratedByUserLifespan"`
-	// Used for the admin console.
-	AdminTheme pulumi.StringPtrOutput `pulumi:"adminTheme"`
-	// A map of custom attributes to add to the realm.
-	Attributes pulumi.MapOutput `pulumi:"attributes"`
-	// The desired flow for browser authentication. Defaults to `browser`.
+	AccessCodeLifespan                  pulumi.StringOutput    `pulumi:"accessCodeLifespan"`
+	AccessCodeLifespanLogin             pulumi.StringOutput    `pulumi:"accessCodeLifespanLogin"`
+	AccessCodeLifespanUserAction        pulumi.StringOutput    `pulumi:"accessCodeLifespanUserAction"`
+	AccessTokenLifespan                 pulumi.StringOutput    `pulumi:"accessTokenLifespan"`
+	AccessTokenLifespanForImplicitFlow  pulumi.StringOutput    `pulumi:"accessTokenLifespanForImplicitFlow"`
+	AccountTheme                        pulumi.StringPtrOutput `pulumi:"accountTheme"`
+	ActionTokenGeneratedByAdminLifespan pulumi.StringOutput    `pulumi:"actionTokenGeneratedByAdminLifespan"`
+	ActionTokenGeneratedByUserLifespan  pulumi.StringOutput    `pulumi:"actionTokenGeneratedByUserLifespan"`
+	AdminTheme                          pulumi.StringPtrOutput `pulumi:"adminTheme"`
+	Attributes                          pulumi.MapOutput       `pulumi:"attributes"`
+	// Which flow should be used for BrowserFlow
 	BrowserFlow pulumi.StringOutput `pulumi:"browserFlow"`
-	// The desired flow for client authentication. Defaults to `clients`.
-	ClientAuthenticationFlow pulumi.StringOutput `pulumi:"clientAuthenticationFlow"`
-	// The amount of time a session can be idle before it expires. Users can override it for individual clients.
-	ClientSessionIdleTimeout pulumi.StringOutput `pulumi:"clientSessionIdleTimeout"`
-	// The maximum amount of time before a session expires regardless of activity. Users can override it for individual clients.
+	// Which flow should be used for ClientAuthenticationFlow
+	ClientAuthenticationFlow    pulumi.StringOutput      `pulumi:"clientAuthenticationFlow"`
+	ClientSessionIdleTimeout    pulumi.StringOutput      `pulumi:"clientSessionIdleTimeout"`
 	ClientSessionMaxLifespan    pulumi.StringOutput      `pulumi:"clientSessionMaxLifespan"`
 	DefaultDefaultClientScopes  pulumi.StringArrayOutput `pulumi:"defaultDefaultClientScopes"`
 	DefaultOptionalClientScopes pulumi.StringArrayOutput `pulumi:"defaultOptionalClientScopes"`
-	// Default algorithm used to sign tokens for the realm.
-	DefaultSignatureAlgorithm pulumi.StringPtrOutput `pulumi:"defaultSignatureAlgorithm"`
-	// The desired flow for direct access authentication. Defaults to `direct grant`.
-	DirectGrantFlow pulumi.StringOutput `pulumi:"directGrantFlow"`
-	// The display name for the realm that is shown when logging in to the admin console.
-	DisplayName pulumi.StringPtrOutput `pulumi:"displayName"`
-	// The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.
+	DefaultSignatureAlgorithm   pulumi.StringPtrOutput   `pulumi:"defaultSignatureAlgorithm"`
+	// Which flow should be used for DirectGrantFlow
+	DirectGrantFlow pulumi.StringOutput    `pulumi:"directGrantFlow"`
+	DisplayName     pulumi.StringPtrOutput `pulumi:"displayName"`
 	DisplayNameHtml pulumi.StringPtrOutput `pulumi:"displayNameHtml"`
-	// The desired flow for Docker authentication. Defaults to `docker auth`.
-	DockerAuthenticationFlow pulumi.StringOutput `pulumi:"dockerAuthenticationFlow"`
-	// When true, multiple users will be allowed to have the same email address. This argument must be set to `false` if `loginWithEmailAllowed` is set to `true`.
-	DuplicateEmailsAllowed pulumi.BoolOutput `pulumi:"duplicateEmailsAllowed"`
-	// When true, the username field is editable.
-	EditUsernameAllowed pulumi.BoolOutput `pulumi:"editUsernameAllowed"`
-	// Used for emails that are sent by Keycloak.
-	EmailTheme pulumi.StringPtrOutput `pulumi:"emailTheme"`
-	// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
-	Enabled pulumi.BoolPtrOutput `pulumi:"enabled"`
-	// When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
-	InternalId           pulumi.StringOutput                `pulumi:"internalId"`
-	Internationalization RealmInternationalizationPtrOutput `pulumi:"internationalization"`
-	// Used for the login, forgot password, and registration pages.
-	LoginTheme pulumi.StringPtrOutput `pulumi:"loginTheme"`
-	// When true, users may log in with their email address.
-	LoginWithEmailAllowed pulumi.BoolOutput `pulumi:"loginWithEmailAllowed"`
-	// The maximum amount of time a client has to finish the device code flow before it expires.
-	//
-	// The attributes below should be specified in seconds.
-	Oauth2DeviceCodeLifespan pulumi.StringOutput `pulumi:"oauth2DeviceCodeLifespan"`
-	// The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
-	Oauth2DevicePollingInterval pulumi.IntOutput `pulumi:"oauth2DevicePollingInterval"`
-	// The amount of time an offline session can be idle before it expires.
-	OfflineSessionIdleTimeout pulumi.StringOutput `pulumi:"offlineSessionIdleTimeout"`
-	// The maximum amount of time before an offline session expires regardless of activity.
-	OfflineSessionMaxLifespan pulumi.StringOutput `pulumi:"offlineSessionMaxLifespan"`
-	// Enable `offlineSessionMaxLifespan`.
-	OfflineSessionMaxLifespanEnabled pulumi.BoolPtrOutput `pulumi:"offlineSessionMaxLifespanEnabled"`
-	OtpPolicy                        RealmOtpPolicyOutput `pulumi:"otpPolicy"`
-	// The password policy for users within the realm.
-	//
-	// The arguments below can be used to configure authentication flow bindings:
-	PasswordPolicy pulumi.StringPtrOutput `pulumi:"passwordPolicy"`
-	// The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
-	Realm pulumi.StringOutput `pulumi:"realm"`
-	// Maximum number of times a refresh token can be reused before they are revoked. If unspecified and 'revoke_refresh_token' is enabled the default value is 0 and refresh tokens can not be reused.
-	//
-	// The arguments below should be specified as [Go duration strings](https://golang.org/pkg/time/#Duration.String). They will default to Keycloak's default settings.
-	RefreshTokenMaxReuse pulumi.IntPtrOutput `pulumi:"refreshTokenMaxReuse"`
-	// When true, user registration will be enabled, and a link for registration will be displayed on the login page.
-	RegistrationAllowed pulumi.BoolOutput `pulumi:"registrationAllowed"`
-	// When true, the user's email will be used as their username during registration.
-	RegistrationEmailAsUsername pulumi.BoolOutput `pulumi:"registrationEmailAsUsername"`
-	// The desired flow for user registration. Defaults to `registration`.
+	// Which flow should be used for DockerAuthenticationFlow
+	DockerAuthenticationFlow         pulumi.StringOutput                `pulumi:"dockerAuthenticationFlow"`
+	DuplicateEmailsAllowed           pulumi.BoolOutput                  `pulumi:"duplicateEmailsAllowed"`
+	EditUsernameAllowed              pulumi.BoolOutput                  `pulumi:"editUsernameAllowed"`
+	EmailTheme                       pulumi.StringPtrOutput             `pulumi:"emailTheme"`
+	Enabled                          pulumi.BoolPtrOutput               `pulumi:"enabled"`
+	InternalId                       pulumi.StringOutput                `pulumi:"internalId"`
+	Internationalization             RealmInternationalizationPtrOutput `pulumi:"internationalization"`
+	LoginTheme                       pulumi.StringPtrOutput             `pulumi:"loginTheme"`
+	LoginWithEmailAllowed            pulumi.BoolOutput                  `pulumi:"loginWithEmailAllowed"`
+	Oauth2DeviceCodeLifespan         pulumi.StringOutput                `pulumi:"oauth2DeviceCodeLifespan"`
+	Oauth2DevicePollingInterval      pulumi.IntOutput                   `pulumi:"oauth2DevicePollingInterval"`
+	OfflineSessionIdleTimeout        pulumi.StringOutput                `pulumi:"offlineSessionIdleTimeout"`
+	OfflineSessionMaxLifespan        pulumi.StringOutput                `pulumi:"offlineSessionMaxLifespan"`
+	OfflineSessionMaxLifespanEnabled pulumi.BoolPtrOutput               `pulumi:"offlineSessionMaxLifespanEnabled"`
+	OtpPolicy                        RealmOtpPolicyOutput               `pulumi:"otpPolicy"`
+	// String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
+	// can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365)
+	// and notUsername(undefined)"
+	PasswordPolicy              pulumi.StringPtrOutput `pulumi:"passwordPolicy"`
+	Realm                       pulumi.StringOutput    `pulumi:"realm"`
+	RefreshTokenMaxReuse        pulumi.IntPtrOutput    `pulumi:"refreshTokenMaxReuse"`
+	RegistrationAllowed         pulumi.BoolOutput      `pulumi:"registrationAllowed"`
+	RegistrationEmailAsUsername pulumi.BoolOutput      `pulumi:"registrationEmailAsUsername"`
+	// Which flow should be used for RegistrationFlow
 	RegistrationFlow pulumi.StringOutput `pulumi:"registrationFlow"`
-	// When true, a "remember me" checkbox will be displayed on the login page, and the user's session will not expire between browser restarts.
-	RememberMe pulumi.BoolOutput `pulumi:"rememberMe"`
-	// The desired flow to use when a user attempts to reset their credentials. Defaults to `reset credentials`.
-	ResetCredentialsFlow pulumi.StringOutput `pulumi:"resetCredentialsFlow"`
-	// When true, a "forgot password" link will be displayed on the login page.
-	ResetPasswordAllowed pulumi.BoolOutput `pulumi:"resetPasswordAllowed"`
-	// If enabled a refresh token can only be used number of times specified in 'refresh_token_max_reuse' before they are revoked. If unspecified, refresh tokens can be reused.
-	RevokeRefreshToken pulumi.BoolPtrOutput           `pulumi:"revokeRefreshToken"`
-	SecurityDefenses   RealmSecurityDefensesPtrOutput `pulumi:"securityDefenses"`
-	SmtpServer         RealmSmtpServerPtrOutput       `pulumi:"smtpServer"`
-	// Can be one of following values: 'none, 'external' or 'all'
-	SslRequired pulumi.StringPtrOutput `pulumi:"sslRequired"`
-	// The amount of time a session can be idle before it expires.
-	SsoSessionIdleTimeout pulumi.StringOutput `pulumi:"ssoSessionIdleTimeout"`
-	// Similar to `ssoSessionIdleTimeout`, but used when a user clicks "Remember Me". If not set, Keycloak will default to the value of `ssoSessionIdleTimeout`.
-	SsoSessionIdleTimeoutRememberMe pulumi.StringOutput `pulumi:"ssoSessionIdleTimeoutRememberMe"`
-	// The maximum amount of time before a session expires regardless of activity.
-	SsoSessionMaxLifespan pulumi.StringOutput `pulumi:"ssoSessionMaxLifespan"`
-	// Similar to `ssoSessionMaxLifespan`, but used when a user clicks "Remember Me". If not set, Keycloak will default to the value of `ssoSessionMaxLifespan`.
-	SsoSessionMaxLifespanRememberMe pulumi.StringOutput `pulumi:"ssoSessionMaxLifespanRememberMe"`
-	// When `true`, users are allowed to manage their own resources. Defaults to `false`.
-	UserManagedAccess pulumi.BoolPtrOutput `pulumi:"userManagedAccess"`
-	// When true, users are required to verify their email address after registration and after email address changes.
-	VerifyEmail pulumi.BoolOutput `pulumi:"verifyEmail"`
-	// Configuration for WebAuthn Passwordless Policy authentication.
-	//
-	// Each of these attributes are blocks with the following attributes:
-	WebAuthnPasswordlessPolicy RealmWebAuthnPasswordlessPolicyOutput `pulumi:"webAuthnPasswordlessPolicy"`
-	// Configuration for WebAuthn Policy authentication.
-	WebAuthnPolicy RealmWebAuthnPolicyOutput `pulumi:"webAuthnPolicy"`
+	RememberMe       pulumi.BoolOutput   `pulumi:"rememberMe"`
+	// Which flow should be used for ResetCredentialsFlow
+	ResetCredentialsFlow pulumi.StringOutput            `pulumi:"resetCredentialsFlow"`
+	ResetPasswordAllowed pulumi.BoolOutput              `pulumi:"resetPasswordAllowed"`
+	RevokeRefreshToken   pulumi.BoolPtrOutput           `pulumi:"revokeRefreshToken"`
+	SecurityDefenses     RealmSecurityDefensesPtrOutput `pulumi:"securityDefenses"`
+	SmtpServer           RealmSmtpServerPtrOutput       `pulumi:"smtpServer"`
+	// SSL Required: Values can be 'none', 'external' or 'all'.
+	SslRequired                     pulumi.StringPtrOutput                `pulumi:"sslRequired"`
+	SsoSessionIdleTimeout           pulumi.StringOutput                   `pulumi:"ssoSessionIdleTimeout"`
+	SsoSessionIdleTimeoutRememberMe pulumi.StringOutput                   `pulumi:"ssoSessionIdleTimeoutRememberMe"`
+	SsoSessionMaxLifespan           pulumi.StringOutput                   `pulumi:"ssoSessionMaxLifespan"`
+	SsoSessionMaxLifespanRememberMe pulumi.StringOutput                   `pulumi:"ssoSessionMaxLifespanRememberMe"`
+	UserManagedAccess               pulumi.BoolPtrOutput                  `pulumi:"userManagedAccess"`
+	VerifyEmail                     pulumi.BoolOutput                     `pulumi:"verifyEmail"`
+	WebAuthnPasswordlessPolicy      RealmWebAuthnPasswordlessPolicyOutput `pulumi:"webAuthnPasswordlessPolicy"`
+	WebAuthnPolicy                  RealmWebAuthnPolicyOutput             `pulumi:"webAuthnPolicy"`
 }
 
 // NewRealm registers a new resource with the given unique name, arguments, and options.
@@ -264,237 +116,141 @@ func GetRealm(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Realm resources.
 type realmState struct {
-	// The maximum amount of time a client has to finish the authorization code flow.
-	AccessCodeLifespan *string `pulumi:"accessCodeLifespan"`
-	// The maximum amount of time a user is permitted to stay on the login page before the authentication process must be restarted.
-	AccessCodeLifespanLogin *string `pulumi:"accessCodeLifespanLogin"`
-	// The maximum amount of time a user has to complete login related actions, such as updating a password.
-	AccessCodeLifespanUserAction *string `pulumi:"accessCodeLifespanUserAction"`
-	// The amount of time an access token can be used before it expires.
-	AccessTokenLifespan *string `pulumi:"accessTokenLifespan"`
-	// The amount of time an access token issued with the OpenID Connect Implicit Flow can be used before it expires.
-	AccessTokenLifespanForImplicitFlow *string `pulumi:"accessTokenLifespanForImplicitFlow"`
-	// Used for account management pages.
-	AccountTheme *string `pulumi:"accountTheme"`
-	// The maximum time a user has to use an admin-generated permit before it expires.
-	ActionTokenGeneratedByAdminLifespan *string `pulumi:"actionTokenGeneratedByAdminLifespan"`
-	// The maximum time a user has to use a user-generated permit before it expires.
-	ActionTokenGeneratedByUserLifespan *string `pulumi:"actionTokenGeneratedByUserLifespan"`
-	// Used for the admin console.
-	AdminTheme *string `pulumi:"adminTheme"`
-	// A map of custom attributes to add to the realm.
-	Attributes map[string]interface{} `pulumi:"attributes"`
-	// The desired flow for browser authentication. Defaults to `browser`.
+	AccessCodeLifespan                  *string                `pulumi:"accessCodeLifespan"`
+	AccessCodeLifespanLogin             *string                `pulumi:"accessCodeLifespanLogin"`
+	AccessCodeLifespanUserAction        *string                `pulumi:"accessCodeLifespanUserAction"`
+	AccessTokenLifespan                 *string                `pulumi:"accessTokenLifespan"`
+	AccessTokenLifespanForImplicitFlow  *string                `pulumi:"accessTokenLifespanForImplicitFlow"`
+	AccountTheme                        *string                `pulumi:"accountTheme"`
+	ActionTokenGeneratedByAdminLifespan *string                `pulumi:"actionTokenGeneratedByAdminLifespan"`
+	ActionTokenGeneratedByUserLifespan  *string                `pulumi:"actionTokenGeneratedByUserLifespan"`
+	AdminTheme                          *string                `pulumi:"adminTheme"`
+	Attributes                          map[string]interface{} `pulumi:"attributes"`
+	// Which flow should be used for BrowserFlow
 	BrowserFlow *string `pulumi:"browserFlow"`
-	// The desired flow for client authentication. Defaults to `clients`.
-	ClientAuthenticationFlow *string `pulumi:"clientAuthenticationFlow"`
-	// The amount of time a session can be idle before it expires. Users can override it for individual clients.
-	ClientSessionIdleTimeout *string `pulumi:"clientSessionIdleTimeout"`
-	// The maximum amount of time before a session expires regardless of activity. Users can override it for individual clients.
+	// Which flow should be used for ClientAuthenticationFlow
+	ClientAuthenticationFlow    *string  `pulumi:"clientAuthenticationFlow"`
+	ClientSessionIdleTimeout    *string  `pulumi:"clientSessionIdleTimeout"`
 	ClientSessionMaxLifespan    *string  `pulumi:"clientSessionMaxLifespan"`
 	DefaultDefaultClientScopes  []string `pulumi:"defaultDefaultClientScopes"`
 	DefaultOptionalClientScopes []string `pulumi:"defaultOptionalClientScopes"`
-	// Default algorithm used to sign tokens for the realm.
-	DefaultSignatureAlgorithm *string `pulumi:"defaultSignatureAlgorithm"`
-	// The desired flow for direct access authentication. Defaults to `direct grant`.
+	DefaultSignatureAlgorithm   *string  `pulumi:"defaultSignatureAlgorithm"`
+	// Which flow should be used for DirectGrantFlow
 	DirectGrantFlow *string `pulumi:"directGrantFlow"`
-	// The display name for the realm that is shown when logging in to the admin console.
-	DisplayName *string `pulumi:"displayName"`
-	// The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.
+	DisplayName     *string `pulumi:"displayName"`
 	DisplayNameHtml *string `pulumi:"displayNameHtml"`
-	// The desired flow for Docker authentication. Defaults to `docker auth`.
-	DockerAuthenticationFlow *string `pulumi:"dockerAuthenticationFlow"`
-	// When true, multiple users will be allowed to have the same email address. This argument must be set to `false` if `loginWithEmailAllowed` is set to `true`.
-	DuplicateEmailsAllowed *bool `pulumi:"duplicateEmailsAllowed"`
-	// When true, the username field is editable.
-	EditUsernameAllowed *bool `pulumi:"editUsernameAllowed"`
-	// Used for emails that are sent by Keycloak.
-	EmailTheme *string `pulumi:"emailTheme"`
-	// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
-	Enabled *bool `pulumi:"enabled"`
-	// When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
-	InternalId           *string                    `pulumi:"internalId"`
-	Internationalization *RealmInternationalization `pulumi:"internationalization"`
-	// Used for the login, forgot password, and registration pages.
-	LoginTheme *string `pulumi:"loginTheme"`
-	// When true, users may log in with their email address.
-	LoginWithEmailAllowed *bool `pulumi:"loginWithEmailAllowed"`
-	// The maximum amount of time a client has to finish the device code flow before it expires.
-	//
-	// The attributes below should be specified in seconds.
-	Oauth2DeviceCodeLifespan *string `pulumi:"oauth2DeviceCodeLifespan"`
-	// The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
-	Oauth2DevicePollingInterval *int `pulumi:"oauth2DevicePollingInterval"`
-	// The amount of time an offline session can be idle before it expires.
-	OfflineSessionIdleTimeout *string `pulumi:"offlineSessionIdleTimeout"`
-	// The maximum amount of time before an offline session expires regardless of activity.
-	OfflineSessionMaxLifespan *string `pulumi:"offlineSessionMaxLifespan"`
-	// Enable `offlineSessionMaxLifespan`.
-	OfflineSessionMaxLifespanEnabled *bool           `pulumi:"offlineSessionMaxLifespanEnabled"`
-	OtpPolicy                        *RealmOtpPolicy `pulumi:"otpPolicy"`
-	// The password policy for users within the realm.
-	//
-	// The arguments below can be used to configure authentication flow bindings:
-	PasswordPolicy *string `pulumi:"passwordPolicy"`
-	// The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
-	Realm *string `pulumi:"realm"`
-	// Maximum number of times a refresh token can be reused before they are revoked. If unspecified and 'revoke_refresh_token' is enabled the default value is 0 and refresh tokens can not be reused.
-	//
-	// The arguments below should be specified as [Go duration strings](https://golang.org/pkg/time/#Duration.String). They will default to Keycloak's default settings.
-	RefreshTokenMaxReuse *int `pulumi:"refreshTokenMaxReuse"`
-	// When true, user registration will be enabled, and a link for registration will be displayed on the login page.
-	RegistrationAllowed *bool `pulumi:"registrationAllowed"`
-	// When true, the user's email will be used as their username during registration.
-	RegistrationEmailAsUsername *bool `pulumi:"registrationEmailAsUsername"`
-	// The desired flow for user registration. Defaults to `registration`.
+	// Which flow should be used for DockerAuthenticationFlow
+	DockerAuthenticationFlow         *string                    `pulumi:"dockerAuthenticationFlow"`
+	DuplicateEmailsAllowed           *bool                      `pulumi:"duplicateEmailsAllowed"`
+	EditUsernameAllowed              *bool                      `pulumi:"editUsernameAllowed"`
+	EmailTheme                       *string                    `pulumi:"emailTheme"`
+	Enabled                          *bool                      `pulumi:"enabled"`
+	InternalId                       *string                    `pulumi:"internalId"`
+	Internationalization             *RealmInternationalization `pulumi:"internationalization"`
+	LoginTheme                       *string                    `pulumi:"loginTheme"`
+	LoginWithEmailAllowed            *bool                      `pulumi:"loginWithEmailAllowed"`
+	Oauth2DeviceCodeLifespan         *string                    `pulumi:"oauth2DeviceCodeLifespan"`
+	Oauth2DevicePollingInterval      *int                       `pulumi:"oauth2DevicePollingInterval"`
+	OfflineSessionIdleTimeout        *string                    `pulumi:"offlineSessionIdleTimeout"`
+	OfflineSessionMaxLifespan        *string                    `pulumi:"offlineSessionMaxLifespan"`
+	OfflineSessionMaxLifespanEnabled *bool                      `pulumi:"offlineSessionMaxLifespanEnabled"`
+	OtpPolicy                        *RealmOtpPolicy            `pulumi:"otpPolicy"`
+	// String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
+	// can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365)
+	// and notUsername(undefined)"
+	PasswordPolicy              *string `pulumi:"passwordPolicy"`
+	Realm                       *string `pulumi:"realm"`
+	RefreshTokenMaxReuse        *int    `pulumi:"refreshTokenMaxReuse"`
+	RegistrationAllowed         *bool   `pulumi:"registrationAllowed"`
+	RegistrationEmailAsUsername *bool   `pulumi:"registrationEmailAsUsername"`
+	// Which flow should be used for RegistrationFlow
 	RegistrationFlow *string `pulumi:"registrationFlow"`
-	// When true, a "remember me" checkbox will be displayed on the login page, and the user's session will not expire between browser restarts.
-	RememberMe *bool `pulumi:"rememberMe"`
-	// The desired flow to use when a user attempts to reset their credentials. Defaults to `reset credentials`.
-	ResetCredentialsFlow *string `pulumi:"resetCredentialsFlow"`
-	// When true, a "forgot password" link will be displayed on the login page.
-	ResetPasswordAllowed *bool `pulumi:"resetPasswordAllowed"`
-	// If enabled a refresh token can only be used number of times specified in 'refresh_token_max_reuse' before they are revoked. If unspecified, refresh tokens can be reused.
-	RevokeRefreshToken *bool                  `pulumi:"revokeRefreshToken"`
-	SecurityDefenses   *RealmSecurityDefenses `pulumi:"securityDefenses"`
-	SmtpServer         *RealmSmtpServer       `pulumi:"smtpServer"`
-	// Can be one of following values: 'none, 'external' or 'all'
-	SslRequired *string `pulumi:"sslRequired"`
-	// The amount of time a session can be idle before it expires.
-	SsoSessionIdleTimeout *string `pulumi:"ssoSessionIdleTimeout"`
-	// Similar to `ssoSessionIdleTimeout`, but used when a user clicks "Remember Me". If not set, Keycloak will default to the value of `ssoSessionIdleTimeout`.
-	SsoSessionIdleTimeoutRememberMe *string `pulumi:"ssoSessionIdleTimeoutRememberMe"`
-	// The maximum amount of time before a session expires regardless of activity.
-	SsoSessionMaxLifespan *string `pulumi:"ssoSessionMaxLifespan"`
-	// Similar to `ssoSessionMaxLifespan`, but used when a user clicks "Remember Me". If not set, Keycloak will default to the value of `ssoSessionMaxLifespan`.
-	SsoSessionMaxLifespanRememberMe *string `pulumi:"ssoSessionMaxLifespanRememberMe"`
-	// When `true`, users are allowed to manage their own resources. Defaults to `false`.
-	UserManagedAccess *bool `pulumi:"userManagedAccess"`
-	// When true, users are required to verify their email address after registration and after email address changes.
-	VerifyEmail *bool `pulumi:"verifyEmail"`
-	// Configuration for WebAuthn Passwordless Policy authentication.
-	//
-	// Each of these attributes are blocks with the following attributes:
-	WebAuthnPasswordlessPolicy *RealmWebAuthnPasswordlessPolicy `pulumi:"webAuthnPasswordlessPolicy"`
-	// Configuration for WebAuthn Policy authentication.
-	WebAuthnPolicy *RealmWebAuthnPolicy `pulumi:"webAuthnPolicy"`
+	RememberMe       *bool   `pulumi:"rememberMe"`
+	// Which flow should be used for ResetCredentialsFlow
+	ResetCredentialsFlow *string                `pulumi:"resetCredentialsFlow"`
+	ResetPasswordAllowed *bool                  `pulumi:"resetPasswordAllowed"`
+	RevokeRefreshToken   *bool                  `pulumi:"revokeRefreshToken"`
+	SecurityDefenses     *RealmSecurityDefenses `pulumi:"securityDefenses"`
+	SmtpServer           *RealmSmtpServer       `pulumi:"smtpServer"`
+	// SSL Required: Values can be 'none', 'external' or 'all'.
+	SslRequired                     *string                          `pulumi:"sslRequired"`
+	SsoSessionIdleTimeout           *string                          `pulumi:"ssoSessionIdleTimeout"`
+	SsoSessionIdleTimeoutRememberMe *string                          `pulumi:"ssoSessionIdleTimeoutRememberMe"`
+	SsoSessionMaxLifespan           *string                          `pulumi:"ssoSessionMaxLifespan"`
+	SsoSessionMaxLifespanRememberMe *string                          `pulumi:"ssoSessionMaxLifespanRememberMe"`
+	UserManagedAccess               *bool                            `pulumi:"userManagedAccess"`
+	VerifyEmail                     *bool                            `pulumi:"verifyEmail"`
+	WebAuthnPasswordlessPolicy      *RealmWebAuthnPasswordlessPolicy `pulumi:"webAuthnPasswordlessPolicy"`
+	WebAuthnPolicy                  *RealmWebAuthnPolicy             `pulumi:"webAuthnPolicy"`
 }
 
 type RealmState struct {
-	// The maximum amount of time a client has to finish the authorization code flow.
-	AccessCodeLifespan pulumi.StringPtrInput
-	// The maximum amount of time a user is permitted to stay on the login page before the authentication process must be restarted.
-	AccessCodeLifespanLogin pulumi.StringPtrInput
-	// The maximum amount of time a user has to complete login related actions, such as updating a password.
-	AccessCodeLifespanUserAction pulumi.StringPtrInput
-	// The amount of time an access token can be used before it expires.
-	AccessTokenLifespan pulumi.StringPtrInput
-	// The amount of time an access token issued with the OpenID Connect Implicit Flow can be used before it expires.
-	AccessTokenLifespanForImplicitFlow pulumi.StringPtrInput
-	// Used for account management pages.
-	AccountTheme pulumi.StringPtrInput
-	// The maximum time a user has to use an admin-generated permit before it expires.
+	AccessCodeLifespan                  pulumi.StringPtrInput
+	AccessCodeLifespanLogin             pulumi.StringPtrInput
+	AccessCodeLifespanUserAction        pulumi.StringPtrInput
+	AccessTokenLifespan                 pulumi.StringPtrInput
+	AccessTokenLifespanForImplicitFlow  pulumi.StringPtrInput
+	AccountTheme                        pulumi.StringPtrInput
 	ActionTokenGeneratedByAdminLifespan pulumi.StringPtrInput
-	// The maximum time a user has to use a user-generated permit before it expires.
-	ActionTokenGeneratedByUserLifespan pulumi.StringPtrInput
-	// Used for the admin console.
-	AdminTheme pulumi.StringPtrInput
-	// A map of custom attributes to add to the realm.
-	Attributes pulumi.MapInput
-	// The desired flow for browser authentication. Defaults to `browser`.
+	ActionTokenGeneratedByUserLifespan  pulumi.StringPtrInput
+	AdminTheme                          pulumi.StringPtrInput
+	Attributes                          pulumi.MapInput
+	// Which flow should be used for BrowserFlow
 	BrowserFlow pulumi.StringPtrInput
-	// The desired flow for client authentication. Defaults to `clients`.
-	ClientAuthenticationFlow pulumi.StringPtrInput
-	// The amount of time a session can be idle before it expires. Users can override it for individual clients.
-	ClientSessionIdleTimeout pulumi.StringPtrInput
-	// The maximum amount of time before a session expires regardless of activity. Users can override it for individual clients.
+	// Which flow should be used for ClientAuthenticationFlow
+	ClientAuthenticationFlow    pulumi.StringPtrInput
+	ClientSessionIdleTimeout    pulumi.StringPtrInput
 	ClientSessionMaxLifespan    pulumi.StringPtrInput
 	DefaultDefaultClientScopes  pulumi.StringArrayInput
 	DefaultOptionalClientScopes pulumi.StringArrayInput
-	// Default algorithm used to sign tokens for the realm.
-	DefaultSignatureAlgorithm pulumi.StringPtrInput
-	// The desired flow for direct access authentication. Defaults to `direct grant`.
+	DefaultSignatureAlgorithm   pulumi.StringPtrInput
+	// Which flow should be used for DirectGrantFlow
 	DirectGrantFlow pulumi.StringPtrInput
-	// The display name for the realm that is shown when logging in to the admin console.
-	DisplayName pulumi.StringPtrInput
-	// The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.
+	DisplayName     pulumi.StringPtrInput
 	DisplayNameHtml pulumi.StringPtrInput
-	// The desired flow for Docker authentication. Defaults to `docker auth`.
-	DockerAuthenticationFlow pulumi.StringPtrInput
-	// When true, multiple users will be allowed to have the same email address. This argument must be set to `false` if `loginWithEmailAllowed` is set to `true`.
-	DuplicateEmailsAllowed pulumi.BoolPtrInput
-	// When true, the username field is editable.
-	EditUsernameAllowed pulumi.BoolPtrInput
-	// Used for emails that are sent by Keycloak.
-	EmailTheme pulumi.StringPtrInput
-	// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
-	Enabled pulumi.BoolPtrInput
-	// When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
-	InternalId           pulumi.StringPtrInput
-	Internationalization RealmInternationalizationPtrInput
-	// Used for the login, forgot password, and registration pages.
-	LoginTheme pulumi.StringPtrInput
-	// When true, users may log in with their email address.
-	LoginWithEmailAllowed pulumi.BoolPtrInput
-	// The maximum amount of time a client has to finish the device code flow before it expires.
-	//
-	// The attributes below should be specified in seconds.
-	Oauth2DeviceCodeLifespan pulumi.StringPtrInput
-	// The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
-	Oauth2DevicePollingInterval pulumi.IntPtrInput
-	// The amount of time an offline session can be idle before it expires.
-	OfflineSessionIdleTimeout pulumi.StringPtrInput
-	// The maximum amount of time before an offline session expires regardless of activity.
-	OfflineSessionMaxLifespan pulumi.StringPtrInput
-	// Enable `offlineSessionMaxLifespan`.
+	// Which flow should be used for DockerAuthenticationFlow
+	DockerAuthenticationFlow         pulumi.StringPtrInput
+	DuplicateEmailsAllowed           pulumi.BoolPtrInput
+	EditUsernameAllowed              pulumi.BoolPtrInput
+	EmailTheme                       pulumi.StringPtrInput
+	Enabled                          pulumi.BoolPtrInput
+	InternalId                       pulumi.StringPtrInput
+	Internationalization             RealmInternationalizationPtrInput
+	LoginTheme                       pulumi.StringPtrInput
+	LoginWithEmailAllowed            pulumi.BoolPtrInput
+	Oauth2DeviceCodeLifespan         pulumi.StringPtrInput
+	Oauth2DevicePollingInterval      pulumi.IntPtrInput
+	OfflineSessionIdleTimeout        pulumi.StringPtrInput
+	OfflineSessionMaxLifespan        pulumi.StringPtrInput
 	OfflineSessionMaxLifespanEnabled pulumi.BoolPtrInput
 	OtpPolicy                        RealmOtpPolicyPtrInput
-	// The password policy for users within the realm.
-	//
-	// The arguments below can be used to configure authentication flow bindings:
-	PasswordPolicy pulumi.StringPtrInput
-	// The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
-	Realm pulumi.StringPtrInput
-	// Maximum number of times a refresh token can be reused before they are revoked. If unspecified and 'revoke_refresh_token' is enabled the default value is 0 and refresh tokens can not be reused.
-	//
-	// The arguments below should be specified as [Go duration strings](https://golang.org/pkg/time/#Duration.String). They will default to Keycloak's default settings.
-	RefreshTokenMaxReuse pulumi.IntPtrInput
-	// When true, user registration will be enabled, and a link for registration will be displayed on the login page.
-	RegistrationAllowed pulumi.BoolPtrInput
-	// When true, the user's email will be used as their username during registration.
+	// String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
+	// can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365)
+	// and notUsername(undefined)"
+	PasswordPolicy              pulumi.StringPtrInput
+	Realm                       pulumi.StringPtrInput
+	RefreshTokenMaxReuse        pulumi.IntPtrInput
+	RegistrationAllowed         pulumi.BoolPtrInput
 	RegistrationEmailAsUsername pulumi.BoolPtrInput
-	// The desired flow for user registration. Defaults to `registration`.
+	// Which flow should be used for RegistrationFlow
 	RegistrationFlow pulumi.StringPtrInput
-	// When true, a "remember me" checkbox will be displayed on the login page, and the user's session will not expire between browser restarts.
-	RememberMe pulumi.BoolPtrInput
-	// The desired flow to use when a user attempts to reset their credentials. Defaults to `reset credentials`.
+	RememberMe       pulumi.BoolPtrInput
+	// Which flow should be used for ResetCredentialsFlow
 	ResetCredentialsFlow pulumi.StringPtrInput
-	// When true, a "forgot password" link will be displayed on the login page.
 	ResetPasswordAllowed pulumi.BoolPtrInput
-	// If enabled a refresh token can only be used number of times specified in 'refresh_token_max_reuse' before they are revoked. If unspecified, refresh tokens can be reused.
-	RevokeRefreshToken pulumi.BoolPtrInput
-	SecurityDefenses   RealmSecurityDefensesPtrInput
-	SmtpServer         RealmSmtpServerPtrInput
-	// Can be one of following values: 'none, 'external' or 'all'
-	SslRequired pulumi.StringPtrInput
-	// The amount of time a session can be idle before it expires.
-	SsoSessionIdleTimeout pulumi.StringPtrInput
-	// Similar to `ssoSessionIdleTimeout`, but used when a user clicks "Remember Me". If not set, Keycloak will default to the value of `ssoSessionIdleTimeout`.
+	RevokeRefreshToken   pulumi.BoolPtrInput
+	SecurityDefenses     RealmSecurityDefensesPtrInput
+	SmtpServer           RealmSmtpServerPtrInput
+	// SSL Required: Values can be 'none', 'external' or 'all'.
+	SslRequired                     pulumi.StringPtrInput
+	SsoSessionIdleTimeout           pulumi.StringPtrInput
 	SsoSessionIdleTimeoutRememberMe pulumi.StringPtrInput
-	// The maximum amount of time before a session expires regardless of activity.
-	SsoSessionMaxLifespan pulumi.StringPtrInput
-	// Similar to `ssoSessionMaxLifespan`, but used when a user clicks "Remember Me". If not set, Keycloak will default to the value of `ssoSessionMaxLifespan`.
+	SsoSessionMaxLifespan           pulumi.StringPtrInput
 	SsoSessionMaxLifespanRememberMe pulumi.StringPtrInput
-	// When `true`, users are allowed to manage their own resources. Defaults to `false`.
-	UserManagedAccess pulumi.BoolPtrInput
-	// When true, users are required to verify their email address after registration and after email address changes.
-	VerifyEmail pulumi.BoolPtrInput
-	// Configuration for WebAuthn Passwordless Policy authentication.
-	//
-	// Each of these attributes are blocks with the following attributes:
-	WebAuthnPasswordlessPolicy RealmWebAuthnPasswordlessPolicyPtrInput
-	// Configuration for WebAuthn Policy authentication.
-	WebAuthnPolicy RealmWebAuthnPolicyPtrInput
+	UserManagedAccess               pulumi.BoolPtrInput
+	VerifyEmail                     pulumi.BoolPtrInput
+	WebAuthnPasswordlessPolicy      RealmWebAuthnPasswordlessPolicyPtrInput
+	WebAuthnPolicy                  RealmWebAuthnPolicyPtrInput
 }
 
 func (RealmState) ElementType() reflect.Type {
@@ -502,238 +258,142 @@ func (RealmState) ElementType() reflect.Type {
 }
 
 type realmArgs struct {
-	// The maximum amount of time a client has to finish the authorization code flow.
-	AccessCodeLifespan *string `pulumi:"accessCodeLifespan"`
-	// The maximum amount of time a user is permitted to stay on the login page before the authentication process must be restarted.
-	AccessCodeLifespanLogin *string `pulumi:"accessCodeLifespanLogin"`
-	// The maximum amount of time a user has to complete login related actions, such as updating a password.
-	AccessCodeLifespanUserAction *string `pulumi:"accessCodeLifespanUserAction"`
-	// The amount of time an access token can be used before it expires.
-	AccessTokenLifespan *string `pulumi:"accessTokenLifespan"`
-	// The amount of time an access token issued with the OpenID Connect Implicit Flow can be used before it expires.
-	AccessTokenLifespanForImplicitFlow *string `pulumi:"accessTokenLifespanForImplicitFlow"`
-	// Used for account management pages.
-	AccountTheme *string `pulumi:"accountTheme"`
-	// The maximum time a user has to use an admin-generated permit before it expires.
-	ActionTokenGeneratedByAdminLifespan *string `pulumi:"actionTokenGeneratedByAdminLifespan"`
-	// The maximum time a user has to use a user-generated permit before it expires.
-	ActionTokenGeneratedByUserLifespan *string `pulumi:"actionTokenGeneratedByUserLifespan"`
-	// Used for the admin console.
-	AdminTheme *string `pulumi:"adminTheme"`
-	// A map of custom attributes to add to the realm.
-	Attributes map[string]interface{} `pulumi:"attributes"`
-	// The desired flow for browser authentication. Defaults to `browser`.
+	AccessCodeLifespan                  *string                `pulumi:"accessCodeLifespan"`
+	AccessCodeLifespanLogin             *string                `pulumi:"accessCodeLifespanLogin"`
+	AccessCodeLifespanUserAction        *string                `pulumi:"accessCodeLifespanUserAction"`
+	AccessTokenLifespan                 *string                `pulumi:"accessTokenLifespan"`
+	AccessTokenLifespanForImplicitFlow  *string                `pulumi:"accessTokenLifespanForImplicitFlow"`
+	AccountTheme                        *string                `pulumi:"accountTheme"`
+	ActionTokenGeneratedByAdminLifespan *string                `pulumi:"actionTokenGeneratedByAdminLifespan"`
+	ActionTokenGeneratedByUserLifespan  *string                `pulumi:"actionTokenGeneratedByUserLifespan"`
+	AdminTheme                          *string                `pulumi:"adminTheme"`
+	Attributes                          map[string]interface{} `pulumi:"attributes"`
+	// Which flow should be used for BrowserFlow
 	BrowserFlow *string `pulumi:"browserFlow"`
-	// The desired flow for client authentication. Defaults to `clients`.
-	ClientAuthenticationFlow *string `pulumi:"clientAuthenticationFlow"`
-	// The amount of time a session can be idle before it expires. Users can override it for individual clients.
-	ClientSessionIdleTimeout *string `pulumi:"clientSessionIdleTimeout"`
-	// The maximum amount of time before a session expires regardless of activity. Users can override it for individual clients.
+	// Which flow should be used for ClientAuthenticationFlow
+	ClientAuthenticationFlow    *string  `pulumi:"clientAuthenticationFlow"`
+	ClientSessionIdleTimeout    *string  `pulumi:"clientSessionIdleTimeout"`
 	ClientSessionMaxLifespan    *string  `pulumi:"clientSessionMaxLifespan"`
 	DefaultDefaultClientScopes  []string `pulumi:"defaultDefaultClientScopes"`
 	DefaultOptionalClientScopes []string `pulumi:"defaultOptionalClientScopes"`
-	// Default algorithm used to sign tokens for the realm.
-	DefaultSignatureAlgorithm *string `pulumi:"defaultSignatureAlgorithm"`
-	// The desired flow for direct access authentication. Defaults to `direct grant`.
+	DefaultSignatureAlgorithm   *string  `pulumi:"defaultSignatureAlgorithm"`
+	// Which flow should be used for DirectGrantFlow
 	DirectGrantFlow *string `pulumi:"directGrantFlow"`
-	// The display name for the realm that is shown when logging in to the admin console.
-	DisplayName *string `pulumi:"displayName"`
-	// The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.
+	DisplayName     *string `pulumi:"displayName"`
 	DisplayNameHtml *string `pulumi:"displayNameHtml"`
-	// The desired flow for Docker authentication. Defaults to `docker auth`.
-	DockerAuthenticationFlow *string `pulumi:"dockerAuthenticationFlow"`
-	// When true, multiple users will be allowed to have the same email address. This argument must be set to `false` if `loginWithEmailAllowed` is set to `true`.
-	DuplicateEmailsAllowed *bool `pulumi:"duplicateEmailsAllowed"`
-	// When true, the username field is editable.
-	EditUsernameAllowed *bool `pulumi:"editUsernameAllowed"`
-	// Used for emails that are sent by Keycloak.
-	EmailTheme *string `pulumi:"emailTheme"`
-	// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
-	Enabled *bool `pulumi:"enabled"`
-	// When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
-	InternalId           *string                    `pulumi:"internalId"`
-	Internationalization *RealmInternationalization `pulumi:"internationalization"`
-	// Used for the login, forgot password, and registration pages.
-	LoginTheme *string `pulumi:"loginTheme"`
-	// When true, users may log in with their email address.
-	LoginWithEmailAllowed *bool `pulumi:"loginWithEmailAllowed"`
-	// The maximum amount of time a client has to finish the device code flow before it expires.
-	//
-	// The attributes below should be specified in seconds.
-	Oauth2DeviceCodeLifespan *string `pulumi:"oauth2DeviceCodeLifespan"`
-	// The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
-	Oauth2DevicePollingInterval *int `pulumi:"oauth2DevicePollingInterval"`
-	// The amount of time an offline session can be idle before it expires.
-	OfflineSessionIdleTimeout *string `pulumi:"offlineSessionIdleTimeout"`
-	// The maximum amount of time before an offline session expires regardless of activity.
-	OfflineSessionMaxLifespan *string `pulumi:"offlineSessionMaxLifespan"`
-	// Enable `offlineSessionMaxLifespan`.
-	OfflineSessionMaxLifespanEnabled *bool           `pulumi:"offlineSessionMaxLifespanEnabled"`
-	OtpPolicy                        *RealmOtpPolicy `pulumi:"otpPolicy"`
-	// The password policy for users within the realm.
-	//
-	// The arguments below can be used to configure authentication flow bindings:
-	PasswordPolicy *string `pulumi:"passwordPolicy"`
-	// The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
-	Realm string `pulumi:"realm"`
-	// Maximum number of times a refresh token can be reused before they are revoked. If unspecified and 'revoke_refresh_token' is enabled the default value is 0 and refresh tokens can not be reused.
-	//
-	// The arguments below should be specified as [Go duration strings](https://golang.org/pkg/time/#Duration.String). They will default to Keycloak's default settings.
-	RefreshTokenMaxReuse *int `pulumi:"refreshTokenMaxReuse"`
-	// When true, user registration will be enabled, and a link for registration will be displayed on the login page.
-	RegistrationAllowed *bool `pulumi:"registrationAllowed"`
-	// When true, the user's email will be used as their username during registration.
-	RegistrationEmailAsUsername *bool `pulumi:"registrationEmailAsUsername"`
-	// The desired flow for user registration. Defaults to `registration`.
+	// Which flow should be used for DockerAuthenticationFlow
+	DockerAuthenticationFlow         *string                    `pulumi:"dockerAuthenticationFlow"`
+	DuplicateEmailsAllowed           *bool                      `pulumi:"duplicateEmailsAllowed"`
+	EditUsernameAllowed              *bool                      `pulumi:"editUsernameAllowed"`
+	EmailTheme                       *string                    `pulumi:"emailTheme"`
+	Enabled                          *bool                      `pulumi:"enabled"`
+	InternalId                       *string                    `pulumi:"internalId"`
+	Internationalization             *RealmInternationalization `pulumi:"internationalization"`
+	LoginTheme                       *string                    `pulumi:"loginTheme"`
+	LoginWithEmailAllowed            *bool                      `pulumi:"loginWithEmailAllowed"`
+	Oauth2DeviceCodeLifespan         *string                    `pulumi:"oauth2DeviceCodeLifespan"`
+	Oauth2DevicePollingInterval      *int                       `pulumi:"oauth2DevicePollingInterval"`
+	OfflineSessionIdleTimeout        *string                    `pulumi:"offlineSessionIdleTimeout"`
+	OfflineSessionMaxLifespan        *string                    `pulumi:"offlineSessionMaxLifespan"`
+	OfflineSessionMaxLifespanEnabled *bool                      `pulumi:"offlineSessionMaxLifespanEnabled"`
+	OtpPolicy                        *RealmOtpPolicy            `pulumi:"otpPolicy"`
+	// String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
+	// can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365)
+	// and notUsername(undefined)"
+	PasswordPolicy              *string `pulumi:"passwordPolicy"`
+	Realm                       string  `pulumi:"realm"`
+	RefreshTokenMaxReuse        *int    `pulumi:"refreshTokenMaxReuse"`
+	RegistrationAllowed         *bool   `pulumi:"registrationAllowed"`
+	RegistrationEmailAsUsername *bool   `pulumi:"registrationEmailAsUsername"`
+	// Which flow should be used for RegistrationFlow
 	RegistrationFlow *string `pulumi:"registrationFlow"`
-	// When true, a "remember me" checkbox will be displayed on the login page, and the user's session will not expire between browser restarts.
-	RememberMe *bool `pulumi:"rememberMe"`
-	// The desired flow to use when a user attempts to reset their credentials. Defaults to `reset credentials`.
-	ResetCredentialsFlow *string `pulumi:"resetCredentialsFlow"`
-	// When true, a "forgot password" link will be displayed on the login page.
-	ResetPasswordAllowed *bool `pulumi:"resetPasswordAllowed"`
-	// If enabled a refresh token can only be used number of times specified in 'refresh_token_max_reuse' before they are revoked. If unspecified, refresh tokens can be reused.
-	RevokeRefreshToken *bool                  `pulumi:"revokeRefreshToken"`
-	SecurityDefenses   *RealmSecurityDefenses `pulumi:"securityDefenses"`
-	SmtpServer         *RealmSmtpServer       `pulumi:"smtpServer"`
-	// Can be one of following values: 'none, 'external' or 'all'
-	SslRequired *string `pulumi:"sslRequired"`
-	// The amount of time a session can be idle before it expires.
-	SsoSessionIdleTimeout *string `pulumi:"ssoSessionIdleTimeout"`
-	// Similar to `ssoSessionIdleTimeout`, but used when a user clicks "Remember Me". If not set, Keycloak will default to the value of `ssoSessionIdleTimeout`.
-	SsoSessionIdleTimeoutRememberMe *string `pulumi:"ssoSessionIdleTimeoutRememberMe"`
-	// The maximum amount of time before a session expires regardless of activity.
-	SsoSessionMaxLifespan *string `pulumi:"ssoSessionMaxLifespan"`
-	// Similar to `ssoSessionMaxLifespan`, but used when a user clicks "Remember Me". If not set, Keycloak will default to the value of `ssoSessionMaxLifespan`.
-	SsoSessionMaxLifespanRememberMe *string `pulumi:"ssoSessionMaxLifespanRememberMe"`
-	// When `true`, users are allowed to manage their own resources. Defaults to `false`.
-	UserManagedAccess *bool `pulumi:"userManagedAccess"`
-	// When true, users are required to verify their email address after registration and after email address changes.
-	VerifyEmail *bool `pulumi:"verifyEmail"`
-	// Configuration for WebAuthn Passwordless Policy authentication.
-	//
-	// Each of these attributes are blocks with the following attributes:
-	WebAuthnPasswordlessPolicy *RealmWebAuthnPasswordlessPolicy `pulumi:"webAuthnPasswordlessPolicy"`
-	// Configuration for WebAuthn Policy authentication.
-	WebAuthnPolicy *RealmWebAuthnPolicy `pulumi:"webAuthnPolicy"`
+	RememberMe       *bool   `pulumi:"rememberMe"`
+	// Which flow should be used for ResetCredentialsFlow
+	ResetCredentialsFlow *string                `pulumi:"resetCredentialsFlow"`
+	ResetPasswordAllowed *bool                  `pulumi:"resetPasswordAllowed"`
+	RevokeRefreshToken   *bool                  `pulumi:"revokeRefreshToken"`
+	SecurityDefenses     *RealmSecurityDefenses `pulumi:"securityDefenses"`
+	SmtpServer           *RealmSmtpServer       `pulumi:"smtpServer"`
+	// SSL Required: Values can be 'none', 'external' or 'all'.
+	SslRequired                     *string                          `pulumi:"sslRequired"`
+	SsoSessionIdleTimeout           *string                          `pulumi:"ssoSessionIdleTimeout"`
+	SsoSessionIdleTimeoutRememberMe *string                          `pulumi:"ssoSessionIdleTimeoutRememberMe"`
+	SsoSessionMaxLifespan           *string                          `pulumi:"ssoSessionMaxLifespan"`
+	SsoSessionMaxLifespanRememberMe *string                          `pulumi:"ssoSessionMaxLifespanRememberMe"`
+	UserManagedAccess               *bool                            `pulumi:"userManagedAccess"`
+	VerifyEmail                     *bool                            `pulumi:"verifyEmail"`
+	WebAuthnPasswordlessPolicy      *RealmWebAuthnPasswordlessPolicy `pulumi:"webAuthnPasswordlessPolicy"`
+	WebAuthnPolicy                  *RealmWebAuthnPolicy             `pulumi:"webAuthnPolicy"`
 }
 
 // The set of arguments for constructing a Realm resource.
 type RealmArgs struct {
-	// The maximum amount of time a client has to finish the authorization code flow.
-	AccessCodeLifespan pulumi.StringPtrInput
-	// The maximum amount of time a user is permitted to stay on the login page before the authentication process must be restarted.
-	AccessCodeLifespanLogin pulumi.StringPtrInput
-	// The maximum amount of time a user has to complete login related actions, such as updating a password.
-	AccessCodeLifespanUserAction pulumi.StringPtrInput
-	// The amount of time an access token can be used before it expires.
-	AccessTokenLifespan pulumi.StringPtrInput
-	// The amount of time an access token issued with the OpenID Connect Implicit Flow can be used before it expires.
-	AccessTokenLifespanForImplicitFlow pulumi.StringPtrInput
-	// Used for account management pages.
-	AccountTheme pulumi.StringPtrInput
-	// The maximum time a user has to use an admin-generated permit before it expires.
+	AccessCodeLifespan                  pulumi.StringPtrInput
+	AccessCodeLifespanLogin             pulumi.StringPtrInput
+	AccessCodeLifespanUserAction        pulumi.StringPtrInput
+	AccessTokenLifespan                 pulumi.StringPtrInput
+	AccessTokenLifespanForImplicitFlow  pulumi.StringPtrInput
+	AccountTheme                        pulumi.StringPtrInput
 	ActionTokenGeneratedByAdminLifespan pulumi.StringPtrInput
-	// The maximum time a user has to use a user-generated permit before it expires.
-	ActionTokenGeneratedByUserLifespan pulumi.StringPtrInput
-	// Used for the admin console.
-	AdminTheme pulumi.StringPtrInput
-	// A map of custom attributes to add to the realm.
-	Attributes pulumi.MapInput
-	// The desired flow for browser authentication. Defaults to `browser`.
+	ActionTokenGeneratedByUserLifespan  pulumi.StringPtrInput
+	AdminTheme                          pulumi.StringPtrInput
+	Attributes                          pulumi.MapInput
+	// Which flow should be used for BrowserFlow
 	BrowserFlow pulumi.StringPtrInput
-	// The desired flow for client authentication. Defaults to `clients`.
-	ClientAuthenticationFlow pulumi.StringPtrInput
-	// The amount of time a session can be idle before it expires. Users can override it for individual clients.
-	ClientSessionIdleTimeout pulumi.StringPtrInput
-	// The maximum amount of time before a session expires regardless of activity. Users can override it for individual clients.
+	// Which flow should be used for ClientAuthenticationFlow
+	ClientAuthenticationFlow    pulumi.StringPtrInput
+	ClientSessionIdleTimeout    pulumi.StringPtrInput
 	ClientSessionMaxLifespan    pulumi.StringPtrInput
 	DefaultDefaultClientScopes  pulumi.StringArrayInput
 	DefaultOptionalClientScopes pulumi.StringArrayInput
-	// Default algorithm used to sign tokens for the realm.
-	DefaultSignatureAlgorithm pulumi.StringPtrInput
-	// The desired flow for direct access authentication. Defaults to `direct grant`.
+	DefaultSignatureAlgorithm   pulumi.StringPtrInput
+	// Which flow should be used for DirectGrantFlow
 	DirectGrantFlow pulumi.StringPtrInput
-	// The display name for the realm that is shown when logging in to the admin console.
-	DisplayName pulumi.StringPtrInput
-	// The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.
+	DisplayName     pulumi.StringPtrInput
 	DisplayNameHtml pulumi.StringPtrInput
-	// The desired flow for Docker authentication. Defaults to `docker auth`.
-	DockerAuthenticationFlow pulumi.StringPtrInput
-	// When true, multiple users will be allowed to have the same email address. This argument must be set to `false` if `loginWithEmailAllowed` is set to `true`.
-	DuplicateEmailsAllowed pulumi.BoolPtrInput
-	// When true, the username field is editable.
-	EditUsernameAllowed pulumi.BoolPtrInput
-	// Used for emails that are sent by Keycloak.
-	EmailTheme pulumi.StringPtrInput
-	// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
-	Enabled pulumi.BoolPtrInput
-	// When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
-	InternalId           pulumi.StringPtrInput
-	Internationalization RealmInternationalizationPtrInput
-	// Used for the login, forgot password, and registration pages.
-	LoginTheme pulumi.StringPtrInput
-	// When true, users may log in with their email address.
-	LoginWithEmailAllowed pulumi.BoolPtrInput
-	// The maximum amount of time a client has to finish the device code flow before it expires.
-	//
-	// The attributes below should be specified in seconds.
-	Oauth2DeviceCodeLifespan pulumi.StringPtrInput
-	// The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
-	Oauth2DevicePollingInterval pulumi.IntPtrInput
-	// The amount of time an offline session can be idle before it expires.
-	OfflineSessionIdleTimeout pulumi.StringPtrInput
-	// The maximum amount of time before an offline session expires regardless of activity.
-	OfflineSessionMaxLifespan pulumi.StringPtrInput
-	// Enable `offlineSessionMaxLifespan`.
+	// Which flow should be used for DockerAuthenticationFlow
+	DockerAuthenticationFlow         pulumi.StringPtrInput
+	DuplicateEmailsAllowed           pulumi.BoolPtrInput
+	EditUsernameAllowed              pulumi.BoolPtrInput
+	EmailTheme                       pulumi.StringPtrInput
+	Enabled                          pulumi.BoolPtrInput
+	InternalId                       pulumi.StringPtrInput
+	Internationalization             RealmInternationalizationPtrInput
+	LoginTheme                       pulumi.StringPtrInput
+	LoginWithEmailAllowed            pulumi.BoolPtrInput
+	Oauth2DeviceCodeLifespan         pulumi.StringPtrInput
+	Oauth2DevicePollingInterval      pulumi.IntPtrInput
+	OfflineSessionIdleTimeout        pulumi.StringPtrInput
+	OfflineSessionMaxLifespan        pulumi.StringPtrInput
 	OfflineSessionMaxLifespanEnabled pulumi.BoolPtrInput
 	OtpPolicy                        RealmOtpPolicyPtrInput
-	// The password policy for users within the realm.
-	//
-	// The arguments below can be used to configure authentication flow bindings:
-	PasswordPolicy pulumi.StringPtrInput
-	// The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
-	Realm pulumi.StringInput
-	// Maximum number of times a refresh token can be reused before they are revoked. If unspecified and 'revoke_refresh_token' is enabled the default value is 0 and refresh tokens can not be reused.
-	//
-	// The arguments below should be specified as [Go duration strings](https://golang.org/pkg/time/#Duration.String). They will default to Keycloak's default settings.
-	RefreshTokenMaxReuse pulumi.IntPtrInput
-	// When true, user registration will be enabled, and a link for registration will be displayed on the login page.
-	RegistrationAllowed pulumi.BoolPtrInput
-	// When true, the user's email will be used as their username during registration.
+	// String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
+	// can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365)
+	// and notUsername(undefined)"
+	PasswordPolicy              pulumi.StringPtrInput
+	Realm                       pulumi.StringInput
+	RefreshTokenMaxReuse        pulumi.IntPtrInput
+	RegistrationAllowed         pulumi.BoolPtrInput
 	RegistrationEmailAsUsername pulumi.BoolPtrInput
-	// The desired flow for user registration. Defaults to `registration`.
+	// Which flow should be used for RegistrationFlow
 	RegistrationFlow pulumi.StringPtrInput
-	// When true, a "remember me" checkbox will be displayed on the login page, and the user's session will not expire between browser restarts.
-	RememberMe pulumi.BoolPtrInput
-	// The desired flow to use when a user attempts to reset their credentials. Defaults to `reset credentials`.
+	RememberMe       pulumi.BoolPtrInput
+	// Which flow should be used for ResetCredentialsFlow
 	ResetCredentialsFlow pulumi.StringPtrInput
-	// When true, a "forgot password" link will be displayed on the login page.
 	ResetPasswordAllowed pulumi.BoolPtrInput
-	// If enabled a refresh token can only be used number of times specified in 'refresh_token_max_reuse' before they are revoked. If unspecified, refresh tokens can be reused.
-	RevokeRefreshToken pulumi.BoolPtrInput
-	SecurityDefenses   RealmSecurityDefensesPtrInput
-	SmtpServer         RealmSmtpServerPtrInput
-	// Can be one of following values: 'none, 'external' or 'all'
-	SslRequired pulumi.StringPtrInput
-	// The amount of time a session can be idle before it expires.
-	SsoSessionIdleTimeout pulumi.StringPtrInput
-	// Similar to `ssoSessionIdleTimeout`, but used when a user clicks "Remember Me". If not set, Keycloak will default to the value of `ssoSessionIdleTimeout`.
+	RevokeRefreshToken   pulumi.BoolPtrInput
+	SecurityDefenses     RealmSecurityDefensesPtrInput
+	SmtpServer           RealmSmtpServerPtrInput
+	// SSL Required: Values can be 'none', 'external' or 'all'.
+	SslRequired                     pulumi.StringPtrInput
+	SsoSessionIdleTimeout           pulumi.StringPtrInput
 	SsoSessionIdleTimeoutRememberMe pulumi.StringPtrInput
-	// The maximum amount of time before a session expires regardless of activity.
-	SsoSessionMaxLifespan pulumi.StringPtrInput
-	// Similar to `ssoSessionMaxLifespan`, but used when a user clicks "Remember Me". If not set, Keycloak will default to the value of `ssoSessionMaxLifespan`.
+	SsoSessionMaxLifespan           pulumi.StringPtrInput
 	SsoSessionMaxLifespanRememberMe pulumi.StringPtrInput
-	// When `true`, users are allowed to manage their own resources. Defaults to `false`.
-	UserManagedAccess pulumi.BoolPtrInput
-	// When true, users are required to verify their email address after registration and after email address changes.
-	VerifyEmail pulumi.BoolPtrInput
-	// Configuration for WebAuthn Passwordless Policy authentication.
-	//
-	// Each of these attributes are blocks with the following attributes:
-	WebAuthnPasswordlessPolicy RealmWebAuthnPasswordlessPolicyPtrInput
-	// Configuration for WebAuthn Policy authentication.
-	WebAuthnPolicy RealmWebAuthnPolicyPtrInput
+	UserManagedAccess               pulumi.BoolPtrInput
+	VerifyEmail                     pulumi.BoolPtrInput
+	WebAuthnPasswordlessPolicy      RealmWebAuthnPasswordlessPolicyPtrInput
+	WebAuthnPolicy                  RealmWebAuthnPolicyPtrInput
 }
 
 func (RealmArgs) ElementType() reflect.Type {
@@ -823,72 +483,60 @@ func (o RealmOutput) ToRealmOutputWithContext(ctx context.Context) RealmOutput {
 	return o
 }
 
-// The maximum amount of time a client has to finish the authorization code flow.
 func (o RealmOutput) AccessCodeLifespan() pulumi.StringOutput {
 	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.AccessCodeLifespan }).(pulumi.StringOutput)
 }
 
-// The maximum amount of time a user is permitted to stay on the login page before the authentication process must be restarted.
 func (o RealmOutput) AccessCodeLifespanLogin() pulumi.StringOutput {
 	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.AccessCodeLifespanLogin }).(pulumi.StringOutput)
 }
 
-// The maximum amount of time a user has to complete login related actions, such as updating a password.
 func (o RealmOutput) AccessCodeLifespanUserAction() pulumi.StringOutput {
 	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.AccessCodeLifespanUserAction }).(pulumi.StringOutput)
 }
 
-// The amount of time an access token can be used before it expires.
 func (o RealmOutput) AccessTokenLifespan() pulumi.StringOutput {
 	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.AccessTokenLifespan }).(pulumi.StringOutput)
 }
 
-// The amount of time an access token issued with the OpenID Connect Implicit Flow can be used before it expires.
 func (o RealmOutput) AccessTokenLifespanForImplicitFlow() pulumi.StringOutput {
 	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.AccessTokenLifespanForImplicitFlow }).(pulumi.StringOutput)
 }
 
-// Used for account management pages.
 func (o RealmOutput) AccountTheme() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Realm) pulumi.StringPtrOutput { return v.AccountTheme }).(pulumi.StringPtrOutput)
 }
 
-// The maximum time a user has to use an admin-generated permit before it expires.
 func (o RealmOutput) ActionTokenGeneratedByAdminLifespan() pulumi.StringOutput {
 	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.ActionTokenGeneratedByAdminLifespan }).(pulumi.StringOutput)
 }
 
-// The maximum time a user has to use a user-generated permit before it expires.
 func (o RealmOutput) ActionTokenGeneratedByUserLifespan() pulumi.StringOutput {
 	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.ActionTokenGeneratedByUserLifespan }).(pulumi.StringOutput)
 }
 
-// Used for the admin console.
 func (o RealmOutput) AdminTheme() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Realm) pulumi.StringPtrOutput { return v.AdminTheme }).(pulumi.StringPtrOutput)
 }
 
-// A map of custom attributes to add to the realm.
 func (o RealmOutput) Attributes() pulumi.MapOutput {
 	return o.ApplyT(func(v *Realm) pulumi.MapOutput { return v.Attributes }).(pulumi.MapOutput)
 }
 
-// The desired flow for browser authentication. Defaults to `browser`.
+// Which flow should be used for BrowserFlow
 func (o RealmOutput) BrowserFlow() pulumi.StringOutput {
 	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.BrowserFlow }).(pulumi.StringOutput)
 }
 
-// The desired flow for client authentication. Defaults to `clients`.
+// Which flow should be used for ClientAuthenticationFlow
 func (o RealmOutput) ClientAuthenticationFlow() pulumi.StringOutput {
 	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.ClientAuthenticationFlow }).(pulumi.StringOutput)
 }
 
-// The amount of time a session can be idle before it expires. Users can override it for individual clients.
 func (o RealmOutput) ClientSessionIdleTimeout() pulumi.StringOutput {
 	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.ClientSessionIdleTimeout }).(pulumi.StringOutput)
 }
 
-// The maximum amount of time before a session expires regardless of activity. Users can override it for individual clients.
 func (o RealmOutput) ClientSessionMaxLifespan() pulumi.StringOutput {
 	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.ClientSessionMaxLifespan }).(pulumi.StringOutput)
 }
@@ -901,52 +549,44 @@ func (o RealmOutput) DefaultOptionalClientScopes() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Realm) pulumi.StringArrayOutput { return v.DefaultOptionalClientScopes }).(pulumi.StringArrayOutput)
 }
 
-// Default algorithm used to sign tokens for the realm.
 func (o RealmOutput) DefaultSignatureAlgorithm() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Realm) pulumi.StringPtrOutput { return v.DefaultSignatureAlgorithm }).(pulumi.StringPtrOutput)
 }
 
-// The desired flow for direct access authentication. Defaults to `direct grant`.
+// Which flow should be used for DirectGrantFlow
 func (o RealmOutput) DirectGrantFlow() pulumi.StringOutput {
 	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.DirectGrantFlow }).(pulumi.StringOutput)
 }
 
-// The display name for the realm that is shown when logging in to the admin console.
 func (o RealmOutput) DisplayName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Realm) pulumi.StringPtrOutput { return v.DisplayName }).(pulumi.StringPtrOutput)
 }
 
-// The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.
 func (o RealmOutput) DisplayNameHtml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Realm) pulumi.StringPtrOutput { return v.DisplayNameHtml }).(pulumi.StringPtrOutput)
 }
 
-// The desired flow for Docker authentication. Defaults to `docker auth`.
+// Which flow should be used for DockerAuthenticationFlow
 func (o RealmOutput) DockerAuthenticationFlow() pulumi.StringOutput {
 	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.DockerAuthenticationFlow }).(pulumi.StringOutput)
 }
 
-// When true, multiple users will be allowed to have the same email address. This argument must be set to `false` if `loginWithEmailAllowed` is set to `true`.
 func (o RealmOutput) DuplicateEmailsAllowed() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Realm) pulumi.BoolOutput { return v.DuplicateEmailsAllowed }).(pulumi.BoolOutput)
 }
 
-// When true, the username field is editable.
 func (o RealmOutput) EditUsernameAllowed() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Realm) pulumi.BoolOutput { return v.EditUsernameAllowed }).(pulumi.BoolOutput)
 }
 
-// Used for emails that are sent by Keycloak.
 func (o RealmOutput) EmailTheme() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Realm) pulumi.StringPtrOutput { return v.EmailTheme }).(pulumi.StringPtrOutput)
 }
 
-// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
 func (o RealmOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Realm) pulumi.BoolPtrOutput { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
 
-// When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
 func (o RealmOutput) InternalId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.InternalId }).(pulumi.StringOutput)
 }
@@ -955,39 +595,30 @@ func (o RealmOutput) Internationalization() RealmInternationalizationPtrOutput {
 	return o.ApplyT(func(v *Realm) RealmInternationalizationPtrOutput { return v.Internationalization }).(RealmInternationalizationPtrOutput)
 }
 
-// Used for the login, forgot password, and registration pages.
 func (o RealmOutput) LoginTheme() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Realm) pulumi.StringPtrOutput { return v.LoginTheme }).(pulumi.StringPtrOutput)
 }
 
-// When true, users may log in with their email address.
 func (o RealmOutput) LoginWithEmailAllowed() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Realm) pulumi.BoolOutput { return v.LoginWithEmailAllowed }).(pulumi.BoolOutput)
 }
 
-// The maximum amount of time a client has to finish the device code flow before it expires.
-//
-// The attributes below should be specified in seconds.
 func (o RealmOutput) Oauth2DeviceCodeLifespan() pulumi.StringOutput {
 	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.Oauth2DeviceCodeLifespan }).(pulumi.StringOutput)
 }
 
-// The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
 func (o RealmOutput) Oauth2DevicePollingInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v *Realm) pulumi.IntOutput { return v.Oauth2DevicePollingInterval }).(pulumi.IntOutput)
 }
 
-// The amount of time an offline session can be idle before it expires.
 func (o RealmOutput) OfflineSessionIdleTimeout() pulumi.StringOutput {
 	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.OfflineSessionIdleTimeout }).(pulumi.StringOutput)
 }
 
-// The maximum amount of time before an offline session expires regardless of activity.
 func (o RealmOutput) OfflineSessionMaxLifespan() pulumi.StringOutput {
 	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.OfflineSessionMaxLifespan }).(pulumi.StringOutput)
 }
 
-// Enable `offlineSessionMaxLifespan`.
 func (o RealmOutput) OfflineSessionMaxLifespanEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Realm) pulumi.BoolPtrOutput { return v.OfflineSessionMaxLifespanEnabled }).(pulumi.BoolPtrOutput)
 }
@@ -996,56 +627,47 @@ func (o RealmOutput) OtpPolicy() RealmOtpPolicyOutput {
 	return o.ApplyT(func(v *Realm) RealmOtpPolicyOutput { return v.OtpPolicy }).(RealmOtpPolicyOutput)
 }
 
-// The password policy for users within the realm.
-//
-// The arguments below can be used to configure authentication flow bindings:
+// String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
+// can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365)
+// and notUsername(undefined)"
 func (o RealmOutput) PasswordPolicy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Realm) pulumi.StringPtrOutput { return v.PasswordPolicy }).(pulumi.StringPtrOutput)
 }
 
-// The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
 func (o RealmOutput) Realm() pulumi.StringOutput {
 	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.Realm }).(pulumi.StringOutput)
 }
 
-// Maximum number of times a refresh token can be reused before they are revoked. If unspecified and 'revoke_refresh_token' is enabled the default value is 0 and refresh tokens can not be reused.
-//
-// The arguments below should be specified as [Go duration strings](https://golang.org/pkg/time/#Duration.String). They will default to Keycloak's default settings.
 func (o RealmOutput) RefreshTokenMaxReuse() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *Realm) pulumi.IntPtrOutput { return v.RefreshTokenMaxReuse }).(pulumi.IntPtrOutput)
 }
 
-// When true, user registration will be enabled, and a link for registration will be displayed on the login page.
 func (o RealmOutput) RegistrationAllowed() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Realm) pulumi.BoolOutput { return v.RegistrationAllowed }).(pulumi.BoolOutput)
 }
 
-// When true, the user's email will be used as their username during registration.
 func (o RealmOutput) RegistrationEmailAsUsername() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Realm) pulumi.BoolOutput { return v.RegistrationEmailAsUsername }).(pulumi.BoolOutput)
 }
 
-// The desired flow for user registration. Defaults to `registration`.
+// Which flow should be used for RegistrationFlow
 func (o RealmOutput) RegistrationFlow() pulumi.StringOutput {
 	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.RegistrationFlow }).(pulumi.StringOutput)
 }
 
-// When true, a "remember me" checkbox will be displayed on the login page, and the user's session will not expire between browser restarts.
 func (o RealmOutput) RememberMe() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Realm) pulumi.BoolOutput { return v.RememberMe }).(pulumi.BoolOutput)
 }
 
-// The desired flow to use when a user attempts to reset their credentials. Defaults to `reset credentials`.
+// Which flow should be used for ResetCredentialsFlow
 func (o RealmOutput) ResetCredentialsFlow() pulumi.StringOutput {
 	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.ResetCredentialsFlow }).(pulumi.StringOutput)
 }
 
-// When true, a "forgot password" link will be displayed on the login page.
 func (o RealmOutput) ResetPasswordAllowed() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Realm) pulumi.BoolOutput { return v.ResetPasswordAllowed }).(pulumi.BoolOutput)
 }
 
-// If enabled a refresh token can only be used number of times specified in 'refresh_token_max_reuse' before they are revoked. If unspecified, refresh tokens can be reused.
 func (o RealmOutput) RevokeRefreshToken() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Realm) pulumi.BoolPtrOutput { return v.RevokeRefreshToken }).(pulumi.BoolPtrOutput)
 }
@@ -1058,49 +680,39 @@ func (o RealmOutput) SmtpServer() RealmSmtpServerPtrOutput {
 	return o.ApplyT(func(v *Realm) RealmSmtpServerPtrOutput { return v.SmtpServer }).(RealmSmtpServerPtrOutput)
 }
 
-// Can be one of following values: 'none, 'external' or 'all'
+// SSL Required: Values can be 'none', 'external' or 'all'.
 func (o RealmOutput) SslRequired() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Realm) pulumi.StringPtrOutput { return v.SslRequired }).(pulumi.StringPtrOutput)
 }
 
-// The amount of time a session can be idle before it expires.
 func (o RealmOutput) SsoSessionIdleTimeout() pulumi.StringOutput {
 	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.SsoSessionIdleTimeout }).(pulumi.StringOutput)
 }
 
-// Similar to `ssoSessionIdleTimeout`, but used when a user clicks "Remember Me". If not set, Keycloak will default to the value of `ssoSessionIdleTimeout`.
 func (o RealmOutput) SsoSessionIdleTimeoutRememberMe() pulumi.StringOutput {
 	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.SsoSessionIdleTimeoutRememberMe }).(pulumi.StringOutput)
 }
 
-// The maximum amount of time before a session expires regardless of activity.
 func (o RealmOutput) SsoSessionMaxLifespan() pulumi.StringOutput {
 	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.SsoSessionMaxLifespan }).(pulumi.StringOutput)
 }
 
-// Similar to `ssoSessionMaxLifespan`, but used when a user clicks "Remember Me". If not set, Keycloak will default to the value of `ssoSessionMaxLifespan`.
 func (o RealmOutput) SsoSessionMaxLifespanRememberMe() pulumi.StringOutput {
 	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.SsoSessionMaxLifespanRememberMe }).(pulumi.StringOutput)
 }
 
-// When `true`, users are allowed to manage their own resources. Defaults to `false`.
 func (o RealmOutput) UserManagedAccess() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Realm) pulumi.BoolPtrOutput { return v.UserManagedAccess }).(pulumi.BoolPtrOutput)
 }
 
-// When true, users are required to verify their email address after registration and after email address changes.
 func (o RealmOutput) VerifyEmail() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Realm) pulumi.BoolOutput { return v.VerifyEmail }).(pulumi.BoolOutput)
 }
 
-// Configuration for WebAuthn Passwordless Policy authentication.
-//
-// Each of these attributes are blocks with the following attributes:
 func (o RealmOutput) WebAuthnPasswordlessPolicy() RealmWebAuthnPasswordlessPolicyOutput {
 	return o.ApplyT(func(v *Realm) RealmWebAuthnPasswordlessPolicyOutput { return v.WebAuthnPasswordlessPolicy }).(RealmWebAuthnPasswordlessPolicyOutput)
 }
 
-// Configuration for WebAuthn Policy authentication.
 func (o RealmOutput) WebAuthnPolicy() RealmWebAuthnPolicyOutput {
 	return o.ApplyT(func(v *Realm) RealmWebAuthnPolicyOutput { return v.WebAuthnPolicy }).(RealmWebAuthnPolicyOutput)
 }
