@@ -70,6 +70,7 @@ def get_authentication_flow(alias: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_keycloak as keycloak
@@ -80,6 +81,7 @@ def get_authentication_flow(alias: Optional[str] = None,
     browser_auth_cookie = keycloak.get_authentication_flow_output(realm_id=realm.id,
         alias="browser")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str alias: The alias of the flow.
@@ -106,6 +108,7 @@ def get_authentication_flow_output(alias: Optional[pulumi.Input[str]] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_keycloak as keycloak
@@ -116,6 +119,7 @@ def get_authentication_flow_output(alias: Optional[pulumi.Input[str]] = None,
     browser_auth_cookie = keycloak.get_authentication_flow_output(realm_id=realm.id,
         alias="browser")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str alias: The alias of the flow.

@@ -229,6 +229,7 @@ class IdentityProviderTokenExchangeScopePermission(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -259,16 +260,17 @@ class IdentityProviderTokenExchangeScopePermission(pulumi.CustomResource):
             policy_type="client",
             clients=[token_exchange_webapp_client.id])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         This resource can be imported using the format `{{realm_id}}/{{provider_alias}}`, where `provider_alias` is the alias that
 
-         you assign to the identity provider upon creation.
+        you assign to the identity provider upon creation.
 
-         Example:
+        Example:
 
-         bash
+        bash
 
         ```sh
         $ pulumi import keycloak:index/identityProviderTokenExchangeScopePermission:IdentityProviderTokenExchangeScopePermission oidc_idp_permission my-realm/myIdp
@@ -290,6 +292,7 @@ class IdentityProviderTokenExchangeScopePermission(pulumi.CustomResource):
         """
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -320,16 +323,17 @@ class IdentityProviderTokenExchangeScopePermission(pulumi.CustomResource):
             policy_type="client",
             clients=[token_exchange_webapp_client.id])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         This resource can be imported using the format `{{realm_id}}/{{provider_alias}}`, where `provider_alias` is the alias that
 
-         you assign to the identity provider upon creation.
+        you assign to the identity provider upon creation.
 
-         Example:
+        Example:
 
-         bash
+        bash
 
         ```sh
         $ pulumi import keycloak:index/identityProviderTokenExchangeScopePermission:IdentityProviderTokenExchangeScopePermission oidc_idp_permission my-realm/myIdp

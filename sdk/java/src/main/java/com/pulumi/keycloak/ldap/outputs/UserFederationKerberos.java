@@ -14,7 +14,7 @@ import javax.annotation.Nullable;
 @CustomType
 public final class UserFederationKerberos {
     /**
-     * @return The name of the kerberos realm, e.g. FOO.LOCAL.
+     * @return The name of the kerberos realm, e.g. FOO.LOCAL
      * 
      */
     private String kerberosRealm;
@@ -36,7 +36,7 @@ public final class UserFederationKerberos {
 
     private UserFederationKerberos() {}
     /**
-     * @return The name of the kerberos realm, e.g. FOO.LOCAL.
+     * @return The name of the kerberos realm, e.g. FOO.LOCAL
      * 
      */
     public String kerberosRealm() {

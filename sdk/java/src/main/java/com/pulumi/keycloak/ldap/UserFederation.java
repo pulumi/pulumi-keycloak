@@ -20,6 +20,8 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * ## # keycloak.ldap.UserFederation
+ * 
  * Allows for creating and managing LDAP user federation providers within Keycloak.
  * 
  * Keycloak can use an LDAP user federation provider to federate users to Keycloak
@@ -27,7 +29,9 @@ import javax.annotation.Nullable;
  * will exist within the realm and will be able to log in to clients. Federated
  * users can have their attributes defined using mappers.
  * 
- * ## Example Usage
+ * ### Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -38,7 +42,6 @@ import javax.annotation.Nullable;
  * import com.pulumi.keycloak.RealmArgs;
  * import com.pulumi.keycloak.ldap.UserFederation;
  * import com.pulumi.keycloak.ldap.UserFederationArgs;
- * import com.pulumi.keycloak.ldap.inputs.UserFederationKerberosArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -53,130 +56,158 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
  *             .enabled(true)
+ *             .realm(&#34;test&#34;)
  *             .build());
  * 
  *         var ldapUserFederation = new UserFederation(&#34;ldapUserFederation&#34;, UserFederationArgs.builder()        
- *             .realmId(realm.id())
+ *             .bindCredential(&#34;admin&#34;)
+ *             .bindDn(&#34;cn=admin,dc=example,dc=org&#34;)
+ *             .connectionTimeout(&#34;5s&#34;)
+ *             .connectionUrl(&#34;ldap://openldap&#34;)
  *             .enabled(true)
- *             .usernameLdapAttribute(&#34;cn&#34;)
  *             .rdnLdapAttribute(&#34;cn&#34;)
- *             .uuidLdapAttribute(&#34;entryDN&#34;)
+ *             .readTimeout(&#34;10s&#34;)
+ *             .realmId(realm.id())
  *             .userObjectClasses(            
  *                 &#34;simpleSecurityObject&#34;,
  *                 &#34;organizationalRole&#34;)
- *             .connectionUrl(&#34;ldap://openldap&#34;)
+ *             .usernameLdapAttribute(&#34;cn&#34;)
  *             .usersDn(&#34;dc=example,dc=org&#34;)
- *             .bindDn(&#34;cn=admin,dc=example,dc=org&#34;)
- *             .bindCredential(&#34;admin&#34;)
- *             .connectionTimeout(&#34;5s&#34;)
- *             .readTimeout(&#34;10s&#34;)
- *             .kerberos(UserFederationKerberosArgs.builder()
- *                 .kerberosRealm(&#34;FOO.LOCAL&#34;)
- *                 .serverPrincipal(&#34;HTTP/host.foo.com@FOO.LOCAL&#34;)
- *                 .keyTab(&#34;/etc/host.keytab&#34;)
- *                 .build())
+ *             .uuidLdapAttribute(&#34;entryDN&#34;)
  *             .build());
  * 
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * ## Import
+ * ### Argument Reference
+ * 
+ * The following arguments are supported:
+ * 
+ * - `realm_id` - (Required) The realm that this provider will provide user federation for.
+ * - `name` - (Required) Display name of the provider when displayed in the console.
+ * - `enabled` - (Optional) When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
+ * - `priority` - (Optional) Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
+ * - `import_enabled` - (Optional) When `true`, LDAP users will be imported into the Keycloak database. Defaults to `true`.
+ * - `edit_mode` - (Optional) Can be one of `READ_ONLY`, `WRITABLE`, or `UNSYNCED`. `UNSYNCED` allows user data to be imported but not synced back to LDAP. Defaults to `READ_ONLY`.
+ * - `sync_registrations` - (Optional) When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
+ * - `vendor` - (Optional) Can be one of `OTHER`, `EDIRECTORY`, `AD`, `RHDS`, or `TIVOLI`. When this is selected in the GUI, it provides reasonable defaults for other fields. When used with the Keycloak API, this attribute does nothing, but is still required. Defaults to `OPTIONAL`.
+ * - `username_ldap_attribute` - (Required) Name of the LDAP attribute to use as the Keycloak username.
+ * - `rdn_ldap_attribute` - (Required) Name of the LDAP attribute to use as the relative distinguished name.
+ * - `uuid_ldap_attribute` - (Required) Name of the LDAP attribute to use as a unique object identifier for objects in LDAP.
+ * - `user_object_classes` - (Required) Array of all values of LDAP objectClass attribute for users in LDAP. Must contain at least one.
+ * - `connection_url` - (Required) Connection URL to the LDAP server.
+ * - `users_dn` - (Required) Full DN of LDAP tree where your users are.
+ * - `bind_dn` - (Optional) DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` is set.
+ * - `bind_credential` - (Optional) Password of LDAP admin. This attribute must be set if `bind_dn` is set.
+ * - `custom_user_search_filter` - (Optional) Additional LDAP filter for filtering searched users. Must begin with `(` and end with `)`.
+ * - `search_scope` - (Optional) Can be one of `ONE_LEVEL` or `SUBTREE`:
+ *     - `ONE_LEVEL`: Only search for users in the DN specified by `user_dn`.
+ *     - `SUBTREE`: Search entire LDAP subtree.
+ * - `validate_password_policy` - (Optional) When `true`, Keycloak will validate passwords using the realm policy before updating it.
+ * - `use_truststore_spi` - (Optional) Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
+ *     - `ALWAYS` - Always use the truststore SPI for LDAP connections.
+ *     - `NEVER` - Never use the truststore SPI for LDAP connections.
+ *     - `ONLY_FOR_LDAPS` - Only use the truststore SPI if your LDAP connection uses the ldaps protocol.
+ * - `connection_timeout` - (Optional) LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
+ * - `read_timeout` - (Optional) LDAP read timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
+ * - `pagination` - (Optional) When true, Keycloak assumes the LDAP server supports pagination. Defaults to `true`.
+ * - `batch_size_for_sync` - (Optional) The number of users to sync within a single transaction. Defaults to `1000`.
+ * - `full_sync_period` - (Optional) How frequently Keycloak should sync all LDAP users, in seconds. Omit this property to disable periodic full sync.
+ * - `changed_sync_period` - (Optional) How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
+ * - `cache_policy` - (Optional) Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
+ * 
+ * ### Import
  * 
  * LDAP user federation providers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}`.
- * 
- *  The ID of the LDAP user federation provider can be found within the Keycloak GUI and is typically a GUID:
- * 
- *  bash
- * 
- * ```sh
- * $ pulumi import keycloak:ldap/userFederation:UserFederation ldap_user_federation my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860
- * ```
+ * The ID of the LDAP user federation provider can be found within the Keycloak GUI and is typically a GUID:
  * 
  */
 @ResourceType(type="keycloak:ldap/userFederation:UserFederation")
 public class UserFederation extends com.pulumi.resources.CustomResource {
     /**
-     * The number of users to sync within a single transaction. Defaults to `1000`.
+     * The number of users to sync within a single transaction.
      * 
      */
     @Export(name="batchSizeForSync", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> batchSizeForSync;
 
     /**
-     * @return The number of users to sync within a single transaction. Defaults to `1000`.
+     * @return The number of users to sync within a single transaction.
      * 
      */
     public Output<Optional<Integer>> batchSizeForSync() {
         return Codegen.optional(this.batchSizeForSync);
     }
     /**
-     * Password of LDAP admin. This attribute must be set if `bind_dn` is set.
+     * Password of LDAP admin.
      * 
      */
     @Export(name="bindCredential", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> bindCredential;
 
     /**
-     * @return Password of LDAP admin. This attribute must be set if `bind_dn` is set.
+     * @return Password of LDAP admin.
      * 
      */
     public Output<Optional<String>> bindCredential() {
         return Codegen.optional(this.bindCredential);
     }
     /**
-     * DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` is set.
+     * DN of LDAP admin, which will be used by Keycloak to access LDAP server.
      * 
      */
     @Export(name="bindDn", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> bindDn;
 
     /**
-     * @return DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` is set.
+     * @return DN of LDAP admin, which will be used by Keycloak to access LDAP server.
      * 
      */
     public Output<Optional<String>> bindDn() {
         return Codegen.optional(this.bindDn);
     }
     /**
-     * A block containing the cache settings.
+     * Settings regarding cache policy for this realm.
      * 
      */
     @Export(name="cache", refs={UserFederationCache.class}, tree="[0]")
     private Output</* @Nullable */ UserFederationCache> cache;
 
     /**
-     * @return A block containing the cache settings.
+     * @return Settings regarding cache policy for this realm.
      * 
      */
     public Output<Optional<UserFederationCache>> cache() {
         return Codegen.optional(this.cache);
     }
     /**
-     * How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
+     * How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users
+     * sync.
      * 
      */
     @Export(name="changedSyncPeriod", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> changedSyncPeriod;
 
     /**
-     * @return How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
+     * @return How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users
+     * sync.
      * 
      */
     public Output<Optional<Integer>> changedSyncPeriod() {
         return Codegen.optional(this.changedSyncPeriod);
     }
     /**
-     * LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
+     * LDAP connection timeout (duration string)
      * 
      */
     @Export(name="connectionTimeout", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> connectionTimeout;
 
     /**
-     * @return LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
+     * @return LDAP connection timeout (duration string)
      * 
      */
     public Output<Optional<String>> connectionTimeout() {
@@ -197,56 +228,58 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
         return this.connectionUrl;
     }
     /**
-     * Additional LDAP filter for filtering searched users. Must begin with `(` and end with `)`.
+     * Additional LDAP filter for filtering searched users. Must begin with &#39;(&#39; and end with &#39;)&#39;.
      * 
      */
     @Export(name="customUserSearchFilter", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> customUserSearchFilter;
 
     /**
-     * @return Additional LDAP filter for filtering searched users. Must begin with `(` and end with `)`.
+     * @return Additional LDAP filter for filtering searched users. Must begin with &#39;(&#39; and end with &#39;)&#39;.
      * 
      */
     public Output<Optional<String>> customUserSearchFilter() {
         return Codegen.optional(this.customUserSearchFilter);
     }
     /**
-     * When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `false`.
+     * When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP
+     * user federation provider.
      * 
      */
     @Export(name="deleteDefaultMappers", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> deleteDefaultMappers;
 
     /**
-     * @return When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `false`.
+     * @return When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP
+     * user federation provider.
      * 
      */
     public Output<Optional<Boolean>> deleteDefaultMappers() {
         return Codegen.optional(this.deleteDefaultMappers);
     }
     /**
-     * Can be one of `READ_ONLY`, `WRITABLE`, or `UNSYNCED`. `UNSYNCED` allows user data to be imported but not synced back to LDAP. Defaults to `READ_ONLY`.
+     * READ_ONLY and WRITABLE are self-explanatory. UNSYNCED allows user data to be imported but not synced back to LDAP.
      * 
      */
     @Export(name="editMode", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> editMode;
 
     /**
-     * @return Can be one of `READ_ONLY`, `WRITABLE`, or `UNSYNCED`. `UNSYNCED` allows user data to be imported but not synced back to LDAP. Defaults to `READ_ONLY`.
+     * @return READ_ONLY and WRITABLE are self-explanatory. UNSYNCED allows user data to be imported but not synced back to LDAP.
      * 
      */
     public Output<Optional<String>> editMode() {
         return Codegen.optional(this.editMode);
     }
     /**
-     * When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
+     * When false, this provider will not be used when performing queries for users.
      * 
      */
     @Export(name="enabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> enabled;
 
     /**
-     * @return When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
+     * @return When false, this provider will not be used when performing queries for users.
      * 
      */
     public Output<Optional<Boolean>> enabled() {
@@ -267,28 +300,28 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.fullSyncPeriod);
     }
     /**
-     * When `true`, LDAP users will be imported into the Keycloak database. Defaults to `true`.
+     * When true, LDAP users will be imported into the Keycloak database.
      * 
      */
     @Export(name="importEnabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> importEnabled;
 
     /**
-     * @return When `true`, LDAP users will be imported into the Keycloak database. Defaults to `true`.
+     * @return When true, LDAP users will be imported into the Keycloak database.
      * 
      */
     public Output<Optional<Boolean>> importEnabled() {
         return Codegen.optional(this.importEnabled);
     }
     /**
-     * A block containing the kerberos settings.
+     * Settings regarding kerberos authentication for this realm.
      * 
      */
     @Export(name="kerberos", refs={UserFederationKerberos.class}, tree="[0]")
     private Output</* @Nullable */ UserFederationKerberos> kerberos;
 
     /**
-     * @return A block containing the kerberos settings.
+     * @return Settings regarding kerberos authentication for this realm.
      * 
      */
     public Output<Optional<UserFederationKerberos>> kerberos() {
@@ -309,28 +342,28 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
         return this.name;
     }
     /**
-     * When true, Keycloak assumes the LDAP server supports pagination. Defaults to `true`.
+     * When true, Keycloak assumes the LDAP server supports pagination.
      * 
      */
     @Export(name="pagination", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> pagination;
 
     /**
-     * @return When true, Keycloak assumes the LDAP server supports pagination. Defaults to `true`.
+     * @return When true, Keycloak assumes the LDAP server supports pagination.
      * 
      */
     public Output<Optional<Boolean>> pagination() {
         return Codegen.optional(this.pagination);
     }
     /**
-     * Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
+     * Priority of this provider when looking up users. Lower values are first.
      * 
      */
     @Export(name="priority", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> priority;
 
     /**
-     * @return Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
+     * @return Priority of this provider when looking up users. Lower values are first.
      * 
      */
     public Output<Optional<Integer>> priority() {
@@ -351,70 +384,70 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
         return this.rdnLdapAttribute;
     }
     /**
-     * LDAP read timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
+     * LDAP read timeout (duration string)
      * 
      */
     @Export(name="readTimeout", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> readTimeout;
 
     /**
-     * @return LDAP read timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
+     * @return LDAP read timeout (duration string)
      * 
      */
     public Output<Optional<String>> readTimeout() {
         return Codegen.optional(this.readTimeout);
     }
     /**
-     * The realm that this provider will provide user federation for.
+     * The realm this provider will provide user federation for.
      * 
      */
     @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**
-     * @return The realm that this provider will provide user federation for.
+     * @return The realm this provider will provide user federation for.
      * 
      */
     public Output<String> realmId() {
         return this.realmId;
     }
     /**
-     * Can be one of `ONE_LEVEL` or `SUBTREE`:
+     * ONE_LEVEL: only search for users in the DN specified by user_dn. SUBTREE: search entire LDAP subtree.
      * 
      */
     @Export(name="searchScope", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> searchScope;
 
     /**
-     * @return Can be one of `ONE_LEVEL` or `SUBTREE`:
+     * @return ONE_LEVEL: only search for users in the DN specified by user_dn. SUBTREE: search entire LDAP subtree.
      * 
      */
     public Output<Optional<String>> searchScope() {
         return Codegen.optional(this.searchScope);
     }
     /**
-     * When `true`, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
+     * When true, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
      * 
      */
     @Export(name="startTls", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> startTls;
 
     /**
-     * @return When `true`, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
+     * @return When true, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
      * 
      */
     public Output<Optional<Boolean>> startTls() {
         return Codegen.optional(this.startTls);
     }
     /**
-     * When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
+     * When true, newly created users will be synced back to LDAP.
      * 
      */
     @Export(name="syncRegistrations", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> syncRegistrations;
 
     /**
-     * @return When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
+     * @return When true, newly created users will be synced back to LDAP.
      * 
      */
     public Output<Optional<Boolean>> syncRegistrations() {
@@ -448,29 +481,21 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
     public Output<Optional<Boolean>> usePasswordModifyExtendedOp() {
         return Codegen.optional(this.usePasswordModifyExtendedOp);
     }
-    /**
-     * Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
-     * 
-     */
     @Export(name="useTruststoreSpi", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> useTruststoreSpi;
 
-    /**
-     * @return Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
-     * 
-     */
     public Output<Optional<String>> useTruststoreSpi() {
         return Codegen.optional(this.useTruststoreSpi);
     }
     /**
-     * Array of all values of LDAP objectClass attribute for users in LDAP. Must contain at least one.
+     * All values of LDAP objectClass attribute for users in LDAP.
      * 
      */
     @Export(name="userObjectClasses", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> userObjectClasses;
 
     /**
-     * @return Array of all values of LDAP objectClass attribute for users in LDAP. Must contain at least one.
+     * @return All values of LDAP objectClass attribute for users in LDAP.
      * 
      */
     public Output<List<String>> userObjectClasses() {
@@ -519,28 +544,28 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
         return this.uuidLdapAttribute;
     }
     /**
-     * When `true`, Keycloak will validate passwords using the realm policy before updating it.
+     * When true, Keycloak will validate passwords using the realm policy before updating it.
      * 
      */
     @Export(name="validatePasswordPolicy", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> validatePasswordPolicy;
 
     /**
-     * @return When `true`, Keycloak will validate passwords using the realm policy before updating it.
+     * @return When true, Keycloak will validate passwords using the realm policy before updating it.
      * 
      */
     public Output<Optional<Boolean>> validatePasswordPolicy() {
         return Codegen.optional(this.validatePasswordPolicy);
     }
     /**
-     * Can be one of `OTHER`, `EDIRECTORY`, `AD`, `RHDS`, or `TIVOLI`. When this is selected in the GUI, it provides reasonable defaults for other fields. When used with the Keycloak API, this attribute does nothing, but is still required. Defaults to `OTHER`.
+     * LDAP vendor. I am almost certain this field does nothing, but the UI indicates that it is required.
      * 
      */
     @Export(name="vendor", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> vendor;
 
     /**
-     * @return Can be one of `OTHER`, `EDIRECTORY`, `AD`, `RHDS`, or `TIVOLI`. When this is selected in the GUI, it provides reasonable defaults for other fields. When used with the Keycloak API, this attribute does nothing, but is still required. Defaults to `OTHER`.
+     * @return LDAP vendor. I am almost certain this field does nothing, but the UI indicates that it is required.
      * 
      */
     public Output<Optional<String>> vendor() {

@@ -14,123 +14,83 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class RealmWebAuthnPasswordlessPolicy {
-    /**
-     * @return A set of AAGUIDs for which an authenticator can be registered.
-     * 
-     */
     private @Nullable List<String> acceptableAaguids;
     /**
-     * @return The preference of how to generate a WebAuthn attestation statement. Valid options are `not specified`, `none`, `indirect`, `direct`, or `enterprise`. Defaults to `not specified`.
+     * @return Either none, indirect or direct
      * 
      */
     private @Nullable String attestationConveyancePreference;
     /**
-     * @return The acceptable attachment pattern for the WebAuthn authenticator. Valid options are `not specified`, `platform`, or `cross-platform`. Defaults to `not specified`.
+     * @return Either platform or cross-platform
      * 
      */
     private @Nullable String authenticatorAttachment;
-    /**
-     * @return When `true`, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to `false`.
-     * 
-     */
     private @Nullable Boolean avoidSameAuthenticatorRegister;
-    /**
-     * @return The timeout value for creating a user&#39;s public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
-     * 
-     */
     private @Nullable Integer createTimeout;
-    /**
-     * @return A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
-     * 
-     */
     private @Nullable String relyingPartyEntityName;
-    /**
-     * @return The WebAuthn relying party ID.
-     * 
-     */
     private @Nullable String relyingPartyId;
     /**
-     * @return Specifies whether or not a public key should be created to represent the resident key. Valid options are `not specified`, `Yes`, or `No`. Defaults to `not specified`.
+     * @return Either Yes or No
      * 
      */
     private @Nullable String requireResidentKey;
     /**
-     * @return A set of signature algorithms that should be used for the authentication assertion. Valid options at the time these docs were written are `ES256`, `ES384`, `ES512`, `RS256`, `RS384`, `RS512`, and `RS1`.
+     * @return Keycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing
      * 
      */
     private @Nullable List<String> signatureAlgorithms;
     /**
-     * @return Specifies the policy for verifying a user logging in via WebAuthn. Valid options are `not specified`, `required`, `preferred`, or `discouraged`. Defaults to `not specified`.
+     * @return Either required, preferred or discouraged
      * 
      */
     private @Nullable String userVerificationRequirement;
 
     private RealmWebAuthnPasswordlessPolicy() {}
-    /**
-     * @return A set of AAGUIDs for which an authenticator can be registered.
-     * 
-     */
     public List<String> acceptableAaguids() {
         return this.acceptableAaguids == null ? List.of() : this.acceptableAaguids;
     }
     /**
-     * @return The preference of how to generate a WebAuthn attestation statement. Valid options are `not specified`, `none`, `indirect`, `direct`, or `enterprise`. Defaults to `not specified`.
+     * @return Either none, indirect or direct
      * 
      */
     public Optional<String> attestationConveyancePreference() {
         return Optional.ofNullable(this.attestationConveyancePreference);
     }
     /**
-     * @return The acceptable attachment pattern for the WebAuthn authenticator. Valid options are `not specified`, `platform`, or `cross-platform`. Defaults to `not specified`.
+     * @return Either platform or cross-platform
      * 
      */
     public Optional<String> authenticatorAttachment() {
         return Optional.ofNullable(this.authenticatorAttachment);
     }
-    /**
-     * @return When `true`, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to `false`.
-     * 
-     */
     public Optional<Boolean> avoidSameAuthenticatorRegister() {
         return Optional.ofNullable(this.avoidSameAuthenticatorRegister);
     }
-    /**
-     * @return The timeout value for creating a user&#39;s public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
-     * 
-     */
     public Optional<Integer> createTimeout() {
         return Optional.ofNullable(this.createTimeout);
     }
-    /**
-     * @return A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
-     * 
-     */
     public Optional<String> relyingPartyEntityName() {
         return Optional.ofNullable(this.relyingPartyEntityName);
     }
-    /**
-     * @return The WebAuthn relying party ID.
-     * 
-     */
     public Optional<String> relyingPartyId() {
         return Optional.ofNullable(this.relyingPartyId);
     }
     /**
-     * @return Specifies whether or not a public key should be created to represent the resident key. Valid options are `not specified`, `Yes`, or `No`. Defaults to `not specified`.
+     * @return Either Yes or No
      * 
      */
     public Optional<String> requireResidentKey() {
         return Optional.ofNullable(this.requireResidentKey);
     }
     /**
-     * @return A set of signature algorithms that should be used for the authentication assertion. Valid options at the time these docs were written are `ES256`, `ES384`, `ES512`, `RS256`, `RS384`, `RS512`, and `RS1`.
+     * @return Keycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing
      * 
      */
     public List<String> signatureAlgorithms() {
         return this.signatureAlgorithms == null ? List.of() : this.signatureAlgorithms;
     }
     /**
-     * @return Specifies the policy for verifying a user logging in via WebAuthn. Valid options are `not specified`, `required`, `preferred`, or `discouraged`. Defaults to `not specified`.
+     * @return Either required, preferred or discouraged
      * 
      */
     public Optional<String> userVerificationRequirement() {

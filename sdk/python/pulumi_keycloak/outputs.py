@@ -304,27 +304,17 @@ class RealmInternationalization(dict):
     def __init__(__self__, *,
                  default_locale: str,
                  supported_locales: Sequence[str]):
-        """
-        :param str default_locale: The locale to use by default. This locale code must be present within the `supported_locales` list.
-        :param Sequence[str] supported_locales: A list of [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) locale codes that the realm should support.
-        """
         pulumi.set(__self__, "default_locale", default_locale)
         pulumi.set(__self__, "supported_locales", supported_locales)
 
     @property
     @pulumi.getter(name="defaultLocale")
     def default_locale(self) -> str:
-        """
-        The locale to use by default. This locale code must be present within the `supported_locales` list.
-        """
         return pulumi.get(self, "default_locale")
 
     @property
     @pulumi.getter(name="supportedLocales")
     def supported_locales(self) -> Sequence[str]:
-        """
-        A list of [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) locale codes that the realm should support.
-        """
         return pulumi.get(self, "supported_locales")
 
 
@@ -357,12 +347,8 @@ class RealmOtpPolicy(dict):
                  period: Optional[int] = None,
                  type: Optional[str] = None):
         """
-        :param str algorithm: What hashing algorithm should be used to generate the OTP, Valid options are `HmacSHA1`,`HmacSHA256` and `HmacSHA512`. Defaults to `HmacSHA1`.
-        :param int digits: How many digits the OTP have. Defaults to `6`.
-        :param int initial_counter: What should the initial counter value be. Defaults to `2`.
-        :param int look_ahead_window: How far ahead should the server look just in case the token generator and server are out of time sync or counter sync. Defaults to `1`.
-        :param int period: How many seconds should an OTP token be valid. Defaults to `30`.
-        :param str type: One Time Password Type, supported Values are `totp` for Time-Based One Time Password and `hotp` for Counter Based. Defaults to `totp`.
+        :param str algorithm: What hashing algorithm should be used to generate the OTP.
+        :param str type: OTP Type, totp for Time-Based One Time Password or hotp for counter base one time password
         """
         if algorithm is not None:
             pulumi.set(__self__, "algorithm", algorithm)
@@ -381,47 +367,35 @@ class RealmOtpPolicy(dict):
     @pulumi.getter
     def algorithm(self) -> Optional[str]:
         """
-        What hashing algorithm should be used to generate the OTP, Valid options are `HmacSHA1`,`HmacSHA256` and `HmacSHA512`. Defaults to `HmacSHA1`.
+        What hashing algorithm should be used to generate the OTP.
         """
         return pulumi.get(self, "algorithm")
 
     @property
     @pulumi.getter
     def digits(self) -> Optional[int]:
-        """
-        How many digits the OTP have. Defaults to `6`.
-        """
         return pulumi.get(self, "digits")
 
     @property
     @pulumi.getter(name="initialCounter")
     def initial_counter(self) -> Optional[int]:
-        """
-        What should the initial counter value be. Defaults to `2`.
-        """
         return pulumi.get(self, "initial_counter")
 
     @property
     @pulumi.getter(name="lookAheadWindow")
     def look_ahead_window(self) -> Optional[int]:
-        """
-        How far ahead should the server look just in case the token generator and server are out of time sync or counter sync. Defaults to `1`.
-        """
         return pulumi.get(self, "look_ahead_window")
 
     @property
     @pulumi.getter
     def period(self) -> Optional[int]:
-        """
-        How many seconds should an OTP token be valid. Defaults to `30`.
-        """
         return pulumi.get(self, "period")
 
     @property
     @pulumi.getter
     def type(self) -> Optional[str]:
         """
-        One Time Password Type, supported Values are `totp` for Time-Based One Time Password and `hotp` for Counter Based. Defaults to `totp`.
+        OTP Type, totp for Time-Based One Time Password or hotp for counter base one time password
         """
         return pulumi.get(self, "type")
 
@@ -503,15 +477,6 @@ class RealmSecurityDefensesBruteForceDetection(dict):
                  permanent_lockout: Optional[bool] = None,
                  quick_login_check_milli_seconds: Optional[int] = None,
                  wait_increment_seconds: Optional[int] = None):
-        """
-        :param int failure_reset_time_seconds: When will failure count be reset?
-        :param int max_login_failures: How many failures before wait is triggered.
-        :param int minimum_quick_login_wait_seconds: How long to wait after a quick login failure.
-               - `max_failure_wait_seconds ` - (Optional) Max. time a user will be locked out.
-        :param bool permanent_lockout: When `true`, this will lock the user permanently when the user exceeds the maximum login failures.
-        :param int quick_login_check_milli_seconds: Configures the amount of time, in milliseconds, for consecutive failures to lock a user out.
-        :param int wait_increment_seconds: This represents the amount of time a user should be locked out when the login failure threshold has been met.
-        """
         if failure_reset_time_seconds is not None:
             pulumi.set(__self__, "failure_reset_time_seconds", failure_reset_time_seconds)
         if max_failure_wait_seconds is not None:
@@ -530,9 +495,6 @@ class RealmSecurityDefensesBruteForceDetection(dict):
     @property
     @pulumi.getter(name="failureResetTimeSeconds")
     def failure_reset_time_seconds(self) -> Optional[int]:
-        """
-        When will failure count be reset?
-        """
         return pulumi.get(self, "failure_reset_time_seconds")
 
     @property
@@ -543,42 +505,26 @@ class RealmSecurityDefensesBruteForceDetection(dict):
     @property
     @pulumi.getter(name="maxLoginFailures")
     def max_login_failures(self) -> Optional[int]:
-        """
-        How many failures before wait is triggered.
-        """
         return pulumi.get(self, "max_login_failures")
 
     @property
     @pulumi.getter(name="minimumQuickLoginWaitSeconds")
     def minimum_quick_login_wait_seconds(self) -> Optional[int]:
-        """
-        How long to wait after a quick login failure.
-        - `max_failure_wait_seconds ` - (Optional) Max. time a user will be locked out.
-        """
         return pulumi.get(self, "minimum_quick_login_wait_seconds")
 
     @property
     @pulumi.getter(name="permanentLockout")
     def permanent_lockout(self) -> Optional[bool]:
-        """
-        When `true`, this will lock the user permanently when the user exceeds the maximum login failures.
-        """
         return pulumi.get(self, "permanent_lockout")
 
     @property
     @pulumi.getter(name="quickLoginCheckMilliSeconds")
     def quick_login_check_milli_seconds(self) -> Optional[int]:
-        """
-        Configures the amount of time, in milliseconds, for consecutive failures to lock a user out.
-        """
         return pulumi.get(self, "quick_login_check_milli_seconds")
 
     @property
     @pulumi.getter(name="waitIncrementSeconds")
     def wait_increment_seconds(self) -> Optional[int]:
-        """
-        This represents the amount of time a user should be locked out when the login failure threshold has been met.
-        """
         return pulumi.get(self, "wait_increment_seconds")
 
 
@@ -624,16 +570,6 @@ class RealmSecurityDefensesHeaders(dict):
                  x_frame_options: Optional[str] = None,
                  x_robots_tag: Optional[str] = None,
                  x_xss_protection: Optional[str] = None):
-        """
-        :param str content_security_policy: Sets the Content Security Policy, which can be used for prevent pages from being included by non-origin iframes. More information can be found in the [W3C-CSP](https://www.w3.org/TR/CSP/) Abstract.
-        :param str content_security_policy_report_only: Used for testing Content Security Policies.
-        :param str referrer_policy: The Referrer-Policy HTTP header controls how much referrer information (sent with the Referer header) should be included with requests.
-        :param str strict_transport_security: The Script-Transport-Security HTTP header tells browsers to always use HTTPS.
-        :param str x_content_type_options: Sets the X-Content-Type-Options, which can be used for prevent MIME-sniffing a response away from the declared content-type
-        :param str x_frame_options: Sets the x-frame-option, which can be used to prevent pages from being included by non-origin iframes. More information can be found in the [RFC7034](https://tools.ietf.org/html/rfc7034)
-        :param str x_robots_tag: Prevent pages from appearing in search engines.
-        :param str x_xss_protection: This header configures the Cross-site scripting (XSS) filter in your browser.
-        """
         if content_security_policy is not None:
             pulumi.set(__self__, "content_security_policy", content_security_policy)
         if content_security_policy_report_only is not None:
@@ -654,65 +590,41 @@ class RealmSecurityDefensesHeaders(dict):
     @property
     @pulumi.getter(name="contentSecurityPolicy")
     def content_security_policy(self) -> Optional[str]:
-        """
-        Sets the Content Security Policy, which can be used for prevent pages from being included by non-origin iframes. More information can be found in the [W3C-CSP](https://www.w3.org/TR/CSP/) Abstract.
-        """
         return pulumi.get(self, "content_security_policy")
 
     @property
     @pulumi.getter(name="contentSecurityPolicyReportOnly")
     def content_security_policy_report_only(self) -> Optional[str]:
-        """
-        Used for testing Content Security Policies.
-        """
         return pulumi.get(self, "content_security_policy_report_only")
 
     @property
     @pulumi.getter(name="referrerPolicy")
     def referrer_policy(self) -> Optional[str]:
-        """
-        The Referrer-Policy HTTP header controls how much referrer information (sent with the Referer header) should be included with requests.
-        """
         return pulumi.get(self, "referrer_policy")
 
     @property
     @pulumi.getter(name="strictTransportSecurity")
     def strict_transport_security(self) -> Optional[str]:
-        """
-        The Script-Transport-Security HTTP header tells browsers to always use HTTPS.
-        """
         return pulumi.get(self, "strict_transport_security")
 
     @property
     @pulumi.getter(name="xContentTypeOptions")
     def x_content_type_options(self) -> Optional[str]:
-        """
-        Sets the X-Content-Type-Options, which can be used for prevent MIME-sniffing a response away from the declared content-type
-        """
         return pulumi.get(self, "x_content_type_options")
 
     @property
     @pulumi.getter(name="xFrameOptions")
     def x_frame_options(self) -> Optional[str]:
-        """
-        Sets the x-frame-option, which can be used to prevent pages from being included by non-origin iframes. More information can be found in the [RFC7034](https://tools.ietf.org/html/rfc7034)
-        """
         return pulumi.get(self, "x_frame_options")
 
     @property
     @pulumi.getter(name="xRobotsTag")
     def x_robots_tag(self) -> Optional[str]:
-        """
-        Prevent pages from appearing in search engines.
-        """
         return pulumi.get(self, "x_robots_tag")
 
     @property
     @pulumi.getter(name="xXssProtection")
     def x_xss_protection(self) -> Optional[str]:
-        """
-        This header configures the Cross-site scripting (XSS) filter in your browser.
-        """
         return pulumi.get(self, "x_xss_protection")
 
 
@@ -754,18 +666,6 @@ class RealmSmtpServer(dict):
                  reply_to_display_name: Optional[str] = None,
                  ssl: Optional[bool] = None,
                  starttls: Optional[bool] = None):
-        """
-        :param str from_: The email address for the sender.
-        :param str host: The host of the SMTP server.
-        :param 'RealmSmtpServerAuthArgs' auth: Enables authentication to the SMTP server.  This block supports the following arguments:
-        :param str envelope_from: The email address uses for bounces.
-        :param str from_display_name: The display name of the sender email address.
-        :param str port: The port of the SMTP server (defaults to 25).
-        :param str reply_to: The "reply to" email address.
-        :param str reply_to_display_name: The display name of the "reply to" email address.
-        :param bool ssl: When `true`, enables SSL. Defaults to `false`.
-        :param bool starttls: When `true`, enables StartTLS. Defaults to `false`.
-        """
         pulumi.set(__self__, "from_", from_)
         pulumi.set(__self__, "host", host)
         if auth is not None:
@@ -788,81 +688,51 @@ class RealmSmtpServer(dict):
     @property
     @pulumi.getter(name="from")
     def from_(self) -> str:
-        """
-        The email address for the sender.
-        """
         return pulumi.get(self, "from_")
 
     @property
     @pulumi.getter
     def host(self) -> str:
-        """
-        The host of the SMTP server.
-        """
         return pulumi.get(self, "host")
 
     @property
     @pulumi.getter
     def auth(self) -> Optional['outputs.RealmSmtpServerAuth']:
-        """
-        Enables authentication to the SMTP server.  This block supports the following arguments:
-        """
         return pulumi.get(self, "auth")
 
     @property
     @pulumi.getter(name="envelopeFrom")
     def envelope_from(self) -> Optional[str]:
-        """
-        The email address uses for bounces.
-        """
         return pulumi.get(self, "envelope_from")
 
     @property
     @pulumi.getter(name="fromDisplayName")
     def from_display_name(self) -> Optional[str]:
-        """
-        The display name of the sender email address.
-        """
         return pulumi.get(self, "from_display_name")
 
     @property
     @pulumi.getter
     def port(self) -> Optional[str]:
-        """
-        The port of the SMTP server (defaults to 25).
-        """
         return pulumi.get(self, "port")
 
     @property
     @pulumi.getter(name="replyTo")
     def reply_to(self) -> Optional[str]:
-        """
-        The "reply to" email address.
-        """
         return pulumi.get(self, "reply_to")
 
     @property
     @pulumi.getter(name="replyToDisplayName")
     def reply_to_display_name(self) -> Optional[str]:
-        """
-        The display name of the "reply to" email address.
-        """
         return pulumi.get(self, "reply_to_display_name")
 
     @property
     @pulumi.getter
     def ssl(self) -> Optional[bool]:
-        """
-        When `true`, enables SSL. Defaults to `false`.
-        """
         return pulumi.get(self, "ssl")
 
     @property
     @pulumi.getter
     def starttls(self) -> Optional[bool]:
-        """
-        When `true`, enables StartTLS. Defaults to `false`.
-        """
         return pulumi.get(self, "starttls")
 
 
@@ -871,27 +741,17 @@ class RealmSmtpServerAuth(dict):
     def __init__(__self__, *,
                  password: str,
                  username: str):
-        """
-        :param str password: The SMTP server password.
-        :param str username: The SMTP server username.
-        """
         pulumi.set(__self__, "password", password)
         pulumi.set(__self__, "username", username)
 
     @property
     @pulumi.getter
     def password(self) -> str:
-        """
-        The SMTP server password.
-        """
         return pulumi.get(self, "password")
 
     @property
     @pulumi.getter
     def username(self) -> str:
-        """
-        The SMTP server username.
-        """
         return pulumi.get(self, "username")
 
 
@@ -1213,16 +1073,11 @@ class RealmWebAuthnPasswordlessPolicy(dict):
                  signature_algorithms: Optional[Sequence[str]] = None,
                  user_verification_requirement: Optional[str] = None):
         """
-        :param Sequence[str] acceptable_aaguids: A set of AAGUIDs for which an authenticator can be registered.
-        :param str attestation_conveyance_preference: The preference of how to generate a WebAuthn attestation statement. Valid options are `not specified`, `none`, `indirect`, `direct`, or `enterprise`. Defaults to `not specified`.
-        :param str authenticator_attachment: The acceptable attachment pattern for the WebAuthn authenticator. Valid options are `not specified`, `platform`, or `cross-platform`. Defaults to `not specified`.
-        :param bool avoid_same_authenticator_register: When `true`, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to `false`.
-        :param int create_timeout: The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
-        :param str relying_party_entity_name: A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
-        :param str relying_party_id: The WebAuthn relying party ID.
-        :param str require_resident_key: Specifies whether or not a public key should be created to represent the resident key. Valid options are `not specified`, `Yes`, or `No`. Defaults to `not specified`.
-        :param Sequence[str] signature_algorithms: A set of signature algorithms that should be used for the authentication assertion. Valid options at the time these docs were written are `ES256`, `ES384`, `ES512`, `RS256`, `RS384`, `RS512`, and `RS1`.
-        :param str user_verification_requirement: Specifies the policy for verifying a user logging in via WebAuthn. Valid options are `not specified`, `required`, `preferred`, or `discouraged`. Defaults to `not specified`.
+        :param str attestation_conveyance_preference: Either none, indirect or direct
+        :param str authenticator_attachment: Either platform or cross-platform
+        :param str require_resident_key: Either Yes or No
+        :param Sequence[str] signature_algorithms: Keycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing
+        :param str user_verification_requirement: Either required, preferred or discouraged
         """
         if acceptable_aaguids is not None:
             pulumi.set(__self__, "acceptable_aaguids", acceptable_aaguids)
@@ -1248,16 +1103,13 @@ class RealmWebAuthnPasswordlessPolicy(dict):
     @property
     @pulumi.getter(name="acceptableAaguids")
     def acceptable_aaguids(self) -> Optional[Sequence[str]]:
-        """
-        A set of AAGUIDs for which an authenticator can be registered.
-        """
         return pulumi.get(self, "acceptable_aaguids")
 
     @property
     @pulumi.getter(name="attestationConveyancePreference")
     def attestation_conveyance_preference(self) -> Optional[str]:
         """
-        The preference of how to generate a WebAuthn attestation statement. Valid options are `not specified`, `none`, `indirect`, `direct`, or `enterprise`. Defaults to `not specified`.
+        Either none, indirect or direct
         """
         return pulumi.get(self, "attestation_conveyance_preference")
 
@@ -1265,47 +1117,35 @@ class RealmWebAuthnPasswordlessPolicy(dict):
     @pulumi.getter(name="authenticatorAttachment")
     def authenticator_attachment(self) -> Optional[str]:
         """
-        The acceptable attachment pattern for the WebAuthn authenticator. Valid options are `not specified`, `platform`, or `cross-platform`. Defaults to `not specified`.
+        Either platform or cross-platform
         """
         return pulumi.get(self, "authenticator_attachment")
 
     @property
     @pulumi.getter(name="avoidSameAuthenticatorRegister")
     def avoid_same_authenticator_register(self) -> Optional[bool]:
-        """
-        When `true`, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to `false`.
-        """
         return pulumi.get(self, "avoid_same_authenticator_register")
 
     @property
     @pulumi.getter(name="createTimeout")
     def create_timeout(self) -> Optional[int]:
-        """
-        The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
-        """
         return pulumi.get(self, "create_timeout")
 
     @property
     @pulumi.getter(name="relyingPartyEntityName")
     def relying_party_entity_name(self) -> Optional[str]:
-        """
-        A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
-        """
         return pulumi.get(self, "relying_party_entity_name")
 
     @property
     @pulumi.getter(name="relyingPartyId")
     def relying_party_id(self) -> Optional[str]:
-        """
-        The WebAuthn relying party ID.
-        """
         return pulumi.get(self, "relying_party_id")
 
     @property
     @pulumi.getter(name="requireResidentKey")
     def require_resident_key(self) -> Optional[str]:
         """
-        Specifies whether or not a public key should be created to represent the resident key. Valid options are `not specified`, `Yes`, or `No`. Defaults to `not specified`.
+        Either Yes or No
         """
         return pulumi.get(self, "require_resident_key")
 
@@ -1313,7 +1153,7 @@ class RealmWebAuthnPasswordlessPolicy(dict):
     @pulumi.getter(name="signatureAlgorithms")
     def signature_algorithms(self) -> Optional[Sequence[str]]:
         """
-        A set of signature algorithms that should be used for the authentication assertion. Valid options at the time these docs were written are `ES256`, `ES384`, `ES512`, `RS256`, `RS384`, `RS512`, and `RS1`.
+        Keycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing
         """
         return pulumi.get(self, "signature_algorithms")
 
@@ -1321,7 +1161,7 @@ class RealmWebAuthnPasswordlessPolicy(dict):
     @pulumi.getter(name="userVerificationRequirement")
     def user_verification_requirement(self) -> Optional[str]:
         """
-        Specifies the policy for verifying a user logging in via WebAuthn. Valid options are `not specified`, `required`, `preferred`, or `discouraged`. Defaults to `not specified`.
+        Either required, preferred or discouraged
         """
         return pulumi.get(self, "user_verification_requirement")
 
@@ -1375,16 +1215,11 @@ class RealmWebAuthnPolicy(dict):
                  signature_algorithms: Optional[Sequence[str]] = None,
                  user_verification_requirement: Optional[str] = None):
         """
-        :param Sequence[str] acceptable_aaguids: A set of AAGUIDs for which an authenticator can be registered.
-        :param str attestation_conveyance_preference: The preference of how to generate a WebAuthn attestation statement. Valid options are `not specified`, `none`, `indirect`, `direct`, or `enterprise`. Defaults to `not specified`.
-        :param str authenticator_attachment: The acceptable attachment pattern for the WebAuthn authenticator. Valid options are `not specified`, `platform`, or `cross-platform`. Defaults to `not specified`.
-        :param bool avoid_same_authenticator_register: When `true`, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to `false`.
-        :param int create_timeout: The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
-        :param str relying_party_entity_name: A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
-        :param str relying_party_id: The WebAuthn relying party ID.
-        :param str require_resident_key: Specifies whether or not a public key should be created to represent the resident key. Valid options are `not specified`, `Yes`, or `No`. Defaults to `not specified`.
-        :param Sequence[str] signature_algorithms: A set of signature algorithms that should be used for the authentication assertion. Valid options at the time these docs were written are `ES256`, `ES384`, `ES512`, `RS256`, `RS384`, `RS512`, and `RS1`.
-        :param str user_verification_requirement: Specifies the policy for verifying a user logging in via WebAuthn. Valid options are `not specified`, `required`, `preferred`, or `discouraged`. Defaults to `not specified`.
+        :param str attestation_conveyance_preference: Either none, indirect or direct
+        :param str authenticator_attachment: Either platform or cross-platform
+        :param str require_resident_key: Either Yes or No
+        :param Sequence[str] signature_algorithms: Keycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing
+        :param str user_verification_requirement: Either required, preferred or discouraged
         """
         if acceptable_aaguids is not None:
             pulumi.set(__self__, "acceptable_aaguids", acceptable_aaguids)
@@ -1410,16 +1245,13 @@ class RealmWebAuthnPolicy(dict):
     @property
     @pulumi.getter(name="acceptableAaguids")
     def acceptable_aaguids(self) -> Optional[Sequence[str]]:
-        """
-        A set of AAGUIDs for which an authenticator can be registered.
-        """
         return pulumi.get(self, "acceptable_aaguids")
 
     @property
     @pulumi.getter(name="attestationConveyancePreference")
     def attestation_conveyance_preference(self) -> Optional[str]:
         """
-        The preference of how to generate a WebAuthn attestation statement. Valid options are `not specified`, `none`, `indirect`, `direct`, or `enterprise`. Defaults to `not specified`.
+        Either none, indirect or direct
         """
         return pulumi.get(self, "attestation_conveyance_preference")
 
@@ -1427,47 +1259,35 @@ class RealmWebAuthnPolicy(dict):
     @pulumi.getter(name="authenticatorAttachment")
     def authenticator_attachment(self) -> Optional[str]:
         """
-        The acceptable attachment pattern for the WebAuthn authenticator. Valid options are `not specified`, `platform`, or `cross-platform`. Defaults to `not specified`.
+        Either platform or cross-platform
         """
         return pulumi.get(self, "authenticator_attachment")
 
     @property
     @pulumi.getter(name="avoidSameAuthenticatorRegister")
     def avoid_same_authenticator_register(self) -> Optional[bool]:
-        """
-        When `true`, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to `false`.
-        """
         return pulumi.get(self, "avoid_same_authenticator_register")
 
     @property
     @pulumi.getter(name="createTimeout")
     def create_timeout(self) -> Optional[int]:
-        """
-        The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
-        """
         return pulumi.get(self, "create_timeout")
 
     @property
     @pulumi.getter(name="relyingPartyEntityName")
     def relying_party_entity_name(self) -> Optional[str]:
-        """
-        A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
-        """
         return pulumi.get(self, "relying_party_entity_name")
 
     @property
     @pulumi.getter(name="relyingPartyId")
     def relying_party_id(self) -> Optional[str]:
-        """
-        The WebAuthn relying party ID.
-        """
         return pulumi.get(self, "relying_party_id")
 
     @property
     @pulumi.getter(name="requireResidentKey")
     def require_resident_key(self) -> Optional[str]:
         """
-        Specifies whether or not a public key should be created to represent the resident key. Valid options are `not specified`, `Yes`, or `No`. Defaults to `not specified`.
+        Either Yes or No
         """
         return pulumi.get(self, "require_resident_key")
 
@@ -1475,7 +1295,7 @@ class RealmWebAuthnPolicy(dict):
     @pulumi.getter(name="signatureAlgorithms")
     def signature_algorithms(self) -> Optional[Sequence[str]]:
         """
-        A set of signature algorithms that should be used for the authentication assertion. Valid options at the time these docs were written are `ES256`, `ES384`, `ES512`, `RS256`, `RS384`, `RS512`, and `RS1`.
+        Keycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing
         """
         return pulumi.get(self, "signature_algorithms")
 
@@ -1483,7 +1303,7 @@ class RealmWebAuthnPolicy(dict):
     @pulumi.getter(name="userVerificationRequirement")
     def user_verification_requirement(self) -> Optional[str]:
         """
-        Specifies the policy for verifying a user logging in via WebAuthn. Valid options are `not specified`, `required`, `preferred`, or `discouraged`. Defaults to `not specified`.
+        Either required, preferred or discouraged
         """
         return pulumi.get(self, "user_verification_requirement")
 
@@ -1515,11 +1335,6 @@ class UserFederatedIdentity(dict):
                  identity_provider: str,
                  user_id: str,
                  user_name: str):
-        """
-        :param str identity_provider: The name of the identity provider
-        :param str user_id: The ID of the user defined in the identity provider
-        :param str user_name: The user name of the user defined in the identity provider
-        """
         pulumi.set(__self__, "identity_provider", identity_provider)
         pulumi.set(__self__, "user_id", user_id)
         pulumi.set(__self__, "user_name", user_name)
@@ -1527,25 +1342,16 @@ class UserFederatedIdentity(dict):
     @property
     @pulumi.getter(name="identityProvider")
     def identity_provider(self) -> str:
-        """
-        The name of the identity provider
-        """
         return pulumi.get(self, "identity_provider")
 
     @property
     @pulumi.getter(name="userId")
     def user_id(self) -> str:
-        """
-        The ID of the user defined in the identity provider
-        """
         return pulumi.get(self, "user_id")
 
     @property
     @pulumi.getter(name="userName")
     def user_name(self) -> str:
-        """
-        The user name of the user defined in the identity provider
-        """
         return pulumi.get(self, "user_name")
 
 
@@ -1554,10 +1360,6 @@ class UserInitialPassword(dict):
     def __init__(__self__, *,
                  value: str,
                  temporary: Optional[bool] = None):
-        """
-        :param str value: The initial password.
-        :param bool temporary: If set to `true`, the initial password is set up for renewal on first use. Default to `false`.
-        """
         pulumi.set(__self__, "value", value)
         if temporary is not None:
             pulumi.set(__self__, "temporary", temporary)
@@ -1565,17 +1367,11 @@ class UserInitialPassword(dict):
     @property
     @pulumi.getter
     def value(self) -> str:
-        """
-        The initial password.
-        """
         return pulumi.get(self, "value")
 
     @property
     @pulumi.getter
     def temporary(self) -> Optional[bool]:
-        """
-        If set to `true`, the initial password is set up for renewal on first use. Default to `false`.
-        """
         return pulumi.get(self, "temporary")
 
 
@@ -1925,16 +1721,6 @@ class GetRealmKeysKeyResult(dict):
                  public_key: str,
                  status: str,
                  type: str):
-        """
-        :param str algorithm: Key algorithm (string)
-        :param str certificate: Key certificate (string)
-        :param str kid: Key ID (string)
-        :param str provider_id: Key provider ID (string)
-        :param int provider_priority: Key provider priority (int64)
-        :param str public_key: Key public key (string)
-        :param str status: When specified, keys will be filtered by status. The statuses can be any of `ACTIVE`, `DISABLED` and `PASSIVE`.
-        :param str type: Key type (string)
-        """
         pulumi.set(__self__, "algorithm", algorithm)
         pulumi.set(__self__, "certificate", certificate)
         pulumi.set(__self__, "kid", kid)
@@ -1947,65 +1733,41 @@ class GetRealmKeysKeyResult(dict):
     @property
     @pulumi.getter
     def algorithm(self) -> str:
-        """
-        Key algorithm (string)
-        """
         return pulumi.get(self, "algorithm")
 
     @property
     @pulumi.getter
     def certificate(self) -> str:
-        """
-        Key certificate (string)
-        """
         return pulumi.get(self, "certificate")
 
     @property
     @pulumi.getter
     def kid(self) -> str:
-        """
-        Key ID (string)
-        """
         return pulumi.get(self, "kid")
 
     @property
     @pulumi.getter(name="providerId")
     def provider_id(self) -> str:
-        """
-        Key provider ID (string)
-        """
         return pulumi.get(self, "provider_id")
 
     @property
     @pulumi.getter(name="providerPriority")
     def provider_priority(self) -> int:
-        """
-        Key provider priority (int64)
-        """
         return pulumi.get(self, "provider_priority")
 
     @property
     @pulumi.getter(name="publicKey")
     def public_key(self) -> str:
-        """
-        Key public key (string)
-        """
         return pulumi.get(self, "public_key")
 
     @property
     @pulumi.getter
     def status(self) -> str:
-        """
-        When specified, keys will be filtered by status. The statuses can be any of `ACTIVE`, `DISABLED` and `PASSIVE`.
-        """
         return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
     def type(self) -> str:
-        """
-        Key type (string)
-        """
         return pulumi.get(self, "type")
 
 

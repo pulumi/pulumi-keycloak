@@ -10,6 +10,8 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Ldap
 {
     /// <summary>
+    /// ## # keycloak.ldap.MsadUserAccountControlMapper
+    /// 
     /// Allows for creating and managing MSAD user account control mappers for Keycloak
     /// users federated via LDAP.
     /// 
@@ -18,8 +20,9 @@ namespace Pulumi.Keycloak.Ldap
     /// AD user state to Keycloak in order to enforce settings like expired passwords
     /// or disabled accounts.
     /// 
-    /// ## Example Usage
+    /// ### Example Usage
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -30,74 +33,73 @@ namespace Pulumi.Keycloak.Ldap
     /// {
     ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         RealmName = "my-realm",
     ///         Enabled = true,
+    ///         RealmName = "test",
     ///     });
     /// 
     ///     var ldapUserFederation = new Keycloak.Ldap.UserFederation("ldapUserFederation", new()
     ///     {
-    ///         RealmId = realm.Id,
-    ///         UsernameLdapAttribute = "cn",
+    ///         BindCredential = "admin",
+    ///         BindDn = "cn=admin,dc=example,dc=org",
+    ///         ConnectionUrl = "ldap://my-ad-server",
     ///         RdnLdapAttribute = "cn",
-    ///         UuidLdapAttribute = "objectGUID",
+    ///         RealmId = realm.Id,
     ///         UserObjectClasses = new[]
     ///         {
     ///             "person",
     ///             "organizationalPerson",
     ///             "user",
     ///         },
-    ///         ConnectionUrl = "ldap://my-ad-server",
+    ///         UsernameLdapAttribute = "cn",
     ///         UsersDn = "dc=example,dc=org",
-    ///         BindDn = "cn=admin,dc=example,dc=org",
-    ///         BindCredential = "admin",
+    ///         UuidLdapAttribute = "objectGUID",
     ///     });
     /// 
     ///     var msadUserAccountControlMapper = new Keycloak.Ldap.MsadUserAccountControlMapper("msadUserAccountControlMapper", new()
     ///     {
-    ///         RealmId = realm.Id,
     ///         LdapUserFederationId = ldapUserFederation.Id,
+    ///         RealmId = realm.Id,
     ///     });
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
-    /// ## Import
+    /// ### Argument Reference
+    /// 
+    /// The following arguments are supported:
+    /// 
+    /// - `realm_id` - (Required) The realm that this LDAP mapper will exist in.
+    /// - `ldap_user_federation_id` - (Required) The ID of the LDAP user federation provider to attach this mapper to.
+    /// - `name` - (Required) Display name of this mapper when displayed in the console.
+    /// - `ldap_password_policy_hints_enabled` - (Optional) When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
+    /// 
+    /// ### Import
     /// 
     /// LDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`.
-    /// 
-    ///  The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs.
-    /// 
-    ///  Example:
-    /// 
-    ///  bash
-    /// 
-    /// ```sh
-    /// $ pulumi import keycloak:ldap/msadUserAccountControlMapper:MsadUserAccountControlMapper msad_user_account_control_mapper my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
-    /// ```
+    /// The ID of the LDAP user federation provider and the mapper can be found within
+    /// the Keycloak GUI, and they are typically GUIDs:
     /// </summary>
     [KeycloakResourceType("keycloak:ldap/msadUserAccountControlMapper:MsadUserAccountControlMapper")]
     public partial class MsadUserAccountControlMapper : global::Pulumi.CustomResource
     {
-        /// <summary>
-        /// When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
-        /// </summary>
         [Output("ldapPasswordPolicyHintsEnabled")]
         public Output<bool?> LdapPasswordPolicyHintsEnabled { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the LDAP user federation provider to attach this mapper to.
+        /// The ldap user federation provider to attach this mapper to.
         /// </summary>
         [Output("ldapUserFederationId")]
         public Output<string> LdapUserFederationId { get; private set; } = null!;
 
         /// <summary>
-        /// Display name of this mapper when displayed in the console.
+        /// Display name of the mapper when displayed in the console.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The realm that this LDAP mapper will exist in.
+        /// The realm in which the ldap user federation provider exists.
         /// </summary>
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
@@ -148,26 +150,23 @@ namespace Pulumi.Keycloak.Ldap
 
     public sealed class MsadUserAccountControlMapperArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
-        /// </summary>
         [Input("ldapPasswordPolicyHintsEnabled")]
         public Input<bool>? LdapPasswordPolicyHintsEnabled { get; set; }
 
         /// <summary>
-        /// The ID of the LDAP user federation provider to attach this mapper to.
+        /// The ldap user federation provider to attach this mapper to.
         /// </summary>
         [Input("ldapUserFederationId", required: true)]
         public Input<string> LdapUserFederationId { get; set; } = null!;
 
         /// <summary>
-        /// Display name of this mapper when displayed in the console.
+        /// Display name of the mapper when displayed in the console.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The realm that this LDAP mapper will exist in.
+        /// The realm in which the ldap user federation provider exists.
         /// </summary>
         [Input("realmId", required: true)]
         public Input<string> RealmId { get; set; } = null!;
@@ -180,26 +179,23 @@ namespace Pulumi.Keycloak.Ldap
 
     public sealed class MsadUserAccountControlMapperState : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
-        /// </summary>
         [Input("ldapPasswordPolicyHintsEnabled")]
         public Input<bool>? LdapPasswordPolicyHintsEnabled { get; set; }
 
         /// <summary>
-        /// The ID of the LDAP user federation provider to attach this mapper to.
+        /// The ldap user federation provider to attach this mapper to.
         /// </summary>
         [Input("ldapUserFederationId")]
         public Input<string>? LdapUserFederationId { get; set; }
 
         /// <summary>
-        /// Display name of this mapper when displayed in the console.
+        /// Display name of the mapper when displayed in the console.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The realm that this LDAP mapper will exist in.
+        /// The realm in which the ldap user federation provider exists.
         /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }

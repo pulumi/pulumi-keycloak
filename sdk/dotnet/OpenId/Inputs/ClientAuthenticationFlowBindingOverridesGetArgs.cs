@@ -12,15 +12,9 @@ namespace Pulumi.Keycloak.OpenId.Inputs
 
     public sealed class ClientAuthenticationFlowBindingOverridesGetArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Browser flow id, (flow needs to exist)
-        /// </summary>
         [Input("browserId")]
         public Input<string>? BrowserId { get; set; }
 
-        /// <summary>
-        /// Direct grant flow id (flow needs to exist)
-        /// </summary>
         [Input("directGrantId")]
         public Input<string>? DirectGrantId { get; set; }
 

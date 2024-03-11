@@ -11,6 +11,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -31,14 +32,15 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * Google Identity providers can be imported using the format {{realm_id}}/{{idp_alias}}, where idp_alias is the identity provider alias.
  *
- *  Example:
+ * Example:
  *
- *  bash
+ * bash
  *
  * ```sh
  * $ pulumi import keycloak:oidc/googleIdentityProvider:GoogleIdentityProvider google_identity_provider my-realm/my-google-idp

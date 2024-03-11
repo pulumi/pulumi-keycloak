@@ -5,106 +5,75 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * ## # keycloak.GroupRoles
+ *
  * Allows you to manage roles assigned to a Keycloak group.
  *
- * If `exhaustive` is true, this resource attempts to be an **authoritative** source over group roles: roles that are manually added to the group will be removed, and roles that are manually removed from the
- * group will be added upon the next run of `pulumi up`.
- * If `exhaustive` is false, this resource is a partial assignation of roles to a group. As a result, you can get multiple `keycloak.GroupRoles` for the same `groupId`.
+ * Note that this resource attempts to be an **authoritative** source over
+ * group roles. When this resource takes control over a group's roles,
+ * roles that are manually added to the group will be removed, and roles
+ * that are manually removed from the group will be added upon the next run
+ * of `pulumi up`.
  *
- * Note that when assigning composite roles to a group, you may see a non-empty plan following a `pulumi up` if you
- * assign a role and a composite that includes that role to the same group.
+ * Note that when assigning composite roles to a group, you may see a
+ * non-empty plan following a `pulumi up` if you assign a role and a
+ * composite that includes that role to the same group.
  *
- * ## Example Usage
- * ### Exhaustive Roles)
+ * ### Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {
- *     realm: "my-realm",
  *     enabled: true,
+ *     realm: "my-realm",
  * });
  * const realmRole = new keycloak.Role("realmRole", {
- *     realmId: realm.id,
  *     description: "My Realm Role",
+ *     realmId: realm.id,
  * });
  * const client = new keycloak.openid.Client("client", {
- *     realmId: realm.id,
+ *     accessType: "BEARER-ONLY",
  *     clientId: "client",
  *     enabled: true,
- *     accessType: "BEARER-ONLY",
+ *     realmId: realm.id,
  * });
  * const clientRole = new keycloak.Role("clientRole", {
- *     realmId: realm.id,
  *     clientId: keycloak_client.client.id,
  *     description: "My Client Role",
+ *     realmId: realm.id,
  * });
  * const group = new keycloak.Group("group", {realmId: realm.id});
  * const groupRoles = new keycloak.GroupRoles("groupRoles", {
- *     realmId: realm.id,
  *     groupId: group.id,
+ *     realmId: realm.id,
  *     roleIds: [
  *         realmRole.id,
  *         clientRole.id,
  *     ],
  * });
  * ```
- * ### Non Exhaustive Roles)
+ * <!--End PulumiCodeChooser -->
  *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as keycloak from "@pulumi/keycloak";
+ * ### Argument Reference
  *
- * const realm = new keycloak.Realm("realm", {
- *     realm: "my-realm",
- *     enabled: true,
- * });
- * const realmRole = new keycloak.Role("realmRole", {
- *     realmId: realm.id,
- *     description: "My Realm Role",
- * });
- * const client = new keycloak.openid.Client("client", {
- *     realmId: realm.id,
- *     clientId: "client",
- *     enabled: true,
- *     accessType: "BEARER-ONLY",
- * });
- * const clientRole = new keycloak.Role("clientRole", {
- *     realmId: realm.id,
- *     clientId: keycloak_client.client.id,
- *     description: "My Client Role",
- * });
- * const group = new keycloak.Group("group", {realmId: realm.id});
- * const groupRoleAssociation1 = new keycloak.GroupRoles("groupRoleAssociation1", {
- *     realmId: realm.id,
- *     groupId: group.id,
- *     exhaustive: false,
- *     roleIds: [realmRole.id],
- * });
- * const groupRoleAssociation2 = new keycloak.GroupRoles("groupRoleAssociation2", {
- *     realmId: realm.id,
- *     groupId: group.id,
- *     exhaustive: false,
- *     roleIds: [clientRole.id],
- * });
- * ```
+ * The following arguments are supported:
  *
- * ## Import
+ * - `realmId` - (Required) The realm this group exists in.
+ * - `groupId` - (Required) The ID of the group this resource should
+ *   manage roles for.
+ * - `roleIds` - (Required) A list of role IDs to map to the group
  *
- * This resource can be imported using the format `{{realm_id}}/{{group_id}}`, where `group_id` is the unique ID that Keycloak
+ * ### Import
  *
- *  assigns to the group upon creation. This value can be found in the URI when editing this group in the GUI, and is typically
+ * This resource can be imported using the format
+ * `{{realm_id}}/{{group_id}}`, where `groupId` is the unique ID that
+ * Keycloak assigns to the group upon creation. This value can be found in
+ * the URI when editing this group in the GUI, and is typically a GUID.
  *
- *  a GUID.
- *
- *  Example:
- *
- *  bash
- *
- * ```sh
- * $ pulumi import keycloak:index/groupRoles:GroupRoles group_roles my-realm/18cc6b87-2ce7-4e59-bdc8-b9d49ec98a94
- * ```
+ * Example:
  */
 export class GroupRoles extends pulumi.CustomResource {
     /**
@@ -134,21 +103,9 @@ export class GroupRoles extends pulumi.CustomResource {
         return obj['__pulumiType'] === GroupRoles.__pulumiType;
     }
 
-    /**
-     * Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `true`.
-     */
     public readonly exhaustive!: pulumi.Output<boolean | undefined>;
-    /**
-     * The ID of the group this resource should manage roles for.
-     */
     public readonly groupId!: pulumi.Output<string>;
-    /**
-     * The realm this group exists in.
-     */
     public readonly realmId!: pulumi.Output<string>;
-    /**
-     * A list of role IDs to map to the group.
-     */
     public readonly roleIds!: pulumi.Output<string[]>;
 
     /**
@@ -193,21 +150,9 @@ export class GroupRoles extends pulumi.CustomResource {
  * Input properties used for looking up and filtering GroupRoles resources.
  */
 export interface GroupRolesState {
-    /**
-     * Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `true`.
-     */
     exhaustive?: pulumi.Input<boolean>;
-    /**
-     * The ID of the group this resource should manage roles for.
-     */
     groupId?: pulumi.Input<string>;
-    /**
-     * The realm this group exists in.
-     */
     realmId?: pulumi.Input<string>;
-    /**
-     * A list of role IDs to map to the group.
-     */
     roleIds?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
@@ -215,20 +160,8 @@ export interface GroupRolesState {
  * The set of arguments for constructing a GroupRoles resource.
  */
 export interface GroupRolesArgs {
-    /**
-     * Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `true`.
-     */
     exhaustive?: pulumi.Input<boolean>;
-    /**
-     * The ID of the group this resource should manage roles for.
-     */
     groupId: pulumi.Input<string>;
-    /**
-     * The realm this group exists in.
-     */
     realmId: pulumi.Input<string>;
-    /**
-     * A list of role IDs to map to the group.
-     */
     roleIds: pulumi.Input<pulumi.Input<string>[]>;
 }

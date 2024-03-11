@@ -13,13 +13,7 @@ namespace Pulumi.Keycloak.Saml.Outputs
     [OutputType]
     public sealed class ClientAuthenticationFlowBindingOverrides
     {
-        /// <summary>
-        /// Browser flow id, (flow needs to exist)
-        /// </summary>
         public readonly string? BrowserId;
-        /// <summary>
-        /// Direct grant flow id (flow needs to exist)
-        /// </summary>
         public readonly string? DirectGrantId;
 
         [OutputConstructor]

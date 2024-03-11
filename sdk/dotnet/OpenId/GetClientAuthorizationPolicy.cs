@@ -14,14 +14,13 @@ namespace Pulumi.Keycloak.OpenId
         /// <summary>
         /// This data source can be used to fetch policy and permission information for an OpenID client that has authorization enabled.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// In this example, we'll create a new OpenID client with authorization enabled. This will cause Keycloak to create a default
         /// permission for this client called "Default Permission". We'll use the `keycloak.openid.getClientAuthorizationPolicy` data
         /// source to fetch information about this permission, so we can use it to create a new resource-based authorization permission.
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -85,8 +84,7 @@ namespace Pulumi.Keycloak.OpenId
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetClientAuthorizationPolicyResult> InvokeAsync(GetClientAuthorizationPolicyArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetClientAuthorizationPolicyResult>("keycloak:openid/getClientAuthorizationPolicy:getClientAuthorizationPolicy", args ?? new GetClientAuthorizationPolicyArgs(), options.WithDefaults());
@@ -94,14 +92,13 @@ namespace Pulumi.Keycloak.OpenId
         /// <summary>
         /// This data source can be used to fetch policy and permission information for an OpenID client that has authorization enabled.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// In this example, we'll create a new OpenID client with authorization enabled. This will cause Keycloak to create a default
         /// permission for this client called "Default Permission". We'll use the `keycloak.openid.getClientAuthorizationPolicy` data
         /// source to fetch information about this permission, so we can use it to create a new resource-based authorization permission.
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -165,8 +162,7 @@ namespace Pulumi.Keycloak.OpenId
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetClientAuthorizationPolicyResult> Invoke(GetClientAuthorizationPolicyInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetClientAuthorizationPolicyResult>("keycloak:openid/getClientAuthorizationPolicy:getClientAuthorizationPolicy", args ?? new GetClientAuthorizationPolicyInvokeArgs(), options.WithDefaults());

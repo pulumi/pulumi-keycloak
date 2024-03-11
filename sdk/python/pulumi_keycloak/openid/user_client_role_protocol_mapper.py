@@ -436,8 +436,10 @@ class UserClientRoleProtocolMapper(pulumi.CustomResource):
         multiple different clients.
 
         ## Example Usage
+
         ### Client)
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -456,8 +458,11 @@ class UserClientRoleProtocolMapper(pulumi.CustomResource):
             client_id=openid_client.id,
             claim_name="foo")
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Client Scope)
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -471,18 +476,19 @@ class UserClientRoleProtocolMapper(pulumi.CustomResource):
             client_scope_id=client_scope.id,
             claim_name="foo")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Protocol mappers can be imported using one of the following formats:
 
-         - Client: `{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}`
+        - Client: `{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}`
 
-         - Client Scope: `{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}`
+        - Client Scope: `{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}`
 
-         Example:
+        Example:
 
-         bash
+        bash
 
         ```sh
         $ pulumi import keycloak:openid/userClientRoleProtocolMapper:UserClientRoleProtocolMapper user_client_role_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
@@ -522,8 +528,10 @@ class UserClientRoleProtocolMapper(pulumi.CustomResource):
         multiple different clients.
 
         ## Example Usage
+
         ### Client)
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -542,8 +550,11 @@ class UserClientRoleProtocolMapper(pulumi.CustomResource):
             client_id=openid_client.id,
             claim_name="foo")
         ```
+        <!--End PulumiCodeChooser -->
+
         ### Client Scope)
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -557,18 +568,19 @@ class UserClientRoleProtocolMapper(pulumi.CustomResource):
             client_scope_id=client_scope.id,
             claim_name="foo")
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
         Protocol mappers can be imported using one of the following formats:
 
-         - Client: `{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}`
+        - Client: `{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}`
 
-         - Client Scope: `{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}`
+        - Client Scope: `{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}`
 
-         Example:
+        Example:
 
-         bash
+        bash
 
         ```sh
         $ pulumi import keycloak:openid/userClientRoleProtocolMapper:UserClientRoleProtocolMapper user_client_role_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4

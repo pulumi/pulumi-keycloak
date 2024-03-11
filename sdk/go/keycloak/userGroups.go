@@ -18,7 +18,9 @@ import (
 // If `exhaustive` is false, this resource is a partial assignation of groups to a user. As a result, you can get multiple `UserGroups` for the same `userId`.
 //
 // ## Example Usage
+//
 // ### Exhaustive Groups)
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -66,7 +68,10 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
+//
 // ### Non Exhaustive Groups)
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -132,12 +137,13 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // This resource does not support import. Instead of importing, feel free to create this resource
 //
-//	as if it did not already exist on the server.
+// as if it did not already exist on the server.
 type UserGroups struct {
 	pulumi.CustomResourceState
 

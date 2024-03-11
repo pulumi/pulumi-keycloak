@@ -14,6 +14,7 @@ import (
 
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -78,16 +79,17 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // This resource can be imported using the format `{{realm_id}}/{{provider_alias}}`, where `provider_alias` is the alias that
 //
-//	you assign to the identity provider upon creation.
+// you assign to the identity provider upon creation.
 //
-//	Example:
+// Example:
 //
-//	bash
+// bash
 //
 // ```sh
 // $ pulumi import keycloak:index/identityProviderTokenExchangeScopePermission:IdentityProviderTokenExchangeScopePermission oidc_idp_permission my-realm/myIdp

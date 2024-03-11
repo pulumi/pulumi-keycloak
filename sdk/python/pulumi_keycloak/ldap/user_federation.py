@@ -52,36 +52,37 @@ class UserFederationArgs:
         The set of arguments for constructing a UserFederation resource.
         :param pulumi.Input[str] connection_url: Connection URL to the LDAP server.
         :param pulumi.Input[str] rdn_ldap_attribute: Name of the LDAP attribute to use as the relative distinguished name.
-        :param pulumi.Input[str] realm_id: The realm that this provider will provide user federation for.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] user_object_classes: Array of all values of LDAP objectClass attribute for users in LDAP. Must contain at least one.
+        :param pulumi.Input[str] realm_id: The realm this provider will provide user federation for.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] user_object_classes: All values of LDAP objectClass attribute for users in LDAP.
         :param pulumi.Input[str] username_ldap_attribute: Name of the LDAP attribute to use as the Keycloak username.
         :param pulumi.Input[str] users_dn: Full DN of LDAP tree where your users are.
         :param pulumi.Input[str] uuid_ldap_attribute: Name of the LDAP attribute to use as a unique object identifier for objects in LDAP.
-        :param pulumi.Input[int] batch_size_for_sync: The number of users to sync within a single transaction. Defaults to `1000`.
-        :param pulumi.Input[str] bind_credential: Password of LDAP admin. This attribute must be set if `bind_dn` is set.
-        :param pulumi.Input[str] bind_dn: DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` is set.
-        :param pulumi.Input['UserFederationCacheArgs'] cache: A block containing the cache settings.
-        :param pulumi.Input[int] changed_sync_period: How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
-        :param pulumi.Input[str] connection_timeout: LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
-        :param pulumi.Input[str] custom_user_search_filter: Additional LDAP filter for filtering searched users. Must begin with `(` and end with `)`.
-        :param pulumi.Input[bool] delete_default_mappers: When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `false`.
-        :param pulumi.Input[str] edit_mode: Can be one of `READ_ONLY`, `WRITABLE`, or `UNSYNCED`. `UNSYNCED` allows user data to be imported but not synced back to LDAP. Defaults to `READ_ONLY`.
-        :param pulumi.Input[bool] enabled: When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
+        :param pulumi.Input[int] batch_size_for_sync: The number of users to sync within a single transaction.
+        :param pulumi.Input[str] bind_credential: Password of LDAP admin.
+        :param pulumi.Input[str] bind_dn: DN of LDAP admin, which will be used by Keycloak to access LDAP server.
+        :param pulumi.Input['UserFederationCacheArgs'] cache: Settings regarding cache policy for this realm.
+        :param pulumi.Input[int] changed_sync_period: How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users
+               sync.
+        :param pulumi.Input[str] connection_timeout: LDAP connection timeout (duration string)
+        :param pulumi.Input[str] custom_user_search_filter: Additional LDAP filter for filtering searched users. Must begin with '(' and end with ')'.
+        :param pulumi.Input[bool] delete_default_mappers: When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP
+               user federation provider.
+        :param pulumi.Input[str] edit_mode: READ_ONLY and WRITABLE are self-explanatory. UNSYNCED allows user data to be imported but not synced back to LDAP.
+        :param pulumi.Input[bool] enabled: When false, this provider will not be used when performing queries for users.
         :param pulumi.Input[int] full_sync_period: How frequently Keycloak should sync all LDAP users, in seconds. Omit this property to disable periodic full sync.
-        :param pulumi.Input[bool] import_enabled: When `true`, LDAP users will be imported into the Keycloak database. Defaults to `true`.
-        :param pulumi.Input['UserFederationKerberosArgs'] kerberos: A block containing the kerberos settings.
+        :param pulumi.Input[bool] import_enabled: When true, LDAP users will be imported into the Keycloak database.
+        :param pulumi.Input['UserFederationKerberosArgs'] kerberos: Settings regarding kerberos authentication for this realm.
         :param pulumi.Input[str] name: Display name of the provider when displayed in the console.
-        :param pulumi.Input[bool] pagination: When true, Keycloak assumes the LDAP server supports pagination. Defaults to `true`.
-        :param pulumi.Input[int] priority: Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
-        :param pulumi.Input[str] read_timeout: LDAP read timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
-        :param pulumi.Input[str] search_scope: Can be one of `ONE_LEVEL` or `SUBTREE`:
-        :param pulumi.Input[bool] start_tls: When `true`, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
-        :param pulumi.Input[bool] sync_registrations: When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
+        :param pulumi.Input[bool] pagination: When true, Keycloak assumes the LDAP server supports pagination.
+        :param pulumi.Input[int] priority: Priority of this provider when looking up users. Lower values are first.
+        :param pulumi.Input[str] read_timeout: LDAP read timeout (duration string)
+        :param pulumi.Input[str] search_scope: ONE_LEVEL: only search for users in the DN specified by user_dn. SUBTREE: search entire LDAP subtree.
+        :param pulumi.Input[bool] start_tls: When true, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
+        :param pulumi.Input[bool] sync_registrations: When true, newly created users will be synced back to LDAP.
         :param pulumi.Input[bool] trust_email: If enabled, email provided by this provider is not verified even if verification is enabled for the realm.
         :param pulumi.Input[bool] use_password_modify_extended_op: When `true`, use the LDAPv3 Password Modify Extended Operation (RFC-3062).
-        :param pulumi.Input[str] use_truststore_spi: Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
-        :param pulumi.Input[bool] validate_password_policy: When `true`, Keycloak will validate passwords using the realm policy before updating it.
-        :param pulumi.Input[str] vendor: Can be one of `OTHER`, `EDIRECTORY`, `AD`, `RHDS`, or `TIVOLI`. When this is selected in the GUI, it provides reasonable defaults for other fields. When used with the Keycloak API, this attribute does nothing, but is still required. Defaults to `OTHER`.
+        :param pulumi.Input[bool] validate_password_policy: When true, Keycloak will validate passwords using the realm policy before updating it.
+        :param pulumi.Input[str] vendor: LDAP vendor. I am almost certain this field does nothing, but the UI indicates that it is required.
         """
         pulumi.set(__self__, "connection_url", connection_url)
         pulumi.set(__self__, "rdn_ldap_attribute", rdn_ldap_attribute)
@@ -169,7 +170,7 @@ class UserFederationArgs:
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Input[str]:
         """
-        The realm that this provider will provide user federation for.
+        The realm this provider will provide user federation for.
         """
         return pulumi.get(self, "realm_id")
 
@@ -181,7 +182,7 @@ class UserFederationArgs:
     @pulumi.getter(name="userObjectClasses")
     def user_object_classes(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
-        Array of all values of LDAP objectClass attribute for users in LDAP. Must contain at least one.
+        All values of LDAP objectClass attribute for users in LDAP.
         """
         return pulumi.get(self, "user_object_classes")
 
@@ -229,7 +230,7 @@ class UserFederationArgs:
     @pulumi.getter(name="batchSizeForSync")
     def batch_size_for_sync(self) -> Optional[pulumi.Input[int]]:
         """
-        The number of users to sync within a single transaction. Defaults to `1000`.
+        The number of users to sync within a single transaction.
         """
         return pulumi.get(self, "batch_size_for_sync")
 
@@ -241,7 +242,7 @@ class UserFederationArgs:
     @pulumi.getter(name="bindCredential")
     def bind_credential(self) -> Optional[pulumi.Input[str]]:
         """
-        Password of LDAP admin. This attribute must be set if `bind_dn` is set.
+        Password of LDAP admin.
         """
         return pulumi.get(self, "bind_credential")
 
@@ -253,7 +254,7 @@ class UserFederationArgs:
     @pulumi.getter(name="bindDn")
     def bind_dn(self) -> Optional[pulumi.Input[str]]:
         """
-        DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` is set.
+        DN of LDAP admin, which will be used by Keycloak to access LDAP server.
         """
         return pulumi.get(self, "bind_dn")
 
@@ -265,7 +266,7 @@ class UserFederationArgs:
     @pulumi.getter
     def cache(self) -> Optional[pulumi.Input['UserFederationCacheArgs']]:
         """
-        A block containing the cache settings.
+        Settings regarding cache policy for this realm.
         """
         return pulumi.get(self, "cache")
 
@@ -277,7 +278,8 @@ class UserFederationArgs:
     @pulumi.getter(name="changedSyncPeriod")
     def changed_sync_period(self) -> Optional[pulumi.Input[int]]:
         """
-        How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
+        How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users
+        sync.
         """
         return pulumi.get(self, "changed_sync_period")
 
@@ -289,7 +291,7 @@ class UserFederationArgs:
     @pulumi.getter(name="connectionTimeout")
     def connection_timeout(self) -> Optional[pulumi.Input[str]]:
         """
-        LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
+        LDAP connection timeout (duration string)
         """
         return pulumi.get(self, "connection_timeout")
 
@@ -301,7 +303,7 @@ class UserFederationArgs:
     @pulumi.getter(name="customUserSearchFilter")
     def custom_user_search_filter(self) -> Optional[pulumi.Input[str]]:
         """
-        Additional LDAP filter for filtering searched users. Must begin with `(` and end with `)`.
+        Additional LDAP filter for filtering searched users. Must begin with '(' and end with ')'.
         """
         return pulumi.get(self, "custom_user_search_filter")
 
@@ -313,7 +315,8 @@ class UserFederationArgs:
     @pulumi.getter(name="deleteDefaultMappers")
     def delete_default_mappers(self) -> Optional[pulumi.Input[bool]]:
         """
-        When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `false`.
+        When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP
+        user federation provider.
         """
         return pulumi.get(self, "delete_default_mappers")
 
@@ -325,7 +328,7 @@ class UserFederationArgs:
     @pulumi.getter(name="editMode")
     def edit_mode(self) -> Optional[pulumi.Input[str]]:
         """
-        Can be one of `READ_ONLY`, `WRITABLE`, or `UNSYNCED`. `UNSYNCED` allows user data to be imported but not synced back to LDAP. Defaults to `READ_ONLY`.
+        READ_ONLY and WRITABLE are self-explanatory. UNSYNCED allows user data to be imported but not synced back to LDAP.
         """
         return pulumi.get(self, "edit_mode")
 
@@ -337,7 +340,7 @@ class UserFederationArgs:
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input[bool]]:
         """
-        When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
+        When false, this provider will not be used when performing queries for users.
         """
         return pulumi.get(self, "enabled")
 
@@ -361,7 +364,7 @@ class UserFederationArgs:
     @pulumi.getter(name="importEnabled")
     def import_enabled(self) -> Optional[pulumi.Input[bool]]:
         """
-        When `true`, LDAP users will be imported into the Keycloak database. Defaults to `true`.
+        When true, LDAP users will be imported into the Keycloak database.
         """
         return pulumi.get(self, "import_enabled")
 
@@ -373,7 +376,7 @@ class UserFederationArgs:
     @pulumi.getter
     def kerberos(self) -> Optional[pulumi.Input['UserFederationKerberosArgs']]:
         """
-        A block containing the kerberos settings.
+        Settings regarding kerberos authentication for this realm.
         """
         return pulumi.get(self, "kerberos")
 
@@ -397,7 +400,7 @@ class UserFederationArgs:
     @pulumi.getter
     def pagination(self) -> Optional[pulumi.Input[bool]]:
         """
-        When true, Keycloak assumes the LDAP server supports pagination. Defaults to `true`.
+        When true, Keycloak assumes the LDAP server supports pagination.
         """
         return pulumi.get(self, "pagination")
 
@@ -409,7 +412,7 @@ class UserFederationArgs:
     @pulumi.getter
     def priority(self) -> Optional[pulumi.Input[int]]:
         """
-        Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
+        Priority of this provider when looking up users. Lower values are first.
         """
         return pulumi.get(self, "priority")
 
@@ -421,7 +424,7 @@ class UserFederationArgs:
     @pulumi.getter(name="readTimeout")
     def read_timeout(self) -> Optional[pulumi.Input[str]]:
         """
-        LDAP read timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
+        LDAP read timeout (duration string)
         """
         return pulumi.get(self, "read_timeout")
 
@@ -433,7 +436,7 @@ class UserFederationArgs:
     @pulumi.getter(name="searchScope")
     def search_scope(self) -> Optional[pulumi.Input[str]]:
         """
-        Can be one of `ONE_LEVEL` or `SUBTREE`:
+        ONE_LEVEL: only search for users in the DN specified by user_dn. SUBTREE: search entire LDAP subtree.
         """
         return pulumi.get(self, "search_scope")
 
@@ -445,7 +448,7 @@ class UserFederationArgs:
     @pulumi.getter(name="startTls")
     def start_tls(self) -> Optional[pulumi.Input[bool]]:
         """
-        When `true`, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
+        When true, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
         """
         return pulumi.get(self, "start_tls")
 
@@ -457,7 +460,7 @@ class UserFederationArgs:
     @pulumi.getter(name="syncRegistrations")
     def sync_registrations(self) -> Optional[pulumi.Input[bool]]:
         """
-        When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
+        When true, newly created users will be synced back to LDAP.
         """
         return pulumi.get(self, "sync_registrations")
 
@@ -492,9 +495,6 @@ class UserFederationArgs:
     @property
     @pulumi.getter(name="useTruststoreSpi")
     def use_truststore_spi(self) -> Optional[pulumi.Input[str]]:
-        """
-        Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
-        """
         return pulumi.get(self, "use_truststore_spi")
 
     @use_truststore_spi.setter
@@ -505,7 +505,7 @@ class UserFederationArgs:
     @pulumi.getter(name="validatePasswordPolicy")
     def validate_password_policy(self) -> Optional[pulumi.Input[bool]]:
         """
-        When `true`, Keycloak will validate passwords using the realm policy before updating it.
+        When true, Keycloak will validate passwords using the realm policy before updating it.
         """
         return pulumi.get(self, "validate_password_policy")
 
@@ -517,7 +517,7 @@ class UserFederationArgs:
     @pulumi.getter
     def vendor(self) -> Optional[pulumi.Input[str]]:
         """
-        Can be one of `OTHER`, `EDIRECTORY`, `AD`, `RHDS`, or `TIVOLI`. When this is selected in the GUI, it provides reasonable defaults for other fields. When used with the Keycloak API, this attribute does nothing, but is still required. Defaults to `OTHER`.
+        LDAP vendor. I am almost certain this field does nothing, but the UI indicates that it is required.
         """
         return pulumi.get(self, "vendor")
 
@@ -563,38 +563,39 @@ class _UserFederationState:
                  vendor: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering UserFederation resources.
-        :param pulumi.Input[int] batch_size_for_sync: The number of users to sync within a single transaction. Defaults to `1000`.
-        :param pulumi.Input[str] bind_credential: Password of LDAP admin. This attribute must be set if `bind_dn` is set.
-        :param pulumi.Input[str] bind_dn: DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` is set.
-        :param pulumi.Input['UserFederationCacheArgs'] cache: A block containing the cache settings.
-        :param pulumi.Input[int] changed_sync_period: How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
-        :param pulumi.Input[str] connection_timeout: LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
+        :param pulumi.Input[int] batch_size_for_sync: The number of users to sync within a single transaction.
+        :param pulumi.Input[str] bind_credential: Password of LDAP admin.
+        :param pulumi.Input[str] bind_dn: DN of LDAP admin, which will be used by Keycloak to access LDAP server.
+        :param pulumi.Input['UserFederationCacheArgs'] cache: Settings regarding cache policy for this realm.
+        :param pulumi.Input[int] changed_sync_period: How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users
+               sync.
+        :param pulumi.Input[str] connection_timeout: LDAP connection timeout (duration string)
         :param pulumi.Input[str] connection_url: Connection URL to the LDAP server.
-        :param pulumi.Input[str] custom_user_search_filter: Additional LDAP filter for filtering searched users. Must begin with `(` and end with `)`.
-        :param pulumi.Input[bool] delete_default_mappers: When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `false`.
-        :param pulumi.Input[str] edit_mode: Can be one of `READ_ONLY`, `WRITABLE`, or `UNSYNCED`. `UNSYNCED` allows user data to be imported but not synced back to LDAP. Defaults to `READ_ONLY`.
-        :param pulumi.Input[bool] enabled: When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
+        :param pulumi.Input[str] custom_user_search_filter: Additional LDAP filter for filtering searched users. Must begin with '(' and end with ')'.
+        :param pulumi.Input[bool] delete_default_mappers: When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP
+               user federation provider.
+        :param pulumi.Input[str] edit_mode: READ_ONLY and WRITABLE are self-explanatory. UNSYNCED allows user data to be imported but not synced back to LDAP.
+        :param pulumi.Input[bool] enabled: When false, this provider will not be used when performing queries for users.
         :param pulumi.Input[int] full_sync_period: How frequently Keycloak should sync all LDAP users, in seconds. Omit this property to disable periodic full sync.
-        :param pulumi.Input[bool] import_enabled: When `true`, LDAP users will be imported into the Keycloak database. Defaults to `true`.
-        :param pulumi.Input['UserFederationKerberosArgs'] kerberos: A block containing the kerberos settings.
+        :param pulumi.Input[bool] import_enabled: When true, LDAP users will be imported into the Keycloak database.
+        :param pulumi.Input['UserFederationKerberosArgs'] kerberos: Settings regarding kerberos authentication for this realm.
         :param pulumi.Input[str] name: Display name of the provider when displayed in the console.
-        :param pulumi.Input[bool] pagination: When true, Keycloak assumes the LDAP server supports pagination. Defaults to `true`.
-        :param pulumi.Input[int] priority: Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
+        :param pulumi.Input[bool] pagination: When true, Keycloak assumes the LDAP server supports pagination.
+        :param pulumi.Input[int] priority: Priority of this provider when looking up users. Lower values are first.
         :param pulumi.Input[str] rdn_ldap_attribute: Name of the LDAP attribute to use as the relative distinguished name.
-        :param pulumi.Input[str] read_timeout: LDAP read timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
-        :param pulumi.Input[str] realm_id: The realm that this provider will provide user federation for.
-        :param pulumi.Input[str] search_scope: Can be one of `ONE_LEVEL` or `SUBTREE`:
-        :param pulumi.Input[bool] start_tls: When `true`, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
-        :param pulumi.Input[bool] sync_registrations: When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
+        :param pulumi.Input[str] read_timeout: LDAP read timeout (duration string)
+        :param pulumi.Input[str] realm_id: The realm this provider will provide user federation for.
+        :param pulumi.Input[str] search_scope: ONE_LEVEL: only search for users in the DN specified by user_dn. SUBTREE: search entire LDAP subtree.
+        :param pulumi.Input[bool] start_tls: When true, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
+        :param pulumi.Input[bool] sync_registrations: When true, newly created users will be synced back to LDAP.
         :param pulumi.Input[bool] trust_email: If enabled, email provided by this provider is not verified even if verification is enabled for the realm.
         :param pulumi.Input[bool] use_password_modify_extended_op: When `true`, use the LDAPv3 Password Modify Extended Operation (RFC-3062).
-        :param pulumi.Input[str] use_truststore_spi: Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] user_object_classes: Array of all values of LDAP objectClass attribute for users in LDAP. Must contain at least one.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] user_object_classes: All values of LDAP objectClass attribute for users in LDAP.
         :param pulumi.Input[str] username_ldap_attribute: Name of the LDAP attribute to use as the Keycloak username.
         :param pulumi.Input[str] users_dn: Full DN of LDAP tree where your users are.
         :param pulumi.Input[str] uuid_ldap_attribute: Name of the LDAP attribute to use as a unique object identifier for objects in LDAP.
-        :param pulumi.Input[bool] validate_password_policy: When `true`, Keycloak will validate passwords using the realm policy before updating it.
-        :param pulumi.Input[str] vendor: Can be one of `OTHER`, `EDIRECTORY`, `AD`, `RHDS`, or `TIVOLI`. When this is selected in the GUI, it provides reasonable defaults for other fields. When used with the Keycloak API, this attribute does nothing, but is still required. Defaults to `OTHER`.
+        :param pulumi.Input[bool] validate_password_policy: When true, Keycloak will validate passwords using the realm policy before updating it.
+        :param pulumi.Input[str] vendor: LDAP vendor. I am almost certain this field does nothing, but the UI indicates that it is required.
         """
         if batch_size_for_sync is not None:
             pulumi.set(__self__, "batch_size_for_sync", batch_size_for_sync)
@@ -665,7 +666,7 @@ class _UserFederationState:
     @pulumi.getter(name="batchSizeForSync")
     def batch_size_for_sync(self) -> Optional[pulumi.Input[int]]:
         """
-        The number of users to sync within a single transaction. Defaults to `1000`.
+        The number of users to sync within a single transaction.
         """
         return pulumi.get(self, "batch_size_for_sync")
 
@@ -677,7 +678,7 @@ class _UserFederationState:
     @pulumi.getter(name="bindCredential")
     def bind_credential(self) -> Optional[pulumi.Input[str]]:
         """
-        Password of LDAP admin. This attribute must be set if `bind_dn` is set.
+        Password of LDAP admin.
         """
         return pulumi.get(self, "bind_credential")
 
@@ -689,7 +690,7 @@ class _UserFederationState:
     @pulumi.getter(name="bindDn")
     def bind_dn(self) -> Optional[pulumi.Input[str]]:
         """
-        DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` is set.
+        DN of LDAP admin, which will be used by Keycloak to access LDAP server.
         """
         return pulumi.get(self, "bind_dn")
 
@@ -701,7 +702,7 @@ class _UserFederationState:
     @pulumi.getter
     def cache(self) -> Optional[pulumi.Input['UserFederationCacheArgs']]:
         """
-        A block containing the cache settings.
+        Settings regarding cache policy for this realm.
         """
         return pulumi.get(self, "cache")
 
@@ -713,7 +714,8 @@ class _UserFederationState:
     @pulumi.getter(name="changedSyncPeriod")
     def changed_sync_period(self) -> Optional[pulumi.Input[int]]:
         """
-        How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
+        How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users
+        sync.
         """
         return pulumi.get(self, "changed_sync_period")
 
@@ -725,7 +727,7 @@ class _UserFederationState:
     @pulumi.getter(name="connectionTimeout")
     def connection_timeout(self) -> Optional[pulumi.Input[str]]:
         """
-        LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
+        LDAP connection timeout (duration string)
         """
         return pulumi.get(self, "connection_timeout")
 
@@ -749,7 +751,7 @@ class _UserFederationState:
     @pulumi.getter(name="customUserSearchFilter")
     def custom_user_search_filter(self) -> Optional[pulumi.Input[str]]:
         """
-        Additional LDAP filter for filtering searched users. Must begin with `(` and end with `)`.
+        Additional LDAP filter for filtering searched users. Must begin with '(' and end with ')'.
         """
         return pulumi.get(self, "custom_user_search_filter")
 
@@ -761,7 +763,8 @@ class _UserFederationState:
     @pulumi.getter(name="deleteDefaultMappers")
     def delete_default_mappers(self) -> Optional[pulumi.Input[bool]]:
         """
-        When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `false`.
+        When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP
+        user federation provider.
         """
         return pulumi.get(self, "delete_default_mappers")
 
@@ -773,7 +776,7 @@ class _UserFederationState:
     @pulumi.getter(name="editMode")
     def edit_mode(self) -> Optional[pulumi.Input[str]]:
         """
-        Can be one of `READ_ONLY`, `WRITABLE`, or `UNSYNCED`. `UNSYNCED` allows user data to be imported but not synced back to LDAP. Defaults to `READ_ONLY`.
+        READ_ONLY and WRITABLE are self-explanatory. UNSYNCED allows user data to be imported but not synced back to LDAP.
         """
         return pulumi.get(self, "edit_mode")
 
@@ -785,7 +788,7 @@ class _UserFederationState:
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input[bool]]:
         """
-        When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
+        When false, this provider will not be used when performing queries for users.
         """
         return pulumi.get(self, "enabled")
 
@@ -809,7 +812,7 @@ class _UserFederationState:
     @pulumi.getter(name="importEnabled")
     def import_enabled(self) -> Optional[pulumi.Input[bool]]:
         """
-        When `true`, LDAP users will be imported into the Keycloak database. Defaults to `true`.
+        When true, LDAP users will be imported into the Keycloak database.
         """
         return pulumi.get(self, "import_enabled")
 
@@ -821,7 +824,7 @@ class _UserFederationState:
     @pulumi.getter
     def kerberos(self) -> Optional[pulumi.Input['UserFederationKerberosArgs']]:
         """
-        A block containing the kerberos settings.
+        Settings regarding kerberos authentication for this realm.
         """
         return pulumi.get(self, "kerberos")
 
@@ -845,7 +848,7 @@ class _UserFederationState:
     @pulumi.getter
     def pagination(self) -> Optional[pulumi.Input[bool]]:
         """
-        When true, Keycloak assumes the LDAP server supports pagination. Defaults to `true`.
+        When true, Keycloak assumes the LDAP server supports pagination.
         """
         return pulumi.get(self, "pagination")
 
@@ -857,7 +860,7 @@ class _UserFederationState:
     @pulumi.getter
     def priority(self) -> Optional[pulumi.Input[int]]:
         """
-        Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
+        Priority of this provider when looking up users. Lower values are first.
         """
         return pulumi.get(self, "priority")
 
@@ -881,7 +884,7 @@ class _UserFederationState:
     @pulumi.getter(name="readTimeout")
     def read_timeout(self) -> Optional[pulumi.Input[str]]:
         """
-        LDAP read timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
+        LDAP read timeout (duration string)
         """
         return pulumi.get(self, "read_timeout")
 
@@ -893,7 +896,7 @@ class _UserFederationState:
     @pulumi.getter(name="realmId")
     def realm_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The realm that this provider will provide user federation for.
+        The realm this provider will provide user federation for.
         """
         return pulumi.get(self, "realm_id")
 
@@ -905,7 +908,7 @@ class _UserFederationState:
     @pulumi.getter(name="searchScope")
     def search_scope(self) -> Optional[pulumi.Input[str]]:
         """
-        Can be one of `ONE_LEVEL` or `SUBTREE`:
+        ONE_LEVEL: only search for users in the DN specified by user_dn. SUBTREE: search entire LDAP subtree.
         """
         return pulumi.get(self, "search_scope")
 
@@ -917,7 +920,7 @@ class _UserFederationState:
     @pulumi.getter(name="startTls")
     def start_tls(self) -> Optional[pulumi.Input[bool]]:
         """
-        When `true`, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
+        When true, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
         """
         return pulumi.get(self, "start_tls")
 
@@ -929,7 +932,7 @@ class _UserFederationState:
     @pulumi.getter(name="syncRegistrations")
     def sync_registrations(self) -> Optional[pulumi.Input[bool]]:
         """
-        When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
+        When true, newly created users will be synced back to LDAP.
         """
         return pulumi.get(self, "sync_registrations")
 
@@ -964,9 +967,6 @@ class _UserFederationState:
     @property
     @pulumi.getter(name="useTruststoreSpi")
     def use_truststore_spi(self) -> Optional[pulumi.Input[str]]:
-        """
-        Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
-        """
         return pulumi.get(self, "use_truststore_spi")
 
     @use_truststore_spi.setter
@@ -977,7 +977,7 @@ class _UserFederationState:
     @pulumi.getter(name="userObjectClasses")
     def user_object_classes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Array of all values of LDAP objectClass attribute for users in LDAP. Must contain at least one.
+        All values of LDAP objectClass attribute for users in LDAP.
         """
         return pulumi.get(self, "user_object_classes")
 
@@ -1025,7 +1025,7 @@ class _UserFederationState:
     @pulumi.getter(name="validatePasswordPolicy")
     def validate_password_policy(self) -> Optional[pulumi.Input[bool]]:
         """
-        When `true`, Keycloak will validate passwords using the realm policy before updating it.
+        When true, Keycloak will validate passwords using the realm policy before updating it.
         """
         return pulumi.get(self, "validate_password_policy")
 
@@ -1037,7 +1037,7 @@ class _UserFederationState:
     @pulumi.getter
     def vendor(self) -> Optional[pulumi.Input[str]]:
         """
-        Can be one of `OTHER`, `EDIRECTORY`, `AD`, `RHDS`, or `TIVOLI`. When this is selected in the GUI, it provides reasonable defaults for other fields. When used with the Keycloak API, this attribute does nothing, but is still required. Defaults to `OTHER`.
+        LDAP vendor. I am almost certain this field does nothing, but the UI indicates that it is required.
         """
         return pulumi.get(self, "vendor")
 
@@ -1085,6 +1085,8 @@ class UserFederation(pulumi.CustomResource):
                  vendor: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        ## # ldap.UserFederation
+
         Allows for creating and managing LDAP user federation providers within Keycloak.
 
         Keycloak can use an LDAP user federation provider to federate users to Keycloak
@@ -1092,84 +1094,112 @@ class UserFederation(pulumi.CustomResource):
         will exist within the realm and will be able to log in to clients. Federated
         users can have their attributes defined using mappers.
 
-        ## Example Usage
+        ### Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
-        ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
-            realm_id=realm.id,
             enabled=True,
-            username_ldap_attribute="cn",
+            realm="test")
+        ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
+            bind_credential="admin",
+            bind_dn="cn=admin,dc=example,dc=org",
+            connection_timeout="5s",
+            connection_url="ldap://openldap",
+            enabled=True,
             rdn_ldap_attribute="cn",
-            uuid_ldap_attribute="entryDN",
+            read_timeout="10s",
+            realm_id=realm.id,
             user_object_classes=[
                 "simpleSecurityObject",
                 "organizationalRole",
             ],
-            connection_url="ldap://openldap",
+            username_ldap_attribute="cn",
             users_dn="dc=example,dc=org",
-            bind_dn="cn=admin,dc=example,dc=org",
-            bind_credential="admin",
-            connection_timeout="5s",
-            read_timeout="10s",
-            kerberos=keycloak.ldap.UserFederationKerberosArgs(
-                kerberos_realm="FOO.LOCAL",
-                server_principal="HTTP/host.foo.com@FOO.LOCAL",
-                key_tab="/etc/host.keytab",
-            ))
+            uuid_ldap_attribute="entryDN")
         ```
+        <!--End PulumiCodeChooser -->
 
-        ## Import
+        ### Argument Reference
+
+        The following arguments are supported:
+
+        - `realm_id` - (Required) The realm that this provider will provide user federation for.
+        - `name` - (Required) Display name of the provider when displayed in the console.
+        - `enabled` - (Optional) When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
+        - `priority` - (Optional) Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
+        - `import_enabled` - (Optional) When `true`, LDAP users will be imported into the Keycloak database. Defaults to `true`.
+        - `edit_mode` - (Optional) Can be one of `READ_ONLY`, `WRITABLE`, or `UNSYNCED`. `UNSYNCED` allows user data to be imported but not synced back to LDAP. Defaults to `READ_ONLY`.
+        - `sync_registrations` - (Optional) When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
+        - `vendor` - (Optional) Can be one of `OTHER`, `EDIRECTORY`, `AD`, `RHDS`, or `TIVOLI`. When this is selected in the GUI, it provides reasonable defaults for other fields. When used with the Keycloak API, this attribute does nothing, but is still required. Defaults to `OPTIONAL`.
+        - `username_ldap_attribute` - (Required) Name of the LDAP attribute to use as the Keycloak username.
+        - `rdn_ldap_attribute` - (Required) Name of the LDAP attribute to use as the relative distinguished name.
+        - `uuid_ldap_attribute` - (Required) Name of the LDAP attribute to use as a unique object identifier for objects in LDAP.
+        - `user_object_classes` - (Required) Array of all values of LDAP objectClass attribute for users in LDAP. Must contain at least one.
+        - `connection_url` - (Required) Connection URL to the LDAP server.
+        - `users_dn` - (Required) Full DN of LDAP tree where your users are.
+        - `bind_dn` - (Optional) DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` is set.
+        - `bind_credential` - (Optional) Password of LDAP admin. This attribute must be set if `bind_dn` is set.
+        - `custom_user_search_filter` - (Optional) Additional LDAP filter for filtering searched users. Must begin with `(` and end with `)`.
+        - `search_scope` - (Optional) Can be one of `ONE_LEVEL` or `SUBTREE`:
+            - `ONE_LEVEL`: Only search for users in the DN specified by `user_dn`.
+            - `SUBTREE`: Search entire LDAP subtree.
+        - `validate_password_policy` - (Optional) When `true`, Keycloak will validate passwords using the realm policy before updating it.
+        - `use_truststore_spi` - (Optional) Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
+            - `ALWAYS` - Always use the truststore SPI for LDAP connections.
+            - `NEVER` - Never use the truststore SPI for LDAP connections.
+            - `ONLY_FOR_LDAPS` - Only use the truststore SPI if your LDAP connection uses the ldaps protocol.
+        - `connection_timeout` - (Optional) LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
+        - `read_timeout` - (Optional) LDAP read timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
+        - `pagination` - (Optional) When true, Keycloak assumes the LDAP server supports pagination. Defaults to `true`.
+        - `batch_size_for_sync` - (Optional) The number of users to sync within a single transaction. Defaults to `1000`.
+        - `full_sync_period` - (Optional) How frequently Keycloak should sync all LDAP users, in seconds. Omit this property to disable periodic full sync.
+        - `changed_sync_period` - (Optional) How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
+        - `cache_policy` - (Optional) Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
+
+        ### Import
 
         LDAP user federation providers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}`.
-
-         The ID of the LDAP user federation provider can be found within the Keycloak GUI and is typically a GUID:
-
-         bash
-
-        ```sh
-        $ pulumi import keycloak:ldap/userFederation:UserFederation ldap_user_federation my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860
-        ```
+        The ID of the LDAP user federation provider can be found within the Keycloak GUI and is typically a GUID:
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] batch_size_for_sync: The number of users to sync within a single transaction. Defaults to `1000`.
-        :param pulumi.Input[str] bind_credential: Password of LDAP admin. This attribute must be set if `bind_dn` is set.
-        :param pulumi.Input[str] bind_dn: DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` is set.
-        :param pulumi.Input[pulumi.InputType['UserFederationCacheArgs']] cache: A block containing the cache settings.
-        :param pulumi.Input[int] changed_sync_period: How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
-        :param pulumi.Input[str] connection_timeout: LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
+        :param pulumi.Input[int] batch_size_for_sync: The number of users to sync within a single transaction.
+        :param pulumi.Input[str] bind_credential: Password of LDAP admin.
+        :param pulumi.Input[str] bind_dn: DN of LDAP admin, which will be used by Keycloak to access LDAP server.
+        :param pulumi.Input[pulumi.InputType['UserFederationCacheArgs']] cache: Settings regarding cache policy for this realm.
+        :param pulumi.Input[int] changed_sync_period: How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users
+               sync.
+        :param pulumi.Input[str] connection_timeout: LDAP connection timeout (duration string)
         :param pulumi.Input[str] connection_url: Connection URL to the LDAP server.
-        :param pulumi.Input[str] custom_user_search_filter: Additional LDAP filter for filtering searched users. Must begin with `(` and end with `)`.
-        :param pulumi.Input[bool] delete_default_mappers: When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `false`.
-        :param pulumi.Input[str] edit_mode: Can be one of `READ_ONLY`, `WRITABLE`, or `UNSYNCED`. `UNSYNCED` allows user data to be imported but not synced back to LDAP. Defaults to `READ_ONLY`.
-        :param pulumi.Input[bool] enabled: When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
+        :param pulumi.Input[str] custom_user_search_filter: Additional LDAP filter for filtering searched users. Must begin with '(' and end with ')'.
+        :param pulumi.Input[bool] delete_default_mappers: When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP
+               user federation provider.
+        :param pulumi.Input[str] edit_mode: READ_ONLY and WRITABLE are self-explanatory. UNSYNCED allows user data to be imported but not synced back to LDAP.
+        :param pulumi.Input[bool] enabled: When false, this provider will not be used when performing queries for users.
         :param pulumi.Input[int] full_sync_period: How frequently Keycloak should sync all LDAP users, in seconds. Omit this property to disable periodic full sync.
-        :param pulumi.Input[bool] import_enabled: When `true`, LDAP users will be imported into the Keycloak database. Defaults to `true`.
-        :param pulumi.Input[pulumi.InputType['UserFederationKerberosArgs']] kerberos: A block containing the kerberos settings.
+        :param pulumi.Input[bool] import_enabled: When true, LDAP users will be imported into the Keycloak database.
+        :param pulumi.Input[pulumi.InputType['UserFederationKerberosArgs']] kerberos: Settings regarding kerberos authentication for this realm.
         :param pulumi.Input[str] name: Display name of the provider when displayed in the console.
-        :param pulumi.Input[bool] pagination: When true, Keycloak assumes the LDAP server supports pagination. Defaults to `true`.
-        :param pulumi.Input[int] priority: Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
+        :param pulumi.Input[bool] pagination: When true, Keycloak assumes the LDAP server supports pagination.
+        :param pulumi.Input[int] priority: Priority of this provider when looking up users. Lower values are first.
         :param pulumi.Input[str] rdn_ldap_attribute: Name of the LDAP attribute to use as the relative distinguished name.
-        :param pulumi.Input[str] read_timeout: LDAP read timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
-        :param pulumi.Input[str] realm_id: The realm that this provider will provide user federation for.
-        :param pulumi.Input[str] search_scope: Can be one of `ONE_LEVEL` or `SUBTREE`:
-        :param pulumi.Input[bool] start_tls: When `true`, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
-        :param pulumi.Input[bool] sync_registrations: When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
+        :param pulumi.Input[str] read_timeout: LDAP read timeout (duration string)
+        :param pulumi.Input[str] realm_id: The realm this provider will provide user federation for.
+        :param pulumi.Input[str] search_scope: ONE_LEVEL: only search for users in the DN specified by user_dn. SUBTREE: search entire LDAP subtree.
+        :param pulumi.Input[bool] start_tls: When true, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
+        :param pulumi.Input[bool] sync_registrations: When true, newly created users will be synced back to LDAP.
         :param pulumi.Input[bool] trust_email: If enabled, email provided by this provider is not verified even if verification is enabled for the realm.
         :param pulumi.Input[bool] use_password_modify_extended_op: When `true`, use the LDAPv3 Password Modify Extended Operation (RFC-3062).
-        :param pulumi.Input[str] use_truststore_spi: Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] user_object_classes: Array of all values of LDAP objectClass attribute for users in LDAP. Must contain at least one.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] user_object_classes: All values of LDAP objectClass attribute for users in LDAP.
         :param pulumi.Input[str] username_ldap_attribute: Name of the LDAP attribute to use as the Keycloak username.
         :param pulumi.Input[str] users_dn: Full DN of LDAP tree where your users are.
         :param pulumi.Input[str] uuid_ldap_attribute: Name of the LDAP attribute to use as a unique object identifier for objects in LDAP.
-        :param pulumi.Input[bool] validate_password_policy: When `true`, Keycloak will validate passwords using the realm policy before updating it.
-        :param pulumi.Input[str] vendor: Can be one of `OTHER`, `EDIRECTORY`, `AD`, `RHDS`, or `TIVOLI`. When this is selected in the GUI, it provides reasonable defaults for other fields. When used with the Keycloak API, this attribute does nothing, but is still required. Defaults to `OTHER`.
+        :param pulumi.Input[bool] validate_password_policy: When true, Keycloak will validate passwords using the realm policy before updating it.
+        :param pulumi.Input[str] vendor: LDAP vendor. I am almost certain this field does nothing, but the UI indicates that it is required.
         """
         ...
     @overload
@@ -1178,6 +1208,8 @@ class UserFederation(pulumi.CustomResource):
                  args: UserFederationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## # ldap.UserFederation
+
         Allows for creating and managing LDAP user federation providers within Keycloak.
 
         Keycloak can use an LDAP user federation provider to federate users to Keycloak
@@ -1185,49 +1217,76 @@ class UserFederation(pulumi.CustomResource):
         will exist within the realm and will be able to log in to clients. Federated
         users can have their attributes defined using mappers.
 
-        ## Example Usage
+        ### Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
-        ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
-            realm_id=realm.id,
             enabled=True,
-            username_ldap_attribute="cn",
+            realm="test")
+        ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
+            bind_credential="admin",
+            bind_dn="cn=admin,dc=example,dc=org",
+            connection_timeout="5s",
+            connection_url="ldap://openldap",
+            enabled=True,
             rdn_ldap_attribute="cn",
-            uuid_ldap_attribute="entryDN",
+            read_timeout="10s",
+            realm_id=realm.id,
             user_object_classes=[
                 "simpleSecurityObject",
                 "organizationalRole",
             ],
-            connection_url="ldap://openldap",
+            username_ldap_attribute="cn",
             users_dn="dc=example,dc=org",
-            bind_dn="cn=admin,dc=example,dc=org",
-            bind_credential="admin",
-            connection_timeout="5s",
-            read_timeout="10s",
-            kerberos=keycloak.ldap.UserFederationKerberosArgs(
-                kerberos_realm="FOO.LOCAL",
-                server_principal="HTTP/host.foo.com@FOO.LOCAL",
-                key_tab="/etc/host.keytab",
-            ))
+            uuid_ldap_attribute="entryDN")
         ```
+        <!--End PulumiCodeChooser -->
 
-        ## Import
+        ### Argument Reference
+
+        The following arguments are supported:
+
+        - `realm_id` - (Required) The realm that this provider will provide user federation for.
+        - `name` - (Required) Display name of the provider when displayed in the console.
+        - `enabled` - (Optional) When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
+        - `priority` - (Optional) Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
+        - `import_enabled` - (Optional) When `true`, LDAP users will be imported into the Keycloak database. Defaults to `true`.
+        - `edit_mode` - (Optional) Can be one of `READ_ONLY`, `WRITABLE`, or `UNSYNCED`. `UNSYNCED` allows user data to be imported but not synced back to LDAP. Defaults to `READ_ONLY`.
+        - `sync_registrations` - (Optional) When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
+        - `vendor` - (Optional) Can be one of `OTHER`, `EDIRECTORY`, `AD`, `RHDS`, or `TIVOLI`. When this is selected in the GUI, it provides reasonable defaults for other fields. When used with the Keycloak API, this attribute does nothing, but is still required. Defaults to `OPTIONAL`.
+        - `username_ldap_attribute` - (Required) Name of the LDAP attribute to use as the Keycloak username.
+        - `rdn_ldap_attribute` - (Required) Name of the LDAP attribute to use as the relative distinguished name.
+        - `uuid_ldap_attribute` - (Required) Name of the LDAP attribute to use as a unique object identifier for objects in LDAP.
+        - `user_object_classes` - (Required) Array of all values of LDAP objectClass attribute for users in LDAP. Must contain at least one.
+        - `connection_url` - (Required) Connection URL to the LDAP server.
+        - `users_dn` - (Required) Full DN of LDAP tree where your users are.
+        - `bind_dn` - (Optional) DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` is set.
+        - `bind_credential` - (Optional) Password of LDAP admin. This attribute must be set if `bind_dn` is set.
+        - `custom_user_search_filter` - (Optional) Additional LDAP filter for filtering searched users. Must begin with `(` and end with `)`.
+        - `search_scope` - (Optional) Can be one of `ONE_LEVEL` or `SUBTREE`:
+            - `ONE_LEVEL`: Only search for users in the DN specified by `user_dn`.
+            - `SUBTREE`: Search entire LDAP subtree.
+        - `validate_password_policy` - (Optional) When `true`, Keycloak will validate passwords using the realm policy before updating it.
+        - `use_truststore_spi` - (Optional) Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
+            - `ALWAYS` - Always use the truststore SPI for LDAP connections.
+            - `NEVER` - Never use the truststore SPI for LDAP connections.
+            - `ONLY_FOR_LDAPS` - Only use the truststore SPI if your LDAP connection uses the ldaps protocol.
+        - `connection_timeout` - (Optional) LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
+        - `read_timeout` - (Optional) LDAP read timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
+        - `pagination` - (Optional) When true, Keycloak assumes the LDAP server supports pagination. Defaults to `true`.
+        - `batch_size_for_sync` - (Optional) The number of users to sync within a single transaction. Defaults to `1000`.
+        - `full_sync_period` - (Optional) How frequently Keycloak should sync all LDAP users, in seconds. Omit this property to disable periodic full sync.
+        - `changed_sync_period` - (Optional) How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
+        - `cache_policy` - (Optional) Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
+
+        ### Import
 
         LDAP user federation providers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}`.
-
-         The ID of the LDAP user federation provider can be found within the Keycloak GUI and is typically a GUID:
-
-         bash
-
-        ```sh
-        $ pulumi import keycloak:ldap/userFederation:UserFederation ldap_user_federation my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860
-        ```
+        The ID of the LDAP user federation provider can be found within the Keycloak GUI and is typically a GUID:
 
         :param str resource_name: The name of the resource.
         :param UserFederationArgs args: The arguments to use to populate this resource's properties.
@@ -1382,38 +1441,39 @@ class UserFederation(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] batch_size_for_sync: The number of users to sync within a single transaction. Defaults to `1000`.
-        :param pulumi.Input[str] bind_credential: Password of LDAP admin. This attribute must be set if `bind_dn` is set.
-        :param pulumi.Input[str] bind_dn: DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` is set.
-        :param pulumi.Input[pulumi.InputType['UserFederationCacheArgs']] cache: A block containing the cache settings.
-        :param pulumi.Input[int] changed_sync_period: How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
-        :param pulumi.Input[str] connection_timeout: LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
+        :param pulumi.Input[int] batch_size_for_sync: The number of users to sync within a single transaction.
+        :param pulumi.Input[str] bind_credential: Password of LDAP admin.
+        :param pulumi.Input[str] bind_dn: DN of LDAP admin, which will be used by Keycloak to access LDAP server.
+        :param pulumi.Input[pulumi.InputType['UserFederationCacheArgs']] cache: Settings regarding cache policy for this realm.
+        :param pulumi.Input[int] changed_sync_period: How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users
+               sync.
+        :param pulumi.Input[str] connection_timeout: LDAP connection timeout (duration string)
         :param pulumi.Input[str] connection_url: Connection URL to the LDAP server.
-        :param pulumi.Input[str] custom_user_search_filter: Additional LDAP filter for filtering searched users. Must begin with `(` and end with `)`.
-        :param pulumi.Input[bool] delete_default_mappers: When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `false`.
-        :param pulumi.Input[str] edit_mode: Can be one of `READ_ONLY`, `WRITABLE`, or `UNSYNCED`. `UNSYNCED` allows user data to be imported but not synced back to LDAP. Defaults to `READ_ONLY`.
-        :param pulumi.Input[bool] enabled: When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
+        :param pulumi.Input[str] custom_user_search_filter: Additional LDAP filter for filtering searched users. Must begin with '(' and end with ')'.
+        :param pulumi.Input[bool] delete_default_mappers: When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP
+               user federation provider.
+        :param pulumi.Input[str] edit_mode: READ_ONLY and WRITABLE are self-explanatory. UNSYNCED allows user data to be imported but not synced back to LDAP.
+        :param pulumi.Input[bool] enabled: When false, this provider will not be used when performing queries for users.
         :param pulumi.Input[int] full_sync_period: How frequently Keycloak should sync all LDAP users, in seconds. Omit this property to disable periodic full sync.
-        :param pulumi.Input[bool] import_enabled: When `true`, LDAP users will be imported into the Keycloak database. Defaults to `true`.
-        :param pulumi.Input[pulumi.InputType['UserFederationKerberosArgs']] kerberos: A block containing the kerberos settings.
+        :param pulumi.Input[bool] import_enabled: When true, LDAP users will be imported into the Keycloak database.
+        :param pulumi.Input[pulumi.InputType['UserFederationKerberosArgs']] kerberos: Settings regarding kerberos authentication for this realm.
         :param pulumi.Input[str] name: Display name of the provider when displayed in the console.
-        :param pulumi.Input[bool] pagination: When true, Keycloak assumes the LDAP server supports pagination. Defaults to `true`.
-        :param pulumi.Input[int] priority: Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
+        :param pulumi.Input[bool] pagination: When true, Keycloak assumes the LDAP server supports pagination.
+        :param pulumi.Input[int] priority: Priority of this provider when looking up users. Lower values are first.
         :param pulumi.Input[str] rdn_ldap_attribute: Name of the LDAP attribute to use as the relative distinguished name.
-        :param pulumi.Input[str] read_timeout: LDAP read timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
-        :param pulumi.Input[str] realm_id: The realm that this provider will provide user federation for.
-        :param pulumi.Input[str] search_scope: Can be one of `ONE_LEVEL` or `SUBTREE`:
-        :param pulumi.Input[bool] start_tls: When `true`, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
-        :param pulumi.Input[bool] sync_registrations: When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
+        :param pulumi.Input[str] read_timeout: LDAP read timeout (duration string)
+        :param pulumi.Input[str] realm_id: The realm this provider will provide user federation for.
+        :param pulumi.Input[str] search_scope: ONE_LEVEL: only search for users in the DN specified by user_dn. SUBTREE: search entire LDAP subtree.
+        :param pulumi.Input[bool] start_tls: When true, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
+        :param pulumi.Input[bool] sync_registrations: When true, newly created users will be synced back to LDAP.
         :param pulumi.Input[bool] trust_email: If enabled, email provided by this provider is not verified even if verification is enabled for the realm.
         :param pulumi.Input[bool] use_password_modify_extended_op: When `true`, use the LDAPv3 Password Modify Extended Operation (RFC-3062).
-        :param pulumi.Input[str] use_truststore_spi: Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] user_object_classes: Array of all values of LDAP objectClass attribute for users in LDAP. Must contain at least one.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] user_object_classes: All values of LDAP objectClass attribute for users in LDAP.
         :param pulumi.Input[str] username_ldap_attribute: Name of the LDAP attribute to use as the Keycloak username.
         :param pulumi.Input[str] users_dn: Full DN of LDAP tree where your users are.
         :param pulumi.Input[str] uuid_ldap_attribute: Name of the LDAP attribute to use as a unique object identifier for objects in LDAP.
-        :param pulumi.Input[bool] validate_password_policy: When `true`, Keycloak will validate passwords using the realm policy before updating it.
-        :param pulumi.Input[str] vendor: Can be one of `OTHER`, `EDIRECTORY`, `AD`, `RHDS`, or `TIVOLI`. When this is selected in the GUI, it provides reasonable defaults for other fields. When used with the Keycloak API, this attribute does nothing, but is still required. Defaults to `OTHER`.
+        :param pulumi.Input[bool] validate_password_policy: When true, Keycloak will validate passwords using the realm policy before updating it.
+        :param pulumi.Input[str] vendor: LDAP vendor. I am almost certain this field does nothing, but the UI indicates that it is required.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1457,7 +1517,7 @@ class UserFederation(pulumi.CustomResource):
     @pulumi.getter(name="batchSizeForSync")
     def batch_size_for_sync(self) -> pulumi.Output[Optional[int]]:
         """
-        The number of users to sync within a single transaction. Defaults to `1000`.
+        The number of users to sync within a single transaction.
         """
         return pulumi.get(self, "batch_size_for_sync")
 
@@ -1465,7 +1525,7 @@ class UserFederation(pulumi.CustomResource):
     @pulumi.getter(name="bindCredential")
     def bind_credential(self) -> pulumi.Output[Optional[str]]:
         """
-        Password of LDAP admin. This attribute must be set if `bind_dn` is set.
+        Password of LDAP admin.
         """
         return pulumi.get(self, "bind_credential")
 
@@ -1473,7 +1533,7 @@ class UserFederation(pulumi.CustomResource):
     @pulumi.getter(name="bindDn")
     def bind_dn(self) -> pulumi.Output[Optional[str]]:
         """
-        DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` is set.
+        DN of LDAP admin, which will be used by Keycloak to access LDAP server.
         """
         return pulumi.get(self, "bind_dn")
 
@@ -1481,7 +1541,7 @@ class UserFederation(pulumi.CustomResource):
     @pulumi.getter
     def cache(self) -> pulumi.Output[Optional['outputs.UserFederationCache']]:
         """
-        A block containing the cache settings.
+        Settings regarding cache policy for this realm.
         """
         return pulumi.get(self, "cache")
 
@@ -1489,7 +1549,8 @@ class UserFederation(pulumi.CustomResource):
     @pulumi.getter(name="changedSyncPeriod")
     def changed_sync_period(self) -> pulumi.Output[Optional[int]]:
         """
-        How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
+        How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users
+        sync.
         """
         return pulumi.get(self, "changed_sync_period")
 
@@ -1497,7 +1558,7 @@ class UserFederation(pulumi.CustomResource):
     @pulumi.getter(name="connectionTimeout")
     def connection_timeout(self) -> pulumi.Output[Optional[str]]:
         """
-        LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
+        LDAP connection timeout (duration string)
         """
         return pulumi.get(self, "connection_timeout")
 
@@ -1513,7 +1574,7 @@ class UserFederation(pulumi.CustomResource):
     @pulumi.getter(name="customUserSearchFilter")
     def custom_user_search_filter(self) -> pulumi.Output[Optional[str]]:
         """
-        Additional LDAP filter for filtering searched users. Must begin with `(` and end with `)`.
+        Additional LDAP filter for filtering searched users. Must begin with '(' and end with ')'.
         """
         return pulumi.get(self, "custom_user_search_filter")
 
@@ -1521,7 +1582,8 @@ class UserFederation(pulumi.CustomResource):
     @pulumi.getter(name="deleteDefaultMappers")
     def delete_default_mappers(self) -> pulumi.Output[Optional[bool]]:
         """
-        When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `false`.
+        When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP
+        user federation provider.
         """
         return pulumi.get(self, "delete_default_mappers")
 
@@ -1529,7 +1591,7 @@ class UserFederation(pulumi.CustomResource):
     @pulumi.getter(name="editMode")
     def edit_mode(self) -> pulumi.Output[Optional[str]]:
         """
-        Can be one of `READ_ONLY`, `WRITABLE`, or `UNSYNCED`. `UNSYNCED` allows user data to be imported but not synced back to LDAP. Defaults to `READ_ONLY`.
+        READ_ONLY and WRITABLE are self-explanatory. UNSYNCED allows user data to be imported but not synced back to LDAP.
         """
         return pulumi.get(self, "edit_mode")
 
@@ -1537,7 +1599,7 @@ class UserFederation(pulumi.CustomResource):
     @pulumi.getter
     def enabled(self) -> pulumi.Output[Optional[bool]]:
         """
-        When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
+        When false, this provider will not be used when performing queries for users.
         """
         return pulumi.get(self, "enabled")
 
@@ -1553,7 +1615,7 @@ class UserFederation(pulumi.CustomResource):
     @pulumi.getter(name="importEnabled")
     def import_enabled(self) -> pulumi.Output[Optional[bool]]:
         """
-        When `true`, LDAP users will be imported into the Keycloak database. Defaults to `true`.
+        When true, LDAP users will be imported into the Keycloak database.
         """
         return pulumi.get(self, "import_enabled")
 
@@ -1561,7 +1623,7 @@ class UserFederation(pulumi.CustomResource):
     @pulumi.getter
     def kerberos(self) -> pulumi.Output[Optional['outputs.UserFederationKerberos']]:
         """
-        A block containing the kerberos settings.
+        Settings regarding kerberos authentication for this realm.
         """
         return pulumi.get(self, "kerberos")
 
@@ -1577,7 +1639,7 @@ class UserFederation(pulumi.CustomResource):
     @pulumi.getter
     def pagination(self) -> pulumi.Output[Optional[bool]]:
         """
-        When true, Keycloak assumes the LDAP server supports pagination. Defaults to `true`.
+        When true, Keycloak assumes the LDAP server supports pagination.
         """
         return pulumi.get(self, "pagination")
 
@@ -1585,7 +1647,7 @@ class UserFederation(pulumi.CustomResource):
     @pulumi.getter
     def priority(self) -> pulumi.Output[Optional[int]]:
         """
-        Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
+        Priority of this provider when looking up users. Lower values are first.
         """
         return pulumi.get(self, "priority")
 
@@ -1601,7 +1663,7 @@ class UserFederation(pulumi.CustomResource):
     @pulumi.getter(name="readTimeout")
     def read_timeout(self) -> pulumi.Output[Optional[str]]:
         """
-        LDAP read timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
+        LDAP read timeout (duration string)
         """
         return pulumi.get(self, "read_timeout")
 
@@ -1609,7 +1671,7 @@ class UserFederation(pulumi.CustomResource):
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Output[str]:
         """
-        The realm that this provider will provide user federation for.
+        The realm this provider will provide user federation for.
         """
         return pulumi.get(self, "realm_id")
 
@@ -1617,7 +1679,7 @@ class UserFederation(pulumi.CustomResource):
     @pulumi.getter(name="searchScope")
     def search_scope(self) -> pulumi.Output[Optional[str]]:
         """
-        Can be one of `ONE_LEVEL` or `SUBTREE`:
+        ONE_LEVEL: only search for users in the DN specified by user_dn. SUBTREE: search entire LDAP subtree.
         """
         return pulumi.get(self, "search_scope")
 
@@ -1625,7 +1687,7 @@ class UserFederation(pulumi.CustomResource):
     @pulumi.getter(name="startTls")
     def start_tls(self) -> pulumi.Output[Optional[bool]]:
         """
-        When `true`, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
+        When true, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
         """
         return pulumi.get(self, "start_tls")
 
@@ -1633,7 +1695,7 @@ class UserFederation(pulumi.CustomResource):
     @pulumi.getter(name="syncRegistrations")
     def sync_registrations(self) -> pulumi.Output[Optional[bool]]:
         """
-        When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
+        When true, newly created users will be synced back to LDAP.
         """
         return pulumi.get(self, "sync_registrations")
 
@@ -1656,16 +1718,13 @@ class UserFederation(pulumi.CustomResource):
     @property
     @pulumi.getter(name="useTruststoreSpi")
     def use_truststore_spi(self) -> pulumi.Output[Optional[str]]:
-        """
-        Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
-        """
         return pulumi.get(self, "use_truststore_spi")
 
     @property
     @pulumi.getter(name="userObjectClasses")
     def user_object_classes(self) -> pulumi.Output[Sequence[str]]:
         """
-        Array of all values of LDAP objectClass attribute for users in LDAP. Must contain at least one.
+        All values of LDAP objectClass attribute for users in LDAP.
         """
         return pulumi.get(self, "user_object_classes")
 
@@ -1697,7 +1756,7 @@ class UserFederation(pulumi.CustomResource):
     @pulumi.getter(name="validatePasswordPolicy")
     def validate_password_policy(self) -> pulumi.Output[Optional[bool]]:
         """
-        When `true`, Keycloak will validate passwords using the realm policy before updating it.
+        When true, Keycloak will validate passwords using the realm policy before updating it.
         """
         return pulumi.get(self, "validate_password_policy")
 
@@ -1705,7 +1764,7 @@ class UserFederation(pulumi.CustomResource):
     @pulumi.getter
     def vendor(self) -> pulumi.Output[Optional[str]]:
         """
-        Can be one of `OTHER`, `EDIRECTORY`, `AD`, `RHDS`, or `TIVOLI`. When this is selected in the GUI, it provides reasonable defaults for other fields. When used with the Keycloak API, this attribute does nothing, but is still required. Defaults to `OTHER`.
+        LDAP vendor. I am almost certain this field does nothing, but the UI indicates that it is required.
         """
         return pulumi.get(self, "vendor")
 

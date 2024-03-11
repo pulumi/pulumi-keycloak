@@ -20,10 +20,9 @@ class MsadUserAccountControlMapperArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a MsadUserAccountControlMapper resource.
-        :param pulumi.Input[str] ldap_user_federation_id: The ID of the LDAP user federation provider to attach this mapper to.
-        :param pulumi.Input[str] realm_id: The realm that this LDAP mapper will exist in.
-        :param pulumi.Input[bool] ldap_password_policy_hints_enabled: When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
-        :param pulumi.Input[str] name: Display name of this mapper when displayed in the console.
+        :param pulumi.Input[str] ldap_user_federation_id: The ldap user federation provider to attach this mapper to.
+        :param pulumi.Input[str] realm_id: The realm in which the ldap user federation provider exists.
+        :param pulumi.Input[str] name: Display name of the mapper when displayed in the console.
         """
         pulumi.set(__self__, "ldap_user_federation_id", ldap_user_federation_id)
         pulumi.set(__self__, "realm_id", realm_id)
@@ -36,7 +35,7 @@ class MsadUserAccountControlMapperArgs:
     @pulumi.getter(name="ldapUserFederationId")
     def ldap_user_federation_id(self) -> pulumi.Input[str]:
         """
-        The ID of the LDAP user federation provider to attach this mapper to.
+        The ldap user federation provider to attach this mapper to.
         """
         return pulumi.get(self, "ldap_user_federation_id")
 
@@ -48,7 +47,7 @@ class MsadUserAccountControlMapperArgs:
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Input[str]:
         """
-        The realm that this LDAP mapper will exist in.
+        The realm in which the ldap user federation provider exists.
         """
         return pulumi.get(self, "realm_id")
 
@@ -59,9 +58,6 @@ class MsadUserAccountControlMapperArgs:
     @property
     @pulumi.getter(name="ldapPasswordPolicyHintsEnabled")
     def ldap_password_policy_hints_enabled(self) -> Optional[pulumi.Input[bool]]:
-        """
-        When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
-        """
         return pulumi.get(self, "ldap_password_policy_hints_enabled")
 
     @ldap_password_policy_hints_enabled.setter
@@ -72,7 +68,7 @@ class MsadUserAccountControlMapperArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Display name of this mapper when displayed in the console.
+        Display name of the mapper when displayed in the console.
         """
         return pulumi.get(self, "name")
 
@@ -90,10 +86,9 @@ class _MsadUserAccountControlMapperState:
                  realm_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering MsadUserAccountControlMapper resources.
-        :param pulumi.Input[bool] ldap_password_policy_hints_enabled: When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
-        :param pulumi.Input[str] ldap_user_federation_id: The ID of the LDAP user federation provider to attach this mapper to.
-        :param pulumi.Input[str] name: Display name of this mapper when displayed in the console.
-        :param pulumi.Input[str] realm_id: The realm that this LDAP mapper will exist in.
+        :param pulumi.Input[str] ldap_user_federation_id: The ldap user federation provider to attach this mapper to.
+        :param pulumi.Input[str] name: Display name of the mapper when displayed in the console.
+        :param pulumi.Input[str] realm_id: The realm in which the ldap user federation provider exists.
         """
         if ldap_password_policy_hints_enabled is not None:
             pulumi.set(__self__, "ldap_password_policy_hints_enabled", ldap_password_policy_hints_enabled)
@@ -107,9 +102,6 @@ class _MsadUserAccountControlMapperState:
     @property
     @pulumi.getter(name="ldapPasswordPolicyHintsEnabled")
     def ldap_password_policy_hints_enabled(self) -> Optional[pulumi.Input[bool]]:
-        """
-        When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
-        """
         return pulumi.get(self, "ldap_password_policy_hints_enabled")
 
     @ldap_password_policy_hints_enabled.setter
@@ -120,7 +112,7 @@ class _MsadUserAccountControlMapperState:
     @pulumi.getter(name="ldapUserFederationId")
     def ldap_user_federation_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the LDAP user federation provider to attach this mapper to.
+        The ldap user federation provider to attach this mapper to.
         """
         return pulumi.get(self, "ldap_user_federation_id")
 
@@ -132,7 +124,7 @@ class _MsadUserAccountControlMapperState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Display name of this mapper when displayed in the console.
+        Display name of the mapper when displayed in the console.
         """
         return pulumi.get(self, "name")
 
@@ -144,7 +136,7 @@ class _MsadUserAccountControlMapperState:
     @pulumi.getter(name="realmId")
     def realm_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The realm that this LDAP mapper will exist in.
+        The realm in which the ldap user federation provider exists.
         """
         return pulumi.get(self, "realm_id")
 
@@ -164,6 +156,8 @@ class MsadUserAccountControlMapper(pulumi.CustomResource):
                  realm_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        ## # ldap.MsadUserAccountControlMapper
+
         Allows for creating and managing MSAD user account control mappers for Keycloak
         users federated via LDAP.
 
@@ -172,54 +166,56 @@ class MsadUserAccountControlMapper(pulumi.CustomResource):
         AD user state to Keycloak in order to enforce settings like expired passwords
         or disabled accounts.
 
-        ## Example Usage
+        ### Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
+            enabled=True,
+            realm="test")
         ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
-            realm_id=realm.id,
-            username_ldap_attribute="cn",
+            bind_credential="admin",
+            bind_dn="cn=admin,dc=example,dc=org",
+            connection_url="ldap://my-ad-server",
             rdn_ldap_attribute="cn",
-            uuid_ldap_attribute="objectGUID",
+            realm_id=realm.id,
             user_object_classes=[
                 "person",
                 "organizationalPerson",
                 "user",
             ],
-            connection_url="ldap://my-ad-server",
+            username_ldap_attribute="cn",
             users_dn="dc=example,dc=org",
-            bind_dn="cn=admin,dc=example,dc=org",
-            bind_credential="admin")
+            uuid_ldap_attribute="objectGUID")
         msad_user_account_control_mapper = keycloak.ldap.MsadUserAccountControlMapper("msadUserAccountControlMapper",
-            realm_id=realm.id,
-            ldap_user_federation_id=ldap_user_federation.id)
+            ldap_user_federation_id=ldap_user_federation.id,
+            realm_id=realm.id)
         ```
+        <!--End PulumiCodeChooser -->
 
-        ## Import
+        ### Argument Reference
+
+        The following arguments are supported:
+
+        - `realm_id` - (Required) The realm that this LDAP mapper will exist in.
+        - `ldap_user_federation_id` - (Required) The ID of the LDAP user federation provider to attach this mapper to.
+        - `name` - (Required) Display name of this mapper when displayed in the console.
+        - `ldap_password_policy_hints_enabled` - (Optional) When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
+
+        ### Import
 
         LDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`.
-
-         The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs.
-
-         Example:
-
-         bash
-
-        ```sh
-        $ pulumi import keycloak:ldap/msadUserAccountControlMapper:MsadUserAccountControlMapper msad_user_account_control_mapper my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
-        ```
+        The ID of the LDAP user federation provider and the mapper can be found within
+        the Keycloak GUI, and they are typically GUIDs:
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] ldap_password_policy_hints_enabled: When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
-        :param pulumi.Input[str] ldap_user_federation_id: The ID of the LDAP user federation provider to attach this mapper to.
-        :param pulumi.Input[str] name: Display name of this mapper when displayed in the console.
-        :param pulumi.Input[str] realm_id: The realm that this LDAP mapper will exist in.
+        :param pulumi.Input[str] ldap_user_federation_id: The ldap user federation provider to attach this mapper to.
+        :param pulumi.Input[str] name: Display name of the mapper when displayed in the console.
+        :param pulumi.Input[str] realm_id: The realm in which the ldap user federation provider exists.
         """
         ...
     @overload
@@ -228,6 +224,8 @@ class MsadUserAccountControlMapper(pulumi.CustomResource):
                  args: MsadUserAccountControlMapperArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## # ldap.MsadUserAccountControlMapper
+
         Allows for creating and managing MSAD user account control mappers for Keycloak
         users federated via LDAP.
 
@@ -236,47 +234,50 @@ class MsadUserAccountControlMapper(pulumi.CustomResource):
         AD user state to Keycloak in order to enforce settings like expired passwords
         or disabled accounts.
 
-        ## Example Usage
+        ### Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
+            enabled=True,
+            realm="test")
         ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
-            realm_id=realm.id,
-            username_ldap_attribute="cn",
+            bind_credential="admin",
+            bind_dn="cn=admin,dc=example,dc=org",
+            connection_url="ldap://my-ad-server",
             rdn_ldap_attribute="cn",
-            uuid_ldap_attribute="objectGUID",
+            realm_id=realm.id,
             user_object_classes=[
                 "person",
                 "organizationalPerson",
                 "user",
             ],
-            connection_url="ldap://my-ad-server",
+            username_ldap_attribute="cn",
             users_dn="dc=example,dc=org",
-            bind_dn="cn=admin,dc=example,dc=org",
-            bind_credential="admin")
+            uuid_ldap_attribute="objectGUID")
         msad_user_account_control_mapper = keycloak.ldap.MsadUserAccountControlMapper("msadUserAccountControlMapper",
-            realm_id=realm.id,
-            ldap_user_federation_id=ldap_user_federation.id)
+            ldap_user_federation_id=ldap_user_federation.id,
+            realm_id=realm.id)
         ```
+        <!--End PulumiCodeChooser -->
 
-        ## Import
+        ### Argument Reference
+
+        The following arguments are supported:
+
+        - `realm_id` - (Required) The realm that this LDAP mapper will exist in.
+        - `ldap_user_federation_id` - (Required) The ID of the LDAP user federation provider to attach this mapper to.
+        - `name` - (Required) Display name of this mapper when displayed in the console.
+        - `ldap_password_policy_hints_enabled` - (Optional) When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
+
+        ### Import
 
         LDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`.
-
-         The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs.
-
-         Example:
-
-         bash
-
-        ```sh
-        $ pulumi import keycloak:ldap/msadUserAccountControlMapper:MsadUserAccountControlMapper msad_user_account_control_mapper my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
-        ```
+        The ID of the LDAP user federation provider and the mapper can be found within
+        the Keycloak GUI, and they are typically GUIDs:
 
         :param str resource_name: The name of the resource.
         :param MsadUserAccountControlMapperArgs args: The arguments to use to populate this resource's properties.
@@ -335,10 +336,9 @@ class MsadUserAccountControlMapper(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] ldap_password_policy_hints_enabled: When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
-        :param pulumi.Input[str] ldap_user_federation_id: The ID of the LDAP user federation provider to attach this mapper to.
-        :param pulumi.Input[str] name: Display name of this mapper when displayed in the console.
-        :param pulumi.Input[str] realm_id: The realm that this LDAP mapper will exist in.
+        :param pulumi.Input[str] ldap_user_federation_id: The ldap user federation provider to attach this mapper to.
+        :param pulumi.Input[str] name: Display name of the mapper when displayed in the console.
+        :param pulumi.Input[str] realm_id: The realm in which the ldap user federation provider exists.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -353,16 +353,13 @@ class MsadUserAccountControlMapper(pulumi.CustomResource):
     @property
     @pulumi.getter(name="ldapPasswordPolicyHintsEnabled")
     def ldap_password_policy_hints_enabled(self) -> pulumi.Output[Optional[bool]]:
-        """
-        When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
-        """
         return pulumi.get(self, "ldap_password_policy_hints_enabled")
 
     @property
     @pulumi.getter(name="ldapUserFederationId")
     def ldap_user_federation_id(self) -> pulumi.Output[str]:
         """
-        The ID of the LDAP user federation provider to attach this mapper to.
+        The ldap user federation provider to attach this mapper to.
         """
         return pulumi.get(self, "ldap_user_federation_id")
 
@@ -370,7 +367,7 @@ class MsadUserAccountControlMapper(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        Display name of this mapper when displayed in the console.
+        Display name of the mapper when displayed in the console.
         """
         return pulumi.get(self, "name")
 
@@ -378,7 +375,7 @@ class MsadUserAccountControlMapper(pulumi.CustomResource):
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Output[str]:
         """
-        The realm that this LDAP mapper will exist in.
+        The realm in which the ldap user federation provider exists.
         """
         return pulumi.get(self, "realm_id")
 

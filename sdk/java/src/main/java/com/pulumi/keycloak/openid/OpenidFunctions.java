@@ -24,9 +24,13 @@ import java.util.concurrent.CompletableFuture;
 
 public final class OpenidFunctions {
     /**
+     * ## # keycloak.openid.Client data source
+     * 
      * This data source can be used to fetch properties of a Keycloak OpenID client for usage with other resources.
      * 
-     * ## Example Usage
+     * ### Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -64,15 +68,31 @@ public final class OpenidFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Argument Reference
+     * 
+     * The following arguments are supported:
+     * 
+     * - `realm_id` - (Required) The realm id.
+     * - `client_id` - (Required) The client id.
+     * 
+     * ### Attributes Reference
+     * 
+     * See the docs for the `keycloak.openid.Client` resource for details on the exported attributes.
      * 
      */
     public static Output<GetClientResult> getClient(GetClientArgs args) {
         return getClient(args, InvokeOptions.Empty);
     }
     /**
+     * ## # keycloak.openid.Client data source
+     * 
      * This data source can be used to fetch properties of a Keycloak OpenID client for usage with other resources.
      * 
-     * ## Example Usage
+     * ### Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -110,15 +130,31 @@ public final class OpenidFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Argument Reference
+     * 
+     * The following arguments are supported:
+     * 
+     * - `realm_id` - (Required) The realm id.
+     * - `client_id` - (Required) The client id.
+     * 
+     * ### Attributes Reference
+     * 
+     * See the docs for the `keycloak.openid.Client` resource for details on the exported attributes.
      * 
      */
     public static CompletableFuture<GetClientResult> getClientPlain(GetClientPlainArgs args) {
         return getClientPlain(args, InvokeOptions.Empty);
     }
     /**
+     * ## # keycloak.openid.Client data source
+     * 
      * This data source can be used to fetch properties of a Keycloak OpenID client for usage with other resources.
      * 
-     * ## Example Usage
+     * ### Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -156,15 +192,31 @@ public final class OpenidFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Argument Reference
+     * 
+     * The following arguments are supported:
+     * 
+     * - `realm_id` - (Required) The realm id.
+     * - `client_id` - (Required) The client id.
+     * 
+     * ### Attributes Reference
+     * 
+     * See the docs for the `keycloak.openid.Client` resource for details on the exported attributes.
      * 
      */
     public static Output<GetClientResult> getClient(GetClientArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("keycloak:openid/getClient:getClient", TypeShape.of(GetClientResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * ## # keycloak.openid.Client data source
+     * 
      * This data source can be used to fetch properties of a Keycloak OpenID client for usage with other resources.
      * 
-     * ## Example Usage
+     * ### Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -202,6 +254,18 @@ public final class OpenidFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     * ### Argument Reference
+     * 
+     * The following arguments are supported:
+     * 
+     * - `realm_id` - (Required) The realm id.
+     * - `client_id` - (Required) The client id.
+     * 
+     * ### Attributes Reference
+     * 
+     * See the docs for the `keycloak.openid.Client` resource for details on the exported attributes.
      * 
      */
     public static CompletableFuture<GetClientResult> getClientPlain(GetClientPlainArgs args, InvokeOptions options) {
@@ -215,6 +279,8 @@ public final class OpenidFunctions {
      * In this example, we&#39;ll create a new OpenID client with authorization enabled. This will cause Keycloak to create a default
      * permission for this client called &#34;Default Permission&#34;. We&#39;ll use the `keycloak.openid.getClientAuthorizationPolicy` data
      * source to fetch information about this permission, so we can use it to create a new resource-based authorization permission.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -283,6 +349,7 @@ public final class OpenidFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetClientAuthorizationPolicyResult> getClientAuthorizationPolicy(GetClientAuthorizationPolicyArgs args) {
@@ -296,6 +363,8 @@ public final class OpenidFunctions {
      * In this example, we&#39;ll create a new OpenID client with authorization enabled. This will cause Keycloak to create a default
      * permission for this client called &#34;Default Permission&#34;. We&#39;ll use the `keycloak.openid.getClientAuthorizationPolicy` data
      * source to fetch information about this permission, so we can use it to create a new resource-based authorization permission.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -364,6 +433,7 @@ public final class OpenidFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetClientAuthorizationPolicyResult> getClientAuthorizationPolicyPlain(GetClientAuthorizationPolicyPlainArgs args) {
@@ -377,6 +447,8 @@ public final class OpenidFunctions {
      * In this example, we&#39;ll create a new OpenID client with authorization enabled. This will cause Keycloak to create a default
      * permission for this client called &#34;Default Permission&#34;. We&#39;ll use the `keycloak.openid.getClientAuthorizationPolicy` data
      * source to fetch information about this permission, so we can use it to create a new resource-based authorization permission.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -445,6 +517,7 @@ public final class OpenidFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetClientAuthorizationPolicyResult> getClientAuthorizationPolicy(GetClientAuthorizationPolicyArgs args, InvokeOptions options) {
@@ -458,6 +531,8 @@ public final class OpenidFunctions {
      * In this example, we&#39;ll create a new OpenID client with authorization enabled. This will cause Keycloak to create a default
      * permission for this client called &#34;Default Permission&#34;. We&#39;ll use the `keycloak.openid.getClientAuthorizationPolicy` data
      * source to fetch information about this permission, so we can use it to create a new resource-based authorization permission.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -526,6 +601,7 @@ public final class OpenidFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetClientAuthorizationPolicyResult> getClientAuthorizationPolicyPlain(GetClientAuthorizationPolicyPlainArgs args, InvokeOptions options) {
@@ -535,6 +611,8 @@ public final class OpenidFunctions {
      * This data source can be used to fetch properties of a Keycloak OpenID client scope for usage with other resources.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -572,6 +650,7 @@ public final class OpenidFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetClientScopeResult> getClientScope(GetClientScopeArgs args) {
@@ -581,6 +660,8 @@ public final class OpenidFunctions {
      * This data source can be used to fetch properties of a Keycloak OpenID client scope for usage with other resources.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -618,6 +699,7 @@ public final class OpenidFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetClientScopeResult> getClientScopePlain(GetClientScopePlainArgs args) {
@@ -627,6 +709,8 @@ public final class OpenidFunctions {
      * This data source can be used to fetch properties of a Keycloak OpenID client scope for usage with other resources.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -664,6 +748,7 @@ public final class OpenidFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetClientScopeResult> getClientScope(GetClientScopeArgs args, InvokeOptions options) {
@@ -673,6 +758,8 @@ public final class OpenidFunctions {
      * This data source can be used to fetch properties of a Keycloak OpenID client scope for usage with other resources.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -710,6 +797,7 @@ public final class OpenidFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetClientScopeResult> getClientScopePlain(GetClientScopePlainArgs args, InvokeOptions options) {
@@ -724,6 +812,8 @@ public final class OpenidFunctions {
      * In this example, we&#39;ll create an OpenID client with service accounts enabled. This causes Keycloak to create a special user
      * that represents the service account. We&#39;ll use this data source to grab this user&#39;s ID in order to assign some roles to this
      * user, using the `keycloak.UserRoles` resource.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -784,6 +874,7 @@ public final class OpenidFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetClientServiceAccountUserResult> getClientServiceAccountUser(GetClientServiceAccountUserArgs args) {
@@ -798,6 +889,8 @@ public final class OpenidFunctions {
      * In this example, we&#39;ll create an OpenID client with service accounts enabled. This causes Keycloak to create a special user
      * that represents the service account. We&#39;ll use this data source to grab this user&#39;s ID in order to assign some roles to this
      * user, using the `keycloak.UserRoles` resource.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -858,6 +951,7 @@ public final class OpenidFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetClientServiceAccountUserResult> getClientServiceAccountUserPlain(GetClientServiceAccountUserPlainArgs args) {
@@ -872,6 +966,8 @@ public final class OpenidFunctions {
      * In this example, we&#39;ll create an OpenID client with service accounts enabled. This causes Keycloak to create a special user
      * that represents the service account. We&#39;ll use this data source to grab this user&#39;s ID in order to assign some roles to this
      * user, using the `keycloak.UserRoles` resource.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -932,6 +1028,7 @@ public final class OpenidFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetClientServiceAccountUserResult> getClientServiceAccountUser(GetClientServiceAccountUserArgs args, InvokeOptions options) {
@@ -946,6 +1043,8 @@ public final class OpenidFunctions {
      * In this example, we&#39;ll create an OpenID client with service accounts enabled. This causes Keycloak to create a special user
      * that represents the service account. We&#39;ll use this data source to grab this user&#39;s ID in order to assign some roles to this
      * user, using the `keycloak.UserRoles` resource.
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1006,6 +1105,7 @@ public final class OpenidFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetClientServiceAccountUserResult> getClientServiceAccountUserPlain(GetClientServiceAccountUserPlainArgs args, InvokeOptions options) {

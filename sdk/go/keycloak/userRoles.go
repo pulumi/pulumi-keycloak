@@ -22,8 +22,10 @@ import (
 // a role and a composite that includes that role to the same user.
 //
 // ## Example Usage
+//
 // ### Exhaustive Roles)
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -95,16 +97,17 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // This resource can be imported using the format `{{realm_id}}/{{user_id}}`, where `user_id` is the unique ID that Keycloak
 //
-//	assigns to the user upon creation. This value can be found in the GUI when editing the user, and is typically a GUID.
+// assigns to the user upon creation. This value can be found in the GUI when editing the user, and is typically a GUID.
 //
-//	Example:
+// Example:
 //
-//	bash
+// bash
 //
 // ```sh
 // $ pulumi import keycloak:index/userRoles:UserRoles user_roles my-realm/b0ae6924-1bd5-4655-9e38-dae7c5e42924

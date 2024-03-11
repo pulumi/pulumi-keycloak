@@ -18,6 +18,7 @@ import (
 //
 // In this example, we'll create a new OpenID client, then enabled permissions for the client. A client without permissions disabled cannot be assigned by a client policy. We'll use the `openid.ClientPolicy` resource to create a new client policy, which could be applied to many clients, for a realm and a resource_server_id.
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -78,6 +79,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 type ClientPolicy struct {
 	pulumi.CustomResourceState
 

@@ -18,62 +18,30 @@ public final class GroupArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final GroupArgs Empty = new GroupArgs();
 
-    /**
-     * A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
-     * 
-     */
     @Import(name="attributes")
     private @Nullable Output<Map<String,Object>> attributes;
 
-    /**
-     * @return A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
-     * 
-     */
     public Optional<Output<Map<String,Object>>> attributes() {
         return Optional.ofNullable(this.attributes);
     }
 
-    /**
-     * The name of the group.
-     * 
-     */
     @Import(name="name")
     private @Nullable Output<String> name;
 
-    /**
-     * @return The name of the group.
-     * 
-     */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
     }
 
-    /**
-     * The ID of this group&#39;s parent. If omitted, this group will be defined at the root level.
-     * 
-     */
     @Import(name="parentId")
     private @Nullable Output<String> parentId;
 
-    /**
-     * @return The ID of this group&#39;s parent. If omitted, this group will be defined at the root level.
-     * 
-     */
     public Optional<Output<String>> parentId() {
         return Optional.ofNullable(this.parentId);
     }
 
-    /**
-     * The realm this group exists in.
-     * 
-     */
     @Import(name="realmId", required=true)
     private Output<String> realmId;
 
-    /**
-     * @return The realm this group exists in.
-     * 
-     */
     public Output<String> realmId() {
         return this.realmId;
     }
@@ -105,86 +73,38 @@ public final class GroupArgs extends com.pulumi.resources.ResourceArgs {
             $ = new GroupArgs(Objects.requireNonNull(defaults));
         }
 
-        /**
-         * @param attributes A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
-         * 
-         * @return builder
-         * 
-         */
         public Builder attributes(@Nullable Output<Map<String,Object>> attributes) {
             $.attributes = attributes;
             return this;
         }
 
-        /**
-         * @param attributes A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
-         * 
-         * @return builder
-         * 
-         */
         public Builder attributes(Map<String,Object> attributes) {
             return attributes(Output.of(attributes));
         }
 
-        /**
-         * @param name The name of the group.
-         * 
-         * @return builder
-         * 
-         */
         public Builder name(@Nullable Output<String> name) {
             $.name = name;
             return this;
         }
 
-        /**
-         * @param name The name of the group.
-         * 
-         * @return builder
-         * 
-         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
-        /**
-         * @param parentId The ID of this group&#39;s parent. If omitted, this group will be defined at the root level.
-         * 
-         * @return builder
-         * 
-         */
         public Builder parentId(@Nullable Output<String> parentId) {
             $.parentId = parentId;
             return this;
         }
 
-        /**
-         * @param parentId The ID of this group&#39;s parent. If omitted, this group will be defined at the root level.
-         * 
-         * @return builder
-         * 
-         */
         public Builder parentId(String parentId) {
             return parentId(Output.of(parentId));
         }
 
-        /**
-         * @param realmId The realm this group exists in.
-         * 
-         * @return builder
-         * 
-         */
         public Builder realmId(Output<String> realmId) {
             $.realmId = realmId;
             return this;
         }
 
-        /**
-         * @param realmId The realm this group exists in.
-         * 
-         * @return builder
-         * 
-         */
         public Builder realmId(String realmId) {
             return realmId(Output.of(realmId));
         }

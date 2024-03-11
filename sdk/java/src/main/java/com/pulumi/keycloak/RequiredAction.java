@@ -22,6 +22,8 @@ import javax.annotation.Nullable;
  * [Required actions](https://www.keycloak.org/docs/latest/server_admin/#con-required-actions_server_administration_guide) specify actions required before the first login of all new users.
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -59,14 +61,15 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 
  * Authentication executions can be imported using the formats: `{{realm}}/{{alias}}`.
  * 
- *  Example:
+ * Example:
  * 
- *  bash
+ * bash
  * 
  * ```sh
  * $ pulumi import keycloak:index/requiredAction:RequiredAction required_action my-realm/my-default-action-alias

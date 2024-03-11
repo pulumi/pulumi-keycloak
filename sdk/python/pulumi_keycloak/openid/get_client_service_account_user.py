@@ -157,6 +157,7 @@ def get_client_service_account_user(client_id: Optional[str] = None,
     that represents the service account. We'll use this data source to grab this user's ID in order to assign some roles to this
     user, using the `UserRoles` resource.
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_keycloak as keycloak
@@ -178,6 +179,7 @@ def get_client_service_account_user(client_id: Optional[str] = None,
         user_id=service_account_user.id,
         role_ids=[offline_access.id])
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str client_id: The ID of the OpenID client with service accounts enabled.
@@ -218,6 +220,7 @@ def get_client_service_account_user_output(client_id: Optional[pulumi.Input[str]
     that represents the service account. We'll use this data source to grab this user's ID in order to assign some roles to this
     user, using the `UserRoles` resource.
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_keycloak as keycloak
@@ -239,6 +242,7 @@ def get_client_service_account_user_output(client_id: Optional[pulumi.Input[str]
         user_id=service_account_user.id,
         role_ids=[offline_access.id])
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str client_id: The ID of the OpenID client with service accounts enabled.

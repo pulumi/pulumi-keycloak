@@ -27,165 +27,85 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final RealmArgs Empty = new RealmArgs();
 
-    /**
-     * The maximum amount of time a client has to finish the authorization code flow.
-     * 
-     */
     @Import(name="accessCodeLifespan")
     private @Nullable Output<String> accessCodeLifespan;
 
-    /**
-     * @return The maximum amount of time a client has to finish the authorization code flow.
-     * 
-     */
     public Optional<Output<String>> accessCodeLifespan() {
         return Optional.ofNullable(this.accessCodeLifespan);
     }
 
-    /**
-     * The maximum amount of time a user is permitted to stay on the login page before the authentication process must be restarted.
-     * 
-     */
     @Import(name="accessCodeLifespanLogin")
     private @Nullable Output<String> accessCodeLifespanLogin;
 
-    /**
-     * @return The maximum amount of time a user is permitted to stay on the login page before the authentication process must be restarted.
-     * 
-     */
     public Optional<Output<String>> accessCodeLifespanLogin() {
         return Optional.ofNullable(this.accessCodeLifespanLogin);
     }
 
-    /**
-     * The maximum amount of time a user has to complete login related actions, such as updating a password.
-     * 
-     */
     @Import(name="accessCodeLifespanUserAction")
     private @Nullable Output<String> accessCodeLifespanUserAction;
 
-    /**
-     * @return The maximum amount of time a user has to complete login related actions, such as updating a password.
-     * 
-     */
     public Optional<Output<String>> accessCodeLifespanUserAction() {
         return Optional.ofNullable(this.accessCodeLifespanUserAction);
     }
 
-    /**
-     * The amount of time an access token can be used before it expires.
-     * 
-     */
     @Import(name="accessTokenLifespan")
     private @Nullable Output<String> accessTokenLifespan;
 
-    /**
-     * @return The amount of time an access token can be used before it expires.
-     * 
-     */
     public Optional<Output<String>> accessTokenLifespan() {
         return Optional.ofNullable(this.accessTokenLifespan);
     }
 
-    /**
-     * The amount of time an access token issued with the OpenID Connect Implicit Flow can be used before it expires.
-     * 
-     */
     @Import(name="accessTokenLifespanForImplicitFlow")
     private @Nullable Output<String> accessTokenLifespanForImplicitFlow;
 
-    /**
-     * @return The amount of time an access token issued with the OpenID Connect Implicit Flow can be used before it expires.
-     * 
-     */
     public Optional<Output<String>> accessTokenLifespanForImplicitFlow() {
         return Optional.ofNullable(this.accessTokenLifespanForImplicitFlow);
     }
 
-    /**
-     * Used for account management pages.
-     * 
-     */
     @Import(name="accountTheme")
     private @Nullable Output<String> accountTheme;
 
-    /**
-     * @return Used for account management pages.
-     * 
-     */
     public Optional<Output<String>> accountTheme() {
         return Optional.ofNullable(this.accountTheme);
     }
 
-    /**
-     * The maximum time a user has to use an admin-generated permit before it expires.
-     * 
-     */
     @Import(name="actionTokenGeneratedByAdminLifespan")
     private @Nullable Output<String> actionTokenGeneratedByAdminLifespan;
 
-    /**
-     * @return The maximum time a user has to use an admin-generated permit before it expires.
-     * 
-     */
     public Optional<Output<String>> actionTokenGeneratedByAdminLifespan() {
         return Optional.ofNullable(this.actionTokenGeneratedByAdminLifespan);
     }
 
-    /**
-     * The maximum time a user has to use a user-generated permit before it expires.
-     * 
-     */
     @Import(name="actionTokenGeneratedByUserLifespan")
     private @Nullable Output<String> actionTokenGeneratedByUserLifespan;
 
-    /**
-     * @return The maximum time a user has to use a user-generated permit before it expires.
-     * 
-     */
     public Optional<Output<String>> actionTokenGeneratedByUserLifespan() {
         return Optional.ofNullable(this.actionTokenGeneratedByUserLifespan);
     }
 
-    /**
-     * Used for the admin console.
-     * 
-     */
     @Import(name="adminTheme")
     private @Nullable Output<String> adminTheme;
 
-    /**
-     * @return Used for the admin console.
-     * 
-     */
     public Optional<Output<String>> adminTheme() {
         return Optional.ofNullable(this.adminTheme);
     }
 
-    /**
-     * A map of custom attributes to add to the realm.
-     * 
-     */
     @Import(name="attributes")
     private @Nullable Output<Map<String,Object>> attributes;
 
-    /**
-     * @return A map of custom attributes to add to the realm.
-     * 
-     */
     public Optional<Output<Map<String,Object>>> attributes() {
         return Optional.ofNullable(this.attributes);
     }
 
     /**
-     * The desired flow for browser authentication. Defaults to `browser`.
+     * Which flow should be used for BrowserFlow
      * 
      */
     @Import(name="browserFlow")
     private @Nullable Output<String> browserFlow;
 
     /**
-     * @return The desired flow for browser authentication. Defaults to `browser`.
+     * @return Which flow should be used for BrowserFlow
      * 
      */
     public Optional<Output<String>> browserFlow() {
@@ -193,46 +113,30 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The desired flow for client authentication. Defaults to `clients`.
+     * Which flow should be used for ClientAuthenticationFlow
      * 
      */
     @Import(name="clientAuthenticationFlow")
     private @Nullable Output<String> clientAuthenticationFlow;
 
     /**
-     * @return The desired flow for client authentication. Defaults to `clients`.
+     * @return Which flow should be used for ClientAuthenticationFlow
      * 
      */
     public Optional<Output<String>> clientAuthenticationFlow() {
         return Optional.ofNullable(this.clientAuthenticationFlow);
     }
 
-    /**
-     * The amount of time a session can be idle before it expires. Users can override it for individual clients.
-     * 
-     */
     @Import(name="clientSessionIdleTimeout")
     private @Nullable Output<String> clientSessionIdleTimeout;
 
-    /**
-     * @return The amount of time a session can be idle before it expires. Users can override it for individual clients.
-     * 
-     */
     public Optional<Output<String>> clientSessionIdleTimeout() {
         return Optional.ofNullable(this.clientSessionIdleTimeout);
     }
 
-    /**
-     * The maximum amount of time before a session expires regardless of activity. Users can override it for individual clients.
-     * 
-     */
     @Import(name="clientSessionMaxLifespan")
     private @Nullable Output<String> clientSessionMaxLifespan;
 
-    /**
-     * @return The maximum amount of time before a session expires regardless of activity. Users can override it for individual clients.
-     * 
-     */
     public Optional<Output<String>> clientSessionMaxLifespan() {
         return Optional.ofNullable(this.clientSessionMaxLifespan);
     }
@@ -251,152 +155,88 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.defaultOptionalClientScopes);
     }
 
-    /**
-     * Default algorithm used to sign tokens for the realm.
-     * 
-     */
     @Import(name="defaultSignatureAlgorithm")
     private @Nullable Output<String> defaultSignatureAlgorithm;
 
-    /**
-     * @return Default algorithm used to sign tokens for the realm.
-     * 
-     */
     public Optional<Output<String>> defaultSignatureAlgorithm() {
         return Optional.ofNullable(this.defaultSignatureAlgorithm);
     }
 
     /**
-     * The desired flow for direct access authentication. Defaults to `direct grant`.
+     * Which flow should be used for DirectGrantFlow
      * 
      */
     @Import(name="directGrantFlow")
     private @Nullable Output<String> directGrantFlow;
 
     /**
-     * @return The desired flow for direct access authentication. Defaults to `direct grant`.
+     * @return Which flow should be used for DirectGrantFlow
      * 
      */
     public Optional<Output<String>> directGrantFlow() {
         return Optional.ofNullable(this.directGrantFlow);
     }
 
-    /**
-     * The display name for the realm that is shown when logging in to the admin console.
-     * 
-     */
     @Import(name="displayName")
     private @Nullable Output<String> displayName;
 
-    /**
-     * @return The display name for the realm that is shown when logging in to the admin console.
-     * 
-     */
     public Optional<Output<String>> displayName() {
         return Optional.ofNullable(this.displayName);
     }
 
-    /**
-     * The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.
-     * 
-     */
     @Import(name="displayNameHtml")
     private @Nullable Output<String> displayNameHtml;
 
-    /**
-     * @return The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.
-     * 
-     */
     public Optional<Output<String>> displayNameHtml() {
         return Optional.ofNullable(this.displayNameHtml);
     }
 
     /**
-     * The desired flow for Docker authentication. Defaults to `docker auth`.
+     * Which flow should be used for DockerAuthenticationFlow
      * 
      */
     @Import(name="dockerAuthenticationFlow")
     private @Nullable Output<String> dockerAuthenticationFlow;
 
     /**
-     * @return The desired flow for Docker authentication. Defaults to `docker auth`.
+     * @return Which flow should be used for DockerAuthenticationFlow
      * 
      */
     public Optional<Output<String>> dockerAuthenticationFlow() {
         return Optional.ofNullable(this.dockerAuthenticationFlow);
     }
 
-    /**
-     * When true, multiple users will be allowed to have the same email address. This argument must be set to `false` if `login_with_email_allowed` is set to `true`.
-     * 
-     */
     @Import(name="duplicateEmailsAllowed")
     private @Nullable Output<Boolean> duplicateEmailsAllowed;
 
-    /**
-     * @return When true, multiple users will be allowed to have the same email address. This argument must be set to `false` if `login_with_email_allowed` is set to `true`.
-     * 
-     */
     public Optional<Output<Boolean>> duplicateEmailsAllowed() {
         return Optional.ofNullable(this.duplicateEmailsAllowed);
     }
 
-    /**
-     * When true, the username field is editable.
-     * 
-     */
     @Import(name="editUsernameAllowed")
     private @Nullable Output<Boolean> editUsernameAllowed;
 
-    /**
-     * @return When true, the username field is editable.
-     * 
-     */
     public Optional<Output<Boolean>> editUsernameAllowed() {
         return Optional.ofNullable(this.editUsernameAllowed);
     }
 
-    /**
-     * Used for emails that are sent by Keycloak.
-     * 
-     */
     @Import(name="emailTheme")
     private @Nullable Output<String> emailTheme;
 
-    /**
-     * @return Used for emails that are sent by Keycloak.
-     * 
-     */
     public Optional<Output<String>> emailTheme() {
         return Optional.ofNullable(this.emailTheme);
     }
 
-    /**
-     * When `false`, users and clients will not be able to access this realm. Defaults to `true`.
-     * 
-     */
     @Import(name="enabled")
     private @Nullable Output<Boolean> enabled;
 
-    /**
-     * @return When `false`, users and clients will not be able to access this realm. Defaults to `true`.
-     * 
-     */
     public Optional<Output<Boolean>> enabled() {
         return Optional.ofNullable(this.enabled);
     }
 
-    /**
-     * When specified, this will be used as the realm&#39;s internal ID within Keycloak. When not specified, the realm&#39;s internal ID will be set to the realm&#39;s name.
-     * 
-     */
     @Import(name="internalId")
     private @Nullable Output<String> internalId;
 
-    /**
-     * @return When specified, this will be used as the realm&#39;s internal ID within Keycloak. When not specified, the realm&#39;s internal ID will be set to the realm&#39;s name.
-     * 
-     */
     public Optional<Output<String>> internalId() {
         return Optional.ofNullable(this.internalId);
     }
@@ -408,111 +248,51 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.internationalization);
     }
 
-    /**
-     * Used for the login, forgot password, and registration pages.
-     * 
-     */
     @Import(name="loginTheme")
     private @Nullable Output<String> loginTheme;
 
-    /**
-     * @return Used for the login, forgot password, and registration pages.
-     * 
-     */
     public Optional<Output<String>> loginTheme() {
         return Optional.ofNullable(this.loginTheme);
     }
 
-    /**
-     * When true, users may log in with their email address.
-     * 
-     */
     @Import(name="loginWithEmailAllowed")
     private @Nullable Output<Boolean> loginWithEmailAllowed;
 
-    /**
-     * @return When true, users may log in with their email address.
-     * 
-     */
     public Optional<Output<Boolean>> loginWithEmailAllowed() {
         return Optional.ofNullable(this.loginWithEmailAllowed);
     }
 
-    /**
-     * The maximum amount of time a client has to finish the device code flow before it expires.
-     * 
-     * The attributes below should be specified in seconds.
-     * 
-     */
     @Import(name="oauth2DeviceCodeLifespan")
     private @Nullable Output<String> oauth2DeviceCodeLifespan;
 
-    /**
-     * @return The maximum amount of time a client has to finish the device code flow before it expires.
-     * 
-     * The attributes below should be specified in seconds.
-     * 
-     */
     public Optional<Output<String>> oauth2DeviceCodeLifespan() {
         return Optional.ofNullable(this.oauth2DeviceCodeLifespan);
     }
 
-    /**
-     * The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
-     * 
-     */
     @Import(name="oauth2DevicePollingInterval")
     private @Nullable Output<Integer> oauth2DevicePollingInterval;
 
-    /**
-     * @return The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
-     * 
-     */
     public Optional<Output<Integer>> oauth2DevicePollingInterval() {
         return Optional.ofNullable(this.oauth2DevicePollingInterval);
     }
 
-    /**
-     * The amount of time an offline session can be idle before it expires.
-     * 
-     */
     @Import(name="offlineSessionIdleTimeout")
     private @Nullable Output<String> offlineSessionIdleTimeout;
 
-    /**
-     * @return The amount of time an offline session can be idle before it expires.
-     * 
-     */
     public Optional<Output<String>> offlineSessionIdleTimeout() {
         return Optional.ofNullable(this.offlineSessionIdleTimeout);
     }
 
-    /**
-     * The maximum amount of time before an offline session expires regardless of activity.
-     * 
-     */
     @Import(name="offlineSessionMaxLifespan")
     private @Nullable Output<String> offlineSessionMaxLifespan;
 
-    /**
-     * @return The maximum amount of time before an offline session expires regardless of activity.
-     * 
-     */
     public Optional<Output<String>> offlineSessionMaxLifespan() {
         return Optional.ofNullable(this.offlineSessionMaxLifespan);
     }
 
-    /**
-     * Enable `offline_session_max_lifespan`.
-     * 
-     */
     @Import(name="offlineSessionMaxLifespanEnabled")
     private @Nullable Output<Boolean> offlineSessionMaxLifespanEnabled;
 
-    /**
-     * @return Enable `offline_session_max_lifespan`.
-     * 
-     */
     public Optional<Output<Boolean>> offlineSessionMaxLifespanEnabled() {
         return Optional.ofNullable(this.offlineSessionMaxLifespanEnabled);
     }
@@ -525,159 +305,99 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The password policy for users within the realm.
-     * 
-     * The arguments below can be used to configure authentication flow bindings:
+     * String that represents the passwordPolicies that are in place. Each policy is separated with &#34; and &#34;. Supported policies
+     * can be found in the server-info providers page. example: &#34;upperCase(1) and length(8) and forceExpiredPasswordChange(365)
+     * and notUsername(undefined)&#34;
      * 
      */
     @Import(name="passwordPolicy")
     private @Nullable Output<String> passwordPolicy;
 
     /**
-     * @return The password policy for users within the realm.
-     * 
-     * The arguments below can be used to configure authentication flow bindings:
+     * @return String that represents the passwordPolicies that are in place. Each policy is separated with &#34; and &#34;. Supported policies
+     * can be found in the server-info providers page. example: &#34;upperCase(1) and length(8) and forceExpiredPasswordChange(365)
+     * and notUsername(undefined)&#34;
      * 
      */
     public Optional<Output<String>> passwordPolicy() {
         return Optional.ofNullable(this.passwordPolicy);
     }
 
-    /**
-     * The name of the realm. This is unique across Keycloak. This will also be used as the realm&#39;s internal ID within Keycloak.
-     * 
-     */
     @Import(name="realm", required=true)
     private Output<String> realm;
 
-    /**
-     * @return The name of the realm. This is unique across Keycloak. This will also be used as the realm&#39;s internal ID within Keycloak.
-     * 
-     */
     public Output<String> realm() {
         return this.realm;
     }
 
-    /**
-     * Maximum number of times a refresh token can be reused before they are revoked. If unspecified and &#39;revoke_refresh_token&#39; is enabled the default value is 0 and refresh tokens can not be reused.
-     * 
-     * The arguments below should be specified as [Go duration strings](https://golang.org/pkg/time/#Duration.String). They will default to Keycloak&#39;s default settings.
-     * 
-     */
     @Import(name="refreshTokenMaxReuse")
     private @Nullable Output<Integer> refreshTokenMaxReuse;
 
-    /**
-     * @return Maximum number of times a refresh token can be reused before they are revoked. If unspecified and &#39;revoke_refresh_token&#39; is enabled the default value is 0 and refresh tokens can not be reused.
-     * 
-     * The arguments below should be specified as [Go duration strings](https://golang.org/pkg/time/#Duration.String). They will default to Keycloak&#39;s default settings.
-     * 
-     */
     public Optional<Output<Integer>> refreshTokenMaxReuse() {
         return Optional.ofNullable(this.refreshTokenMaxReuse);
     }
 
-    /**
-     * When true, user registration will be enabled, and a link for registration will be displayed on the login page.
-     * 
-     */
     @Import(name="registrationAllowed")
     private @Nullable Output<Boolean> registrationAllowed;
 
-    /**
-     * @return When true, user registration will be enabled, and a link for registration will be displayed on the login page.
-     * 
-     */
     public Optional<Output<Boolean>> registrationAllowed() {
         return Optional.ofNullable(this.registrationAllowed);
     }
 
-    /**
-     * When true, the user&#39;s email will be used as their username during registration.
-     * 
-     */
     @Import(name="registrationEmailAsUsername")
     private @Nullable Output<Boolean> registrationEmailAsUsername;
 
-    /**
-     * @return When true, the user&#39;s email will be used as their username during registration.
-     * 
-     */
     public Optional<Output<Boolean>> registrationEmailAsUsername() {
         return Optional.ofNullable(this.registrationEmailAsUsername);
     }
 
     /**
-     * The desired flow for user registration. Defaults to `registration`.
+     * Which flow should be used for RegistrationFlow
      * 
      */
     @Import(name="registrationFlow")
     private @Nullable Output<String> registrationFlow;
 
     /**
-     * @return The desired flow for user registration. Defaults to `registration`.
+     * @return Which flow should be used for RegistrationFlow
      * 
      */
     public Optional<Output<String>> registrationFlow() {
         return Optional.ofNullable(this.registrationFlow);
     }
 
-    /**
-     * When true, a &#34;remember me&#34; checkbox will be displayed on the login page, and the user&#39;s session will not expire between browser restarts.
-     * 
-     */
     @Import(name="rememberMe")
     private @Nullable Output<Boolean> rememberMe;
 
-    /**
-     * @return When true, a &#34;remember me&#34; checkbox will be displayed on the login page, and the user&#39;s session will not expire between browser restarts.
-     * 
-     */
     public Optional<Output<Boolean>> rememberMe() {
         return Optional.ofNullable(this.rememberMe);
     }
 
     /**
-     * The desired flow to use when a user attempts to reset their credentials. Defaults to `reset credentials`.
+     * Which flow should be used for ResetCredentialsFlow
      * 
      */
     @Import(name="resetCredentialsFlow")
     private @Nullable Output<String> resetCredentialsFlow;
 
     /**
-     * @return The desired flow to use when a user attempts to reset their credentials. Defaults to `reset credentials`.
+     * @return Which flow should be used for ResetCredentialsFlow
      * 
      */
     public Optional<Output<String>> resetCredentialsFlow() {
         return Optional.ofNullable(this.resetCredentialsFlow);
     }
 
-    /**
-     * When true, a &#34;forgot password&#34; link will be displayed on the login page.
-     * 
-     */
     @Import(name="resetPasswordAllowed")
     private @Nullable Output<Boolean> resetPasswordAllowed;
 
-    /**
-     * @return When true, a &#34;forgot password&#34; link will be displayed on the login page.
-     * 
-     */
     public Optional<Output<Boolean>> resetPasswordAllowed() {
         return Optional.ofNullable(this.resetPasswordAllowed);
     }
 
-    /**
-     * If enabled a refresh token can only be used number of times specified in &#39;refresh_token_max_reuse&#39; before they are revoked. If unspecified, refresh tokens can be reused.
-     * 
-     */
     @Import(name="revokeRefreshToken")
     private @Nullable Output<Boolean> revokeRefreshToken;
 
-    /**
-     * @return If enabled a refresh token can only be used number of times specified in &#39;refresh_token_max_reuse&#39; before they are revoked. If unspecified, refresh tokens can be reused.
-     * 
-     */
     public Optional<Output<Boolean>> revokeRefreshToken() {
         return Optional.ofNullable(this.revokeRefreshToken);
     }
@@ -697,140 +417,72 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Can be one of following values: &#39;none, &#39;external&#39; or &#39;all&#39;
+     * SSL Required: Values can be &#39;none&#39;, &#39;external&#39; or &#39;all&#39;.
      * 
      */
     @Import(name="sslRequired")
     private @Nullable Output<String> sslRequired;
 
     /**
-     * @return Can be one of following values: &#39;none, &#39;external&#39; or &#39;all&#39;
+     * @return SSL Required: Values can be &#39;none&#39;, &#39;external&#39; or &#39;all&#39;.
      * 
      */
     public Optional<Output<String>> sslRequired() {
         return Optional.ofNullable(this.sslRequired);
     }
 
-    /**
-     * The amount of time a session can be idle before it expires.
-     * 
-     */
     @Import(name="ssoSessionIdleTimeout")
     private @Nullable Output<String> ssoSessionIdleTimeout;
 
-    /**
-     * @return The amount of time a session can be idle before it expires.
-     * 
-     */
     public Optional<Output<String>> ssoSessionIdleTimeout() {
         return Optional.ofNullable(this.ssoSessionIdleTimeout);
     }
 
-    /**
-     * Similar to `sso_session_idle_timeout`, but used when a user clicks &#34;Remember Me&#34;. If not set, Keycloak will default to the value of `sso_session_idle_timeout`.
-     * 
-     */
     @Import(name="ssoSessionIdleTimeoutRememberMe")
     private @Nullable Output<String> ssoSessionIdleTimeoutRememberMe;
 
-    /**
-     * @return Similar to `sso_session_idle_timeout`, but used when a user clicks &#34;Remember Me&#34;. If not set, Keycloak will default to the value of `sso_session_idle_timeout`.
-     * 
-     */
     public Optional<Output<String>> ssoSessionIdleTimeoutRememberMe() {
         return Optional.ofNullable(this.ssoSessionIdleTimeoutRememberMe);
     }
 
-    /**
-     * The maximum amount of time before a session expires regardless of activity.
-     * 
-     */
     @Import(name="ssoSessionMaxLifespan")
     private @Nullable Output<String> ssoSessionMaxLifespan;
 
-    /**
-     * @return The maximum amount of time before a session expires regardless of activity.
-     * 
-     */
     public Optional<Output<String>> ssoSessionMaxLifespan() {
         return Optional.ofNullable(this.ssoSessionMaxLifespan);
     }
 
-    /**
-     * Similar to `sso_session_max_lifespan`, but used when a user clicks &#34;Remember Me&#34;. If not set, Keycloak will default to the value of `sso_session_max_lifespan`.
-     * 
-     */
     @Import(name="ssoSessionMaxLifespanRememberMe")
     private @Nullable Output<String> ssoSessionMaxLifespanRememberMe;
 
-    /**
-     * @return Similar to `sso_session_max_lifespan`, but used when a user clicks &#34;Remember Me&#34;. If not set, Keycloak will default to the value of `sso_session_max_lifespan`.
-     * 
-     */
     public Optional<Output<String>> ssoSessionMaxLifespanRememberMe() {
         return Optional.ofNullable(this.ssoSessionMaxLifespanRememberMe);
     }
 
-    /**
-     * When `true`, users are allowed to manage their own resources. Defaults to `false`.
-     * 
-     */
     @Import(name="userManagedAccess")
     private @Nullable Output<Boolean> userManagedAccess;
 
-    /**
-     * @return When `true`, users are allowed to manage their own resources. Defaults to `false`.
-     * 
-     */
     public Optional<Output<Boolean>> userManagedAccess() {
         return Optional.ofNullable(this.userManagedAccess);
     }
 
-    /**
-     * When true, users are required to verify their email address after registration and after email address changes.
-     * 
-     */
     @Import(name="verifyEmail")
     private @Nullable Output<Boolean> verifyEmail;
 
-    /**
-     * @return When true, users are required to verify their email address after registration and after email address changes.
-     * 
-     */
     public Optional<Output<Boolean>> verifyEmail() {
         return Optional.ofNullable(this.verifyEmail);
     }
 
-    /**
-     * Configuration for WebAuthn Passwordless Policy authentication.
-     * 
-     * Each of these attributes are blocks with the following attributes:
-     * 
-     */
     @Import(name="webAuthnPasswordlessPolicy")
     private @Nullable Output<RealmWebAuthnPasswordlessPolicyArgs> webAuthnPasswordlessPolicy;
 
-    /**
-     * @return Configuration for WebAuthn Passwordless Policy authentication.
-     * 
-     * Each of these attributes are blocks with the following attributes:
-     * 
-     */
     public Optional<Output<RealmWebAuthnPasswordlessPolicyArgs>> webAuthnPasswordlessPolicy() {
         return Optional.ofNullable(this.webAuthnPasswordlessPolicy);
     }
 
-    /**
-     * Configuration for WebAuthn Policy authentication.
-     * 
-     */
     @Import(name="webAuthnPolicy")
     private @Nullable Output<RealmWebAuthnPolicyArgs> webAuthnPolicy;
 
-    /**
-     * @return Configuration for WebAuthn Policy authentication.
-     * 
-     */
     public Optional<Output<RealmWebAuthnPolicyArgs>> webAuthnPolicy() {
         return Optional.ofNullable(this.webAuthnPolicy);
     }
@@ -914,218 +566,98 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
             $ = new RealmArgs(Objects.requireNonNull(defaults));
         }
 
-        /**
-         * @param accessCodeLifespan The maximum amount of time a client has to finish the authorization code flow.
-         * 
-         * @return builder
-         * 
-         */
         public Builder accessCodeLifespan(@Nullable Output<String> accessCodeLifespan) {
             $.accessCodeLifespan = accessCodeLifespan;
             return this;
         }
 
-        /**
-         * @param accessCodeLifespan The maximum amount of time a client has to finish the authorization code flow.
-         * 
-         * @return builder
-         * 
-         */
         public Builder accessCodeLifespan(String accessCodeLifespan) {
             return accessCodeLifespan(Output.of(accessCodeLifespan));
         }
 
-        /**
-         * @param accessCodeLifespanLogin The maximum amount of time a user is permitted to stay on the login page before the authentication process must be restarted.
-         * 
-         * @return builder
-         * 
-         */
         public Builder accessCodeLifespanLogin(@Nullable Output<String> accessCodeLifespanLogin) {
             $.accessCodeLifespanLogin = accessCodeLifespanLogin;
             return this;
         }
 
-        /**
-         * @param accessCodeLifespanLogin The maximum amount of time a user is permitted to stay on the login page before the authentication process must be restarted.
-         * 
-         * @return builder
-         * 
-         */
         public Builder accessCodeLifespanLogin(String accessCodeLifespanLogin) {
             return accessCodeLifespanLogin(Output.of(accessCodeLifespanLogin));
         }
 
-        /**
-         * @param accessCodeLifespanUserAction The maximum amount of time a user has to complete login related actions, such as updating a password.
-         * 
-         * @return builder
-         * 
-         */
         public Builder accessCodeLifespanUserAction(@Nullable Output<String> accessCodeLifespanUserAction) {
             $.accessCodeLifespanUserAction = accessCodeLifespanUserAction;
             return this;
         }
 
-        /**
-         * @param accessCodeLifespanUserAction The maximum amount of time a user has to complete login related actions, such as updating a password.
-         * 
-         * @return builder
-         * 
-         */
         public Builder accessCodeLifespanUserAction(String accessCodeLifespanUserAction) {
             return accessCodeLifespanUserAction(Output.of(accessCodeLifespanUserAction));
         }
 
-        /**
-         * @param accessTokenLifespan The amount of time an access token can be used before it expires.
-         * 
-         * @return builder
-         * 
-         */
         public Builder accessTokenLifespan(@Nullable Output<String> accessTokenLifespan) {
             $.accessTokenLifespan = accessTokenLifespan;
             return this;
         }
 
-        /**
-         * @param accessTokenLifespan The amount of time an access token can be used before it expires.
-         * 
-         * @return builder
-         * 
-         */
         public Builder accessTokenLifespan(String accessTokenLifespan) {
             return accessTokenLifespan(Output.of(accessTokenLifespan));
         }
 
-        /**
-         * @param accessTokenLifespanForImplicitFlow The amount of time an access token issued with the OpenID Connect Implicit Flow can be used before it expires.
-         * 
-         * @return builder
-         * 
-         */
         public Builder accessTokenLifespanForImplicitFlow(@Nullable Output<String> accessTokenLifespanForImplicitFlow) {
             $.accessTokenLifespanForImplicitFlow = accessTokenLifespanForImplicitFlow;
             return this;
         }
 
-        /**
-         * @param accessTokenLifespanForImplicitFlow The amount of time an access token issued with the OpenID Connect Implicit Flow can be used before it expires.
-         * 
-         * @return builder
-         * 
-         */
         public Builder accessTokenLifespanForImplicitFlow(String accessTokenLifespanForImplicitFlow) {
             return accessTokenLifespanForImplicitFlow(Output.of(accessTokenLifespanForImplicitFlow));
         }
 
-        /**
-         * @param accountTheme Used for account management pages.
-         * 
-         * @return builder
-         * 
-         */
         public Builder accountTheme(@Nullable Output<String> accountTheme) {
             $.accountTheme = accountTheme;
             return this;
         }
 
-        /**
-         * @param accountTheme Used for account management pages.
-         * 
-         * @return builder
-         * 
-         */
         public Builder accountTheme(String accountTheme) {
             return accountTheme(Output.of(accountTheme));
         }
 
-        /**
-         * @param actionTokenGeneratedByAdminLifespan The maximum time a user has to use an admin-generated permit before it expires.
-         * 
-         * @return builder
-         * 
-         */
         public Builder actionTokenGeneratedByAdminLifespan(@Nullable Output<String> actionTokenGeneratedByAdminLifespan) {
             $.actionTokenGeneratedByAdminLifespan = actionTokenGeneratedByAdminLifespan;
             return this;
         }
 
-        /**
-         * @param actionTokenGeneratedByAdminLifespan The maximum time a user has to use an admin-generated permit before it expires.
-         * 
-         * @return builder
-         * 
-         */
         public Builder actionTokenGeneratedByAdminLifespan(String actionTokenGeneratedByAdminLifespan) {
             return actionTokenGeneratedByAdminLifespan(Output.of(actionTokenGeneratedByAdminLifespan));
         }
 
-        /**
-         * @param actionTokenGeneratedByUserLifespan The maximum time a user has to use a user-generated permit before it expires.
-         * 
-         * @return builder
-         * 
-         */
         public Builder actionTokenGeneratedByUserLifespan(@Nullable Output<String> actionTokenGeneratedByUserLifespan) {
             $.actionTokenGeneratedByUserLifespan = actionTokenGeneratedByUserLifespan;
             return this;
         }
 
-        /**
-         * @param actionTokenGeneratedByUserLifespan The maximum time a user has to use a user-generated permit before it expires.
-         * 
-         * @return builder
-         * 
-         */
         public Builder actionTokenGeneratedByUserLifespan(String actionTokenGeneratedByUserLifespan) {
             return actionTokenGeneratedByUserLifespan(Output.of(actionTokenGeneratedByUserLifespan));
         }
 
-        /**
-         * @param adminTheme Used for the admin console.
-         * 
-         * @return builder
-         * 
-         */
         public Builder adminTheme(@Nullable Output<String> adminTheme) {
             $.adminTheme = adminTheme;
             return this;
         }
 
-        /**
-         * @param adminTheme Used for the admin console.
-         * 
-         * @return builder
-         * 
-         */
         public Builder adminTheme(String adminTheme) {
             return adminTheme(Output.of(adminTheme));
         }
 
-        /**
-         * @param attributes A map of custom attributes to add to the realm.
-         * 
-         * @return builder
-         * 
-         */
         public Builder attributes(@Nullable Output<Map<String,Object>> attributes) {
             $.attributes = attributes;
             return this;
         }
 
-        /**
-         * @param attributes A map of custom attributes to add to the realm.
-         * 
-         * @return builder
-         * 
-         */
         public Builder attributes(Map<String,Object> attributes) {
             return attributes(Output.of(attributes));
         }
 
         /**
-         * @param browserFlow The desired flow for browser authentication. Defaults to `browser`.
+         * @param browserFlow Which flow should be used for BrowserFlow
          * 
          * @return builder
          * 
@@ -1136,7 +668,7 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param browserFlow The desired flow for browser authentication. Defaults to `browser`.
+         * @param browserFlow Which flow should be used for BrowserFlow
          * 
          * @return builder
          * 
@@ -1146,7 +678,7 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param clientAuthenticationFlow The desired flow for client authentication. Defaults to `clients`.
+         * @param clientAuthenticationFlow Which flow should be used for ClientAuthenticationFlow
          * 
          * @return builder
          * 
@@ -1157,7 +689,7 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param clientAuthenticationFlow The desired flow for client authentication. Defaults to `clients`.
+         * @param clientAuthenticationFlow Which flow should be used for ClientAuthenticationFlow
          * 
          * @return builder
          * 
@@ -1166,44 +698,20 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
             return clientAuthenticationFlow(Output.of(clientAuthenticationFlow));
         }
 
-        /**
-         * @param clientSessionIdleTimeout The amount of time a session can be idle before it expires. Users can override it for individual clients.
-         * 
-         * @return builder
-         * 
-         */
         public Builder clientSessionIdleTimeout(@Nullable Output<String> clientSessionIdleTimeout) {
             $.clientSessionIdleTimeout = clientSessionIdleTimeout;
             return this;
         }
 
-        /**
-         * @param clientSessionIdleTimeout The amount of time a session can be idle before it expires. Users can override it for individual clients.
-         * 
-         * @return builder
-         * 
-         */
         public Builder clientSessionIdleTimeout(String clientSessionIdleTimeout) {
             return clientSessionIdleTimeout(Output.of(clientSessionIdleTimeout));
         }
 
-        /**
-         * @param clientSessionMaxLifespan The maximum amount of time before a session expires regardless of activity. Users can override it for individual clients.
-         * 
-         * @return builder
-         * 
-         */
         public Builder clientSessionMaxLifespan(@Nullable Output<String> clientSessionMaxLifespan) {
             $.clientSessionMaxLifespan = clientSessionMaxLifespan;
             return this;
         }
 
-        /**
-         * @param clientSessionMaxLifespan The maximum amount of time before a session expires regardless of activity. Users can override it for individual clients.
-         * 
-         * @return builder
-         * 
-         */
         public Builder clientSessionMaxLifespan(String clientSessionMaxLifespan) {
             return clientSessionMaxLifespan(Output.of(clientSessionMaxLifespan));
         }
@@ -1234,29 +742,17 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
             return defaultOptionalClientScopes(List.of(defaultOptionalClientScopes));
         }
 
-        /**
-         * @param defaultSignatureAlgorithm Default algorithm used to sign tokens for the realm.
-         * 
-         * @return builder
-         * 
-         */
         public Builder defaultSignatureAlgorithm(@Nullable Output<String> defaultSignatureAlgorithm) {
             $.defaultSignatureAlgorithm = defaultSignatureAlgorithm;
             return this;
         }
 
-        /**
-         * @param defaultSignatureAlgorithm Default algorithm used to sign tokens for the realm.
-         * 
-         * @return builder
-         * 
-         */
         public Builder defaultSignatureAlgorithm(String defaultSignatureAlgorithm) {
             return defaultSignatureAlgorithm(Output.of(defaultSignatureAlgorithm));
         }
 
         /**
-         * @param directGrantFlow The desired flow for direct access authentication. Defaults to `direct grant`.
+         * @param directGrantFlow Which flow should be used for DirectGrantFlow
          * 
          * @return builder
          * 
@@ -1267,7 +763,7 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param directGrantFlow The desired flow for direct access authentication. Defaults to `direct grant`.
+         * @param directGrantFlow Which flow should be used for DirectGrantFlow
          * 
          * @return builder
          * 
@@ -1276,50 +772,26 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
             return directGrantFlow(Output.of(directGrantFlow));
         }
 
-        /**
-         * @param displayName The display name for the realm that is shown when logging in to the admin console.
-         * 
-         * @return builder
-         * 
-         */
         public Builder displayName(@Nullable Output<String> displayName) {
             $.displayName = displayName;
             return this;
         }
 
-        /**
-         * @param displayName The display name for the realm that is shown when logging in to the admin console.
-         * 
-         * @return builder
-         * 
-         */
         public Builder displayName(String displayName) {
             return displayName(Output.of(displayName));
         }
 
-        /**
-         * @param displayNameHtml The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.
-         * 
-         * @return builder
-         * 
-         */
         public Builder displayNameHtml(@Nullable Output<String> displayNameHtml) {
             $.displayNameHtml = displayNameHtml;
             return this;
         }
 
-        /**
-         * @param displayNameHtml The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.
-         * 
-         * @return builder
-         * 
-         */
         public Builder displayNameHtml(String displayNameHtml) {
             return displayNameHtml(Output.of(displayNameHtml));
         }
 
         /**
-         * @param dockerAuthenticationFlow The desired flow for Docker authentication. Defaults to `docker auth`.
+         * @param dockerAuthenticationFlow Which flow should be used for DockerAuthenticationFlow
          * 
          * @return builder
          * 
@@ -1330,7 +802,7 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param dockerAuthenticationFlow The desired flow for Docker authentication. Defaults to `docker auth`.
+         * @param dockerAuthenticationFlow Which flow should be used for DockerAuthenticationFlow
          * 
          * @return builder
          * 
@@ -1339,107 +811,47 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
             return dockerAuthenticationFlow(Output.of(dockerAuthenticationFlow));
         }
 
-        /**
-         * @param duplicateEmailsAllowed When true, multiple users will be allowed to have the same email address. This argument must be set to `false` if `login_with_email_allowed` is set to `true`.
-         * 
-         * @return builder
-         * 
-         */
         public Builder duplicateEmailsAllowed(@Nullable Output<Boolean> duplicateEmailsAllowed) {
             $.duplicateEmailsAllowed = duplicateEmailsAllowed;
             return this;
         }
 
-        /**
-         * @param duplicateEmailsAllowed When true, multiple users will be allowed to have the same email address. This argument must be set to `false` if `login_with_email_allowed` is set to `true`.
-         * 
-         * @return builder
-         * 
-         */
         public Builder duplicateEmailsAllowed(Boolean duplicateEmailsAllowed) {
             return duplicateEmailsAllowed(Output.of(duplicateEmailsAllowed));
         }
 
-        /**
-         * @param editUsernameAllowed When true, the username field is editable.
-         * 
-         * @return builder
-         * 
-         */
         public Builder editUsernameAllowed(@Nullable Output<Boolean> editUsernameAllowed) {
             $.editUsernameAllowed = editUsernameAllowed;
             return this;
         }
 
-        /**
-         * @param editUsernameAllowed When true, the username field is editable.
-         * 
-         * @return builder
-         * 
-         */
         public Builder editUsernameAllowed(Boolean editUsernameAllowed) {
             return editUsernameAllowed(Output.of(editUsernameAllowed));
         }
 
-        /**
-         * @param emailTheme Used for emails that are sent by Keycloak.
-         * 
-         * @return builder
-         * 
-         */
         public Builder emailTheme(@Nullable Output<String> emailTheme) {
             $.emailTheme = emailTheme;
             return this;
         }
 
-        /**
-         * @param emailTheme Used for emails that are sent by Keycloak.
-         * 
-         * @return builder
-         * 
-         */
         public Builder emailTheme(String emailTheme) {
             return emailTheme(Output.of(emailTheme));
         }
 
-        /**
-         * @param enabled When `false`, users and clients will not be able to access this realm. Defaults to `true`.
-         * 
-         * @return builder
-         * 
-         */
         public Builder enabled(@Nullable Output<Boolean> enabled) {
             $.enabled = enabled;
             return this;
         }
 
-        /**
-         * @param enabled When `false`, users and clients will not be able to access this realm. Defaults to `true`.
-         * 
-         * @return builder
-         * 
-         */
         public Builder enabled(Boolean enabled) {
             return enabled(Output.of(enabled));
         }
 
-        /**
-         * @param internalId When specified, this will be used as the realm&#39;s internal ID within Keycloak. When not specified, the realm&#39;s internal ID will be set to the realm&#39;s name.
-         * 
-         * @return builder
-         * 
-         */
         public Builder internalId(@Nullable Output<String> internalId) {
             $.internalId = internalId;
             return this;
         }
 
-        /**
-         * @param internalId When specified, this will be used as the realm&#39;s internal ID within Keycloak. When not specified, the realm&#39;s internal ID will be set to the realm&#39;s name.
-         * 
-         * @return builder
-         * 
-         */
         public Builder internalId(String internalId) {
             return internalId(Output.of(internalId));
         }
@@ -1453,153 +865,65 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
             return internationalization(Output.of(internationalization));
         }
 
-        /**
-         * @param loginTheme Used for the login, forgot password, and registration pages.
-         * 
-         * @return builder
-         * 
-         */
         public Builder loginTheme(@Nullable Output<String> loginTheme) {
             $.loginTheme = loginTheme;
             return this;
         }
 
-        /**
-         * @param loginTheme Used for the login, forgot password, and registration pages.
-         * 
-         * @return builder
-         * 
-         */
         public Builder loginTheme(String loginTheme) {
             return loginTheme(Output.of(loginTheme));
         }
 
-        /**
-         * @param loginWithEmailAllowed When true, users may log in with their email address.
-         * 
-         * @return builder
-         * 
-         */
         public Builder loginWithEmailAllowed(@Nullable Output<Boolean> loginWithEmailAllowed) {
             $.loginWithEmailAllowed = loginWithEmailAllowed;
             return this;
         }
 
-        /**
-         * @param loginWithEmailAllowed When true, users may log in with their email address.
-         * 
-         * @return builder
-         * 
-         */
         public Builder loginWithEmailAllowed(Boolean loginWithEmailAllowed) {
             return loginWithEmailAllowed(Output.of(loginWithEmailAllowed));
         }
 
-        /**
-         * @param oauth2DeviceCodeLifespan The maximum amount of time a client has to finish the device code flow before it expires.
-         * 
-         * The attributes below should be specified in seconds.
-         * 
-         * @return builder
-         * 
-         */
         public Builder oauth2DeviceCodeLifespan(@Nullable Output<String> oauth2DeviceCodeLifespan) {
             $.oauth2DeviceCodeLifespan = oauth2DeviceCodeLifespan;
             return this;
         }
 
-        /**
-         * @param oauth2DeviceCodeLifespan The maximum amount of time a client has to finish the device code flow before it expires.
-         * 
-         * The attributes below should be specified in seconds.
-         * 
-         * @return builder
-         * 
-         */
         public Builder oauth2DeviceCodeLifespan(String oauth2DeviceCodeLifespan) {
             return oauth2DeviceCodeLifespan(Output.of(oauth2DeviceCodeLifespan));
         }
 
-        /**
-         * @param oauth2DevicePollingInterval The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
-         * 
-         * @return builder
-         * 
-         */
         public Builder oauth2DevicePollingInterval(@Nullable Output<Integer> oauth2DevicePollingInterval) {
             $.oauth2DevicePollingInterval = oauth2DevicePollingInterval;
             return this;
         }
 
-        /**
-         * @param oauth2DevicePollingInterval The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
-         * 
-         * @return builder
-         * 
-         */
         public Builder oauth2DevicePollingInterval(Integer oauth2DevicePollingInterval) {
             return oauth2DevicePollingInterval(Output.of(oauth2DevicePollingInterval));
         }
 
-        /**
-         * @param offlineSessionIdleTimeout The amount of time an offline session can be idle before it expires.
-         * 
-         * @return builder
-         * 
-         */
         public Builder offlineSessionIdleTimeout(@Nullable Output<String> offlineSessionIdleTimeout) {
             $.offlineSessionIdleTimeout = offlineSessionIdleTimeout;
             return this;
         }
 
-        /**
-         * @param offlineSessionIdleTimeout The amount of time an offline session can be idle before it expires.
-         * 
-         * @return builder
-         * 
-         */
         public Builder offlineSessionIdleTimeout(String offlineSessionIdleTimeout) {
             return offlineSessionIdleTimeout(Output.of(offlineSessionIdleTimeout));
         }
 
-        /**
-         * @param offlineSessionMaxLifespan The maximum amount of time before an offline session expires regardless of activity.
-         * 
-         * @return builder
-         * 
-         */
         public Builder offlineSessionMaxLifespan(@Nullable Output<String> offlineSessionMaxLifespan) {
             $.offlineSessionMaxLifespan = offlineSessionMaxLifespan;
             return this;
         }
 
-        /**
-         * @param offlineSessionMaxLifespan The maximum amount of time before an offline session expires regardless of activity.
-         * 
-         * @return builder
-         * 
-         */
         public Builder offlineSessionMaxLifespan(String offlineSessionMaxLifespan) {
             return offlineSessionMaxLifespan(Output.of(offlineSessionMaxLifespan));
         }
 
-        /**
-         * @param offlineSessionMaxLifespanEnabled Enable `offline_session_max_lifespan`.
-         * 
-         * @return builder
-         * 
-         */
         public Builder offlineSessionMaxLifespanEnabled(@Nullable Output<Boolean> offlineSessionMaxLifespanEnabled) {
             $.offlineSessionMaxLifespanEnabled = offlineSessionMaxLifespanEnabled;
             return this;
         }
 
-        /**
-         * @param offlineSessionMaxLifespanEnabled Enable `offline_session_max_lifespan`.
-         * 
-         * @return builder
-         * 
-         */
         public Builder offlineSessionMaxLifespanEnabled(Boolean offlineSessionMaxLifespanEnabled) {
             return offlineSessionMaxLifespanEnabled(Output.of(offlineSessionMaxLifespanEnabled));
         }
@@ -1614,9 +938,9 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param passwordPolicy The password policy for users within the realm.
-         * 
-         * The arguments below can be used to configure authentication flow bindings:
+         * @param passwordPolicy String that represents the passwordPolicies that are in place. Each policy is separated with &#34; and &#34;. Supported policies
+         * can be found in the server-info providers page. example: &#34;upperCase(1) and length(8) and forceExpiredPasswordChange(365)
+         * and notUsername(undefined)&#34;
          * 
          * @return builder
          * 
@@ -1627,9 +951,9 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param passwordPolicy The password policy for users within the realm.
-         * 
-         * The arguments below can be used to configure authentication flow bindings:
+         * @param passwordPolicy String that represents the passwordPolicies that are in place. Each policy is separated with &#34; and &#34;. Supported policies
+         * can be found in the server-info providers page. example: &#34;upperCase(1) and length(8) and forceExpiredPasswordChange(365)
+         * and notUsername(undefined)&#34;
          * 
          * @return builder
          * 
@@ -1638,96 +962,44 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
             return passwordPolicy(Output.of(passwordPolicy));
         }
 
-        /**
-         * @param realm The name of the realm. This is unique across Keycloak. This will also be used as the realm&#39;s internal ID within Keycloak.
-         * 
-         * @return builder
-         * 
-         */
         public Builder realm(Output<String> realm) {
             $.realm = realm;
             return this;
         }
 
-        /**
-         * @param realm The name of the realm. This is unique across Keycloak. This will also be used as the realm&#39;s internal ID within Keycloak.
-         * 
-         * @return builder
-         * 
-         */
         public Builder realm(String realm) {
             return realm(Output.of(realm));
         }
 
-        /**
-         * @param refreshTokenMaxReuse Maximum number of times a refresh token can be reused before they are revoked. If unspecified and &#39;revoke_refresh_token&#39; is enabled the default value is 0 and refresh tokens can not be reused.
-         * 
-         * The arguments below should be specified as [Go duration strings](https://golang.org/pkg/time/#Duration.String). They will default to Keycloak&#39;s default settings.
-         * 
-         * @return builder
-         * 
-         */
         public Builder refreshTokenMaxReuse(@Nullable Output<Integer> refreshTokenMaxReuse) {
             $.refreshTokenMaxReuse = refreshTokenMaxReuse;
             return this;
         }
 
-        /**
-         * @param refreshTokenMaxReuse Maximum number of times a refresh token can be reused before they are revoked. If unspecified and &#39;revoke_refresh_token&#39; is enabled the default value is 0 and refresh tokens can not be reused.
-         * 
-         * The arguments below should be specified as [Go duration strings](https://golang.org/pkg/time/#Duration.String). They will default to Keycloak&#39;s default settings.
-         * 
-         * @return builder
-         * 
-         */
         public Builder refreshTokenMaxReuse(Integer refreshTokenMaxReuse) {
             return refreshTokenMaxReuse(Output.of(refreshTokenMaxReuse));
         }
 
-        /**
-         * @param registrationAllowed When true, user registration will be enabled, and a link for registration will be displayed on the login page.
-         * 
-         * @return builder
-         * 
-         */
         public Builder registrationAllowed(@Nullable Output<Boolean> registrationAllowed) {
             $.registrationAllowed = registrationAllowed;
             return this;
         }
 
-        /**
-         * @param registrationAllowed When true, user registration will be enabled, and a link for registration will be displayed on the login page.
-         * 
-         * @return builder
-         * 
-         */
         public Builder registrationAllowed(Boolean registrationAllowed) {
             return registrationAllowed(Output.of(registrationAllowed));
         }
 
-        /**
-         * @param registrationEmailAsUsername When true, the user&#39;s email will be used as their username during registration.
-         * 
-         * @return builder
-         * 
-         */
         public Builder registrationEmailAsUsername(@Nullable Output<Boolean> registrationEmailAsUsername) {
             $.registrationEmailAsUsername = registrationEmailAsUsername;
             return this;
         }
 
-        /**
-         * @param registrationEmailAsUsername When true, the user&#39;s email will be used as their username during registration.
-         * 
-         * @return builder
-         * 
-         */
         public Builder registrationEmailAsUsername(Boolean registrationEmailAsUsername) {
             return registrationEmailAsUsername(Output.of(registrationEmailAsUsername));
         }
 
         /**
-         * @param registrationFlow The desired flow for user registration. Defaults to `registration`.
+         * @param registrationFlow Which flow should be used for RegistrationFlow
          * 
          * @return builder
          * 
@@ -1738,7 +1010,7 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param registrationFlow The desired flow for user registration. Defaults to `registration`.
+         * @param registrationFlow Which flow should be used for RegistrationFlow
          * 
          * @return builder
          * 
@@ -1747,29 +1019,17 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
             return registrationFlow(Output.of(registrationFlow));
         }
 
-        /**
-         * @param rememberMe When true, a &#34;remember me&#34; checkbox will be displayed on the login page, and the user&#39;s session will not expire between browser restarts.
-         * 
-         * @return builder
-         * 
-         */
         public Builder rememberMe(@Nullable Output<Boolean> rememberMe) {
             $.rememberMe = rememberMe;
             return this;
         }
 
-        /**
-         * @param rememberMe When true, a &#34;remember me&#34; checkbox will be displayed on the login page, and the user&#39;s session will not expire between browser restarts.
-         * 
-         * @return builder
-         * 
-         */
         public Builder rememberMe(Boolean rememberMe) {
             return rememberMe(Output.of(rememberMe));
         }
 
         /**
-         * @param resetCredentialsFlow The desired flow to use when a user attempts to reset their credentials. Defaults to `reset credentials`.
+         * @param resetCredentialsFlow Which flow should be used for ResetCredentialsFlow
          * 
          * @return builder
          * 
@@ -1780,7 +1040,7 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param resetCredentialsFlow The desired flow to use when a user attempts to reset their credentials. Defaults to `reset credentials`.
+         * @param resetCredentialsFlow Which flow should be used for ResetCredentialsFlow
          * 
          * @return builder
          * 
@@ -1789,44 +1049,20 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
             return resetCredentialsFlow(Output.of(resetCredentialsFlow));
         }
 
-        /**
-         * @param resetPasswordAllowed When true, a &#34;forgot password&#34; link will be displayed on the login page.
-         * 
-         * @return builder
-         * 
-         */
         public Builder resetPasswordAllowed(@Nullable Output<Boolean> resetPasswordAllowed) {
             $.resetPasswordAllowed = resetPasswordAllowed;
             return this;
         }
 
-        /**
-         * @param resetPasswordAllowed When true, a &#34;forgot password&#34; link will be displayed on the login page.
-         * 
-         * @return builder
-         * 
-         */
         public Builder resetPasswordAllowed(Boolean resetPasswordAllowed) {
             return resetPasswordAllowed(Output.of(resetPasswordAllowed));
         }
 
-        /**
-         * @param revokeRefreshToken If enabled a refresh token can only be used number of times specified in &#39;refresh_token_max_reuse&#39; before they are revoked. If unspecified, refresh tokens can be reused.
-         * 
-         * @return builder
-         * 
-         */
         public Builder revokeRefreshToken(@Nullable Output<Boolean> revokeRefreshToken) {
             $.revokeRefreshToken = revokeRefreshToken;
             return this;
         }
 
-        /**
-         * @param revokeRefreshToken If enabled a refresh token can only be used number of times specified in &#39;refresh_token_max_reuse&#39; before they are revoked. If unspecified, refresh tokens can be reused.
-         * 
-         * @return builder
-         * 
-         */
         public Builder revokeRefreshToken(Boolean revokeRefreshToken) {
             return revokeRefreshToken(Output.of(revokeRefreshToken));
         }
@@ -1850,7 +1086,7 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param sslRequired Can be one of following values: &#39;none, &#39;external&#39; or &#39;all&#39;
+         * @param sslRequired SSL Required: Values can be &#39;none&#39;, &#39;external&#39; or &#39;all&#39;.
          * 
          * @return builder
          * 
@@ -1861,7 +1097,7 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param sslRequired Can be one of following values: &#39;none, &#39;external&#39; or &#39;all&#39;
+         * @param sslRequired SSL Required: Values can be &#39;none&#39;, &#39;external&#39; or &#39;all&#39;.
          * 
          * @return builder
          * 
@@ -1870,174 +1106,74 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
             return sslRequired(Output.of(sslRequired));
         }
 
-        /**
-         * @param ssoSessionIdleTimeout The amount of time a session can be idle before it expires.
-         * 
-         * @return builder
-         * 
-         */
         public Builder ssoSessionIdleTimeout(@Nullable Output<String> ssoSessionIdleTimeout) {
             $.ssoSessionIdleTimeout = ssoSessionIdleTimeout;
             return this;
         }
 
-        /**
-         * @param ssoSessionIdleTimeout The amount of time a session can be idle before it expires.
-         * 
-         * @return builder
-         * 
-         */
         public Builder ssoSessionIdleTimeout(String ssoSessionIdleTimeout) {
             return ssoSessionIdleTimeout(Output.of(ssoSessionIdleTimeout));
         }
 
-        /**
-         * @param ssoSessionIdleTimeoutRememberMe Similar to `sso_session_idle_timeout`, but used when a user clicks &#34;Remember Me&#34;. If not set, Keycloak will default to the value of `sso_session_idle_timeout`.
-         * 
-         * @return builder
-         * 
-         */
         public Builder ssoSessionIdleTimeoutRememberMe(@Nullable Output<String> ssoSessionIdleTimeoutRememberMe) {
             $.ssoSessionIdleTimeoutRememberMe = ssoSessionIdleTimeoutRememberMe;
             return this;
         }
 
-        /**
-         * @param ssoSessionIdleTimeoutRememberMe Similar to `sso_session_idle_timeout`, but used when a user clicks &#34;Remember Me&#34;. If not set, Keycloak will default to the value of `sso_session_idle_timeout`.
-         * 
-         * @return builder
-         * 
-         */
         public Builder ssoSessionIdleTimeoutRememberMe(String ssoSessionIdleTimeoutRememberMe) {
             return ssoSessionIdleTimeoutRememberMe(Output.of(ssoSessionIdleTimeoutRememberMe));
         }
 
-        /**
-         * @param ssoSessionMaxLifespan The maximum amount of time before a session expires regardless of activity.
-         * 
-         * @return builder
-         * 
-         */
         public Builder ssoSessionMaxLifespan(@Nullable Output<String> ssoSessionMaxLifespan) {
             $.ssoSessionMaxLifespan = ssoSessionMaxLifespan;
             return this;
         }
 
-        /**
-         * @param ssoSessionMaxLifespan The maximum amount of time before a session expires regardless of activity.
-         * 
-         * @return builder
-         * 
-         */
         public Builder ssoSessionMaxLifespan(String ssoSessionMaxLifespan) {
             return ssoSessionMaxLifespan(Output.of(ssoSessionMaxLifespan));
         }
 
-        /**
-         * @param ssoSessionMaxLifespanRememberMe Similar to `sso_session_max_lifespan`, but used when a user clicks &#34;Remember Me&#34;. If not set, Keycloak will default to the value of `sso_session_max_lifespan`.
-         * 
-         * @return builder
-         * 
-         */
         public Builder ssoSessionMaxLifespanRememberMe(@Nullable Output<String> ssoSessionMaxLifespanRememberMe) {
             $.ssoSessionMaxLifespanRememberMe = ssoSessionMaxLifespanRememberMe;
             return this;
         }
 
-        /**
-         * @param ssoSessionMaxLifespanRememberMe Similar to `sso_session_max_lifespan`, but used when a user clicks &#34;Remember Me&#34;. If not set, Keycloak will default to the value of `sso_session_max_lifespan`.
-         * 
-         * @return builder
-         * 
-         */
         public Builder ssoSessionMaxLifespanRememberMe(String ssoSessionMaxLifespanRememberMe) {
             return ssoSessionMaxLifespanRememberMe(Output.of(ssoSessionMaxLifespanRememberMe));
         }
 
-        /**
-         * @param userManagedAccess When `true`, users are allowed to manage their own resources. Defaults to `false`.
-         * 
-         * @return builder
-         * 
-         */
         public Builder userManagedAccess(@Nullable Output<Boolean> userManagedAccess) {
             $.userManagedAccess = userManagedAccess;
             return this;
         }
 
-        /**
-         * @param userManagedAccess When `true`, users are allowed to manage their own resources. Defaults to `false`.
-         * 
-         * @return builder
-         * 
-         */
         public Builder userManagedAccess(Boolean userManagedAccess) {
             return userManagedAccess(Output.of(userManagedAccess));
         }
 
-        /**
-         * @param verifyEmail When true, users are required to verify their email address after registration and after email address changes.
-         * 
-         * @return builder
-         * 
-         */
         public Builder verifyEmail(@Nullable Output<Boolean> verifyEmail) {
             $.verifyEmail = verifyEmail;
             return this;
         }
 
-        /**
-         * @param verifyEmail When true, users are required to verify their email address after registration and after email address changes.
-         * 
-         * @return builder
-         * 
-         */
         public Builder verifyEmail(Boolean verifyEmail) {
             return verifyEmail(Output.of(verifyEmail));
         }
 
-        /**
-         * @param webAuthnPasswordlessPolicy Configuration for WebAuthn Passwordless Policy authentication.
-         * 
-         * Each of these attributes are blocks with the following attributes:
-         * 
-         * @return builder
-         * 
-         */
         public Builder webAuthnPasswordlessPolicy(@Nullable Output<RealmWebAuthnPasswordlessPolicyArgs> webAuthnPasswordlessPolicy) {
             $.webAuthnPasswordlessPolicy = webAuthnPasswordlessPolicy;
             return this;
         }
 
-        /**
-         * @param webAuthnPasswordlessPolicy Configuration for WebAuthn Passwordless Policy authentication.
-         * 
-         * Each of these attributes are blocks with the following attributes:
-         * 
-         * @return builder
-         * 
-         */
         public Builder webAuthnPasswordlessPolicy(RealmWebAuthnPasswordlessPolicyArgs webAuthnPasswordlessPolicy) {
             return webAuthnPasswordlessPolicy(Output.of(webAuthnPasswordlessPolicy));
         }
 
-        /**
-         * @param webAuthnPolicy Configuration for WebAuthn Policy authentication.
-         * 
-         * @return builder
-         * 
-         */
         public Builder webAuthnPolicy(@Nullable Output<RealmWebAuthnPolicyArgs> webAuthnPolicy) {
             $.webAuthnPolicy = webAuthnPolicy;
             return this;
         }
 
-        /**
-         * @param webAuthnPolicy Configuration for WebAuthn Policy authentication.
-         * 
-         * @return builder
-         * 
-         */
         public Builder webAuthnPolicy(RealmWebAuthnPolicyArgs webAuthnPolicy) {
             return webAuthnPolicy(Output.of(webAuthnPolicy));
         }

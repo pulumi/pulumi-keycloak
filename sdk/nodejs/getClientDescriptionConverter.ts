@@ -12,6 +12,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -56,6 +57,7 @@ import * as utilities from "./utilities";
  *     clientId: samlClientClientDescriptionConverter.apply(samlClientClientDescriptionConverter => samlClientClientDescriptionConverter.clientId),
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getClientDescriptionConverter(args: GetClientDescriptionConverterArgs, opts?: pulumi.InvokeOptions): Promise<GetClientDescriptionConverterResult> {
 
@@ -132,6 +134,7 @@ export interface GetClientDescriptionConverterResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -176,6 +179,7 @@ export interface GetClientDescriptionConverterResult {
  *     clientId: samlClientClientDescriptionConverter.apply(samlClientClientDescriptionConverter => samlClientClientDescriptionConverter.clientId),
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getClientDescriptionConverterOutput(args: GetClientDescriptionConverterOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetClientDescriptionConverterResult> {
     return pulumi.output(args).apply((a: any) => getClientDescriptionConverter(a, opts))

@@ -17,17 +17,23 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * ## # keycloak.GroupRoles
+ * 
  * Allows you to manage roles assigned to a Keycloak group.
  * 
- * If `exhaustive` is true, this resource attempts to be an **authoritative** source over group roles: roles that are manually added to the group will be removed, and roles that are manually removed from the
- * group will be added upon the next run of `pulumi up`.
- * If `exhaustive` is false, this resource is a partial assignation of roles to a group. As a result, you can get multiple `keycloak.GroupRoles` for the same `group_id`.
+ * Note that this resource attempts to be an **authoritative** source over
+ * group roles. When this resource takes control over a group&#39;s roles,
+ * roles that are manually added to the group will be removed, and roles
+ * that are manually removed from the group will be added upon the next run
+ * of `pulumi up`.
  * 
- * Note that when assigning composite roles to a group, you may see a non-empty plan following a `pulumi up` if you
- * assign a role and a composite that includes that role to the same group.
+ * Note that when assigning composite roles to a group, you may see a
+ * non-empty plan following a `pulumi up` if you assign a role and a
+ * composite that includes that role to the same group.
  * 
- * ## Example Usage
- * ### Exhaustive Roles)
+ * ### Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -58,26 +64,26 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
  *             .enabled(true)
+ *             .realm(&#34;my-realm&#34;)
  *             .build());
  * 
  *         var realmRole = new Role(&#34;realmRole&#34;, RoleArgs.builder()        
- *             .realmId(realm.id())
  *             .description(&#34;My Realm Role&#34;)
+ *             .realmId(realm.id())
  *             .build());
  * 
  *         var client = new Client(&#34;client&#34;, ClientArgs.builder()        
- *             .realmId(realm.id())
+ *             .accessType(&#34;BEARER-ONLY&#34;)
  *             .clientId(&#34;client&#34;)
  *             .enabled(true)
- *             .accessType(&#34;BEARER-ONLY&#34;)
+ *             .realmId(realm.id())
  *             .build());
  * 
  *         var clientRole = new Role(&#34;clientRole&#34;, RoleArgs.builder()        
- *             .realmId(realm.id())
  *             .clientId(keycloak_client.client().id())
  *             .description(&#34;My Client Role&#34;)
+ *             .realmId(realm.id())
  *             .build());
  * 
  *         var group = new Group(&#34;group&#34;, GroupArgs.builder()        
@@ -85,8 +91,8 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var groupRoles = new GroupRoles(&#34;groupRoles&#34;, GroupRolesArgs.builder()        
- *             .realmId(realm.id())
  *             .groupId(group.id())
+ *             .realmId(realm.id())
  *             .roleIds(            
  *                 realmRole.id(),
  *                 clientRole.id())
@@ -95,153 +101,50 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
- * ### Non Exhaustive Roles)
- * ```java
- * package generated_program;
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.keycloak.Realm;
- * import com.pulumi.keycloak.RealmArgs;
- * import com.pulumi.keycloak.Role;
- * import com.pulumi.keycloak.RoleArgs;
- * import com.pulumi.keycloak.openid.Client;
- * import com.pulumi.keycloak.openid.ClientArgs;
- * import com.pulumi.keycloak.Group;
- * import com.pulumi.keycloak.GroupArgs;
- * import com.pulumi.keycloak.GroupRoles;
- * import com.pulumi.keycloak.GroupRolesArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
+ * ### Argument Reference
  * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
+ * The following arguments are supported:
  * 
- *     public static void stack(Context ctx) {
- *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
- *             .enabled(true)
- *             .build());
+ * - `realm_id` - (Required) The realm this group exists in.
+ * - `group_id` - (Required) The ID of the group this resource should
+ *   manage roles for.
+ * - `role_ids` - (Required) A list of role IDs to map to the group
  * 
- *         var realmRole = new Role(&#34;realmRole&#34;, RoleArgs.builder()        
- *             .realmId(realm.id())
- *             .description(&#34;My Realm Role&#34;)
- *             .build());
+ * ### Import
  * 
- *         var client = new Client(&#34;client&#34;, ClientArgs.builder()        
- *             .realmId(realm.id())
- *             .clientId(&#34;client&#34;)
- *             .enabled(true)
- *             .accessType(&#34;BEARER-ONLY&#34;)
- *             .build());
+ * This resource can be imported using the format
+ * `{{realm_id}}/{{group_id}}`, where `group_id` is the unique ID that
+ * Keycloak assigns to the group upon creation. This value can be found in
+ * the URI when editing this group in the GUI, and is typically a GUID.
  * 
- *         var clientRole = new Role(&#34;clientRole&#34;, RoleArgs.builder()        
- *             .realmId(realm.id())
- *             .clientId(keycloak_client.client().id())
- *             .description(&#34;My Client Role&#34;)
- *             .build());
- * 
- *         var group = new Group(&#34;group&#34;, GroupArgs.builder()        
- *             .realmId(realm.id())
- *             .build());
- * 
- *         var groupRoleAssociation1 = new GroupRoles(&#34;groupRoleAssociation1&#34;, GroupRolesArgs.builder()        
- *             .realmId(realm.id())
- *             .groupId(group.id())
- *             .exhaustive(false)
- *             .roleIds(realmRole.id())
- *             .build());
- * 
- *         var groupRoleAssociation2 = new GroupRoles(&#34;groupRoleAssociation2&#34;, GroupRolesArgs.builder()        
- *             .realmId(realm.id())
- *             .groupId(group.id())
- *             .exhaustive(false)
- *             .roleIds(clientRole.id())
- *             .build());
- * 
- *     }
- * }
- * ```
- * 
- * ## Import
- * 
- * This resource can be imported using the format `{{realm_id}}/{{group_id}}`, where `group_id` is the unique ID that Keycloak
- * 
- *  assigns to the group upon creation. This value can be found in the URI when editing this group in the GUI, and is typically
- * 
- *  a GUID.
- * 
- *  Example:
- * 
- *  bash
- * 
- * ```sh
- * $ pulumi import keycloak:index/groupRoles:GroupRoles group_roles my-realm/18cc6b87-2ce7-4e59-bdc8-b9d49ec98a94
- * ```
+ * Example:
  * 
  */
 @ResourceType(type="keycloak:index/groupRoles:GroupRoles")
 public class GroupRoles extends com.pulumi.resources.CustomResource {
-    /**
-     * Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `true`.
-     * 
-     */
     @Export(name="exhaustive", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> exhaustive;
 
-    /**
-     * @return Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `true`.
-     * 
-     */
     public Output<Optional<Boolean>> exhaustive() {
         return Codegen.optional(this.exhaustive);
     }
-    /**
-     * The ID of the group this resource should manage roles for.
-     * 
-     */
     @Export(name="groupId", refs={String.class}, tree="[0]")
     private Output<String> groupId;
 
-    /**
-     * @return The ID of the group this resource should manage roles for.
-     * 
-     */
     public Output<String> groupId() {
         return this.groupId;
     }
-    /**
-     * The realm this group exists in.
-     * 
-     */
     @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
-    /**
-     * @return The realm this group exists in.
-     * 
-     */
     public Output<String> realmId() {
         return this.realmId;
     }
-    /**
-     * A list of role IDs to map to the group.
-     * 
-     */
     @Export(name="roleIds", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> roleIds;
 
-    /**
-     * @return A list of role IDs to map to the group.
-     * 
-     */
     public Output<List<String>> roleIds() {
         return this.roleIds;
     }

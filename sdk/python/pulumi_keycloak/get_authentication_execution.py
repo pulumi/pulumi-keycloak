@@ -80,6 +80,7 @@ def get_authentication_execution(parent_flow_alias: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_keycloak as keycloak
@@ -91,6 +92,7 @@ def get_authentication_execution(parent_flow_alias: Optional[str] = None,
         parent_flow_alias="browser",
         provider_id="auth-cookie")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str parent_flow_alias: The alias of the flow this execution is attached to.
@@ -121,6 +123,7 @@ def get_authentication_execution_output(parent_flow_alias: Optional[pulumi.Input
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_keycloak as keycloak
@@ -132,6 +135,7 @@ def get_authentication_execution_output(parent_flow_alias: Optional[pulumi.Input
         parent_flow_alias="browser",
         provider_id="auth-cookie")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str parent_flow_alias: The alias of the flow this execution is attached to.

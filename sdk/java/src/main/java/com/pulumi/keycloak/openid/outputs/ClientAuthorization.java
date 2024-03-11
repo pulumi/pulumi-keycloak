@@ -13,53 +13,21 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class ClientAuthorization {
-    /**
-     * @return When `true`, resources can be managed remotely by the resource server. Defaults to `false`.
-     * 
-     */
     private @Nullable Boolean allowRemoteResourceManagement;
-    /**
-     * @return Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.
-     * 
-     */
     private @Nullable String decisionStrategy;
-    /**
-     * @return When `true`, defaults set by Keycloak will be respected. Defaults to `false`.
-     * 
-     */
     private @Nullable Boolean keepDefaults;
-    /**
-     * @return Dictates how policies are enforced when evaluating authorization requests. Can be one of `ENFORCING`, `PERMISSIVE`, or `DISABLED`.
-     * 
-     */
     private String policyEnforcementMode;
 
     private ClientAuthorization() {}
-    /**
-     * @return When `true`, resources can be managed remotely by the resource server. Defaults to `false`.
-     * 
-     */
     public Optional<Boolean> allowRemoteResourceManagement() {
         return Optional.ofNullable(this.allowRemoteResourceManagement);
     }
-    /**
-     * @return Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.
-     * 
-     */
     public Optional<String> decisionStrategy() {
         return Optional.ofNullable(this.decisionStrategy);
     }
-    /**
-     * @return When `true`, defaults set by Keycloak will be respected. Defaults to `false`.
-     * 
-     */
     public Optional<Boolean> keepDefaults() {
         return Optional.ofNullable(this.keepDefaults);
     }
-    /**
-     * @return Dictates how policies are enforced when evaluating authorization requests. Can be one of `ENFORCING`, `PERMISSIVE`, or `DISABLED`.
-     * 
-     */
     public String policyEnforcementMode() {
         return this.policyEnforcementMode;
     }

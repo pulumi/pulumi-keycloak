@@ -10,16 +10,19 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.OpenId
 {
     /// <summary>
-    /// Allows for creating and managing hardcoded role protocol mappers within Keycloak.
+    /// ## # keycloak.openid.HardcodedRoleProtocolMapper
     /// 
-    /// Hardcoded role protocol mappers allow you to specify a single role to always map to an access token for a client.
+    /// Allows for creating and managing hardcoded role protocol mappers within
+    /// Keycloak.
     /// 
-    /// Protocol mappers can be defined for a single client, or they can be defined for a client scope which can be shared between
-    /// multiple different clients.
+    /// Hardcoded role protocol mappers allow you to specify a single role to
+    /// always map to an access token for a client. Protocol mappers can be
+    /// defined for a single client, or they can be defined for a client scope
+    /// which can be shared between multiple different clients.
     /// 
-    /// ## Example Usage
-    /// ### Client)
+    /// ### Example Usage (Client)
     /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -30,8 +33,8 @@ namespace Pulumi.Keycloak.OpenId
     /// {
     ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         RealmName = "my-realm",
     ///         Enabled = true,
+    ///         RealmName = "my-realm",
     ///     });
     /// 
     ///     var role = new Keycloak.Role("role", new()
@@ -41,10 +44,10 @@ namespace Pulumi.Keycloak.OpenId
     /// 
     ///     var openidClient = new Keycloak.OpenId.Client("openidClient", new()
     ///     {
-    ///         RealmId = realm.Id,
-    ///         ClientId = "client",
-    ///         Enabled = true,
     ///         AccessType = "CONFIDENTIAL",
+    ///         ClientId = "test-client",
+    ///         Enabled = true,
+    ///         RealmId = realm.Id,
     ///         ValidRedirectUris = new[]
     ///         {
     ///             "http://localhost:8080/openid-callback",
@@ -53,15 +56,18 @@ namespace Pulumi.Keycloak.OpenId
     /// 
     ///     var hardcodedRoleMapper = new Keycloak.OpenId.HardcodedRoleProtocolMapper("hardcodedRoleMapper", new()
     ///     {
-    ///         RealmId = realm.Id,
     ///         ClientId = openidClient.Id,
+    ///         RealmId = realm.Id,
     ///         RoleId = role.Id,
     ///     });
     /// 
     /// });
     /// ```
-    /// ### Client Scope)
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
+    /// ### Example Usage (Client Scope)
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -72,8 +78,8 @@ namespace Pulumi.Keycloak.OpenId
     /// {
     ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         RealmName = "my-realm",
     ///         Enabled = true,
+    ///         RealmName = "my-realm",
     ///     });
     /// 
     ///     var role = new Keycloak.Role("role", new()
@@ -88,64 +94,61 @@ namespace Pulumi.Keycloak.OpenId
     /// 
     ///     var hardcodedRoleMapper = new Keycloak.OpenId.HardcodedRoleProtocolMapper("hardcodedRoleMapper", new()
     ///     {
-    ///         RealmId = realm.Id,
     ///         ClientScopeId = clientScope.Id,
+    ///         RealmId = realm.Id,
     ///         RoleId = role.Id,
     ///     });
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
-    /// ## Import
+    /// ### Argument Reference
+    /// 
+    /// The following arguments are supported:
+    /// 
+    /// - `realm_id` - (Required) The realm this protocol mapper exists within.
+    /// - `client_id` - (Required if `client_scope_id` is not specified) The client this protocol mapper is attached to.
+    /// - `client_scope_id` - (Required if `client_id` is not specified) The client scope this protocol mapper is attached to.
+    /// - `name` - (Required) The display name of this protocol mapper in the
+    ///   GUI.
+    /// - `role_id` - (Required) The ID of the role to map to an access token.
+    /// 
+    /// ### Import
     /// 
     /// Protocol mappers can be imported using one of the following formats:
+    /// - Client: `{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}`
+    /// - Client Scope: `{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}`
     /// 
-    ///  - Client: `{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}`
-    /// 
-    ///  - Client Scope: `{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}`
-    /// 
-    ///  Example:
-    /// 
-    ///  bash
-    /// 
-    /// ```sh
-    /// $ pulumi import keycloak:openid/hardcodedRoleProtocolMapper:HardcodedRoleProtocolMapper hardcoded_role_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
-    /// ```
-    /// 
-    /// ```sh
-    /// $ pulumi import keycloak:openid/hardcodedRoleProtocolMapper:HardcodedRoleProtocolMapper hardcoded_role_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
-    /// ```
+    /// Example:
     /// </summary>
     [KeycloakResourceType("keycloak:openid/hardcodedRoleProtocolMapper:HardcodedRoleProtocolMapper")]
     public partial class HardcodedRoleProtocolMapper : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+        /// The mapper's associated client. Cannot be used at the same time as client_scope_id.
         /// </summary>
         [Output("clientId")]
         public Output<string?> ClientId { get; private set; } = null!;
 
         /// <summary>
-        /// The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+        /// The mapper's associated client scope. Cannot be used at the same time as client_id.
         /// </summary>
         [Output("clientScopeId")]
         public Output<string?> ClientScopeId { get; private set; } = null!;
 
         /// <summary>
-        /// The display name of this protocol mapper in the GUI.
+        /// A human-friendly name that will appear in the Keycloak console.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The realm this protocol mapper exists within.
+        /// The realm id where the associated client or client scope exists.
         /// </summary>
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
 
-        /// <summary>
-        /// The ID of the role to map to an access token.
-        /// </summary>
         [Output("roleId")]
         public Output<string> RoleId { get; private set; } = null!;
 
@@ -196,32 +199,29 @@ namespace Pulumi.Keycloak.OpenId
     public sealed class HardcodedRoleProtocolMapperArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+        /// The mapper's associated client. Cannot be used at the same time as client_scope_id.
         /// </summary>
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
 
         /// <summary>
-        /// The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+        /// The mapper's associated client scope. Cannot be used at the same time as client_id.
         /// </summary>
         [Input("clientScopeId")]
         public Input<string>? ClientScopeId { get; set; }
 
         /// <summary>
-        /// The display name of this protocol mapper in the GUI.
+        /// A human-friendly name that will appear in the Keycloak console.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The realm this protocol mapper exists within.
+        /// The realm id where the associated client or client scope exists.
         /// </summary>
         [Input("realmId", required: true)]
         public Input<string> RealmId { get; set; } = null!;
 
-        /// <summary>
-        /// The ID of the role to map to an access token.
-        /// </summary>
         [Input("roleId", required: true)]
         public Input<string> RoleId { get; set; } = null!;
 
@@ -234,32 +234,29 @@ namespace Pulumi.Keycloak.OpenId
     public sealed class HardcodedRoleProtocolMapperState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+        /// The mapper's associated client. Cannot be used at the same time as client_scope_id.
         /// </summary>
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
 
         /// <summary>
-        /// The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+        /// The mapper's associated client scope. Cannot be used at the same time as client_id.
         /// </summary>
         [Input("clientScopeId")]
         public Input<string>? ClientScopeId { get; set; }
 
         /// <summary>
-        /// The display name of this protocol mapper in the GUI.
+        /// A human-friendly name that will appear in the Keycloak console.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The realm this protocol mapper exists within.
+        /// The realm id where the associated client or client scope exists.
         /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
 
-        /// <summary>
-        /// The ID of the role to map to an access token.
-        /// </summary>
         [Input("roleId")]
         public Input<string>? RoleId { get; set; }
 

@@ -7,61 +7,69 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * ## # keycloak.User
+ *
  * Allows for creating and managing Users within Keycloak.
  *
- * This resource was created primarily to enable the acceptance tests for the `keycloak.Group` resource. Creating users within
- * Keycloak is not recommended. Instead, users should be federated from external sources by configuring user federation providers
- * or identity providers.
+ * This resource was created primarily to enable the acceptance tests for the `keycloak.Group` resource.
+ * Creating users within Keycloak is not recommended. Instead, users should be federated from external sources
+ * by configuring user federation providers or identity providers.
  *
- * ## Example Usage
+ * ### Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {
- *     realm: "my-realm",
  *     enabled: true,
+ *     realm: "my-realm",
  * });
  * const user = new keycloak.User("user", {
- *     realmId: realm.id,
- *     username: "bob",
- *     enabled: true,
  *     email: "bob@domain.com",
+ *     enabled: true,
  *     firstName: "Bob",
  *     lastName: "Bobson",
+ *     realmId: realm.id,
+ *     username: "bob",
  * });
  * const userWithInitialPassword = new keycloak.User("userWithInitialPassword", {
+ *     email: "alice@domain.com",
+ *     enabled: true,
+ *     firstName: "Alice",
+ *     initialPassword: {
+ *         temporary: true,
+ *         value: "some password",
+ *     },
+ *     lastName: "Aliceberg",
  *     realmId: realm.id,
  *     username: "alice",
- *     enabled: true,
- *     email: "alice@domain.com",
- *     firstName: "Alice",
- *     lastName: "Aliceberg",
- *     attributes: {
- *         foo: "bar",
- *         multivalue: "value1##value2",
- *     },
- *     initialPassword: {
- *         value: "some password",
- *         temporary: true,
- *     },
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
- * ## Import
+ * ### Argument Reference
  *
- * Users can be imported using the format `{{realm_id}}/{{user_id}}`, where `user_id` is the unique ID that Keycloak
+ * The following arguments are supported:
  *
- *  assigns to the user upon creation. This value can be found in the GUI when editing the user.
+ * - `realmId` - (Required) The realm this user belongs to.
+ * - `username` - (Required) The unique username of this user.
+ * - `initialPassword` (Optional) When given, the user's initial password will be set.
+ *    This attribute is only respected during initial user creation.
+ *     - `value` (Required) The initial password.
+ *     - `temporary` (Optional) If set to `true`, the initial password is set up for renewal on first use. Default to `false`.
+ * - `enabled` - (Optional) When false, this user cannot log in. Defaults to `true`.
+ * - `email` - (Optional) The user's email.
+ * - `firstName` - (Optional) The user's first name.
+ * - `lastName` - (Optional) The user's last name.
  *
- *  Example:
+ * ### Import
  *
- *  bash
+ * Users can be imported using the format `{{realm_id}}/{{user_id}}`, where `userId` is the unique ID that Keycloak
+ * assigns to the user upon creation. This value can be found in the GUI when editing the user.
  *
- * ```sh
- * $ pulumi import keycloak:index/user:User user my-realm/60c3f971-b1d3-4b3a-9035-d16d7540a5e4
- * ```
+ * Example:
  */
 export class User extends pulumi.CustomResource {
     /**
@@ -91,49 +99,16 @@ export class User extends pulumi.CustomResource {
         return obj['__pulumiType'] === User.__pulumiType;
     }
 
-    /**
-     * A map representing attributes for the user. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
-     */
     public readonly attributes!: pulumi.Output<{[key: string]: any} | undefined>;
-    /**
-     * The user's email.
-     */
     public readonly email!: pulumi.Output<string | undefined>;
-    /**
-     * Whether the email address was validated or not. Default to `false`.
-     */
     public readonly emailVerified!: pulumi.Output<boolean | undefined>;
-    /**
-     * When false, this user cannot log in. Defaults to `true`.
-     */
     public readonly enabled!: pulumi.Output<boolean | undefined>;
-    /**
-     * When specified, the user will be linked to a federated identity provider. Refer to the federated user example for more details.
-     */
     public readonly federatedIdentities!: pulumi.Output<outputs.UserFederatedIdentity[] | undefined>;
-    /**
-     * The user's first name.
-     */
     public readonly firstName!: pulumi.Output<string | undefined>;
-    /**
-     * When given, the user's initial password will be set. This attribute is only respected during initial user creation.
-     */
     public readonly initialPassword!: pulumi.Output<outputs.UserInitialPassword | undefined>;
-    /**
-     * The user's last name.
-     */
     public readonly lastName!: pulumi.Output<string | undefined>;
-    /**
-     * The realm this user belongs to.
-     */
     public readonly realmId!: pulumi.Output<string>;
-    /**
-     * A list of required user actions.
-     */
     public readonly requiredActions!: pulumi.Output<string[] | undefined>;
-    /**
-     * The unique username of this user.
-     */
     public readonly username!: pulumi.Output<string>;
 
     /**
@@ -189,49 +164,16 @@ export class User extends pulumi.CustomResource {
  * Input properties used for looking up and filtering User resources.
  */
 export interface UserState {
-    /**
-     * A map representing attributes for the user. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
-     */
     attributes?: pulumi.Input<{[key: string]: any}>;
-    /**
-     * The user's email.
-     */
     email?: pulumi.Input<string>;
-    /**
-     * Whether the email address was validated or not. Default to `false`.
-     */
     emailVerified?: pulumi.Input<boolean>;
-    /**
-     * When false, this user cannot log in. Defaults to `true`.
-     */
     enabled?: pulumi.Input<boolean>;
-    /**
-     * When specified, the user will be linked to a federated identity provider. Refer to the federated user example for more details.
-     */
     federatedIdentities?: pulumi.Input<pulumi.Input<inputs.UserFederatedIdentity>[]>;
-    /**
-     * The user's first name.
-     */
     firstName?: pulumi.Input<string>;
-    /**
-     * When given, the user's initial password will be set. This attribute is only respected during initial user creation.
-     */
     initialPassword?: pulumi.Input<inputs.UserInitialPassword>;
-    /**
-     * The user's last name.
-     */
     lastName?: pulumi.Input<string>;
-    /**
-     * The realm this user belongs to.
-     */
     realmId?: pulumi.Input<string>;
-    /**
-     * A list of required user actions.
-     */
     requiredActions?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * The unique username of this user.
-     */
     username?: pulumi.Input<string>;
 }
 
@@ -239,48 +181,15 @@ export interface UserState {
  * The set of arguments for constructing a User resource.
  */
 export interface UserArgs {
-    /**
-     * A map representing attributes for the user. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
-     */
     attributes?: pulumi.Input<{[key: string]: any}>;
-    /**
-     * The user's email.
-     */
     email?: pulumi.Input<string>;
-    /**
-     * Whether the email address was validated or not. Default to `false`.
-     */
     emailVerified?: pulumi.Input<boolean>;
-    /**
-     * When false, this user cannot log in. Defaults to `true`.
-     */
     enabled?: pulumi.Input<boolean>;
-    /**
-     * When specified, the user will be linked to a federated identity provider. Refer to the federated user example for more details.
-     */
     federatedIdentities?: pulumi.Input<pulumi.Input<inputs.UserFederatedIdentity>[]>;
-    /**
-     * The user's first name.
-     */
     firstName?: pulumi.Input<string>;
-    /**
-     * When given, the user's initial password will be set. This attribute is only respected during initial user creation.
-     */
     initialPassword?: pulumi.Input<inputs.UserInitialPassword>;
-    /**
-     * The user's last name.
-     */
     lastName?: pulumi.Input<string>;
-    /**
-     * The realm this user belongs to.
-     */
     realmId: pulumi.Input<string>;
-    /**
-     * A list of required user actions.
-     */
     requiredActions?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * The unique username of this user.
-     */
     username: pulumi.Input<string>;
 }

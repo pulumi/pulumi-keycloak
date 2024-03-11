@@ -13,7 +13,7 @@ namespace Pulumi.Keycloak.Ldap.Inputs
     public sealed class UserFederationCacheGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Day of the week the entry will become invalid on
+        /// Day of the week the entry will become invalid on.
         /// </summary>
         [Input("evictionDay")]
         public Input<int>? EvictionDay { get; set; }
@@ -36,9 +36,6 @@ namespace Pulumi.Keycloak.Ldap.Inputs
         [Input("maxLifespan")]
         public Input<string>? MaxLifespan { get; set; }
 
-        /// <summary>
-        /// Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
-        /// </summary>
         [Input("policy")]
         public Input<string>? Policy { get; set; }
 

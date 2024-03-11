@@ -5,135 +5,116 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * ## # keycloak.Role
+ *
  * Allows for creating and managing roles within Keycloak.
  *
- * Roles allow you define privileges within Keycloak and map them to users and groups.
+ * Roles allow you define privileges within Keycloak and map them to users
+ * and groups.
  *
- * ## Example Usage
- * ### Realm Role)
+ * ### Example Usage (Realm role)
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {
- *     realm: "my-realm",
  *     enabled: true,
+ *     realm: "my-realm",
  * });
  * const realmRole = new keycloak.Role("realmRole", {
- *     realmId: realm.id,
  *     description: "My Realm Role",
- *     attributes: {
- *         key: "value",
- *         multivalue: "value1##value2",
- *     },
+ *     realmId: realm.id,
  * });
  * ```
- * ### Client Role)
+ * <!--End PulumiCodeChooser -->
  *
+ * ### Example Usage (Client role)
+ *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {
- *     realm: "my-realm",
  *     enabled: true,
+ *     realm: "my-realm",
  * });
- * const openidClient = new keycloak.openid.Client("openidClient", {
- *     realmId: realm.id,
+ * const client = new keycloak.openid.Client("client", {
+ *     accessType: "BEARER-ONLY",
  *     clientId: "client",
  *     enabled: true,
- *     accessType: "CONFIDENTIAL",
- *     validRedirectUris: ["http://localhost:8080/openid-callback"],
+ *     realmId: realm.id,
  * });
  * const clientRole = new keycloak.Role("clientRole", {
- *     realmId: realm.id,
- *     clientId: keycloak_client.openid_client.id,
+ *     clientId: keycloak_client.client.id,
  *     description: "My Client Role",
- *     attributes: {
- *         key: "value",
- *     },
+ *     realmId: realm.id,
  * });
  * ```
- * ### Composite Role)
+ * <!--End PulumiCodeChooser -->
  *
+ * ### Example Usage (Composite role)
+ *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {
- *     realm: "my-realm",
  *     enabled: true,
+ *     realm: "my-realm",
  * });
- * // realm roles
- * const createRole = new keycloak.Role("createRole", {
- *     realmId: realm.id,
- *     attributes: {
- *         key: "value",
- *     },
- * });
- * const readRole = new keycloak.Role("readRole", {
- *     realmId: realm.id,
- *     attributes: {
- *         key: "value",
- *     },
- * });
- * const updateRole = new keycloak.Role("updateRole", {
- *     realmId: realm.id,
- *     attributes: {
- *         key: "value",
- *     },
- * });
- * const deleteRole = new keycloak.Role("deleteRole", {
- *     realmId: realm.id,
- *     attributes: {
- *         key: "value",
- *     },
- * });
- * // client role
- * const openidClient = new keycloak.openid.Client("openidClient", {
- *     realmId: realm.id,
+ * const createRole = new keycloak.Role("createRole", {realmId: realm.id});
+ * const readRole = new keycloak.Role("readRole", {realmId: realm.id});
+ * const updateRole = new keycloak.Role("updateRole", {realmId: realm.id});
+ * const deleteRole = new keycloak.Role("deleteRole", {realmId: realm.id});
+ * const client = new keycloak.openid.Client("client", {
+ *     accessType: "BEARER-ONLY",
  *     clientId: "client",
  *     enabled: true,
- *     accessType: "CONFIDENTIAL",
- *     validRedirectUris: ["http://localhost:8080/openid-callback"],
+ *     realmId: realm.id,
  * });
  * const clientRole = new keycloak.Role("clientRole", {
- *     realmId: realm.id,
- *     clientId: keycloak_client.openid_client.id,
+ *     clientId: keycloak_client.client.id,
  *     description: "My Client Role",
- *     attributes: {
- *         key: "value",
- *     },
+ *     realmId: realm.id,
  * });
  * const adminRole = new keycloak.Role("adminRole", {
- *     realmId: realm.id,
  *     compositeRoles: [
- *         createRole.id,
- *         readRole.id,
- *         updateRole.id,
- *         deleteRole.id,
- *         clientRole.id,
+ *         "{keycloak_role.create_role.id}",
+ *         "{keycloak_role.read_role.id}",
+ *         "{keycloak_role.update_role.id}",
+ *         "{keycloak_role.delete_role.id}",
+ *         "{keycloak_role.client_role.id}",
  *     ],
- *     attributes: {
- *         key: "value",
- *     },
+ *     realmId: realm.id,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
- * ## Import
+ * ### Argument Reference
  *
- * Roles can be imported using the format `{{realm_id}}/{{role_id}}`, where `role_id` is the unique ID that Keycloak assigns
+ * The following arguments are supported:
  *
- *  to the role. The ID is not easy to find in the GUI, but it appears in the URL when editing the role.
+ * - `realmId` - (Required) The realm this role exists within.
+ * - `clientId` - (Optional) When specified, this role will be created as
+ *   a client role attached to the client with the provided ID
+ * - `name` - (Required) The name of the role
+ * - `description` - (Optional) The description of the role
+ * - `compositeRoles` - (Optional) When specified, this role will be a
+ *   composite role, composed of all roles that have an ID present within
+ *   this list.
  *
- *  Example:
+ * ### Import
  *
- *  bash
+ * Roles can be imported using the format `{{realm_id}}/{{role_id}}`, where
+ * `roleId` is the unique ID that Keycloak assigns to the role. The ID is
+ * not easy to find in the GUI, but it appears in the URL when editing the
+ * role.
  *
- * ```sh
- * $ pulumi import keycloak:index/role:Role role my-realm/7e8cf32a-8acb-4d34-89c4-04fb1d10ccad
- * ```
+ * Example:
  */
 export class Role extends pulumi.CustomResource {
     /**
@@ -163,29 +144,11 @@ export class Role extends pulumi.CustomResource {
         return obj['__pulumiType'] === Role.__pulumiType;
     }
 
-    /**
-     * A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
-     */
     public readonly attributes!: pulumi.Output<{[key: string]: any} | undefined>;
-    /**
-     * When specified, this role will be created as a client role attached to the client with the provided ID
-     */
     public readonly clientId!: pulumi.Output<string | undefined>;
-    /**
-     * When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
-     */
     public readonly compositeRoles!: pulumi.Output<string[] | undefined>;
-    /**
-     * The description of the role
-     */
     public readonly description!: pulumi.Output<string | undefined>;
-    /**
-     * The name of the role
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * The realm this role exists within.
-     */
     public readonly realmId!: pulumi.Output<string>;
 
     /**
@@ -228,29 +191,11 @@ export class Role extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Role resources.
  */
 export interface RoleState {
-    /**
-     * A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
-     */
     attributes?: pulumi.Input<{[key: string]: any}>;
-    /**
-     * When specified, this role will be created as a client role attached to the client with the provided ID
-     */
     clientId?: pulumi.Input<string>;
-    /**
-     * When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
-     */
     compositeRoles?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * The description of the role
-     */
     description?: pulumi.Input<string>;
-    /**
-     * The name of the role
-     */
     name?: pulumi.Input<string>;
-    /**
-     * The realm this role exists within.
-     */
     realmId?: pulumi.Input<string>;
 }
 
@@ -258,28 +203,10 @@ export interface RoleState {
  * The set of arguments for constructing a Role resource.
  */
 export interface RoleArgs {
-    /**
-     * A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
-     */
     attributes?: pulumi.Input<{[key: string]: any}>;
-    /**
-     * When specified, this role will be created as a client role attached to the client with the provided ID
-     */
     clientId?: pulumi.Input<string>;
-    /**
-     * When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
-     */
     compositeRoles?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * The description of the role
-     */
     description?: pulumi.Input<string>;
-    /**
-     * The name of the role
-     */
     name?: pulumi.Input<string>;
-    /**
-     * The realm this role exists within.
-     */
     realmId: pulumi.Input<string>;
 }

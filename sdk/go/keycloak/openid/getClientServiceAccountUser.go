@@ -20,6 +20,7 @@ import (
 // that represents the service account. We'll use this data source to grab this user's ID in order to assign some roles to this
 // user, using the `UserRoles` resource.
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -76,6 +77,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func GetClientServiceAccountUser(ctx *pulumi.Context, args *GetClientServiceAccountUserArgs, opts ...pulumi.InvokeOption) (*GetClientServiceAccountUserResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetClientServiceAccountUserResult

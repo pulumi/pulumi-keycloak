@@ -11,6 +11,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -25,14 +26,15 @@ import * as utilities from "./utilities";
  *     keySize: 2048,
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
  * Realm keys can be imported using realm name and keystore id, you can find it in web UI.
  *
- *  Example:
+ * Example:
  *
- *  bash
+ * bash
  *
  * ```sh
  * $ pulumi import keycloak:index/realmKeystoreRsaGenerated:RealmKeystoreRsaGenerated keystore_rsa_generated my-realm/618cfba7-49aa-4c09-9a19-2f699b576f0b

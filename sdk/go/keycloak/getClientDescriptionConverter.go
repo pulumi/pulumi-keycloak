@@ -16,6 +16,7 @@ import (
 //
 // ## Example Usage
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -83,6 +84,7 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 func GetClientDescriptionConverter(ctx *pulumi.Context, args *GetClientDescriptionConverterArgs, opts ...pulumi.InvokeOption) (*GetClientDescriptionConverterResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetClientDescriptionConverterResult

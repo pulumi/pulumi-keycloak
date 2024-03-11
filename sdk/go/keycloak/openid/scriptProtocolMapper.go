@@ -22,8 +22,10 @@ import (
 // > Support for this protocol mapper was removed in Keycloak 18.
 //
 // ## Example Usage
+//
 // ### Client)
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -70,8 +72,11 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
+//
 // ### Client Scope)
 //
+// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -112,18 +117,19 @@ import (
 //	}
 //
 // ```
+// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //
 // Protocol mappers can be imported using one of the following formats:
 //
-//   - Client: `{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}`
+// - Client: `{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}`
 //
-//   - Client Scope: `{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}`
+// - Client Scope: `{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}`
 //
-//     Example:
+// Example:
 //
-//     bash
+// bash
 //
 // ```sh
 // $ pulumi import keycloak:openid/scriptProtocolMapper:ScriptProtocolMapper script_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4

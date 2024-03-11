@@ -12,13 +12,14 @@ namespace Pulumi.Keycloak
     public static class GetRealm
     {
         /// <summary>
+        /// ## # keycloak.Realm data source
+        /// 
         /// This data source can be used to fetch properties of a Keycloak realm for
         /// usage with other resources.
         /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
+        /// ### Example Usage
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -34,25 +35,35 @@ namespace Pulumi.Keycloak
         /// 
         ///     var @group = new Keycloak.Role("group", new()
         ///     {
-        ///         RealmId = realm.Apply(getRealmResult =&gt; getRealmResult.Id),
+        ///         RealmId = data.Keycloak_realm.Id,
         ///     });
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
+        /// 
+        /// ### Argument Reference
+        /// 
+        /// The following arguments are supported:
+        /// 
+        /// - `realm` - (Required) The realm name.
+        /// 
+        /// ### Attributes Reference
+        /// 
+        /// See the docs for the `keycloak.Realm` resource for details on the exported attributes.
         /// </summary>
         public static Task<GetRealmResult> InvokeAsync(GetRealmArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetRealmResult>("keycloak:index/getRealm:getRealm", args ?? new GetRealmArgs(), options.WithDefaults());
 
         /// <summary>
+        /// ## # keycloak.Realm data source
+        /// 
         /// This data source can be used to fetch properties of a Keycloak realm for
         /// usage with other resources.
         /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
+        /// ### Example Usage
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -68,13 +79,22 @@ namespace Pulumi.Keycloak
         /// 
         ///     var @group = new Keycloak.Role("group", new()
         ///     {
-        ///         RealmId = realm.Apply(getRealmResult =&gt; getRealmResult.Id),
+        ///         RealmId = data.Keycloak_realm.Id,
         ///     });
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
+        /// 
+        /// ### Argument Reference
+        /// 
+        /// The following arguments are supported:
+        /// 
+        /// - `realm` - (Required) The realm name.
+        /// 
+        /// ### Attributes Reference
+        /// 
+        /// See the docs for the `keycloak.Realm` resource for details on the exported attributes.
         /// </summary>
         public static Output<GetRealmResult> Invoke(GetRealmInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetRealmResult>("keycloak:index/getRealm:getRealm", args ?? new GetRealmInvokeArgs(), options.WithDefaults());
@@ -121,9 +141,6 @@ namespace Pulumi.Keycloak
         [Input("otpPolicy")]
         public Inputs.GetRealmOtpPolicyArgs? OtpPolicy { get; set; }
 
-        /// <summary>
-        /// The realm name.
-        /// </summary>
         [Input("realm", required: true)]
         public string Realm { get; set; } = null!;
 
@@ -195,9 +212,6 @@ namespace Pulumi.Keycloak
         [Input("otpPolicy")]
         public Input<Inputs.GetRealmOtpPolicyInputArgs>? OtpPolicy { get; set; }
 
-        /// <summary>
-        /// The realm name.
-        /// </summary>
         [Input("realm", required: true)]
         public Input<string> Realm { get; set; } = null!;
 

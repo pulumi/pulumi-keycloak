@@ -10,24 +10,25 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak
 {
     /// <summary>
+    /// ## # keycloak.GroupMemberships
+    /// 
     /// Allows for managing a Keycloak group's members.
     /// 
-    /// Note that this resource attempts to be an **authoritative** source over group members. When this resource takes control
-    /// over a group's members, users that are manually added to the group will be removed, and users that are manually removed
-    /// from the group will be added upon the next run of `pulumi up`.
+    /// Note that this resource attempts to be an **authoritative** source over group members.
+    /// When this resource takes control over a group's members, users that are manually added
+    /// to the group will be removed, and users that are manually removed from the group will
+    /// be added upon the next run of `pulumi up`.  Eventually, a non-authoritative resource
+    /// for group membership will be added to this provider.
     /// 
-    /// Also note that you should not use `keycloak.GroupMemberships` with a group has been assigned as a default group via
-    /// `keycloak.DefaultGroups`.
+    /// Also note that you should not use `keycloak.GroupMemberships` with a group has been assigned
+    /// as a default group via `keycloak.DefaultGroups`.
     /// 
-    /// This resource **should not** be used to control membership of a group that has its members federated from an external
-    /// source via group mapping.
+    /// This resource **should not** be used to control membership of a group that has its members
+    /// federated from an external source via group mapping.
     /// 
-    /// To non-exclusively manage the group's of a user, see the [`keycloak.UserGroups` resource][1]
+    /// ### Example Usage
     /// 
-    /// This resource paginates its data loading on refresh by 50 items.
-    /// 
-    /// ## Example Usage
-    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -38,8 +39,8 @@ namespace Pulumi.Keycloak
     /// {
     ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         RealmName = "my-realm",
     ///         Enabled = true,
+    ///         RealmName = "my-realm",
     ///     });
     /// 
     ///     var @group = new Keycloak.Group("group", new()
@@ -55,43 +56,40 @@ namespace Pulumi.Keycloak
     /// 
     ///     var groupMembers = new Keycloak.GroupMemberships("groupMembers", new()
     ///     {
-    ///         RealmId = realm.Id,
     ///         GroupId = @group.Id,
     ///         Members = new[]
     ///         {
     ///             user.Username,
     ///         },
+    ///         RealmId = realm.Id,
     ///     });
     /// 
     /// });
     /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
-    /// ## Import
+    /// ### Argument Reference
+    /// 
+    /// The following arguments are supported:
+    /// 
+    /// - `realm_id` - (Required) The realm this group exists in.
+    /// - `group_id` - (Required) The ID of the group this resource should manage memberships for.
+    /// - `members` - (Required) An array of usernames that belong to this group.
+    /// 
+    /// ### Import
     /// 
     /// This resource does not support import. Instead of importing, feel free to create this resource
-    /// 
-    ///  as if it did not already exist on the server.
-    /// 
-    /// [1]: providers/mrparkers/keycloak/latest/docs/resources/group_memberships
+    /// as if it did not already exist on the server.
     /// </summary>
     [KeycloakResourceType("keycloak:index/groupMemberships:GroupMemberships")]
     public partial class GroupMemberships : global::Pulumi.CustomResource
     {
-        /// <summary>
-        /// The ID of the group this resource should manage memberships for.
-        /// </summary>
         [Output("groupId")]
         public Output<string?> GroupId { get; private set; } = null!;
 
-        /// <summary>
-        /// A list of usernames that belong to this group.
-        /// </summary>
         [Output("members")]
         public Output<ImmutableArray<string>> Members { get; private set; } = null!;
 
-        /// <summary>
-        /// The realm this group exists in.
-        /// </summary>
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
 
@@ -141,27 +139,17 @@ namespace Pulumi.Keycloak
 
     public sealed class GroupMembershipsArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// The ID of the group this resource should manage memberships for.
-        /// </summary>
         [Input("groupId")]
         public Input<string>? GroupId { get; set; }
 
         [Input("members", required: true)]
         private InputList<string>? _members;
-
-        /// <summary>
-        /// A list of usernames that belong to this group.
-        /// </summary>
         public InputList<string> Members
         {
             get => _members ?? (_members = new InputList<string>());
             set => _members = value;
         }
 
-        /// <summary>
-        /// The realm this group exists in.
-        /// </summary>
         [Input("realmId", required: true)]
         public Input<string> RealmId { get; set; } = null!;
 
@@ -173,27 +161,17 @@ namespace Pulumi.Keycloak
 
     public sealed class GroupMembershipsState : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// The ID of the group this resource should manage memberships for.
-        /// </summary>
         [Input("groupId")]
         public Input<string>? GroupId { get; set; }
 
         [Input("members")]
         private InputList<string>? _members;
-
-        /// <summary>
-        /// A list of usernames that belong to this group.
-        /// </summary>
         public InputList<string> Members
         {
             get => _members ?? (_members = new InputList<string>());
             set => _members = value;
         }
 
-        /// <summary>
-        /// The realm this group exists in.
-        /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
 

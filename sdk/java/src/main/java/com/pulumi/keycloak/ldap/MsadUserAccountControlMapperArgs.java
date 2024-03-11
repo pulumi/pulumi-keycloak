@@ -17,30 +17,22 @@ public final class MsadUserAccountControlMapperArgs extends com.pulumi.resources
 
     public static final MsadUserAccountControlMapperArgs Empty = new MsadUserAccountControlMapperArgs();
 
-    /**
-     * When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
-     * 
-     */
     @Import(name="ldapPasswordPolicyHintsEnabled")
     private @Nullable Output<Boolean> ldapPasswordPolicyHintsEnabled;
 
-    /**
-     * @return When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
-     * 
-     */
     public Optional<Output<Boolean>> ldapPasswordPolicyHintsEnabled() {
         return Optional.ofNullable(this.ldapPasswordPolicyHintsEnabled);
     }
 
     /**
-     * The ID of the LDAP user federation provider to attach this mapper to.
+     * The ldap user federation provider to attach this mapper to.
      * 
      */
     @Import(name="ldapUserFederationId", required=true)
     private Output<String> ldapUserFederationId;
 
     /**
-     * @return The ID of the LDAP user federation provider to attach this mapper to.
+     * @return The ldap user federation provider to attach this mapper to.
      * 
      */
     public Output<String> ldapUserFederationId() {
@@ -48,14 +40,14 @@ public final class MsadUserAccountControlMapperArgs extends com.pulumi.resources
     }
 
     /**
-     * Display name of this mapper when displayed in the console.
+     * Display name of the mapper when displayed in the console.
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return Display name of this mapper when displayed in the console.
+     * @return Display name of the mapper when displayed in the console.
      * 
      */
     public Optional<Output<String>> name() {
@@ -63,14 +55,14 @@ public final class MsadUserAccountControlMapperArgs extends com.pulumi.resources
     }
 
     /**
-     * The realm that this LDAP mapper will exist in.
+     * The realm in which the ldap user federation provider exists.
      * 
      */
     @Import(name="realmId", required=true)
     private Output<String> realmId;
 
     /**
-     * @return The realm that this LDAP mapper will exist in.
+     * @return The realm in which the ldap user federation provider exists.
      * 
      */
     public Output<String> realmId() {
@@ -104,29 +96,17 @@ public final class MsadUserAccountControlMapperArgs extends com.pulumi.resources
             $ = new MsadUserAccountControlMapperArgs(Objects.requireNonNull(defaults));
         }
 
-        /**
-         * @param ldapPasswordPolicyHintsEnabled When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
-         * 
-         * @return builder
-         * 
-         */
         public Builder ldapPasswordPolicyHintsEnabled(@Nullable Output<Boolean> ldapPasswordPolicyHintsEnabled) {
             $.ldapPasswordPolicyHintsEnabled = ldapPasswordPolicyHintsEnabled;
             return this;
         }
 
-        /**
-         * @param ldapPasswordPolicyHintsEnabled When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
-         * 
-         * @return builder
-         * 
-         */
         public Builder ldapPasswordPolicyHintsEnabled(Boolean ldapPasswordPolicyHintsEnabled) {
             return ldapPasswordPolicyHintsEnabled(Output.of(ldapPasswordPolicyHintsEnabled));
         }
 
         /**
-         * @param ldapUserFederationId The ID of the LDAP user federation provider to attach this mapper to.
+         * @param ldapUserFederationId The ldap user federation provider to attach this mapper to.
          * 
          * @return builder
          * 
@@ -137,7 +117,7 @@ public final class MsadUserAccountControlMapperArgs extends com.pulumi.resources
         }
 
         /**
-         * @param ldapUserFederationId The ID of the LDAP user federation provider to attach this mapper to.
+         * @param ldapUserFederationId The ldap user federation provider to attach this mapper to.
          * 
          * @return builder
          * 
@@ -147,7 +127,7 @@ public final class MsadUserAccountControlMapperArgs extends com.pulumi.resources
         }
 
         /**
-         * @param name Display name of this mapper when displayed in the console.
+         * @param name Display name of the mapper when displayed in the console.
          * 
          * @return builder
          * 
@@ -158,7 +138,7 @@ public final class MsadUserAccountControlMapperArgs extends com.pulumi.resources
         }
 
         /**
-         * @param name Display name of this mapper when displayed in the console.
+         * @param name Display name of the mapper when displayed in the console.
          * 
          * @return builder
          * 
@@ -168,7 +148,7 @@ public final class MsadUserAccountControlMapperArgs extends com.pulumi.resources
         }
 
         /**
-         * @param realmId The realm that this LDAP mapper will exist in.
+         * @param realmId The realm in which the ldap user federation provider exists.
          * 
          * @return builder
          * 
@@ -179,7 +159,7 @@ public final class MsadUserAccountControlMapperArgs extends com.pulumi.resources
         }
 
         /**
-         * @param realmId The realm that this LDAP mapper will exist in.
+         * @param realmId The realm in which the ldap user federation provider exists.
          * 
          * @return builder
          * 
