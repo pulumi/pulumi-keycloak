@@ -37,8 +37,8 @@ import (
 //			}
 //			// use the data source
 //			_, err = openid.NewAudienceProtocolMapper(ctx, "audienceMapper", &openid.AudienceProtocolMapperArgs{
-//				RealmId:                *pulumi.String(offlineAccess.RealmId),
-//				ClientScopeId:          *pulumi.String(offlineAccess.Id),
+//				RealmId:                pulumi.String(offlineAccess.RealmId),
+//				ClientScopeId:          pulumi.String(offlineAccess.Id),
 //				IncludedCustomAudience: pulumi.String("foo"),
 //			})
 //			if err != nil {
