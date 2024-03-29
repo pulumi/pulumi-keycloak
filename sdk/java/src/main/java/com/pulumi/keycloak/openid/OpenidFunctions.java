@@ -641,6 +641,7 @@ public final class OpenidFunctions {
      *             .name(&#34;offline_access&#34;)
      *             .build());
      * 
+     *         // use the data source
      *         var audienceMapper = new AudienceProtocolMapper(&#34;audienceMapper&#34;, AudienceProtocolMapperArgs.builder()        
      *             .realmId(offlineAccess.applyValue(getClientScopeResult -&gt; getClientScopeResult.realmId()))
      *             .clientScopeId(offlineAccess.applyValue(getClientScopeResult -&gt; getClientScopeResult.id()))
@@ -690,6 +691,7 @@ public final class OpenidFunctions {
      *             .name(&#34;offline_access&#34;)
      *             .build());
      * 
+     *         // use the data source
      *         var audienceMapper = new AudienceProtocolMapper(&#34;audienceMapper&#34;, AudienceProtocolMapperArgs.builder()        
      *             .realmId(offlineAccess.applyValue(getClientScopeResult -&gt; getClientScopeResult.realmId()))
      *             .clientScopeId(offlineAccess.applyValue(getClientScopeResult -&gt; getClientScopeResult.id()))
@@ -739,6 +741,7 @@ public final class OpenidFunctions {
      *             .name(&#34;offline_access&#34;)
      *             .build());
      * 
+     *         // use the data source
      *         var audienceMapper = new AudienceProtocolMapper(&#34;audienceMapper&#34;, AudienceProtocolMapperArgs.builder()        
      *             .realmId(offlineAccess.applyValue(getClientScopeResult -&gt; getClientScopeResult.realmId()))
      *             .clientScopeId(offlineAccess.applyValue(getClientScopeResult -&gt; getClientScopeResult.id()))
@@ -788,6 +791,7 @@ public final class OpenidFunctions {
      *             .name(&#34;offline_access&#34;)
      *             .build());
      * 
+     *         // use the data source
      *         var audienceMapper = new AudienceProtocolMapper(&#34;audienceMapper&#34;, AudienceProtocolMapperArgs.builder()        
      *             .realmId(offlineAccess.applyValue(getClientScopeResult -&gt; getClientScopeResult.realmId()))
      *             .clientScopeId(offlineAccess.applyValue(getClientScopeResult -&gt; getClientScopeResult.id()))
