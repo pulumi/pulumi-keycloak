@@ -379,8 +379,8 @@ jobs:
       run: |-
         pip3 install virtualenv==20.0.23
         pip3 install pipenv
-    - name: Run docker-compose
-      run: docker-compose -f testing/docker-compose.yml up --build -d
+    - name: Run docker compose
+      run: docker compose -f testing/docker-compose.yml up --build -d
     - name: Run setup script
       run: testing/setup.sh
     - name: Install dependencies
