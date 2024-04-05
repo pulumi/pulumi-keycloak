@@ -49,14 +49,14 @@ public final class CustomIdentityProviderMappingArgs extends com.pulumi.resource
     }
 
     /**
-     * The type of the identity provider mapper. This can be a format string that includes a `%!s(MISSING)` - this will be replaced by the provider id.
+     * The type of the identity provider mapper. This can be a format string that includes a `%s` - this will be replaced by the provider id.
      * 
      */
     @Import(name="identityProviderMapper", required=true)
     private Output<String> identityProviderMapper;
 
     /**
-     * @return The type of the identity provider mapper. This can be a format string that includes a `%!s(MISSING)` - this will be replaced by the provider id.
+     * @return The type of the identity provider mapper. This can be a format string that includes a `%s` - this will be replaced by the provider id.
      * 
      */
     public Output<String> identityProviderMapper() {
@@ -164,7 +164,7 @@ public final class CustomIdentityProviderMappingArgs extends com.pulumi.resource
         }
 
         /**
-         * @param identityProviderMapper The type of the identity provider mapper. This can be a format string that includes a `%!s(MISSING)` - this will be replaced by the provider id.
+         * @param identityProviderMapper The type of the identity provider mapper. This can be a format string that includes a `%s` - this will be replaced by the provider id.
          * 
          * @return builder
          * 
@@ -175,7 +175,7 @@ public final class CustomIdentityProviderMappingArgs extends com.pulumi.resource
         }
 
         /**
-         * @param identityProviderMapper The type of the identity provider mapper. This can be a format string that includes a `%!s(MISSING)` - this will be replaced by the provider id.
+         * @param identityProviderMapper The type of the identity provider mapper. This can be a format string that includes a `%s` - this will be replaced by the provider id.
          * 
          * @return builder
          * 
