@@ -1,6 +1,4 @@
 provider: keycloak
-docker: true
-setup-script: "testing/setup.sh"
 major-version: 5
 env: # these are in plaintext in the setup script
   KEYCLOAK_CLIENT_ID: "terraform"
@@ -12,3 +10,9 @@ makeTemplate: bridged
 plugins:
   - name: aws
     version: "4.2.0"
+actions:
+  preTest:
+    - name: Ensure upstream
+      run: make upstream
+    - name: Setup local Keycloak
+      run: make -C upstream local
