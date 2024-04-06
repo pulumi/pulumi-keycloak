@@ -71,6 +71,7 @@ import javax.annotation.Nullable;
  *             .validRedirectUris(&#34;http://localhost:8080/*&#34;)
  *             .build());
  * 
+ *         //relevant part
  *         var oidcIdpPermission = new IdentityProviderTokenExchangeScopePermission(&#34;oidcIdpPermission&#34;, IdentityProviderTokenExchangeScopePermissionArgs.builder()        
  *             .realmId(tokenExchangeRealm.id())
  *             .providerAlias(tokenExchangeMyOidcIdp.alias())

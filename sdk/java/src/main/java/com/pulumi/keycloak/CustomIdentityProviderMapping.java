@@ -122,14 +122,14 @@ public class CustomIdentityProviderMapping extends com.pulumi.resources.CustomRe
         return this.identityProviderAlias;
     }
     /**
-     * The type of the identity provider mapper. This can be a format string that includes a `%!s(MISSING)` - this will be replaced by the provider id.
+     * The type of the identity provider mapper. This can be a format string that includes a `%s` - this will be replaced by the provider id.
      * 
      */
     @Export(name="identityProviderMapper", refs={String.class}, tree="[0]")
     private Output<String> identityProviderMapper;
 
     /**
-     * @return The type of the identity provider mapper. This can be a format string that includes a `%!s(MISSING)` - this will be replaced by the provider id.
+     * @return The type of the identity provider mapper. This can be a format string that includes a `%s` - this will be replaced by the provider id.
      * 
      */
     public Output<String> identityProviderMapper() {

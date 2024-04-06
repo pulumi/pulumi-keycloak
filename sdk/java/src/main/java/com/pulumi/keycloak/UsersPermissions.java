@@ -86,12 +86,14 @@ import javax.annotation.Nullable;
  *             .clientId(&#34;realm-management&#34;)
  *             .build());
  * 
+ *         // enable permissions for realm-management client
  *         var realmManagementPermission = new ClientPermissions(&#34;realmManagementPermission&#34;, ClientPermissionsArgs.builder()        
  *             .realmId(realm.id())
  *             .clientId(realmManagement.applyValue(getClientResult -&gt; getClientResult).applyValue(realmManagement -&gt; realmManagement.applyValue(getClientResult -&gt; getClientResult.id())))
  *             .enabled(true)
  *             .build());
  * 
+ *         // creating a user to use with the keycloak_openid_client_user_policy resource
  *         var testUser = new User(&#34;testUser&#34;, UserArgs.builder()        
  *             .realmId(realm.id())
  *             .username(&#34;test-user&#34;)

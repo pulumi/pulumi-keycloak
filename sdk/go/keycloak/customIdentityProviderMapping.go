@@ -87,7 +87,7 @@ type CustomIdentityProviderMapping struct {
 	ExtraConfig pulumi.MapOutput `pulumi:"extraConfig"`
 	// The alias of the associated identity provider.
 	IdentityProviderAlias pulumi.StringOutput `pulumi:"identityProviderAlias"`
-	// The type of the identity provider mapper. This can be a format string that includes a `%!s(MISSING)` - this will be replaced by the provider id.
+	// The type of the identity provider mapper. This can be a format string that includes a `%s` - this will be replaced by the provider id.
 	IdentityProviderMapper pulumi.StringOutput `pulumi:"identityProviderMapper"`
 	// The name of the mapper.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -138,7 +138,7 @@ type customIdentityProviderMappingState struct {
 	ExtraConfig map[string]interface{} `pulumi:"extraConfig"`
 	// The alias of the associated identity provider.
 	IdentityProviderAlias *string `pulumi:"identityProviderAlias"`
-	// The type of the identity provider mapper. This can be a format string that includes a `%!s(MISSING)` - this will be replaced by the provider id.
+	// The type of the identity provider mapper. This can be a format string that includes a `%s` - this will be replaced by the provider id.
 	IdentityProviderMapper *string `pulumi:"identityProviderMapper"`
 	// The name of the mapper.
 	Name *string `pulumi:"name"`
@@ -151,7 +151,7 @@ type CustomIdentityProviderMappingState struct {
 	ExtraConfig pulumi.MapInput
 	// The alias of the associated identity provider.
 	IdentityProviderAlias pulumi.StringPtrInput
-	// The type of the identity provider mapper. This can be a format string that includes a `%!s(MISSING)` - this will be replaced by the provider id.
+	// The type of the identity provider mapper. This can be a format string that includes a `%s` - this will be replaced by the provider id.
 	IdentityProviderMapper pulumi.StringPtrInput
 	// The name of the mapper.
 	Name pulumi.StringPtrInput
@@ -168,7 +168,7 @@ type customIdentityProviderMappingArgs struct {
 	ExtraConfig map[string]interface{} `pulumi:"extraConfig"`
 	// The alias of the associated identity provider.
 	IdentityProviderAlias string `pulumi:"identityProviderAlias"`
-	// The type of the identity provider mapper. This can be a format string that includes a `%!s(MISSING)` - this will be replaced by the provider id.
+	// The type of the identity provider mapper. This can be a format string that includes a `%s` - this will be replaced by the provider id.
 	IdentityProviderMapper string `pulumi:"identityProviderMapper"`
 	// The name of the mapper.
 	Name *string `pulumi:"name"`
@@ -182,7 +182,7 @@ type CustomIdentityProviderMappingArgs struct {
 	ExtraConfig pulumi.MapInput
 	// The alias of the associated identity provider.
 	IdentityProviderAlias pulumi.StringInput
-	// The type of the identity provider mapper. This can be a format string that includes a `%!s(MISSING)` - this will be replaced by the provider id.
+	// The type of the identity provider mapper. This can be a format string that includes a `%s` - this will be replaced by the provider id.
 	IdentityProviderMapper pulumi.StringInput
 	// The name of the mapper.
 	Name pulumi.StringPtrInput
@@ -287,7 +287,7 @@ func (o CustomIdentityProviderMappingOutput) IdentityProviderAlias() pulumi.Stri
 	return o.ApplyT(func(v *CustomIdentityProviderMapping) pulumi.StringOutput { return v.IdentityProviderAlias }).(pulumi.StringOutput)
 }
 
-// The type of the identity provider mapper. This can be a format string that includes a `%!s(MISSING)` - this will be replaced by the provider id.
+// The type of the identity provider mapper. This can be a format string that includes a `%s` - this will be replaced by the provider id.
 func (o CustomIdentityProviderMappingOutput) IdentityProviderMapper() pulumi.StringOutput {
 	return o.ApplyT(func(v *CustomIdentityProviderMapping) pulumi.StringOutput { return v.IdentityProviderMapper }).(pulumi.StringOutput)
 }

@@ -55,6 +55,7 @@ import javax.annotation.Nullable;
  *             .enabled(true)
  *             .build());
  * 
+ *         // client1 provides a role to other clients
  *         var client1 = new Client(&#34;client1&#34;, ClientArgs.builder()        
  *             .realmId(realm.id())
  *             .build());
@@ -65,6 +66,7 @@ import javax.annotation.Nullable;
  *             .description(&#34;A role that client1 provides&#34;)
  *             .build());
  * 
+ *         // client2 is assigned the role of client1
  *         var client2 = new Client(&#34;client2&#34;, ClientArgs.builder()        
  *             .realmId(realm.id())
  *             .serviceAccountsEnabled(true)

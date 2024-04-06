@@ -85,7 +85,7 @@ namespace Pulumi.Keycloak
         public Output<string> IdentityProviderAlias { get; private set; } = null!;
 
         /// <summary>
-        /// The type of the identity provider mapper. This can be a format string that includes a `%!s(MISSING)` - this will be replaced by the provider id.
+        /// The type of the identity provider mapper. This can be a format string that includes a `%s` - this will be replaced by the provider id.
         /// </summary>
         [Output("identityProviderMapper")]
         public Output<string> IdentityProviderMapper { get; private set; } = null!;
@@ -167,7 +167,7 @@ namespace Pulumi.Keycloak
         public Input<string> IdentityProviderAlias { get; set; } = null!;
 
         /// <summary>
-        /// The type of the identity provider mapper. This can be a format string that includes a `%!s(MISSING)` - this will be replaced by the provider id.
+        /// The type of the identity provider mapper. This can be a format string that includes a `%s` - this will be replaced by the provider id.
         /// </summary>
         [Input("identityProviderMapper", required: true)]
         public Input<string> IdentityProviderMapper { get; set; } = null!;
@@ -211,7 +211,7 @@ namespace Pulumi.Keycloak
         public Input<string>? IdentityProviderAlias { get; set; }
 
         /// <summary>
-        /// The type of the identity provider mapper. This can be a format string that includes a `%!s(MISSING)` - this will be replaced by the provider id.
+        /// The type of the identity provider mapper. This can be a format string that includes a `%s` - this will be replaced by the provider id.
         /// </summary>
         [Input("identityProviderMapper")]
         public Input<string>? IdentityProviderMapper { get; set; }
