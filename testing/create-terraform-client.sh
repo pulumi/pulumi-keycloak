@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
-KEYCLOAK_URL="http://localhost:8080" KEYCLOAK_USER="keycloak" KEYCLOAK_PASSWORD="password" KEYCLOAK_CLIENT_ID="terraform" KEYCLOAK_CLIENT_SECRET="884e0f95-0f42-4a63-9b1f-94274655669e"
+KEYCLOAK_URL="http://localhost:8080"
+KEYCLOAK_USER="keycloak"
+KEYCLOAK_PASSWORD="password"
+KEYCLOAK_CLIENT_ID="terraform"
+KEYCLOAK_CLIENT_SECRET="884e0f95-0f42-4a63-9b1f-94274655669e"
 
 echo "Creating initial terraform client"
 
@@ -10,7 +14,7 @@ accessToken=$(
         -d "password=${KEYCLOAK_PASSWORD}" \
         -d "client_id=admin-cli" \
         -d "grant_type=password" \
-        "${KEYCLOAK_URL}/auth/realms/master/protocol/openid-connect/token" \
+        "${KEYCLOAK_URL}/realms/master/protocol/openid-connect/token" \
         | jq -r '.access_token'
 )
 
@@ -19,7 +23,7 @@ function post() {
         -H "Authorization: bearer ${accessToken}" \
         -H "Content-Type: application/json" \
         -d "${2}" \
-        "${KEYCLOAK_URL}/auth/admin${1}"
+        "${KEYCLOAK_URL}/admin${1}"
 }
 
 function put() {
@@ -28,14 +32,14 @@ function put() {
         -H "Authorization: bearer ${accessToken}" \
         -H "Content-Type: application/json" \
         -d "${2}" \
-        "${KEYCLOAK_URL}/auth/admin${1}"
+        "${KEYCLOAK_URL}/admin${1}"
 }
 
 function get() {
     curl --fail --silent \
         -H "Authorization: bearer ${accessToken}" \
         -H "Content-Type: application/json" \
-        "${KEYCLOAK_URL}/auth/admin${1}"
+        "${KEYCLOAK_URL}/admin${1}"
 }
 
 terraformClient=$(jq -n "{
@@ -87,7 +91,8 @@ masterRealmExtendAccessToken=$(jq -n "{
     accessCodeLifespanUserAction: 86400,
     accessCodeLifespanLogin: 86400,
     actionTokenGeneratedByAdminLifespan: 86400,
-    actionTokenGeneratedByUserLifespan: 86400
+    actionTokenGeneratedByUserLifespan: 86400,
+    oauth2DeviceCodeLifespan: 86400
 }")
 
 put "/realms/master" "${masterRealmExtendAccessToken}"
