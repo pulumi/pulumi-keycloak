@@ -89,7 +89,7 @@ export class CustomIdentityProviderMapping extends pulumi.CustomResource {
      */
     public readonly identityProviderAlias!: pulumi.Output<string>;
     /**
-     * The type of the identity provider mapper. This can be a format string that includes a `%!s(MISSING)` - this will be replaced by the provider id.
+     * The type of the identity provider mapper. This can be a format string that includes a `%s` - this will be replaced by the provider id.
      */
     public readonly identityProviderMapper!: pulumi.Output<string>;
     /**
@@ -154,7 +154,7 @@ export interface CustomIdentityProviderMappingState {
      */
     identityProviderAlias?: pulumi.Input<string>;
     /**
-     * The type of the identity provider mapper. This can be a format string that includes a `%!s(MISSING)` - this will be replaced by the provider id.
+     * The type of the identity provider mapper. This can be a format string that includes a `%s` - this will be replaced by the provider id.
      */
     identityProviderMapper?: pulumi.Input<string>;
     /**
@@ -180,7 +180,7 @@ export interface CustomIdentityProviderMappingArgs {
      */
     identityProviderAlias: pulumi.Input<string>;
     /**
-     * The type of the identity provider mapper. This can be a format string that includes a `%!s(MISSING)` - this will be replaced by the provider id.
+     * The type of the identity provider mapper. This can be a format string that includes a `%s` - this will be replaced by the provider id.
      */
     identityProviderMapper: pulumi.Input<string>;
     /**

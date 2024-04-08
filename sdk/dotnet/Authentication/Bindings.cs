@@ -65,9 +65,9 @@ namespace Pulumi.Keycloak.Authentication
     ///         Requirement = "ALTERNATIVE",
     ///     }, new CustomResourceOptions
     ///     {
-    ///         DependsOn = new[]
+    ///         DependsOn =
     ///         {
-    ///             executionOne,
+    ///             executionOne, 
     ///         },
     ///     });
     /// 
