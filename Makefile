@@ -139,7 +139,6 @@ tfgen: install_plugins upstream tfgen_no_deps
 tfgen_no_deps: export PULUMI_HOME := $(WORKING_DIR)/.pulumi
 tfgen_no_deps: export PATH := $(WORKING_DIR)/.pulumi/bin:$(PATH)
 tfgen_no_deps: export PULUMI_CONVERT := $(PULUMI_CONVERT)
-tfgen_no_deps: export PULUMI_CONVERT_EXAMPLES_CACHE_DIR := $(WORKING_DIR)/.pulumi/examples-cache
 tfgen_no_deps: export PULUMI_DISABLE_AUTOMATIC_PLUGIN_ACQUISITION := $(PULUMI_CONVERT)
 tfgen_no_deps: tfgen_build_only
 	$(WORKING_DIR)/bin/$(TFGEN) schema --out provider/cmd/$(PROVIDER)

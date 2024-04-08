@@ -1,0 +1,26 @@
+name: authentication_executionh1UGP0Fkk0eT
+runtime: yaml
+description: ""
+config:
+  pulumi:tags:
+    value:
+      pulumi:template: https://www.pulumi.com/ai/api/project/78b9933c-6dd9-4b72-946e-68edc38eae64.zip
+resources:
+  keycloakAuthExecution:
+    properties:
+      authenticator: auth-cookie
+      parentFlowAlias: ${keycloakAuthFlow.alias}
+      realmId: ${keycloakRealm.realm}
+      requirement: REQUIRED
+    type: keycloak:authentication:Execution
+  keycloakAuthFlow:
+    properties:
+      alias: custom-auth-flow
+      description: A custom authentication flow
+      realmId: ${keycloakRealm.realm}
+    type: keycloak:authentication:Flow
+  keycloakRealm:
+    properties:
+      enabled: true
+      realm: example-realm
+    type: keycloak:Realm

@@ -1,0 +1,13 @@
+name: index_realmBhv8NwUTBL6H
+runtime: yaml
+description: ""
+config:
+  pulumi:tags:
+    value:
+      pulumi:template: https://www.pulumi.com/ai/api/project/549cbd81-6b60-4857-922b-6a3a4ed2b0a3.zip
+resources:
+  my_keycloak_realm:
+    properties:
+      enabled: true
+      realm: my-test-realm
+    type: keycloak:Realm
