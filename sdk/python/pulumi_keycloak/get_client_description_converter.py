@@ -395,7 +395,7 @@ def get_client_description_converter(body: Optional[str] = None,
     realm = keycloak.Realm("realm",
         realm="my-realm",
         enabled=True)
-    saml_client_client_description_converter = keycloak.get_client_description_converter_output(realm_id=realm.id,
+    saml_client = keycloak.get_client_description_converter_output(realm_id=realm.id,
         body=\"\"\"	<md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" validUntil="2021-04-17T12:41:46Z" cacheDuration="PT604800S" entityID="FakeEntityId">
         <md:SPSSODescriptor AuthnRequestsSigned="false" WantAssertionsSigned="false" protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
             <md:KeyDescriptor use="signing">
@@ -424,9 +424,9 @@ def get_client_description_converter(body: Optional[str] = None,
         </md:SPSSODescriptor>
     </md:EntityDescriptor>
     \"\"\")
-    saml_client_client = keycloak.saml.Client("samlClientClient",
+    saml_client_client = keycloak.saml.Client("saml_client",
         realm_id=realm.id,
-        client_id=saml_client_client_description_converter.client_id)
+        client_id=saml_client.client_id)
     ```
     <!--End PulumiCodeChooser -->
 
@@ -499,7 +499,7 @@ def get_client_description_converter_output(body: Optional[pulumi.Input[str]] = 
     realm = keycloak.Realm("realm",
         realm="my-realm",
         enabled=True)
-    saml_client_client_description_converter = keycloak.get_client_description_converter_output(realm_id=realm.id,
+    saml_client = keycloak.get_client_description_converter_output(realm_id=realm.id,
         body=\"\"\"	<md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" validUntil="2021-04-17T12:41:46Z" cacheDuration="PT604800S" entityID="FakeEntityId">
         <md:SPSSODescriptor AuthnRequestsSigned="false" WantAssertionsSigned="false" protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
             <md:KeyDescriptor use="signing">
@@ -528,9 +528,9 @@ def get_client_description_converter_output(body: Optional[pulumi.Input[str]] = 
         </md:SPSSODescriptor>
     </md:EntityDescriptor>
     \"\"\")
-    saml_client_client = keycloak.saml.Client("samlClientClient",
+    saml_client_client = keycloak.saml.Client("saml_client",
         realm_id=realm.id,
-        client_id=saml_client_client_description_converter.client_id)
+        client_id=saml_client.client_id)
     ```
     <!--End PulumiCodeChooser -->
 

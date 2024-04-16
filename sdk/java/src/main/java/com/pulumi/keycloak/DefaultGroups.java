@@ -51,17 +51,18 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .enabled(true)
  *             .realm(&#34;my-realm&#34;)
+ *             .enabled(true)
  *             .build());
  * 
  *         var group = new Group(&#34;group&#34;, GroupArgs.builder()        
  *             .realmId(realm.id())
+ *             .name(&#34;my-group&#34;)
  *             .build());
  * 
  *         var default_ = new DefaultGroups(&#34;default&#34;, DefaultGroupsArgs.builder()        
- *             .groupIds(group.id())
  *             .realmId(realm.id())
+ *             .groupIds(group.id())
  *             .build());
  * 
  *     }

@@ -37,7 +37,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			samlClientClientDescriptionConverter := keycloak.GetClientDescriptionConverterOutput(ctx, keycloak.GetClientDescriptionConverterOutputArgs{
+//			samlClient := keycloak.GetClientDescriptionConverterOutput(ctx, keycloak.GetClientDescriptionConverterOutputArgs{
 //				RealmId: realm.ID(),
 //				Body: pulumi.String(`	<md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" validUntil="2021-04-17T12:41:46Z" cacheDuration="PT604800S" entityID="FakeEntityId">
 //	    <md:SPSSODescriptor AuthnRequestsSigned="false" WantAssertionsSigned="false" protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
@@ -70,10 +70,10 @@ import (
 // `),
 //
 //			}, nil)
-//			_, err = saml.NewClient(ctx, "samlClientClient", &saml.ClientArgs{
+//			_, err = saml.NewClient(ctx, "saml_client", &saml.ClientArgs{
 //				RealmId: realm.ID(),
-//				ClientId: samlClientClientDescriptionConverter.ApplyT(func(samlClientClientDescriptionConverter keycloak.GetClientDescriptionConverterResult) (*string, error) {
-//					return &samlClientClientDescriptionConverter.ClientId, nil
+//				ClientId: samlClient.ApplyT(func(samlClient keycloak.GetClientDescriptionConverterResult) (*string, error) {
+//					return &samlClient.ClientId, nil
 //				}).(pulumi.StringPtrOutput),
 //			})
 //			if err != nil {

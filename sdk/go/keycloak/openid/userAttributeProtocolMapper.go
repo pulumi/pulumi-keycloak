@@ -39,17 +39,18 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-//				Enabled: pulumi.Bool(true),
 //				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			openidClient, err := openid.NewClient(ctx, "openidClient", &openid.ClientArgs{
-//				AccessType: pulumi.String("CONFIDENTIAL"),
-//				ClientId:   pulumi.String("test-client"),
-//				Enabled:    pulumi.Bool(true),
+//			openidClient, err := openid.NewClient(ctx, "openid_client", &openid.ClientArgs{
 //				RealmId:    realm.ID(),
+//				ClientId:   pulumi.String("test-client"),
+//				Name:       pulumi.String("test client"),
+//				Enabled:    pulumi.Bool(true),
+//				AccessType: pulumi.String("CONFIDENTIAL"),
 //				ValidRedirectUris: pulumi.StringArray{
 //					pulumi.String("http://localhost:8080/openid-callback"),
 //				},
@@ -57,11 +58,12 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = openid.NewUserAttributeProtocolMapper(ctx, "userAttributeMapper", &openid.UserAttributeProtocolMapperArgs{
-//				ClaimName:     pulumi.String("bar"),
-//				ClientId:      openidClient.ID(),
+//			_, err = openid.NewUserAttributeProtocolMapper(ctx, "user_attribute_mapper", &openid.UserAttributeProtocolMapperArgs{
 //				RealmId:       realm.ID(),
+//				ClientId:      openidClient.ID(),
+//				Name:          pulumi.String("test-mapper"),
 //				UserAttribute: pulumi.String("foo"),
+//				ClaimName:     pulumi.String("bar"),
 //			})
 //			if err != nil {
 //				return err
@@ -90,23 +92,25 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-//				Enabled: pulumi.Bool(true),
 //				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			clientScope, err := openid.NewClientScope(ctx, "clientScope", &openid.ClientScopeArgs{
+//			clientScope, err := openid.NewClientScope(ctx, "client_scope", &openid.ClientScopeArgs{
 //				RealmId: realm.ID(),
+//				Name:    pulumi.String("test-client-scope"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = openid.NewUserAttributeProtocolMapper(ctx, "userAttributeMapper", &openid.UserAttributeProtocolMapperArgs{
-//				ClaimName:     pulumi.String("bar"),
-//				ClientScopeId: clientScope.ID(),
+//			_, err = openid.NewUserAttributeProtocolMapper(ctx, "user_attribute_mapper", &openid.UserAttributeProtocolMapperArgs{
 //				RealmId:       realm.ID(),
+//				ClientScopeId: clientScope.ID(),
+//				Name:          pulumi.String("test-mapper"),
 //				UserAttribute: pulumi.String("foo"),
+//				ClaimName:     pulumi.String("bar"),
 //			})
 //			if err != nil {
 //				return err

@@ -31,7 +31,7 @@ namespace Pulumi.Keycloak
     ///         Enabled = true,
     ///     });
     /// 
-    ///     var oidcIdentityProvider = new Keycloak.Oidc.IdentityProvider("oidcIdentityProvider", new()
+    ///     var oidc = new Keycloak.Oidc.IdentityProvider("oidc", new()
     ///     {
     ///         Realm = realm.Id,
     ///         Alias = "my-idp",
@@ -41,10 +41,11 @@ namespace Pulumi.Keycloak
     ///         TokenUrl = "https://tokenurl.com",
     ///     });
     /// 
-    ///     var oidcHardcodedAttributeIdentityProviderMapper = new Keycloak.HardcodedAttributeIdentityProviderMapper("oidcHardcodedAttributeIdentityProviderMapper", new()
+    ///     var oidcHardcodedAttributeIdentityProviderMapper = new Keycloak.HardcodedAttributeIdentityProviderMapper("oidc", new()
     ///     {
     ///         Realm = realm.Id,
-    ///         IdentityProviderAlias = oidcIdentityProvider.Alias,
+    ///         Name = "hardcodedUserSessionAttribute",
+    ///         IdentityProviderAlias = oidc.Alias,
     ///         AttributeName = "attribute",
     ///         AttributeValue = "value",
     ///         UserSession = true,

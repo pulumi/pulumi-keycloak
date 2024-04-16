@@ -57,30 +57,30 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .enabled(true)
  *             .realm(&#34;my-realm&#34;)
+ *             .enabled(true)
  *             .build());
  * 
  *         var user = new User(&#34;user&#34;, UserArgs.builder()        
- *             .email(&#34;bob@domain.com&#34;)
- *             .enabled(true)
- *             .firstName(&#34;Bob&#34;)
- *             .lastName(&#34;Bobson&#34;)
  *             .realmId(realm.id())
  *             .username(&#34;bob&#34;)
+ *             .enabled(true)
+ *             .email(&#34;bob@domain.com&#34;)
+ *             .firstName(&#34;Bob&#34;)
+ *             .lastName(&#34;Bobson&#34;)
  *             .build());
  * 
  *         var userWithInitialPassword = new User(&#34;userWithInitialPassword&#34;, UserArgs.builder()        
- *             .email(&#34;alice@domain.com&#34;)
- *             .enabled(true)
- *             .firstName(&#34;Alice&#34;)
- *             .initialPassword(UserInitialPasswordArgs.builder()
- *                 .temporary(true)
- *                 .value(&#34;some password&#34;)
- *                 .build())
- *             .lastName(&#34;Aliceberg&#34;)
  *             .realmId(realm.id())
  *             .username(&#34;alice&#34;)
+ *             .enabled(true)
+ *             .email(&#34;alice@domain.com&#34;)
+ *             .firstName(&#34;Alice&#34;)
+ *             .lastName(&#34;Aliceberg&#34;)
+ *             .initialPassword(UserInitialPasswordArgs.builder()
+ *                 .value(&#34;some password&#34;)
+ *                 .temporary(true)
+ *                 .build())
  *             .build());
  * 
  *     }

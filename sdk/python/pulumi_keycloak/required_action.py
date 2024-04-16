@@ -244,10 +244,11 @@ class RequiredAction(pulumi.CustomResource):
         realm = keycloak.Realm("realm",
             realm="my-realm",
             enabled=True)
-        required_action = keycloak.RequiredAction("requiredAction",
+        required_action = keycloak.RequiredAction("required_action",
             realm_id=realm.realm,
             alias="webauthn-register",
-            enabled=True)
+            enabled=True,
+            name="Webauthn Register")
         ```
         <!--End PulumiCodeChooser -->
 
@@ -293,10 +294,11 @@ class RequiredAction(pulumi.CustomResource):
         realm = keycloak.Realm("realm",
             realm="my-realm",
             enabled=True)
-        required_action = keycloak.RequiredAction("requiredAction",
+        required_action = keycloak.RequiredAction("required_action",
             realm_id=realm.realm,
             alias="webauthn-register",
-            enabled=True)
+            enabled=True,
+            name="Webauthn Register")
         ```
         <!--End PulumiCodeChooser -->
 

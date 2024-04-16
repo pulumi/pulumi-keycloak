@@ -52,13 +52,14 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .enabled(true)
  *             .realm(&#34;my-realm&#34;)
+ *             .enabled(true)
  *             .build());
  * 
  *         var realmRole = new Role(&#34;realmRole&#34;, RoleArgs.builder()        
- *             .description(&#34;My Realm Role&#34;)
  *             .realmId(realm.id())
+ *             .name(&#34;my-realm-role&#34;)
+ *             .description(&#34;My Realm Role&#34;)
  *             .build());
  * 
  *     }
@@ -95,21 +96,23 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .enabled(true)
  *             .realm(&#34;my-realm&#34;)
+ *             .enabled(true)
  *             .build());
  * 
  *         var client = new Client(&#34;client&#34;, ClientArgs.builder()        
- *             .accessType(&#34;BEARER-ONLY&#34;)
- *             .clientId(&#34;client&#34;)
- *             .enabled(true)
  *             .realmId(realm.id())
+ *             .clientId(&#34;client&#34;)
+ *             .name(&#34;client&#34;)
+ *             .enabled(true)
+ *             .accessType(&#34;BEARER-ONLY&#34;)
  *             .build());
  * 
  *         var clientRole = new Role(&#34;clientRole&#34;, RoleArgs.builder()        
- *             .clientId(keycloak_client.client().id())
- *             .description(&#34;My Client Role&#34;)
  *             .realmId(realm.id())
+ *             .clientId(clientKeycloakClient.id())
+ *             .name(&#34;my-client-role&#34;)
+ *             .description(&#34;My Client Role&#34;)
  *             .build());
  * 
  *     }
@@ -146,47 +149,56 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .enabled(true)
  *             .realm(&#34;my-realm&#34;)
+ *             .enabled(true)
  *             .build());
  * 
+ *         // realm roles
  *         var createRole = new Role(&#34;createRole&#34;, RoleArgs.builder()        
  *             .realmId(realm.id())
+ *             .name(&#34;create&#34;)
  *             .build());
  * 
  *         var readRole = new Role(&#34;readRole&#34;, RoleArgs.builder()        
  *             .realmId(realm.id())
+ *             .name(&#34;read&#34;)
  *             .build());
  * 
  *         var updateRole = new Role(&#34;updateRole&#34;, RoleArgs.builder()        
  *             .realmId(realm.id())
+ *             .name(&#34;update&#34;)
  *             .build());
  * 
  *         var deleteRole = new Role(&#34;deleteRole&#34;, RoleArgs.builder()        
  *             .realmId(realm.id())
+ *             .name(&#34;delete&#34;)
  *             .build());
  * 
+ *         // client role
  *         var client = new Client(&#34;client&#34;, ClientArgs.builder()        
- *             .accessType(&#34;BEARER-ONLY&#34;)
- *             .clientId(&#34;client&#34;)
- *             .enabled(true)
  *             .realmId(realm.id())
+ *             .clientId(&#34;client&#34;)
+ *             .name(&#34;client&#34;)
+ *             .enabled(true)
+ *             .accessType(&#34;BEARER-ONLY&#34;)
  *             .build());
  * 
  *         var clientRole = new Role(&#34;clientRole&#34;, RoleArgs.builder()        
- *             .clientId(keycloak_client.client().id())
- *             .description(&#34;My Client Role&#34;)
  *             .realmId(realm.id())
+ *             .clientId(clientKeycloakClient.id())
+ *             .name(&#34;my-client-role&#34;)
+ *             .description(&#34;My Client Role&#34;)
  *             .build());
  * 
  *         var adminRole = new Role(&#34;adminRole&#34;, RoleArgs.builder()        
+ *             .realmId(realm.id())
+ *             .name(&#34;admin&#34;)
  *             .compositeRoles(            
  *                 &#34;{keycloak_role.create_role.id}&#34;,
  *                 &#34;{keycloak_role.read_role.id}&#34;,
  *                 &#34;{keycloak_role.update_role.id}&#34;,
  *                 &#34;{keycloak_role.delete_role.id}&#34;,
  *                 &#34;{keycloak_role.client_role.id}&#34;)
- *             .realmId(realm.id())
  *             .build());
  * 
  *     }

@@ -32,28 +32,29 @@ namespace Pulumi.Keycloak.Ldap
     /// {
     ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         Enabled = true,
     ///         RealmName = "test",
+    ///         Enabled = true,
     ///     });
     /// 
-    ///     var ldapUserFederation = new Keycloak.Ldap.UserFederation("ldapUserFederation", new()
+    ///     var ldapUserFederation = new Keycloak.Ldap.UserFederation("ldap_user_federation", new()
     ///     {
-    ///         BindCredential = "admin",
-    ///         BindDn = "cn=admin,dc=example,dc=org",
-    ///         ConnectionTimeout = "5s",
-    ///         ConnectionUrl = "ldap://openldap",
-    ///         Enabled = true,
-    ///         RdnLdapAttribute = "cn",
-    ///         ReadTimeout = "10s",
+    ///         Name = "openldap",
     ///         RealmId = realm.Id,
+    ///         Enabled = true,
+    ///         UsernameLdapAttribute = "cn",
+    ///         RdnLdapAttribute = "cn",
+    ///         UuidLdapAttribute = "entryDN",
     ///         UserObjectClasses = new[]
     ///         {
     ///             "simpleSecurityObject",
     ///             "organizationalRole",
     ///         },
-    ///         UsernameLdapAttribute = "cn",
+    ///         ConnectionUrl = "ldap://openldap",
     ///         UsersDn = "dc=example,dc=org",
-    ///         UuidLdapAttribute = "entryDN",
+    ///         BindDn = "cn=admin,dc=example,dc=org",
+    ///         BindCredential = "admin",
+    ///         ConnectionTimeout = "5s",
+    ///         ReadTimeout = "10s",
     ///     });
     /// 
     /// });

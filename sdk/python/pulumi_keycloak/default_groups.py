@@ -97,12 +97,14 @@ class DefaultGroups(pulumi.CustomResource):
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="my-realm")
-        group = keycloak.Group("group", realm_id=realm.id)
+            realm="my-realm",
+            enabled=True)
+        group = keycloak.Group("group",
+            realm_id=realm.id,
+            name="my-group")
         default = keycloak.DefaultGroups("default",
-            group_ids=[group.id],
-            realm_id=realm.id)
+            realm_id=realm.id,
+            group_ids=[group.id])
         ```
         <!--End PulumiCodeChooser -->
 
@@ -144,12 +146,14 @@ class DefaultGroups(pulumi.CustomResource):
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="my-realm")
-        group = keycloak.Group("group", realm_id=realm.id)
+            realm="my-realm",
+            enabled=True)
+        group = keycloak.Group("group",
+            realm_id=realm.id,
+            name="my-group")
         default = keycloak.DefaultGroups("default",
-            group_ids=[group.id],
-            realm_id=realm.id)
+            realm_id=realm.id,
+            group_ids=[group.id])
         ```
         <!--End PulumiCodeChooser -->
 

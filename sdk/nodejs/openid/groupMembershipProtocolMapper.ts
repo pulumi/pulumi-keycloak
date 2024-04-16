@@ -23,20 +23,22 @@ import * as utilities from "../utilities";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {
- *     enabled: true,
  *     realm: "my-realm",
- * });
- * const openidClient = new keycloak.openid.Client("openidClient", {
- *     accessType: "CONFIDENTIAL",
- *     clientId: "test-client",
  *     enabled: true,
+ * });
+ * const openidClient = new keycloak.openid.Client("openid_client", {
  *     realmId: realm.id,
+ *     clientId: "test-client",
+ *     name: "test client",
+ *     enabled: true,
+ *     accessType: "CONFIDENTIAL",
  *     validRedirectUris: ["http://localhost:8080/openid-callback"],
  * });
- * const groupMembershipMapper = new keycloak.openid.GroupMembershipProtocolMapper("groupMembershipMapper", {
- *     claimName: "groups",
- *     clientId: openidClient.id,
+ * const groupMembershipMapper = new keycloak.openid.GroupMembershipProtocolMapper("group_membership_mapper", {
  *     realmId: realm.id,
+ *     clientId: openidClient.id,
+ *     name: "group-membership-mapper",
+ *     claimName: "groups",
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -49,14 +51,18 @@ import * as utilities from "../utilities";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {
- *     enabled: true,
  *     realm: "my-realm",
+ *     enabled: true,
  * });
- * const clientScope = new keycloak.openid.ClientScope("clientScope", {realmId: realm.id});
- * const groupMembershipMapper = new keycloak.openid.GroupMembershipProtocolMapper("groupMembershipMapper", {
- *     claimName: "groups",
- *     clientScopeId: clientScope.id,
+ * const clientScope = new keycloak.openid.ClientScope("client_scope", {
  *     realmId: realm.id,
+ *     name: "test-client-scope",
+ * });
+ * const groupMembershipMapper = new keycloak.openid.GroupMembershipProtocolMapper("group_membership_mapper", {
+ *     realmId: realm.id,
+ *     clientScopeId: clientScope.id,
+ *     name: "group-membership-mapper",
+ *     claimName: "groups",
  * });
  * ```
  * <!--End PulumiCodeChooser -->

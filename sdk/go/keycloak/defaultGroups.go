@@ -35,23 +35,24 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-//				Enabled: pulumi.Bool(true),
 //				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			group, err := keycloak.NewGroup(ctx, "group", &keycloak.GroupArgs{
 //				RealmId: realm.ID(),
+//				Name:    pulumi.String("my-group"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = keycloak.NewDefaultGroups(ctx, "default", &keycloak.DefaultGroupsArgs{
+//				RealmId: realm.ID(),
 //				GroupIds: pulumi.StringArray{
 //					group.ID(),
 //				},
-//				RealmId: realm.ID(),
 //			})
 //			if err != nil {
 //				return err

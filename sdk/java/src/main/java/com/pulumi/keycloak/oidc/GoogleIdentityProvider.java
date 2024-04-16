@@ -56,8 +56,8 @@ import javax.annotation.Nullable;
  * 
  *         var google = new GoogleIdentityProvider(&#34;google&#34;, GoogleIdentityProviderArgs.builder()        
  *             .realm(realm.id())
- *             .clientId(var_.google_identity_provider_client_id())
- *             .clientSecret(var_.google_identity_provider_client_secret())
+ *             .clientId(googleIdentityProviderClientId)
+ *             .clientSecret(googleIdentityProviderClientSecret)
  *             .trustEmail(true)
  *             .hostedDomain(&#34;example.com&#34;)
  *             .syncMode(&#34;IMPORT&#34;)

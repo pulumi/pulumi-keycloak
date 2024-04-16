@@ -220,17 +220,17 @@ class RealmEvents(pulumi.CustomResource):
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm", realm="test")
-        realm_events = keycloak.RealmEvents("realmEvents",
-            admin_events_details_enabled=True,
+        realm_events = keycloak.RealmEvents("realm_events",
+            realm_id=realm.id,
+            events_enabled=True,
+            events_expiration=3600,
             admin_events_enabled=True,
+            admin_events_details_enabled=True,
             enabled_event_types=[
                 "LOGIN",
                 "LOGOUT",
             ],
-            events_enabled=True,
-            events_expiration=3600,
-            events_listeners=["jboss-logging"],
-            realm_id=realm.id)
+            events_listeners=["jboss-logging"])
         ```
         <!--End PulumiCodeChooser -->
 
@@ -268,17 +268,17 @@ class RealmEvents(pulumi.CustomResource):
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm", realm="test")
-        realm_events = keycloak.RealmEvents("realmEvents",
-            admin_events_details_enabled=True,
+        realm_events = keycloak.RealmEvents("realm_events",
+            realm_id=realm.id,
+            events_enabled=True,
+            events_expiration=3600,
             admin_events_enabled=True,
+            admin_events_details_enabled=True,
             enabled_event_types=[
                 "LOGIN",
                 "LOGOUT",
             ],
-            events_enabled=True,
-            events_expiration=3600,
-            events_listeners=["jboss-logging"],
-            realm_id=realm.id)
+            events_listeners=["jboss-logging"])
         ```
         <!--End PulumiCodeChooser -->
 

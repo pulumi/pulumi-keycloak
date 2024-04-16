@@ -46,9 +46,10 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var testMapper = new AttributeImporterIdentityProviderMapper(&#34;testMapper&#34;, AttributeImporterIdentityProviderMapperArgs.builder()        
- *             .attributeName(&#34;http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname&#34;)
- *             .identityProviderAlias(&#34;idp_alias&#34;)
  *             .realm(&#34;my-realm&#34;)
+ *             .name(&#34;my-mapper&#34;)
+ *             .identityProviderAlias(&#34;idp_alias&#34;)
+ *             .attributeName(&#34;http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname&#34;)
  *             .userAttribute(&#34;lastName&#34;)
  *             .build());
  * 

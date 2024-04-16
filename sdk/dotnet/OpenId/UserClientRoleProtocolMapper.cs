@@ -36,10 +36,11 @@ namespace Pulumi.Keycloak.OpenId
     ///         Enabled = true,
     ///     });
     /// 
-    ///     var openidClient = new Keycloak.OpenId.Client("openidClient", new()
+    ///     var openidClient = new Keycloak.OpenId.Client("openid_client", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         ClientId = "client",
+    ///         Name = "client",
     ///         Enabled = true,
     ///         AccessType = "CONFIDENTIAL",
     ///         ValidRedirectUris = new[]
@@ -48,10 +49,11 @@ namespace Pulumi.Keycloak.OpenId
     ///         },
     ///     });
     /// 
-    ///     var userClientRoleMapper = new Keycloak.OpenId.UserClientRoleProtocolMapper("userClientRoleMapper", new()
+    ///     var userClientRoleMapper = new Keycloak.OpenId.UserClientRoleProtocolMapper("user_client_role_mapper", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         ClientId = openidClient.Id,
+    ///         Name = "user-client-role-mapper",
     ///         ClaimName = "foo",
     ///     });
     /// 
@@ -76,15 +78,17 @@ namespace Pulumi.Keycloak.OpenId
     ///         Enabled = true,
     ///     });
     /// 
-    ///     var clientScope = new Keycloak.OpenId.ClientScope("clientScope", new()
+    ///     var clientScope = new Keycloak.OpenId.ClientScope("client_scope", new()
     ///     {
     ///         RealmId = realm.Id,
+    ///         Name = "client-scope",
     ///     });
     /// 
-    ///     var userClientRoleMapper = new Keycloak.OpenId.UserClientRoleProtocolMapper("userClientRoleMapper", new()
+    ///     var userClientRoleMapper = new Keycloak.OpenId.UserClientRoleProtocolMapper("user_client_role_mapper", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         ClientScopeId = clientScope.Id,
+    ///         Name = "user-client-role-mapper",
     ///         ClaimName = "foo",
     ///     });
     /// 

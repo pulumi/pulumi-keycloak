@@ -46,28 +46,29 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .enabled(true)
  *             .realm(&#34;my-realm&#34;)
+ *             .enabled(true)
  *             .build());
  * 
  *         var client = new Client(&#34;client&#34;, ClientArgs.builder()        
- *             .accessType(&#34;CONFIDENTIAL&#34;)
- *             .clientId(&#34;test-client&#34;)
  *             .realmId(realm.id())
+ *             .clientId(&#34;test-client&#34;)
+ *             .accessType(&#34;CONFIDENTIAL&#34;)
  *             .build());
  * 
  *         var clientScope = new ClientScope(&#34;clientScope&#34;, ClientScopeArgs.builder()        
  *             .realmId(realm.id())
+ *             .name(&#34;test-client-scope&#34;)
  *             .build());
  * 
  *         var clientOptionalScopes = new ClientOptionalScopes(&#34;clientOptionalScopes&#34;, ClientOptionalScopesArgs.builder()        
+ *             .realmId(realm.id())
  *             .clientId(client.id())
  *             .optionalScopes(            
  *                 &#34;address&#34;,
  *                 &#34;phone&#34;,
  *                 &#34;offline_access&#34;,
  *                 clientScope.name())
- *             .realmId(realm.id())
  *             .build());
  * 
  *     }

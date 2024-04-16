@@ -21,28 +21,30 @@ import * as utilities from "../utilities";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {
- *     enabled: true,
  *     realm: "test",
+ *     enabled: true,
  * });
- * const ldapUserFederation = new keycloak.ldap.UserFederation("ldapUserFederation", {
- *     bindCredential: "admin",
- *     bindDn: "cn=admin,dc=example,dc=org",
- *     connectionUrl: "ldap://openldap",
- *     rdnLdapAttribute: "cn",
+ * const ldapUserFederation = new keycloak.ldap.UserFederation("ldap_user_federation", {
+ *     name: "openldap",
  *     realmId: realm.id,
+ *     usernameLdapAttribute: "cn",
+ *     rdnLdapAttribute: "cn",
+ *     uuidLdapAttribute: "entryDN",
  *     userObjectClasses: [
  *         "simpleSecurityObject",
  *         "organizationalRole",
  *     ],
- *     usernameLdapAttribute: "cn",
+ *     connectionUrl: "ldap://openldap",
  *     usersDn: "dc=example,dc=org",
- *     uuidLdapAttribute: "entryDN",
+ *     bindDn: "cn=admin,dc=example,dc=org",
+ *     bindCredential: "admin",
  * });
- * const ldapUserAttributeMapper = new keycloak.ldap.UserAttributeMapper("ldapUserAttributeMapper", {
- *     ldapAttribute: "bar",
- *     ldapUserFederationId: ldapUserFederation.id,
+ * const ldapUserAttributeMapper = new keycloak.ldap.UserAttributeMapper("ldap_user_attribute_mapper", {
  *     realmId: realm.id,
+ *     ldapUserFederationId: ldapUserFederation.id,
+ *     name: "user-attribute-mapper",
  *     userModelAttribute: "foo",
+ *     ldapAttribute: "bar",
  * });
  * ```
  * <!--End PulumiCodeChooser -->

@@ -22,8 +22,8 @@ import * as utilities from "../utilities";
  * });
  * const google = new keycloak.oidc.GoogleIdentityProvider("google", {
  *     realm: realm.id,
- *     clientId: _var.google_identity_provider_client_id,
- *     clientSecret: _var.google_identity_provider_client_secret,
+ *     clientId: googleIdentityProviderClientId,
+ *     clientSecret: googleIdentityProviderClientSecret,
  *     trustEmail: true,
  *     hostedDomain: "example.com",
  *     syncMode: "IMPORT",

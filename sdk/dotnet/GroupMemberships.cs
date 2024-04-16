@@ -39,13 +39,14 @@ namespace Pulumi.Keycloak
     /// {
     ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         Enabled = true,
     ///         RealmName = "my-realm",
+    ///         Enabled = true,
     ///     });
     /// 
     ///     var @group = new Keycloak.Group("group", new()
     ///     {
     ///         RealmId = realm.Id,
+    ///         Name = "my-group",
     ///     });
     /// 
     ///     var user = new Keycloak.User("user", new()
@@ -54,14 +55,14 @@ namespace Pulumi.Keycloak
     ///         Username = "my-user",
     ///     });
     /// 
-    ///     var groupMembers = new Keycloak.GroupMemberships("groupMembers", new()
+    ///     var groupMembers = new Keycloak.GroupMemberships("group_members", new()
     ///     {
+    ///         RealmId = realm.Id,
     ///         GroupId = @group.Id,
     ///         Members = new[]
     ///         {
     ///             user.Username,
     ///         },
-    ///         RealmId = realm.Id,
     ///     });
     /// 
     /// });

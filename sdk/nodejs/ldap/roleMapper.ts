@@ -20,7 +20,8 @@ import * as utilities from "../utilities";
  *     realm: "my-realm",
  *     enabled: true,
  * });
- * const ldapUserFederation = new keycloak.ldap.UserFederation("ldapUserFederation", {
+ * const ldapUserFederation = new keycloak.ldap.UserFederation("ldap_user_federation", {
+ *     name: "openldap",
  *     realmId: realm.id,
  *     usernameLdapAttribute: "cn",
  *     rdnLdapAttribute: "cn",
@@ -34,9 +35,10 @@ import * as utilities from "../utilities";
  *     bindDn: "cn=admin,dc=example,dc=org",
  *     bindCredential: "admin",
  * });
- * const ldapRoleMapper = new keycloak.ldap.RoleMapper("ldapRoleMapper", {
+ * const ldapRoleMapper = new keycloak.ldap.RoleMapper("ldap_role_mapper", {
  *     realmId: realm.id,
  *     ldapUserFederationId: ldapUserFederation.id,
+ *     name: "role-mapper",
  *     ldapRolesDn: "dc=example,dc=org",
  *     roleNameLdapAttribute: "cn",
  *     roleObjectClasses: ["groupOfNames"],

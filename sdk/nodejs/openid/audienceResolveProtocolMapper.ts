@@ -24,16 +24,18 @@ import * as utilities from "../utilities";
  *     realm: "my-realm",
  *     enabled: true,
  * });
- * const openidClient = new keycloak.openid.Client("openidClient", {
+ * const openidClient = new keycloak.openid.Client("openid_client", {
  *     realmId: realm.id,
  *     clientId: "client",
+ *     name: "client",
  *     enabled: true,
  *     accessType: "CONFIDENTIAL",
  *     validRedirectUris: ["http://localhost:8080/openid-callback"],
  * });
- * const audienceMapper = new keycloak.openid.AudienceResolveProtocolMapper("audienceMapper", {
+ * const audienceMapper = new keycloak.openid.AudienceResolveProtocolMapper("audience_mapper", {
  *     realmId: realm.id,
  *     clientId: openidClient.id,
+ *     name: "my-audience-resolve-mapper",
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -49,8 +51,11 @@ import * as utilities from "../utilities";
  *     realm: "my-realm",
  *     enabled: true,
  * });
- * const clientScope = new keycloak.openid.ClientScope("clientScope", {realmId: realm.id});
- * const audienceMapper = new keycloak.openid.AudienceProtocolMapper("audienceMapper", {
+ * const clientScope = new keycloak.openid.ClientScope("client_scope", {
+ *     realmId: realm.id,
+ *     name: "test-client-scope",
+ * });
+ * const audienceMapper = new keycloak.openid.AudienceProtocolMapper("audience_mapper", {
  *     realmId: realm.id,
  *     clientScopeId: clientScope.id,
  * });

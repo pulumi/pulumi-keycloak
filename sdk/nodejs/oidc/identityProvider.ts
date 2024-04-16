@@ -20,7 +20,7 @@ import * as utilities from "../utilities";
  *     realm: "my-realm",
  *     enabled: true,
  * });
- * const realmIdentityProvider = new keycloak.oidc.IdentityProvider("realmIdentityProvider", {
+ * const realmIdentityProvider = new keycloak.oidc.IdentityProvider("realm_identity_provider", {
  *     realm: realm.id,
  *     alias: "my-idp",
  *     authorizationUrl: "https://authorizationurl.com",

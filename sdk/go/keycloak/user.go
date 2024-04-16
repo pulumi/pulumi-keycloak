@@ -36,34 +36,34 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-//				Enabled: pulumi.Bool(true),
 //				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = keycloak.NewUser(ctx, "user", &keycloak.UserArgs{
-//				Email:     pulumi.String("bob@domain.com"),
-//				Enabled:   pulumi.Bool(true),
-//				FirstName: pulumi.String("Bob"),
-//				LastName:  pulumi.String("Bobson"),
 //				RealmId:   realm.ID(),
 //				Username:  pulumi.String("bob"),
+//				Enabled:   pulumi.Bool(true),
+//				Email:     pulumi.String("bob@domain.com"),
+//				FirstName: pulumi.String("Bob"),
+//				LastName:  pulumi.String("Bobson"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = keycloak.NewUser(ctx, "userWithInitialPassword", &keycloak.UserArgs{
-//				Email:     pulumi.String("alice@domain.com"),
+//			_, err = keycloak.NewUser(ctx, "user_with_initial_password", &keycloak.UserArgs{
+//				RealmId:   realm.ID(),
+//				Username:  pulumi.String("alice"),
 //				Enabled:   pulumi.Bool(true),
+//				Email:     pulumi.String("alice@domain.com"),
 //				FirstName: pulumi.String("Alice"),
+//				LastName:  pulumi.String("Aliceberg"),
 //				InitialPassword: &keycloak.UserInitialPasswordArgs{
-//					Temporary: pulumi.Bool(true),
 //					Value:     pulumi.String("some password"),
+//					Temporary: pulumi.Bool(true),
 //				},
-//				LastName: pulumi.String("Aliceberg"),
-//				RealmId:  realm.ID(),
-//				Username: pulumi.String("alice"),
 //			})
 //			if err != nil {
 //				return err

@@ -36,30 +36,33 @@ namespace Pulumi.Keycloak
     /// {
     ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         Enabled = true,
     ///         RealmName = "my-realm",
+    ///         Enabled = true,
     ///     });
     /// 
-    ///     var parentGroup = new Keycloak.Group("parentGroup", new()
+    ///     var parentGroup = new Keycloak.Group("parent_group", new()
     ///     {
     ///         RealmId = realm.Id,
+    ///         Name = "parent-group",
     ///     });
     /// 
-    ///     var childGroup = new Keycloak.Group("childGroup", new()
+    ///     var childGroup = new Keycloak.Group("child_group", new()
     ///     {
+    ///         RealmId = realm.Id,
     ///         ParentId = parentGroup.Id,
-    ///         RealmId = realm.Id,
+    ///         Name = "child-group",
     ///     });
     /// 
-    ///     var childGroupWithOptionalAttributes = new Keycloak.Group("childGroupWithOptionalAttributes", new()
+    ///     var childGroupWithOptionalAttributes = new Keycloak.Group("child_group_with_optional_attributes", new()
     ///     {
+    ///         RealmId = realm.Id,
+    ///         ParentId = parentGroup.Id,
+    ///         Name = "child-group-with-optional-attributes",
     ///         Attributes = 
     ///         {
     ///             { "key1", "value1" },
     ///             { "key2", "value2" },
     ///         },
-    ///         ParentId = parentGroup.Id,
-    ///         RealmId = realm.Id,
     ///     });
     /// 
     /// });

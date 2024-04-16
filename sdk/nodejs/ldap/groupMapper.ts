@@ -22,33 +22,35 @@ import * as utilities from "../utilities";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {
- *     enabled: true,
  *     realm: "test",
+ *     enabled: true,
  * });
- * const ldapUserFederation = new keycloak.ldap.UserFederation("ldapUserFederation", {
- *     bindCredential: "admin",
- *     bindDn: "cn=admin,dc=example,dc=org",
- *     connectionUrl: "ldap://openldap",
- *     rdnLdapAttribute: "cn",
+ * const ldapUserFederation = new keycloak.ldap.UserFederation("ldap_user_federation", {
+ *     name: "openldap",
  *     realmId: realm.id,
+ *     usernameLdapAttribute: "cn",
+ *     rdnLdapAttribute: "cn",
+ *     uuidLdapAttribute: "entryDN",
  *     userObjectClasses: [
  *         "simpleSecurityObject",
  *         "organizationalRole",
  *     ],
- *     usernameLdapAttribute: "cn",
+ *     connectionUrl: "ldap://openldap",
  *     usersDn: "dc=example,dc=org",
- *     uuidLdapAttribute: "entryDN",
+ *     bindDn: "cn=admin,dc=example,dc=org",
+ *     bindCredential: "admin",
  * });
- * const ldapGroupMapper = new keycloak.ldap.GroupMapper("ldapGroupMapper", {
+ * const ldapGroupMapper = new keycloak.ldap.GroupMapper("ldap_group_mapper", {
+ *     realmId: realm.id,
+ *     ldapUserFederationId: ldapUserFederation.id,
+ *     name: "group-mapper",
+ *     ldapGroupsDn: "dc=example,dc=org",
  *     groupNameLdapAttribute: "cn",
  *     groupObjectClasses: ["groupOfNames"],
- *     ldapGroupsDn: "dc=example,dc=org",
- *     ldapUserFederationId: ldapUserFederation.id,
- *     memberofLdapAttribute: "memberOf",
  *     membershipAttributeType: "DN",
  *     membershipLdapAttribute: "member",
  *     membershipUserLdapAttribute: "cn",
- *     realmId: realm.id,
+ *     memberofLdapAttribute: "memberOf",
  * });
  * ```
  * <!--End PulumiCodeChooser -->

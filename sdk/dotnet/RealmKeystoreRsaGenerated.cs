@@ -30,8 +30,9 @@ namespace Pulumi.Keycloak
     ///         RealmName = "my-realm",
     ///     });
     /// 
-    ///     var keystoreRsaGenerated = new Keycloak.RealmKeystoreRsaGenerated("keystoreRsaGenerated", new()
+    ///     var keystoreRsaGenerated = new Keycloak.RealmKeystoreRsaGenerated("keystore_rsa_generated", new()
     ///     {
+    ///         Name = "my-rsa-generated-key",
     ///         RealmId = realm.Id,
     ///         Enabled = true,
     ///         Active = true,

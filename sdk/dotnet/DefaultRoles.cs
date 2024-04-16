@@ -33,7 +33,7 @@ namespace Pulumi.Keycloak
     ///         Enabled = true,
     ///     });
     /// 
-    ///     var defaultRoles = new Keycloak.DefaultRoles("defaultRoles", new()
+    ///     var defaultRoles = new Keycloak.DefaultRoles("default_roles", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         RoleNames = new[]

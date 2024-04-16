@@ -370,12 +370,13 @@ class CustomUserFederation(pulumi.CustomResource):
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="test")
-        custom_user_federation = keycloak.CustomUserFederation("customUserFederation",
-            enabled=True,
+            realm="test",
+            enabled=True)
+        custom_user_federation = keycloak.CustomUserFederation("custom_user_federation",
+            name="custom",
+            realm_id=realm.id,
             provider_id="custom",
-            realm_id=realm.id)
+            enabled=True)
         ```
         <!--End PulumiCodeChooser -->
 
@@ -431,12 +432,13 @@ class CustomUserFederation(pulumi.CustomResource):
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="test")
-        custom_user_federation = keycloak.CustomUserFederation("customUserFederation",
-            enabled=True,
+            realm="test",
+            enabled=True)
+        custom_user_federation = keycloak.CustomUserFederation("custom_user_federation",
+            name="custom",
+            realm_id=realm.id,
             provider_id="custom",
-            realm_id=realm.id)
+            enabled=True)
         ```
         <!--End PulumiCodeChooser -->
 

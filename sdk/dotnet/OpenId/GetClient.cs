@@ -33,6 +33,7 @@ namespace Pulumi.Keycloak.OpenId
         ///         ClientId = "realm-management",
         ///     });
         /// 
+        ///     // use the data source
         ///     var admin = Keycloak.GetRole.Invoke(new()
         ///     {
         ///         RealmId = "my-realm",
@@ -80,6 +81,7 @@ namespace Pulumi.Keycloak.OpenId
         ///         ClientId = "realm-management",
         ///     });
         /// 
+        ///     // use the data source
         ///     var admin = Keycloak.GetRole.Invoke(new()
         ///     {
         ///         RealmId = "my-realm",

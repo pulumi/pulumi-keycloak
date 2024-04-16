@@ -56,6 +56,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var ldapUserFederation = new UserFederation(&#34;ldapUserFederation&#34;, UserFederationArgs.builder()        
+ *             .name(&#34;ad&#34;)
  *             .realmId(realm.id())
  *             .usernameLdapAttribute(&#34;cn&#34;)
  *             .rdnLdapAttribute(&#34;cn&#34;)
@@ -73,6 +74,7 @@ import javax.annotation.Nullable;
  *         var msadLdsUserAccountControlMapper = new MsadLdsUserAccountControlMapper(&#34;msadLdsUserAccountControlMapper&#34;, MsadLdsUserAccountControlMapperArgs.builder()        
  *             .realmId(realm.id())
  *             .ldapUserFederationId(ldapUserFederation.id())
+ *             .name(&#34;msad-lds-user-account-control-mapper&#34;)
  *             .build());
  * 
  *     }

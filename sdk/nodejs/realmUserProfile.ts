@@ -32,7 +32,7 @@ import * as utilities from "./utilities";
  *     },
  * });
  * const userprofile = new keycloak.RealmUserProfile("userprofile", {
- *     realmId: keycloak_realm.my_realm.id,
+ *     realmId: myRealm.id,
  *     attributes: [
  *         {
  *             name: "field1",

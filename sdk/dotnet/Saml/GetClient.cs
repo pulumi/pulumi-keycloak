@@ -31,6 +31,7 @@ namespace Pulumi.Keycloak.Saml
         ///         ClientId = "realm-management",
         ///     });
         /// 
+        ///     // use the data source
         ///     var admin = Keycloak.GetRole.Invoke(new()
         ///     {
         ///         RealmId = "my-realm",
@@ -65,6 +66,7 @@ namespace Pulumi.Keycloak.Saml
         ///         ClientId = "realm-management",
         ///     });
         /// 
+        ///     // use the data source
         ///     var admin = Keycloak.GetRole.Invoke(new()
         ///     {
         ///         RealmId = "my-realm",

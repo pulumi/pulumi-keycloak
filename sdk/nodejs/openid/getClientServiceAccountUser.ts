@@ -28,6 +28,7 @@ import * as utilities from "../utilities";
  * const client = new keycloak.openid.Client("client", {
  *     realmId: realm.id,
  *     clientId: "client",
+ *     name: "client",
  *     accessType: "CONFIDENTIAL",
  *     serviceAccountsEnabled: true,
  * });
@@ -39,7 +40,7 @@ import * as utilities from "../utilities";
  *     realmId: realm.id,
  *     name: "offline_access",
  * });
- * const serviceAccountUserRoles = new keycloak.UserRoles("serviceAccountUserRoles", {
+ * const serviceAccountUserRoles = new keycloak.UserRoles("service_account_user_roles", {
  *     realmId: realm.id,
  *     userId: serviceAccountUser.apply(serviceAccountUser => serviceAccountUser.id),
  *     roleIds: [offlineAccess.apply(offlineAccess => offlineAccess.id)],
@@ -112,6 +113,7 @@ export interface GetClientServiceAccountUserResult {
  * const client = new keycloak.openid.Client("client", {
  *     realmId: realm.id,
  *     clientId: "client",
+ *     name: "client",
  *     accessType: "CONFIDENTIAL",
  *     serviceAccountsEnabled: true,
  * });
@@ -123,7 +125,7 @@ export interface GetClientServiceAccountUserResult {
  *     realmId: realm.id,
  *     name: "offline_access",
  * });
- * const serviceAccountUserRoles = new keycloak.UserRoles("serviceAccountUserRoles", {
+ * const serviceAccountUserRoles = new keycloak.UserRoles("service_account_user_roles", {
  *     realmId: realm.id,
  *     userId: serviceAccountUser.apply(serviceAccountUser => serviceAccountUser.id),
  *     roleIds: [offlineAccess.apply(offlineAccess => offlineAccess.id)],

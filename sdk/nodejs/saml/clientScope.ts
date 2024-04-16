@@ -20,8 +20,9 @@ import * as utilities from "../utilities";
  *     realm: "my-realm",
  *     enabled: true,
  * });
- * const samlClientScope = new keycloak.saml.ClientScope("samlClientScope", {
+ * const samlClientScope = new keycloak.saml.ClientScope("saml_client_scope", {
  *     realmId: realm.id,
+ *     name: "groups",
  *     description: "This scope will map a user's group memberships to SAML assertion",
  *     guiOrder: 1,
  * });

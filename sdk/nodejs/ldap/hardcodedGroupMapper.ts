@@ -20,7 +20,8 @@ import * as utilities from "../utilities";
  *     realm: "my-realm",
  *     enabled: true,
  * });
- * const ldapUserFederation = new keycloak.ldap.UserFederation("ldapUserFederation", {
+ * const ldapUserFederation = new keycloak.ldap.UserFederation("ldap_user_federation", {
+ *     name: "openldap",
  *     realmId: realm.id,
  *     usernameLdapAttribute: "cn",
  *     rdnLdapAttribute: "cn",
@@ -34,10 +35,14 @@ import * as utilities from "../utilities";
  *     bindDn: "cn=admin,dc=example,dc=org",
  *     bindCredential: "admin",
  * });
- * const realmGroup = new keycloak.Group("realmGroup", {realmId: realm.id});
- * const assignGroupToUsers = new keycloak.ldap.HardcodedGroupMapper("assignGroupToUsers", {
+ * const realmGroup = new keycloak.Group("realm_group", {
+ *     realmId: realm.id,
+ *     name: "my-group",
+ * });
+ * const assignGroupToUsers = new keycloak.ldap.HardcodedGroupMapper("assign_group_to_users", {
  *     realmId: realm.id,
  *     ldapUserFederationId: ldapUserFederation.id,
+ *     name: "assign-group-to-users",
  *     group: realmGroup.name,
  * });
  * ```

@@ -53,15 +53,15 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var realmEvents = new RealmEvents(&#34;realmEvents&#34;, RealmEventsArgs.builder()        
- *             .adminEventsDetailsEnabled(true)
+ *             .realmId(realm.id())
+ *             .eventsEnabled(true)
+ *             .eventsExpiration(3600)
  *             .adminEventsEnabled(true)
+ *             .adminEventsDetailsEnabled(true)
  *             .enabledEventTypes(            
  *                 &#34;LOGIN&#34;,
  *                 &#34;LOGOUT&#34;)
- *             .eventsEnabled(true)
- *             .eventsExpiration(3600)
  *             .eventsListeners(&#34;jboss-logging&#34;)
- *             .realmId(realm.id())
  *             .build());
  * 
  *     }

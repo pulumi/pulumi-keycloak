@@ -325,26 +325,26 @@ class User(pulumi.CustomResource):
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="my-realm")
+            realm="my-realm",
+            enabled=True)
         user = keycloak.User("user",
+            realm_id=realm.id,
+            username="bob",
+            enabled=True,
             email="bob@domain.com",
-            enabled=True,
             first_name="Bob",
-            last_name="Bobson",
+            last_name="Bobson")
+        user_with_initial_password = keycloak.User("user_with_initial_password",
             realm_id=realm.id,
-            username="bob")
-        user_with_initial_password = keycloak.User("userWithInitialPassword",
-            email="alice@domain.com",
+            username="alice",
             enabled=True,
+            email="alice@domain.com",
             first_name="Alice",
-            initial_password=keycloak.UserInitialPasswordArgs(
-                temporary=True,
-                value="some password",
-            ),
             last_name="Aliceberg",
-            realm_id=realm.id,
-            username="alice")
+            initial_password=keycloak.UserInitialPasswordArgs(
+                value="some password",
+                temporary=True,
+            ))
         ```
         <!--End PulumiCodeChooser -->
 
@@ -396,26 +396,26 @@ class User(pulumi.CustomResource):
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="my-realm")
+            realm="my-realm",
+            enabled=True)
         user = keycloak.User("user",
+            realm_id=realm.id,
+            username="bob",
+            enabled=True,
             email="bob@domain.com",
-            enabled=True,
             first_name="Bob",
-            last_name="Bobson",
+            last_name="Bobson")
+        user_with_initial_password = keycloak.User("user_with_initial_password",
             realm_id=realm.id,
-            username="bob")
-        user_with_initial_password = keycloak.User("userWithInitialPassword",
-            email="alice@domain.com",
+            username="alice",
             enabled=True,
+            email="alice@domain.com",
             first_name="Alice",
-            initial_password=keycloak.UserInitialPasswordArgs(
-                temporary=True,
-                value="some password",
-            ),
             last_name="Aliceberg",
-            realm_id=realm.id,
-            username="alice")
+            initial_password=keycloak.UserInitialPasswordArgs(
+                value="some password",
+                temporary=True,
+            ))
         ```
         <!--End PulumiCodeChooser -->
 

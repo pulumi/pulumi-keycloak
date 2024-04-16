@@ -31,33 +31,33 @@ namespace Pulumi.Keycloak
     /// {
     ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         Enabled = true,
     ///         RealmName = "my-realm",
+    ///         Enabled = true,
     ///     });
     /// 
     ///     var user = new Keycloak.User("user", new()
     ///     {
-    ///         Email = "bob@domain.com",
-    ///         Enabled = true,
-    ///         FirstName = "Bob",
-    ///         LastName = "Bobson",
     ///         RealmId = realm.Id,
     ///         Username = "bob",
+    ///         Enabled = true,
+    ///         Email = "bob@domain.com",
+    ///         FirstName = "Bob",
+    ///         LastName = "Bobson",
     ///     });
     /// 
-    ///     var userWithInitialPassword = new Keycloak.User("userWithInitialPassword", new()
+    ///     var userWithInitialPassword = new Keycloak.User("user_with_initial_password", new()
     ///     {
-    ///         Email = "alice@domain.com",
-    ///         Enabled = true,
-    ///         FirstName = "Alice",
-    ///         InitialPassword = new Keycloak.Inputs.UserInitialPasswordArgs
-    ///         {
-    ///             Temporary = true,
-    ///             Value = "some password",
-    ///         },
-    ///         LastName = "Aliceberg",
     ///         RealmId = realm.Id,
     ///         Username = "alice",
+    ///         Enabled = true,
+    ///         Email = "alice@domain.com",
+    ///         FirstName = "Alice",
+    ///         LastName = "Aliceberg",
+    ///         InitialPassword = new Keycloak.Inputs.UserInitialPasswordArgs
+    ///         {
+    ///             Value = "some password",
+    ///             Temporary = true,
+    ///         },
     ///     });
     /// 
     /// });

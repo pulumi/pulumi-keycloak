@@ -88,8 +88,10 @@ def get_user_realm_roles(realm_id: Optional[str] = None,
     import pulumi_keycloak as keycloak
 
     master_realm = keycloak.get_realm(realm="master")
+    # use the keycloak_user data source to grab the admin user's ID
     default_admin_user = keycloak.get_user(realm_id=master_realm.id,
         username="keycloak")
+    # use the keycloak_user_realm_roles data source to list role names
     user_realm_roles = keycloak.get_user_realm_roles(realm_id=master_realm.id,
         user_id=default_admin_user.id)
     pulumi.export("keycloakUserRoleNames", user_realm_roles.role_names)
@@ -128,8 +130,10 @@ def get_user_realm_roles_output(realm_id: Optional[pulumi.Input[str]] = None,
     import pulumi_keycloak as keycloak
 
     master_realm = keycloak.get_realm(realm="master")
+    # use the keycloak_user data source to grab the admin user's ID
     default_admin_user = keycloak.get_user(realm_id=master_realm.id,
         username="keycloak")
+    # use the keycloak_user_realm_roles data source to list role names
     user_realm_roles = keycloak.get_user_realm_roles(realm_id=master_realm.id,
         user_id=default_admin_user.id)
     pulumi.export("keycloakUserRoleNames", user_realm_roles.role_names)

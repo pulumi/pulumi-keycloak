@@ -17,7 +17,8 @@ import * as utilities from "./utilities";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {realm: "my-realm"});
- * const keystoreRsaGenerated = new keycloak.RealmKeystoreRsaGenerated("keystoreRsaGenerated", {
+ * const keystoreRsaGenerated = new keycloak.RealmKeystoreRsaGenerated("keystore_rsa_generated", {
+ *     name: "my-rsa-generated-key",
  *     realmId: realm.id,
  *     enabled: true,
  *     active: true,

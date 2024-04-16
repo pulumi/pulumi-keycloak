@@ -55,28 +55,30 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .enabled(true)
  *             .realm(&#34;test&#34;)
+ *             .enabled(true)
  *             .build());
  * 
  *         var ldapUserFederation = new UserFederation(&#34;ldapUserFederation&#34;, UserFederationArgs.builder()        
- *             .bindCredential(&#34;admin&#34;)
- *             .bindDn(&#34;cn=admin,dc=example,dc=org&#34;)
- *             .connectionUrl(&#34;ldap://my-ad-server&#34;)
- *             .rdnLdapAttribute(&#34;cn&#34;)
+ *             .name(&#34;ad&#34;)
  *             .realmId(realm.id())
+ *             .usernameLdapAttribute(&#34;cn&#34;)
+ *             .rdnLdapAttribute(&#34;cn&#34;)
+ *             .uuidLdapAttribute(&#34;objectGUID&#34;)
  *             .userObjectClasses(            
  *                 &#34;person&#34;,
  *                 &#34;organizationalPerson&#34;,
  *                 &#34;user&#34;)
- *             .usernameLdapAttribute(&#34;cn&#34;)
+ *             .connectionUrl(&#34;ldap://my-ad-server&#34;)
  *             .usersDn(&#34;dc=example,dc=org&#34;)
- *             .uuidLdapAttribute(&#34;objectGUID&#34;)
+ *             .bindDn(&#34;cn=admin,dc=example,dc=org&#34;)
+ *             .bindCredential(&#34;admin&#34;)
  *             .build());
  * 
  *         var msadUserAccountControlMapper = new MsadUserAccountControlMapper(&#34;msadUserAccountControlMapper&#34;, MsadUserAccountControlMapperArgs.builder()        
- *             .ldapUserFederationId(ldapUserFederation.id())
  *             .realmId(realm.id())
+ *             .ldapUserFederationId(ldapUserFederation.id())
+ *             .name(&#34;msad-user-account-control-mapper&#34;)
  *             .build());
  * 
  *     }

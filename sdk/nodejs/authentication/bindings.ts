@@ -35,14 +35,14 @@ import * as utilities from "../utilities";
  *     alias: "my-flow-alias",
  * });
  * // first execution
- * const executionOne = new keycloak.authentication.Execution("executionOne", {
+ * const executionOne = new keycloak.authentication.Execution("execution_one", {
  *     realmId: realm.id,
  *     parentFlowAlias: flow.alias,
  *     authenticator: "auth-cookie",
  *     requirement: "ALTERNATIVE",
  * });
  * // second execution
- * const executionTwo = new keycloak.authentication.Execution("executionTwo", {
+ * const executionTwo = new keycloak.authentication.Execution("execution_two", {
  *     realmId: realm.id,
  *     parentFlowAlias: flow.alias,
  *     authenticator: "identity-provider-redirector",
@@ -50,7 +50,7 @@ import * as utilities from "../utilities";
  * }, {
  *     dependsOn: [executionOne],
  * });
- * const browserAuthenticationBinding = new keycloak.authentication.Bindings("browserAuthenticationBinding", {
+ * const browserAuthenticationBinding = new keycloak.authentication.Bindings("browser_authentication_binding", {
  *     realmId: realm.id,
  *     browserFlow: flow.alias,
  * });

@@ -22,55 +22,21 @@ import * as utilities from "./utilities";
  *     realm: "my-realm",
  *     enabled: true,
  * });
- * const group = new keycloak.Group("group", {realmId: realm.id});
+ * const group = new keycloak.Group("group", {
+ *     realmId: realm.id,
+ *     name: "foo",
+ * });
  * const user = new keycloak.User("user", {
  *     realmId: realm.id,
  *     username: "my-user",
  * });
- * const userGroups = new keycloak.UserGroups("userGroups", {
+ * const userGroups = new keycloak.UserGroups("user_groups", {
  *     realmId: realm.id,
  *     userId: user.id,
  *     groupIds: [group.id],
  * });
  * ```
  * <!--End PulumiCodeChooser -->
- *
- * ### Non Exhaustive Groups)
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as keycloak from "@pulumi/keycloak";
- *
- * const realm = new keycloak.Realm("realm", {
- *     realm: "my-realm",
- *     enabled: true,
- * });
- * const groupFoo = new keycloak.Group("groupFoo", {realmId: realm.id});
- * const groupBar = new keycloak.Group("groupBar", {realmId: realm.id});
- * const user = new keycloak.User("user", {
- *     realmId: realm.id,
- *     username: "my-user",
- * });
- * const userGroupsAssociation1UserGroups = new keycloak.UserGroups("userGroupsAssociation1UserGroups", {
- *     realmId: realm.id,
- *     userId: user.id,
- *     exhaustive: false,
- *     groupIds: [groupFoo.id],
- * });
- * const userGroupsAssociation1Index_userGroupsUserGroups = new keycloak.UserGroups("userGroupsAssociation1Index/userGroupsUserGroups", {
- *     realmId: realm.id,
- *     userId: user.id,
- *     exhaustive: false,
- *     groupIds: [groupBar.id],
- * });
- * ```
- * <!--End PulumiCodeChooser -->
- *
- * ## Import
- *
- * This resource does not support import. Instead of importing, feel free to create this resource
- *
- * as if it did not already exist on the server.
  */
 export class UserGroups extends pulumi.CustomResource {
     /**

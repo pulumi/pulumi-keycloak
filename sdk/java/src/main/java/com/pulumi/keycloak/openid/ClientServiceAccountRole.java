@@ -58,17 +58,20 @@ import javax.annotation.Nullable;
  *         // client1 provides a role to other clients
  *         var client1 = new Client(&#34;client1&#34;, ClientArgs.builder()        
  *             .realmId(realm.id())
+ *             .name(&#34;client1&#34;)
  *             .build());
  * 
  *         var client1Role = new Role(&#34;client1Role&#34;, RoleArgs.builder()        
  *             .realmId(realm.id())
  *             .clientId(client1.id())
+ *             .name(&#34;my-client1-role&#34;)
  *             .description(&#34;A role that client1 provides&#34;)
  *             .build());
  * 
  *         // client2 is assigned the role of client1
  *         var client2 = new Client(&#34;client2&#34;, ClientArgs.builder()        
  *             .realmId(realm.id())
+ *             .name(&#34;client2&#34;)
  *             .serviceAccountsEnabled(true)
  *             .build());
  * 

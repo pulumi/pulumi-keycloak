@@ -36,16 +36,17 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-//				Enabled: pulumi.Bool(true),
 //				Realm:   pulumi.String("test"),
+//				Enabled: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = keycloak.NewCustomUserFederation(ctx, "customUserFederation", &keycloak.CustomUserFederationArgs{
-//				Enabled:    pulumi.Bool(true),
-//				ProviderId: pulumi.String("custom"),
+//			_, err = keycloak.NewCustomUserFederation(ctx, "custom_user_federation", &keycloak.CustomUserFederationArgs{
+//				Name:       pulumi.String("custom"),
 //				RealmId:    realm.ID(),
+//				ProviderId: pulumi.String("custom"),
+//				Enabled:    pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err

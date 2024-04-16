@@ -30,14 +30,15 @@ namespace Pulumi.Keycloak
     /// {
     ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         Enabled = true,
     ///         RealmName = "my-realm",
+    ///         Enabled = true,
     ///     });
     /// 
-    ///     var realmRole = new Keycloak.Role("realmRole", new()
+    ///     var realmRole = new Keycloak.Role("realm_role", new()
     ///     {
-    ///         Description = "My Realm Role",
     ///         RealmId = realm.Id,
+    ///         Name = "my-realm-role",
+    ///         Description = "My Realm Role",
     ///     });
     /// 
     /// });
@@ -57,23 +58,25 @@ namespace Pulumi.Keycloak
     /// {
     ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         Enabled = true,
     ///         RealmName = "my-realm",
+    ///         Enabled = true,
     ///     });
     /// 
     ///     var client = new Keycloak.OpenId.Client("client", new()
     ///     {
-    ///         AccessType = "BEARER-ONLY",
-    ///         ClientId = "client",
-    ///         Enabled = true,
     ///         RealmId = realm.Id,
+    ///         ClientId = "client",
+    ///         Name = "client",
+    ///         Enabled = true,
+    ///         AccessType = "BEARER-ONLY",
     ///     });
     /// 
-    ///     var clientRole = new Keycloak.Role("clientRole", new()
+    ///     var clientRole = new Keycloak.Role("client_role", new()
     ///     {
-    ///         ClientId = keycloak_client.Client.Id,
-    ///         Description = "My Client Role",
     ///         RealmId = realm.Id,
+    ///         ClientId = clientKeycloakClient.Id,
+    ///         Name = "my-client-role",
+    ///         Description = "My Client Role",
     ///     });
     /// 
     /// });
@@ -93,47 +96,57 @@ namespace Pulumi.Keycloak
     /// {
     ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         Enabled = true,
     ///         RealmName = "my-realm",
+    ///         Enabled = true,
     ///     });
     /// 
-    ///     var createRole = new Keycloak.Role("createRole", new()
+    ///     // realm roles
+    ///     var createRole = new Keycloak.Role("create_role", new()
     ///     {
     ///         RealmId = realm.Id,
+    ///         Name = "create",
     ///     });
     /// 
-    ///     var readRole = new Keycloak.Role("readRole", new()
+    ///     var readRole = new Keycloak.Role("read_role", new()
     ///     {
     ///         RealmId = realm.Id,
+    ///         Name = "read",
     ///     });
     /// 
-    ///     var updateRole = new Keycloak.Role("updateRole", new()
+    ///     var updateRole = new Keycloak.Role("update_role", new()
     ///     {
     ///         RealmId = realm.Id,
+    ///         Name = "update",
     ///     });
     /// 
-    ///     var deleteRole = new Keycloak.Role("deleteRole", new()
+    ///     var deleteRole = new Keycloak.Role("delete_role", new()
     ///     {
     ///         RealmId = realm.Id,
+    ///         Name = "delete",
     ///     });
     /// 
+    ///     // client role
     ///     var client = new Keycloak.OpenId.Client("client", new()
     ///     {
-    ///         AccessType = "BEARER-ONLY",
+    ///         RealmId = realm.Id,
     ///         ClientId = "client",
+    ///         Name = "client",
     ///         Enabled = true,
-    ///         RealmId = realm.Id,
+    ///         AccessType = "BEARER-ONLY",
     ///     });
     /// 
-    ///     var clientRole = new Keycloak.Role("clientRole", new()
+    ///     var clientRole = new Keycloak.Role("client_role", new()
     ///     {
-    ///         ClientId = keycloak_client.Client.Id,
+    ///         RealmId = realm.Id,
+    ///         ClientId = clientKeycloakClient.Id,
+    ///         Name = "my-client-role",
     ///         Description = "My Client Role",
-    ///         RealmId = realm.Id,
     ///     });
     /// 
-    ///     var adminRole = new Keycloak.Role("adminRole", new()
+    ///     var adminRole = new Keycloak.Role("admin_role", new()
     ///     {
+    ///         RealmId = realm.Id,
+    ///         Name = "admin",
     ///         CompositeRoles = new[]
     ///         {
     ///             "{keycloak_role.create_role.id}",
@@ -142,7 +155,6 @@ namespace Pulumi.Keycloak
     ///             "{keycloak_role.delete_role.id}",
     ///             "{keycloak_role.client_role.id}",
     ///         },
-    ///         RealmId = realm.Id,
     ///     });
     /// 
     /// });

@@ -44,7 +44,7 @@ namespace Pulumi.Keycloak
     /// 
     ///     var userprofile = new Keycloak.RealmUserProfile("userprofile", new()
     ///     {
-    ///         RealmId = keycloak_realm.My_realm.Id,
+    ///         RealmId = myRealm.Id,
     ///         Attributes = new[]
     ///         {
     ///             new Keycloak.Inputs.RealmUserProfileAttributeArgs

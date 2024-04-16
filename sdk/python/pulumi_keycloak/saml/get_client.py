@@ -402,6 +402,7 @@ def get_client(client_id: Optional[str] = None,
 
     realm_management = keycloak.saml.get_client(realm_id="my-realm",
         client_id="realm-management")
+    # use the data source
     admin = keycloak.get_role(realm_id="my-realm",
         client_id=realm_management.id,
         name="realm-admin")
@@ -476,6 +477,7 @@ def get_client_output(client_id: Optional[pulumi.Input[str]] = None,
 
     realm_management = keycloak.saml.get_client(realm_id="my-realm",
         client_id="realm-management")
+    # use the data source
     admin = keycloak.get_role(realm_id="my-realm",
         client_id=realm_management.id,
         name="realm-admin")

@@ -371,7 +371,8 @@ class RealmKeystoreJavaGenerated(pulumi.CustomResource):
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm", realm="my-realm")
-        java_keystore = keycloak.RealmKeystoreJavaGenerated("javaKeystore",
+        java_keystore = keycloak.RealmKeystoreJavaGenerated("java_keystore",
+            name="my-java-keystore",
             realm_id=realm.id,
             enabled=True,
             active=True,
@@ -428,7 +429,8 @@ class RealmKeystoreJavaGenerated(pulumi.CustomResource):
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm", realm="my-realm")
-        java_keystore = keycloak.RealmKeystoreJavaGenerated("javaKeystore",
+        java_keystore = keycloak.RealmKeystoreJavaGenerated("java_keystore",
+            name="my-java-keystore",
             realm_id=realm.id,
             enabled=True,
             active=True,

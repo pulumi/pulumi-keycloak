@@ -22,12 +22,16 @@ import * as utilities from "../utilities";
  *     realm: "my-realm",
  *     enabled: true,
  * });
- * const realmRole = new keycloak.Role("realmRole", {realmId: realm.id});
+ * const realmRole = new keycloak.Role("realm_role", {
+ *     realmId: realm.id,
+ *     name: "my-realm-role",
+ * });
  * const client = new keycloak.openid.Client("client", {
  *     realmId: realm.id,
+ *     name: "client",
  *     serviceAccountsEnabled: true,
  * });
- * const clientServiceAccountRole = new keycloak.openid.ClientServiceAccountRealmRole("clientServiceAccountRole", {
+ * const clientServiceAccountRole = new keycloak.openid.ClientServiceAccountRealmRole("client_service_account_role", {
  *     realmId: realm.id,
  *     serviceAccountUserId: client.serviceAccountUserId,
  *     role: realmRole.name,

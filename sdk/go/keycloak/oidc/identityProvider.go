@@ -39,7 +39,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = oidc.NewIdentityProvider(ctx, "realmIdentityProvider", &oidc.IdentityProviderArgs{
+//			_, err = oidc.NewIdentityProvider(ctx, "realm_identity_provider", &oidc.IdentityProviderArgs{
 //				Realm:            realm.ID(),
 //				Alias:            pulumi.String("my-idp"),
 //				AuthorizationUrl: pulumi.String("https://authorizationurl.com"),

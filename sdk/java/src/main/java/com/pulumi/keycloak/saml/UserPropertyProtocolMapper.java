@@ -54,21 +54,23 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .enabled(true)
  *             .realm(&#34;my-realm&#34;)
+ *             .enabled(true)
  *             .build());
  * 
  *         var samlClient = new Client(&#34;samlClient&#34;, ClientArgs.builder()        
+ *             .realmId(test.id())
  *             .clientId(&#34;test-saml-client&#34;)
- *             .realmId(keycloak_realm.test().id())
+ *             .name(&#34;test-saml-client&#34;)
  *             .build());
  * 
  *         var samlUserPropertyMapper = new UserPropertyProtocolMapper(&#34;samlUserPropertyMapper&#34;, UserPropertyProtocolMapperArgs.builder()        
+ *             .realmId(test.id())
  *             .clientId(samlClient.id())
- *             .realmId(keycloak_realm.test().id())
+ *             .name(&#34;email-user-property-mapper&#34;)
+ *             .userProperty(&#34;email&#34;)
  *             .samlAttributeName(&#34;email&#34;)
  *             .samlAttributeNameFormat(&#34;Unspecified&#34;)
- *             .userProperty(&#34;email&#34;)
  *             .build());
  * 
  *     }

@@ -114,22 +114,24 @@ class ClientOptionalScopes(pulumi.CustomResource):
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="my-realm")
+            realm="my-realm",
+            enabled=True)
         client = keycloak.openid.Client("client",
-            access_type="CONFIDENTIAL",
+            realm_id=realm.id,
             client_id="test-client",
-            realm_id=realm.id)
-        client_scope = keycloak.openid.ClientScope("clientScope", realm_id=realm.id)
-        client_optional_scopes = keycloak.openid.ClientOptionalScopes("clientOptionalScopes",
+            access_type="CONFIDENTIAL")
+        client_scope = keycloak.openid.ClientScope("client_scope",
+            realm_id=realm.id,
+            name="test-client-scope")
+        client_optional_scopes = keycloak.openid.ClientOptionalScopes("client_optional_scopes",
+            realm_id=realm.id,
             client_id=client.id,
             optional_scopes=[
                 "address",
                 "phone",
                 "offline_access",
                 client_scope.name,
-            ],
-            realm_id=realm.id)
+            ])
         ```
         <!--End PulumiCodeChooser -->
 
@@ -164,22 +166,24 @@ class ClientOptionalScopes(pulumi.CustomResource):
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="my-realm")
+            realm="my-realm",
+            enabled=True)
         client = keycloak.openid.Client("client",
-            access_type="CONFIDENTIAL",
+            realm_id=realm.id,
             client_id="test-client",
-            realm_id=realm.id)
-        client_scope = keycloak.openid.ClientScope("clientScope", realm_id=realm.id)
-        client_optional_scopes = keycloak.openid.ClientOptionalScopes("clientOptionalScopes",
+            access_type="CONFIDENTIAL")
+        client_scope = keycloak.openid.ClientScope("client_scope",
+            realm_id=realm.id,
+            name="test-client-scope")
+        client_optional_scopes = keycloak.openid.ClientOptionalScopes("client_optional_scopes",
+            realm_id=realm.id,
             client_id=client.id,
             optional_scopes=[
                 "address",
                 "phone",
                 "offline_access",
                 client_scope.name,
-            ],
-            realm_id=realm.id)
+            ])
         ```
         <!--End PulumiCodeChooser -->
 

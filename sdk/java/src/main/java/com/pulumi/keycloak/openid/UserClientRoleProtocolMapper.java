@@ -61,6 +61,7 @@ import javax.annotation.Nullable;
  *         var openidClient = new Client(&#34;openidClient&#34;, ClientArgs.builder()        
  *             .realmId(realm.id())
  *             .clientId(&#34;client&#34;)
+ *             .name(&#34;client&#34;)
  *             .enabled(true)
  *             .accessType(&#34;CONFIDENTIAL&#34;)
  *             .validRedirectUris(&#34;http://localhost:8080/openid-callback&#34;)
@@ -69,6 +70,7 @@ import javax.annotation.Nullable;
  *         var userClientRoleMapper = new UserClientRoleProtocolMapper(&#34;userClientRoleMapper&#34;, UserClientRoleProtocolMapperArgs.builder()        
  *             .realmId(realm.id())
  *             .clientId(openidClient.id())
+ *             .name(&#34;user-client-role-mapper&#34;)
  *             .claimName(&#34;foo&#34;)
  *             .build());
  * 
@@ -112,11 +114,13 @@ import javax.annotation.Nullable;
  * 
  *         var clientScope = new ClientScope(&#34;clientScope&#34;, ClientScopeArgs.builder()        
  *             .realmId(realm.id())
+ *             .name(&#34;client-scope&#34;)
  *             .build());
  * 
  *         var userClientRoleMapper = new UserClientRoleProtocolMapper(&#34;userClientRoleMapper&#34;, UserClientRoleProtocolMapperArgs.builder()        
  *             .realmId(realm.id())
  *             .clientScopeId(clientScope.id())
+ *             .name(&#34;user-client-role-mapper&#34;)
  *             .claimName(&#34;foo&#34;)
  *             .build());
  * 

@@ -20,10 +20,11 @@ import * as utilities from "./utilities";
  *     realm: "my-realm",
  *     enabled: true,
  * });
- * const requiredAction = new keycloak.RequiredAction("requiredAction", {
+ * const requiredAction = new keycloak.RequiredAction("required_action", {
  *     realmId: realm.realm,
  *     alias: "webauthn-register",
  *     enabled: true,
+ *     name: "Webauthn Register",
  * });
  * ```
  * <!--End PulumiCodeChooser -->

@@ -19,9 +19,10 @@ import * as utilities from "../utilities";
  *     name: "offline_access",
  * });
  * // use the data source
- * const audienceMapper = new keycloak.openid.AudienceProtocolMapper("audienceMapper", {
+ * const audienceMapper = new keycloak.openid.AudienceProtocolMapper("audience_mapper", {
  *     realmId: offlineAccess.then(offlineAccess => offlineAccess.realmId),
  *     clientScopeId: offlineAccess.then(offlineAccess => offlineAccess.id),
+ *     name: "audience-mapper",
  *     includedCustomAudience: "foo",
  * });
  * ```
@@ -80,9 +81,10 @@ export interface GetClientScopeResult {
  *     name: "offline_access",
  * });
  * // use the data source
- * const audienceMapper = new keycloak.openid.AudienceProtocolMapper("audienceMapper", {
+ * const audienceMapper = new keycloak.openid.AudienceProtocolMapper("audience_mapper", {
  *     realmId: offlineAccess.then(offlineAccess => offlineAccess.realmId),
  *     clientScopeId: offlineAccess.then(offlineAccess => offlineAccess.id),
+ *     name: "audience-mapper",
  *     includedCustomAudience: "foo",
  * });
  * ```

@@ -46,9 +46,10 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			openidClient, err := openid.NewClient(ctx, "openidClient", &openid.ClientArgs{
+//			openidClient, err := openid.NewClient(ctx, "openid_client", &openid.ClientArgs{
 //				RealmId:    realm.ID(),
 //				ClientId:   pulumi.String("client"),
+//				Name:       pulumi.String("client"),
 //				Enabled:    pulumi.Bool(true),
 //				AccessType: pulumi.String("CONFIDENTIAL"),
 //				ValidRedirectUris: pulumi.StringArray{
@@ -58,9 +59,10 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = openid.NewScriptProtocolMapper(ctx, "scriptMapper", &openid.ScriptProtocolMapperArgs{
+//			_, err = openid.NewScriptProtocolMapper(ctx, "script_mapper", &openid.ScriptProtocolMapperArgs{
 //				RealmId:   realm.ID(),
 //				ClientId:  openidClient.ID(),
+//				Name:      pulumi.String("script-mapper"),
 //				ClaimName: pulumi.String("foo"),
 //				Script:    pulumi.String("exports = 'foo';"),
 //			})
@@ -97,15 +99,17 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			clientScope, err := openid.NewClientScope(ctx, "clientScope", &openid.ClientScopeArgs{
+//			clientScope, err := openid.NewClientScope(ctx, "client_scope", &openid.ClientScopeArgs{
 //				RealmId: realm.ID(),
+//				Name:    pulumi.String("client-scope"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = openid.NewScriptProtocolMapper(ctx, "scriptMapper", &openid.ScriptProtocolMapperArgs{
+//			_, err = openid.NewScriptProtocolMapper(ctx, "script_mapper", &openid.ScriptProtocolMapperArgs{
 //				RealmId:       realm.ID(),
 //				ClientScopeId: clientScope.ID(),
+//				Name:          pulumi.String("script-mapper"),
 //				ClaimName:     pulumi.String("foo"),
 //				Script:        pulumi.String("exports = 'foo';"),
 //			})

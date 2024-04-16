@@ -22,6 +22,7 @@ import * as utilities from "../utilities";
  *     realmId: "my-realm",
  *     clientId: "realm-management",
  * });
+ * // use the data source
  * const admin = realmManagement.then(realmManagement => keycloak.getRole({
  *     realmId: "my-realm",
  *     clientId: realmManagement.id,
@@ -140,6 +141,7 @@ export interface GetClientResult {
  *     realmId: "my-realm",
  *     clientId: "realm-management",
  * });
+ * // use the data source
  * const admin = realmManagement.then(realmManagement => keycloak.getRole({
  *     realmId: "my-realm",
  *     clientId: realmManagement.id,

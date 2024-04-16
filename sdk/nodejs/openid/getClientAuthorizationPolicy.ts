@@ -22,8 +22,9 @@ import * as utilities from "../utilities";
  *     realm: "my-realm",
  *     enabled: true,
  * });
- * const clientWithAuthz = new keycloak.openid.Client("clientWithAuthz", {
+ * const clientWithAuthz = new keycloak.openid.Client("client_with_authz", {
  *     clientId: "client-with-authz",
+ *     name: "client-with-authz",
  *     realmId: realm.id,
  *     accessType: "CONFIDENTIAL",
  *     serviceAccountsEnabled: true,
@@ -38,6 +39,7 @@ import * as utilities from "../utilities";
  * });
  * const resource = new keycloak.openid.ClientAuthorizationResource("resource", {
  *     resourceServerId: clientWithAuthz.resourceServerId,
+ *     name: "authorization-resource",
  *     realmId: realm.id,
  *     uris: ["/endpoint/*"],
  *     attributes: {
@@ -47,6 +49,7 @@ import * as utilities from "../utilities";
  * const permission = new keycloak.openid.ClientAuthorizationPermission("permission", {
  *     resourceServerId: clientWithAuthz.resourceServerId,
  *     realmId: realm.id,
+ *     name: "authorization-permission",
  *     policies: [defaultPermission.apply(defaultPermission => defaultPermission.id)],
  *     resources: [resource.id],
  * });
@@ -139,8 +142,9 @@ export interface GetClientAuthorizationPolicyResult {
  *     realm: "my-realm",
  *     enabled: true,
  * });
- * const clientWithAuthz = new keycloak.openid.Client("clientWithAuthz", {
+ * const clientWithAuthz = new keycloak.openid.Client("client_with_authz", {
  *     clientId: "client-with-authz",
+ *     name: "client-with-authz",
  *     realmId: realm.id,
  *     accessType: "CONFIDENTIAL",
  *     serviceAccountsEnabled: true,
@@ -155,6 +159,7 @@ export interface GetClientAuthorizationPolicyResult {
  * });
  * const resource = new keycloak.openid.ClientAuthorizationResource("resource", {
  *     resourceServerId: clientWithAuthz.resourceServerId,
+ *     name: "authorization-resource",
  *     realmId: realm.id,
  *     uris: ["/endpoint/*"],
  *     attributes: {
@@ -164,6 +169,7 @@ export interface GetClientAuthorizationPolicyResult {
  * const permission = new keycloak.openid.ClientAuthorizationPermission("permission", {
  *     resourceServerId: clientWithAuthz.resourceServerId,
  *     realmId: realm.id,
+ *     name: "authorization-permission",
  *     policies: [defaultPermission.apply(defaultPermission => defaultPermission.id)],
  *     resources: [resource.id],
  * });

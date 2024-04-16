@@ -28,14 +28,14 @@ import * as utilities from "../utilities";
  *     alias: "my-flow-alias",
  * });
  * // first execution
- * const executionOne = new keycloak.authentication.Execution("executionOne", {
+ * const executionOne = new keycloak.authentication.Execution("execution_one", {
  *     realmId: realm.id,
  *     parentFlowAlias: flow.alias,
  *     authenticator: "auth-cookie",
  *     requirement: "ALTERNATIVE",
  * });
  * // second execution
- * const executionTwo = new keycloak.authentication.Execution("executionTwo", {
+ * const executionTwo = new keycloak.authentication.Execution("execution_two", {
  *     realmId: realm.id,
  *     parentFlowAlias: flow.alias,
  *     authenticator: "identity-provider-redirector",

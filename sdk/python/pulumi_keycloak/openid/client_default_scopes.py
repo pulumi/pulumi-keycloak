@@ -114,14 +114,17 @@ class ClientDefaultScopes(pulumi.CustomResource):
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="my-realm")
+            realm="my-realm",
+            enabled=True)
         client = keycloak.openid.Client("client",
-            access_type="CONFIDENTIAL",
+            realm_id=realm.id,
             client_id="test-client",
-            realm_id=realm.id)
-        client_scope = keycloak.openid.ClientScope("clientScope", realm_id=realm.id)
-        client_default_scopes = keycloak.openid.ClientDefaultScopes("clientDefaultScopes",
+            access_type="CONFIDENTIAL")
+        client_scope = keycloak.openid.ClientScope("client_scope",
+            realm_id=realm.id,
+            name="test-client-scope")
+        client_default_scopes = keycloak.openid.ClientDefaultScopes("client_default_scopes",
+            realm_id=realm.id,
             client_id=client.id,
             default_scopes=[
                 "profile",
@@ -129,8 +132,7 @@ class ClientDefaultScopes(pulumi.CustomResource):
                 "roles",
                 "web-origins",
                 client_scope.name,
-            ],
-            realm_id=realm.id)
+            ])
         ```
         <!--End PulumiCodeChooser -->
 
@@ -165,14 +167,17 @@ class ClientDefaultScopes(pulumi.CustomResource):
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="my-realm")
+            realm="my-realm",
+            enabled=True)
         client = keycloak.openid.Client("client",
-            access_type="CONFIDENTIAL",
+            realm_id=realm.id,
             client_id="test-client",
-            realm_id=realm.id)
-        client_scope = keycloak.openid.ClientScope("clientScope", realm_id=realm.id)
-        client_default_scopes = keycloak.openid.ClientDefaultScopes("clientDefaultScopes",
+            access_type="CONFIDENTIAL")
+        client_scope = keycloak.openid.ClientScope("client_scope",
+            realm_id=realm.id,
+            name="test-client-scope")
+        client_default_scopes = keycloak.openid.ClientDefaultScopes("client_default_scopes",
+            realm_id=realm.id,
             client_id=client.id,
             default_scopes=[
                 "profile",
@@ -180,8 +185,7 @@ class ClientDefaultScopes(pulumi.CustomResource):
                 "roles",
                 "web-origins",
                 client_scope.name,
-            ],
-            realm_id=realm.id)
+            ])
         ```
         <!--End PulumiCodeChooser -->
 

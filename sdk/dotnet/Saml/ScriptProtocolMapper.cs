@@ -34,16 +34,18 @@ namespace Pulumi.Keycloak.Saml
     ///         Enabled = true,
     ///     });
     /// 
-    ///     var samlClient = new Keycloak.Saml.Client("samlClient", new()
+    ///     var samlClient = new Keycloak.Saml.Client("saml_client", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         ClientId = "saml-client",
+    ///         Name = "saml-client",
     ///     });
     /// 
-    ///     var samlScriptMapper = new Keycloak.Saml.ScriptProtocolMapper("samlScriptMapper", new()
+    ///     var samlScriptMapper = new Keycloak.Saml.ScriptProtocolMapper("saml_script_mapper", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         ClientId = samlClient.Id,
+    ///         Name = "script-mapper",
     ///         Script = "exports = 'foo';",
     ///         SamlAttributeName = "displayName",
     ///         SamlAttributeNameFormat = "Unspecified",

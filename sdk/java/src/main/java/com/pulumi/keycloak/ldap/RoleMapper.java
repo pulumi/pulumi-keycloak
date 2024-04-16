@@ -55,6 +55,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var ldapUserFederation = new UserFederation(&#34;ldapUserFederation&#34;, UserFederationArgs.builder()        
+ *             .name(&#34;openldap&#34;)
  *             .realmId(realm.id())
  *             .usernameLdapAttribute(&#34;cn&#34;)
  *             .rdnLdapAttribute(&#34;cn&#34;)
@@ -71,6 +72,7 @@ import javax.annotation.Nullable;
  *         var ldapRoleMapper = new RoleMapper(&#34;ldapRoleMapper&#34;, RoleMapperArgs.builder()        
  *             .realmId(realm.id())
  *             .ldapUserFederationId(ldapUserFederation.id())
+ *             .name(&#34;role-mapper&#34;)
  *             .ldapRolesDn(&#34;dc=example,dc=org&#34;)
  *             .roleNameLdapAttribute(&#34;cn&#34;)
  *             .roleObjectClasses(&#34;groupOfNames&#34;)

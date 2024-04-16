@@ -39,8 +39,9 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			openidClient, err := openid.NewClient(ctx, "openidClient", &openid.ClientArgs{
+//			openidClient, err := openid.NewClient(ctx, "openid_client", &openid.ClientArgs{
 //				ClientId:               pulumi.String("openid_client"),
+//				Name:                   pulumi.String("openid_client"),
 //				RealmId:                realm.ID(),
 //				AccessType:             pulumi.String("CONFIDENTIAL"),
 //				ServiceAccountsEnabled: pulumi.Bool(true),
@@ -48,7 +49,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = openid.NewClientPermissions(ctx, "myPermission", &openid.ClientPermissionsArgs{
+//			_, err = openid.NewClientPermissions(ctx, "my_permission", &openid.ClientPermissionsArgs{
 //				RealmId:  realm.ID(),
 //				ClientId: openidClient.ID(),
 //			})
@@ -62,9 +63,10 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = openid.NewClientPolicy(ctx, "tokenExchange", &openid.ClientPolicyArgs{
+//			_, err = openid.NewClientPolicy(ctx, "token_exchange", &openid.ClientPolicyArgs{
 //				ResourceServerId: pulumi.String(realmManagement.Id),
 //				RealmId:          realm.ID(),
+//				Name:             pulumi.String("my-policy"),
 //				Logic:            pulumi.String("POSITIVE"),
 //				DecisionStrategy: pulumi.String("UNANIMOUS"),
 //				Clients: pulumi.StringArray{

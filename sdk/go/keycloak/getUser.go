@@ -34,6 +34,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// use the keycloak_user data source to grab the admin user's ID
 //			defaultAdminUser, err := keycloak.LookupUser(ctx, &keycloak.LookupUserArgs{
 //				RealmId:  masterRealm.Id,
 //				Username: "keycloak",

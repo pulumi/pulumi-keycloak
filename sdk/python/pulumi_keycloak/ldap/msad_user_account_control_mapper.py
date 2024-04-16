@@ -174,25 +174,27 @@ class MsadUserAccountControlMapper(pulumi.CustomResource):
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="test")
-        ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
-            bind_credential="admin",
-            bind_dn="cn=admin,dc=example,dc=org",
-            connection_url="ldap://my-ad-server",
-            rdn_ldap_attribute="cn",
+            realm="test",
+            enabled=True)
+        ldap_user_federation = keycloak.ldap.UserFederation("ldap_user_federation",
+            name="ad",
             realm_id=realm.id,
+            username_ldap_attribute="cn",
+            rdn_ldap_attribute="cn",
+            uuid_ldap_attribute="objectGUID",
             user_object_classes=[
                 "person",
                 "organizationalPerson",
                 "user",
             ],
-            username_ldap_attribute="cn",
+            connection_url="ldap://my-ad-server",
             users_dn="dc=example,dc=org",
-            uuid_ldap_attribute="objectGUID")
-        msad_user_account_control_mapper = keycloak.ldap.MsadUserAccountControlMapper("msadUserAccountControlMapper",
+            bind_dn="cn=admin,dc=example,dc=org",
+            bind_credential="admin")
+        msad_user_account_control_mapper = keycloak.ldap.MsadUserAccountControlMapper("msad_user_account_control_mapper",
+            realm_id=realm.id,
             ldap_user_federation_id=ldap_user_federation.id,
-            realm_id=realm.id)
+            name="msad-user-account-control-mapper")
         ```
         <!--End PulumiCodeChooser -->
 
@@ -242,25 +244,27 @@ class MsadUserAccountControlMapper(pulumi.CustomResource):
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="test")
-        ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
-            bind_credential="admin",
-            bind_dn="cn=admin,dc=example,dc=org",
-            connection_url="ldap://my-ad-server",
-            rdn_ldap_attribute="cn",
+            realm="test",
+            enabled=True)
+        ldap_user_federation = keycloak.ldap.UserFederation("ldap_user_federation",
+            name="ad",
             realm_id=realm.id,
+            username_ldap_attribute="cn",
+            rdn_ldap_attribute="cn",
+            uuid_ldap_attribute="objectGUID",
             user_object_classes=[
                 "person",
                 "organizationalPerson",
                 "user",
             ],
-            username_ldap_attribute="cn",
+            connection_url="ldap://my-ad-server",
             users_dn="dc=example,dc=org",
-            uuid_ldap_attribute="objectGUID")
-        msad_user_account_control_mapper = keycloak.ldap.MsadUserAccountControlMapper("msadUserAccountControlMapper",
+            bind_dn="cn=admin,dc=example,dc=org",
+            bind_credential="admin")
+        msad_user_account_control_mapper = keycloak.ldap.MsadUserAccountControlMapper("msad_user_account_control_mapper",
+            realm_id=realm.id,
             ldap_user_federation_id=ldap_user_federation.id,
-            realm_id=realm.id)
+            name="msad-user-account-control-mapper")
         ```
         <!--End PulumiCodeChooser -->
 

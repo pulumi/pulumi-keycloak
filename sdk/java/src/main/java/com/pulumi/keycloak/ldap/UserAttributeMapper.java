@@ -53,29 +53,31 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .enabled(true)
  *             .realm(&#34;test&#34;)
+ *             .enabled(true)
  *             .build());
  * 
  *         var ldapUserFederation = new UserFederation(&#34;ldapUserFederation&#34;, UserFederationArgs.builder()        
- *             .bindCredential(&#34;admin&#34;)
- *             .bindDn(&#34;cn=admin,dc=example,dc=org&#34;)
- *             .connectionUrl(&#34;ldap://openldap&#34;)
- *             .rdnLdapAttribute(&#34;cn&#34;)
+ *             .name(&#34;openldap&#34;)
  *             .realmId(realm.id())
+ *             .usernameLdapAttribute(&#34;cn&#34;)
+ *             .rdnLdapAttribute(&#34;cn&#34;)
+ *             .uuidLdapAttribute(&#34;entryDN&#34;)
  *             .userObjectClasses(            
  *                 &#34;simpleSecurityObject&#34;,
  *                 &#34;organizationalRole&#34;)
- *             .usernameLdapAttribute(&#34;cn&#34;)
+ *             .connectionUrl(&#34;ldap://openldap&#34;)
  *             .usersDn(&#34;dc=example,dc=org&#34;)
- *             .uuidLdapAttribute(&#34;entryDN&#34;)
+ *             .bindDn(&#34;cn=admin,dc=example,dc=org&#34;)
+ *             .bindCredential(&#34;admin&#34;)
  *             .build());
  * 
  *         var ldapUserAttributeMapper = new UserAttributeMapper(&#34;ldapUserAttributeMapper&#34;, UserAttributeMapperArgs.builder()        
- *             .ldapAttribute(&#34;bar&#34;)
- *             .ldapUserFederationId(ldapUserFederation.id())
  *             .realmId(realm.id())
+ *             .ldapUserFederationId(ldapUserFederation.id())
+ *             .name(&#34;user-attribute-mapper&#34;)
  *             .userModelAttribute(&#34;foo&#34;)
+ *             .ldapAttribute(&#34;bar&#34;)
  *             .build());
  * 
  *     }

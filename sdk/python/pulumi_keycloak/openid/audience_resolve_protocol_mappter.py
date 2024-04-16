@@ -188,15 +188,17 @@ class AudienceResolveProtocolMappter(pulumi.CustomResource):
         realm = keycloak.Realm("realm",
             realm="my-realm",
             enabled=True)
-        openid_client = keycloak.openid.Client("openidClient",
+        openid_client = keycloak.openid.Client("openid_client",
             realm_id=realm.id,
             client_id="client",
+            name="client",
             enabled=True,
             access_type="CONFIDENTIAL",
             valid_redirect_uris=["http://localhost:8080/openid-callback"])
-        audience_mapper = keycloak.openid.AudienceResolveProtocolMapper("audienceMapper",
+        audience_mapper = keycloak.openid.AudienceResolveProtocolMapper("audience_mapper",
             realm_id=realm.id,
-            client_id=openid_client.id)
+            client_id=openid_client.id,
+            name="my-audience-resolve-mapper")
         ```
         <!--End PulumiCodeChooser -->
 
@@ -210,8 +212,10 @@ class AudienceResolveProtocolMappter(pulumi.CustomResource):
         realm = keycloak.Realm("realm",
             realm="my-realm",
             enabled=True)
-        client_scope = keycloak.openid.ClientScope("clientScope", realm_id=realm.id)
-        audience_mapper = keycloak.openid.AudienceProtocolMapper("audienceMapper",
+        client_scope = keycloak.openid.ClientScope("client_scope",
+            realm_id=realm.id,
+            name="test-client-scope")
+        audience_mapper = keycloak.openid.AudienceProtocolMapper("audience_mapper",
             realm_id=realm.id,
             client_scope_id=client_scope.id)
         ```
@@ -269,15 +273,17 @@ class AudienceResolveProtocolMappter(pulumi.CustomResource):
         realm = keycloak.Realm("realm",
             realm="my-realm",
             enabled=True)
-        openid_client = keycloak.openid.Client("openidClient",
+        openid_client = keycloak.openid.Client("openid_client",
             realm_id=realm.id,
             client_id="client",
+            name="client",
             enabled=True,
             access_type="CONFIDENTIAL",
             valid_redirect_uris=["http://localhost:8080/openid-callback"])
-        audience_mapper = keycloak.openid.AudienceResolveProtocolMapper("audienceMapper",
+        audience_mapper = keycloak.openid.AudienceResolveProtocolMapper("audience_mapper",
             realm_id=realm.id,
-            client_id=openid_client.id)
+            client_id=openid_client.id,
+            name="my-audience-resolve-mapper")
         ```
         <!--End PulumiCodeChooser -->
 
@@ -291,8 +297,10 @@ class AudienceResolveProtocolMappter(pulumi.CustomResource):
         realm = keycloak.Realm("realm",
             realm="my-realm",
             enabled=True)
-        client_scope = keycloak.openid.ClientScope("clientScope", realm_id=realm.id)
-        audience_mapper = keycloak.openid.AudienceProtocolMapper("audienceMapper",
+        client_scope = keycloak.openid.ClientScope("client_scope",
+            realm_id=realm.id,
+            name="test-client-scope")
+        audience_mapper = keycloak.openid.AudienceProtocolMapper("audience_mapper",
             realm_id=realm.id,
             client_scope_id=client_scope.id)
         ```

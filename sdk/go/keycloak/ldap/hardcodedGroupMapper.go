@@ -39,7 +39,8 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			ldapUserFederation, err := ldap.NewUserFederation(ctx, "ldapUserFederation", &ldap.UserFederationArgs{
+//			ldapUserFederation, err := ldap.NewUserFederation(ctx, "ldap_user_federation", &ldap.UserFederationArgs{
+//				Name:                  pulumi.String("openldap"),
 //				RealmId:               realm.ID(),
 //				UsernameLdapAttribute: pulumi.String("cn"),
 //				RdnLdapAttribute:      pulumi.String("cn"),
@@ -56,15 +57,17 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			realmGroup, err := keycloak.NewGroup(ctx, "realmGroup", &keycloak.GroupArgs{
+//			realmGroup, err := keycloak.NewGroup(ctx, "realm_group", &keycloak.GroupArgs{
 //				RealmId: realm.ID(),
+//				Name:    pulumi.String("my-group"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = ldap.NewHardcodedGroupMapper(ctx, "assignGroupToUsers", &ldap.HardcodedGroupMapperArgs{
+//			_, err = ldap.NewHardcodedGroupMapper(ctx, "assign_group_to_users", &ldap.HardcodedGroupMapperArgs{
 //				RealmId:              realm.ID(),
 //				LdapUserFederationId: ldapUserFederation.ID(),
+//				Name:                 pulumi.String("assign-group-to-users"),
 //				Group:                realmGroup.Name,
 //			})
 //			if err != nil {

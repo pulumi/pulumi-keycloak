@@ -21,7 +21,7 @@ import * as utilities from "./utilities";
  *     realm: "my-realm",
  *     enabled: true,
  * });
- * const samlClientClientDescriptionConverter = keycloak.getClientDescriptionConverterOutput({
+ * const samlClient = keycloak.getClientDescriptionConverterOutput({
  *     realmId: realm.id,
  *     body: `	<md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" validUntil="2021-04-17T12:41:46Z" cacheDuration="PT604800S" entityID="FakeEntityId">
  *     <md:SPSSODescriptor AuthnRequestsSigned="false" WantAssertionsSigned="false" protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
@@ -52,9 +52,9 @@ import * as utilities from "./utilities";
  * </md:EntityDescriptor>
  * `,
  * });
- * const samlClientClient = new keycloak.saml.Client("samlClientClient", {
+ * const samlClientClient = new keycloak.saml.Client("saml_client", {
  *     realmId: realm.id,
- *     clientId: samlClientClientDescriptionConverter.apply(samlClientClientDescriptionConverter => samlClientClientDescriptionConverter.clientId),
+ *     clientId: samlClient.apply(samlClient => samlClient.clientId),
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -143,7 +143,7 @@ export interface GetClientDescriptionConverterResult {
  *     realm: "my-realm",
  *     enabled: true,
  * });
- * const samlClientClientDescriptionConverter = keycloak.getClientDescriptionConverterOutput({
+ * const samlClient = keycloak.getClientDescriptionConverterOutput({
  *     realmId: realm.id,
  *     body: `	<md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" validUntil="2021-04-17T12:41:46Z" cacheDuration="PT604800S" entityID="FakeEntityId">
  *     <md:SPSSODescriptor AuthnRequestsSigned="false" WantAssertionsSigned="false" protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
@@ -174,9 +174,9 @@ export interface GetClientDescriptionConverterResult {
  * </md:EntityDescriptor>
  * `,
  * });
- * const samlClientClient = new keycloak.saml.Client("samlClientClient", {
+ * const samlClientClient = new keycloak.saml.Client("saml_client", {
  *     realmId: realm.id,
- *     clientId: samlClientClientDescriptionConverter.apply(samlClientClientDescriptionConverter => samlClientClientDescriptionConverter.clientId),
+ *     clientId: samlClient.apply(samlClient => samlClient.clientId),
  * });
  * ```
  * <!--End PulumiCodeChooser -->

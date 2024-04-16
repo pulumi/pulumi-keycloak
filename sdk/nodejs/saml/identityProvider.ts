@@ -18,18 +18,18 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
  *
- * const realmIdentityProvider = new keycloak.saml.IdentityProvider("realmIdentityProvider", {
- *     alias: "my-idp",
- *     backchannelSupported: true,
- *     forceAuthn: true,
- *     postBindingAuthnRequest: true,
- *     postBindingLogout: true,
- *     postBindingResponse: true,
+ * const realmIdentityProvider = new keycloak.saml.IdentityProvider("realm_identity_provider", {
  *     realm: "my-realm",
- *     singleLogoutServiceUrl: "https://domain.com/adfs/ls/?wa=wsignout1.0",
+ *     alias: "my-idp",
  *     singleSignOnServiceUrl: "https://domain.com/adfs/ls/",
+ *     singleLogoutServiceUrl: "https://domain.com/adfs/ls/?wa=wsignout1.0",
+ *     backchannelSupported: true,
+ *     postBindingResponse: true,
+ *     postBindingLogout: true,
+ *     postBindingAuthnRequest: true,
  *     storeToken: false,
  *     trustEmail: true,
+ *     forceAuthn: true,
  * });
  * ```
  * <!--End PulumiCodeChooser -->

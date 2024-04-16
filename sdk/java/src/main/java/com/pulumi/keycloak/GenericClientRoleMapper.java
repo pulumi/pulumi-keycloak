@@ -63,12 +63,14 @@ import javax.annotation.Nullable;
  *         var client = new Client(&#34;client&#34;, ClientArgs.builder()        
  *             .realmId(realm.id())
  *             .clientId(&#34;client&#34;)
+ *             .name(&#34;client&#34;)
  *             .enabled(true)
  *             .accessType(&#34;BEARER-ONLY&#34;)
  *             .build());
  * 
  *         var realmRole = new Role(&#34;realmRole&#34;, RoleArgs.builder()        
  *             .realmId(realm.id())
+ *             .name(&#34;my-realm-role&#34;)
  *             .description(&#34;My Realm Role&#34;)
  *             .build());
  * 
@@ -121,6 +123,7 @@ import javax.annotation.Nullable;
  *         var clientA = new Client(&#34;clientA&#34;, ClientArgs.builder()        
  *             .realmId(realm.id())
  *             .clientId(&#34;client-a&#34;)
+ *             .name(&#34;client-a&#34;)
  *             .enabled(true)
  *             .accessType(&#34;BEARER-ONLY&#34;)
  *             .fullScopeAllowed(false)
@@ -129,12 +132,14 @@ import javax.annotation.Nullable;
  *         var clientRoleA = new Role(&#34;clientRoleA&#34;, RoleArgs.builder()        
  *             .realmId(realm.id())
  *             .clientId(clientA.id())
+ *             .name(&#34;my-client-role&#34;)
  *             .description(&#34;My Client Role&#34;)
  *             .build());
  * 
  *         var clientB = new Client(&#34;clientB&#34;, ClientArgs.builder()        
  *             .realmId(realm.id())
  *             .clientId(&#34;client-b&#34;)
+ *             .name(&#34;client-b&#34;)
  *             .enabled(true)
  *             .accessType(&#34;BEARER-ONLY&#34;)
  *             .build());
@@ -142,6 +147,7 @@ import javax.annotation.Nullable;
  *         var clientRoleB = new Role(&#34;clientRoleB&#34;, RoleArgs.builder()        
  *             .realmId(realm.id())
  *             .clientId(clientB.id())
+ *             .name(&#34;my-client-role&#34;)
  *             .description(&#34;My Client Role&#34;)
  *             .build());
  * 
@@ -193,10 +199,12 @@ import javax.annotation.Nullable;
  * 
  *         var clientScope = new ClientScope(&#34;clientScope&#34;, ClientScopeArgs.builder()        
  *             .realmId(realm.id())
+ *             .name(&#34;my-client-scope&#34;)
  *             .build());
  * 
  *         var realmRole = new Role(&#34;realmRole&#34;, RoleArgs.builder()        
  *             .realmId(realm.id())
+ *             .name(&#34;my-realm-role&#34;)
  *             .description(&#34;My Realm Role&#34;)
  *             .build());
  * 
@@ -251,6 +259,7 @@ import javax.annotation.Nullable;
  *         var client = new Client(&#34;client&#34;, ClientArgs.builder()        
  *             .realmId(realm.id())
  *             .clientId(&#34;client&#34;)
+ *             .name(&#34;client&#34;)
  *             .enabled(true)
  *             .accessType(&#34;BEARER-ONLY&#34;)
  *             .build());
@@ -258,11 +267,13 @@ import javax.annotation.Nullable;
  *         var clientRole = new Role(&#34;clientRole&#34;, RoleArgs.builder()        
  *             .realmId(realm.id())
  *             .clientId(client.id())
+ *             .name(&#34;my-client-role&#34;)
  *             .description(&#34;My Client Role&#34;)
  *             .build());
  * 
  *         var clientScope = new ClientScope(&#34;clientScope&#34;, ClientScopeArgs.builder()        
  *             .realmId(realm.id())
+ *             .name(&#34;my-client-scope&#34;)
  *             .build());
  * 
  *         var clientBRoleMapper = new GenericClientRoleMapper(&#34;clientBRoleMapper&#34;, GenericClientRoleMapperArgs.builder()        

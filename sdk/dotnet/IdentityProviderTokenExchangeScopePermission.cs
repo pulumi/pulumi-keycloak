@@ -21,13 +21,13 @@ namespace Pulumi.Keycloak
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var tokenExchangeRealm = new Keycloak.Realm("tokenExchangeRealm", new()
+    ///     var tokenExchangeRealm = new Keycloak.Realm("token_exchange_realm", new()
     ///     {
     ///         RealmName = "token-exchange_destination_realm",
     ///         Enabled = true,
     ///     });
     /// 
-    ///     var tokenExchangeMyOidcIdp = new Keycloak.Oidc.IdentityProvider("tokenExchangeMyOidcIdp", new()
+    ///     var tokenExchangeMyOidcIdp = new Keycloak.Oidc.IdentityProvider("token_exchange_my_oidc_idp", new()
     ///     {
     ///         Realm = tokenExchangeRealm.Id,
     ///         Alias = "myIdp",
@@ -38,9 +38,10 @@ namespace Pulumi.Keycloak
     ///         DefaultScopes = "openid",
     ///     });
     /// 
-    ///     var token_exchangeWebappClient = new Keycloak.OpenId.Client("token-exchangeWebappClient", new()
+    ///     var token_exchangeWebappClient = new Keycloak.OpenId.Client("token-exchange_webapp_client", new()
     ///     {
     ///         RealmId = tokenExchangeRealm.Id,
+    ///         Name = "webapp_client",
     ///         ClientId = "webapp_client",
     ///         ClientSecret = "secret",
     ///         Description = "a webapp client on the destination realm",
@@ -53,7 +54,7 @@ namespace Pulumi.Keycloak
     ///     });
     /// 
     ///     //relevant part
-    ///     var oidcIdpPermission = new Keycloak.IdentityProviderTokenExchangeScopePermission("oidcIdpPermission", new()
+    ///     var oidcIdpPermission = new Keycloak.IdentityProviderTokenExchangeScopePermission("oidc_idp_permission", new()
     ///     {
     ///         RealmId = tokenExchangeRealm.Id,
     ///         ProviderAlias = tokenExchangeMyOidcIdp.Alias,

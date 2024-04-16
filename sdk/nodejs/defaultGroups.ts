@@ -20,13 +20,16 @@ import * as utilities from "./utilities";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {
- *     enabled: true,
  *     realm: "my-realm",
+ *     enabled: true,
  * });
- * const group = new keycloak.Group("group", {realmId: realm.id});
- * const _default = new keycloak.DefaultGroups("default", {
- *     groupIds: [group.id],
+ * const group = new keycloak.Group("group", {
  *     realmId: realm.id,
+ *     name: "my-group",
+ * });
+ * const _default = new keycloak.DefaultGroups("default", {
+ *     realmId: realm.id,
+ *     groupIds: [group.id],
  * });
  * ```
  * <!--End PulumiCodeChooser -->

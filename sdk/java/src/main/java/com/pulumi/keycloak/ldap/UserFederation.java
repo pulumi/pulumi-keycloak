@@ -56,25 +56,26 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .enabled(true)
  *             .realm(&#34;test&#34;)
+ *             .enabled(true)
  *             .build());
  * 
  *         var ldapUserFederation = new UserFederation(&#34;ldapUserFederation&#34;, UserFederationArgs.builder()        
- *             .bindCredential(&#34;admin&#34;)
- *             .bindDn(&#34;cn=admin,dc=example,dc=org&#34;)
- *             .connectionTimeout(&#34;5s&#34;)
- *             .connectionUrl(&#34;ldap://openldap&#34;)
- *             .enabled(true)
- *             .rdnLdapAttribute(&#34;cn&#34;)
- *             .readTimeout(&#34;10s&#34;)
+ *             .name(&#34;openldap&#34;)
  *             .realmId(realm.id())
+ *             .enabled(true)
+ *             .usernameLdapAttribute(&#34;cn&#34;)
+ *             .rdnLdapAttribute(&#34;cn&#34;)
+ *             .uuidLdapAttribute(&#34;entryDN&#34;)
  *             .userObjectClasses(            
  *                 &#34;simpleSecurityObject&#34;,
  *                 &#34;organizationalRole&#34;)
- *             .usernameLdapAttribute(&#34;cn&#34;)
+ *             .connectionUrl(&#34;ldap://openldap&#34;)
  *             .usersDn(&#34;dc=example,dc=org&#34;)
- *             .uuidLdapAttribute(&#34;entryDN&#34;)
+ *             .bindDn(&#34;cn=admin,dc=example,dc=org&#34;)
+ *             .bindCredential(&#34;admin&#34;)
+ *             .connectionTimeout(&#34;5s&#34;)
+ *             .readTimeout(&#34;10s&#34;)
  *             .build());
  * 
  *     }

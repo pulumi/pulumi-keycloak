@@ -43,7 +43,8 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			ldapUserFederation, err := ldap.NewUserFederation(ctx, "ldapUserFederation", &ldap.UserFederationArgs{
+//			ldapUserFederation, err := ldap.NewUserFederation(ctx, "ldap_user_federation", &ldap.UserFederationArgs{
+//				Name:                  pulumi.String("ad"),
 //				RealmId:               realm.ID(),
 //				UsernameLdapAttribute: pulumi.String("cn"),
 //				RdnLdapAttribute:      pulumi.String("cn"),
@@ -61,9 +62,10 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = ldap.NewMsadLdsUserAccountControlMapper(ctx, "msadLdsUserAccountControlMapper", &ldap.MsadLdsUserAccountControlMapperArgs{
+//			_, err = ldap.NewMsadLdsUserAccountControlMapper(ctx, "msad_lds_user_account_control_mapper", &ldap.MsadLdsUserAccountControlMapperArgs{
 //				RealmId:              realm.ID(),
 //				LdapUserFederationId: ldapUserFederation.ID(),
+//				Name:                 pulumi.String("msad-lds-user-account-control-mapper"),
 //			})
 //			if err != nil {
 //				return err

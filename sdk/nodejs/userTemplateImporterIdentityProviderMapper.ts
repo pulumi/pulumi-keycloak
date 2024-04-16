@@ -33,8 +33,9 @@ import * as utilities from "./utilities";
  *     clientSecret: "example_token",
  *     defaultScopes: "openid random profile",
  * });
- * const usernameImporter = new keycloak.UserTemplateImporterIdentityProviderMapper("usernameImporter", {
+ * const usernameImporter = new keycloak.UserTemplateImporterIdentityProviderMapper("username_importer", {
  *     realm: realm.id,
+ *     name: "username-template-importer",
  *     identityProviderAlias: oidc.alias,
  *     template: "${ALIAS}.${CLAIM.email}",
  *     extraConfig: {

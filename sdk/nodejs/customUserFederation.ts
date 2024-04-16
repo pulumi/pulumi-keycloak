@@ -21,13 +21,14 @@ import * as utilities from "./utilities";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {
- *     enabled: true,
  *     realm: "test",
- * });
- * const customUserFederation = new keycloak.CustomUserFederation("customUserFederation", {
  *     enabled: true,
- *     providerId: "custom",
+ * });
+ * const customUserFederation = new keycloak.CustomUserFederation("custom_user_federation", {
+ *     name: "custom",
  *     realmId: realm.id,
+ *     providerId: "custom",
+ *     enabled: true,
  * });
  * ```
  * <!--End PulumiCodeChooser -->

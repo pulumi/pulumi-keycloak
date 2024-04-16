@@ -64,35 +64,39 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .enabled(true)
  *             .realm(&#34;my-realm&#34;)
+ *             .enabled(true)
  *             .build());
  * 
  *         var realmRole = new Role(&#34;realmRole&#34;, RoleArgs.builder()        
- *             .description(&#34;My Realm Role&#34;)
  *             .realmId(realm.id())
+ *             .name(&#34;my-realm-role&#34;)
+ *             .description(&#34;My Realm Role&#34;)
  *             .build());
  * 
  *         var client = new Client(&#34;client&#34;, ClientArgs.builder()        
- *             .accessType(&#34;BEARER-ONLY&#34;)
- *             .clientId(&#34;client&#34;)
- *             .enabled(true)
  *             .realmId(realm.id())
+ *             .clientId(&#34;client&#34;)
+ *             .name(&#34;client&#34;)
+ *             .enabled(true)
+ *             .accessType(&#34;BEARER-ONLY&#34;)
  *             .build());
  * 
  *         var clientRole = new Role(&#34;clientRole&#34;, RoleArgs.builder()        
- *             .clientId(keycloak_client.client().id())
- *             .description(&#34;My Client Role&#34;)
  *             .realmId(realm.id())
+ *             .clientId(clientKeycloakClient.id())
+ *             .name(&#34;my-client-role&#34;)
+ *             .description(&#34;My Client Role&#34;)
  *             .build());
  * 
  *         var group = new Group(&#34;group&#34;, GroupArgs.builder()        
  *             .realmId(realm.id())
+ *             .name(&#34;my-group&#34;)
  *             .build());
  * 
  *         var groupRoles = new GroupRoles(&#34;groupRoles&#34;, GroupRolesArgs.builder()        
- *             .groupId(group.id())
  *             .realmId(realm.id())
+ *             .groupId(group.id())
  *             .roleIds(            
  *                 realmRole.id(),
  *                 clientRole.id())

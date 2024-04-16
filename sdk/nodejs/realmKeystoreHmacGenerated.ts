@@ -17,7 +17,8 @@ import * as utilities from "./utilities";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {realm: "my-realm"});
- * const keystoreHmacGenerated = new keycloak.RealmKeystoreHmacGenerated("keystoreHmacGenerated", {
+ * const keystoreHmacGenerated = new keycloak.RealmKeystoreHmacGenerated("keystore_hmac_generated", {
+ *     name: "my-hmac-generated-key",
  *     realmId: realm.id,
  *     enabled: true,
  *     active: true,

@@ -198,11 +198,12 @@ class Role(pulumi.CustomResource):
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="my-realm")
-        realm_role = keycloak.Role("realmRole",
-            description="My Realm Role",
-            realm_id=realm.id)
+            realm="my-realm",
+            enabled=True)
+        realm_role = keycloak.Role("realm_role",
+            realm_id=realm.id,
+            name="my-realm-role",
+            description="My Realm Role")
         ```
         <!--End PulumiCodeChooser -->
 
@@ -214,17 +215,19 @@ class Role(pulumi.CustomResource):
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="my-realm")
+            realm="my-realm",
+            enabled=True)
         client = keycloak.openid.Client("client",
-            access_type="BEARER-ONLY",
+            realm_id=realm.id,
             client_id="client",
+            name="client",
             enabled=True,
-            realm_id=realm.id)
-        client_role = keycloak.Role("clientRole",
-            client_id=keycloak_client["client"]["id"],
-            description="My Client Role",
-            realm_id=realm.id)
+            access_type="BEARER-ONLY")
+        client_role = keycloak.Role("client_role",
+            realm_id=realm.id,
+            client_id=client_keycloak_client["id"],
+            name="my-client-role",
+            description="My Client Role")
         ```
         <!--End PulumiCodeChooser -->
 
@@ -236,30 +239,43 @@ class Role(pulumi.CustomResource):
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="my-realm")
-        create_role = keycloak.Role("createRole", realm_id=realm.id)
-        read_role = keycloak.Role("readRole", realm_id=realm.id)
-        update_role = keycloak.Role("updateRole", realm_id=realm.id)
-        delete_role = keycloak.Role("deleteRole", realm_id=realm.id)
+            realm="my-realm",
+            enabled=True)
+        # realm roles
+        create_role = keycloak.Role("create_role",
+            realm_id=realm.id,
+            name="create")
+        read_role = keycloak.Role("read_role",
+            realm_id=realm.id,
+            name="read")
+        update_role = keycloak.Role("update_role",
+            realm_id=realm.id,
+            name="update")
+        delete_role = keycloak.Role("delete_role",
+            realm_id=realm.id,
+            name="delete")
+        # client role
         client = keycloak.openid.Client("client",
-            access_type="BEARER-ONLY",
+            realm_id=realm.id,
             client_id="client",
+            name="client",
             enabled=True,
-            realm_id=realm.id)
-        client_role = keycloak.Role("clientRole",
-            client_id=keycloak_client["client"]["id"],
-            description="My Client Role",
-            realm_id=realm.id)
-        admin_role = keycloak.Role("adminRole",
+            access_type="BEARER-ONLY")
+        client_role = keycloak.Role("client_role",
+            realm_id=realm.id,
+            client_id=client_keycloak_client["id"],
+            name="my-client-role",
+            description="My Client Role")
+        admin_role = keycloak.Role("admin_role",
+            realm_id=realm.id,
+            name="admin",
             composite_roles=[
                 "{keycloak_role.create_role.id}",
                 "{keycloak_role.read_role.id}",
                 "{keycloak_role.update_role.id}",
                 "{keycloak_role.delete_role.id}",
                 "{keycloak_role.client_role.id}",
-            ],
-            realm_id=realm.id)
+            ])
         ```
         <!--End PulumiCodeChooser -->
 
@@ -310,11 +326,12 @@ class Role(pulumi.CustomResource):
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="my-realm")
-        realm_role = keycloak.Role("realmRole",
-            description="My Realm Role",
-            realm_id=realm.id)
+            realm="my-realm",
+            enabled=True)
+        realm_role = keycloak.Role("realm_role",
+            realm_id=realm.id,
+            name="my-realm-role",
+            description="My Realm Role")
         ```
         <!--End PulumiCodeChooser -->
 
@@ -326,17 +343,19 @@ class Role(pulumi.CustomResource):
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="my-realm")
+            realm="my-realm",
+            enabled=True)
         client = keycloak.openid.Client("client",
-            access_type="BEARER-ONLY",
+            realm_id=realm.id,
             client_id="client",
+            name="client",
             enabled=True,
-            realm_id=realm.id)
-        client_role = keycloak.Role("clientRole",
-            client_id=keycloak_client["client"]["id"],
-            description="My Client Role",
-            realm_id=realm.id)
+            access_type="BEARER-ONLY")
+        client_role = keycloak.Role("client_role",
+            realm_id=realm.id,
+            client_id=client_keycloak_client["id"],
+            name="my-client-role",
+            description="My Client Role")
         ```
         <!--End PulumiCodeChooser -->
 
@@ -348,30 +367,43 @@ class Role(pulumi.CustomResource):
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="my-realm")
-        create_role = keycloak.Role("createRole", realm_id=realm.id)
-        read_role = keycloak.Role("readRole", realm_id=realm.id)
-        update_role = keycloak.Role("updateRole", realm_id=realm.id)
-        delete_role = keycloak.Role("deleteRole", realm_id=realm.id)
+            realm="my-realm",
+            enabled=True)
+        # realm roles
+        create_role = keycloak.Role("create_role",
+            realm_id=realm.id,
+            name="create")
+        read_role = keycloak.Role("read_role",
+            realm_id=realm.id,
+            name="read")
+        update_role = keycloak.Role("update_role",
+            realm_id=realm.id,
+            name="update")
+        delete_role = keycloak.Role("delete_role",
+            realm_id=realm.id,
+            name="delete")
+        # client role
         client = keycloak.openid.Client("client",
-            access_type="BEARER-ONLY",
+            realm_id=realm.id,
             client_id="client",
+            name="client",
             enabled=True,
-            realm_id=realm.id)
-        client_role = keycloak.Role("clientRole",
-            client_id=keycloak_client["client"]["id"],
-            description="My Client Role",
-            realm_id=realm.id)
-        admin_role = keycloak.Role("adminRole",
+            access_type="BEARER-ONLY")
+        client_role = keycloak.Role("client_role",
+            realm_id=realm.id,
+            client_id=client_keycloak_client["id"],
+            name="my-client-role",
+            description="My Client Role")
+        admin_role = keycloak.Role("admin_role",
+            realm_id=realm.id,
+            name="admin",
             composite_roles=[
                 "{keycloak_role.create_role.id}",
                 "{keycloak_role.read_role.id}",
                 "{keycloak_role.update_role.id}",
                 "{keycloak_role.delete_role.id}",
                 "{keycloak_role.client_role.id}",
-            ],
-            realm_id=realm.id)
+            ])
         ```
         <!--End PulumiCodeChooser -->
 

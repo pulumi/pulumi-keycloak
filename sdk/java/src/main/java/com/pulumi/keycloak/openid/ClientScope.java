@@ -53,13 +53,14 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .enabled(true)
  *             .realm(&#34;my-realm&#34;)
+ *             .enabled(true)
  *             .build());
  * 
  *         var openidClientScope = new ClientScope(&#34;openidClientScope&#34;, ClientScopeArgs.builder()        
- *             .description(&#34;When requested, this scope will map a user&#39;s group memberships to a claim&#34;)
  *             .realmId(realm.id())
+ *             .name(&#34;groups&#34;)
+ *             .description(&#34;When requested, this scope will map a user&#39;s group memberships to a claim&#34;)
  *             .build());
  * 
  *     }

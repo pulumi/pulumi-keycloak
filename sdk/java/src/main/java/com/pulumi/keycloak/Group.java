@@ -57,26 +57,29 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .enabled(true)
  *             .realm(&#34;my-realm&#34;)
+ *             .enabled(true)
  *             .build());
  * 
  *         var parentGroup = new Group(&#34;parentGroup&#34;, GroupArgs.builder()        
  *             .realmId(realm.id())
+ *             .name(&#34;parent-group&#34;)
  *             .build());
  * 
  *         var childGroup = new Group(&#34;childGroup&#34;, GroupArgs.builder()        
- *             .parentId(parentGroup.id())
  *             .realmId(realm.id())
+ *             .parentId(parentGroup.id())
+ *             .name(&#34;child-group&#34;)
  *             .build());
  * 
  *         var childGroupWithOptionalAttributes = new Group(&#34;childGroupWithOptionalAttributes&#34;, GroupArgs.builder()        
+ *             .realmId(realm.id())
+ *             .parentId(parentGroup.id())
+ *             .name(&#34;child-group-with-optional-attributes&#34;)
  *             .attributes(Map.ofEntries(
  *                 Map.entry(&#34;key1&#34;, &#34;value1&#34;),
  *                 Map.entry(&#34;key2&#34;, &#34;value2&#34;)
  *             ))
- *             .parentId(parentGroup.id())
- *             .realmId(realm.id())
  *             .build());
  * 
  *     }

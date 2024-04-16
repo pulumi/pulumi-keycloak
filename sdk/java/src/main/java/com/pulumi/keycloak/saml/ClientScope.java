@@ -53,6 +53,7 @@ import javax.annotation.Nullable;
  * 
  *         var samlClientScope = new ClientScope(&#34;samlClientScope&#34;, ClientScopeArgs.builder()        
  *             .realmId(realm.id())
+ *             .name(&#34;groups&#34;)
  *             .description(&#34;This scope will map a user&#39;s group memberships to SAML assertion&#34;)
  *             .guiOrder(1)
  *             .build());

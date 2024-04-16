@@ -17,7 +17,8 @@ import * as utilities from "./utilities";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {realm: "my-realm"});
- * const keystoreEcdsaGenerated = new keycloak.RealmKeystoreEcdsaGenerated("keystoreEcdsaGenerated", {
+ * const keystoreEcdsaGenerated = new keycloak.RealmKeystoreEcdsaGenerated("keystore_ecdsa_generated", {
+ *     name: "my-ecdsa-generated-key",
  *     realmId: realm.id,
  *     enabled: true,
  *     active: true,

@@ -55,7 +55,7 @@ import javax.annotation.Nullable;
  *             .enabled(true)
  *             .build());
  * 
- *         var oidcIdentityProvider = new IdentityProvider(&#34;oidcIdentityProvider&#34;, IdentityProviderArgs.builder()        
+ *         var oidc = new IdentityProvider(&#34;oidc&#34;, IdentityProviderArgs.builder()        
  *             .realm(realm.id())
  *             .alias(&#34;my-idp&#34;)
  *             .authorizationUrl(&#34;https://authorizationurl.com&#34;)
@@ -66,7 +66,8 @@ import javax.annotation.Nullable;
  * 
  *         var oidcHardcodedAttributeIdentityProviderMapper = new HardcodedAttributeIdentityProviderMapper(&#34;oidcHardcodedAttributeIdentityProviderMapper&#34;, HardcodedAttributeIdentityProviderMapperArgs.builder()        
  *             .realm(realm.id())
- *             .identityProviderAlias(oidcIdentityProvider.alias())
+ *             .name(&#34;hardcodedUserSessionAttribute&#34;)
+ *             .identityProviderAlias(oidc.alias())
  *             .attributeName(&#34;attribute&#34;)
  *             .attributeValue(&#34;value&#34;)
  *             .userSession(true)

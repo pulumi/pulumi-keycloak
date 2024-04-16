@@ -23,24 +23,26 @@ namespace Pulumi.Keycloak.OpenId
     /// {
     ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         Enabled = true,
     ///         RealmName = "my-realm",
+    ///         Enabled = true,
     ///     });
     /// 
     ///     var client = new Keycloak.OpenId.Client("client", new()
     ///     {
-    ///         AccessType = "CONFIDENTIAL",
+    ///         RealmId = realm.Id,
     ///         ClientId = "test-client",
-    ///         RealmId = realm.Id,
+    ///         AccessType = "CONFIDENTIAL",
     ///     });
     /// 
-    ///     var clientScope = new Keycloak.OpenId.ClientScope("clientScope", new()
+    ///     var clientScope = new Keycloak.OpenId.ClientScope("client_scope", new()
     ///     {
     ///         RealmId = realm.Id,
+    ///         Name = "test-client-scope",
     ///     });
     /// 
-    ///     var clientDefaultScopes = new Keycloak.OpenId.ClientDefaultScopes("clientDefaultScopes", new()
+    ///     var clientDefaultScopes = new Keycloak.OpenId.ClientDefaultScopes("client_default_scopes", new()
     ///     {
+    ///         RealmId = realm.Id,
     ///         ClientId = client.Id,
     ///         DefaultScopes = new[]
     ///         {
@@ -50,7 +52,6 @@ namespace Pulumi.Keycloak.OpenId
     ///             "web-origins",
     ///             clientScope.Name,
     ///         },
-    ///         RealmId = realm.Id,
     ///     });
     /// 
     /// });

@@ -17,17 +17,17 @@ import * as utilities from "./utilities";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {realm: "test"});
- * const realmEvents = new keycloak.RealmEvents("realmEvents", {
- *     adminEventsDetailsEnabled: true,
+ * const realmEvents = new keycloak.RealmEvents("realm_events", {
+ *     realmId: realm.id,
+ *     eventsEnabled: true,
+ *     eventsExpiration: 3600,
  *     adminEventsEnabled: true,
+ *     adminEventsDetailsEnabled: true,
  *     enabledEventTypes: [
  *         "LOGIN",
  *         "LOGOUT",
  *     ],
- *     eventsEnabled: true,
- *     eventsExpiration: 3600,
  *     eventsListeners: ["jboss-logging"],
- *     realmId: realm.id,
  * });
  * ```
  * <!--End PulumiCodeChooser -->

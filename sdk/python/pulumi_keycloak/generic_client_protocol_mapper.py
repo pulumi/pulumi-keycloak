@@ -272,22 +272,23 @@ class GenericClientProtocolMapper(pulumi.CustomResource):
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="my-realm")
-        saml_client = keycloak.saml.Client("samlClient",
-            client_id="test-client",
-            realm_id=realm.id)
-        saml_hardcode_attribute_mapper = keycloak.GenericClientProtocolMapper("samlHardcodeAttributeMapper",
+            realm="my-realm",
+            enabled=True)
+        saml_client = keycloak.saml.Client("saml_client",
+            realm_id=realm.id,
+            client_id="test-client")
+        saml_hardcode_attribute_mapper = keycloak.GenericClientProtocolMapper("saml_hardcode_attribute_mapper",
+            realm_id=realm.id,
             client_id=saml_client.id,
+            name="tes-mapper",
+            protocol="saml",
+            protocol_mapper="saml-hardcode-attribute-mapper",
             config={
                 "attribute.name": "name",
                 "attribute.nameformat": "Basic",
                 "attribute.value": "value",
                 "friendly.name": "display name",
-            },
-            protocol="saml",
-            protocol_mapper="saml-hardcode-attribute-mapper",
-            realm_id=realm.id)
+            })
         ```
         <!--End PulumiCodeChooser -->
 
@@ -344,22 +345,23 @@ class GenericClientProtocolMapper(pulumi.CustomResource):
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="my-realm")
-        saml_client = keycloak.saml.Client("samlClient",
-            client_id="test-client",
-            realm_id=realm.id)
-        saml_hardcode_attribute_mapper = keycloak.GenericClientProtocolMapper("samlHardcodeAttributeMapper",
+            realm="my-realm",
+            enabled=True)
+        saml_client = keycloak.saml.Client("saml_client",
+            realm_id=realm.id,
+            client_id="test-client")
+        saml_hardcode_attribute_mapper = keycloak.GenericClientProtocolMapper("saml_hardcode_attribute_mapper",
+            realm_id=realm.id,
             client_id=saml_client.id,
+            name="tes-mapper",
+            protocol="saml",
+            protocol_mapper="saml-hardcode-attribute-mapper",
             config={
                 "attribute.name": "name",
                 "attribute.nameformat": "Basic",
                 "attribute.value": "value",
                 "friendly.name": "display name",
-            },
-            protocol="saml",
-            protocol_mapper="saml-hardcode-attribute-mapper",
-            realm_id=realm.id)
+            })
         ```
         <!--End PulumiCodeChooser -->
 

@@ -200,11 +200,12 @@ class ClientScope(pulumi.CustomResource):
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="my-realm")
-        openid_client_scope = keycloak.openid.ClientScope("openidClientScope",
-            description="When requested, this scope will map a user's group memberships to a claim",
-            realm_id=realm.id)
+            realm="my-realm",
+            enabled=True)
+        openid_client_scope = keycloak.openid.ClientScope("openid_client_scope",
+            realm_id=realm.id,
+            name="groups",
+            description="When requested, this scope will map a user's group memberships to a claim")
         ```
         <!--End PulumiCodeChooser -->
 
@@ -253,11 +254,12 @@ class ClientScope(pulumi.CustomResource):
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="my-realm")
-        openid_client_scope = keycloak.openid.ClientScope("openidClientScope",
-            description="When requested, this scope will map a user's group memberships to a claim",
-            realm_id=realm.id)
+            realm="my-realm",
+            enabled=True)
+        openid_client_scope = keycloak.openid.ClientScope("openid_client_scope",
+            realm_id=realm.id,
+            name="groups",
+            description="When requested, this scope will map a user's group memberships to a claim")
         ```
         <!--End PulumiCodeChooser -->
 

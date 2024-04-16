@@ -813,8 +813,8 @@ class GoogleIdentityProvider(pulumi.CustomResource):
             enabled=True)
         google = keycloak.oidc.GoogleIdentityProvider("google",
             realm=realm.id,
-            client_id=var["google_identity_provider_client_id"],
-            client_secret=var["google_identity_provider_client_secret"],
+            client_id=google_identity_provider_client_id,
+            client_secret=google_identity_provider_client_secret,
             trust_email=True,
             hosted_domain="example.com",
             sync_mode="IMPORT",
@@ -883,8 +883,8 @@ class GoogleIdentityProvider(pulumi.CustomResource):
             enabled=True)
         google = keycloak.oidc.GoogleIdentityProvider("google",
             realm=realm.id,
-            client_id=var["google_identity_provider_client_id"],
-            client_secret=var["google_identity_provider_client_secret"],
+            client_id=google_identity_provider_client_id,
+            client_secret=google_identity_provider_client_secret,
             trust_email=True,
             hosted_domain="example.com",
             sync_mode="IMPORT",

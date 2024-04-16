@@ -20,7 +20,7 @@ import * as utilities from "./utilities";
  *     realm: "my-realm",
  *     enabled: true,
  * });
- * const oidcIdentityProvider = new keycloak.oidc.IdentityProvider("oidcIdentityProvider", {
+ * const oidc = new keycloak.oidc.IdentityProvider("oidc", {
  *     realm: realm.id,
  *     alias: "my-idp",
  *     authorizationUrl: "https://authorizationurl.com",
@@ -28,13 +28,15 @@ import * as utilities from "./utilities";
  *     clientSecret: "clientSecret",
  *     tokenUrl: "https://tokenurl.com",
  * });
- * const realmRole = new keycloak.Role("realmRole", {
+ * const realmRole = new keycloak.Role("realm_role", {
  *     realmId: realm.id,
+ *     name: "my-realm-role",
  *     description: "My Realm Role",
  * });
- * const oidcHardcodedRoleIdentityMapper = new keycloak.HardcodedRoleIdentityMapper("oidcHardcodedRoleIdentityMapper", {
+ * const oidcHardcodedRoleIdentityMapper = new keycloak.HardcodedRoleIdentityMapper("oidc", {
  *     realm: realm.id,
- *     identityProviderAlias: oidcIdentityProvider.alias,
+ *     name: "hardcodedRole",
+ *     identityProviderAlias: oidc.alias,
  *     role: "my-realm-role",
  *     extraConfig: {
  *         syncMode: "INHERIT",

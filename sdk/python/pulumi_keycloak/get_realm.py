@@ -576,7 +576,10 @@ def get_realm(attributes: Optional[Mapping[str, Any]] = None,
     import pulumi_keycloak as keycloak
 
     realm = keycloak.get_realm(realm="my-realm")
-    group = keycloak.Role("group", realm_id=data["keycloak_realm"]["id"])
+    # use the data source
+    group = keycloak.Role("group",
+        realm_id=id,
+        name="group")
     ```
     <!--End PulumiCodeChooser -->
 
@@ -692,7 +695,10 @@ def get_realm_output(attributes: Optional[pulumi.Input[Optional[Mapping[str, Any
     import pulumi_keycloak as keycloak
 
     realm = keycloak.get_realm(realm="my-realm")
-    group = keycloak.Role("group", realm_id=data["keycloak_realm"]["id"])
+    # use the data source
+    group = keycloak.Role("group",
+        realm_id=id,
+        name="group")
     ```
     <!--End PulumiCodeChooser -->
 
