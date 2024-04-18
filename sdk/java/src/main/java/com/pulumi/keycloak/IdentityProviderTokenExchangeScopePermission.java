@@ -63,6 +63,7 @@ import javax.annotation.Nullable;
  * 
  *         var token_exchangeWebappClient = new Client(&#34;token-exchangeWebappClient&#34;, ClientArgs.builder()        
  *             .realmId(tokenExchangeRealm.id())
+ *             .name(&#34;webapp_client&#34;)
  *             .clientId(&#34;webapp_client&#34;)
  *             .clientSecret(&#34;secret&#34;)
  *             .description(&#34;a webapp client on the destination realm&#34;)

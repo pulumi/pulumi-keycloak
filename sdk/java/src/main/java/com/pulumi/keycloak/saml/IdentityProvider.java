@@ -50,17 +50,17 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var realmIdentityProvider = new IdentityProvider(&#34;realmIdentityProvider&#34;, IdentityProviderArgs.builder()        
- *             .alias(&#34;my-idp&#34;)
- *             .backchannelSupported(true)
- *             .forceAuthn(true)
- *             .postBindingAuthnRequest(true)
- *             .postBindingLogout(true)
- *             .postBindingResponse(true)
  *             .realm(&#34;my-realm&#34;)
- *             .singleLogoutServiceUrl(&#34;https://domain.com/adfs/ls/?wa=wsignout1.0&#34;)
+ *             .alias(&#34;my-idp&#34;)
  *             .singleSignOnServiceUrl(&#34;https://domain.com/adfs/ls/&#34;)
+ *             .singleLogoutServiceUrl(&#34;https://domain.com/adfs/ls/?wa=wsignout1.0&#34;)
+ *             .backchannelSupported(true)
+ *             .postBindingResponse(true)
+ *             .postBindingLogout(true)
+ *             .postBindingAuthnRequest(true)
  *             .storeToken(false)
  *             .trustEmail(true)
+ *             .forceAuthn(true)
  *             .build());
  * 
  *     }

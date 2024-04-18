@@ -13,16 +13,20 @@ import * as utilities from "../utilities";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {
- *     enabled: true,
  *     realm: "my-realm",
+ *     enabled: true,
  * });
  * const client = new keycloak.openid.Client("client", {
- *     accessType: "CONFIDENTIAL",
- *     clientId: "test-client",
  *     realmId: realm.id,
+ *     clientId: "test-client",
+ *     accessType: "CONFIDENTIAL",
  * });
- * const clientScope = new keycloak.openid.ClientScope("clientScope", {realmId: realm.id});
- * const clientDefaultScopes = new keycloak.openid.ClientDefaultScopes("clientDefaultScopes", {
+ * const clientScope = new keycloak.openid.ClientScope("client_scope", {
+ *     realmId: realm.id,
+ *     name: "test-client-scope",
+ * });
+ * const clientDefaultScopes = new keycloak.openid.ClientDefaultScopes("client_default_scopes", {
+ *     realmId: realm.id,
  *     clientId: client.id,
  *     defaultScopes: [
  *         "profile",
@@ -31,7 +35,6 @@ import * as utilities from "../utilities";
  *         "web-origins",
  *         clientScope.name,
  *     ],
- *     realmId: realm.id,
  * });
  * ```
  * <!--End PulumiCodeChooser -->

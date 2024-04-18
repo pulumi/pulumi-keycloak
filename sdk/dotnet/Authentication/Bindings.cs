@@ -48,7 +48,7 @@ namespace Pulumi.Keycloak.Authentication
     ///     });
     /// 
     ///     // first execution
-    ///     var executionOne = new Keycloak.Authentication.Execution("executionOne", new()
+    ///     var executionOne = new Keycloak.Authentication.Execution("execution_one", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         ParentFlowAlias = flow.Alias,
@@ -57,7 +57,7 @@ namespace Pulumi.Keycloak.Authentication
     ///     });
     /// 
     ///     // second execution
-    ///     var executionTwo = new Keycloak.Authentication.Execution("executionTwo", new()
+    ///     var executionTwo = new Keycloak.Authentication.Execution("execution_two", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         ParentFlowAlias = flow.Alias,
@@ -71,7 +71,7 @@ namespace Pulumi.Keycloak.Authentication
     ///         },
     ///     });
     /// 
-    ///     var browserAuthenticationBinding = new Keycloak.Authentication.Bindings("browserAuthenticationBinding", new()
+    ///     var browserAuthenticationBinding = new Keycloak.Authentication.Bindings("browser_authentication_binding", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         BrowserFlow = flow.Alias,

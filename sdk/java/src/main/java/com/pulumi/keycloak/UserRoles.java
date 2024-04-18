@@ -67,19 +67,22 @@ import javax.annotation.Nullable;
  * 
  *         var realmRole = new Role(&#34;realmRole&#34;, RoleArgs.builder()        
  *             .realmId(realm.id())
+ *             .name(&#34;my-realm-role&#34;)
  *             .description(&#34;My Realm Role&#34;)
  *             .build());
  * 
  *         var client = new Client(&#34;client&#34;, ClientArgs.builder()        
  *             .realmId(realm.id())
  *             .clientId(&#34;client&#34;)
+ *             .name(&#34;client&#34;)
  *             .enabled(true)
  *             .accessType(&#34;BEARER-ONLY&#34;)
  *             .build());
  * 
  *         var clientRole = new Role(&#34;clientRole&#34;, RoleArgs.builder()        
  *             .realmId(realm.id())
- *             .clientId(keycloak_client.client().id())
+ *             .clientId(clientKeycloakClient.id())
+ *             .name(&#34;my-client-role&#34;)
  *             .description(&#34;My Client Role&#34;)
  *             .build());
  * 

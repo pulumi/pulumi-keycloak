@@ -23,19 +23,21 @@ import * as utilities from "../utilities";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {
- *     enabled: true,
  *     realm: "my-realm",
+ *     enabled: true,
  * });
- * const samlClient = new keycloak.saml.Client("samlClient", {
+ * const samlClient = new keycloak.saml.Client("saml_client", {
+ *     realmId: test.id,
  *     clientId: "test-saml-client",
- *     realmId: keycloak_realm.test.id,
+ *     name: "test-saml-client",
  * });
- * const samlUserAttributeMapper = new keycloak.saml.UserAttributeProtocolMapper("samlUserAttributeMapper", {
+ * const samlUserAttributeMapper = new keycloak.saml.UserAttributeProtocolMapper("saml_user_attribute_mapper", {
+ *     realmId: test.id,
  *     clientId: samlClient.id,
- *     realmId: keycloak_realm.test.id,
+ *     name: "displayname-user-attribute-mapper",
+ *     userAttribute: "displayName",
  *     samlAttributeName: "displayName",
  *     samlAttributeNameFormat: "Unspecified",
- *     userAttribute: "displayName",
  * });
  * ```
  * <!--End PulumiCodeChooser -->

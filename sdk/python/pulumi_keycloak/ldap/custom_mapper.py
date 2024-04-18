@@ -246,7 +246,8 @@ class CustomMapper(pulumi.CustomResource):
         realm = keycloak.Realm("realm",
             realm="my-realm",
             enabled=True)
-        ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
+        ldap_user_federation = keycloak.ldap.UserFederation("ldap_user_federation",
+            name="openldap",
             realm_id=realm.id,
             username_ldap_attribute="cn",
             rdn_ldap_attribute="cn",
@@ -259,9 +260,10 @@ class CustomMapper(pulumi.CustomResource):
             users_dn="dc=example,dc=org",
             bind_dn="cn=admin,dc=example,dc=org",
             bind_credential="admin")
-        custom_mapper = keycloak.ldap.CustomMapper("customMapper",
-            realm_id=keycloak_ldap_user_federation["openldap"]["realm_id"],
-            ldap_user_federation_id=keycloak_ldap_user_federation["openldap"]["id"],
+        custom_mapper = keycloak.ldap.CustomMapper("custom_mapper",
+            name="custom-mapper",
+            realm_id=openldap["realmId"],
+            ldap_user_federation_id=openldap["id"],
             provider_id="custom-provider-registered-in-keycloak",
             provider_type="com.example.custom.ldap.mappers.CustomMapper",
             config={
@@ -319,7 +321,8 @@ class CustomMapper(pulumi.CustomResource):
         realm = keycloak.Realm("realm",
             realm="my-realm",
             enabled=True)
-        ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
+        ldap_user_federation = keycloak.ldap.UserFederation("ldap_user_federation",
+            name="openldap",
             realm_id=realm.id,
             username_ldap_attribute="cn",
             rdn_ldap_attribute="cn",
@@ -332,9 +335,10 @@ class CustomMapper(pulumi.CustomResource):
             users_dn="dc=example,dc=org",
             bind_dn="cn=admin,dc=example,dc=org",
             bind_credential="admin")
-        custom_mapper = keycloak.ldap.CustomMapper("customMapper",
-            realm_id=keycloak_ldap_user_federation["openldap"]["realm_id"],
-            ldap_user_federation_id=keycloak_ldap_user_federation["openldap"]["id"],
+        custom_mapper = keycloak.ldap.CustomMapper("custom_mapper",
+            name="custom-mapper",
+            realm_id=openldap["realmId"],
+            ldap_user_federation_id=openldap["id"],
             provider_id="custom-provider-registered-in-keycloak",
             provider_type="com.example.custom.ldap.mappers.CustomMapper",
             config={

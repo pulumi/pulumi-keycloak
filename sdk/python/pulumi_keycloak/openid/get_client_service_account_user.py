@@ -168,13 +168,14 @@ def get_client_service_account_user(client_id: Optional[str] = None,
     client = keycloak.openid.Client("client",
         realm_id=realm.id,
         client_id="client",
+        name="client",
         access_type="CONFIDENTIAL",
         service_accounts_enabled=True)
     service_account_user = keycloak.openid.get_client_service_account_user_output(realm_id=realm.id,
         client_id=client.id)
     offline_access = keycloak.get_role_output(realm_id=realm.id,
         name="offline_access")
-    service_account_user_roles = keycloak.UserRoles("serviceAccountUserRoles",
+    service_account_user_roles = keycloak.UserRoles("service_account_user_roles",
         realm_id=realm.id,
         user_id=service_account_user.id,
         role_ids=[offline_access.id])
@@ -231,13 +232,14 @@ def get_client_service_account_user_output(client_id: Optional[pulumi.Input[str]
     client = keycloak.openid.Client("client",
         realm_id=realm.id,
         client_id="client",
+        name="client",
         access_type="CONFIDENTIAL",
         service_accounts_enabled=True)
     service_account_user = keycloak.openid.get_client_service_account_user_output(realm_id=realm.id,
         client_id=client.id)
     offline_access = keycloak.get_role_output(realm_id=realm.id,
         name="offline_access")
-    service_account_user_roles = keycloak.UserRoles("serviceAccountUserRoles",
+    service_account_user_roles = keycloak.UserRoles("service_account_user_roles",
         realm_id=realm.id,
         user_id=service_account_user.id,
         role_ids=[offline_access.id])

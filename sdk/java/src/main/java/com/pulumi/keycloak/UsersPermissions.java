@@ -94,7 +94,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         // creating a user to use with the keycloak_openid_client_user_policy resource
- *         var testUser = new User(&#34;testUser&#34;, UserArgs.builder()        
+ *         var test = new User(&#34;test&#34;, UserArgs.builder()        
  *             .realmId(realm.id())
  *             .username(&#34;test-user&#34;)
  *             .email(&#34;test-user@fakedomain.com&#34;)
@@ -105,7 +105,8 @@ import javax.annotation.Nullable;
  *         var testClientUserPolicy = new ClientUserPolicy(&#34;testClientUserPolicy&#34;, ClientUserPolicyArgs.builder()        
  *             .realmId(realm.id())
  *             .resourceServerId(realmManagement.applyValue(getClientResult -&gt; getClientResult).applyValue(realmManagement -&gt; realmManagement.applyValue(getClientResult -&gt; getClientResult.id())))
- *             .users(testUser.id())
+ *             .name(&#34;client_user_policy_test&#34;)
+ *             .users(test.id())
  *             .logic(&#34;POSITIVE&#34;)
  *             .decisionStrategy(&#34;UNANIMOUS&#34;)
  *             .build(), CustomResourceOptions.builder()

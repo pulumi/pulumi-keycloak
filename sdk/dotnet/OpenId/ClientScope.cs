@@ -32,14 +32,15 @@ namespace Pulumi.Keycloak.OpenId
     /// {
     ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         Enabled = true,
     ///         RealmName = "my-realm",
+    ///         Enabled = true,
     ///     });
     /// 
-    ///     var openidClientScope = new Keycloak.OpenId.ClientScope("openidClientScope", new()
+    ///     var openidClientScope = new Keycloak.OpenId.ClientScope("openid_client_scope", new()
     ///     {
-    ///         Description = "When requested, this scope will map a user's group memberships to a claim",
     ///         RealmId = realm.Id,
+    ///         Name = "groups",
+    ///         Description = "When requested, this scope will map a user's group memberships to a claim",
     ///     });
     /// 
     /// });

@@ -52,6 +52,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var keystoreAesGenerated = new RealmKeystoreAesGenerated(&#34;keystoreAesGenerated&#34;, RealmKeystoreAesGeneratedArgs.builder()        
+ *             .name(&#34;my-aes-generated-key&#34;)
  *             .realmId(realm.id())
  *             .enabled(true)
  *             .active(true)

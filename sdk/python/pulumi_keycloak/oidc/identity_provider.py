@@ -1073,7 +1073,7 @@ class IdentityProvider(pulumi.CustomResource):
         realm = keycloak.Realm("realm",
             realm="my-realm",
             enabled=True)
-        realm_identity_provider = keycloak.oidc.IdentityProvider("realmIdentityProvider",
+        realm_identity_provider = keycloak.oidc.IdentityProvider("realm_identity_provider",
             realm=realm.id,
             alias="my-idp",
             authorization_url="https://authorizationurl.com",
@@ -1152,7 +1152,7 @@ class IdentityProvider(pulumi.CustomResource):
         realm = keycloak.Realm("realm",
             realm="my-realm",
             enabled=True)
-        realm_identity_provider = keycloak.oidc.IdentityProvider("realmIdentityProvider",
+        realm_identity_provider = keycloak.oidc.IdentityProvider("realm_identity_provider",
             realm=realm.id,
             alias="my-idp",
             authorization_url="https://authorizationurl.com",

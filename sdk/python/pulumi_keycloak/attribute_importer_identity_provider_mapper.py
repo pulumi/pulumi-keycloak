@@ -298,10 +298,11 @@ class AttributeImporterIdentityProviderMapper(pulumi.CustomResource):
         import pulumi
         import pulumi_keycloak as keycloak
 
-        test_mapper = keycloak.AttributeImporterIdentityProviderMapper("testMapper",
-            attribute_name="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname",
-            identity_provider_alias="idp_alias",
+        test_mapper = keycloak.AttributeImporterIdentityProviderMapper("test_mapper",
             realm="my-realm",
+            name="my-mapper",
+            identity_provider_alias="idp_alias",
+            attribute_name="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname",
             user_attribute="lastName")
         ```
         <!--End PulumiCodeChooser -->
@@ -353,10 +354,11 @@ class AttributeImporterIdentityProviderMapper(pulumi.CustomResource):
         import pulumi
         import pulumi_keycloak as keycloak
 
-        test_mapper = keycloak.AttributeImporterIdentityProviderMapper("testMapper",
-            attribute_name="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname",
-            identity_provider_alias="idp_alias",
+        test_mapper = keycloak.AttributeImporterIdentityProviderMapper("test_mapper",
             realm="my-realm",
+            name="my-mapper",
+            identity_provider_alias="idp_alias",
+            attribute_name="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname",
             user_attribute="lastName")
         ```
         <!--End PulumiCodeChooser -->

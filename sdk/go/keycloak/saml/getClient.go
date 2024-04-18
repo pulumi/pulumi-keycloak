@@ -36,6 +36,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// use the data source
 //			_, err = keycloak.LookupRole(ctx, &keycloak.LookupRoleArgs{
 //				RealmId:  "my-realm",
 //				ClientId: pulumi.StringRef(realmManagement.Id),

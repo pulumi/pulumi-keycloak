@@ -39,33 +39,35 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-//				Enabled: pulumi.Bool(true),
 //				Realm:   pulumi.String("test"),
+//				Enabled: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			ldapUserFederation, err := ldap.NewUserFederation(ctx, "ldapUserFederation", &ldap.UserFederationArgs{
-//				BindCredential:   pulumi.String("admin"),
-//				BindDn:           pulumi.String("cn=admin,dc=example,dc=org"),
-//				ConnectionUrl:    pulumi.String("ldap://my-ad-server"),
-//				RdnLdapAttribute: pulumi.String("cn"),
-//				RealmId:          realm.ID(),
+//			ldapUserFederation, err := ldap.NewUserFederation(ctx, "ldap_user_federation", &ldap.UserFederationArgs{
+//				Name:                  pulumi.String("ad"),
+//				RealmId:               realm.ID(),
+//				UsernameLdapAttribute: pulumi.String("cn"),
+//				RdnLdapAttribute:      pulumi.String("cn"),
+//				UuidLdapAttribute:     pulumi.String("objectGUID"),
 //				UserObjectClasses: pulumi.StringArray{
 //					pulumi.String("person"),
 //					pulumi.String("organizationalPerson"),
 //					pulumi.String("user"),
 //				},
-//				UsernameLdapAttribute: pulumi.String("cn"),
-//				UsersDn:               pulumi.String("dc=example,dc=org"),
-//				UuidLdapAttribute:     pulumi.String("objectGUID"),
+//				ConnectionUrl:  pulumi.String("ldap://my-ad-server"),
+//				UsersDn:        pulumi.String("dc=example,dc=org"),
+//				BindDn:         pulumi.String("cn=admin,dc=example,dc=org"),
+//				BindCredential: pulumi.String("admin"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = ldap.NewMsadUserAccountControlMapper(ctx, "msadUserAccountControlMapper", &ldap.MsadUserAccountControlMapperArgs{
-//				LdapUserFederationId: ldapUserFederation.ID(),
+//			_, err = ldap.NewMsadUserAccountControlMapper(ctx, "msad_user_account_control_mapper", &ldap.MsadUserAccountControlMapperArgs{
 //				RealmId:              realm.ID(),
+//				LdapUserFederationId: ldapUserFederation.ID(),
+//				Name:                 pulumi.String("msad-user-account-control-mapper"),
 //			})
 //			if err != nil {
 //				return err

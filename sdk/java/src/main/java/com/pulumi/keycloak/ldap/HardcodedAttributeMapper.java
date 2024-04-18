@@ -54,6 +54,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var ldapUserFederation = new UserFederation(&#34;ldapUserFederation&#34;, UserFederationArgs.builder()        
+ *             .name(&#34;openldap&#34;)
  *             .realmId(realm.id())
  *             .usernameLdapAttribute(&#34;cn&#34;)
  *             .rdnLdapAttribute(&#34;cn&#34;)
@@ -71,6 +72,7 @@ import javax.annotation.Nullable;
  *         var assignBarToFoo = new HardcodedAttributeMapper(&#34;assignBarToFoo&#34;, HardcodedAttributeMapperArgs.builder()        
  *             .realmId(realm.id())
  *             .ldapUserFederationId(ldapUserFederation.id())
+ *             .name(&#34;assign-foo-to-bar&#34;)
  *             .attributeName(&#34;foo&#34;)
  *             .attributeValue(&#34;bar&#34;)
  *             .build());

@@ -55,22 +55,24 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .enabled(true)
  *             .realm(&#34;my-realm&#34;)
+ *             .enabled(true)
  *             .build());
  * 
  *         var openidClient = new Client(&#34;openidClient&#34;, ClientArgs.builder()        
- *             .accessType(&#34;CONFIDENTIAL&#34;)
- *             .clientId(&#34;test-client&#34;)
- *             .enabled(true)
  *             .realmId(realm.id())
+ *             .clientId(&#34;test-client&#34;)
+ *             .name(&#34;test client&#34;)
+ *             .enabled(true)
+ *             .accessType(&#34;CONFIDENTIAL&#34;)
  *             .validRedirectUris(&#34;http://localhost:8080/openid-callback&#34;)
  *             .build());
  * 
  *         var groupMembershipMapper = new GroupMembershipProtocolMapper(&#34;groupMembershipMapper&#34;, GroupMembershipProtocolMapperArgs.builder()        
- *             .claimName(&#34;groups&#34;)
- *             .clientId(openidClient.id())
  *             .realmId(realm.id())
+ *             .clientId(openidClient.id())
+ *             .name(&#34;group-membership-mapper&#34;)
+ *             .claimName(&#34;groups&#34;)
  *             .build());
  * 
  *     }
@@ -107,18 +109,20 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .enabled(true)
  *             .realm(&#34;my-realm&#34;)
+ *             .enabled(true)
  *             .build());
  * 
  *         var clientScope = new ClientScope(&#34;clientScope&#34;, ClientScopeArgs.builder()        
  *             .realmId(realm.id())
+ *             .name(&#34;test-client-scope&#34;)
  *             .build());
  * 
  *         var groupMembershipMapper = new GroupMembershipProtocolMapper(&#34;groupMembershipMapper&#34;, GroupMembershipProtocolMapperArgs.builder()        
- *             .claimName(&#34;groups&#34;)
- *             .clientScopeId(clientScope.id())
  *             .realmId(realm.id())
+ *             .clientScopeId(clientScope.id())
+ *             .name(&#34;group-membership-mapper&#34;)
+ *             .claimName(&#34;groups&#34;)
  *             .build());
  * 
  *     }

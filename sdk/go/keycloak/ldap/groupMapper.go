@@ -38,41 +38,43 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-//				Enabled: pulumi.Bool(true),
 //				Realm:   pulumi.String("test"),
+//				Enabled: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			ldapUserFederation, err := ldap.NewUserFederation(ctx, "ldapUserFederation", &ldap.UserFederationArgs{
-//				BindCredential:   pulumi.String("admin"),
-//				BindDn:           pulumi.String("cn=admin,dc=example,dc=org"),
-//				ConnectionUrl:    pulumi.String("ldap://openldap"),
-//				RdnLdapAttribute: pulumi.String("cn"),
-//				RealmId:          realm.ID(),
+//			ldapUserFederation, err := ldap.NewUserFederation(ctx, "ldap_user_federation", &ldap.UserFederationArgs{
+//				Name:                  pulumi.String("openldap"),
+//				RealmId:               realm.ID(),
+//				UsernameLdapAttribute: pulumi.String("cn"),
+//				RdnLdapAttribute:      pulumi.String("cn"),
+//				UuidLdapAttribute:     pulumi.String("entryDN"),
 //				UserObjectClasses: pulumi.StringArray{
 //					pulumi.String("simpleSecurityObject"),
 //					pulumi.String("organizationalRole"),
 //				},
-//				UsernameLdapAttribute: pulumi.String("cn"),
-//				UsersDn:               pulumi.String("dc=example,dc=org"),
-//				UuidLdapAttribute:     pulumi.String("entryDN"),
+//				ConnectionUrl:  pulumi.String("ldap://openldap"),
+//				UsersDn:        pulumi.String("dc=example,dc=org"),
+//				BindDn:         pulumi.String("cn=admin,dc=example,dc=org"),
+//				BindCredential: pulumi.String("admin"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = ldap.NewGroupMapper(ctx, "ldapGroupMapper", &ldap.GroupMapperArgs{
+//			_, err = ldap.NewGroupMapper(ctx, "ldap_group_mapper", &ldap.GroupMapperArgs{
+//				RealmId:                realm.ID(),
+//				LdapUserFederationId:   ldapUserFederation.ID(),
+//				Name:                   pulumi.String("group-mapper"),
+//				LdapGroupsDn:           pulumi.String("dc=example,dc=org"),
 //				GroupNameLdapAttribute: pulumi.String("cn"),
 //				GroupObjectClasses: pulumi.StringArray{
 //					pulumi.String("groupOfNames"),
 //				},
-//				LdapGroupsDn:                pulumi.String("dc=example,dc=org"),
-//				LdapUserFederationId:        ldapUserFederation.ID(),
-//				MemberofLdapAttribute:       pulumi.String("memberOf"),
 //				MembershipAttributeType:     pulumi.String("DN"),
 //				MembershipLdapAttribute:     pulumi.String("member"),
 //				MembershipUserLdapAttribute: pulumi.String("cn"),
-//				RealmId:                     realm.ID(),
+//				MemberofLdapAttribute:       pulumi.String("memberOf"),
 //			})
 //			if err != nil {
 //				return err

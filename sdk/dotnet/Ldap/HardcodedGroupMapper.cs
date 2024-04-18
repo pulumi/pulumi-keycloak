@@ -31,8 +31,9 @@ namespace Pulumi.Keycloak.Ldap
     ///         Enabled = true,
     ///     });
     /// 
-    ///     var ldapUserFederation = new Keycloak.Ldap.UserFederation("ldapUserFederation", new()
+    ///     var ldapUserFederation = new Keycloak.Ldap.UserFederation("ldap_user_federation", new()
     ///     {
+    ///         Name = "openldap",
     ///         RealmId = realm.Id,
     ///         UsernameLdapAttribute = "cn",
     ///         RdnLdapAttribute = "cn",
@@ -48,15 +49,17 @@ namespace Pulumi.Keycloak.Ldap
     ///         BindCredential = "admin",
     ///     });
     /// 
-    ///     var realmGroup = new Keycloak.Group("realmGroup", new()
+    ///     var realmGroup = new Keycloak.Group("realm_group", new()
     ///     {
     ///         RealmId = realm.Id,
+    ///         Name = "my-group",
     ///     });
     /// 
-    ///     var assignGroupToUsers = new Keycloak.Ldap.HardcodedGroupMapper("assignGroupToUsers", new()
+    ///     var assignGroupToUsers = new Keycloak.Ldap.HardcodedGroupMapper("assign_group_to_users", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         LdapUserFederationId = ldapUserFederation.Id,
+    ///         Name = "assign-group-to-users",
     ///         Group = realmGroup.Name,
     ///     });
     /// 

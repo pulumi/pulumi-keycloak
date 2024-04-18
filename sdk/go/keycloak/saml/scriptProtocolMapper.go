@@ -42,16 +42,18 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			samlClient, err := saml.NewClient(ctx, "samlClient", &saml.ClientArgs{
+//			samlClient, err := saml.NewClient(ctx, "saml_client", &saml.ClientArgs{
 //				RealmId:  realm.ID(),
 //				ClientId: pulumi.String("saml-client"),
+//				Name:     pulumi.String("saml-client"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = saml.NewScriptProtocolMapper(ctx, "samlScriptMapper", &saml.ScriptProtocolMapperArgs{
+//			_, err = saml.NewScriptProtocolMapper(ctx, "saml_script_mapper", &saml.ScriptProtocolMapperArgs{
 //				RealmId:                 realm.ID(),
 //				ClientId:                samlClient.ID(),
+//				Name:                    pulumi.String("script-mapper"),
 //				Script:                  pulumi.String("exports = 'foo';"),
 //				SamlAttributeName:       pulumi.String("displayName"),
 //				SamlAttributeNameFormat: pulumi.String("Unspecified"),

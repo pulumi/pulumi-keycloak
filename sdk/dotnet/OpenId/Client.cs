@@ -31,16 +31,17 @@ namespace Pulumi.Keycloak.OpenId
     /// {
     ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         Enabled = true,
     ///         RealmName = "my-realm",
+    ///         Enabled = true,
     ///     });
     /// 
-    ///     var openidClient = new Keycloak.OpenId.Client("openidClient", new()
+    ///     var openidClient = new Keycloak.OpenId.Client("openid_client", new()
     ///     {
-    ///         AccessType = "CONFIDENTIAL",
-    ///         ClientId = "test-client",
-    ///         Enabled = true,
     ///         RealmId = realm.Id,
+    ///         ClientId = "test-client",
+    ///         Name = "test client",
+    ///         Enabled = true,
+    ///         AccessType = "CONFIDENTIAL",
     ///         ValidRedirectUris = new[]
     ///         {
     ///             "http://localhost:8080/openid-callback",

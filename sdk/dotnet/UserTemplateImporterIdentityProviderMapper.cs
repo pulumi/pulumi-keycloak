@@ -46,9 +46,10 @@ namespace Pulumi.Keycloak
     ///         DefaultScopes = "openid random profile",
     ///     });
     /// 
-    ///     var usernameImporter = new Keycloak.UserTemplateImporterIdentityProviderMapper("usernameImporter", new()
+    ///     var usernameImporter = new Keycloak.UserTemplateImporterIdentityProviderMapper("username_importer", new()
     ///     {
     ///         Realm = realm.Id,
+    ///         Name = "username-template-importer",
     ///         IdentityProviderAlias = oidc.Alias,
     ///         Template = "${ALIAS}.${CLAIM.email}",
     ///         ExtraConfig = 

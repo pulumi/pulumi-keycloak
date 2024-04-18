@@ -415,15 +415,17 @@ class ScriptProtocolMapper(pulumi.CustomResource):
         realm = keycloak.Realm("realm",
             realm="my-realm",
             enabled=True)
-        openid_client = keycloak.openid.Client("openidClient",
+        openid_client = keycloak.openid.Client("openid_client",
             realm_id=realm.id,
             client_id="client",
+            name="client",
             enabled=True,
             access_type="CONFIDENTIAL",
             valid_redirect_uris=["http://localhost:8080/openid-callback"])
-        script_mapper = keycloak.openid.ScriptProtocolMapper("scriptMapper",
+        script_mapper = keycloak.openid.ScriptProtocolMapper("script_mapper",
             realm_id=realm.id,
             client_id=openid_client.id,
+            name="script-mapper",
             claim_name="foo",
             script="exports = 'foo';")
         ```
@@ -439,10 +441,13 @@ class ScriptProtocolMapper(pulumi.CustomResource):
         realm = keycloak.Realm("realm",
             realm="my-realm",
             enabled=True)
-        client_scope = keycloak.openid.ClientScope("clientScope", realm_id=realm.id)
-        script_mapper = keycloak.openid.ScriptProtocolMapper("scriptMapper",
+        client_scope = keycloak.openid.ClientScope("client_scope",
+            realm_id=realm.id,
+            name="client-scope")
+        script_mapper = keycloak.openid.ScriptProtocolMapper("script_mapper",
             realm_id=realm.id,
             client_scope_id=client_scope.id,
+            name="script-mapper",
             claim_name="foo",
             script="exports = 'foo';")
         ```
@@ -510,15 +515,17 @@ class ScriptProtocolMapper(pulumi.CustomResource):
         realm = keycloak.Realm("realm",
             realm="my-realm",
             enabled=True)
-        openid_client = keycloak.openid.Client("openidClient",
+        openid_client = keycloak.openid.Client("openid_client",
             realm_id=realm.id,
             client_id="client",
+            name="client",
             enabled=True,
             access_type="CONFIDENTIAL",
             valid_redirect_uris=["http://localhost:8080/openid-callback"])
-        script_mapper = keycloak.openid.ScriptProtocolMapper("scriptMapper",
+        script_mapper = keycloak.openid.ScriptProtocolMapper("script_mapper",
             realm_id=realm.id,
             client_id=openid_client.id,
+            name="script-mapper",
             claim_name="foo",
             script="exports = 'foo';")
         ```
@@ -534,10 +541,13 @@ class ScriptProtocolMapper(pulumi.CustomResource):
         realm = keycloak.Realm("realm",
             realm="my-realm",
             enabled=True)
-        client_scope = keycloak.openid.ClientScope("clientScope", realm_id=realm.id)
-        script_mapper = keycloak.openid.ScriptProtocolMapper("scriptMapper",
+        client_scope = keycloak.openid.ClientScope("client_scope",
+            realm_id=realm.id,
+            name="client-scope")
+        script_mapper = keycloak.openid.ScriptProtocolMapper("script_mapper",
             realm_id=realm.id,
             client_scope_id=client_scope.id,
+            name="script-mapper",
             claim_name="foo",
             script="exports = 'foo';")
         ```

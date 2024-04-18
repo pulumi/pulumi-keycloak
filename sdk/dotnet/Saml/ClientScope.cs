@@ -31,9 +31,10 @@ namespace Pulumi.Keycloak.Saml
     ///         Enabled = true,
     ///     });
     /// 
-    ///     var samlClientScope = new Keycloak.Saml.ClientScope("samlClientScope", new()
+    ///     var samlClientScope = new Keycloak.Saml.ClientScope("saml_client_scope", new()
     ///     {
     ///         RealmId = realm.Id,
+    ///         Name = "groups",
     ///         Description = "This scope will map a user's group memberships to SAML assertion",
     ///         GuiOrder = 1,
     ///     });

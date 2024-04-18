@@ -59,6 +59,7 @@ import javax.annotation.Nullable;
  * 
  *         var openidClient = new Client(&#34;openidClient&#34;, ClientArgs.builder()        
  *             .clientId(&#34;openid_client&#34;)
+ *             .name(&#34;openid_client&#34;)
  *             .realmId(realm.id())
  *             .accessType(&#34;CONFIDENTIAL&#34;)
  *             .serviceAccountsEnabled(true)
@@ -77,6 +78,7 @@ import javax.annotation.Nullable;
  *         var tokenExchange = new ClientPolicy(&#34;tokenExchange&#34;, ClientPolicyArgs.builder()        
  *             .resourceServerId(realmManagement.applyValue(getClientResult -&gt; getClientResult.id()))
  *             .realmId(realm.id())
+ *             .name(&#34;my-policy&#34;)
  *             .logic(&#34;POSITIVE&#34;)
  *             .decisionStrategy(&#34;UNANIMOUS&#34;)
  *             .clients(openidClient.id())

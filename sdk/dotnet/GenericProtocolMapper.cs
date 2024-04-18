@@ -36,16 +36,17 @@ namespace Pulumi.Keycloak
     ///         Enabled = true,
     ///     });
     /// 
-    ///     var samlClient = new Keycloak.Saml.Client("samlClient", new()
+    ///     var samlClient = new Keycloak.Saml.Client("saml_client", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         ClientId = "test-client",
     ///     });
     /// 
-    ///     var samlHardcodeAttributeMapper = new Keycloak.GenericProtocolMapper("samlHardcodeAttributeMapper", new()
+    ///     var samlHardcodeAttributeMapper = new Keycloak.GenericProtocolMapper("saml_hardcode_attribute_mapper", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         ClientId = samlClient.Id,
+    ///         Name = "test-mapper",
     ///         Protocol = "saml",
     ///         ProtocolMapper = "saml-hardcode-attribute-mapper",
     ///         Config = 

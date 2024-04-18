@@ -20,7 +20,8 @@ import * as utilities from "../utilities";
  *     realm: "test",
  *     enabled: true,
  * });
- * const ldapUserFederation = new keycloak.ldap.UserFederation("ldapUserFederation", {
+ * const ldapUserFederation = new keycloak.ldap.UserFederation("ldap_user_federation", {
+ *     name: "openldap",
  *     realmId: realm.id,
  *     usernameLdapAttribute: "cn",
  *     rdnLdapAttribute: "cn",
@@ -34,9 +35,10 @@ import * as utilities from "../utilities";
  *     bindDn: "cn=admin,dc=example,dc=org",
  *     bindCredential: "admin",
  * });
- * const assignAdminRoleToAllUsers = new keycloak.ldap.HardcodedRoleMapper("assignAdminRoleToAllUsers", {
+ * const assignAdminRoleToAllUsers = new keycloak.ldap.HardcodedRoleMapper("assign_admin_role_to_all_users", {
  *     realmId: realm.id,
  *     ldapUserFederationId: ldapUserFederation.id,
+ *     name: "assign-admin-role-to-all-users",
  *     role: "admin",
  * });
  * ```

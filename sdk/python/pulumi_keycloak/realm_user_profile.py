@@ -159,7 +159,7 @@ class RealmUserProfile(pulumi.CustomResource):
                 "userProfileEnabled": True,
             })
         userprofile = keycloak.RealmUserProfile("userprofile",
-            realm_id=keycloak_realm["my_realm"]["id"],
+            realm_id=my_realm["id"],
             attributes=[
                 keycloak.RealmUserProfileAttributeArgs(
                     name="field1",
@@ -270,7 +270,7 @@ class RealmUserProfile(pulumi.CustomResource):
                 "userProfileEnabled": True,
             })
         userprofile = keycloak.RealmUserProfile("userprofile",
-            realm_id=keycloak_realm["my_realm"]["id"],
+            realm_id=my_realm["id"],
             attributes=[
                 keycloak.RealmUserProfileAttributeArgs(
                     name="field1",

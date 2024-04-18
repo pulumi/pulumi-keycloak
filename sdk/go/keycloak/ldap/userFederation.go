@@ -38,28 +38,29 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-//				Enabled: pulumi.Bool(true),
 //				Realm:   pulumi.String("test"),
+//				Enabled: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = ldap.NewUserFederation(ctx, "ldapUserFederation", &ldap.UserFederationArgs{
-//				BindCredential:    pulumi.String("admin"),
-//				BindDn:            pulumi.String("cn=admin,dc=example,dc=org"),
-//				ConnectionTimeout: pulumi.String("5s"),
-//				ConnectionUrl:     pulumi.String("ldap://openldap"),
-//				Enabled:           pulumi.Bool(true),
-//				RdnLdapAttribute:  pulumi.String("cn"),
-//				ReadTimeout:       pulumi.String("10s"),
-//				RealmId:           realm.ID(),
+//			_, err = ldap.NewUserFederation(ctx, "ldap_user_federation", &ldap.UserFederationArgs{
+//				Name:                  pulumi.String("openldap"),
+//				RealmId:               realm.ID(),
+//				Enabled:               pulumi.Bool(true),
+//				UsernameLdapAttribute: pulumi.String("cn"),
+//				RdnLdapAttribute:      pulumi.String("cn"),
+//				UuidLdapAttribute:     pulumi.String("entryDN"),
 //				UserObjectClasses: pulumi.StringArray{
 //					pulumi.String("simpleSecurityObject"),
 //					pulumi.String("organizationalRole"),
 //				},
-//				UsernameLdapAttribute: pulumi.String("cn"),
-//				UsersDn:               pulumi.String("dc=example,dc=org"),
-//				UuidLdapAttribute:     pulumi.String("entryDN"),
+//				ConnectionUrl:     pulumi.String("ldap://openldap"),
+//				UsersDn:           pulumi.String("dc=example,dc=org"),
+//				BindDn:            pulumi.String("cn=admin,dc=example,dc=org"),
+//				BindCredential:    pulumi.String("admin"),
+//				ConnectionTimeout: pulumi.String("5s"),
+//				ReadTimeout:       pulumi.String("10s"),
 //			})
 //			if err != nil {
 //				return err

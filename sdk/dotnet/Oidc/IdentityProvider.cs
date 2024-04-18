@@ -31,7 +31,7 @@ namespace Pulumi.Keycloak.Oidc
     ///         Enabled = true,
     ///     });
     /// 
-    ///     var realmIdentityProvider = new Keycloak.Oidc.IdentityProvider("realmIdentityProvider", new()
+    ///     var realmIdentityProvider = new Keycloak.Oidc.IdentityProvider("realm_identity_provider", new()
     ///     {
     ///         Realm = realm.Id,
     ///         Alias = "my-idp",

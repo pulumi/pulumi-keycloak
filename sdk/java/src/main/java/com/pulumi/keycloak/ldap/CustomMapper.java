@@ -59,6 +59,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var ldapUserFederation = new UserFederation(&#34;ldapUserFederation&#34;, UserFederationArgs.builder()        
+ *             .name(&#34;openldap&#34;)
  *             .realmId(realm.id())
  *             .usernameLdapAttribute(&#34;cn&#34;)
  *             .rdnLdapAttribute(&#34;cn&#34;)
@@ -73,8 +74,9 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var customMapper = new CustomMapper(&#34;customMapper&#34;, CustomMapperArgs.builder()        
- *             .realmId(keycloak_ldap_user_federation.openldap().realm_id())
- *             .ldapUserFederationId(keycloak_ldap_user_federation.openldap().id())
+ *             .name(&#34;custom-mapper&#34;)
+ *             .realmId(openldap.realmId())
+ *             .ldapUserFederationId(openldap.id())
  *             .providerId(&#34;custom-provider-registered-in-keycloak&#34;)
  *             .providerType(&#34;com.example.custom.ldap.mappers.CustomMapper&#34;)
  *             .config(Map.ofEntries(

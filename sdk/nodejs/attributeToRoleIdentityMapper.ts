@@ -20,7 +20,7 @@ import * as utilities from "./utilities";
  *     realm: "my-realm",
  *     enabled: true,
  * });
- * const oidcIdentityProvider = new keycloak.oidc.IdentityProvider("oidcIdentityProvider", {
+ * const oidc = new keycloak.oidc.IdentityProvider("oidc", {
  *     realm: realm.id,
  *     alias: "oidc",
  *     authorizationUrl: "https://example.com/auth",
@@ -29,13 +29,15 @@ import * as utilities from "./utilities";
  *     clientSecret: "example_token",
  *     defaultScopes: "openid random profile",
  * });
- * const realmRole = new keycloak.Role("realmRole", {
+ * const realmRole = new keycloak.Role("realm_role", {
  *     realmId: realm.id,
+ *     name: "my-realm-role",
  *     description: "My Realm Role",
  * });
- * const oidcAttributeToRoleIdentityMapper = new keycloak.AttributeToRoleIdentityMapper("oidcAttributeToRoleIdentityMapper", {
+ * const oidcAttributeToRoleIdentityMapper = new keycloak.AttributeToRoleIdentityMapper("oidc", {
  *     realm: realm.id,
- *     identityProviderAlias: oidcIdentityProvider.alias,
+ *     name: "role-attribute",
+ *     identityProviderAlias: oidc.alias,
  *     role: "my-realm-role",
  *     claimName: "my-claim",
  *     claimValue: "my-value",

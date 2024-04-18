@@ -41,8 +41,8 @@ import (
 //			}
 //			_, err = oidc.NewGoogleIdentityProvider(ctx, "google", &oidc.GoogleIdentityProviderArgs{
 //				Realm:        realm.ID(),
-//				ClientId:     pulumi.Any(_var.Google_identity_provider_client_id),
-//				ClientSecret: pulumi.Any(_var.Google_identity_provider_client_secret),
+//				ClientId:     pulumi.Any(googleIdentityProviderClientId),
+//				ClientSecret: pulumi.Any(googleIdentityProviderClientSecret),
 //				TrustEmail:   pulumi.Bool(true),
 //				HostedDomain: pulumi.String("example.com"),
 //				SyncMode:     pulumi.String("IMPORT"),

@@ -25,16 +25,18 @@ import * as utilities from "../utilities";
  *     realm: "my-realm",
  *     enabled: true,
  * });
- * const openidClient = new keycloak.openid.Client("openidClient", {
+ * const openidClient = new keycloak.openid.Client("openid_client", {
  *     realmId: realm.id,
  *     clientId: "client",
+ *     name: "client",
  *     enabled: true,
  *     accessType: "CONFIDENTIAL",
  *     validRedirectUris: ["http://localhost:8080/openid-callback"],
  * });
- * const userClientRoleMapper = new keycloak.openid.UserClientRoleProtocolMapper("userClientRoleMapper", {
+ * const userClientRoleMapper = new keycloak.openid.UserClientRoleProtocolMapper("user_client_role_mapper", {
  *     realmId: realm.id,
  *     clientId: openidClient.id,
+ *     name: "user-client-role-mapper",
  *     claimName: "foo",
  * });
  * ```
@@ -51,10 +53,14 @@ import * as utilities from "../utilities";
  *     realm: "my-realm",
  *     enabled: true,
  * });
- * const clientScope = new keycloak.openid.ClientScope("clientScope", {realmId: realm.id});
- * const userClientRoleMapper = new keycloak.openid.UserClientRoleProtocolMapper("userClientRoleMapper", {
+ * const clientScope = new keycloak.openid.ClientScope("client_scope", {
+ *     realmId: realm.id,
+ *     name: "client-scope",
+ * });
+ * const userClientRoleMapper = new keycloak.openid.UserClientRoleProtocolMapper("user_client_role_mapper", {
  *     realmId: realm.id,
  *     clientScopeId: clientScope.id,
+ *     name: "user-client-role-mapper",
  *     claimName: "foo",
  * });
  * ```

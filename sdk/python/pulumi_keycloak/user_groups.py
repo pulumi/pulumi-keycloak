@@ -179,49 +179,18 @@ class UserGroups(pulumi.CustomResource):
         realm = keycloak.Realm("realm",
             realm="my-realm",
             enabled=True)
-        group = keycloak.Group("group", realm_id=realm.id)
+        group = keycloak.Group("group",
+            realm_id=realm.id,
+            name="foo")
         user = keycloak.User("user",
             realm_id=realm.id,
             username="my-user")
-        user_groups = keycloak.UserGroups("userGroups",
+        user_groups = keycloak.UserGroups("user_groups",
             realm_id=realm.id,
             user_id=user.id,
             group_ids=[group.id])
         ```
         <!--End PulumiCodeChooser -->
-
-        ### Non Exhaustive Groups)
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import pulumi_keycloak as keycloak
-
-        realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
-        group_foo = keycloak.Group("groupFoo", realm_id=realm.id)
-        group_bar = keycloak.Group("groupBar", realm_id=realm.id)
-        user = keycloak.User("user",
-            realm_id=realm.id,
-            username="my-user")
-        user_groups_association1_user_groups = keycloak.UserGroups("userGroupsAssociation1UserGroups",
-            realm_id=realm.id,
-            user_id=user.id,
-            exhaustive=False,
-            group_ids=[group_foo.id])
-        user_groups_association1_index_user_groups_user_groups = keycloak.UserGroups("userGroupsAssociation1Index/userGroupsUserGroups",
-            realm_id=realm.id,
-            user_id=user.id,
-            exhaustive=False,
-            group_ids=[group_bar.id])
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        This resource does not support import. Instead of importing, feel free to create this resource
-
-        as if it did not already exist on the server.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -253,49 +222,18 @@ class UserGroups(pulumi.CustomResource):
         realm = keycloak.Realm("realm",
             realm="my-realm",
             enabled=True)
-        group = keycloak.Group("group", realm_id=realm.id)
+        group = keycloak.Group("group",
+            realm_id=realm.id,
+            name="foo")
         user = keycloak.User("user",
             realm_id=realm.id,
             username="my-user")
-        user_groups = keycloak.UserGroups("userGroups",
+        user_groups = keycloak.UserGroups("user_groups",
             realm_id=realm.id,
             user_id=user.id,
             group_ids=[group.id])
         ```
         <!--End PulumiCodeChooser -->
-
-        ### Non Exhaustive Groups)
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import pulumi_keycloak as keycloak
-
-        realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
-        group_foo = keycloak.Group("groupFoo", realm_id=realm.id)
-        group_bar = keycloak.Group("groupBar", realm_id=realm.id)
-        user = keycloak.User("user",
-            realm_id=realm.id,
-            username="my-user")
-        user_groups_association1_user_groups = keycloak.UserGroups("userGroupsAssociation1UserGroups",
-            realm_id=realm.id,
-            user_id=user.id,
-            exhaustive=False,
-            group_ids=[group_foo.id])
-        user_groups_association1_index_user_groups_user_groups = keycloak.UserGroups("userGroupsAssociation1Index/userGroupsUserGroups",
-            realm_id=realm.id,
-            user_id=user.id,
-            exhaustive=False,
-            group_ids=[group_bar.id])
-        ```
-        <!--End PulumiCodeChooser -->
-
-        ## Import
-
-        This resource does not support import. Instead of importing, feel free to create this resource
-
-        as if it did not already exist on the server.
 
         :param str resource_name: The name of the resource.
         :param UserGroupsArgs args: The arguments to use to populate this resource's properties.

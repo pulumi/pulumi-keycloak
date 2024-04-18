@@ -17,7 +17,8 @@ import * as utilities from "./utilities";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {realm: "my-realm"});
- * const keystoreAesGenerated = new keycloak.RealmKeystoreAesGenerated("keystoreAesGenerated", {
+ * const keystoreAesGenerated = new keycloak.RealmKeystoreAesGenerated("keystore_aes_generated", {
+ *     name: "my-aes-generated-key",
  *     realmId: realm.id,
  *     enabled: true,
  *     active: true,

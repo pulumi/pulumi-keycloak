@@ -20,13 +20,14 @@ import * as utilities from "../utilities";
  *     realm: "my-realm",
  *     enabled: true,
  * });
- * const openidClient = new keycloak.openid.Client("openidClient", {
+ * const openidClient = new keycloak.openid.Client("openid_client", {
  *     clientId: "openid_client",
+ *     name: "openid_client",
  *     realmId: realm.id,
  *     accessType: "CONFIDENTIAL",
  *     serviceAccountsEnabled: true,
  * });
- * const myPermission = new keycloak.openid.ClientPermissions("myPermission", {
+ * const myPermission = new keycloak.openid.ClientPermissions("my_permission", {
  *     realmId: realm.id,
  *     clientId: openidClient.id,
  * });
@@ -34,9 +35,10 @@ import * as utilities from "../utilities";
  *     realmId: "my-realm",
  *     clientId: "realm-management",
  * });
- * const tokenExchange = new keycloak.openid.ClientPolicy("tokenExchange", {
+ * const tokenExchange = new keycloak.openid.ClientPolicy("token_exchange", {
  *     resourceServerId: realmManagement.then(realmManagement => realmManagement.id),
  *     realmId: realm.id,
+ *     name: "my-policy",
  *     logic: "POSITIVE",
  *     decisionStrategy: "UNANIMOUS",
  *     clients: [openidClient.id],

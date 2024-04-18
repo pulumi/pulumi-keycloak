@@ -67,6 +67,7 @@ import javax.annotation.Nullable;
  *         var samlHardcodeAttributeMapper = new GenericProtocolMapper(&#34;samlHardcodeAttributeMapper&#34;, GenericProtocolMapperArgs.builder()        
  *             .realmId(realm.id())
  *             .clientId(samlClient.id())
+ *             .name(&#34;test-mapper&#34;)
  *             .protocol(&#34;saml&#34;)
  *             .protocolMapper(&#34;saml-hardcode-attribute-mapper&#34;)
  *             .config(Map.ofEntries(

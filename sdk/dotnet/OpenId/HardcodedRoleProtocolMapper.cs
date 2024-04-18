@@ -33,31 +33,34 @@ namespace Pulumi.Keycloak.OpenId
     /// {
     ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         Enabled = true,
     ///         RealmName = "my-realm",
+    ///         Enabled = true,
     ///     });
     /// 
     ///     var role = new Keycloak.Role("role", new()
     ///     {
     ///         RealmId = realm.Id,
+    ///         Name = "my-role",
     ///     });
     /// 
-    ///     var openidClient = new Keycloak.OpenId.Client("openidClient", new()
+    ///     var openidClient = new Keycloak.OpenId.Client("openid_client", new()
     ///     {
-    ///         AccessType = "CONFIDENTIAL",
-    ///         ClientId = "test-client",
-    ///         Enabled = true,
     ///         RealmId = realm.Id,
+    ///         ClientId = "test-client",
+    ///         Name = "test client",
+    ///         Enabled = true,
+    ///         AccessType = "CONFIDENTIAL",
     ///         ValidRedirectUris = new[]
     ///         {
     ///             "http://localhost:8080/openid-callback",
     ///         },
     ///     });
     /// 
-    ///     var hardcodedRoleMapper = new Keycloak.OpenId.HardcodedRoleProtocolMapper("hardcodedRoleMapper", new()
+    ///     var hardcodedRoleMapper = new Keycloak.OpenId.HardcodedRoleProtocolMapper("hardcoded_role_mapper", new()
     ///     {
-    ///         ClientId = openidClient.Id,
     ///         RealmId = realm.Id,
+    ///         ClientId = openidClient.Id,
+    ///         Name = "hardcoded-role-mapper",
     ///         RoleId = role.Id,
     ///     });
     /// 
@@ -78,24 +81,27 @@ namespace Pulumi.Keycloak.OpenId
     /// {
     ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         Enabled = true,
     ///         RealmName = "my-realm",
+    ///         Enabled = true,
     ///     });
     /// 
     ///     var role = new Keycloak.Role("role", new()
     ///     {
     ///         RealmId = realm.Id,
+    ///         Name = "my-role",
     ///     });
     /// 
-    ///     var clientScope = new Keycloak.OpenId.ClientScope("clientScope", new()
+    ///     var clientScope = new Keycloak.OpenId.ClientScope("client_scope", new()
     ///     {
     ///         RealmId = realm.Id,
+    ///         Name = "test-client-scope",
     ///     });
     /// 
-    ///     var hardcodedRoleMapper = new Keycloak.OpenId.HardcodedRoleProtocolMapper("hardcodedRoleMapper", new()
+    ///     var hardcodedRoleMapper = new Keycloak.OpenId.HardcodedRoleProtocolMapper("hardcoded_role_mapper", new()
     ///     {
+    ///         RealmId = realm.Id,
     ///         ClientScopeId = clientScope.Id,
-    ///         RealmId = realm.Id,
+    ///         Name = "hardcoded-role-mapper",
     ///         RoleId = role.Id,
     ///     });
     /// 

@@ -46,8 +46,9 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			realmRole, err := keycloak.NewRole(ctx, "realmRole", &keycloak.RoleArgs{
+//			realmRole, err := keycloak.NewRole(ctx, "realm_role", &keycloak.RoleArgs{
 //				RealmId:     realm.ID(),
+//				Name:        pulumi.String("my-realm-role"),
 //				Description: pulumi.String("My Realm Role"),
 //			})
 //			if err != nil {
@@ -56,15 +57,17 @@ import (
 //			_, err = openid.NewClient(ctx, "client", &openid.ClientArgs{
 //				RealmId:    realm.ID(),
 //				ClientId:   pulumi.String("client"),
+//				Name:       pulumi.String("client"),
 //				Enabled:    pulumi.Bool(true),
 //				AccessType: pulumi.String("BEARER-ONLY"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			clientRole, err := keycloak.NewRole(ctx, "clientRole", &keycloak.RoleArgs{
+//			clientRole, err := keycloak.NewRole(ctx, "client_role", &keycloak.RoleArgs{
 //				RealmId:     realm.ID(),
-//				ClientId:    pulumi.Any(keycloak_client.Client.Id),
+//				ClientId:    pulumi.Any(clientKeycloakClient.Id),
+//				Name:        pulumi.String("my-client-role"),
 //				Description: pulumi.String("My Client Role"),
 //			})
 //			if err != nil {
@@ -81,7 +84,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = keycloak.NewUserRoles(ctx, "userRoles", &keycloak.UserRolesArgs{
+//			_, err = keycloak.NewUserRoles(ctx, "user_roles", &keycloak.UserRolesArgs{
 //				RealmId: realm.ID(),
 //				UserId:  user.ID(),
 //				RoleIds: pulumi.StringArray{

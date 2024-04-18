@@ -31,32 +31,34 @@ namespace Pulumi.Keycloak.Ldap
     /// {
     ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         Enabled = true,
     ///         RealmName = "test",
+    ///         Enabled = true,
     ///     });
     /// 
-    ///     var ldapUserFederation = new Keycloak.Ldap.UserFederation("ldapUserFederation", new()
+    ///     var ldapUserFederation = new Keycloak.Ldap.UserFederation("ldap_user_federation", new()
     ///     {
-    ///         BindCredential = "admin",
-    ///         BindDn = "cn=admin,dc=example,dc=org",
-    ///         ConnectionUrl = "ldap://openldap",
-    ///         RdnLdapAttribute = "cn",
+    ///         Name = "openldap",
     ///         RealmId = realm.Id,
+    ///         UsernameLdapAttribute = "cn",
+    ///         RdnLdapAttribute = "cn",
+    ///         UuidLdapAttribute = "entryDN",
     ///         UserObjectClasses = new[]
     ///         {
     ///             "simpleSecurityObject",
     ///             "organizationalRole",
     ///         },
-    ///         UsernameLdapAttribute = "cn",
+    ///         ConnectionUrl = "ldap://openldap",
     ///         UsersDn = "dc=example,dc=org",
-    ///         UuidLdapAttribute = "entryDN",
+    ///         BindDn = "cn=admin,dc=example,dc=org",
+    ///         BindCredential = "admin",
     ///     });
     /// 
-    ///     var ldapFullNameMapper = new Keycloak.Ldap.FullNameMapper("ldapFullNameMapper", new()
+    ///     var ldapFullNameMapper = new Keycloak.Ldap.FullNameMapper("ldap_full_name_mapper", new()
     ///     {
-    ///         LdapFullNameAttribute = "cn",
-    ///         LdapUserFederationId = ldapUserFederation.Id,
     ///         RealmId = realm.Id,
+    ///         LdapUserFederationId = ldapUserFederation.Id,
+    ///         Name = "full-name-mapper",
+    ///         LdapFullNameAttribute = "cn",
     ///     });
     /// 
     /// });

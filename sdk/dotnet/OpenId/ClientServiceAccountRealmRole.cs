@@ -33,18 +33,20 @@ namespace Pulumi.Keycloak.OpenId
     ///         Enabled = true,
     ///     });
     /// 
-    ///     var realmRole = new Keycloak.Role("realmRole", new()
+    ///     var realmRole = new Keycloak.Role("realm_role", new()
     ///     {
     ///         RealmId = realm.Id,
+    ///         Name = "my-realm-role",
     ///     });
     /// 
     ///     var client = new Keycloak.OpenId.Client("client", new()
     ///     {
     ///         RealmId = realm.Id,
+    ///         Name = "client",
     ///         ServiceAccountsEnabled = true,
     ///     });
     /// 
-    ///     var clientServiceAccountRole = new Keycloak.OpenId.ClientServiceAccountRealmRole("clientServiceAccountRole", new()
+    ///     var clientServiceAccountRole = new Keycloak.OpenId.ClientServiceAccountRealmRole("client_service_account_role", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         ServiceAccountUserId = client.ServiceAccountUserId,

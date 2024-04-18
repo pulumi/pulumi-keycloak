@@ -59,11 +59,13 @@ import javax.annotation.Nullable;
  *         var samlClient = new Client(&#34;samlClient&#34;, ClientArgs.builder()        
  *             .realmId(realm.id())
  *             .clientId(&#34;saml-client&#34;)
+ *             .name(&#34;saml-client&#34;)
  *             .build());
  * 
  *         var samlScriptMapper = new ScriptProtocolMapper(&#34;samlScriptMapper&#34;, ScriptProtocolMapperArgs.builder()        
  *             .realmId(realm.id())
  *             .clientId(samlClient.id())
+ *             .name(&#34;script-mapper&#34;)
  *             .script(&#34;exports = &#39;foo&#39;;&#34;)
  *             .samlAttributeName(&#34;displayName&#34;)
  *             .samlAttributeNameFormat(&#34;Unspecified&#34;)

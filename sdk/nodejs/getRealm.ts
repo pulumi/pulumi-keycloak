@@ -22,7 +22,11 @@ import * as utilities from "./utilities";
  * const realm = keycloak.getRealm({
  *     realm: "my-realm",
  * });
- * const group = new keycloak.Role("group", {realmId: data.keycloak_realm.id});
+ * // use the data source
+ * const group = new keycloak.Role("group", {
+ *     realmId: id,
+ *     name: "group",
+ * });
  * ```
  * <!--End PulumiCodeChooser -->
  *
@@ -152,7 +156,11 @@ export interface GetRealmResult {
  * const realm = keycloak.getRealm({
  *     realm: "my-realm",
  * });
- * const group = new keycloak.Role("group", {realmId: data.keycloak_realm.id});
+ * // use the data source
+ * const group = new keycloak.Role("group", {
+ *     realmId: id,
+ *     name: "group",
+ * });
  * ```
  * <!--End PulumiCodeChooser -->
  *

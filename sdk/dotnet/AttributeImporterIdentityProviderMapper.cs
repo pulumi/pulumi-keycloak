@@ -25,11 +25,12 @@ namespace Pulumi.Keycloak
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var testMapper = new Keycloak.AttributeImporterIdentityProviderMapper("testMapper", new()
+    ///     var testMapper = new Keycloak.AttributeImporterIdentityProviderMapper("test_mapper", new()
     ///     {
-    ///         AttributeName = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname",
-    ///         IdentityProviderAlias = "idp_alias",
     ///         Realm = "my-realm",
+    ///         Name = "my-mapper",
+    ///         IdentityProviderAlias = "idp_alias",
+    ///         AttributeName = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname",
     ///         UserAttribute = "lastName",
     ///     });
     /// 

@@ -37,7 +37,8 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = keycloak.NewRealmKeystoreEcdsaGenerated(ctx, "keystoreEcdsaGenerated", &keycloak.RealmKeystoreEcdsaGeneratedArgs{
+//			_, err = keycloak.NewRealmKeystoreEcdsaGenerated(ctx, "keystore_ecdsa_generated", &keycloak.RealmKeystoreEcdsaGeneratedArgs{
+//				Name:             pulumi.String("my-ecdsa-generated-key"),
 //				RealmId:          realm.ID(),
 //				Enabled:          pulumi.Bool(true),
 //				Active:           pulumi.Bool(true),

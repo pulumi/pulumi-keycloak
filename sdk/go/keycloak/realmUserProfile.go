@@ -71,7 +71,7 @@ import (
 //			}
 //			json2 := string(tmpJSON2)
 //			_, err = keycloak.NewRealmUserProfile(ctx, "userprofile", &keycloak.RealmUserProfileArgs{
-//				RealmId: pulumi.Any(keycloak_realm.My_realm.Id),
+//				RealmId: pulumi.Any(myRealm.Id),
 //				Attributes: keycloak.RealmUserProfileAttributeArray{
 //					&keycloak.RealmUserProfileAttributeArgs{
 //						Name:        pulumi.String("field1"),

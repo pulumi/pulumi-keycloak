@@ -44,14 +44,15 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-//				Enabled: pulumi.Bool(true),
 //				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			group, err := keycloak.NewGroup(ctx, "group", &keycloak.GroupArgs{
 //				RealmId: realm.ID(),
+//				Name:    pulumi.String("my-group"),
 //			})
 //			if err != nil {
 //				return err
@@ -63,12 +64,12 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = keycloak.NewGroupMemberships(ctx, "groupMembers", &keycloak.GroupMembershipsArgs{
+//			_, err = keycloak.NewGroupMemberships(ctx, "group_members", &keycloak.GroupMembershipsArgs{
+//				RealmId: realm.ID(),
 //				GroupId: group.ID(),
 //				Members: pulumi.StringArray{
 //					user.Username,
 //				},
-//				RealmId: realm.ID(),
 //			})
 //			if err != nil {
 //				return err

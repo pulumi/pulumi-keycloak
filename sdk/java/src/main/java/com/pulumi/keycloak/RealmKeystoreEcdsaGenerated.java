@@ -52,6 +52,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var keystoreEcdsaGenerated = new RealmKeystoreEcdsaGenerated(&#34;keystoreEcdsaGenerated&#34;, RealmKeystoreEcdsaGeneratedArgs.builder()        
+ *             .name(&#34;my-ecdsa-generated-key&#34;)
  *             .realmId(realm.id())
  *             .enabled(true)
  *             .active(true)

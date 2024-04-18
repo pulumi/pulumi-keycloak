@@ -52,6 +52,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var javaKeystore = new RealmKeystoreJavaGenerated(&#34;javaKeystore&#34;, RealmKeystoreJavaGeneratedArgs.builder()        
+ *             .name(&#34;my-java-keystore&#34;)
  *             .realmId(realm.id())
  *             .enabled(true)
  *             .active(true)

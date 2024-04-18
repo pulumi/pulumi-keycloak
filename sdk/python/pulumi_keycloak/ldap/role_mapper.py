@@ -536,7 +536,8 @@ class RoleMapper(pulumi.CustomResource):
         realm = keycloak.Realm("realm",
             realm="my-realm",
             enabled=True)
-        ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
+        ldap_user_federation = keycloak.ldap.UserFederation("ldap_user_federation",
+            name="openldap",
             realm_id=realm.id,
             username_ldap_attribute="cn",
             rdn_ldap_attribute="cn",
@@ -549,9 +550,10 @@ class RoleMapper(pulumi.CustomResource):
             users_dn="dc=example,dc=org",
             bind_dn="cn=admin,dc=example,dc=org",
             bind_credential="admin")
-        ldap_role_mapper = keycloak.ldap.RoleMapper("ldapRoleMapper",
+        ldap_role_mapper = keycloak.ldap.RoleMapper("ldap_role_mapper",
             realm_id=realm.id,
             ldap_user_federation_id=ldap_user_federation.id,
+            name="role-mapper",
             ldap_roles_dn="dc=example,dc=org",
             role_name_ldap_attribute="cn",
             role_object_classes=["groupOfNames"],
@@ -616,7 +618,8 @@ class RoleMapper(pulumi.CustomResource):
         realm = keycloak.Realm("realm",
             realm="my-realm",
             enabled=True)
-        ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
+        ldap_user_federation = keycloak.ldap.UserFederation("ldap_user_federation",
+            name="openldap",
             realm_id=realm.id,
             username_ldap_attribute="cn",
             rdn_ldap_attribute="cn",
@@ -629,9 +632,10 @@ class RoleMapper(pulumi.CustomResource):
             users_dn="dc=example,dc=org",
             bind_dn="cn=admin,dc=example,dc=org",
             bind_credential="admin")
-        ldap_role_mapper = keycloak.ldap.RoleMapper("ldapRoleMapper",
+        ldap_role_mapper = keycloak.ldap.RoleMapper("ldap_role_mapper",
             realm_id=realm.id,
             ldap_user_federation_id=ldap_user_federation.id,
+            name="role-mapper",
             ldap_roles_dn="dc=example,dc=org",
             role_name_ldap_attribute="cn",
             role_object_classes=["groupOfNames"],

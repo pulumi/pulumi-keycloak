@@ -26,21 +26,26 @@ import * as utilities from "./utilities";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {
- *     enabled: true,
  *     realm: "my-realm",
+ *     enabled: true,
  * });
- * const parentGroup = new keycloak.Group("parentGroup", {realmId: realm.id});
- * const childGroup = new keycloak.Group("childGroup", {
- *     parentId: parentGroup.id,
+ * const parentGroup = new keycloak.Group("parent_group", {
  *     realmId: realm.id,
+ *     name: "parent-group",
  * });
- * const childGroupWithOptionalAttributes = new keycloak.Group("childGroupWithOptionalAttributes", {
+ * const childGroup = new keycloak.Group("child_group", {
+ *     realmId: realm.id,
+ *     parentId: parentGroup.id,
+ *     name: "child-group",
+ * });
+ * const childGroupWithOptionalAttributes = new keycloak.Group("child_group_with_optional_attributes", {
+ *     realmId: realm.id,
+ *     parentId: parentGroup.id,
+ *     name: "child-group-with-optional-attributes",
  *     attributes: {
  *         key1: "value1",
  *         key2: "value2",
  *     },
- *     parentId: parentGroup.id,
- *     realmId: realm.id,
  * });
  * ```
  * <!--End PulumiCodeChooser -->

@@ -27,28 +27,34 @@ import * as utilities from "./utilities";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {
- *     enabled: true,
  *     realm: "my-realm",
+ *     enabled: true,
  * });
- * const realmRole = new keycloak.Role("realmRole", {
- *     description: "My Realm Role",
+ * const realmRole = new keycloak.Role("realm_role", {
  *     realmId: realm.id,
+ *     name: "my-realm-role",
+ *     description: "My Realm Role",
  * });
  * const client = new keycloak.openid.Client("client", {
- *     accessType: "BEARER-ONLY",
+ *     realmId: realm.id,
  *     clientId: "client",
+ *     name: "client",
  *     enabled: true,
- *     realmId: realm.id,
+ *     accessType: "BEARER-ONLY",
  * });
- * const clientRole = new keycloak.Role("clientRole", {
- *     clientId: keycloak_client.client.id,
+ * const clientRole = new keycloak.Role("client_role", {
+ *     realmId: realm.id,
+ *     clientId: clientKeycloakClient.id,
+ *     name: "my-client-role",
  *     description: "My Client Role",
- *     realmId: realm.id,
  * });
- * const group = new keycloak.Group("group", {realmId: realm.id});
- * const groupRoles = new keycloak.GroupRoles("groupRoles", {
- *     groupId: group.id,
+ * const group = new keycloak.Group("group", {
  *     realmId: realm.id,
+ *     name: "my-group",
+ * });
+ * const groupRoles = new keycloak.GroupRoles("group_roles", {
+ *     realmId: realm.id,
+ *     groupId: group.id,
  *     roleIds: [
  *         realmRole.id,
  *         clientRole.id,

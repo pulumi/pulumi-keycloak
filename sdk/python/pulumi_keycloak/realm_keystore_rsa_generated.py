@@ -276,7 +276,8 @@ class RealmKeystoreRsaGenerated(pulumi.CustomResource):
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm", realm="my-realm")
-        keystore_rsa_generated = keycloak.RealmKeystoreRsaGenerated("keystoreRsaGenerated",
+        keystore_rsa_generated = keycloak.RealmKeystoreRsaGenerated("keystore_rsa_generated",
+            name="my-rsa-generated-key",
             realm_id=realm.id,
             enabled=True,
             active=True,
@@ -327,7 +328,8 @@ class RealmKeystoreRsaGenerated(pulumi.CustomResource):
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm", realm="my-realm")
-        keystore_rsa_generated = keycloak.RealmKeystoreRsaGenerated("keystoreRsaGenerated",
+        keystore_rsa_generated = keycloak.RealmKeystoreRsaGenerated("keystore_rsa_generated",
+            name="my-rsa-generated-key",
             realm_id=realm.id,
             enabled=True,
             active=True,

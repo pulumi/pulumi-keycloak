@@ -23,18 +23,23 @@ import * as utilities from "../utilities";
  *     enabled: true,
  * });
  * // client1 provides a role to other clients
- * const client1 = new keycloak.openid.Client("client1", {realmId: realm.id});
- * const client1Role = new keycloak.Role("client1Role", {
+ * const client1 = new keycloak.openid.Client("client1", {
+ *     realmId: realm.id,
+ *     name: "client1",
+ * });
+ * const client1Role = new keycloak.Role("client1_role", {
  *     realmId: realm.id,
  *     clientId: client1.id,
+ *     name: "my-client1-role",
  *     description: "A role that client1 provides",
  * });
  * // client2 is assigned the role of client1
  * const client2 = new keycloak.openid.Client("client2", {
  *     realmId: realm.id,
+ *     name: "client2",
  *     serviceAccountsEnabled: true,
  * });
- * const client2ServiceAccountRole = new keycloak.openid.ClientServiceAccountRole("client2ServiceAccountRole", {
+ * const client2ServiceAccountRole = new keycloak.openid.ClientServiceAccountRole("client2_service_account_role", {
  *     realmId: realm.id,
  *     serviceAccountUserId: client2.serviceAccountUserId,
  *     clientId: client1.id,

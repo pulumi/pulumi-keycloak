@@ -52,6 +52,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var keystoreRsaGenerated = new RealmKeystoreRsaGenerated(&#34;keystoreRsaGenerated&#34;, RealmKeystoreRsaGeneratedArgs.builder()        
+ *             .name(&#34;my-rsa-generated-key&#34;)
  *             .realmId(realm.id())
  *             .enabled(true)
  *             .active(true)

@@ -43,9 +43,10 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			openidClient, err := openid.NewClient(ctx, "openidClient", &openid.ClientArgs{
+//			openidClient, err := openid.NewClient(ctx, "openid_client", &openid.ClientArgs{
 //				RealmId:    realm.ID(),
 //				ClientId:   pulumi.String("client"),
+//				Name:       pulumi.String("client"),
 //				Enabled:    pulumi.Bool(true),
 //				AccessType: pulumi.String("CONFIDENTIAL"),
 //				ValidRedirectUris: pulumi.StringArray{
@@ -55,9 +56,10 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = openid.NewAudienceResolveProtocolMapper(ctx, "audienceMapper", &openid.AudienceResolveProtocolMapperArgs{
+//			_, err = openid.NewAudienceResolveProtocolMapper(ctx, "audience_mapper", &openid.AudienceResolveProtocolMapperArgs{
 //				RealmId:  realm.ID(),
 //				ClientId: openidClient.ID(),
+//				Name:     pulumi.String("my-audience-resolve-mapper"),
 //			})
 //			if err != nil {
 //				return err
@@ -92,13 +94,14 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			clientScope, err := openid.NewClientScope(ctx, "clientScope", &openid.ClientScopeArgs{
+//			clientScope, err := openid.NewClientScope(ctx, "client_scope", &openid.ClientScopeArgs{
 //				RealmId: realm.ID(),
+//				Name:    pulumi.String("test-client-scope"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = openid.NewAudienceProtocolMapper(ctx, "audienceMapper", &openid.AudienceProtocolMapperArgs{
+//			_, err = openid.NewAudienceProtocolMapper(ctx, "audience_mapper", &openid.AudienceProtocolMapperArgs{
 //				RealmId:       realm.ID(),
 //				ClientScopeId: clientScope.ID(),
 //			})

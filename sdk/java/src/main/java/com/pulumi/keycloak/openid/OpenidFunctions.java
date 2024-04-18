@@ -59,6 +59,7 @@ public final class OpenidFunctions {
      *             .clientId(&#34;realm-management&#34;)
      *             .build());
      * 
+     *         // use the data source
      *         final var admin = KeycloakFunctions.getRole(GetRoleArgs.builder()
      *             .realmId(&#34;my-realm&#34;)
      *             .clientId(realmManagement.applyValue(getClientResult -&gt; getClientResult.id()))
@@ -121,6 +122,7 @@ public final class OpenidFunctions {
      *             .clientId(&#34;realm-management&#34;)
      *             .build());
      * 
+     *         // use the data source
      *         final var admin = KeycloakFunctions.getRole(GetRoleArgs.builder()
      *             .realmId(&#34;my-realm&#34;)
      *             .clientId(realmManagement.applyValue(getClientResult -&gt; getClientResult.id()))
@@ -183,6 +185,7 @@ public final class OpenidFunctions {
      *             .clientId(&#34;realm-management&#34;)
      *             .build());
      * 
+     *         // use the data source
      *         final var admin = KeycloakFunctions.getRole(GetRoleArgs.builder()
      *             .realmId(&#34;my-realm&#34;)
      *             .clientId(realmManagement.applyValue(getClientResult -&gt; getClientResult.id()))
@@ -245,6 +248,7 @@ public final class OpenidFunctions {
      *             .clientId(&#34;realm-management&#34;)
      *             .build());
      * 
+     *         // use the data source
      *         final var admin = KeycloakFunctions.getRole(GetRoleArgs.builder()
      *             .realmId(&#34;my-realm&#34;)
      *             .clientId(realmManagement.applyValue(getClientResult -&gt; getClientResult.id()))
@@ -318,6 +322,7 @@ public final class OpenidFunctions {
      * 
      *         var clientWithAuthz = new Client(&#34;clientWithAuthz&#34;, ClientArgs.builder()        
      *             .clientId(&#34;client-with-authz&#34;)
+     *             .name(&#34;client-with-authz&#34;)
      *             .realmId(realm.id())
      *             .accessType(&#34;CONFIDENTIAL&#34;)
      *             .serviceAccountsEnabled(true)
@@ -334,6 +339,7 @@ public final class OpenidFunctions {
      * 
      *         var resource = new ClientAuthorizationResource(&#34;resource&#34;, ClientAuthorizationResourceArgs.builder()        
      *             .resourceServerId(clientWithAuthz.resourceServerId())
+     *             .name(&#34;authorization-resource&#34;)
      *             .realmId(realm.id())
      *             .uris(&#34;/endpoint/*&#34;)
      *             .attributes(Map.of(&#34;foo&#34;, &#34;bar&#34;))
@@ -342,6 +348,7 @@ public final class OpenidFunctions {
      *         var permission = new ClientAuthorizationPermission(&#34;permission&#34;, ClientAuthorizationPermissionArgs.builder()        
      *             .resourceServerId(clientWithAuthz.resourceServerId())
      *             .realmId(realm.id())
+     *             .name(&#34;authorization-permission&#34;)
      *             .policies(defaultPermission.applyValue(getClientAuthorizationPolicyResult -&gt; getClientAuthorizationPolicyResult).applyValue(defaultPermission -&gt; defaultPermission.applyValue(getClientAuthorizationPolicyResult -&gt; getClientAuthorizationPolicyResult.id())))
      *             .resources(resource.id())
      *             .build());
@@ -402,6 +409,7 @@ public final class OpenidFunctions {
      * 
      *         var clientWithAuthz = new Client(&#34;clientWithAuthz&#34;, ClientArgs.builder()        
      *             .clientId(&#34;client-with-authz&#34;)
+     *             .name(&#34;client-with-authz&#34;)
      *             .realmId(realm.id())
      *             .accessType(&#34;CONFIDENTIAL&#34;)
      *             .serviceAccountsEnabled(true)
@@ -418,6 +426,7 @@ public final class OpenidFunctions {
      * 
      *         var resource = new ClientAuthorizationResource(&#34;resource&#34;, ClientAuthorizationResourceArgs.builder()        
      *             .resourceServerId(clientWithAuthz.resourceServerId())
+     *             .name(&#34;authorization-resource&#34;)
      *             .realmId(realm.id())
      *             .uris(&#34;/endpoint/*&#34;)
      *             .attributes(Map.of(&#34;foo&#34;, &#34;bar&#34;))
@@ -426,6 +435,7 @@ public final class OpenidFunctions {
      *         var permission = new ClientAuthorizationPermission(&#34;permission&#34;, ClientAuthorizationPermissionArgs.builder()        
      *             .resourceServerId(clientWithAuthz.resourceServerId())
      *             .realmId(realm.id())
+     *             .name(&#34;authorization-permission&#34;)
      *             .policies(defaultPermission.applyValue(getClientAuthorizationPolicyResult -&gt; getClientAuthorizationPolicyResult).applyValue(defaultPermission -&gt; defaultPermission.applyValue(getClientAuthorizationPolicyResult -&gt; getClientAuthorizationPolicyResult.id())))
      *             .resources(resource.id())
      *             .build());
@@ -486,6 +496,7 @@ public final class OpenidFunctions {
      * 
      *         var clientWithAuthz = new Client(&#34;clientWithAuthz&#34;, ClientArgs.builder()        
      *             .clientId(&#34;client-with-authz&#34;)
+     *             .name(&#34;client-with-authz&#34;)
      *             .realmId(realm.id())
      *             .accessType(&#34;CONFIDENTIAL&#34;)
      *             .serviceAccountsEnabled(true)
@@ -502,6 +513,7 @@ public final class OpenidFunctions {
      * 
      *         var resource = new ClientAuthorizationResource(&#34;resource&#34;, ClientAuthorizationResourceArgs.builder()        
      *             .resourceServerId(clientWithAuthz.resourceServerId())
+     *             .name(&#34;authorization-resource&#34;)
      *             .realmId(realm.id())
      *             .uris(&#34;/endpoint/*&#34;)
      *             .attributes(Map.of(&#34;foo&#34;, &#34;bar&#34;))
@@ -510,6 +522,7 @@ public final class OpenidFunctions {
      *         var permission = new ClientAuthorizationPermission(&#34;permission&#34;, ClientAuthorizationPermissionArgs.builder()        
      *             .resourceServerId(clientWithAuthz.resourceServerId())
      *             .realmId(realm.id())
+     *             .name(&#34;authorization-permission&#34;)
      *             .policies(defaultPermission.applyValue(getClientAuthorizationPolicyResult -&gt; getClientAuthorizationPolicyResult).applyValue(defaultPermission -&gt; defaultPermission.applyValue(getClientAuthorizationPolicyResult -&gt; getClientAuthorizationPolicyResult.id())))
      *             .resources(resource.id())
      *             .build());
@@ -570,6 +583,7 @@ public final class OpenidFunctions {
      * 
      *         var clientWithAuthz = new Client(&#34;clientWithAuthz&#34;, ClientArgs.builder()        
      *             .clientId(&#34;client-with-authz&#34;)
+     *             .name(&#34;client-with-authz&#34;)
      *             .realmId(realm.id())
      *             .accessType(&#34;CONFIDENTIAL&#34;)
      *             .serviceAccountsEnabled(true)
@@ -586,6 +600,7 @@ public final class OpenidFunctions {
      * 
      *         var resource = new ClientAuthorizationResource(&#34;resource&#34;, ClientAuthorizationResourceArgs.builder()        
      *             .resourceServerId(clientWithAuthz.resourceServerId())
+     *             .name(&#34;authorization-resource&#34;)
      *             .realmId(realm.id())
      *             .uris(&#34;/endpoint/*&#34;)
      *             .attributes(Map.of(&#34;foo&#34;, &#34;bar&#34;))
@@ -594,6 +609,7 @@ public final class OpenidFunctions {
      *         var permission = new ClientAuthorizationPermission(&#34;permission&#34;, ClientAuthorizationPermissionArgs.builder()        
      *             .resourceServerId(clientWithAuthz.resourceServerId())
      *             .realmId(realm.id())
+     *             .name(&#34;authorization-permission&#34;)
      *             .policies(defaultPermission.applyValue(getClientAuthorizationPolicyResult -&gt; getClientAuthorizationPolicyResult).applyValue(defaultPermission -&gt; defaultPermission.applyValue(getClientAuthorizationPolicyResult -&gt; getClientAuthorizationPolicyResult.id())))
      *             .resources(resource.id())
      *             .build());
@@ -645,6 +661,7 @@ public final class OpenidFunctions {
      *         var audienceMapper = new AudienceProtocolMapper(&#34;audienceMapper&#34;, AudienceProtocolMapperArgs.builder()        
      *             .realmId(offlineAccess.applyValue(getClientScopeResult -&gt; getClientScopeResult.realmId()))
      *             .clientScopeId(offlineAccess.applyValue(getClientScopeResult -&gt; getClientScopeResult.id()))
+     *             .name(&#34;audience-mapper&#34;)
      *             .includedCustomAudience(&#34;foo&#34;)
      *             .build());
      * 
@@ -695,6 +712,7 @@ public final class OpenidFunctions {
      *         var audienceMapper = new AudienceProtocolMapper(&#34;audienceMapper&#34;, AudienceProtocolMapperArgs.builder()        
      *             .realmId(offlineAccess.applyValue(getClientScopeResult -&gt; getClientScopeResult.realmId()))
      *             .clientScopeId(offlineAccess.applyValue(getClientScopeResult -&gt; getClientScopeResult.id()))
+     *             .name(&#34;audience-mapper&#34;)
      *             .includedCustomAudience(&#34;foo&#34;)
      *             .build());
      * 
@@ -745,6 +763,7 @@ public final class OpenidFunctions {
      *         var audienceMapper = new AudienceProtocolMapper(&#34;audienceMapper&#34;, AudienceProtocolMapperArgs.builder()        
      *             .realmId(offlineAccess.applyValue(getClientScopeResult -&gt; getClientScopeResult.realmId()))
      *             .clientScopeId(offlineAccess.applyValue(getClientScopeResult -&gt; getClientScopeResult.id()))
+     *             .name(&#34;audience-mapper&#34;)
      *             .includedCustomAudience(&#34;foo&#34;)
      *             .build());
      * 
@@ -795,6 +814,7 @@ public final class OpenidFunctions {
      *         var audienceMapper = new AudienceProtocolMapper(&#34;audienceMapper&#34;, AudienceProtocolMapperArgs.builder()        
      *             .realmId(offlineAccess.applyValue(getClientScopeResult -&gt; getClientScopeResult.realmId()))
      *             .clientScopeId(offlineAccess.applyValue(getClientScopeResult -&gt; getClientScopeResult.id()))
+     *             .name(&#34;audience-mapper&#34;)
      *             .includedCustomAudience(&#34;foo&#34;)
      *             .build());
      * 
@@ -855,6 +875,7 @@ public final class OpenidFunctions {
      *         var client = new Client(&#34;client&#34;, ClientArgs.builder()        
      *             .realmId(realm.id())
      *             .clientId(&#34;client&#34;)
+     *             .name(&#34;client&#34;)
      *             .accessType(&#34;CONFIDENTIAL&#34;)
      *             .serviceAccountsEnabled(true)
      *             .build());
@@ -932,6 +953,7 @@ public final class OpenidFunctions {
      *         var client = new Client(&#34;client&#34;, ClientArgs.builder()        
      *             .realmId(realm.id())
      *             .clientId(&#34;client&#34;)
+     *             .name(&#34;client&#34;)
      *             .accessType(&#34;CONFIDENTIAL&#34;)
      *             .serviceAccountsEnabled(true)
      *             .build());
@@ -1009,6 +1031,7 @@ public final class OpenidFunctions {
      *         var client = new Client(&#34;client&#34;, ClientArgs.builder()        
      *             .realmId(realm.id())
      *             .clientId(&#34;client&#34;)
+     *             .name(&#34;client&#34;)
      *             .accessType(&#34;CONFIDENTIAL&#34;)
      *             .serviceAccountsEnabled(true)
      *             .build());
@@ -1086,6 +1109,7 @@ public final class OpenidFunctions {
      *         var client = new Client(&#34;client&#34;, ClientArgs.builder()        
      *             .realmId(realm.id())
      *             .clientId(&#34;client&#34;)
+     *             .name(&#34;client&#34;)
      *             .accessType(&#34;CONFIDENTIAL&#34;)
      *             .serviceAccountsEnabled(true)
      *             .build());

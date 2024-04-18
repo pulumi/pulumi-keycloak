@@ -30,22 +30,23 @@ namespace Pulumi.Keycloak
     /// {
     ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         Enabled = true,
     ///         RealmName = "my-realm",
+    ///         Enabled = true,
     ///     });
     /// 
     ///     var @group = new Keycloak.Group("group", new()
     ///     {
     ///         RealmId = realm.Id,
+    ///         Name = "my-group",
     ///     });
     /// 
     ///     var @default = new Keycloak.DefaultGroups("default", new()
     ///     {
+    ///         RealmId = realm.Id,
     ///         GroupIds = new[]
     ///         {
     ///             @group.Id,
     ///         },
-    ///         RealmId = realm.Id,
     ///     });
     /// 
     /// });

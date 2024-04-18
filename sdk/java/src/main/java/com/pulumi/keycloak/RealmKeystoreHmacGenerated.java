@@ -52,6 +52,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var keystoreHmacGenerated = new RealmKeystoreHmacGenerated(&#34;keystoreHmacGenerated&#34;, RealmKeystoreHmacGeneratedArgs.builder()        
+ *             .name(&#34;my-hmac-generated-key&#34;)
  *             .realmId(realm.id())
  *             .enabled(true)
  *             .active(true)

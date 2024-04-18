@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
  *             .enabled(true)
  *             .build());
  * 
- *         var oidcIdentityProvider = new IdentityProvider(&#34;oidcIdentityProvider&#34;, IdentityProviderArgs.builder()        
+ *         var oidc = new IdentityProvider(&#34;oidc&#34;, IdentityProviderArgs.builder()        
  *             .realm(realm.id())
  *             .alias(&#34;oidc&#34;)
  *             .authorizationUrl(&#34;https://example.com/auth&#34;)
@@ -62,7 +62,8 @@ import javax.annotation.Nullable;
  * 
  *         var oidcCustomIdentityProviderMapping = new CustomIdentityProviderMapping(&#34;oidcCustomIdentityProviderMapping&#34;, CustomIdentityProviderMappingArgs.builder()        
  *             .realm(realm.id())
- *             .identityProviderAlias(oidcIdentityProvider.alias())
+ *             .name(&#34;email-attribute-importer&#34;)
+ *             .identityProviderAlias(oidc.alias())
  *             .identityProviderMapper(&#34;%s-user-attribute-idp-mapper&#34;)
  *             .extraConfig(Map.ofEntries(
  *                 Map.entry(&#34;syncMode&#34;, &#34;INHERIT&#34;),

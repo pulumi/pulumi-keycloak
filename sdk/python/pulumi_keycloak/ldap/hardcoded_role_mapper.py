@@ -177,7 +177,8 @@ class HardcodedRoleMapper(pulumi.CustomResource):
         realm = keycloak.Realm("realm",
             realm="test",
             enabled=True)
-        ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
+        ldap_user_federation = keycloak.ldap.UserFederation("ldap_user_federation",
+            name="openldap",
             realm_id=realm.id,
             username_ldap_attribute="cn",
             rdn_ldap_attribute="cn",
@@ -190,9 +191,10 @@ class HardcodedRoleMapper(pulumi.CustomResource):
             users_dn="dc=example,dc=org",
             bind_dn="cn=admin,dc=example,dc=org",
             bind_credential="admin")
-        assign_admin_role_to_all_users = keycloak.ldap.HardcodedRoleMapper("assignAdminRoleToAllUsers",
+        assign_admin_role_to_all_users = keycloak.ldap.HardcodedRoleMapper("assign_admin_role_to_all_users",
             realm_id=realm.id,
             ldap_user_federation_id=ldap_user_federation.id,
+            name="assign-admin-role-to-all-users",
             role="admin")
         ```
         <!--End PulumiCodeChooser -->
@@ -240,7 +242,8 @@ class HardcodedRoleMapper(pulumi.CustomResource):
         realm = keycloak.Realm("realm",
             realm="test",
             enabled=True)
-        ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
+        ldap_user_federation = keycloak.ldap.UserFederation("ldap_user_federation",
+            name="openldap",
             realm_id=realm.id,
             username_ldap_attribute="cn",
             rdn_ldap_attribute="cn",
@@ -253,9 +256,10 @@ class HardcodedRoleMapper(pulumi.CustomResource):
             users_dn="dc=example,dc=org",
             bind_dn="cn=admin,dc=example,dc=org",
             bind_credential="admin")
-        assign_admin_role_to_all_users = keycloak.ldap.HardcodedRoleMapper("assignAdminRoleToAllUsers",
+        assign_admin_role_to_all_users = keycloak.ldap.HardcodedRoleMapper("assign_admin_role_to_all_users",
             realm_id=realm.id,
             ldap_user_federation_id=ldap_user_federation.id,
+            name="assign-admin-role-to-all-users",
             role="admin")
         ```
         <!--End PulumiCodeChooser -->

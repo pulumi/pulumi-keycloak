@@ -54,6 +54,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var ldapUserFederation = new UserFederation(&#34;ldapUserFederation&#34;, UserFederationArgs.builder()        
+ *             .name(&#34;openldap&#34;)
  *             .realmId(realm.id())
  *             .usernameLdapAttribute(&#34;cn&#34;)
  *             .rdnLdapAttribute(&#34;cn&#34;)
@@ -69,11 +70,13 @@ import javax.annotation.Nullable;
  * 
  *         var realmGroup = new Group(&#34;realmGroup&#34;, GroupArgs.builder()        
  *             .realmId(realm.id())
+ *             .name(&#34;my-group&#34;)
  *             .build());
  * 
  *         var assignGroupToUsers = new HardcodedGroupMapper(&#34;assignGroupToUsers&#34;, HardcodedGroupMapperArgs.builder()        
  *             .realmId(realm.id())
  *             .ldapUserFederationId(ldapUserFederation.id())
+ *             .name(&#34;assign-group-to-users&#34;)
  *             .group(realmGroup.name())
  *             .build());
  * 

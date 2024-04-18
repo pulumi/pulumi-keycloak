@@ -212,8 +212,9 @@ class ClientScope(pulumi.CustomResource):
         realm = keycloak.Realm("realm",
             realm="my-realm",
             enabled=True)
-        saml_client_scope = keycloak.saml.ClientScope("samlClientScope",
+        saml_client_scope = keycloak.saml.ClientScope("saml_client_scope",
             realm_id=realm.id,
+            name="groups",
             description="This scope will map a user's group memberships to SAML assertion",
             gui_order=1)
         ```
@@ -262,8 +263,9 @@ class ClientScope(pulumi.CustomResource):
         realm = keycloak.Realm("realm",
             realm="my-realm",
             enabled=True)
-        saml_client_scope = keycloak.saml.ClientScope("samlClientScope",
+        saml_client_scope = keycloak.saml.ClientScope("saml_client_scope",
             realm_id=realm.id,
+            name="groups",
             description="This scope will map a user's group memberships to SAML assertion",
             gui_order=1)
         ```

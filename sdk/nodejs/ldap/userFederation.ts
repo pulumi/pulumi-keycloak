@@ -24,25 +24,26 @@ import * as utilities from "../utilities";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {
- *     enabled: true,
  *     realm: "test",
- * });
- * const ldapUserFederation = new keycloak.ldap.UserFederation("ldapUserFederation", {
- *     bindCredential: "admin",
- *     bindDn: "cn=admin,dc=example,dc=org",
- *     connectionTimeout: "5s",
- *     connectionUrl: "ldap://openldap",
  *     enabled: true,
- *     rdnLdapAttribute: "cn",
- *     readTimeout: "10s",
+ * });
+ * const ldapUserFederation = new keycloak.ldap.UserFederation("ldap_user_federation", {
+ *     name: "openldap",
  *     realmId: realm.id,
+ *     enabled: true,
+ *     usernameLdapAttribute: "cn",
+ *     rdnLdapAttribute: "cn",
+ *     uuidLdapAttribute: "entryDN",
  *     userObjectClasses: [
  *         "simpleSecurityObject",
  *         "organizationalRole",
  *     ],
- *     usernameLdapAttribute: "cn",
+ *     connectionUrl: "ldap://openldap",
  *     usersDn: "dc=example,dc=org",
- *     uuidLdapAttribute: "entryDN",
+ *     bindDn: "cn=admin,dc=example,dc=org",
+ *     bindCredential: "admin",
+ *     connectionTimeout: "5s",
+ *     readTimeout: "10s",
  * });
  * ```
  * <!--End PulumiCodeChooser -->

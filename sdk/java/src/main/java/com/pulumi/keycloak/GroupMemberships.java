@@ -63,12 +63,13 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .enabled(true)
  *             .realm(&#34;my-realm&#34;)
+ *             .enabled(true)
  *             .build());
  * 
  *         var group = new Group(&#34;group&#34;, GroupArgs.builder()        
  *             .realmId(realm.id())
+ *             .name(&#34;my-group&#34;)
  *             .build());
  * 
  *         var user = new User(&#34;user&#34;, UserArgs.builder()        
@@ -77,9 +78,9 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var groupMembers = new GroupMemberships(&#34;groupMembers&#34;, GroupMembershipsArgs.builder()        
+ *             .realmId(realm.id())
  *             .groupId(group.id())
  *             .members(user.username())
- *             .realmId(realm.id())
  *             .build());
  * 
  *     }

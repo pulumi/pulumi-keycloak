@@ -30,22 +30,22 @@ namespace Pulumi.Keycloak
     ///         RealmName = "test",
     ///     });
     /// 
-    ///     var realmEvents = new Keycloak.RealmEvents("realmEvents", new()
+    ///     var realmEvents = new Keycloak.RealmEvents("realm_events", new()
     ///     {
-    ///         AdminEventsDetailsEnabled = true,
+    ///         RealmId = realm.Id,
+    ///         EventsEnabled = true,
+    ///         EventsExpiration = 3600,
     ///         AdminEventsEnabled = true,
+    ///         AdminEventsDetailsEnabled = true,
     ///         EnabledEventTypes = new[]
     ///         {
     ///             "LOGIN",
     ///             "LOGOUT",
     ///         },
-    ///         EventsEnabled = true,
-    ///         EventsExpiration = 3600,
     ///         EventsListeners = new[]
     ///         {
     ///             "jboss-logging",
     ///         },
-    ///         RealmId = realm.Id,
     ///     });
     /// 
     /// });

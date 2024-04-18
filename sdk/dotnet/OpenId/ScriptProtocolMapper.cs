@@ -38,10 +38,11 @@ namespace Pulumi.Keycloak.OpenId
     ///         Enabled = true,
     ///     });
     /// 
-    ///     var openidClient = new Keycloak.OpenId.Client("openidClient", new()
+    ///     var openidClient = new Keycloak.OpenId.Client("openid_client", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         ClientId = "client",
+    ///         Name = "client",
     ///         Enabled = true,
     ///         AccessType = "CONFIDENTIAL",
     ///         ValidRedirectUris = new[]
@@ -50,10 +51,11 @@ namespace Pulumi.Keycloak.OpenId
     ///         },
     ///     });
     /// 
-    ///     var scriptMapper = new Keycloak.OpenId.ScriptProtocolMapper("scriptMapper", new()
+    ///     var scriptMapper = new Keycloak.OpenId.ScriptProtocolMapper("script_mapper", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         ClientId = openidClient.Id,
+    ///         Name = "script-mapper",
     ///         ClaimName = "foo",
     ///         Script = "exports = 'foo';",
     ///     });
@@ -79,15 +81,17 @@ namespace Pulumi.Keycloak.OpenId
     ///         Enabled = true,
     ///     });
     /// 
-    ///     var clientScope = new Keycloak.OpenId.ClientScope("clientScope", new()
+    ///     var clientScope = new Keycloak.OpenId.ClientScope("client_scope", new()
     ///     {
     ///         RealmId = realm.Id,
+    ///         Name = "client-scope",
     ///     });
     /// 
-    ///     var scriptMapper = new Keycloak.OpenId.ScriptProtocolMapper("scriptMapper", new()
+    ///     var scriptMapper = new Keycloak.OpenId.ScriptProtocolMapper("script_mapper", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         ClientScopeId = clientScope.Id,
+    ///         Name = "script-mapper",
     ///         ClaimName = "foo",
     ///         Script = "exports = 'foo';",
     ///     });

@@ -31,15 +31,16 @@ namespace Pulumi.Keycloak
     /// {
     ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         Enabled = true,
     ///         RealmName = "test",
+    ///         Enabled = true,
     ///     });
     /// 
-    ///     var customUserFederation = new Keycloak.CustomUserFederation("customUserFederation", new()
+    ///     var customUserFederation = new Keycloak.CustomUserFederation("custom_user_federation", new()
     ///     {
-    ///         Enabled = true,
-    ///         ProviderId = "custom",
+    ///         Name = "custom",
     ///         RealmId = realm.Id,
+    ///         ProviderId = "custom",
+    ///         Enabled = true,
     ///     });
     /// 
     /// });

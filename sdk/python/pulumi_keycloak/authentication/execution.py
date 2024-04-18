@@ -184,13 +184,13 @@ class Execution(pulumi.CustomResource):
             realm_id=realm.id,
             alias="my-flow-alias")
         # first execution
-        execution_one = keycloak.authentication.Execution("executionOne",
+        execution_one = keycloak.authentication.Execution("execution_one",
             realm_id=realm.id,
             parent_flow_alias=flow.alias,
             authenticator="auth-cookie",
             requirement="ALTERNATIVE")
         # second execution
-        execution_two = keycloak.authentication.Execution("executionTwo",
+        execution_two = keycloak.authentication.Execution("execution_two",
             realm_id=realm.id,
             parent_flow_alias=flow.alias,
             authenticator="identity-provider-redirector",
@@ -246,13 +246,13 @@ class Execution(pulumi.CustomResource):
             realm_id=realm.id,
             alias="my-flow-alias")
         # first execution
-        execution_one = keycloak.authentication.Execution("executionOne",
+        execution_one = keycloak.authentication.Execution("execution_one",
             realm_id=realm.id,
             parent_flow_alias=flow.alias,
             authenticator="auth-cookie",
             requirement="ALTERNATIVE")
         # second execution
-        execution_two = keycloak.authentication.Execution("executionTwo",
+        execution_two = keycloak.authentication.Execution("execution_two",
             realm_id=realm.id,
             parent_flow_alias=flow.alias,
             authenticator="identity-provider-redirector",

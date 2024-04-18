@@ -32,7 +32,7 @@ namespace Pulumi.Keycloak
         ///         Enabled = true,
         ///     });
         /// 
-        ///     var samlClientClientDescriptionConverter = Keycloak.GetClientDescriptionConverter.Invoke(new()
+        ///     var samlClient = Keycloak.GetClientDescriptionConverter.Invoke(new()
         ///     {
         ///         RealmId = realm.Id,
         ///         Body = @"	&lt;md:EntityDescriptor xmlns:md=""urn:oasis:names:tc:SAML:2.0:metadata"" validUntil=""2021-04-17T12:41:46Z"" cacheDuration=""PT604800S"" entityID=""FakeEntityId""&gt;
@@ -65,10 +65,10 @@ namespace Pulumi.Keycloak
         /// ",
         ///     });
         /// 
-        ///     var samlClientClient = new Keycloak.Saml.Client("samlClientClient", new()
+        ///     var samlClientClient = new Keycloak.Saml.Client("saml_client", new()
         ///     {
         ///         RealmId = realm.Id,
-        ///         ClientId = samlClientClientDescriptionConverter.Apply(getClientDescriptionConverterResult =&gt; getClientDescriptionConverterResult.ClientId),
+        ///         ClientId = samlClient.Apply(getClientDescriptionConverterResult =&gt; getClientDescriptionConverterResult.ClientId),
         ///     });
         /// 
         /// });
@@ -99,7 +99,7 @@ namespace Pulumi.Keycloak
         ///         Enabled = true,
         ///     });
         /// 
-        ///     var samlClientClientDescriptionConverter = Keycloak.GetClientDescriptionConverter.Invoke(new()
+        ///     var samlClient = Keycloak.GetClientDescriptionConverter.Invoke(new()
         ///     {
         ///         RealmId = realm.Id,
         ///         Body = @"	&lt;md:EntityDescriptor xmlns:md=""urn:oasis:names:tc:SAML:2.0:metadata"" validUntil=""2021-04-17T12:41:46Z"" cacheDuration=""PT604800S"" entityID=""FakeEntityId""&gt;
@@ -132,10 +132,10 @@ namespace Pulumi.Keycloak
         /// ",
         ///     });
         /// 
-        ///     var samlClientClient = new Keycloak.Saml.Client("samlClientClient", new()
+        ///     var samlClientClient = new Keycloak.Saml.Client("saml_client", new()
         ///     {
         ///         RealmId = realm.Id,
-        ///         ClientId = samlClientClientDescriptionConverter.Apply(getClientDescriptionConverterResult =&gt; getClientDescriptionConverterResult.ClientId),
+        ///         ClientId = samlClient.Apply(getClientDescriptionConverterResult =&gt; getClientDescriptionConverterResult.ClientId),
         ///     });
         /// 
         /// });

@@ -22,7 +22,7 @@ import * as utilities from "./utilities";
  *     realm: "my-realm",
  *     enabled: true,
  * });
- * const defaultRoles = new keycloak.DefaultRoles("defaultRoles", {
+ * const defaultRoles = new keycloak.DefaultRoles("default_roles", {
  *     realmId: realm.id,
  *     defaultRoles: ["uma_authorization"],
  * });

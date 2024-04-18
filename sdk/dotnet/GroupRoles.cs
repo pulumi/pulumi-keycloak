@@ -37,40 +37,44 @@ namespace Pulumi.Keycloak
     /// {
     ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         Enabled = true,
     ///         RealmName = "my-realm",
+    ///         Enabled = true,
     ///     });
     /// 
-    ///     var realmRole = new Keycloak.Role("realmRole", new()
+    ///     var realmRole = new Keycloak.Role("realm_role", new()
     ///     {
-    ///         Description = "My Realm Role",
     ///         RealmId = realm.Id,
+    ///         Name = "my-realm-role",
+    ///         Description = "My Realm Role",
     ///     });
     /// 
     ///     var client = new Keycloak.OpenId.Client("client", new()
     ///     {
-    ///         AccessType = "BEARER-ONLY",
-    ///         ClientId = "client",
-    ///         Enabled = true,
     ///         RealmId = realm.Id,
+    ///         ClientId = "client",
+    ///         Name = "client",
+    ///         Enabled = true,
+    ///         AccessType = "BEARER-ONLY",
     ///     });
     /// 
-    ///     var clientRole = new Keycloak.Role("clientRole", new()
+    ///     var clientRole = new Keycloak.Role("client_role", new()
     ///     {
-    ///         ClientId = keycloak_client.Client.Id,
-    ///         Description = "My Client Role",
     ///         RealmId = realm.Id,
+    ///         ClientId = clientKeycloakClient.Id,
+    ///         Name = "my-client-role",
+    ///         Description = "My Client Role",
     ///     });
     /// 
     ///     var @group = new Keycloak.Group("group", new()
     ///     {
     ///         RealmId = realm.Id,
+    ///         Name = "my-group",
     ///     });
     /// 
-    ///     var groupRoles = new Keycloak.GroupRoles("groupRoles", new()
+    ///     var groupRoles = new Keycloak.GroupRoles("group_roles", new()
     ///     {
-    ///         GroupId = @group.Id,
     ///         RealmId = realm.Id,
+    ///         GroupId = @group.Id,
     ///         RoleIds = new[]
     ///         {
     ///             realmRole.Id,

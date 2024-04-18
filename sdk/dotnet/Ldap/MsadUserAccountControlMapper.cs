@@ -33,32 +33,34 @@ namespace Pulumi.Keycloak.Ldap
     /// {
     ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         Enabled = true,
     ///         RealmName = "test",
+    ///         Enabled = true,
     ///     });
     /// 
-    ///     var ldapUserFederation = new Keycloak.Ldap.UserFederation("ldapUserFederation", new()
+    ///     var ldapUserFederation = new Keycloak.Ldap.UserFederation("ldap_user_federation", new()
     ///     {
-    ///         BindCredential = "admin",
-    ///         BindDn = "cn=admin,dc=example,dc=org",
-    ///         ConnectionUrl = "ldap://my-ad-server",
-    ///         RdnLdapAttribute = "cn",
+    ///         Name = "ad",
     ///         RealmId = realm.Id,
+    ///         UsernameLdapAttribute = "cn",
+    ///         RdnLdapAttribute = "cn",
+    ///         UuidLdapAttribute = "objectGUID",
     ///         UserObjectClasses = new[]
     ///         {
     ///             "person",
     ///             "organizationalPerson",
     ///             "user",
     ///         },
-    ///         UsernameLdapAttribute = "cn",
+    ///         ConnectionUrl = "ldap://my-ad-server",
     ///         UsersDn = "dc=example,dc=org",
-    ///         UuidLdapAttribute = "objectGUID",
+    ///         BindDn = "cn=admin,dc=example,dc=org",
+    ///         BindCredential = "admin",
     ///     });
     /// 
-    ///     var msadUserAccountControlMapper = new Keycloak.Ldap.MsadUserAccountControlMapper("msadUserAccountControlMapper", new()
+    ///     var msadUserAccountControlMapper = new Keycloak.Ldap.MsadUserAccountControlMapper("msad_user_account_control_mapper", new()
     ///     {
-    ///         LdapUserFederationId = ldapUserFederation.Id,
     ///         RealmId = realm.Id,
+    ///         LdapUserFederationId = ldapUserFederation.Id,
+    ///         Name = "msad-user-account-control-mapper",
     ///     });
     /// 
     /// });

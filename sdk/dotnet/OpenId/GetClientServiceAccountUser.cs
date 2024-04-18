@@ -40,6 +40,7 @@ namespace Pulumi.Keycloak.OpenId
         ///     {
         ///         RealmId = realm.Id,
         ///         ClientId = "client",
+        ///         Name = "client",
         ///         AccessType = "CONFIDENTIAL",
         ///         ServiceAccountsEnabled = true,
         ///     });
@@ -56,7 +57,7 @@ namespace Pulumi.Keycloak.OpenId
         ///         Name = "offline_access",
         ///     });
         /// 
-        ///     var serviceAccountUserRoles = new Keycloak.UserRoles("serviceAccountUserRoles", new()
+        ///     var serviceAccountUserRoles = new Keycloak.UserRoles("service_account_user_roles", new()
         ///     {
         ///         RealmId = realm.Id,
         ///         UserId = serviceAccountUser.Apply(getClientServiceAccountUserResult =&gt; getClientServiceAccountUserResult.Id),
@@ -102,6 +103,7 @@ namespace Pulumi.Keycloak.OpenId
         ///     {
         ///         RealmId = realm.Id,
         ///         ClientId = "client",
+        ///         Name = "client",
         ///         AccessType = "CONFIDENTIAL",
         ///         ServiceAccountsEnabled = true,
         ///     });
@@ -118,7 +120,7 @@ namespace Pulumi.Keycloak.OpenId
         ///         Name = "offline_access",
         ///     });
         /// 
-        ///     var serviceAccountUserRoles = new Keycloak.UserRoles("serviceAccountUserRoles", new()
+        ///     var serviceAccountUserRoles = new Keycloak.UserRoles("service_account_user_roles", new()
         ///     {
         ///         RealmId = realm.Id,
         ///         UserId = serviceAccountUser.Apply(getClientServiceAccountUserResult =&gt; getClientServiceAccountUserResult.Id),

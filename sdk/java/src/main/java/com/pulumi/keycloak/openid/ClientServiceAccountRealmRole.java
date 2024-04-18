@@ -57,10 +57,12 @@ import javax.annotation.Nullable;
  * 
  *         var realmRole = new Role(&#34;realmRole&#34;, RoleArgs.builder()        
  *             .realmId(realm.id())
+ *             .name(&#34;my-realm-role&#34;)
  *             .build());
  * 
  *         var client = new Client(&#34;client&#34;, ClientArgs.builder()        
  *             .realmId(realm.id())
+ *             .name(&#34;client&#34;)
  *             .serviceAccountsEnabled(true)
  *             .build());
  * 

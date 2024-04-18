@@ -65,7 +65,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var userprofile = new RealmUserProfile(&#34;userprofile&#34;, RealmUserProfileArgs.builder()        
- *             .realmId(keycloak_realm.my_realm().id())
+ *             .realmId(myRealm.id())
  *             .attributes(            
  *                 RealmUserProfileAttributeArgs.builder()
  *                     .name(&#34;field1&#34;)

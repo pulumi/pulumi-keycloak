@@ -56,6 +56,7 @@ import javax.annotation.Nullable;
  *             .realmId(realm.realm())
  *             .alias(&#34;webauthn-register&#34;)
  *             .enabled(true)
+ *             .name(&#34;Webauthn Register&#34;)
  *             .build());
  * 
  *     }

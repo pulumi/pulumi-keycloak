@@ -25,13 +25,14 @@ import * as utilities from "./utilities";
  *     realm: "my-realm",
  *     enabled: true,
  * });
- * const samlClient = new keycloak.saml.Client("samlClient", {
+ * const samlClient = new keycloak.saml.Client("saml_client", {
  *     realmId: realm.id,
  *     clientId: "test-client",
  * });
- * const samlHardcodeAttributeMapper = new keycloak.GenericProtocolMapper("samlHardcodeAttributeMapper", {
+ * const samlHardcodeAttributeMapper = new keycloak.GenericProtocolMapper("saml_hardcode_attribute_mapper", {
  *     realmId: realm.id,
  *     clientId: samlClient.id,
+ *     name: "test-mapper",
  *     protocol: "saml",
  *     protocolMapper: "saml-hardcode-attribute-mapper",
  *     config: {

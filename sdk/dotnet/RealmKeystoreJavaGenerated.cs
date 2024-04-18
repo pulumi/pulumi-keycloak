@@ -30,8 +30,9 @@ namespace Pulumi.Keycloak
     ///         RealmName = "my-realm",
     ///     });
     /// 
-    ///     var javaKeystore = new Keycloak.RealmKeystoreJavaGenerated("javaKeystore", new()
+    ///     var javaKeystore = new Keycloak.RealmKeystoreJavaGenerated("java_keystore", new()
     ///     {
+    ///         Name = "my-java-keystore",
     ///         RealmId = realm.Id,
     ///         Enabled = true,
     ///         Active = true,
