@@ -11,6 +11,67 @@ namespace Pulumi.Keycloak.Saml
 {
     /// <summary>
     /// ## Example Usage
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// using Std = Pulumi.Std;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
+    /// 
+    ///     var samlClient = new Keycloak.Saml.Client("saml_client", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = "saml-client",
+    ///         Name = "saml-client",
+    ///         SignDocuments = false,
+    ///         SignAssertions = true,
+    ///         IncludeAuthnStatement = true,
+    ///         SigningCertificate = Std.File.Invoke(new()
+    ///         {
+    ///             Input = "saml-cert.pem",
+    ///         }).Apply(invoke =&gt; invoke.Result),
+    ///         SigningPrivateKey = Std.File.Invoke(new()
+    ///         {
+    ///             Input = "saml-key.pem",
+    ///         }).Apply(invoke =&gt; invoke.Result),
+    ///     });
+    /// 
+    ///     var clientScope = new Keycloak.Saml.ClientScope("client_scope", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Name = "client-scope",
+    ///     });
+    /// 
+    ///     var clientDefaultScopes = new Keycloak.Saml.ClientDefaultScope("client_default_scopes", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = client.Id,
+    ///         DefaultScopes = new[]
+    ///         {
+    ///             "role_list",
+    ///             clientScope.Name,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
+    /// ## Import
+    /// 
+    /// This resource does not support import. Instead of importing, feel free to create this resource as if it did not already exist
+    /// 
+    /// on the server.
     /// </summary>
     [KeycloakResourceType("keycloak:saml/clientDefaultScope:ClientDefaultScope")]
     public partial class ClientDefaultScope : global::Pulumi.CustomResource

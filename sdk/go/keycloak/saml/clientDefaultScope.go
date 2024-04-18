@@ -13,6 +13,84 @@ import (
 )
 
 // ## Example Usage
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/saml"
+//	"github.com/pulumi/pulumi-std/sdk/go/std"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			invokeFile, err := std.File(ctx, &std.FileArgs{
+//				Input: "saml-cert.pem",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			invokeFile1, err := std.File(ctx, &std.FileArgs{
+//				Input: "saml-key.pem",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = saml.NewClient(ctx, "saml_client", &saml.ClientArgs{
+//				RealmId:               realm.ID(),
+//				ClientId:              pulumi.String("saml-client"),
+//				Name:                  pulumi.String("saml-client"),
+//				SignDocuments:         pulumi.Bool(false),
+//				SignAssertions:        pulumi.Bool(true),
+//				IncludeAuthnStatement: pulumi.Bool(true),
+//				SigningCertificate:    invokeFile.Result,
+//				SigningPrivateKey:     invokeFile1.Result,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			clientScope, err := saml.NewClientScope(ctx, "client_scope", &saml.ClientScopeArgs{
+//				RealmId: realm.ID(),
+//				Name:    pulumi.String("client-scope"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = saml.NewClientDefaultScope(ctx, "client_default_scopes", &saml.ClientDefaultScopeArgs{
+//				RealmId:  realm.ID(),
+//				ClientId: pulumi.Any(client.Id),
+//				DefaultScopes: pulumi.StringArray{
+//					pulumi.String("role_list"),
+//					clientScope.Name,
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
+// ## Import
+//
+// This resource does not support import. Instead of importing, feel free to create this resource as if it did not already exist
+//
+// on the server.
 type ClientDefaultScope struct {
 	pulumi.CustomResourceState
 

@@ -6,6 +6,47 @@ import * as utilities from "../utilities";
 
 /**
  * This data source can be used to retrieve Installation Provider of a SAML Client.
+ *
+ * ## Example Usage
+ *
+ * In the example below, we extract the SAML metadata IDPSSODescriptor to pass it to the AWS IAM SAML Provider.
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as aws from "@pulumi/aws";
+ * import * as keycloak from "@pulumi/keycloak";
+ * import * as std from "@pulumi/std";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * const samlClient = new keycloak.saml.Client("saml_client", {
+ *     realmId: realm.id,
+ *     clientId: "test-saml-client",
+ *     name: "test-saml-client",
+ *     signDocuments: false,
+ *     signAssertions: true,
+ *     includeAuthnStatement: true,
+ *     signingCertificate: std.file({
+ *         input: "saml-cert.pem",
+ *     }).then(invoke => invoke.result),
+ *     signingPrivateKey: std.file({
+ *         input: "saml-key.pem",
+ *     }).then(invoke => invoke.result),
+ * });
+ * const samlIdpDescriptor = keycloak.saml.getClientInstallationProviderOutput({
+ *     realmId: realm.id,
+ *     clientId: samlClient.id,
+ *     providerId: "saml-idp-descriptor",
+ * });
+ * const _default = new aws.index.IamSamlProvider("default", {
+ *     name: "myprovider",
+ *     samlMetadataDocument: samlIdpDescriptor.value,
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getClientInstallationProvider(args: GetClientInstallationProviderArgs, opts?: pulumi.InvokeOptions): Promise<GetClientInstallationProviderResult> {
 
@@ -53,6 +94,47 @@ export interface GetClientInstallationProviderResult {
 }
 /**
  * This data source can be used to retrieve Installation Provider of a SAML Client.
+ *
+ * ## Example Usage
+ *
+ * In the example below, we extract the SAML metadata IDPSSODescriptor to pass it to the AWS IAM SAML Provider.
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as aws from "@pulumi/aws";
+ * import * as keycloak from "@pulumi/keycloak";
+ * import * as std from "@pulumi/std";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * const samlClient = new keycloak.saml.Client("saml_client", {
+ *     realmId: realm.id,
+ *     clientId: "test-saml-client",
+ *     name: "test-saml-client",
+ *     signDocuments: false,
+ *     signAssertions: true,
+ *     includeAuthnStatement: true,
+ *     signingCertificate: std.file({
+ *         input: "saml-cert.pem",
+ *     }).then(invoke => invoke.result),
+ *     signingPrivateKey: std.file({
+ *         input: "saml-key.pem",
+ *     }).then(invoke => invoke.result),
+ * });
+ * const samlIdpDescriptor = keycloak.saml.getClientInstallationProviderOutput({
+ *     realmId: realm.id,
+ *     clientId: samlClient.id,
+ *     providerId: "saml-idp-descriptor",
+ * });
+ * const _default = new aws.index.IamSamlProvider("default", {
+ *     name: "myprovider",
+ *     samlMetadataDocument: samlIdpDescriptor.value,
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getClientInstallationProviderOutput(args: GetClientInstallationProviderOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetClientInstallationProviderResult> {
     return pulumi.output(args).apply((a: any) => getClientInstallationProvider(a, opts))

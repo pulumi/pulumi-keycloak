@@ -15,6 +15,65 @@ import * as utilities from "../utilities";
  * clients are applications that redirect users to Keycloak for authentication
  * in order to take advantage of Keycloak's user sessions for SSO.
  *
+ * ### Example Usage
+ *
+ * <!--Start PulumiCodeChooser -->
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ * import * as std from "@pulumi/std";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * const samlClient = new keycloak.saml.Client("saml_client", {
+ *     realmId: realm.id,
+ *     clientId: "test-saml-client",
+ *     name: "test-saml-client",
+ *     signDocuments: false,
+ *     signAssertions: true,
+ *     includeAuthnStatement: true,
+ *     signingCertificate: std.file({
+ *         input: "saml-cert.pem",
+ *     }).then(invoke => invoke.result),
+ *     signingPrivateKey: std.file({
+ *         input: "saml-key.pem",
+ *     }).then(invoke => invoke.result),
+ * });
+ * ```
+ * <!--End PulumiCodeChooser -->
+ *
+ * ### Argument Reference
+ *
+ * The following arguments are supported:
+ *
+ * - `realmId` - (Required) The realm this client is attached to.
+ * - `clientId` - (Required) The unique ID of this client, referenced in the URI during authentication and in issued tokens.
+ * - `name` - (Optional) The display name of this client in the GUI.
+ * - `enabled` - (Optional) When false, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
+ * - `description` - (Optional) The description of this client in the GUI.
+ * - `includeAuthnStatement` - (Optional) When `true`, an `AuthnStatement` will be included in the SAML response.
+ * - `signDocuments` - (Optional) When `true`, the SAML document will be signed by Keycloak using the realm's private key.
+ * - `signAssertions` - (Optional) When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response.
+ * - `clientSignatureRequired` - (Optional) When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signingCertificate` and `signingPrivateKey`.
+ * - `forcePostBinding` - (Optional) When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding.
+ * - `frontChannelLogout` - (Optional) When `true`, this client will require a browser redirect in order to perform a logout.
+ * - `nameIdFormat` - (Optional) Sets the Name ID format for the subject.
+ * - `rootUrl` - (Optional) When specified, this value is prepended to all relative URLs.
+ * - `validRedirectUris` - (Optional) When specified, Keycloak will use this list to validate given Assertion Consumer URLs specified in the authentication request.
+ * - `baseUrl` - (Optional) When specified, this URL will be used whenever Keycloak needs to link to this client.
+ * - `masterSamlProcessingUrl` - (Optional) When specified, this URL will be used for all SAML requests.
+ * - `signingCertificate` - (Optional) If documents or assertions from the client are signed, this certificate will be used to verify the signature.
+ * - `signingPrivateKey` - (Optional) If documents or assertions from the client are signed, this private key will be used to verify the signature.
+ * - `idpInitiatedSsoUrlName` - (Optional) URL fragment name to reference client when you want to do IDP Initiated SSO.
+ * - `idpInitiatedSsoRelayState` - (Optional) Relay state you want to send with SAML request when you want to do IDP Initiated SSO.
+ * - `assertionConsumerPostUrl` - (Optional) SAML POST Binding URL for the client's assertion consumer service (login responses).
+ * - `assertionConsumerRedirectUrl` - (Optional) SAML Redirect Binding URL for the client's assertion consumer service (login responses).
+ * - `logoutServicePostBindingUrl` - (Optional) SAML POST Binding URL for the client's single logout service.
+ * - `logoutServiceRedirectBindingUrl` - (Optional) SAML Redirect Binding URL for the client's single logout service.
+ * - `fullScopeAllowed` - (Optional) - Allow to include all roles mappings in the access token
+ *
  * ### Import
  *
  * Clients can be imported using the format `{{realm_id}}/{{client_keycloak_id}}`, where `clientKeycloakId` is the unique ID that Keycloak

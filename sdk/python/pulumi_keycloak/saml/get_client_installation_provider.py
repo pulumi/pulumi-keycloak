@@ -90,6 +90,38 @@ def get_client_installation_provider(client_id: Optional[str] = None,
     """
     This data source can be used to retrieve Installation Provider of a SAML Client.
 
+    ## Example Usage
+
+    In the example below, we extract the SAML metadata IDPSSODescriptor to pass it to the AWS IAM SAML Provider.
+
+    <!--Start PulumiCodeChooser -->
+    ```python
+    import pulumi
+    import pulumi_aws as aws
+    import pulumi_keycloak as keycloak
+    import pulumi_std as std
+
+    realm = keycloak.Realm("realm",
+        realm="my-realm",
+        enabled=True)
+    saml_client = keycloak.saml.Client("saml_client",
+        realm_id=realm.id,
+        client_id="test-saml-client",
+        name="test-saml-client",
+        sign_documents=False,
+        sign_assertions=True,
+        include_authn_statement=True,
+        signing_certificate=std.file(input="saml-cert.pem").result,
+        signing_private_key=std.file(input="saml-key.pem").result)
+    saml_idp_descriptor = keycloak.saml.get_client_installation_provider_output(realm_id=realm.id,
+        client_id=saml_client.id,
+        provider_id="saml-idp-descriptor")
+    default = aws.index.IamSamlProvider("default",
+        name=myprovider,
+        saml_metadata_document=saml_idp_descriptor.value)
+    ```
+    <!--End PulumiCodeChooser -->
+
 
     :param str client_id: The ID of the SAML client. The `id` attribute of a `keycloak_client` resource should be used here.
     :param str provider_id: The ID of the SAML installation provider. Could be one of `saml-idp-descriptor`, `keycloak-saml`, `saml-sp-descriptor`, `keycloak-saml-subsystem`, `mod-auth-mellon`, etc.
@@ -117,6 +149,38 @@ def get_client_installation_provider_output(client_id: Optional[pulumi.Input[str
                                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetClientInstallationProviderResult]:
     """
     This data source can be used to retrieve Installation Provider of a SAML Client.
+
+    ## Example Usage
+
+    In the example below, we extract the SAML metadata IDPSSODescriptor to pass it to the AWS IAM SAML Provider.
+
+    <!--Start PulumiCodeChooser -->
+    ```python
+    import pulumi
+    import pulumi_aws as aws
+    import pulumi_keycloak as keycloak
+    import pulumi_std as std
+
+    realm = keycloak.Realm("realm",
+        realm="my-realm",
+        enabled=True)
+    saml_client = keycloak.saml.Client("saml_client",
+        realm_id=realm.id,
+        client_id="test-saml-client",
+        name="test-saml-client",
+        sign_documents=False,
+        sign_assertions=True,
+        include_authn_statement=True,
+        signing_certificate=std.file(input="saml-cert.pem").result,
+        signing_private_key=std.file(input="saml-key.pem").result)
+    saml_idp_descriptor = keycloak.saml.get_client_installation_provider_output(realm_id=realm.id,
+        client_id=saml_client.id,
+        provider_id="saml-idp-descriptor")
+    default = aws.index.IamSamlProvider("default",
+        name=myprovider,
+        saml_metadata_document=saml_idp_descriptor.value)
+    ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str client_id: The ID of the SAML client. The `id` attribute of a `keycloak_client` resource should be used here.
