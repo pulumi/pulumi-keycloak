@@ -175,7 +175,6 @@ class AudienceResolveProtocolMapper(pulumi.CustomResource):
 
         ### Client)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -195,11 +194,9 @@ class AudienceResolveProtocolMapper(pulumi.CustomResource):
             client_id=openid_client.id,
             name="my-audience-resolve-mapper")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Client Scope)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -214,7 +211,6 @@ class AudienceResolveProtocolMapper(pulumi.CustomResource):
             realm_id=realm.id,
             client_scope_id=client_scope.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -260,7 +256,6 @@ class AudienceResolveProtocolMapper(pulumi.CustomResource):
 
         ### Client)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -280,11 +275,9 @@ class AudienceResolveProtocolMapper(pulumi.CustomResource):
             client_id=openid_client.id,
             name="my-audience-resolve-mapper")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Client Scope)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -299,7 +292,6 @@ class AudienceResolveProtocolMapper(pulumi.CustomResource):
             realm_id=realm.id,
             client_scope_id=client_scope.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

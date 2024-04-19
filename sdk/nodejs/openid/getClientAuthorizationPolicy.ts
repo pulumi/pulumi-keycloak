@@ -13,7 +13,6 @@ import * as utilities from "../utilities";
  * permission for this client called "Default Permission". We'll use the `keycloak.openid.getClientAuthorizationPolicy` data
  * source to fetch information about this permission, so we can use it to create a new resource-based authorization permission.
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -54,7 +53,6 @@ import * as utilities from "../utilities";
  *     resources: [resource.id],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getClientAuthorizationPolicy(args: GetClientAuthorizationPolicyArgs, opts?: pulumi.InvokeOptions): Promise<GetClientAuthorizationPolicyResult> {
 
@@ -133,7 +131,6 @@ export interface GetClientAuthorizationPolicyResult {
  * permission for this client called "Default Permission". We'll use the `keycloak.openid.getClientAuthorizationPolicy` data
  * source to fetch information about this permission, so we can use it to create a new resource-based authorization permission.
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -174,7 +171,6 @@ export interface GetClientAuthorizationPolicyResult {
  *     resources: [resource.id],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getClientAuthorizationPolicyOutput(args: GetClientAuthorizationPolicyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetClientAuthorizationPolicyResult> {
     return pulumi.output(args).apply((a: any) => getClientAuthorizationPolicy(a, opts))

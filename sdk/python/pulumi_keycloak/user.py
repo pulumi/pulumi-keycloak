@@ -319,7 +319,6 @@ class User(pulumi.CustomResource):
 
         ### Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -346,7 +345,6 @@ class User(pulumi.CustomResource):
                 temporary=True,
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 
@@ -390,7 +388,6 @@ class User(pulumi.CustomResource):
 
         ### Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -417,7 +414,6 @@ class User(pulumi.CustomResource):
                 temporary=True,
             ))
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 

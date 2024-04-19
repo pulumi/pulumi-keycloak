@@ -176,7 +176,6 @@ class GenericClientRoleMapper(pulumi.CustomResource):
 
         ### Realm Role To Client)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -199,11 +198,9 @@ class GenericClientRoleMapper(pulumi.CustomResource):
             client_id=client.id,
             role_id=realm_role.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Client Role To Client)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -239,11 +236,9 @@ class GenericClientRoleMapper(pulumi.CustomResource):
             client_id=client_b.id,
             role_id=client_role_a.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Realm Role To Client Scope)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -263,11 +258,9 @@ class GenericClientRoleMapper(pulumi.CustomResource):
             client_scope_id=client_scope.id,
             role_id=realm_role.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Client Role To Client Scope)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -294,7 +287,6 @@ class GenericClientRoleMapper(pulumi.CustomResource):
             client_scope_id=client_scope.id,
             role_id=client_role.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -338,7 +330,6 @@ class GenericClientRoleMapper(pulumi.CustomResource):
 
         ### Realm Role To Client)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -361,11 +352,9 @@ class GenericClientRoleMapper(pulumi.CustomResource):
             client_id=client.id,
             role_id=realm_role.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Client Role To Client)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -401,11 +390,9 @@ class GenericClientRoleMapper(pulumi.CustomResource):
             client_id=client_b.id,
             role_id=client_role_a.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Realm Role To Client Scope)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -425,11 +412,9 @@ class GenericClientRoleMapper(pulumi.CustomResource):
             client_scope_id=client_scope.id,
             role_id=realm_role.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Client Role To Client Scope)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -456,7 +441,6 @@ class GenericClientRoleMapper(pulumi.CustomResource):
             client_scope_id=client_scope.id,
             role_id=client_role.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

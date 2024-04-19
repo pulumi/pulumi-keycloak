@@ -242,7 +242,6 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
 
         ### Example Usage (Client)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -262,7 +261,6 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
             saml_attribute_name="email",
             saml_attribute_name_format="Unspecified")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 
@@ -307,7 +305,6 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
 
         ### Example Usage (Client)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -327,7 +324,6 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
             saml_attribute_name="email",
             saml_attribute_name_format="Unspecified")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 

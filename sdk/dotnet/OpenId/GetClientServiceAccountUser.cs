@@ -21,7 +21,6 @@ namespace Pulumi.Keycloak.OpenId
         /// that represents the service account. We'll use this data source to grab this user's ID in order to assign some roles to this
         /// user, using the `keycloak.UserRoles` resource.
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -69,7 +68,6 @@ namespace Pulumi.Keycloak.OpenId
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetClientServiceAccountUserResult> InvokeAsync(GetClientServiceAccountUserArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetClientServiceAccountUserResult>("keycloak:openid/getClientServiceAccountUser:getClientServiceAccountUser", args ?? new GetClientServiceAccountUserArgs(), options.WithDefaults());
@@ -84,7 +82,6 @@ namespace Pulumi.Keycloak.OpenId
         /// that represents the service account. We'll use this data source to grab this user's ID in order to assign some roles to this
         /// user, using the `keycloak.UserRoles` resource.
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -132,7 +129,6 @@ namespace Pulumi.Keycloak.OpenId
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetClientServiceAccountUserResult> Invoke(GetClientServiceAccountUserInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetClientServiceAccountUserResult>("keycloak:openid/getClientServiceAccountUser:getClientServiceAccountUser", args ?? new GetClientServiceAccountUserInvokeArgs(), options.WithDefaults());

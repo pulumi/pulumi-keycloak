@@ -15,7 +15,6 @@ import * as utilities from "./utilities";
  *
  * ### Realm Role To Client)
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -42,11 +41,9 @@ import * as utilities from "./utilities";
  *     roleId: realmRole.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Client Role To Client)
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -88,11 +85,9 @@ import * as utilities from "./utilities";
  *     roleId: clientRoleA.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Realm Role To Client Scope)
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -116,11 +111,9 @@ import * as utilities from "./utilities";
  *     roleId: realmRole.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Client Role To Client Scope)
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -152,7 +145,6 @@ import * as utilities from "./utilities";
  *     roleId: clientRole.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

@@ -125,7 +125,6 @@ class GroupMemberships(pulumi.CustomResource):
 
         ### Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -144,7 +143,6 @@ class GroupMemberships(pulumi.CustomResource):
             group_id=group.id,
             members=[user.username])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 
@@ -187,7 +185,6 @@ class GroupMemberships(pulumi.CustomResource):
 
         ### Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -206,7 +203,6 @@ class GroupMemberships(pulumi.CustomResource):
             group_id=group.id,
             members=[user.username])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 

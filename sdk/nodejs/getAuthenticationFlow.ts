@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -23,7 +22,6 @@ import * as utilities from "./utilities";
  *     alias: "browser",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getAuthenticationFlow(args: GetAuthenticationFlowArgs, opts?: pulumi.InvokeOptions): Promise<GetAuthenticationFlowResult> {
 
@@ -64,7 +62,6 @@ export interface GetAuthenticationFlowResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -78,7 +75,6 @@ export interface GetAuthenticationFlowResult {
  *     alias: "browser",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getAuthenticationFlowOutput(args: GetAuthenticationFlowOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAuthenticationFlowResult> {
     return pulumi.output(args).apply((a: any) => getAuthenticationFlow(a, opts))

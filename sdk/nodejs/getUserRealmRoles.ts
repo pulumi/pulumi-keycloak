@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -29,7 +28,6 @@ import * as utilities from "./utilities";
  * }));
  * export const keycloakUserRoleNames = userRealmRoles.then(userRealmRoles => userRealmRoles.roleNames);
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getUserRealmRoles(args: GetUserRealmRolesArgs, opts?: pulumi.InvokeOptions): Promise<GetUserRealmRolesResult> {
 
@@ -74,7 +72,6 @@ export interface GetUserRealmRolesResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -94,7 +91,6 @@ export interface GetUserRealmRolesResult {
  * }));
  * export const keycloakUserRoleNames = userRealmRoles.then(userRealmRoles => userRealmRoles.roleNames);
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getUserRealmRolesOutput(args: GetUserRealmRolesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetUserRealmRolesResult> {
     return pulumi.output(args).apply((a: any) => getUserRealmRoles(a, opts))

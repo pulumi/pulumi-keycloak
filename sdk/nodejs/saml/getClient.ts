@@ -11,7 +11,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -27,7 +26,6 @@ import * as utilities from "../utilities";
  *     name: "realm-admin",
  * }));
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getClient(args: GetClientArgs, opts?: pulumi.InvokeOptions): Promise<GetClientResult> {
 
@@ -104,7 +102,6 @@ export interface GetClientResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -120,7 +117,6 @@ export interface GetClientResult {
  *     name: "realm-admin",
  * }));
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getClientOutput(args: GetClientOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetClientResult> {
     return pulumi.output(args).apply((a: any) => getClient(a, opts))

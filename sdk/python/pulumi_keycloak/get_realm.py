@@ -570,7 +570,6 @@ def get_realm(attributes: Optional[Mapping[str, Any]] = None,
 
     ### Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_keycloak as keycloak
@@ -581,7 +580,6 @@ def get_realm(attributes: Optional[Mapping[str, Any]] = None,
         realm_id=id,
         name="group")
     ```
-    <!--End PulumiCodeChooser -->
 
     ### Argument Reference
 
@@ -689,7 +687,6 @@ def get_realm_output(attributes: Optional[pulumi.Input[Optional[Mapping[str, Any
 
     ### Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_keycloak as keycloak
@@ -700,7 +697,6 @@ def get_realm_output(attributes: Optional[pulumi.Input[Optional[Mapping[str, Any
         realm_id=id,
         name="group")
     ```
-    <!--End PulumiCodeChooser -->
 
     ### Argument Reference
 

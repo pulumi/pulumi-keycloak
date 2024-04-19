@@ -163,7 +163,6 @@ def get_user(realm_id: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_keycloak as keycloak
@@ -174,7 +173,6 @@ def get_user(realm_id: Optional[str] = None,
         username="keycloak")
     pulumi.export("keycloakUserId", default_admin_user.id)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str realm_id: The realm this user belongs to.
@@ -209,7 +207,6 @@ def get_user_output(realm_id: Optional[pulumi.Input[str]] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_keycloak as keycloak
@@ -220,7 +217,6 @@ def get_user_output(realm_id: Optional[pulumi.Input[str]] = None,
         username="keycloak")
     pulumi.export("keycloakUserId", default_admin_user.id)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str realm_id: The realm this user belongs to.

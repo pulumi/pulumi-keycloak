@@ -236,7 +236,6 @@ class RequiredAction(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -250,7 +249,6 @@ class RequiredAction(pulumi.CustomResource):
             enabled=True,
             name="Webauthn Register")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -286,7 +284,6 @@ class RequiredAction(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -300,7 +297,6 @@ class RequiredAction(pulumi.CustomResource):
             enabled=True,
             name="Webauthn Register")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

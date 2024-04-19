@@ -528,7 +528,6 @@ class RoleMapper(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -563,7 +562,6 @@ class RoleMapper(pulumi.CustomResource):
             user_roles_retrieve_strategy="GET_ROLES_FROM_USER_MEMBEROF_ATTRIBUTE",
             memberof_ldap_attribute="memberOf")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -610,7 +608,6 @@ class RoleMapper(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -645,7 +642,6 @@ class RoleMapper(pulumi.CustomResource):
             user_roles_retrieve_strategy="GET_ROLES_FROM_USER_MEMBEROF_ATTRIBUTE",
             memberof_ldap_attribute="memberOf")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

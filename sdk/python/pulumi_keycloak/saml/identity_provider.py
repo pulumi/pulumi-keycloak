@@ -1287,7 +1287,6 @@ class IdentityProvider(pulumi.CustomResource):
 
         ### Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -1305,7 +1304,6 @@ class IdentityProvider(pulumi.CustomResource):
             trust_email=True,
             force_authn=True)
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 
@@ -1406,7 +1404,6 @@ class IdentityProvider(pulumi.CustomResource):
 
         ### Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -1424,7 +1421,6 @@ class IdentityProvider(pulumi.CustomResource):
             trust_email=True,
             force_authn=True)
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 

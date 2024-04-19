@@ -268,7 +268,6 @@ class ClientPolicy(pulumi.CustomResource):
 
         In this example, we'll create a new OpenID client, then enabled permissions for the client. A client without permissions disabled cannot be assigned by a client policy. We'll use the `openid.ClientPolicy` resource to create a new client policy, which could be applied to many clients, for a realm and a resource_server_id.
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -295,7 +294,6 @@ class ClientPolicy(pulumi.CustomResource):
             decision_strategy="UNANIMOUS",
             clients=[openid_client.id])
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -320,7 +318,6 @@ class ClientPolicy(pulumi.CustomResource):
 
         In this example, we'll create a new OpenID client, then enabled permissions for the client. A client without permissions disabled cannot be assigned by a client policy. We'll use the `openid.ClientPolicy` resource to create a new client policy, which could be applied to many clients, for a realm and a resource_server_id.
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -347,7 +344,6 @@ class ClientPolicy(pulumi.CustomResource):
             decision_strategy="UNANIMOUS",
             clients=[openid_client.id])
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param ClientPolicyArgs args: The arguments to use to populate this resource's properties.

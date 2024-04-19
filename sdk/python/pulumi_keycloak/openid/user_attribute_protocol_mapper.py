@@ -423,7 +423,6 @@ class UserAttributeProtocolMapper(pulumi.CustomResource):
 
         ### Example Usage (Client)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -445,11 +444,9 @@ class UserAttributeProtocolMapper(pulumi.CustomResource):
             user_attribute="foo",
             claim_name="bar")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Usage (Client Scope)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -467,7 +464,6 @@ class UserAttributeProtocolMapper(pulumi.CustomResource):
             user_attribute="foo",
             claim_name="bar")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 
@@ -525,7 +521,6 @@ class UserAttributeProtocolMapper(pulumi.CustomResource):
 
         ### Example Usage (Client)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -547,11 +542,9 @@ class UserAttributeProtocolMapper(pulumi.CustomResource):
             user_attribute="foo",
             claim_name="bar")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Usage (Client Scope)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -569,7 +562,6 @@ class UserAttributeProtocolMapper(pulumi.CustomResource):
             user_attribute="foo",
             claim_name="bar")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 

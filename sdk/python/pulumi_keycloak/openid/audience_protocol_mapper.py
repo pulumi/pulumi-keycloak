@@ -308,7 +308,6 @@ class AudienceProtocolMapper(pulumi.CustomResource):
 
         ### Example Usage (Client)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -329,11 +328,9 @@ class AudienceProtocolMapper(pulumi.CustomResource):
             name="audience-mapper",
             included_custom_audience="foo")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Usage (Client Scope)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -350,7 +347,6 @@ class AudienceProtocolMapper(pulumi.CustomResource):
             name="audience-mapper",
             included_custom_audience="foo")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 
@@ -402,7 +398,6 @@ class AudienceProtocolMapper(pulumi.CustomResource):
 
         ### Example Usage (Client)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -423,11 +418,9 @@ class AudienceProtocolMapper(pulumi.CustomResource):
             name="audience-mapper",
             included_custom_audience="foo")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Usage (Client Scope)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -444,7 +437,6 @@ class AudienceProtocolMapper(pulumi.CustomResource):
             name="audience-mapper",
             included_custom_audience="foo")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 
