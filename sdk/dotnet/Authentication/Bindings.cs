@@ -67,7 +67,7 @@ namespace Pulumi.Keycloak.Authentication
     ///     {
     ///         DependsOn =
     ///         {
-    ///             executionOne, 
+    ///             executionOne,
     ///         },
     ///     });
     /// 
