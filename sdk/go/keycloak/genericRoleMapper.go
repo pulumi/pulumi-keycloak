@@ -22,7 +22,6 @@ import (
 //
 // ### Realm Role To Client)
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -74,11 +73,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Client Role To Client)
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -151,11 +148,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Realm Role To Client Scope)
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -204,11 +199,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Client Role To Client Scope)
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -268,7 +261,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

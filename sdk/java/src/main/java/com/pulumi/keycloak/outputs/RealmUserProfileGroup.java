@@ -13,53 +13,21 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class RealmUserProfileGroup {
-    /**
-     * @return A map of annotations for the attribute. Values can be a String or a json object.
-     * 
-     */
     private @Nullable Map<String,String> annotations;
-    /**
-     * @return The display description of the group.
-     * 
-     */
     private @Nullable String displayDescription;
-    /**
-     * @return The display header of the group.
-     * 
-     */
     private @Nullable String displayHeader;
-    /**
-     * @return The name of the attribute.
-     * 
-     */
     private String name;
 
     private RealmUserProfileGroup() {}
-    /**
-     * @return A map of annotations for the attribute. Values can be a String or a json object.
-     * 
-     */
     public Map<String,String> annotations() {
         return this.annotations == null ? Map.of() : this.annotations;
     }
-    /**
-     * @return The display description of the group.
-     * 
-     */
     public Optional<String> displayDescription() {
         return Optional.ofNullable(this.displayDescription);
     }
-    /**
-     * @return The display header of the group.
-     * 
-     */
     public Optional<String> displayHeader() {
         return Optional.ofNullable(this.displayHeader);
     }
-    /**
-     * @return The name of the attribute.
-     * 
-     */
     public String name() {
         return this.name;
     }

@@ -192,7 +192,6 @@ class Role(pulumi.CustomResource):
 
         ### Example Usage (Realm role)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -205,11 +204,9 @@ class Role(pulumi.CustomResource):
             name="my-realm-role",
             description="My Realm Role")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Usage (Client role)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -229,11 +226,9 @@ class Role(pulumi.CustomResource):
             name="my-client-role",
             description="My Client Role")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Usage (Composite role)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -277,7 +272,6 @@ class Role(pulumi.CustomResource):
                 "{keycloak_role.client_role.id}",
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 
@@ -320,7 +314,6 @@ class Role(pulumi.CustomResource):
 
         ### Example Usage (Realm role)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -333,11 +326,9 @@ class Role(pulumi.CustomResource):
             name="my-realm-role",
             description="My Realm Role")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Usage (Client role)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -357,11 +348,9 @@ class Role(pulumi.CustomResource):
             name="my-client-role",
             description="My Client Role")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Usage (Composite role)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -405,7 +394,6 @@ class Role(pulumi.CustomResource):
                 "{keycloak_role.client_role.id}",
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 

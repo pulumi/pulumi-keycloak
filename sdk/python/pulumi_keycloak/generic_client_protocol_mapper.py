@@ -266,7 +266,6 @@ class GenericClientProtocolMapper(pulumi.CustomResource):
 
         ### Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -290,7 +289,6 @@ class GenericClientProtocolMapper(pulumi.CustomResource):
                 "friendly.name": "display name",
             })
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 
@@ -339,7 +337,6 @@ class GenericClientProtocolMapper(pulumi.CustomResource):
 
         ### Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -363,7 +360,6 @@ class GenericClientProtocolMapper(pulumi.CustomResource):
                 "friendly.name": "display name",
             })
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 

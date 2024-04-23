@@ -233,82 +233,34 @@ export interface RealmSmtpServerAuth {
 }
 
 export interface RealmUserProfileAttribute {
-    /**
-     * A map of annotations for the attribute. Values can be a String or a json object.
-     */
     annotations?: {[key: string]: string};
-    /**
-     * The display name of the attribute.
-     */
     displayName?: string;
-    /**
-     * A list of scopes. The attribute will only be enabled when these scopes are requested by clients.
-     */
     enabledWhenScopes?: string[];
     /**
      * A list of groups.
      */
     group?: string;
-    /**
-     * The name of the attribute.
-     */
     name: string;
-    /**
-     * The permissions configuration information.
-     */
     permissions?: outputs.RealmUserProfileAttributePermissions;
-    /**
-     * A list of roles for which the attribute will be required.
-     */
     requiredForRoles?: string[];
-    /**
-     * A list of scopes for which the attribute will be required.
-     */
     requiredForScopes?: string[];
-    /**
-     * A list of validators for the attribute.
-     */
     validators?: outputs.RealmUserProfileAttributeValidator[];
 }
 
 export interface RealmUserProfileAttributePermissions {
-    /**
-     * A list of profiles that will be able to edit the attribute. One of `admin`, `user`.
-     */
     edits: string[];
-    /**
-     * A list of profiles that will be able to view the attribute. One of `admin`, `user`.
-     */
     views: string[];
 }
 
 export interface RealmUserProfileAttributeValidator {
-    /**
-     * A map defining the configuration of the validator. Values can be a String or a json object.
-     */
     config?: {[key: string]: string};
-    /**
-     * The name of the attribute.
-     */
     name: string;
 }
 
 export interface RealmUserProfileGroup {
-    /**
-     * A map of annotations for the attribute. Values can be a String or a json object.
-     */
     annotations?: {[key: string]: string};
-    /**
-     * The display description of the group.
-     */
     displayDescription?: string;
-    /**
-     * The display header of the group.
-     */
     displayHeader?: string;
-    /**
-     * The name of the attribute.
-     */
     name: string;
 }
 

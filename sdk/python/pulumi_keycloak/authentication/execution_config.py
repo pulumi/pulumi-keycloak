@@ -167,7 +167,6 @@ class ExecutionConfig(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -190,7 +189,6 @@ class ExecutionConfig(pulumi.CustomResource):
                 "defaultProvider": "my-config-default-idp",
             })
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -227,7 +225,6 @@ class ExecutionConfig(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -250,7 +247,6 @@ class ExecutionConfig(pulumi.CustomResource):
                 "defaultProvider": "my-config-default-idp",
             })
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

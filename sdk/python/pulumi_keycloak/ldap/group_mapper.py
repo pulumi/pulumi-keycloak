@@ -512,7 +512,6 @@ class GroupMapper(pulumi.CustomResource):
 
         ### Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -546,7 +545,6 @@ class GroupMapper(pulumi.CustomResource):
             membership_user_ldap_attribute="cn",
             memberof_ldap_attribute="memberOf")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 
@@ -600,7 +598,6 @@ class GroupMapper(pulumi.CustomResource):
 
         ### Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -634,7 +631,6 @@ class GroupMapper(pulumi.CustomResource):
             membership_user_ldap_attribute="cn",
             memberof_ldap_attribute="memberOf")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 

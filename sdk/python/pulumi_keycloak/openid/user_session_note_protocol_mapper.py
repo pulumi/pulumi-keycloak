@@ -340,7 +340,6 @@ class UserSessionNoteProtocolMapper(pulumi.CustomResource):
 
         ### Client)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -363,11 +362,9 @@ class UserSessionNoteProtocolMapper(pulumi.CustomResource):
             claim_value_type="String",
             session_note="bar")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Client Scope)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -386,7 +383,6 @@ class UserSessionNoteProtocolMapper(pulumi.CustomResource):
             claim_value_type="String",
             session_note="bar")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -438,7 +434,6 @@ class UserSessionNoteProtocolMapper(pulumi.CustomResource):
 
         ### Client)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -461,11 +456,9 @@ class UserSessionNoteProtocolMapper(pulumi.CustomResource):
             claim_value_type="String",
             session_note="bar")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Client Scope)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -484,7 +477,6 @@ class UserSessionNoteProtocolMapper(pulumi.CustomResource):
             claim_value_type="String",
             session_note="bar")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -238,7 +238,6 @@ class CustomMapper(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -271,7 +270,6 @@ class CustomMapper(pulumi.CustomResource):
                 "attribute.value": "value",
             })
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -313,7 +311,6 @@ class CustomMapper(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -346,7 +343,6 @@ class CustomMapper(pulumi.CustomResource):
                 "attribute.value": "value",
             })
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -141,7 +141,6 @@ class MsadLdsUserAccountControlMapper(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -169,7 +168,6 @@ class MsadLdsUserAccountControlMapper(pulumi.CustomResource):
             ldap_user_federation_id=ldap_user_federation.id,
             name="msad-lds-user-account-control-mapper")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -208,7 +206,6 @@ class MsadLdsUserAccountControlMapper(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -236,7 +233,6 @@ class MsadLdsUserAccountControlMapper(pulumi.CustomResource):
             ldap_user_federation_id=ldap_user_federation.id,
             name="msad-lds-user-account-control-mapper")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -170,7 +170,6 @@ class ClientServiceAccountRole(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -198,7 +197,6 @@ class ClientServiceAccountRole(pulumi.CustomResource):
             client_id=client1.id,
             role=client1_role.name)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -234,7 +232,6 @@ class ClientServiceAccountRole(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -262,7 +259,6 @@ class ClientServiceAccountRole(pulumi.CustomResource):
             client_id=client1.id,
             role=client1_role.name)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

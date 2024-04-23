@@ -367,7 +367,6 @@ class AttributeToRoleIdentityMapper(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -398,7 +397,6 @@ class AttributeToRoleIdentityMapper(pulumi.CustomResource):
                 "syncMode": "INHERIT",
             })
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -440,7 +438,6 @@ class AttributeToRoleIdentityMapper(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -471,7 +468,6 @@ class AttributeToRoleIdentityMapper(pulumi.CustomResource):
                 "syncMode": "INHERIT",
             })
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
