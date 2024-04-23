@@ -18,7 +18,6 @@ namespace Pulumi.Keycloak
     /// ## Example Usage
     /// 
     /// ### Exhaustive Groups)
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -57,7 +56,6 @@ namespace Pulumi.Keycloak
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [KeycloakResourceType("keycloak:index/userGroups:UserGroups")]
     public partial class UserGroups : global::Pulumi.CustomResource

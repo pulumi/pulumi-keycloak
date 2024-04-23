@@ -172,7 +172,6 @@ class Execution(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -197,7 +196,6 @@ class Execution(pulumi.CustomResource):
             requirement="ALTERNATIVE",
             opts=pulumi.ResourceOptions(depends_on=[execution_one]))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -234,7 +232,6 @@ class Execution(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -259,7 +256,6 @@ class Execution(pulumi.CustomResource):
             requirement="ALTERNATIVE",
             opts=pulumi.ResourceOptions(depends_on=[execution_one]))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

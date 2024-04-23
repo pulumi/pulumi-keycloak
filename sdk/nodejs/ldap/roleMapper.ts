@@ -11,7 +11,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -49,7 +48,6 @@ import * as utilities from "../utilities";
  *     memberofLdapAttribute: "memberOf",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

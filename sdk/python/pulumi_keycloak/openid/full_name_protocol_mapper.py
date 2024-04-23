@@ -252,7 +252,6 @@ class FullNameProtocolMapper(pulumi.CustomResource):
 
         ### Example Usage (Client)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -272,11 +271,9 @@ class FullNameProtocolMapper(pulumi.CustomResource):
             client_id=openid_client.id,
             name="full-name-mapper")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Usage (Client Scope)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -292,7 +289,6 @@ class FullNameProtocolMapper(pulumi.CustomResource):
             client_scope_id=client_scope.id,
             name="full-name-mapper")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 
@@ -340,7 +336,6 @@ class FullNameProtocolMapper(pulumi.CustomResource):
 
         ### Example Usage (Client)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -360,11 +355,9 @@ class FullNameProtocolMapper(pulumi.CustomResource):
             client_id=openid_client.id,
             name="full-name-mapper")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Usage (Client Scope)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -380,7 +373,6 @@ class FullNameProtocolMapper(pulumi.CustomResource):
             client_scope_id=client_scope.id,
             name="full-name-mapper")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 

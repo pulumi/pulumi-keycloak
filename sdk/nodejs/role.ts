@@ -14,7 +14,6 @@ import * as utilities from "./utilities";
  *
  * ### Example Usage (Realm role)
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -29,11 +28,9 @@ import * as utilities from "./utilities";
  *     description: "My Realm Role",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Example Usage (Client role)
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -56,11 +53,9 @@ import * as utilities from "./utilities";
  *     description: "My Client Role",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Example Usage (Composite role)
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -112,7 +107,6 @@ import * as utilities from "./utilities";
  *     ],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Argument Reference
  *

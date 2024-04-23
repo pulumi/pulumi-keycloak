@@ -176,7 +176,6 @@ class UserRoles(pulumi.CustomResource):
 
         ### Exhaustive Roles)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -214,7 +213,6 @@ class UserRoles(pulumi.CustomResource):
                 client_role.id,
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -257,7 +255,6 @@ class UserRoles(pulumi.CustomResource):
 
         ### Exhaustive Roles)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -295,7 +292,6 @@ class UserRoles(pulumi.CustomResource):
                 client_role.id,
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

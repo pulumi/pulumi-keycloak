@@ -169,7 +169,6 @@ class HardcodedGroupMapper(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -200,7 +199,6 @@ class HardcodedGroupMapper(pulumi.CustomResource):
             name="assign-group-to-users",
             group=realm_group.name)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -236,7 +234,6 @@ class HardcodedGroupMapper(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -267,7 +264,6 @@ class HardcodedGroupMapper(pulumi.CustomResource):
             name="assign-group-to-users",
             group=realm_group.name)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

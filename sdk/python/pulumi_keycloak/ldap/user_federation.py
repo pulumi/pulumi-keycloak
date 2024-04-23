@@ -1096,7 +1096,6 @@ class UserFederation(pulumi.CustomResource):
 
         ### Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -1122,7 +1121,6 @@ class UserFederation(pulumi.CustomResource):
             connection_timeout="5s",
             read_timeout="10s")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 
@@ -1220,7 +1218,6 @@ class UserFederation(pulumi.CustomResource):
 
         ### Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -1246,7 +1243,6 @@ class UserFederation(pulumi.CustomResource):
             connection_timeout="5s",
             read_timeout="10s")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 

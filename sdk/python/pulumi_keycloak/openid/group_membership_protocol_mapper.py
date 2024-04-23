@@ -301,7 +301,6 @@ class GroupMembershipProtocolMapper(pulumi.CustomResource):
 
         ### Example Usage (Client)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -322,11 +321,9 @@ class GroupMembershipProtocolMapper(pulumi.CustomResource):
             name="group-membership-mapper",
             claim_name="groups")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Usage (Client Scope)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -343,7 +340,6 @@ class GroupMembershipProtocolMapper(pulumi.CustomResource):
             name="group-membership-mapper",
             claim_name="groups")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 
@@ -393,7 +389,6 @@ class GroupMembershipProtocolMapper(pulumi.CustomResource):
 
         ### Example Usage (Client)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -414,11 +409,9 @@ class GroupMembershipProtocolMapper(pulumi.CustomResource):
             name="group-membership-mapper",
             claim_name="groups")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Usage (Client Scope)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -435,7 +428,6 @@ class GroupMembershipProtocolMapper(pulumi.CustomResource):
             name="group-membership-mapper",
             claim_name="groups")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 

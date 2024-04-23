@@ -172,7 +172,6 @@ class Flow(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -189,7 +188,6 @@ class Flow(pulumi.CustomResource):
             authenticator="identity-provider-redirector",
             requirement="REQUIRED")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -233,7 +231,6 @@ class Flow(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -250,7 +247,6 @@ class Flow(pulumi.CustomResource):
             authenticator="identity-provider-redirector",
             requirement="REQUIRED")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

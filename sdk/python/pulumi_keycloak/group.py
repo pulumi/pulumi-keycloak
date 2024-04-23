@@ -160,7 +160,6 @@ class Group(pulumi.CustomResource):
 
         ### Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -184,7 +183,6 @@ class Group(pulumi.CustomResource):
                 "key2": "value2",
             })
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 
@@ -233,7 +231,6 @@ class Group(pulumi.CustomResource):
 
         ### Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -257,7 +254,6 @@ class Group(pulumi.CustomResource):
                 "key2": "value2",
             })
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 

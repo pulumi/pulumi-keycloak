@@ -18,7 +18,6 @@ import * as utilities from "../utilities";
  *
  * ### Client)
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -43,11 +42,9 @@ import * as utilities from "../utilities";
  *     script: "exports = 'foo';",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Client Scope)
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -68,7 +65,6 @@ import * as utilities from "../utilities";
  *     script: "exports = 'foo';",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

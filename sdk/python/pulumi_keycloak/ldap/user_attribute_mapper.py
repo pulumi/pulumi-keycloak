@@ -370,7 +370,6 @@ class UserAttributeMapper(pulumi.CustomResource):
 
         ### Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -399,7 +398,6 @@ class UserAttributeMapper(pulumi.CustomResource):
             user_model_attribute="foo",
             ldap_attribute="bar")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 
@@ -450,7 +448,6 @@ class UserAttributeMapper(pulumi.CustomResource):
 
         ### Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -479,7 +476,6 @@ class UserAttributeMapper(pulumi.CustomResource):
             user_model_attribute="foo",
             ldap_attribute="bar")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 

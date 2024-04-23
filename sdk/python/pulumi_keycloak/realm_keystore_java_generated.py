@@ -365,7 +365,6 @@ class RealmKeystoreJavaGenerated(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -383,7 +382,6 @@ class RealmKeystoreJavaGenerated(pulumi.CustomResource):
             priority=100,
             algorithm="RS256")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -423,7 +421,6 @@ class RealmKeystoreJavaGenerated(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -441,7 +438,6 @@ class RealmKeystoreJavaGenerated(pulumi.CustomResource):
             priority=100,
             algorithm="RS256")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

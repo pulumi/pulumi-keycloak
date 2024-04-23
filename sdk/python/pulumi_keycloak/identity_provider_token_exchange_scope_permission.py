@@ -229,7 +229,6 @@ class IdentityProviderTokenExchangeScopePermission(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -261,7 +260,6 @@ class IdentityProviderTokenExchangeScopePermission(pulumi.CustomResource):
             policy_type="client",
             clients=[token_exchange_webapp_client.id])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -293,7 +291,6 @@ class IdentityProviderTokenExchangeScopePermission(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -325,7 +322,6 @@ class IdentityProviderTokenExchangeScopePermission(pulumi.CustomResource):
             policy_type="client",
             clients=[token_exchange_webapp_client.id])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

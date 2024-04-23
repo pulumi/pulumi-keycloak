@@ -14,19 +14,12 @@ namespace Pulumi.Keycloak.Inputs
     {
         [Input("config")]
         private InputMap<string>? _config;
-
-        /// <summary>
-        /// A map defining the configuration of the validator. Values can be a String or a json object.
-        /// </summary>
         public InputMap<string> Config
         {
             get => _config ?? (_config = new InputMap<string>());
             set => _config = value;
         }
 
-        /// <summary>
-        /// The name of the attribute.
-        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 

@@ -15,7 +15,6 @@ import * as utilities from "../utilities";
  *
  * ### Client)
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -38,11 +37,9 @@ import * as utilities from "../utilities";
  *     name: "my-audience-resolve-mapper",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Client Scope)
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -60,7 +57,6 @@ import * as utilities from "../utilities";
  *     clientScopeId: clientScope.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

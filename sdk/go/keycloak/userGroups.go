@@ -20,7 +20,6 @@ import (
 // ## Example Usage
 //
 // ### Exhaustive Groups)
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -69,7 +68,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 type UserGroups struct {
 	pulumi.CustomResourceState
 

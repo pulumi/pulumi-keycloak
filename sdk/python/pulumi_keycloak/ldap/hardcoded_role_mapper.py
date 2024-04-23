@@ -169,7 +169,6 @@ class HardcodedRoleMapper(pulumi.CustomResource):
 
         ### Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -197,7 +196,6 @@ class HardcodedRoleMapper(pulumi.CustomResource):
             name="assign-admin-role-to-all-users",
             role="admin")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 
@@ -234,7 +232,6 @@ class HardcodedRoleMapper(pulumi.CustomResource):
 
         ### Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -262,7 +259,6 @@ class HardcodedRoleMapper(pulumi.CustomResource):
             name="assign-admin-role-to-all-users",
             role="admin")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 

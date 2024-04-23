@@ -138,7 +138,6 @@ class ClientServiceAccountRealmRole(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -158,7 +157,6 @@ class ClientServiceAccountRealmRole(pulumi.CustomResource):
             service_account_user_id=client.service_account_user_id,
             role=realm_role.name)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -193,7 +191,6 @@ class ClientServiceAccountRealmRole(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -213,7 +210,6 @@ class ClientServiceAccountRealmRole(pulumi.CustomResource):
             service_account_user_id=client.service_account_user_id,
             role=realm_role.name)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -194,7 +194,6 @@ class ClientScope(pulumi.CustomResource):
 
         ### Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -207,7 +206,6 @@ class ClientScope(pulumi.CustomResource):
             name="groups",
             description="When requested, this scope will map a user's group memberships to a claim")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 
@@ -248,7 +246,6 @@ class ClientScope(pulumi.CustomResource):
 
         ### Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -261,7 +258,6 @@ class ClientScope(pulumi.CustomResource):
             name="groups",
             description="When requested, this scope will map a user's group memberships to a claim")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 

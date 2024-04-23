@@ -201,7 +201,6 @@ class HardcodedRoleProtocolMapper(pulumi.CustomResource):
 
         ### Example Usage (Client)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -225,11 +224,9 @@ class HardcodedRoleProtocolMapper(pulumi.CustomResource):
             name="hardcoded-role-mapper",
             role_id=role.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Usage (Client Scope)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -249,7 +246,6 @@ class HardcodedRoleProtocolMapper(pulumi.CustomResource):
             name="hardcoded-role-mapper",
             role_id=role.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 
@@ -296,7 +292,6 @@ class HardcodedRoleProtocolMapper(pulumi.CustomResource):
 
         ### Example Usage (Client)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -320,11 +315,9 @@ class HardcodedRoleProtocolMapper(pulumi.CustomResource):
             name="hardcoded-role-mapper",
             role_id=role.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Usage (Client Scope)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -344,7 +337,6 @@ class HardcodedRoleProtocolMapper(pulumi.CustomResource):
             name="hardcoded-role-mapper",
             role_id=role.id)
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 
