@@ -106,7 +106,6 @@ def get_client_scope(name: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_keycloak as keycloak
@@ -120,7 +119,6 @@ def get_client_scope(name: Optional[str] = None,
         name="audience-mapper",
         included_custom_audience="foo")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str name: The name of the client scope.
@@ -151,7 +149,6 @@ def get_client_scope_output(name: Optional[pulumi.Input[str]] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_keycloak as keycloak
@@ -165,7 +162,6 @@ def get_client_scope_output(name: Optional[pulumi.Input[str]] = None,
         name="audience-mapper",
         included_custom_audience="foo")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str name: The name of the client scope.

@@ -207,7 +207,6 @@ class UserTemplateImporterIdentityProviderMapper(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -232,7 +231,6 @@ class UserTemplateImporterIdentityProviderMapper(pulumi.CustomResource):
                 "syncMode": "INHERIT",
             })
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -273,7 +271,6 @@ class UserTemplateImporterIdentityProviderMapper(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -298,7 +295,6 @@ class UserTemplateImporterIdentityProviderMapper(pulumi.CustomResource):
                 "syncMode": "INHERIT",
             })
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

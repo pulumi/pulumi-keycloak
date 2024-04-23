@@ -16,7 +16,6 @@ namespace Pulumi.Keycloak
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -50,7 +49,6 @@ namespace Pulumi.Keycloak
         ///     };
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetUserRealmRolesResult> InvokeAsync(GetUserRealmRolesArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetUserRealmRolesResult>("keycloak:index/getUserRealmRoles:getUserRealmRoles", args ?? new GetUserRealmRolesArgs(), options.WithDefaults());
@@ -60,7 +58,6 @@ namespace Pulumi.Keycloak
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -94,7 +91,6 @@ namespace Pulumi.Keycloak
         ///     };
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetUserRealmRolesResult> Invoke(GetUserRealmRolesInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetUserRealmRolesResult>("keycloak:index/getUserRealmRoles:getUserRealmRoles", args ?? new GetUserRealmRolesInvokeArgs(), options.WithDefaults());

@@ -17,7 +17,6 @@ namespace Pulumi.Keycloak
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -73,7 +72,6 @@ namespace Pulumi.Keycloak
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetClientDescriptionConverterResult> InvokeAsync(GetClientDescriptionConverterArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetClientDescriptionConverterResult>("keycloak:index/getClientDescriptionConverter:getClientDescriptionConverter", args ?? new GetClientDescriptionConverterArgs(), options.WithDefaults());
@@ -84,7 +82,6 @@ namespace Pulumi.Keycloak
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -140,7 +137,6 @@ namespace Pulumi.Keycloak
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetClientDescriptionConverterResult> Invoke(GetClientDescriptionConverterInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetClientDescriptionConverterResult>("keycloak:index/getClientDescriptionConverter:getClientDescriptionConverter", args ?? new GetClientDescriptionConverterInvokeArgs(), options.WithDefaults());

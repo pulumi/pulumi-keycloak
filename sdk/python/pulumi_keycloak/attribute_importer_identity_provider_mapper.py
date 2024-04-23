@@ -293,7 +293,6 @@ class AttributeImporterIdentityProviderMapper(pulumi.CustomResource):
 
         ### Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -305,7 +304,6 @@ class AttributeImporterIdentityProviderMapper(pulumi.CustomResource):
             attribute_name="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname",
             user_attribute="lastName")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 
@@ -349,7 +347,6 @@ class AttributeImporterIdentityProviderMapper(pulumi.CustomResource):
 
         ### Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -361,7 +358,6 @@ class AttributeImporterIdentityProviderMapper(pulumi.CustomResource):
             attribute_name="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname",
             user_attribute="lastName")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 

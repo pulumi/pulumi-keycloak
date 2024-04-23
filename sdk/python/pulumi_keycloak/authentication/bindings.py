@@ -280,7 +280,6 @@ class Bindings(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -308,7 +307,6 @@ class Bindings(pulumi.CustomResource):
             realm_id=realm.id,
             browser_flow=flow.alias)
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -343,7 +341,6 @@ class Bindings(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -371,7 +368,6 @@ class Bindings(pulumi.CustomResource):
             realm_id=realm.id,
             browser_flow=flow.alias)
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param BindingsArgs args: The arguments to use to populate this resource's properties.

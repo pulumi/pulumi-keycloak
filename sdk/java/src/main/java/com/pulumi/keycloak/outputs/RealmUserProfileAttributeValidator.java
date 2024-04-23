@@ -12,29 +12,13 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class RealmUserProfileAttributeValidator {
-    /**
-     * @return A map defining the configuration of the validator. Values can be a String or a json object.
-     * 
-     */
     private @Nullable Map<String,String> config;
-    /**
-     * @return The name of the attribute.
-     * 
-     */
     private String name;
 
     private RealmUserProfileAttributeValidator() {}
-    /**
-     * @return A map defining the configuration of the validator. Values can be a String or a json object.
-     * 
-     */
     public Map<String,String> config() {
         return this.config == null ? Map.of() : this.config;
     }
-    /**
-     * @return The name of the attribute.
-     * 
-     */
     public String name() {
         return this.name;
     }

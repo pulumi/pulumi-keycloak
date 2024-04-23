@@ -11,29 +11,13 @@ import java.util.Objects;
 
 @CustomType
 public final class RealmUserProfileAttributePermissions {
-    /**
-     * @return A list of profiles that will be able to edit the attribute. One of `admin`, `user`.
-     * 
-     */
     private List<String> edits;
-    /**
-     * @return A list of profiles that will be able to view the attribute. One of `admin`, `user`.
-     * 
-     */
     private List<String> views;
 
     private RealmUserProfileAttributePermissions() {}
-    /**
-     * @return A list of profiles that will be able to edit the attribute. One of `admin`, `user`.
-     * 
-     */
     public List<String> edits() {
         return this.edits;
     }
-    /**
-     * @return A list of profiles that will be able to view the attribute. One of `admin`, `user`.
-     * 
-     */
     public List<String> views() {
         return this.views;
     }

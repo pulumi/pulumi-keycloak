@@ -407,7 +407,6 @@ class ScriptProtocolMapper(pulumi.CustomResource):
 
         ### Client)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -429,11 +428,9 @@ class ScriptProtocolMapper(pulumi.CustomResource):
             claim_name="foo",
             script="exports = 'foo';")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Client Scope)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -451,7 +448,6 @@ class ScriptProtocolMapper(pulumi.CustomResource):
             claim_name="foo",
             script="exports = 'foo';")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -507,7 +503,6 @@ class ScriptProtocolMapper(pulumi.CustomResource):
 
         ### Client)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -529,11 +524,9 @@ class ScriptProtocolMapper(pulumi.CustomResource):
             claim_name="foo",
             script="exports = 'foo';")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Client Scope)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -551,7 +544,6 @@ class ScriptProtocolMapper(pulumi.CustomResource):
             claim_name="foo",
             script="exports = 'foo';")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

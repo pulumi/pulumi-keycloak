@@ -20,47 +20,23 @@ public final class RealmUserProfileAttributeArgs extends com.pulumi.resources.Re
 
     public static final RealmUserProfileAttributeArgs Empty = new RealmUserProfileAttributeArgs();
 
-    /**
-     * A map of annotations for the attribute. Values can be a String or a json object.
-     * 
-     */
     @Import(name="annotations")
     private @Nullable Output<Map<String,String>> annotations;
 
-    /**
-     * @return A map of annotations for the attribute. Values can be a String or a json object.
-     * 
-     */
     public Optional<Output<Map<String,String>>> annotations() {
         return Optional.ofNullable(this.annotations);
     }
 
-    /**
-     * The display name of the attribute.
-     * 
-     */
     @Import(name="displayName")
     private @Nullable Output<String> displayName;
 
-    /**
-     * @return The display name of the attribute.
-     * 
-     */
     public Optional<Output<String>> displayName() {
         return Optional.ofNullable(this.displayName);
     }
 
-    /**
-     * A list of scopes. The attribute will only be enabled when these scopes are requested by clients.
-     * 
-     */
     @Import(name="enabledWhenScopes")
     private @Nullable Output<List<String>> enabledWhenScopes;
 
-    /**
-     * @return A list of scopes. The attribute will only be enabled when these scopes are requested by clients.
-     * 
-     */
     public Optional<Output<List<String>>> enabledWhenScopes() {
         return Optional.ofNullable(this.enabledWhenScopes);
     }
@@ -80,77 +56,37 @@ public final class RealmUserProfileAttributeArgs extends com.pulumi.resources.Re
         return Optional.ofNullable(this.group);
     }
 
-    /**
-     * The name of the attribute.
-     * 
-     */
     @Import(name="name", required=true)
     private Output<String> name;
 
-    /**
-     * @return The name of the attribute.
-     * 
-     */
     public Output<String> name() {
         return this.name;
     }
 
-    /**
-     * The permissions configuration information.
-     * 
-     */
     @Import(name="permissions")
     private @Nullable Output<RealmUserProfileAttributePermissionsArgs> permissions;
 
-    /**
-     * @return The permissions configuration information.
-     * 
-     */
     public Optional<Output<RealmUserProfileAttributePermissionsArgs>> permissions() {
         return Optional.ofNullable(this.permissions);
     }
 
-    /**
-     * A list of roles for which the attribute will be required.
-     * 
-     */
     @Import(name="requiredForRoles")
     private @Nullable Output<List<String>> requiredForRoles;
 
-    /**
-     * @return A list of roles for which the attribute will be required.
-     * 
-     */
     public Optional<Output<List<String>>> requiredForRoles() {
         return Optional.ofNullable(this.requiredForRoles);
     }
 
-    /**
-     * A list of scopes for which the attribute will be required.
-     * 
-     */
     @Import(name="requiredForScopes")
     private @Nullable Output<List<String>> requiredForScopes;
 
-    /**
-     * @return A list of scopes for which the attribute will be required.
-     * 
-     */
     public Optional<Output<List<String>>> requiredForScopes() {
         return Optional.ofNullable(this.requiredForScopes);
     }
 
-    /**
-     * A list of validators for the attribute.
-     * 
-     */
     @Import(name="validators")
     private @Nullable Output<List<RealmUserProfileAttributeValidatorArgs>> validators;
 
-    /**
-     * @return A list of validators for the attribute.
-     * 
-     */
     public Optional<Output<List<RealmUserProfileAttributeValidatorArgs>>> validators() {
         return Optional.ofNullable(this.validators);
     }
@@ -187,75 +123,33 @@ public final class RealmUserProfileAttributeArgs extends com.pulumi.resources.Re
             $ = new RealmUserProfileAttributeArgs(Objects.requireNonNull(defaults));
         }
 
-        /**
-         * @param annotations A map of annotations for the attribute. Values can be a String or a json object.
-         * 
-         * @return builder
-         * 
-         */
         public Builder annotations(@Nullable Output<Map<String,String>> annotations) {
             $.annotations = annotations;
             return this;
         }
 
-        /**
-         * @param annotations A map of annotations for the attribute. Values can be a String or a json object.
-         * 
-         * @return builder
-         * 
-         */
         public Builder annotations(Map<String,String> annotations) {
             return annotations(Output.of(annotations));
         }
 
-        /**
-         * @param displayName The display name of the attribute.
-         * 
-         * @return builder
-         * 
-         */
         public Builder displayName(@Nullable Output<String> displayName) {
             $.displayName = displayName;
             return this;
         }
 
-        /**
-         * @param displayName The display name of the attribute.
-         * 
-         * @return builder
-         * 
-         */
         public Builder displayName(String displayName) {
             return displayName(Output.of(displayName));
         }
 
-        /**
-         * @param enabledWhenScopes A list of scopes. The attribute will only be enabled when these scopes are requested by clients.
-         * 
-         * @return builder
-         * 
-         */
         public Builder enabledWhenScopes(@Nullable Output<List<String>> enabledWhenScopes) {
             $.enabledWhenScopes = enabledWhenScopes;
             return this;
         }
 
-        /**
-         * @param enabledWhenScopes A list of scopes. The attribute will only be enabled when these scopes are requested by clients.
-         * 
-         * @return builder
-         * 
-         */
         public Builder enabledWhenScopes(List<String> enabledWhenScopes) {
             return enabledWhenScopes(Output.of(enabledWhenScopes));
         }
 
-        /**
-         * @param enabledWhenScopes A list of scopes. The attribute will only be enabled when these scopes are requested by clients.
-         * 
-         * @return builder
-         * 
-         */
         public Builder enabledWhenScopes(String... enabledWhenScopes) {
             return enabledWhenScopes(List.of(enabledWhenScopes));
         }
@@ -281,137 +175,59 @@ public final class RealmUserProfileAttributeArgs extends com.pulumi.resources.Re
             return group(Output.of(group));
         }
 
-        /**
-         * @param name The name of the attribute.
-         * 
-         * @return builder
-         * 
-         */
         public Builder name(Output<String> name) {
             $.name = name;
             return this;
         }
 
-        /**
-         * @param name The name of the attribute.
-         * 
-         * @return builder
-         * 
-         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
-        /**
-         * @param permissions The permissions configuration information.
-         * 
-         * @return builder
-         * 
-         */
         public Builder permissions(@Nullable Output<RealmUserProfileAttributePermissionsArgs> permissions) {
             $.permissions = permissions;
             return this;
         }
 
-        /**
-         * @param permissions The permissions configuration information.
-         * 
-         * @return builder
-         * 
-         */
         public Builder permissions(RealmUserProfileAttributePermissionsArgs permissions) {
             return permissions(Output.of(permissions));
         }
 
-        /**
-         * @param requiredForRoles A list of roles for which the attribute will be required.
-         * 
-         * @return builder
-         * 
-         */
         public Builder requiredForRoles(@Nullable Output<List<String>> requiredForRoles) {
             $.requiredForRoles = requiredForRoles;
             return this;
         }
 
-        /**
-         * @param requiredForRoles A list of roles for which the attribute will be required.
-         * 
-         * @return builder
-         * 
-         */
         public Builder requiredForRoles(List<String> requiredForRoles) {
             return requiredForRoles(Output.of(requiredForRoles));
         }
 
-        /**
-         * @param requiredForRoles A list of roles for which the attribute will be required.
-         * 
-         * @return builder
-         * 
-         */
         public Builder requiredForRoles(String... requiredForRoles) {
             return requiredForRoles(List.of(requiredForRoles));
         }
 
-        /**
-         * @param requiredForScopes A list of scopes for which the attribute will be required.
-         * 
-         * @return builder
-         * 
-         */
         public Builder requiredForScopes(@Nullable Output<List<String>> requiredForScopes) {
             $.requiredForScopes = requiredForScopes;
             return this;
         }
 
-        /**
-         * @param requiredForScopes A list of scopes for which the attribute will be required.
-         * 
-         * @return builder
-         * 
-         */
         public Builder requiredForScopes(List<String> requiredForScopes) {
             return requiredForScopes(Output.of(requiredForScopes));
         }
 
-        /**
-         * @param requiredForScopes A list of scopes for which the attribute will be required.
-         * 
-         * @return builder
-         * 
-         */
         public Builder requiredForScopes(String... requiredForScopes) {
             return requiredForScopes(List.of(requiredForScopes));
         }
 
-        /**
-         * @param validators A list of validators for the attribute.
-         * 
-         * @return builder
-         * 
-         */
         public Builder validators(@Nullable Output<List<RealmUserProfileAttributeValidatorArgs>> validators) {
             $.validators = validators;
             return this;
         }
 
-        /**
-         * @param validators A list of validators for the attribute.
-         * 
-         * @return builder
-         * 
-         */
         public Builder validators(List<RealmUserProfileAttributeValidatorArgs> validators) {
             return validators(Output.of(validators));
         }
 
-        /**
-         * @param validators A list of validators for the attribute.
-         * 
-         * @return builder
-         * 
-         */
         public Builder validators(RealmUserProfileAttributeValidatorArgs... validators) {
             return validators(List.of(validators));
         }

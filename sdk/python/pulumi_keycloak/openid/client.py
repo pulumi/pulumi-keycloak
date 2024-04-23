@@ -1167,7 +1167,6 @@ class Client(pulumi.CustomResource):
 
         ### Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -1183,7 +1182,6 @@ class Client(pulumi.CustomResource):
             access_type="CONFIDENTIAL",
             valid_redirect_uris=["http://localhost:8080/openid-callback"])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 
@@ -1248,7 +1246,6 @@ class Client(pulumi.CustomResource):
 
         ### Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -1264,7 +1261,6 @@ class Client(pulumi.CustomResource):
             access_type="CONFIDENTIAL",
             valid_redirect_uris=["http://localhost:8080/openid-callback"])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 

@@ -108,7 +108,6 @@ class ClientDefaultScopes(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -134,7 +133,6 @@ class ClientDefaultScopes(pulumi.CustomResource):
                 client_scope.name,
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 
@@ -161,7 +159,6 @@ class ClientDefaultScopes(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -187,7 +184,6 @@ class ClientDefaultScopes(pulumi.CustomResource):
                 client_scope.name,
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 

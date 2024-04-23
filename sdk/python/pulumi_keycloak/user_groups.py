@@ -171,7 +171,6 @@ class UserGroups(pulumi.CustomResource):
         ## Example Usage
 
         ### Exhaustive Groups)
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -190,7 +189,6 @@ class UserGroups(pulumi.CustomResource):
             user_id=user.id,
             group_ids=[group.id])
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -214,7 +212,6 @@ class UserGroups(pulumi.CustomResource):
         ## Example Usage
 
         ### Exhaustive Groups)
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -233,7 +230,6 @@ class UserGroups(pulumi.CustomResource):
             user_id=user.id,
             group_ids=[group.id])
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param UserGroupsArgs args: The arguments to use to populate this resource's properties.

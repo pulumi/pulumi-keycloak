@@ -13,7 +13,6 @@ import * as utilities from "./utilities";
  * ## Example Usage
  *
  * ### Exhaustive Groups)
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -36,7 +35,6 @@ import * as utilities from "./utilities";
  *     groupIds: [group.id],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export class UserGroups extends pulumi.CustomResource {
     /**

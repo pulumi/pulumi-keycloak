@@ -19,7 +19,6 @@ import (
 // permission for this client called "Default Permission". We'll use the `openid.getClientAuthorizationPolicy` data
 // source to fetch information about this permission, so we can use it to create a new resource-based authorization permission.
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -93,7 +92,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func GetClientAuthorizationPolicy(ctx *pulumi.Context, args *GetClientAuthorizationPolicyArgs, opts ...pulumi.InvokeOption) (*GetClientAuthorizationPolicyResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetClientAuthorizationPolicyResult

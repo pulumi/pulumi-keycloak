@@ -2218,24 +2218,16 @@ func (o RealmSmtpServerAuthPtrOutput) Username() pulumi.StringPtrOutput {
 }
 
 type RealmUserProfileAttribute struct {
-	// A map of annotations for the attribute. Values can be a String or a json object.
-	Annotations map[string]string `pulumi:"annotations"`
-	// The display name of the attribute.
-	DisplayName *string `pulumi:"displayName"`
-	// A list of scopes. The attribute will only be enabled when these scopes are requested by clients.
-	EnabledWhenScopes []string `pulumi:"enabledWhenScopes"`
+	Annotations       map[string]string `pulumi:"annotations"`
+	DisplayName       *string           `pulumi:"displayName"`
+	EnabledWhenScopes []string          `pulumi:"enabledWhenScopes"`
 	// A list of groups.
-	Group *string `pulumi:"group"`
-	// The name of the attribute.
-	Name string `pulumi:"name"`
-	// The permissions configuration information.
-	Permissions *RealmUserProfileAttributePermissions `pulumi:"permissions"`
-	// A list of roles for which the attribute will be required.
-	RequiredForRoles []string `pulumi:"requiredForRoles"`
-	// A list of scopes for which the attribute will be required.
-	RequiredForScopes []string `pulumi:"requiredForScopes"`
-	// A list of validators for the attribute.
-	Validators []RealmUserProfileAttributeValidator `pulumi:"validators"`
+	Group             *string                               `pulumi:"group"`
+	Name              string                                `pulumi:"name"`
+	Permissions       *RealmUserProfileAttributePermissions `pulumi:"permissions"`
+	RequiredForRoles  []string                              `pulumi:"requiredForRoles"`
+	RequiredForScopes []string                              `pulumi:"requiredForScopes"`
+	Validators        []RealmUserProfileAttributeValidator  `pulumi:"validators"`
 }
 
 // RealmUserProfileAttributeInput is an input type that accepts RealmUserProfileAttributeArgs and RealmUserProfileAttributeOutput values.
@@ -2250,24 +2242,16 @@ type RealmUserProfileAttributeInput interface {
 }
 
 type RealmUserProfileAttributeArgs struct {
-	// A map of annotations for the attribute. Values can be a String or a json object.
-	Annotations pulumi.StringMapInput `pulumi:"annotations"`
-	// The display name of the attribute.
-	DisplayName pulumi.StringPtrInput `pulumi:"displayName"`
-	// A list of scopes. The attribute will only be enabled when these scopes are requested by clients.
+	Annotations       pulumi.StringMapInput   `pulumi:"annotations"`
+	DisplayName       pulumi.StringPtrInput   `pulumi:"displayName"`
 	EnabledWhenScopes pulumi.StringArrayInput `pulumi:"enabledWhenScopes"`
 	// A list of groups.
-	Group pulumi.StringPtrInput `pulumi:"group"`
-	// The name of the attribute.
-	Name pulumi.StringInput `pulumi:"name"`
-	// The permissions configuration information.
-	Permissions RealmUserProfileAttributePermissionsPtrInput `pulumi:"permissions"`
-	// A list of roles for which the attribute will be required.
-	RequiredForRoles pulumi.StringArrayInput `pulumi:"requiredForRoles"`
-	// A list of scopes for which the attribute will be required.
-	RequiredForScopes pulumi.StringArrayInput `pulumi:"requiredForScopes"`
-	// A list of validators for the attribute.
-	Validators RealmUserProfileAttributeValidatorArrayInput `pulumi:"validators"`
+	Group             pulumi.StringPtrInput                        `pulumi:"group"`
+	Name              pulumi.StringInput                           `pulumi:"name"`
+	Permissions       RealmUserProfileAttributePermissionsPtrInput `pulumi:"permissions"`
+	RequiredForRoles  pulumi.StringArrayInput                      `pulumi:"requiredForRoles"`
+	RequiredForScopes pulumi.StringArrayInput                      `pulumi:"requiredForScopes"`
+	Validators        RealmUserProfileAttributeValidatorArrayInput `pulumi:"validators"`
 }
 
 func (RealmUserProfileAttributeArgs) ElementType() reflect.Type {
@@ -2321,17 +2305,14 @@ func (o RealmUserProfileAttributeOutput) ToRealmUserProfileAttributeOutputWithCo
 	return o
 }
 
-// A map of annotations for the attribute. Values can be a String or a json object.
 func (o RealmUserProfileAttributeOutput) Annotations() pulumi.StringMapOutput {
 	return o.ApplyT(func(v RealmUserProfileAttribute) map[string]string { return v.Annotations }).(pulumi.StringMapOutput)
 }
 
-// The display name of the attribute.
 func (o RealmUserProfileAttributeOutput) DisplayName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RealmUserProfileAttribute) *string { return v.DisplayName }).(pulumi.StringPtrOutput)
 }
 
-// A list of scopes. The attribute will only be enabled when these scopes are requested by clients.
 func (o RealmUserProfileAttributeOutput) EnabledWhenScopes() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v RealmUserProfileAttribute) []string { return v.EnabledWhenScopes }).(pulumi.StringArrayOutput)
 }
@@ -2341,27 +2322,22 @@ func (o RealmUserProfileAttributeOutput) Group() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RealmUserProfileAttribute) *string { return v.Group }).(pulumi.StringPtrOutput)
 }
 
-// The name of the attribute.
 func (o RealmUserProfileAttributeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v RealmUserProfileAttribute) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The permissions configuration information.
 func (o RealmUserProfileAttributeOutput) Permissions() RealmUserProfileAttributePermissionsPtrOutput {
 	return o.ApplyT(func(v RealmUserProfileAttribute) *RealmUserProfileAttributePermissions { return v.Permissions }).(RealmUserProfileAttributePermissionsPtrOutput)
 }
 
-// A list of roles for which the attribute will be required.
 func (o RealmUserProfileAttributeOutput) RequiredForRoles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v RealmUserProfileAttribute) []string { return v.RequiredForRoles }).(pulumi.StringArrayOutput)
 }
 
-// A list of scopes for which the attribute will be required.
 func (o RealmUserProfileAttributeOutput) RequiredForScopes() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v RealmUserProfileAttribute) []string { return v.RequiredForScopes }).(pulumi.StringArrayOutput)
 }
 
-// A list of validators for the attribute.
 func (o RealmUserProfileAttributeOutput) Validators() RealmUserProfileAttributeValidatorArrayOutput {
 	return o.ApplyT(func(v RealmUserProfileAttribute) []RealmUserProfileAttributeValidator { return v.Validators }).(RealmUserProfileAttributeValidatorArrayOutput)
 }
@@ -2387,9 +2363,7 @@ func (o RealmUserProfileAttributeArrayOutput) Index(i pulumi.IntInput) RealmUser
 }
 
 type RealmUserProfileAttributePermissions struct {
-	// A list of profiles that will be able to edit the attribute. One of `admin`, `user`.
 	Edits []string `pulumi:"edits"`
-	// A list of profiles that will be able to view the attribute. One of `admin`, `user`.
 	Views []string `pulumi:"views"`
 }
 
@@ -2405,9 +2379,7 @@ type RealmUserProfileAttributePermissionsInput interface {
 }
 
 type RealmUserProfileAttributePermissionsArgs struct {
-	// A list of profiles that will be able to edit the attribute. One of `admin`, `user`.
 	Edits pulumi.StringArrayInput `pulumi:"edits"`
-	// A list of profiles that will be able to view the attribute. One of `admin`, `user`.
 	Views pulumi.StringArrayInput `pulumi:"views"`
 }
 
@@ -2488,12 +2460,10 @@ func (o RealmUserProfileAttributePermissionsOutput) ToRealmUserProfileAttributeP
 	}).(RealmUserProfileAttributePermissionsPtrOutput)
 }
 
-// A list of profiles that will be able to edit the attribute. One of `admin`, `user`.
 func (o RealmUserProfileAttributePermissionsOutput) Edits() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v RealmUserProfileAttributePermissions) []string { return v.Edits }).(pulumi.StringArrayOutput)
 }
 
-// A list of profiles that will be able to view the attribute. One of `admin`, `user`.
 func (o RealmUserProfileAttributePermissionsOutput) Views() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v RealmUserProfileAttributePermissions) []string { return v.Views }).(pulumi.StringArrayOutput)
 }
@@ -2522,7 +2492,6 @@ func (o RealmUserProfileAttributePermissionsPtrOutput) Elem() RealmUserProfileAt
 	}).(RealmUserProfileAttributePermissionsOutput)
 }
 
-// A list of profiles that will be able to edit the attribute. One of `admin`, `user`.
 func (o RealmUserProfileAttributePermissionsPtrOutput) Edits() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *RealmUserProfileAttributePermissions) []string {
 		if v == nil {
@@ -2532,7 +2501,6 @@ func (o RealmUserProfileAttributePermissionsPtrOutput) Edits() pulumi.StringArra
 	}).(pulumi.StringArrayOutput)
 }
 
-// A list of profiles that will be able to view the attribute. One of `admin`, `user`.
 func (o RealmUserProfileAttributePermissionsPtrOutput) Views() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *RealmUserProfileAttributePermissions) []string {
 		if v == nil {
@@ -2543,10 +2511,8 @@ func (o RealmUserProfileAttributePermissionsPtrOutput) Views() pulumi.StringArra
 }
 
 type RealmUserProfileAttributeValidator struct {
-	// A map defining the configuration of the validator. Values can be a String or a json object.
 	Config map[string]string `pulumi:"config"`
-	// The name of the attribute.
-	Name string `pulumi:"name"`
+	Name   string            `pulumi:"name"`
 }
 
 // RealmUserProfileAttributeValidatorInput is an input type that accepts RealmUserProfileAttributeValidatorArgs and RealmUserProfileAttributeValidatorOutput values.
@@ -2561,10 +2527,8 @@ type RealmUserProfileAttributeValidatorInput interface {
 }
 
 type RealmUserProfileAttributeValidatorArgs struct {
-	// A map defining the configuration of the validator. Values can be a String or a json object.
 	Config pulumi.StringMapInput `pulumi:"config"`
-	// The name of the attribute.
-	Name pulumi.StringInput `pulumi:"name"`
+	Name   pulumi.StringInput    `pulumi:"name"`
 }
 
 func (RealmUserProfileAttributeValidatorArgs) ElementType() reflect.Type {
@@ -2618,12 +2582,10 @@ func (o RealmUserProfileAttributeValidatorOutput) ToRealmUserProfileAttributeVal
 	return o
 }
 
-// A map defining the configuration of the validator. Values can be a String or a json object.
 func (o RealmUserProfileAttributeValidatorOutput) Config() pulumi.StringMapOutput {
 	return o.ApplyT(func(v RealmUserProfileAttributeValidator) map[string]string { return v.Config }).(pulumi.StringMapOutput)
 }
 
-// The name of the attribute.
 func (o RealmUserProfileAttributeValidatorOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v RealmUserProfileAttributeValidator) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -2649,14 +2611,10 @@ func (o RealmUserProfileAttributeValidatorArrayOutput) Index(i pulumi.IntInput) 
 }
 
 type RealmUserProfileGroup struct {
-	// A map of annotations for the attribute. Values can be a String or a json object.
-	Annotations map[string]string `pulumi:"annotations"`
-	// The display description of the group.
-	DisplayDescription *string `pulumi:"displayDescription"`
-	// The display header of the group.
-	DisplayHeader *string `pulumi:"displayHeader"`
-	// The name of the attribute.
-	Name string `pulumi:"name"`
+	Annotations        map[string]string `pulumi:"annotations"`
+	DisplayDescription *string           `pulumi:"displayDescription"`
+	DisplayHeader      *string           `pulumi:"displayHeader"`
+	Name               string            `pulumi:"name"`
 }
 
 // RealmUserProfileGroupInput is an input type that accepts RealmUserProfileGroupArgs and RealmUserProfileGroupOutput values.
@@ -2671,14 +2629,10 @@ type RealmUserProfileGroupInput interface {
 }
 
 type RealmUserProfileGroupArgs struct {
-	// A map of annotations for the attribute. Values can be a String or a json object.
-	Annotations pulumi.StringMapInput `pulumi:"annotations"`
-	// The display description of the group.
+	Annotations        pulumi.StringMapInput `pulumi:"annotations"`
 	DisplayDescription pulumi.StringPtrInput `pulumi:"displayDescription"`
-	// The display header of the group.
-	DisplayHeader pulumi.StringPtrInput `pulumi:"displayHeader"`
-	// The name of the attribute.
-	Name pulumi.StringInput `pulumi:"name"`
+	DisplayHeader      pulumi.StringPtrInput `pulumi:"displayHeader"`
+	Name               pulumi.StringInput    `pulumi:"name"`
 }
 
 func (RealmUserProfileGroupArgs) ElementType() reflect.Type {
@@ -2732,22 +2686,18 @@ func (o RealmUserProfileGroupOutput) ToRealmUserProfileGroupOutputWithContext(ct
 	return o
 }
 
-// A map of annotations for the attribute. Values can be a String or a json object.
 func (o RealmUserProfileGroupOutput) Annotations() pulumi.StringMapOutput {
 	return o.ApplyT(func(v RealmUserProfileGroup) map[string]string { return v.Annotations }).(pulumi.StringMapOutput)
 }
 
-// The display description of the group.
 func (o RealmUserProfileGroupOutput) DisplayDescription() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RealmUserProfileGroup) *string { return v.DisplayDescription }).(pulumi.StringPtrOutput)
 }
 
-// The display header of the group.
 func (o RealmUserProfileGroupOutput) DisplayHeader() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RealmUserProfileGroup) *string { return v.DisplayHeader }).(pulumi.StringPtrOutput)
 }
 
-// The name of the attribute.
 func (o RealmUserProfileGroupOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v RealmUserProfileGroup) string { return v.Name }).(pulumi.StringOutput)
 }

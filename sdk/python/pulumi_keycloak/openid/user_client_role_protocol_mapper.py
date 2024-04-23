@@ -439,7 +439,6 @@ class UserClientRoleProtocolMapper(pulumi.CustomResource):
 
         ### Client)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -460,11 +459,9 @@ class UserClientRoleProtocolMapper(pulumi.CustomResource):
             name="user-client-role-mapper",
             claim_name="foo")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Client Scope)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -481,7 +478,6 @@ class UserClientRoleProtocolMapper(pulumi.CustomResource):
             name="user-client-role-mapper",
             claim_name="foo")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -536,7 +532,6 @@ class UserClientRoleProtocolMapper(pulumi.CustomResource):
 
         ### Client)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -557,11 +552,9 @@ class UserClientRoleProtocolMapper(pulumi.CustomResource):
             name="user-client-role-mapper",
             claim_name="foo")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Client Scope)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -578,7 +571,6 @@ class UserClientRoleProtocolMapper(pulumi.CustomResource):
             name="user-client-role-mapper",
             claim_name="foo")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

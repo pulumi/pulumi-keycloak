@@ -21,7 +21,6 @@ import (
 //
 // ### Example Usage (Realm role)
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -54,11 +53,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Example Usage (Client role)
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -103,11 +100,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Example Usage (Composite role)
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -196,7 +191,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Argument Reference
 //

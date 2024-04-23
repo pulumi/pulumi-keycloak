@@ -281,7 +281,6 @@ class Subflow(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -299,7 +298,6 @@ class Subflow(pulumi.CustomResource):
             provider_id="basic-flow",
             requirement="ALTERNATIVE")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -350,7 +348,6 @@ class Subflow(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -368,7 +365,6 @@ class Subflow(pulumi.CustomResource):
             provider_id="basic-flow",
             requirement="ALTERNATIVE")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

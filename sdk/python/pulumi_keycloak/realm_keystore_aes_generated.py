@@ -237,7 +237,6 @@ class RealmKeystoreAesGenerated(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -251,7 +250,6 @@ class RealmKeystoreAesGenerated(pulumi.CustomResource):
             priority=100,
             secret_size=16)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -287,7 +285,6 @@ class RealmKeystoreAesGenerated(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -301,7 +298,6 @@ class RealmKeystoreAesGenerated(pulumi.CustomResource):
             priority=100,
             secret_size=16)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

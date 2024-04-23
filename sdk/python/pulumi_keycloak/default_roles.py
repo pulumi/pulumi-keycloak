@@ -106,7 +106,6 @@ class DefaultRoles(pulumi.CustomResource):
 
         ### Realm Role)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -118,7 +117,6 @@ class DefaultRoles(pulumi.CustomResource):
             realm_id=realm.id,
             default_roles=["uma_authorization"])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -156,7 +154,6 @@ class DefaultRoles(pulumi.CustomResource):
 
         ### Realm Role)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -168,7 +165,6 @@ class DefaultRoles(pulumi.CustomResource):
             realm_id=realm.id,
             default_roles=["uma_authorization"])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

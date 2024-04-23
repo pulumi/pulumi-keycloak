@@ -215,7 +215,6 @@ class FullNameMapper(pulumi.CustomResource):
 
         ### Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -243,7 +242,6 @@ class FullNameMapper(pulumi.CustomResource):
             name="full-name-mapper",
             ldap_full_name_attribute="cn")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 
@@ -285,7 +283,6 @@ class FullNameMapper(pulumi.CustomResource):
 
         ### Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -313,7 +310,6 @@ class FullNameMapper(pulumi.CustomResource):
             name="full-name-mapper",
             ldap_full_name_attribute="cn")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 

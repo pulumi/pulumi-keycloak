@@ -91,7 +91,6 @@ class DefaultGroups(pulumi.CustomResource):
 
         ### Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -106,7 +105,6 @@ class DefaultGroups(pulumi.CustomResource):
             realm_id=realm.id,
             group_ids=[group.id])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 
@@ -140,7 +138,6 @@ class DefaultGroups(pulumi.CustomResource):
 
         ### Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -155,7 +152,6 @@ class DefaultGroups(pulumi.CustomResource):
             realm_id=realm.id,
             group_ids=[group.id])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 

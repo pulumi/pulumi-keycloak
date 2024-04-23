@@ -203,7 +203,6 @@ class HardcodedAttributeMapper(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -233,7 +232,6 @@ class HardcodedAttributeMapper(pulumi.CustomResource):
             attribute_name="foo",
             attribute_value="bar")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -272,7 +270,6 @@ class HardcodedAttributeMapper(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -302,7 +299,6 @@ class HardcodedAttributeMapper(pulumi.CustomResource):
             attribute_name="foo",
             attribute_value="bar")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

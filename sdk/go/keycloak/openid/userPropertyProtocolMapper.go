@@ -24,7 +24,6 @@ import (
 //
 // ### Example Usage (Client)
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -73,11 +72,9 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Example Usage (Client Scope)
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -120,7 +117,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Argument Reference
 //

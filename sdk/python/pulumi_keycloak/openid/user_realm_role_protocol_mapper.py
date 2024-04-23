@@ -399,7 +399,6 @@ class UserRealmRoleProtocolMapper(pulumi.CustomResource):
 
         ### Example Usage (Client)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -420,11 +419,9 @@ class UserRealmRoleProtocolMapper(pulumi.CustomResource):
             name="user-realm-role-mapper",
             claim_name="foo")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Usage (Client Scope)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -441,7 +438,6 @@ class UserRealmRoleProtocolMapper(pulumi.CustomResource):
             name="user-realm-role-mapper",
             claim_name="foo")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 
@@ -499,7 +495,6 @@ class UserRealmRoleProtocolMapper(pulumi.CustomResource):
 
         ### Example Usage (Client)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -520,11 +515,9 @@ class UserRealmRoleProtocolMapper(pulumi.CustomResource):
             name="user-realm-role-mapper",
             claim_name="foo")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Usage (Client Scope)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -541,7 +534,6 @@ class UserRealmRoleProtocolMapper(pulumi.CustomResource):
             name="user-realm-role-mapper",
             claim_name="foo")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 

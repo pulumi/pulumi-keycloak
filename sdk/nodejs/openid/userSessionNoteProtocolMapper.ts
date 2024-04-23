@@ -16,7 +16,6 @@ import * as utilities from "../utilities";
  *
  * ### Client)
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -42,11 +41,9 @@ import * as utilities from "../utilities";
  *     sessionNote: "bar",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Client Scope)
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -68,7 +65,6 @@ import * as utilities from "../utilities";
  *     sessionNote: "bar",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
