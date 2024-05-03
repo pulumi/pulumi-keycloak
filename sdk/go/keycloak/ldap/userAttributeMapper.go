@@ -99,7 +99,7 @@ type UserAttributeMapper struct {
 
 	// When true, the value fetched from LDAP will override the value stored in Keycloak.
 	AlwaysReadValueFromLdap pulumi.BoolPtrOutput `pulumi:"alwaysReadValueFromLdap"`
-	// Default value to set in LDAP if is_mandatory_in_ldap and the value is empty
+	// Default value to set in LDAP if isMandatoryInLdap and the value is empty
 	AttributeDefaultValue pulumi.StringPtrOutput `pulumi:"attributeDefaultValue"`
 	// Should be true for binary LDAP attributes
 	IsBinaryAttribute pulumi.BoolPtrOutput `pulumi:"isBinaryAttribute"`
@@ -163,7 +163,7 @@ func GetUserAttributeMapper(ctx *pulumi.Context,
 type userAttributeMapperState struct {
 	// When true, the value fetched from LDAP will override the value stored in Keycloak.
 	AlwaysReadValueFromLdap *bool `pulumi:"alwaysReadValueFromLdap"`
-	// Default value to set in LDAP if is_mandatory_in_ldap and the value is empty
+	// Default value to set in LDAP if isMandatoryInLdap and the value is empty
 	AttributeDefaultValue *string `pulumi:"attributeDefaultValue"`
 	// Should be true for binary LDAP attributes
 	IsBinaryAttribute *bool `pulumi:"isBinaryAttribute"`
@@ -186,7 +186,7 @@ type userAttributeMapperState struct {
 type UserAttributeMapperState struct {
 	// When true, the value fetched from LDAP will override the value stored in Keycloak.
 	AlwaysReadValueFromLdap pulumi.BoolPtrInput
-	// Default value to set in LDAP if is_mandatory_in_ldap and the value is empty
+	// Default value to set in LDAP if isMandatoryInLdap and the value is empty
 	AttributeDefaultValue pulumi.StringPtrInput
 	// Should be true for binary LDAP attributes
 	IsBinaryAttribute pulumi.BoolPtrInput
@@ -213,7 +213,7 @@ func (UserAttributeMapperState) ElementType() reflect.Type {
 type userAttributeMapperArgs struct {
 	// When true, the value fetched from LDAP will override the value stored in Keycloak.
 	AlwaysReadValueFromLdap *bool `pulumi:"alwaysReadValueFromLdap"`
-	// Default value to set in LDAP if is_mandatory_in_ldap and the value is empty
+	// Default value to set in LDAP if isMandatoryInLdap and the value is empty
 	AttributeDefaultValue *string `pulumi:"attributeDefaultValue"`
 	// Should be true for binary LDAP attributes
 	IsBinaryAttribute *bool `pulumi:"isBinaryAttribute"`
@@ -237,7 +237,7 @@ type userAttributeMapperArgs struct {
 type UserAttributeMapperArgs struct {
 	// When true, the value fetched from LDAP will override the value stored in Keycloak.
 	AlwaysReadValueFromLdap pulumi.BoolPtrInput
-	// Default value to set in LDAP if is_mandatory_in_ldap and the value is empty
+	// Default value to set in LDAP if isMandatoryInLdap and the value is empty
 	AttributeDefaultValue pulumi.StringPtrInput
 	// Should be true for binary LDAP attributes
 	IsBinaryAttribute pulumi.BoolPtrInput
@@ -349,7 +349,7 @@ func (o UserAttributeMapperOutput) AlwaysReadValueFromLdap() pulumi.BoolPtrOutpu
 	return o.ApplyT(func(v *UserAttributeMapper) pulumi.BoolPtrOutput { return v.AlwaysReadValueFromLdap }).(pulumi.BoolPtrOutput)
 }
 
-// Default value to set in LDAP if is_mandatory_in_ldap and the value is empty
+// Default value to set in LDAP if isMandatoryInLdap and the value is empty
 func (o UserAttributeMapperOutput) AttributeDefaultValue() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *UserAttributeMapper) pulumi.StringPtrOutput { return v.AttributeDefaultValue }).(pulumi.StringPtrOutput)
 }

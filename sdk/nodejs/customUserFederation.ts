@@ -95,7 +95,7 @@ export class CustomUserFederation extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The parent_id of the generated component. will use realm_id if not specified.
+     * The parentId of the generated component. will use realmId if not specified.
      */
     public readonly parentId!: pulumi.Output<string>;
     /**
@@ -183,7 +183,7 @@ export interface CustomUserFederationState {
      */
     name?: pulumi.Input<string>;
     /**
-     * The parent_id of the generated component. will use realm_id if not specified.
+     * The parentId of the generated component. will use realmId if not specified.
      */
     parentId?: pulumi.Input<string>;
     /**
@@ -225,7 +225,7 @@ export interface CustomUserFederationArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * The parent_id of the generated component. will use realm_id if not specified.
+     * The parentId of the generated component. will use realmId if not specified.
      */
     parentId?: pulumi.Input<string>;
     /**
