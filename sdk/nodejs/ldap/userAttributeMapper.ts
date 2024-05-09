@@ -99,7 +99,7 @@ export class UserAttributeMapper extends pulumi.CustomResource {
      */
     public readonly alwaysReadValueFromLdap!: pulumi.Output<boolean | undefined>;
     /**
-     * Default value to set in LDAP if is_mandatory_in_ldap and the value is empty
+     * Default value to set in LDAP if isMandatoryInLdap and the value is empty
      */
     public readonly attributeDefaultValue!: pulumi.Output<string | undefined>;
     /**
@@ -197,7 +197,7 @@ export interface UserAttributeMapperState {
      */
     alwaysReadValueFromLdap?: pulumi.Input<boolean>;
     /**
-     * Default value to set in LDAP if is_mandatory_in_ldap and the value is empty
+     * Default value to set in LDAP if isMandatoryInLdap and the value is empty
      */
     attributeDefaultValue?: pulumi.Input<string>;
     /**
@@ -243,7 +243,7 @@ export interface UserAttributeMapperArgs {
      */
     alwaysReadValueFromLdap?: pulumi.Input<boolean>;
     /**
-     * Default value to set in LDAP if is_mandatory_in_ldap and the value is empty
+     * Default value to set in LDAP if isMandatoryInLdap and the value is empty
      */
     attributeDefaultValue?: pulumi.Input<string>;
     /**
