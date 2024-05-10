@@ -25,7 +25,8 @@ import javax.annotation.Nullable;
  * ### Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -48,25 +49,26 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;test&#34;)
+ *         var realm = new Realm("realm", RealmArgs.builder()        
+ *             .realm("test")
  *             .build());
  * 
- *         var realmEvents = new RealmEvents(&#34;realmEvents&#34;, RealmEventsArgs.builder()        
+ *         var realmEvents = new RealmEvents("realmEvents", RealmEventsArgs.builder()        
  *             .realmId(realm.id())
  *             .eventsEnabled(true)
  *             .eventsExpiration(3600)
  *             .adminEventsEnabled(true)
  *             .adminEventsDetailsEnabled(true)
  *             .enabledEventTypes(            
- *                 &#34;LOGIN&#34;,
- *                 &#34;LOGOUT&#34;)
- *             .eventsListeners(&#34;jboss-logging&#34;)
+ *                 "LOGIN",
+ *                 "LOGOUT")
+ *             .eventsListeners("jboss-logging")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Argument Reference

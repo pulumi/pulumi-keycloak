@@ -30,7 +30,8 @@ import javax.annotation.Nullable;
  * ### Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -53,21 +54,22 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;test&#34;)
+ *         var realm = new Realm("realm", RealmArgs.builder()        
+ *             .realm("test")
  *             .enabled(true)
  *             .build());
  * 
- *         var customUserFederation = new CustomUserFederation(&#34;customUserFederation&#34;, CustomUserFederationArgs.builder()        
- *             .name(&#34;custom&#34;)
+ *         var customUserFederation = new CustomUserFederation("customUserFederation", CustomUserFederationArgs.builder()        
+ *             .name("custom")
  *             .realmId(realm.id())
- *             .providerId(&#34;custom&#34;)
+ *             .providerId("custom")
  *             .enabled(true)
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Argument Reference

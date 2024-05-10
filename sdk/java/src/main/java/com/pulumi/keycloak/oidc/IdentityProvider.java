@@ -26,7 +26,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -49,24 +50,25 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
+ *         var realm = new Realm("realm", RealmArgs.builder()        
+ *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var realmIdentityProvider = new IdentityProvider(&#34;realmIdentityProvider&#34;, IdentityProviderArgs.builder()        
+ *         var realmIdentityProvider = new IdentityProvider("realmIdentityProvider", IdentityProviderArgs.builder()        
  *             .realm(realm.id())
- *             .alias(&#34;my-idp&#34;)
- *             .authorizationUrl(&#34;https://authorizationurl.com&#34;)
- *             .clientId(&#34;clientID&#34;)
- *             .clientSecret(&#34;clientSecret&#34;)
- *             .tokenUrl(&#34;https://tokenurl.com&#34;)
- *             .extraConfig(Map.of(&#34;clientAuthMethod&#34;, &#34;client_secret_post&#34;))
+ *             .alias("my-idp")
+ *             .authorizationUrl("https://authorizationurl.com")
+ *             .clientId("clientID")
+ *             .clientSecret("clientSecret")
+ *             .tokenUrl("https://tokenurl.com")
+ *             .extraConfig(Map.of("clientAuthMethod", "client_secret_post"))
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

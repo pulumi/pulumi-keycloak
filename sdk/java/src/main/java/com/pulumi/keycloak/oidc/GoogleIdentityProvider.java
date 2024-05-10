@@ -26,7 +26,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -49,24 +50,25 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
+ *         var realm = new Realm("realm", RealmArgs.builder()        
+ *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var google = new GoogleIdentityProvider(&#34;google&#34;, GoogleIdentityProviderArgs.builder()        
+ *         var google = new GoogleIdentityProvider("google", GoogleIdentityProviderArgs.builder()        
  *             .realm(realm.id())
  *             .clientId(googleIdentityProviderClientId)
  *             .clientSecret(googleIdentityProviderClientSecret)
  *             .trustEmail(true)
- *             .hostedDomain(&#34;example.com&#34;)
- *             .syncMode(&#34;IMPORT&#34;)
- *             .extraConfig(Map.of(&#34;myCustomConfigKey&#34;, &#34;myValue&#34;))
+ *             .hostedDomain("example.com")
+ *             .syncMode("IMPORT")
+ *             .extraConfig(Map.of("myCustomConfigKey", "myValue"))
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

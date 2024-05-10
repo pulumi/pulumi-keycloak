@@ -32,7 +32,8 @@ import javax.annotation.Nullable;
  * ### Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -55,23 +56,24 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
+ *         var realm = new Realm("realm", RealmArgs.builder()        
+ *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var openidClient = new Client(&#34;openidClient&#34;, ClientArgs.builder()        
+ *         var openidClient = new Client("openidClient", ClientArgs.builder()        
  *             .realmId(realm.id())
- *             .clientId(&#34;test-client&#34;)
- *             .name(&#34;test client&#34;)
+ *             .clientId("test-client")
+ *             .name("test client")
  *             .enabled(true)
- *             .accessType(&#34;CONFIDENTIAL&#34;)
- *             .validRedirectUris(&#34;http://localhost:8080/openid-callback&#34;)
+ *             .accessType("CONFIDENTIAL")
+ *             .validRedirectUris("http://localhost:8080/openid-callback")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Argument Reference

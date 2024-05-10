@@ -24,7 +24,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -47,21 +48,22 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
+ *         var realm = new Realm("realm", RealmArgs.builder()        
+ *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var requiredAction = new RequiredAction(&#34;requiredAction&#34;, RequiredActionArgs.builder()        
+ *         var requiredAction = new RequiredAction("requiredAction", RequiredActionArgs.builder()        
  *             .realmId(realm.realm())
- *             .alias(&#34;webauthn-register&#34;)
+ *             .alias("webauthn-register")
  *             .enabled(true)
- *             .name(&#34;Webauthn Register&#34;)
+ *             .name("Webauthn Register")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

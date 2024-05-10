@@ -24,7 +24,8 @@ import javax.annotation.Nullable;
  * ### Realm Role)
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -47,19 +48,20 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
+ *         var realm = new Realm("realm", RealmArgs.builder()        
+ *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var defaultRoles = new DefaultRoles(&#34;defaultRoles&#34;, DefaultRolesArgs.builder()        
+ *         var defaultRoles = new DefaultRoles("defaultRoles", DefaultRolesArgs.builder()        
  *             .realmId(realm.id())
- *             .defaultRoles(&#34;uma_authorization&#34;)
+ *             .defaultRoles("uma_authorization")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

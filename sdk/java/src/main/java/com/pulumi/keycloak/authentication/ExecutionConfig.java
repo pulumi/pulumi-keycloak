@@ -21,7 +21,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -48,32 +49,33 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
+ *         var realm = new Realm("realm", RealmArgs.builder()        
+ *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var flow = new Flow(&#34;flow&#34;, FlowArgs.builder()        
+ *         var flow = new Flow("flow", FlowArgs.builder()        
  *             .realmId(realm.id())
- *             .alias(&#34;my-flow-alias&#34;)
+ *             .alias("my-flow-alias")
  *             .build());
  * 
- *         var execution = new Execution(&#34;execution&#34;, ExecutionArgs.builder()        
+ *         var execution = new Execution("execution", ExecutionArgs.builder()        
  *             .realmId(realm.id())
  *             .parentFlowAlias(flow.alias())
- *             .authenticator(&#34;identity-provider-redirector&#34;)
+ *             .authenticator("identity-provider-redirector")
  *             .build());
  * 
- *         var config = new ExecutionConfig(&#34;config&#34;, ExecutionConfigArgs.builder()        
+ *         var config = new ExecutionConfig("config", ExecutionConfigArgs.builder()        
  *             .realmId(realm.id())
  *             .executionId(execution.id())
- *             .alias(&#34;my-config-alias&#34;)
- *             .config(Map.of(&#34;defaultProvider&#34;, &#34;my-config-default-idp&#34;))
+ *             .alias("my-config-alias")
+ *             .config(Map.of("defaultProvider", "my-config-default-idp"))
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

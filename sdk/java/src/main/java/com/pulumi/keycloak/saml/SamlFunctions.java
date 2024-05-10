@@ -23,7 +23,8 @@ public final class SamlFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -47,20 +48,21 @@ public final class SamlFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var realmManagement = SamlFunctions.getClient(GetClientArgs.builder()
-     *             .realmId(&#34;my-realm&#34;)
-     *             .clientId(&#34;realm-management&#34;)
+     *             .realmId("my-realm")
+     *             .clientId("realm-management")
      *             .build());
      * 
      *         // use the data source
      *         final var admin = KeycloakFunctions.getRole(GetRoleArgs.builder()
-     *             .realmId(&#34;my-realm&#34;)
-     *             .clientId(realmManagement.applyValue(getClientResult -&gt; getClientResult.id()))
-     *             .name(&#34;realm-admin&#34;)
+     *             .realmId("my-realm")
+     *             .clientId(realmManagement.applyValue(getClientResult -> getClientResult.id()))
+     *             .name("realm-admin")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -73,7 +75,8 @@ public final class SamlFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -97,20 +100,21 @@ public final class SamlFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var realmManagement = SamlFunctions.getClient(GetClientArgs.builder()
-     *             .realmId(&#34;my-realm&#34;)
-     *             .clientId(&#34;realm-management&#34;)
+     *             .realmId("my-realm")
+     *             .clientId("realm-management")
      *             .build());
      * 
      *         // use the data source
      *         final var admin = KeycloakFunctions.getRole(GetRoleArgs.builder()
-     *             .realmId(&#34;my-realm&#34;)
-     *             .clientId(realmManagement.applyValue(getClientResult -&gt; getClientResult.id()))
-     *             .name(&#34;realm-admin&#34;)
+     *             .realmId("my-realm")
+     *             .clientId(realmManagement.applyValue(getClientResult -> getClientResult.id()))
+     *             .name("realm-admin")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -123,7 +127,8 @@ public final class SamlFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -147,20 +152,21 @@ public final class SamlFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var realmManagement = SamlFunctions.getClient(GetClientArgs.builder()
-     *             .realmId(&#34;my-realm&#34;)
-     *             .clientId(&#34;realm-management&#34;)
+     *             .realmId("my-realm")
+     *             .clientId("realm-management")
      *             .build());
      * 
      *         // use the data source
      *         final var admin = KeycloakFunctions.getRole(GetRoleArgs.builder()
-     *             .realmId(&#34;my-realm&#34;)
-     *             .clientId(realmManagement.applyValue(getClientResult -&gt; getClientResult.id()))
-     *             .name(&#34;realm-admin&#34;)
+     *             .realmId("my-realm")
+     *             .clientId(realmManagement.applyValue(getClientResult -> getClientResult.id()))
+     *             .name("realm-admin")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -173,7 +179,8 @@ public final class SamlFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -197,20 +204,21 @@ public final class SamlFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var realmManagement = SamlFunctions.getClient(GetClientArgs.builder()
-     *             .realmId(&#34;my-realm&#34;)
-     *             .clientId(&#34;realm-management&#34;)
+     *             .realmId("my-realm")
+     *             .clientId("realm-management")
      *             .build());
      * 
      *         // use the data source
      *         final var admin = KeycloakFunctions.getRole(GetRoleArgs.builder()
-     *             .realmId(&#34;my-realm&#34;)
-     *             .clientId(realmManagement.applyValue(getClientResult -&gt; getClientResult.id()))
-     *             .name(&#34;realm-admin&#34;)
+     *             .realmId("my-realm")
+     *             .clientId(realmManagement.applyValue(getClientResult -> getClientResult.id()))
+     *             .name("realm-admin")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */

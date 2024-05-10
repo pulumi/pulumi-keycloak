@@ -23,7 +23,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -50,32 +51,32 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
+ *         var realm = new Realm("realm", RealmArgs.builder()        
+ *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
  *         // client1 provides a role to other clients
- *         var client1 = new Client(&#34;client1&#34;, ClientArgs.builder()        
+ *         var client1 = new Client("client1", ClientArgs.builder()        
  *             .realmId(realm.id())
- *             .name(&#34;client1&#34;)
+ *             .name("client1")
  *             .build());
  * 
- *         var client1Role = new Role(&#34;client1Role&#34;, RoleArgs.builder()        
+ *         var client1Role = new Role("client1Role", RoleArgs.builder()        
  *             .realmId(realm.id())
  *             .clientId(client1.id())
- *             .name(&#34;my-client1-role&#34;)
- *             .description(&#34;A role that client1 provides&#34;)
+ *             .name("my-client1-role")
+ *             .description("A role that client1 provides")
  *             .build());
  * 
  *         // client2 is assigned the role of client1
- *         var client2 = new Client(&#34;client2&#34;, ClientArgs.builder()        
+ *         var client2 = new Client("client2", ClientArgs.builder()        
  *             .realmId(realm.id())
- *             .name(&#34;client2&#34;)
+ *             .name("client2")
  *             .serviceAccountsEnabled(true)
  *             .build());
  * 
- *         var client2ServiceAccountRole = new ClientServiceAccountRole(&#34;client2ServiceAccountRole&#34;, ClientServiceAccountRoleArgs.builder()        
+ *         var client2ServiceAccountRole = new ClientServiceAccountRole("client2ServiceAccountRole", ClientServiceAccountRoleArgs.builder()        
  *             .realmId(realm.id())
  *             .serviceAccountUserId(client2.serviceAccountUserId())
  *             .clientId(client1.id())
@@ -84,7 +85,8 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

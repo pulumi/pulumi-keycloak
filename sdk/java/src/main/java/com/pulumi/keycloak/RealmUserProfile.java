@@ -32,7 +32,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -59,75 +60,76 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
- *             .attributes(Map.of(&#34;userProfileEnabled&#34;, true))
+ *         var realm = new Realm("realm", RealmArgs.builder()        
+ *             .realm("my-realm")
+ *             .attributes(Map.of("userProfileEnabled", true))
  *             .build());
  * 
- *         var userprofile = new RealmUserProfile(&#34;userprofile&#34;, RealmUserProfileArgs.builder()        
+ *         var userprofile = new RealmUserProfile("userprofile", RealmUserProfileArgs.builder()        
  *             .realmId(myRealm.id())
  *             .attributes(            
  *                 RealmUserProfileAttributeArgs.builder()
- *                     .name(&#34;field1&#34;)
- *                     .displayName(&#34;Field 1&#34;)
- *                     .group(&#34;group1&#34;)
- *                     .enabledWhenScopes(&#34;offline_access&#34;)
- *                     .requiredForRoles(&#34;user&#34;)
- *                     .requiredForScopes(&#34;offline_access&#34;)
+ *                     .name("field1")
+ *                     .displayName("Field 1")
+ *                     .group("group1")
+ *                     .enabledWhenScopes("offline_access")
+ *                     .requiredForRoles("user")
+ *                     .requiredForScopes("offline_access")
  *                     .permissions(RealmUserProfileAttributePermissionsArgs.builder()
  *                         .views(                        
- *                             &#34;admin&#34;,
- *                             &#34;user&#34;)
+ *                             "admin",
+ *                             "user")
  *                         .edits(                        
- *                             &#34;admin&#34;,
- *                             &#34;user&#34;)
+ *                             "admin",
+ *                             "user")
  *                         .build())
  *                     .validators(                    
  *                         RealmUserProfileAttributeValidatorArgs.builder()
- *                             .name(&#34;person-name-prohibited-characters&#34;)
+ *                             .name("person-name-prohibited-characters")
  *                             .build(),
  *                         RealmUserProfileAttributeValidatorArgs.builder()
- *                             .name(&#34;pattern&#34;)
+ *                             .name("pattern")
  *                             .config(Map.ofEntries(
- *                                 Map.entry(&#34;pattern&#34;, &#34;^[a-z]+$&#34;),
- *                                 Map.entry(&#34;error-message&#34;, &#34;Nope&#34;)
+ *                                 Map.entry("pattern", "^[a-z]+$"),
+ *                                 Map.entry("error-message", "Nope")
  *                             ))
  *                             .build())
- *                     .annotations(Map.of(&#34;foo&#34;, &#34;bar&#34;))
+ *                     .annotations(Map.of("foo", "bar"))
  *                     .build(),
  *                 RealmUserProfileAttributeArgs.builder()
- *                     .name(&#34;field2&#34;)
+ *                     .name("field2")
  *                     .validators(RealmUserProfileAttributeValidatorArgs.builder()
- *                         .name(&#34;options&#34;)
- *                         .config(Map.of(&#34;options&#34;, serializeJson(
- *                             jsonArray(&#34;opt1&#34;))))
+ *                         .name("options")
+ *                         .config(Map.of("options", serializeJson(
+ *                             jsonArray("opt1"))))
  *                         .build())
- *                     .annotations(Map.of(&#34;foo&#34;, serializeJson(
+ *                     .annotations(Map.of("foo", serializeJson(
  *                         jsonObject(
- *                             jsonProperty(&#34;key&#34;, &#34;val&#34;)
+ *                             jsonProperty("key", "val")
  *                         ))))
  *                     .build())
  *             .groups(            
  *                 RealmUserProfileGroupArgs.builder()
- *                     .name(&#34;group1&#34;)
- *                     .displayHeader(&#34;Group 1&#34;)
- *                     .displayDescription(&#34;A first group&#34;)
+ *                     .name("group1")
+ *                     .displayHeader("Group 1")
+ *                     .displayDescription("A first group")
  *                     .annotations(Map.ofEntries(
- *                         Map.entry(&#34;foo&#34;, &#34;bar&#34;),
- *                         Map.entry(&#34;foo2&#34;, serializeJson(
+ *                         Map.entry("foo", "bar"),
+ *                         Map.entry("foo2", serializeJson(
  *                             jsonObject(
- *                                 jsonProperty(&#34;key&#34;, &#34;val&#34;)
+ *                                 jsonProperty("key", "val")
  *                             )))
  *                     ))
  *                     .build(),
  *                 RealmUserProfileGroupArgs.builder()
- *                     .name(&#34;group2&#34;)
+ *                     .name("group2")
  *                     .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
