@@ -21,7 +21,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -48,41 +49,42 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
+ *         var realm = new Realm("realm", RealmArgs.builder()        
+ *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var ldapUserFederation = new UserFederation(&#34;ldapUserFederation&#34;, UserFederationArgs.builder()        
- *             .name(&#34;openldap&#34;)
+ *         var ldapUserFederation = new UserFederation("ldapUserFederation", UserFederationArgs.builder()        
+ *             .name("openldap")
  *             .realmId(realm.id())
- *             .usernameLdapAttribute(&#34;cn&#34;)
- *             .rdnLdapAttribute(&#34;cn&#34;)
- *             .uuidLdapAttribute(&#34;entryDN&#34;)
+ *             .usernameLdapAttribute("cn")
+ *             .rdnLdapAttribute("cn")
+ *             .uuidLdapAttribute("entryDN")
  *             .userObjectClasses(            
- *                 &#34;simpleSecurityObject&#34;,
- *                 &#34;organizationalRole&#34;)
- *             .connectionUrl(&#34;ldap://openldap&#34;)
- *             .usersDn(&#34;dc=example,dc=org&#34;)
- *             .bindDn(&#34;cn=admin,dc=example,dc=org&#34;)
- *             .bindCredential(&#34;admin&#34;)
+ *                 "simpleSecurityObject",
+ *                 "organizationalRole")
+ *             .connectionUrl("ldap://openldap")
+ *             .usersDn("dc=example,dc=org")
+ *             .bindDn("cn=admin,dc=example,dc=org")
+ *             .bindCredential("admin")
  *             .build());
  * 
- *         var realmGroup = new Group(&#34;realmGroup&#34;, GroupArgs.builder()        
+ *         var realmGroup = new Group("realmGroup", GroupArgs.builder()        
  *             .realmId(realm.id())
- *             .name(&#34;my-group&#34;)
+ *             .name("my-group")
  *             .build());
  * 
- *         var assignGroupToUsers = new HardcodedGroupMapper(&#34;assignGroupToUsers&#34;, HardcodedGroupMapperArgs.builder()        
+ *         var assignGroupToUsers = new HardcodedGroupMapper("assignGroupToUsers", HardcodedGroupMapperArgs.builder()        
  *             .realmId(realm.id())
  *             .ldapUserFederationId(ldapUserFederation.id())
- *             .name(&#34;assign-group-to-users&#34;)
+ *             .name("assign-group-to-users")
  *             .group(realmGroup.name())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

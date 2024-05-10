@@ -24,7 +24,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -51,40 +52,41 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
+ *         var realm = new Realm("realm", RealmArgs.builder()        
+ *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var oidc = new IdentityProvider(&#34;oidc&#34;, IdentityProviderArgs.builder()        
+ *         var oidc = new IdentityProvider("oidc", IdentityProviderArgs.builder()        
  *             .realm(realm.id())
- *             .alias(&#34;oidc&#34;)
- *             .authorizationUrl(&#34;https://example.com/auth&#34;)
- *             .tokenUrl(&#34;https://example.com/token&#34;)
- *             .clientId(&#34;example_id&#34;)
- *             .clientSecret(&#34;example_token&#34;)
- *             .defaultScopes(&#34;openid random profile&#34;)
+ *             .alias("oidc")
+ *             .authorizationUrl("https://example.com/auth")
+ *             .tokenUrl("https://example.com/token")
+ *             .clientId("example_id")
+ *             .clientSecret("example_token")
+ *             .defaultScopes("openid random profile")
  *             .build());
  * 
- *         var realmRole = new Role(&#34;realmRole&#34;, RoleArgs.builder()        
+ *         var realmRole = new Role("realmRole", RoleArgs.builder()        
  *             .realmId(realm.id())
- *             .name(&#34;my-realm-role&#34;)
- *             .description(&#34;My Realm Role&#34;)
+ *             .name("my-realm-role")
+ *             .description("My Realm Role")
  *             .build());
  * 
- *         var oidcAttributeToRoleIdentityMapper = new AttributeToRoleIdentityMapper(&#34;oidcAttributeToRoleIdentityMapper&#34;, AttributeToRoleIdentityMapperArgs.builder()        
+ *         var oidcAttributeToRoleIdentityMapper = new AttributeToRoleIdentityMapper("oidcAttributeToRoleIdentityMapper", AttributeToRoleIdentityMapperArgs.builder()        
  *             .realm(realm.id())
- *             .name(&#34;role-attribute&#34;)
+ *             .name("role-attribute")
  *             .identityProviderAlias(oidc.alias())
- *             .role(&#34;my-realm-role&#34;)
- *             .claimName(&#34;my-claim&#34;)
- *             .claimValue(&#34;my-value&#34;)
- *             .extraConfig(Map.of(&#34;syncMode&#34;, &#34;INHERIT&#34;))
+ *             .role("my-realm-role")
+ *             .claimName("my-claim")
+ *             .claimValue("my-value")
+ *             .extraConfig(Map.of("syncMode", "INHERIT"))
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

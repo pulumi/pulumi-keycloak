@@ -39,7 +39,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -77,79 +78,80 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
+ *         var realm = new Realm("realm", RealmArgs.builder()        
+ *             .realm("my-realm")
  *             .build());
  * 
  *         final var realmManagement = OpenidFunctions.getClient(GetClientArgs.builder()
  *             .realmId(realm.id())
- *             .clientId(&#34;realm-management&#34;)
+ *             .clientId("realm-management")
  *             .build());
  * 
  *         // enable permissions for realm-management client
- *         var realmManagementPermission = new ClientPermissions(&#34;realmManagementPermission&#34;, ClientPermissionsArgs.builder()        
+ *         var realmManagementPermission = new ClientPermissions("realmManagementPermission", ClientPermissionsArgs.builder()        
  *             .realmId(realm.id())
- *             .clientId(realmManagement.applyValue(getClientResult -&gt; getClientResult).applyValue(realmManagement -&gt; realmManagement.applyValue(getClientResult -&gt; getClientResult.id())))
+ *             .clientId(realmManagement.applyValue(getClientResult -> getClientResult).applyValue(realmManagement -> realmManagement.applyValue(getClientResult -> getClientResult.id())))
  *             .enabled(true)
  *             .build());
  * 
  *         // creating a user to use with the keycloak_openid_client_user_policy resource
- *         var test = new User(&#34;test&#34;, UserArgs.builder()        
+ *         var test = new User("test", UserArgs.builder()        
  *             .realmId(realm.id())
- *             .username(&#34;test-user&#34;)
- *             .email(&#34;test-user@fakedomain.com&#34;)
- *             .firstName(&#34;Testy&#34;)
- *             .lastName(&#34;Tester&#34;)
+ *             .username("test-user")
+ *             .email("test-user{@literal @}fakedomain.com")
+ *             .firstName("Testy")
+ *             .lastName("Tester")
  *             .build());
  * 
- *         var testClientUserPolicy = new ClientUserPolicy(&#34;testClientUserPolicy&#34;, ClientUserPolicyArgs.builder()        
+ *         var testClientUserPolicy = new ClientUserPolicy("testClientUserPolicy", ClientUserPolicyArgs.builder()        
  *             .realmId(realm.id())
- *             .resourceServerId(realmManagement.applyValue(getClientResult -&gt; getClientResult).applyValue(realmManagement -&gt; realmManagement.applyValue(getClientResult -&gt; getClientResult.id())))
- *             .name(&#34;client_user_policy_test&#34;)
+ *             .resourceServerId(realmManagement.applyValue(getClientResult -> getClientResult).applyValue(realmManagement -> realmManagement.applyValue(getClientResult -> getClientResult.id())))
+ *             .name("client_user_policy_test")
  *             .users(test.id())
- *             .logic(&#34;POSITIVE&#34;)
- *             .decisionStrategy(&#34;UNANIMOUS&#34;)
+ *             .logic("POSITIVE")
+ *             .decisionStrategy("UNANIMOUS")
  *             .build(), CustomResourceOptions.builder()
  *                 .dependsOn(realmManagementPermission)
  *                 .build());
  * 
- *         var usersPermissions = new UsersPermissions(&#34;usersPermissions&#34;, UsersPermissionsArgs.builder()        
+ *         var usersPermissions = new UsersPermissions("usersPermissions", UsersPermissionsArgs.builder()        
  *             .realmId(realm.id())
  *             .viewScope(UsersPermissionsViewScopeArgs.builder()
  *                 .policies(testClientUserPolicy.id())
- *                 .description(&#34;description&#34;)
- *                 .decisionStrategy(&#34;UNANIMOUS&#34;)
+ *                 .description("description")
+ *                 .decisionStrategy("UNANIMOUS")
  *                 .build())
  *             .manageScope(UsersPermissionsManageScopeArgs.builder()
  *                 .policies(testClientUserPolicy.id())
- *                 .description(&#34;description&#34;)
- *                 .decisionStrategy(&#34;UNANIMOUS&#34;)
+ *                 .description("description")
+ *                 .decisionStrategy("UNANIMOUS")
  *                 .build())
  *             .mapRolesScope(UsersPermissionsMapRolesScopeArgs.builder()
  *                 .policies(testClientUserPolicy.id())
- *                 .description(&#34;description&#34;)
- *                 .decisionStrategy(&#34;UNANIMOUS&#34;)
+ *                 .description("description")
+ *                 .decisionStrategy("UNANIMOUS")
  *                 .build())
  *             .manageGroupMembershipScope(UsersPermissionsManageGroupMembershipScopeArgs.builder()
  *                 .policies(testClientUserPolicy.id())
- *                 .description(&#34;description&#34;)
- *                 .decisionStrategy(&#34;UNANIMOUS&#34;)
+ *                 .description("description")
+ *                 .decisionStrategy("UNANIMOUS")
  *                 .build())
  *             .impersonateScope(UsersPermissionsImpersonateScopeArgs.builder()
  *                 .policies(testClientUserPolicy.id())
- *                 .description(&#34;description&#34;)
- *                 .decisionStrategy(&#34;UNANIMOUS&#34;)
+ *                 .description("description")
+ *                 .decisionStrategy("UNANIMOUS")
  *                 .build())
  *             .userImpersonatedScope(UsersPermissionsUserImpersonatedScopeArgs.builder()
  *                 .policies(testClientUserPolicy.id())
- *                 .description(&#34;description&#34;)
- *                 .decisionStrategy(&#34;UNANIMOUS&#34;)
+ *                 .description("description")
+ *                 .decisionStrategy("UNANIMOUS")
  *                 .build())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Argument Reference

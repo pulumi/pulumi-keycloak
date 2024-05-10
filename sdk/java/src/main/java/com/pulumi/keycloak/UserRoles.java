@@ -31,7 +31,8 @@ import javax.annotation.Nullable;
  * ### Exhaustive Roles)
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -60,42 +61,42 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
+ *         var realm = new Realm("realm", RealmArgs.builder()        
+ *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var realmRole = new Role(&#34;realmRole&#34;, RoleArgs.builder()        
+ *         var realmRole = new Role("realmRole", RoleArgs.builder()        
  *             .realmId(realm.id())
- *             .name(&#34;my-realm-role&#34;)
- *             .description(&#34;My Realm Role&#34;)
+ *             .name("my-realm-role")
+ *             .description("My Realm Role")
  *             .build());
  * 
- *         var client = new Client(&#34;client&#34;, ClientArgs.builder()        
+ *         var client = new Client("client", ClientArgs.builder()        
  *             .realmId(realm.id())
- *             .clientId(&#34;client&#34;)
- *             .name(&#34;client&#34;)
+ *             .clientId("client")
+ *             .name("client")
  *             .enabled(true)
- *             .accessType(&#34;BEARER-ONLY&#34;)
+ *             .accessType("BEARER-ONLY")
  *             .build());
  * 
- *         var clientRole = new Role(&#34;clientRole&#34;, RoleArgs.builder()        
+ *         var clientRole = new Role("clientRole", RoleArgs.builder()        
  *             .realmId(realm.id())
  *             .clientId(clientKeycloakClient.id())
- *             .name(&#34;my-client-role&#34;)
- *             .description(&#34;My Client Role&#34;)
+ *             .name("my-client-role")
+ *             .description("My Client Role")
  *             .build());
  * 
- *         var user = new User(&#34;user&#34;, UserArgs.builder()        
+ *         var user = new User("user", UserArgs.builder()        
  *             .realmId(realm.id())
- *             .username(&#34;bob&#34;)
+ *             .username("bob")
  *             .enabled(true)
- *             .email(&#34;bob@domain.com&#34;)
- *             .firstName(&#34;Bob&#34;)
- *             .lastName(&#34;Bobson&#34;)
+ *             .email("bob{@literal @}domain.com")
+ *             .firstName("Bob")
+ *             .lastName("Bobson")
  *             .build());
  * 
- *         var userRoles = new UserRoles(&#34;userRoles&#34;, UserRolesArgs.builder()        
+ *         var userRoles = new UserRoles("userRoles", UserRolesArgs.builder()        
  *             .realmId(realm.id())
  *             .userId(user.id())
  *             .roleIds(            
@@ -105,7 +106,8 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

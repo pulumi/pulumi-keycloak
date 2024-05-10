@@ -18,7 +18,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -45,35 +46,36 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
+ *         var realm = new Realm("realm", RealmArgs.builder()        
+ *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var client = new Client(&#34;client&#34;, ClientArgs.builder()        
+ *         var client = new Client("client", ClientArgs.builder()        
  *             .realmId(realm.id())
- *             .clientId(&#34;test-client&#34;)
- *             .accessType(&#34;CONFIDENTIAL&#34;)
+ *             .clientId("test-client")
+ *             .accessType("CONFIDENTIAL")
  *             .build());
  * 
- *         var clientScope = new ClientScope(&#34;clientScope&#34;, ClientScopeArgs.builder()        
+ *         var clientScope = new ClientScope("clientScope", ClientScopeArgs.builder()        
  *             .realmId(realm.id())
- *             .name(&#34;test-client-scope&#34;)
+ *             .name("test-client-scope")
  *             .build());
  * 
- *         var clientOptionalScopes = new ClientOptionalScopes(&#34;clientOptionalScopes&#34;, ClientOptionalScopesArgs.builder()        
+ *         var clientOptionalScopes = new ClientOptionalScopes("clientOptionalScopes", ClientOptionalScopesArgs.builder()        
  *             .realmId(realm.id())
  *             .clientId(client.id())
  *             .optionalScopes(            
- *                 &#34;address&#34;,
- *                 &#34;phone&#34;,
- *                 &#34;offline_access&#34;,
+ *                 "address",
+ *                 "phone",
+ *                 "offline_access",
  *                 clientScope.name())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Argument Reference

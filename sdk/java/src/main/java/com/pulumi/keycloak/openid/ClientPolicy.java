@@ -23,7 +23,8 @@ import javax.annotation.Nullable;
  * In this example, we&#39;ll create a new OpenID client, then enabled permissions for the client. A client without permissions disabled cannot be assigned by a client policy. We&#39;ll use the `keycloak.openid.ClientPolicy` resource to create a new client policy, which could be applied to many clients, for a realm and a resource_server_id.
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -52,41 +53,42 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
+ *         var realm = new Realm("realm", RealmArgs.builder()        
+ *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var openidClient = new Client(&#34;openidClient&#34;, ClientArgs.builder()        
- *             .clientId(&#34;openid_client&#34;)
- *             .name(&#34;openid_client&#34;)
+ *         var openidClient = new Client("openidClient", ClientArgs.builder()        
+ *             .clientId("openid_client")
+ *             .name("openid_client")
  *             .realmId(realm.id())
- *             .accessType(&#34;CONFIDENTIAL&#34;)
+ *             .accessType("CONFIDENTIAL")
  *             .serviceAccountsEnabled(true)
  *             .build());
  * 
- *         var myPermission = new ClientPermissions(&#34;myPermission&#34;, ClientPermissionsArgs.builder()        
+ *         var myPermission = new ClientPermissions("myPermission", ClientPermissionsArgs.builder()        
  *             .realmId(realm.id())
  *             .clientId(openidClient.id())
  *             .build());
  * 
  *         final var realmManagement = OpenidFunctions.getClient(GetClientArgs.builder()
- *             .realmId(&#34;my-realm&#34;)
- *             .clientId(&#34;realm-management&#34;)
+ *             .realmId("my-realm")
+ *             .clientId("realm-management")
  *             .build());
  * 
- *         var tokenExchange = new ClientPolicy(&#34;tokenExchange&#34;, ClientPolicyArgs.builder()        
- *             .resourceServerId(realmManagement.applyValue(getClientResult -&gt; getClientResult.id()))
+ *         var tokenExchange = new ClientPolicy("tokenExchange", ClientPolicyArgs.builder()        
+ *             .resourceServerId(realmManagement.applyValue(getClientResult -> getClientResult.id()))
  *             .realmId(realm.id())
- *             .name(&#34;my-policy&#34;)
- *             .logic(&#34;POSITIVE&#34;)
- *             .decisionStrategy(&#34;UNANIMOUS&#34;)
+ *             .name("my-policy")
+ *             .logic("POSITIVE")
+ *             .decisionStrategy("UNANIMOUS")
  *             .clients(openidClient.id())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */

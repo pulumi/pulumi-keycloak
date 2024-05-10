@@ -23,7 +23,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -50,23 +51,23 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
+ *         var realm = new Realm("realm", RealmArgs.builder()        
+ *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var realmRole = new Role(&#34;realmRole&#34;, RoleArgs.builder()        
+ *         var realmRole = new Role("realmRole", RoleArgs.builder()        
  *             .realmId(realm.id())
- *             .name(&#34;my-realm-role&#34;)
+ *             .name("my-realm-role")
  *             .build());
  * 
- *         var client = new Client(&#34;client&#34;, ClientArgs.builder()        
+ *         var client = new Client("client", ClientArgs.builder()        
  *             .realmId(realm.id())
- *             .name(&#34;client&#34;)
+ *             .name("client")
  *             .serviceAccountsEnabled(true)
  *             .build());
  * 
- *         var clientServiceAccountRole = new ClientServiceAccountRealmRole(&#34;clientServiceAccountRole&#34;, ClientServiceAccountRealmRoleArgs.builder()        
+ *         var clientServiceAccountRole = new ClientServiceAccountRealmRole("clientServiceAccountRole", ClientServiceAccountRealmRoleArgs.builder()        
  *             .realmId(realm.id())
  *             .serviceAccountUserId(client.serviceAccountUserId())
  *             .role(realmRole.name())
@@ -74,7 +75,8 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

@@ -19,7 +19,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -46,43 +47,44 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var tokenExchangeRealm = new Realm(&#34;tokenExchangeRealm&#34;, RealmArgs.builder()        
- *             .realm(&#34;token-exchange_destination_realm&#34;)
+ *         var tokenExchangeRealm = new Realm("tokenExchangeRealm", RealmArgs.builder()        
+ *             .realm("token-exchange_destination_realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var tokenExchangeMyOidcIdp = new IdentityProvider(&#34;tokenExchangeMyOidcIdp&#34;, IdentityProviderArgs.builder()        
+ *         var tokenExchangeMyOidcIdp = new IdentityProvider("tokenExchangeMyOidcIdp", IdentityProviderArgs.builder()        
  *             .realm(tokenExchangeRealm.id())
- *             .alias(&#34;myIdp&#34;)
- *             .authorizationUrl(&#34;http://localhost:8080/auth/realms/someRealm/protocol/openid-connect/auth&#34;)
- *             .tokenUrl(&#34;http://localhost:8080/auth/realms/someRealm/protocol/openid-connect/token&#34;)
- *             .clientId(&#34;clientId&#34;)
- *             .clientSecret(&#34;secret&#34;)
- *             .defaultScopes(&#34;openid&#34;)
+ *             .alias("myIdp")
+ *             .authorizationUrl("http://localhost:8080/auth/realms/someRealm/protocol/openid-connect/auth")
+ *             .tokenUrl("http://localhost:8080/auth/realms/someRealm/protocol/openid-connect/token")
+ *             .clientId("clientId")
+ *             .clientSecret("secret")
+ *             .defaultScopes("openid")
  *             .build());
  * 
- *         var token_exchangeWebappClient = new Client(&#34;token-exchangeWebappClient&#34;, ClientArgs.builder()        
+ *         var token_exchangeWebappClient = new Client("token-exchangeWebappClient", ClientArgs.builder()        
  *             .realmId(tokenExchangeRealm.id())
- *             .name(&#34;webapp_client&#34;)
- *             .clientId(&#34;webapp_client&#34;)
- *             .clientSecret(&#34;secret&#34;)
- *             .description(&#34;a webapp client on the destination realm&#34;)
- *             .accessType(&#34;CONFIDENTIAL&#34;)
+ *             .name("webapp_client")
+ *             .clientId("webapp_client")
+ *             .clientSecret("secret")
+ *             .description("a webapp client on the destination realm")
+ *             .accessType("CONFIDENTIAL")
  *             .standardFlowEnabled(true)
- *             .validRedirectUris(&#34;http://localhost:8080/*&#34;)
+ *             .validRedirectUris("http://localhost:8080/*")
  *             .build());
  * 
  *         //relevant part
- *         var oidcIdpPermission = new IdentityProviderTokenExchangeScopePermission(&#34;oidcIdpPermission&#34;, IdentityProviderTokenExchangeScopePermissionArgs.builder()        
+ *         var oidcIdpPermission = new IdentityProviderTokenExchangeScopePermission("oidcIdpPermission", IdentityProviderTokenExchangeScopePermissionArgs.builder()        
  *             .realmId(tokenExchangeRealm.id())
  *             .providerAlias(tokenExchangeMyOidcIdp.alias())
- *             .policyType(&#34;client&#34;)
+ *             .policyType("client")
  *             .clients(token_exchangeWebappClient.id())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

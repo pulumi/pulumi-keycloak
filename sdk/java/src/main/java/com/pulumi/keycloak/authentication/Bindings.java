@@ -31,7 +31,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -59,42 +60,43 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
+ *         var realm = new Realm("realm", RealmArgs.builder()        
+ *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var flow = new Flow(&#34;flow&#34;, FlowArgs.builder()        
+ *         var flow = new Flow("flow", FlowArgs.builder()        
  *             .realmId(realm.id())
- *             .alias(&#34;my-flow-alias&#34;)
+ *             .alias("my-flow-alias")
  *             .build());
  * 
  *         // first execution
- *         var executionOne = new Execution(&#34;executionOne&#34;, ExecutionArgs.builder()        
+ *         var executionOne = new Execution("executionOne", ExecutionArgs.builder()        
  *             .realmId(realm.id())
  *             .parentFlowAlias(flow.alias())
- *             .authenticator(&#34;auth-cookie&#34;)
- *             .requirement(&#34;ALTERNATIVE&#34;)
+ *             .authenticator("auth-cookie")
+ *             .requirement("ALTERNATIVE")
  *             .build());
  * 
  *         // second execution
- *         var executionTwo = new Execution(&#34;executionTwo&#34;, ExecutionArgs.builder()        
+ *         var executionTwo = new Execution("executionTwo", ExecutionArgs.builder()        
  *             .realmId(realm.id())
  *             .parentFlowAlias(flow.alias())
- *             .authenticator(&#34;identity-provider-redirector&#34;)
- *             .requirement(&#34;ALTERNATIVE&#34;)
+ *             .authenticator("identity-provider-redirector")
+ *             .requirement("ALTERNATIVE")
  *             .build(), CustomResourceOptions.builder()
  *                 .dependsOn(executionOne)
  *                 .build());
  * 
- *         var browserAuthenticationBinding = new Bindings(&#34;browserAuthenticationBinding&#34;, BindingsArgs.builder()        
+ *         var browserAuthenticationBinding = new Bindings("browserAuthenticationBinding", BindingsArgs.builder()        
  *             .realmId(realm.id())
  *             .browserFlow(flow.alias())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */

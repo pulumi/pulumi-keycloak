@@ -24,7 +24,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -51,37 +52,38 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
+ *         var realm = new Realm("realm", RealmArgs.builder()        
+ *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var oidc = new IdentityProvider(&#34;oidc&#34;, IdentityProviderArgs.builder()        
+ *         var oidc = new IdentityProvider("oidc", IdentityProviderArgs.builder()        
  *             .realm(realm.id())
- *             .alias(&#34;my-idp&#34;)
- *             .authorizationUrl(&#34;https://authorizationurl.com&#34;)
- *             .clientId(&#34;clientID&#34;)
- *             .clientSecret(&#34;clientSecret&#34;)
- *             .tokenUrl(&#34;https://tokenurl.com&#34;)
+ *             .alias("my-idp")
+ *             .authorizationUrl("https://authorizationurl.com")
+ *             .clientId("clientID")
+ *             .clientSecret("clientSecret")
+ *             .tokenUrl("https://tokenurl.com")
  *             .build());
  * 
- *         var realmRole = new Role(&#34;realmRole&#34;, RoleArgs.builder()        
+ *         var realmRole = new Role("realmRole", RoleArgs.builder()        
  *             .realmId(realm.id())
- *             .name(&#34;my-realm-role&#34;)
- *             .description(&#34;My Realm Role&#34;)
+ *             .name("my-realm-role")
+ *             .description("My Realm Role")
  *             .build());
  * 
- *         var oidcHardcodedRoleIdentityMapper = new HardcodedRoleIdentityMapper(&#34;oidcHardcodedRoleIdentityMapper&#34;, HardcodedRoleIdentityMapperArgs.builder()        
+ *         var oidcHardcodedRoleIdentityMapper = new HardcodedRoleIdentityMapper("oidcHardcodedRoleIdentityMapper", HardcodedRoleIdentityMapperArgs.builder()        
  *             .realm(realm.id())
- *             .name(&#34;hardcodedRole&#34;)
+ *             .name("hardcodedRole")
  *             .identityProviderAlias(oidc.alias())
- *             .role(&#34;my-realm-role&#34;)
- *             .extraConfig(Map.of(&#34;syncMode&#34;, &#34;INHERIT&#34;))
+ *             .role("my-realm-role")
+ *             .extraConfig(Map.of("syncMode", "INHERIT"))
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */

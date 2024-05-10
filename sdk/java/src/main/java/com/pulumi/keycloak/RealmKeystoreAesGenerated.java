@@ -24,7 +24,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -47,12 +48,12 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
+ *         var realm = new Realm("realm", RealmArgs.builder()        
+ *             .realm("my-realm")
  *             .build());
  * 
- *         var keystoreAesGenerated = new RealmKeystoreAesGenerated(&#34;keystoreAesGenerated&#34;, RealmKeystoreAesGeneratedArgs.builder()        
- *             .name(&#34;my-aes-generated-key&#34;)
+ *         var keystoreAesGenerated = new RealmKeystoreAesGenerated("keystoreAesGenerated", RealmKeystoreAesGeneratedArgs.builder()        
+ *             .name("my-aes-generated-key")
  *             .realmId(realm.id())
  *             .enabled(true)
  *             .active(true)
@@ -62,7 +63,8 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

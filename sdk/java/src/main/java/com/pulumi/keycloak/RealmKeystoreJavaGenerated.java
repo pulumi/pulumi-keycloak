@@ -24,7 +24,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -47,26 +48,27 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
+ *         var realm = new Realm("realm", RealmArgs.builder()        
+ *             .realm("my-realm")
  *             .build());
  * 
- *         var javaKeystore = new RealmKeystoreJavaGenerated(&#34;javaKeystore&#34;, RealmKeystoreJavaGeneratedArgs.builder()        
- *             .name(&#34;my-java-keystore&#34;)
+ *         var javaKeystore = new RealmKeystoreJavaGenerated("javaKeystore", RealmKeystoreJavaGeneratedArgs.builder()        
+ *             .name("my-java-keystore")
  *             .realmId(realm.id())
  *             .enabled(true)
  *             .active(true)
- *             .keystore(&#34;&lt;path to your keystore&gt;&#34;)
- *             .keystorePassword(&#34;&lt;password for keystore&gt;&#34;)
- *             .keyAlias(&#34;&lt;alias for the private key&gt;&#34;)
- *             .keyPassword(&#34;&lt;password for the private key&gt;&#34;)
+ *             .keystore("<path to your keystore>")
+ *             .keystorePassword("<password for keystore>")
+ *             .keyAlias("<alias for the private key>")
+ *             .keyPassword("<password for the private key>")
  *             .priority(100)
- *             .algorithm(&#34;RS256&#34;)
+ *             .algorithm("RS256")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

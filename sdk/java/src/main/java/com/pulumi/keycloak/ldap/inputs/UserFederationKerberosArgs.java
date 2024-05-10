@@ -48,14 +48,14 @@ public final class UserFederationKerberosArgs extends com.pulumi.resources.Resou
     }
 
     /**
-     * The kerberos server principal, e.g. &#39;HTTP/host.foo.com@FOO.LOCAL&#39;.
+     * The kerberos server principal, e.g. &#39;HTTP/host.foo.com{@literal @}FOO.LOCAL&#39;.
      * 
      */
     @Import(name="serverPrincipal", required=true)
     private Output<String> serverPrincipal;
 
     /**
-     * @return The kerberos server principal, e.g. &#39;HTTP/host.foo.com@FOO.LOCAL&#39;.
+     * @return The kerberos server principal, e.g. &#39;HTTP/host.foo.com{@literal @}FOO.LOCAL&#39;.
      * 
      */
     public Output<String> serverPrincipal() {
@@ -147,7 +147,7 @@ public final class UserFederationKerberosArgs extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param serverPrincipal The kerberos server principal, e.g. &#39;HTTP/host.foo.com@FOO.LOCAL&#39;.
+         * @param serverPrincipal The kerberos server principal, e.g. &#39;HTTP/host.foo.com{@literal @}FOO.LOCAL&#39;.
          * 
          * @return builder
          * 
@@ -158,7 +158,7 @@ public final class UserFederationKerberosArgs extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param serverPrincipal The kerberos server principal, e.g. &#39;HTTP/host.foo.com@FOO.LOCAL&#39;.
+         * @param serverPrincipal The kerberos server principal, e.g. &#39;HTTP/host.foo.com{@literal @}FOO.LOCAL&#39;.
          * 
          * @return builder
          * 
