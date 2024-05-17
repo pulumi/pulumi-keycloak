@@ -50,12 +50,12 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm("realm", RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
  *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var google = new GoogleIdentityProvider("google", GoogleIdentityProviderArgs.builder()        
+ *         var google = new GoogleIdentityProvider("google", GoogleIdentityProviderArgs.builder()
  *             .realm(realm.id())
  *             .clientId(googleIdentityProviderClientId)
  *             .clientSecret(googleIdentityProviderClientSecret)

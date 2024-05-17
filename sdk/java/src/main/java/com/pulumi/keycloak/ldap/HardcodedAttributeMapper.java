@@ -49,12 +49,12 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm("realm", RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
  *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var ldapUserFederation = new UserFederation("ldapUserFederation", UserFederationArgs.builder()        
+ *         var ldapUserFederation = new UserFederation("ldapUserFederation", UserFederationArgs.builder()
  *             .name("openldap")
  *             .realmId(realm.id())
  *             .usernameLdapAttribute("cn")
@@ -70,7 +70,7 @@ import javax.annotation.Nullable;
  *             .syncRegistrations(true)
  *             .build());
  * 
- *         var assignBarToFoo = new HardcodedAttributeMapper("assignBarToFoo", HardcodedAttributeMapperArgs.builder()        
+ *         var assignBarToFoo = new HardcodedAttributeMapper("assignBarToFoo", HardcodedAttributeMapperArgs.builder()
  *             .realmId(realm.id())
  *             .ldapUserFederationId(ldapUserFederation.id())
  *             .name("assign-foo-to-bar")

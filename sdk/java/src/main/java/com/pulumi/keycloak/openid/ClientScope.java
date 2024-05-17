@@ -53,12 +53,12 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm("realm", RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
  *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var openidClientScope = new ClientScope("openidClientScope", ClientScopeArgs.builder()        
+ *         var openidClientScope = new ClientScope("openidClientScope", ClientScopeArgs.builder()
  *             .realmId(realm.id())
  *             .name("groups")
  *             .description("When requested, this scope will map a user's group memberships to a claim")

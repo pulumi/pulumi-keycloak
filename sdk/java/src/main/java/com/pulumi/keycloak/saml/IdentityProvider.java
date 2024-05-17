@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realmIdentityProvider = new IdentityProvider("realmIdentityProvider", IdentityProviderArgs.builder()        
+ *         var realmIdentityProvider = new IdentityProvider("realmIdentityProvider", IdentityProviderArgs.builder()
  *             .realm("my-realm")
  *             .alias("my-idp")
  *             .singleSignOnServiceUrl("https://domain.com/adfs/ls/")

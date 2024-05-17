@@ -55,12 +55,12 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm("realm", RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
  *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var openidClient = new Client("openidClient", ClientArgs.builder()        
+ *         var openidClient = new Client("openidClient", ClientArgs.builder()
  *             .realmId(realm.id())
  *             .clientId("test-client")
  *             .name("test client")
@@ -69,7 +69,7 @@ import javax.annotation.Nullable;
  *             .validRedirectUris("http://localhost:8080/openid-callback")
  *             .build());
  * 
- *         var userRealmRoleMapper = new UserRealmRoleProtocolMapper("userRealmRoleMapper", UserRealmRoleProtocolMapperArgs.builder()        
+ *         var userRealmRoleMapper = new UserRealmRoleProtocolMapper("userRealmRoleMapper", UserRealmRoleProtocolMapperArgs.builder()
  *             .realmId(realm.id())
  *             .clientId(openidClient.id())
  *             .name("user-realm-role-mapper")
@@ -111,17 +111,17 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm("realm", RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
  *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var clientScope = new ClientScope("clientScope", ClientScopeArgs.builder()        
+ *         var clientScope = new ClientScope("clientScope", ClientScopeArgs.builder()
  *             .realmId(realm.id())
  *             .name("test-client-scope")
  *             .build());
  * 
- *         var userRealmRoleMapper = new UserRealmRoleProtocolMapper("userRealmRoleMapper", UserRealmRoleProtocolMapperArgs.builder()        
+ *         var userRealmRoleMapper = new UserRealmRoleProtocolMapper("userRealmRoleMapper", UserRealmRoleProtocolMapperArgs.builder()
  *             .realmId(realm.id())
  *             .clientScopeId(clientScope.id())
  *             .name("user-realm-role-mapper")

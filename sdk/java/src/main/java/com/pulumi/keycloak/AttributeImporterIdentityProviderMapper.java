@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var testMapper = new AttributeImporterIdentityProviderMapper("testMapper", AttributeImporterIdentityProviderMapperArgs.builder()        
+ *         var testMapper = new AttributeImporterIdentityProviderMapper("testMapper", AttributeImporterIdentityProviderMapperArgs.builder()
  *             .realm("my-realm")
  *             .name("my-mapper")
  *             .identityProviderAlias("idp_alias")

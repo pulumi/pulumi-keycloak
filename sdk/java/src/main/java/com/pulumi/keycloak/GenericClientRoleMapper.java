@@ -56,12 +56,12 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm("realm", RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
  *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var client = new Client("client", ClientArgs.builder()        
+ *         var client = new Client("client", ClientArgs.builder()
  *             .realmId(realm.id())
  *             .clientId("client")
  *             .name("client")
@@ -69,13 +69,13 @@ import javax.annotation.Nullable;
  *             .accessType("BEARER-ONLY")
  *             .build());
  * 
- *         var realmRole = new Role("realmRole", RoleArgs.builder()        
+ *         var realmRole = new Role("realmRole", RoleArgs.builder()
  *             .realmId(realm.id())
  *             .name("my-realm-role")
  *             .description("My Realm Role")
  *             .build());
  * 
- *         var clientRoleMapper = new GenericClientRoleMapper("clientRoleMapper", GenericClientRoleMapperArgs.builder()        
+ *         var clientRoleMapper = new GenericClientRoleMapper("clientRoleMapper", GenericClientRoleMapperArgs.builder()
  *             .realmId(realm.id())
  *             .clientId(client.id())
  *             .roleId(realmRole.id())
@@ -118,12 +118,12 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm("realm", RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
  *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var clientA = new Client("clientA", ClientArgs.builder()        
+ *         var clientA = new Client("clientA", ClientArgs.builder()
  *             .realmId(realm.id())
  *             .clientId("client-a")
  *             .name("client-a")
@@ -132,14 +132,14 @@ import javax.annotation.Nullable;
  *             .fullScopeAllowed(false)
  *             .build());
  * 
- *         var clientRoleA = new Role("clientRoleA", RoleArgs.builder()        
+ *         var clientRoleA = new Role("clientRoleA", RoleArgs.builder()
  *             .realmId(realm.id())
  *             .clientId(clientA.id())
  *             .name("my-client-role")
  *             .description("My Client Role")
  *             .build());
  * 
- *         var clientB = new Client("clientB", ClientArgs.builder()        
+ *         var clientB = new Client("clientB", ClientArgs.builder()
  *             .realmId(realm.id())
  *             .clientId("client-b")
  *             .name("client-b")
@@ -147,14 +147,14 @@ import javax.annotation.Nullable;
  *             .accessType("BEARER-ONLY")
  *             .build());
  * 
- *         var clientRoleB = new Role("clientRoleB", RoleArgs.builder()        
+ *         var clientRoleB = new Role("clientRoleB", RoleArgs.builder()
  *             .realmId(realm.id())
  *             .clientId(clientB.id())
  *             .name("my-client-role")
  *             .description("My Client Role")
  *             .build());
  * 
- *         var clientBRoleMapper = new GenericClientRoleMapper("clientBRoleMapper", GenericClientRoleMapperArgs.builder()        
+ *         var clientBRoleMapper = new GenericClientRoleMapper("clientBRoleMapper", GenericClientRoleMapperArgs.builder()
  *             .realmId(realm.id())
  *             .clientId(clientB.id())
  *             .roleId(clientRoleA.id())
@@ -197,23 +197,23 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm("realm", RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
  *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var clientScope = new ClientScope("clientScope", ClientScopeArgs.builder()        
+ *         var clientScope = new ClientScope("clientScope", ClientScopeArgs.builder()
  *             .realmId(realm.id())
  *             .name("my-client-scope")
  *             .build());
  * 
- *         var realmRole = new Role("realmRole", RoleArgs.builder()        
+ *         var realmRole = new Role("realmRole", RoleArgs.builder()
  *             .realmId(realm.id())
  *             .name("my-realm-role")
  *             .description("My Realm Role")
  *             .build());
  * 
- *         var clientRoleMapper = new GenericClientRoleMapper("clientRoleMapper", GenericClientRoleMapperArgs.builder()        
+ *         var clientRoleMapper = new GenericClientRoleMapper("clientRoleMapper", GenericClientRoleMapperArgs.builder()
  *             .realmId(realm.id())
  *             .clientScopeId(clientScope.id())
  *             .roleId(realmRole.id())
@@ -258,12 +258,12 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm("realm", RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
  *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var client = new Client("client", ClientArgs.builder()        
+ *         var client = new Client("client", ClientArgs.builder()
  *             .realmId(realm.id())
  *             .clientId("client")
  *             .name("client")
@@ -271,19 +271,19 @@ import javax.annotation.Nullable;
  *             .accessType("BEARER-ONLY")
  *             .build());
  * 
- *         var clientRole = new Role("clientRole", RoleArgs.builder()        
+ *         var clientRole = new Role("clientRole", RoleArgs.builder()
  *             .realmId(realm.id())
  *             .clientId(client.id())
  *             .name("my-client-role")
  *             .description("My Client Role")
  *             .build());
  * 
- *         var clientScope = new ClientScope("clientScope", ClientScopeArgs.builder()        
+ *         var clientScope = new ClientScope("clientScope", ClientScopeArgs.builder()
  *             .realmId(realm.id())
  *             .name("my-client-scope")
  *             .build());
  * 
- *         var clientBRoleMapper = new GenericClientRoleMapper("clientBRoleMapper", GenericClientRoleMapperArgs.builder()        
+ *         var clientBRoleMapper = new GenericClientRoleMapper("clientBRoleMapper", GenericClientRoleMapperArgs.builder()
  *             .realmId(realm.id())
  *             .clientScopeId(clientScope.id())
  *             .roleId(clientRole.id())
