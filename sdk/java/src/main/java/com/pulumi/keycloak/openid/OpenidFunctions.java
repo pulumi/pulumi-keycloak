@@ -324,12 +324,12 @@ public final class OpenidFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var realm = new Realm("realm", RealmArgs.builder()        
+     *         var realm = new Realm("realm", RealmArgs.builder()
      *             .realm("my-realm")
      *             .enabled(true)
      *             .build());
      * 
-     *         var clientWithAuthz = new Client("clientWithAuthz", ClientArgs.builder()        
+     *         var clientWithAuthz = new Client("clientWithAuthz", ClientArgs.builder()
      *             .clientId("client-with-authz")
      *             .name("client-with-authz")
      *             .realmId(realm.id())
@@ -346,7 +346,7 @@ public final class OpenidFunctions {
      *             .name("Default Permission")
      *             .build());
      * 
-     *         var resource = new ClientAuthorizationResource("resource", ClientAuthorizationResourceArgs.builder()        
+     *         var resource = new ClientAuthorizationResource("resource", ClientAuthorizationResourceArgs.builder()
      *             .resourceServerId(clientWithAuthz.resourceServerId())
      *             .name("authorization-resource")
      *             .realmId(realm.id())
@@ -354,7 +354,7 @@ public final class OpenidFunctions {
      *             .attributes(Map.of("foo", "bar"))
      *             .build());
      * 
-     *         var permission = new ClientAuthorizationPermission("permission", ClientAuthorizationPermissionArgs.builder()        
+     *         var permission = new ClientAuthorizationPermission("permission", ClientAuthorizationPermissionArgs.builder()
      *             .resourceServerId(clientWithAuthz.resourceServerId())
      *             .realmId(realm.id())
      *             .name("authorization-permission")
@@ -413,12 +413,12 @@ public final class OpenidFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var realm = new Realm("realm", RealmArgs.builder()        
+     *         var realm = new Realm("realm", RealmArgs.builder()
      *             .realm("my-realm")
      *             .enabled(true)
      *             .build());
      * 
-     *         var clientWithAuthz = new Client("clientWithAuthz", ClientArgs.builder()        
+     *         var clientWithAuthz = new Client("clientWithAuthz", ClientArgs.builder()
      *             .clientId("client-with-authz")
      *             .name("client-with-authz")
      *             .realmId(realm.id())
@@ -435,7 +435,7 @@ public final class OpenidFunctions {
      *             .name("Default Permission")
      *             .build());
      * 
-     *         var resource = new ClientAuthorizationResource("resource", ClientAuthorizationResourceArgs.builder()        
+     *         var resource = new ClientAuthorizationResource("resource", ClientAuthorizationResourceArgs.builder()
      *             .resourceServerId(clientWithAuthz.resourceServerId())
      *             .name("authorization-resource")
      *             .realmId(realm.id())
@@ -443,7 +443,7 @@ public final class OpenidFunctions {
      *             .attributes(Map.of("foo", "bar"))
      *             .build());
      * 
-     *         var permission = new ClientAuthorizationPermission("permission", ClientAuthorizationPermissionArgs.builder()        
+     *         var permission = new ClientAuthorizationPermission("permission", ClientAuthorizationPermissionArgs.builder()
      *             .resourceServerId(clientWithAuthz.resourceServerId())
      *             .realmId(realm.id())
      *             .name("authorization-permission")
@@ -502,12 +502,12 @@ public final class OpenidFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var realm = new Realm("realm", RealmArgs.builder()        
+     *         var realm = new Realm("realm", RealmArgs.builder()
      *             .realm("my-realm")
      *             .enabled(true)
      *             .build());
      * 
-     *         var clientWithAuthz = new Client("clientWithAuthz", ClientArgs.builder()        
+     *         var clientWithAuthz = new Client("clientWithAuthz", ClientArgs.builder()
      *             .clientId("client-with-authz")
      *             .name("client-with-authz")
      *             .realmId(realm.id())
@@ -524,7 +524,7 @@ public final class OpenidFunctions {
      *             .name("Default Permission")
      *             .build());
      * 
-     *         var resource = new ClientAuthorizationResource("resource", ClientAuthorizationResourceArgs.builder()        
+     *         var resource = new ClientAuthorizationResource("resource", ClientAuthorizationResourceArgs.builder()
      *             .resourceServerId(clientWithAuthz.resourceServerId())
      *             .name("authorization-resource")
      *             .realmId(realm.id())
@@ -532,7 +532,7 @@ public final class OpenidFunctions {
      *             .attributes(Map.of("foo", "bar"))
      *             .build());
      * 
-     *         var permission = new ClientAuthorizationPermission("permission", ClientAuthorizationPermissionArgs.builder()        
+     *         var permission = new ClientAuthorizationPermission("permission", ClientAuthorizationPermissionArgs.builder()
      *             .resourceServerId(clientWithAuthz.resourceServerId())
      *             .realmId(realm.id())
      *             .name("authorization-permission")
@@ -591,12 +591,12 @@ public final class OpenidFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var realm = new Realm("realm", RealmArgs.builder()        
+     *         var realm = new Realm("realm", RealmArgs.builder()
      *             .realm("my-realm")
      *             .enabled(true)
      *             .build());
      * 
-     *         var clientWithAuthz = new Client("clientWithAuthz", ClientArgs.builder()        
+     *         var clientWithAuthz = new Client("clientWithAuthz", ClientArgs.builder()
      *             .clientId("client-with-authz")
      *             .name("client-with-authz")
      *             .realmId(realm.id())
@@ -613,7 +613,7 @@ public final class OpenidFunctions {
      *             .name("Default Permission")
      *             .build());
      * 
-     *         var resource = new ClientAuthorizationResource("resource", ClientAuthorizationResourceArgs.builder()        
+     *         var resource = new ClientAuthorizationResource("resource", ClientAuthorizationResourceArgs.builder()
      *             .resourceServerId(clientWithAuthz.resourceServerId())
      *             .name("authorization-resource")
      *             .realmId(realm.id())
@@ -621,7 +621,7 @@ public final class OpenidFunctions {
      *             .attributes(Map.of("foo", "bar"))
      *             .build());
      * 
-     *         var permission = new ClientAuthorizationPermission("permission", ClientAuthorizationPermissionArgs.builder()        
+     *         var permission = new ClientAuthorizationPermission("permission", ClientAuthorizationPermissionArgs.builder()
      *             .resourceServerId(clientWithAuthz.resourceServerId())
      *             .realmId(realm.id())
      *             .name("authorization-permission")
@@ -675,7 +675,7 @@ public final class OpenidFunctions {
      *             .build());
      * 
      *         // use the data source
-     *         var audienceMapper = new AudienceProtocolMapper("audienceMapper", AudienceProtocolMapperArgs.builder()        
+     *         var audienceMapper = new AudienceProtocolMapper("audienceMapper", AudienceProtocolMapperArgs.builder()
      *             .realmId(offlineAccess.applyValue(getClientScopeResult -> getClientScopeResult.realmId()))
      *             .clientScopeId(offlineAccess.applyValue(getClientScopeResult -> getClientScopeResult.id()))
      *             .name("audience-mapper")
@@ -728,7 +728,7 @@ public final class OpenidFunctions {
      *             .build());
      * 
      *         // use the data source
-     *         var audienceMapper = new AudienceProtocolMapper("audienceMapper", AudienceProtocolMapperArgs.builder()        
+     *         var audienceMapper = new AudienceProtocolMapper("audienceMapper", AudienceProtocolMapperArgs.builder()
      *             .realmId(offlineAccess.applyValue(getClientScopeResult -> getClientScopeResult.realmId()))
      *             .clientScopeId(offlineAccess.applyValue(getClientScopeResult -> getClientScopeResult.id()))
      *             .name("audience-mapper")
@@ -781,7 +781,7 @@ public final class OpenidFunctions {
      *             .build());
      * 
      *         // use the data source
-     *         var audienceMapper = new AudienceProtocolMapper("audienceMapper", AudienceProtocolMapperArgs.builder()        
+     *         var audienceMapper = new AudienceProtocolMapper("audienceMapper", AudienceProtocolMapperArgs.builder()
      *             .realmId(offlineAccess.applyValue(getClientScopeResult -> getClientScopeResult.realmId()))
      *             .clientScopeId(offlineAccess.applyValue(getClientScopeResult -> getClientScopeResult.id()))
      *             .name("audience-mapper")
@@ -834,7 +834,7 @@ public final class OpenidFunctions {
      *             .build());
      * 
      *         // use the data source
-     *         var audienceMapper = new AudienceProtocolMapper("audienceMapper", AudienceProtocolMapperArgs.builder()        
+     *         var audienceMapper = new AudienceProtocolMapper("audienceMapper", AudienceProtocolMapperArgs.builder()
      *             .realmId(offlineAccess.applyValue(getClientScopeResult -> getClientScopeResult.realmId()))
      *             .clientScopeId(offlineAccess.applyValue(getClientScopeResult -> getClientScopeResult.id()))
      *             .name("audience-mapper")
@@ -892,12 +892,12 @@ public final class OpenidFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var realm = new Realm("realm", RealmArgs.builder()        
+     *         var realm = new Realm("realm", RealmArgs.builder()
      *             .realm("my-realm")
      *             .enabled(true)
      *             .build());
      * 
-     *         var client = new Client("client", ClientArgs.builder()        
+     *         var client = new Client("client", ClientArgs.builder()
      *             .realmId(realm.id())
      *             .clientId("client")
      *             .name("client")
@@ -915,7 +915,7 @@ public final class OpenidFunctions {
      *             .name("offline_access")
      *             .build());
      * 
-     *         var serviceAccountUserRoles = new UserRoles("serviceAccountUserRoles", UserRolesArgs.builder()        
+     *         var serviceAccountUserRoles = new UserRoles("serviceAccountUserRoles", UserRolesArgs.builder()
      *             .realmId(realm.id())
      *             .userId(serviceAccountUser.applyValue(getClientServiceAccountUserResult -> getClientServiceAccountUserResult).applyValue(serviceAccountUser -> serviceAccountUser.applyValue(getClientServiceAccountUserResult -> getClientServiceAccountUserResult.id())))
      *             .roleIds(offlineAccess.applyValue(getRoleResult -> getRoleResult).applyValue(offlineAccess -> offlineAccess.applyValue(getRoleResult -> getRoleResult.id())))
@@ -972,12 +972,12 @@ public final class OpenidFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var realm = new Realm("realm", RealmArgs.builder()        
+     *         var realm = new Realm("realm", RealmArgs.builder()
      *             .realm("my-realm")
      *             .enabled(true)
      *             .build());
      * 
-     *         var client = new Client("client", ClientArgs.builder()        
+     *         var client = new Client("client", ClientArgs.builder()
      *             .realmId(realm.id())
      *             .clientId("client")
      *             .name("client")
@@ -995,7 +995,7 @@ public final class OpenidFunctions {
      *             .name("offline_access")
      *             .build());
      * 
-     *         var serviceAccountUserRoles = new UserRoles("serviceAccountUserRoles", UserRolesArgs.builder()        
+     *         var serviceAccountUserRoles = new UserRoles("serviceAccountUserRoles", UserRolesArgs.builder()
      *             .realmId(realm.id())
      *             .userId(serviceAccountUser.applyValue(getClientServiceAccountUserResult -> getClientServiceAccountUserResult).applyValue(serviceAccountUser -> serviceAccountUser.applyValue(getClientServiceAccountUserResult -> getClientServiceAccountUserResult.id())))
      *             .roleIds(offlineAccess.applyValue(getRoleResult -> getRoleResult).applyValue(offlineAccess -> offlineAccess.applyValue(getRoleResult -> getRoleResult.id())))
@@ -1052,12 +1052,12 @@ public final class OpenidFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var realm = new Realm("realm", RealmArgs.builder()        
+     *         var realm = new Realm("realm", RealmArgs.builder()
      *             .realm("my-realm")
      *             .enabled(true)
      *             .build());
      * 
-     *         var client = new Client("client", ClientArgs.builder()        
+     *         var client = new Client("client", ClientArgs.builder()
      *             .realmId(realm.id())
      *             .clientId("client")
      *             .name("client")
@@ -1075,7 +1075,7 @@ public final class OpenidFunctions {
      *             .name("offline_access")
      *             .build());
      * 
-     *         var serviceAccountUserRoles = new UserRoles("serviceAccountUserRoles", UserRolesArgs.builder()        
+     *         var serviceAccountUserRoles = new UserRoles("serviceAccountUserRoles", UserRolesArgs.builder()
      *             .realmId(realm.id())
      *             .userId(serviceAccountUser.applyValue(getClientServiceAccountUserResult -> getClientServiceAccountUserResult).applyValue(serviceAccountUser -> serviceAccountUser.applyValue(getClientServiceAccountUserResult -> getClientServiceAccountUserResult.id())))
      *             .roleIds(offlineAccess.applyValue(getRoleResult -> getRoleResult).applyValue(offlineAccess -> offlineAccess.applyValue(getRoleResult -> getRoleResult.id())))
@@ -1132,12 +1132,12 @@ public final class OpenidFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var realm = new Realm("realm", RealmArgs.builder()        
+     *         var realm = new Realm("realm", RealmArgs.builder()
      *             .realm("my-realm")
      *             .enabled(true)
      *             .build());
      * 
-     *         var client = new Client("client", ClientArgs.builder()        
+     *         var client = new Client("client", ClientArgs.builder()
      *             .realmId(realm.id())
      *             .clientId("client")
      *             .name("client")
@@ -1155,7 +1155,7 @@ public final class OpenidFunctions {
      *             .name("offline_access")
      *             .build());
      * 
-     *         var serviceAccountUserRoles = new UserRoles("serviceAccountUserRoles", UserRolesArgs.builder()        
+     *         var serviceAccountUserRoles = new UserRoles("serviceAccountUserRoles", UserRolesArgs.builder()
      *             .realmId(realm.id())
      *             .userId(serviceAccountUser.applyValue(getClientServiceAccountUserResult -> getClientServiceAccountUserResult).applyValue(serviceAccountUser -> serviceAccountUser.applyValue(getClientServiceAccountUserResult -> getClientServiceAccountUserResult.id())))
      *             .roleIds(offlineAccess.applyValue(getRoleResult -> getRoleResult).applyValue(offlineAccess -> offlineAccess.applyValue(getRoleResult -> getRoleResult.id())))

@@ -49,11 +49,11 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm("realm", RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
  *             .realm("test")
  *             .build());
  * 
- *         var realmEvents = new RealmEvents("realmEvents", RealmEventsArgs.builder()        
+ *         var realmEvents = new RealmEvents("realmEvents", RealmEventsArgs.builder()
  *             .realmId(realm.id())
  *             .eventsEnabled(true)
  *             .eventsExpiration(3600)

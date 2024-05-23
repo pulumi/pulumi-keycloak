@@ -57,23 +57,23 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm("realm", RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
  *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var parentGroup = new Group("parentGroup", GroupArgs.builder()        
+ *         var parentGroup = new Group("parentGroup", GroupArgs.builder()
  *             .realmId(realm.id())
  *             .name("parent-group")
  *             .build());
  * 
- *         var childGroup = new Group("childGroup", GroupArgs.builder()        
+ *         var childGroup = new Group("childGroup", GroupArgs.builder()
  *             .realmId(realm.id())
  *             .parentId(parentGroup.id())
  *             .name("child-group")
  *             .build());
  * 
- *         var childGroupWithOptionalAttributes = new Group("childGroupWithOptionalAttributes", GroupArgs.builder()        
+ *         var childGroupWithOptionalAttributes = new Group("childGroupWithOptionalAttributes", GroupArgs.builder()
  *             .realmId(realm.id())
  *             .parentId(parentGroup.id())
  *             .name("child-group-with-optional-attributes")

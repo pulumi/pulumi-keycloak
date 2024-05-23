@@ -51,12 +51,12 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm("realm", RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
  *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var oidc = new IdentityProvider("oidc", IdentityProviderArgs.builder()        
+ *         var oidc = new IdentityProvider("oidc", IdentityProviderArgs.builder()
  *             .realm(realm.id())
  *             .alias("my-idp")
  *             .authorizationUrl("https://authorizationurl.com")
@@ -65,7 +65,7 @@ import javax.annotation.Nullable;
  *             .tokenUrl("https://tokenurl.com")
  *             .build());
  * 
- *         var oidcHardcodedAttributeIdentityProviderMapper = new HardcodedAttributeIdentityProviderMapper("oidcHardcodedAttributeIdentityProviderMapper", HardcodedAttributeIdentityProviderMapperArgs.builder()        
+ *         var oidcHardcodedAttributeIdentityProviderMapper = new HardcodedAttributeIdentityProviderMapper("oidcHardcodedAttributeIdentityProviderMapper", HardcodedAttributeIdentityProviderMapperArgs.builder()
  *             .realm(realm.id())
  *             .name("hardcodedUserSessionAttribute")
  *             .identityProviderAlias(oidc.alias())

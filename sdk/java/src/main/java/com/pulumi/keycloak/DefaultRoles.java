@@ -48,12 +48,12 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm("realm", RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
  *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var defaultRoles = new DefaultRoles("defaultRoles", DefaultRolesArgs.builder()        
+ *         var defaultRoles = new DefaultRoles("defaultRoles", DefaultRolesArgs.builder()
  *             .realmId(realm.id())
  *             .defaultRoles("uma_authorization")
  *             .build());

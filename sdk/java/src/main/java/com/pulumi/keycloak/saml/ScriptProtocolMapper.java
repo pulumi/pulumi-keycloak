@@ -52,18 +52,18 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm("realm", RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
  *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var samlClient = new Client("samlClient", ClientArgs.builder()        
+ *         var samlClient = new Client("samlClient", ClientArgs.builder()
  *             .realmId(realm.id())
  *             .clientId("saml-client")
  *             .name("saml-client")
  *             .build());
  * 
- *         var samlScriptMapper = new ScriptProtocolMapper("samlScriptMapper", ScriptProtocolMapperArgs.builder()        
+ *         var samlScriptMapper = new ScriptProtocolMapper("samlScriptMapper", ScriptProtocolMapperArgs.builder()
  *             .realmId(realm.id())
  *             .clientId(samlClient.id())
  *             .name("script-mapper")

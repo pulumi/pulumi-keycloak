@@ -46,12 +46,12 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm("realm", RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
  *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var oidc = new IdentityProvider("oidc", IdentityProviderArgs.builder()        
+ *         var oidc = new IdentityProvider("oidc", IdentityProviderArgs.builder()
  *             .realm(realm.id())
  *             .alias("oidc")
  *             .authorizationUrl("https://example.com/auth")
@@ -61,7 +61,7 @@ import javax.annotation.Nullable;
  *             .defaultScopes("openid random profile")
  *             .build());
  * 
- *         var oidcCustomIdentityProviderMapping = new CustomIdentityProviderMapping("oidcCustomIdentityProviderMapping", CustomIdentityProviderMappingArgs.builder()        
+ *         var oidcCustomIdentityProviderMapping = new CustomIdentityProviderMapping("oidcCustomIdentityProviderMapping", CustomIdentityProviderMappingArgs.builder()
  *             .realm(realm.id())
  *             .name("email-attribute-importer")
  *             .identityProviderAlias(oidc.alias())

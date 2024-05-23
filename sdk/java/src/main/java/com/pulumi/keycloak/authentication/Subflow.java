@@ -49,17 +49,17 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm("realm", RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
  *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var flow = new Flow("flow", FlowArgs.builder()        
+ *         var flow = new Flow("flow", FlowArgs.builder()
  *             .realmId(realm.id())
  *             .alias("my-flow-alias")
  *             .build());
  * 
- *         var subflow = new Subflow("subflow", SubflowArgs.builder()        
+ *         var subflow = new Subflow("subflow", SubflowArgs.builder()
  *             .realmId(realm.id())
  *             .alias("my-subflow-alias")
  *             .parentFlowAlias(flow.alias())

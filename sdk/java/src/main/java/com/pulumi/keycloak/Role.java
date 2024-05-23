@@ -52,12 +52,12 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm("realm", RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
  *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var realmRole = new Role("realmRole", RoleArgs.builder()        
+ *         var realmRole = new Role("realmRole", RoleArgs.builder()
  *             .realmId(realm.id())
  *             .name("my-realm-role")
  *             .description("My Realm Role")
@@ -98,12 +98,12 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm("realm", RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
  *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var client = new Client("client", ClientArgs.builder()        
+ *         var client = new Client("client", ClientArgs.builder()
  *             .realmId(realm.id())
  *             .clientId("client")
  *             .name("client")
@@ -111,7 +111,7 @@ import javax.annotation.Nullable;
  *             .accessType("BEARER-ONLY")
  *             .build());
  * 
- *         var clientRole = new Role("clientRole", RoleArgs.builder()        
+ *         var clientRole = new Role("clientRole", RoleArgs.builder()
  *             .realmId(realm.id())
  *             .clientId(clientKeycloakClient.id())
  *             .name("my-client-role")
@@ -153,34 +153,34 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm("realm", RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
  *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
  *         // realm roles
- *         var createRole = new Role("createRole", RoleArgs.builder()        
+ *         var createRole = new Role("createRole", RoleArgs.builder()
  *             .realmId(realm.id())
  *             .name("create")
  *             .build());
  * 
- *         var readRole = new Role("readRole", RoleArgs.builder()        
+ *         var readRole = new Role("readRole", RoleArgs.builder()
  *             .realmId(realm.id())
  *             .name("read")
  *             .build());
  * 
- *         var updateRole = new Role("updateRole", RoleArgs.builder()        
+ *         var updateRole = new Role("updateRole", RoleArgs.builder()
  *             .realmId(realm.id())
  *             .name("update")
  *             .build());
  * 
- *         var deleteRole = new Role("deleteRole", RoleArgs.builder()        
+ *         var deleteRole = new Role("deleteRole", RoleArgs.builder()
  *             .realmId(realm.id())
  *             .name("delete")
  *             .build());
  * 
  *         // client role
- *         var client = new Client("client", ClientArgs.builder()        
+ *         var client = new Client("client", ClientArgs.builder()
  *             .realmId(realm.id())
  *             .clientId("client")
  *             .name("client")
@@ -188,14 +188,14 @@ import javax.annotation.Nullable;
  *             .accessType("BEARER-ONLY")
  *             .build());
  * 
- *         var clientRole = new Role("clientRole", RoleArgs.builder()        
+ *         var clientRole = new Role("clientRole", RoleArgs.builder()
  *             .realmId(realm.id())
  *             .clientId(clientKeycloakClient.id())
  *             .name("my-client-role")
  *             .description("My Client Role")
  *             .build());
  * 
- *         var adminRole = new Role("adminRole", RoleArgs.builder()        
+ *         var adminRole = new Role("adminRole", RoleArgs.builder()
  *             .realmId(realm.id())
  *             .name("admin")
  *             .compositeRoles(            

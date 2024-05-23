@@ -56,12 +56,12 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm("realm", RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
  *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var openidClient = new Client("openidClient", ClientArgs.builder()        
+ *         var openidClient = new Client("openidClient", ClientArgs.builder()
  *             .realmId(realm.id())
  *             .clientId("client")
  *             .name("client")
@@ -70,7 +70,7 @@ import javax.annotation.Nullable;
  *             .validRedirectUris("http://localhost:8080/openid-callback")
  *             .build());
  * 
- *         var scriptMapper = new ScriptProtocolMapper("scriptMapper", ScriptProtocolMapperArgs.builder()        
+ *         var scriptMapper = new ScriptProtocolMapper("scriptMapper", ScriptProtocolMapperArgs.builder()
  *             .realmId(realm.id())
  *             .clientId(openidClient.id())
  *             .name("script-mapper")
@@ -113,17 +113,17 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm("realm", RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
  *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var clientScope = new ClientScope("clientScope", ClientScopeArgs.builder()        
+ *         var clientScope = new ClientScope("clientScope", ClientScopeArgs.builder()
  *             .realmId(realm.id())
  *             .name("client-scope")
  *             .build());
  * 
- *         var scriptMapper = new ScriptProtocolMapper("scriptMapper", ScriptProtocolMapperArgs.builder()        
+ *         var scriptMapper = new ScriptProtocolMapper("scriptMapper", ScriptProtocolMapperArgs.builder()
  *             .realmId(realm.id())
  *             .clientScopeId(clientScope.id())
  *             .name("script-mapper")
