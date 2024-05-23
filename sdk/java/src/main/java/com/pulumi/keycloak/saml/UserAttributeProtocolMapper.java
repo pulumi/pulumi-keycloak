@@ -54,18 +54,18 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm("realm", RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
  *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var samlClient = new Client("samlClient", ClientArgs.builder()        
+ *         var samlClient = new Client("samlClient", ClientArgs.builder()
  *             .realmId(test.id())
  *             .clientId("test-saml-client")
  *             .name("test-saml-client")
  *             .build());
  * 
- *         var samlUserAttributeMapper = new UserAttributeProtocolMapper("samlUserAttributeMapper", UserAttributeProtocolMapperArgs.builder()        
+ *         var samlUserAttributeMapper = new UserAttributeProtocolMapper("samlUserAttributeMapper", UserAttributeProtocolMapperArgs.builder()
  *             .realmId(test.id())
  *             .clientId(samlClient.id())
  *             .name("displayname-user-attribute-mapper")

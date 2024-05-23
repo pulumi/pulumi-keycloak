@@ -54,12 +54,12 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm("realm", RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
  *             .realm("test")
  *             .enabled(true)
  *             .build());
  * 
- *         var customUserFederation = new CustomUserFederation("customUserFederation", CustomUserFederationArgs.builder()        
+ *         var customUserFederation = new CustomUserFederation("customUserFederation", CustomUserFederationArgs.builder()
  *             .name("custom")
  *             .realmId(realm.id())
  *             .providerId("custom")

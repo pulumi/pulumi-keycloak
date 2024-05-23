@@ -52,12 +52,12 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm("realm", RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
  *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var oidc = new IdentityProvider("oidc", IdentityProviderArgs.builder()        
+ *         var oidc = new IdentityProvider("oidc", IdentityProviderArgs.builder()
  *             .realm(realm.id())
  *             .alias("my-idp")
  *             .authorizationUrl("https://authorizationurl.com")
@@ -66,13 +66,13 @@ import javax.annotation.Nullable;
  *             .tokenUrl("https://tokenurl.com")
  *             .build());
  * 
- *         var realmRole = new Role("realmRole", RoleArgs.builder()        
+ *         var realmRole = new Role("realmRole", RoleArgs.builder()
  *             .realmId(realm.id())
  *             .name("my-realm-role")
  *             .description("My Realm Role")
  *             .build());
  * 
- *         var oidcHardcodedRoleIdentityMapper = new HardcodedRoleIdentityMapper("oidcHardcodedRoleIdentityMapper", HardcodedRoleIdentityMapperArgs.builder()        
+ *         var oidcHardcodedRoleIdentityMapper = new HardcodedRoleIdentityMapper("oidcHardcodedRoleIdentityMapper", HardcodedRoleIdentityMapperArgs.builder()
  *             .realm(realm.id())
  *             .name("hardcodedRole")
  *             .identityProviderAlias(oidc.alias())

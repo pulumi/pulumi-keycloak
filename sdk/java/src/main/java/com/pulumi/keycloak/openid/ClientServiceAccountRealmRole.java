@@ -51,23 +51,23 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm("realm", RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
  *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var realmRole = new Role("realmRole", RoleArgs.builder()        
+ *         var realmRole = new Role("realmRole", RoleArgs.builder()
  *             .realmId(realm.id())
  *             .name("my-realm-role")
  *             .build());
  * 
- *         var client = new Client("client", ClientArgs.builder()        
+ *         var client = new Client("client", ClientArgs.builder()
  *             .realmId(realm.id())
  *             .name("client")
  *             .serviceAccountsEnabled(true)
  *             .build());
  * 
- *         var clientServiceAccountRole = new ClientServiceAccountRealmRole("clientServiceAccountRole", ClientServiceAccountRealmRoleArgs.builder()        
+ *         var clientServiceAccountRole = new ClientServiceAccountRealmRole("clientServiceAccountRole", ClientServiceAccountRealmRoleArgs.builder()
  *             .realmId(realm.id())
  *             .serviceAccountUserId(client.serviceAccountUserId())
  *             .role(realmRole.name())

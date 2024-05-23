@@ -51,18 +51,18 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm("realm", RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
  *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
  *         // client1 provides a role to other clients
- *         var client1 = new Client("client1", ClientArgs.builder()        
+ *         var client1 = new Client("client1", ClientArgs.builder()
  *             .realmId(realm.id())
  *             .name("client1")
  *             .build());
  * 
- *         var client1Role = new Role("client1Role", RoleArgs.builder()        
+ *         var client1Role = new Role("client1Role", RoleArgs.builder()
  *             .realmId(realm.id())
  *             .clientId(client1.id())
  *             .name("my-client1-role")
@@ -70,13 +70,13 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         // client2 is assigned the role of client1
- *         var client2 = new Client("client2", ClientArgs.builder()        
+ *         var client2 = new Client("client2", ClientArgs.builder()
  *             .realmId(realm.id())
  *             .name("client2")
  *             .serviceAccountsEnabled(true)
  *             .build());
  * 
- *         var client2ServiceAccountRole = new ClientServiceAccountRole("client2ServiceAccountRole", ClientServiceAccountRoleArgs.builder()        
+ *         var client2ServiceAccountRole = new ClientServiceAccountRole("client2ServiceAccountRole", ClientServiceAccountRoleArgs.builder()
  *             .realmId(realm.id())
  *             .serviceAccountUserId(client2.serviceAccountUserId())
  *             .clientId(client1.id())

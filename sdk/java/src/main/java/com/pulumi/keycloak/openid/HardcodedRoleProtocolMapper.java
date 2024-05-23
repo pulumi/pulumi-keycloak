@@ -56,17 +56,17 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm("realm", RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
  *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var role = new Role("role", RoleArgs.builder()        
+ *         var role = new Role("role", RoleArgs.builder()
  *             .realmId(realm.id())
  *             .name("my-role")
  *             .build());
  * 
- *         var openidClient = new Client("openidClient", ClientArgs.builder()        
+ *         var openidClient = new Client("openidClient", ClientArgs.builder()
  *             .realmId(realm.id())
  *             .clientId("test-client")
  *             .name("test client")
@@ -75,7 +75,7 @@ import javax.annotation.Nullable;
  *             .validRedirectUris("http://localhost:8080/openid-callback")
  *             .build());
  * 
- *         var hardcodedRoleMapper = new HardcodedRoleProtocolMapper("hardcodedRoleMapper", HardcodedRoleProtocolMapperArgs.builder()        
+ *         var hardcodedRoleMapper = new HardcodedRoleProtocolMapper("hardcodedRoleMapper", HardcodedRoleProtocolMapperArgs.builder()
  *             .realmId(realm.id())
  *             .clientId(openidClient.id())
  *             .name("hardcoded-role-mapper")
@@ -119,22 +119,22 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm("realm", RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
  *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var role = new Role("role", RoleArgs.builder()        
+ *         var role = new Role("role", RoleArgs.builder()
  *             .realmId(realm.id())
  *             .name("my-role")
  *             .build());
  * 
- *         var clientScope = new ClientScope("clientScope", ClientScopeArgs.builder()        
+ *         var clientScope = new ClientScope("clientScope", ClientScopeArgs.builder()
  *             .realmId(realm.id())
  *             .name("test-client-scope")
  *             .build());
  * 
- *         var hardcodedRoleMapper = new HardcodedRoleProtocolMapper("hardcodedRoleMapper", HardcodedRoleProtocolMapperArgs.builder()        
+ *         var hardcodedRoleMapper = new HardcodedRoleProtocolMapper("hardcodedRoleMapper", HardcodedRoleProtocolMapperArgs.builder()
  *             .realmId(realm.id())
  *             .clientScopeId(clientScope.id())
  *             .name("hardcoded-role-mapper")

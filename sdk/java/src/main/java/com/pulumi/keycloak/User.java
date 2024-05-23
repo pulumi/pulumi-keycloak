@@ -57,12 +57,12 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm("realm", RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
  *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var user = new User("user", UserArgs.builder()        
+ *         var user = new User("user", UserArgs.builder()
  *             .realmId(realm.id())
  *             .username("bob")
  *             .enabled(true)
@@ -71,7 +71,7 @@ import javax.annotation.Nullable;
  *             .lastName("Bobson")
  *             .build());
  * 
- *         var userWithInitialPassword = new User("userWithInitialPassword", UserArgs.builder()        
+ *         var userWithInitialPassword = new User("userWithInitialPassword", UserArgs.builder()
  *             .realmId(realm.id())
  *             .username("alice")
  *             .enabled(true)

@@ -48,11 +48,11 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm("realm", RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
  *             .realm("my-realm")
  *             .build());
  * 
- *         var keystoreHmacGenerated = new RealmKeystoreHmacGenerated("keystoreHmacGenerated", RealmKeystoreHmacGeneratedArgs.builder()        
+ *         var keystoreHmacGenerated = new RealmKeystoreHmacGenerated("keystoreHmacGenerated", RealmKeystoreHmacGeneratedArgs.builder()
  *             .name("my-hmac-generated-key")
  *             .realmId(realm.id())
  *             .enabled(true)

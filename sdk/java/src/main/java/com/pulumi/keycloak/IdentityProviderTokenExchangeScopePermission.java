@@ -47,12 +47,12 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var tokenExchangeRealm = new Realm("tokenExchangeRealm", RealmArgs.builder()        
+ *         var tokenExchangeRealm = new Realm("tokenExchangeRealm", RealmArgs.builder()
  *             .realm("token-exchange_destination_realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var tokenExchangeMyOidcIdp = new IdentityProvider("tokenExchangeMyOidcIdp", IdentityProviderArgs.builder()        
+ *         var tokenExchangeMyOidcIdp = new IdentityProvider("tokenExchangeMyOidcIdp", IdentityProviderArgs.builder()
  *             .realm(tokenExchangeRealm.id())
  *             .alias("myIdp")
  *             .authorizationUrl("http://localhost:8080/auth/realms/someRealm/protocol/openid-connect/auth")
@@ -62,7 +62,7 @@ import javax.annotation.Nullable;
  *             .defaultScopes("openid")
  *             .build());
  * 
- *         var token_exchangeWebappClient = new Client("token-exchangeWebappClient", ClientArgs.builder()        
+ *         var token_exchangeWebappClient = new Client("token-exchangeWebappClient", ClientArgs.builder()
  *             .realmId(tokenExchangeRealm.id())
  *             .name("webapp_client")
  *             .clientId("webapp_client")
@@ -74,7 +74,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         //relevant part
- *         var oidcIdpPermission = new IdentityProviderTokenExchangeScopePermission("oidcIdpPermission", IdentityProviderTokenExchangeScopePermissionArgs.builder()        
+ *         var oidcIdpPermission = new IdentityProviderTokenExchangeScopePermission("oidcIdpPermission", IdentityProviderTokenExchangeScopePermissionArgs.builder()
  *             .realmId(tokenExchangeRealm.id())
  *             .providerAlias(tokenExchangeMyOidcIdp.alias())
  *             .policyType("client")
