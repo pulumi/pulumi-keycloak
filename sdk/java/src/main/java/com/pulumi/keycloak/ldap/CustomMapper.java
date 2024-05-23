@@ -54,12 +54,12 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm("realm", RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
  *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var ldapUserFederation = new UserFederation("ldapUserFederation", UserFederationArgs.builder()        
+ *         var ldapUserFederation = new UserFederation("ldapUserFederation", UserFederationArgs.builder()
  *             .name("openldap")
  *             .realmId(realm.id())
  *             .usernameLdapAttribute("cn")
@@ -74,7 +74,7 @@ import javax.annotation.Nullable;
  *             .bindCredential("admin")
  *             .build());
  * 
- *         var customMapper = new CustomMapper("customMapper", CustomMapperArgs.builder()        
+ *         var customMapper = new CustomMapper("customMapper", CustomMapperArgs.builder()
  *             .name("custom-mapper")
  *             .realmId(openldap.realmId())
  *             .ldapUserFederationId(openldap.id())

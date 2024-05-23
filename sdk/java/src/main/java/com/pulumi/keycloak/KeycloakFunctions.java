@@ -68,7 +68,7 @@ public final class KeycloakFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var realm = new Realm("realm", RealmArgs.builder()        
+     *         var realm = new Realm("realm", RealmArgs.builder()
      *             .realm("my-realm")
      *             .enabled(true)
      *             .build());
@@ -119,7 +119,7 @@ public final class KeycloakFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var realm = new Realm("realm", RealmArgs.builder()        
+     *         var realm = new Realm("realm", RealmArgs.builder()
      *             .realm("my-realm")
      *             .enabled(true)
      *             .build());
@@ -170,7 +170,7 @@ public final class KeycloakFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var realm = new Realm("realm", RealmArgs.builder()        
+     *         var realm = new Realm("realm", RealmArgs.builder()
      *             .realm("my-realm")
      *             .enabled(true)
      *             .build());
@@ -221,7 +221,7 @@ public final class KeycloakFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var realm = new Realm("realm", RealmArgs.builder()        
+     *         var realm = new Realm("realm", RealmArgs.builder()
      *             .realm("my-realm")
      *             .enabled(true)
      *             .build());
@@ -272,7 +272,7 @@ public final class KeycloakFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var realm = new Realm("realm", RealmArgs.builder()        
+     *         var realm = new Realm("realm", RealmArgs.builder()
      *             .realm("my-realm")
      *             .enabled(true)
      *             .build());
@@ -322,7 +322,7 @@ public final class KeycloakFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var realm = new Realm("realm", RealmArgs.builder()        
+     *         var realm = new Realm("realm", RealmArgs.builder()
      *             .realm("my-realm")
      *             .enabled(true)
      *             .build());
@@ -372,7 +372,7 @@ public final class KeycloakFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var realm = new Realm("realm", RealmArgs.builder()        
+     *         var realm = new Realm("realm", RealmArgs.builder()
      *             .realm("my-realm")
      *             .enabled(true)
      *             .build());
@@ -422,7 +422,7 @@ public final class KeycloakFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var realm = new Realm("realm", RealmArgs.builder()        
+     *         var realm = new Realm("realm", RealmArgs.builder()
      *             .realm("my-realm")
      *             .enabled(true)
      *             .build());
@@ -475,7 +475,7 @@ public final class KeycloakFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var realm = new Realm("realm", RealmArgs.builder()        
+     *         var realm = new Realm("realm", RealmArgs.builder()
      *             .realm("my-realm")
      *             .enabled(true)
      *             .build());
@@ -513,7 +513,7 @@ public final class KeycloakFunctions {
      *             """)
      *             .build());
      * 
-     *         var samlClientClient = new Client("samlClientClient", ClientArgs.builder()        
+     *         var samlClientClient = new Client("samlClientClient", ClientArgs.builder()
      *             .realmId(realm.id())
      *             .clientId(samlClient.applyValue(getClientDescriptionConverterResult -> getClientDescriptionConverterResult).applyValue(samlClient -> samlClient.applyValue(getClientDescriptionConverterResult -> getClientDescriptionConverterResult.clientId())))
      *             .build());
@@ -561,7 +561,7 @@ public final class KeycloakFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var realm = new Realm("realm", RealmArgs.builder()        
+     *         var realm = new Realm("realm", RealmArgs.builder()
      *             .realm("my-realm")
      *             .enabled(true)
      *             .build());
@@ -599,7 +599,7 @@ public final class KeycloakFunctions {
      *             """)
      *             .build());
      * 
-     *         var samlClientClient = new Client("samlClientClient", ClientArgs.builder()        
+     *         var samlClientClient = new Client("samlClientClient", ClientArgs.builder()
      *             .realmId(realm.id())
      *             .clientId(samlClient.applyValue(getClientDescriptionConverterResult -> getClientDescriptionConverterResult).applyValue(samlClient -> samlClient.applyValue(getClientDescriptionConverterResult -> getClientDescriptionConverterResult.clientId())))
      *             .build());
@@ -647,7 +647,7 @@ public final class KeycloakFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var realm = new Realm("realm", RealmArgs.builder()        
+     *         var realm = new Realm("realm", RealmArgs.builder()
      *             .realm("my-realm")
      *             .enabled(true)
      *             .build());
@@ -685,7 +685,7 @@ public final class KeycloakFunctions {
      *             """)
      *             .build());
      * 
-     *         var samlClientClient = new Client("samlClientClient", ClientArgs.builder()        
+     *         var samlClientClient = new Client("samlClientClient", ClientArgs.builder()
      *             .realmId(realm.id())
      *             .clientId(samlClient.applyValue(getClientDescriptionConverterResult -> getClientDescriptionConverterResult).applyValue(samlClient -> samlClient.applyValue(getClientDescriptionConverterResult -> getClientDescriptionConverterResult.clientId())))
      *             .build());
@@ -733,7 +733,7 @@ public final class KeycloakFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var realm = new Realm("realm", RealmArgs.builder()        
+     *         var realm = new Realm("realm", RealmArgs.builder()
      *             .realm("my-realm")
      *             .enabled(true)
      *             .build());
@@ -771,7 +771,7 @@ public final class KeycloakFunctions {
      *             """)
      *             .build());
      * 
-     *         var samlClientClient = new Client("samlClientClient", ClientArgs.builder()        
+     *         var samlClientClient = new Client("samlClientClient", ClientArgs.builder()
      *             .realmId(realm.id())
      *             .clientId(samlClient.applyValue(getClientDescriptionConverterResult -> getClientDescriptionConverterResult).applyValue(samlClient -> samlClient.applyValue(getClientDescriptionConverterResult -> getClientDescriptionConverterResult.clientId())))
      *             .build());
@@ -795,58 +795,6 @@ public final class KeycloakFunctions {
      * ### Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.keycloak.Realm;
-     * import com.pulumi.keycloak.RealmArgs;
-     * import com.pulumi.keycloak.KeycloakFunctions;
-     * import com.pulumi.keycloak.inputs.GetRoleArgs;
-     * import com.pulumi.keycloak.inputs.GetGroupArgs;
-     * import com.pulumi.keycloak.GroupRoles;
-     * import com.pulumi.keycloak.GroupRolesArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var realm = new Realm("realm", RealmArgs.builder()        
-     *             .realm("my-realm")
-     *             .enabled(true)
-     *             .build());
-     * 
-     *         final var offlineAccess = KeycloakFunctions.getRole(GetRoleArgs.builder()
-     *             .realmId(realm.id())
-     *             .name("offline_access")
-     *             .build());
-     * 
-     *         final var group = KeycloakFunctions.getGroup(GetGroupArgs.builder()
-     *             .realmId(realm.id())
-     *             .name("group")
-     *             .build());
-     * 
-     *         var groupRoles = new GroupRoles("groupRoles", GroupRolesArgs.builder()        
-     *             .realmId(realm.id())
-     *             .groupId(group.applyValue(getGroupResult -> getGroupResult).applyValue(group -> group.applyValue(getGroupResult -> getGroupResult.id())))
-     *             .roles(offlineAccess.applyValue(getRoleResult -> getRoleResult).applyValue(offlineAccess -> offlineAccess.applyValue(getRoleResult -> getRoleResult.id())))
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### Argument Reference
@@ -876,58 +824,6 @@ public final class KeycloakFunctions {
      * ### Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.keycloak.Realm;
-     * import com.pulumi.keycloak.RealmArgs;
-     * import com.pulumi.keycloak.KeycloakFunctions;
-     * import com.pulumi.keycloak.inputs.GetRoleArgs;
-     * import com.pulumi.keycloak.inputs.GetGroupArgs;
-     * import com.pulumi.keycloak.GroupRoles;
-     * import com.pulumi.keycloak.GroupRolesArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var realm = new Realm("realm", RealmArgs.builder()        
-     *             .realm("my-realm")
-     *             .enabled(true)
-     *             .build());
-     * 
-     *         final var offlineAccess = KeycloakFunctions.getRole(GetRoleArgs.builder()
-     *             .realmId(realm.id())
-     *             .name("offline_access")
-     *             .build());
-     * 
-     *         final var group = KeycloakFunctions.getGroup(GetGroupArgs.builder()
-     *             .realmId(realm.id())
-     *             .name("group")
-     *             .build());
-     * 
-     *         var groupRoles = new GroupRoles("groupRoles", GroupRolesArgs.builder()        
-     *             .realmId(realm.id())
-     *             .groupId(group.applyValue(getGroupResult -> getGroupResult).applyValue(group -> group.applyValue(getGroupResult -> getGroupResult.id())))
-     *             .roles(offlineAccess.applyValue(getRoleResult -> getRoleResult).applyValue(offlineAccess -> offlineAccess.applyValue(getRoleResult -> getRoleResult.id())))
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### Argument Reference
@@ -957,58 +853,6 @@ public final class KeycloakFunctions {
      * ### Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.keycloak.Realm;
-     * import com.pulumi.keycloak.RealmArgs;
-     * import com.pulumi.keycloak.KeycloakFunctions;
-     * import com.pulumi.keycloak.inputs.GetRoleArgs;
-     * import com.pulumi.keycloak.inputs.GetGroupArgs;
-     * import com.pulumi.keycloak.GroupRoles;
-     * import com.pulumi.keycloak.GroupRolesArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var realm = new Realm("realm", RealmArgs.builder()        
-     *             .realm("my-realm")
-     *             .enabled(true)
-     *             .build());
-     * 
-     *         final var offlineAccess = KeycloakFunctions.getRole(GetRoleArgs.builder()
-     *             .realmId(realm.id())
-     *             .name("offline_access")
-     *             .build());
-     * 
-     *         final var group = KeycloakFunctions.getGroup(GetGroupArgs.builder()
-     *             .realmId(realm.id())
-     *             .name("group")
-     *             .build());
-     * 
-     *         var groupRoles = new GroupRoles("groupRoles", GroupRolesArgs.builder()        
-     *             .realmId(realm.id())
-     *             .groupId(group.applyValue(getGroupResult -> getGroupResult).applyValue(group -> group.applyValue(getGroupResult -> getGroupResult.id())))
-     *             .roles(offlineAccess.applyValue(getRoleResult -> getRoleResult).applyValue(offlineAccess -> offlineAccess.applyValue(getRoleResult -> getRoleResult.id())))
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### Argument Reference
@@ -1038,58 +882,6 @@ public final class KeycloakFunctions {
      * ### Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.keycloak.Realm;
-     * import com.pulumi.keycloak.RealmArgs;
-     * import com.pulumi.keycloak.KeycloakFunctions;
-     * import com.pulumi.keycloak.inputs.GetRoleArgs;
-     * import com.pulumi.keycloak.inputs.GetGroupArgs;
-     * import com.pulumi.keycloak.GroupRoles;
-     * import com.pulumi.keycloak.GroupRolesArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var realm = new Realm("realm", RealmArgs.builder()        
-     *             .realm("my-realm")
-     *             .enabled(true)
-     *             .build());
-     * 
-     *         final var offlineAccess = KeycloakFunctions.getRole(GetRoleArgs.builder()
-     *             .realmId(realm.id())
-     *             .name("offline_access")
-     *             .build());
-     * 
-     *         final var group = KeycloakFunctions.getGroup(GetGroupArgs.builder()
-     *             .realmId(realm.id())
-     *             .name("group")
-     *             .build());
-     * 
-     *         var groupRoles = new GroupRoles("groupRoles", GroupRolesArgs.builder()        
-     *             .realmId(realm.id())
-     *             .groupId(group.applyValue(getGroupResult -> getGroupResult).applyValue(group -> group.applyValue(getGroupResult -> getGroupResult.id())))
-     *             .roles(offlineAccess.applyValue(getRoleResult -> getRoleResult).applyValue(offlineAccess -> offlineAccess.applyValue(getRoleResult -> getRoleResult.id())))
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### Argument Reference
@@ -1148,7 +940,7 @@ public final class KeycloakFunctions {
      *             .build());
      * 
      *         // use the data source
-     *         var group = new Role("group", RoleArgs.builder()        
+     *         var group = new Role("group", RoleArgs.builder()
      *             .realmId(id)
      *             .name("group")
      *             .build());
@@ -1211,7 +1003,7 @@ public final class KeycloakFunctions {
      *             .build());
      * 
      *         // use the data source
-     *         var group = new Role("group", RoleArgs.builder()        
+     *         var group = new Role("group", RoleArgs.builder()
      *             .realmId(id)
      *             .name("group")
      *             .build());
@@ -1274,7 +1066,7 @@ public final class KeycloakFunctions {
      *             .build());
      * 
      *         // use the data source
-     *         var group = new Role("group", RoleArgs.builder()        
+     *         var group = new Role("group", RoleArgs.builder()
      *             .realmId(id)
      *             .name("group")
      *             .build());
@@ -1337,7 +1129,7 @@ public final class KeycloakFunctions {
      *             .build());
      * 
      *         // use the data source
-     *         var group = new Role("group", RoleArgs.builder()        
+     *         var group = new Role("group", RoleArgs.builder()
      *             .realmId(id)
      *             .name("group")
      *             .build());
@@ -1431,60 +1223,6 @@ public final class KeycloakFunctions {
      * ### Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.keycloak.Realm;
-     * import com.pulumi.keycloak.RealmArgs;
-     * import com.pulumi.keycloak.KeycloakFunctions;
-     * import com.pulumi.keycloak.inputs.GetRoleArgs;
-     * import com.pulumi.keycloak.Group;
-     * import com.pulumi.keycloak.GroupArgs;
-     * import com.pulumi.keycloak.GroupRoles;
-     * import com.pulumi.keycloak.GroupRolesArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var realm = new Realm("realm", RealmArgs.builder()        
-     *             .realm("my-realm")
-     *             .enabled(true)
-     *             .build());
-     * 
-     *         final var offlineAccess = KeycloakFunctions.getRole(GetRoleArgs.builder()
-     *             .realmId(realm.id())
-     *             .name("offline_access")
-     *             .build());
-     * 
-     *         // use the data source
-     *         var group = new Group("group", GroupArgs.builder()        
-     *             .realmId(realm.id())
-     *             .name("group")
-     *             .build());
-     * 
-     *         var groupRoles = new GroupRoles("groupRoles", GroupRolesArgs.builder()        
-     *             .realmId(realm.id())
-     *             .groupId(group.id())
-     *             .roles(offlineAccess.applyValue(getRoleResult -> getRoleResult).applyValue(offlineAccess -> offlineAccess.applyValue(getRoleResult -> getRoleResult.id())))
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### Argument Reference
@@ -1517,60 +1255,6 @@ public final class KeycloakFunctions {
      * ### Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.keycloak.Realm;
-     * import com.pulumi.keycloak.RealmArgs;
-     * import com.pulumi.keycloak.KeycloakFunctions;
-     * import com.pulumi.keycloak.inputs.GetRoleArgs;
-     * import com.pulumi.keycloak.Group;
-     * import com.pulumi.keycloak.GroupArgs;
-     * import com.pulumi.keycloak.GroupRoles;
-     * import com.pulumi.keycloak.GroupRolesArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var realm = new Realm("realm", RealmArgs.builder()        
-     *             .realm("my-realm")
-     *             .enabled(true)
-     *             .build());
-     * 
-     *         final var offlineAccess = KeycloakFunctions.getRole(GetRoleArgs.builder()
-     *             .realmId(realm.id())
-     *             .name("offline_access")
-     *             .build());
-     * 
-     *         // use the data source
-     *         var group = new Group("group", GroupArgs.builder()        
-     *             .realmId(realm.id())
-     *             .name("group")
-     *             .build());
-     * 
-     *         var groupRoles = new GroupRoles("groupRoles", GroupRolesArgs.builder()        
-     *             .realmId(realm.id())
-     *             .groupId(group.id())
-     *             .roles(offlineAccess.applyValue(getRoleResult -> getRoleResult).applyValue(offlineAccess -> offlineAccess.applyValue(getRoleResult -> getRoleResult.id())))
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### Argument Reference
@@ -1603,60 +1287,6 @@ public final class KeycloakFunctions {
      * ### Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.keycloak.Realm;
-     * import com.pulumi.keycloak.RealmArgs;
-     * import com.pulumi.keycloak.KeycloakFunctions;
-     * import com.pulumi.keycloak.inputs.GetRoleArgs;
-     * import com.pulumi.keycloak.Group;
-     * import com.pulumi.keycloak.GroupArgs;
-     * import com.pulumi.keycloak.GroupRoles;
-     * import com.pulumi.keycloak.GroupRolesArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var realm = new Realm("realm", RealmArgs.builder()        
-     *             .realm("my-realm")
-     *             .enabled(true)
-     *             .build());
-     * 
-     *         final var offlineAccess = KeycloakFunctions.getRole(GetRoleArgs.builder()
-     *             .realmId(realm.id())
-     *             .name("offline_access")
-     *             .build());
-     * 
-     *         // use the data source
-     *         var group = new Group("group", GroupArgs.builder()        
-     *             .realmId(realm.id())
-     *             .name("group")
-     *             .build());
-     * 
-     *         var groupRoles = new GroupRoles("groupRoles", GroupRolesArgs.builder()        
-     *             .realmId(realm.id())
-     *             .groupId(group.id())
-     *             .roles(offlineAccess.applyValue(getRoleResult -> getRoleResult).applyValue(offlineAccess -> offlineAccess.applyValue(getRoleResult -> getRoleResult.id())))
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### Argument Reference
@@ -1689,60 +1319,6 @@ public final class KeycloakFunctions {
      * ### Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.keycloak.Realm;
-     * import com.pulumi.keycloak.RealmArgs;
-     * import com.pulumi.keycloak.KeycloakFunctions;
-     * import com.pulumi.keycloak.inputs.GetRoleArgs;
-     * import com.pulumi.keycloak.Group;
-     * import com.pulumi.keycloak.GroupArgs;
-     * import com.pulumi.keycloak.GroupRoles;
-     * import com.pulumi.keycloak.GroupRolesArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var realm = new Realm("realm", RealmArgs.builder()        
-     *             .realm("my-realm")
-     *             .enabled(true)
-     *             .build());
-     * 
-     *         final var offlineAccess = KeycloakFunctions.getRole(GetRoleArgs.builder()
-     *             .realmId(realm.id())
-     *             .name("offline_access")
-     *             .build());
-     * 
-     *         // use the data source
-     *         var group = new Group("group", GroupArgs.builder()        
-     *             .realmId(realm.id())
-     *             .name("group")
-     *             .build());
-     * 
-     *         var groupRoles = new GroupRoles("groupRoles", GroupRolesArgs.builder()        
-     *             .realmId(realm.id())
-     *             .groupId(group.id())
-     *             .roles(offlineAccess.applyValue(getRoleResult -> getRoleResult).applyValue(offlineAccess -> offlineAccess.applyValue(getRoleResult -> getRoleResult.id())))
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### Argument Reference

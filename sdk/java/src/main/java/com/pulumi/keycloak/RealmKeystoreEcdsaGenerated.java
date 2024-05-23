@@ -48,11 +48,11 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm("realm", RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
  *             .realm("my-realm")
  *             .build());
  * 
- *         var keystoreEcdsaGenerated = new RealmKeystoreEcdsaGenerated("keystoreEcdsaGenerated", RealmKeystoreEcdsaGeneratedArgs.builder()        
+ *         var keystoreEcdsaGenerated = new RealmKeystoreEcdsaGenerated("keystoreEcdsaGenerated", RealmKeystoreEcdsaGeneratedArgs.builder()
  *             .name("my-ecdsa-generated-key")
  *             .realmId(realm.id())
  *             .enabled(true)

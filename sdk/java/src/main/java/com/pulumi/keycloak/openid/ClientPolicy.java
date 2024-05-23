@@ -53,12 +53,12 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm("realm", RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
  *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var openidClient = new Client("openidClient", ClientArgs.builder()        
+ *         var openidClient = new Client("openidClient", ClientArgs.builder()
  *             .clientId("openid_client")
  *             .name("openid_client")
  *             .realmId(realm.id())
@@ -66,7 +66,7 @@ import javax.annotation.Nullable;
  *             .serviceAccountsEnabled(true)
  *             .build());
  * 
- *         var myPermission = new ClientPermissions("myPermission", ClientPermissionsArgs.builder()        
+ *         var myPermission = new ClientPermissions("myPermission", ClientPermissionsArgs.builder()
  *             .realmId(realm.id())
  *             .clientId(openidClient.id())
  *             .build());
@@ -76,7 +76,7 @@ import javax.annotation.Nullable;
  *             .clientId("realm-management")
  *             .build());
  * 
- *         var tokenExchange = new ClientPolicy("tokenExchange", ClientPolicyArgs.builder()        
+ *         var tokenExchange = new ClientPolicy("tokenExchange", ClientPolicyArgs.builder()
  *             .resourceServerId(realmManagement.applyValue(getClientResult -> getClientResult.id()))
  *             .realmId(realm.id())
  *             .name("my-policy")

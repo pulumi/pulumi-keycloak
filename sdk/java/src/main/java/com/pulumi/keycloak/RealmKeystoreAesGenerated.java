@@ -48,11 +48,11 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm("realm", RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
  *             .realm("my-realm")
  *             .build());
  * 
- *         var keystoreAesGenerated = new RealmKeystoreAesGenerated("keystoreAesGenerated", RealmKeystoreAesGeneratedArgs.builder()        
+ *         var keystoreAesGenerated = new RealmKeystoreAesGenerated("keystoreAesGenerated", RealmKeystoreAesGeneratedArgs.builder()
  *             .name("my-aes-generated-key")
  *             .realmId(realm.id())
  *             .enabled(true)

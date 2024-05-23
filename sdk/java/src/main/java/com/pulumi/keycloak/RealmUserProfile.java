@@ -60,12 +60,12 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm("realm", RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
  *             .realm("my-realm")
  *             .attributes(Map.of("userProfileEnabled", true))
  *             .build());
  * 
- *         var userprofile = new RealmUserProfile("userprofile", RealmUserProfileArgs.builder()        
+ *         var userprofile = new RealmUserProfile("userprofile", RealmUserProfileArgs.builder()
  *             .realmId(myRealm.id())
  *             .attributes(            
  *                 RealmUserProfileAttributeArgs.builder()

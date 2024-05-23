@@ -49,12 +49,12 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm("realm", RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
  *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var ldapUserFederation = new UserFederation("ldapUserFederation", UserFederationArgs.builder()        
+ *         var ldapUserFederation = new UserFederation("ldapUserFederation", UserFederationArgs.builder()
  *             .name("openldap")
  *             .realmId(realm.id())
  *             .usernameLdapAttribute("cn")
@@ -69,12 +69,12 @@ import javax.annotation.Nullable;
  *             .bindCredential("admin")
  *             .build());
  * 
- *         var realmGroup = new Group("realmGroup", GroupArgs.builder()        
+ *         var realmGroup = new Group("realmGroup", GroupArgs.builder()
  *             .realmId(realm.id())
  *             .name("my-group")
  *             .build());
  * 
- *         var assignGroupToUsers = new HardcodedGroupMapper("assignGroupToUsers", HardcodedGroupMapperArgs.builder()        
+ *         var assignGroupToUsers = new HardcodedGroupMapper("assignGroupToUsers", HardcodedGroupMapperArgs.builder()
  *             .realmId(realm.id())
  *             .ldapUserFederationId(ldapUserFederation.id())
  *             .name("assign-group-to-users")

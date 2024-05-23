@@ -63,22 +63,22 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm("realm", RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
  *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var group = new Group("group", GroupArgs.builder()        
+ *         var group = new Group("group", GroupArgs.builder()
  *             .realmId(realm.id())
  *             .name("my-group")
  *             .build());
  * 
- *         var user = new User("user", UserArgs.builder()        
+ *         var user = new User("user", UserArgs.builder()
  *             .realmId(realm.id())
  *             .username("my-user")
  *             .build());
  * 
- *         var groupMembers = new GroupMemberships("groupMembers", GroupMembershipsArgs.builder()        
+ *         var groupMembers = new GroupMemberships("groupMembers", GroupMembershipsArgs.builder()
  *             .realmId(realm.id())
  *             .groupId(group.id())
  *             .members(user.username())

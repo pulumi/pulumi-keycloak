@@ -49,23 +49,23 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm("realm", RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
  *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var flow = new Flow("flow", FlowArgs.builder()        
+ *         var flow = new Flow("flow", FlowArgs.builder()
  *             .realmId(realm.id())
  *             .alias("my-flow-alias")
  *             .build());
  * 
- *         var execution = new Execution("execution", ExecutionArgs.builder()        
+ *         var execution = new Execution("execution", ExecutionArgs.builder()
  *             .realmId(realm.id())
  *             .parentFlowAlias(flow.alias())
  *             .authenticator("identity-provider-redirector")
  *             .build());
  * 
- *         var config = new ExecutionConfig("config", ExecutionConfigArgs.builder()        
+ *         var config = new ExecutionConfig("config", ExecutionConfigArgs.builder()
  *             .realmId(realm.id())
  *             .executionId(execution.id())
  *             .alias("my-config-alias")
