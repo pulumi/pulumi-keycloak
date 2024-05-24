@@ -51,17 +51,17 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm("realm", RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
  *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var group = new Group("group", GroupArgs.builder()        
+ *         var group = new Group("group", GroupArgs.builder()
  *             .realmId(realm.id())
  *             .name("my-group")
  *             .build());
  * 
- *         var default_ = new DefaultGroups("default", DefaultGroupsArgs.builder()        
+ *         var default_ = new DefaultGroups("default", DefaultGroupsArgs.builder()
  *             .realmId(realm.id())
  *             .groupIds(group.id())
  *             .build());

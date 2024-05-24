@@ -56,12 +56,12 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm("realm", RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
  *             .realm("test")
  *             .enabled(true)
  *             .build());
  * 
- *         var ldapUserFederation = new UserFederation("ldapUserFederation", UserFederationArgs.builder()        
+ *         var ldapUserFederation = new UserFederation("ldapUserFederation", UserFederationArgs.builder()
  *             .name("openldap")
  *             .realmId(realm.id())
  *             .enabled(true)

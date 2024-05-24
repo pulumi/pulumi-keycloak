@@ -48,12 +48,12 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm("realm", RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
  *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var requiredAction = new RequiredAction("requiredAction", RequiredActionArgs.builder()        
+ *         var requiredAction = new RequiredAction("requiredAction", RequiredActionArgs.builder()
  *             .realmId(realm.realm())
  *             .alias("webauthn-register")
  *             .enabled(true)

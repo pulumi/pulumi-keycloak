@@ -64,18 +64,18 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm("realm", RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
  *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var realmRole = new Role("realmRole", RoleArgs.builder()        
+ *         var realmRole = new Role("realmRole", RoleArgs.builder()
  *             .realmId(realm.id())
  *             .name("my-realm-role")
  *             .description("My Realm Role")
  *             .build());
  * 
- *         var client = new Client("client", ClientArgs.builder()        
+ *         var client = new Client("client", ClientArgs.builder()
  *             .realmId(realm.id())
  *             .clientId("client")
  *             .name("client")
@@ -83,19 +83,19 @@ import javax.annotation.Nullable;
  *             .accessType("BEARER-ONLY")
  *             .build());
  * 
- *         var clientRole = new Role("clientRole", RoleArgs.builder()        
+ *         var clientRole = new Role("clientRole", RoleArgs.builder()
  *             .realmId(realm.id())
  *             .clientId(clientKeycloakClient.id())
  *             .name("my-client-role")
  *             .description("My Client Role")
  *             .build());
  * 
- *         var group = new Group("group", GroupArgs.builder()        
+ *         var group = new Group("group", GroupArgs.builder()
  *             .realmId(realm.id())
  *             .name("my-group")
  *             .build());
  * 
- *         var groupRoles = new GroupRoles("groupRoles", GroupRolesArgs.builder()        
+ *         var groupRoles = new GroupRoles("groupRoles", GroupRolesArgs.builder()
  *             .realmId(realm.id())
  *             .groupId(group.id())
  *             .roleIds(            

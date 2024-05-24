@@ -60,18 +60,18 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm("realm", RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
  *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var flow = new Flow("flow", FlowArgs.builder()        
+ *         var flow = new Flow("flow", FlowArgs.builder()
  *             .realmId(realm.id())
  *             .alias("my-flow-alias")
  *             .build());
  * 
  *         // first execution
- *         var executionOne = new Execution("executionOne", ExecutionArgs.builder()        
+ *         var executionOne = new Execution("executionOne", ExecutionArgs.builder()
  *             .realmId(realm.id())
  *             .parentFlowAlias(flow.alias())
  *             .authenticator("auth-cookie")
@@ -79,7 +79,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         // second execution
- *         var executionTwo = new Execution("executionTwo", ExecutionArgs.builder()        
+ *         var executionTwo = new Execution("executionTwo", ExecutionArgs.builder()
  *             .realmId(realm.id())
  *             .parentFlowAlias(flow.alias())
  *             .authenticator("identity-provider-redirector")
@@ -88,7 +88,7 @@ import javax.annotation.Nullable;
  *                 .dependsOn(executionOne)
  *                 .build());
  * 
- *         var browserAuthenticationBinding = new Bindings("browserAuthenticationBinding", BindingsArgs.builder()        
+ *         var browserAuthenticationBinding = new Bindings("browserAuthenticationBinding", BindingsArgs.builder()
  *             .realmId(realm.id())
  *             .browserFlow(flow.alias())
  *             .build());

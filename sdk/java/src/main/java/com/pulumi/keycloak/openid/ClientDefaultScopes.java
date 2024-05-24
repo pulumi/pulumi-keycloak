@@ -46,23 +46,23 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm("realm", RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
  *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var client = new Client("client", ClientArgs.builder()        
+ *         var client = new Client("client", ClientArgs.builder()
  *             .realmId(realm.id())
  *             .clientId("test-client")
  *             .accessType("CONFIDENTIAL")
  *             .build());
  * 
- *         var clientScope = new ClientScope("clientScope", ClientScopeArgs.builder()        
+ *         var clientScope = new ClientScope("clientScope", ClientScopeArgs.builder()
  *             .realmId(realm.id())
  *             .name("test-client-scope")
  *             .build());
  * 
- *         var clientDefaultScopes = new ClientDefaultScopes("clientDefaultScopes", ClientDefaultScopesArgs.builder()        
+ *         var clientDefaultScopes = new ClientDefaultScopes("clientDefaultScopes", ClientDefaultScopesArgs.builder()
  *             .realmId(realm.id())
  *             .clientId(client.id())
  *             .defaultScopes(            

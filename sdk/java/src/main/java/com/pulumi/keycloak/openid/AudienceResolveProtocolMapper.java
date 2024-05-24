@@ -54,12 +54,12 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm("realm", RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
  *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var openidClient = new Client("openidClient", ClientArgs.builder()        
+ *         var openidClient = new Client("openidClient", ClientArgs.builder()
  *             .realmId(realm.id())
  *             .clientId("client")
  *             .name("client")
@@ -68,7 +68,7 @@ import javax.annotation.Nullable;
  *             .validRedirectUris("http://localhost:8080/openid-callback")
  *             .build());
  * 
- *         var audienceMapper = new AudienceResolveProtocolMapper("audienceMapper", AudienceResolveProtocolMapperArgs.builder()        
+ *         var audienceMapper = new AudienceResolveProtocolMapper("audienceMapper", AudienceResolveProtocolMapperArgs.builder()
  *             .realmId(realm.id())
  *             .clientId(openidClient.id())
  *             .name("my-audience-resolve-mapper")
@@ -109,17 +109,17 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm("realm", RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
  *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var clientScope = new ClientScope("clientScope", ClientScopeArgs.builder()        
+ *         var clientScope = new ClientScope("clientScope", ClientScopeArgs.builder()
  *             .realmId(realm.id())
  *             .name("test-client-scope")
  *             .build());
  * 
- *         var audienceMapper = new AudienceProtocolMapper("audienceMapper", AudienceProtocolMapperArgs.builder()        
+ *         var audienceMapper = new AudienceProtocolMapper("audienceMapper", AudienceProtocolMapperArgs.builder()
  *             .realmId(realm.id())
  *             .clientScopeId(clientScope.id())
  *             .build());

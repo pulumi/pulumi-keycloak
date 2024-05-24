@@ -55,12 +55,12 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm("realm", RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
  *             .realm("test")
  *             .enabled(true)
  *             .build());
  * 
- *         var ldapUserFederation = new UserFederation("ldapUserFederation", UserFederationArgs.builder()        
+ *         var ldapUserFederation = new UserFederation("ldapUserFederation", UserFederationArgs.builder()
  *             .name("ad")
  *             .realmId(realm.id())
  *             .usernameLdapAttribute("cn")
@@ -76,7 +76,7 @@ import javax.annotation.Nullable;
  *             .bindCredential("admin")
  *             .build());
  * 
- *         var msadUserAccountControlMapper = new MsadUserAccountControlMapper("msadUserAccountControlMapper", MsadUserAccountControlMapperArgs.builder()        
+ *         var msadUserAccountControlMapper = new MsadUserAccountControlMapper("msadUserAccountControlMapper", MsadUserAccountControlMapperArgs.builder()
  *             .realmId(realm.id())
  *             .ldapUserFederationId(ldapUserFederation.id())
  *             .name("msad-user-account-control-mapper")
