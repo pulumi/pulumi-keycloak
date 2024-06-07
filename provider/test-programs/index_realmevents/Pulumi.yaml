@@ -1,0 +1,26 @@
+name: index_realmeventsYyMO1eEl68Os
+runtime: yaml
+description: A minimal Pulumi program to enable Keycloak realm events
+config:
+  pulumi:tags:
+    value:
+      pulumi:template: https://www.pulumi.com/ai/api/project/1bc4a2d0-59f6-4cac-8b1b-29fed5aabb3c.zip
+outputs:
+  realmEventsId: ${myRealmEvents.id}
+  realmId: ${myRealm.id}
+resources:
+  myRealm:
+    properties:
+      displayName: My Keycloak Realm
+      enabled: true
+      realm: my-realm
+    type: keycloak:Realm
+  myRealmEvents:
+    properties:
+      adminEventsDetailsEnabled: true
+      adminEventsEnabled: true
+      eventsEnabled: true
+      eventsListeners:
+        - jboss-logging
+      realmId: ${myRealm.id}
+    type: keycloak:RealmEvents

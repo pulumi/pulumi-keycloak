@@ -1,0 +1,35 @@
+name: index_grouproles9ZgN15cMJUxj
+runtime: yaml
+description: A minimal Pulumi YAML program that creates a Keycloak Group, Group Roles, Realm, and assigns roles to the group.
+config:
+  pulumi:tags:
+    value:
+      pulumi:template: https://www.pulumi.com/ai/api/project/6e37f222-3261-4103-a576-f44e40aef84e.zip
+outputs:
+  groupId: ${exampleGroup.id}
+  realmId: ${exampleRealm.id}
+  roleIds:
+    - ${exampleRole.id}
+resources:
+  exampleGroup:
+    properties:
+
+      realmId: ${exampleRealm.id}
+    type: keycloak:Group
+  exampleGroupRoles:
+    properties:
+      groupId: ${exampleGroup.id}
+      realmId: ${exampleRealm.id}
+      roleIds:
+        - ${exampleRole.id}
+    type: keycloak:GroupRoles
+  exampleRealm:
+    properties:
+      enabled: true
+      realm: example-realm
+    type: keycloak:Realm
+  exampleRole:
+    properties:
+
+      realmId: ${exampleRealm.id}
+    type: keycloak:Role
