@@ -13,7 +13,6 @@ import * as utilities from "../utilities";
  *
  * ### Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -22,13 +21,13 @@ import * as utilities from "../utilities";
  *     realmId: "my-realm",
  *     clientId: "realm-management",
  * });
+ * // use the data source
  * const admin = realmManagement.then(realmManagement => keycloak.getRole({
  *     realmId: "my-realm",
  *     clientId: realmManagement.id,
  *     name: "realm-admin",
  * }));
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Argument Reference
  *
@@ -131,7 +130,6 @@ export interface GetClientResult {
  *
  * ### Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -140,13 +138,13 @@ export interface GetClientResult {
  *     realmId: "my-realm",
  *     clientId: "realm-management",
  * });
+ * // use the data source
  * const admin = realmManagement.then(realmManagement => keycloak.getRole({
  *     realmId: "my-realm",
  *     clientId: realmManagement.id,
  *     name: "realm-admin",
  * }));
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Argument Reference
  *

@@ -147,36 +147,39 @@ class GroupRoles(pulumi.CustomResource):
 
         ### Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="my-realm")
-        realm_role = keycloak.Role("realmRole",
-            description="My Realm Role",
-            realm_id=realm.id)
-        client = keycloak.openid.Client("client",
-            access_type="BEARER-ONLY",
-            client_id="client",
-            enabled=True,
-            realm_id=realm.id)
-        client_role = keycloak.Role("clientRole",
-            client_id=keycloak_client["client"]["id"],
-            description="My Client Role",
-            realm_id=realm.id)
-        group = keycloak.Group("group", realm_id=realm.id)
-        group_roles = keycloak.GroupRoles("groupRoles",
-            group_id=group.id,
+            realm="my-realm",
+            enabled=True)
+        realm_role = keycloak.Role("realm_role",
             realm_id=realm.id,
+            name="my-realm-role",
+            description="My Realm Role")
+        client = keycloak.openid.Client("client",
+            realm_id=realm.id,
+            client_id="client",
+            name="client",
+            enabled=True,
+            access_type="BEARER-ONLY")
+        client_role = keycloak.Role("client_role",
+            realm_id=realm.id,
+            client_id=client_keycloak_client["id"],
+            name="my-client-role",
+            description="My Client Role")
+        group = keycloak.Group("group",
+            realm_id=realm.id,
+            name="my-group")
+        group_roles = keycloak.GroupRoles("group_roles",
+            realm_id=realm.id,
+            group_id=group.id,
             role_ids=[
                 realm_role.id,
                 client_role.id,
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 
@@ -222,36 +225,39 @@ class GroupRoles(pulumi.CustomResource):
 
         ### Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="my-realm")
-        realm_role = keycloak.Role("realmRole",
-            description="My Realm Role",
-            realm_id=realm.id)
-        client = keycloak.openid.Client("client",
-            access_type="BEARER-ONLY",
-            client_id="client",
-            enabled=True,
-            realm_id=realm.id)
-        client_role = keycloak.Role("clientRole",
-            client_id=keycloak_client["client"]["id"],
-            description="My Client Role",
-            realm_id=realm.id)
-        group = keycloak.Group("group", realm_id=realm.id)
-        group_roles = keycloak.GroupRoles("groupRoles",
-            group_id=group.id,
+            realm="my-realm",
+            enabled=True)
+        realm_role = keycloak.Role("realm_role",
             realm_id=realm.id,
+            name="my-realm-role",
+            description="My Realm Role")
+        client = keycloak.openid.Client("client",
+            realm_id=realm.id,
+            client_id="client",
+            name="client",
+            enabled=True,
+            access_type="BEARER-ONLY")
+        client_role = keycloak.Role("client_role",
+            realm_id=realm.id,
+            client_id=client_keycloak_client["id"],
+            name="my-client-role",
+            description="My Client Role")
+        group = keycloak.Group("group",
+            realm_id=realm.id,
+            name="my-group")
+        group_roles = keycloak.GroupRoles("group_roles",
+            realm_id=realm.id,
+            group_id=group.id,
             role_ids=[
                 realm_role.id,
                 client_role.id,
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 

@@ -18,7 +18,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -37,7 +36,8 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = keycloak.NewRealmKeystoreRsaGenerated(ctx, "keystoreRsaGenerated", &keycloak.RealmKeystoreRsaGeneratedArgs{
+//			_, err = keycloak.NewRealmKeystoreRsaGenerated(ctx, "keystore_rsa_generated", &keycloak.RealmKeystoreRsaGeneratedArgs{
+//				Name:      pulumi.String("my-rsa-generated-key"),
 //				RealmId:   realm.ID(),
 //				Enabled:   pulumi.Bool(true),
 //				Active:    pulumi.Bool(true),
@@ -53,7 +53,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

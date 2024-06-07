@@ -365,13 +365,13 @@ class RealmKeystoreJavaGenerated(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm", realm="my-realm")
-        java_keystore = keycloak.RealmKeystoreJavaGenerated("javaKeystore",
+        java_keystore = keycloak.RealmKeystoreJavaGenerated("java_keystore",
+            name="my-java-keystore",
             realm_id=realm.id,
             enabled=True,
             active=True,
@@ -382,7 +382,6 @@ class RealmKeystoreJavaGenerated(pulumi.CustomResource):
             priority=100,
             algorithm="RS256")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -422,13 +421,13 @@ class RealmKeystoreJavaGenerated(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm", realm="my-realm")
-        java_keystore = keycloak.RealmKeystoreJavaGenerated("javaKeystore",
+        java_keystore = keycloak.RealmKeystoreJavaGenerated("java_keystore",
+            name="my-java-keystore",
             realm_id=realm.id,
             enabled=True,
             active=True,
@@ -439,7 +438,6 @@ class RealmKeystoreJavaGenerated(pulumi.CustomResource):
             priority=100,
             algorithm="RS256")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -20,7 +20,6 @@ namespace Pulumi.Keycloak
     /// 
     /// ### Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -31,20 +30,20 @@ namespace Pulumi.Keycloak
     /// {
     ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         Enabled = true,
     ///         RealmName = "test",
+    ///         Enabled = true,
     ///     });
     /// 
-    ///     var customUserFederation = new Keycloak.CustomUserFederation("customUserFederation", new()
+    ///     var customUserFederation = new Keycloak.CustomUserFederation("custom_user_federation", new()
     ///     {
-    ///         Enabled = true,
-    ///         ProviderId = "custom",
+    ///         Name = "custom",
     ///         RealmId = realm.Id,
+    ///         ProviderId = "custom",
+    ///         Enabled = true,
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### Argument Reference
     /// 

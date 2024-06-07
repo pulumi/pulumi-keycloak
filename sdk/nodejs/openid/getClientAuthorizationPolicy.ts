@@ -13,7 +13,6 @@ import * as utilities from "../utilities";
  * permission for this client called "Default Permission". We'll use the `keycloak.openid.getClientAuthorizationPolicy` data
  * source to fetch information about this permission, so we can use it to create a new resource-based authorization permission.
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -22,8 +21,9 @@ import * as utilities from "../utilities";
  *     realm: "my-realm",
  *     enabled: true,
  * });
- * const clientWithAuthz = new keycloak.openid.Client("clientWithAuthz", {
+ * const clientWithAuthz = new keycloak.openid.Client("client_with_authz", {
  *     clientId: "client-with-authz",
+ *     name: "client-with-authz",
  *     realmId: realm.id,
  *     accessType: "CONFIDENTIAL",
  *     serviceAccountsEnabled: true,
@@ -38,6 +38,7 @@ import * as utilities from "../utilities";
  * });
  * const resource = new keycloak.openid.ClientAuthorizationResource("resource", {
  *     resourceServerId: clientWithAuthz.resourceServerId,
+ *     name: "authorization-resource",
  *     realmId: realm.id,
  *     uris: ["/endpoint/*"],
  *     attributes: {
@@ -47,11 +48,11 @@ import * as utilities from "../utilities";
  * const permission = new keycloak.openid.ClientAuthorizationPermission("permission", {
  *     resourceServerId: clientWithAuthz.resourceServerId,
  *     realmId: realm.id,
+ *     name: "authorization-permission",
  *     policies: [defaultPermission.apply(defaultPermission => defaultPermission.id)],
  *     resources: [resource.id],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getClientAuthorizationPolicy(args: GetClientAuthorizationPolicyArgs, opts?: pulumi.InvokeOptions): Promise<GetClientAuthorizationPolicyResult> {
 
@@ -130,7 +131,6 @@ export interface GetClientAuthorizationPolicyResult {
  * permission for this client called "Default Permission". We'll use the `keycloak.openid.getClientAuthorizationPolicy` data
  * source to fetch information about this permission, so we can use it to create a new resource-based authorization permission.
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -139,8 +139,9 @@ export interface GetClientAuthorizationPolicyResult {
  *     realm: "my-realm",
  *     enabled: true,
  * });
- * const clientWithAuthz = new keycloak.openid.Client("clientWithAuthz", {
+ * const clientWithAuthz = new keycloak.openid.Client("client_with_authz", {
  *     clientId: "client-with-authz",
+ *     name: "client-with-authz",
  *     realmId: realm.id,
  *     accessType: "CONFIDENTIAL",
  *     serviceAccountsEnabled: true,
@@ -155,6 +156,7 @@ export interface GetClientAuthorizationPolicyResult {
  * });
  * const resource = new keycloak.openid.ClientAuthorizationResource("resource", {
  *     resourceServerId: clientWithAuthz.resourceServerId,
+ *     name: "authorization-resource",
  *     realmId: realm.id,
  *     uris: ["/endpoint/*"],
  *     attributes: {
@@ -164,11 +166,11 @@ export interface GetClientAuthorizationPolicyResult {
  * const permission = new keycloak.openid.ClientAuthorizationPermission("permission", {
  *     resourceServerId: clientWithAuthz.resourceServerId,
  *     realmId: realm.id,
+ *     name: "authorization-permission",
  *     policies: [defaultPermission.apply(defaultPermission => defaultPermission.id)],
  *     resources: [resource.id],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getClientAuthorizationPolicyOutput(args: GetClientAuthorizationPolicyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetClientAuthorizationPolicyResult> {
     return pulumi.output(args).apply((a: any) => getClientAuthorizationPolicy(a, opts))

@@ -20,7 +20,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -32,7 +31,7 @@ import * as utilities from "./utilities";
  *     },
  * });
  * const userprofile = new keycloak.RealmUserProfile("userprofile", {
- *     realmId: keycloak_realm.my_realm.id,
+ *     realmId: myRealm.id,
  *     attributes: [
  *         {
  *             name: "field1",
@@ -100,7 +99,6 @@ import * as utilities from "./utilities";
  *     ],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

@@ -17,47 +17,49 @@ import * as utilities from "../utilities";
  *
  * ### Example Usage (Client)
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {
- *     enabled: true,
  *     realm: "my-realm",
- * });
- * const openidClient = new keycloak.openid.Client("openidClient", {
- *     accessType: "CONFIDENTIAL",
- *     clientId: "test-client",
  *     enabled: true,
+ * });
+ * const openidClient = new keycloak.openid.Client("openid_client", {
  *     realmId: realm.id,
+ *     clientId: "test-client",
+ *     name: "test client",
+ *     enabled: true,
+ *     accessType: "CONFIDENTIAL",
  *     validRedirectUris: ["http://localhost:8080/openid-callback"],
  * });
- * const fullNameMapper = new keycloak.openid.FullNameProtocolMapper("fullNameMapper", {
- *     clientId: openidClient.id,
+ * const fullNameMapper = new keycloak.openid.FullNameProtocolMapper("full_name_mapper", {
  *     realmId: realm.id,
+ *     clientId: openidClient.id,
+ *     name: "full-name-mapper",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Example Usage (Client Scope)
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {
- *     enabled: true,
  *     realm: "my-realm",
+ *     enabled: true,
  * });
- * const clientScope = new keycloak.openid.ClientScope("clientScope", {realmId: realm.id});
- * const fullNameMapper = new keycloak.openid.FullNameProtocolMapper("fullNameMapper", {
- *     clientScopeId: clientScope.id,
+ * const clientScope = new keycloak.openid.ClientScope("client_scope", {
  *     realmId: realm.id,
+ *     name: "test-client-scope",
+ * });
+ * const fullNameMapper = new keycloak.openid.FullNameProtocolMapper("full_name_mapper", {
+ *     realmId: realm.id,
+ *     clientScopeId: clientScope.id,
+ *     name: "full-name-mapper",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Argument Reference
  *

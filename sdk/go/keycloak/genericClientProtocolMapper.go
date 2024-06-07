@@ -25,7 +25,6 @@ import (
 //
 // ### Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -40,30 +39,31 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-//				Enabled: pulumi.Bool(true),
 //				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			samlClient, err := saml.NewClient(ctx, "samlClient", &saml.ClientArgs{
-//				ClientId: pulumi.String("test-client"),
+//			samlClient, err := saml.NewClient(ctx, "saml_client", &saml.ClientArgs{
 //				RealmId:  realm.ID(),
+//				ClientId: pulumi.String("test-client"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = keycloak.NewGenericClientProtocolMapper(ctx, "samlHardcodeAttributeMapper", &keycloak.GenericClientProtocolMapperArgs{
-//				ClientId: samlClient.ID(),
+//			_, err = keycloak.NewGenericClientProtocolMapper(ctx, "saml_hardcode_attribute_mapper", &keycloak.GenericClientProtocolMapperArgs{
+//				RealmId:        realm.ID(),
+//				ClientId:       samlClient.ID(),
+//				Name:           pulumi.String("tes-mapper"),
+//				Protocol:       pulumi.String("saml"),
+//				ProtocolMapper: pulumi.String("saml-hardcode-attribute-mapper"),
 //				Config: pulumi.Map{
 //					"attribute.name":       pulumi.Any("name"),
 //					"attribute.nameformat": pulumi.Any("Basic"),
 //					"attribute.value":      pulumi.Any("value"),
 //					"friendly.name":        pulumi.Any("display name"),
 //				},
-//				Protocol:       pulumi.String("saml"),
-//				ProtocolMapper: pulumi.String("saml-hardcode-attribute-mapper"),
-//				RealmId:        realm.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -73,7 +73,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Argument Reference
 //

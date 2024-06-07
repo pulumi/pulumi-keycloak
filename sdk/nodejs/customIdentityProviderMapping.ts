@@ -7,7 +7,6 @@ import * as utilities from "./utilities";
 /**
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -16,7 +15,7 @@ import * as utilities from "./utilities";
  *     realm: "my-realm",
  *     enabled: true,
  * });
- * const oidcIdentityProvider = new keycloak.oidc.IdentityProvider("oidcIdentityProvider", {
+ * const oidc = new keycloak.oidc.IdentityProvider("oidc", {
  *     realm: realm.id,
  *     alias: "oidc",
  *     authorizationUrl: "https://example.com/auth",
@@ -25,9 +24,10 @@ import * as utilities from "./utilities";
  *     clientSecret: "example_token",
  *     defaultScopes: "openid random profile",
  * });
- * const oidcCustomIdentityProviderMapping = new keycloak.CustomIdentityProviderMapping("oidcCustomIdentityProviderMapping", {
+ * const oidcCustomIdentityProviderMapping = new keycloak.CustomIdentityProviderMapping("oidc", {
  *     realm: realm.id,
- *     identityProviderAlias: oidcIdentityProvider.alias,
+ *     name: "email-attribute-importer",
+ *     identityProviderAlias: oidc.alias,
  *     identityProviderMapper: "%s-user-attribute-idp-mapper",
  *     extraConfig: {
  *         syncMode: "INHERIT",
@@ -36,7 +36,6 @@ import * as utilities from "./utilities";
  *     },
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

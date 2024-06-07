@@ -229,15 +229,14 @@ class IdentityProviderTokenExchangeScopePermission(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
-        token_exchange_realm = keycloak.Realm("tokenExchangeRealm",
+        token_exchange_realm = keycloak.Realm("token_exchange_realm",
             realm="token-exchange_destination_realm",
             enabled=True)
-        token_exchange_my_oidc_idp = keycloak.oidc.IdentityProvider("tokenExchangeMyOidcIdp",
+        token_exchange_my_oidc_idp = keycloak.oidc.IdentityProvider("token_exchange_my_oidc_idp",
             realm=token_exchange_realm.id,
             alias="myIdp",
             authorization_url="http://localhost:8080/auth/realms/someRealm/protocol/openid-connect/auth",
@@ -245,8 +244,9 @@ class IdentityProviderTokenExchangeScopePermission(pulumi.CustomResource):
             client_id="clientId",
             client_secret="secret",
             default_scopes="openid")
-        token_exchange_webapp_client = keycloak.openid.Client("token-exchangeWebappClient",
+        token_exchange_webapp_client = keycloak.openid.Client("token-exchange_webapp_client",
             realm_id=token_exchange_realm.id,
+            name="webapp_client",
             client_id="webapp_client",
             client_secret="secret",
             description="a webapp client on the destination realm",
@@ -254,13 +254,12 @@ class IdentityProviderTokenExchangeScopePermission(pulumi.CustomResource):
             standard_flow_enabled=True,
             valid_redirect_uris=["http://localhost:8080/*"])
         #relevant part
-        oidc_idp_permission = keycloak.IdentityProviderTokenExchangeScopePermission("oidcIdpPermission",
+        oidc_idp_permission = keycloak.IdentityProviderTokenExchangeScopePermission("oidc_idp_permission",
             realm_id=token_exchange_realm.id,
             provider_alias=token_exchange_my_oidc_idp.alias,
             policy_type="client",
             clients=[token_exchange_webapp_client.id])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -292,15 +291,14 @@ class IdentityProviderTokenExchangeScopePermission(pulumi.CustomResource):
         """
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
-        token_exchange_realm = keycloak.Realm("tokenExchangeRealm",
+        token_exchange_realm = keycloak.Realm("token_exchange_realm",
             realm="token-exchange_destination_realm",
             enabled=True)
-        token_exchange_my_oidc_idp = keycloak.oidc.IdentityProvider("tokenExchangeMyOidcIdp",
+        token_exchange_my_oidc_idp = keycloak.oidc.IdentityProvider("token_exchange_my_oidc_idp",
             realm=token_exchange_realm.id,
             alias="myIdp",
             authorization_url="http://localhost:8080/auth/realms/someRealm/protocol/openid-connect/auth",
@@ -308,8 +306,9 @@ class IdentityProviderTokenExchangeScopePermission(pulumi.CustomResource):
             client_id="clientId",
             client_secret="secret",
             default_scopes="openid")
-        token_exchange_webapp_client = keycloak.openid.Client("token-exchangeWebappClient",
+        token_exchange_webapp_client = keycloak.openid.Client("token-exchange_webapp_client",
             realm_id=token_exchange_realm.id,
+            name="webapp_client",
             client_id="webapp_client",
             client_secret="secret",
             description="a webapp client on the destination realm",
@@ -317,13 +316,12 @@ class IdentityProviderTokenExchangeScopePermission(pulumi.CustomResource):
             standard_flow_enabled=True,
             valid_redirect_uris=["http://localhost:8080/*"])
         #relevant part
-        oidc_idp_permission = keycloak.IdentityProviderTokenExchangeScopePermission("oidcIdpPermission",
+        oidc_idp_permission = keycloak.IdentityProviderTokenExchangeScopePermission("oidc_idp_permission",
             realm_id=token_exchange_realm.id,
             provider_alias=token_exchange_my_oidc_idp.alias,
             policy_type="client",
             clients=[token_exchange_webapp_client.id])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -28,7 +28,8 @@ import javax.annotation.Nullable;
  * ### Example Usage (Client)
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -53,27 +54,30 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
+ *             .realm("my-realm")
  *             .enabled(true)
- *             .realm(&#34;my-realm&#34;)
  *             .build());
  * 
- *         var samlClient = new Client(&#34;samlClient&#34;, ClientArgs.builder()        
- *             .clientId(&#34;test-saml-client&#34;)
- *             .realmId(keycloak_realm.test().id())
+ *         var samlClient = new Client("samlClient", ClientArgs.builder()
+ *             .realmId(test.id())
+ *             .clientId("test-saml-client")
+ *             .name("test-saml-client")
  *             .build());
  * 
- *         var samlUserAttributeMapper = new UserAttributeProtocolMapper(&#34;samlUserAttributeMapper&#34;, UserAttributeProtocolMapperArgs.builder()        
+ *         var samlUserAttributeMapper = new UserAttributeProtocolMapper("samlUserAttributeMapper", UserAttributeProtocolMapperArgs.builder()
+ *             .realmId(test.id())
  *             .clientId(samlClient.id())
- *             .realmId(keycloak_realm.test().id())
- *             .samlAttributeName(&#34;displayName&#34;)
- *             .samlAttributeNameFormat(&#34;Unspecified&#34;)
- *             .userAttribute(&#34;displayName&#34;)
+ *             .name("displayname-user-attribute-mapper")
+ *             .userAttribute("displayName")
+ *             .samlAttributeName("displayName")
+ *             .samlAttributeNameFormat("Unspecified")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Argument Reference

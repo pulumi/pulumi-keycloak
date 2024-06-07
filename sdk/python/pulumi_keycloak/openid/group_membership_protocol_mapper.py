@@ -301,44 +301,45 @@ class GroupMembershipProtocolMapper(pulumi.CustomResource):
 
         ### Example Usage (Client)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="my-realm")
-        openid_client = keycloak.openid.Client("openidClient",
-            access_type="CONFIDENTIAL",
-            client_id="test-client",
-            enabled=True,
+            realm="my-realm",
+            enabled=True)
+        openid_client = keycloak.openid.Client("openid_client",
             realm_id=realm.id,
+            client_id="test-client",
+            name="test client",
+            enabled=True,
+            access_type="CONFIDENTIAL",
             valid_redirect_uris=["http://localhost:8080/openid-callback"])
-        group_membership_mapper = keycloak.openid.GroupMembershipProtocolMapper("groupMembershipMapper",
-            claim_name="groups",
+        group_membership_mapper = keycloak.openid.GroupMembershipProtocolMapper("group_membership_mapper",
+            realm_id=realm.id,
             client_id=openid_client.id,
-            realm_id=realm.id)
+            name="group-membership-mapper",
+            claim_name="groups")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Usage (Client Scope)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="my-realm")
-        client_scope = keycloak.openid.ClientScope("clientScope", realm_id=realm.id)
-        group_membership_mapper = keycloak.openid.GroupMembershipProtocolMapper("groupMembershipMapper",
-            claim_name="groups",
+            realm="my-realm",
+            enabled=True)
+        client_scope = keycloak.openid.ClientScope("client_scope",
+            realm_id=realm.id,
+            name="test-client-scope")
+        group_membership_mapper = keycloak.openid.GroupMembershipProtocolMapper("group_membership_mapper",
+            realm_id=realm.id,
             client_scope_id=client_scope.id,
-            realm_id=realm.id)
+            name="group-membership-mapper",
+            claim_name="groups")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 
@@ -388,44 +389,45 @@ class GroupMembershipProtocolMapper(pulumi.CustomResource):
 
         ### Example Usage (Client)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="my-realm")
-        openid_client = keycloak.openid.Client("openidClient",
-            access_type="CONFIDENTIAL",
-            client_id="test-client",
-            enabled=True,
+            realm="my-realm",
+            enabled=True)
+        openid_client = keycloak.openid.Client("openid_client",
             realm_id=realm.id,
+            client_id="test-client",
+            name="test client",
+            enabled=True,
+            access_type="CONFIDENTIAL",
             valid_redirect_uris=["http://localhost:8080/openid-callback"])
-        group_membership_mapper = keycloak.openid.GroupMembershipProtocolMapper("groupMembershipMapper",
-            claim_name="groups",
+        group_membership_mapper = keycloak.openid.GroupMembershipProtocolMapper("group_membership_mapper",
+            realm_id=realm.id,
             client_id=openid_client.id,
-            realm_id=realm.id)
+            name="group-membership-mapper",
+            claim_name="groups")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Usage (Client Scope)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="my-realm")
-        client_scope = keycloak.openid.ClientScope("clientScope", realm_id=realm.id)
-        group_membership_mapper = keycloak.openid.GroupMembershipProtocolMapper("groupMembershipMapper",
-            claim_name="groups",
+            realm="my-realm",
+            enabled=True)
+        client_scope = keycloak.openid.ClientScope("client_scope",
+            realm_id=realm.id,
+            name="test-client-scope")
+        group_membership_mapper = keycloak.openid.GroupMembershipProtocolMapper("group_membership_mapper",
+            realm_id=realm.id,
             client_scope_id=client_scope.id,
-            realm_id=realm.id)
+            name="group-membership-mapper",
+            claim_name="groups")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 

@@ -29,7 +29,8 @@ import javax.annotation.Nullable;
  * ### Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -54,40 +55,43 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
+ *             .realm("test")
  *             .enabled(true)
- *             .realm(&#34;test&#34;)
  *             .build());
  * 
- *         var ldapUserFederation = new UserFederation(&#34;ldapUserFederation&#34;, UserFederationArgs.builder()        
- *             .bindCredential(&#34;admin&#34;)
- *             .bindDn(&#34;cn=admin,dc=example,dc=org&#34;)
- *             .connectionUrl(&#34;ldap://openldap&#34;)
- *             .rdnLdapAttribute(&#34;cn&#34;)
+ *         var ldapUserFederation = new UserFederation("ldapUserFederation", UserFederationArgs.builder()
+ *             .name("openldap")
  *             .realmId(realm.id())
+ *             .usernameLdapAttribute("cn")
+ *             .rdnLdapAttribute("cn")
+ *             .uuidLdapAttribute("entryDN")
  *             .userObjectClasses(            
- *                 &#34;simpleSecurityObject&#34;,
- *                 &#34;organizationalRole&#34;)
- *             .usernameLdapAttribute(&#34;cn&#34;)
- *             .usersDn(&#34;dc=example,dc=org&#34;)
- *             .uuidLdapAttribute(&#34;entryDN&#34;)
+ *                 "simpleSecurityObject",
+ *                 "organizationalRole")
+ *             .connectionUrl("ldap://openldap")
+ *             .usersDn("dc=example,dc=org")
+ *             .bindDn("cn=admin,dc=example,dc=org")
+ *             .bindCredential("admin")
  *             .build());
  * 
- *         var ldapGroupMapper = new GroupMapper(&#34;ldapGroupMapper&#34;, GroupMapperArgs.builder()        
- *             .groupNameLdapAttribute(&#34;cn&#34;)
- *             .groupObjectClasses(&#34;groupOfNames&#34;)
- *             .ldapGroupsDn(&#34;dc=example,dc=org&#34;)
- *             .ldapUserFederationId(ldapUserFederation.id())
- *             .memberofLdapAttribute(&#34;memberOf&#34;)
- *             .membershipAttributeType(&#34;DN&#34;)
- *             .membershipLdapAttribute(&#34;member&#34;)
- *             .membershipUserLdapAttribute(&#34;cn&#34;)
+ *         var ldapGroupMapper = new GroupMapper("ldapGroupMapper", GroupMapperArgs.builder()
  *             .realmId(realm.id())
+ *             .ldapUserFederationId(ldapUserFederation.id())
+ *             .name("group-mapper")
+ *             .ldapGroupsDn("dc=example,dc=org")
+ *             .groupNameLdapAttribute("cn")
+ *             .groupObjectClasses("groupOfNames")
+ *             .membershipAttributeType("DN")
+ *             .membershipLdapAttribute("member")
+ *             .membershipUserLdapAttribute("cn")
+ *             .memberofLdapAttribute("memberOf")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Argument Reference

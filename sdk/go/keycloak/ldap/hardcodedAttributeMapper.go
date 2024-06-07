@@ -20,7 +20,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -41,7 +40,8 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			ldapUserFederation, err := ldap.NewUserFederation(ctx, "ldapUserFederation", &ldap.UserFederationArgs{
+//			ldapUserFederation, err := ldap.NewUserFederation(ctx, "ldap_user_federation", &ldap.UserFederationArgs{
+//				Name:                  pulumi.String("openldap"),
 //				RealmId:               realm.ID(),
 //				UsernameLdapAttribute: pulumi.String("cn"),
 //				RdnLdapAttribute:      pulumi.String("cn"),
@@ -59,9 +59,10 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = ldap.NewHardcodedAttributeMapper(ctx, "assignBarToFoo", &ldap.HardcodedAttributeMapperArgs{
+//			_, err = ldap.NewHardcodedAttributeMapper(ctx, "assign_bar_to_foo", &ldap.HardcodedAttributeMapperArgs{
 //				RealmId:              realm.ID(),
 //				LdapUserFederationId: ldapUserFederation.ID(),
+//				Name:                 pulumi.String("assign-foo-to-bar"),
 //				AttributeName:        pulumi.String("foo"),
 //				AttributeValue:       pulumi.String("bar"),
 //			})
@@ -73,7 +74,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

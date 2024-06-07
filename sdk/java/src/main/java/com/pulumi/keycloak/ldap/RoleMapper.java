@@ -24,7 +24,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -49,41 +50,44 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
+ *         var realm = new Realm("realm", RealmArgs.builder()
+ *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var ldapUserFederation = new UserFederation(&#34;ldapUserFederation&#34;, UserFederationArgs.builder()        
+ *         var ldapUserFederation = new UserFederation("ldapUserFederation", UserFederationArgs.builder()
+ *             .name("openldap")
  *             .realmId(realm.id())
- *             .usernameLdapAttribute(&#34;cn&#34;)
- *             .rdnLdapAttribute(&#34;cn&#34;)
- *             .uuidLdapAttribute(&#34;entryDN&#34;)
+ *             .usernameLdapAttribute("cn")
+ *             .rdnLdapAttribute("cn")
+ *             .uuidLdapAttribute("entryDN")
  *             .userObjectClasses(            
- *                 &#34;simpleSecurityObject&#34;,
- *                 &#34;organizationalRole&#34;)
- *             .connectionUrl(&#34;ldap://openldap&#34;)
- *             .usersDn(&#34;dc=example,dc=org&#34;)
- *             .bindDn(&#34;cn=admin,dc=example,dc=org&#34;)
- *             .bindCredential(&#34;admin&#34;)
+ *                 "simpleSecurityObject",
+ *                 "organizationalRole")
+ *             .connectionUrl("ldap://openldap")
+ *             .usersDn("dc=example,dc=org")
+ *             .bindDn("cn=admin,dc=example,dc=org")
+ *             .bindCredential("admin")
  *             .build());
  * 
- *         var ldapRoleMapper = new RoleMapper(&#34;ldapRoleMapper&#34;, RoleMapperArgs.builder()        
+ *         var ldapRoleMapper = new RoleMapper("ldapRoleMapper", RoleMapperArgs.builder()
  *             .realmId(realm.id())
  *             .ldapUserFederationId(ldapUserFederation.id())
- *             .ldapRolesDn(&#34;dc=example,dc=org&#34;)
- *             .roleNameLdapAttribute(&#34;cn&#34;)
- *             .roleObjectClasses(&#34;groupOfNames&#34;)
- *             .membershipAttributeType(&#34;DN&#34;)
- *             .membershipLdapAttribute(&#34;member&#34;)
- *             .membershipUserLdapAttribute(&#34;cn&#34;)
- *             .userRolesRetrieveStrategy(&#34;GET_ROLES_FROM_USER_MEMBEROF_ATTRIBUTE&#34;)
- *             .memberofLdapAttribute(&#34;memberOf&#34;)
+ *             .name("role-mapper")
+ *             .ldapRolesDn("dc=example,dc=org")
+ *             .roleNameLdapAttribute("cn")
+ *             .roleObjectClasses("groupOfNames")
+ *             .membershipAttributeType("DN")
+ *             .membershipLdapAttribute("member")
+ *             .membershipUserLdapAttribute("cn")
+ *             .userRolesRetrieveStrategy("GET_ROLES_FROM_USER_MEMBEROF_ATTRIBUTE")
+ *             .memberofLdapAttribute("memberOf")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

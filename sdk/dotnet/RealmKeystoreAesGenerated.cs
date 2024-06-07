@@ -16,7 +16,6 @@ namespace Pulumi.Keycloak
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -30,8 +29,9 @@ namespace Pulumi.Keycloak
     ///         RealmName = "my-realm",
     ///     });
     /// 
-    ///     var keystoreAesGenerated = new Keycloak.RealmKeystoreAesGenerated("keystoreAesGenerated", new()
+    ///     var keystoreAesGenerated = new Keycloak.RealmKeystoreAesGenerated("keystore_aes_generated", new()
     ///     {
+    ///         Name = "my-aes-generated-key",
     ///         RealmId = realm.Id,
     ///         Enabled = true,
     ///         Active = true,
@@ -41,7 +41,6 @@ namespace Pulumi.Keycloak
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

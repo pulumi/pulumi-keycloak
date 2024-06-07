@@ -215,33 +215,33 @@ class FullNameMapper(pulumi.CustomResource):
 
         ### Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="test")
-        ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
-            bind_credential="admin",
-            bind_dn="cn=admin,dc=example,dc=org",
-            connection_url="ldap://openldap",
-            rdn_ldap_attribute="cn",
+            realm="test",
+            enabled=True)
+        ldap_user_federation = keycloak.ldap.UserFederation("ldap_user_federation",
+            name="openldap",
             realm_id=realm.id,
+            username_ldap_attribute="cn",
+            rdn_ldap_attribute="cn",
+            uuid_ldap_attribute="entryDN",
             user_object_classes=[
                 "simpleSecurityObject",
                 "organizationalRole",
             ],
-            username_ldap_attribute="cn",
+            connection_url="ldap://openldap",
             users_dn="dc=example,dc=org",
-            uuid_ldap_attribute="entryDN")
-        ldap_full_name_mapper = keycloak.ldap.FullNameMapper("ldapFullNameMapper",
-            ldap_full_name_attribute="cn",
+            bind_dn="cn=admin,dc=example,dc=org",
+            bind_credential="admin")
+        ldap_full_name_mapper = keycloak.ldap.FullNameMapper("ldap_full_name_mapper",
+            realm_id=realm.id,
             ldap_user_federation_id=ldap_user_federation.id,
-            realm_id=realm.id)
+            name="full-name-mapper",
+            ldap_full_name_attribute="cn")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 
@@ -283,33 +283,33 @@ class FullNameMapper(pulumi.CustomResource):
 
         ### Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="test")
-        ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
-            bind_credential="admin",
-            bind_dn="cn=admin,dc=example,dc=org",
-            connection_url="ldap://openldap",
-            rdn_ldap_attribute="cn",
+            realm="test",
+            enabled=True)
+        ldap_user_federation = keycloak.ldap.UserFederation("ldap_user_federation",
+            name="openldap",
             realm_id=realm.id,
+            username_ldap_attribute="cn",
+            rdn_ldap_attribute="cn",
+            uuid_ldap_attribute="entryDN",
             user_object_classes=[
                 "simpleSecurityObject",
                 "organizationalRole",
             ],
-            username_ldap_attribute="cn",
+            connection_url="ldap://openldap",
             users_dn="dc=example,dc=org",
-            uuid_ldap_attribute="entryDN")
-        ldap_full_name_mapper = keycloak.ldap.FullNameMapper("ldapFullNameMapper",
-            ldap_full_name_attribute="cn",
+            bind_dn="cn=admin,dc=example,dc=org",
+            bind_credential="admin")
+        ldap_full_name_mapper = keycloak.ldap.FullNameMapper("ldap_full_name_mapper",
+            realm_id=realm.id,
             ldap_user_federation_id=ldap_user_federation.id,
-            realm_id=realm.id)
+            name="full-name-mapper",
+            ldap_full_name_attribute="cn")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 

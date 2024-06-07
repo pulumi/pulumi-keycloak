@@ -26,7 +26,8 @@ import javax.annotation.Nullable;
  * 
  * ### Exhaustive Groups)
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -53,21 +54,22 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
+ *         var realm = new Realm("realm", RealmArgs.builder()
+ *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var group = new Group(&#34;group&#34;, GroupArgs.builder()        
+ *         var group = new Group("group", GroupArgs.builder()
  *             .realmId(realm.id())
+ *             .name("foo")
  *             .build());
  * 
- *         var user = new User(&#34;user&#34;, UserArgs.builder()        
+ *         var user = new User("user", UserArgs.builder()
  *             .realmId(realm.id())
- *             .username(&#34;my-user&#34;)
+ *             .username("my-user")
  *             .build());
  * 
- *         var userGroups = new UserGroups(&#34;userGroups&#34;, UserGroupsArgs.builder()        
+ *         var userGroups = new UserGroups("userGroups", UserGroupsArgs.builder()
  *             .realmId(realm.id())
  *             .userId(user.id())
  *             .groupIds(group.id())
@@ -75,80 +77,9 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
- * &lt;!--End PulumiCodeChooser --&gt;
- * 
- * ### Non Exhaustive Groups)
- * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.keycloak.Realm;
- * import com.pulumi.keycloak.RealmArgs;
- * import com.pulumi.keycloak.Group;
- * import com.pulumi.keycloak.GroupArgs;
- * import com.pulumi.keycloak.User;
- * import com.pulumi.keycloak.UserArgs;
- * import com.pulumi.keycloak.UserGroups;
- * import com.pulumi.keycloak.UserGroupsArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
- *             .enabled(true)
- *             .build());
- * 
- *         var groupFoo = new Group(&#34;groupFoo&#34;, GroupArgs.builder()        
- *             .realmId(realm.id())
- *             .build());
- * 
- *         var groupBar = new Group(&#34;groupBar&#34;, GroupArgs.builder()        
- *             .realmId(realm.id())
- *             .build());
- * 
- *         var user = new User(&#34;user&#34;, UserArgs.builder()        
- *             .realmId(realm.id())
- *             .username(&#34;my-user&#34;)
- *             .build());
- * 
- *         var userGroupsAssociation1UserGroups = new UserGroups(&#34;userGroupsAssociation1UserGroups&#34;, UserGroupsArgs.builder()        
- *             .realmId(realm.id())
- *             .userId(user.id())
- *             .exhaustive(false)
- *             .groupIds(groupFoo.id())
- *             .build());
- * 
- *         var userGroupsAssociation1Index_userGroupsUserGroups = new UserGroups(&#34;userGroupsAssociation1Index/userGroupsUserGroups&#34;, UserGroupsArgs.builder()        
- *             .realmId(realm.id())
- *             .userId(user.id())
- *             .exhaustive(false)
- *             .groupIds(groupBar.id())
- *             .build());
- * 
- *     }
  * }
- * ```
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
- * 
- * ## Import
- * 
- * This resource does not support import. Instead of importing, feel free to create this resource
- * 
- * as if it did not already exist on the server.
  * 
  */
 @ResourceType(type="keycloak:index/userGroups:UserGroups")

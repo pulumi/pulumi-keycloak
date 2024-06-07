@@ -14,7 +14,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -28,14 +27,14 @@ import * as utilities from "../utilities";
  *     alias: "my-flow-alias",
  * });
  * // first execution
- * const executionOne = new keycloak.authentication.Execution("executionOne", {
+ * const executionOne = new keycloak.authentication.Execution("execution_one", {
  *     realmId: realm.id,
  *     parentFlowAlias: flow.alias,
  *     authenticator: "auth-cookie",
  *     requirement: "ALTERNATIVE",
  * });
  * // second execution
- * const executionTwo = new keycloak.authentication.Execution("executionTwo", {
+ * const executionTwo = new keycloak.authentication.Execution("execution_two", {
  *     realmId: realm.id,
  *     parentFlowAlias: flow.alias,
  *     authenticator: "identity-provider-redirector",
@@ -44,7 +43,6 @@ import * as utilities from "../utilities";
  *     dependsOn: [executionOne],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

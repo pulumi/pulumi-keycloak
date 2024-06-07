@@ -17,37 +17,35 @@ import * as utilities from "./utilities";
  *
  * ### Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {
- *     enabled: true,
  *     realm: "my-realm",
+ *     enabled: true,
  * });
  * const user = new keycloak.User("user", {
- *     email: "bob@domain.com",
- *     enabled: true,
- *     firstName: "Bob",
- *     lastName: "Bobson",
  *     realmId: realm.id,
  *     username: "bob",
- * });
- * const userWithInitialPassword = new keycloak.User("userWithInitialPassword", {
- *     email: "alice@domain.com",
  *     enabled: true,
- *     firstName: "Alice",
- *     initialPassword: {
- *         temporary: true,
- *         value: "some password",
- *     },
- *     lastName: "Aliceberg",
+ *     email: "bob@domain.com",
+ *     firstName: "Bob",
+ *     lastName: "Bobson",
+ * });
+ * const userWithInitialPassword = new keycloak.User("user_with_initial_password", {
  *     realmId: realm.id,
  *     username: "alice",
+ *     enabled: true,
+ *     email: "alice@domain.com",
+ *     firstName: "Alice",
+ *     lastName: "Aliceberg",
+ *     initialPassword: {
+ *         value: "some password",
+ *         temporary: true,
+ *     },
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Argument Reference
  *

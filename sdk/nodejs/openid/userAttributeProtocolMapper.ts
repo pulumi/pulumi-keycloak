@@ -17,51 +17,53 @@ import * as utilities from "../utilities";
  *
  * ### Example Usage (Client)
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {
- *     enabled: true,
  *     realm: "my-realm",
- * });
- * const openidClient = new keycloak.openid.Client("openidClient", {
- *     accessType: "CONFIDENTIAL",
- *     clientId: "test-client",
  *     enabled: true,
+ * });
+ * const openidClient = new keycloak.openid.Client("openid_client", {
  *     realmId: realm.id,
+ *     clientId: "test-client",
+ *     name: "test client",
+ *     enabled: true,
+ *     accessType: "CONFIDENTIAL",
  *     validRedirectUris: ["http://localhost:8080/openid-callback"],
  * });
- * const userAttributeMapper = new keycloak.openid.UserAttributeProtocolMapper("userAttributeMapper", {
- *     claimName: "bar",
- *     clientId: openidClient.id,
+ * const userAttributeMapper = new keycloak.openid.UserAttributeProtocolMapper("user_attribute_mapper", {
  *     realmId: realm.id,
+ *     clientId: openidClient.id,
+ *     name: "test-mapper",
  *     userAttribute: "foo",
+ *     claimName: "bar",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Example Usage (Client Scope)
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {
- *     enabled: true,
  *     realm: "my-realm",
+ *     enabled: true,
  * });
- * const clientScope = new keycloak.openid.ClientScope("clientScope", {realmId: realm.id});
- * const userAttributeMapper = new keycloak.openid.UserAttributeProtocolMapper("userAttributeMapper", {
- *     claimName: "bar",
- *     clientScopeId: clientScope.id,
+ * const clientScope = new keycloak.openid.ClientScope("client_scope", {
  *     realmId: realm.id,
+ *     name: "test-client-scope",
+ * });
+ * const userAttributeMapper = new keycloak.openid.UserAttributeProtocolMapper("user_attribute_mapper", {
+ *     realmId: realm.id,
+ *     clientScopeId: clientScope.id,
+ *     name: "test-mapper",
  *     userAttribute: "foo",
+ *     claimName: "bar",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Argument Reference
  *

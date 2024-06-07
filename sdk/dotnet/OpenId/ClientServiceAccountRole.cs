@@ -18,7 +18,6 @@ namespace Pulumi.Keycloak.OpenId
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -37,12 +36,14 @@ namespace Pulumi.Keycloak.OpenId
     ///     var client1 = new Keycloak.OpenId.Client("client1", new()
     ///     {
     ///         RealmId = realm.Id,
+    ///         Name = "client1",
     ///     });
     /// 
-    ///     var client1Role = new Keycloak.Role("client1Role", new()
+    ///     var client1Role = new Keycloak.Role("client1_role", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         ClientId = client1.Id,
+    ///         Name = "my-client1-role",
     ///         Description = "A role that client1 provides",
     ///     });
     /// 
@@ -50,10 +51,11 @@ namespace Pulumi.Keycloak.OpenId
     ///     var client2 = new Keycloak.OpenId.Client("client2", new()
     ///     {
     ///         RealmId = realm.Id,
+    ///         Name = "client2",
     ///         ServiceAccountsEnabled = true,
     ///     });
     /// 
-    ///     var client2ServiceAccountRole = new Keycloak.OpenId.ClientServiceAccountRole("client2ServiceAccountRole", new()
+    ///     var client2ServiceAccountRole = new Keycloak.OpenId.ClientServiceAccountRole("client2_service_account_role", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         ServiceAccountUserId = client2.ServiceAccountUserId,
@@ -63,7 +65,6 @@ namespace Pulumi.Keycloak.OpenId
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

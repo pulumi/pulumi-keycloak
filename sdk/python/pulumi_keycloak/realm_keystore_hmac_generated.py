@@ -270,13 +270,13 @@ class RealmKeystoreHmacGenerated(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm", realm="my-realm")
-        keystore_hmac_generated = keycloak.RealmKeystoreHmacGenerated("keystoreHmacGenerated",
+        keystore_hmac_generated = keycloak.RealmKeystoreHmacGenerated("keystore_hmac_generated",
+            name="my-hmac-generated-key",
             realm_id=realm.id,
             enabled=True,
             active=True,
@@ -284,7 +284,6 @@ class RealmKeystoreHmacGenerated(pulumi.CustomResource):
             algorithm="HS256",
             secret_size=64)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -321,13 +320,13 @@ class RealmKeystoreHmacGenerated(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm", realm="my-realm")
-        keystore_hmac_generated = keycloak.RealmKeystoreHmacGenerated("keystoreHmacGenerated",
+        keystore_hmac_generated = keycloak.RealmKeystoreHmacGenerated("keystore_hmac_generated",
+            name="my-hmac-generated-key",
             realm_id=realm.id,
             enabled=True,
             active=True,
@@ -335,7 +334,6 @@ class RealmKeystoreHmacGenerated(pulumi.CustomResource):
             algorithm="HS256",
             secret_size=64)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -18,7 +18,6 @@ import (
 //
 // ### Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -39,7 +38,8 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			ldapUserFederation, err := ldap.NewUserFederation(ctx, "ldapUserFederation", &ldap.UserFederationArgs{
+//			ldapUserFederation, err := ldap.NewUserFederation(ctx, "ldap_user_federation", &ldap.UserFederationArgs{
+//				Name:                  pulumi.String("openldap"),
 //				RealmId:               realm.ID(),
 //				UsernameLdapAttribute: pulumi.String("cn"),
 //				RdnLdapAttribute:      pulumi.String("cn"),
@@ -56,9 +56,10 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = ldap.NewHardcodedRoleMapper(ctx, "assignAdminRoleToAllUsers", &ldap.HardcodedRoleMapperArgs{
+//			_, err = ldap.NewHardcodedRoleMapper(ctx, "assign_admin_role_to_all_users", &ldap.HardcodedRoleMapperArgs{
 //				RealmId:              realm.ID(),
 //				LdapUserFederationId: ldapUserFederation.ID(),
+//				Name:                 pulumi.String("assign-admin-role-to-all-users"),
 //				Role:                 pulumi.String("admin"),
 //			})
 //			if err != nil {
@@ -69,7 +70,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Argument Reference
 //

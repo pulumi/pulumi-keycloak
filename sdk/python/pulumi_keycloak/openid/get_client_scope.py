@@ -106,7 +106,6 @@ def get_client_scope(name: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_keycloak as keycloak
@@ -114,12 +113,12 @@ def get_client_scope(name: Optional[str] = None,
     offline_access = keycloak.openid.get_client_scope(realm_id="my-realm",
         name="offline_access")
     # use the data source
-    audience_mapper = keycloak.openid.AudienceProtocolMapper("audienceMapper",
+    audience_mapper = keycloak.openid.AudienceProtocolMapper("audience_mapper",
         realm_id=offline_access.realm_id,
         client_scope_id=offline_access.id,
+        name="audience-mapper",
         included_custom_audience="foo")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str name: The name of the client scope.
@@ -150,7 +149,6 @@ def get_client_scope_output(name: Optional[pulumi.Input[str]] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_keycloak as keycloak
@@ -158,12 +156,12 @@ def get_client_scope_output(name: Optional[pulumi.Input[str]] = None,
     offline_access = keycloak.openid.get_client_scope(realm_id="my-realm",
         name="offline_access")
     # use the data source
-    audience_mapper = keycloak.openid.AudienceProtocolMapper("audienceMapper",
+    audience_mapper = keycloak.openid.AudienceProtocolMapper("audience_mapper",
         realm_id=offline_access.realm_id,
         client_scope_id=offline_access.id,
+        name="audience-mapper",
         included_custom_audience="foo")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str name: The name of the client scope.

@@ -17,51 +17,53 @@ import * as utilities from "../utilities";
  *
  * ### Example Usage (Client)
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {
- *     enabled: true,
  *     realm: "my-realm",
- * });
- * const openidClient = new keycloak.openid.Client("openidClient", {
- *     accessType: "CONFIDENTIAL",
- *     clientId: "test-client",
  *     enabled: true,
+ * });
+ * const openidClient = new keycloak.openid.Client("openid_client", {
  *     realmId: realm.id,
+ *     clientId: "test-client",
+ *     name: "test client",
+ *     enabled: true,
+ *     accessType: "CONFIDENTIAL",
  *     validRedirectUris: ["http://localhost:8080/openid-callback"],
  * });
- * const hardcodedClaimMapper = new keycloak.openid.HardcodedClaimProtocolMapper("hardcodedClaimMapper", {
+ * const hardcodedClaimMapper = new keycloak.openid.HardcodedClaimProtocolMapper("hardcoded_claim_mapper", {
+ *     realmId: realm.id,
+ *     clientId: openidClient.id,
+ *     name: "hardcoded-claim-mapper",
  *     claimName: "foo",
  *     claimValue: "bar",
- *     clientId: openidClient.id,
- *     realmId: realm.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Example Usage (Client Scope)
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {
- *     enabled: true,
  *     realm: "my-realm",
+ *     enabled: true,
  * });
- * const clientScope = new keycloak.openid.ClientScope("clientScope", {realmId: realm.id});
- * const hardcodedClaimMapper = new keycloak.openid.HardcodedClaimProtocolMapper("hardcodedClaimMapper", {
+ * const clientScope = new keycloak.openid.ClientScope("client_scope", {
+ *     realmId: realm.id,
+ *     name: "test-client-scope",
+ * });
+ * const hardcodedClaimMapper = new keycloak.openid.HardcodedClaimProtocolMapper("hardcoded_claim_mapper", {
+ *     realmId: realm.id,
+ *     clientScopeId: clientScope.id,
+ *     name: "hardcoded-claim-mapper",
  *     claimName: "foo",
  *     claimValue: "bar",
- *     clientScopeId: clientScope.id,
- *     realmId: realm.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Argument Reference
  *

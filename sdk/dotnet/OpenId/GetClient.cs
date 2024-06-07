@@ -18,7 +18,6 @@ namespace Pulumi.Keycloak.OpenId
         /// 
         /// ### Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -33,6 +32,7 @@ namespace Pulumi.Keycloak.OpenId
         ///         ClientId = "realm-management",
         ///     });
         /// 
+        ///     // use the data source
         ///     var admin = Keycloak.GetRole.Invoke(new()
         ///     {
         ///         RealmId = "my-realm",
@@ -42,7 +42,6 @@ namespace Pulumi.Keycloak.OpenId
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
         /// ### Argument Reference
         /// 
@@ -65,7 +64,6 @@ namespace Pulumi.Keycloak.OpenId
         /// 
         /// ### Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -80,6 +78,7 @@ namespace Pulumi.Keycloak.OpenId
         ///         ClientId = "realm-management",
         ///     });
         /// 
+        ///     // use the data source
         ///     var admin = Keycloak.GetRole.Invoke(new()
         ///     {
         ///         RealmId = "my-realm",
@@ -89,7 +88,6 @@ namespace Pulumi.Keycloak.OpenId
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
         /// ### Argument Reference
         /// 

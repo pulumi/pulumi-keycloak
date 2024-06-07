@@ -18,7 +18,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -38,10 +37,11 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = keycloak.NewRequiredAction(ctx, "requiredAction", &keycloak.RequiredActionArgs{
+//			_, err = keycloak.NewRequiredAction(ctx, "required_action", &keycloak.RequiredActionArgs{
 //				RealmId: realm.Realm,
 //				Alias:   pulumi.String("webauthn-register"),
 //				Enabled: pulumi.Bool(true),
+//				Name:    pulumi.String("Webauthn Register"),
 //			})
 //			if err != nil {
 //				return err
@@ -51,7 +51,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

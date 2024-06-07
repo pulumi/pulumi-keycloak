@@ -20,7 +20,6 @@ import (
 //
 // ### Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -33,18 +32,18 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := saml.NewIdentityProvider(ctx, "realmIdentityProvider", &saml.IdentityProviderArgs{
-//				Alias:                   pulumi.String("my-idp"),
-//				BackchannelSupported:    pulumi.Bool(true),
-//				ForceAuthn:              pulumi.Bool(true),
-//				PostBindingAuthnRequest: pulumi.Bool(true),
-//				PostBindingLogout:       pulumi.Bool(true),
-//				PostBindingResponse:     pulumi.Bool(true),
+//			_, err := saml.NewIdentityProvider(ctx, "realm_identity_provider", &saml.IdentityProviderArgs{
 //				Realm:                   pulumi.String("my-realm"),
-//				SingleLogoutServiceUrl:  pulumi.String("https://domain.com/adfs/ls/?wa=wsignout1.0"),
+//				Alias:                   pulumi.String("my-idp"),
 //				SingleSignOnServiceUrl:  pulumi.String("https://domain.com/adfs/ls/"),
+//				SingleLogoutServiceUrl:  pulumi.String("https://domain.com/adfs/ls/?wa=wsignout1.0"),
+//				BackchannelSupported:    pulumi.Bool(true),
+//				PostBindingResponse:     pulumi.Bool(true),
+//				PostBindingLogout:       pulumi.Bool(true),
+//				PostBindingAuthnRequest: pulumi.Bool(true),
 //				StoreToken:              pulumi.Bool(false),
 //				TrustEmail:              pulumi.Bool(true),
+//				ForceAuthn:              pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
@@ -54,7 +53,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Argument Reference
 //

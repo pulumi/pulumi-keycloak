@@ -20,7 +20,6 @@ namespace Pulumi.Keycloak.Ldap
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -35,8 +34,9 @@ namespace Pulumi.Keycloak.Ldap
     ///         Enabled = true,
     ///     });
     /// 
-    ///     var ldapUserFederation = new Keycloak.Ldap.UserFederation("ldapUserFederation", new()
+    ///     var ldapUserFederation = new Keycloak.Ldap.UserFederation("ldap_user_federation", new()
     ///     {
+    ///         Name = "ad",
     ///         RealmId = realm.Id,
     ///         UsernameLdapAttribute = "cn",
     ///         RdnLdapAttribute = "cn",
@@ -53,15 +53,15 @@ namespace Pulumi.Keycloak.Ldap
     ///         BindCredential = "admin",
     ///     });
     /// 
-    ///     var msadLdsUserAccountControlMapper = new Keycloak.Ldap.MsadLdsUserAccountControlMapper("msadLdsUserAccountControlMapper", new()
+    ///     var msadLdsUserAccountControlMapper = new Keycloak.Ldap.MsadLdsUserAccountControlMapper("msad_lds_user_account_control_mapper", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         LdapUserFederationId = ldapUserFederation.Id,
+    ///         Name = "msad-lds-user-account-control-mapper",
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

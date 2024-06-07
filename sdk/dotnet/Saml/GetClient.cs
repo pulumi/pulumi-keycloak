@@ -16,7 +16,6 @@ namespace Pulumi.Keycloak.Saml
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -31,6 +30,7 @@ namespace Pulumi.Keycloak.Saml
         ///         ClientId = "realm-management",
         ///     });
         /// 
+        ///     // use the data source
         ///     var admin = Keycloak.GetRole.Invoke(new()
         ///     {
         ///         RealmId = "my-realm",
@@ -40,7 +40,6 @@ namespace Pulumi.Keycloak.Saml
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetClientResult> InvokeAsync(GetClientArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetClientResult>("keycloak:saml/getClient:getClient", args ?? new GetClientArgs(), options.WithDefaults());
@@ -50,7 +49,6 @@ namespace Pulumi.Keycloak.Saml
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -65,6 +63,7 @@ namespace Pulumi.Keycloak.Saml
         ///         ClientId = "realm-management",
         ///     });
         /// 
+        ///     // use the data source
         ///     var admin = Keycloak.GetRole.Invoke(new()
         ///     {
         ///         RealmId = "my-realm",
@@ -74,7 +73,6 @@ namespace Pulumi.Keycloak.Saml
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetClientResult> Invoke(GetClientInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetClientResult>("keycloak:saml/getClient:getClient", args ?? new GetClientInvokeArgs(), options.WithDefaults());

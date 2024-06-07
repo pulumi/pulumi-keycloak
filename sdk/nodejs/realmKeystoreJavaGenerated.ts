@@ -11,13 +11,13 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {realm: "my-realm"});
- * const javaKeystore = new keycloak.RealmKeystoreJavaGenerated("javaKeystore", {
+ * const javaKeystore = new keycloak.RealmKeystoreJavaGenerated("java_keystore", {
+ *     name: "my-java-keystore",
  *     realmId: realm.id,
  *     enabled: true,
  *     active: true,
@@ -29,7 +29,6 @@ import * as utilities from "./utilities";
  *     algorithm: "RS256",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

@@ -24,7 +24,8 @@ import javax.annotation.Nullable;
  * ### Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -45,16 +46,18 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var testMapper = new AttributeImporterIdentityProviderMapper(&#34;testMapper&#34;, AttributeImporterIdentityProviderMapperArgs.builder()        
- *             .attributeName(&#34;http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname&#34;)
- *             .identityProviderAlias(&#34;idp_alias&#34;)
- *             .realm(&#34;my-realm&#34;)
- *             .userAttribute(&#34;lastName&#34;)
+ *         var testMapper = new AttributeImporterIdentityProviderMapper("testMapper", AttributeImporterIdentityProviderMapperArgs.builder()
+ *             .realm("my-realm")
+ *             .name("my-mapper")
+ *             .identityProviderAlias("idp_alias")
+ *             .attributeName("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname")
+ *             .userAttribute("lastName")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Argument Reference

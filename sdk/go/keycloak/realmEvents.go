@@ -18,7 +18,6 @@ import (
 //
 // ### Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -37,19 +36,19 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = keycloak.NewRealmEvents(ctx, "realmEvents", &keycloak.RealmEventsArgs{
-//				AdminEventsDetailsEnabled: pulumi.Bool(true),
+//			_, err = keycloak.NewRealmEvents(ctx, "realm_events", &keycloak.RealmEventsArgs{
+//				RealmId:                   realm.ID(),
+//				EventsEnabled:             pulumi.Bool(true),
+//				EventsExpiration:          pulumi.Int(3600),
 //				AdminEventsEnabled:        pulumi.Bool(true),
+//				AdminEventsDetailsEnabled: pulumi.Bool(true),
 //				EnabledEventTypes: pulumi.StringArray{
 //					pulumi.String("LOGIN"),
 //					pulumi.String("LOGOUT"),
 //				},
-//				EventsEnabled:    pulumi.Bool(true),
-//				EventsExpiration: pulumi.Int(3600),
 //				EventsListeners: pulumi.StringArray{
 //					pulumi.String("jboss-logging"),
 //				},
-//				RealmId: realm.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -59,7 +58,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Argument Reference
 //

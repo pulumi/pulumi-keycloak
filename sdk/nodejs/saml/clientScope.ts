@@ -11,7 +11,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -20,13 +19,13 @@ import * as utilities from "../utilities";
  *     realm: "my-realm",
  *     enabled: true,
  * });
- * const samlClientScope = new keycloak.saml.ClientScope("samlClientScope", {
+ * const samlClientScope = new keycloak.saml.ClientScope("saml_client_scope", {
  *     realmId: realm.id,
+ *     name: "groups",
  *     description: "This scope will map a user's group memberships to SAML assertion",
  *     guiOrder: 1,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

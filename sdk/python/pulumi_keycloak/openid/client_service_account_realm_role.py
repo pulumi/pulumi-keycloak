@@ -138,7 +138,6 @@ class ClientServiceAccountRealmRole(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -146,16 +145,18 @@ class ClientServiceAccountRealmRole(pulumi.CustomResource):
         realm = keycloak.Realm("realm",
             realm="my-realm",
             enabled=True)
-        realm_role = keycloak.Role("realmRole", realm_id=realm.id)
+        realm_role = keycloak.Role("realm_role",
+            realm_id=realm.id,
+            name="my-realm-role")
         client = keycloak.openid.Client("client",
             realm_id=realm.id,
+            name="client",
             service_accounts_enabled=True)
-        client_service_account_role = keycloak.openid.ClientServiceAccountRealmRole("clientServiceAccountRole",
+        client_service_account_role = keycloak.openid.ClientServiceAccountRealmRole("client_service_account_role",
             realm_id=realm.id,
             service_account_user_id=client.service_account_user_id,
             role=realm_role.name)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -190,7 +191,6 @@ class ClientServiceAccountRealmRole(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -198,16 +198,18 @@ class ClientServiceAccountRealmRole(pulumi.CustomResource):
         realm = keycloak.Realm("realm",
             realm="my-realm",
             enabled=True)
-        realm_role = keycloak.Role("realmRole", realm_id=realm.id)
+        realm_role = keycloak.Role("realm_role",
+            realm_id=realm.id,
+            name="my-realm-role")
         client = keycloak.openid.Client("client",
             realm_id=realm.id,
+            name="client",
             service_accounts_enabled=True)
-        client_service_account_role = keycloak.openid.ClientServiceAccountRealmRole("clientServiceAccountRole",
+        client_service_account_role = keycloak.openid.ClientServiceAccountRealmRole("client_service_account_role",
             realm_id=realm.id,
             service_account_user_id=client.service_account_user_id,
             role=realm_role.name)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

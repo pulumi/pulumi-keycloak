@@ -18,7 +18,6 @@ import (
 //
 // In this example, we'll create a new OpenID client, then enabled permissions for the client. A client without permissions disabled cannot be assigned by a client policy. We'll use the `openid.ClientPolicy` resource to create a new client policy, which could be applied to many clients, for a realm and a resource_server_id.
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -39,8 +38,9 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			openidClient, err := openid.NewClient(ctx, "openidClient", &openid.ClientArgs{
+//			openidClient, err := openid.NewClient(ctx, "openid_client", &openid.ClientArgs{
 //				ClientId:               pulumi.String("openid_client"),
+//				Name:                   pulumi.String("openid_client"),
 //				RealmId:                realm.ID(),
 //				AccessType:             pulumi.String("CONFIDENTIAL"),
 //				ServiceAccountsEnabled: pulumi.Bool(true),
@@ -48,7 +48,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = openid.NewClientPermissions(ctx, "myPermission", &openid.ClientPermissionsArgs{
+//			_, err = openid.NewClientPermissions(ctx, "my_permission", &openid.ClientPermissionsArgs{
 //				RealmId:  realm.ID(),
 //				ClientId: openidClient.ID(),
 //			})
@@ -62,9 +62,10 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = openid.NewClientPolicy(ctx, "tokenExchange", &openid.ClientPolicyArgs{
+//			_, err = openid.NewClientPolicy(ctx, "token_exchange", &openid.ClientPolicyArgs{
 //				ResourceServerId: pulumi.String(realmManagement.Id),
 //				RealmId:          realm.ID(),
+//				Name:             pulumi.String("my-policy"),
 //				Logic:            pulumi.String("POSITIVE"),
 //				DecisionStrategy: pulumi.String("UNANIMOUS"),
 //				Clients: pulumi.StringArray{
@@ -79,7 +80,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 type ClientPolicy struct {
 	pulumi.CustomResourceState
 

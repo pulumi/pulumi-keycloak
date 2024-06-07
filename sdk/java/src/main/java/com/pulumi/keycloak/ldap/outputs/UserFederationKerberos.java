@@ -24,7 +24,7 @@ public final class UserFederationKerberos {
      */
     private String keyTab;
     /**
-     * @return The kerberos server principal, e.g. &#39;HTTP/host.foo.com@FOO.LOCAL&#39;.
+     * @return The kerberos server principal, e.g. &#39;HTTP/host.foo.com{@literal @}FOO.LOCAL&#39;.
      * 
      */
     private String serverPrincipal;
@@ -50,7 +50,7 @@ public final class UserFederationKerberos {
         return this.keyTab;
     }
     /**
-     * @return The kerberos server principal, e.g. &#39;HTTP/host.foo.com@FOO.LOCAL&#39;.
+     * @return The kerberos server principal, e.g. &#39;HTTP/host.foo.com{@literal @}FOO.LOCAL&#39;.
      * 
      */
     public String serverPrincipal() {

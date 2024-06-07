@@ -27,7 +27,8 @@ import javax.annotation.Nullable;
  * ### Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -52,35 +53,38 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
+ *             .realm("test")
  *             .enabled(true)
- *             .realm(&#34;test&#34;)
  *             .build());
  * 
- *         var ldapUserFederation = new UserFederation(&#34;ldapUserFederation&#34;, UserFederationArgs.builder()        
- *             .bindCredential(&#34;admin&#34;)
- *             .bindDn(&#34;cn=admin,dc=example,dc=org&#34;)
- *             .connectionUrl(&#34;ldap://openldap&#34;)
- *             .rdnLdapAttribute(&#34;cn&#34;)
+ *         var ldapUserFederation = new UserFederation("ldapUserFederation", UserFederationArgs.builder()
+ *             .name("openldap")
  *             .realmId(realm.id())
+ *             .usernameLdapAttribute("cn")
+ *             .rdnLdapAttribute("cn")
+ *             .uuidLdapAttribute("entryDN")
  *             .userObjectClasses(            
- *                 &#34;simpleSecurityObject&#34;,
- *                 &#34;organizationalRole&#34;)
- *             .usernameLdapAttribute(&#34;cn&#34;)
- *             .usersDn(&#34;dc=example,dc=org&#34;)
- *             .uuidLdapAttribute(&#34;entryDN&#34;)
+ *                 "simpleSecurityObject",
+ *                 "organizationalRole")
+ *             .connectionUrl("ldap://openldap")
+ *             .usersDn("dc=example,dc=org")
+ *             .bindDn("cn=admin,dc=example,dc=org")
+ *             .bindCredential("admin")
  *             .build());
  * 
- *         var ldapUserAttributeMapper = new UserAttributeMapper(&#34;ldapUserAttributeMapper&#34;, UserAttributeMapperArgs.builder()        
- *             .ldapAttribute(&#34;bar&#34;)
- *             .ldapUserFederationId(ldapUserFederation.id())
+ *         var ldapUserAttributeMapper = new UserAttributeMapper("ldapUserAttributeMapper", UserAttributeMapperArgs.builder()
  *             .realmId(realm.id())
- *             .userModelAttribute(&#34;foo&#34;)
+ *             .ldapUserFederationId(ldapUserFederation.id())
+ *             .name("user-attribute-mapper")
+ *             .userModelAttribute("foo")
+ *             .ldapAttribute("bar")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Argument Reference

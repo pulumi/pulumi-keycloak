@@ -21,7 +21,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -50,7 +49,7 @@ import (
 //				return err
 //			}
 //			// first execution
-//			executionOne, err := authentication.NewExecution(ctx, "executionOne", &authentication.ExecutionArgs{
+//			executionOne, err := authentication.NewExecution(ctx, "execution_one", &authentication.ExecutionArgs{
 //				RealmId:         realm.ID(),
 //				ParentFlowAlias: flow.Alias,
 //				Authenticator:   pulumi.String("auth-cookie"),
@@ -60,7 +59,7 @@ import (
 //				return err
 //			}
 //			// second execution
-//			_, err = authentication.NewExecution(ctx, "executionTwo", &authentication.ExecutionArgs{
+//			_, err = authentication.NewExecution(ctx, "execution_two", &authentication.ExecutionArgs{
 //				RealmId:         realm.ID(),
 //				ParentFlowAlias: flow.Alias,
 //				Authenticator:   pulumi.String("identity-provider-redirector"),
@@ -76,7 +75,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

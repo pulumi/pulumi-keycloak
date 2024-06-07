@@ -336,7 +336,6 @@ class ScriptProtocolMapper(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -344,17 +343,18 @@ class ScriptProtocolMapper(pulumi.CustomResource):
         realm = keycloak.Realm("realm",
             realm="my-realm",
             enabled=True)
-        saml_client = keycloak.saml.Client("samlClient",
+        saml_client = keycloak.saml.Client("saml_client",
             realm_id=realm.id,
-            client_id="saml-client")
-        saml_script_mapper = keycloak.saml.ScriptProtocolMapper("samlScriptMapper",
+            client_id="saml-client",
+            name="saml-client")
+        saml_script_mapper = keycloak.saml.ScriptProtocolMapper("saml_script_mapper",
             realm_id=realm.id,
             client_id=saml_client.id,
+            name="script-mapper",
             script="exports = 'foo';",
             saml_attribute_name="displayName",
             saml_attribute_name_format="Unspecified")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -404,7 +404,6 @@ class ScriptProtocolMapper(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -412,17 +411,18 @@ class ScriptProtocolMapper(pulumi.CustomResource):
         realm = keycloak.Realm("realm",
             realm="my-realm",
             enabled=True)
-        saml_client = keycloak.saml.Client("samlClient",
+        saml_client = keycloak.saml.Client("saml_client",
             realm_id=realm.id,
-            client_id="saml-client")
-        saml_script_mapper = keycloak.saml.ScriptProtocolMapper("samlScriptMapper",
+            client_id="saml-client",
+            name="saml-client")
+        saml_script_mapper = keycloak.saml.ScriptProtocolMapper("saml_script_mapper",
             realm_id=realm.id,
             client_id=saml_client.id,
+            name="script-mapper",
             script="exports = 'foo';",
             saml_attribute_name="displayName",
             saml_attribute_name_format="Unspecified")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

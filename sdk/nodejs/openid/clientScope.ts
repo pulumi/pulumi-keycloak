@@ -16,21 +16,20 @@ import * as utilities from "../utilities";
  *
  * ### Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {
- *     enabled: true,
  *     realm: "my-realm",
+ *     enabled: true,
  * });
- * const openidClientScope = new keycloak.openid.ClientScope("openidClientScope", {
- *     description: "When requested, this scope will map a user's group memberships to a claim",
+ * const openidClientScope = new keycloak.openid.ClientScope("openid_client_scope", {
  *     realmId: realm.id,
+ *     name: "groups",
+ *     description: "When requested, this scope will map a user's group memberships to a claim",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Argument Reference
  *

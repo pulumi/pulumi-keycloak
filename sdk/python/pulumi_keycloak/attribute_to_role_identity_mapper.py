@@ -367,7 +367,6 @@ class AttributeToRoleIdentityMapper(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -375,7 +374,7 @@ class AttributeToRoleIdentityMapper(pulumi.CustomResource):
         realm = keycloak.Realm("realm",
             realm="my-realm",
             enabled=True)
-        oidc_identity_provider = keycloak.oidc.IdentityProvider("oidcIdentityProvider",
+        oidc = keycloak.oidc.IdentityProvider("oidc",
             realm=realm.id,
             alias="oidc",
             authorization_url="https://example.com/auth",
@@ -383,12 +382,14 @@ class AttributeToRoleIdentityMapper(pulumi.CustomResource):
             client_id="example_id",
             client_secret="example_token",
             default_scopes="openid random profile")
-        realm_role = keycloak.Role("realmRole",
+        realm_role = keycloak.Role("realm_role",
             realm_id=realm.id,
+            name="my-realm-role",
             description="My Realm Role")
-        oidc_attribute_to_role_identity_mapper = keycloak.AttributeToRoleIdentityMapper("oidcAttributeToRoleIdentityMapper",
+        oidc_attribute_to_role_identity_mapper = keycloak.AttributeToRoleIdentityMapper("oidc",
             realm=realm.id,
-            identity_provider_alias=oidc_identity_provider.alias,
+            name="role-attribute",
+            identity_provider_alias=oidc.alias,
             role="my-realm-role",
             claim_name="my-claim",
             claim_value="my-value",
@@ -396,7 +397,6 @@ class AttributeToRoleIdentityMapper(pulumi.CustomResource):
                 "syncMode": "INHERIT",
             })
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -438,7 +438,6 @@ class AttributeToRoleIdentityMapper(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -446,7 +445,7 @@ class AttributeToRoleIdentityMapper(pulumi.CustomResource):
         realm = keycloak.Realm("realm",
             realm="my-realm",
             enabled=True)
-        oidc_identity_provider = keycloak.oidc.IdentityProvider("oidcIdentityProvider",
+        oidc = keycloak.oidc.IdentityProvider("oidc",
             realm=realm.id,
             alias="oidc",
             authorization_url="https://example.com/auth",
@@ -454,12 +453,14 @@ class AttributeToRoleIdentityMapper(pulumi.CustomResource):
             client_id="example_id",
             client_secret="example_token",
             default_scopes="openid random profile")
-        realm_role = keycloak.Role("realmRole",
+        realm_role = keycloak.Role("realm_role",
             realm_id=realm.id,
+            name="my-realm-role",
             description="My Realm Role")
-        oidc_attribute_to_role_identity_mapper = keycloak.AttributeToRoleIdentityMapper("oidcAttributeToRoleIdentityMapper",
+        oidc_attribute_to_role_identity_mapper = keycloak.AttributeToRoleIdentityMapper("oidc",
             realm=realm.id,
-            identity_provider_alias=oidc_identity_provider.alias,
+            name="role-attribute",
+            identity_provider_alias=oidc.alias,
             role="my-realm-role",
             claim_name="my-claim",
             claim_value="my-value",
@@ -467,7 +468,6 @@ class AttributeToRoleIdentityMapper(pulumi.CustomResource):
                 "syncMode": "INHERIT",
             })
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

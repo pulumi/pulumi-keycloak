@@ -11,19 +11,18 @@ import * as utilities from "./utilities";
  *
  * ### Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
  *
- * const testMapper = new keycloak.AttributeImporterIdentityProviderMapper("testMapper", {
- *     attributeName: "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname",
- *     identityProviderAlias: "idp_alias",
+ * const testMapper = new keycloak.AttributeImporterIdentityProviderMapper("test_mapper", {
  *     realm: "my-realm",
+ *     name: "my-mapper",
+ *     identityProviderAlias: "idp_alias",
+ *     attributeName: "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname",
  *     userAttribute: "lastName",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Argument Reference
  *

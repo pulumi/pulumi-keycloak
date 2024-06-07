@@ -24,48 +24,6 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.keycloak.Realm;
- * import com.pulumi.keycloak.RealmArgs;
- * import com.pulumi.keycloak.RealmKeystoreRsa;
- * import com.pulumi.keycloak.RealmKeystoreRsaArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
- *             .build());
- * 
- *         var keystoreRsa = new RealmKeystoreRsa(&#34;keystoreRsa&#34;, RealmKeystoreRsaArgs.builder()        
- *             .realmId(realm.id())
- *             .enabled(true)
- *             .active(true)
- *             .privateKey(&#34;&lt;your rsa private key&gt;&#34;)
- *             .certificate(&#34;&lt;your certificate&gt;&#34;)
- *             .priority(100)
- *             .algorithm(&#34;RS256&#34;)
- *             .keystoreSize(2048)
- *             .providerId(&#34;rsa&#34;)
- *             .build());
- * 
- *     }
- * }
- * ```
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

@@ -176,7 +176,6 @@ class UserRoles(pulumi.CustomResource):
 
         ### Exhaustive Roles)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -184,17 +183,20 @@ class UserRoles(pulumi.CustomResource):
         realm = keycloak.Realm("realm",
             realm="my-realm",
             enabled=True)
-        realm_role = keycloak.Role("realmRole",
+        realm_role = keycloak.Role("realm_role",
             realm_id=realm.id,
+            name="my-realm-role",
             description="My Realm Role")
         client = keycloak.openid.Client("client",
             realm_id=realm.id,
             client_id="client",
+            name="client",
             enabled=True,
             access_type="BEARER-ONLY")
-        client_role = keycloak.Role("clientRole",
+        client_role = keycloak.Role("client_role",
             realm_id=realm.id,
-            client_id=keycloak_client["client"]["id"],
+            client_id=client_keycloak_client["id"],
+            name="my-client-role",
             description="My Client Role")
         user = keycloak.User("user",
             realm_id=realm.id,
@@ -203,7 +205,7 @@ class UserRoles(pulumi.CustomResource):
             email="bob@domain.com",
             first_name="Bob",
             last_name="Bobson")
-        user_roles = keycloak.UserRoles("userRoles",
+        user_roles = keycloak.UserRoles("user_roles",
             realm_id=realm.id,
             user_id=user.id,
             role_ids=[
@@ -211,7 +213,6 @@ class UserRoles(pulumi.CustomResource):
                 client_role.id,
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -254,7 +255,6 @@ class UserRoles(pulumi.CustomResource):
 
         ### Exhaustive Roles)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -262,17 +262,20 @@ class UserRoles(pulumi.CustomResource):
         realm = keycloak.Realm("realm",
             realm="my-realm",
             enabled=True)
-        realm_role = keycloak.Role("realmRole",
+        realm_role = keycloak.Role("realm_role",
             realm_id=realm.id,
+            name="my-realm-role",
             description="My Realm Role")
         client = keycloak.openid.Client("client",
             realm_id=realm.id,
             client_id="client",
+            name="client",
             enabled=True,
             access_type="BEARER-ONLY")
-        client_role = keycloak.Role("clientRole",
+        client_role = keycloak.Role("client_role",
             realm_id=realm.id,
-            client_id=keycloak_client["client"]["id"],
+            client_id=client_keycloak_client["id"],
+            name="my-client-role",
             description="My Client Role")
         user = keycloak.User("user",
             realm_id=realm.id,
@@ -281,7 +284,7 @@ class UserRoles(pulumi.CustomResource):
             email="bob@domain.com",
             first_name="Bob",
             last_name="Bobson")
-        user_roles = keycloak.UserRoles("userRoles",
+        user_roles = keycloak.UserRoles("user_roles",
             realm_id=realm.id,
             user_id=user.id,
             role_ids=[
@@ -289,7 +292,6 @@ class UserRoles(pulumi.CustomResource):
                 client_role.id,
             ])
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

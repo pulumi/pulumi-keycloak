@@ -16,7 +16,6 @@ import * as utilities from "../utilities";
  *
  * ### Client)
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -25,26 +24,26 @@ import * as utilities from "../utilities";
  *     realm: "my-realm",
  *     enabled: true,
  * });
- * const openidClient = new keycloak.openid.Client("openidClient", {
+ * const openidClient = new keycloak.openid.Client("openid_client", {
  *     realmId: realm.id,
  *     clientId: "client",
+ *     name: "client",
  *     enabled: true,
  *     accessType: "CONFIDENTIAL",
  *     validRedirectUris: ["http://localhost:8080/openid-callback"],
  * });
- * const userSessionNoteMapper = new keycloak.openid.UserSessionNoteProtocolMapper("userSessionNoteMapper", {
+ * const userSessionNoteMapper = new keycloak.openid.UserSessionNoteProtocolMapper("user_session_note_mapper", {
  *     realmId: realm.id,
  *     clientId: openidClient.id,
+ *     name: "user-session-note-mapper",
  *     claimName: "foo",
  *     claimValueType: "String",
  *     sessionNote: "bar",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Client Scope)
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -53,16 +52,19 @@ import * as utilities from "../utilities";
  *     realm: "my-realm",
  *     enabled: true,
  * });
- * const clientScope = new keycloak.openid.ClientScope("clientScope", {realmId: realm.id});
- * const userSessionNoteMapper = new keycloak.openid.UserSessionNoteProtocolMapper("userSessionNoteMapper", {
+ * const clientScope = new keycloak.openid.ClientScope("client_scope", {
+ *     realmId: realm.id,
+ *     name: "client-scope",
+ * });
+ * const userSessionNoteMapper = new keycloak.openid.UserSessionNoteProtocolMapper("user_session_note_mapper", {
  *     realmId: realm.id,
  *     clientScopeId: clientScope.id,
+ *     name: "user-session-note-mapper",
  *     claimName: "foo",
  *     claimValueType: "String",
  *     sessionNote: "bar",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

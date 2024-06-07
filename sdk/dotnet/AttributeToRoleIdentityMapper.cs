@@ -16,7 +16,6 @@ namespace Pulumi.Keycloak
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -31,7 +30,7 @@ namespace Pulumi.Keycloak
     ///         Enabled = true,
     ///     });
     /// 
-    ///     var oidcIdentityProvider = new Keycloak.Oidc.IdentityProvider("oidcIdentityProvider", new()
+    ///     var oidc = new Keycloak.Oidc.IdentityProvider("oidc", new()
     ///     {
     ///         Realm = realm.Id,
     ///         Alias = "oidc",
@@ -42,16 +41,18 @@ namespace Pulumi.Keycloak
     ///         DefaultScopes = "openid random profile",
     ///     });
     /// 
-    ///     var realmRole = new Keycloak.Role("realmRole", new()
+    ///     var realmRole = new Keycloak.Role("realm_role", new()
     ///     {
     ///         RealmId = realm.Id,
+    ///         Name = "my-realm-role",
     ///         Description = "My Realm Role",
     ///     });
     /// 
-    ///     var oidcAttributeToRoleIdentityMapper = new Keycloak.AttributeToRoleIdentityMapper("oidcAttributeToRoleIdentityMapper", new()
+    ///     var oidcAttributeToRoleIdentityMapper = new Keycloak.AttributeToRoleIdentityMapper("oidc", new()
     ///     {
     ///         Realm = realm.Id,
-    ///         IdentityProviderAlias = oidcIdentityProvider.Alias,
+    ///         Name = "role-attribute",
+    ///         IdentityProviderAlias = oidc.Alias,
     ///         Role = "my-realm-role",
     ///         ClaimName = "my-claim",
     ///         ClaimValue = "my-value",
@@ -63,7 +64,6 @@ namespace Pulumi.Keycloak
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

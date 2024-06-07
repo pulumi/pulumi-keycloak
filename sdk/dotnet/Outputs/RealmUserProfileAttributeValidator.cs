@@ -13,13 +13,7 @@ namespace Pulumi.Keycloak.Outputs
     [OutputType]
     public sealed class RealmUserProfileAttributeValidator
     {
-        /// <summary>
-        /// A map defining the configuration of the validator. Values can be a String or a json object.
-        /// </summary>
         public readonly ImmutableDictionary<string, string>? Config;
-        /// <summary>
-        /// The name of the attribute.
-        /// </summary>
         public readonly string Name;
 
         [OutputConstructor]

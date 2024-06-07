@@ -23,7 +23,6 @@ namespace Pulumi.Keycloak
     /// 
     /// ### Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -34,19 +33,23 @@ namespace Pulumi.Keycloak
     /// {
     ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         Enabled = true,
     ///         RealmName = "my-realm",
+    ///         Enabled = true,
     ///     });
     /// 
-    ///     var samlClient = new Keycloak.Saml.Client("samlClient", new()
+    ///     var samlClient = new Keycloak.Saml.Client("saml_client", new()
     ///     {
-    ///         ClientId = "test-client",
     ///         RealmId = realm.Id,
+    ///         ClientId = "test-client",
     ///     });
     /// 
-    ///     var samlHardcodeAttributeMapper = new Keycloak.GenericClientProtocolMapper("samlHardcodeAttributeMapper", new()
+    ///     var samlHardcodeAttributeMapper = new Keycloak.GenericClientProtocolMapper("saml_hardcode_attribute_mapper", new()
     ///     {
+    ///         RealmId = realm.Id,
     ///         ClientId = samlClient.Id,
+    ///         Name = "tes-mapper",
+    ///         Protocol = "saml",
+    ///         ProtocolMapper = "saml-hardcode-attribute-mapper",
     ///         Config = 
     ///         {
     ///             { "attribute.name", "name" },
@@ -54,14 +57,10 @@ namespace Pulumi.Keycloak
     ///             { "attribute.value", "value" },
     ///             { "friendly.name", "display name" },
     ///         },
-    ///         Protocol = "saml",
-    ///         ProtocolMapper = "saml-hardcode-attribute-mapper",
-    ///         RealmId = realm.Id,
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### Argument Reference
     /// 

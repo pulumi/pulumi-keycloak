@@ -28,7 +28,8 @@ import javax.annotation.Nullable;
  * ### Realm Role To Client)
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -55,24 +56,26 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
+ *         var realm = new Realm("realm", RealmArgs.builder()
+ *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var client = new Client(&#34;client&#34;, ClientArgs.builder()        
+ *         var client = new Client("client", ClientArgs.builder()
  *             .realmId(realm.id())
- *             .clientId(&#34;client&#34;)
+ *             .clientId("client")
+ *             .name("client")
  *             .enabled(true)
- *             .accessType(&#34;BEARER-ONLY&#34;)
+ *             .accessType("BEARER-ONLY")
  *             .build());
  * 
- *         var realmRole = new Role(&#34;realmRole&#34;, RoleArgs.builder()        
+ *         var realmRole = new Role("realmRole", RoleArgs.builder()
  *             .realmId(realm.id())
- *             .description(&#34;My Realm Role&#34;)
+ *             .name("my-realm-role")
+ *             .description("My Realm Role")
  *             .build());
  * 
- *         var clientRoleMapper = new GenericClientRoleMapper(&#34;clientRoleMapper&#34;, GenericClientRoleMapperArgs.builder()        
+ *         var clientRoleMapper = new GenericClientRoleMapper("clientRoleMapper", GenericClientRoleMapperArgs.builder()
  *             .realmId(realm.id())
  *             .clientId(client.id())
  *             .roleId(realmRole.id())
@@ -80,13 +83,15 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Client Role To Client)
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -113,39 +118,43 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
+ *         var realm = new Realm("realm", RealmArgs.builder()
+ *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var clientA = new Client(&#34;clientA&#34;, ClientArgs.builder()        
+ *         var clientA = new Client("clientA", ClientArgs.builder()
  *             .realmId(realm.id())
- *             .clientId(&#34;client-a&#34;)
+ *             .clientId("client-a")
+ *             .name("client-a")
  *             .enabled(true)
- *             .accessType(&#34;BEARER-ONLY&#34;)
+ *             .accessType("BEARER-ONLY")
  *             .fullScopeAllowed(false)
  *             .build());
  * 
- *         var clientRoleA = new Role(&#34;clientRoleA&#34;, RoleArgs.builder()        
+ *         var clientRoleA = new Role("clientRoleA", RoleArgs.builder()
  *             .realmId(realm.id())
  *             .clientId(clientA.id())
- *             .description(&#34;My Client Role&#34;)
+ *             .name("my-client-role")
+ *             .description("My Client Role")
  *             .build());
  * 
- *         var clientB = new Client(&#34;clientB&#34;, ClientArgs.builder()        
+ *         var clientB = new Client("clientB", ClientArgs.builder()
  *             .realmId(realm.id())
- *             .clientId(&#34;client-b&#34;)
+ *             .clientId("client-b")
+ *             .name("client-b")
  *             .enabled(true)
- *             .accessType(&#34;BEARER-ONLY&#34;)
+ *             .accessType("BEARER-ONLY")
  *             .build());
  * 
- *         var clientRoleB = new Role(&#34;clientRoleB&#34;, RoleArgs.builder()        
+ *         var clientRoleB = new Role("clientRoleB", RoleArgs.builder()
  *             .realmId(realm.id())
  *             .clientId(clientB.id())
- *             .description(&#34;My Client Role&#34;)
+ *             .name("my-client-role")
+ *             .description("My Client Role")
  *             .build());
  * 
- *         var clientBRoleMapper = new GenericClientRoleMapper(&#34;clientBRoleMapper&#34;, GenericClientRoleMapperArgs.builder()        
+ *         var clientBRoleMapper = new GenericClientRoleMapper("clientBRoleMapper", GenericClientRoleMapperArgs.builder()
  *             .realmId(realm.id())
  *             .clientId(clientB.id())
  *             .roleId(clientRoleA.id())
@@ -153,13 +162,15 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Realm Role To Client Scope)
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -186,21 +197,23 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
+ *         var realm = new Realm("realm", RealmArgs.builder()
+ *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var clientScope = new ClientScope(&#34;clientScope&#34;, ClientScopeArgs.builder()        
+ *         var clientScope = new ClientScope("clientScope", ClientScopeArgs.builder()
  *             .realmId(realm.id())
+ *             .name("my-client-scope")
  *             .build());
  * 
- *         var realmRole = new Role(&#34;realmRole&#34;, RoleArgs.builder()        
+ *         var realmRole = new Role("realmRole", RoleArgs.builder()
  *             .realmId(realm.id())
- *             .description(&#34;My Realm Role&#34;)
+ *             .name("my-realm-role")
+ *             .description("My Realm Role")
  *             .build());
  * 
- *         var clientRoleMapper = new GenericClientRoleMapper(&#34;clientRoleMapper&#34;, GenericClientRoleMapperArgs.builder()        
+ *         var clientRoleMapper = new GenericClientRoleMapper("clientRoleMapper", GenericClientRoleMapperArgs.builder()
  *             .realmId(realm.id())
  *             .clientScopeId(clientScope.id())
  *             .roleId(realmRole.id())
@@ -208,13 +221,15 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Client Role To Client Scope)
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -243,29 +258,32 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
+ *         var realm = new Realm("realm", RealmArgs.builder()
+ *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var client = new Client(&#34;client&#34;, ClientArgs.builder()        
+ *         var client = new Client("client", ClientArgs.builder()
  *             .realmId(realm.id())
- *             .clientId(&#34;client&#34;)
+ *             .clientId("client")
+ *             .name("client")
  *             .enabled(true)
- *             .accessType(&#34;BEARER-ONLY&#34;)
+ *             .accessType("BEARER-ONLY")
  *             .build());
  * 
- *         var clientRole = new Role(&#34;clientRole&#34;, RoleArgs.builder()        
+ *         var clientRole = new Role("clientRole", RoleArgs.builder()
  *             .realmId(realm.id())
  *             .clientId(client.id())
- *             .description(&#34;My Client Role&#34;)
+ *             .name("my-client-role")
+ *             .description("My Client Role")
  *             .build());
  * 
- *         var clientScope = new ClientScope(&#34;clientScope&#34;, ClientScopeArgs.builder()        
+ *         var clientScope = new ClientScope("clientScope", ClientScopeArgs.builder()
  *             .realmId(realm.id())
+ *             .name("my-client-scope")
  *             .build());
  * 
- *         var clientBRoleMapper = new GenericClientRoleMapper(&#34;clientBRoleMapper&#34;, GenericClientRoleMapperArgs.builder()        
+ *         var clientBRoleMapper = new GenericClientRoleMapper("clientBRoleMapper", GenericClientRoleMapperArgs.builder()
  *             .realmId(realm.id())
  *             .clientScopeId(clientScope.id())
  *             .roleId(clientRole.id())
@@ -273,7 +291,8 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

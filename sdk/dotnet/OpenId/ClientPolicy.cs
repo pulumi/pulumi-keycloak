@@ -16,7 +16,6 @@ namespace Pulumi.Keycloak.OpenId
     /// 
     /// In this example, we'll create a new OpenID client, then enabled permissions for the client. A client without permissions disabled cannot be assigned by a client policy. We'll use the `keycloak.openid.ClientPolicy` resource to create a new client policy, which could be applied to many clients, for a realm and a resource_server_id.
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -31,15 +30,16 @@ namespace Pulumi.Keycloak.OpenId
     ///         Enabled = true,
     ///     });
     /// 
-    ///     var openidClient = new Keycloak.OpenId.Client("openidClient", new()
+    ///     var openidClient = new Keycloak.OpenId.Client("openid_client", new()
     ///     {
     ///         ClientId = "openid_client",
+    ///         Name = "openid_client",
     ///         RealmId = realm.Id,
     ///         AccessType = "CONFIDENTIAL",
     ///         ServiceAccountsEnabled = true,
     ///     });
     /// 
-    ///     var myPermission = new Keycloak.OpenId.ClientPermissions("myPermission", new()
+    ///     var myPermission = new Keycloak.OpenId.ClientPermissions("my_permission", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         ClientId = openidClient.Id,
@@ -51,10 +51,11 @@ namespace Pulumi.Keycloak.OpenId
     ///         ClientId = "realm-management",
     ///     });
     /// 
-    ///     var tokenExchange = new Keycloak.OpenId.ClientPolicy("tokenExchange", new()
+    ///     var tokenExchange = new Keycloak.OpenId.ClientPolicy("token_exchange", new()
     ///     {
     ///         ResourceServerId = realmManagement.Apply(getClientResult =&gt; getClientResult.Id),
     ///         RealmId = realm.Id,
+    ///         Name = "my-policy",
     ///         Logic = "POSITIVE",
     ///         DecisionStrategy = "UNANIMOUS",
     ///         Clients = new[]
@@ -65,7 +66,6 @@ namespace Pulumi.Keycloak.OpenId
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [KeycloakResourceType("keycloak:openid/clientPolicy:ClientPolicy")]
     public partial class ClientPolicy : global::Pulumi.CustomResource

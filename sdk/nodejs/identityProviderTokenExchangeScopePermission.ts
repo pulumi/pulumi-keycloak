@@ -7,16 +7,15 @@ import * as utilities from "./utilities";
 /**
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
  *
- * const tokenExchangeRealm = new keycloak.Realm("tokenExchangeRealm", {
+ * const tokenExchangeRealm = new keycloak.Realm("token_exchange_realm", {
  *     realm: "token-exchange_destination_realm",
  *     enabled: true,
  * });
- * const tokenExchangeMyOidcIdp = new keycloak.oidc.IdentityProvider("tokenExchangeMyOidcIdp", {
+ * const tokenExchangeMyOidcIdp = new keycloak.oidc.IdentityProvider("token_exchange_my_oidc_idp", {
  *     realm: tokenExchangeRealm.id,
  *     alias: "myIdp",
  *     authorizationUrl: "http://localhost:8080/auth/realms/someRealm/protocol/openid-connect/auth",
@@ -25,8 +24,9 @@ import * as utilities from "./utilities";
  *     clientSecret: "secret",
  *     defaultScopes: "openid",
  * });
- * const token_exchangeWebappClient = new keycloak.openid.Client("token-exchangeWebappClient", {
+ * const token_exchangeWebappClient = new keycloak.openid.Client("token-exchange_webapp_client", {
  *     realmId: tokenExchangeRealm.id,
+ *     name: "webapp_client",
  *     clientId: "webapp_client",
  *     clientSecret: "secret",
  *     description: "a webapp client on the destination realm",
@@ -35,14 +35,13 @@ import * as utilities from "./utilities";
  *     validRedirectUris: ["http://localhost:8080/*"],
  * });
  * //relevant part
- * const oidcIdpPermission = new keycloak.IdentityProviderTokenExchangeScopePermission("oidcIdpPermission", {
+ * const oidcIdpPermission = new keycloak.IdentityProviderTokenExchangeScopePermission("oidc_idp_permission", {
  *     realmId: tokenExchangeRealm.id,
  *     providerAlias: tokenExchangeMyOidcIdp.alias,
  *     policyType: "client",
  *     clients: [token_exchangeWebappClient.id],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

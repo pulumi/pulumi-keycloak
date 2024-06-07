@@ -125,24 +125,24 @@ class GroupMemberships(pulumi.CustomResource):
 
         ### Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="my-realm")
-        group = keycloak.Group("group", realm_id=realm.id)
+            realm="my-realm",
+            enabled=True)
+        group = keycloak.Group("group",
+            realm_id=realm.id,
+            name="my-group")
         user = keycloak.User("user",
             realm_id=realm.id,
             username="my-user")
-        group_members = keycloak.GroupMemberships("groupMembers",
+        group_members = keycloak.GroupMemberships("group_members",
+            realm_id=realm.id,
             group_id=group.id,
-            members=[user.username],
-            realm_id=realm.id)
+            members=[user.username])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 
@@ -185,24 +185,24 @@ class GroupMemberships(pulumi.CustomResource):
 
         ### Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="my-realm")
-        group = keycloak.Group("group", realm_id=realm.id)
+            realm="my-realm",
+            enabled=True)
+        group = keycloak.Group("group",
+            realm_id=realm.id,
+            name="my-group")
         user = keycloak.User("user",
             realm_id=realm.id,
             username="my-user")
-        group_members = keycloak.GroupMemberships("groupMembers",
+        group_members = keycloak.GroupMemberships("group_members",
+            realm_id=realm.id,
             group_id=group.id,
-            members=[user.username],
-            realm_id=realm.id)
+            members=[user.username])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 

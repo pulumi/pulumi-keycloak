@@ -370,34 +370,34 @@ class UserAttributeMapper(pulumi.CustomResource):
 
         ### Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="test")
-        ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
-            bind_credential="admin",
-            bind_dn="cn=admin,dc=example,dc=org",
-            connection_url="ldap://openldap",
-            rdn_ldap_attribute="cn",
+            realm="test",
+            enabled=True)
+        ldap_user_federation = keycloak.ldap.UserFederation("ldap_user_federation",
+            name="openldap",
             realm_id=realm.id,
+            username_ldap_attribute="cn",
+            rdn_ldap_attribute="cn",
+            uuid_ldap_attribute="entryDN",
             user_object_classes=[
                 "simpleSecurityObject",
                 "organizationalRole",
             ],
-            username_ldap_attribute="cn",
+            connection_url="ldap://openldap",
             users_dn="dc=example,dc=org",
-            uuid_ldap_attribute="entryDN")
-        ldap_user_attribute_mapper = keycloak.ldap.UserAttributeMapper("ldapUserAttributeMapper",
-            ldap_attribute="bar",
-            ldap_user_federation_id=ldap_user_federation.id,
+            bind_dn="cn=admin,dc=example,dc=org",
+            bind_credential="admin")
+        ldap_user_attribute_mapper = keycloak.ldap.UserAttributeMapper("ldap_user_attribute_mapper",
             realm_id=realm.id,
-            user_model_attribute="foo")
+            ldap_user_federation_id=ldap_user_federation.id,
+            name="user-attribute-mapper",
+            user_model_attribute="foo",
+            ldap_attribute="bar")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 
@@ -448,34 +448,34 @@ class UserAttributeMapper(pulumi.CustomResource):
 
         ### Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="test")
-        ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
-            bind_credential="admin",
-            bind_dn="cn=admin,dc=example,dc=org",
-            connection_url="ldap://openldap",
-            rdn_ldap_attribute="cn",
+            realm="test",
+            enabled=True)
+        ldap_user_federation = keycloak.ldap.UserFederation("ldap_user_federation",
+            name="openldap",
             realm_id=realm.id,
+            username_ldap_attribute="cn",
+            rdn_ldap_attribute="cn",
+            uuid_ldap_attribute="entryDN",
             user_object_classes=[
                 "simpleSecurityObject",
                 "organizationalRole",
             ],
-            username_ldap_attribute="cn",
+            connection_url="ldap://openldap",
             users_dn="dc=example,dc=org",
-            uuid_ldap_attribute="entryDN")
-        ldap_user_attribute_mapper = keycloak.ldap.UserAttributeMapper("ldapUserAttributeMapper",
-            ldap_attribute="bar",
-            ldap_user_federation_id=ldap_user_federation.id,
+            bind_dn="cn=admin,dc=example,dc=org",
+            bind_credential="admin")
+        ldap_user_attribute_mapper = keycloak.ldap.UserAttributeMapper("ldap_user_attribute_mapper",
             realm_id=realm.id,
-            user_model_attribute="foo")
+            ldap_user_federation_id=ldap_user_federation.id,
+            name="user-attribute-mapper",
+            user_model_attribute="foo",
+            ldap_attribute="bar")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 

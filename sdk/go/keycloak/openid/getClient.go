@@ -17,7 +17,6 @@ import (
 //
 // ### Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -38,6 +37,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// use the data source
 //			_, err = keycloak.LookupRole(ctx, &keycloak.LookupRoleArgs{
 //				RealmId:  "my-realm",
 //				ClientId: pulumi.StringRef(realmManagement.Id),
@@ -51,7 +51,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Argument Reference
 //

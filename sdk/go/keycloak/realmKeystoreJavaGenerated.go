@@ -18,7 +18,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -37,7 +36,8 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = keycloak.NewRealmKeystoreJavaGenerated(ctx, "javaKeystore", &keycloak.RealmKeystoreJavaGeneratedArgs{
+//			_, err = keycloak.NewRealmKeystoreJavaGenerated(ctx, "java_keystore", &keycloak.RealmKeystoreJavaGeneratedArgs{
+//				Name:             pulumi.String("my-java-keystore"),
 //				RealmId:          realm.ID(),
 //				Enabled:          pulumi.Bool(true),
 //				Active:           pulumi.Bool(true),
@@ -56,7 +56,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

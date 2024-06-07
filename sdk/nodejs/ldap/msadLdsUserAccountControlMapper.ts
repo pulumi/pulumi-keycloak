@@ -15,7 +15,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -24,7 +23,8 @@ import * as utilities from "../utilities";
  *     realm: "my-realm",
  *     enabled: true,
  * });
- * const ldapUserFederation = new keycloak.ldap.UserFederation("ldapUserFederation", {
+ * const ldapUserFederation = new keycloak.ldap.UserFederation("ldap_user_federation", {
+ *     name: "ad",
  *     realmId: realm.id,
  *     usernameLdapAttribute: "cn",
  *     rdnLdapAttribute: "cn",
@@ -39,12 +39,12 @@ import * as utilities from "../utilities";
  *     bindDn: "cn=admin,dc=example,dc=org",
  *     bindCredential: "admin",
  * });
- * const msadLdsUserAccountControlMapper = new keycloak.ldap.MsadLdsUserAccountControlMapper("msadLdsUserAccountControlMapper", {
+ * const msadLdsUserAccountControlMapper = new keycloak.ldap.MsadLdsUserAccountControlMapper("msad_lds_user_account_control_mapper", {
  *     realmId: realm.id,
  *     ldapUserFederationId: ldapUserFederation.id,
+ *     name: "msad-lds-user-account-control-mapper",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

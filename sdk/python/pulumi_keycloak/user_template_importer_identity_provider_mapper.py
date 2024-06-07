@@ -207,7 +207,6 @@ class UserTemplateImporterIdentityProviderMapper(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -223,15 +222,15 @@ class UserTemplateImporterIdentityProviderMapper(pulumi.CustomResource):
             client_id="example_id",
             client_secret="example_token",
             default_scopes="openid random profile")
-        username_importer = keycloak.UserTemplateImporterIdentityProviderMapper("usernameImporter",
+        username_importer = keycloak.UserTemplateImporterIdentityProviderMapper("username_importer",
             realm=realm.id,
+            name="username-template-importer",
             identity_provider_alias=oidc.alias,
             template="${ALIAS}.${CLAIM.email}",
             extra_config={
                 "syncMode": "INHERIT",
             })
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -272,7 +271,6 @@ class UserTemplateImporterIdentityProviderMapper(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -288,15 +286,15 @@ class UserTemplateImporterIdentityProviderMapper(pulumi.CustomResource):
             client_id="example_id",
             client_secret="example_token",
             default_scopes="openid random profile")
-        username_importer = keycloak.UserTemplateImporterIdentityProviderMapper("usernameImporter",
+        username_importer = keycloak.UserTemplateImporterIdentityProviderMapper("username_importer",
             realm=realm.id,
+            name="username-template-importer",
             identity_provider_alias=oidc.alias,
             template="${ALIAS}.${CLAIM.email}",
             extra_config={
                 "syncMode": "INHERIT",
             })
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

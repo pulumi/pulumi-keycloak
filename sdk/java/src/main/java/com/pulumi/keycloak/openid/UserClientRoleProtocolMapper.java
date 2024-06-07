@@ -28,7 +28,8 @@ import javax.annotation.Nullable;
  * ### Client)
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -53,34 +54,38 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
+ *         var realm = new Realm("realm", RealmArgs.builder()
+ *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var openidClient = new Client(&#34;openidClient&#34;, ClientArgs.builder()        
+ *         var openidClient = new Client("openidClient", ClientArgs.builder()
  *             .realmId(realm.id())
- *             .clientId(&#34;client&#34;)
+ *             .clientId("client")
+ *             .name("client")
  *             .enabled(true)
- *             .accessType(&#34;CONFIDENTIAL&#34;)
- *             .validRedirectUris(&#34;http://localhost:8080/openid-callback&#34;)
+ *             .accessType("CONFIDENTIAL")
+ *             .validRedirectUris("http://localhost:8080/openid-callback")
  *             .build());
  * 
- *         var userClientRoleMapper = new UserClientRoleProtocolMapper(&#34;userClientRoleMapper&#34;, UserClientRoleProtocolMapperArgs.builder()        
+ *         var userClientRoleMapper = new UserClientRoleProtocolMapper("userClientRoleMapper", UserClientRoleProtocolMapperArgs.builder()
  *             .realmId(realm.id())
  *             .clientId(openidClient.id())
- *             .claimName(&#34;foo&#34;)
+ *             .name("user-client-role-mapper")
+ *             .claimName("foo")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Client Scope)
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -105,24 +110,27 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
+ *         var realm = new Realm("realm", RealmArgs.builder()
+ *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var clientScope = new ClientScope(&#34;clientScope&#34;, ClientScopeArgs.builder()        
+ *         var clientScope = new ClientScope("clientScope", ClientScopeArgs.builder()
  *             .realmId(realm.id())
+ *             .name("client-scope")
  *             .build());
  * 
- *         var userClientRoleMapper = new UserClientRoleProtocolMapper(&#34;userClientRoleMapper&#34;, UserClientRoleProtocolMapperArgs.builder()        
+ *         var userClientRoleMapper = new UserClientRoleProtocolMapper("userClientRoleMapper", UserClientRoleProtocolMapperArgs.builder()
  *             .realmId(realm.id())
  *             .clientScopeId(clientScope.id())
- *             .claimName(&#34;foo&#34;)
+ *             .name("user-client-role-mapper")
+ *             .claimName("foo")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

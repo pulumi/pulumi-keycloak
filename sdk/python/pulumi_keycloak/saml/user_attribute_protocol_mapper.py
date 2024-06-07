@@ -242,25 +242,25 @@ class UserAttributeProtocolMapper(pulumi.CustomResource):
 
         ### Example Usage (Client)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="my-realm")
-        saml_client = keycloak.saml.Client("samlClient",
+            realm="my-realm",
+            enabled=True)
+        saml_client = keycloak.saml.Client("saml_client",
+            realm_id=test["id"],
             client_id="test-saml-client",
-            realm_id=keycloak_realm["test"]["id"])
-        saml_user_attribute_mapper = keycloak.saml.UserAttributeProtocolMapper("samlUserAttributeMapper",
+            name="test-saml-client")
+        saml_user_attribute_mapper = keycloak.saml.UserAttributeProtocolMapper("saml_user_attribute_mapper",
+            realm_id=test["id"],
             client_id=saml_client.id,
-            realm_id=keycloak_realm["test"]["id"],
+            name="displayname-user-attribute-mapper",
+            user_attribute="displayName",
             saml_attribute_name="displayName",
-            saml_attribute_name_format="Unspecified",
-            user_attribute="displayName")
+            saml_attribute_name_format="Unspecified")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 
@@ -305,25 +305,25 @@ class UserAttributeProtocolMapper(pulumi.CustomResource):
 
         ### Example Usage (Client)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="my-realm")
-        saml_client = keycloak.saml.Client("samlClient",
+            realm="my-realm",
+            enabled=True)
+        saml_client = keycloak.saml.Client("saml_client",
+            realm_id=test["id"],
             client_id="test-saml-client",
-            realm_id=keycloak_realm["test"]["id"])
-        saml_user_attribute_mapper = keycloak.saml.UserAttributeProtocolMapper("samlUserAttributeMapper",
+            name="test-saml-client")
+        saml_user_attribute_mapper = keycloak.saml.UserAttributeProtocolMapper("saml_user_attribute_mapper",
+            realm_id=test["id"],
             client_id=saml_client.id,
-            realm_id=keycloak_realm["test"]["id"],
+            name="displayname-user-attribute-mapper",
+            user_attribute="displayName",
             saml_attribute_name="displayName",
-            saml_attribute_name_format="Unspecified",
-            user_attribute="displayName")
+            saml_attribute_name_format="Unspecified")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 

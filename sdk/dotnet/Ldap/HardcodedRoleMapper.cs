@@ -16,7 +16,6 @@ namespace Pulumi.Keycloak.Ldap
     /// 
     /// ### Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -31,8 +30,9 @@ namespace Pulumi.Keycloak.Ldap
     ///         Enabled = true,
     ///     });
     /// 
-    ///     var ldapUserFederation = new Keycloak.Ldap.UserFederation("ldapUserFederation", new()
+    ///     var ldapUserFederation = new Keycloak.Ldap.UserFederation("ldap_user_federation", new()
     ///     {
+    ///         Name = "openldap",
     ///         RealmId = realm.Id,
     ///         UsernameLdapAttribute = "cn",
     ///         RdnLdapAttribute = "cn",
@@ -48,16 +48,16 @@ namespace Pulumi.Keycloak.Ldap
     ///         BindCredential = "admin",
     ///     });
     /// 
-    ///     var assignAdminRoleToAllUsers = new Keycloak.Ldap.HardcodedRoleMapper("assignAdminRoleToAllUsers", new()
+    ///     var assignAdminRoleToAllUsers = new Keycloak.Ldap.HardcodedRoleMapper("assign_admin_role_to_all_users", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         LdapUserFederationId = ldapUserFederation.Id,
+    ///         Name = "assign-admin-role-to-all-users",
     ///         Role = "admin",
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### Argument Reference
     /// 

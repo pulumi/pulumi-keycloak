@@ -791,15 +791,7 @@ class RealmUserProfileAttribute(dict):
                  required_for_scopes: Optional[Sequence[str]] = None,
                  validators: Optional[Sequence['outputs.RealmUserProfileAttributeValidator']] = None):
         """
-        :param str name: The name of the attribute.
-        :param Mapping[str, str] annotations: A map of annotations for the attribute. Values can be a String or a json object.
-        :param str display_name: The display name of the attribute.
-        :param Sequence[str] enabled_when_scopes: A list of scopes. The attribute will only be enabled when these scopes are requested by clients.
         :param str group: A list of groups.
-        :param 'RealmUserProfileAttributePermissionsArgs' permissions: The permissions configuration information.
-        :param Sequence[str] required_for_roles: A list of roles for which the attribute will be required.
-        :param Sequence[str] required_for_scopes: A list of scopes for which the attribute will be required.
-        :param Sequence['RealmUserProfileAttributeValidatorArgs'] validators: A list of validators for the attribute.
         """
         pulumi.set(__self__, "name", name)
         if annotations is not None:
@@ -822,33 +814,21 @@ class RealmUserProfileAttribute(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
-        """
-        The name of the attribute.
-        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def annotations(self) -> Optional[Mapping[str, str]]:
-        """
-        A map of annotations for the attribute. Values can be a String or a json object.
-        """
         return pulumi.get(self, "annotations")
 
     @property
     @pulumi.getter(name="displayName")
     def display_name(self) -> Optional[str]:
-        """
-        The display name of the attribute.
-        """
         return pulumi.get(self, "display_name")
 
     @property
     @pulumi.getter(name="enabledWhenScopes")
     def enabled_when_scopes(self) -> Optional[Sequence[str]]:
-        """
-        A list of scopes. The attribute will only be enabled when these scopes are requested by clients.
-        """
         return pulumi.get(self, "enabled_when_scopes")
 
     @property
@@ -862,33 +842,21 @@ class RealmUserProfileAttribute(dict):
     @property
     @pulumi.getter
     def permissions(self) -> Optional['outputs.RealmUserProfileAttributePermissions']:
-        """
-        The permissions configuration information.
-        """
         return pulumi.get(self, "permissions")
 
     @property
     @pulumi.getter(name="requiredForRoles")
     def required_for_roles(self) -> Optional[Sequence[str]]:
-        """
-        A list of roles for which the attribute will be required.
-        """
         return pulumi.get(self, "required_for_roles")
 
     @property
     @pulumi.getter(name="requiredForScopes")
     def required_for_scopes(self) -> Optional[Sequence[str]]:
-        """
-        A list of scopes for which the attribute will be required.
-        """
         return pulumi.get(self, "required_for_scopes")
 
     @property
     @pulumi.getter
     def validators(self) -> Optional[Sequence['outputs.RealmUserProfileAttributeValidator']]:
-        """
-        A list of validators for the attribute.
-        """
         return pulumi.get(self, "validators")
 
 
@@ -897,27 +865,17 @@ class RealmUserProfileAttributePermissions(dict):
     def __init__(__self__, *,
                  edits: Sequence[str],
                  views: Sequence[str]):
-        """
-        :param Sequence[str] edits: A list of profiles that will be able to edit the attribute. One of `admin`, `user`.
-        :param Sequence[str] views: A list of profiles that will be able to view the attribute. One of `admin`, `user`.
-        """
         pulumi.set(__self__, "edits", edits)
         pulumi.set(__self__, "views", views)
 
     @property
     @pulumi.getter
     def edits(self) -> Sequence[str]:
-        """
-        A list of profiles that will be able to edit the attribute. One of `admin`, `user`.
-        """
         return pulumi.get(self, "edits")
 
     @property
     @pulumi.getter
     def views(self) -> Sequence[str]:
-        """
-        A list of profiles that will be able to view the attribute. One of `admin`, `user`.
-        """
         return pulumi.get(self, "views")
 
 
@@ -926,10 +884,6 @@ class RealmUserProfileAttributeValidator(dict):
     def __init__(__self__, *,
                  name: str,
                  config: Optional[Mapping[str, str]] = None):
-        """
-        :param str name: The name of the attribute.
-        :param Mapping[str, str] config: A map defining the configuration of the validator. Values can be a String or a json object.
-        """
         pulumi.set(__self__, "name", name)
         if config is not None:
             pulumi.set(__self__, "config", config)
@@ -937,17 +891,11 @@ class RealmUserProfileAttributeValidator(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
-        """
-        The name of the attribute.
-        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def config(self) -> Optional[Mapping[str, str]]:
-        """
-        A map defining the configuration of the validator. Values can be a String or a json object.
-        """
         return pulumi.get(self, "config")
 
 
@@ -977,12 +925,6 @@ class RealmUserProfileGroup(dict):
                  annotations: Optional[Mapping[str, str]] = None,
                  display_description: Optional[str] = None,
                  display_header: Optional[str] = None):
-        """
-        :param str name: The name of the attribute.
-        :param Mapping[str, str] annotations: A map of annotations for the attribute. Values can be a String or a json object.
-        :param str display_description: The display description of the group.
-        :param str display_header: The display header of the group.
-        """
         pulumi.set(__self__, "name", name)
         if annotations is not None:
             pulumi.set(__self__, "annotations", annotations)
@@ -994,33 +936,21 @@ class RealmUserProfileGroup(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
-        """
-        The name of the attribute.
-        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def annotations(self) -> Optional[Mapping[str, str]]:
-        """
-        A map of annotations for the attribute. Values can be a String or a json object.
-        """
         return pulumi.get(self, "annotations")
 
     @property
     @pulumi.getter(name="displayDescription")
     def display_description(self) -> Optional[str]:
-        """
-        The display description of the group.
-        """
         return pulumi.get(self, "display_description")
 
     @property
     @pulumi.getter(name="displayHeader")
     def display_header(self) -> Optional[str]:
-        """
-        The display header of the group.
-        """
         return pulumi.get(self, "display_header")
 
 

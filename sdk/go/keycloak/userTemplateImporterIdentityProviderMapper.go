@@ -22,7 +22,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -55,8 +54,9 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = keycloak.NewUserTemplateImporterIdentityProviderMapper(ctx, "usernameImporter", &keycloak.UserTemplateImporterIdentityProviderMapperArgs{
+//			_, err = keycloak.NewUserTemplateImporterIdentityProviderMapper(ctx, "username_importer", &keycloak.UserTemplateImporterIdentityProviderMapperArgs{
 //				Realm:                 realm.ID(),
+//				Name:                  pulumi.String("username-template-importer"),
 //				IdentityProviderAlias: oidc.Alias,
 //				Template:              pulumi.String("${ALIAS}.${CLAIM.email}"),
 //				ExtraConfig: pulumi.Map{
@@ -71,7 +71,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

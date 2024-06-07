@@ -19,7 +19,6 @@ import (
 // permission for this client called "Default Permission". We'll use the `openid.getClientAuthorizationPolicy` data
 // source to fetch information about this permission, so we can use it to create a new resource-based authorization permission.
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -40,8 +39,9 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			clientWithAuthz, err := openid.NewClient(ctx, "clientWithAuthz", &openid.ClientArgs{
+//			clientWithAuthz, err := openid.NewClient(ctx, "client_with_authz", &openid.ClientArgs{
 //				ClientId:               pulumi.String("client-with-authz"),
+//				Name:                   pulumi.String("client-with-authz"),
 //				RealmId:                realm.ID(),
 //				AccessType:             pulumi.String("CONFIDENTIAL"),
 //				ServiceAccountsEnabled: pulumi.Bool(true),
@@ -59,6 +59,7 @@ import (
 //			}, nil)
 //			resource, err := openid.NewClientAuthorizationResource(ctx, "resource", &openid.ClientAuthorizationResourceArgs{
 //				ResourceServerId: clientWithAuthz.ResourceServerId,
+//				Name:             pulumi.String("authorization-resource"),
 //				RealmId:          realm.ID(),
 //				Uris: pulumi.StringArray{
 //					pulumi.String("/endpoint/*"),
@@ -73,6 +74,7 @@ import (
 //			_, err = openid.NewClientAuthorizationPermission(ctx, "permission", &openid.ClientAuthorizationPermissionArgs{
 //				ResourceServerId: clientWithAuthz.ResourceServerId,
 //				RealmId:          realm.ID(),
+//				Name:             pulumi.String("authorization-permission"),
 //				Policies: pulumi.StringArray{
 //					defaultPermission.ApplyT(func(defaultPermission openid.GetClientAuthorizationPolicyResult) (*string, error) {
 //						return &defaultPermission.Id, nil
@@ -90,7 +92,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func GetClientAuthorizationPolicy(ctx *pulumi.Context, args *GetClientAuthorizationPolicyArgs, opts ...pulumi.InvokeOption) (*GetClientAuthorizationPolicyResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetClientAuthorizationPolicyResult

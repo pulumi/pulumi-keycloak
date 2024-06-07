@@ -22,7 +22,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -43,7 +42,8 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = ldap.NewUserFederation(ctx, "ldapUserFederation", &ldap.UserFederationArgs{
+//			_, err = ldap.NewUserFederation(ctx, "ldap_user_federation", &ldap.UserFederationArgs{
+//				Name:                  pulumi.String("openldap"),
 //				RealmId:               realm.ID(),
 //				UsernameLdapAttribute: pulumi.String("cn"),
 //				RdnLdapAttribute:      pulumi.String("cn"),
@@ -60,9 +60,10 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = ldap.NewCustomMapper(ctx, "customMapper", &ldap.CustomMapperArgs{
-//				RealmId:              pulumi.Any(keycloak_ldap_user_federation.Openldap.Realm_id),
-//				LdapUserFederationId: pulumi.Any(keycloak_ldap_user_federation.Openldap.Id),
+//			_, err = ldap.NewCustomMapper(ctx, "custom_mapper", &ldap.CustomMapperArgs{
+//				Name:                 pulumi.String("custom-mapper"),
+//				RealmId:              pulumi.Any(openldap.RealmId),
+//				LdapUserFederationId: pulumi.Any(openldap.Id),
 //				ProviderId:           pulumi.String("custom-provider-registered-in-keycloak"),
 //				ProviderType:         pulumi.String("com.example.custom.ldap.mappers.CustomMapper"),
 //				Config: pulumi.Map{
@@ -78,7 +79,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

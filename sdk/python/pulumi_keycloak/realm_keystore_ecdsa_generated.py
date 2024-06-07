@@ -237,20 +237,19 @@ class RealmKeystoreEcdsaGenerated(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm", realm="my-realm")
-        keystore_ecdsa_generated = keycloak.RealmKeystoreEcdsaGenerated("keystoreEcdsaGenerated",
+        keystore_ecdsa_generated = keycloak.RealmKeystoreEcdsaGenerated("keystore_ecdsa_generated",
+            name="my-ecdsa-generated-key",
             realm_id=realm.id,
             enabled=True,
             active=True,
             priority=100,
             elliptic_curve_key="P-256")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -286,20 +285,19 @@ class RealmKeystoreEcdsaGenerated(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm", realm="my-realm")
-        keystore_ecdsa_generated = keycloak.RealmKeystoreEcdsaGenerated("keystoreEcdsaGenerated",
+        keystore_ecdsa_generated = keycloak.RealmKeystoreEcdsaGenerated("keystore_ecdsa_generated",
+            name="my-ecdsa-generated-key",
             realm_id=realm.id,
             enabled=True,
             active=True,
             priority=100,
             elliptic_curve_key="P-256")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

@@ -27,7 +27,6 @@ import (
 //
 // ### Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -41,32 +40,35 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-//				Enabled: pulumi.Bool(true),
 //				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			parentGroup, err := keycloak.NewGroup(ctx, "parentGroup", &keycloak.GroupArgs{
+//			parentGroup, err := keycloak.NewGroup(ctx, "parent_group", &keycloak.GroupArgs{
 //				RealmId: realm.ID(),
+//				Name:    pulumi.String("parent-group"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = keycloak.NewGroup(ctx, "childGroup", &keycloak.GroupArgs{
-//				ParentId: parentGroup.ID(),
+//			_, err = keycloak.NewGroup(ctx, "child_group", &keycloak.GroupArgs{
 //				RealmId:  realm.ID(),
+//				ParentId: parentGroup.ID(),
+//				Name:     pulumi.String("child-group"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = keycloak.NewGroup(ctx, "childGroupWithOptionalAttributes", &keycloak.GroupArgs{
+//			_, err = keycloak.NewGroup(ctx, "child_group_with_optional_attributes", &keycloak.GroupArgs{
+//				RealmId:  realm.ID(),
+//				ParentId: parentGroup.ID(),
+//				Name:     pulumi.String("child-group-with-optional-attributes"),
 //				Attributes: pulumi.Map{
 //					"key1": pulumi.Any("value1"),
 //					"key2": pulumi.Any("value2"),
 //				},
-//				ParentId: parentGroup.ID(),
-//				RealmId:  realm.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -76,7 +78,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Argument Reference
 //

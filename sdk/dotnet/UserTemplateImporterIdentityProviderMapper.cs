@@ -20,7 +20,6 @@ namespace Pulumi.Keycloak
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -46,9 +45,10 @@ namespace Pulumi.Keycloak
     ///         DefaultScopes = "openid random profile",
     ///     });
     /// 
-    ///     var usernameImporter = new Keycloak.UserTemplateImporterIdentityProviderMapper("usernameImporter", new()
+    ///     var usernameImporter = new Keycloak.UserTemplateImporterIdentityProviderMapper("username_importer", new()
     ///     {
     ///         Realm = realm.Id,
+    ///         Name = "username-template-importer",
     ///         IdentityProviderAlias = oidc.Alias,
     ///         Template = "${ALIAS}.${CLAIM.email}",
     ///         ExtraConfig = 
@@ -59,7 +59,6 @@ namespace Pulumi.Keycloak
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

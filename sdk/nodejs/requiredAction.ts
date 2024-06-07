@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -20,13 +19,13 @@ import * as utilities from "./utilities";
  *     realm: "my-realm",
  *     enabled: true,
  * });
- * const requiredAction = new keycloak.RequiredAction("requiredAction", {
+ * const requiredAction = new keycloak.RequiredAction("required_action", {
  *     realmId: realm.realm,
  *     alias: "webauthn-register",
  *     enabled: true,
+ *     name: "Webauthn Register",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

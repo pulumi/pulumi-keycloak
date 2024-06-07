@@ -16,7 +16,6 @@ namespace Pulumi.Keycloak
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -31,16 +30,16 @@ namespace Pulumi.Keycloak
     ///         Enabled = true,
     ///     });
     /// 
-    ///     var requiredAction = new Keycloak.RequiredAction("requiredAction", new()
+    ///     var requiredAction = new Keycloak.RequiredAction("required_action", new()
     ///     {
     ///         RealmId = realm.RealmName,
     ///         Alias = "webauthn-register",
     ///         Enabled = true,
+    ///         Name = "Webauthn Register",
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

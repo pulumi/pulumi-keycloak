@@ -272,7 +272,6 @@ class GenericProtocolMapper(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -280,12 +279,13 @@ class GenericProtocolMapper(pulumi.CustomResource):
         realm = keycloak.Realm("realm",
             realm="my-realm",
             enabled=True)
-        saml_client = keycloak.saml.Client("samlClient",
+        saml_client = keycloak.saml.Client("saml_client",
             realm_id=realm.id,
             client_id="test-client")
-        saml_hardcode_attribute_mapper = keycloak.GenericProtocolMapper("samlHardcodeAttributeMapper",
+        saml_hardcode_attribute_mapper = keycloak.GenericProtocolMapper("saml_hardcode_attribute_mapper",
             realm_id=realm.id,
             client_id=saml_client.id,
+            name="test-mapper",
             protocol="saml",
             protocol_mapper="saml-hardcode-attribute-mapper",
             config={
@@ -295,7 +295,6 @@ class GenericProtocolMapper(pulumi.CustomResource):
                 "friendly.name": "display name",
             })
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -337,7 +336,6 @@ class GenericProtocolMapper(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -345,12 +343,13 @@ class GenericProtocolMapper(pulumi.CustomResource):
         realm = keycloak.Realm("realm",
             realm="my-realm",
             enabled=True)
-        saml_client = keycloak.saml.Client("samlClient",
+        saml_client = keycloak.saml.Client("saml_client",
             realm_id=realm.id,
             client_id="test-client")
-        saml_hardcode_attribute_mapper = keycloak.GenericProtocolMapper("samlHardcodeAttributeMapper",
+        saml_hardcode_attribute_mapper = keycloak.GenericProtocolMapper("saml_hardcode_attribute_mapper",
             realm_id=realm.id,
             client_id=saml_client.id,
+            name="test-mapper",
             protocol="saml",
             protocol_mapper="saml-hardcode-attribute-mapper",
             config={
@@ -360,7 +359,6 @@ class GenericProtocolMapper(pulumi.CustomResource):
                 "friendly.name": "display name",
             })
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

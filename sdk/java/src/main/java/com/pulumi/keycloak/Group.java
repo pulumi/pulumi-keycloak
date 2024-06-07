@@ -33,7 +33,8 @@ import javax.annotation.Nullable;
  * ### Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -56,32 +57,36 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
+ *             .realm("my-realm")
  *             .enabled(true)
- *             .realm(&#34;my-realm&#34;)
  *             .build());
  * 
- *         var parentGroup = new Group(&#34;parentGroup&#34;, GroupArgs.builder()        
+ *         var parentGroup = new Group("parentGroup", GroupArgs.builder()
  *             .realmId(realm.id())
+ *             .name("parent-group")
  *             .build());
  * 
- *         var childGroup = new Group(&#34;childGroup&#34;, GroupArgs.builder()        
+ *         var childGroup = new Group("childGroup", GroupArgs.builder()
+ *             .realmId(realm.id())
  *             .parentId(parentGroup.id())
- *             .realmId(realm.id())
+ *             .name("child-group")
  *             .build());
  * 
- *         var childGroupWithOptionalAttributes = new Group(&#34;childGroupWithOptionalAttributes&#34;, GroupArgs.builder()        
+ *         var childGroupWithOptionalAttributes = new Group("childGroupWithOptionalAttributes", GroupArgs.builder()
+ *             .realmId(realm.id())
+ *             .parentId(parentGroup.id())
+ *             .name("child-group-with-optional-attributes")
  *             .attributes(Map.ofEntries(
- *                 Map.entry(&#34;key1&#34;, &#34;value1&#34;),
- *                 Map.entry(&#34;key2&#34;, &#34;value2&#34;)
+ *                 Map.entry("key1", "value1"),
+ *                 Map.entry("key2", "value2")
  *             ))
- *             .parentId(parentGroup.id())
- *             .realmId(realm.id())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Argument Reference

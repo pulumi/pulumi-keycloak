@@ -14,7 +14,6 @@ import (
 
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -29,14 +28,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			tokenExchangeRealm, err := keycloak.NewRealm(ctx, "tokenExchangeRealm", &keycloak.RealmArgs{
+//			tokenExchangeRealm, err := keycloak.NewRealm(ctx, "token_exchange_realm", &keycloak.RealmArgs{
 //				Realm:   pulumi.String("token-exchange_destination_realm"),
 //				Enabled: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			tokenExchangeMyOidcIdp, err := oidc.NewIdentityProvider(ctx, "tokenExchangeMyOidcIdp", &oidc.IdentityProviderArgs{
+//			tokenExchangeMyOidcIdp, err := oidc.NewIdentityProvider(ctx, "token_exchange_my_oidc_idp", &oidc.IdentityProviderArgs{
 //				Realm:            tokenExchangeRealm.ID(),
 //				Alias:            pulumi.String("myIdp"),
 //				AuthorizationUrl: pulumi.String("http://localhost:8080/auth/realms/someRealm/protocol/openid-connect/auth"),
@@ -48,8 +47,9 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = openid.NewClient(ctx, "token-exchangeWebappClient", &openid.ClientArgs{
+//			_, err = openid.NewClient(ctx, "token-exchange_webapp_client", &openid.ClientArgs{
 //				RealmId:             tokenExchangeRealm.ID(),
+//				Name:                pulumi.String("webapp_client"),
 //				ClientId:            pulumi.String("webapp_client"),
 //				ClientSecret:        pulumi.String("secret"),
 //				Description:         pulumi.String("a webapp client on the destination realm"),
@@ -63,7 +63,7 @@ import (
 //				return err
 //			}
 //			// relevant part
-//			_, err = keycloak.NewIdentityProviderTokenExchangeScopePermission(ctx, "oidcIdpPermission", &keycloak.IdentityProviderTokenExchangeScopePermissionArgs{
+//			_, err = keycloak.NewIdentityProviderTokenExchangeScopePermission(ctx, "oidc_idp_permission", &keycloak.IdentityProviderTokenExchangeScopePermissionArgs{
 //				RealmId:       tokenExchangeRealm.ID(),
 //				ProviderAlias: tokenExchangeMyOidcIdp.Alias,
 //				PolicyType:    pulumi.String("client"),
@@ -79,7 +79,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

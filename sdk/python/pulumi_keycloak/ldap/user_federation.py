@@ -1096,32 +1096,31 @@ class UserFederation(pulumi.CustomResource):
 
         ### Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="test")
-        ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
-            bind_credential="admin",
-            bind_dn="cn=admin,dc=example,dc=org",
-            connection_timeout="5s",
-            connection_url="ldap://openldap",
-            enabled=True,
-            rdn_ldap_attribute="cn",
-            read_timeout="10s",
+            realm="test",
+            enabled=True)
+        ldap_user_federation = keycloak.ldap.UserFederation("ldap_user_federation",
+            name="openldap",
             realm_id=realm.id,
+            enabled=True,
+            username_ldap_attribute="cn",
+            rdn_ldap_attribute="cn",
+            uuid_ldap_attribute="entryDN",
             user_object_classes=[
                 "simpleSecurityObject",
                 "organizationalRole",
             ],
-            username_ldap_attribute="cn",
+            connection_url="ldap://openldap",
             users_dn="dc=example,dc=org",
-            uuid_ldap_attribute="entryDN")
+            bind_dn="cn=admin,dc=example,dc=org",
+            bind_credential="admin",
+            connection_timeout="5s",
+            read_timeout="10s")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 
@@ -1219,32 +1218,31 @@ class UserFederation(pulumi.CustomResource):
 
         ### Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="test")
-        ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
-            bind_credential="admin",
-            bind_dn="cn=admin,dc=example,dc=org",
-            connection_timeout="5s",
-            connection_url="ldap://openldap",
-            enabled=True,
-            rdn_ldap_attribute="cn",
-            read_timeout="10s",
+            realm="test",
+            enabled=True)
+        ldap_user_federation = keycloak.ldap.UserFederation("ldap_user_federation",
+            name="openldap",
             realm_id=realm.id,
+            enabled=True,
+            username_ldap_attribute="cn",
+            rdn_ldap_attribute="cn",
+            uuid_ldap_attribute="entryDN",
             user_object_classes=[
                 "simpleSecurityObject",
                 "organizationalRole",
             ],
-            username_ldap_attribute="cn",
+            connection_url="ldap://openldap",
             users_dn="dc=example,dc=org",
-            uuid_ldap_attribute="entryDN")
+            bind_dn="cn=admin,dc=example,dc=org",
+            bind_credential="admin",
+            connection_timeout="5s",
+            read_timeout="10s")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 

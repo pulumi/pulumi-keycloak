@@ -29,7 +29,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -54,32 +55,34 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
+ *         var realm = new Realm("realm", RealmArgs.builder()
+ *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var samlClient = new Client(&#34;samlClient&#34;, ClientArgs.builder()        
+ *         var samlClient = new Client("samlClient", ClientArgs.builder()
  *             .realmId(realm.id())
- *             .clientId(&#34;test-client&#34;)
+ *             .clientId("test-client")
  *             .build());
  * 
- *         var samlHardcodeAttributeMapper = new GenericProtocolMapper(&#34;samlHardcodeAttributeMapper&#34;, GenericProtocolMapperArgs.builder()        
+ *         var samlHardcodeAttributeMapper = new GenericProtocolMapper("samlHardcodeAttributeMapper", GenericProtocolMapperArgs.builder()
  *             .realmId(realm.id())
  *             .clientId(samlClient.id())
- *             .protocol(&#34;saml&#34;)
- *             .protocolMapper(&#34;saml-hardcode-attribute-mapper&#34;)
+ *             .name("test-mapper")
+ *             .protocol("saml")
+ *             .protocolMapper("saml-hardcode-attribute-mapper")
  *             .config(Map.ofEntries(
- *                 Map.entry(&#34;attribute.name&#34;, &#34;name&#34;),
- *                 Map.entry(&#34;attribute.nameformat&#34;, &#34;Basic&#34;),
- *                 Map.entry(&#34;attribute.value&#34;, &#34;value&#34;),
- *                 Map.entry(&#34;friendly.name&#34;, &#34;display name&#34;)
+ *                 Map.entry("attribute.name", "name"),
+ *                 Map.entry("attribute.nameformat", "Basic"),
+ *                 Map.entry("attribute.value", "value"),
+ *                 Map.entry("friendly.name", "display name")
  *             ))
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

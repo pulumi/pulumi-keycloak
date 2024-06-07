@@ -11,7 +11,6 @@ import * as utilities from "../utilities";
  *
  * In this example, we'll create a new OpenID client, then enabled permissions for the client. A client without permissions disabled cannot be assigned by a client policy. We'll use the `keycloak.openid.ClientPolicy` resource to create a new client policy, which could be applied to many clients, for a realm and a resource_server_id.
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -20,13 +19,14 @@ import * as utilities from "../utilities";
  *     realm: "my-realm",
  *     enabled: true,
  * });
- * const openidClient = new keycloak.openid.Client("openidClient", {
+ * const openidClient = new keycloak.openid.Client("openid_client", {
  *     clientId: "openid_client",
+ *     name: "openid_client",
  *     realmId: realm.id,
  *     accessType: "CONFIDENTIAL",
  *     serviceAccountsEnabled: true,
  * });
- * const myPermission = new keycloak.openid.ClientPermissions("myPermission", {
+ * const myPermission = new keycloak.openid.ClientPermissions("my_permission", {
  *     realmId: realm.id,
  *     clientId: openidClient.id,
  * });
@@ -34,15 +34,15 @@ import * as utilities from "../utilities";
  *     realmId: "my-realm",
  *     clientId: "realm-management",
  * });
- * const tokenExchange = new keycloak.openid.ClientPolicy("tokenExchange", {
+ * const tokenExchange = new keycloak.openid.ClientPolicy("token_exchange", {
  *     resourceServerId: realmManagement.then(realmManagement => realmManagement.id),
  *     realmId: realm.id,
+ *     name: "my-policy",
  *     logic: "POSITIVE",
  *     decisionStrategy: "UNANIMOUS",
  *     clients: [openidClient.id],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export class ClientPolicy extends pulumi.CustomResource {
     /**

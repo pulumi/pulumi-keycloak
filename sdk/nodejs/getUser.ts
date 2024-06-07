@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -17,13 +16,13 @@ import * as utilities from "./utilities";
  * const masterRealm = keycloak.getRealm({
  *     realm: "master",
  * });
+ * // use the keycloak_user data source to grab the admin user's ID
  * const defaultAdminUser = masterRealm.then(masterRealm => keycloak.getUser({
  *     realmId: masterRealm.id,
  *     username: "keycloak",
  * }));
  * export const keycloakUserId = defaultAdminUser.then(defaultAdminUser => defaultAdminUser.id);
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getUser(args: GetUserArgs, opts?: pulumi.InvokeOptions): Promise<GetUserResult> {
 
@@ -93,7 +92,6 @@ export interface GetUserResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -101,13 +99,13 @@ export interface GetUserResult {
  * const masterRealm = keycloak.getRealm({
  *     realm: "master",
  * });
+ * // use the keycloak_user data source to grab the admin user's ID
  * const defaultAdminUser = masterRealm.then(masterRealm => keycloak.getUser({
  *     realmId: masterRealm.id,
  *     username: "keycloak",
  * }));
  * export const keycloakUserId = defaultAdminUser.then(defaultAdminUser => defaultAdminUser.id);
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getUserOutput(args: GetUserOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetUserResult> {
     return pulumi.output(args).apply((a: any) => getUser(a, opts))

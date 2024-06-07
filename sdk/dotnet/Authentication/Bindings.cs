@@ -26,7 +26,6 @@ namespace Pulumi.Keycloak.Authentication
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -48,7 +47,7 @@ namespace Pulumi.Keycloak.Authentication
     ///     });
     /// 
     ///     // first execution
-    ///     var executionOne = new Keycloak.Authentication.Execution("executionOne", new()
+    ///     var executionOne = new Keycloak.Authentication.Execution("execution_one", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         ParentFlowAlias = flow.Alias,
@@ -57,7 +56,7 @@ namespace Pulumi.Keycloak.Authentication
     ///     });
     /// 
     ///     // second execution
-    ///     var executionTwo = new Keycloak.Authentication.Execution("executionTwo", new()
+    ///     var executionTwo = new Keycloak.Authentication.Execution("execution_two", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         ParentFlowAlias = flow.Alias,
@@ -67,11 +66,11 @@ namespace Pulumi.Keycloak.Authentication
     ///     {
     ///         DependsOn =
     ///         {
-    ///             executionOne, 
+    ///             executionOne,
     ///         },
     ///     });
     /// 
-    ///     var browserAuthenticationBinding = new Keycloak.Authentication.Bindings("browserAuthenticationBinding", new()
+    ///     var browserAuthenticationBinding = new Keycloak.Authentication.Bindings("browser_authentication_binding", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         BrowserFlow = flow.Alias,
@@ -79,7 +78,6 @@ namespace Pulumi.Keycloak.Authentication
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [KeycloakResourceType("keycloak:authentication/bindings:Bindings")]
     public partial class Bindings : global::Pulumi.CustomResource

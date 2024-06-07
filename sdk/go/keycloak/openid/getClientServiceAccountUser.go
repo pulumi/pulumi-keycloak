@@ -20,7 +20,6 @@ import (
 // that represents the service account. We'll use this data source to grab this user's ID in order to assign some roles to this
 // user, using the `UserRoles` resource.
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -44,6 +43,7 @@ import (
 //			client, err := openid.NewClient(ctx, "client", &openid.ClientArgs{
 //				RealmId:                realm.ID(),
 //				ClientId:               pulumi.String("client"),
+//				Name:                   pulumi.String("client"),
 //				AccessType:             pulumi.String("CONFIDENTIAL"),
 //				ServiceAccountsEnabled: pulumi.Bool(true),
 //			})
@@ -58,7 +58,7 @@ import (
 //				RealmId: realm.ID(),
 //				Name:    pulumi.String("offline_access"),
 //			}, nil)
-//			_, err = keycloak.NewUserRoles(ctx, "serviceAccountUserRoles", &keycloak.UserRolesArgs{
+//			_, err = keycloak.NewUserRoles(ctx, "service_account_user_roles", &keycloak.UserRolesArgs{
 //				RealmId: realm.ID(),
 //				UserId: serviceAccountUser.ApplyT(func(serviceAccountUser openid.GetClientServiceAccountUserResult) (*string, error) {
 //					return &serviceAccountUser.Id, nil
@@ -77,7 +77,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func GetClientServiceAccountUser(ctx *pulumi.Context, args *GetClientServiceAccountUserArgs, opts ...pulumi.InvokeOption) (*GetClientServiceAccountUserResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetClientServiceAccountUserResult

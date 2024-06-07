@@ -15,7 +15,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -24,7 +23,8 @@ import * as utilities from "../utilities";
  *     realm: "my-realm",
  *     enabled: true,
  * });
- * const ldapUserFederation = new keycloak.ldap.UserFederation("ldapUserFederation", {
+ * const ldapUserFederation = new keycloak.ldap.UserFederation("ldap_user_federation", {
+ *     name: "openldap",
  *     realmId: realm.id,
  *     usernameLdapAttribute: "cn",
  *     rdnLdapAttribute: "cn",
@@ -38,9 +38,10 @@ import * as utilities from "../utilities";
  *     bindDn: "cn=admin,dc=example,dc=org",
  *     bindCredential: "admin",
  * });
- * const customMapper = new keycloak.ldap.CustomMapper("customMapper", {
- *     realmId: keycloak_ldap_user_federation.openldap.realm_id,
- *     ldapUserFederationId: keycloak_ldap_user_federation.openldap.id,
+ * const customMapper = new keycloak.ldap.CustomMapper("custom_mapper", {
+ *     name: "custom-mapper",
+ *     realmId: openldap.realmId,
+ *     ldapUserFederationId: openldap.id,
  *     providerId: "custom-provider-registered-in-keycloak",
  *     providerType: "com.example.custom.ldap.mappers.CustomMapper",
  *     config: {
@@ -49,7 +50,6 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

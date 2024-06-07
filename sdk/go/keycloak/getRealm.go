@@ -18,7 +18,6 @@ import (
 //
 // ### Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -37,8 +36,10 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// use the data source
 //			_, err = keycloak.NewRole(ctx, "group", &keycloak.RoleArgs{
-//				RealmId: pulumi.Any(data.Keycloak_realm.Id),
+//				RealmId: pulumi.Any(id),
+//				Name:    pulumi.String("group"),
 //			})
 //			if err != nil {
 //				return err
@@ -48,7 +49,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Argument Reference
 //

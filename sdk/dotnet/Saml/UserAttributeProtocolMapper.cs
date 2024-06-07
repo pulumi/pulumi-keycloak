@@ -22,7 +22,6 @@ namespace Pulumi.Keycloak.Saml
     /// 
     /// ### Example Usage (Client)
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -33,28 +32,29 @@ namespace Pulumi.Keycloak.Saml
     /// {
     ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         Enabled = true,
     ///         RealmName = "my-realm",
+    ///         Enabled = true,
     ///     });
     /// 
-    ///     var samlClient = new Keycloak.Saml.Client("samlClient", new()
+    ///     var samlClient = new Keycloak.Saml.Client("saml_client", new()
     ///     {
+    ///         RealmId = test.Id,
     ///         ClientId = "test-saml-client",
-    ///         RealmId = keycloak_realm.Test.Id,
+    ///         Name = "test-saml-client",
     ///     });
     /// 
-    ///     var samlUserAttributeMapper = new Keycloak.Saml.UserAttributeProtocolMapper("samlUserAttributeMapper", new()
+    ///     var samlUserAttributeMapper = new Keycloak.Saml.UserAttributeProtocolMapper("saml_user_attribute_mapper", new()
     ///     {
+    ///         RealmId = test.Id,
     ///         ClientId = samlClient.Id,
-    ///         RealmId = keycloak_realm.Test.Id,
+    ///         Name = "displayname-user-attribute-mapper",
+    ///         UserAttribute = "displayName",
     ///         SamlAttributeName = "displayName",
     ///         SamlAttributeNameFormat = "Unspecified",
-    ///         UserAttribute = "displayName",
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### Argument Reference
     /// 

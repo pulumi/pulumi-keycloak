@@ -25,7 +25,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -50,32 +51,34 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
+ *         var realm = new Realm("realm", RealmArgs.builder()
+ *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var oidcIdentityProvider = new IdentityProvider(&#34;oidcIdentityProvider&#34;, IdentityProviderArgs.builder()        
+ *         var oidc = new IdentityProvider("oidc", IdentityProviderArgs.builder()
  *             .realm(realm.id())
- *             .alias(&#34;my-idp&#34;)
- *             .authorizationUrl(&#34;https://authorizationurl.com&#34;)
- *             .clientId(&#34;clientID&#34;)
- *             .clientSecret(&#34;clientSecret&#34;)
- *             .tokenUrl(&#34;https://tokenurl.com&#34;)
+ *             .alias("my-idp")
+ *             .authorizationUrl("https://authorizationurl.com")
+ *             .clientId("clientID")
+ *             .clientSecret("clientSecret")
+ *             .tokenUrl("https://tokenurl.com")
  *             .build());
  * 
- *         var oidcHardcodedAttributeIdentityProviderMapper = new HardcodedAttributeIdentityProviderMapper(&#34;oidcHardcodedAttributeIdentityProviderMapper&#34;, HardcodedAttributeIdentityProviderMapperArgs.builder()        
+ *         var oidcHardcodedAttributeIdentityProviderMapper = new HardcodedAttributeIdentityProviderMapper("oidcHardcodedAttributeIdentityProviderMapper", HardcodedAttributeIdentityProviderMapperArgs.builder()
  *             .realm(realm.id())
- *             .identityProviderAlias(oidcIdentityProvider.alias())
- *             .attributeName(&#34;attribute&#34;)
- *             .attributeValue(&#34;value&#34;)
+ *             .name("hardcodedUserSessionAttribute")
+ *             .identityProviderAlias(oidc.alias())
+ *             .attributeName("attribute")
+ *             .attributeValue("value")
  *             .userSession(true)
- *             .extraConfig(Map.of(&#34;syncMode&#34;, &#34;INHERIT&#34;))
+ *             .extraConfig(Map.of("syncMode", "INHERIT"))
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */

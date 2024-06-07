@@ -23,7 +23,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -46,20 +47,22 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
+ *         var realm = new Realm("realm", RealmArgs.builder()
+ *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var samlClientScope = new ClientScope(&#34;samlClientScope&#34;, ClientScopeArgs.builder()        
+ *         var samlClientScope = new ClientScope("samlClientScope", ClientScopeArgs.builder()
  *             .realmId(realm.id())
- *             .description(&#34;This scope will map a user&#39;s group memberships to SAML assertion&#34;)
+ *             .name("groups")
+ *             .description("This scope will map a user's group memberships to SAML assertion")
  *             .guiOrder(1)
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

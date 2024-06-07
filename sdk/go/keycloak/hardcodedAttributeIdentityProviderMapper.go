@@ -18,7 +18,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -39,7 +38,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			oidcIdentityProvider, err := oidc.NewIdentityProvider(ctx, "oidcIdentityProvider", &oidc.IdentityProviderArgs{
+//			oidc, err := oidc.NewIdentityProvider(ctx, "oidc", &oidc.IdentityProviderArgs{
 //				Realm:            realm.ID(),
 //				Alias:            pulumi.String("my-idp"),
 //				AuthorizationUrl: pulumi.String("https://authorizationurl.com"),
@@ -50,9 +49,10 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = keycloak.NewHardcodedAttributeIdentityProviderMapper(ctx, "oidcHardcodedAttributeIdentityProviderMapper", &keycloak.HardcodedAttributeIdentityProviderMapperArgs{
+//			_, err = keycloak.NewHardcodedAttributeIdentityProviderMapper(ctx, "oidc", &keycloak.HardcodedAttributeIdentityProviderMapperArgs{
 //				Realm:                 realm.ID(),
-//				IdentityProviderAlias: oidcIdentityProvider.Alias,
+//				Name:                  pulumi.String("hardcodedUserSessionAttribute"),
+//				IdentityProviderAlias: oidc.Alias,
 //				AttributeName:         pulumi.String("attribute"),
 //				AttributeValue:        pulumi.String("value"),
 //				UserSession:           pulumi.Bool(true),
@@ -68,7 +68,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 type HardcodedAttributeIdentityProviderMapper struct {
 	pulumi.CustomResourceState
 

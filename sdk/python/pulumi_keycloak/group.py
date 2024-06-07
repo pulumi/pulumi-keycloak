@@ -160,27 +160,29 @@ class Group(pulumi.CustomResource):
 
         ### Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="my-realm")
-        parent_group = keycloak.Group("parentGroup", realm_id=realm.id)
-        child_group = keycloak.Group("childGroup",
+            realm="my-realm",
+            enabled=True)
+        parent_group = keycloak.Group("parent_group",
+            realm_id=realm.id,
+            name="parent-group")
+        child_group = keycloak.Group("child_group",
+            realm_id=realm.id,
             parent_id=parent_group.id,
-            realm_id=realm.id)
-        child_group_with_optional_attributes = keycloak.Group("childGroupWithOptionalAttributes",
+            name="child-group")
+        child_group_with_optional_attributes = keycloak.Group("child_group_with_optional_attributes",
+            realm_id=realm.id,
+            parent_id=parent_group.id,
+            name="child-group-with-optional-attributes",
             attributes={
                 "key1": "value1",
                 "key2": "value2",
-            },
-            parent_id=parent_group.id,
-            realm_id=realm.id)
+            })
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 
@@ -229,27 +231,29 @@ class Group(pulumi.CustomResource):
 
         ### Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="my-realm")
-        parent_group = keycloak.Group("parentGroup", realm_id=realm.id)
-        child_group = keycloak.Group("childGroup",
+            realm="my-realm",
+            enabled=True)
+        parent_group = keycloak.Group("parent_group",
+            realm_id=realm.id,
+            name="parent-group")
+        child_group = keycloak.Group("child_group",
+            realm_id=realm.id,
             parent_id=parent_group.id,
-            realm_id=realm.id)
-        child_group_with_optional_attributes = keycloak.Group("childGroupWithOptionalAttributes",
+            name="child-group")
+        child_group_with_optional_attributes = keycloak.Group("child_group_with_optional_attributes",
+            realm_id=realm.id,
+            parent_id=parent_group.id,
+            name="child-group-with-optional-attributes",
             attributes={
                 "key1": "value1",
                 "key2": "value2",
-            },
-            parent_id=parent_group.id,
-            realm_id=realm.id)
+            })
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 

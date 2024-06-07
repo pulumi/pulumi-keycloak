@@ -16,7 +16,6 @@ namespace Pulumi.Keycloak
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -30,8 +29,9 @@ namespace Pulumi.Keycloak
     ///         RealmName = "my-realm",
     ///     });
     /// 
-    ///     var keystoreHmacGenerated = new Keycloak.RealmKeystoreHmacGenerated("keystoreHmacGenerated", new()
+    ///     var keystoreHmacGenerated = new Keycloak.RealmKeystoreHmacGenerated("keystore_hmac_generated", new()
     ///     {
+    ///         Name = "my-hmac-generated-key",
     ///         RealmId = realm.Id,
     ///         Enabled = true,
     ///         Active = true,
@@ -42,7 +42,6 @@ namespace Pulumi.Keycloak
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

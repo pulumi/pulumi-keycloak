@@ -14,7 +14,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -23,19 +22,20 @@ import * as utilities from "../utilities";
  *     realm: "my-realm",
  *     enabled: true,
  * });
- * const samlClient = new keycloak.saml.Client("samlClient", {
+ * const samlClient = new keycloak.saml.Client("saml_client", {
  *     realmId: realm.id,
  *     clientId: "saml-client",
+ *     name: "saml-client",
  * });
- * const samlScriptMapper = new keycloak.saml.ScriptProtocolMapper("samlScriptMapper", {
+ * const samlScriptMapper = new keycloak.saml.ScriptProtocolMapper("saml_script_mapper", {
  *     realmId: realm.id,
  *     clientId: samlClient.id,
+ *     name: "script-mapper",
  *     script: "exports = 'foo';",
  *     samlAttributeName: "displayName",
  *     samlAttributeNameFormat: "Unspecified",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

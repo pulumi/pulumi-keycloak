@@ -14,74 +14,90 @@ import * as utilities from "./utilities";
  *
  * ### Example Usage (Realm role)
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {
- *     enabled: true,
  *     realm: "my-realm",
+ *     enabled: true,
  * });
- * const realmRole = new keycloak.Role("realmRole", {
- *     description: "My Realm Role",
+ * const realmRole = new keycloak.Role("realm_role", {
  *     realmId: realm.id,
+ *     name: "my-realm-role",
+ *     description: "My Realm Role",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Example Usage (Client role)
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {
- *     enabled: true,
  *     realm: "my-realm",
+ *     enabled: true,
  * });
  * const client = new keycloak.openid.Client("client", {
- *     accessType: "BEARER-ONLY",
+ *     realmId: realm.id,
  *     clientId: "client",
+ *     name: "client",
  *     enabled: true,
- *     realmId: realm.id,
+ *     accessType: "BEARER-ONLY",
  * });
- * const clientRole = new keycloak.Role("clientRole", {
- *     clientId: keycloak_client.client.id,
- *     description: "My Client Role",
+ * const clientRole = new keycloak.Role("client_role", {
  *     realmId: realm.id,
+ *     clientId: clientKeycloakClient.id,
+ *     name: "my-client-role",
+ *     description: "My Client Role",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Example Usage (Composite role)
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {
- *     enabled: true,
  *     realm: "my-realm",
- * });
- * const createRole = new keycloak.Role("createRole", {realmId: realm.id});
- * const readRole = new keycloak.Role("readRole", {realmId: realm.id});
- * const updateRole = new keycloak.Role("updateRole", {realmId: realm.id});
- * const deleteRole = new keycloak.Role("deleteRole", {realmId: realm.id});
- * const client = new keycloak.openid.Client("client", {
- *     accessType: "BEARER-ONLY",
- *     clientId: "client",
  *     enabled: true,
- *     realmId: realm.id,
  * });
- * const clientRole = new keycloak.Role("clientRole", {
- *     clientId: keycloak_client.client.id,
+ * // realm roles
+ * const createRole = new keycloak.Role("create_role", {
+ *     realmId: realm.id,
+ *     name: "create",
+ * });
+ * const readRole = new keycloak.Role("read_role", {
+ *     realmId: realm.id,
+ *     name: "read",
+ * });
+ * const updateRole = new keycloak.Role("update_role", {
+ *     realmId: realm.id,
+ *     name: "update",
+ * });
+ * const deleteRole = new keycloak.Role("delete_role", {
+ *     realmId: realm.id,
+ *     name: "delete",
+ * });
+ * // client role
+ * const client = new keycloak.openid.Client("client", {
+ *     realmId: realm.id,
+ *     clientId: "client",
+ *     name: "client",
+ *     enabled: true,
+ *     accessType: "BEARER-ONLY",
+ * });
+ * const clientRole = new keycloak.Role("client_role", {
+ *     realmId: realm.id,
+ *     clientId: clientKeycloakClient.id,
+ *     name: "my-client-role",
  *     description: "My Client Role",
- *     realmId: realm.id,
  * });
- * const adminRole = new keycloak.Role("adminRole", {
+ * const adminRole = new keycloak.Role("admin_role", {
+ *     realmId: realm.id,
+ *     name: "admin",
  *     compositeRoles: [
  *         "{keycloak_role.create_role.id}",
  *         "{keycloak_role.read_role.id}",
@@ -89,10 +105,8 @@ import * as utilities from "./utilities";
  *         "{keycloak_role.delete_role.id}",
  *         "{keycloak_role.client_role.id}",
  *     ],
- *     realmId: realm.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Argument Reference
  *

@@ -30,7 +30,8 @@ import javax.annotation.Nullable;
  * ### Client)
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -55,35 +56,39 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
+ *         var realm = new Realm("realm", RealmArgs.builder()
+ *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var openidClient = new Client(&#34;openidClient&#34;, ClientArgs.builder()        
+ *         var openidClient = new Client("openidClient", ClientArgs.builder()
  *             .realmId(realm.id())
- *             .clientId(&#34;client&#34;)
+ *             .clientId("client")
+ *             .name("client")
  *             .enabled(true)
- *             .accessType(&#34;CONFIDENTIAL&#34;)
- *             .validRedirectUris(&#34;http://localhost:8080/openid-callback&#34;)
+ *             .accessType("CONFIDENTIAL")
+ *             .validRedirectUris("http://localhost:8080/openid-callback")
  *             .build());
  * 
- *         var scriptMapper = new ScriptProtocolMapper(&#34;scriptMapper&#34;, ScriptProtocolMapperArgs.builder()        
+ *         var scriptMapper = new ScriptProtocolMapper("scriptMapper", ScriptProtocolMapperArgs.builder()
  *             .realmId(realm.id())
  *             .clientId(openidClient.id())
- *             .claimName(&#34;foo&#34;)
- *             .script(&#34;exports = &#39;foo&#39;;&#34;)
+ *             .name("script-mapper")
+ *             .claimName("foo")
+ *             .script("exports = 'foo';")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Client Scope)
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -108,25 +113,28 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
+ *         var realm = new Realm("realm", RealmArgs.builder()
+ *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var clientScope = new ClientScope(&#34;clientScope&#34;, ClientScopeArgs.builder()        
+ *         var clientScope = new ClientScope("clientScope", ClientScopeArgs.builder()
  *             .realmId(realm.id())
+ *             .name("client-scope")
  *             .build());
  * 
- *         var scriptMapper = new ScriptProtocolMapper(&#34;scriptMapper&#34;, ScriptProtocolMapperArgs.builder()        
+ *         var scriptMapper = new ScriptProtocolMapper("scriptMapper", ScriptProtocolMapperArgs.builder()
  *             .realmId(realm.id())
  *             .clientScopeId(clientScope.id())
- *             .claimName(&#34;foo&#34;)
- *             .script(&#34;exports = &#39;foo&#39;;&#34;)
+ *             .name("script-mapper")
+ *             .claimName("foo")
+ *             .script("exports = 'foo';")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

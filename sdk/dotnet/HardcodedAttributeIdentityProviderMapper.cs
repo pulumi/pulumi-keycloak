@@ -16,7 +16,6 @@ namespace Pulumi.Keycloak
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -31,7 +30,7 @@ namespace Pulumi.Keycloak
     ///         Enabled = true,
     ///     });
     /// 
-    ///     var oidcIdentityProvider = new Keycloak.Oidc.IdentityProvider("oidcIdentityProvider", new()
+    ///     var oidc = new Keycloak.Oidc.IdentityProvider("oidc", new()
     ///     {
     ///         Realm = realm.Id,
     ///         Alias = "my-idp",
@@ -41,10 +40,11 @@ namespace Pulumi.Keycloak
     ///         TokenUrl = "https://tokenurl.com",
     ///     });
     /// 
-    ///     var oidcHardcodedAttributeIdentityProviderMapper = new Keycloak.HardcodedAttributeIdentityProviderMapper("oidcHardcodedAttributeIdentityProviderMapper", new()
+    ///     var oidcHardcodedAttributeIdentityProviderMapper = new Keycloak.HardcodedAttributeIdentityProviderMapper("oidc", new()
     ///     {
     ///         Realm = realm.Id,
-    ///         IdentityProviderAlias = oidcIdentityProvider.Alias,
+    ///         Name = "hardcodedUserSessionAttribute",
+    ///         IdentityProviderAlias = oidc.Alias,
     ///         AttributeName = "attribute",
     ///         AttributeValue = "value",
     ///         UserSession = true,
@@ -56,7 +56,6 @@ namespace Pulumi.Keycloak
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// </summary>
     [KeycloakResourceType("keycloak:index/hardcodedAttributeIdentityProviderMapper:HardcodedAttributeIdentityProviderMapper")]
     public partial class HardcodedAttributeIdentityProviderMapper : global::Pulumi.CustomResource

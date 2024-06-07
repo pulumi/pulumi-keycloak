@@ -25,7 +25,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -50,34 +51,37 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
+ *         var realm = new Realm("realm", RealmArgs.builder()
+ *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var ldapUserFederation = new UserFederation(&#34;ldapUserFederation&#34;, UserFederationArgs.builder()        
+ *         var ldapUserFederation = new UserFederation("ldapUserFederation", UserFederationArgs.builder()
+ *             .name("ad")
  *             .realmId(realm.id())
- *             .usernameLdapAttribute(&#34;cn&#34;)
- *             .rdnLdapAttribute(&#34;cn&#34;)
- *             .uuidLdapAttribute(&#34;objectGUID&#34;)
+ *             .usernameLdapAttribute("cn")
+ *             .rdnLdapAttribute("cn")
+ *             .uuidLdapAttribute("objectGUID")
  *             .userObjectClasses(            
- *                 &#34;person&#34;,
- *                 &#34;organizationalPerson&#34;,
- *                 &#34;user&#34;)
- *             .connectionUrl(&#34;ldap://my-ad-server&#34;)
- *             .usersDn(&#34;dc=example,dc=org&#34;)
- *             .bindDn(&#34;cn=admin,dc=example,dc=org&#34;)
- *             .bindCredential(&#34;admin&#34;)
+ *                 "person",
+ *                 "organizationalPerson",
+ *                 "user")
+ *             .connectionUrl("ldap://my-ad-server")
+ *             .usersDn("dc=example,dc=org")
+ *             .bindDn("cn=admin,dc=example,dc=org")
+ *             .bindCredential("admin")
  *             .build());
  * 
- *         var msadLdsUserAccountControlMapper = new MsadLdsUserAccountControlMapper(&#34;msadLdsUserAccountControlMapper&#34;, MsadLdsUserAccountControlMapperArgs.builder()        
+ *         var msadLdsUserAccountControlMapper = new MsadLdsUserAccountControlMapper("msadLdsUserAccountControlMapper", MsadLdsUserAccountControlMapperArgs.builder()
  *             .realmId(realm.id())
  *             .ldapUserFederationId(ldapUserFederation.id())
+ *             .name("msad-lds-user-account-control-mapper")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

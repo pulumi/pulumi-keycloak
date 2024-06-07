@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -36,9 +35,10 @@ import (
 //				return err
 //			}
 //			// use the data source
-//			_, err = openid.NewAudienceProtocolMapper(ctx, "audienceMapper", &openid.AudienceProtocolMapperArgs{
+//			_, err = openid.NewAudienceProtocolMapper(ctx, "audience_mapper", &openid.AudienceProtocolMapperArgs{
 //				RealmId:                pulumi.String(offlineAccess.RealmId),
 //				ClientScopeId:          pulumi.String(offlineAccess.Id),
+//				Name:                   pulumi.String("audience-mapper"),
 //				IncludedCustomAudience: pulumi.String("foo"),
 //			})
 //			if err != nil {
@@ -49,7 +49,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupClientScope(ctx *pulumi.Context, args *LookupClientScopeArgs, opts ...pulumi.InvokeOption) (*LookupClientScopeResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupClientScopeResult

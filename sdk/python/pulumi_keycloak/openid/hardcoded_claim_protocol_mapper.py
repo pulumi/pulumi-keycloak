@@ -357,46 +357,47 @@ class HardcodedClaimProtocolMapper(pulumi.CustomResource):
 
         ### Example Usage (Client)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="my-realm")
-        openid_client = keycloak.openid.Client("openidClient",
-            access_type="CONFIDENTIAL",
-            client_id="test-client",
-            enabled=True,
+            realm="my-realm",
+            enabled=True)
+        openid_client = keycloak.openid.Client("openid_client",
             realm_id=realm.id,
+            client_id="test-client",
+            name="test client",
+            enabled=True,
+            access_type="CONFIDENTIAL",
             valid_redirect_uris=["http://localhost:8080/openid-callback"])
-        hardcoded_claim_mapper = keycloak.openid.HardcodedClaimProtocolMapper("hardcodedClaimMapper",
-            claim_name="foo",
-            claim_value="bar",
+        hardcoded_claim_mapper = keycloak.openid.HardcodedClaimProtocolMapper("hardcoded_claim_mapper",
+            realm_id=realm.id,
             client_id=openid_client.id,
-            realm_id=realm.id)
+            name="hardcoded-claim-mapper",
+            claim_name="foo",
+            claim_value="bar")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Usage (Client Scope)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="my-realm")
-        client_scope = keycloak.openid.ClientScope("clientScope", realm_id=realm.id)
-        hardcoded_claim_mapper = keycloak.openid.HardcodedClaimProtocolMapper("hardcodedClaimMapper",
-            claim_name="foo",
-            claim_value="bar",
+            realm="my-realm",
+            enabled=True)
+        client_scope = keycloak.openid.ClientScope("client_scope",
+            realm_id=realm.id,
+            name="test-client-scope")
+        hardcoded_claim_mapper = keycloak.openid.HardcodedClaimProtocolMapper("hardcoded_claim_mapper",
+            realm_id=realm.id,
             client_scope_id=client_scope.id,
-            realm_id=realm.id)
+            name="hardcoded-claim-mapper",
+            claim_name="foo",
+            claim_value="bar")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 
@@ -451,46 +452,47 @@ class HardcodedClaimProtocolMapper(pulumi.CustomResource):
 
         ### Example Usage (Client)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="my-realm")
-        openid_client = keycloak.openid.Client("openidClient",
-            access_type="CONFIDENTIAL",
-            client_id="test-client",
-            enabled=True,
+            realm="my-realm",
+            enabled=True)
+        openid_client = keycloak.openid.Client("openid_client",
             realm_id=realm.id,
+            client_id="test-client",
+            name="test client",
+            enabled=True,
+            access_type="CONFIDENTIAL",
             valid_redirect_uris=["http://localhost:8080/openid-callback"])
-        hardcoded_claim_mapper = keycloak.openid.HardcodedClaimProtocolMapper("hardcodedClaimMapper",
-            claim_name="foo",
-            claim_value="bar",
+        hardcoded_claim_mapper = keycloak.openid.HardcodedClaimProtocolMapper("hardcoded_claim_mapper",
+            realm_id=realm.id,
             client_id=openid_client.id,
-            realm_id=realm.id)
+            name="hardcoded-claim-mapper",
+            claim_name="foo",
+            claim_value="bar")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Usage (Client Scope)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="my-realm")
-        client_scope = keycloak.openid.ClientScope("clientScope", realm_id=realm.id)
-        hardcoded_claim_mapper = keycloak.openid.HardcodedClaimProtocolMapper("hardcodedClaimMapper",
-            claim_name="foo",
-            claim_value="bar",
+            realm="my-realm",
+            enabled=True)
+        client_scope = keycloak.openid.ClientScope("client_scope",
+            realm_id=realm.id,
+            name="test-client-scope")
+        hardcoded_claim_mapper = keycloak.openid.HardcodedClaimProtocolMapper("hardcoded_claim_mapper",
+            realm_id=realm.id,
             client_scope_id=client_scope.id,
-            realm_id=realm.id)
+            name="hardcoded-claim-mapper",
+            claim_name="foo",
+            claim_value="bar")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 

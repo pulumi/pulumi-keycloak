@@ -16,7 +16,6 @@ namespace Pulumi.Keycloak.Oidc
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -34,8 +33,8 @@ namespace Pulumi.Keycloak.Oidc
     ///     var google = new Keycloak.Oidc.GoogleIdentityProvider("google", new()
     ///     {
     ///         Realm = realm.Id,
-    ///         ClientId = @var.Google_identity_provider_client_id,
-    ///         ClientSecret = @var.Google_identity_provider_client_secret,
+    ///         ClientId = googleIdentityProviderClientId,
+    ///         ClientSecret = googleIdentityProviderClientSecret,
     ///         TrustEmail = true,
     ///         HostedDomain = "example.com",
     ///         SyncMode = "IMPORT",
@@ -47,7 +46,6 @@ namespace Pulumi.Keycloak.Oidc
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

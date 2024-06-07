@@ -28,7 +28,8 @@ import javax.annotation.Nullable;
  * ### Example Usage (Realm role)
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -51,25 +52,28 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
+ *             .realm("my-realm")
  *             .enabled(true)
- *             .realm(&#34;my-realm&#34;)
  *             .build());
  * 
- *         var realmRole = new Role(&#34;realmRole&#34;, RoleArgs.builder()        
- *             .description(&#34;My Realm Role&#34;)
+ *         var realmRole = new Role("realmRole", RoleArgs.builder()
  *             .realmId(realm.id())
+ *             .name("my-realm-role")
+ *             .description("My Realm Role")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Example Usage (Client role)
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -94,33 +98,37 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
+ *             .realm("my-realm")
  *             .enabled(true)
- *             .realm(&#34;my-realm&#34;)
  *             .build());
  * 
- *         var client = new Client(&#34;client&#34;, ClientArgs.builder()        
- *             .accessType(&#34;BEARER-ONLY&#34;)
- *             .clientId(&#34;client&#34;)
- *             .enabled(true)
+ *         var client = new Client("client", ClientArgs.builder()
  *             .realmId(realm.id())
+ *             .clientId("client")
+ *             .name("client")
+ *             .enabled(true)
+ *             .accessType("BEARER-ONLY")
  *             .build());
  * 
- *         var clientRole = new Role(&#34;clientRole&#34;, RoleArgs.builder()        
- *             .clientId(keycloak_client.client().id())
- *             .description(&#34;My Client Role&#34;)
+ *         var clientRole = new Role("clientRole", RoleArgs.builder()
  *             .realmId(realm.id())
+ *             .clientId(clientKeycloakClient.id())
+ *             .name("my-client-role")
+ *             .description("My Client Role")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Example Usage (Composite role)
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -145,53 +153,63 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
+ *             .realm("my-realm")
  *             .enabled(true)
- *             .realm(&#34;my-realm&#34;)
  *             .build());
  * 
- *         var createRole = new Role(&#34;createRole&#34;, RoleArgs.builder()        
+ *         // realm roles
+ *         var createRole = new Role("createRole", RoleArgs.builder()
  *             .realmId(realm.id())
+ *             .name("create")
  *             .build());
  * 
- *         var readRole = new Role(&#34;readRole&#34;, RoleArgs.builder()        
+ *         var readRole = new Role("readRole", RoleArgs.builder()
  *             .realmId(realm.id())
+ *             .name("read")
  *             .build());
  * 
- *         var updateRole = new Role(&#34;updateRole&#34;, RoleArgs.builder()        
+ *         var updateRole = new Role("updateRole", RoleArgs.builder()
  *             .realmId(realm.id())
+ *             .name("update")
  *             .build());
  * 
- *         var deleteRole = new Role(&#34;deleteRole&#34;, RoleArgs.builder()        
+ *         var deleteRole = new Role("deleteRole", RoleArgs.builder()
  *             .realmId(realm.id())
+ *             .name("delete")
  *             .build());
  * 
- *         var client = new Client(&#34;client&#34;, ClientArgs.builder()        
- *             .accessType(&#34;BEARER-ONLY&#34;)
- *             .clientId(&#34;client&#34;)
+ *         // client role
+ *         var client = new Client("client", ClientArgs.builder()
+ *             .realmId(realm.id())
+ *             .clientId("client")
+ *             .name("client")
  *             .enabled(true)
- *             .realmId(realm.id())
+ *             .accessType("BEARER-ONLY")
  *             .build());
  * 
- *         var clientRole = new Role(&#34;clientRole&#34;, RoleArgs.builder()        
- *             .clientId(keycloak_client.client().id())
- *             .description(&#34;My Client Role&#34;)
+ *         var clientRole = new Role("clientRole", RoleArgs.builder()
  *             .realmId(realm.id())
+ *             .clientId(clientKeycloakClient.id())
+ *             .name("my-client-role")
+ *             .description("My Client Role")
  *             .build());
  * 
- *         var adminRole = new Role(&#34;adminRole&#34;, RoleArgs.builder()        
+ *         var adminRole = new Role("adminRole", RoleArgs.builder()
+ *             .realmId(realm.id())
+ *             .name("admin")
  *             .compositeRoles(            
- *                 &#34;{keycloak_role.create_role.id}&#34;,
- *                 &#34;{keycloak_role.read_role.id}&#34;,
- *                 &#34;{keycloak_role.update_role.id}&#34;,
- *                 &#34;{keycloak_role.delete_role.id}&#34;,
- *                 &#34;{keycloak_role.client_role.id}&#34;)
- *             .realmId(realm.id())
+ *                 "{keycloak_role.create_role.id}",
+ *                 "{keycloak_role.read_role.id}",
+ *                 "{keycloak_role.update_role.id}",
+ *                 "{keycloak_role.delete_role.id}",
+ *                 "{keycloak_role.client_role.id}")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Argument Reference

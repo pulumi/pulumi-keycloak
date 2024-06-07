@@ -237,20 +237,19 @@ class RealmKeystoreAesGenerated(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm", realm="my-realm")
-        keystore_aes_generated = keycloak.RealmKeystoreAesGenerated("keystoreAesGenerated",
+        keystore_aes_generated = keycloak.RealmKeystoreAesGenerated("keystore_aes_generated",
+            name="my-aes-generated-key",
             realm_id=realm.id,
             enabled=True,
             active=True,
             priority=100,
             secret_size=16)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -286,20 +285,19 @@ class RealmKeystoreAesGenerated(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm", realm="my-realm")
-        keystore_aes_generated = keycloak.RealmKeystoreAesGenerated("keystoreAesGenerated",
+        keystore_aes_generated = keycloak.RealmKeystoreAesGenerated("keystore_aes_generated",
+            name="my-aes-generated-key",
             realm_id=realm.id,
             enabled=True,
             active=True,
             priority=100,
             secret_size=16)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

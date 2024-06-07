@@ -28,7 +28,6 @@ import (
 //
 // ### Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -43,45 +42,49 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-//				Enabled: pulumi.Bool(true),
 //				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			realmRole, err := keycloak.NewRole(ctx, "realmRole", &keycloak.RoleArgs{
-//				Description: pulumi.String("My Realm Role"),
+//			realmRole, err := keycloak.NewRole(ctx, "realm_role", &keycloak.RoleArgs{
 //				RealmId:     realm.ID(),
+//				Name:        pulumi.String("my-realm-role"),
+//				Description: pulumi.String("My Realm Role"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = openid.NewClient(ctx, "client", &openid.ClientArgs{
-//				AccessType: pulumi.String("BEARER-ONLY"),
-//				ClientId:   pulumi.String("client"),
-//				Enabled:    pulumi.Bool(true),
 //				RealmId:    realm.ID(),
+//				ClientId:   pulumi.String("client"),
+//				Name:       pulumi.String("client"),
+//				Enabled:    pulumi.Bool(true),
+//				AccessType: pulumi.String("BEARER-ONLY"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			clientRole, err := keycloak.NewRole(ctx, "clientRole", &keycloak.RoleArgs{
-//				ClientId:    pulumi.Any(keycloak_client.Client.Id),
-//				Description: pulumi.String("My Client Role"),
+//			clientRole, err := keycloak.NewRole(ctx, "client_role", &keycloak.RoleArgs{
 //				RealmId:     realm.ID(),
+//				ClientId:    pulumi.Any(clientKeycloakClient.Id),
+//				Name:        pulumi.String("my-client-role"),
+//				Description: pulumi.String("My Client Role"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			group, err := keycloak.NewGroup(ctx, "group", &keycloak.GroupArgs{
 //				RealmId: realm.ID(),
+//				Name:    pulumi.String("my-group"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = keycloak.NewGroupRoles(ctx, "groupRoles", &keycloak.GroupRolesArgs{
-//				GroupId: group.ID(),
+//			_, err = keycloak.NewGroupRoles(ctx, "group_roles", &keycloak.GroupRolesArgs{
 //				RealmId: realm.ID(),
+//				GroupId: group.ID(),
 //				RoleIds: pulumi.StringArray{
 //					realmRole.ID(),
 //					clientRole.ID(),
@@ -95,7 +98,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Argument Reference
 //

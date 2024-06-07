@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -34,6 +33,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// use the keycloak_user data source to grab the admin user's ID
 //			defaultAdminUser, err := keycloak.LookupUser(ctx, &keycloak.LookupUserArgs{
 //				RealmId:  masterRealm.Id,
 //				Username: "keycloak",
@@ -41,6 +41,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// use the keycloak_user_realm_roles data source to list role names
 //			userRealmRoles, err := keycloak.GetUserRealmRoles(ctx, &keycloak.GetUserRealmRolesArgs{
 //				RealmId: masterRealm.Id,
 //				UserId:  defaultAdminUser.Id,
@@ -54,7 +55,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func GetUserRealmRoles(ctx *pulumi.Context, args *GetUserRealmRolesArgs, opts ...pulumi.InvokeOption) (*GetUserRealmRolesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetUserRealmRolesResult

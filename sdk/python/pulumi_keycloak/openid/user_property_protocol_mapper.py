@@ -357,46 +357,47 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
 
         ### Example Usage (Client)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="my-realm")
-        openid_client = keycloak.openid.Client("openidClient",
-            access_type="CONFIDENTIAL",
+            realm="my-realm",
+            enabled=True)
+        openid_client = keycloak.openid.Client("openid_client",
+            realm_id=realm.id,
             client_id="test-client",
+            name="test client",
             enabled=True,
-            realm_id=realm.id,
+            access_type="CONFIDENTIAL",
             valid_redirect_uris=["http://localhost:8080/openid-callback"])
-        user_property_mapper = keycloak.openid.UserPropertyProtocolMapper("userPropertyMapper",
-            claim_name="email",
-            client_id=openid_client.id,
+        user_property_mapper = keycloak.openid.UserPropertyProtocolMapper("user_property_mapper",
             realm_id=realm.id,
-            user_property="email")
+            client_id=openid_client.id,
+            name="test-mapper",
+            user_property="email",
+            claim_name="email")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Usage (Client Scope)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="my-realm")
-        client_scope = keycloak.openid.ClientScope("clientScope", realm_id=realm.id)
-        user_property_mapper = keycloak.openid.UserPropertyProtocolMapper("userPropertyMapper",
-            claim_name="email",
-            client_scope_id=client_scope.id,
+            realm="my-realm",
+            enabled=True)
+        client_scope = keycloak.openid.ClientScope("client_scope",
             realm_id=realm.id,
-            user_property="email")
+            name="test-client-scope")
+        user_property_mapper = keycloak.openid.UserPropertyProtocolMapper("user_property_mapper",
+            realm_id=realm.id,
+            client_scope_id=client_scope.id,
+            name="test-mapper",
+            user_property="email",
+            claim_name="email")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 
@@ -451,46 +452,47 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
 
         ### Example Usage (Client)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="my-realm")
-        openid_client = keycloak.openid.Client("openidClient",
-            access_type="CONFIDENTIAL",
+            realm="my-realm",
+            enabled=True)
+        openid_client = keycloak.openid.Client("openid_client",
+            realm_id=realm.id,
             client_id="test-client",
+            name="test client",
             enabled=True,
-            realm_id=realm.id,
+            access_type="CONFIDENTIAL",
             valid_redirect_uris=["http://localhost:8080/openid-callback"])
-        user_property_mapper = keycloak.openid.UserPropertyProtocolMapper("userPropertyMapper",
-            claim_name="email",
-            client_id=openid_client.id,
+        user_property_mapper = keycloak.openid.UserPropertyProtocolMapper("user_property_mapper",
             realm_id=realm.id,
-            user_property="email")
+            client_id=openid_client.id,
+            name="test-mapper",
+            user_property="email",
+            claim_name="email")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Example Usage (Client Scope)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="my-realm")
-        client_scope = keycloak.openid.ClientScope("clientScope", realm_id=realm.id)
-        user_property_mapper = keycloak.openid.UserPropertyProtocolMapper("userPropertyMapper",
-            claim_name="email",
-            client_scope_id=client_scope.id,
+            realm="my-realm",
+            enabled=True)
+        client_scope = keycloak.openid.ClientScope("client_scope",
             realm_id=realm.id,
-            user_property="email")
+            name="test-client-scope")
+        user_property_mapper = keycloak.openid.UserPropertyProtocolMapper("user_property_mapper",
+            realm_id=realm.id,
+            client_scope_id=client_scope.id,
+            name="test-mapper",
+            user_property="email",
+            claim_name="email")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 

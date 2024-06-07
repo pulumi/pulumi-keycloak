@@ -1065,7 +1065,6 @@ class IdentityProvider(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -1073,7 +1072,7 @@ class IdentityProvider(pulumi.CustomResource):
         realm = keycloak.Realm("realm",
             realm="my-realm",
             enabled=True)
-        realm_identity_provider = keycloak.oidc.IdentityProvider("realmIdentityProvider",
+        realm_identity_provider = keycloak.oidc.IdentityProvider("realm_identity_provider",
             realm=realm.id,
             alias="my-idp",
             authorization_url="https://authorizationurl.com",
@@ -1084,7 +1083,6 @@ class IdentityProvider(pulumi.CustomResource):
                 "clientAuthMethod": "client_secret_post",
             })
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -1144,7 +1142,6 @@ class IdentityProvider(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -1152,7 +1149,7 @@ class IdentityProvider(pulumi.CustomResource):
         realm = keycloak.Realm("realm",
             realm="my-realm",
             enabled=True)
-        realm_identity_provider = keycloak.oidc.IdentityProvider("realmIdentityProvider",
+        realm_identity_provider = keycloak.oidc.IdentityProvider("realm_identity_provider",
             realm=realm.id,
             alias="my-idp",
             authorization_url="https://authorizationurl.com",
@@ -1163,7 +1160,6 @@ class IdentityProvider(pulumi.CustomResource):
                 "clientAuthMethod": "client_secret_post",
             })
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

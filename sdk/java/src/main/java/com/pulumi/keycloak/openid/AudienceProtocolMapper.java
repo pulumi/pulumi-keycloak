@@ -28,7 +28,8 @@ import javax.annotation.Nullable;
  * ### Example Usage (Client)
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -53,34 +54,38 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
+ *             .realm("my-realm")
  *             .enabled(true)
- *             .realm(&#34;my-realm&#34;)
  *             .build());
  * 
- *         var openidClient = new Client(&#34;openidClient&#34;, ClientArgs.builder()        
- *             .accessType(&#34;CONFIDENTIAL&#34;)
- *             .clientId(&#34;test-client&#34;)
- *             .enabled(true)
+ *         var openidClient = new Client("openidClient", ClientArgs.builder()
  *             .realmId(realm.id())
- *             .validRedirectUris(&#34;http://localhost:8080/openid-callback&#34;)
+ *             .clientId("test-client")
+ *             .name("test client")
+ *             .enabled(true)
+ *             .accessType("CONFIDENTIAL")
+ *             .validRedirectUris("http://localhost:8080/openid-callback")
  *             .build());
  * 
- *         var audienceMapper = new AudienceProtocolMapper(&#34;audienceMapper&#34;, AudienceProtocolMapperArgs.builder()        
+ *         var audienceMapper = new AudienceProtocolMapper("audienceMapper", AudienceProtocolMapperArgs.builder()
+ *             .realmId(realm.id())
  *             .clientId(openidClient.id())
- *             .includedCustomAudience(&#34;foo&#34;)
- *             .realmId(realm.id())
+ *             .name("audience-mapper")
+ *             .includedCustomAudience("foo")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Example Usage (Client Scope)
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -105,24 +110,27 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
+ *         var realm = new Realm("realm", RealmArgs.builder()
+ *             .realm("my-realm")
  *             .enabled(true)
- *             .realm(&#34;my-realm&#34;)
  *             .build());
  * 
- *         var clientScope = new ClientScope(&#34;clientScope&#34;, ClientScopeArgs.builder()        
+ *         var clientScope = new ClientScope("clientScope", ClientScopeArgs.builder()
  *             .realmId(realm.id())
+ *             .name("test-client-scope")
  *             .build());
  * 
- *         var audienceMapper = new AudienceProtocolMapper(&#34;audienceMapper&#34;, AudienceProtocolMapperArgs.builder()        
+ *         var audienceMapper = new AudienceProtocolMapper("audienceMapper", AudienceProtocolMapperArgs.builder()
+ *             .realmId(realm.id())
  *             .clientScopeId(clientScope.id())
- *             .includedCustomAudience(&#34;foo&#34;)
- *             .realmId(realm.id())
+ *             .name("audience-mapper")
+ *             .includedCustomAudience("foo")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Argument Reference

@@ -14,10 +14,6 @@ namespace Pulumi.Keycloak.Inputs
     {
         [Input("edits", required: true)]
         private InputList<string>? _edits;
-
-        /// <summary>
-        /// A list of profiles that will be able to edit the attribute. One of `admin`, `user`.
-        /// </summary>
         public InputList<string> Edits
         {
             get => _edits ?? (_edits = new InputList<string>());
@@ -26,10 +22,6 @@ namespace Pulumi.Keycloak.Inputs
 
         [Input("views", required: true)]
         private InputList<string>? _views;
-
-        /// <summary>
-        /// A list of profiles that will be able to view the attribute. One of `admin`, `user`.
-        /// </summary>
         public InputList<string> Views
         {
             get => _views ?? (_views = new InputList<string>());

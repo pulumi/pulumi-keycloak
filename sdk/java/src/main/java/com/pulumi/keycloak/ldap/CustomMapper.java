@@ -28,7 +28,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -53,39 +54,42 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
+ *         var realm = new Realm("realm", RealmArgs.builder()
+ *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var ldapUserFederation = new UserFederation(&#34;ldapUserFederation&#34;, UserFederationArgs.builder()        
+ *         var ldapUserFederation = new UserFederation("ldapUserFederation", UserFederationArgs.builder()
+ *             .name("openldap")
  *             .realmId(realm.id())
- *             .usernameLdapAttribute(&#34;cn&#34;)
- *             .rdnLdapAttribute(&#34;cn&#34;)
- *             .uuidLdapAttribute(&#34;entryDN&#34;)
+ *             .usernameLdapAttribute("cn")
+ *             .rdnLdapAttribute("cn")
+ *             .uuidLdapAttribute("entryDN")
  *             .userObjectClasses(            
- *                 &#34;simpleSecurityObject&#34;,
- *                 &#34;organizationalRole&#34;)
- *             .connectionUrl(&#34;ldap://openldap&#34;)
- *             .usersDn(&#34;dc=example,dc=org&#34;)
- *             .bindDn(&#34;cn=admin,dc=example,dc=org&#34;)
- *             .bindCredential(&#34;admin&#34;)
+ *                 "simpleSecurityObject",
+ *                 "organizationalRole")
+ *             .connectionUrl("ldap://openldap")
+ *             .usersDn("dc=example,dc=org")
+ *             .bindDn("cn=admin,dc=example,dc=org")
+ *             .bindCredential("admin")
  *             .build());
  * 
- *         var customMapper = new CustomMapper(&#34;customMapper&#34;, CustomMapperArgs.builder()        
- *             .realmId(keycloak_ldap_user_federation.openldap().realm_id())
- *             .ldapUserFederationId(keycloak_ldap_user_federation.openldap().id())
- *             .providerId(&#34;custom-provider-registered-in-keycloak&#34;)
- *             .providerType(&#34;com.example.custom.ldap.mappers.CustomMapper&#34;)
+ *         var customMapper = new CustomMapper("customMapper", CustomMapperArgs.builder()
+ *             .name("custom-mapper")
+ *             .realmId(openldap.realmId())
+ *             .ldapUserFederationId(openldap.id())
+ *             .providerId("custom-provider-registered-in-keycloak")
+ *             .providerType("com.example.custom.ldap.mappers.CustomMapper")
  *             .config(Map.ofEntries(
- *                 Map.entry(&#34;attribute.name&#34;, &#34;name&#34;),
- *                 Map.entry(&#34;attribute.value&#34;, &#34;value&#34;)
+ *                 Map.entry("attribute.name", "name"),
+ *                 Map.entry("attribute.value", "value")
  *             ))
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

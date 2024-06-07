@@ -22,7 +22,6 @@ import (
 //
 // ### Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -36,16 +35,17 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-//				Enabled: pulumi.Bool(true),
 //				Realm:   pulumi.String("test"),
+//				Enabled: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = keycloak.NewCustomUserFederation(ctx, "customUserFederation", &keycloak.CustomUserFederationArgs{
-//				Enabled:    pulumi.Bool(true),
-//				ProviderId: pulumi.String("custom"),
+//			_, err = keycloak.NewCustomUserFederation(ctx, "custom_user_federation", &keycloak.CustomUserFederationArgs{
+//				Name:       pulumi.String("custom"),
 //				RealmId:    realm.ID(),
+//				ProviderId: pulumi.String("custom"),
+//				Enabled:    pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
@@ -55,7 +55,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Argument Reference
 //
@@ -86,7 +85,7 @@ type CustomUserFederation struct {
 	FullSyncPeriod pulumi.IntPtrOutput `pulumi:"fullSyncPeriod"`
 	// Display name of the provider when displayed in the console.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The parent_id of the generated component. will use realm_id if not specified.
+	// The parentId of the generated component. will use realmId if not specified.
 	ParentId pulumi.StringOutput `pulumi:"parentId"`
 	// Priority of this provider when looking up users. Lower values are first.
 	Priority pulumi.IntPtrOutput `pulumi:"priority"`
@@ -144,7 +143,7 @@ type customUserFederationState struct {
 	FullSyncPeriod *int `pulumi:"fullSyncPeriod"`
 	// Display name of the provider when displayed in the console.
 	Name *string `pulumi:"name"`
-	// The parent_id of the generated component. will use realm_id if not specified.
+	// The parentId of the generated component. will use realmId if not specified.
 	ParentId *string `pulumi:"parentId"`
 	// Priority of this provider when looking up users. Lower values are first.
 	Priority *int `pulumi:"priority"`
@@ -167,7 +166,7 @@ type CustomUserFederationState struct {
 	FullSyncPeriod pulumi.IntPtrInput
 	// Display name of the provider when displayed in the console.
 	Name pulumi.StringPtrInput
-	// The parent_id of the generated component. will use realm_id if not specified.
+	// The parentId of the generated component. will use realmId if not specified.
 	ParentId pulumi.StringPtrInput
 	// Priority of this provider when looking up users. Lower values are first.
 	Priority pulumi.IntPtrInput
@@ -194,7 +193,7 @@ type customUserFederationArgs struct {
 	FullSyncPeriod *int `pulumi:"fullSyncPeriod"`
 	// Display name of the provider when displayed in the console.
 	Name *string `pulumi:"name"`
-	// The parent_id of the generated component. will use realm_id if not specified.
+	// The parentId of the generated component. will use realmId if not specified.
 	ParentId *string `pulumi:"parentId"`
 	// Priority of this provider when looking up users. Lower values are first.
 	Priority *int `pulumi:"priority"`
@@ -218,7 +217,7 @@ type CustomUserFederationArgs struct {
 	FullSyncPeriod pulumi.IntPtrInput
 	// Display name of the provider when displayed in the console.
 	Name pulumi.StringPtrInput
-	// The parent_id of the generated component. will use realm_id if not specified.
+	// The parentId of the generated component. will use realmId if not specified.
 	ParentId pulumi.StringPtrInput
 	// Priority of this provider when looking up users. Lower values are first.
 	Priority pulumi.IntPtrInput
@@ -345,7 +344,7 @@ func (o CustomUserFederationOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *CustomUserFederation) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The parent_id of the generated component. will use realm_id if not specified.
+// The parentId of the generated component. will use realmId if not specified.
 func (o CustomUserFederationOutput) ParentId() pulumi.StringOutput {
 	return o.ApplyT(func(v *CustomUserFederation) pulumi.StringOutput { return v.ParentId }).(pulumi.StringOutput)
 }

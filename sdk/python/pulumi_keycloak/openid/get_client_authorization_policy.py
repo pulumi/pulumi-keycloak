@@ -168,7 +168,6 @@ def get_client_authorization_policy(name: Optional[str] = None,
     permission for this client called "Default Permission". We'll use the `openid_get_client_authorization_policy` data
     source to fetch information about this permission, so we can use it to create a new resource-based authorization permission.
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_keycloak as keycloak
@@ -176,8 +175,9 @@ def get_client_authorization_policy(name: Optional[str] = None,
     realm = keycloak.Realm("realm",
         realm="my-realm",
         enabled=True)
-    client_with_authz = keycloak.openid.Client("clientWithAuthz",
+    client_with_authz = keycloak.openid.Client("client_with_authz",
         client_id="client-with-authz",
+        name="client-with-authz",
         realm_id=realm.id,
         access_type="CONFIDENTIAL",
         service_accounts_enabled=True,
@@ -189,6 +189,7 @@ def get_client_authorization_policy(name: Optional[str] = None,
         name="Default Permission")
     resource = keycloak.openid.ClientAuthorizationResource("resource",
         resource_server_id=client_with_authz.resource_server_id,
+        name="authorization-resource",
         realm_id=realm.id,
         uris=["/endpoint/*"],
         attributes={
@@ -197,10 +198,10 @@ def get_client_authorization_policy(name: Optional[str] = None,
     permission = keycloak.openid.ClientAuthorizationPermission("permission",
         resource_server_id=client_with_authz.resource_server_id,
         realm_id=realm.id,
+        name="authorization-permission",
         policies=[default_permission.id],
         resources=[resource.id])
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str name: The name of the authorization policy.
@@ -242,7 +243,6 @@ def get_client_authorization_policy_output(name: Optional[pulumi.Input[str]] = N
     permission for this client called "Default Permission". We'll use the `openid_get_client_authorization_policy` data
     source to fetch information about this permission, so we can use it to create a new resource-based authorization permission.
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_keycloak as keycloak
@@ -250,8 +250,9 @@ def get_client_authorization_policy_output(name: Optional[pulumi.Input[str]] = N
     realm = keycloak.Realm("realm",
         realm="my-realm",
         enabled=True)
-    client_with_authz = keycloak.openid.Client("clientWithAuthz",
+    client_with_authz = keycloak.openid.Client("client_with_authz",
         client_id="client-with-authz",
+        name="client-with-authz",
         realm_id=realm.id,
         access_type="CONFIDENTIAL",
         service_accounts_enabled=True,
@@ -263,6 +264,7 @@ def get_client_authorization_policy_output(name: Optional[pulumi.Input[str]] = N
         name="Default Permission")
     resource = keycloak.openid.ClientAuthorizationResource("resource",
         resource_server_id=client_with_authz.resource_server_id,
+        name="authorization-resource",
         realm_id=realm.id,
         uris=["/endpoint/*"],
         attributes={
@@ -271,10 +273,10 @@ def get_client_authorization_policy_output(name: Optional[pulumi.Input[str]] = N
     permission = keycloak.openid.ClientAuthorizationPermission("permission",
         resource_server_id=client_with_authz.resource_server_id,
         realm_id=realm.id,
+        name="authorization-permission",
         policies=[default_permission.id],
         resources=[resource.id])
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str name: The name of the authorization policy.

@@ -20,7 +20,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -45,35 +46,37 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
+ *         var realm = new Realm("realm", RealmArgs.builder()
+ *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var oidcIdentityProvider = new IdentityProvider(&#34;oidcIdentityProvider&#34;, IdentityProviderArgs.builder()        
+ *         var oidc = new IdentityProvider("oidc", IdentityProviderArgs.builder()
  *             .realm(realm.id())
- *             .alias(&#34;oidc&#34;)
- *             .authorizationUrl(&#34;https://example.com/auth&#34;)
- *             .tokenUrl(&#34;https://example.com/token&#34;)
- *             .clientId(&#34;example_id&#34;)
- *             .clientSecret(&#34;example_token&#34;)
- *             .defaultScopes(&#34;openid random profile&#34;)
+ *             .alias("oidc")
+ *             .authorizationUrl("https://example.com/auth")
+ *             .tokenUrl("https://example.com/token")
+ *             .clientId("example_id")
+ *             .clientSecret("example_token")
+ *             .defaultScopes("openid random profile")
  *             .build());
  * 
- *         var oidcCustomIdentityProviderMapping = new CustomIdentityProviderMapping(&#34;oidcCustomIdentityProviderMapping&#34;, CustomIdentityProviderMappingArgs.builder()        
+ *         var oidcCustomIdentityProviderMapping = new CustomIdentityProviderMapping("oidcCustomIdentityProviderMapping", CustomIdentityProviderMappingArgs.builder()
  *             .realm(realm.id())
- *             .identityProviderAlias(oidcIdentityProvider.alias())
- *             .identityProviderMapper(&#34;%s-user-attribute-idp-mapper&#34;)
+ *             .name("email-attribute-importer")
+ *             .identityProviderAlias(oidc.alias())
+ *             .identityProviderMapper("%s-user-attribute-idp-mapper")
  *             .extraConfig(Map.ofEntries(
- *                 Map.entry(&#34;syncMode&#34;, &#34;INHERIT&#34;),
- *                 Map.entry(&#34;Claim&#34;, &#34;my-email-claim&#34;),
- *                 Map.entry(&#34;UserAttribute&#34;, &#34;email&#34;)
+ *                 Map.entry("syncMode", "INHERIT"),
+ *                 Map.entry("Claim", "my-email-claim"),
+ *                 Map.entry("UserAttribute", "email")
  *             ))
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

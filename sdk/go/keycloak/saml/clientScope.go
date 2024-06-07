@@ -18,7 +18,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -39,8 +38,9 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = saml.NewClientScope(ctx, "samlClientScope", &saml.ClientScopeArgs{
+//			_, err = saml.NewClientScope(ctx, "saml_client_scope", &saml.ClientScopeArgs{
 //				RealmId:     realm.ID(),
+//				Name:        pulumi.String("groups"),
 //				Description: pulumi.String("This scope will map a user's group memberships to SAML assertion"),
 //				GuiOrder:    pulumi.Int(1),
 //			})
@@ -52,7 +52,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

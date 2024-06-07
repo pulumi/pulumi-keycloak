@@ -20,7 +20,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -41,20 +40,22 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			realmRole, err := keycloak.NewRole(ctx, "realmRole", &keycloak.RoleArgs{
+//			realmRole, err := keycloak.NewRole(ctx, "realm_role", &keycloak.RoleArgs{
 //				RealmId: realm.ID(),
+//				Name:    pulumi.String("my-realm-role"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			client, err := openid.NewClient(ctx, "client", &openid.ClientArgs{
 //				RealmId:                realm.ID(),
+//				Name:                   pulumi.String("client"),
 //				ServiceAccountsEnabled: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = openid.NewClientServiceAccountRealmRole(ctx, "clientServiceAccountRole", &openid.ClientServiceAccountRealmRoleArgs{
+//			_, err = openid.NewClientServiceAccountRealmRole(ctx, "client_service_account_role", &openid.ClientServiceAccountRealmRoleArgs{
 //				RealmId:              realm.ID(),
 //				ServiceAccountUserId: client.ServiceAccountUserId,
 //				Role:                 realmRole.Name,
@@ -67,7 +68,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

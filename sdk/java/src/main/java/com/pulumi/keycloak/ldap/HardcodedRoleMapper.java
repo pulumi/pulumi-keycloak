@@ -21,7 +21,8 @@ import javax.annotation.Nullable;
  * ### Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -46,34 +47,37 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;test&#34;)
+ *         var realm = new Realm("realm", RealmArgs.builder()
+ *             .realm("test")
  *             .enabled(true)
  *             .build());
  * 
- *         var ldapUserFederation = new UserFederation(&#34;ldapUserFederation&#34;, UserFederationArgs.builder()        
+ *         var ldapUserFederation = new UserFederation("ldapUserFederation", UserFederationArgs.builder()
+ *             .name("openldap")
  *             .realmId(realm.id())
- *             .usernameLdapAttribute(&#34;cn&#34;)
- *             .rdnLdapAttribute(&#34;cn&#34;)
- *             .uuidLdapAttribute(&#34;entryDN&#34;)
+ *             .usernameLdapAttribute("cn")
+ *             .rdnLdapAttribute("cn")
+ *             .uuidLdapAttribute("entryDN")
  *             .userObjectClasses(            
- *                 &#34;simpleSecurityObject&#34;,
- *                 &#34;organizationalRole&#34;)
- *             .connectionUrl(&#34;ldap://openldap&#34;)
- *             .usersDn(&#34;dc=example,dc=org&#34;)
- *             .bindDn(&#34;cn=admin,dc=example,dc=org&#34;)
- *             .bindCredential(&#34;admin&#34;)
+ *                 "simpleSecurityObject",
+ *                 "organizationalRole")
+ *             .connectionUrl("ldap://openldap")
+ *             .usersDn("dc=example,dc=org")
+ *             .bindDn("cn=admin,dc=example,dc=org")
+ *             .bindCredential("admin")
  *             .build());
  * 
- *         var assignAdminRoleToAllUsers = new HardcodedRoleMapper(&#34;assignAdminRoleToAllUsers&#34;, HardcodedRoleMapperArgs.builder()        
+ *         var assignAdminRoleToAllUsers = new HardcodedRoleMapper("assignAdminRoleToAllUsers", HardcodedRoleMapperArgs.builder()
  *             .realmId(realm.id())
  *             .ldapUserFederationId(ldapUserFederation.id())
- *             .role(&#34;admin&#34;)
+ *             .name("assign-admin-role-to-all-users")
+ *             .role("admin")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Argument Reference

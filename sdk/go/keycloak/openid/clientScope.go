@@ -23,7 +23,6 @@ import (
 //
 // ### Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -38,15 +37,16 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-//				Enabled: pulumi.Bool(true),
 //				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = openid.NewClientScope(ctx, "openidClientScope", &openid.ClientScopeArgs{
-//				Description: pulumi.String("When requested, this scope will map a user's group memberships to a claim"),
+//			_, err = openid.NewClientScope(ctx, "openid_client_scope", &openid.ClientScopeArgs{
 //				RealmId:     realm.ID(),
+//				Name:        pulumi.String("groups"),
+//				Description: pulumi.String("When requested, this scope will map a user's group memberships to a claim"),
 //			})
 //			if err != nil {
 //				return err
@@ -56,7 +56,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Argument Reference
 //

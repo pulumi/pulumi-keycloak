@@ -18,7 +18,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -37,7 +36,8 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = keycloak.NewRealmKeystoreHmacGenerated(ctx, "keystoreHmacGenerated", &keycloak.RealmKeystoreHmacGeneratedArgs{
+//			_, err = keycloak.NewRealmKeystoreHmacGenerated(ctx, "keystore_hmac_generated", &keycloak.RealmKeystoreHmacGeneratedArgs{
+//				Name:       pulumi.String("my-hmac-generated-key"),
 //				RealmId:    realm.ID(),
 //				Enabled:    pulumi.Bool(true),
 //				Active:     pulumi.Bool(true),
@@ -53,7 +53,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

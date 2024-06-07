@@ -20,7 +20,6 @@ import (
 // ## Example Usage
 //
 // ### Exhaustive Groups)
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -42,6 +41,7 @@ import (
 //			}
 //			group, err := keycloak.NewGroup(ctx, "group", &keycloak.GroupArgs{
 //				RealmId: realm.ID(),
+//				Name:    pulumi.String("foo"),
 //			})
 //			if err != nil {
 //				return err
@@ -53,7 +53,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = keycloak.NewUserGroups(ctx, "userGroups", &keycloak.UserGroupsArgs{
+//			_, err = keycloak.NewUserGroups(ctx, "user_groups", &keycloak.UserGroupsArgs{
 //				RealmId: realm.ID(),
 //				UserId:  user.ID(),
 //				GroupIds: pulumi.StringArray{
@@ -68,82 +68,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
-//
-// ### Non Exhaustive Groups)
-// <!--Start PulumiCodeChooser -->
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-//				Realm:   pulumi.String("my-realm"),
-//				Enabled: pulumi.Bool(true),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			groupFoo, err := keycloak.NewGroup(ctx, "groupFoo", &keycloak.GroupArgs{
-//				RealmId: realm.ID(),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			groupBar, err := keycloak.NewGroup(ctx, "groupBar", &keycloak.GroupArgs{
-//				RealmId: realm.ID(),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			user, err := keycloak.NewUser(ctx, "user", &keycloak.UserArgs{
-//				RealmId:  realm.ID(),
-//				Username: pulumi.String("my-user"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = keycloak.NewUserGroups(ctx, "userGroupsAssociation1UserGroups", &keycloak.UserGroupsArgs{
-//				RealmId:    realm.ID(),
-//				UserId:     user.ID(),
-//				Exhaustive: pulumi.Bool(false),
-//				GroupIds: pulumi.StringArray{
-//					groupFoo.ID(),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = keycloak.NewUserGroups(ctx, "userGroupsAssociation1Index/userGroupsUserGroups", &keycloak.UserGroupsArgs{
-//				RealmId:    realm.ID(),
-//				UserId:     user.ID(),
-//				Exhaustive: pulumi.Bool(false),
-//				GroupIds: pulumi.StringArray{
-//					groupBar.ID(),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-// <!--End PulumiCodeChooser -->
-//
-// ## Import
-//
-// This resource does not support import. Instead of importing, feel free to create this resource
-//
-// as if it did not already exist on the server.
 type UserGroups struct {
 	pulumi.CustomResourceState
 

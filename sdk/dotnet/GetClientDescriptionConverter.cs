@@ -17,7 +17,6 @@ namespace Pulumi.Keycloak
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -32,7 +31,7 @@ namespace Pulumi.Keycloak
         ///         Enabled = true,
         ///     });
         /// 
-        ///     var samlClientClientDescriptionConverter = Keycloak.GetClientDescriptionConverter.Invoke(new()
+        ///     var samlClient = Keycloak.GetClientDescriptionConverter.Invoke(new()
         ///     {
         ///         RealmId = realm.Id,
         ///         Body = @"	&lt;md:EntityDescriptor xmlns:md=""urn:oasis:names:tc:SAML:2.0:metadata"" validUntil=""2021-04-17T12:41:46Z"" cacheDuration=""PT604800S"" entityID=""FakeEntityId""&gt;
@@ -65,15 +64,14 @@ namespace Pulumi.Keycloak
         /// ",
         ///     });
         /// 
-        ///     var samlClientClient = new Keycloak.Saml.Client("samlClientClient", new()
+        ///     var samlClientClient = new Keycloak.Saml.Client("saml_client", new()
         ///     {
         ///         RealmId = realm.Id,
-        ///         ClientId = samlClientClientDescriptionConverter.Apply(getClientDescriptionConverterResult =&gt; getClientDescriptionConverterResult.ClientId),
+        ///         ClientId = samlClient.Apply(getClientDescriptionConverterResult =&gt; getClientDescriptionConverterResult.ClientId),
         ///     });
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetClientDescriptionConverterResult> InvokeAsync(GetClientDescriptionConverterArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetClientDescriptionConverterResult>("keycloak:index/getClientDescriptionConverter:getClientDescriptionConverter", args ?? new GetClientDescriptionConverterArgs(), options.WithDefaults());
@@ -84,7 +82,6 @@ namespace Pulumi.Keycloak
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -99,7 +96,7 @@ namespace Pulumi.Keycloak
         ///         Enabled = true,
         ///     });
         /// 
-        ///     var samlClientClientDescriptionConverter = Keycloak.GetClientDescriptionConverter.Invoke(new()
+        ///     var samlClient = Keycloak.GetClientDescriptionConverter.Invoke(new()
         ///     {
         ///         RealmId = realm.Id,
         ///         Body = @"	&lt;md:EntityDescriptor xmlns:md=""urn:oasis:names:tc:SAML:2.0:metadata"" validUntil=""2021-04-17T12:41:46Z"" cacheDuration=""PT604800S"" entityID=""FakeEntityId""&gt;
@@ -132,15 +129,14 @@ namespace Pulumi.Keycloak
         /// ",
         ///     });
         /// 
-        ///     var samlClientClient = new Keycloak.Saml.Client("samlClientClient", new()
+        ///     var samlClientClient = new Keycloak.Saml.Client("saml_client", new()
         ///     {
         ///         RealmId = realm.Id,
-        ///         ClientId = samlClientClientDescriptionConverter.Apply(getClientDescriptionConverterResult =&gt; getClientDescriptionConverterResult.ClientId),
+        ///         ClientId = samlClient.Apply(getClientDescriptionConverterResult =&gt; getClientDescriptionConverterResult.ClientId),
         ///     });
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetClientDescriptionConverterResult> Invoke(GetClientDescriptionConverterInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetClientDescriptionConverterResult>("keycloak:index/getClientDescriptionConverter:getClientDescriptionConverter", args ?? new GetClientDescriptionConverterInvokeArgs(), options.WithDefaults());

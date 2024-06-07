@@ -18,7 +18,6 @@ import * as utilities from "../utilities";
  *
  * ### Client)
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -27,25 +26,25 @@ import * as utilities from "../utilities";
  *     realm: "my-realm",
  *     enabled: true,
  * });
- * const openidClient = new keycloak.openid.Client("openidClient", {
+ * const openidClient = new keycloak.openid.Client("openid_client", {
  *     realmId: realm.id,
  *     clientId: "client",
+ *     name: "client",
  *     enabled: true,
  *     accessType: "CONFIDENTIAL",
  *     validRedirectUris: ["http://localhost:8080/openid-callback"],
  * });
- * const scriptMapper = new keycloak.openid.ScriptProtocolMapper("scriptMapper", {
+ * const scriptMapper = new keycloak.openid.ScriptProtocolMapper("script_mapper", {
  *     realmId: realm.id,
  *     clientId: openidClient.id,
+ *     name: "script-mapper",
  *     claimName: "foo",
  *     script: "exports = 'foo';",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Client Scope)
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -54,15 +53,18 @@ import * as utilities from "../utilities";
  *     realm: "my-realm",
  *     enabled: true,
  * });
- * const clientScope = new keycloak.openid.ClientScope("clientScope", {realmId: realm.id});
- * const scriptMapper = new keycloak.openid.ScriptProtocolMapper("scriptMapper", {
+ * const clientScope = new keycloak.openid.ClientScope("client_scope", {
+ *     realmId: realm.id,
+ *     name: "client-scope",
+ * });
+ * const scriptMapper = new keycloak.openid.ScriptProtocolMapper("script_mapper", {
  *     realmId: realm.id,
  *     clientScopeId: clientScope.id,
+ *     name: "script-mapper",
  *     claimName: "foo",
  *     script: "exports = 'foo';",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

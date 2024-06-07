@@ -11,7 +11,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -22,8 +21,8 @@ import * as utilities from "../utilities";
  * });
  * const google = new keycloak.oidc.GoogleIdentityProvider("google", {
  *     realm: realm.id,
- *     clientId: _var.google_identity_provider_client_id,
- *     clientSecret: _var.google_identity_provider_client_secret,
+ *     clientId: googleIdentityProviderClientId,
+ *     clientSecret: googleIdentityProviderClientSecret,
  *     trustEmail: true,
  *     hostedDomain: "example.com",
  *     syncMode: "IMPORT",
@@ -32,7 +31,6 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

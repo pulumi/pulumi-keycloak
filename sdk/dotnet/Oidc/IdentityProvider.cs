@@ -16,7 +16,6 @@ namespace Pulumi.Keycloak.Oidc
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -31,7 +30,7 @@ namespace Pulumi.Keycloak.Oidc
     ///         Enabled = true,
     ///     });
     /// 
-    ///     var realmIdentityProvider = new Keycloak.Oidc.IdentityProvider("realmIdentityProvider", new()
+    ///     var realmIdentityProvider = new Keycloak.Oidc.IdentityProvider("realm_identity_provider", new()
     ///     {
     ///         Realm = realm.Id,
     ///         Alias = "my-idp",
@@ -47,7 +46,6 @@ namespace Pulumi.Keycloak.Oidc
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

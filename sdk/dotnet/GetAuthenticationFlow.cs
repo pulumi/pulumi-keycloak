@@ -16,7 +16,6 @@ namespace Pulumi.Keycloak
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -39,7 +38,6 @@ namespace Pulumi.Keycloak
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetAuthenticationFlowResult> InvokeAsync(GetAuthenticationFlowArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAuthenticationFlowResult>("keycloak:index/getAuthenticationFlow:getAuthenticationFlow", args ?? new GetAuthenticationFlowArgs(), options.WithDefaults());
@@ -49,7 +47,6 @@ namespace Pulumi.Keycloak
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -72,7 +69,6 @@ namespace Pulumi.Keycloak
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetAuthenticationFlowResult> Invoke(GetAuthenticationFlowInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAuthenticationFlowResult>("keycloak:index/getAuthenticationFlow:getAuthenticationFlow", args ?? new GetAuthenticationFlowInvokeArgs(), options.WithDefaults());

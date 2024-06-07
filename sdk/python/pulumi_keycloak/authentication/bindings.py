@@ -280,7 +280,6 @@ class Bindings(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -292,23 +291,22 @@ class Bindings(pulumi.CustomResource):
             realm_id=realm.id,
             alias="my-flow-alias")
         # first execution
-        execution_one = keycloak.authentication.Execution("executionOne",
+        execution_one = keycloak.authentication.Execution("execution_one",
             realm_id=realm.id,
             parent_flow_alias=flow.alias,
             authenticator="auth-cookie",
             requirement="ALTERNATIVE")
         # second execution
-        execution_two = keycloak.authentication.Execution("executionTwo",
+        execution_two = keycloak.authentication.Execution("execution_two",
             realm_id=realm.id,
             parent_flow_alias=flow.alias,
             authenticator="identity-provider-redirector",
             requirement="ALTERNATIVE",
             opts=pulumi.ResourceOptions(depends_on=[execution_one]))
-        browser_authentication_binding = keycloak.authentication.Bindings("browserAuthenticationBinding",
+        browser_authentication_binding = keycloak.authentication.Bindings("browser_authentication_binding",
             realm_id=realm.id,
             browser_flow=flow.alias)
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -343,7 +341,6 @@ class Bindings(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -355,23 +352,22 @@ class Bindings(pulumi.CustomResource):
             realm_id=realm.id,
             alias="my-flow-alias")
         # first execution
-        execution_one = keycloak.authentication.Execution("executionOne",
+        execution_one = keycloak.authentication.Execution("execution_one",
             realm_id=realm.id,
             parent_flow_alias=flow.alias,
             authenticator="auth-cookie",
             requirement="ALTERNATIVE")
         # second execution
-        execution_two = keycloak.authentication.Execution("executionTwo",
+        execution_two = keycloak.authentication.Execution("execution_two",
             realm_id=realm.id,
             parent_flow_alias=flow.alias,
             authenticator="identity-provider-redirector",
             requirement="ALTERNATIVE",
             opts=pulumi.ResourceOptions(depends_on=[execution_one]))
-        browser_authentication_binding = keycloak.authentication.Bindings("browserAuthenticationBinding",
+        browser_authentication_binding = keycloak.authentication.Bindings("browser_authentication_binding",
             realm_id=realm.id,
             browser_flow=flow.alias)
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param BindingsArgs args: The arguments to use to populate this resource's properties.

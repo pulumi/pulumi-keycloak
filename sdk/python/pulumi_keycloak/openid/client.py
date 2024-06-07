@@ -1167,22 +1167,21 @@ class Client(pulumi.CustomResource):
 
         ### Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="my-realm")
-        openid_client = keycloak.openid.Client("openidClient",
-            access_type="CONFIDENTIAL",
-            client_id="test-client",
-            enabled=True,
+            realm="my-realm",
+            enabled=True)
+        openid_client = keycloak.openid.Client("openid_client",
             realm_id=realm.id,
+            client_id="test-client",
+            name="test client",
+            enabled=True,
+            access_type="CONFIDENTIAL",
             valid_redirect_uris=["http://localhost:8080/openid-callback"])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 
@@ -1247,22 +1246,21 @@ class Client(pulumi.CustomResource):
 
         ### Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            enabled=True,
-            realm="my-realm")
-        openid_client = keycloak.openid.Client("openidClient",
-            access_type="CONFIDENTIAL",
-            client_id="test-client",
-            enabled=True,
+            realm="my-realm",
+            enabled=True)
+        openid_client = keycloak.openid.Client("openid_client",
             realm_id=realm.id,
+            client_id="test-client",
+            name="test client",
+            enabled=True,
+            access_type="CONFIDENTIAL",
             valid_redirect_uris=["http://localhost:8080/openid-callback"])
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Argument Reference
 

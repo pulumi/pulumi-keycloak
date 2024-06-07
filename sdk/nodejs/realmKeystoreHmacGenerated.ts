@@ -11,13 +11,13 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {realm: "my-realm"});
- * const keystoreHmacGenerated = new keycloak.RealmKeystoreHmacGenerated("keystoreHmacGenerated", {
+ * const keystoreHmacGenerated = new keycloak.RealmKeystoreHmacGenerated("keystore_hmac_generated", {
+ *     name: "my-hmac-generated-key",
  *     realmId: realm.id,
  *     enabled: true,
  *     active: true,
@@ -26,7 +26,6 @@ import * as utilities from "./utilities";
  *     secretSize: 64,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

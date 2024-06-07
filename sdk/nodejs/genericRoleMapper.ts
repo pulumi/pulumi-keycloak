@@ -15,7 +15,6 @@ import * as utilities from "./utilities";
  *
  * ### Realm Role To Client)
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -27,24 +26,24 @@ import * as utilities from "./utilities";
  * const client = new keycloak.openid.Client("client", {
  *     realmId: realm.id,
  *     clientId: "client",
+ *     name: "client",
  *     enabled: true,
  *     accessType: "BEARER-ONLY",
  * });
- * const realmRole = new keycloak.Role("realmRole", {
+ * const realmRole = new keycloak.Role("realm_role", {
  *     realmId: realm.id,
+ *     name: "my-realm-role",
  *     description: "My Realm Role",
  * });
- * const clientRoleMapper = new keycloak.GenericRoleMapper("clientRoleMapper", {
+ * const clientRoleMapper = new keycloak.GenericRoleMapper("client_role_mapper", {
  *     realmId: realm.id,
  *     clientId: client.id,
  *     roleId: realmRole.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Client Role To Client)
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -53,40 +52,42 @@ import * as utilities from "./utilities";
  *     realm: "my-realm",
  *     enabled: true,
  * });
- * const clientA = new keycloak.openid.Client("clientA", {
+ * const clientA = new keycloak.openid.Client("client_a", {
  *     realmId: realm.id,
  *     clientId: "client-a",
+ *     name: "client-a",
  *     enabled: true,
  *     accessType: "BEARER-ONLY",
  *     fullScopeAllowed: false,
  * });
- * const clientRoleA = new keycloak.Role("clientRoleA", {
+ * const clientRoleA = new keycloak.Role("client_role_a", {
  *     realmId: realm.id,
  *     clientId: clientA.id,
+ *     name: "my-client-role",
  *     description: "My Client Role",
  * });
- * const clientB = new keycloak.openid.Client("clientB", {
+ * const clientB = new keycloak.openid.Client("client_b", {
  *     realmId: realm.id,
  *     clientId: "client-b",
+ *     name: "client-b",
  *     enabled: true,
  *     accessType: "BEARER-ONLY",
  * });
- * const clientRoleB = new keycloak.Role("clientRoleB", {
+ * const clientRoleB = new keycloak.Role("client_role_b", {
  *     realmId: realm.id,
  *     clientId: clientB.id,
+ *     name: "my-client-role",
  *     description: "My Client Role",
  * });
- * const clientBRoleMapper = new keycloak.GenericRoleMapper("clientBRoleMapper", {
+ * const clientBRoleMapper = new keycloak.GenericRoleMapper("client_b_role_mapper", {
  *     realmId: realm.id,
  *     clientId: clientB.id,
  *     roleId: clientRoleA.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Realm Role To Client Scope)
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -95,22 +96,24 @@ import * as utilities from "./utilities";
  *     realm: "my-realm",
  *     enabled: true,
  * });
- * const clientScope = new keycloak.openid.ClientScope("clientScope", {realmId: realm.id});
- * const realmRole = new keycloak.Role("realmRole", {
+ * const clientScope = new keycloak.openid.ClientScope("client_scope", {
  *     realmId: realm.id,
+ *     name: "my-client-scope",
+ * });
+ * const realmRole = new keycloak.Role("realm_role", {
+ *     realmId: realm.id,
+ *     name: "my-realm-role",
  *     description: "My Realm Role",
  * });
- * const clientRoleMapper = new keycloak.GenericRoleMapper("clientRoleMapper", {
+ * const clientRoleMapper = new keycloak.GenericRoleMapper("client_role_mapper", {
  *     realmId: realm.id,
  *     clientScopeId: clientScope.id,
  *     roleId: realmRole.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Client Role To Client Scope)
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -122,22 +125,26 @@ import * as utilities from "./utilities";
  * const client = new keycloak.openid.Client("client", {
  *     realmId: realm.id,
  *     clientId: "client",
+ *     name: "client",
  *     enabled: true,
  *     accessType: "BEARER-ONLY",
  * });
- * const clientRole = new keycloak.Role("clientRole", {
+ * const clientRole = new keycloak.Role("client_role", {
  *     realmId: realm.id,
  *     clientId: client.id,
+ *     name: "my-client-role",
  *     description: "My Client Role",
  * });
- * const clientScope = new keycloak.openid.ClientScope("clientScope", {realmId: realm.id});
- * const clientBRoleMapper = new keycloak.GenericRoleMapper("clientBRoleMapper", {
+ * const clientScope = new keycloak.openid.ClientScope("client_scope", {
+ *     realmId: realm.id,
+ *     name: "my-client-scope",
+ * });
+ * const clientBRoleMapper = new keycloak.GenericRoleMapper("client_b_role_mapper", {
  *     realmId: realm.id,
  *     clientScopeId: clientScope.id,
  *     roleId: clientRole.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

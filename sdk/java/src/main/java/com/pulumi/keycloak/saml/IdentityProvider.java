@@ -28,7 +28,8 @@ import javax.annotation.Nullable;
  * ### Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -49,23 +50,24 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realmIdentityProvider = new IdentityProvider(&#34;realmIdentityProvider&#34;, IdentityProviderArgs.builder()        
- *             .alias(&#34;my-idp&#34;)
+ *         var realmIdentityProvider = new IdentityProvider("realmIdentityProvider", IdentityProviderArgs.builder()
+ *             .realm("my-realm")
+ *             .alias("my-idp")
+ *             .singleSignOnServiceUrl("https://domain.com/adfs/ls/")
+ *             .singleLogoutServiceUrl("https://domain.com/adfs/ls/?wa=wsignout1.0")
  *             .backchannelSupported(true)
- *             .forceAuthn(true)
- *             .postBindingAuthnRequest(true)
- *             .postBindingLogout(true)
  *             .postBindingResponse(true)
- *             .realm(&#34;my-realm&#34;)
- *             .singleLogoutServiceUrl(&#34;https://domain.com/adfs/ls/?wa=wsignout1.0&#34;)
- *             .singleSignOnServiceUrl(&#34;https://domain.com/adfs/ls/&#34;)
+ *             .postBindingLogout(true)
+ *             .postBindingAuthnRequest(true)
  *             .storeToken(false)
  *             .trustEmail(true)
+ *             .forceAuthn(true)
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ### Argument Reference

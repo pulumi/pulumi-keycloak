@@ -9,7 +9,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -17,17 +16,18 @@ import * as utilities from "./utilities";
  * const masterRealm = keycloak.getRealm({
  *     realm: "master",
  * });
+ * // use the keycloak_user data source to grab the admin user's ID
  * const defaultAdminUser = masterRealm.then(masterRealm => keycloak.getUser({
  *     realmId: masterRealm.id,
  *     username: "keycloak",
  * }));
+ * // use the keycloak_user_realm_roles data source to list role names
  * const userRealmRoles = Promise.all([masterRealm, defaultAdminUser]).then(([masterRealm, defaultAdminUser]) => keycloak.getUserRealmRoles({
  *     realmId: masterRealm.id,
  *     userId: defaultAdminUser.id,
  * }));
  * export const keycloakUserRoleNames = userRealmRoles.then(userRealmRoles => userRealmRoles.roleNames);
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getUserRealmRoles(args: GetUserRealmRolesArgs, opts?: pulumi.InvokeOptions): Promise<GetUserRealmRolesResult> {
 
@@ -72,7 +72,6 @@ export interface GetUserRealmRolesResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -80,17 +79,18 @@ export interface GetUserRealmRolesResult {
  * const masterRealm = keycloak.getRealm({
  *     realm: "master",
  * });
+ * // use the keycloak_user data source to grab the admin user's ID
  * const defaultAdminUser = masterRealm.then(masterRealm => keycloak.getUser({
  *     realmId: masterRealm.id,
  *     username: "keycloak",
  * }));
+ * // use the keycloak_user_realm_roles data source to list role names
  * const userRealmRoles = Promise.all([masterRealm, defaultAdminUser]).then(([masterRealm, defaultAdminUser]) => keycloak.getUserRealmRoles({
  *     realmId: masterRealm.id,
  *     userId: defaultAdminUser.id,
  * }));
  * export const keycloakUserRoleNames = userRealmRoles.then(userRealmRoles => userRealmRoles.roleNames);
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getUserRealmRolesOutput(args: GetUserRealmRolesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetUserRealmRolesResult> {
     return pulumi.output(args).apply((a: any) => getUserRealmRoles(a, opts))

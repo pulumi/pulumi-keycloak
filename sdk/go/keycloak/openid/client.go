@@ -22,7 +22,6 @@ import (
 //
 // ### Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -37,17 +36,18 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-//				Enabled: pulumi.Bool(true),
 //				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = openid.NewClient(ctx, "openidClient", &openid.ClientArgs{
-//				AccessType: pulumi.String("CONFIDENTIAL"),
-//				ClientId:   pulumi.String("test-client"),
-//				Enabled:    pulumi.Bool(true),
+//			_, err = openid.NewClient(ctx, "openid_client", &openid.ClientArgs{
 //				RealmId:    realm.ID(),
+//				ClientId:   pulumi.String("test-client"),
+//				Name:       pulumi.String("test client"),
+//				Enabled:    pulumi.Bool(true),
+//				AccessType: pulumi.String("CONFIDENTIAL"),
 //				ValidRedirectUris: pulumi.StringArray{
 //					pulumi.String("http://localhost:8080/openid-callback"),
 //				},
@@ -60,7 +60,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Argument Reference
 //

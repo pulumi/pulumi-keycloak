@@ -18,7 +18,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -39,7 +38,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			oidcIdentityProvider, err := oidc.NewIdentityProvider(ctx, "oidcIdentityProvider", &oidc.IdentityProviderArgs{
+//			oidc, err := oidc.NewIdentityProvider(ctx, "oidc", &oidc.IdentityProviderArgs{
 //				Realm:            realm.ID(),
 //				Alias:            pulumi.String("my-idp"),
 //				AuthorizationUrl: pulumi.String("https://authorizationurl.com"),
@@ -50,16 +49,18 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = keycloak.NewRole(ctx, "realmRole", &keycloak.RoleArgs{
+//			_, err = keycloak.NewRole(ctx, "realm_role", &keycloak.RoleArgs{
 //				RealmId:     realm.ID(),
+//				Name:        pulumi.String("my-realm-role"),
 //				Description: pulumi.String("My Realm Role"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = keycloak.NewHardcodedRoleIdentityMapper(ctx, "oidcHardcodedRoleIdentityMapper", &keycloak.HardcodedRoleIdentityMapperArgs{
+//			_, err = keycloak.NewHardcodedRoleIdentityMapper(ctx, "oidc", &keycloak.HardcodedRoleIdentityMapperArgs{
 //				Realm:                 realm.ID(),
-//				IdentityProviderAlias: oidcIdentityProvider.Alias,
+//				Name:                  pulumi.String("hardcodedRole"),
+//				IdentityProviderAlias: oidc.Alias,
 //				Role:                  pulumi.String("my-realm-role"),
 //				ExtraConfig: pulumi.Map{
 //					"syncMode": pulumi.Any("INHERIT"),
@@ -73,7 +74,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 type HardcodedRoleIdentityMapper struct {
 	pulumi.CustomResourceState
 

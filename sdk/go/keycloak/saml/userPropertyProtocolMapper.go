@@ -24,7 +24,6 @@ import (
 //
 // ### Example Usage (Client)
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -39,25 +38,27 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-//				Enabled: pulumi.Bool(true),
 //				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			samlClient, err := saml.NewClient(ctx, "samlClient", &saml.ClientArgs{
+//			samlClient, err := saml.NewClient(ctx, "saml_client", &saml.ClientArgs{
+//				RealmId:  pulumi.Any(test.Id),
 //				ClientId: pulumi.String("test-saml-client"),
-//				RealmId:  pulumi.Any(keycloak_realm.Test.Id),
+//				Name:     pulumi.String("test-saml-client"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = saml.NewUserPropertyProtocolMapper(ctx, "samlUserPropertyMapper", &saml.UserPropertyProtocolMapperArgs{
+//			_, err = saml.NewUserPropertyProtocolMapper(ctx, "saml_user_property_mapper", &saml.UserPropertyProtocolMapperArgs{
+//				RealmId:                 pulumi.Any(test.Id),
 //				ClientId:                samlClient.ID(),
-//				RealmId:                 pulumi.Any(keycloak_realm.Test.Id),
+//				Name:                    pulumi.String("email-user-property-mapper"),
+//				UserProperty:            pulumi.String("email"),
 //				SamlAttributeName:       pulumi.String("email"),
 //				SamlAttributeNameFormat: pulumi.String("Unspecified"),
-//				UserProperty:            pulumi.String("email"),
 //			})
 //			if err != nil {
 //				return err
@@ -67,7 +68,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Argument Reference
 //

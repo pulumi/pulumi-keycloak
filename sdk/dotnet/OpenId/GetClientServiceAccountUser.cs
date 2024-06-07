@@ -21,7 +21,6 @@ namespace Pulumi.Keycloak.OpenId
         /// that represents the service account. We'll use this data source to grab this user's ID in order to assign some roles to this
         /// user, using the `keycloak.UserRoles` resource.
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -40,6 +39,7 @@ namespace Pulumi.Keycloak.OpenId
         ///     {
         ///         RealmId = realm.Id,
         ///         ClientId = "client",
+        ///         Name = "client",
         ///         AccessType = "CONFIDENTIAL",
         ///         ServiceAccountsEnabled = true,
         ///     });
@@ -56,7 +56,7 @@ namespace Pulumi.Keycloak.OpenId
         ///         Name = "offline_access",
         ///     });
         /// 
-        ///     var serviceAccountUserRoles = new Keycloak.UserRoles("serviceAccountUserRoles", new()
+        ///     var serviceAccountUserRoles = new Keycloak.UserRoles("service_account_user_roles", new()
         ///     {
         ///         RealmId = realm.Id,
         ///         UserId = serviceAccountUser.Apply(getClientServiceAccountUserResult =&gt; getClientServiceAccountUserResult.Id),
@@ -68,7 +68,6 @@ namespace Pulumi.Keycloak.OpenId
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetClientServiceAccountUserResult> InvokeAsync(GetClientServiceAccountUserArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetClientServiceAccountUserResult>("keycloak:openid/getClientServiceAccountUser:getClientServiceAccountUser", args ?? new GetClientServiceAccountUserArgs(), options.WithDefaults());
@@ -83,7 +82,6 @@ namespace Pulumi.Keycloak.OpenId
         /// that represents the service account. We'll use this data source to grab this user's ID in order to assign some roles to this
         /// user, using the `keycloak.UserRoles` resource.
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -102,6 +100,7 @@ namespace Pulumi.Keycloak.OpenId
         ///     {
         ///         RealmId = realm.Id,
         ///         ClientId = "client",
+        ///         Name = "client",
         ///         AccessType = "CONFIDENTIAL",
         ///         ServiceAccountsEnabled = true,
         ///     });
@@ -118,7 +117,7 @@ namespace Pulumi.Keycloak.OpenId
         ///         Name = "offline_access",
         ///     });
         /// 
-        ///     var serviceAccountUserRoles = new Keycloak.UserRoles("serviceAccountUserRoles", new()
+        ///     var serviceAccountUserRoles = new Keycloak.UserRoles("service_account_user_roles", new()
         ///     {
         ///         RealmId = realm.Id,
         ///         UserId = serviceAccountUser.Apply(getClientServiceAccountUserResult =&gt; getClientServiceAccountUserResult.Id),
@@ -130,7 +129,6 @@ namespace Pulumi.Keycloak.OpenId
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetClientServiceAccountUserResult> Invoke(GetClientServiceAccountUserInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetClientServiceAccountUserResult>("keycloak:openid/getClientServiceAccountUser:getClientServiceAccountUser", args ?? new GetClientServiceAccountUserInvokeArgs(), options.WithDefaults());

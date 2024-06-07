@@ -18,7 +18,6 @@ import (
 //
 // ### Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -31,10 +30,11 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := keycloak.NewAttributeImporterIdentityProviderMapper(ctx, "testMapper", &keycloak.AttributeImporterIdentityProviderMapperArgs{
-//				AttributeName:         pulumi.String("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname"),
-//				IdentityProviderAlias: pulumi.String("idp_alias"),
+//			_, err := keycloak.NewAttributeImporterIdentityProviderMapper(ctx, "test_mapper", &keycloak.AttributeImporterIdentityProviderMapperArgs{
 //				Realm:                 pulumi.String("my-realm"),
+//				Name:                  pulumi.String("my-mapper"),
+//				IdentityProviderAlias: pulumi.String("idp_alias"),
+//				AttributeName:         pulumi.String("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname"),
 //				UserAttribute:         pulumi.String("lastName"),
 //			})
 //			if err != nil {
@@ -45,7 +45,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Argument Reference
 //

@@ -16,71 +16,27 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class RealmUserProfileAttribute {
-    /**
-     * @return A map of annotations for the attribute. Values can be a String or a json object.
-     * 
-     */
     private @Nullable Map<String,String> annotations;
-    /**
-     * @return The display name of the attribute.
-     * 
-     */
     private @Nullable String displayName;
-    /**
-     * @return A list of scopes. The attribute will only be enabled when these scopes are requested by clients.
-     * 
-     */
     private @Nullable List<String> enabledWhenScopes;
     /**
      * @return A list of groups.
      * 
      */
     private @Nullable String group;
-    /**
-     * @return The name of the attribute.
-     * 
-     */
     private String name;
-    /**
-     * @return The permissions configuration information.
-     * 
-     */
     private @Nullable RealmUserProfileAttributePermissions permissions;
-    /**
-     * @return A list of roles for which the attribute will be required.
-     * 
-     */
     private @Nullable List<String> requiredForRoles;
-    /**
-     * @return A list of scopes for which the attribute will be required.
-     * 
-     */
     private @Nullable List<String> requiredForScopes;
-    /**
-     * @return A list of validators for the attribute.
-     * 
-     */
     private @Nullable List<RealmUserProfileAttributeValidator> validators;
 
     private RealmUserProfileAttribute() {}
-    /**
-     * @return A map of annotations for the attribute. Values can be a String or a json object.
-     * 
-     */
     public Map<String,String> annotations() {
         return this.annotations == null ? Map.of() : this.annotations;
     }
-    /**
-     * @return The display name of the attribute.
-     * 
-     */
     public Optional<String> displayName() {
         return Optional.ofNullable(this.displayName);
     }
-    /**
-     * @return A list of scopes. The attribute will only be enabled when these scopes are requested by clients.
-     * 
-     */
     public List<String> enabledWhenScopes() {
         return this.enabledWhenScopes == null ? List.of() : this.enabledWhenScopes;
     }
@@ -91,38 +47,18 @@ public final class RealmUserProfileAttribute {
     public Optional<String> group() {
         return Optional.ofNullable(this.group);
     }
-    /**
-     * @return The name of the attribute.
-     * 
-     */
     public String name() {
         return this.name;
     }
-    /**
-     * @return The permissions configuration information.
-     * 
-     */
     public Optional<RealmUserProfileAttributePermissions> permissions() {
         return Optional.ofNullable(this.permissions);
     }
-    /**
-     * @return A list of roles for which the attribute will be required.
-     * 
-     */
     public List<String> requiredForRoles() {
         return this.requiredForRoles == null ? List.of() : this.requiredForRoles;
     }
-    /**
-     * @return A list of scopes for which the attribute will be required.
-     * 
-     */
     public List<String> requiredForScopes() {
         return this.requiredForScopes == null ? List.of() : this.requiredForScopes;
     }
-    /**
-     * @return A list of validators for the attribute.
-     * 
-     */
     public List<RealmUserProfileAttributeValidator> validators() {
         return this.validators == null ? List.of() : this.validators;
     }

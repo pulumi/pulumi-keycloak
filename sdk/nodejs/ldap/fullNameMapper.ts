@@ -15,36 +15,36 @@ import * as utilities from "../utilities";
  *
  * ### Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {
- *     enabled: true,
  *     realm: "test",
+ *     enabled: true,
  * });
- * const ldapUserFederation = new keycloak.ldap.UserFederation("ldapUserFederation", {
- *     bindCredential: "admin",
- *     bindDn: "cn=admin,dc=example,dc=org",
- *     connectionUrl: "ldap://openldap",
- *     rdnLdapAttribute: "cn",
+ * const ldapUserFederation = new keycloak.ldap.UserFederation("ldap_user_federation", {
+ *     name: "openldap",
  *     realmId: realm.id,
+ *     usernameLdapAttribute: "cn",
+ *     rdnLdapAttribute: "cn",
+ *     uuidLdapAttribute: "entryDN",
  *     userObjectClasses: [
  *         "simpleSecurityObject",
  *         "organizationalRole",
  *     ],
- *     usernameLdapAttribute: "cn",
+ *     connectionUrl: "ldap://openldap",
  *     usersDn: "dc=example,dc=org",
- *     uuidLdapAttribute: "entryDN",
+ *     bindDn: "cn=admin,dc=example,dc=org",
+ *     bindCredential: "admin",
  * });
- * const ldapFullNameMapper = new keycloak.ldap.FullNameMapper("ldapFullNameMapper", {
- *     ldapFullNameAttribute: "cn",
- *     ldapUserFederationId: ldapUserFederation.id,
+ * const ldapFullNameMapper = new keycloak.ldap.FullNameMapper("ldap_full_name_mapper", {
  *     realmId: realm.id,
+ *     ldapUserFederationId: ldapUserFederation.id,
+ *     name: "full-name-mapper",
+ *     ldapFullNameAttribute: "cn",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Argument Reference
  *

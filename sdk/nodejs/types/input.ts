@@ -328,82 +328,34 @@ export interface RealmSmtpServerAuth {
 }
 
 export interface RealmUserProfileAttribute {
-    /**
-     * A map of annotations for the attribute. Values can be a String or a json object.
-     */
     annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-    /**
-     * The display name of the attribute.
-     */
     displayName?: pulumi.Input<string>;
-    /**
-     * A list of scopes. The attribute will only be enabled when these scopes are requested by clients.
-     */
     enabledWhenScopes?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * A list of groups.
      */
     group?: pulumi.Input<string>;
-    /**
-     * The name of the attribute.
-     */
     name: pulumi.Input<string>;
-    /**
-     * The permissions configuration information.
-     */
     permissions?: pulumi.Input<inputs.RealmUserProfileAttributePermissions>;
-    /**
-     * A list of roles for which the attribute will be required.
-     */
     requiredForRoles?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * A list of scopes for which the attribute will be required.
-     */
     requiredForScopes?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * A list of validators for the attribute.
-     */
     validators?: pulumi.Input<pulumi.Input<inputs.RealmUserProfileAttributeValidator>[]>;
 }
 
 export interface RealmUserProfileAttributePermissions {
-    /**
-     * A list of profiles that will be able to edit the attribute. One of `admin`, `user`.
-     */
     edits: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * A list of profiles that will be able to view the attribute. One of `admin`, `user`.
-     */
     views: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface RealmUserProfileAttributeValidator {
-    /**
-     * A map defining the configuration of the validator. Values can be a String or a json object.
-     */
     config?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-    /**
-     * The name of the attribute.
-     */
     name: pulumi.Input<string>;
 }
 
 export interface RealmUserProfileGroup {
-    /**
-     * A map of annotations for the attribute. Values can be a String or a json object.
-     */
     annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-    /**
-     * The display description of the group.
-     */
     displayDescription?: pulumi.Input<string>;
-    /**
-     * The display header of the group.
-     */
     displayHeader?: pulumi.Input<string>;
-    /**
-     * The name of the attribute.
-     */
     name: pulumi.Input<string>;
 }
 

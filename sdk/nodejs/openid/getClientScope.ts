@@ -9,7 +9,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -19,13 +18,13 @@ import * as utilities from "../utilities";
  *     name: "offline_access",
  * });
  * // use the data source
- * const audienceMapper = new keycloak.openid.AudienceProtocolMapper("audienceMapper", {
+ * const audienceMapper = new keycloak.openid.AudienceProtocolMapper("audience_mapper", {
  *     realmId: offlineAccess.then(offlineAccess => offlineAccess.realmId),
  *     clientScopeId: offlineAccess.then(offlineAccess => offlineAccess.id),
+ *     name: "audience-mapper",
  *     includedCustomAudience: "foo",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getClientScope(args: GetClientScopeArgs, opts?: pulumi.InvokeOptions): Promise<GetClientScopeResult> {
 
@@ -70,7 +69,6 @@ export interface GetClientScopeResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -80,13 +78,13 @@ export interface GetClientScopeResult {
  *     name: "offline_access",
  * });
  * // use the data source
- * const audienceMapper = new keycloak.openid.AudienceProtocolMapper("audienceMapper", {
+ * const audienceMapper = new keycloak.openid.AudienceProtocolMapper("audience_mapper", {
  *     realmId: offlineAccess.then(offlineAccess => offlineAccess.realmId),
  *     clientScopeId: offlineAccess.then(offlineAccess => offlineAccess.id),
+ *     name: "audience-mapper",
  *     includedCustomAudience: "foo",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getClientScopeOutput(args: GetClientScopeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetClientScopeResult> {
     return pulumi.output(args).apply((a: any) => getClientScope(a, opts))

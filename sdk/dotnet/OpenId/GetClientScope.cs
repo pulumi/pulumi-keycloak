@@ -16,7 +16,6 @@ namespace Pulumi.Keycloak.OpenId
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -32,16 +31,16 @@ namespace Pulumi.Keycloak.OpenId
         ///     });
         /// 
         ///     // use the data source
-        ///     var audienceMapper = new Keycloak.OpenId.AudienceProtocolMapper("audienceMapper", new()
+        ///     var audienceMapper = new Keycloak.OpenId.AudienceProtocolMapper("audience_mapper", new()
         ///     {
         ///         RealmId = offlineAccess.Apply(getClientScopeResult =&gt; getClientScopeResult.RealmId),
         ///         ClientScopeId = offlineAccess.Apply(getClientScopeResult =&gt; getClientScopeResult.Id),
+        ///         Name = "audience-mapper",
         ///         IncludedCustomAudience = "foo",
         ///     });
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetClientScopeResult> InvokeAsync(GetClientScopeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetClientScopeResult>("keycloak:openid/getClientScope:getClientScope", args ?? new GetClientScopeArgs(), options.WithDefaults());
@@ -51,7 +50,6 @@ namespace Pulumi.Keycloak.OpenId
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -67,16 +65,16 @@ namespace Pulumi.Keycloak.OpenId
         ///     });
         /// 
         ///     // use the data source
-        ///     var audienceMapper = new Keycloak.OpenId.AudienceProtocolMapper("audienceMapper", new()
+        ///     var audienceMapper = new Keycloak.OpenId.AudienceProtocolMapper("audience_mapper", new()
         ///     {
         ///         RealmId = offlineAccess.Apply(getClientScopeResult =&gt; getClientScopeResult.RealmId),
         ///         ClientScopeId = offlineAccess.Apply(getClientScopeResult =&gt; getClientScopeResult.Id),
+        ///         Name = "audience-mapper",
         ///         IncludedCustomAudience = "foo",
         ///     });
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetClientScopeResult> Invoke(GetClientScopeInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetClientScopeResult>("keycloak:openid/getClientScope:getClientScope", args ?? new GetClientScopeInvokeArgs(), options.WithDefaults());

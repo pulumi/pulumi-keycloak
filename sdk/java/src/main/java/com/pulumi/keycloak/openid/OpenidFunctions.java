@@ -31,7 +31,8 @@ public final class OpenidFunctions {
      * ### Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -55,19 +56,21 @@ public final class OpenidFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var realmManagement = OpenidFunctions.getClient(GetClientArgs.builder()
-     *             .realmId(&#34;my-realm&#34;)
-     *             .clientId(&#34;realm-management&#34;)
+     *             .realmId("my-realm")
+     *             .clientId("realm-management")
      *             .build());
      * 
+     *         // use the data source
      *         final var admin = KeycloakFunctions.getRole(GetRoleArgs.builder()
-     *             .realmId(&#34;my-realm&#34;)
-     *             .clientId(realmManagement.applyValue(getClientResult -&gt; getClientResult.id()))
-     *             .name(&#34;realm-admin&#34;)
+     *             .realmId("my-realm")
+     *             .clientId(realmManagement.applyValue(getClientResult -> getClientResult.id()))
+     *             .name("realm-admin")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### Argument Reference
@@ -93,7 +96,8 @@ public final class OpenidFunctions {
      * ### Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -117,19 +121,21 @@ public final class OpenidFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var realmManagement = OpenidFunctions.getClient(GetClientArgs.builder()
-     *             .realmId(&#34;my-realm&#34;)
-     *             .clientId(&#34;realm-management&#34;)
+     *             .realmId("my-realm")
+     *             .clientId("realm-management")
      *             .build());
      * 
+     *         // use the data source
      *         final var admin = KeycloakFunctions.getRole(GetRoleArgs.builder()
-     *             .realmId(&#34;my-realm&#34;)
-     *             .clientId(realmManagement.applyValue(getClientResult -&gt; getClientResult.id()))
-     *             .name(&#34;realm-admin&#34;)
+     *             .realmId("my-realm")
+     *             .clientId(realmManagement.applyValue(getClientResult -> getClientResult.id()))
+     *             .name("realm-admin")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### Argument Reference
@@ -155,7 +161,8 @@ public final class OpenidFunctions {
      * ### Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -179,19 +186,21 @@ public final class OpenidFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var realmManagement = OpenidFunctions.getClient(GetClientArgs.builder()
-     *             .realmId(&#34;my-realm&#34;)
-     *             .clientId(&#34;realm-management&#34;)
+     *             .realmId("my-realm")
+     *             .clientId("realm-management")
      *             .build());
      * 
+     *         // use the data source
      *         final var admin = KeycloakFunctions.getRole(GetRoleArgs.builder()
-     *             .realmId(&#34;my-realm&#34;)
-     *             .clientId(realmManagement.applyValue(getClientResult -&gt; getClientResult.id()))
-     *             .name(&#34;realm-admin&#34;)
+     *             .realmId("my-realm")
+     *             .clientId(realmManagement.applyValue(getClientResult -> getClientResult.id()))
+     *             .name("realm-admin")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### Argument Reference
@@ -217,7 +226,8 @@ public final class OpenidFunctions {
      * ### Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -241,19 +251,21 @@ public final class OpenidFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var realmManagement = OpenidFunctions.getClient(GetClientArgs.builder()
-     *             .realmId(&#34;my-realm&#34;)
-     *             .clientId(&#34;realm-management&#34;)
+     *             .realmId("my-realm")
+     *             .clientId("realm-management")
      *             .build());
      * 
+     *         // use the data source
      *         final var admin = KeycloakFunctions.getRole(GetRoleArgs.builder()
-     *             .realmId(&#34;my-realm&#34;)
-     *             .clientId(realmManagement.applyValue(getClientResult -&gt; getClientResult.id()))
-     *             .name(&#34;realm-admin&#34;)
+     *             .realmId("my-realm")
+     *             .clientId(realmManagement.applyValue(getClientResult -> getClientResult.id()))
+     *             .name("realm-admin")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      * ### Argument Reference
@@ -281,7 +293,8 @@ public final class OpenidFunctions {
      * source to fetch information about this permission, so we can use it to create a new resource-based authorization permission.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -311,44 +324,48 @@ public final class OpenidFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
-     *             .realm(&#34;my-realm&#34;)
+     *         var realm = new Realm("realm", RealmArgs.builder()
+     *             .realm("my-realm")
      *             .enabled(true)
      *             .build());
      * 
-     *         var clientWithAuthz = new Client(&#34;clientWithAuthz&#34;, ClientArgs.builder()        
-     *             .clientId(&#34;client-with-authz&#34;)
+     *         var clientWithAuthz = new Client("clientWithAuthz", ClientArgs.builder()
+     *             .clientId("client-with-authz")
+     *             .name("client-with-authz")
      *             .realmId(realm.id())
-     *             .accessType(&#34;CONFIDENTIAL&#34;)
+     *             .accessType("CONFIDENTIAL")
      *             .serviceAccountsEnabled(true)
      *             .authorization(ClientAuthorizationArgs.builder()
-     *                 .policyEnforcementMode(&#34;ENFORCING&#34;)
+     *                 .policyEnforcementMode("ENFORCING")
      *                 .build())
      *             .build());
      * 
      *         final var defaultPermission = OpenidFunctions.getClientAuthorizationPolicy(GetClientAuthorizationPolicyArgs.builder()
      *             .realmId(realm.id())
      *             .resourceServerId(clientWithAuthz.resourceServerId())
-     *             .name(&#34;Default Permission&#34;)
+     *             .name("Default Permission")
      *             .build());
      * 
-     *         var resource = new ClientAuthorizationResource(&#34;resource&#34;, ClientAuthorizationResourceArgs.builder()        
+     *         var resource = new ClientAuthorizationResource("resource", ClientAuthorizationResourceArgs.builder()
      *             .resourceServerId(clientWithAuthz.resourceServerId())
+     *             .name("authorization-resource")
      *             .realmId(realm.id())
-     *             .uris(&#34;/endpoint/*&#34;)
-     *             .attributes(Map.of(&#34;foo&#34;, &#34;bar&#34;))
+     *             .uris("/endpoint/*")
+     *             .attributes(Map.of("foo", "bar"))
      *             .build());
      * 
-     *         var permission = new ClientAuthorizationPermission(&#34;permission&#34;, ClientAuthorizationPermissionArgs.builder()        
+     *         var permission = new ClientAuthorizationPermission("permission", ClientAuthorizationPermissionArgs.builder()
      *             .resourceServerId(clientWithAuthz.resourceServerId())
      *             .realmId(realm.id())
-     *             .policies(defaultPermission.applyValue(getClientAuthorizationPolicyResult -&gt; getClientAuthorizationPolicyResult).applyValue(defaultPermission -&gt; defaultPermission.applyValue(getClientAuthorizationPolicyResult -&gt; getClientAuthorizationPolicyResult.id())))
+     *             .name("authorization-permission")
+     *             .policies(defaultPermission.applyValue(getClientAuthorizationPolicyResult -> getClientAuthorizationPolicyResult).applyValue(defaultPermission -> defaultPermission.applyValue(getClientAuthorizationPolicyResult -> getClientAuthorizationPolicyResult.id())))
      *             .resources(resource.id())
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -365,7 +382,8 @@ public final class OpenidFunctions {
      * source to fetch information about this permission, so we can use it to create a new resource-based authorization permission.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -395,44 +413,48 @@ public final class OpenidFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
-     *             .realm(&#34;my-realm&#34;)
+     *         var realm = new Realm("realm", RealmArgs.builder()
+     *             .realm("my-realm")
      *             .enabled(true)
      *             .build());
      * 
-     *         var clientWithAuthz = new Client(&#34;clientWithAuthz&#34;, ClientArgs.builder()        
-     *             .clientId(&#34;client-with-authz&#34;)
+     *         var clientWithAuthz = new Client("clientWithAuthz", ClientArgs.builder()
+     *             .clientId("client-with-authz")
+     *             .name("client-with-authz")
      *             .realmId(realm.id())
-     *             .accessType(&#34;CONFIDENTIAL&#34;)
+     *             .accessType("CONFIDENTIAL")
      *             .serviceAccountsEnabled(true)
      *             .authorization(ClientAuthorizationArgs.builder()
-     *                 .policyEnforcementMode(&#34;ENFORCING&#34;)
+     *                 .policyEnforcementMode("ENFORCING")
      *                 .build())
      *             .build());
      * 
      *         final var defaultPermission = OpenidFunctions.getClientAuthorizationPolicy(GetClientAuthorizationPolicyArgs.builder()
      *             .realmId(realm.id())
      *             .resourceServerId(clientWithAuthz.resourceServerId())
-     *             .name(&#34;Default Permission&#34;)
+     *             .name("Default Permission")
      *             .build());
      * 
-     *         var resource = new ClientAuthorizationResource(&#34;resource&#34;, ClientAuthorizationResourceArgs.builder()        
+     *         var resource = new ClientAuthorizationResource("resource", ClientAuthorizationResourceArgs.builder()
      *             .resourceServerId(clientWithAuthz.resourceServerId())
+     *             .name("authorization-resource")
      *             .realmId(realm.id())
-     *             .uris(&#34;/endpoint/*&#34;)
-     *             .attributes(Map.of(&#34;foo&#34;, &#34;bar&#34;))
+     *             .uris("/endpoint/*")
+     *             .attributes(Map.of("foo", "bar"))
      *             .build());
      * 
-     *         var permission = new ClientAuthorizationPermission(&#34;permission&#34;, ClientAuthorizationPermissionArgs.builder()        
+     *         var permission = new ClientAuthorizationPermission("permission", ClientAuthorizationPermissionArgs.builder()
      *             .resourceServerId(clientWithAuthz.resourceServerId())
      *             .realmId(realm.id())
-     *             .policies(defaultPermission.applyValue(getClientAuthorizationPolicyResult -&gt; getClientAuthorizationPolicyResult).applyValue(defaultPermission -&gt; defaultPermission.applyValue(getClientAuthorizationPolicyResult -&gt; getClientAuthorizationPolicyResult.id())))
+     *             .name("authorization-permission")
+     *             .policies(defaultPermission.applyValue(getClientAuthorizationPolicyResult -> getClientAuthorizationPolicyResult).applyValue(defaultPermission -> defaultPermission.applyValue(getClientAuthorizationPolicyResult -> getClientAuthorizationPolicyResult.id())))
      *             .resources(resource.id())
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -449,7 +471,8 @@ public final class OpenidFunctions {
      * source to fetch information about this permission, so we can use it to create a new resource-based authorization permission.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -479,44 +502,48 @@ public final class OpenidFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
-     *             .realm(&#34;my-realm&#34;)
+     *         var realm = new Realm("realm", RealmArgs.builder()
+     *             .realm("my-realm")
      *             .enabled(true)
      *             .build());
      * 
-     *         var clientWithAuthz = new Client(&#34;clientWithAuthz&#34;, ClientArgs.builder()        
-     *             .clientId(&#34;client-with-authz&#34;)
+     *         var clientWithAuthz = new Client("clientWithAuthz", ClientArgs.builder()
+     *             .clientId("client-with-authz")
+     *             .name("client-with-authz")
      *             .realmId(realm.id())
-     *             .accessType(&#34;CONFIDENTIAL&#34;)
+     *             .accessType("CONFIDENTIAL")
      *             .serviceAccountsEnabled(true)
      *             .authorization(ClientAuthorizationArgs.builder()
-     *                 .policyEnforcementMode(&#34;ENFORCING&#34;)
+     *                 .policyEnforcementMode("ENFORCING")
      *                 .build())
      *             .build());
      * 
      *         final var defaultPermission = OpenidFunctions.getClientAuthorizationPolicy(GetClientAuthorizationPolicyArgs.builder()
      *             .realmId(realm.id())
      *             .resourceServerId(clientWithAuthz.resourceServerId())
-     *             .name(&#34;Default Permission&#34;)
+     *             .name("Default Permission")
      *             .build());
      * 
-     *         var resource = new ClientAuthorizationResource(&#34;resource&#34;, ClientAuthorizationResourceArgs.builder()        
+     *         var resource = new ClientAuthorizationResource("resource", ClientAuthorizationResourceArgs.builder()
      *             .resourceServerId(clientWithAuthz.resourceServerId())
+     *             .name("authorization-resource")
      *             .realmId(realm.id())
-     *             .uris(&#34;/endpoint/*&#34;)
-     *             .attributes(Map.of(&#34;foo&#34;, &#34;bar&#34;))
+     *             .uris("/endpoint/*")
+     *             .attributes(Map.of("foo", "bar"))
      *             .build());
      * 
-     *         var permission = new ClientAuthorizationPermission(&#34;permission&#34;, ClientAuthorizationPermissionArgs.builder()        
+     *         var permission = new ClientAuthorizationPermission("permission", ClientAuthorizationPermissionArgs.builder()
      *             .resourceServerId(clientWithAuthz.resourceServerId())
      *             .realmId(realm.id())
-     *             .policies(defaultPermission.applyValue(getClientAuthorizationPolicyResult -&gt; getClientAuthorizationPolicyResult).applyValue(defaultPermission -&gt; defaultPermission.applyValue(getClientAuthorizationPolicyResult -&gt; getClientAuthorizationPolicyResult.id())))
+     *             .name("authorization-permission")
+     *             .policies(defaultPermission.applyValue(getClientAuthorizationPolicyResult -> getClientAuthorizationPolicyResult).applyValue(defaultPermission -> defaultPermission.applyValue(getClientAuthorizationPolicyResult -> getClientAuthorizationPolicyResult.id())))
      *             .resources(resource.id())
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -533,7 +560,8 @@ public final class OpenidFunctions {
      * source to fetch information about this permission, so we can use it to create a new resource-based authorization permission.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -563,44 +591,48 @@ public final class OpenidFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
-     *             .realm(&#34;my-realm&#34;)
+     *         var realm = new Realm("realm", RealmArgs.builder()
+     *             .realm("my-realm")
      *             .enabled(true)
      *             .build());
      * 
-     *         var clientWithAuthz = new Client(&#34;clientWithAuthz&#34;, ClientArgs.builder()        
-     *             .clientId(&#34;client-with-authz&#34;)
+     *         var clientWithAuthz = new Client("clientWithAuthz", ClientArgs.builder()
+     *             .clientId("client-with-authz")
+     *             .name("client-with-authz")
      *             .realmId(realm.id())
-     *             .accessType(&#34;CONFIDENTIAL&#34;)
+     *             .accessType("CONFIDENTIAL")
      *             .serviceAccountsEnabled(true)
      *             .authorization(ClientAuthorizationArgs.builder()
-     *                 .policyEnforcementMode(&#34;ENFORCING&#34;)
+     *                 .policyEnforcementMode("ENFORCING")
      *                 .build())
      *             .build());
      * 
      *         final var defaultPermission = OpenidFunctions.getClientAuthorizationPolicy(GetClientAuthorizationPolicyArgs.builder()
      *             .realmId(realm.id())
      *             .resourceServerId(clientWithAuthz.resourceServerId())
-     *             .name(&#34;Default Permission&#34;)
+     *             .name("Default Permission")
      *             .build());
      * 
-     *         var resource = new ClientAuthorizationResource(&#34;resource&#34;, ClientAuthorizationResourceArgs.builder()        
+     *         var resource = new ClientAuthorizationResource("resource", ClientAuthorizationResourceArgs.builder()
      *             .resourceServerId(clientWithAuthz.resourceServerId())
+     *             .name("authorization-resource")
      *             .realmId(realm.id())
-     *             .uris(&#34;/endpoint/*&#34;)
-     *             .attributes(Map.of(&#34;foo&#34;, &#34;bar&#34;))
+     *             .uris("/endpoint/*")
+     *             .attributes(Map.of("foo", "bar"))
      *             .build());
      * 
-     *         var permission = new ClientAuthorizationPermission(&#34;permission&#34;, ClientAuthorizationPermissionArgs.builder()        
+     *         var permission = new ClientAuthorizationPermission("permission", ClientAuthorizationPermissionArgs.builder()
      *             .resourceServerId(clientWithAuthz.resourceServerId())
      *             .realmId(realm.id())
-     *             .policies(defaultPermission.applyValue(getClientAuthorizationPolicyResult -&gt; getClientAuthorizationPolicyResult).applyValue(defaultPermission -&gt; defaultPermission.applyValue(getClientAuthorizationPolicyResult -&gt; getClientAuthorizationPolicyResult.id())))
+     *             .name("authorization-permission")
+     *             .policies(defaultPermission.applyValue(getClientAuthorizationPolicyResult -> getClientAuthorizationPolicyResult).applyValue(defaultPermission -> defaultPermission.applyValue(getClientAuthorizationPolicyResult -> getClientAuthorizationPolicyResult.id())))
      *             .resources(resource.id())
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -613,7 +645,8 @@ public final class OpenidFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -637,20 +670,22 @@ public final class OpenidFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var offlineAccess = OpenidFunctions.getClientScope(GetClientScopeArgs.builder()
-     *             .realmId(&#34;my-realm&#34;)
-     *             .name(&#34;offline_access&#34;)
+     *             .realmId("my-realm")
+     *             .name("offline_access")
      *             .build());
      * 
      *         // use the data source
-     *         var audienceMapper = new AudienceProtocolMapper(&#34;audienceMapper&#34;, AudienceProtocolMapperArgs.builder()        
-     *             .realmId(offlineAccess.applyValue(getClientScopeResult -&gt; getClientScopeResult.realmId()))
-     *             .clientScopeId(offlineAccess.applyValue(getClientScopeResult -&gt; getClientScopeResult.id()))
-     *             .includedCustomAudience(&#34;foo&#34;)
+     *         var audienceMapper = new AudienceProtocolMapper("audienceMapper", AudienceProtocolMapperArgs.builder()
+     *             .realmId(offlineAccess.applyValue(getClientScopeResult -> getClientScopeResult.realmId()))
+     *             .clientScopeId(offlineAccess.applyValue(getClientScopeResult -> getClientScopeResult.id()))
+     *             .name("audience-mapper")
+     *             .includedCustomAudience("foo")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -663,7 +698,8 @@ public final class OpenidFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -687,20 +723,22 @@ public final class OpenidFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var offlineAccess = OpenidFunctions.getClientScope(GetClientScopeArgs.builder()
-     *             .realmId(&#34;my-realm&#34;)
-     *             .name(&#34;offline_access&#34;)
+     *             .realmId("my-realm")
+     *             .name("offline_access")
      *             .build());
      * 
      *         // use the data source
-     *         var audienceMapper = new AudienceProtocolMapper(&#34;audienceMapper&#34;, AudienceProtocolMapperArgs.builder()        
-     *             .realmId(offlineAccess.applyValue(getClientScopeResult -&gt; getClientScopeResult.realmId()))
-     *             .clientScopeId(offlineAccess.applyValue(getClientScopeResult -&gt; getClientScopeResult.id()))
-     *             .includedCustomAudience(&#34;foo&#34;)
+     *         var audienceMapper = new AudienceProtocolMapper("audienceMapper", AudienceProtocolMapperArgs.builder()
+     *             .realmId(offlineAccess.applyValue(getClientScopeResult -> getClientScopeResult.realmId()))
+     *             .clientScopeId(offlineAccess.applyValue(getClientScopeResult -> getClientScopeResult.id()))
+     *             .name("audience-mapper")
+     *             .includedCustomAudience("foo")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -713,7 +751,8 @@ public final class OpenidFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -737,20 +776,22 @@ public final class OpenidFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var offlineAccess = OpenidFunctions.getClientScope(GetClientScopeArgs.builder()
-     *             .realmId(&#34;my-realm&#34;)
-     *             .name(&#34;offline_access&#34;)
+     *             .realmId("my-realm")
+     *             .name("offline_access")
      *             .build());
      * 
      *         // use the data source
-     *         var audienceMapper = new AudienceProtocolMapper(&#34;audienceMapper&#34;, AudienceProtocolMapperArgs.builder()        
-     *             .realmId(offlineAccess.applyValue(getClientScopeResult -&gt; getClientScopeResult.realmId()))
-     *             .clientScopeId(offlineAccess.applyValue(getClientScopeResult -&gt; getClientScopeResult.id()))
-     *             .includedCustomAudience(&#34;foo&#34;)
+     *         var audienceMapper = new AudienceProtocolMapper("audienceMapper", AudienceProtocolMapperArgs.builder()
+     *             .realmId(offlineAccess.applyValue(getClientScopeResult -> getClientScopeResult.realmId()))
+     *             .clientScopeId(offlineAccess.applyValue(getClientScopeResult -> getClientScopeResult.id()))
+     *             .name("audience-mapper")
+     *             .includedCustomAudience("foo")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -763,7 +804,8 @@ public final class OpenidFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -787,20 +829,22 @@ public final class OpenidFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var offlineAccess = OpenidFunctions.getClientScope(GetClientScopeArgs.builder()
-     *             .realmId(&#34;my-realm&#34;)
-     *             .name(&#34;offline_access&#34;)
+     *             .realmId("my-realm")
+     *             .name("offline_access")
      *             .build());
      * 
      *         // use the data source
-     *         var audienceMapper = new AudienceProtocolMapper(&#34;audienceMapper&#34;, AudienceProtocolMapperArgs.builder()        
-     *             .realmId(offlineAccess.applyValue(getClientScopeResult -&gt; getClientScopeResult.realmId()))
-     *             .clientScopeId(offlineAccess.applyValue(getClientScopeResult -&gt; getClientScopeResult.id()))
-     *             .includedCustomAudience(&#34;foo&#34;)
+     *         var audienceMapper = new AudienceProtocolMapper("audienceMapper", AudienceProtocolMapperArgs.builder()
+     *             .realmId(offlineAccess.applyValue(getClientScopeResult -> getClientScopeResult.realmId()))
+     *             .clientScopeId(offlineAccess.applyValue(getClientScopeResult -> getClientScopeResult.id()))
+     *             .name("audience-mapper")
+     *             .includedCustomAudience("foo")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -818,7 +862,8 @@ public final class OpenidFunctions {
      * user, using the `keycloak.UserRoles` resource.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -847,15 +892,16 @@ public final class OpenidFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
-     *             .realm(&#34;my-realm&#34;)
+     *         var realm = new Realm("realm", RealmArgs.builder()
+     *             .realm("my-realm")
      *             .enabled(true)
      *             .build());
      * 
-     *         var client = new Client(&#34;client&#34;, ClientArgs.builder()        
+     *         var client = new Client("client", ClientArgs.builder()
      *             .realmId(realm.id())
-     *             .clientId(&#34;client&#34;)
-     *             .accessType(&#34;CONFIDENTIAL&#34;)
+     *             .clientId("client")
+     *             .name("client")
+     *             .accessType("CONFIDENTIAL")
      *             .serviceAccountsEnabled(true)
      *             .build());
      * 
@@ -866,18 +912,19 @@ public final class OpenidFunctions {
      * 
      *         final var offlineAccess = KeycloakFunctions.getRole(GetRoleArgs.builder()
      *             .realmId(realm.id())
-     *             .name(&#34;offline_access&#34;)
+     *             .name("offline_access")
      *             .build());
      * 
-     *         var serviceAccountUserRoles = new UserRoles(&#34;serviceAccountUserRoles&#34;, UserRolesArgs.builder()        
+     *         var serviceAccountUserRoles = new UserRoles("serviceAccountUserRoles", UserRolesArgs.builder()
      *             .realmId(realm.id())
-     *             .userId(serviceAccountUser.applyValue(getClientServiceAccountUserResult -&gt; getClientServiceAccountUserResult).applyValue(serviceAccountUser -&gt; serviceAccountUser.applyValue(getClientServiceAccountUserResult -&gt; getClientServiceAccountUserResult.id())))
-     *             .roleIds(offlineAccess.applyValue(getRoleResult -&gt; getRoleResult).applyValue(offlineAccess -&gt; offlineAccess.applyValue(getRoleResult -&gt; getRoleResult.id())))
+     *             .userId(serviceAccountUser.applyValue(getClientServiceAccountUserResult -> getClientServiceAccountUserResult).applyValue(serviceAccountUser -> serviceAccountUser.applyValue(getClientServiceAccountUserResult -> getClientServiceAccountUserResult.id())))
+     *             .roleIds(offlineAccess.applyValue(getRoleResult -> getRoleResult).applyValue(offlineAccess -> offlineAccess.applyValue(getRoleResult -> getRoleResult.id())))
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -895,7 +942,8 @@ public final class OpenidFunctions {
      * user, using the `keycloak.UserRoles` resource.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -924,15 +972,16 @@ public final class OpenidFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
-     *             .realm(&#34;my-realm&#34;)
+     *         var realm = new Realm("realm", RealmArgs.builder()
+     *             .realm("my-realm")
      *             .enabled(true)
      *             .build());
      * 
-     *         var client = new Client(&#34;client&#34;, ClientArgs.builder()        
+     *         var client = new Client("client", ClientArgs.builder()
      *             .realmId(realm.id())
-     *             .clientId(&#34;client&#34;)
-     *             .accessType(&#34;CONFIDENTIAL&#34;)
+     *             .clientId("client")
+     *             .name("client")
+     *             .accessType("CONFIDENTIAL")
      *             .serviceAccountsEnabled(true)
      *             .build());
      * 
@@ -943,18 +992,19 @@ public final class OpenidFunctions {
      * 
      *         final var offlineAccess = KeycloakFunctions.getRole(GetRoleArgs.builder()
      *             .realmId(realm.id())
-     *             .name(&#34;offline_access&#34;)
+     *             .name("offline_access")
      *             .build());
      * 
-     *         var serviceAccountUserRoles = new UserRoles(&#34;serviceAccountUserRoles&#34;, UserRolesArgs.builder()        
+     *         var serviceAccountUserRoles = new UserRoles("serviceAccountUserRoles", UserRolesArgs.builder()
      *             .realmId(realm.id())
-     *             .userId(serviceAccountUser.applyValue(getClientServiceAccountUserResult -&gt; getClientServiceAccountUserResult).applyValue(serviceAccountUser -&gt; serviceAccountUser.applyValue(getClientServiceAccountUserResult -&gt; getClientServiceAccountUserResult.id())))
-     *             .roleIds(offlineAccess.applyValue(getRoleResult -&gt; getRoleResult).applyValue(offlineAccess -&gt; offlineAccess.applyValue(getRoleResult -&gt; getRoleResult.id())))
+     *             .userId(serviceAccountUser.applyValue(getClientServiceAccountUserResult -> getClientServiceAccountUserResult).applyValue(serviceAccountUser -> serviceAccountUser.applyValue(getClientServiceAccountUserResult -> getClientServiceAccountUserResult.id())))
+     *             .roleIds(offlineAccess.applyValue(getRoleResult -> getRoleResult).applyValue(offlineAccess -> offlineAccess.applyValue(getRoleResult -> getRoleResult.id())))
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -972,7 +1022,8 @@ public final class OpenidFunctions {
      * user, using the `keycloak.UserRoles` resource.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1001,15 +1052,16 @@ public final class OpenidFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
-     *             .realm(&#34;my-realm&#34;)
+     *         var realm = new Realm("realm", RealmArgs.builder()
+     *             .realm("my-realm")
      *             .enabled(true)
      *             .build());
      * 
-     *         var client = new Client(&#34;client&#34;, ClientArgs.builder()        
+     *         var client = new Client("client", ClientArgs.builder()
      *             .realmId(realm.id())
-     *             .clientId(&#34;client&#34;)
-     *             .accessType(&#34;CONFIDENTIAL&#34;)
+     *             .clientId("client")
+     *             .name("client")
+     *             .accessType("CONFIDENTIAL")
      *             .serviceAccountsEnabled(true)
      *             .build());
      * 
@@ -1020,18 +1072,19 @@ public final class OpenidFunctions {
      * 
      *         final var offlineAccess = KeycloakFunctions.getRole(GetRoleArgs.builder()
      *             .realmId(realm.id())
-     *             .name(&#34;offline_access&#34;)
+     *             .name("offline_access")
      *             .build());
      * 
-     *         var serviceAccountUserRoles = new UserRoles(&#34;serviceAccountUserRoles&#34;, UserRolesArgs.builder()        
+     *         var serviceAccountUserRoles = new UserRoles("serviceAccountUserRoles", UserRolesArgs.builder()
      *             .realmId(realm.id())
-     *             .userId(serviceAccountUser.applyValue(getClientServiceAccountUserResult -&gt; getClientServiceAccountUserResult).applyValue(serviceAccountUser -&gt; serviceAccountUser.applyValue(getClientServiceAccountUserResult -&gt; getClientServiceAccountUserResult.id())))
-     *             .roleIds(offlineAccess.applyValue(getRoleResult -&gt; getRoleResult).applyValue(offlineAccess -&gt; offlineAccess.applyValue(getRoleResult -&gt; getRoleResult.id())))
+     *             .userId(serviceAccountUser.applyValue(getClientServiceAccountUserResult -> getClientServiceAccountUserResult).applyValue(serviceAccountUser -> serviceAccountUser.applyValue(getClientServiceAccountUserResult -> getClientServiceAccountUserResult.id())))
+     *             .roleIds(offlineAccess.applyValue(getRoleResult -> getRoleResult).applyValue(offlineAccess -> offlineAccess.applyValue(getRoleResult -> getRoleResult.id())))
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1049,7 +1102,8 @@ public final class OpenidFunctions {
      * user, using the `keycloak.UserRoles` resource.
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1078,15 +1132,16 @@ public final class OpenidFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
-     *             .realm(&#34;my-realm&#34;)
+     *         var realm = new Realm("realm", RealmArgs.builder()
+     *             .realm("my-realm")
      *             .enabled(true)
      *             .build());
      * 
-     *         var client = new Client(&#34;client&#34;, ClientArgs.builder()        
+     *         var client = new Client("client", ClientArgs.builder()
      *             .realmId(realm.id())
-     *             .clientId(&#34;client&#34;)
-     *             .accessType(&#34;CONFIDENTIAL&#34;)
+     *             .clientId("client")
+     *             .name("client")
+     *             .accessType("CONFIDENTIAL")
      *             .serviceAccountsEnabled(true)
      *             .build());
      * 
@@ -1097,18 +1152,19 @@ public final class OpenidFunctions {
      * 
      *         final var offlineAccess = KeycloakFunctions.getRole(GetRoleArgs.builder()
      *             .realmId(realm.id())
-     *             .name(&#34;offline_access&#34;)
+     *             .name("offline_access")
      *             .build());
      * 
-     *         var serviceAccountUserRoles = new UserRoles(&#34;serviceAccountUserRoles&#34;, UserRolesArgs.builder()        
+     *         var serviceAccountUserRoles = new UserRoles("serviceAccountUserRoles", UserRolesArgs.builder()
      *             .realmId(realm.id())
-     *             .userId(serviceAccountUser.applyValue(getClientServiceAccountUserResult -&gt; getClientServiceAccountUserResult).applyValue(serviceAccountUser -&gt; serviceAccountUser.applyValue(getClientServiceAccountUserResult -&gt; getClientServiceAccountUserResult.id())))
-     *             .roleIds(offlineAccess.applyValue(getRoleResult -&gt; getRoleResult).applyValue(offlineAccess -&gt; offlineAccess.applyValue(getRoleResult -&gt; getRoleResult.id())))
+     *             .userId(serviceAccountUser.applyValue(getClientServiceAccountUserResult -> getClientServiceAccountUserResult).applyValue(serviceAccountUser -> serviceAccountUser.applyValue(getClientServiceAccountUserResult -> getClientServiceAccountUserResult.id())))
+     *             .roleIds(offlineAccess.applyValue(getRoleResult -> getRoleResult).applyValue(offlineAccess -> offlineAccess.applyValue(getRoleResult -> getRoleResult.id())))
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */

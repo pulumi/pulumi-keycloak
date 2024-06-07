@@ -23,7 +23,6 @@ namespace Pulumi.Keycloak
     /// 
     /// ### Exhaustive Roles)
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -38,9 +37,10 @@ namespace Pulumi.Keycloak
     ///         Enabled = true,
     ///     });
     /// 
-    ///     var realmRole = new Keycloak.Role("realmRole", new()
+    ///     var realmRole = new Keycloak.Role("realm_role", new()
     ///     {
     ///         RealmId = realm.Id,
+    ///         Name = "my-realm-role",
     ///         Description = "My Realm Role",
     ///     });
     /// 
@@ -48,14 +48,16 @@ namespace Pulumi.Keycloak
     ///     {
     ///         RealmId = realm.Id,
     ///         ClientId = "client",
+    ///         Name = "client",
     ///         Enabled = true,
     ///         AccessType = "BEARER-ONLY",
     ///     });
     /// 
-    ///     var clientRole = new Keycloak.Role("clientRole", new()
+    ///     var clientRole = new Keycloak.Role("client_role", new()
     ///     {
     ///         RealmId = realm.Id,
-    ///         ClientId = keycloak_client.Client.Id,
+    ///         ClientId = clientKeycloakClient.Id,
+    ///         Name = "my-client-role",
     ///         Description = "My Client Role",
     ///     });
     /// 
@@ -69,7 +71,7 @@ namespace Pulumi.Keycloak
     ///         LastName = "Bobson",
     ///     });
     /// 
-    ///     var userRoles = new Keycloak.UserRoles("userRoles", new()
+    ///     var userRoles = new Keycloak.UserRoles("user_roles", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         UserId = user.Id,
@@ -82,7 +84,6 @@ namespace Pulumi.Keycloak
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

@@ -16,7 +16,6 @@ import * as utilities from "../utilities";
  * that represents the service account. We'll use this data source to grab this user's ID in order to assign some roles to this
  * user, using the `keycloak.UserRoles` resource.
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -28,6 +27,7 @@ import * as utilities from "../utilities";
  * const client = new keycloak.openid.Client("client", {
  *     realmId: realm.id,
  *     clientId: "client",
+ *     name: "client",
  *     accessType: "CONFIDENTIAL",
  *     serviceAccountsEnabled: true,
  * });
@@ -39,13 +39,12 @@ import * as utilities from "../utilities";
  *     realmId: realm.id,
  *     name: "offline_access",
  * });
- * const serviceAccountUserRoles = new keycloak.UserRoles("serviceAccountUserRoles", {
+ * const serviceAccountUserRoles = new keycloak.UserRoles("service_account_user_roles", {
  *     realmId: realm.id,
  *     userId: serviceAccountUser.apply(serviceAccountUser => serviceAccountUser.id),
  *     roleIds: [offlineAccess.apply(offlineAccess => offlineAccess.id)],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getClientServiceAccountUser(args: GetClientServiceAccountUserArgs, opts?: pulumi.InvokeOptions): Promise<GetClientServiceAccountUserResult> {
 
@@ -100,7 +99,6 @@ export interface GetClientServiceAccountUserResult {
  * that represents the service account. We'll use this data source to grab this user's ID in order to assign some roles to this
  * user, using the `keycloak.UserRoles` resource.
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -112,6 +110,7 @@ export interface GetClientServiceAccountUserResult {
  * const client = new keycloak.openid.Client("client", {
  *     realmId: realm.id,
  *     clientId: "client",
+ *     name: "client",
  *     accessType: "CONFIDENTIAL",
  *     serviceAccountsEnabled: true,
  * });
@@ -123,13 +122,12 @@ export interface GetClientServiceAccountUserResult {
  *     realmId: realm.id,
  *     name: "offline_access",
  * });
- * const serviceAccountUserRoles = new keycloak.UserRoles("serviceAccountUserRoles", {
+ * const serviceAccountUserRoles = new keycloak.UserRoles("service_account_user_roles", {
  *     realmId: realm.id,
  *     userId: serviceAccountUser.apply(serviceAccountUser => serviceAccountUser.id),
  *     roleIds: [offlineAccess.apply(offlineAccess => offlineAccess.id)],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getClientServiceAccountUserOutput(args: GetClientServiceAccountUserOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetClientServiceAccountUserResult> {
     return pulumi.output(args).apply((a: any) => getClientServiceAccountUser(a, opts))

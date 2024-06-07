@@ -18,33 +18,32 @@ import * as utilities from "./utilities";
  *
  * ### Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {
- *     enabled: true,
  *     realm: "my-realm",
+ *     enabled: true,
  * });
- * const samlClient = new keycloak.saml.Client("samlClient", {
- *     clientId: "test-client",
+ * const samlClient = new keycloak.saml.Client("saml_client", {
  *     realmId: realm.id,
+ *     clientId: "test-client",
  * });
- * const samlHardcodeAttributeMapper = new keycloak.GenericClientProtocolMapper("samlHardcodeAttributeMapper", {
+ * const samlHardcodeAttributeMapper = new keycloak.GenericClientProtocolMapper("saml_hardcode_attribute_mapper", {
+ *     realmId: realm.id,
  *     clientId: samlClient.id,
+ *     name: "tes-mapper",
+ *     protocol: "saml",
+ *     protocolMapper: "saml-hardcode-attribute-mapper",
  *     config: {
  *         "attribute.name": "name",
  *         "attribute.nameformat": "Basic",
  *         "attribute.value": "value",
  *         "friendly.name": "display name",
  *     },
- *     protocol: "saml",
- *     protocolMapper: "saml-hardcode-attribute-mapper",
- *     realmId: realm.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Argument Reference
  *

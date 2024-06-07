@@ -20,7 +20,6 @@ import (
 //
 // ### Realm Role)
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -40,7 +39,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = keycloak.NewDefaultRoles(ctx, "defaultRoles", &keycloak.DefaultRolesArgs{
+//			_, err = keycloak.NewDefaultRoles(ctx, "default_roles", &keycloak.DefaultRolesArgs{
 //				RealmId: realm.ID(),
 //				DefaultRoles: pulumi.StringArray{
 //					pulumi.String("uma_authorization"),
@@ -54,7 +53,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

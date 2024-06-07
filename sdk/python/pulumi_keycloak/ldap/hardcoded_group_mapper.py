@@ -169,7 +169,6 @@ class HardcodedGroupMapper(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -177,7 +176,8 @@ class HardcodedGroupMapper(pulumi.CustomResource):
         realm = keycloak.Realm("realm",
             realm="my-realm",
             enabled=True)
-        ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
+        ldap_user_federation = keycloak.ldap.UserFederation("ldap_user_federation",
+            name="openldap",
             realm_id=realm.id,
             username_ldap_attribute="cn",
             rdn_ldap_attribute="cn",
@@ -190,13 +190,15 @@ class HardcodedGroupMapper(pulumi.CustomResource):
             users_dn="dc=example,dc=org",
             bind_dn="cn=admin,dc=example,dc=org",
             bind_credential="admin")
-        realm_group = keycloak.Group("realmGroup", realm_id=realm.id)
-        assign_group_to_users = keycloak.ldap.HardcodedGroupMapper("assignGroupToUsers",
+        realm_group = keycloak.Group("realm_group",
+            realm_id=realm.id,
+            name="my-group")
+        assign_group_to_users = keycloak.ldap.HardcodedGroupMapper("assign_group_to_users",
             realm_id=realm.id,
             ldap_user_federation_id=ldap_user_federation.id,
+            name="assign-group-to-users",
             group=realm_group.name)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -232,7 +234,6 @@ class HardcodedGroupMapper(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -240,7 +241,8 @@ class HardcodedGroupMapper(pulumi.CustomResource):
         realm = keycloak.Realm("realm",
             realm="my-realm",
             enabled=True)
-        ldap_user_federation = keycloak.ldap.UserFederation("ldapUserFederation",
+        ldap_user_federation = keycloak.ldap.UserFederation("ldap_user_federation",
+            name="openldap",
             realm_id=realm.id,
             username_ldap_attribute="cn",
             rdn_ldap_attribute="cn",
@@ -253,13 +255,15 @@ class HardcodedGroupMapper(pulumi.CustomResource):
             users_dn="dc=example,dc=org",
             bind_dn="cn=admin,dc=example,dc=org",
             bind_credential="admin")
-        realm_group = keycloak.Group("realmGroup", realm_id=realm.id)
-        assign_group_to_users = keycloak.ldap.HardcodedGroupMapper("assignGroupToUsers",
+        realm_group = keycloak.Group("realm_group",
+            realm_id=realm.id,
+            name="my-group")
+        assign_group_to_users = keycloak.ldap.HardcodedGroupMapper("assign_group_to_users",
             realm_id=realm.id,
             ldap_user_federation_id=ldap_user_federation.id,
+            name="assign-group-to-users",
             group=realm_group.name)
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

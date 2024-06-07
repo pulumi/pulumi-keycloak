@@ -15,7 +15,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -33,8 +32,9 @@ import * as utilities from "./utilities";
  *     clientSecret: "example_token",
  *     defaultScopes: "openid random profile",
  * });
- * const usernameImporter = new keycloak.UserTemplateImporterIdentityProviderMapper("usernameImporter", {
+ * const usernameImporter = new keycloak.UserTemplateImporterIdentityProviderMapper("username_importer", {
  *     realm: realm.id,
+ *     name: "username-template-importer",
  *     identityProviderAlias: oidc.alias,
  *     template: "${ALIAS}.${CLAIM.email}",
  *     extraConfig: {
@@ -42,7 +42,6 @@ import * as utilities from "./utilities";
  *     },
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

@@ -20,7 +20,6 @@ namespace Pulumi.Keycloak.Ldap
     /// 
     /// ### Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -31,38 +30,39 @@ namespace Pulumi.Keycloak.Ldap
     /// {
     ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         Enabled = true,
     ///         RealmName = "test",
+    ///         Enabled = true,
     ///     });
     /// 
-    ///     var ldapUserFederation = new Keycloak.Ldap.UserFederation("ldapUserFederation", new()
+    ///     var ldapUserFederation = new Keycloak.Ldap.UserFederation("ldap_user_federation", new()
     ///     {
-    ///         BindCredential = "admin",
-    ///         BindDn = "cn=admin,dc=example,dc=org",
-    ///         ConnectionUrl = "ldap://openldap",
-    ///         RdnLdapAttribute = "cn",
+    ///         Name = "openldap",
     ///         RealmId = realm.Id,
+    ///         UsernameLdapAttribute = "cn",
+    ///         RdnLdapAttribute = "cn",
+    ///         UuidLdapAttribute = "entryDN",
     ///         UserObjectClasses = new[]
     ///         {
     ///             "simpleSecurityObject",
     ///             "organizationalRole",
     ///         },
-    ///         UsernameLdapAttribute = "cn",
+    ///         ConnectionUrl = "ldap://openldap",
     ///         UsersDn = "dc=example,dc=org",
-    ///         UuidLdapAttribute = "entryDN",
+    ///         BindDn = "cn=admin,dc=example,dc=org",
+    ///         BindCredential = "admin",
     ///     });
     /// 
-    ///     var ldapUserAttributeMapper = new Keycloak.Ldap.UserAttributeMapper("ldapUserAttributeMapper", new()
+    ///     var ldapUserAttributeMapper = new Keycloak.Ldap.UserAttributeMapper("ldap_user_attribute_mapper", new()
     ///     {
-    ///         LdapAttribute = "bar",
-    ///         LdapUserFederationId = ldapUserFederation.Id,
     ///         RealmId = realm.Id,
+    ///         LdapUserFederationId = ldapUserFederation.Id,
+    ///         Name = "user-attribute-mapper",
     ///         UserModelAttribute = "foo",
+    ///         LdapAttribute = "bar",
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### Argument Reference
     /// 

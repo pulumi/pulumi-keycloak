@@ -15,7 +15,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -34,6 +33,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// use the keycloak_user data source to grab the admin user's ID
 //			defaultAdminUser, err := keycloak.LookupUser(ctx, &keycloak.LookupUserArgs{
 //				RealmId:  masterRealm.Id,
 //				Username: "keycloak",
@@ -47,7 +47,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupUser(ctx *pulumi.Context, args *LookupUserArgs, opts ...pulumi.InvokeOption) (*LookupUserResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupUserResult

@@ -14,7 +14,6 @@ import (
 
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -29,27 +28,29 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-//				Enabled: pulumi.Bool(true),
 //				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			client, err := openid.NewClient(ctx, "client", &openid.ClientArgs{
-//				AccessType: pulumi.String("CONFIDENTIAL"),
-//				ClientId:   pulumi.String("test-client"),
 //				RealmId:    realm.ID(),
+//				ClientId:   pulumi.String("test-client"),
+//				AccessType: pulumi.String("CONFIDENTIAL"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			clientScope, err := openid.NewClientScope(ctx, "clientScope", &openid.ClientScopeArgs{
+//			clientScope, err := openid.NewClientScope(ctx, "client_scope", &openid.ClientScopeArgs{
 //				RealmId: realm.ID(),
+//				Name:    pulumi.String("test-client-scope"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = openid.NewClientDefaultScopes(ctx, "clientDefaultScopes", &openid.ClientDefaultScopesArgs{
+//			_, err = openid.NewClientDefaultScopes(ctx, "client_default_scopes", &openid.ClientDefaultScopesArgs{
+//				RealmId:  realm.ID(),
 //				ClientId: client.ID(),
 //				DefaultScopes: pulumi.StringArray{
 //					pulumi.String("profile"),
@@ -58,7 +59,6 @@ import (
 //					pulumi.String("web-origins"),
 //					clientScope.Name,
 //				},
-//				RealmId: realm.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -68,7 +68,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Argument Reference
 //

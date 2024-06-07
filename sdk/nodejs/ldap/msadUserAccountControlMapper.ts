@@ -17,36 +17,36 @@ import * as utilities from "../utilities";
  *
  * ### Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {
- *     enabled: true,
  *     realm: "test",
+ *     enabled: true,
  * });
- * const ldapUserFederation = new keycloak.ldap.UserFederation("ldapUserFederation", {
- *     bindCredential: "admin",
- *     bindDn: "cn=admin,dc=example,dc=org",
- *     connectionUrl: "ldap://my-ad-server",
- *     rdnLdapAttribute: "cn",
+ * const ldapUserFederation = new keycloak.ldap.UserFederation("ldap_user_federation", {
+ *     name: "ad",
  *     realmId: realm.id,
+ *     usernameLdapAttribute: "cn",
+ *     rdnLdapAttribute: "cn",
+ *     uuidLdapAttribute: "objectGUID",
  *     userObjectClasses: [
  *         "person",
  *         "organizationalPerson",
  *         "user",
  *     ],
- *     usernameLdapAttribute: "cn",
+ *     connectionUrl: "ldap://my-ad-server",
  *     usersDn: "dc=example,dc=org",
- *     uuidLdapAttribute: "objectGUID",
+ *     bindDn: "cn=admin,dc=example,dc=org",
+ *     bindCredential: "admin",
  * });
- * const msadUserAccountControlMapper = new keycloak.ldap.MsadUserAccountControlMapper("msadUserAccountControlMapper", {
- *     ldapUserFederationId: ldapUserFederation.id,
+ * const msadUserAccountControlMapper = new keycloak.ldap.MsadUserAccountControlMapper("msad_user_account_control_mapper", {
  *     realmId: realm.id,
+ *     ldapUserFederationId: ldapUserFederation.id,
+ *     name: "msad-user-account-control-mapper",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Argument Reference
  *

@@ -260,7 +260,6 @@ class HardcodedAttributeIdentityProviderMapper(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -268,16 +267,17 @@ class HardcodedAttributeIdentityProviderMapper(pulumi.CustomResource):
         realm = keycloak.Realm("realm",
             realm="my-realm",
             enabled=True)
-        oidc_identity_provider = keycloak.oidc.IdentityProvider("oidcIdentityProvider",
+        oidc = keycloak.oidc.IdentityProvider("oidc",
             realm=realm.id,
             alias="my-idp",
             authorization_url="https://authorizationurl.com",
             client_id="clientID",
             client_secret="clientSecret",
             token_url="https://tokenurl.com")
-        oidc_hardcoded_attribute_identity_provider_mapper = keycloak.HardcodedAttributeIdentityProviderMapper("oidcHardcodedAttributeIdentityProviderMapper",
+        oidc_hardcoded_attribute_identity_provider_mapper = keycloak.HardcodedAttributeIdentityProviderMapper("oidc",
             realm=realm.id,
-            identity_provider_alias=oidc_identity_provider.alias,
+            name="hardcodedUserSessionAttribute",
+            identity_provider_alias=oidc.alias,
             attribute_name="attribute",
             attribute_value="value",
             user_session=True,
@@ -285,7 +285,6 @@ class HardcodedAttributeIdentityProviderMapper(pulumi.CustomResource):
                 "syncMode": "INHERIT",
             })
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -309,7 +308,6 @@ class HardcodedAttributeIdentityProviderMapper(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -317,16 +315,17 @@ class HardcodedAttributeIdentityProviderMapper(pulumi.CustomResource):
         realm = keycloak.Realm("realm",
             realm="my-realm",
             enabled=True)
-        oidc_identity_provider = keycloak.oidc.IdentityProvider("oidcIdentityProvider",
+        oidc = keycloak.oidc.IdentityProvider("oidc",
             realm=realm.id,
             alias="my-idp",
             authorization_url="https://authorizationurl.com",
             client_id="clientID",
             client_secret="clientSecret",
             token_url="https://tokenurl.com")
-        oidc_hardcoded_attribute_identity_provider_mapper = keycloak.HardcodedAttributeIdentityProviderMapper("oidcHardcodedAttributeIdentityProviderMapper",
+        oidc_hardcoded_attribute_identity_provider_mapper = keycloak.HardcodedAttributeIdentityProviderMapper("oidc",
             realm=realm.id,
-            identity_provider_alias=oidc_identity_provider.alias,
+            name="hardcodedUserSessionAttribute",
+            identity_provider_alias=oidc.alias,
             attribute_name="attribute",
             attribute_value="value",
             user_session=True,
@@ -334,7 +333,6 @@ class HardcodedAttributeIdentityProviderMapper(pulumi.CustomResource):
                 "syncMode": "INHERIT",
             })
         ```
-        <!--End PulumiCodeChooser -->
 
         :param str resource_name: The name of the resource.
         :param HardcodedAttributeIdentityProviderMapperArgs args: The arguments to use to populate this resource's properties.

@@ -163,17 +163,16 @@ def get_user(realm_id: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_keycloak as keycloak
 
     master_realm = keycloak.get_realm(realm="master")
+    # use the keycloak_user data source to grab the admin user's ID
     default_admin_user = keycloak.get_user(realm_id=master_realm.id,
         username="keycloak")
     pulumi.export("keycloakUserId", default_admin_user.id)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str realm_id: The realm this user belongs to.
@@ -208,17 +207,16 @@ def get_user_output(realm_id: Optional[pulumi.Input[str]] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_keycloak as keycloak
 
     master_realm = keycloak.get_realm(realm="master")
+    # use the keycloak_user data source to grab the admin user's ID
     default_admin_user = keycloak.get_user(realm_id=master_realm.id,
         username="keycloak")
     pulumi.export("keycloakUserId", default_admin_user.id)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str realm_id: The realm this user belongs to.

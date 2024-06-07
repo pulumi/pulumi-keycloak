@@ -12,7 +12,6 @@ namespace Pulumi.Keycloak.OpenId
     /// <summary>
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -23,24 +22,26 @@ namespace Pulumi.Keycloak.OpenId
     /// {
     ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
-    ///         Enabled = true,
     ///         RealmName = "my-realm",
+    ///         Enabled = true,
     ///     });
     /// 
     ///     var client = new Keycloak.OpenId.Client("client", new()
     ///     {
-    ///         AccessType = "CONFIDENTIAL",
+    ///         RealmId = realm.Id,
     ///         ClientId = "test-client",
-    ///         RealmId = realm.Id,
+    ///         AccessType = "CONFIDENTIAL",
     ///     });
     /// 
-    ///     var clientScope = new Keycloak.OpenId.ClientScope("clientScope", new()
+    ///     var clientScope = new Keycloak.OpenId.ClientScope("client_scope", new()
     ///     {
     ///         RealmId = realm.Id,
+    ///         Name = "test-client-scope",
     ///     });
     /// 
-    ///     var clientOptionalScopes = new Keycloak.OpenId.ClientOptionalScopes("clientOptionalScopes", new()
+    ///     var clientOptionalScopes = new Keycloak.OpenId.ClientOptionalScopes("client_optional_scopes", new()
     ///     {
+    ///         RealmId = realm.Id,
     ///         ClientId = client.Id,
     ///         OptionalScopes = new[]
     ///         {
@@ -49,12 +50,10 @@ namespace Pulumi.Keycloak.OpenId
     ///             "offline_access",
     ///             clientScope.Name,
     ///         },
-    ///         RealmId = realm.Id,
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### Argument Reference
     /// 

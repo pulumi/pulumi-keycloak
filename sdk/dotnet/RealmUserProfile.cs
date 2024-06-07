@@ -23,7 +23,6 @@ namespace Pulumi.Keycloak
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -44,7 +43,7 @@ namespace Pulumi.Keycloak
     /// 
     ///     var userprofile = new Keycloak.RealmUserProfile("userprofile", new()
     ///     {
-    ///         RealmId = keycloak_realm.My_realm.Id,
+    ///         RealmId = myRealm.Id,
     ///         Attributes = new[]
     ///         {
     ///             new Keycloak.Inputs.RealmUserProfileAttributeArgs
@@ -149,7 +148,6 @@ namespace Pulumi.Keycloak
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

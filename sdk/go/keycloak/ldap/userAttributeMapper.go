@@ -22,7 +22,6 @@ import (
 //
 // ### Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -37,34 +36,36 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-//				Enabled: pulumi.Bool(true),
 //				Realm:   pulumi.String("test"),
+//				Enabled: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			ldapUserFederation, err := ldap.NewUserFederation(ctx, "ldapUserFederation", &ldap.UserFederationArgs{
-//				BindCredential:   pulumi.String("admin"),
-//				BindDn:           pulumi.String("cn=admin,dc=example,dc=org"),
-//				ConnectionUrl:    pulumi.String("ldap://openldap"),
-//				RdnLdapAttribute: pulumi.String("cn"),
-//				RealmId:          realm.ID(),
+//			ldapUserFederation, err := ldap.NewUserFederation(ctx, "ldap_user_federation", &ldap.UserFederationArgs{
+//				Name:                  pulumi.String("openldap"),
+//				RealmId:               realm.ID(),
+//				UsernameLdapAttribute: pulumi.String("cn"),
+//				RdnLdapAttribute:      pulumi.String("cn"),
+//				UuidLdapAttribute:     pulumi.String("entryDN"),
 //				UserObjectClasses: pulumi.StringArray{
 //					pulumi.String("simpleSecurityObject"),
 //					pulumi.String("organizationalRole"),
 //				},
-//				UsernameLdapAttribute: pulumi.String("cn"),
-//				UsersDn:               pulumi.String("dc=example,dc=org"),
-//				UuidLdapAttribute:     pulumi.String("entryDN"),
+//				ConnectionUrl:  pulumi.String("ldap://openldap"),
+//				UsersDn:        pulumi.String("dc=example,dc=org"),
+//				BindDn:         pulumi.String("cn=admin,dc=example,dc=org"),
+//				BindCredential: pulumi.String("admin"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = ldap.NewUserAttributeMapper(ctx, "ldapUserAttributeMapper", &ldap.UserAttributeMapperArgs{
-//				LdapAttribute:        pulumi.String("bar"),
-//				LdapUserFederationId: ldapUserFederation.ID(),
+//			_, err = ldap.NewUserAttributeMapper(ctx, "ldap_user_attribute_mapper", &ldap.UserAttributeMapperArgs{
 //				RealmId:              realm.ID(),
+//				LdapUserFederationId: ldapUserFederation.ID(),
+//				Name:                 pulumi.String("user-attribute-mapper"),
 //				UserModelAttribute:   pulumi.String("foo"),
+//				LdapAttribute:        pulumi.String("bar"),
 //			})
 //			if err != nil {
 //				return err
@@ -74,7 +75,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Argument Reference
 //
@@ -99,7 +99,7 @@ type UserAttributeMapper struct {
 
 	// When true, the value fetched from LDAP will override the value stored in Keycloak.
 	AlwaysReadValueFromLdap pulumi.BoolPtrOutput `pulumi:"alwaysReadValueFromLdap"`
-	// Default value to set in LDAP if is_mandatory_in_ldap and the value is empty
+	// Default value to set in LDAP if isMandatoryInLdap and the value is empty
 	AttributeDefaultValue pulumi.StringPtrOutput `pulumi:"attributeDefaultValue"`
 	// Should be true for binary LDAP attributes
 	IsBinaryAttribute pulumi.BoolPtrOutput `pulumi:"isBinaryAttribute"`
@@ -163,7 +163,7 @@ func GetUserAttributeMapper(ctx *pulumi.Context,
 type userAttributeMapperState struct {
 	// When true, the value fetched from LDAP will override the value stored in Keycloak.
 	AlwaysReadValueFromLdap *bool `pulumi:"alwaysReadValueFromLdap"`
-	// Default value to set in LDAP if is_mandatory_in_ldap and the value is empty
+	// Default value to set in LDAP if isMandatoryInLdap and the value is empty
 	AttributeDefaultValue *string `pulumi:"attributeDefaultValue"`
 	// Should be true for binary LDAP attributes
 	IsBinaryAttribute *bool `pulumi:"isBinaryAttribute"`
@@ -186,7 +186,7 @@ type userAttributeMapperState struct {
 type UserAttributeMapperState struct {
 	// When true, the value fetched from LDAP will override the value stored in Keycloak.
 	AlwaysReadValueFromLdap pulumi.BoolPtrInput
-	// Default value to set in LDAP if is_mandatory_in_ldap and the value is empty
+	// Default value to set in LDAP if isMandatoryInLdap and the value is empty
 	AttributeDefaultValue pulumi.StringPtrInput
 	// Should be true for binary LDAP attributes
 	IsBinaryAttribute pulumi.BoolPtrInput
@@ -213,7 +213,7 @@ func (UserAttributeMapperState) ElementType() reflect.Type {
 type userAttributeMapperArgs struct {
 	// When true, the value fetched from LDAP will override the value stored in Keycloak.
 	AlwaysReadValueFromLdap *bool `pulumi:"alwaysReadValueFromLdap"`
-	// Default value to set in LDAP if is_mandatory_in_ldap and the value is empty
+	// Default value to set in LDAP if isMandatoryInLdap and the value is empty
 	AttributeDefaultValue *string `pulumi:"attributeDefaultValue"`
 	// Should be true for binary LDAP attributes
 	IsBinaryAttribute *bool `pulumi:"isBinaryAttribute"`
@@ -237,7 +237,7 @@ type userAttributeMapperArgs struct {
 type UserAttributeMapperArgs struct {
 	// When true, the value fetched from LDAP will override the value stored in Keycloak.
 	AlwaysReadValueFromLdap pulumi.BoolPtrInput
-	// Default value to set in LDAP if is_mandatory_in_ldap and the value is empty
+	// Default value to set in LDAP if isMandatoryInLdap and the value is empty
 	AttributeDefaultValue pulumi.StringPtrInput
 	// Should be true for binary LDAP attributes
 	IsBinaryAttribute pulumi.BoolPtrInput
@@ -349,7 +349,7 @@ func (o UserAttributeMapperOutput) AlwaysReadValueFromLdap() pulumi.BoolPtrOutpu
 	return o.ApplyT(func(v *UserAttributeMapper) pulumi.BoolPtrOutput { return v.AlwaysReadValueFromLdap }).(pulumi.BoolPtrOutput)
 }
 
-// Default value to set in LDAP if is_mandatory_in_ldap and the value is empty
+// Default value to set in LDAP if isMandatoryInLdap and the value is empty
 func (o UserAttributeMapperOutput) AttributeDefaultValue() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *UserAttributeMapper) pulumi.StringPtrOutput { return v.AttributeDefaultValue }).(pulumi.StringPtrOutput)
 }

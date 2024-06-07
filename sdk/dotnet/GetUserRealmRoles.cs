@@ -16,7 +16,6 @@ namespace Pulumi.Keycloak
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -30,12 +29,14 @@ namespace Pulumi.Keycloak
         ///         Realm = "master",
         ///     });
         /// 
+        ///     // use the keycloak_user data source to grab the admin user's ID
         ///     var defaultAdminUser = Keycloak.GetUser.Invoke(new()
         ///     {
         ///         RealmId = masterRealm.Apply(getRealmResult =&gt; getRealmResult.Id),
         ///         Username = "keycloak",
         ///     });
         /// 
+        ///     // use the keycloak_user_realm_roles data source to list role names
         ///     var userRealmRoles = Keycloak.GetUserRealmRoles.Invoke(new()
         ///     {
         ///         RealmId = masterRealm.Apply(getRealmResult =&gt; getRealmResult.Id),
@@ -48,7 +49,6 @@ namespace Pulumi.Keycloak
         ///     };
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetUserRealmRolesResult> InvokeAsync(GetUserRealmRolesArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetUserRealmRolesResult>("keycloak:index/getUserRealmRoles:getUserRealmRoles", args ?? new GetUserRealmRolesArgs(), options.WithDefaults());
@@ -58,7 +58,6 @@ namespace Pulumi.Keycloak
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -72,12 +71,14 @@ namespace Pulumi.Keycloak
         ///         Realm = "master",
         ///     });
         /// 
+        ///     // use the keycloak_user data source to grab the admin user's ID
         ///     var defaultAdminUser = Keycloak.GetUser.Invoke(new()
         ///     {
         ///         RealmId = masterRealm.Apply(getRealmResult =&gt; getRealmResult.Id),
         ///         Username = "keycloak",
         ///     });
         /// 
+        ///     // use the keycloak_user_realm_roles data source to list role names
         ///     var userRealmRoles = Keycloak.GetUserRealmRoles.Invoke(new()
         ///     {
         ///         RealmId = masterRealm.Apply(getRealmResult =&gt; getRealmResult.Id),
@@ -90,7 +91,6 @@ namespace Pulumi.Keycloak
         ///     };
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetUserRealmRolesResult> Invoke(GetUserRealmRolesInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetUserRealmRolesResult>("keycloak:index/getUserRealmRoles:getUserRealmRoles", args ?? new GetUserRealmRolesInvokeArgs(), options.WithDefaults());

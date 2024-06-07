@@ -22,7 +22,6 @@ import (
 //
 // ### Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -37,33 +36,35 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-//				Enabled: pulumi.Bool(true),
 //				Realm:   pulumi.String("test"),
+//				Enabled: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			ldapUserFederation, err := ldap.NewUserFederation(ctx, "ldapUserFederation", &ldap.UserFederationArgs{
-//				BindCredential:   pulumi.String("admin"),
-//				BindDn:           pulumi.String("cn=admin,dc=example,dc=org"),
-//				ConnectionUrl:    pulumi.String("ldap://openldap"),
-//				RdnLdapAttribute: pulumi.String("cn"),
-//				RealmId:          realm.ID(),
+//			ldapUserFederation, err := ldap.NewUserFederation(ctx, "ldap_user_federation", &ldap.UserFederationArgs{
+//				Name:                  pulumi.String("openldap"),
+//				RealmId:               realm.ID(),
+//				UsernameLdapAttribute: pulumi.String("cn"),
+//				RdnLdapAttribute:      pulumi.String("cn"),
+//				UuidLdapAttribute:     pulumi.String("entryDN"),
 //				UserObjectClasses: pulumi.StringArray{
 //					pulumi.String("simpleSecurityObject"),
 //					pulumi.String("organizationalRole"),
 //				},
-//				UsernameLdapAttribute: pulumi.String("cn"),
-//				UsersDn:               pulumi.String("dc=example,dc=org"),
-//				UuidLdapAttribute:     pulumi.String("entryDN"),
+//				ConnectionUrl:  pulumi.String("ldap://openldap"),
+//				UsersDn:        pulumi.String("dc=example,dc=org"),
+//				BindDn:         pulumi.String("cn=admin,dc=example,dc=org"),
+//				BindCredential: pulumi.String("admin"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = ldap.NewFullNameMapper(ctx, "ldapFullNameMapper", &ldap.FullNameMapperArgs{
-//				LdapFullNameAttribute: pulumi.String("cn"),
-//				LdapUserFederationId:  ldapUserFederation.ID(),
+//			_, err = ldap.NewFullNameMapper(ctx, "ldap_full_name_mapper", &ldap.FullNameMapperArgs{
 //				RealmId:               realm.ID(),
+//				LdapUserFederationId:  ldapUserFederation.ID(),
+//				Name:                  pulumi.String("full-name-mapper"),
+//				LdapFullNameAttribute: pulumi.String("cn"),
 //			})
 //			if err != nil {
 //				return err
@@ -73,7 +74,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ### Argument Reference
 //

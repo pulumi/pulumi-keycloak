@@ -18,7 +18,6 @@ namespace Pulumi.Keycloak
     /// ## Example Usage
     /// 
     /// ### Exhaustive Groups)
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -36,6 +35,7 @@ namespace Pulumi.Keycloak
     ///     var @group = new Keycloak.Group("group", new()
     ///     {
     ///         RealmId = realm.Id,
+    ///         Name = "foo",
     ///     });
     /// 
     ///     var user = new Keycloak.User("user", new()
@@ -44,7 +44,7 @@ namespace Pulumi.Keycloak
     ///         Username = "my-user",
     ///     });
     /// 
-    ///     var userGroups = new Keycloak.UserGroups("userGroups", new()
+    ///     var userGroups = new Keycloak.UserGroups("user_groups", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         UserId = user.Id,
@@ -56,71 +56,6 @@ namespace Pulumi.Keycloak
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
-    /// 
-    /// ### Non Exhaustive Groups)
-    /// &lt;!--Start PulumiCodeChooser --&gt;
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Keycloak = Pulumi.Keycloak;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var realm = new Keycloak.Realm("realm", new()
-    ///     {
-    ///         RealmName = "my-realm",
-    ///         Enabled = true,
-    ///     });
-    /// 
-    ///     var groupFoo = new Keycloak.Group("groupFoo", new()
-    ///     {
-    ///         RealmId = realm.Id,
-    ///     });
-    /// 
-    ///     var groupBar = new Keycloak.Group("groupBar", new()
-    ///     {
-    ///         RealmId = realm.Id,
-    ///     });
-    /// 
-    ///     var user = new Keycloak.User("user", new()
-    ///     {
-    ///         RealmId = realm.Id,
-    ///         Username = "my-user",
-    ///     });
-    /// 
-    ///     var userGroupsAssociation1UserGroups = new Keycloak.UserGroups("userGroupsAssociation1UserGroups", new()
-    ///     {
-    ///         RealmId = realm.Id,
-    ///         UserId = user.Id,
-    ///         Exhaustive = false,
-    ///         GroupIds = new[]
-    ///         {
-    ///             groupFoo.Id,
-    ///         },
-    ///     });
-    /// 
-    ///     var userGroupsAssociation1Index_userGroupsUserGroups = new Keycloak.UserGroups("userGroupsAssociation1Index/userGroupsUserGroups", new()
-    ///     {
-    ///         RealmId = realm.Id,
-    ///         UserId = user.Id,
-    ///         Exhaustive = false,
-    ///         GroupIds = new[]
-    ///         {
-    ///             groupBar.Id,
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
-    /// 
-    /// ## Import
-    /// 
-    /// This resource does not support import. Instead of importing, feel free to create this resource
-    /// 
-    /// as if it did not already exist on the server.
     /// </summary>
     [KeycloakResourceType("keycloak:index/userGroups:UserGroups")]
     public partial class UserGroups : global::Pulumi.CustomResource

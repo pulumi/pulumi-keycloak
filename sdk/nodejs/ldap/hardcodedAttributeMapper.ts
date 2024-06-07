@@ -13,7 +13,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -22,7 +21,8 @@ import * as utilities from "../utilities";
  *     realm: "my-realm",
  *     enabled: true,
  * });
- * const ldapUserFederation = new keycloak.ldap.UserFederation("ldapUserFederation", {
+ * const ldapUserFederation = new keycloak.ldap.UserFederation("ldap_user_federation", {
+ *     name: "openldap",
  *     realmId: realm.id,
  *     usernameLdapAttribute: "cn",
  *     rdnLdapAttribute: "cn",
@@ -37,14 +37,14 @@ import * as utilities from "../utilities";
  *     bindCredential: "admin",
  *     syncRegistrations: true,
  * });
- * const assignBarToFoo = new keycloak.ldap.HardcodedAttributeMapper("assignBarToFoo", {
+ * const assignBarToFoo = new keycloak.ldap.HardcodedAttributeMapper("assign_bar_to_foo", {
  *     realmId: realm.id,
  *     ldapUserFederationId: ldapUserFederation.id,
+ *     name: "assign-foo-to-bar",
  *     attributeName: "foo",
  *     attributeValue: "bar",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *

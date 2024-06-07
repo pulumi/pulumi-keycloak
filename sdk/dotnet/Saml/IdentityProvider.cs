@@ -18,7 +18,6 @@ namespace Pulumi.Keycloak.Saml
     /// 
     /// ### Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -27,24 +26,23 @@ namespace Pulumi.Keycloak.Saml
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var realmIdentityProvider = new Keycloak.Saml.IdentityProvider("realmIdentityProvider", new()
+    ///     var realmIdentityProvider = new Keycloak.Saml.IdentityProvider("realm_identity_provider", new()
     ///     {
-    ///         Alias = "my-idp",
-    ///         BackchannelSupported = true,
-    ///         ForceAuthn = true,
-    ///         PostBindingAuthnRequest = true,
-    ///         PostBindingLogout = true,
-    ///         PostBindingResponse = true,
     ///         Realm = "my-realm",
-    ///         SingleLogoutServiceUrl = "https://domain.com/adfs/ls/?wa=wsignout1.0",
+    ///         Alias = "my-idp",
     ///         SingleSignOnServiceUrl = "https://domain.com/adfs/ls/",
+    ///         SingleLogoutServiceUrl = "https://domain.com/adfs/ls/?wa=wsignout1.0",
+    ///         BackchannelSupported = true,
+    ///         PostBindingResponse = true,
+    ///         PostBindingLogout = true,
+    ///         PostBindingAuthnRequest = true,
     ///         StoreToken = false,
     ///         TrustEmail = true,
+    ///         ForceAuthn = true,
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ### Argument Reference
     /// 

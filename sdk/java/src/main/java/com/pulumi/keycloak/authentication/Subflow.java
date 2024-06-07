@@ -23,7 +23,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -48,27 +49,28 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
+ *         var realm = new Realm("realm", RealmArgs.builder()
+ *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var flow = new Flow(&#34;flow&#34;, FlowArgs.builder()        
+ *         var flow = new Flow("flow", FlowArgs.builder()
  *             .realmId(realm.id())
- *             .alias(&#34;my-flow-alias&#34;)
+ *             .alias("my-flow-alias")
  *             .build());
  * 
- *         var subflow = new Subflow(&#34;subflow&#34;, SubflowArgs.builder()        
+ *         var subflow = new Subflow("subflow", SubflowArgs.builder()
  *             .realmId(realm.id())
- *             .alias(&#34;my-subflow-alias&#34;)
+ *             .alias("my-subflow-alias")
  *             .parentFlowAlias(flow.alias())
- *             .providerId(&#34;basic-flow&#34;)
- *             .requirement(&#34;ALTERNATIVE&#34;)
+ *             .providerId("basic-flow")
+ *             .requirement("ALTERNATIVE")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

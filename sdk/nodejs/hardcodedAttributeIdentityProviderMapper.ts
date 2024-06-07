@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
@@ -20,7 +19,7 @@ import * as utilities from "./utilities";
  *     realm: "my-realm",
  *     enabled: true,
  * });
- * const oidcIdentityProvider = new keycloak.oidc.IdentityProvider("oidcIdentityProvider", {
+ * const oidc = new keycloak.oidc.IdentityProvider("oidc", {
  *     realm: realm.id,
  *     alias: "my-idp",
  *     authorizationUrl: "https://authorizationurl.com",
@@ -28,9 +27,10 @@ import * as utilities from "./utilities";
  *     clientSecret: "clientSecret",
  *     tokenUrl: "https://tokenurl.com",
  * });
- * const oidcHardcodedAttributeIdentityProviderMapper = new keycloak.HardcodedAttributeIdentityProviderMapper("oidcHardcodedAttributeIdentityProviderMapper", {
+ * const oidcHardcodedAttributeIdentityProviderMapper = new keycloak.HardcodedAttributeIdentityProviderMapper("oidc", {
  *     realm: realm.id,
- *     identityProviderAlias: oidcIdentityProvider.alias,
+ *     name: "hardcodedUserSessionAttribute",
+ *     identityProviderAlias: oidc.alias,
  *     attributeName: "attribute",
  *     attributeValue: "value",
  *     userSession: true,
@@ -39,7 +39,6 @@ import * as utilities from "./utilities";
  *     },
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export class HardcodedAttributeIdentityProviderMapper extends pulumi.CustomResource {
     /**

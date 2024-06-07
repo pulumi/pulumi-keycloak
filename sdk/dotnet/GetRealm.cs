@@ -19,7 +19,6 @@ namespace Pulumi.Keycloak
         /// 
         /// ### Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -33,14 +32,15 @@ namespace Pulumi.Keycloak
         ///         Realm = "my-realm",
         ///     });
         /// 
+        ///     // use the data source
         ///     var @group = new Keycloak.Role("group", new()
         ///     {
-        ///         RealmId = data.Keycloak_realm.Id,
+        ///         RealmId = id,
+        ///         Name = "group",
         ///     });
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
         /// ### Argument Reference
         /// 
@@ -63,7 +63,6 @@ namespace Pulumi.Keycloak
         /// 
         /// ### Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -77,14 +76,15 @@ namespace Pulumi.Keycloak
         ///         Realm = "my-realm",
         ///     });
         /// 
+        ///     // use the data source
         ///     var @group = new Keycloak.Role("group", new()
         ///     {
-        ///         RealmId = data.Keycloak_realm.Id,
+        ///         RealmId = id,
+        ///         Name = "group",
         ///     });
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// 
         /// ### Argument Reference
         /// 

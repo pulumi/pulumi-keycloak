@@ -18,7 +18,6 @@ namespace Pulumi.Keycloak.Ldap
     /// 
     /// ## Example Usage
     /// 
-    /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -33,8 +32,9 @@ namespace Pulumi.Keycloak.Ldap
     ///         Enabled = true,
     ///     });
     /// 
-    ///     var ldapUserFederation = new Keycloak.Ldap.UserFederation("ldapUserFederation", new()
+    ///     var ldapUserFederation = new Keycloak.Ldap.UserFederation("ldap_user_federation", new()
     ///     {
+    ///         Name = "openldap",
     ///         RealmId = realm.Id,
     ///         UsernameLdapAttribute = "cn",
     ///         RdnLdapAttribute = "cn",
@@ -51,17 +51,17 @@ namespace Pulumi.Keycloak.Ldap
     ///         SyncRegistrations = true,
     ///     });
     /// 
-    ///     var assignBarToFoo = new Keycloak.Ldap.HardcodedAttributeMapper("assignBarToFoo", new()
+    ///     var assignBarToFoo = new Keycloak.Ldap.HardcodedAttributeMapper("assign_bar_to_foo", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         LdapUserFederationId = ldapUserFederation.Id,
+    ///         Name = "assign-foo-to-bar",
     ///         AttributeName = "foo",
     ///         AttributeValue = "bar",
     ///     });
     /// 
     /// });
     /// ```
-    /// &lt;!--End PulumiCodeChooser --&gt;
     /// 
     /// ## Import
     /// 

@@ -17,51 +17,59 @@ import * as utilities from "../utilities";
  *
  * ### Example Usage (Client)
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {
- *     enabled: true,
  *     realm: "my-realm",
- * });
- * const role = new keycloak.Role("role", {realmId: realm.id});
- * const openidClient = new keycloak.openid.Client("openidClient", {
- *     accessType: "CONFIDENTIAL",
- *     clientId: "test-client",
  *     enabled: true,
+ * });
+ * const role = new keycloak.Role("role", {
  *     realmId: realm.id,
+ *     name: "my-role",
+ * });
+ * const openidClient = new keycloak.openid.Client("openid_client", {
+ *     realmId: realm.id,
+ *     clientId: "test-client",
+ *     name: "test client",
+ *     enabled: true,
+ *     accessType: "CONFIDENTIAL",
  *     validRedirectUris: ["http://localhost:8080/openid-callback"],
  * });
- * const hardcodedRoleMapper = new keycloak.openid.HardcodedRoleProtocolMapper("hardcodedRoleMapper", {
- *     clientId: openidClient.id,
+ * const hardcodedRoleMapper = new keycloak.openid.HardcodedRoleProtocolMapper("hardcoded_role_mapper", {
  *     realmId: realm.id,
+ *     clientId: openidClient.id,
+ *     name: "hardcoded-role-mapper",
  *     roleId: role.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Example Usage (Client Scope)
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {
- *     enabled: true,
  *     realm: "my-realm",
+ *     enabled: true,
  * });
- * const role = new keycloak.Role("role", {realmId: realm.id});
- * const clientScope = new keycloak.openid.ClientScope("clientScope", {realmId: realm.id});
- * const hardcodedRoleMapper = new keycloak.openid.HardcodedRoleProtocolMapper("hardcodedRoleMapper", {
- *     clientScopeId: clientScope.id,
+ * const role = new keycloak.Role("role", {
  *     realmId: realm.id,
+ *     name: "my-role",
+ * });
+ * const clientScope = new keycloak.openid.ClientScope("client_scope", {
+ *     realmId: realm.id,
+ *     name: "test-client-scope",
+ * });
+ * const hardcodedRoleMapper = new keycloak.openid.HardcodedRoleProtocolMapper("hardcoded_role_mapper", {
+ *     realmId: realm.id,
+ *     clientScopeId: clientScope.id,
+ *     name: "hardcoded-role-mapper",
  *     roleId: role.id,
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ### Argument Reference
  *

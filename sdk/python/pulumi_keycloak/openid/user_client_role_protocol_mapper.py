@@ -439,7 +439,6 @@ class UserClientRoleProtocolMapper(pulumi.CustomResource):
 
         ### Client)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -447,22 +446,22 @@ class UserClientRoleProtocolMapper(pulumi.CustomResource):
         realm = keycloak.Realm("realm",
             realm="my-realm",
             enabled=True)
-        openid_client = keycloak.openid.Client("openidClient",
+        openid_client = keycloak.openid.Client("openid_client",
             realm_id=realm.id,
             client_id="client",
+            name="client",
             enabled=True,
             access_type="CONFIDENTIAL",
             valid_redirect_uris=["http://localhost:8080/openid-callback"])
-        user_client_role_mapper = keycloak.openid.UserClientRoleProtocolMapper("userClientRoleMapper",
+        user_client_role_mapper = keycloak.openid.UserClientRoleProtocolMapper("user_client_role_mapper",
             realm_id=realm.id,
             client_id=openid_client.id,
+            name="user-client-role-mapper",
             claim_name="foo")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Client Scope)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -470,13 +469,15 @@ class UserClientRoleProtocolMapper(pulumi.CustomResource):
         realm = keycloak.Realm("realm",
             realm="my-realm",
             enabled=True)
-        client_scope = keycloak.openid.ClientScope("clientScope", realm_id=realm.id)
-        user_client_role_mapper = keycloak.openid.UserClientRoleProtocolMapper("userClientRoleMapper",
+        client_scope = keycloak.openid.ClientScope("client_scope",
+            realm_id=realm.id,
+            name="client-scope")
+        user_client_role_mapper = keycloak.openid.UserClientRoleProtocolMapper("user_client_role_mapper",
             realm_id=realm.id,
             client_scope_id=client_scope.id,
+            name="user-client-role-mapper",
             claim_name="foo")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -531,7 +532,6 @@ class UserClientRoleProtocolMapper(pulumi.CustomResource):
 
         ### Client)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -539,22 +539,22 @@ class UserClientRoleProtocolMapper(pulumi.CustomResource):
         realm = keycloak.Realm("realm",
             realm="my-realm",
             enabled=True)
-        openid_client = keycloak.openid.Client("openidClient",
+        openid_client = keycloak.openid.Client("openid_client",
             realm_id=realm.id,
             client_id="client",
+            name="client",
             enabled=True,
             access_type="CONFIDENTIAL",
             valid_redirect_uris=["http://localhost:8080/openid-callback"])
-        user_client_role_mapper = keycloak.openid.UserClientRoleProtocolMapper("userClientRoleMapper",
+        user_client_role_mapper = keycloak.openid.UserClientRoleProtocolMapper("user_client_role_mapper",
             realm_id=realm.id,
             client_id=openid_client.id,
+            name="user-client-role-mapper",
             claim_name="foo")
         ```
-        <!--End PulumiCodeChooser -->
 
         ### Client Scope)
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -562,13 +562,15 @@ class UserClientRoleProtocolMapper(pulumi.CustomResource):
         realm = keycloak.Realm("realm",
             realm="my-realm",
             enabled=True)
-        client_scope = keycloak.openid.ClientScope("clientScope", realm_id=realm.id)
-        user_client_role_mapper = keycloak.openid.UserClientRoleProtocolMapper("userClientRoleMapper",
+        client_scope = keycloak.openid.ClientScope("client_scope",
+            realm_id=realm.id,
+            name="client-scope")
+        user_client_role_mapper = keycloak.openid.UserClientRoleProtocolMapper("user_client_role_mapper",
             realm_id=realm.id,
             client_scope_id=client_scope.id,
+            name="user-client-role-mapper",
             claim_name="foo")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

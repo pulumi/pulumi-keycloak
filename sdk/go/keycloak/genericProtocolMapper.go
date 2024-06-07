@@ -23,7 +23,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -44,16 +43,17 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			samlClient, err := saml.NewClient(ctx, "samlClient", &saml.ClientArgs{
+//			samlClient, err := saml.NewClient(ctx, "saml_client", &saml.ClientArgs{
 //				RealmId:  realm.ID(),
 //				ClientId: pulumi.String("test-client"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = keycloak.NewGenericProtocolMapper(ctx, "samlHardcodeAttributeMapper", &keycloak.GenericProtocolMapperArgs{
+//			_, err = keycloak.NewGenericProtocolMapper(ctx, "saml_hardcode_attribute_mapper", &keycloak.GenericProtocolMapperArgs{
 //				RealmId:        realm.ID(),
 //				ClientId:       samlClient.ID(),
+//				Name:           pulumi.String("test-mapper"),
 //				Protocol:       pulumi.String("saml"),
 //				ProtocolMapper: pulumi.String("saml-hardcode-attribute-mapper"),
 //				Config: pulumi.Map{
@@ -71,7 +71,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 //
 // ## Import
 //

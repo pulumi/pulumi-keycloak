@@ -26,7 +26,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -51,27 +52,30 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realm = new Realm(&#34;realm&#34;, RealmArgs.builder()        
- *             .realm(&#34;my-realm&#34;)
+ *         var realm = new Realm("realm", RealmArgs.builder()
+ *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
- *         var samlClient = new Client(&#34;samlClient&#34;, ClientArgs.builder()        
+ *         var samlClient = new Client("samlClient", ClientArgs.builder()
  *             .realmId(realm.id())
- *             .clientId(&#34;saml-client&#34;)
+ *             .clientId("saml-client")
+ *             .name("saml-client")
  *             .build());
  * 
- *         var samlScriptMapper = new ScriptProtocolMapper(&#34;samlScriptMapper&#34;, ScriptProtocolMapperArgs.builder()        
+ *         var samlScriptMapper = new ScriptProtocolMapper("samlScriptMapper", ScriptProtocolMapperArgs.builder()
  *             .realmId(realm.id())
  *             .clientId(samlClient.id())
- *             .script(&#34;exports = &#39;foo&#39;;&#34;)
- *             .samlAttributeName(&#34;displayName&#34;)
- *             .samlAttributeNameFormat(&#34;Unspecified&#34;)
+ *             .name("script-mapper")
+ *             .script("exports = 'foo';")
+ *             .samlAttributeName("displayName")
+ *             .samlAttributeNameFormat("Unspecified")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
