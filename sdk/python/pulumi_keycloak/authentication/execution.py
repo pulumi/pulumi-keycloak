@@ -194,7 +194,7 @@ class Execution(pulumi.CustomResource):
             parent_flow_alias=flow.alias,
             authenticator="identity-provider-redirector",
             requirement="ALTERNATIVE",
-            opts=pulumi.ResourceOptions(depends_on=[execution_one]))
+            opts = pulumi.ResourceOptions(depends_on=[execution_one]))
         ```
 
         ## Import
@@ -254,7 +254,7 @@ class Execution(pulumi.CustomResource):
             parent_flow_alias=flow.alias,
             authenticator="identity-provider-redirector",
             requirement="ALTERNATIVE",
-            opts=pulumi.ResourceOptions(depends_on=[execution_one]))
+            opts = pulumi.ResourceOptions(depends_on=[execution_one]))
         ```
 
         ## Import
