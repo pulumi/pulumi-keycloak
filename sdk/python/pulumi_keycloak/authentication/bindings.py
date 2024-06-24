@@ -302,7 +302,7 @@ class Bindings(pulumi.CustomResource):
             parent_flow_alias=flow.alias,
             authenticator="identity-provider-redirector",
             requirement="ALTERNATIVE",
-            opts=pulumi.ResourceOptions(depends_on=[execution_one]))
+            opts = pulumi.ResourceOptions(depends_on=[execution_one]))
         browser_authentication_binding = keycloak.authentication.Bindings("browser_authentication_binding",
             realm_id=realm.id,
             browser_flow=flow.alias)
@@ -363,7 +363,7 @@ class Bindings(pulumi.CustomResource):
             parent_flow_alias=flow.alias,
             authenticator="identity-provider-redirector",
             requirement="ALTERNATIVE",
-            opts=pulumi.ResourceOptions(depends_on=[execution_one]))
+            opts = pulumi.ResourceOptions(depends_on=[execution_one]))
         browser_authentication_binding = keycloak.authentication.Bindings("browser_authentication_binding",
             realm_id=realm.id,
             browser_flow=flow.alias)
