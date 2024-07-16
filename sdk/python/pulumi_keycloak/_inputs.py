@@ -748,7 +748,13 @@ class RealmUserProfileAttributeArgs:
                  required_for_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  validators: Optional[pulumi.Input[Sequence[pulumi.Input['RealmUserProfileAttributeValidatorArgs']]]] = None):
         """
+        :param pulumi.Input[str] display_name: The display name of the attribute.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] enabled_when_scopes: A list of scopes. The attribute will only be enabled when these scopes are requested by clients.
         :param pulumi.Input[str] group: A list of groups.
+        :param pulumi.Input['RealmUserProfileAttributePermissionsArgs'] permissions: The permissions configuration information.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] required_for_roles: A list of roles for which the attribute will be required.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] required_for_scopes: A list of scopes for which the attribute will be required.
+        :param pulumi.Input[Sequence[pulumi.Input['RealmUserProfileAttributeValidatorArgs']]] validators: A list of validators for the attribute.
         """
         pulumi.set(__self__, "name", name)
         if annotations is not None:
@@ -789,6 +795,9 @@ class RealmUserProfileAttributeArgs:
     @property
     @pulumi.getter(name="displayName")
     def display_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The display name of the attribute.
+        """
         return pulumi.get(self, "display_name")
 
     @display_name.setter
@@ -798,6 +807,9 @@ class RealmUserProfileAttributeArgs:
     @property
     @pulumi.getter(name="enabledWhenScopes")
     def enabled_when_scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A list of scopes. The attribute will only be enabled when these scopes are requested by clients.
+        """
         return pulumi.get(self, "enabled_when_scopes")
 
     @enabled_when_scopes.setter
@@ -819,6 +831,9 @@ class RealmUserProfileAttributeArgs:
     @property
     @pulumi.getter
     def permissions(self) -> Optional[pulumi.Input['RealmUserProfileAttributePermissionsArgs']]:
+        """
+        The permissions configuration information.
+        """
         return pulumi.get(self, "permissions")
 
     @permissions.setter
@@ -828,6 +843,9 @@ class RealmUserProfileAttributeArgs:
     @property
     @pulumi.getter(name="requiredForRoles")
     def required_for_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A list of roles for which the attribute will be required.
+        """
         return pulumi.get(self, "required_for_roles")
 
     @required_for_roles.setter
@@ -837,6 +855,9 @@ class RealmUserProfileAttributeArgs:
     @property
     @pulumi.getter(name="requiredForScopes")
     def required_for_scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A list of scopes for which the attribute will be required.
+        """
         return pulumi.get(self, "required_for_scopes")
 
     @required_for_scopes.setter
@@ -846,6 +867,9 @@ class RealmUserProfileAttributeArgs:
     @property
     @pulumi.getter
     def validators(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RealmUserProfileAttributeValidatorArgs']]]]:
+        """
+        A list of validators for the attribute.
+        """
         return pulumi.get(self, "validators")
 
     @validators.setter
@@ -858,12 +882,19 @@ class RealmUserProfileAttributePermissionsArgs:
     def __init__(__self__, *,
                  edits: pulumi.Input[Sequence[pulumi.Input[str]]],
                  views: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] edits: A list of profiles that will be able to edit the attribute. One of `admin`, `user`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] views: A list of profiles that will be able to view the attribute. One of `admin`, `user`.
+        """
         pulumi.set(__self__, "edits", edits)
         pulumi.set(__self__, "views", views)
 
     @property
     @pulumi.getter
     def edits(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        A list of profiles that will be able to edit the attribute. One of `admin`, `user`.
+        """
         return pulumi.get(self, "edits")
 
     @edits.setter
@@ -873,6 +904,9 @@ class RealmUserProfileAttributePermissionsArgs:
     @property
     @pulumi.getter
     def views(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        A list of profiles that will be able to view the attribute. One of `admin`, `user`.
+        """
         return pulumi.get(self, "views")
 
     @views.setter
@@ -885,6 +919,9 @@ class RealmUserProfileAttributeValidatorArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[str],
                  config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] config: A map defining the configuration of the validator. Values can be a String or a json object.
+        """
         pulumi.set(__self__, "name", name)
         if config is not None:
             pulumi.set(__self__, "config", config)
@@ -901,6 +938,9 @@ class RealmUserProfileAttributeValidatorArgs:
     @property
     @pulumi.getter
     def config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A map defining the configuration of the validator. Values can be a String or a json object.
+        """
         return pulumi.get(self, "config")
 
     @config.setter
@@ -915,6 +955,10 @@ class RealmUserProfileGroupArgs:
                  annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  display_description: Optional[pulumi.Input[str]] = None,
                  display_header: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] display_description: The display description of the group.
+        :param pulumi.Input[str] display_header: The display header of the group.
+        """
         pulumi.set(__self__, "name", name)
         if annotations is not None:
             pulumi.set(__self__, "annotations", annotations)
@@ -944,6 +988,9 @@ class RealmUserProfileGroupArgs:
     @property
     @pulumi.getter(name="displayDescription")
     def display_description(self) -> Optional[pulumi.Input[str]]:
+        """
+        The display description of the group.
+        """
         return pulumi.get(self, "display_description")
 
     @display_description.setter
@@ -953,6 +1000,9 @@ class RealmUserProfileGroupArgs:
     @property
     @pulumi.getter(name="displayHeader")
     def display_header(self) -> Optional[pulumi.Input[str]]:
+        """
+        The display header of the group.
+        """
         return pulumi.get(self, "display_header")
 
     @display_header.setter

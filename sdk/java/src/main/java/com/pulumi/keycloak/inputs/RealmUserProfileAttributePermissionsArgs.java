@@ -15,16 +15,32 @@ public final class RealmUserProfileAttributePermissionsArgs extends com.pulumi.r
 
     public static final RealmUserProfileAttributePermissionsArgs Empty = new RealmUserProfileAttributePermissionsArgs();
 
+    /**
+     * A list of profiles that will be able to edit the attribute. One of `admin`, `user`.
+     * 
+     */
     @Import(name="edits", required=true)
     private Output<List<String>> edits;
 
+    /**
+     * @return A list of profiles that will be able to edit the attribute. One of `admin`, `user`.
+     * 
+     */
     public Output<List<String>> edits() {
         return this.edits;
     }
 
+    /**
+     * A list of profiles that will be able to view the attribute. One of `admin`, `user`.
+     * 
+     */
     @Import(name="views", required=true)
     private Output<List<String>> views;
 
+    /**
+     * @return A list of profiles that will be able to view the attribute. One of `admin`, `user`.
+     * 
+     */
     public Output<List<String>> views() {
         return this.views;
     }
@@ -54,28 +70,64 @@ public final class RealmUserProfileAttributePermissionsArgs extends com.pulumi.r
             $ = new RealmUserProfileAttributePermissionsArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param edits A list of profiles that will be able to edit the attribute. One of `admin`, `user`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder edits(Output<List<String>> edits) {
             $.edits = edits;
             return this;
         }
 
+        /**
+         * @param edits A list of profiles that will be able to edit the attribute. One of `admin`, `user`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder edits(List<String> edits) {
             return edits(Output.of(edits));
         }
 
+        /**
+         * @param edits A list of profiles that will be able to edit the attribute. One of `admin`, `user`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder edits(String... edits) {
             return edits(List.of(edits));
         }
 
+        /**
+         * @param views A list of profiles that will be able to view the attribute. One of `admin`, `user`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder views(Output<List<String>> views) {
             $.views = views;
             return this;
         }
 
+        /**
+         * @param views A list of profiles that will be able to view the attribute. One of `admin`, `user`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder views(List<String> views) {
             return views(Output.of(views));
         }
 
+        /**
+         * @param views A list of profiles that will be able to view the attribute. One of `admin`, `user`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder views(String... views) {
             return views(List.of(views));
         }

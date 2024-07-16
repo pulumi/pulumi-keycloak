@@ -20,11 +20,18 @@ namespace Pulumi.Keycloak.Inputs
             set => _annotations = value;
         }
 
+        /// <summary>
+        /// The display name of the attribute.
+        /// </summary>
         [Input("displayName")]
         public Input<string>? DisplayName { get; set; }
 
         [Input("enabledWhenScopes")]
         private InputList<string>? _enabledWhenScopes;
+
+        /// <summary>
+        /// A list of scopes. The attribute will only be enabled when these scopes are requested by clients.
+        /// </summary>
         public InputList<string> EnabledWhenScopes
         {
             get => _enabledWhenScopes ?? (_enabledWhenScopes = new InputList<string>());
@@ -40,11 +47,18 @@ namespace Pulumi.Keycloak.Inputs
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// The permissions configuration information.
+        /// </summary>
         [Input("permissions")]
         public Input<Inputs.RealmUserProfileAttributePermissionsArgs>? Permissions { get; set; }
 
         [Input("requiredForRoles")]
         private InputList<string>? _requiredForRoles;
+
+        /// <summary>
+        /// A list of roles for which the attribute will be required.
+        /// </summary>
         public InputList<string> RequiredForRoles
         {
             get => _requiredForRoles ?? (_requiredForRoles = new InputList<string>());
@@ -53,6 +67,10 @@ namespace Pulumi.Keycloak.Inputs
 
         [Input("requiredForScopes")]
         private InputList<string>? _requiredForScopes;
+
+        /// <summary>
+        /// A list of scopes for which the attribute will be required.
+        /// </summary>
         public InputList<string> RequiredForScopes
         {
             get => _requiredForScopes ?? (_requiredForScopes = new InputList<string>());
@@ -61,6 +79,10 @@ namespace Pulumi.Keycloak.Inputs
 
         [Input("validators")]
         private InputList<Inputs.RealmUserProfileAttributeValidatorArgs>? _validators;
+
+        /// <summary>
+        /// A list of validators for the attribute.
+        /// </summary>
         public InputList<Inputs.RealmUserProfileAttributeValidatorArgs> Validators
         {
             get => _validators ?? (_validators = new InputList<Inputs.RealmUserProfileAttributeValidatorArgs>());

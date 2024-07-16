@@ -20,9 +20,15 @@ namespace Pulumi.Keycloak.Inputs
             set => _annotations = value;
         }
 
+        /// <summary>
+        /// The display description of the group.
+        /// </summary>
         [Input("displayDescription")]
         public Input<string>? DisplayDescription { get; set; }
 
+        /// <summary>
+        /// The display header of the group.
+        /// </summary>
         [Input("displayHeader")]
         public Input<string>? DisplayHeader { get; set; }
 
