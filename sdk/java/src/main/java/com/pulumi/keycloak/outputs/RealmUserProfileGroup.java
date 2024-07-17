@@ -14,7 +14,15 @@ import javax.annotation.Nullable;
 @CustomType
 public final class RealmUserProfileGroup {
     private @Nullable Map<String,String> annotations;
+    /**
+     * @return The display description of the group.
+     * 
+     */
     private @Nullable String displayDescription;
+    /**
+     * @return The display header of the group.
+     * 
+     */
     private @Nullable String displayHeader;
     private String name;
 
@@ -22,9 +30,17 @@ public final class RealmUserProfileGroup {
     public Map<String,String> annotations() {
         return this.annotations == null ? Map.of() : this.annotations;
     }
+    /**
+     * @return The display description of the group.
+     * 
+     */
     public Optional<String> displayDescription() {
         return Optional.ofNullable(this.displayDescription);
     }
+    /**
+     * @return The display header of the group.
+     * 
+     */
     public Optional<String> displayHeader() {
         return Optional.ofNullable(this.displayHeader);
     }

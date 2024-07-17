@@ -24,16 +24,32 @@ public final class RealmUserProfileGroupArgs extends com.pulumi.resources.Resour
         return Optional.ofNullable(this.annotations);
     }
 
+    /**
+     * The display description of the group.
+     * 
+     */
     @Import(name="displayDescription")
     private @Nullable Output<String> displayDescription;
 
+    /**
+     * @return The display description of the group.
+     * 
+     */
     public Optional<Output<String>> displayDescription() {
         return Optional.ofNullable(this.displayDescription);
     }
 
+    /**
+     * The display header of the group.
+     * 
+     */
     @Import(name="displayHeader")
     private @Nullable Output<String> displayHeader;
 
+    /**
+     * @return The display header of the group.
+     * 
+     */
     public Optional<Output<String>> displayHeader() {
         return Optional.ofNullable(this.displayHeader);
     }
@@ -81,20 +97,44 @@ public final class RealmUserProfileGroupArgs extends com.pulumi.resources.Resour
             return annotations(Output.of(annotations));
         }
 
+        /**
+         * @param displayDescription The display description of the group.
+         * 
+         * @return builder
+         * 
+         */
         public Builder displayDescription(@Nullable Output<String> displayDescription) {
             $.displayDescription = displayDescription;
             return this;
         }
 
+        /**
+         * @param displayDescription The display description of the group.
+         * 
+         * @return builder
+         * 
+         */
         public Builder displayDescription(String displayDescription) {
             return displayDescription(Output.of(displayDescription));
         }
 
+        /**
+         * @param displayHeader The display header of the group.
+         * 
+         * @return builder
+         * 
+         */
         public Builder displayHeader(@Nullable Output<String> displayHeader) {
             $.displayHeader = displayHeader;
             return this;
         }
 
+        /**
+         * @param displayHeader The display header of the group.
+         * 
+         * @return builder
+         * 
+         */
         public Builder displayHeader(String displayHeader) {
             return displayHeader(Output.of(displayHeader));
         }
