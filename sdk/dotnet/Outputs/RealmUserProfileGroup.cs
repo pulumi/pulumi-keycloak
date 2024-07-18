@@ -14,7 +14,13 @@ namespace Pulumi.Keycloak.Outputs
     public sealed class RealmUserProfileGroup
     {
         public readonly ImmutableDictionary<string, string>? Annotations;
+        /// <summary>
+        /// The display description of the group.
+        /// </summary>
         public readonly string? DisplayDescription;
+        /// <summary>
+        /// The display header of the group.
+        /// </summary>
         public readonly string? DisplayHeader;
         public readonly string Name;
 

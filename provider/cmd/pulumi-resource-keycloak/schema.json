@@ -382,13 +382,15 @@
                     }
                 },
                 "displayName": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The display name of the attribute.\n"
                 },
                 "enabledWhenScopes": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "A list of scopes. The attribute will only be enabled when these scopes are requested by clients.\n"
                 },
                 "group": {
                     "type": "string",
@@ -398,25 +400,29 @@
                     "type": "string"
                 },
                 "permissions": {
-                    "$ref": "#/types/keycloak:index/RealmUserProfileAttributePermissions:RealmUserProfileAttributePermissions"
+                    "$ref": "#/types/keycloak:index/RealmUserProfileAttributePermissions:RealmUserProfileAttributePermissions",
+                    "description": "The permissions configuration information.\n"
                 },
                 "requiredForRoles": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "A list of roles for which the attribute will be required.\n"
                 },
                 "requiredForScopes": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "A list of scopes for which the attribute will be required.\n"
                 },
                 "validators": {
                     "type": "array",
                     "items": {
                         "$ref": "#/types/keycloak:index/RealmUserProfileAttributeValidator:RealmUserProfileAttributeValidator"
-                    }
+                    },
+                    "description": "A list of validators for the attribute.\n"
                 }
             },
             "type": "object",
@@ -430,13 +436,15 @@
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "A list of profiles that will be able to edit the attribute. One of `admin`, `user`.\n"
                 },
                 "views": {
                     "type": "array",
                     "items": {
                         "type": "string"
-                    }
+                    },
+                    "description": "A list of profiles that will be able to view the attribute. One of `admin`, `user`.\n"
                 }
             },
             "type": "object",
@@ -451,7 +459,8 @@
                     "type": "object",
                     "additionalProperties": {
                         "type": "string"
-                    }
+                    },
+                    "description": "A map defining the configuration of the validator. Values can be a String or a json object.\n"
                 },
                 "name": {
                     "type": "string"
@@ -471,10 +480,12 @@
                     }
                 },
                 "displayDescription": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The display description of the group.\n"
                 },
                 "displayHeader": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The display header of the group.\n"
                 },
                 "name": {
                     "type": "string"

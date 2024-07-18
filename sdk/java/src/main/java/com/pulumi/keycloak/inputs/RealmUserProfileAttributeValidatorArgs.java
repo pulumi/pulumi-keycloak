@@ -17,9 +17,17 @@ public final class RealmUserProfileAttributeValidatorArgs extends com.pulumi.res
 
     public static final RealmUserProfileAttributeValidatorArgs Empty = new RealmUserProfileAttributeValidatorArgs();
 
+    /**
+     * A map defining the configuration of the validator. Values can be a String or a json object.
+     * 
+     */
     @Import(name="config")
     private @Nullable Output<Map<String,String>> config;
 
+    /**
+     * @return A map defining the configuration of the validator. Values can be a String or a json object.
+     * 
+     */
     public Optional<Output<Map<String,String>>> config() {
         return Optional.ofNullable(this.config);
     }
@@ -56,11 +64,23 @@ public final class RealmUserProfileAttributeValidatorArgs extends com.pulumi.res
             $ = new RealmUserProfileAttributeValidatorArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param config A map defining the configuration of the validator. Values can be a String or a json object.
+         * 
+         * @return builder
+         * 
+         */
         public Builder config(@Nullable Output<Map<String,String>> config) {
             $.config = config;
             return this;
         }
 
+        /**
+         * @param config A map defining the configuration of the validator. Values can be a String or a json object.
+         * 
+         * @return builder
+         * 
+         */
         public Builder config(Map<String,String> config) {
             return config(Output.of(config));
         }

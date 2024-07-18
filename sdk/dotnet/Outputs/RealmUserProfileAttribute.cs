@@ -14,16 +14,34 @@ namespace Pulumi.Keycloak.Outputs
     public sealed class RealmUserProfileAttribute
     {
         public readonly ImmutableDictionary<string, string>? Annotations;
+        /// <summary>
+        /// The display name of the attribute.
+        /// </summary>
         public readonly string? DisplayName;
+        /// <summary>
+        /// A list of scopes. The attribute will only be enabled when these scopes are requested by clients.
+        /// </summary>
         public readonly ImmutableArray<string> EnabledWhenScopes;
         /// <summary>
         /// A list of groups.
         /// </summary>
         public readonly string? Group;
         public readonly string Name;
+        /// <summary>
+        /// The permissions configuration information.
+        /// </summary>
         public readonly Outputs.RealmUserProfileAttributePermissions? Permissions;
+        /// <summary>
+        /// A list of roles for which the attribute will be required.
+        /// </summary>
         public readonly ImmutableArray<string> RequiredForRoles;
+        /// <summary>
+        /// A list of scopes for which the attribute will be required.
+        /// </summary>
         public readonly ImmutableArray<string> RequiredForScopes;
+        /// <summary>
+        /// A list of validators for the attribute.
+        /// </summary>
         public readonly ImmutableArray<Outputs.RealmUserProfileAttributeValidator> Validators;
 
         [OutputConstructor]
