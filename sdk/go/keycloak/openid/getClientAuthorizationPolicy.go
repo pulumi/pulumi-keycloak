@@ -76,9 +76,9 @@ import (
 //				RealmId:          realm.ID(),
 //				Name:             pulumi.String("authorization-permission"),
 //				Policies: pulumi.StringArray{
-//					defaultPermission.ApplyT(func(defaultPermission openid.GetClientAuthorizationPolicyResult) (*string, error) {
+//					pulumi.String(defaultPermission.ApplyT(func(defaultPermission openid.GetClientAuthorizationPolicyResult) (*string, error) {
 //						return &defaultPermission.Id, nil
-//					}).(pulumi.StringPtrOutput),
+//					}).(pulumi.StringPtrOutput)),
 //				},
 //				Resources: pulumi.StringArray{
 //					resource.ID(),

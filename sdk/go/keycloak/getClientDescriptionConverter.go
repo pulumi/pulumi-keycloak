@@ -71,9 +71,9 @@ import (
 //			}, nil)
 //			_, err = saml.NewClient(ctx, "saml_client", &saml.ClientArgs{
 //				RealmId: realm.ID(),
-//				ClientId: samlClient.ApplyT(func(samlClient keycloak.GetClientDescriptionConverterResult) (*string, error) {
+//				ClientId: pulumi.String(samlClient.ApplyT(func(samlClient keycloak.GetClientDescriptionConverterResult) (*string, error) {
 //					return &samlClient.ClientId, nil
-//				}).(pulumi.StringPtrOutput),
+//				}).(pulumi.StringPtrOutput)),
 //			})
 //			if err != nil {
 //				return err

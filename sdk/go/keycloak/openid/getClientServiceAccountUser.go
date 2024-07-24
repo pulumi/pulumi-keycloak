@@ -60,13 +60,13 @@ import (
 //			}, nil)
 //			_, err = keycloak.NewUserRoles(ctx, "service_account_user_roles", &keycloak.UserRolesArgs{
 //				RealmId: realm.ID(),
-//				UserId: serviceAccountUser.ApplyT(func(serviceAccountUser openid.GetClientServiceAccountUserResult) (*string, error) {
+//				UserId: pulumi.String(serviceAccountUser.ApplyT(func(serviceAccountUser openid.GetClientServiceAccountUserResult) (*string, error) {
 //					return &serviceAccountUser.Id, nil
-//				}).(pulumi.StringPtrOutput),
+//				}).(pulumi.StringPtrOutput)),
 //				RoleIds: pulumi.StringArray{
-//					offlineAccess.ApplyT(func(offlineAccess keycloak.GetRoleResult) (*string, error) {
+//					pulumi.String(offlineAccess.ApplyT(func(offlineAccess keycloak.GetRoleResult) (*string, error) {
 //						return &offlineAccess.Id, nil
-//					}).(pulumi.StringPtrOutput),
+//					}).(pulumi.StringPtrOutput)),
 //				},
 //			})
 //			if err != nil {
