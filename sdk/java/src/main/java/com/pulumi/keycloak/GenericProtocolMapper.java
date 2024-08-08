@@ -203,7 +203,7 @@ public class GenericProtocolMapper extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public GenericProtocolMapper(String name) {
+    public GenericProtocolMapper(java.lang.String name) {
         this(name, GenericProtocolMapperArgs.Empty);
     }
     /**
@@ -211,7 +211,7 @@ public class GenericProtocolMapper extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public GenericProtocolMapper(String name, GenericProtocolMapperArgs args) {
+    public GenericProtocolMapper(java.lang.String name, GenericProtocolMapperArgs args) {
         this(name, args, null);
     }
     /**
@@ -220,15 +220,22 @@ public class GenericProtocolMapper extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public GenericProtocolMapper(String name, GenericProtocolMapperArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:index/genericProtocolMapper:GenericProtocolMapper", name, args == null ? GenericProtocolMapperArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public GenericProtocolMapper(java.lang.String name, GenericProtocolMapperArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:index/genericProtocolMapper:GenericProtocolMapper", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private GenericProtocolMapper(String name, Output<String> id, @Nullable GenericProtocolMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:index/genericProtocolMapper:GenericProtocolMapper", name, state, makeResourceOptions(options, id));
+    private GenericProtocolMapper(java.lang.String name, Output<java.lang.String> id, @Nullable GenericProtocolMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:index/genericProtocolMapper:GenericProtocolMapper", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static GenericProtocolMapperArgs makeArgs(GenericProtocolMapperArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? GenericProtocolMapperArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -244,7 +251,7 @@ public class GenericProtocolMapper extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static GenericProtocolMapper get(String name, Output<String> id, @Nullable GenericProtocolMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static GenericProtocolMapper get(java.lang.String name, Output<java.lang.String> id, @Nullable GenericProtocolMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new GenericProtocolMapper(name, id, state, options);
     }
 }

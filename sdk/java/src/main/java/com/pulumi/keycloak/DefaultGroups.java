@@ -105,7 +105,7 @@ public class DefaultGroups extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public DefaultGroups(String name) {
+    public DefaultGroups(java.lang.String name) {
         this(name, DefaultGroupsArgs.Empty);
     }
     /**
@@ -113,7 +113,7 @@ public class DefaultGroups extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public DefaultGroups(String name, DefaultGroupsArgs args) {
+    public DefaultGroups(java.lang.String name, DefaultGroupsArgs args) {
         this(name, args, null);
     }
     /**
@@ -122,15 +122,22 @@ public class DefaultGroups extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public DefaultGroups(String name, DefaultGroupsArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:index/defaultGroups:DefaultGroups", name, args == null ? DefaultGroupsArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public DefaultGroups(java.lang.String name, DefaultGroupsArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:index/defaultGroups:DefaultGroups", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private DefaultGroups(String name, Output<String> id, @Nullable DefaultGroupsState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:index/defaultGroups:DefaultGroups", name, state, makeResourceOptions(options, id));
+    private DefaultGroups(java.lang.String name, Output<java.lang.String> id, @Nullable DefaultGroupsState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:index/defaultGroups:DefaultGroups", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static DefaultGroupsArgs makeArgs(DefaultGroupsArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? DefaultGroupsArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -146,7 +153,7 @@ public class DefaultGroups extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static DefaultGroups get(String name, Output<String> id, @Nullable DefaultGroupsState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static DefaultGroups get(java.lang.String name, Output<java.lang.String> id, @Nullable DefaultGroupsState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new DefaultGroups(name, id, state, options);
     }
 }

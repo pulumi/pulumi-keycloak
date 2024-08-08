@@ -373,7 +373,7 @@ public class GenericRoleMapper extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public GenericRoleMapper(String name) {
+    public GenericRoleMapper(java.lang.String name) {
         this(name, GenericRoleMapperArgs.Empty);
     }
     /**
@@ -381,7 +381,7 @@ public class GenericRoleMapper extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public GenericRoleMapper(String name, GenericRoleMapperArgs args) {
+    public GenericRoleMapper(java.lang.String name, GenericRoleMapperArgs args) {
         this(name, args, null);
     }
     /**
@@ -390,15 +390,22 @@ public class GenericRoleMapper extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public GenericRoleMapper(String name, GenericRoleMapperArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:index/genericRoleMapper:GenericRoleMapper", name, args == null ? GenericRoleMapperArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public GenericRoleMapper(java.lang.String name, GenericRoleMapperArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:index/genericRoleMapper:GenericRoleMapper", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private GenericRoleMapper(String name, Output<String> id, @Nullable GenericRoleMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:index/genericRoleMapper:GenericRoleMapper", name, state, makeResourceOptions(options, id));
+    private GenericRoleMapper(java.lang.String name, Output<java.lang.String> id, @Nullable GenericRoleMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:index/genericRoleMapper:GenericRoleMapper", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static GenericRoleMapperArgs makeArgs(GenericRoleMapperArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? GenericRoleMapperArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -414,7 +421,7 @@ public class GenericRoleMapper extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static GenericRoleMapper get(String name, Output<String> id, @Nullable GenericRoleMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static GenericRoleMapper get(java.lang.String name, Output<java.lang.String> id, @Nullable GenericRoleMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new GenericRoleMapper(name, id, state, options);
     }
 }

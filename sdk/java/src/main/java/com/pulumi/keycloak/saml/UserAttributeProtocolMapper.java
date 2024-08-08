@@ -157,7 +157,7 @@ public class UserAttributeProtocolMapper extends com.pulumi.resources.CustomReso
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public UserAttributeProtocolMapper(String name) {
+    public UserAttributeProtocolMapper(java.lang.String name) {
         this(name, UserAttributeProtocolMapperArgs.Empty);
     }
     /**
@@ -165,7 +165,7 @@ public class UserAttributeProtocolMapper extends com.pulumi.resources.CustomReso
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public UserAttributeProtocolMapper(String name, UserAttributeProtocolMapperArgs args) {
+    public UserAttributeProtocolMapper(java.lang.String name, UserAttributeProtocolMapperArgs args) {
         this(name, args, null);
     }
     /**
@@ -174,15 +174,22 @@ public class UserAttributeProtocolMapper extends com.pulumi.resources.CustomReso
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public UserAttributeProtocolMapper(String name, UserAttributeProtocolMapperArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:saml/userAttributeProtocolMapper:UserAttributeProtocolMapper", name, args == null ? UserAttributeProtocolMapperArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public UserAttributeProtocolMapper(java.lang.String name, UserAttributeProtocolMapperArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:saml/userAttributeProtocolMapper:UserAttributeProtocolMapper", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private UserAttributeProtocolMapper(String name, Output<String> id, @Nullable UserAttributeProtocolMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:saml/userAttributeProtocolMapper:UserAttributeProtocolMapper", name, state, makeResourceOptions(options, id));
+    private UserAttributeProtocolMapper(java.lang.String name, Output<java.lang.String> id, @Nullable UserAttributeProtocolMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:saml/userAttributeProtocolMapper:UserAttributeProtocolMapper", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static UserAttributeProtocolMapperArgs makeArgs(UserAttributeProtocolMapperArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? UserAttributeProtocolMapperArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -198,7 +205,7 @@ public class UserAttributeProtocolMapper extends com.pulumi.resources.CustomReso
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static UserAttributeProtocolMapper get(String name, Output<String> id, @Nullable UserAttributeProtocolMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static UserAttributeProtocolMapper get(java.lang.String name, Output<java.lang.String> id, @Nullable UserAttributeProtocolMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new UserAttributeProtocolMapper(name, id, state, options);
     }
 }

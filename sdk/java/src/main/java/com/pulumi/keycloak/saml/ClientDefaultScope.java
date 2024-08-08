@@ -67,7 +67,7 @@ public class ClientDefaultScope extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public ClientDefaultScope(String name) {
+    public ClientDefaultScope(java.lang.String name) {
         this(name, ClientDefaultScopeArgs.Empty);
     }
     /**
@@ -75,7 +75,7 @@ public class ClientDefaultScope extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public ClientDefaultScope(String name, ClientDefaultScopeArgs args) {
+    public ClientDefaultScope(java.lang.String name, ClientDefaultScopeArgs args) {
         this(name, args, null);
     }
     /**
@@ -84,15 +84,22 @@ public class ClientDefaultScope extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public ClientDefaultScope(String name, ClientDefaultScopeArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:saml/clientDefaultScope:ClientDefaultScope", name, args == null ? ClientDefaultScopeArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public ClientDefaultScope(java.lang.String name, ClientDefaultScopeArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:saml/clientDefaultScope:ClientDefaultScope", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private ClientDefaultScope(String name, Output<String> id, @Nullable ClientDefaultScopeState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:saml/clientDefaultScope:ClientDefaultScope", name, state, makeResourceOptions(options, id));
+    private ClientDefaultScope(java.lang.String name, Output<java.lang.String> id, @Nullable ClientDefaultScopeState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:saml/clientDefaultScope:ClientDefaultScope", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static ClientDefaultScopeArgs makeArgs(ClientDefaultScopeArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? ClientDefaultScopeArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -108,7 +115,7 @@ public class ClientDefaultScope extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static ClientDefaultScope get(String name, Output<String> id, @Nullable ClientDefaultScopeState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static ClientDefaultScope get(java.lang.String name, Output<java.lang.String> id, @Nullable ClientDefaultScopeState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new ClientDefaultScope(name, id, state, options);
     }
 }

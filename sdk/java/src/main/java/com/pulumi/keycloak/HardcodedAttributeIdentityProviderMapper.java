@@ -179,7 +179,7 @@ public class HardcodedAttributeIdentityProviderMapper extends com.pulumi.resourc
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public HardcodedAttributeIdentityProviderMapper(String name) {
+    public HardcodedAttributeIdentityProviderMapper(java.lang.String name) {
         this(name, HardcodedAttributeIdentityProviderMapperArgs.Empty);
     }
     /**
@@ -187,7 +187,7 @@ public class HardcodedAttributeIdentityProviderMapper extends com.pulumi.resourc
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public HardcodedAttributeIdentityProviderMapper(String name, HardcodedAttributeIdentityProviderMapperArgs args) {
+    public HardcodedAttributeIdentityProviderMapper(java.lang.String name, HardcodedAttributeIdentityProviderMapperArgs args) {
         this(name, args, null);
     }
     /**
@@ -196,15 +196,22 @@ public class HardcodedAttributeIdentityProviderMapper extends com.pulumi.resourc
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public HardcodedAttributeIdentityProviderMapper(String name, HardcodedAttributeIdentityProviderMapperArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:index/hardcodedAttributeIdentityProviderMapper:HardcodedAttributeIdentityProviderMapper", name, args == null ? HardcodedAttributeIdentityProviderMapperArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public HardcodedAttributeIdentityProviderMapper(java.lang.String name, HardcodedAttributeIdentityProviderMapperArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:index/hardcodedAttributeIdentityProviderMapper:HardcodedAttributeIdentityProviderMapper", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private HardcodedAttributeIdentityProviderMapper(String name, Output<String> id, @Nullable HardcodedAttributeIdentityProviderMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:index/hardcodedAttributeIdentityProviderMapper:HardcodedAttributeIdentityProviderMapper", name, state, makeResourceOptions(options, id));
+    private HardcodedAttributeIdentityProviderMapper(java.lang.String name, Output<java.lang.String> id, @Nullable HardcodedAttributeIdentityProviderMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:index/hardcodedAttributeIdentityProviderMapper:HardcodedAttributeIdentityProviderMapper", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static HardcodedAttributeIdentityProviderMapperArgs makeArgs(HardcodedAttributeIdentityProviderMapperArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? HardcodedAttributeIdentityProviderMapperArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -220,7 +227,7 @@ public class HardcodedAttributeIdentityProviderMapper extends com.pulumi.resourc
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static HardcodedAttributeIdentityProviderMapper get(String name, Output<String> id, @Nullable HardcodedAttributeIdentityProviderMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static HardcodedAttributeIdentityProviderMapper get(java.lang.String name, Output<java.lang.String> id, @Nullable HardcodedAttributeIdentityProviderMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new HardcodedAttributeIdentityProviderMapper(name, id, state, options);
     }
 }

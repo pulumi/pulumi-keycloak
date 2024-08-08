@@ -176,7 +176,7 @@ public class HardcodedAttributeMapper extends com.pulumi.resources.CustomResourc
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public HardcodedAttributeMapper(String name) {
+    public HardcodedAttributeMapper(java.lang.String name) {
         this(name, HardcodedAttributeMapperArgs.Empty);
     }
     /**
@@ -184,7 +184,7 @@ public class HardcodedAttributeMapper extends com.pulumi.resources.CustomResourc
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public HardcodedAttributeMapper(String name, HardcodedAttributeMapperArgs args) {
+    public HardcodedAttributeMapper(java.lang.String name, HardcodedAttributeMapperArgs args) {
         this(name, args, null);
     }
     /**
@@ -193,15 +193,22 @@ public class HardcodedAttributeMapper extends com.pulumi.resources.CustomResourc
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public HardcodedAttributeMapper(String name, HardcodedAttributeMapperArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:ldap/hardcodedAttributeMapper:HardcodedAttributeMapper", name, args == null ? HardcodedAttributeMapperArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public HardcodedAttributeMapper(java.lang.String name, HardcodedAttributeMapperArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:ldap/hardcodedAttributeMapper:HardcodedAttributeMapper", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private HardcodedAttributeMapper(String name, Output<String> id, @Nullable HardcodedAttributeMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:ldap/hardcodedAttributeMapper:HardcodedAttributeMapper", name, state, makeResourceOptions(options, id));
+    private HardcodedAttributeMapper(java.lang.String name, Output<java.lang.String> id, @Nullable HardcodedAttributeMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:ldap/hardcodedAttributeMapper:HardcodedAttributeMapper", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static HardcodedAttributeMapperArgs makeArgs(HardcodedAttributeMapperArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? HardcodedAttributeMapperArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -217,7 +224,7 @@ public class HardcodedAttributeMapper extends com.pulumi.resources.CustomResourc
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static HardcodedAttributeMapper get(String name, Output<String> id, @Nullable HardcodedAttributeMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static HardcodedAttributeMapper get(java.lang.String name, Output<java.lang.String> id, @Nullable HardcodedAttributeMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new HardcodedAttributeMapper(name, id, state, options);
     }
 }

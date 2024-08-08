@@ -205,7 +205,7 @@ public class Bindings extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public Bindings(String name) {
+    public Bindings(java.lang.String name) {
         this(name, BindingsArgs.Empty);
     }
     /**
@@ -213,7 +213,7 @@ public class Bindings extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public Bindings(String name, BindingsArgs args) {
+    public Bindings(java.lang.String name, BindingsArgs args) {
         this(name, args, null);
     }
     /**
@@ -222,15 +222,22 @@ public class Bindings extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public Bindings(String name, BindingsArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:authentication/bindings:Bindings", name, args == null ? BindingsArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public Bindings(java.lang.String name, BindingsArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:authentication/bindings:Bindings", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private Bindings(String name, Output<String> id, @Nullable BindingsState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:authentication/bindings:Bindings", name, state, makeResourceOptions(options, id));
+    private Bindings(java.lang.String name, Output<java.lang.String> id, @Nullable BindingsState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:authentication/bindings:Bindings", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static BindingsArgs makeArgs(BindingsArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? BindingsArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -246,7 +253,7 @@ public class Bindings extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static Bindings get(String name, Output<String> id, @Nullable BindingsState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static Bindings get(java.lang.String name, Output<java.lang.String> id, @Nullable BindingsState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new Bindings(name, id, state, options);
     }
 }
