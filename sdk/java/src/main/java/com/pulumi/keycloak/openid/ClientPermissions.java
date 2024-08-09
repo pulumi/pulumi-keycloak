@@ -122,7 +122,7 @@ public class ClientPermissions extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public ClientPermissions(String name) {
+    public ClientPermissions(java.lang.String name) {
         this(name, ClientPermissionsArgs.Empty);
     }
     /**
@@ -130,7 +130,7 @@ public class ClientPermissions extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public ClientPermissions(String name, ClientPermissionsArgs args) {
+    public ClientPermissions(java.lang.String name, ClientPermissionsArgs args) {
         this(name, args, null);
     }
     /**
@@ -139,15 +139,22 @@ public class ClientPermissions extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public ClientPermissions(String name, ClientPermissionsArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:openid/clientPermissions:ClientPermissions", name, args == null ? ClientPermissionsArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public ClientPermissions(java.lang.String name, ClientPermissionsArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:openid/clientPermissions:ClientPermissions", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private ClientPermissions(String name, Output<String> id, @Nullable ClientPermissionsState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:openid/clientPermissions:ClientPermissions", name, state, makeResourceOptions(options, id));
+    private ClientPermissions(java.lang.String name, Output<java.lang.String> id, @Nullable ClientPermissionsState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:openid/clientPermissions:ClientPermissions", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static ClientPermissionsArgs makeArgs(ClientPermissionsArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? ClientPermissionsArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -163,7 +170,7 @@ public class ClientPermissions extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static ClientPermissions get(String name, Output<String> id, @Nullable ClientPermissionsState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static ClientPermissions get(java.lang.String name, Output<java.lang.String> id, @Nullable ClientPermissionsState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new ClientPermissions(name, id, state, options);
     }
 }

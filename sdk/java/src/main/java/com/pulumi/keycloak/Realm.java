@@ -436,7 +436,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public Realm(String name) {
+    public Realm(java.lang.String name) {
         this(name, RealmArgs.Empty);
     }
     /**
@@ -444,7 +444,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public Realm(String name, RealmArgs args) {
+    public Realm(java.lang.String name, RealmArgs args) {
         this(name, args, null);
     }
     /**
@@ -453,15 +453,22 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public Realm(String name, RealmArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:index/realm:Realm", name, args == null ? RealmArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public Realm(java.lang.String name, RealmArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:index/realm:Realm", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private Realm(String name, Output<String> id, @Nullable RealmState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:index/realm:Realm", name, state, makeResourceOptions(options, id));
+    private Realm(java.lang.String name, Output<java.lang.String> id, @Nullable RealmState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:index/realm:Realm", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static RealmArgs makeArgs(RealmArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? RealmArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -477,7 +484,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static Realm get(String name, Output<String> id, @Nullable RealmState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static Realm get(java.lang.String name, Output<java.lang.String> id, @Nullable RealmState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new Realm(name, id, state, options);
     }
 }

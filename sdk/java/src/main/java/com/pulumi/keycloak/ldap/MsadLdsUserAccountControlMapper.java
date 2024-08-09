@@ -148,7 +148,7 @@ public class MsadLdsUserAccountControlMapper extends com.pulumi.resources.Custom
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public MsadLdsUserAccountControlMapper(String name) {
+    public MsadLdsUserAccountControlMapper(java.lang.String name) {
         this(name, MsadLdsUserAccountControlMapperArgs.Empty);
     }
     /**
@@ -156,7 +156,7 @@ public class MsadLdsUserAccountControlMapper extends com.pulumi.resources.Custom
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public MsadLdsUserAccountControlMapper(String name, MsadLdsUserAccountControlMapperArgs args) {
+    public MsadLdsUserAccountControlMapper(java.lang.String name, MsadLdsUserAccountControlMapperArgs args) {
         this(name, args, null);
     }
     /**
@@ -165,15 +165,22 @@ public class MsadLdsUserAccountControlMapper extends com.pulumi.resources.Custom
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public MsadLdsUserAccountControlMapper(String name, MsadLdsUserAccountControlMapperArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:ldap/msadLdsUserAccountControlMapper:MsadLdsUserAccountControlMapper", name, args == null ? MsadLdsUserAccountControlMapperArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public MsadLdsUserAccountControlMapper(java.lang.String name, MsadLdsUserAccountControlMapperArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:ldap/msadLdsUserAccountControlMapper:MsadLdsUserAccountControlMapper", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private MsadLdsUserAccountControlMapper(String name, Output<String> id, @Nullable MsadLdsUserAccountControlMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:ldap/msadLdsUserAccountControlMapper:MsadLdsUserAccountControlMapper", name, state, makeResourceOptions(options, id));
+    private MsadLdsUserAccountControlMapper(java.lang.String name, Output<java.lang.String> id, @Nullable MsadLdsUserAccountControlMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:ldap/msadLdsUserAccountControlMapper:MsadLdsUserAccountControlMapper", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static MsadLdsUserAccountControlMapperArgs makeArgs(MsadLdsUserAccountControlMapperArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? MsadLdsUserAccountControlMapperArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -189,7 +196,7 @@ public class MsadLdsUserAccountControlMapper extends com.pulumi.resources.Custom
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static MsadLdsUserAccountControlMapper get(String name, Output<String> id, @Nullable MsadLdsUserAccountControlMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static MsadLdsUserAccountControlMapper get(java.lang.String name, Output<java.lang.String> id, @Nullable MsadLdsUserAccountControlMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new MsadLdsUserAccountControlMapper(name, id, state, options);
     }
 }

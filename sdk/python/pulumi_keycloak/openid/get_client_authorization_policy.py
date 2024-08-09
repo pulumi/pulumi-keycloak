@@ -181,9 +181,9 @@ def get_client_authorization_policy(name: Optional[str] = None,
         realm_id=realm.id,
         access_type="CONFIDENTIAL",
         service_accounts_enabled=True,
-        authorization=keycloak.openid.ClientAuthorizationArgs(
-            policy_enforcement_mode="ENFORCING",
-        ))
+        authorization={
+            "policy_enforcement_mode": "ENFORCING",
+        })
     default_permission = keycloak.openid.get_client_authorization_policy_output(realm_id=realm.id,
         resource_server_id=client_with_authz.resource_server_id,
         name="Default Permission")
@@ -256,9 +256,9 @@ def get_client_authorization_policy_output(name: Optional[pulumi.Input[str]] = N
         realm_id=realm.id,
         access_type="CONFIDENTIAL",
         service_accounts_enabled=True,
-        authorization=keycloak.openid.ClientAuthorizationArgs(
-            policy_enforcement_mode="ENFORCING",
-        ))
+        authorization={
+            "policy_enforcement_mode": "ENFORCING",
+        })
     default_permission = keycloak.openid.get_client_authorization_policy_output(realm_id=realm.id,
         resource_server_id=client_with_authz.resource_server_id,
         name="Default Permission")

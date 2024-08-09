@@ -129,7 +129,7 @@ public class ClientTimePolicy extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public ClientTimePolicy(String name) {
+    public ClientTimePolicy(java.lang.String name) {
         this(name, ClientTimePolicyArgs.Empty);
     }
     /**
@@ -137,7 +137,7 @@ public class ClientTimePolicy extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public ClientTimePolicy(String name, ClientTimePolicyArgs args) {
+    public ClientTimePolicy(java.lang.String name, ClientTimePolicyArgs args) {
         this(name, args, null);
     }
     /**
@@ -146,15 +146,22 @@ public class ClientTimePolicy extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public ClientTimePolicy(String name, ClientTimePolicyArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:openid/clientTimePolicy:ClientTimePolicy", name, args == null ? ClientTimePolicyArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public ClientTimePolicy(java.lang.String name, ClientTimePolicyArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:openid/clientTimePolicy:ClientTimePolicy", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private ClientTimePolicy(String name, Output<String> id, @Nullable ClientTimePolicyState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:openid/clientTimePolicy:ClientTimePolicy", name, state, makeResourceOptions(options, id));
+    private ClientTimePolicy(java.lang.String name, Output<java.lang.String> id, @Nullable ClientTimePolicyState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:openid/clientTimePolicy:ClientTimePolicy", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static ClientTimePolicyArgs makeArgs(ClientTimePolicyArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? ClientTimePolicyArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -170,7 +177,7 @@ public class ClientTimePolicy extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static ClientTimePolicy get(String name, Output<String> id, @Nullable ClientTimePolicyState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static ClientTimePolicy get(java.lang.String name, Output<java.lang.String> id, @Nullable ClientTimePolicyState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new ClientTimePolicy(name, id, state, options);
     }
 }

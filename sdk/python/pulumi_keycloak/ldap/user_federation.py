@@ -1054,7 +1054,7 @@ class UserFederation(pulumi.CustomResource):
                  batch_size_for_sync: Optional[pulumi.Input[int]] = None,
                  bind_credential: Optional[pulumi.Input[str]] = None,
                  bind_dn: Optional[pulumi.Input[str]] = None,
-                 cache: Optional[pulumi.Input[pulumi.InputType['UserFederationCacheArgs']]] = None,
+                 cache: Optional[pulumi.Input[Union['UserFederationCacheArgs', 'UserFederationCacheArgsDict']]] = None,
                  changed_sync_period: Optional[pulumi.Input[int]] = None,
                  connection_timeout: Optional[pulumi.Input[str]] = None,
                  connection_url: Optional[pulumi.Input[str]] = None,
@@ -1064,7 +1064,7 @@ class UserFederation(pulumi.CustomResource):
                  enabled: Optional[pulumi.Input[bool]] = None,
                  full_sync_period: Optional[pulumi.Input[int]] = None,
                  import_enabled: Optional[pulumi.Input[bool]] = None,
-                 kerberos: Optional[pulumi.Input[pulumi.InputType['UserFederationKerberosArgs']]] = None,
+                 kerberos: Optional[pulumi.Input[Union['UserFederationKerberosArgs', 'UserFederationKerberosArgsDict']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  pagination: Optional[pulumi.Input[bool]] = None,
                  priority: Optional[pulumi.Input[int]] = None,
@@ -1169,7 +1169,7 @@ class UserFederation(pulumi.CustomResource):
         :param pulumi.Input[int] batch_size_for_sync: The number of users to sync within a single transaction.
         :param pulumi.Input[str] bind_credential: Password of LDAP admin.
         :param pulumi.Input[str] bind_dn: DN of LDAP admin, which will be used by Keycloak to access LDAP server.
-        :param pulumi.Input[pulumi.InputType['UserFederationCacheArgs']] cache: Settings regarding cache policy for this realm.
+        :param pulumi.Input[Union['UserFederationCacheArgs', 'UserFederationCacheArgsDict']] cache: Settings regarding cache policy for this realm.
         :param pulumi.Input[int] changed_sync_period: How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users
                sync.
         :param pulumi.Input[str] connection_timeout: LDAP connection timeout (duration string)
@@ -1181,7 +1181,7 @@ class UserFederation(pulumi.CustomResource):
         :param pulumi.Input[bool] enabled: When false, this provider will not be used when performing queries for users.
         :param pulumi.Input[int] full_sync_period: How frequently Keycloak should sync all LDAP users, in seconds. Omit this property to disable periodic full sync.
         :param pulumi.Input[bool] import_enabled: When true, LDAP users will be imported into the Keycloak database.
-        :param pulumi.Input[pulumi.InputType['UserFederationKerberosArgs']] kerberos: Settings regarding kerberos authentication for this realm.
+        :param pulumi.Input[Union['UserFederationKerberosArgs', 'UserFederationKerberosArgsDict']] kerberos: Settings regarding kerberos authentication for this realm.
         :param pulumi.Input[str] name: Display name of the provider when displayed in the console.
         :param pulumi.Input[bool] pagination: When true, Keycloak assumes the LDAP server supports pagination.
         :param pulumi.Input[int] priority: Priority of this provider when looking up users. Lower values are first.
@@ -1304,7 +1304,7 @@ class UserFederation(pulumi.CustomResource):
                  batch_size_for_sync: Optional[pulumi.Input[int]] = None,
                  bind_credential: Optional[pulumi.Input[str]] = None,
                  bind_dn: Optional[pulumi.Input[str]] = None,
-                 cache: Optional[pulumi.Input[pulumi.InputType['UserFederationCacheArgs']]] = None,
+                 cache: Optional[pulumi.Input[Union['UserFederationCacheArgs', 'UserFederationCacheArgsDict']]] = None,
                  changed_sync_period: Optional[pulumi.Input[int]] = None,
                  connection_timeout: Optional[pulumi.Input[str]] = None,
                  connection_url: Optional[pulumi.Input[str]] = None,
@@ -1314,7 +1314,7 @@ class UserFederation(pulumi.CustomResource):
                  enabled: Optional[pulumi.Input[bool]] = None,
                  full_sync_period: Optional[pulumi.Input[int]] = None,
                  import_enabled: Optional[pulumi.Input[bool]] = None,
-                 kerberos: Optional[pulumi.Input[pulumi.InputType['UserFederationKerberosArgs']]] = None,
+                 kerberos: Optional[pulumi.Input[Union['UserFederationKerberosArgs', 'UserFederationKerberosArgsDict']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  pagination: Optional[pulumi.Input[bool]] = None,
                  priority: Optional[pulumi.Input[int]] = None,
@@ -1403,7 +1403,7 @@ class UserFederation(pulumi.CustomResource):
             batch_size_for_sync: Optional[pulumi.Input[int]] = None,
             bind_credential: Optional[pulumi.Input[str]] = None,
             bind_dn: Optional[pulumi.Input[str]] = None,
-            cache: Optional[pulumi.Input[pulumi.InputType['UserFederationCacheArgs']]] = None,
+            cache: Optional[pulumi.Input[Union['UserFederationCacheArgs', 'UserFederationCacheArgsDict']]] = None,
             changed_sync_period: Optional[pulumi.Input[int]] = None,
             connection_timeout: Optional[pulumi.Input[str]] = None,
             connection_url: Optional[pulumi.Input[str]] = None,
@@ -1413,7 +1413,7 @@ class UserFederation(pulumi.CustomResource):
             enabled: Optional[pulumi.Input[bool]] = None,
             full_sync_period: Optional[pulumi.Input[int]] = None,
             import_enabled: Optional[pulumi.Input[bool]] = None,
-            kerberos: Optional[pulumi.Input[pulumi.InputType['UserFederationKerberosArgs']]] = None,
+            kerberos: Optional[pulumi.Input[Union['UserFederationKerberosArgs', 'UserFederationKerberosArgsDict']]] = None,
             name: Optional[pulumi.Input[str]] = None,
             pagination: Optional[pulumi.Input[bool]] = None,
             priority: Optional[pulumi.Input[int]] = None,
@@ -1442,7 +1442,7 @@ class UserFederation(pulumi.CustomResource):
         :param pulumi.Input[int] batch_size_for_sync: The number of users to sync within a single transaction.
         :param pulumi.Input[str] bind_credential: Password of LDAP admin.
         :param pulumi.Input[str] bind_dn: DN of LDAP admin, which will be used by Keycloak to access LDAP server.
-        :param pulumi.Input[pulumi.InputType['UserFederationCacheArgs']] cache: Settings regarding cache policy for this realm.
+        :param pulumi.Input[Union['UserFederationCacheArgs', 'UserFederationCacheArgsDict']] cache: Settings regarding cache policy for this realm.
         :param pulumi.Input[int] changed_sync_period: How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users
                sync.
         :param pulumi.Input[str] connection_timeout: LDAP connection timeout (duration string)
@@ -1454,7 +1454,7 @@ class UserFederation(pulumi.CustomResource):
         :param pulumi.Input[bool] enabled: When false, this provider will not be used when performing queries for users.
         :param pulumi.Input[int] full_sync_period: How frequently Keycloak should sync all LDAP users, in seconds. Omit this property to disable periodic full sync.
         :param pulumi.Input[bool] import_enabled: When true, LDAP users will be imported into the Keycloak database.
-        :param pulumi.Input[pulumi.InputType['UserFederationKerberosArgs']] kerberos: Settings regarding kerberos authentication for this realm.
+        :param pulumi.Input[Union['UserFederationKerberosArgs', 'UserFederationKerberosArgsDict']] kerberos: Settings regarding kerberos authentication for this realm.
         :param pulumi.Input[str] name: Display name of the provider when displayed in the console.
         :param pulumi.Input[bool] pagination: When true, Keycloak assumes the LDAP server supports pagination.
         :param pulumi.Input[int] priority: Priority of this provider when looking up users. Lower values are first.

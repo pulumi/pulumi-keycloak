@@ -156,7 +156,7 @@ public class HardcodedRoleIdentityMapper extends com.pulumi.resources.CustomReso
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public HardcodedRoleIdentityMapper(String name) {
+    public HardcodedRoleIdentityMapper(java.lang.String name) {
         this(name, HardcodedRoleIdentityMapperArgs.Empty);
     }
     /**
@@ -164,7 +164,7 @@ public class HardcodedRoleIdentityMapper extends com.pulumi.resources.CustomReso
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public HardcodedRoleIdentityMapper(String name, HardcodedRoleIdentityMapperArgs args) {
+    public HardcodedRoleIdentityMapper(java.lang.String name, HardcodedRoleIdentityMapperArgs args) {
         this(name, args, null);
     }
     /**
@@ -173,15 +173,22 @@ public class HardcodedRoleIdentityMapper extends com.pulumi.resources.CustomReso
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public HardcodedRoleIdentityMapper(String name, HardcodedRoleIdentityMapperArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:index/hardcodedRoleIdentityMapper:HardcodedRoleIdentityMapper", name, args == null ? HardcodedRoleIdentityMapperArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public HardcodedRoleIdentityMapper(java.lang.String name, HardcodedRoleIdentityMapperArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:index/hardcodedRoleIdentityMapper:HardcodedRoleIdentityMapper", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private HardcodedRoleIdentityMapper(String name, Output<String> id, @Nullable HardcodedRoleIdentityMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:index/hardcodedRoleIdentityMapper:HardcodedRoleIdentityMapper", name, state, makeResourceOptions(options, id));
+    private HardcodedRoleIdentityMapper(java.lang.String name, Output<java.lang.String> id, @Nullable HardcodedRoleIdentityMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:index/hardcodedRoleIdentityMapper:HardcodedRoleIdentityMapper", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static HardcodedRoleIdentityMapperArgs makeArgs(HardcodedRoleIdentityMapperArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? HardcodedRoleIdentityMapperArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -197,7 +204,7 @@ public class HardcodedRoleIdentityMapper extends com.pulumi.resources.CustomReso
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static HardcodedRoleIdentityMapper get(String name, Output<String> id, @Nullable HardcodedRoleIdentityMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static HardcodedRoleIdentityMapper get(java.lang.String name, Output<java.lang.String> id, @Nullable HardcodedRoleIdentityMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new HardcodedRoleIdentityMapper(name, id, state, options);
     }
 }

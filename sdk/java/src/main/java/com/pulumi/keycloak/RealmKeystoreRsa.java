@@ -172,7 +172,7 @@ public class RealmKeystoreRsa extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public RealmKeystoreRsa(String name) {
+    public RealmKeystoreRsa(java.lang.String name) {
         this(name, RealmKeystoreRsaArgs.Empty);
     }
     /**
@@ -180,7 +180,7 @@ public class RealmKeystoreRsa extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public RealmKeystoreRsa(String name, RealmKeystoreRsaArgs args) {
+    public RealmKeystoreRsa(java.lang.String name, RealmKeystoreRsaArgs args) {
         this(name, args, null);
     }
     /**
@@ -189,15 +189,22 @@ public class RealmKeystoreRsa extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public RealmKeystoreRsa(String name, RealmKeystoreRsaArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:index/realmKeystoreRsa:RealmKeystoreRsa", name, args == null ? RealmKeystoreRsaArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public RealmKeystoreRsa(java.lang.String name, RealmKeystoreRsaArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:index/realmKeystoreRsa:RealmKeystoreRsa", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private RealmKeystoreRsa(String name, Output<String> id, @Nullable RealmKeystoreRsaState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:index/realmKeystoreRsa:RealmKeystoreRsa", name, state, makeResourceOptions(options, id));
+    private RealmKeystoreRsa(java.lang.String name, Output<java.lang.String> id, @Nullable RealmKeystoreRsaState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:index/realmKeystoreRsa:RealmKeystoreRsa", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static RealmKeystoreRsaArgs makeArgs(RealmKeystoreRsaArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? RealmKeystoreRsaArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -213,7 +220,7 @@ public class RealmKeystoreRsa extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static RealmKeystoreRsa get(String name, Output<String> id, @Nullable RealmKeystoreRsaState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static RealmKeystoreRsa get(java.lang.String name, Output<java.lang.String> id, @Nullable RealmKeystoreRsaState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new RealmKeystoreRsa(name, id, state, options);
     }
 }

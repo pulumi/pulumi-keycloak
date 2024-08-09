@@ -300,9 +300,9 @@ class User(pulumi.CustomResource):
                  email: Optional[pulumi.Input[str]] = None,
                  email_verified: Optional[pulumi.Input[bool]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
-                 federated_identities: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['UserFederatedIdentityArgs']]]]] = None,
+                 federated_identities: Optional[pulumi.Input[Sequence[pulumi.Input[Union['UserFederatedIdentityArgs', 'UserFederatedIdentityArgsDict']]]]] = None,
                  first_name: Optional[pulumi.Input[str]] = None,
-                 initial_password: Optional[pulumi.Input[pulumi.InputType['UserInitialPasswordArgs']]] = None,
+                 initial_password: Optional[pulumi.Input[Union['UserInitialPasswordArgs', 'UserInitialPasswordArgsDict']]] = None,
                  last_name: Optional[pulumi.Input[str]] = None,
                  realm_id: Optional[pulumi.Input[str]] = None,
                  required_actions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -340,10 +340,10 @@ class User(pulumi.CustomResource):
             email="alice@domain.com",
             first_name="Alice",
             last_name="Aliceberg",
-            initial_password=keycloak.UserInitialPasswordArgs(
-                value="some password",
-                temporary=True,
-            ))
+            initial_password={
+                "value": "some password",
+                "temporary": True,
+            })
         ```
 
         ### Argument Reference
@@ -409,10 +409,10 @@ class User(pulumi.CustomResource):
             email="alice@domain.com",
             first_name="Alice",
             last_name="Aliceberg",
-            initial_password=keycloak.UserInitialPasswordArgs(
-                value="some password",
-                temporary=True,
-            ))
+            initial_password={
+                "value": "some password",
+                "temporary": True,
+            })
         ```
 
         ### Argument Reference
@@ -456,9 +456,9 @@ class User(pulumi.CustomResource):
                  email: Optional[pulumi.Input[str]] = None,
                  email_verified: Optional[pulumi.Input[bool]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
-                 federated_identities: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['UserFederatedIdentityArgs']]]]] = None,
+                 federated_identities: Optional[pulumi.Input[Sequence[pulumi.Input[Union['UserFederatedIdentityArgs', 'UserFederatedIdentityArgsDict']]]]] = None,
                  first_name: Optional[pulumi.Input[str]] = None,
-                 initial_password: Optional[pulumi.Input[pulumi.InputType['UserInitialPasswordArgs']]] = None,
+                 initial_password: Optional[pulumi.Input[Union['UserInitialPasswordArgs', 'UserInitialPasswordArgsDict']]] = None,
                  last_name: Optional[pulumi.Input[str]] = None,
                  realm_id: Optional[pulumi.Input[str]] = None,
                  required_actions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -501,9 +501,9 @@ class User(pulumi.CustomResource):
             email: Optional[pulumi.Input[str]] = None,
             email_verified: Optional[pulumi.Input[bool]] = None,
             enabled: Optional[pulumi.Input[bool]] = None,
-            federated_identities: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['UserFederatedIdentityArgs']]]]] = None,
+            federated_identities: Optional[pulumi.Input[Sequence[pulumi.Input[Union['UserFederatedIdentityArgs', 'UserFederatedIdentityArgsDict']]]]] = None,
             first_name: Optional[pulumi.Input[str]] = None,
-            initial_password: Optional[pulumi.Input[pulumi.InputType['UserInitialPasswordArgs']]] = None,
+            initial_password: Optional[pulumi.Input[Union['UserInitialPasswordArgs', 'UserInitialPasswordArgsDict']]] = None,
             last_name: Optional[pulumi.Input[str]] = None,
             realm_id: Optional[pulumi.Input[str]] = None,
             required_actions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,

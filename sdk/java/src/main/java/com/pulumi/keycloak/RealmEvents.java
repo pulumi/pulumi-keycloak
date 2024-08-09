@@ -133,7 +133,7 @@ public class RealmEvents extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public RealmEvents(String name) {
+    public RealmEvents(java.lang.String name) {
         this(name, RealmEventsArgs.Empty);
     }
     /**
@@ -141,7 +141,7 @@ public class RealmEvents extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public RealmEvents(String name, RealmEventsArgs args) {
+    public RealmEvents(java.lang.String name, RealmEventsArgs args) {
         this(name, args, null);
     }
     /**
@@ -150,15 +150,22 @@ public class RealmEvents extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public RealmEvents(String name, RealmEventsArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:index/realmEvents:RealmEvents", name, args == null ? RealmEventsArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public RealmEvents(java.lang.String name, RealmEventsArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:index/realmEvents:RealmEvents", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private RealmEvents(String name, Output<String> id, @Nullable RealmEventsState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:index/realmEvents:RealmEvents", name, state, makeResourceOptions(options, id));
+    private RealmEvents(java.lang.String name, Output<java.lang.String> id, @Nullable RealmEventsState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:index/realmEvents:RealmEvents", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static RealmEventsArgs makeArgs(RealmEventsArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? RealmEventsArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -174,7 +181,7 @@ public class RealmEvents extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static RealmEvents get(String name, Output<String> id, @Nullable RealmEventsState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static RealmEvents get(java.lang.String name, Output<java.lang.String> id, @Nullable RealmEventsState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new RealmEvents(name, id, state, options);
     }
 }

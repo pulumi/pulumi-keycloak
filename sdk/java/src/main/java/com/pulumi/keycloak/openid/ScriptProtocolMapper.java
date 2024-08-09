@@ -319,7 +319,7 @@ public class ScriptProtocolMapper extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public ScriptProtocolMapper(String name) {
+    public ScriptProtocolMapper(java.lang.String name) {
         this(name, ScriptProtocolMapperArgs.Empty);
     }
     /**
@@ -327,7 +327,7 @@ public class ScriptProtocolMapper extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public ScriptProtocolMapper(String name, ScriptProtocolMapperArgs args) {
+    public ScriptProtocolMapper(java.lang.String name, ScriptProtocolMapperArgs args) {
         this(name, args, null);
     }
     /**
@@ -336,15 +336,22 @@ public class ScriptProtocolMapper extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public ScriptProtocolMapper(String name, ScriptProtocolMapperArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:openid/scriptProtocolMapper:ScriptProtocolMapper", name, args == null ? ScriptProtocolMapperArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public ScriptProtocolMapper(java.lang.String name, ScriptProtocolMapperArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:openid/scriptProtocolMapper:ScriptProtocolMapper", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private ScriptProtocolMapper(String name, Output<String> id, @Nullable ScriptProtocolMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:openid/scriptProtocolMapper:ScriptProtocolMapper", name, state, makeResourceOptions(options, id));
+    private ScriptProtocolMapper(java.lang.String name, Output<java.lang.String> id, @Nullable ScriptProtocolMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:openid/scriptProtocolMapper:ScriptProtocolMapper", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static ScriptProtocolMapperArgs makeArgs(ScriptProtocolMapperArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? ScriptProtocolMapperArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -360,7 +367,7 @@ public class ScriptProtocolMapper extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static ScriptProtocolMapper get(String name, Output<String> id, @Nullable ScriptProtocolMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static ScriptProtocolMapper get(java.lang.String name, Output<java.lang.String> id, @Nullable ScriptProtocolMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new ScriptProtocolMapper(name, id, state, options);
     }
 }

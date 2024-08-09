@@ -291,7 +291,7 @@ public class UserPropertyProtocolMapper extends com.pulumi.resources.CustomResou
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public UserPropertyProtocolMapper(String name) {
+    public UserPropertyProtocolMapper(java.lang.String name) {
         this(name, UserPropertyProtocolMapperArgs.Empty);
     }
     /**
@@ -299,7 +299,7 @@ public class UserPropertyProtocolMapper extends com.pulumi.resources.CustomResou
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public UserPropertyProtocolMapper(String name, UserPropertyProtocolMapperArgs args) {
+    public UserPropertyProtocolMapper(java.lang.String name, UserPropertyProtocolMapperArgs args) {
         this(name, args, null);
     }
     /**
@@ -308,15 +308,22 @@ public class UserPropertyProtocolMapper extends com.pulumi.resources.CustomResou
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public UserPropertyProtocolMapper(String name, UserPropertyProtocolMapperArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:openid/userPropertyProtocolMapper:UserPropertyProtocolMapper", name, args == null ? UserPropertyProtocolMapperArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public UserPropertyProtocolMapper(java.lang.String name, UserPropertyProtocolMapperArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:openid/userPropertyProtocolMapper:UserPropertyProtocolMapper", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private UserPropertyProtocolMapper(String name, Output<String> id, @Nullable UserPropertyProtocolMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:openid/userPropertyProtocolMapper:UserPropertyProtocolMapper", name, state, makeResourceOptions(options, id));
+    private UserPropertyProtocolMapper(java.lang.String name, Output<java.lang.String> id, @Nullable UserPropertyProtocolMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:openid/userPropertyProtocolMapper:UserPropertyProtocolMapper", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static UserPropertyProtocolMapperArgs makeArgs(UserPropertyProtocolMapperArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? UserPropertyProtocolMapperArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -332,7 +339,7 @@ public class UserPropertyProtocolMapper extends com.pulumi.resources.CustomResou
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static UserPropertyProtocolMapper get(String name, Output<String> id, @Nullable UserPropertyProtocolMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static UserPropertyProtocolMapper get(java.lang.String name, Output<java.lang.String> id, @Nullable UserPropertyProtocolMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new UserPropertyProtocolMapper(name, id, state, options);
     }
 }

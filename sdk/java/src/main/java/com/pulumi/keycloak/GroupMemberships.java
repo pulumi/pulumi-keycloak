@@ -129,7 +129,7 @@ public class GroupMemberships extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public GroupMemberships(String name) {
+    public GroupMemberships(java.lang.String name) {
         this(name, GroupMembershipsArgs.Empty);
     }
     /**
@@ -137,7 +137,7 @@ public class GroupMemberships extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public GroupMemberships(String name, GroupMembershipsArgs args) {
+    public GroupMemberships(java.lang.String name, GroupMembershipsArgs args) {
         this(name, args, null);
     }
     /**
@@ -146,15 +146,22 @@ public class GroupMemberships extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public GroupMemberships(String name, GroupMembershipsArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:index/groupMemberships:GroupMemberships", name, args == null ? GroupMembershipsArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public GroupMemberships(java.lang.String name, GroupMembershipsArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:index/groupMemberships:GroupMemberships", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private GroupMemberships(String name, Output<String> id, @Nullable GroupMembershipsState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:index/groupMemberships:GroupMemberships", name, state, makeResourceOptions(options, id));
+    private GroupMemberships(java.lang.String name, Output<java.lang.String> id, @Nullable GroupMembershipsState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:index/groupMemberships:GroupMemberships", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static GroupMembershipsArgs makeArgs(GroupMembershipsArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? GroupMembershipsArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -170,7 +177,7 @@ public class GroupMemberships extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static GroupMemberships get(String name, Output<String> id, @Nullable GroupMembershipsState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static GroupMemberships get(java.lang.String name, Output<java.lang.String> id, @Nullable GroupMembershipsState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new GroupMemberships(name, id, state, options);
     }
 }

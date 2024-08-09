@@ -221,7 +221,7 @@ public class IdentityProviderTokenExchangeScopePermission extends com.pulumi.res
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public IdentityProviderTokenExchangeScopePermission(String name) {
+    public IdentityProviderTokenExchangeScopePermission(java.lang.String name) {
         this(name, IdentityProviderTokenExchangeScopePermissionArgs.Empty);
     }
     /**
@@ -229,7 +229,7 @@ public class IdentityProviderTokenExchangeScopePermission extends com.pulumi.res
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public IdentityProviderTokenExchangeScopePermission(String name, IdentityProviderTokenExchangeScopePermissionArgs args) {
+    public IdentityProviderTokenExchangeScopePermission(java.lang.String name, IdentityProviderTokenExchangeScopePermissionArgs args) {
         this(name, args, null);
     }
     /**
@@ -238,15 +238,22 @@ public class IdentityProviderTokenExchangeScopePermission extends com.pulumi.res
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public IdentityProviderTokenExchangeScopePermission(String name, IdentityProviderTokenExchangeScopePermissionArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:index/identityProviderTokenExchangeScopePermission:IdentityProviderTokenExchangeScopePermission", name, args == null ? IdentityProviderTokenExchangeScopePermissionArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public IdentityProviderTokenExchangeScopePermission(java.lang.String name, IdentityProviderTokenExchangeScopePermissionArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:index/identityProviderTokenExchangeScopePermission:IdentityProviderTokenExchangeScopePermission", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private IdentityProviderTokenExchangeScopePermission(String name, Output<String> id, @Nullable IdentityProviderTokenExchangeScopePermissionState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:index/identityProviderTokenExchangeScopePermission:IdentityProviderTokenExchangeScopePermission", name, state, makeResourceOptions(options, id));
+    private IdentityProviderTokenExchangeScopePermission(java.lang.String name, Output<java.lang.String> id, @Nullable IdentityProviderTokenExchangeScopePermissionState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:index/identityProviderTokenExchangeScopePermission:IdentityProviderTokenExchangeScopePermission", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static IdentityProviderTokenExchangeScopePermissionArgs makeArgs(IdentityProviderTokenExchangeScopePermissionArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? IdentityProviderTokenExchangeScopePermissionArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -262,7 +269,7 @@ public class IdentityProviderTokenExchangeScopePermission extends com.pulumi.res
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static IdentityProviderTokenExchangeScopePermission get(String name, Output<String> id, @Nullable IdentityProviderTokenExchangeScopePermissionState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static IdentityProviderTokenExchangeScopePermission get(java.lang.String name, Output<java.lang.String> id, @Nullable IdentityProviderTokenExchangeScopePermissionState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new IdentityProviderTokenExchangeScopePermission(name, id, state, options);
     }
 }

@@ -207,7 +207,7 @@ public class Subflow extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public Subflow(String name) {
+    public Subflow(java.lang.String name) {
         this(name, SubflowArgs.Empty);
     }
     /**
@@ -215,7 +215,7 @@ public class Subflow extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public Subflow(String name, SubflowArgs args) {
+    public Subflow(java.lang.String name, SubflowArgs args) {
         this(name, args, null);
     }
     /**
@@ -224,15 +224,22 @@ public class Subflow extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public Subflow(String name, SubflowArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:authentication/subflow:Subflow", name, args == null ? SubflowArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public Subflow(java.lang.String name, SubflowArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:authentication/subflow:Subflow", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private Subflow(String name, Output<String> id, @Nullable SubflowState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:authentication/subflow:Subflow", name, state, makeResourceOptions(options, id));
+    private Subflow(java.lang.String name, Output<java.lang.String> id, @Nullable SubflowState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:authentication/subflow:Subflow", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static SubflowArgs makeArgs(SubflowArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? SubflowArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -248,7 +255,7 @@ public class Subflow extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static Subflow get(String name, Output<String> id, @Nullable SubflowState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static Subflow get(java.lang.String name, Output<java.lang.String> id, @Nullable SubflowState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new Subflow(name, id, state, options);
     }
 }

@@ -214,7 +214,7 @@ public class AudienceResolveProtocolMapper extends com.pulumi.resources.CustomRe
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public AudienceResolveProtocolMapper(String name) {
+    public AudienceResolveProtocolMapper(java.lang.String name) {
         this(name, AudienceResolveProtocolMapperArgs.Empty);
     }
     /**
@@ -222,7 +222,7 @@ public class AudienceResolveProtocolMapper extends com.pulumi.resources.CustomRe
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public AudienceResolveProtocolMapper(String name, AudienceResolveProtocolMapperArgs args) {
+    public AudienceResolveProtocolMapper(java.lang.String name, AudienceResolveProtocolMapperArgs args) {
         this(name, args, null);
     }
     /**
@@ -231,15 +231,22 @@ public class AudienceResolveProtocolMapper extends com.pulumi.resources.CustomRe
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public AudienceResolveProtocolMapper(String name, AudienceResolveProtocolMapperArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:openid/audienceResolveProtocolMapper:AudienceResolveProtocolMapper", name, args == null ? AudienceResolveProtocolMapperArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public AudienceResolveProtocolMapper(java.lang.String name, AudienceResolveProtocolMapperArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:openid/audienceResolveProtocolMapper:AudienceResolveProtocolMapper", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private AudienceResolveProtocolMapper(String name, Output<String> id, @Nullable AudienceResolveProtocolMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:openid/audienceResolveProtocolMapper:AudienceResolveProtocolMapper", name, state, makeResourceOptions(options, id));
+    private AudienceResolveProtocolMapper(java.lang.String name, Output<java.lang.String> id, @Nullable AudienceResolveProtocolMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:openid/audienceResolveProtocolMapper:AudienceResolveProtocolMapper", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static AudienceResolveProtocolMapperArgs makeArgs(AudienceResolveProtocolMapperArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? AudienceResolveProtocolMapperArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .aliases(List.of(
@@ -258,7 +265,7 @@ public class AudienceResolveProtocolMapper extends com.pulumi.resources.CustomRe
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static AudienceResolveProtocolMapper get(String name, Output<String> id, @Nullable AudienceResolveProtocolMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static AudienceResolveProtocolMapper get(java.lang.String name, Output<java.lang.String> id, @Nullable AudienceResolveProtocolMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new AudienceResolveProtocolMapper(name, id, state, options);
     }
 }

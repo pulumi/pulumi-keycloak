@@ -98,7 +98,7 @@ public class ClientAuthorizationPermission extends com.pulumi.resources.CustomRe
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public ClientAuthorizationPermission(String name) {
+    public ClientAuthorizationPermission(java.lang.String name) {
         this(name, ClientAuthorizationPermissionArgs.Empty);
     }
     /**
@@ -106,7 +106,7 @@ public class ClientAuthorizationPermission extends com.pulumi.resources.CustomRe
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public ClientAuthorizationPermission(String name, ClientAuthorizationPermissionArgs args) {
+    public ClientAuthorizationPermission(java.lang.String name, ClientAuthorizationPermissionArgs args) {
         this(name, args, null);
     }
     /**
@@ -115,15 +115,22 @@ public class ClientAuthorizationPermission extends com.pulumi.resources.CustomRe
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public ClientAuthorizationPermission(String name, ClientAuthorizationPermissionArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:openid/clientAuthorizationPermission:ClientAuthorizationPermission", name, args == null ? ClientAuthorizationPermissionArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public ClientAuthorizationPermission(java.lang.String name, ClientAuthorizationPermissionArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:openid/clientAuthorizationPermission:ClientAuthorizationPermission", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private ClientAuthorizationPermission(String name, Output<String> id, @Nullable ClientAuthorizationPermissionState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:openid/clientAuthorizationPermission:ClientAuthorizationPermission", name, state, makeResourceOptions(options, id));
+    private ClientAuthorizationPermission(java.lang.String name, Output<java.lang.String> id, @Nullable ClientAuthorizationPermissionState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:openid/clientAuthorizationPermission:ClientAuthorizationPermission", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static ClientAuthorizationPermissionArgs makeArgs(ClientAuthorizationPermissionArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? ClientAuthorizationPermissionArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -139,7 +146,7 @@ public class ClientAuthorizationPermission extends com.pulumi.resources.CustomRe
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static ClientAuthorizationPermission get(String name, Output<String> id, @Nullable ClientAuthorizationPermissionState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static ClientAuthorizationPermission get(java.lang.String name, Output<java.lang.String> id, @Nullable ClientAuthorizationPermissionState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new ClientAuthorizationPermission(name, id, state, options);
     }
 }

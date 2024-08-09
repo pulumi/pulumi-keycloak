@@ -175,7 +175,7 @@ public class UserTemplateImporterIdentityProviderMapper extends com.pulumi.resou
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public UserTemplateImporterIdentityProviderMapper(String name) {
+    public UserTemplateImporterIdentityProviderMapper(java.lang.String name) {
         this(name, UserTemplateImporterIdentityProviderMapperArgs.Empty);
     }
     /**
@@ -183,7 +183,7 @@ public class UserTemplateImporterIdentityProviderMapper extends com.pulumi.resou
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public UserTemplateImporterIdentityProviderMapper(String name, UserTemplateImporterIdentityProviderMapperArgs args) {
+    public UserTemplateImporterIdentityProviderMapper(java.lang.String name, UserTemplateImporterIdentityProviderMapperArgs args) {
         this(name, args, null);
     }
     /**
@@ -192,15 +192,22 @@ public class UserTemplateImporterIdentityProviderMapper extends com.pulumi.resou
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public UserTemplateImporterIdentityProviderMapper(String name, UserTemplateImporterIdentityProviderMapperArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:index/userTemplateImporterIdentityProviderMapper:UserTemplateImporterIdentityProviderMapper", name, args == null ? UserTemplateImporterIdentityProviderMapperArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public UserTemplateImporterIdentityProviderMapper(java.lang.String name, UserTemplateImporterIdentityProviderMapperArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:index/userTemplateImporterIdentityProviderMapper:UserTemplateImporterIdentityProviderMapper", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private UserTemplateImporterIdentityProviderMapper(String name, Output<String> id, @Nullable UserTemplateImporterIdentityProviderMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:index/userTemplateImporterIdentityProviderMapper:UserTemplateImporterIdentityProviderMapper", name, state, makeResourceOptions(options, id));
+    private UserTemplateImporterIdentityProviderMapper(java.lang.String name, Output<java.lang.String> id, @Nullable UserTemplateImporterIdentityProviderMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:index/userTemplateImporterIdentityProviderMapper:UserTemplateImporterIdentityProviderMapper", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static UserTemplateImporterIdentityProviderMapperArgs makeArgs(UserTemplateImporterIdentityProviderMapperArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? UserTemplateImporterIdentityProviderMapperArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -216,7 +223,7 @@ public class UserTemplateImporterIdentityProviderMapper extends com.pulumi.resou
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static UserTemplateImporterIdentityProviderMapper get(String name, Output<String> id, @Nullable UserTemplateImporterIdentityProviderMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static UserTemplateImporterIdentityProviderMapper get(java.lang.String name, Output<java.lang.String> id, @Nullable UserTemplateImporterIdentityProviderMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new UserTemplateImporterIdentityProviderMapper(name, id, state, options);
     }
 }

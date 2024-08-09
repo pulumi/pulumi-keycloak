@@ -64,7 +64,7 @@ public class ClientUserPolicy extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public ClientUserPolicy(String name) {
+    public ClientUserPolicy(java.lang.String name) {
         this(name, ClientUserPolicyArgs.Empty);
     }
     /**
@@ -72,7 +72,7 @@ public class ClientUserPolicy extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public ClientUserPolicy(String name, ClientUserPolicyArgs args) {
+    public ClientUserPolicy(java.lang.String name, ClientUserPolicyArgs args) {
         this(name, args, null);
     }
     /**
@@ -81,15 +81,22 @@ public class ClientUserPolicy extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public ClientUserPolicy(String name, ClientUserPolicyArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:openid/clientUserPolicy:ClientUserPolicy", name, args == null ? ClientUserPolicyArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public ClientUserPolicy(java.lang.String name, ClientUserPolicyArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:openid/clientUserPolicy:ClientUserPolicy", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private ClientUserPolicy(String name, Output<String> id, @Nullable ClientUserPolicyState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:openid/clientUserPolicy:ClientUserPolicy", name, state, makeResourceOptions(options, id));
+    private ClientUserPolicy(java.lang.String name, Output<java.lang.String> id, @Nullable ClientUserPolicyState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:openid/clientUserPolicy:ClientUserPolicy", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static ClientUserPolicyArgs makeArgs(ClientUserPolicyArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? ClientUserPolicyArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -105,7 +112,7 @@ public class ClientUserPolicy extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static ClientUserPolicy get(String name, Output<String> id, @Nullable ClientUserPolicyState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static ClientUserPolicy get(java.lang.String name, Output<java.lang.String> id, @Nullable ClientUserPolicyState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new ClientUserPolicy(name, id, state, options);
     }
 }

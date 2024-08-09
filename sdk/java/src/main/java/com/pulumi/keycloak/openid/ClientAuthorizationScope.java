@@ -51,7 +51,7 @@ public class ClientAuthorizationScope extends com.pulumi.resources.CustomResourc
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public ClientAuthorizationScope(String name) {
+    public ClientAuthorizationScope(java.lang.String name) {
         this(name, ClientAuthorizationScopeArgs.Empty);
     }
     /**
@@ -59,7 +59,7 @@ public class ClientAuthorizationScope extends com.pulumi.resources.CustomResourc
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public ClientAuthorizationScope(String name, ClientAuthorizationScopeArgs args) {
+    public ClientAuthorizationScope(java.lang.String name, ClientAuthorizationScopeArgs args) {
         this(name, args, null);
     }
     /**
@@ -68,15 +68,22 @@ public class ClientAuthorizationScope extends com.pulumi.resources.CustomResourc
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public ClientAuthorizationScope(String name, ClientAuthorizationScopeArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:openid/clientAuthorizationScope:ClientAuthorizationScope", name, args == null ? ClientAuthorizationScopeArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public ClientAuthorizationScope(java.lang.String name, ClientAuthorizationScopeArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:openid/clientAuthorizationScope:ClientAuthorizationScope", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private ClientAuthorizationScope(String name, Output<String> id, @Nullable ClientAuthorizationScopeState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:openid/clientAuthorizationScope:ClientAuthorizationScope", name, state, makeResourceOptions(options, id));
+    private ClientAuthorizationScope(java.lang.String name, Output<java.lang.String> id, @Nullable ClientAuthorizationScopeState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:openid/clientAuthorizationScope:ClientAuthorizationScope", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static ClientAuthorizationScopeArgs makeArgs(ClientAuthorizationScopeArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? ClientAuthorizationScopeArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -92,7 +99,7 @@ public class ClientAuthorizationScope extends com.pulumi.resources.CustomResourc
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static ClientAuthorizationScope get(String name, Output<String> id, @Nullable ClientAuthorizationScopeState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static ClientAuthorizationScope get(java.lang.String name, Output<java.lang.String> id, @Nullable ClientAuthorizationScopeState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new ClientAuthorizationScope(name, id, state, options);
     }
 }

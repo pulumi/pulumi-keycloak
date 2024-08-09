@@ -85,7 +85,7 @@ public class ClientAuthorizationResource extends com.pulumi.resources.CustomReso
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public ClientAuthorizationResource(String name) {
+    public ClientAuthorizationResource(java.lang.String name) {
         this(name, ClientAuthorizationResourceArgs.Empty);
     }
     /**
@@ -93,7 +93,7 @@ public class ClientAuthorizationResource extends com.pulumi.resources.CustomReso
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public ClientAuthorizationResource(String name, ClientAuthorizationResourceArgs args) {
+    public ClientAuthorizationResource(java.lang.String name, ClientAuthorizationResourceArgs args) {
         this(name, args, null);
     }
     /**
@@ -102,15 +102,22 @@ public class ClientAuthorizationResource extends com.pulumi.resources.CustomReso
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public ClientAuthorizationResource(String name, ClientAuthorizationResourceArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:openid/clientAuthorizationResource:ClientAuthorizationResource", name, args == null ? ClientAuthorizationResourceArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public ClientAuthorizationResource(java.lang.String name, ClientAuthorizationResourceArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:openid/clientAuthorizationResource:ClientAuthorizationResource", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private ClientAuthorizationResource(String name, Output<String> id, @Nullable ClientAuthorizationResourceState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:openid/clientAuthorizationResource:ClientAuthorizationResource", name, state, makeResourceOptions(options, id));
+    private ClientAuthorizationResource(java.lang.String name, Output<java.lang.String> id, @Nullable ClientAuthorizationResourceState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:openid/clientAuthorizationResource:ClientAuthorizationResource", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static ClientAuthorizationResourceArgs makeArgs(ClientAuthorizationResourceArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? ClientAuthorizationResourceArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -126,7 +133,7 @@ public class ClientAuthorizationResource extends com.pulumi.resources.CustomReso
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static ClientAuthorizationResource get(String name, Output<String> id, @Nullable ClientAuthorizationResourceState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static ClientAuthorizationResource get(java.lang.String name, Output<java.lang.String> id, @Nullable ClientAuthorizationResourceState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new ClientAuthorizationResource(name, id, state, options);
     }
 }

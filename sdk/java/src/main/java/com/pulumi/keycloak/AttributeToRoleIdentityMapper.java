@@ -251,7 +251,7 @@ public class AttributeToRoleIdentityMapper extends com.pulumi.resources.CustomRe
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public AttributeToRoleIdentityMapper(String name) {
+    public AttributeToRoleIdentityMapper(java.lang.String name) {
         this(name, AttributeToRoleIdentityMapperArgs.Empty);
     }
     /**
@@ -259,7 +259,7 @@ public class AttributeToRoleIdentityMapper extends com.pulumi.resources.CustomRe
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public AttributeToRoleIdentityMapper(String name, AttributeToRoleIdentityMapperArgs args) {
+    public AttributeToRoleIdentityMapper(java.lang.String name, AttributeToRoleIdentityMapperArgs args) {
         this(name, args, null);
     }
     /**
@@ -268,15 +268,22 @@ public class AttributeToRoleIdentityMapper extends com.pulumi.resources.CustomRe
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public AttributeToRoleIdentityMapper(String name, AttributeToRoleIdentityMapperArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:index/attributeToRoleIdentityMapper:AttributeToRoleIdentityMapper", name, args == null ? AttributeToRoleIdentityMapperArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public AttributeToRoleIdentityMapper(java.lang.String name, AttributeToRoleIdentityMapperArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:index/attributeToRoleIdentityMapper:AttributeToRoleIdentityMapper", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private AttributeToRoleIdentityMapper(String name, Output<String> id, @Nullable AttributeToRoleIdentityMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:index/attributeToRoleIdentityMapper:AttributeToRoleIdentityMapper", name, state, makeResourceOptions(options, id));
+    private AttributeToRoleIdentityMapper(java.lang.String name, Output<java.lang.String> id, @Nullable AttributeToRoleIdentityMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:index/attributeToRoleIdentityMapper:AttributeToRoleIdentityMapper", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static AttributeToRoleIdentityMapperArgs makeArgs(AttributeToRoleIdentityMapperArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? AttributeToRoleIdentityMapperArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -292,7 +299,7 @@ public class AttributeToRoleIdentityMapper extends com.pulumi.resources.CustomRe
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static AttributeToRoleIdentityMapper get(String name, Output<String> id, @Nullable AttributeToRoleIdentityMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static AttributeToRoleIdentityMapper get(java.lang.String name, Output<java.lang.String> id, @Nullable AttributeToRoleIdentityMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new AttributeToRoleIdentityMapper(name, id, state, options);
     }
 }
