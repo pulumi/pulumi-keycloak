@@ -229,12 +229,12 @@ class GroupPermissions(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  group_id: Optional[pulumi.Input[str]] = None,
-                 manage_members_scope: Optional[pulumi.Input[pulumi.InputType['GroupPermissionsManageMembersScopeArgs']]] = None,
-                 manage_membership_scope: Optional[pulumi.Input[pulumi.InputType['GroupPermissionsManageMembershipScopeArgs']]] = None,
-                 manage_scope: Optional[pulumi.Input[pulumi.InputType['GroupPermissionsManageScopeArgs']]] = None,
+                 manage_members_scope: Optional[pulumi.Input[Union['GroupPermissionsManageMembersScopeArgs', 'GroupPermissionsManageMembersScopeArgsDict']]] = None,
+                 manage_membership_scope: Optional[pulumi.Input[Union['GroupPermissionsManageMembershipScopeArgs', 'GroupPermissionsManageMembershipScopeArgsDict']]] = None,
+                 manage_scope: Optional[pulumi.Input[Union['GroupPermissionsManageScopeArgs', 'GroupPermissionsManageScopeArgsDict']]] = None,
                  realm_id: Optional[pulumi.Input[str]] = None,
-                 view_members_scope: Optional[pulumi.Input[pulumi.InputType['GroupPermissionsViewMembersScopeArgs']]] = None,
-                 view_scope: Optional[pulumi.Input[pulumi.InputType['GroupPermissionsViewScopeArgs']]] = None,
+                 view_members_scope: Optional[pulumi.Input[Union['GroupPermissionsViewMembersScopeArgs', 'GroupPermissionsViewMembersScopeArgsDict']]] = None,
+                 view_scope: Optional[pulumi.Input[Union['GroupPermissionsViewScopeArgs', 'GroupPermissionsViewScopeArgsDict']]] = None,
                  __props__=None):
         """
         Allows you to manage all group Scope Based Permissions https://www.keycloak.org/docs/latest/server_admin/#group.
@@ -287,12 +287,12 @@ class GroupPermissions(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  group_id: Optional[pulumi.Input[str]] = None,
-                 manage_members_scope: Optional[pulumi.Input[pulumi.InputType['GroupPermissionsManageMembersScopeArgs']]] = None,
-                 manage_membership_scope: Optional[pulumi.Input[pulumi.InputType['GroupPermissionsManageMembershipScopeArgs']]] = None,
-                 manage_scope: Optional[pulumi.Input[pulumi.InputType['GroupPermissionsManageScopeArgs']]] = None,
+                 manage_members_scope: Optional[pulumi.Input[Union['GroupPermissionsManageMembersScopeArgs', 'GroupPermissionsManageMembersScopeArgsDict']]] = None,
+                 manage_membership_scope: Optional[pulumi.Input[Union['GroupPermissionsManageMembershipScopeArgs', 'GroupPermissionsManageMembershipScopeArgsDict']]] = None,
+                 manage_scope: Optional[pulumi.Input[Union['GroupPermissionsManageScopeArgs', 'GroupPermissionsManageScopeArgsDict']]] = None,
                  realm_id: Optional[pulumi.Input[str]] = None,
-                 view_members_scope: Optional[pulumi.Input[pulumi.InputType['GroupPermissionsViewMembersScopeArgs']]] = None,
-                 view_scope: Optional[pulumi.Input[pulumi.InputType['GroupPermissionsViewScopeArgs']]] = None,
+                 view_members_scope: Optional[pulumi.Input[Union['GroupPermissionsViewMembersScopeArgs', 'GroupPermissionsViewMembersScopeArgsDict']]] = None,
+                 view_scope: Optional[pulumi.Input[Union['GroupPermissionsViewScopeArgs', 'GroupPermissionsViewScopeArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -328,12 +328,12 @@ class GroupPermissions(pulumi.CustomResource):
             authorization_resource_server_id: Optional[pulumi.Input[str]] = None,
             enabled: Optional[pulumi.Input[bool]] = None,
             group_id: Optional[pulumi.Input[str]] = None,
-            manage_members_scope: Optional[pulumi.Input[pulumi.InputType['GroupPermissionsManageMembersScopeArgs']]] = None,
-            manage_membership_scope: Optional[pulumi.Input[pulumi.InputType['GroupPermissionsManageMembershipScopeArgs']]] = None,
-            manage_scope: Optional[pulumi.Input[pulumi.InputType['GroupPermissionsManageScopeArgs']]] = None,
+            manage_members_scope: Optional[pulumi.Input[Union['GroupPermissionsManageMembersScopeArgs', 'GroupPermissionsManageMembersScopeArgsDict']]] = None,
+            manage_membership_scope: Optional[pulumi.Input[Union['GroupPermissionsManageMembershipScopeArgs', 'GroupPermissionsManageMembershipScopeArgsDict']]] = None,
+            manage_scope: Optional[pulumi.Input[Union['GroupPermissionsManageScopeArgs', 'GroupPermissionsManageScopeArgsDict']]] = None,
             realm_id: Optional[pulumi.Input[str]] = None,
-            view_members_scope: Optional[pulumi.Input[pulumi.InputType['GroupPermissionsViewMembersScopeArgs']]] = None,
-            view_scope: Optional[pulumi.Input[pulumi.InputType['GroupPermissionsViewScopeArgs']]] = None) -> 'GroupPermissions':
+            view_members_scope: Optional[pulumi.Input[Union['GroupPermissionsViewMembersScopeArgs', 'GroupPermissionsViewMembersScopeArgsDict']]] = None,
+            view_scope: Optional[pulumi.Input[Union['GroupPermissionsViewScopeArgs', 'GroupPermissionsViewScopeArgsDict']]] = None) -> 'GroupPermissions':
         """
         Get an existing GroupPermissions resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -228,7 +228,7 @@ class ClientRolePolicy(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  realm_id: Optional[pulumi.Input[str]] = None,
                  resource_server_id: Optional[pulumi.Input[str]] = None,
-                 roles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClientRolePolicyRoleArgs']]]]] = None,
+                 roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClientRolePolicyRoleArgs', 'ClientRolePolicyRoleArgsDict']]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -265,7 +265,7 @@ class ClientRolePolicy(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  realm_id: Optional[pulumi.Input[str]] = None,
                  resource_server_id: Optional[pulumi.Input[str]] = None,
-                 roles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClientRolePolicyRoleArgs']]]]] = None,
+                 roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClientRolePolicyRoleArgs', 'ClientRolePolicyRoleArgsDict']]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -308,7 +308,7 @@ class ClientRolePolicy(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             realm_id: Optional[pulumi.Input[str]] = None,
             resource_server_id: Optional[pulumi.Input[str]] = None,
-            roles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClientRolePolicyRoleArgs']]]]] = None,
+            roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClientRolePolicyRoleArgs', 'ClientRolePolicyRoleArgsDict']]]]] = None,
             type: Optional[pulumi.Input[str]] = None) -> 'ClientRolePolicy':
         """
         Get an existing ClientRolePolicy resource's state with the given name, id, and optional extra

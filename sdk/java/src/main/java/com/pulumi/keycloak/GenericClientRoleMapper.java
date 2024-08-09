@@ -375,7 +375,7 @@ public class GenericClientRoleMapper extends com.pulumi.resources.CustomResource
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public GenericClientRoleMapper(String name) {
+    public GenericClientRoleMapper(java.lang.String name) {
         this(name, GenericClientRoleMapperArgs.Empty);
     }
     /**
@@ -383,7 +383,7 @@ public class GenericClientRoleMapper extends com.pulumi.resources.CustomResource
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public GenericClientRoleMapper(String name, GenericClientRoleMapperArgs args) {
+    public GenericClientRoleMapper(java.lang.String name, GenericClientRoleMapperArgs args) {
         this(name, args, null);
     }
     /**
@@ -392,15 +392,22 @@ public class GenericClientRoleMapper extends com.pulumi.resources.CustomResource
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public GenericClientRoleMapper(String name, GenericClientRoleMapperArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:index/genericClientRoleMapper:GenericClientRoleMapper", name, args == null ? GenericClientRoleMapperArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public GenericClientRoleMapper(java.lang.String name, GenericClientRoleMapperArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:index/genericClientRoleMapper:GenericClientRoleMapper", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private GenericClientRoleMapper(String name, Output<String> id, @Nullable GenericClientRoleMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:index/genericClientRoleMapper:GenericClientRoleMapper", name, state, makeResourceOptions(options, id));
+    private GenericClientRoleMapper(java.lang.String name, Output<java.lang.String> id, @Nullable GenericClientRoleMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:index/genericClientRoleMapper:GenericClientRoleMapper", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static GenericClientRoleMapperArgs makeArgs(GenericClientRoleMapperArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? GenericClientRoleMapperArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -416,7 +423,7 @@ public class GenericClientRoleMapper extends com.pulumi.resources.CustomResource
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static GenericClientRoleMapper get(String name, Output<String> id, @Nullable GenericClientRoleMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static GenericClientRoleMapper get(java.lang.String name, Output<java.lang.String> id, @Nullable GenericClientRoleMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new GenericClientRoleMapper(name, id, state, options);
     }
 }

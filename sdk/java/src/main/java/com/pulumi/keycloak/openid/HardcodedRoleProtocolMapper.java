@@ -236,7 +236,7 @@ public class HardcodedRoleProtocolMapper extends com.pulumi.resources.CustomReso
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public HardcodedRoleProtocolMapper(String name) {
+    public HardcodedRoleProtocolMapper(java.lang.String name) {
         this(name, HardcodedRoleProtocolMapperArgs.Empty);
     }
     /**
@@ -244,7 +244,7 @@ public class HardcodedRoleProtocolMapper extends com.pulumi.resources.CustomReso
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public HardcodedRoleProtocolMapper(String name, HardcodedRoleProtocolMapperArgs args) {
+    public HardcodedRoleProtocolMapper(java.lang.String name, HardcodedRoleProtocolMapperArgs args) {
         this(name, args, null);
     }
     /**
@@ -253,15 +253,22 @@ public class HardcodedRoleProtocolMapper extends com.pulumi.resources.CustomReso
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public HardcodedRoleProtocolMapper(String name, HardcodedRoleProtocolMapperArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:openid/hardcodedRoleProtocolMapper:HardcodedRoleProtocolMapper", name, args == null ? HardcodedRoleProtocolMapperArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public HardcodedRoleProtocolMapper(java.lang.String name, HardcodedRoleProtocolMapperArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:openid/hardcodedRoleProtocolMapper:HardcodedRoleProtocolMapper", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private HardcodedRoleProtocolMapper(String name, Output<String> id, @Nullable HardcodedRoleProtocolMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:openid/hardcodedRoleProtocolMapper:HardcodedRoleProtocolMapper", name, state, makeResourceOptions(options, id));
+    private HardcodedRoleProtocolMapper(java.lang.String name, Output<java.lang.String> id, @Nullable HardcodedRoleProtocolMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:openid/hardcodedRoleProtocolMapper:HardcodedRoleProtocolMapper", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static HardcodedRoleProtocolMapperArgs makeArgs(HardcodedRoleProtocolMapperArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? HardcodedRoleProtocolMapperArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -277,7 +284,7 @@ public class HardcodedRoleProtocolMapper extends com.pulumi.resources.CustomReso
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static HardcodedRoleProtocolMapper get(String name, Output<String> id, @Nullable HardcodedRoleProtocolMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static HardcodedRoleProtocolMapper get(java.lang.String name, Output<java.lang.String> id, @Nullable HardcodedRoleProtocolMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new HardcodedRoleProtocolMapper(name, id, state, options);
     }
 }
