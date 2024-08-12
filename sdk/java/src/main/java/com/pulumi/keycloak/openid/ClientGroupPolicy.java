@@ -71,7 +71,7 @@ public class ClientGroupPolicy extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public ClientGroupPolicy(String name) {
+    public ClientGroupPolicy(java.lang.String name) {
         this(name, ClientGroupPolicyArgs.Empty);
     }
     /**
@@ -79,7 +79,7 @@ public class ClientGroupPolicy extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public ClientGroupPolicy(String name, ClientGroupPolicyArgs args) {
+    public ClientGroupPolicy(java.lang.String name, ClientGroupPolicyArgs args) {
         this(name, args, null);
     }
     /**
@@ -88,15 +88,22 @@ public class ClientGroupPolicy extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public ClientGroupPolicy(String name, ClientGroupPolicyArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:openid/clientGroupPolicy:ClientGroupPolicy", name, args == null ? ClientGroupPolicyArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public ClientGroupPolicy(java.lang.String name, ClientGroupPolicyArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:openid/clientGroupPolicy:ClientGroupPolicy", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private ClientGroupPolicy(String name, Output<String> id, @Nullable ClientGroupPolicyState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:openid/clientGroupPolicy:ClientGroupPolicy", name, state, makeResourceOptions(options, id));
+    private ClientGroupPolicy(java.lang.String name, Output<java.lang.String> id, @Nullable ClientGroupPolicyState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:openid/clientGroupPolicy:ClientGroupPolicy", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static ClientGroupPolicyArgs makeArgs(ClientGroupPolicyArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? ClientGroupPolicyArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -112,7 +119,7 @@ public class ClientGroupPolicy extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static ClientGroupPolicy get(String name, Output<String> id, @Nullable ClientGroupPolicyState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static ClientGroupPolicy get(java.lang.String name, Output<java.lang.String> id, @Nullable ClientGroupPolicyState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new ClientGroupPolicy(name, id, state, options);
     }
 }

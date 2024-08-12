@@ -139,7 +139,7 @@ public class UsersPermissions extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public UsersPermissions(String name) {
+    public UsersPermissions(java.lang.String name) {
         this(name, UsersPermissionsArgs.Empty);
     }
     /**
@@ -147,7 +147,7 @@ public class UsersPermissions extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public UsersPermissions(String name, UsersPermissionsArgs args) {
+    public UsersPermissions(java.lang.String name, UsersPermissionsArgs args) {
         this(name, args, null);
     }
     /**
@@ -156,15 +156,22 @@ public class UsersPermissions extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public UsersPermissions(String name, UsersPermissionsArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:index/usersPermissions:UsersPermissions", name, args == null ? UsersPermissionsArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public UsersPermissions(java.lang.String name, UsersPermissionsArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:index/usersPermissions:UsersPermissions", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private UsersPermissions(String name, Output<String> id, @Nullable UsersPermissionsState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:index/usersPermissions:UsersPermissions", name, state, makeResourceOptions(options, id));
+    private UsersPermissions(java.lang.String name, Output<java.lang.String> id, @Nullable UsersPermissionsState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:index/usersPermissions:UsersPermissions", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static UsersPermissionsArgs makeArgs(UsersPermissionsArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? UsersPermissionsArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -180,7 +187,7 @@ public class UsersPermissions extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static UsersPermissions get(String name, Output<String> id, @Nullable UsersPermissionsState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static UsersPermissions get(java.lang.String name, Output<java.lang.String> id, @Nullable UsersPermissionsState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new UsersPermissions(name, id, state, options);
     }
 }

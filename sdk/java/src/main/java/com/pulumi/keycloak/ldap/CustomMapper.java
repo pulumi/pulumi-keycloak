@@ -198,7 +198,7 @@ public class CustomMapper extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public CustomMapper(String name) {
+    public CustomMapper(java.lang.String name) {
         this(name, CustomMapperArgs.Empty);
     }
     /**
@@ -206,7 +206,7 @@ public class CustomMapper extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public CustomMapper(String name, CustomMapperArgs args) {
+    public CustomMapper(java.lang.String name, CustomMapperArgs args) {
         this(name, args, null);
     }
     /**
@@ -215,15 +215,22 @@ public class CustomMapper extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public CustomMapper(String name, CustomMapperArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:ldap/customMapper:CustomMapper", name, args == null ? CustomMapperArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public CustomMapper(java.lang.String name, CustomMapperArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:ldap/customMapper:CustomMapper", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private CustomMapper(String name, Output<String> id, @Nullable CustomMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:ldap/customMapper:CustomMapper", name, state, makeResourceOptions(options, id));
+    private CustomMapper(java.lang.String name, Output<java.lang.String> id, @Nullable CustomMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:ldap/customMapper:CustomMapper", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static CustomMapperArgs makeArgs(CustomMapperArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? CustomMapperArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -239,7 +246,7 @@ public class CustomMapper extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static CustomMapper get(String name, Output<String> id, @Nullable CustomMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static CustomMapper get(java.lang.String name, Output<java.lang.String> id, @Nullable CustomMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new CustomMapper(name, id, state, options);
     }
 }
