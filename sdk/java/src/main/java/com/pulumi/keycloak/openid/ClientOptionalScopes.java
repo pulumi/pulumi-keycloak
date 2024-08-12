@@ -117,7 +117,7 @@ public class ClientOptionalScopes extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public ClientOptionalScopes(String name) {
+    public ClientOptionalScopes(java.lang.String name) {
         this(name, ClientOptionalScopesArgs.Empty);
     }
     /**
@@ -125,7 +125,7 @@ public class ClientOptionalScopes extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public ClientOptionalScopes(String name, ClientOptionalScopesArgs args) {
+    public ClientOptionalScopes(java.lang.String name, ClientOptionalScopesArgs args) {
         this(name, args, null);
     }
     /**
@@ -134,15 +134,22 @@ public class ClientOptionalScopes extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public ClientOptionalScopes(String name, ClientOptionalScopesArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:openid/clientOptionalScopes:ClientOptionalScopes", name, args == null ? ClientOptionalScopesArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public ClientOptionalScopes(java.lang.String name, ClientOptionalScopesArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:openid/clientOptionalScopes:ClientOptionalScopes", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private ClientOptionalScopes(String name, Output<String> id, @Nullable ClientOptionalScopesState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:openid/clientOptionalScopes:ClientOptionalScopes", name, state, makeResourceOptions(options, id));
+    private ClientOptionalScopes(java.lang.String name, Output<java.lang.String> id, @Nullable ClientOptionalScopesState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:openid/clientOptionalScopes:ClientOptionalScopes", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static ClientOptionalScopesArgs makeArgs(ClientOptionalScopesArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? ClientOptionalScopesArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -158,7 +165,7 @@ public class ClientOptionalScopes extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static ClientOptionalScopes get(String name, Output<String> id, @Nullable ClientOptionalScopesState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static ClientOptionalScopes get(java.lang.String name, Output<java.lang.String> id, @Nullable ClientOptionalScopesState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new ClientOptionalScopes(name, id, state, options);
     }
 }

@@ -579,7 +579,7 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public UserFederation(String name) {
+    public UserFederation(java.lang.String name) {
         this(name, UserFederationArgs.Empty);
     }
     /**
@@ -587,7 +587,7 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public UserFederation(String name, UserFederationArgs args) {
+    public UserFederation(java.lang.String name, UserFederationArgs args) {
         this(name, args, null);
     }
     /**
@@ -596,15 +596,22 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public UserFederation(String name, UserFederationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:ldap/userFederation:UserFederation", name, args == null ? UserFederationArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public UserFederation(java.lang.String name, UserFederationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:ldap/userFederation:UserFederation", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private UserFederation(String name, Output<String> id, @Nullable UserFederationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:ldap/userFederation:UserFederation", name, state, makeResourceOptions(options, id));
+    private UserFederation(java.lang.String name, Output<java.lang.String> id, @Nullable UserFederationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:ldap/userFederation:UserFederation", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static UserFederationArgs makeArgs(UserFederationArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? UserFederationArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
@@ -623,7 +630,7 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static UserFederation get(String name, Output<String> id, @Nullable UserFederationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static UserFederation get(java.lang.String name, Output<java.lang.String> id, @Nullable UserFederationState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new UserFederation(name, id, state, options);
     }
 }

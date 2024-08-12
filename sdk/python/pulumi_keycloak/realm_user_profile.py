@@ -129,8 +129,8 @@ class RealmUserProfile(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 attributes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RealmUserProfileAttributeArgs']]]]] = None,
-                 groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RealmUserProfileGroupArgs']]]]] = None,
+                 attributes: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RealmUserProfileAttributeArgs', 'RealmUserProfileAttributeArgsDict']]]]] = None,
+                 groups: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RealmUserProfileGroupArgs', 'RealmUserProfileGroupArgsDict']]]]] = None,
                  realm_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -160,69 +160,69 @@ class RealmUserProfile(pulumi.CustomResource):
         userprofile = keycloak.RealmUserProfile("userprofile",
             realm_id=my_realm["id"],
             attributes=[
-                keycloak.RealmUserProfileAttributeArgs(
-                    name="field1",
-                    display_name="Field 1",
-                    group="group1",
-                    enabled_when_scopes=["offline_access"],
-                    required_for_roles=["user"],
-                    required_for_scopes=["offline_access"],
-                    permissions=keycloak.RealmUserProfileAttributePermissionsArgs(
-                        views=[
+                {
+                    "name": "field1",
+                    "display_name": "Field 1",
+                    "group": "group1",
+                    "enabled_when_scopes": ["offline_access"],
+                    "required_for_roles": ["user"],
+                    "required_for_scopes": ["offline_access"],
+                    "permissions": {
+                        "views": [
                             "admin",
                             "user",
                         ],
-                        edits=[
+                        "edits": [
                             "admin",
                             "user",
                         ],
-                    ),
-                    validators=[
-                        keycloak.RealmUserProfileAttributeValidatorArgs(
-                            name="person-name-prohibited-characters",
-                        ),
-                        keycloak.RealmUserProfileAttributeValidatorArgs(
-                            name="pattern",
-                            config={
+                    },
+                    "validators": [
+                        {
+                            "name": "person-name-prohibited-characters",
+                        },
+                        {
+                            "name": "pattern",
+                            "config": {
                                 "pattern": "^[a-z]+$",
-                                "error-message": "Nope",
+                                "error_message": "Nope",
                             },
-                        ),
+                        },
                     ],
-                    annotations={
+                    "annotations": {
                         "foo": "bar",
                     },
-                ),
-                keycloak.RealmUserProfileAttributeArgs(
-                    name="field2",
-                    validators=[keycloak.RealmUserProfileAttributeValidatorArgs(
-                        name="options",
-                        config={
+                },
+                {
+                    "name": "field2",
+                    "validators": [{
+                        "name": "options",
+                        "config": {
                             "options": json.dumps(["opt1"]),
                         },
-                    )],
-                    annotations={
+                    }],
+                    "annotations": {
                         "foo": json.dumps({
                             "key": "val",
                         }),
                     },
-                ),
+                },
             ],
             groups=[
-                keycloak.RealmUserProfileGroupArgs(
-                    name="group1",
-                    display_header="Group 1",
-                    display_description="A first group",
-                    annotations={
+                {
+                    "name": "group1",
+                    "display_header": "Group 1",
+                    "display_description": "A first group",
+                    "annotations": {
                         "foo": "bar",
                         "foo2": json.dumps({
                             "key": "val",
                         }),
                     },
-                ),
-                keycloak.RealmUserProfileGroupArgs(
-                    name="group2",
-                ),
+                },
+                {
+                    "name": "group2",
+                },
             ])
         ```
 
@@ -232,8 +232,8 @@ class RealmUserProfile(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RealmUserProfileAttributeArgs']]]] attributes: An ordered list of attributes.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RealmUserProfileGroupArgs']]]] groups: A list of groups.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['RealmUserProfileAttributeArgs', 'RealmUserProfileAttributeArgsDict']]]] attributes: An ordered list of attributes.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['RealmUserProfileGroupArgs', 'RealmUserProfileGroupArgsDict']]]] groups: A list of groups.
         :param pulumi.Input[str] realm_id: The ID of the realm the user profile applies to.
         """
         ...
@@ -269,69 +269,69 @@ class RealmUserProfile(pulumi.CustomResource):
         userprofile = keycloak.RealmUserProfile("userprofile",
             realm_id=my_realm["id"],
             attributes=[
-                keycloak.RealmUserProfileAttributeArgs(
-                    name="field1",
-                    display_name="Field 1",
-                    group="group1",
-                    enabled_when_scopes=["offline_access"],
-                    required_for_roles=["user"],
-                    required_for_scopes=["offline_access"],
-                    permissions=keycloak.RealmUserProfileAttributePermissionsArgs(
-                        views=[
+                {
+                    "name": "field1",
+                    "display_name": "Field 1",
+                    "group": "group1",
+                    "enabled_when_scopes": ["offline_access"],
+                    "required_for_roles": ["user"],
+                    "required_for_scopes": ["offline_access"],
+                    "permissions": {
+                        "views": [
                             "admin",
                             "user",
                         ],
-                        edits=[
+                        "edits": [
                             "admin",
                             "user",
                         ],
-                    ),
-                    validators=[
-                        keycloak.RealmUserProfileAttributeValidatorArgs(
-                            name="person-name-prohibited-characters",
-                        ),
-                        keycloak.RealmUserProfileAttributeValidatorArgs(
-                            name="pattern",
-                            config={
+                    },
+                    "validators": [
+                        {
+                            "name": "person-name-prohibited-characters",
+                        },
+                        {
+                            "name": "pattern",
+                            "config": {
                                 "pattern": "^[a-z]+$",
-                                "error-message": "Nope",
+                                "error_message": "Nope",
                             },
-                        ),
+                        },
                     ],
-                    annotations={
+                    "annotations": {
                         "foo": "bar",
                     },
-                ),
-                keycloak.RealmUserProfileAttributeArgs(
-                    name="field2",
-                    validators=[keycloak.RealmUserProfileAttributeValidatorArgs(
-                        name="options",
-                        config={
+                },
+                {
+                    "name": "field2",
+                    "validators": [{
+                        "name": "options",
+                        "config": {
                             "options": json.dumps(["opt1"]),
                         },
-                    )],
-                    annotations={
+                    }],
+                    "annotations": {
                         "foo": json.dumps({
                             "key": "val",
                         }),
                     },
-                ),
+                },
             ],
             groups=[
-                keycloak.RealmUserProfileGroupArgs(
-                    name="group1",
-                    display_header="Group 1",
-                    display_description="A first group",
-                    annotations={
+                {
+                    "name": "group1",
+                    "display_header": "Group 1",
+                    "display_description": "A first group",
+                    "annotations": {
                         "foo": "bar",
                         "foo2": json.dumps({
                             "key": "val",
                         }),
                     },
-                ),
-                keycloak.RealmUserProfileGroupArgs(
-                    name="group2",
-                ),
+                },
+                {
+                    "name": "group2",
+                },
             ])
         ```
 
@@ -354,8 +354,8 @@ class RealmUserProfile(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 attributes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RealmUserProfileAttributeArgs']]]]] = None,
-                 groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RealmUserProfileGroupArgs']]]]] = None,
+                 attributes: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RealmUserProfileAttributeArgs', 'RealmUserProfileAttributeArgsDict']]]]] = None,
+                 groups: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RealmUserProfileGroupArgs', 'RealmUserProfileGroupArgsDict']]]]] = None,
                  realm_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -381,8 +381,8 @@ class RealmUserProfile(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            attributes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RealmUserProfileAttributeArgs']]]]] = None,
-            groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RealmUserProfileGroupArgs']]]]] = None,
+            attributes: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RealmUserProfileAttributeArgs', 'RealmUserProfileAttributeArgsDict']]]]] = None,
+            groups: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RealmUserProfileGroupArgs', 'RealmUserProfileGroupArgsDict']]]]] = None,
             realm_id: Optional[pulumi.Input[str]] = None) -> 'RealmUserProfile':
         """
         Get an existing RealmUserProfile resource's state with the given name, id, and optional extra
@@ -391,8 +391,8 @@ class RealmUserProfile(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RealmUserProfileAttributeArgs']]]] attributes: An ordered list of attributes.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RealmUserProfileGroupArgs']]]] groups: A list of groups.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['RealmUserProfileAttributeArgs', 'RealmUserProfileAttributeArgsDict']]]] attributes: An ordered list of attributes.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['RealmUserProfileGroupArgs', 'RealmUserProfileGroupArgsDict']]]] groups: A list of groups.
         :param pulumi.Input[str] realm_id: The ID of the realm the user profile applies to.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))

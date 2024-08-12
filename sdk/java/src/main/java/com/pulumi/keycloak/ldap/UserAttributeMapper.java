@@ -254,7 +254,7 @@ public class UserAttributeMapper extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public UserAttributeMapper(String name) {
+    public UserAttributeMapper(java.lang.String name) {
         this(name, UserAttributeMapperArgs.Empty);
     }
     /**
@@ -262,7 +262,7 @@ public class UserAttributeMapper extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public UserAttributeMapper(String name, UserAttributeMapperArgs args) {
+    public UserAttributeMapper(java.lang.String name, UserAttributeMapperArgs args) {
         this(name, args, null);
     }
     /**
@@ -271,15 +271,22 @@ public class UserAttributeMapper extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public UserAttributeMapper(String name, UserAttributeMapperArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:ldap/userAttributeMapper:UserAttributeMapper", name, args == null ? UserAttributeMapperArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public UserAttributeMapper(java.lang.String name, UserAttributeMapperArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:ldap/userAttributeMapper:UserAttributeMapper", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private UserAttributeMapper(String name, Output<String> id, @Nullable UserAttributeMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:ldap/userAttributeMapper:UserAttributeMapper", name, state, makeResourceOptions(options, id));
+    private UserAttributeMapper(java.lang.String name, Output<java.lang.String> id, @Nullable UserAttributeMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:ldap/userAttributeMapper:UserAttributeMapper", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static UserAttributeMapperArgs makeArgs(UserAttributeMapperArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? UserAttributeMapperArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -295,7 +302,7 @@ public class UserAttributeMapper extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static UserAttributeMapper get(String name, Output<String> id, @Nullable UserAttributeMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static UserAttributeMapper get(java.lang.String name, Output<java.lang.String> id, @Nullable UserAttributeMapperState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new UserAttributeMapper(name, id, state, options);
     }
 }

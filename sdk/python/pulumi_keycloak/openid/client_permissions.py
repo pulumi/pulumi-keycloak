@@ -277,14 +277,14 @@ class ClientPermissions(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  client_id: Optional[pulumi.Input[str]] = None,
-                 configure_scope: Optional[pulumi.Input[pulumi.InputType['ClientPermissionsConfigureScopeArgs']]] = None,
-                 manage_scope: Optional[pulumi.Input[pulumi.InputType['ClientPermissionsManageScopeArgs']]] = None,
-                 map_roles_client_scope_scope: Optional[pulumi.Input[pulumi.InputType['ClientPermissionsMapRolesClientScopeScopeArgs']]] = None,
-                 map_roles_composite_scope: Optional[pulumi.Input[pulumi.InputType['ClientPermissionsMapRolesCompositeScopeArgs']]] = None,
-                 map_roles_scope: Optional[pulumi.Input[pulumi.InputType['ClientPermissionsMapRolesScopeArgs']]] = None,
+                 configure_scope: Optional[pulumi.Input[Union['ClientPermissionsConfigureScopeArgs', 'ClientPermissionsConfigureScopeArgsDict']]] = None,
+                 manage_scope: Optional[pulumi.Input[Union['ClientPermissionsManageScopeArgs', 'ClientPermissionsManageScopeArgsDict']]] = None,
+                 map_roles_client_scope_scope: Optional[pulumi.Input[Union['ClientPermissionsMapRolesClientScopeScopeArgs', 'ClientPermissionsMapRolesClientScopeScopeArgsDict']]] = None,
+                 map_roles_composite_scope: Optional[pulumi.Input[Union['ClientPermissionsMapRolesCompositeScopeArgs', 'ClientPermissionsMapRolesCompositeScopeArgsDict']]] = None,
+                 map_roles_scope: Optional[pulumi.Input[Union['ClientPermissionsMapRolesScopeArgs', 'ClientPermissionsMapRolesScopeArgsDict']]] = None,
                  realm_id: Optional[pulumi.Input[str]] = None,
-                 token_exchange_scope: Optional[pulumi.Input[pulumi.InputType['ClientPermissionsTokenExchangeScopeArgs']]] = None,
-                 view_scope: Optional[pulumi.Input[pulumi.InputType['ClientPermissionsViewScopeArgs']]] = None,
+                 token_exchange_scope: Optional[pulumi.Input[Union['ClientPermissionsTokenExchangeScopeArgs', 'ClientPermissionsTokenExchangeScopeArgsDict']]] = None,
+                 view_scope: Optional[pulumi.Input[Union['ClientPermissionsViewScopeArgs', 'ClientPermissionsViewScopeArgsDict']]] = None,
                  __props__=None):
         """
         Allows you to manage all openid client Scope Based Permissions.
@@ -347,14 +347,14 @@ class ClientPermissions(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  client_id: Optional[pulumi.Input[str]] = None,
-                 configure_scope: Optional[pulumi.Input[pulumi.InputType['ClientPermissionsConfigureScopeArgs']]] = None,
-                 manage_scope: Optional[pulumi.Input[pulumi.InputType['ClientPermissionsManageScopeArgs']]] = None,
-                 map_roles_client_scope_scope: Optional[pulumi.Input[pulumi.InputType['ClientPermissionsMapRolesClientScopeScopeArgs']]] = None,
-                 map_roles_composite_scope: Optional[pulumi.Input[pulumi.InputType['ClientPermissionsMapRolesCompositeScopeArgs']]] = None,
-                 map_roles_scope: Optional[pulumi.Input[pulumi.InputType['ClientPermissionsMapRolesScopeArgs']]] = None,
+                 configure_scope: Optional[pulumi.Input[Union['ClientPermissionsConfigureScopeArgs', 'ClientPermissionsConfigureScopeArgsDict']]] = None,
+                 manage_scope: Optional[pulumi.Input[Union['ClientPermissionsManageScopeArgs', 'ClientPermissionsManageScopeArgsDict']]] = None,
+                 map_roles_client_scope_scope: Optional[pulumi.Input[Union['ClientPermissionsMapRolesClientScopeScopeArgs', 'ClientPermissionsMapRolesClientScopeScopeArgsDict']]] = None,
+                 map_roles_composite_scope: Optional[pulumi.Input[Union['ClientPermissionsMapRolesCompositeScopeArgs', 'ClientPermissionsMapRolesCompositeScopeArgsDict']]] = None,
+                 map_roles_scope: Optional[pulumi.Input[Union['ClientPermissionsMapRolesScopeArgs', 'ClientPermissionsMapRolesScopeArgsDict']]] = None,
                  realm_id: Optional[pulumi.Input[str]] = None,
-                 token_exchange_scope: Optional[pulumi.Input[pulumi.InputType['ClientPermissionsTokenExchangeScopeArgs']]] = None,
-                 view_scope: Optional[pulumi.Input[pulumi.InputType['ClientPermissionsViewScopeArgs']]] = None,
+                 token_exchange_scope: Optional[pulumi.Input[Union['ClientPermissionsTokenExchangeScopeArgs', 'ClientPermissionsTokenExchangeScopeArgsDict']]] = None,
+                 view_scope: Optional[pulumi.Input[Union['ClientPermissionsViewScopeArgs', 'ClientPermissionsViewScopeArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -391,15 +391,15 @@ class ClientPermissions(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             authorization_resource_server_id: Optional[pulumi.Input[str]] = None,
             client_id: Optional[pulumi.Input[str]] = None,
-            configure_scope: Optional[pulumi.Input[pulumi.InputType['ClientPermissionsConfigureScopeArgs']]] = None,
+            configure_scope: Optional[pulumi.Input[Union['ClientPermissionsConfigureScopeArgs', 'ClientPermissionsConfigureScopeArgsDict']]] = None,
             enabled: Optional[pulumi.Input[bool]] = None,
-            manage_scope: Optional[pulumi.Input[pulumi.InputType['ClientPermissionsManageScopeArgs']]] = None,
-            map_roles_client_scope_scope: Optional[pulumi.Input[pulumi.InputType['ClientPermissionsMapRolesClientScopeScopeArgs']]] = None,
-            map_roles_composite_scope: Optional[pulumi.Input[pulumi.InputType['ClientPermissionsMapRolesCompositeScopeArgs']]] = None,
-            map_roles_scope: Optional[pulumi.Input[pulumi.InputType['ClientPermissionsMapRolesScopeArgs']]] = None,
+            manage_scope: Optional[pulumi.Input[Union['ClientPermissionsManageScopeArgs', 'ClientPermissionsManageScopeArgsDict']]] = None,
+            map_roles_client_scope_scope: Optional[pulumi.Input[Union['ClientPermissionsMapRolesClientScopeScopeArgs', 'ClientPermissionsMapRolesClientScopeScopeArgsDict']]] = None,
+            map_roles_composite_scope: Optional[pulumi.Input[Union['ClientPermissionsMapRolesCompositeScopeArgs', 'ClientPermissionsMapRolesCompositeScopeArgsDict']]] = None,
+            map_roles_scope: Optional[pulumi.Input[Union['ClientPermissionsMapRolesScopeArgs', 'ClientPermissionsMapRolesScopeArgsDict']]] = None,
             realm_id: Optional[pulumi.Input[str]] = None,
-            token_exchange_scope: Optional[pulumi.Input[pulumi.InputType['ClientPermissionsTokenExchangeScopeArgs']]] = None,
-            view_scope: Optional[pulumi.Input[pulumi.InputType['ClientPermissionsViewScopeArgs']]] = None) -> 'ClientPermissions':
+            token_exchange_scope: Optional[pulumi.Input[Union['ClientPermissionsTokenExchangeScopeArgs', 'ClientPermissionsTokenExchangeScopeArgsDict']]] = None,
+            view_scope: Optional[pulumi.Input[Union['ClientPermissionsViewScopeArgs', 'ClientPermissionsViewScopeArgsDict']]] = None) -> 'ClientPermissions':
         """
         Get an existing ClientPermissions resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

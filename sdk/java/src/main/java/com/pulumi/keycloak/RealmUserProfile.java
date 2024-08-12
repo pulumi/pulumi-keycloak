@@ -186,7 +186,7 @@ public class RealmUserProfile extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public RealmUserProfile(String name) {
+    public RealmUserProfile(java.lang.String name) {
         this(name, RealmUserProfileArgs.Empty);
     }
     /**
@@ -194,7 +194,7 @@ public class RealmUserProfile extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public RealmUserProfile(String name, RealmUserProfileArgs args) {
+    public RealmUserProfile(java.lang.String name, RealmUserProfileArgs args) {
         this(name, args, null);
     }
     /**
@@ -203,15 +203,22 @@ public class RealmUserProfile extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public RealmUserProfile(String name, RealmUserProfileArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:index/realmUserProfile:RealmUserProfile", name, args == null ? RealmUserProfileArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+    public RealmUserProfile(java.lang.String name, RealmUserProfileArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:index/realmUserProfile:RealmUserProfile", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private RealmUserProfile(String name, Output<String> id, @Nullable RealmUserProfileState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("keycloak:index/realmUserProfile:RealmUserProfile", name, state, makeResourceOptions(options, id));
+    private RealmUserProfile(java.lang.String name, Output<java.lang.String> id, @Nullable RealmUserProfileState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("keycloak:index/realmUserProfile:RealmUserProfile", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static RealmUserProfileArgs makeArgs(RealmUserProfileArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? RealmUserProfileArgs.Empty : args;
+    }
+
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -227,7 +234,7 @@ public class RealmUserProfile extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static RealmUserProfile get(String name, Output<String> id, @Nullable RealmUserProfileState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static RealmUserProfile get(java.lang.String name, Output<java.lang.String> id, @Nullable RealmUserProfileState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new RealmUserProfile(name, id, state, options);
     }
 }
