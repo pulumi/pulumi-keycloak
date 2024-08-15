@@ -26,7 +26,7 @@ class RealmArgs:
                  action_token_generated_by_admin_lifespan: Optional[pulumi.Input[str]] = None,
                  action_token_generated_by_user_lifespan: Optional[pulumi.Input[str]] = None,
                  admin_theme: Optional[pulumi.Input[str]] = None,
-                 attributes: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 attributes: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  browser_flow: Optional[pulumi.Input[str]] = None,
                  client_authentication_flow: Optional[pulumi.Input[str]] = None,
                  client_session_idle_timeout: Optional[pulumi.Input[str]] = None,
@@ -289,11 +289,11 @@ class RealmArgs:
 
     @property
     @pulumi.getter
-    def attributes(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def attributes(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         return pulumi.get(self, "attributes")
 
     @attributes.setter
-    def attributes(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def attributes(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "attributes", value)
 
     @property
@@ -740,7 +740,7 @@ class _RealmState:
                  action_token_generated_by_admin_lifespan: Optional[pulumi.Input[str]] = None,
                  action_token_generated_by_user_lifespan: Optional[pulumi.Input[str]] = None,
                  admin_theme: Optional[pulumi.Input[str]] = None,
-                 attributes: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 attributes: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  browser_flow: Optional[pulumi.Input[str]] = None,
                  client_authentication_flow: Optional[pulumi.Input[str]] = None,
                  client_session_idle_timeout: Optional[pulumi.Input[str]] = None,
@@ -996,11 +996,11 @@ class _RealmState:
 
     @property
     @pulumi.getter
-    def attributes(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def attributes(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         return pulumi.get(self, "attributes")
 
     @attributes.setter
-    def attributes(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def attributes(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "attributes", value)
 
     @property
@@ -1458,7 +1458,7 @@ class Realm(pulumi.CustomResource):
                  action_token_generated_by_admin_lifespan: Optional[pulumi.Input[str]] = None,
                  action_token_generated_by_user_lifespan: Optional[pulumi.Input[str]] = None,
                  admin_theme: Optional[pulumi.Input[str]] = None,
-                 attributes: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 attributes: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  browser_flow: Optional[pulumi.Input[str]] = None,
                  client_authentication_flow: Optional[pulumi.Input[str]] = None,
                  client_session_idle_timeout: Optional[pulumi.Input[str]] = None,
@@ -1553,7 +1553,7 @@ class Realm(pulumi.CustomResource):
                  action_token_generated_by_admin_lifespan: Optional[pulumi.Input[str]] = None,
                  action_token_generated_by_user_lifespan: Optional[pulumi.Input[str]] = None,
                  admin_theme: Optional[pulumi.Input[str]] = None,
-                 attributes: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 attributes: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  browser_flow: Optional[pulumi.Input[str]] = None,
                  client_authentication_flow: Optional[pulumi.Input[str]] = None,
                  client_session_idle_timeout: Optional[pulumi.Input[str]] = None,
@@ -1686,7 +1686,7 @@ class Realm(pulumi.CustomResource):
             action_token_generated_by_admin_lifespan: Optional[pulumi.Input[str]] = None,
             action_token_generated_by_user_lifespan: Optional[pulumi.Input[str]] = None,
             admin_theme: Optional[pulumi.Input[str]] = None,
-            attributes: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            attributes: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             browser_flow: Optional[pulumi.Input[str]] = None,
             client_authentication_flow: Optional[pulumi.Input[str]] = None,
             client_session_idle_timeout: Optional[pulumi.Input[str]] = None,
@@ -1860,7 +1860,7 @@ class Realm(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def attributes(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
+    def attributes(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         return pulumi.get(self, "attributes")
 
     @property

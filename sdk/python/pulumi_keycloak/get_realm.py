@@ -243,7 +243,7 @@ class GetRealmResult:
 
     @property
     @pulumi.getter
-    def attributes(self) -> Mapping[str, Any]:
+    def attributes(self) -> Mapping[str, str]:
         return pulumi.get(self, "attributes")
 
     @property
@@ -550,7 +550,7 @@ class AwaitableGetRealmResult(GetRealmResult):
             web_authn_policy=self.web_authn_policy)
 
 
-def get_realm(attributes: Optional[Mapping[str, Any]] = None,
+def get_realm(attributes: Optional[Mapping[str, str]] = None,
               default_default_client_scopes: Optional[Sequence[str]] = None,
               default_optional_client_scopes: Optional[Sequence[str]] = None,
               display_name_html: Optional[str] = None,
@@ -667,7 +667,7 @@ def get_realm(attributes: Optional[Mapping[str, Any]] = None,
 
 
 @_utilities.lift_output_func(get_realm)
-def get_realm_output(attributes: Optional[pulumi.Input[Optional[Mapping[str, Any]]]] = None,
+def get_realm_output(attributes: Optional[pulumi.Input[Optional[Mapping[str, str]]]] = None,
                      default_default_client_scopes: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                      default_optional_client_scopes: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                      display_name_html: Optional[pulumi.Input[Optional[str]]] = None,

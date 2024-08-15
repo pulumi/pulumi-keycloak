@@ -65,7 +65,7 @@ namespace Pulumi.Keycloak.Saml
         public Output<string> EncryptionCertificateSha1 { get; private set; } = null!;
 
         [Output("extraConfig")]
-        public Output<ImmutableDictionary<string, object>?> ExtraConfig { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>?> ExtraConfig { get; private set; } = null!;
 
         [Output("forceNameIdFormat")]
         public Output<bool?> ForceNameIdFormat { get; private set; } = null!;
@@ -219,10 +219,10 @@ namespace Pulumi.Keycloak.Saml
         public Input<string>? EncryptionCertificate { get; set; }
 
         [Input("extraConfig")]
-        private InputMap<object>? _extraConfig;
-        public InputMap<object> ExtraConfig
+        private InputMap<string>? _extraConfig;
+        public InputMap<string> ExtraConfig
         {
-            get => _extraConfig ?? (_extraConfig = new InputMap<object>());
+            get => _extraConfig ?? (_extraConfig = new InputMap<string>());
             set => _extraConfig = value;
         }
 
@@ -342,10 +342,10 @@ namespace Pulumi.Keycloak.Saml
         public Input<string>? EncryptionCertificateSha1 { get; set; }
 
         [Input("extraConfig")]
-        private InputMap<object>? _extraConfig;
-        public InputMap<object> ExtraConfig
+        private InputMap<string>? _extraConfig;
+        public InputMap<string> ExtraConfig
         {
-            get => _extraConfig ?? (_extraConfig = new InputMap<object>());
+            get => _extraConfig ?? (_extraConfig = new InputMap<string>());
             set => _extraConfig = value;
         }
 

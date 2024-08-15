@@ -10,7 +10,6 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.keycloak.Utilities;
 import com.pulumi.keycloak.ldap.CustomMapperArgs;
 import com.pulumi.keycloak.ldap.inputs.CustomMapperState;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Optional;
@@ -113,14 +112,14 @@ public class CustomMapper extends com.pulumi.resources.CustomResource {
      * A map with key / value pairs for configuring the LDAP mapper. The supported keys depend on the protocol mapper.
      * 
      */
-    @Export(name="config", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
-    private Output</* @Nullable */ Map<String,Object>> config;
+    @Export(name="config", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output</* @Nullable */ Map<String,String>> config;
 
     /**
      * @return A map with key / value pairs for configuring the LDAP mapper. The supported keys depend on the protocol mapper.
      * 
      */
-    public Output<Optional<Map<String,Object>>> config() {
+    public Output<Optional<Map<String,String>>> config() {
         return Codegen.optional(this.config);
     }
     /**

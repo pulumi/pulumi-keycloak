@@ -62,8 +62,8 @@ import (
 //				Name:                  pulumi.String("hardcodedRole"),
 //				IdentityProviderAlias: oidc.Alias,
 //				Role:                  pulumi.String("my-realm-role"),
-//				ExtraConfig: pulumi.Map{
-//					"syncMode": pulumi.Any("INHERIT"),
+//				ExtraConfig: pulumi.StringMap{
+//					"syncMode": pulumi.String("INHERIT"),
 //				},
 //			})
 //			if err != nil {
@@ -77,7 +77,7 @@ import (
 type HardcodedRoleIdentityMapper struct {
 	pulumi.CustomResourceState
 
-	ExtraConfig pulumi.MapOutput `pulumi:"extraConfig"`
+	ExtraConfig pulumi.StringMapOutput `pulumi:"extraConfig"`
 	// The IDP alias of the attribute to set.
 	IdentityProviderAlias pulumi.StringOutput `pulumi:"identityProviderAlias"`
 	// Display name of this mapper when displayed in the console.
@@ -124,7 +124,7 @@ func GetHardcodedRoleIdentityMapper(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering HardcodedRoleIdentityMapper resources.
 type hardcodedRoleIdentityMapperState struct {
-	ExtraConfig map[string]interface{} `pulumi:"extraConfig"`
+	ExtraConfig map[string]string `pulumi:"extraConfig"`
 	// The IDP alias of the attribute to set.
 	IdentityProviderAlias *string `pulumi:"identityProviderAlias"`
 	// Display name of this mapper when displayed in the console.
@@ -136,7 +136,7 @@ type hardcodedRoleIdentityMapperState struct {
 }
 
 type HardcodedRoleIdentityMapperState struct {
-	ExtraConfig pulumi.MapInput
+	ExtraConfig pulumi.StringMapInput
 	// The IDP alias of the attribute to set.
 	IdentityProviderAlias pulumi.StringPtrInput
 	// Display name of this mapper when displayed in the console.
@@ -152,7 +152,7 @@ func (HardcodedRoleIdentityMapperState) ElementType() reflect.Type {
 }
 
 type hardcodedRoleIdentityMapperArgs struct {
-	ExtraConfig map[string]interface{} `pulumi:"extraConfig"`
+	ExtraConfig map[string]string `pulumi:"extraConfig"`
 	// The IDP alias of the attribute to set.
 	IdentityProviderAlias string `pulumi:"identityProviderAlias"`
 	// Display name of this mapper when displayed in the console.
@@ -165,7 +165,7 @@ type hardcodedRoleIdentityMapperArgs struct {
 
 // The set of arguments for constructing a HardcodedRoleIdentityMapper resource.
 type HardcodedRoleIdentityMapperArgs struct {
-	ExtraConfig pulumi.MapInput
+	ExtraConfig pulumi.StringMapInput
 	// The IDP alias of the attribute to set.
 	IdentityProviderAlias pulumi.StringInput
 	// Display name of this mapper when displayed in the console.
@@ -263,8 +263,8 @@ func (o HardcodedRoleIdentityMapperOutput) ToHardcodedRoleIdentityMapperOutputWi
 	return o
 }
 
-func (o HardcodedRoleIdentityMapperOutput) ExtraConfig() pulumi.MapOutput {
-	return o.ApplyT(func(v *HardcodedRoleIdentityMapper) pulumi.MapOutput { return v.ExtraConfig }).(pulumi.MapOutput)
+func (o HardcodedRoleIdentityMapperOutput) ExtraConfig() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *HardcodedRoleIdentityMapper) pulumi.StringMapOutput { return v.ExtraConfig }).(pulumi.StringMapOutput)
 }
 
 // The IDP alias of the attribute to set.

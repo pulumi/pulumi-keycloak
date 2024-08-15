@@ -83,7 +83,7 @@ export class AttributeImporterIdentityProviderMapper extends pulumi.CustomResour
      * Claim Name
      */
     public readonly claimName!: pulumi.Output<string | undefined>;
-    public readonly extraConfig!: pulumi.Output<{[key: string]: any} | undefined>;
+    public readonly extraConfig!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * IDP Alias
      */
@@ -163,7 +163,7 @@ export interface AttributeImporterIdentityProviderMapperState {
      * Claim Name
      */
     claimName?: pulumi.Input<string>;
-    extraConfig?: pulumi.Input<{[key: string]: any}>;
+    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * IDP Alias
      */
@@ -198,7 +198,7 @@ export interface AttributeImporterIdentityProviderMapperArgs {
      * Claim Name
      */
     claimName?: pulumi.Input<string>;
-    extraConfig?: pulumi.Input<{[key: string]: any}>;
+    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * IDP Alias
      */

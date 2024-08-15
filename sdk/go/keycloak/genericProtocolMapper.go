@@ -56,11 +56,11 @@ import (
 //				Name:           pulumi.String("test-mapper"),
 //				Protocol:       pulumi.String("saml"),
 //				ProtocolMapper: pulumi.String("saml-hardcode-attribute-mapper"),
-//				Config: pulumi.Map{
-//					"attribute.name":       pulumi.Any("name"),
-//					"attribute.nameformat": pulumi.Any("Basic"),
-//					"attribute.value":      pulumi.Any("value"),
-//					"friendly.name":        pulumi.Any("display name"),
+//				Config: pulumi.StringMap{
+//					"attribute.name":       pulumi.String("name"),
+//					"attribute.nameformat": pulumi.String("Basic"),
+//					"attribute.value":      pulumi.String("value"),
+//					"friendly.name":        pulumi.String("display name"),
 //				},
 //			})
 //			if err != nil {
@@ -91,7 +91,7 @@ type GenericProtocolMapper struct {
 	// The ID of the client scope this protocol mapper should be added to. Conflicts with `clientId`. This argument is required if `clientId` is not set.
 	ClientScopeId pulumi.StringPtrOutput `pulumi:"clientScopeId"`
 	// A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
-	Config pulumi.MapOutput `pulumi:"config"`
+	Config pulumi.StringMapOutput `pulumi:"config"`
 	// The display name of this protocol mapper in the GUI.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
@@ -149,7 +149,7 @@ type genericProtocolMapperState struct {
 	// The ID of the client scope this protocol mapper should be added to. Conflicts with `clientId`. This argument is required if `clientId` is not set.
 	ClientScopeId *string `pulumi:"clientScopeId"`
 	// A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
-	Config map[string]interface{} `pulumi:"config"`
+	Config map[string]string `pulumi:"config"`
 	// The display name of this protocol mapper in the GUI.
 	Name *string `pulumi:"name"`
 	// The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
@@ -166,7 +166,7 @@ type GenericProtocolMapperState struct {
 	// The ID of the client scope this protocol mapper should be added to. Conflicts with `clientId`. This argument is required if `clientId` is not set.
 	ClientScopeId pulumi.StringPtrInput
 	// A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
-	Config pulumi.MapInput
+	Config pulumi.StringMapInput
 	// The display name of this protocol mapper in the GUI.
 	Name pulumi.StringPtrInput
 	// The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
@@ -187,7 +187,7 @@ type genericProtocolMapperArgs struct {
 	// The ID of the client scope this protocol mapper should be added to. Conflicts with `clientId`. This argument is required if `clientId` is not set.
 	ClientScopeId *string `pulumi:"clientScopeId"`
 	// A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
-	Config map[string]interface{} `pulumi:"config"`
+	Config map[string]string `pulumi:"config"`
 	// The display name of this protocol mapper in the GUI.
 	Name *string `pulumi:"name"`
 	// The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
@@ -205,7 +205,7 @@ type GenericProtocolMapperArgs struct {
 	// The ID of the client scope this protocol mapper should be added to. Conflicts with `clientId`. This argument is required if `clientId` is not set.
 	ClientScopeId pulumi.StringPtrInput
 	// A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
-	Config pulumi.MapInput
+	Config pulumi.StringMapInput
 	// The display name of this protocol mapper in the GUI.
 	Name pulumi.StringPtrInput
 	// The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
@@ -314,8 +314,8 @@ func (o GenericProtocolMapperOutput) ClientScopeId() pulumi.StringPtrOutput {
 }
 
 // A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
-func (o GenericProtocolMapperOutput) Config() pulumi.MapOutput {
-	return o.ApplyT(func(v *GenericProtocolMapper) pulumi.MapOutput { return v.Config }).(pulumi.MapOutput)
+func (o GenericProtocolMapperOutput) Config() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *GenericProtocolMapper) pulumi.StringMapOutput { return v.Config }).(pulumi.StringMapOutput)
 }
 
 // The display name of this protocol mapper in the GUI.

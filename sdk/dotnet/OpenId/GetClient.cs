@@ -117,10 +117,10 @@ namespace Pulumi.Keycloak.OpenId
         public bool? DisplayOnConsentScreen { get; set; }
 
         [Input("extraConfig")]
-        private Dictionary<string, object>? _extraConfig;
-        public Dictionary<string, object> ExtraConfig
+        private Dictionary<string, string>? _extraConfig;
+        public Dictionary<string, string> ExtraConfig
         {
-            get => _extraConfig ?? (_extraConfig = new Dictionary<string, object>());
+            get => _extraConfig ?? (_extraConfig = new Dictionary<string, string>());
             set => _extraConfig = value;
         }
 
@@ -154,10 +154,10 @@ namespace Pulumi.Keycloak.OpenId
         public Input<bool>? DisplayOnConsentScreen { get; set; }
 
         [Input("extraConfig")]
-        private InputMap<object>? _extraConfig;
-        public InputMap<object> ExtraConfig
+        private InputMap<string>? _extraConfig;
+        public InputMap<string> ExtraConfig
         {
-            get => _extraConfig ?? (_extraConfig = new InputMap<object>());
+            get => _extraConfig ?? (_extraConfig = new InputMap<string>());
             set => _extraConfig = value;
         }
 
@@ -206,7 +206,7 @@ namespace Pulumi.Keycloak.OpenId
         public readonly bool? DisplayOnConsentScreen;
         public readonly bool Enabled;
         public readonly bool ExcludeSessionStateFromAuthResponse;
-        public readonly ImmutableDictionary<string, object> ExtraConfig;
+        public readonly ImmutableDictionary<string, string> ExtraConfig;
         public readonly bool FrontchannelLogoutEnabled;
         public readonly string FrontchannelLogoutUrl;
         public readonly bool FullScopeAllowed;
@@ -281,7 +281,7 @@ namespace Pulumi.Keycloak.OpenId
 
             bool excludeSessionStateFromAuthResponse,
 
-            ImmutableDictionary<string, object> extraConfig,
+            ImmutableDictionary<string, string> extraConfig,
 
             bool frontchannelLogoutEnabled,
 

@@ -51,10 +51,10 @@ import (
 //				Name:                   pulumi.String("email-attribute-importer"),
 //				IdentityProviderAlias:  oidc.Alias,
 //				IdentityProviderMapper: pulumi.String("%s-user-attribute-idp-mapper"),
-//				ExtraConfig: pulumi.Map{
-//					"syncMode":      pulumi.Any("INHERIT"),
-//					"Claim":         pulumi.Any("my-email-claim"),
-//					"UserAttribute": pulumi.Any("email"),
+//				ExtraConfig: pulumi.StringMap{
+//					"syncMode":      pulumi.String("INHERIT"),
+//					"Claim":         pulumi.String("my-email-claim"),
+//					"UserAttribute": pulumi.String("email"),
 //				},
 //			})
 //			if err != nil {
@@ -83,7 +83,7 @@ type CustomIdentityProviderMapping struct {
 	pulumi.CustomResourceState
 
 	// Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
-	ExtraConfig pulumi.MapOutput `pulumi:"extraConfig"`
+	ExtraConfig pulumi.StringMapOutput `pulumi:"extraConfig"`
 	// The alias of the associated identity provider.
 	IdentityProviderAlias pulumi.StringOutput `pulumi:"identityProviderAlias"`
 	// The type of the identity provider mapper. This can be a format string that includes a `%s` - this will be replaced by the provider id.
@@ -134,7 +134,7 @@ func GetCustomIdentityProviderMapping(ctx *pulumi.Context,
 // Input properties used for looking up and filtering CustomIdentityProviderMapping resources.
 type customIdentityProviderMappingState struct {
 	// Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
-	ExtraConfig map[string]interface{} `pulumi:"extraConfig"`
+	ExtraConfig map[string]string `pulumi:"extraConfig"`
 	// The alias of the associated identity provider.
 	IdentityProviderAlias *string `pulumi:"identityProviderAlias"`
 	// The type of the identity provider mapper. This can be a format string that includes a `%s` - this will be replaced by the provider id.
@@ -147,7 +147,7 @@ type customIdentityProviderMappingState struct {
 
 type CustomIdentityProviderMappingState struct {
 	// Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
-	ExtraConfig pulumi.MapInput
+	ExtraConfig pulumi.StringMapInput
 	// The alias of the associated identity provider.
 	IdentityProviderAlias pulumi.StringPtrInput
 	// The type of the identity provider mapper. This can be a format string that includes a `%s` - this will be replaced by the provider id.
@@ -164,7 +164,7 @@ func (CustomIdentityProviderMappingState) ElementType() reflect.Type {
 
 type customIdentityProviderMappingArgs struct {
 	// Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
-	ExtraConfig map[string]interface{} `pulumi:"extraConfig"`
+	ExtraConfig map[string]string `pulumi:"extraConfig"`
 	// The alias of the associated identity provider.
 	IdentityProviderAlias string `pulumi:"identityProviderAlias"`
 	// The type of the identity provider mapper. This can be a format string that includes a `%s` - this will be replaced by the provider id.
@@ -178,7 +178,7 @@ type customIdentityProviderMappingArgs struct {
 // The set of arguments for constructing a CustomIdentityProviderMapping resource.
 type CustomIdentityProviderMappingArgs struct {
 	// Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
-	ExtraConfig pulumi.MapInput
+	ExtraConfig pulumi.StringMapInput
 	// The alias of the associated identity provider.
 	IdentityProviderAlias pulumi.StringInput
 	// The type of the identity provider mapper. This can be a format string that includes a `%s` - this will be replaced by the provider id.
@@ -277,8 +277,8 @@ func (o CustomIdentityProviderMappingOutput) ToCustomIdentityProviderMappingOutp
 }
 
 // Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
-func (o CustomIdentityProviderMappingOutput) ExtraConfig() pulumi.MapOutput {
-	return o.ApplyT(func(v *CustomIdentityProviderMapping) pulumi.MapOutput { return v.ExtraConfig }).(pulumi.MapOutput)
+func (o CustomIdentityProviderMappingOutput) ExtraConfig() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *CustomIdentityProviderMapping) pulumi.StringMapOutput { return v.ExtraConfig }).(pulumi.StringMapOutput)
 }
 
 // The alias of the associated identity provider.

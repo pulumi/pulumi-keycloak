@@ -7,7 +7,6 @@ import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.keycloak.saml.outputs.GetClientAuthenticationFlowBindingOverride;
 import java.lang.Boolean;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -27,7 +26,7 @@ public final class GetClientResult {
     private Boolean encryptAssertions;
     private String encryptionCertificate;
     private String encryptionCertificateSha1;
-    private Map<String,Object> extraConfig;
+    private Map<String,String> extraConfig;
     private Boolean forceNameIdFormat;
     private Boolean forcePostBinding;
     private Boolean frontChannelLogout;
@@ -96,7 +95,7 @@ public final class GetClientResult {
     public String encryptionCertificateSha1() {
         return this.encryptionCertificateSha1;
     }
-    public Map<String,Object> extraConfig() {
+    public Map<String,String> extraConfig() {
         return this.extraConfig;
     }
     public Boolean forceNameIdFormat() {
@@ -203,7 +202,7 @@ public final class GetClientResult {
         private Boolean encryptAssertions;
         private String encryptionCertificate;
         private String encryptionCertificateSha1;
-        private Map<String,Object> extraConfig;
+        private Map<String,String> extraConfig;
         private Boolean forceNameIdFormat;
         private Boolean forcePostBinding;
         private Boolean frontChannelLogout;
@@ -374,7 +373,7 @@ public final class GetClientResult {
             return this;
         }
         @CustomType.Setter
-        public Builder extraConfig(Map<String,Object> extraConfig) {
+        public Builder extraConfig(Map<String,String> extraConfig) {
             if (extraConfig == null) {
               throw new MissingRequiredPropertyException("GetClientResult", "extraConfig");
             }

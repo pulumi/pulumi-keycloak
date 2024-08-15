@@ -7,7 +7,6 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -200,9 +199,9 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
     }
 
     @Import(name="extraConfig")
-    private @Nullable Output<Map<String,Object>> extraConfig;
+    private @Nullable Output<Map<String,String>> extraConfig;
 
-    public Optional<Output<Map<String,Object>>> extraConfig() {
+    public Optional<Output<Map<String,String>>> extraConfig() {
         return Optional.ofNullable(this.extraConfig);
     }
 
@@ -782,12 +781,12 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
             return enabled(Output.of(enabled));
         }
 
-        public Builder extraConfig(@Nullable Output<Map<String,Object>> extraConfig) {
+        public Builder extraConfig(@Nullable Output<Map<String,String>> extraConfig) {
             $.extraConfig = extraConfig;
             return this;
         }
 
-        public Builder extraConfig(Map<String,Object> extraConfig) {
+        public Builder extraConfig(Map<String,String> extraConfig) {
             return extraConfig(Output.of(extraConfig));
         }
 

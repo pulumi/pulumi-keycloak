@@ -81,7 +81,7 @@ export class CustomUserFederation extends pulumi.CustomResource {
      * sync.
      */
     public readonly changedSyncPeriod!: pulumi.Output<number | undefined>;
-    public readonly config!: pulumi.Output<{[key: string]: any} | undefined>;
+    public readonly config!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * When false, this provider will not be used when performing queries for users.
      */
@@ -169,7 +169,7 @@ export interface CustomUserFederationState {
      * sync.
      */
     changedSyncPeriod?: pulumi.Input<number>;
-    config?: pulumi.Input<{[key: string]: any}>;
+    config?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * When false, this provider will not be used when performing queries for users.
      */
@@ -211,7 +211,7 @@ export interface CustomUserFederationArgs {
      * sync.
      */
     changedSyncPeriod?: pulumi.Input<number>;
-    config?: pulumi.Input<{[key: string]: any}>;
+    config?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * When false, this provider will not be used when performing queries for users.
      */

@@ -65,8 +65,8 @@ import (
 //				Role:                  pulumi.String("my-realm-role"),
 //				ClaimName:             pulumi.String("my-claim"),
 //				ClaimValue:            pulumi.String("my-value"),
-//				ExtraConfig: pulumi.Map{
-//					"syncMode": pulumi.Any("INHERIT"),
+//				ExtraConfig: pulumi.StringMap{
+//					"syncMode": pulumi.String("INHERIT"),
 //				},
 //			})
 //			if err != nil {
@@ -105,7 +105,7 @@ type AttributeToRoleIdentityMapper struct {
 	// OIDC Claim Value
 	ClaimValue pulumi.StringPtrOutput `pulumi:"claimValue"`
 	// Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
-	ExtraConfig pulumi.MapOutput `pulumi:"extraConfig"`
+	ExtraConfig pulumi.StringMapOutput `pulumi:"extraConfig"`
 	// The alias of the associated identity provider.
 	IdentityProviderAlias pulumi.StringOutput `pulumi:"identityProviderAlias"`
 	// The name of the mapper.
@@ -166,7 +166,7 @@ type attributeToRoleIdentityMapperState struct {
 	// OIDC Claim Value
 	ClaimValue *string `pulumi:"claimValue"`
 	// Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
-	ExtraConfig map[string]interface{} `pulumi:"extraConfig"`
+	ExtraConfig map[string]string `pulumi:"extraConfig"`
 	// The alias of the associated identity provider.
 	IdentityProviderAlias *string `pulumi:"identityProviderAlias"`
 	// The name of the mapper.
@@ -189,7 +189,7 @@ type AttributeToRoleIdentityMapperState struct {
 	// OIDC Claim Value
 	ClaimValue pulumi.StringPtrInput
 	// Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
-	ExtraConfig pulumi.MapInput
+	ExtraConfig pulumi.StringMapInput
 	// The alias of the associated identity provider.
 	IdentityProviderAlias pulumi.StringPtrInput
 	// The name of the mapper.
@@ -216,7 +216,7 @@ type attributeToRoleIdentityMapperArgs struct {
 	// OIDC Claim Value
 	ClaimValue *string `pulumi:"claimValue"`
 	// Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
-	ExtraConfig map[string]interface{} `pulumi:"extraConfig"`
+	ExtraConfig map[string]string `pulumi:"extraConfig"`
 	// The alias of the associated identity provider.
 	IdentityProviderAlias string `pulumi:"identityProviderAlias"`
 	// The name of the mapper.
@@ -240,7 +240,7 @@ type AttributeToRoleIdentityMapperArgs struct {
 	// OIDC Claim Value
 	ClaimValue pulumi.StringPtrInput
 	// Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
-	ExtraConfig pulumi.MapInput
+	ExtraConfig pulumi.StringMapInput
 	// The alias of the associated identity provider.
 	IdentityProviderAlias pulumi.StringInput
 	// The name of the mapper.
@@ -364,8 +364,8 @@ func (o AttributeToRoleIdentityMapperOutput) ClaimValue() pulumi.StringPtrOutput
 }
 
 // Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
-func (o AttributeToRoleIdentityMapperOutput) ExtraConfig() pulumi.MapOutput {
-	return o.ApplyT(func(v *AttributeToRoleIdentityMapper) pulumi.MapOutput { return v.ExtraConfig }).(pulumi.MapOutput)
+func (o AttributeToRoleIdentityMapperOutput) ExtraConfig() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *AttributeToRoleIdentityMapper) pulumi.StringMapOutput { return v.ExtraConfig }).(pulumi.StringMapOutput)
 }
 
 // The alias of the associated identity provider.

@@ -158,7 +158,7 @@ export class Role extends pulumi.CustomResource {
         return obj['__pulumiType'] === Role.__pulumiType;
     }
 
-    public readonly attributes!: pulumi.Output<{[key: string]: any} | undefined>;
+    public readonly attributes!: pulumi.Output<{[key: string]: string} | undefined>;
     public readonly clientId!: pulumi.Output<string | undefined>;
     public readonly compositeRoles!: pulumi.Output<string[] | undefined>;
     public readonly description!: pulumi.Output<string | undefined>;
@@ -205,7 +205,7 @@ export class Role extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Role resources.
  */
 export interface RoleState {
-    attributes?: pulumi.Input<{[key: string]: any}>;
+    attributes?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     clientId?: pulumi.Input<string>;
     compositeRoles?: pulumi.Input<pulumi.Input<string>[]>;
     description?: pulumi.Input<string>;
@@ -217,7 +217,7 @@ export interface RoleState {
  * The set of arguments for constructing a Role resource.
  */
 export interface RoleArgs {
-    attributes?: pulumi.Input<{[key: string]: any}>;
+    attributes?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     clientId?: pulumi.Input<string>;
     compositeRoles?: pulumi.Input<pulumi.Input<string>[]>;
     description?: pulumi.Input<string>;

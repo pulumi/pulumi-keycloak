@@ -116,7 +116,7 @@ namespace Pulumi.Keycloak
         /// Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
         /// </summary>
         [Output("extraConfig")]
-        public Output<ImmutableDictionary<string, object>?> ExtraConfig { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>?> ExtraConfig { get; private set; } = null!;
 
         /// <summary>
         /// The alias of the associated identity provider.
@@ -219,14 +219,14 @@ namespace Pulumi.Keycloak
         public Input<string>? ClaimValue { get; set; }
 
         [Input("extraConfig")]
-        private InputMap<object>? _extraConfig;
+        private InputMap<string>? _extraConfig;
 
         /// <summary>
         /// Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
         /// </summary>
-        public InputMap<object> ExtraConfig
+        public InputMap<string> ExtraConfig
         {
-            get => _extraConfig ?? (_extraConfig = new InputMap<object>());
+            get => _extraConfig ?? (_extraConfig = new InputMap<string>());
             set => _extraConfig = value;
         }
 
@@ -293,14 +293,14 @@ namespace Pulumi.Keycloak
         public Input<string>? ClaimValue { get; set; }
 
         [Input("extraConfig")]
-        private InputMap<object>? _extraConfig;
+        private InputMap<string>? _extraConfig;
 
         /// <summary>
         /// Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
         /// </summary>
-        public InputMap<object> ExtraConfig
+        public InputMap<string> ExtraConfig
         {
-            get => _extraConfig ?? (_extraConfig = new InputMap<object>());
+            get => _extraConfig ?? (_extraConfig = new InputMap<string>());
             set => _extraConfig = value;
         }
 

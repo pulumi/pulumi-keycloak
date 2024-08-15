@@ -6,7 +6,6 @@ package com.pulumi.keycloak;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -19,9 +18,9 @@ public final class GroupArgs extends com.pulumi.resources.ResourceArgs {
     public static final GroupArgs Empty = new GroupArgs();
 
     @Import(name="attributes")
-    private @Nullable Output<Map<String,Object>> attributes;
+    private @Nullable Output<Map<String,String>> attributes;
 
-    public Optional<Output<Map<String,Object>>> attributes() {
+    public Optional<Output<Map<String,String>>> attributes() {
         return Optional.ofNullable(this.attributes);
     }
 
@@ -73,12 +72,12 @@ public final class GroupArgs extends com.pulumi.resources.ResourceArgs {
             $ = new GroupArgs(Objects.requireNonNull(defaults));
         }
 
-        public Builder attributes(@Nullable Output<Map<String,Object>> attributes) {
+        public Builder attributes(@Nullable Output<Map<String,String>> attributes) {
             $.attributes = attributes;
             return this;
         }
 
-        public Builder attributes(Map<String,Object> attributes) {
+        public Builder attributes(Map<String,String> attributes) {
             return attributes(Output.of(attributes));
         }
 

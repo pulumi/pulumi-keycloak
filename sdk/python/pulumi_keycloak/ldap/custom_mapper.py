@@ -18,7 +18,7 @@ class CustomMapperArgs:
                  provider_id: pulumi.Input[str],
                  provider_type: pulumi.Input[str],
                  realm_id: pulumi.Input[str],
-                 config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a CustomMapper resource.
@@ -26,7 +26,7 @@ class CustomMapperArgs:
         :param pulumi.Input[str] provider_id: The id of the LDAP mapper implemented in MapperFactory.
         :param pulumi.Input[str] provider_type: The fully-qualified Java class name of the custom LDAP mapper.
         :param pulumi.Input[str] realm_id: The realm that this LDAP mapper will exist in.
-        :param pulumi.Input[Mapping[str, Any]] config: A map with key / value pairs for configuring the LDAP mapper. The supported keys depend on the protocol mapper.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] config: A map with key / value pairs for configuring the LDAP mapper. The supported keys depend on the protocol mapper.
         :param pulumi.Input[str] name: Display name of this mapper when displayed in the console.
         """
         pulumi.set(__self__, "ldap_user_federation_id", ldap_user_federation_id)
@@ -88,14 +88,14 @@ class CustomMapperArgs:
 
     @property
     @pulumi.getter
-    def config(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         A map with key / value pairs for configuring the LDAP mapper. The supported keys depend on the protocol mapper.
         """
         return pulumi.get(self, "config")
 
     @config.setter
-    def config(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def config(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "config", value)
 
     @property
@@ -114,7 +114,7 @@ class CustomMapperArgs:
 @pulumi.input_type
 class _CustomMapperState:
     def __init__(__self__, *,
-                 config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  ldap_user_federation_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  provider_id: Optional[pulumi.Input[str]] = None,
@@ -122,7 +122,7 @@ class _CustomMapperState:
                  realm_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering CustomMapper resources.
-        :param pulumi.Input[Mapping[str, Any]] config: A map with key / value pairs for configuring the LDAP mapper. The supported keys depend on the protocol mapper.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] config: A map with key / value pairs for configuring the LDAP mapper. The supported keys depend on the protocol mapper.
         :param pulumi.Input[str] ldap_user_federation_id: The ID of the LDAP user federation provider to attach this mapper to.
         :param pulumi.Input[str] name: Display name of this mapper when displayed in the console.
         :param pulumi.Input[str] provider_id: The id of the LDAP mapper implemented in MapperFactory.
@@ -144,14 +144,14 @@ class _CustomMapperState:
 
     @property
     @pulumi.getter
-    def config(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         A map with key / value pairs for configuring the LDAP mapper. The supported keys depend on the protocol mapper.
         """
         return pulumi.get(self, "config")
 
     @config.setter
-    def config(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def config(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "config", value)
 
     @property
@@ -220,7 +220,7 @@ class CustomMapper(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  ldap_user_federation_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  provider_id: Optional[pulumi.Input[str]] = None,
@@ -287,7 +287,7 @@ class CustomMapper(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Mapping[str, Any]] config: A map with key / value pairs for configuring the LDAP mapper. The supported keys depend on the protocol mapper.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] config: A map with key / value pairs for configuring the LDAP mapper. The supported keys depend on the protocol mapper.
         :param pulumi.Input[str] ldap_user_federation_id: The ID of the LDAP user federation provider to attach this mapper to.
         :param pulumi.Input[str] name: Display name of this mapper when displayed in the console.
         :param pulumi.Input[str] provider_id: The id of the LDAP mapper implemented in MapperFactory.
@@ -373,7 +373,7 @@ class CustomMapper(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  ldap_user_federation_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  provider_id: Optional[pulumi.Input[str]] = None,
@@ -412,7 +412,7 @@ class CustomMapper(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             ldap_user_federation_id: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             provider_id: Optional[pulumi.Input[str]] = None,
@@ -425,7 +425,7 @@ class CustomMapper(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Mapping[str, Any]] config: A map with key / value pairs for configuring the LDAP mapper. The supported keys depend on the protocol mapper.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] config: A map with key / value pairs for configuring the LDAP mapper. The supported keys depend on the protocol mapper.
         :param pulumi.Input[str] ldap_user_federation_id: The ID of the LDAP user federation provider to attach this mapper to.
         :param pulumi.Input[str] name: Display name of this mapper when displayed in the console.
         :param pulumi.Input[str] provider_id: The id of the LDAP mapper implemented in MapperFactory.
@@ -446,7 +446,7 @@ class CustomMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def config(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
+    def config(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
         A map with key / value pairs for configuring the LDAP mapper. The supported keys depend on the protocol mapper.
         """

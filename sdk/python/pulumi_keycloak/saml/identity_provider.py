@@ -26,7 +26,7 @@ class IdentityProviderArgs:
                  backchannel_supported: Optional[pulumi.Input[bool]] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
-                 extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  first_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
                  force_authn: Optional[pulumi.Input[bool]] = None,
                  gui_order: Optional[pulumi.Input[str]] = None,
@@ -312,11 +312,11 @@ class IdentityProviderArgs:
 
     @property
     @pulumi.getter(name="extraConfig")
-    def extra_config(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def extra_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         return pulumi.get(self, "extra_config")
 
     @extra_config.setter
-    def extra_config(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def extra_config(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "extra_config", value)
 
     @property
@@ -626,7 +626,7 @@ class _IdentityProviderState:
                  display_name: Optional[pulumi.Input[str]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
                  entity_id: Optional[pulumi.Input[str]] = None,
-                 extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  first_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
                  force_authn: Optional[pulumi.Input[bool]] = None,
                  gui_order: Optional[pulumi.Input[str]] = None,
@@ -898,11 +898,11 @@ class _IdentityProviderState:
 
     @property
     @pulumi.getter(name="extraConfig")
-    def extra_config(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def extra_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         return pulumi.get(self, "extra_config")
 
     @extra_config.setter
-    def extra_config(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def extra_config(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "extra_config", value)
 
     @property
@@ -1250,7 +1250,7 @@ class IdentityProvider(pulumi.CustomResource):
                  display_name: Optional[pulumi.Input[str]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
                  entity_id: Optional[pulumi.Input[str]] = None,
-                 extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  first_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
                  force_authn: Optional[pulumi.Input[bool]] = None,
                  gui_order: Optional[pulumi.Input[str]] = None,
@@ -1487,7 +1487,7 @@ class IdentityProvider(pulumi.CustomResource):
                  display_name: Optional[pulumi.Input[str]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
                  entity_id: Optional[pulumi.Input[str]] = None,
-                 extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  first_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
                  force_authn: Optional[pulumi.Input[bool]] = None,
                  gui_order: Optional[pulumi.Input[str]] = None,
@@ -1589,7 +1589,7 @@ class IdentityProvider(pulumi.CustomResource):
             display_name: Optional[pulumi.Input[str]] = None,
             enabled: Optional[pulumi.Input[bool]] = None,
             entity_id: Optional[pulumi.Input[str]] = None,
-            extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             first_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
             force_authn: Optional[pulumi.Input[bool]] = None,
             gui_order: Optional[pulumi.Input[str]] = None,
@@ -1793,7 +1793,7 @@ class IdentityProvider(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="extraConfig")
-    def extra_config(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
+    def extra_config(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         return pulumi.get(self, "extra_config")
 
     @property

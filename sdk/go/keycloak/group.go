@@ -65,9 +65,9 @@ import (
 //				RealmId:  realm.ID(),
 //				ParentId: parentGroup.ID(),
 //				Name:     pulumi.String("child-group-with-optional-attributes"),
-//				Attributes: pulumi.Map{
-//					"key1": pulumi.Any("value1"),
-//					"key2": pulumi.Any("value2"),
+//				Attributes: pulumi.StringMap{
+//					"key1": pulumi.String("value1"),
+//					"key2": pulumi.String("value2"),
 //				},
 //			})
 //			if err != nil {
@@ -103,7 +103,7 @@ import (
 type Group struct {
 	pulumi.CustomResourceState
 
-	Attributes pulumi.MapOutput       `pulumi:"attributes"`
+	Attributes pulumi.StringMapOutput `pulumi:"attributes"`
 	Name       pulumi.StringOutput    `pulumi:"name"`
 	ParentId   pulumi.StringPtrOutput `pulumi:"parentId"`
 	Path       pulumi.StringOutput    `pulumi:"path"`
@@ -143,15 +143,15 @@ func GetGroup(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Group resources.
 type groupState struct {
-	Attributes map[string]interface{} `pulumi:"attributes"`
-	Name       *string                `pulumi:"name"`
-	ParentId   *string                `pulumi:"parentId"`
-	Path       *string                `pulumi:"path"`
-	RealmId    *string                `pulumi:"realmId"`
+	Attributes map[string]string `pulumi:"attributes"`
+	Name       *string           `pulumi:"name"`
+	ParentId   *string           `pulumi:"parentId"`
+	Path       *string           `pulumi:"path"`
+	RealmId    *string           `pulumi:"realmId"`
 }
 
 type GroupState struct {
-	Attributes pulumi.MapInput
+	Attributes pulumi.StringMapInput
 	Name       pulumi.StringPtrInput
 	ParentId   pulumi.StringPtrInput
 	Path       pulumi.StringPtrInput
@@ -163,15 +163,15 @@ func (GroupState) ElementType() reflect.Type {
 }
 
 type groupArgs struct {
-	Attributes map[string]interface{} `pulumi:"attributes"`
-	Name       *string                `pulumi:"name"`
-	ParentId   *string                `pulumi:"parentId"`
-	RealmId    string                 `pulumi:"realmId"`
+	Attributes map[string]string `pulumi:"attributes"`
+	Name       *string           `pulumi:"name"`
+	ParentId   *string           `pulumi:"parentId"`
+	RealmId    string            `pulumi:"realmId"`
 }
 
 // The set of arguments for constructing a Group resource.
 type GroupArgs struct {
-	Attributes pulumi.MapInput
+	Attributes pulumi.StringMapInput
 	Name       pulumi.StringPtrInput
 	ParentId   pulumi.StringPtrInput
 	RealmId    pulumi.StringInput
@@ -264,8 +264,8 @@ func (o GroupOutput) ToGroupOutputWithContext(ctx context.Context) GroupOutput {
 	return o
 }
 
-func (o GroupOutput) Attributes() pulumi.MapOutput {
-	return o.ApplyT(func(v *Group) pulumi.MapOutput { return v.Attributes }).(pulumi.MapOutput)
+func (o GroupOutput) Attributes() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *Group) pulumi.StringMapOutput { return v.Attributes }).(pulumi.StringMapOutput)
 }
 
 func (o GroupOutput) Name() pulumi.StringOutput {

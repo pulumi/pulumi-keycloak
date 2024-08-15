@@ -6,7 +6,6 @@ package com.pulumi.keycloak;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -49,9 +48,9 @@ public final class GenericClientProtocolMapperArgs extends com.pulumi.resources.
     }
 
     @Import(name="config", required=true)
-    private Output<Map<String,Object>> config;
+    private Output<Map<String,String>> config;
 
-    public Output<Map<String,Object>> config() {
+    public Output<Map<String,String>> config() {
         return this.config;
     }
 
@@ -187,12 +186,12 @@ public final class GenericClientProtocolMapperArgs extends com.pulumi.resources.
             return clientScopeId(Output.of(clientScopeId));
         }
 
-        public Builder config(Output<Map<String,Object>> config) {
+        public Builder config(Output<Map<String,String>> config) {
             $.config = config;
             return this;
         }
 
-        public Builder config(Map<String,Object> config) {
+        public Builder config(Map<String,String> config) {
             return config(Output.of(config));
         }
 

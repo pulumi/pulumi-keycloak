@@ -148,7 +148,7 @@ namespace Pulumi.Keycloak.Saml
         public Output<string> EntityId { get; private set; } = null!;
 
         [Output("extraConfig")]
-        public Output<ImmutableDictionary<string, object>?> ExtraConfig { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>?> ExtraConfig { get; private set; } = null!;
 
         /// <summary>
         /// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
@@ -436,10 +436,10 @@ namespace Pulumi.Keycloak.Saml
         public Input<string> EntityId { get; set; } = null!;
 
         [Input("extraConfig")]
-        private InputMap<object>? _extraConfig;
-        public InputMap<object> ExtraConfig
+        private InputMap<string>? _extraConfig;
+        public InputMap<string> ExtraConfig
         {
-            get => _extraConfig ?? (_extraConfig = new InputMap<object>());
+            get => _extraConfig ?? (_extraConfig = new InputMap<string>());
             set => _extraConfig = value;
         }
 
@@ -685,10 +685,10 @@ namespace Pulumi.Keycloak.Saml
         public Input<string>? EntityId { get; set; }
 
         [Input("extraConfig")]
-        private InputMap<object>? _extraConfig;
-        public InputMap<object> ExtraConfig
+        private InputMap<string>? _extraConfig;
+        public InputMap<string> ExtraConfig
         {
-            get => _extraConfig ?? (_extraConfig = new InputMap<object>());
+            get => _extraConfig ?? (_extraConfig = new InputMap<string>());
             set => _extraConfig = value;
         }
 

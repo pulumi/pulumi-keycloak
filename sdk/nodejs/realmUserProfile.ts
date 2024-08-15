@@ -27,7 +27,7 @@ import * as utilities from "./utilities";
  * const realm = new keycloak.Realm("realm", {
  *     realm: "my-realm",
  *     attributes: {
- *         userProfileEnabled: true,
+ *         userProfileEnabled: "true",
  *     },
  * });
  * const userprofile = new keycloak.RealmUserProfile("userprofile", {

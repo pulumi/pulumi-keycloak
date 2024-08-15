@@ -62,7 +62,7 @@ export class Client extends pulumi.CustomResource {
     public readonly encryptAssertions!: pulumi.Output<boolean | undefined>;
     public readonly encryptionCertificate!: pulumi.Output<string>;
     public /*out*/ readonly encryptionCertificateSha1!: pulumi.Output<string>;
-    public readonly extraConfig!: pulumi.Output<{[key: string]: any} | undefined>;
+    public readonly extraConfig!: pulumi.Output<{[key: string]: string} | undefined>;
     public readonly forceNameIdFormat!: pulumi.Output<boolean | undefined>;
     public readonly forcePostBinding!: pulumi.Output<boolean | undefined>;
     public readonly frontChannelLogout!: pulumi.Output<boolean | undefined>;
@@ -205,7 +205,7 @@ export interface ClientState {
     encryptAssertions?: pulumi.Input<boolean>;
     encryptionCertificate?: pulumi.Input<string>;
     encryptionCertificateSha1?: pulumi.Input<string>;
-    extraConfig?: pulumi.Input<{[key: string]: any}>;
+    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     forceNameIdFormat?: pulumi.Input<boolean>;
     forcePostBinding?: pulumi.Input<boolean>;
     frontChannelLogout?: pulumi.Input<boolean>;
@@ -247,7 +247,7 @@ export interface ClientArgs {
     enabled?: pulumi.Input<boolean>;
     encryptAssertions?: pulumi.Input<boolean>;
     encryptionCertificate?: pulumi.Input<string>;
-    extraConfig?: pulumi.Input<{[key: string]: any}>;
+    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     forceNameIdFormat?: pulumi.Input<boolean>;
     forcePostBinding?: pulumi.Input<boolean>;
     frontChannelLogout?: pulumi.Input<boolean>;

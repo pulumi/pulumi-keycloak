@@ -98,7 +98,7 @@ export class Group extends pulumi.CustomResource {
         return obj['__pulumiType'] === Group.__pulumiType;
     }
 
-    public readonly attributes!: pulumi.Output<{[key: string]: any} | undefined>;
+    public readonly attributes!: pulumi.Output<{[key: string]: string} | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly parentId!: pulumi.Output<string | undefined>;
     public /*out*/ readonly path!: pulumi.Output<string>;
@@ -142,7 +142,7 @@ export class Group extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Group resources.
  */
 export interface GroupState {
-    attributes?: pulumi.Input<{[key: string]: any}>;
+    attributes?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     name?: pulumi.Input<string>;
     parentId?: pulumi.Input<string>;
     path?: pulumi.Input<string>;
@@ -153,7 +153,7 @@ export interface GroupState {
  * The set of arguments for constructing a Group resource.
  */
 export interface GroupArgs {
-    attributes?: pulumi.Input<{[key: string]: any}>;
+    attributes?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     name?: pulumi.Input<string>;
     parentId?: pulumi.Input<string>;
     realmId: pulumi.Input<string>;

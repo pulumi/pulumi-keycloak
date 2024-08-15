@@ -93,7 +93,7 @@ namespace Pulumi.Keycloak
     public partial class Group : global::Pulumi.CustomResource
     {
         [Output("attributes")]
-        public Output<ImmutableDictionary<string, object>?> Attributes { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>?> Attributes { get; private set; } = null!;
 
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -154,10 +154,10 @@ namespace Pulumi.Keycloak
     public sealed class GroupArgs : global::Pulumi.ResourceArgs
     {
         [Input("attributes")]
-        private InputMap<object>? _attributes;
-        public InputMap<object> Attributes
+        private InputMap<string>? _attributes;
+        public InputMap<string> Attributes
         {
-            get => _attributes ?? (_attributes = new InputMap<object>());
+            get => _attributes ?? (_attributes = new InputMap<string>());
             set => _attributes = value;
         }
 
@@ -179,10 +179,10 @@ namespace Pulumi.Keycloak
     public sealed class GroupState : global::Pulumi.ResourceArgs
     {
         [Input("attributes")]
-        private InputMap<object>? _attributes;
-        public InputMap<object> Attributes
+        private InputMap<string>? _attributes;
+        public InputMap<string> Attributes
         {
-            get => _attributes ?? (_attributes = new InputMap<object>());
+            get => _attributes ?? (_attributes = new InputMap<string>());
             set => _attributes = value;
         }
 

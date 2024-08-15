@@ -33,7 +33,7 @@ type LookupGroupArgs struct {
 
 // A collection of values returned by getGroup.
 type LookupGroupResult struct {
-	Attributes map[string]interface{} `pulumi:"attributes"`
+	Attributes map[string]string `pulumi:"attributes"`
 	// The provider-assigned unique ID for this managed resource.
 	Id       string `pulumi:"id"`
 	Name     string `pulumi:"name"`
@@ -80,8 +80,8 @@ func (o LookupGroupResultOutput) ToLookupGroupResultOutputWithContext(ctx contex
 	return o
 }
 
-func (o LookupGroupResultOutput) Attributes() pulumi.MapOutput {
-	return o.ApplyT(func(v LookupGroupResult) map[string]interface{} { return v.Attributes }).(pulumi.MapOutput)
+func (o LookupGroupResultOutput) Attributes() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LookupGroupResult) map[string]string { return v.Attributes }).(pulumi.StringMapOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.

@@ -88,7 +88,7 @@ namespace Pulumi.Keycloak
     public partial class User : global::Pulumi.CustomResource
     {
         [Output("attributes")]
-        public Output<ImmutableDictionary<string, object>?> Attributes { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>?> Attributes { get; private set; } = null!;
 
         [Output("email")]
         public Output<string?> Email { get; private set; } = null!;
@@ -167,10 +167,10 @@ namespace Pulumi.Keycloak
     public sealed class UserArgs : global::Pulumi.ResourceArgs
     {
         [Input("attributes")]
-        private InputMap<object>? _attributes;
-        public InputMap<object> Attributes
+        private InputMap<string>? _attributes;
+        public InputMap<string> Attributes
         {
-            get => _attributes ?? (_attributes = new InputMap<object>());
+            get => _attributes ?? (_attributes = new InputMap<string>());
             set => _attributes = value;
         }
 
@@ -223,10 +223,10 @@ namespace Pulumi.Keycloak
     public sealed class UserState : global::Pulumi.ResourceArgs
     {
         [Input("attributes")]
-        private InputMap<object>? _attributes;
-        public InputMap<object> Attributes
+        private InputMap<string>? _attributes;
+        public InputMap<string> Attributes
         {
-            get => _attributes ?? (_attributes = new InputMap<object>());
+            get => _attributes ?? (_attributes = new InputMap<string>());
             set => _attributes = value;
         }
 

@@ -99,7 +99,7 @@ export class GenericClientProtocolMapper extends pulumi.CustomResource {
      * The mapper's associated client scope. Cannot be used at the same time as client_id.
      */
     public readonly clientScopeId!: pulumi.Output<string | undefined>;
-    public readonly config!: pulumi.Output<{[key: string]: any}>;
+    public readonly config!: pulumi.Output<{[key: string]: string}>;
     /**
      * A human-friendly name that will appear in the Keycloak console.
      */
@@ -176,7 +176,7 @@ export interface GenericClientProtocolMapperState {
      * The mapper's associated client scope. Cannot be used at the same time as client_id.
      */
     clientScopeId?: pulumi.Input<string>;
-    config?: pulumi.Input<{[key: string]: any}>;
+    config?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * A human-friendly name that will appear in the Keycloak console.
      */
@@ -207,7 +207,7 @@ export interface GenericClientProtocolMapperArgs {
      * The mapper's associated client scope. Cannot be used at the same time as client_id.
      */
     clientScopeId?: pulumi.Input<string>;
-    config: pulumi.Input<{[key: string]: any}>;
+    config: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * A human-friendly name that will appear in the Keycloak console.
      */

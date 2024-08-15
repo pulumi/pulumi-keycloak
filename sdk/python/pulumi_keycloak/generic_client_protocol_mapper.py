@@ -14,7 +14,7 @@ __all__ = ['GenericClientProtocolMapperArgs', 'GenericClientProtocolMapper']
 @pulumi.input_type
 class GenericClientProtocolMapperArgs:
     def __init__(__self__, *,
-                 config: pulumi.Input[Mapping[str, Any]],
+                 config: pulumi.Input[Mapping[str, pulumi.Input[str]]],
                  protocol: pulumi.Input[str],
                  protocol_mapper: pulumi.Input[str],
                  realm_id: pulumi.Input[str],
@@ -43,11 +43,11 @@ class GenericClientProtocolMapperArgs:
 
     @property
     @pulumi.getter
-    def config(self) -> pulumi.Input[Mapping[str, Any]]:
+    def config(self) -> pulumi.Input[Mapping[str, pulumi.Input[str]]]:
         return pulumi.get(self, "config")
 
     @config.setter
-    def config(self, value: pulumi.Input[Mapping[str, Any]]):
+    def config(self, value: pulumi.Input[Mapping[str, pulumi.Input[str]]]):
         pulumi.set(self, "config", value)
 
     @property
@@ -128,7 +128,7 @@ class _GenericClientProtocolMapperState:
     def __init__(__self__, *,
                  client_id: Optional[pulumi.Input[str]] = None,
                  client_scope_id: Optional[pulumi.Input[str]] = None,
-                 config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
                  protocol_mapper: Optional[pulumi.Input[str]] = None,
@@ -183,11 +183,11 @@ class _GenericClientProtocolMapperState:
 
     @property
     @pulumi.getter
-    def config(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         return pulumi.get(self, "config")
 
     @config.setter
-    def config(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def config(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "config", value)
 
     @property
@@ -246,7 +246,7 @@ class GenericClientProtocolMapper(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  client_id: Optional[pulumi.Input[str]] = None,
                  client_scope_id: Optional[pulumi.Input[str]] = None,
-                 config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
                  protocol_mapper: Optional[pulumi.Input[str]] = None,
@@ -396,7 +396,7 @@ class GenericClientProtocolMapper(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  client_id: Optional[pulumi.Input[str]] = None,
                  client_scope_id: Optional[pulumi.Input[str]] = None,
-                 config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
                  protocol_mapper: Optional[pulumi.Input[str]] = None,
@@ -437,7 +437,7 @@ class GenericClientProtocolMapper(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             client_id: Optional[pulumi.Input[str]] = None,
             client_scope_id: Optional[pulumi.Input[str]] = None,
-            config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             protocol: Optional[pulumi.Input[str]] = None,
             protocol_mapper: Optional[pulumi.Input[str]] = None,
@@ -487,7 +487,7 @@ class GenericClientProtocolMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def config(self) -> pulumi.Output[Mapping[str, Any]]:
+    def config(self) -> pulumi.Output[Mapping[str, str]]:
         return pulumi.get(self, "config")
 
     @property

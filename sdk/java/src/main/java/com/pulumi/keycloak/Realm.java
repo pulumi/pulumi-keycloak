@@ -18,7 +18,6 @@ import com.pulumi.keycloak.outputs.RealmWebAuthnPasswordlessPolicy;
 import com.pulumi.keycloak.outputs.RealmWebAuthnPolicy;
 import java.lang.Boolean;
 import java.lang.Integer;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -81,10 +80,10 @@ public class Realm extends com.pulumi.resources.CustomResource {
     public Output<Optional<String>> adminTheme() {
         return Codegen.optional(this.adminTheme);
     }
-    @Export(name="attributes", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
-    private Output</* @Nullable */ Map<String,Object>> attributes;
+    @Export(name="attributes", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output</* @Nullable */ Map<String,String>> attributes;
 
-    public Output<Optional<Map<String,Object>>> attributes() {
+    public Output<Optional<Map<String,String>>> attributes() {
         return Codegen.optional(this.attributes);
     }
     /**

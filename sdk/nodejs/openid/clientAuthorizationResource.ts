@@ -32,7 +32,7 @@ export class ClientAuthorizationResource extends pulumi.CustomResource {
         return obj['__pulumiType'] === ClientAuthorizationResource.__pulumiType;
     }
 
-    public readonly attributes!: pulumi.Output<{[key: string]: any} | undefined>;
+    public readonly attributes!: pulumi.Output<{[key: string]: string} | undefined>;
     public readonly displayName!: pulumi.Output<string | undefined>;
     public readonly iconUri!: pulumi.Output<string | undefined>;
     public readonly name!: pulumi.Output<string>;
@@ -94,7 +94,7 @@ export class ClientAuthorizationResource extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ClientAuthorizationResource resources.
  */
 export interface ClientAuthorizationResourceState {
-    attributes?: pulumi.Input<{[key: string]: any}>;
+    attributes?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     displayName?: pulumi.Input<string>;
     iconUri?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
@@ -110,7 +110,7 @@ export interface ClientAuthorizationResourceState {
  * The set of arguments for constructing a ClientAuthorizationResource resource.
  */
 export interface ClientAuthorizationResourceArgs {
-    attributes?: pulumi.Input<{[key: string]: any}>;
+    attributes?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     displayName?: pulumi.Input<string>;
     iconUri?: pulumi.Input<string>;
     name?: pulumi.Input<string>;

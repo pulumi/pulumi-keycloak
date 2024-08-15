@@ -135,7 +135,7 @@ namespace Pulumi.Keycloak.Saml
         public readonly bool EncryptAssertions;
         public readonly string EncryptionCertificate;
         public readonly string EncryptionCertificateSha1;
-        public readonly ImmutableDictionary<string, object> ExtraConfig;
+        public readonly ImmutableDictionary<string, string> ExtraConfig;
         public readonly bool ForceNameIdFormat;
         public readonly bool ForcePostBinding;
         public readonly bool FrontChannelLogout;
@@ -192,7 +192,7 @@ namespace Pulumi.Keycloak.Saml
 
             string encryptionCertificateSha1,
 
-            ImmutableDictionary<string, object> extraConfig,
+            ImmutableDictionary<string, string> extraConfig,
 
             bool forceNameIdFormat,
 

@@ -10,7 +10,6 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.keycloak.RoleArgs;
 import com.pulumi.keycloak.Utilities;
 import com.pulumi.keycloak.inputs.RoleState;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -237,10 +236,10 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="keycloak:index/role:Role")
 public class Role extends com.pulumi.resources.CustomResource {
-    @Export(name="attributes", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
-    private Output</* @Nullable */ Map<String,Object>> attributes;
+    @Export(name="attributes", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output</* @Nullable */ Map<String,String>> attributes;
 
-    public Output<Optional<Map<String,Object>>> attributes() {
+    public Output<Optional<Map<String,String>>> attributes() {
         return Codegen.optional(this.attributes);
     }
     @Export(name="clientId", refs={String.class}, tree="[0]")

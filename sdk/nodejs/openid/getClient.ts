@@ -62,7 +62,7 @@ export interface GetClientArgs {
     clientId: string;
     consentScreenText?: string;
     displayOnConsentScreen?: boolean;
-    extraConfig?: {[key: string]: any};
+    extraConfig?: {[key: string]: string};
     oauth2DeviceAuthorizationGrantEnabled?: boolean;
     oauth2DeviceCodeLifespan?: string;
     oauth2DevicePollingInterval?: string;
@@ -96,7 +96,7 @@ export interface GetClientResult {
     readonly displayOnConsentScreen?: boolean;
     readonly enabled: boolean;
     readonly excludeSessionStateFromAuthResponse: boolean;
-    readonly extraConfig: {[key: string]: any};
+    readonly extraConfig: {[key: string]: string};
     readonly frontchannelLogoutEnabled: boolean;
     readonly frontchannelLogoutUrl: string;
     readonly fullScopeAllowed: boolean;
@@ -168,7 +168,7 @@ export interface GetClientOutputArgs {
     clientId: pulumi.Input<string>;
     consentScreenText?: pulumi.Input<string>;
     displayOnConsentScreen?: pulumi.Input<boolean>;
-    extraConfig?: pulumi.Input<{[key: string]: any}>;
+    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     oauth2DeviceAuthorizationGrantEnabled?: pulumi.Input<boolean>;
     oauth2DeviceCodeLifespan?: pulumi.Input<string>;
     oauth2DevicePollingInterval?: pulumi.Input<string>;

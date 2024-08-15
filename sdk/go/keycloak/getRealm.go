@@ -71,7 +71,7 @@ func LookupRealm(ctx *pulumi.Context, args *LookupRealmArgs, opts ...pulumi.Invo
 
 // A collection of arguments for invoking getRealm.
 type LookupRealmArgs struct {
-	Attributes                  map[string]interface{}              `pulumi:"attributes"`
+	Attributes                  map[string]string                   `pulumi:"attributes"`
 	DefaultDefaultClientScopes  []string                            `pulumi:"defaultDefaultClientScopes"`
 	DefaultOptionalClientScopes []string                            `pulumi:"defaultOptionalClientScopes"`
 	DisplayNameHtml             *string                             `pulumi:"displayNameHtml"`
@@ -86,31 +86,31 @@ type LookupRealmArgs struct {
 
 // A collection of values returned by getRealm.
 type LookupRealmResult struct {
-	AccessCodeLifespan                  string                 `pulumi:"accessCodeLifespan"`
-	AccessCodeLifespanLogin             string                 `pulumi:"accessCodeLifespanLogin"`
-	AccessCodeLifespanUserAction        string                 `pulumi:"accessCodeLifespanUserAction"`
-	AccessTokenLifespan                 string                 `pulumi:"accessTokenLifespan"`
-	AccessTokenLifespanForImplicitFlow  string                 `pulumi:"accessTokenLifespanForImplicitFlow"`
-	AccountTheme                        string                 `pulumi:"accountTheme"`
-	ActionTokenGeneratedByAdminLifespan string                 `pulumi:"actionTokenGeneratedByAdminLifespan"`
-	ActionTokenGeneratedByUserLifespan  string                 `pulumi:"actionTokenGeneratedByUserLifespan"`
-	AdminTheme                          string                 `pulumi:"adminTheme"`
-	Attributes                          map[string]interface{} `pulumi:"attributes"`
-	BrowserFlow                         string                 `pulumi:"browserFlow"`
-	ClientAuthenticationFlow            string                 `pulumi:"clientAuthenticationFlow"`
-	ClientSessionIdleTimeout            string                 `pulumi:"clientSessionIdleTimeout"`
-	ClientSessionMaxLifespan            string                 `pulumi:"clientSessionMaxLifespan"`
-	DefaultDefaultClientScopes          []string               `pulumi:"defaultDefaultClientScopes"`
-	DefaultOptionalClientScopes         []string               `pulumi:"defaultOptionalClientScopes"`
-	DefaultSignatureAlgorithm           string                 `pulumi:"defaultSignatureAlgorithm"`
-	DirectGrantFlow                     string                 `pulumi:"directGrantFlow"`
-	DisplayName                         string                 `pulumi:"displayName"`
-	DisplayNameHtml                     *string                `pulumi:"displayNameHtml"`
-	DockerAuthenticationFlow            string                 `pulumi:"dockerAuthenticationFlow"`
-	DuplicateEmailsAllowed              bool                   `pulumi:"duplicateEmailsAllowed"`
-	EditUsernameAllowed                 bool                   `pulumi:"editUsernameAllowed"`
-	EmailTheme                          string                 `pulumi:"emailTheme"`
-	Enabled                             bool                   `pulumi:"enabled"`
+	AccessCodeLifespan                  string            `pulumi:"accessCodeLifespan"`
+	AccessCodeLifespanLogin             string            `pulumi:"accessCodeLifespanLogin"`
+	AccessCodeLifespanUserAction        string            `pulumi:"accessCodeLifespanUserAction"`
+	AccessTokenLifespan                 string            `pulumi:"accessTokenLifespan"`
+	AccessTokenLifespanForImplicitFlow  string            `pulumi:"accessTokenLifespanForImplicitFlow"`
+	AccountTheme                        string            `pulumi:"accountTheme"`
+	ActionTokenGeneratedByAdminLifespan string            `pulumi:"actionTokenGeneratedByAdminLifespan"`
+	ActionTokenGeneratedByUserLifespan  string            `pulumi:"actionTokenGeneratedByUserLifespan"`
+	AdminTheme                          string            `pulumi:"adminTheme"`
+	Attributes                          map[string]string `pulumi:"attributes"`
+	BrowserFlow                         string            `pulumi:"browserFlow"`
+	ClientAuthenticationFlow            string            `pulumi:"clientAuthenticationFlow"`
+	ClientSessionIdleTimeout            string            `pulumi:"clientSessionIdleTimeout"`
+	ClientSessionMaxLifespan            string            `pulumi:"clientSessionMaxLifespan"`
+	DefaultDefaultClientScopes          []string          `pulumi:"defaultDefaultClientScopes"`
+	DefaultOptionalClientScopes         []string          `pulumi:"defaultOptionalClientScopes"`
+	DefaultSignatureAlgorithm           string            `pulumi:"defaultSignatureAlgorithm"`
+	DirectGrantFlow                     string            `pulumi:"directGrantFlow"`
+	DisplayName                         string            `pulumi:"displayName"`
+	DisplayNameHtml                     *string           `pulumi:"displayNameHtml"`
+	DockerAuthenticationFlow            string            `pulumi:"dockerAuthenticationFlow"`
+	DuplicateEmailsAllowed              bool              `pulumi:"duplicateEmailsAllowed"`
+	EditUsernameAllowed                 bool              `pulumi:"editUsernameAllowed"`
+	EmailTheme                          string            `pulumi:"emailTheme"`
+	Enabled                             bool              `pulumi:"enabled"`
 	// The provider-assigned unique ID for this managed resource.
 	Id                               string                             `pulumi:"id"`
 	InternalId                       string                             `pulumi:"internalId"`
@@ -161,7 +161,7 @@ func LookupRealmOutput(ctx *pulumi.Context, args LookupRealmOutputArgs, opts ...
 
 // A collection of arguments for invoking getRealm.
 type LookupRealmOutputArgs struct {
-	Attributes                  pulumi.MapInput                            `pulumi:"attributes"`
+	Attributes                  pulumi.StringMapInput                      `pulumi:"attributes"`
 	DefaultDefaultClientScopes  pulumi.StringArrayInput                    `pulumi:"defaultDefaultClientScopes"`
 	DefaultOptionalClientScopes pulumi.StringArrayInput                    `pulumi:"defaultOptionalClientScopes"`
 	DisplayNameHtml             pulumi.StringPtrInput                      `pulumi:"displayNameHtml"`
@@ -229,8 +229,8 @@ func (o LookupRealmResultOutput) AdminTheme() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRealmResult) string { return v.AdminTheme }).(pulumi.StringOutput)
 }
 
-func (o LookupRealmResultOutput) Attributes() pulumi.MapOutput {
-	return o.ApplyT(func(v LookupRealmResult) map[string]interface{} { return v.Attributes }).(pulumi.MapOutput)
+func (o LookupRealmResultOutput) Attributes() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LookupRealmResult) map[string]string { return v.Attributes }).(pulumi.StringMapOutput)
 }
 
 func (o LookupRealmResultOutput) BrowserFlow() pulumi.StringOutput {

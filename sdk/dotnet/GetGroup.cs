@@ -63,7 +63,7 @@ namespace Pulumi.Keycloak
     [OutputType]
     public sealed class GetGroupResult
     {
-        public readonly ImmutableDictionary<string, object> Attributes;
+        public readonly ImmutableDictionary<string, string> Attributes;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
@@ -75,7 +75,7 @@ namespace Pulumi.Keycloak
 
         [OutputConstructor]
         private GetGroupResult(
-            ImmutableDictionary<string, object> attributes,
+            ImmutableDictionary<string, string> attributes,
 
             string id,
 

@@ -13,7 +13,6 @@ import com.pulumi.keycloak.outputs.GetRealmWebAuthnPasswordlessPolicy;
 import com.pulumi.keycloak.outputs.GetRealmWebAuthnPolicy;
 import java.lang.Boolean;
 import java.lang.Integer;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -32,7 +31,7 @@ public final class GetRealmResult {
     private String actionTokenGeneratedByAdminLifespan;
     private String actionTokenGeneratedByUserLifespan;
     private String adminTheme;
-    private Map<String,Object> attributes;
+    private Map<String,String> attributes;
     private String browserFlow;
     private String clientAuthenticationFlow;
     private String clientSessionIdleTimeout;
@@ -113,7 +112,7 @@ public final class GetRealmResult {
     public String adminTheme() {
         return this.adminTheme;
     }
-    public Map<String,Object> attributes() {
+    public Map<String,String> attributes() {
         return this.attributes;
     }
     public String browserFlow() {
@@ -280,7 +279,7 @@ public final class GetRealmResult {
         private String actionTokenGeneratedByAdminLifespan;
         private String actionTokenGeneratedByUserLifespan;
         private String adminTheme;
-        private Map<String,Object> attributes;
+        private Map<String,String> attributes;
         private String browserFlow;
         private String clientAuthenticationFlow;
         private String clientSessionIdleTimeout;
@@ -463,7 +462,7 @@ public final class GetRealmResult {
             return this;
         }
         @CustomType.Setter
-        public Builder attributes(Map<String,Object> attributes) {
+        public Builder attributes(Map<String,String> attributes) {
             if (attributes == null) {
               throw new MissingRequiredPropertyException("GetRealmResult", "attributes");
             }

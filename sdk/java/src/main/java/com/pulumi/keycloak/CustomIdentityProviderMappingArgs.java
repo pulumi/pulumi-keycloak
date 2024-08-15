@@ -6,7 +6,6 @@ package com.pulumi.keycloak;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -23,13 +22,13 @@ public final class CustomIdentityProviderMappingArgs extends com.pulumi.resource
      * 
      */
     @Import(name="extraConfig")
-    private @Nullable Output<Map<String,Object>> extraConfig;
+    private @Nullable Output<Map<String,String>> extraConfig;
 
     /**
      * @return Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
      * 
      */
-    public Optional<Output<Map<String,Object>>> extraConfig() {
+    public Optional<Output<Map<String,String>>> extraConfig() {
         return Optional.ofNullable(this.extraConfig);
     }
 
@@ -127,7 +126,7 @@ public final class CustomIdentityProviderMappingArgs extends com.pulumi.resource
          * @return builder
          * 
          */
-        public Builder extraConfig(@Nullable Output<Map<String,Object>> extraConfig) {
+        public Builder extraConfig(@Nullable Output<Map<String,String>> extraConfig) {
             $.extraConfig = extraConfig;
             return this;
         }
@@ -138,7 +137,7 @@ public final class CustomIdentityProviderMappingArgs extends com.pulumi.resource
          * @return builder
          * 
          */
-        public Builder extraConfig(Map<String,Object> extraConfig) {
+        public Builder extraConfig(Map<String,String> extraConfig) {
             return extraConfig(Output.of(extraConfig));
         }
 

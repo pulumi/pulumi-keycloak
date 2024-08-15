@@ -103,25 +103,25 @@ type GetClientDescriptionConverterArgs struct {
 
 // A collection of values returned by getClientDescriptionConverter.
 type GetClientDescriptionConverterResult struct {
-	Access                             map[string]interface{} `pulumi:"access"`
-	AdminUrl                           string                 `pulumi:"adminUrl"`
-	Attributes                         map[string]interface{} `pulumi:"attributes"`
-	AuthenticationFlowBindingOverrides map[string]interface{} `pulumi:"authenticationFlowBindingOverrides"`
-	AuthorizationServicesEnabled       bool                   `pulumi:"authorizationServicesEnabled"`
-	AuthorizationSettings              map[string]interface{} `pulumi:"authorizationSettings"`
-	BaseUrl                            string                 `pulumi:"baseUrl"`
-	BearerOnly                         bool                   `pulumi:"bearerOnly"`
-	Body                               string                 `pulumi:"body"`
-	ClientAuthenticatorType            string                 `pulumi:"clientAuthenticatorType"`
-	ClientId                           string                 `pulumi:"clientId"`
-	ConsentRequired                    string                 `pulumi:"consentRequired"`
-	DefaultClientScopes                []string               `pulumi:"defaultClientScopes"`
-	DefaultRoles                       []string               `pulumi:"defaultRoles"`
-	Description                        string                 `pulumi:"description"`
-	DirectAccessGrantsEnabled          bool                   `pulumi:"directAccessGrantsEnabled"`
-	Enabled                            bool                   `pulumi:"enabled"`
-	FrontchannelLogout                 bool                   `pulumi:"frontchannelLogout"`
-	FullScopeAllowed                   bool                   `pulumi:"fullScopeAllowed"`
+	Access                             map[string]string `pulumi:"access"`
+	AdminUrl                           string            `pulumi:"adminUrl"`
+	Attributes                         map[string]string `pulumi:"attributes"`
+	AuthenticationFlowBindingOverrides map[string]string `pulumi:"authenticationFlowBindingOverrides"`
+	AuthorizationServicesEnabled       bool              `pulumi:"authorizationServicesEnabled"`
+	AuthorizationSettings              map[string]string `pulumi:"authorizationSettings"`
+	BaseUrl                            string            `pulumi:"baseUrl"`
+	BearerOnly                         bool              `pulumi:"bearerOnly"`
+	Body                               string            `pulumi:"body"`
+	ClientAuthenticatorType            string            `pulumi:"clientAuthenticatorType"`
+	ClientId                           string            `pulumi:"clientId"`
+	ConsentRequired                    string            `pulumi:"consentRequired"`
+	DefaultClientScopes                []string          `pulumi:"defaultClientScopes"`
+	DefaultRoles                       []string          `pulumi:"defaultRoles"`
+	Description                        string            `pulumi:"description"`
+	DirectAccessGrantsEnabled          bool              `pulumi:"directAccessGrantsEnabled"`
+	Enabled                            bool              `pulumi:"enabled"`
+	FrontchannelLogout                 bool              `pulumi:"frontchannelLogout"`
+	FullScopeAllowed                   bool              `pulumi:"fullScopeAllowed"`
 	// The provider-assigned unique ID for this managed resource.
 	Id                      string                                        `pulumi:"id"`
 	ImplicitFlowEnabled     bool                                          `pulumi:"implicitFlowEnabled"`
@@ -134,7 +134,7 @@ type GetClientDescriptionConverterResult struct {
 	PublicClient            bool                                          `pulumi:"publicClient"`
 	RealmId                 string                                        `pulumi:"realmId"`
 	RedirectUris            []string                                      `pulumi:"redirectUris"`
-	RegisteredNodes         map[string]interface{}                        `pulumi:"registeredNodes"`
+	RegisteredNodes         map[string]string                             `pulumi:"registeredNodes"`
 	RegistrationAccessToken string                                        `pulumi:"registrationAccessToken"`
 	RootUrl                 string                                        `pulumi:"rootUrl"`
 	Secret                  string                                        `pulumi:"secret"`
@@ -184,30 +184,30 @@ func (o GetClientDescriptionConverterResultOutput) ToGetClientDescriptionConvert
 	return o
 }
 
-func (o GetClientDescriptionConverterResultOutput) Access() pulumi.MapOutput {
-	return o.ApplyT(func(v GetClientDescriptionConverterResult) map[string]interface{} { return v.Access }).(pulumi.MapOutput)
+func (o GetClientDescriptionConverterResultOutput) Access() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetClientDescriptionConverterResult) map[string]string { return v.Access }).(pulumi.StringMapOutput)
 }
 
 func (o GetClientDescriptionConverterResultOutput) AdminUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClientDescriptionConverterResult) string { return v.AdminUrl }).(pulumi.StringOutput)
 }
 
-func (o GetClientDescriptionConverterResultOutput) Attributes() pulumi.MapOutput {
-	return o.ApplyT(func(v GetClientDescriptionConverterResult) map[string]interface{} { return v.Attributes }).(pulumi.MapOutput)
+func (o GetClientDescriptionConverterResultOutput) Attributes() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetClientDescriptionConverterResult) map[string]string { return v.Attributes }).(pulumi.StringMapOutput)
 }
 
-func (o GetClientDescriptionConverterResultOutput) AuthenticationFlowBindingOverrides() pulumi.MapOutput {
-	return o.ApplyT(func(v GetClientDescriptionConverterResult) map[string]interface{} {
+func (o GetClientDescriptionConverterResultOutput) AuthenticationFlowBindingOverrides() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetClientDescriptionConverterResult) map[string]string {
 		return v.AuthenticationFlowBindingOverrides
-	}).(pulumi.MapOutput)
+	}).(pulumi.StringMapOutput)
 }
 
 func (o GetClientDescriptionConverterResultOutput) AuthorizationServicesEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetClientDescriptionConverterResult) bool { return v.AuthorizationServicesEnabled }).(pulumi.BoolOutput)
 }
 
-func (o GetClientDescriptionConverterResultOutput) AuthorizationSettings() pulumi.MapOutput {
-	return o.ApplyT(func(v GetClientDescriptionConverterResult) map[string]interface{} { return v.AuthorizationSettings }).(pulumi.MapOutput)
+func (o GetClientDescriptionConverterResultOutput) AuthorizationSettings() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetClientDescriptionConverterResult) map[string]string { return v.AuthorizationSettings }).(pulumi.StringMapOutput)
 }
 
 func (o GetClientDescriptionConverterResultOutput) BaseUrl() pulumi.StringOutput {
@@ -309,8 +309,8 @@ func (o GetClientDescriptionConverterResultOutput) RedirectUris() pulumi.StringA
 	return o.ApplyT(func(v GetClientDescriptionConverterResult) []string { return v.RedirectUris }).(pulumi.StringArrayOutput)
 }
 
-func (o GetClientDescriptionConverterResultOutput) RegisteredNodes() pulumi.MapOutput {
-	return o.ApplyT(func(v GetClientDescriptionConverterResult) map[string]interface{} { return v.RegisteredNodes }).(pulumi.MapOutput)
+func (o GetClientDescriptionConverterResultOutput) RegisteredNodes() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetClientDescriptionConverterResult) map[string]string { return v.RegisteredNodes }).(pulumi.StringMapOutput)
 }
 
 func (o GetClientDescriptionConverterResultOutput) RegistrationAccessToken() pulumi.StringOutput {

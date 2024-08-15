@@ -115,8 +115,8 @@ type IdentityProvider struct {
 	// Enable/disable this identity provider.
 	Enabled pulumi.BoolPtrOutput `pulumi:"enabled"`
 	// The Entity ID that will be used to uniquely identify this SAML Service Provider.
-	EntityId    pulumi.StringOutput `pulumi:"entityId"`
-	ExtraConfig pulumi.MapOutput    `pulumi:"extraConfig"`
+	EntityId    pulumi.StringOutput    `pulumi:"entityId"`
+	ExtraConfig pulumi.StringMapOutput `pulumi:"extraConfig"`
 	// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
 	// that there is not yet existing Keycloak account linked with the authenticated identity provider account.
 	FirstBrokerLoginFlowAlias pulumi.StringPtrOutput `pulumi:"firstBrokerLoginFlowAlias"`
@@ -239,8 +239,8 @@ type identityProviderState struct {
 	// Enable/disable this identity provider.
 	Enabled *bool `pulumi:"enabled"`
 	// The Entity ID that will be used to uniquely identify this SAML Service Provider.
-	EntityId    *string                `pulumi:"entityId"`
-	ExtraConfig map[string]interface{} `pulumi:"extraConfig"`
+	EntityId    *string           `pulumi:"entityId"`
+	ExtraConfig map[string]string `pulumi:"extraConfig"`
 	// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
 	// that there is not yet existing Keycloak account linked with the authenticated identity provider account.
 	FirstBrokerLoginFlowAlias *string `pulumi:"firstBrokerLoginFlowAlias"`
@@ -323,7 +323,7 @@ type IdentityProviderState struct {
 	Enabled pulumi.BoolPtrInput
 	// The Entity ID that will be used to uniquely identify this SAML Service Provider.
 	EntityId    pulumi.StringPtrInput
-	ExtraConfig pulumi.MapInput
+	ExtraConfig pulumi.StringMapInput
 	// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
 	// that there is not yet existing Keycloak account linked with the authenticated identity provider account.
 	FirstBrokerLoginFlowAlias pulumi.StringPtrInput
@@ -409,8 +409,8 @@ type identityProviderArgs struct {
 	// Enable/disable this identity provider.
 	Enabled *bool `pulumi:"enabled"`
 	// The Entity ID that will be used to uniquely identify this SAML Service Provider.
-	EntityId    string                 `pulumi:"entityId"`
-	ExtraConfig map[string]interface{} `pulumi:"extraConfig"`
+	EntityId    string            `pulumi:"entityId"`
+	ExtraConfig map[string]string `pulumi:"extraConfig"`
 	// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
 	// that there is not yet existing Keycloak account linked with the authenticated identity provider account.
 	FirstBrokerLoginFlowAlias *string `pulumi:"firstBrokerLoginFlowAlias"`
@@ -492,7 +492,7 @@ type IdentityProviderArgs struct {
 	Enabled pulumi.BoolPtrInput
 	// The Entity ID that will be used to uniquely identify this SAML Service Provider.
 	EntityId    pulumi.StringInput
-	ExtraConfig pulumi.MapInput
+	ExtraConfig pulumi.StringMapInput
 	// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
 	// that there is not yet existing Keycloak account linked with the authenticated identity provider account.
 	FirstBrokerLoginFlowAlias pulumi.StringPtrInput
@@ -689,8 +689,8 @@ func (o IdentityProviderOutput) EntityId() pulumi.StringOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.StringOutput { return v.EntityId }).(pulumi.StringOutput)
 }
 
-func (o IdentityProviderOutput) ExtraConfig() pulumi.MapOutput {
-	return o.ApplyT(func(v *IdentityProvider) pulumi.MapOutput { return v.ExtraConfig }).(pulumi.MapOutput)
+func (o IdentityProviderOutput) ExtraConfig() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.StringMapOutput { return v.ExtraConfig }).(pulumi.StringMapOutput)
 }
 
 // Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means

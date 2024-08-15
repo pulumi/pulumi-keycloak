@@ -129,7 +129,7 @@ type Client struct {
 	DisplayOnConsentScreen                 pulumi.BoolOutput                                 `pulumi:"displayOnConsentScreen"`
 	Enabled                                pulumi.BoolPtrOutput                              `pulumi:"enabled"`
 	ExcludeSessionStateFromAuthResponse    pulumi.BoolOutput                                 `pulumi:"excludeSessionStateFromAuthResponse"`
-	ExtraConfig                            pulumi.MapOutput                                  `pulumi:"extraConfig"`
+	ExtraConfig                            pulumi.StringMapOutput                            `pulumi:"extraConfig"`
 	FrontchannelLogoutEnabled              pulumi.BoolOutput                                 `pulumi:"frontchannelLogoutEnabled"`
 	FrontchannelLogoutUrl                  pulumi.StringPtrOutput                            `pulumi:"frontchannelLogoutUrl"`
 	FullScopeAllowed                       pulumi.BoolPtrOutput                              `pulumi:"fullScopeAllowed"`
@@ -223,7 +223,7 @@ type clientState struct {
 	DisplayOnConsentScreen                 *bool                                     `pulumi:"displayOnConsentScreen"`
 	Enabled                                *bool                                     `pulumi:"enabled"`
 	ExcludeSessionStateFromAuthResponse    *bool                                     `pulumi:"excludeSessionStateFromAuthResponse"`
-	ExtraConfig                            map[string]interface{}                    `pulumi:"extraConfig"`
+	ExtraConfig                            map[string]string                         `pulumi:"extraConfig"`
 	FrontchannelLogoutEnabled              *bool                                     `pulumi:"frontchannelLogoutEnabled"`
 	FrontchannelLogoutUrl                  *string                                   `pulumi:"frontchannelLogoutUrl"`
 	FullScopeAllowed                       *bool                                     `pulumi:"fullScopeAllowed"`
@@ -272,7 +272,7 @@ type ClientState struct {
 	DisplayOnConsentScreen                 pulumi.BoolPtrInput
 	Enabled                                pulumi.BoolPtrInput
 	ExcludeSessionStateFromAuthResponse    pulumi.BoolPtrInput
-	ExtraConfig                            pulumi.MapInput
+	ExtraConfig                            pulumi.StringMapInput
 	FrontchannelLogoutEnabled              pulumi.BoolPtrInput
 	FrontchannelLogoutUrl                  pulumi.StringPtrInput
 	FullScopeAllowed                       pulumi.BoolPtrInput
@@ -325,7 +325,7 @@ type clientArgs struct {
 	DisplayOnConsentScreen                 *bool                                     `pulumi:"displayOnConsentScreen"`
 	Enabled                                *bool                                     `pulumi:"enabled"`
 	ExcludeSessionStateFromAuthResponse    *bool                                     `pulumi:"excludeSessionStateFromAuthResponse"`
-	ExtraConfig                            map[string]interface{}                    `pulumi:"extraConfig"`
+	ExtraConfig                            map[string]string                         `pulumi:"extraConfig"`
 	FrontchannelLogoutEnabled              *bool                                     `pulumi:"frontchannelLogoutEnabled"`
 	FrontchannelLogoutUrl                  *string                                   `pulumi:"frontchannelLogoutUrl"`
 	FullScopeAllowed                       *bool                                     `pulumi:"fullScopeAllowed"`
@@ -373,7 +373,7 @@ type ClientArgs struct {
 	DisplayOnConsentScreen                 pulumi.BoolPtrInput
 	Enabled                                pulumi.BoolPtrInput
 	ExcludeSessionStateFromAuthResponse    pulumi.BoolPtrInput
-	ExtraConfig                            pulumi.MapInput
+	ExtraConfig                            pulumi.StringMapInput
 	FrontchannelLogoutEnabled              pulumi.BoolPtrInput
 	FrontchannelLogoutUrl                  pulumi.StringPtrInput
 	FullScopeAllowed                       pulumi.BoolPtrInput
@@ -577,8 +577,8 @@ func (o ClientOutput) ExcludeSessionStateFromAuthResponse() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Client) pulumi.BoolOutput { return v.ExcludeSessionStateFromAuthResponse }).(pulumi.BoolOutput)
 }
 
-func (o ClientOutput) ExtraConfig() pulumi.MapOutput {
-	return o.ApplyT(func(v *Client) pulumi.MapOutput { return v.ExtraConfig }).(pulumi.MapOutput)
+func (o ClientOutput) ExtraConfig() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *Client) pulumi.StringMapOutput { return v.ExtraConfig }).(pulumi.StringMapOutput)
 }
 
 func (o ClientOutput) FrontchannelLogoutEnabled() pulumi.BoolOutput {

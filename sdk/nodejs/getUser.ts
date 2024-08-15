@@ -54,7 +54,7 @@ export interface GetUserResult {
     /**
      * (Computed) A map representing attributes for the user
      */
-    readonly attributes: {[key: string]: any};
+    readonly attributes: {[key: string]: string};
     /**
      * (Computed) The user's email.
      */

@@ -10,7 +10,6 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.keycloak.GenericProtocolMapperArgs;
 import com.pulumi.keycloak.Utilities;
 import com.pulumi.keycloak.inputs.GenericProtocolMapperState;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Optional;
@@ -132,14 +131,14 @@ public class GenericProtocolMapper extends com.pulumi.resources.CustomResource {
      * A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
      * 
      */
-    @Export(name="config", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
-    private Output<Map<String,Object>> config;
+    @Export(name="config", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output<Map<String,String>> config;
 
     /**
      * @return A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
      * 
      */
-    public Output<Map<String,Object>> config() {
+    public Output<Map<String,String>> config() {
         return this.config;
     }
     /**

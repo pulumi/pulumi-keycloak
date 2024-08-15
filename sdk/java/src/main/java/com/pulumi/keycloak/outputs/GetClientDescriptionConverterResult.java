@@ -8,7 +8,6 @@ import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.keycloak.outputs.GetClientDescriptionConverterProtocolMapper;
 import java.lang.Boolean;
 import java.lang.Integer;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -16,12 +15,12 @@ import java.util.Objects;
 
 @CustomType
 public final class GetClientDescriptionConverterResult {
-    private Map<String,Object> access;
+    private Map<String,String> access;
     private String adminUrl;
-    private Map<String,Object> attributes;
-    private Map<String,Object> authenticationFlowBindingOverrides;
+    private Map<String,String> attributes;
+    private Map<String,String> authenticationFlowBindingOverrides;
     private Boolean authorizationServicesEnabled;
-    private Map<String,Object> authorizationSettings;
+    private Map<String,String> authorizationSettings;
     private String baseUrl;
     private Boolean bearerOnly;
     private String body;
@@ -50,7 +49,7 @@ public final class GetClientDescriptionConverterResult {
     private Boolean publicClient;
     private String realmId;
     private List<String> redirectUris;
-    private Map<String,Object> registeredNodes;
+    private Map<String,String> registeredNodes;
     private String registrationAccessToken;
     private String rootUrl;
     private String secret;
@@ -60,22 +59,22 @@ public final class GetClientDescriptionConverterResult {
     private List<String> webOrigins;
 
     private GetClientDescriptionConverterResult() {}
-    public Map<String,Object> access() {
+    public Map<String,String> access() {
         return this.access;
     }
     public String adminUrl() {
         return this.adminUrl;
     }
-    public Map<String,Object> attributes() {
+    public Map<String,String> attributes() {
         return this.attributes;
     }
-    public Map<String,Object> authenticationFlowBindingOverrides() {
+    public Map<String,String> authenticationFlowBindingOverrides() {
         return this.authenticationFlowBindingOverrides;
     }
     public Boolean authorizationServicesEnabled() {
         return this.authorizationServicesEnabled;
     }
-    public Map<String,Object> authorizationSettings() {
+    public Map<String,String> authorizationSettings() {
         return this.authorizationSettings;
     }
     public String baseUrl() {
@@ -154,7 +153,7 @@ public final class GetClientDescriptionConverterResult {
     public List<String> redirectUris() {
         return this.redirectUris;
     }
-    public Map<String,Object> registeredNodes() {
+    public Map<String,String> registeredNodes() {
         return this.registeredNodes;
     }
     public String registrationAccessToken() {
@@ -188,12 +187,12 @@ public final class GetClientDescriptionConverterResult {
     }
     @CustomType.Builder
     public static final class Builder {
-        private Map<String,Object> access;
+        private Map<String,String> access;
         private String adminUrl;
-        private Map<String,Object> attributes;
-        private Map<String,Object> authenticationFlowBindingOverrides;
+        private Map<String,String> attributes;
+        private Map<String,String> authenticationFlowBindingOverrides;
         private Boolean authorizationServicesEnabled;
-        private Map<String,Object> authorizationSettings;
+        private Map<String,String> authorizationSettings;
         private String baseUrl;
         private Boolean bearerOnly;
         private String body;
@@ -218,7 +217,7 @@ public final class GetClientDescriptionConverterResult {
         private Boolean publicClient;
         private String realmId;
         private List<String> redirectUris;
-        private Map<String,Object> registeredNodes;
+        private Map<String,String> registeredNodes;
         private String registrationAccessToken;
         private String rootUrl;
         private String secret;
@@ -270,7 +269,7 @@ public final class GetClientDescriptionConverterResult {
         }
 
         @CustomType.Setter
-        public Builder access(Map<String,Object> access) {
+        public Builder access(Map<String,String> access) {
             if (access == null) {
               throw new MissingRequiredPropertyException("GetClientDescriptionConverterResult", "access");
             }
@@ -286,7 +285,7 @@ public final class GetClientDescriptionConverterResult {
             return this;
         }
         @CustomType.Setter
-        public Builder attributes(Map<String,Object> attributes) {
+        public Builder attributes(Map<String,String> attributes) {
             if (attributes == null) {
               throw new MissingRequiredPropertyException("GetClientDescriptionConverterResult", "attributes");
             }
@@ -294,7 +293,7 @@ public final class GetClientDescriptionConverterResult {
             return this;
         }
         @CustomType.Setter
-        public Builder authenticationFlowBindingOverrides(Map<String,Object> authenticationFlowBindingOverrides) {
+        public Builder authenticationFlowBindingOverrides(Map<String,String> authenticationFlowBindingOverrides) {
             if (authenticationFlowBindingOverrides == null) {
               throw new MissingRequiredPropertyException("GetClientDescriptionConverterResult", "authenticationFlowBindingOverrides");
             }
@@ -310,7 +309,7 @@ public final class GetClientDescriptionConverterResult {
             return this;
         }
         @CustomType.Setter
-        public Builder authorizationSettings(Map<String,Object> authorizationSettings) {
+        public Builder authorizationSettings(Map<String,String> authorizationSettings) {
             if (authorizationSettings == null) {
               throw new MissingRequiredPropertyException("GetClientDescriptionConverterResult", "authorizationSettings");
             }
@@ -525,7 +524,7 @@ public final class GetClientDescriptionConverterResult {
             return redirectUris(List.of(redirectUris));
         }
         @CustomType.Setter
-        public Builder registeredNodes(Map<String,Object> registeredNodes) {
+        public Builder registeredNodes(Map<String,String> registeredNodes) {
             if (registeredNodes == null) {
               throw new MissingRequiredPropertyException("GetClientDescriptionConverterResult", "registeredNodes");
             }

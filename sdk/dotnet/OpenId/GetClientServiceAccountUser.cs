@@ -179,7 +179,7 @@ namespace Pulumi.Keycloak.OpenId
     [OutputType]
     public sealed class GetClientServiceAccountUserResult
     {
-        public readonly ImmutableDictionary<string, object> Attributes;
+        public readonly ImmutableDictionary<string, string> Attributes;
         public readonly string ClientId;
         public readonly string Email;
         public readonly bool EmailVerified;
@@ -197,7 +197,7 @@ namespace Pulumi.Keycloak.OpenId
 
         [OutputConstructor]
         private GetClientServiceAccountUserResult(
-            ImmutableDictionary<string, object> attributes,
+            ImmutableDictionary<string, string> attributes,
 
             string clientId,
 

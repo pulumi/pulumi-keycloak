@@ -91,7 +91,7 @@ namespace Pulumi.Keycloak
         /// A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
         /// </summary>
         [Output("config")]
-        public Output<ImmutableDictionary<string, object>> Config { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>> Config { get; private set; } = null!;
 
         /// <summary>
         /// The display name of this protocol mapper in the GUI.
@@ -176,14 +176,14 @@ namespace Pulumi.Keycloak
         public Input<string>? ClientScopeId { get; set; }
 
         [Input("config", required: true)]
-        private InputMap<object>? _config;
+        private InputMap<string>? _config;
 
         /// <summary>
         /// A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
         /// </summary>
-        public InputMap<object> Config
+        public InputMap<string> Config
         {
-            get => _config ?? (_config = new InputMap<object>());
+            get => _config ?? (_config = new InputMap<string>());
             set => _config = value;
         }
 
@@ -232,14 +232,14 @@ namespace Pulumi.Keycloak
         public Input<string>? ClientScopeId { get; set; }
 
         [Input("config")]
-        private InputMap<object>? _config;
+        private InputMap<string>? _config;
 
         /// <summary>
         /// A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
         /// </summary>
-        public InputMap<object> Config
+        public InputMap<string> Config
         {
-            get => _config ?? (_config = new InputMap<object>());
+            get => _config ?? (_config = new InputMap<string>());
             set => _config = value;
         }
 

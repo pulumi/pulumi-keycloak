@@ -58,7 +58,7 @@ class GetUserResult:
 
     @property
     @pulumi.getter
-    def attributes(self) -> Mapping[str, Any]:
+    def attributes(self) -> Mapping[str, str]:
         """
         (Computed) A map representing attributes for the user
         """

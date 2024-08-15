@@ -97,7 +97,7 @@ import (
 type User struct {
 	pulumi.CustomResourceState
 
-	Attributes          pulumi.MapOutput                 `pulumi:"attributes"`
+	Attributes          pulumi.StringMapOutput           `pulumi:"attributes"`
 	Email               pulumi.StringPtrOutput           `pulumi:"email"`
 	EmailVerified       pulumi.BoolPtrOutput             `pulumi:"emailVerified"`
 	Enabled             pulumi.BoolPtrOutput             `pulumi:"enabled"`
@@ -146,7 +146,7 @@ func GetUser(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering User resources.
 type userState struct {
-	Attributes          map[string]interface{}  `pulumi:"attributes"`
+	Attributes          map[string]string       `pulumi:"attributes"`
 	Email               *string                 `pulumi:"email"`
 	EmailVerified       *bool                   `pulumi:"emailVerified"`
 	Enabled             *bool                   `pulumi:"enabled"`
@@ -160,7 +160,7 @@ type userState struct {
 }
 
 type UserState struct {
-	Attributes          pulumi.MapInput
+	Attributes          pulumi.StringMapInput
 	Email               pulumi.StringPtrInput
 	EmailVerified       pulumi.BoolPtrInput
 	Enabled             pulumi.BoolPtrInput
@@ -178,7 +178,7 @@ func (UserState) ElementType() reflect.Type {
 }
 
 type userArgs struct {
-	Attributes          map[string]interface{}  `pulumi:"attributes"`
+	Attributes          map[string]string       `pulumi:"attributes"`
 	Email               *string                 `pulumi:"email"`
 	EmailVerified       *bool                   `pulumi:"emailVerified"`
 	Enabled             *bool                   `pulumi:"enabled"`
@@ -193,7 +193,7 @@ type userArgs struct {
 
 // The set of arguments for constructing a User resource.
 type UserArgs struct {
-	Attributes          pulumi.MapInput
+	Attributes          pulumi.StringMapInput
 	Email               pulumi.StringPtrInput
 	EmailVerified       pulumi.BoolPtrInput
 	Enabled             pulumi.BoolPtrInput
@@ -293,8 +293,8 @@ func (o UserOutput) ToUserOutputWithContext(ctx context.Context) UserOutput {
 	return o
 }
 
-func (o UserOutput) Attributes() pulumi.MapOutput {
-	return o.ApplyT(func(v *User) pulumi.MapOutput { return v.Attributes }).(pulumi.MapOutput)
+func (o UserOutput) Attributes() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *User) pulumi.StringMapOutput { return v.Attributes }).(pulumi.StringMapOutput)
 }
 
 func (o UserOutput) Email() pulumi.StringPtrOutput {

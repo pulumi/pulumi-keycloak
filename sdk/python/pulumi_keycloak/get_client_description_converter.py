@@ -140,7 +140,7 @@ class GetClientDescriptionConverterResult:
 
     @property
     @pulumi.getter
-    def access(self) -> Mapping[str, Any]:
+    def access(self) -> Mapping[str, str]:
         return pulumi.get(self, "access")
 
     @property
@@ -150,12 +150,12 @@ class GetClientDescriptionConverterResult:
 
     @property
     @pulumi.getter
-    def attributes(self) -> Mapping[str, Any]:
+    def attributes(self) -> Mapping[str, str]:
         return pulumi.get(self, "attributes")
 
     @property
     @pulumi.getter(name="authenticationFlowBindingOverrides")
-    def authentication_flow_binding_overrides(self) -> Mapping[str, Any]:
+    def authentication_flow_binding_overrides(self) -> Mapping[str, str]:
         return pulumi.get(self, "authentication_flow_binding_overrides")
 
     @property
@@ -165,7 +165,7 @@ class GetClientDescriptionConverterResult:
 
     @property
     @pulumi.getter(name="authorizationSettings")
-    def authorization_settings(self) -> Mapping[str, Any]:
+    def authorization_settings(self) -> Mapping[str, str]:
         return pulumi.get(self, "authorization_settings")
 
     @property
@@ -293,7 +293,7 @@ class GetClientDescriptionConverterResult:
 
     @property
     @pulumi.getter(name="registeredNodes")
-    def registered_nodes(self) -> Mapping[str, Any]:
+    def registered_nodes(self) -> Mapping[str, str]:
         return pulumi.get(self, "registered_nodes")
 
     @property
