@@ -8,7 +8,6 @@ import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.keycloak.openid.outputs.GetClientAuthenticationFlowBindingOverride;
 import com.pulumi.keycloak.openid.outputs.GetClientAuthorization;
 import java.lang.Boolean;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -41,7 +40,7 @@ public final class GetClientResult {
     private @Nullable Boolean displayOnConsentScreen;
     private Boolean enabled;
     private Boolean excludeSessionStateFromAuthResponse;
-    private Map<String,Object> extraConfig;
+    private Map<String,String> extraConfig;
     private Boolean frontchannelLogoutEnabled;
     private String frontchannelLogoutUrl;
     private Boolean fullScopeAllowed;
@@ -139,7 +138,7 @@ public final class GetClientResult {
     public Boolean excludeSessionStateFromAuthResponse() {
         return this.excludeSessionStateFromAuthResponse;
     }
-    public Map<String,Object> extraConfig() {
+    public Map<String,String> extraConfig() {
         return this.extraConfig;
     }
     public Boolean frontchannelLogoutEnabled() {
@@ -245,7 +244,7 @@ public final class GetClientResult {
         private @Nullable Boolean displayOnConsentScreen;
         private Boolean enabled;
         private Boolean excludeSessionStateFromAuthResponse;
-        private Map<String,Object> extraConfig;
+        private Map<String,String> extraConfig;
         private Boolean frontchannelLogoutEnabled;
         private String frontchannelLogoutUrl;
         private Boolean fullScopeAllowed;
@@ -506,7 +505,7 @@ public final class GetClientResult {
             return this;
         }
         @CustomType.Setter
-        public Builder extraConfig(Map<String,Object> extraConfig) {
+        public Builder extraConfig(Map<String,String> extraConfig) {
             if (extraConfig == null) {
               throw new MissingRequiredPropertyException("GetClientResult", "extraConfig");
             }

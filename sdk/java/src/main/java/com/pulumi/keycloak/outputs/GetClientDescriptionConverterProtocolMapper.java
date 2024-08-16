@@ -5,21 +5,20 @@ package com.pulumi.keycloak.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
 
 @CustomType
 public final class GetClientDescriptionConverterProtocolMapper {
-    private Map<String,Object> config;
+    private Map<String,String> config;
     private String id;
     private String name;
     private String protocol;
     private String protocolMapper;
 
     private GetClientDescriptionConverterProtocolMapper() {}
-    public Map<String,Object> config() {
+    public Map<String,String> config() {
         return this.config;
     }
     public String id() {
@@ -44,7 +43,7 @@ public final class GetClientDescriptionConverterProtocolMapper {
     }
     @CustomType.Builder
     public static final class Builder {
-        private Map<String,Object> config;
+        private Map<String,String> config;
         private String id;
         private String name;
         private String protocol;
@@ -60,7 +59,7 @@ public final class GetClientDescriptionConverterProtocolMapper {
         }
 
         @CustomType.Setter
-        public Builder config(Map<String,Object> config) {
+        public Builder config(Map<String,String> config) {
             if (config == null) {
               throw new MissingRequiredPropertyException("GetClientDescriptionConverterProtocolMapper", "config");
             }

@@ -45,8 +45,8 @@ import (
 //				TrustEmail:   pulumi.Bool(true),
 //				HostedDomain: pulumi.String("example.com"),
 //				SyncMode:     pulumi.String("IMPORT"),
-//				ExtraConfig: pulumi.Map{
-//					"myCustomConfigKey": pulumi.Any("myValue"),
+//				ExtraConfig: pulumi.StringMap{
+//					"myCustomConfigKey": pulumi.String("myValue"),
 //				},
 //			})
 //			if err != nil {
@@ -91,8 +91,8 @@ type GoogleIdentityProvider struct {
 	// (Computed) Display name for the Google identity provider in the GUI.
 	DisplayName pulumi.StringOutput `pulumi:"displayName"`
 	// When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
-	Enabled     pulumi.BoolPtrOutput `pulumi:"enabled"`
-	ExtraConfig pulumi.MapOutput     `pulumi:"extraConfig"`
+	Enabled     pulumi.BoolPtrOutput   `pulumi:"enabled"`
+	ExtraConfig pulumi.StringMapOutput `pulumi:"extraConfig"`
 	// The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
 	FirstBrokerLoginFlowAlias pulumi.StringPtrOutput `pulumi:"firstBrokerLoginFlowAlias"`
 	// A number defining the order of this identity provider in the GUI.
@@ -188,8 +188,8 @@ type googleIdentityProviderState struct {
 	// (Computed) Display name for the Google identity provider in the GUI.
 	DisplayName *string `pulumi:"displayName"`
 	// When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
-	Enabled     *bool                  `pulumi:"enabled"`
-	ExtraConfig map[string]interface{} `pulumi:"extraConfig"`
+	Enabled     *bool             `pulumi:"enabled"`
+	ExtraConfig map[string]string `pulumi:"extraConfig"`
 	// The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
 	FirstBrokerLoginFlowAlias *string `pulumi:"firstBrokerLoginFlowAlias"`
 	// A number defining the order of this identity provider in the GUI.
@@ -241,7 +241,7 @@ type GoogleIdentityProviderState struct {
 	DisplayName pulumi.StringPtrInput
 	// When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
 	Enabled     pulumi.BoolPtrInput
-	ExtraConfig pulumi.MapInput
+	ExtraConfig pulumi.StringMapInput
 	// The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
 	FirstBrokerLoginFlowAlias pulumi.StringPtrInput
 	// A number defining the order of this identity provider in the GUI.
@@ -292,8 +292,8 @@ type googleIdentityProviderArgs struct {
 	// When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
 	DisableUserInfo *bool `pulumi:"disableUserInfo"`
 	// When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
-	Enabled     *bool                  `pulumi:"enabled"`
-	ExtraConfig map[string]interface{} `pulumi:"extraConfig"`
+	Enabled     *bool             `pulumi:"enabled"`
+	ExtraConfig map[string]string `pulumi:"extraConfig"`
 	// The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
 	FirstBrokerLoginFlowAlias *string `pulumi:"firstBrokerLoginFlowAlias"`
 	// A number defining the order of this identity provider in the GUI.
@@ -340,7 +340,7 @@ type GoogleIdentityProviderArgs struct {
 	DisableUserInfo pulumi.BoolPtrInput
 	// When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
 	Enabled     pulumi.BoolPtrInput
-	ExtraConfig pulumi.MapInput
+	ExtraConfig pulumi.StringMapInput
 	// The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
 	FirstBrokerLoginFlowAlias pulumi.StringPtrInput
 	// A number defining the order of this identity provider in the GUI.
@@ -506,8 +506,8 @@ func (o GoogleIdentityProviderOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *GoogleIdentityProvider) pulumi.BoolPtrOutput { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
 
-func (o GoogleIdentityProviderOutput) ExtraConfig() pulumi.MapOutput {
-	return o.ApplyT(func(v *GoogleIdentityProvider) pulumi.MapOutput { return v.ExtraConfig }).(pulumi.MapOutput)
+func (o GoogleIdentityProviderOutput) ExtraConfig() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *GoogleIdentityProvider) pulumi.StringMapOutput { return v.ExtraConfig }).(pulumi.StringMapOutput)
 }
 
 // The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.

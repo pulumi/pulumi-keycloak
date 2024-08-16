@@ -6,7 +6,6 @@ package com.pulumi.keycloak.oidc.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.Boolean;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -169,9 +168,9 @@ public final class GoogleIdentityProviderState extends com.pulumi.resources.Reso
     }
 
     @Import(name="extraConfig")
-    private @Nullable Output<Map<String,Object>> extraConfig;
+    private @Nullable Output<Map<String,String>> extraConfig;
 
-    public Optional<Output<Map<String,Object>>> extraConfig() {
+    public Optional<Output<Map<String,String>>> extraConfig() {
         return Optional.ofNullable(this.extraConfig);
     }
 
@@ -643,12 +642,12 @@ public final class GoogleIdentityProviderState extends com.pulumi.resources.Reso
             return enabled(Output.of(enabled));
         }
 
-        public Builder extraConfig(@Nullable Output<Map<String,Object>> extraConfig) {
+        public Builder extraConfig(@Nullable Output<Map<String,String>> extraConfig) {
             $.extraConfig = extraConfig;
             return this;
         }
 
-        public Builder extraConfig(Map<String,Object> extraConfig) {
+        public Builder extraConfig(Map<String,String> extraConfig) {
             return extraConfig(Output.of(extraConfig));
         }
 

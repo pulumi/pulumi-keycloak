@@ -90,7 +90,7 @@ namespace Pulumi.Keycloak.Ldap
         /// A map with key / value pairs for configuring the LDAP mapper. The supported keys depend on the protocol mapper.
         /// </summary>
         [Output("config")]
-        public Output<ImmutableDictionary<string, object>?> Config { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>?> Config { get; private set; } = null!;
 
         /// <summary>
         /// The ID of the LDAP user federation provider to attach this mapper to.
@@ -169,14 +169,14 @@ namespace Pulumi.Keycloak.Ldap
     public sealed class CustomMapperArgs : global::Pulumi.ResourceArgs
     {
         [Input("config")]
-        private InputMap<object>? _config;
+        private InputMap<string>? _config;
 
         /// <summary>
         /// A map with key / value pairs for configuring the LDAP mapper. The supported keys depend on the protocol mapper.
         /// </summary>
-        public InputMap<object> Config
+        public InputMap<string> Config
         {
-            get => _config ?? (_config = new InputMap<object>());
+            get => _config ?? (_config = new InputMap<string>());
             set => _config = value;
         }
 
@@ -219,14 +219,14 @@ namespace Pulumi.Keycloak.Ldap
     public sealed class CustomMapperState : global::Pulumi.ResourceArgs
     {
         [Input("config")]
-        private InputMap<object>? _config;
+        private InputMap<string>? _config;
 
         /// <summary>
         /// A map with key / value pairs for configuring the LDAP mapper. The supported keys depend on the protocol mapper.
         /// </summary>
-        public InputMap<object> Config
+        public InputMap<string> Config
         {
-            get => _config ?? (_config = new InputMap<object>());
+            get => _config ?? (_config = new InputMap<string>());
             set => _config = value;
         }
 

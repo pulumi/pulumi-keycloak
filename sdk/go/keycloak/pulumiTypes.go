@@ -4566,11 +4566,11 @@ func (o UsersPermissionsViewScopePtrOutput) Policies() pulumi.StringArrayOutput 
 }
 
 type GetClientDescriptionConverterProtocolMapper struct {
-	Config         map[string]interface{} `pulumi:"config"`
-	Id             string                 `pulumi:"id"`
-	Name           string                 `pulumi:"name"`
-	Protocol       string                 `pulumi:"protocol"`
-	ProtocolMapper string                 `pulumi:"protocolMapper"`
+	Config         map[string]string `pulumi:"config"`
+	Id             string            `pulumi:"id"`
+	Name           string            `pulumi:"name"`
+	Protocol       string            `pulumi:"protocol"`
+	ProtocolMapper string            `pulumi:"protocolMapper"`
 }
 
 // GetClientDescriptionConverterProtocolMapperInput is an input type that accepts GetClientDescriptionConverterProtocolMapperArgs and GetClientDescriptionConverterProtocolMapperOutput values.
@@ -4585,11 +4585,11 @@ type GetClientDescriptionConverterProtocolMapperInput interface {
 }
 
 type GetClientDescriptionConverterProtocolMapperArgs struct {
-	Config         pulumi.MapInput    `pulumi:"config"`
-	Id             pulumi.StringInput `pulumi:"id"`
-	Name           pulumi.StringInput `pulumi:"name"`
-	Protocol       pulumi.StringInput `pulumi:"protocol"`
-	ProtocolMapper pulumi.StringInput `pulumi:"protocolMapper"`
+	Config         pulumi.StringMapInput `pulumi:"config"`
+	Id             pulumi.StringInput    `pulumi:"id"`
+	Name           pulumi.StringInput    `pulumi:"name"`
+	Protocol       pulumi.StringInput    `pulumi:"protocol"`
+	ProtocolMapper pulumi.StringInput    `pulumi:"protocolMapper"`
 }
 
 func (GetClientDescriptionConverterProtocolMapperArgs) ElementType() reflect.Type {
@@ -4643,8 +4643,8 @@ func (o GetClientDescriptionConverterProtocolMapperOutput) ToGetClientDescriptio
 	return o
 }
 
-func (o GetClientDescriptionConverterProtocolMapperOutput) Config() pulumi.MapOutput {
-	return o.ApplyT(func(v GetClientDescriptionConverterProtocolMapper) map[string]interface{} { return v.Config }).(pulumi.MapOutput)
+func (o GetClientDescriptionConverterProtocolMapperOutput) Config() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetClientDescriptionConverterProtocolMapper) map[string]string { return v.Config }).(pulumi.StringMapOutput)
 }
 
 func (o GetClientDescriptionConverterProtocolMapperOutput) Id() pulumi.StringOutput {

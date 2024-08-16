@@ -129,7 +129,7 @@ export class Client extends pulumi.CustomResource {
     public readonly displayOnConsentScreen!: pulumi.Output<boolean>;
     public readonly enabled!: pulumi.Output<boolean | undefined>;
     public readonly excludeSessionStateFromAuthResponse!: pulumi.Output<boolean>;
-    public readonly extraConfig!: pulumi.Output<{[key: string]: any} | undefined>;
+    public readonly extraConfig!: pulumi.Output<{[key: string]: string} | undefined>;
     public readonly frontchannelLogoutEnabled!: pulumi.Output<boolean>;
     public readonly frontchannelLogoutUrl!: pulumi.Output<string | undefined>;
     public readonly fullScopeAllowed!: pulumi.Output<boolean | undefined>;
@@ -304,7 +304,7 @@ export interface ClientState {
     displayOnConsentScreen?: pulumi.Input<boolean>;
     enabled?: pulumi.Input<boolean>;
     excludeSessionStateFromAuthResponse?: pulumi.Input<boolean>;
-    extraConfig?: pulumi.Input<{[key: string]: any}>;
+    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     frontchannelLogoutEnabled?: pulumi.Input<boolean>;
     frontchannelLogoutUrl?: pulumi.Input<string>;
     fullScopeAllowed?: pulumi.Input<boolean>;
@@ -356,7 +356,7 @@ export interface ClientArgs {
     displayOnConsentScreen?: pulumi.Input<boolean>;
     enabled?: pulumi.Input<boolean>;
     excludeSessionStateFromAuthResponse?: pulumi.Input<boolean>;
-    extraConfig?: pulumi.Input<{[key: string]: any}>;
+    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     frontchannelLogoutEnabled?: pulumi.Input<boolean>;
     frontchannelLogoutUrl?: pulumi.Input<string>;
     fullScopeAllowed?: pulumi.Input<boolean>;

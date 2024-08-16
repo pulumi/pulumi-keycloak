@@ -104,10 +104,10 @@ namespace Pulumi.Keycloak
     public sealed class GetRealmArgs : global::Pulumi.InvokeArgs
     {
         [Input("attributes")]
-        private Dictionary<string, object>? _attributes;
-        public Dictionary<string, object> Attributes
+        private Dictionary<string, string>? _attributes;
+        public Dictionary<string, string> Attributes
         {
-            get => _attributes ?? (_attributes = new Dictionary<string, object>());
+            get => _attributes ?? (_attributes = new Dictionary<string, string>());
             set => _attributes = value;
         }
 
@@ -175,10 +175,10 @@ namespace Pulumi.Keycloak
     public sealed class GetRealmInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("attributes")]
-        private InputMap<object>? _attributes;
-        public InputMap<object> Attributes
+        private InputMap<string>? _attributes;
+        public InputMap<string> Attributes
         {
-            get => _attributes ?? (_attributes = new InputMap<object>());
+            get => _attributes ?? (_attributes = new InputMap<string>());
             set => _attributes = value;
         }
 
@@ -256,7 +256,7 @@ namespace Pulumi.Keycloak
         public readonly string ActionTokenGeneratedByAdminLifespan;
         public readonly string ActionTokenGeneratedByUserLifespan;
         public readonly string AdminTheme;
-        public readonly ImmutableDictionary<string, object> Attributes;
+        public readonly ImmutableDictionary<string, string> Attributes;
         public readonly string BrowserFlow;
         public readonly string ClientAuthenticationFlow;
         public readonly string ClientSessionIdleTimeout;
@@ -328,7 +328,7 @@ namespace Pulumi.Keycloak
 
             string adminTheme,
 
-            ImmutableDictionary<string, object> attributes,
+            ImmutableDictionary<string, string> attributes,
 
             string browserFlow,
 

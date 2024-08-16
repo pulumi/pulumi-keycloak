@@ -279,7 +279,7 @@ class GetClientResult:
 
     @property
     @pulumi.getter(name="extraConfig")
-    def extra_config(self) -> Mapping[str, Any]:
+    def extra_config(self) -> Mapping[str, str]:
         return pulumi.get(self, "extra_config")
 
     @property
@@ -453,7 +453,7 @@ class AwaitableGetClientResult(GetClientResult):
 def get_client(client_id: Optional[str] = None,
                consent_screen_text: Optional[str] = None,
                display_on_consent_screen: Optional[bool] = None,
-               extra_config: Optional[Mapping[str, Any]] = None,
+               extra_config: Optional[Mapping[str, str]] = None,
                oauth2_device_authorization_grant_enabled: Optional[bool] = None,
                oauth2_device_code_lifespan: Optional[str] = None,
                oauth2_device_polling_interval: Optional[str] = None,
@@ -554,7 +554,7 @@ def get_client(client_id: Optional[str] = None,
 def get_client_output(client_id: Optional[pulumi.Input[str]] = None,
                       consent_screen_text: Optional[pulumi.Input[Optional[str]]] = None,
                       display_on_consent_screen: Optional[pulumi.Input[Optional[bool]]] = None,
-                      extra_config: Optional[pulumi.Input[Optional[Mapping[str, Any]]]] = None,
+                      extra_config: Optional[pulumi.Input[Optional[Mapping[str, str]]]] = None,
                       oauth2_device_authorization_grant_enabled: Optional[pulumi.Input[Optional[bool]]] = None,
                       oauth2_device_code_lifespan: Optional[pulumi.Input[Optional[str]]] = None,
                       oauth2_device_polling_interval: Optional[pulumi.Input[Optional[str]]] = None,

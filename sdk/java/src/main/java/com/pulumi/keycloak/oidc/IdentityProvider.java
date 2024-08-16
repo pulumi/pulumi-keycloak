@@ -11,7 +11,6 @@ import com.pulumi.keycloak.Utilities;
 import com.pulumi.keycloak.oidc.IdentityProviderArgs;
 import com.pulumi.keycloak.oidc.inputs.IdentityProviderState;
 import java.lang.Boolean;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -254,10 +253,10 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
     public Output<Optional<Boolean>> enabled() {
         return Codegen.optional(this.enabled);
     }
-    @Export(name="extraConfig", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
-    private Output</* @Nullable */ Map<String,Object>> extraConfig;
+    @Export(name="extraConfig", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output</* @Nullable */ Map<String,String>> extraConfig;
 
-    public Output<Optional<Map<String,Object>>> extraConfig() {
+    public Output<Optional<Map<String,String>>> extraConfig() {
         return Codegen.optional(this.extraConfig);
     }
     /**

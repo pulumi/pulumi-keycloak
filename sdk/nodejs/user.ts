@@ -97,7 +97,7 @@ export class User extends pulumi.CustomResource {
         return obj['__pulumiType'] === User.__pulumiType;
     }
 
-    public readonly attributes!: pulumi.Output<{[key: string]: any} | undefined>;
+    public readonly attributes!: pulumi.Output<{[key: string]: string} | undefined>;
     public readonly email!: pulumi.Output<string | undefined>;
     public readonly emailVerified!: pulumi.Output<boolean | undefined>;
     public readonly enabled!: pulumi.Output<boolean | undefined>;
@@ -162,7 +162,7 @@ export class User extends pulumi.CustomResource {
  * Input properties used for looking up and filtering User resources.
  */
 export interface UserState {
-    attributes?: pulumi.Input<{[key: string]: any}>;
+    attributes?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     email?: pulumi.Input<string>;
     emailVerified?: pulumi.Input<boolean>;
     enabled?: pulumi.Input<boolean>;
@@ -179,7 +179,7 @@ export interface UserState {
  * The set of arguments for constructing a User resource.
  */
 export interface UserArgs {
-    attributes?: pulumi.Input<{[key: string]: any}>;
+    attributes?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     email?: pulumi.Input<string>;
     emailVerified?: pulumi.Input<boolean>;
     enabled?: pulumi.Input<boolean>;

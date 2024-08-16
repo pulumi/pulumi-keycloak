@@ -31,7 +31,7 @@ export interface GetGroupArgs {
  * A collection of values returned by getGroup.
  */
 export interface GetGroupResult {
-    readonly attributes: {[key: string]: any};
+    readonly attributes: {[key: string]: string};
     /**
      * The provider-assigned unique ID for this managed resource.
      */

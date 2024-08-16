@@ -28,7 +28,7 @@ class ClientArgs:
                  enabled: Optional[pulumi.Input[bool]] = None,
                  encrypt_assertions: Optional[pulumi.Input[bool]] = None,
                  encryption_certificate: Optional[pulumi.Input[str]] = None,
-                 extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  force_name_id_format: Optional[pulumi.Input[bool]] = None,
                  force_post_binding: Optional[pulumi.Input[bool]] = None,
                  front_channel_logout: Optional[pulumi.Input[bool]] = None,
@@ -230,11 +230,11 @@ class ClientArgs:
 
     @property
     @pulumi.getter(name="extraConfig")
-    def extra_config(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def extra_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         return pulumi.get(self, "extra_config")
 
     @extra_config.setter
-    def extra_config(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def extra_config(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "extra_config", value)
 
     @property
@@ -442,7 +442,7 @@ class _ClientState:
                  encrypt_assertions: Optional[pulumi.Input[bool]] = None,
                  encryption_certificate: Optional[pulumi.Input[str]] = None,
                  encryption_certificate_sha1: Optional[pulumi.Input[str]] = None,
-                 extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  force_name_id_format: Optional[pulumi.Input[bool]] = None,
                  force_post_binding: Optional[pulumi.Input[bool]] = None,
                  front_channel_logout: Optional[pulumi.Input[bool]] = None,
@@ -655,11 +655,11 @@ class _ClientState:
 
     @property
     @pulumi.getter(name="extraConfig")
-    def extra_config(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def extra_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         return pulumi.get(self, "extra_config")
 
     @extra_config.setter
-    def extra_config(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def extra_config(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "extra_config", value)
 
     @property
@@ -895,7 +895,7 @@ class Client(pulumi.CustomResource):
                  enabled: Optional[pulumi.Input[bool]] = None,
                  encrypt_assertions: Optional[pulumi.Input[bool]] = None,
                  encryption_certificate: Optional[pulumi.Input[str]] = None,
-                 extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  force_name_id_format: Optional[pulumi.Input[bool]] = None,
                  force_post_binding: Optional[pulumi.Input[bool]] = None,
                  front_channel_logout: Optional[pulumi.Input[bool]] = None,
@@ -986,7 +986,7 @@ class Client(pulumi.CustomResource):
                  enabled: Optional[pulumi.Input[bool]] = None,
                  encrypt_assertions: Optional[pulumi.Input[bool]] = None,
                  encryption_certificate: Optional[pulumi.Input[str]] = None,
-                 extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  force_name_id_format: Optional[pulumi.Input[bool]] = None,
                  force_post_binding: Optional[pulumi.Input[bool]] = None,
                  front_channel_logout: Optional[pulumi.Input[bool]] = None,
@@ -1081,7 +1081,7 @@ class Client(pulumi.CustomResource):
             encrypt_assertions: Optional[pulumi.Input[bool]] = None,
             encryption_certificate: Optional[pulumi.Input[str]] = None,
             encryption_certificate_sha1: Optional[pulumi.Input[str]] = None,
-            extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             force_name_id_format: Optional[pulumi.Input[bool]] = None,
             force_post_binding: Optional[pulumi.Input[bool]] = None,
             front_channel_logout: Optional[pulumi.Input[bool]] = None,
@@ -1219,7 +1219,7 @@ class Client(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="extraConfig")
-    def extra_config(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
+    def extra_config(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         return pulumi.get(self, "extra_config")
 
     @property

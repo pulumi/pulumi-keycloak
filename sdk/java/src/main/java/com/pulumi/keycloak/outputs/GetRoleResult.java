@@ -5,7 +5,6 @@ package com.pulumi.keycloak.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -15,7 +14,7 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetRoleResult {
-    private Map<String,Object> attributes;
+    private Map<String,String> attributes;
     private @Nullable String clientId;
     private List<String> compositeRoles;
     private String description;
@@ -28,7 +27,7 @@ public final class GetRoleResult {
     private String realmId;
 
     private GetRoleResult() {}
-    public Map<String,Object> attributes() {
+    public Map<String,String> attributes() {
         return this.attributes;
     }
     public Optional<String> clientId() {
@@ -63,7 +62,7 @@ public final class GetRoleResult {
     }
     @CustomType.Builder
     public static final class Builder {
-        private Map<String,Object> attributes;
+        private Map<String,String> attributes;
         private @Nullable String clientId;
         private List<String> compositeRoles;
         private String description;
@@ -83,7 +82,7 @@ public final class GetRoleResult {
         }
 
         @CustomType.Setter
-        public Builder attributes(Map<String,Object> attributes) {
+        public Builder attributes(Map<String,String> attributes) {
             if (attributes == null) {
               throw new MissingRequiredPropertyException("GetRoleResult", "attributes");
             }

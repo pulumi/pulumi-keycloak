@@ -60,7 +60,7 @@ export function getRealm(args: GetRealmArgs, opts?: pulumi.InvokeOptions): Promi
  * A collection of arguments for invoking getRealm.
  */
 export interface GetRealmArgs {
-    attributes?: {[key: string]: any};
+    attributes?: {[key: string]: string};
     defaultDefaultClientScopes?: string[];
     defaultOptionalClientScopes?: string[];
     displayNameHtml?: string;
@@ -86,7 +86,7 @@ export interface GetRealmResult {
     readonly actionTokenGeneratedByAdminLifespan: string;
     readonly actionTokenGeneratedByUserLifespan: string;
     readonly adminTheme: string;
-    readonly attributes: {[key: string]: any};
+    readonly attributes: {[key: string]: string};
     readonly browserFlow: string;
     readonly clientAuthenticationFlow: string;
     readonly clientSessionIdleTimeout: string;
@@ -178,7 +178,7 @@ export function getRealmOutput(args: GetRealmOutputArgs, opts?: pulumi.InvokeOpt
  * A collection of arguments for invoking getRealm.
  */
 export interface GetRealmOutputArgs {
-    attributes?: pulumi.Input<{[key: string]: any}>;
+    attributes?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     defaultDefaultClientScopes?: pulumi.Input<pulumi.Input<string>[]>;
     defaultOptionalClientScopes?: pulumi.Input<pulumi.Input<string>[]>;
     displayNameHtml?: pulumi.Input<string>;

@@ -112,7 +112,7 @@ export class GoogleIdentityProvider extends pulumi.CustomResource {
      * When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
      */
     public readonly enabled!: pulumi.Output<boolean | undefined>;
-    public readonly extraConfig!: pulumi.Output<{[key: string]: any} | undefined>;
+    public readonly extraConfig!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
      */
@@ -296,7 +296,7 @@ export interface GoogleIdentityProviderState {
      * When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
      */
     enabled?: pulumi.Input<boolean>;
-    extraConfig?: pulumi.Input<{[key: string]: any}>;
+    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
      */
@@ -391,7 +391,7 @@ export interface GoogleIdentityProviderArgs {
      * When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
      */
     enabled?: pulumi.Input<boolean>;
-    extraConfig?: pulumi.Input<{[key: string]: any}>;
+    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
      */

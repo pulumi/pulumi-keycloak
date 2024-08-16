@@ -43,7 +43,7 @@ export class Realm extends pulumi.CustomResource {
     public readonly actionTokenGeneratedByAdminLifespan!: pulumi.Output<string>;
     public readonly actionTokenGeneratedByUserLifespan!: pulumi.Output<string>;
     public readonly adminTheme!: pulumi.Output<string | undefined>;
-    public readonly attributes!: pulumi.Output<{[key: string]: any} | undefined>;
+    public readonly attributes!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * Which flow should be used for BrowserFlow
      */
@@ -266,7 +266,7 @@ export interface RealmState {
     actionTokenGeneratedByAdminLifespan?: pulumi.Input<string>;
     actionTokenGeneratedByUserLifespan?: pulumi.Input<string>;
     adminTheme?: pulumi.Input<string>;
-    attributes?: pulumi.Input<{[key: string]: any}>;
+    attributes?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Which flow should be used for BrowserFlow
      */
@@ -354,7 +354,7 @@ export interface RealmArgs {
     actionTokenGeneratedByAdminLifespan?: pulumi.Input<string>;
     actionTokenGeneratedByUserLifespan?: pulumi.Input<string>;
     adminTheme?: pulumi.Input<string>;
-    attributes?: pulumi.Input<{[key: string]: any}>;
+    attributes?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Which flow should be used for BrowserFlow
      */

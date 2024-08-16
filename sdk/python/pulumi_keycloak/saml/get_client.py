@@ -203,7 +203,7 @@ class GetClientResult:
 
     @property
     @pulumi.getter(name="extraConfig")
-    def extra_config(self) -> Mapping[str, Any]:
+    def extra_config(self) -> Mapping[str, str]:
         return pulumi.get(self, "extra_config")
 
     @property

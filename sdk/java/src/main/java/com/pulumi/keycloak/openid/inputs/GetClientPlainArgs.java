@@ -6,7 +6,6 @@ package com.pulumi.keycloak.openid.inputs;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -40,9 +39,9 @@ public final class GetClientPlainArgs extends com.pulumi.resources.InvokeArgs {
     }
 
     @Import(name="extraConfig")
-    private @Nullable Map<String,Object> extraConfig;
+    private @Nullable Map<String,String> extraConfig;
 
-    public Optional<Map<String,Object>> extraConfig() {
+    public Optional<Map<String,String>> extraConfig() {
         return Optional.ofNullable(this.extraConfig);
     }
 
@@ -120,7 +119,7 @@ public final class GetClientPlainArgs extends com.pulumi.resources.InvokeArgs {
             return this;
         }
 
-        public Builder extraConfig(@Nullable Map<String,Object> extraConfig) {
+        public Builder extraConfig(@Nullable Map<String,String> extraConfig) {
             $.extraConfig = extraConfig;
             return this;
         }

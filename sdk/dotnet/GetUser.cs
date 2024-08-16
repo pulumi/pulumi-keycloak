@@ -130,7 +130,7 @@ namespace Pulumi.Keycloak
         /// <summary>
         /// (Computed) A map representing attributes for the user
         /// </summary>
-        public readonly ImmutableDictionary<string, object> Attributes;
+        public readonly ImmutableDictionary<string, string> Attributes;
         /// <summary>
         /// (Computed) The user's email.
         /// </summary>
@@ -165,7 +165,7 @@ namespace Pulumi.Keycloak
 
         [OutputConstructor]
         private GetUserResult(
-            ImmutableDictionary<string, object> attributes,
+            ImmutableDictionary<string, string> attributes,
 
             string email,
 

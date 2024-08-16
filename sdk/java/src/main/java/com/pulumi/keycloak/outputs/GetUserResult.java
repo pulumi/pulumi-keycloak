@@ -6,7 +6,6 @@ package com.pulumi.keycloak.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +17,7 @@ public final class GetUserResult {
      * @return (Computed) A map representing attributes for the user
      * 
      */
-    private Map<String,Object> attributes;
+    private Map<String,String> attributes;
     /**
      * @return (Computed) The user&#39;s email.
      * 
@@ -63,7 +62,7 @@ public final class GetUserResult {
      * @return (Computed) A map representing attributes for the user
      * 
      */
-    public Map<String,Object> attributes() {
+    public Map<String,String> attributes() {
         return this.attributes;
     }
     /**
@@ -134,7 +133,7 @@ public final class GetUserResult {
     }
     @CustomType.Builder
     public static final class Builder {
-        private Map<String,Object> attributes;
+        private Map<String,String> attributes;
         private String email;
         private Boolean emailVerified;
         private Boolean enabled;
@@ -162,7 +161,7 @@ public final class GetUserResult {
         }
 
         @CustomType.Setter
-        public Builder attributes(Map<String,Object> attributes) {
+        public Builder attributes(Map<String,String> attributes) {
             if (attributes == null) {
               throw new MissingRequiredPropertyException("GetUserResult", "attributes");
             }

@@ -76,7 +76,7 @@ export class HardcodedAttributeIdentityProviderMapper extends pulumi.CustomResou
      * The value to set to the attribute. You can hardcode any value like 'foo'.
      */
     public readonly attributeValue!: pulumi.Output<string | undefined>;
-    public readonly extraConfig!: pulumi.Output<{[key: string]: any} | undefined>;
+    public readonly extraConfig!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The IDP alias of the attribute to set.
      */
@@ -150,7 +150,7 @@ export interface HardcodedAttributeIdentityProviderMapperState {
      * The value to set to the attribute. You can hardcode any value like 'foo'.
      */
     attributeValue?: pulumi.Input<string>;
-    extraConfig?: pulumi.Input<{[key: string]: any}>;
+    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The IDP alias of the attribute to set.
      */
@@ -181,7 +181,7 @@ export interface HardcodedAttributeIdentityProviderMapperArgs {
      * The value to set to the attribute. You can hardcode any value like 'foo'.
      */
     attributeValue?: pulumi.Input<string>;
-    extraConfig?: pulumi.Input<{[key: string]: any}>;
+    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The IDP alias of the attribute to set.
      */

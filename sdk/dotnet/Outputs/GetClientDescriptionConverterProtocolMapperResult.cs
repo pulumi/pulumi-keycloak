@@ -13,7 +13,7 @@ namespace Pulumi.Keycloak.Outputs
     [OutputType]
     public sealed class GetClientDescriptionConverterProtocolMapperResult
     {
-        public readonly ImmutableDictionary<string, object> Config;
+        public readonly ImmutableDictionary<string, string> Config;
         public readonly string Id;
         public readonly string Name;
         public readonly string Protocol;
@@ -21,7 +21,7 @@ namespace Pulumi.Keycloak.Outputs
 
         [OutputConstructor]
         private GetClientDescriptionConverterProtocolMapperResult(
-            ImmutableDictionary<string, object> config,
+            ImmutableDictionary<string, string> config,
 
             string id,
 

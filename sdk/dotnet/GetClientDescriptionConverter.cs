@@ -187,12 +187,12 @@ namespace Pulumi.Keycloak
     [OutputType]
     public sealed class GetClientDescriptionConverterResult
     {
-        public readonly ImmutableDictionary<string, object> Access;
+        public readonly ImmutableDictionary<string, string> Access;
         public readonly string AdminUrl;
-        public readonly ImmutableDictionary<string, object> Attributes;
-        public readonly ImmutableDictionary<string, object> AuthenticationFlowBindingOverrides;
+        public readonly ImmutableDictionary<string, string> Attributes;
+        public readonly ImmutableDictionary<string, string> AuthenticationFlowBindingOverrides;
         public readonly bool AuthorizationServicesEnabled;
-        public readonly ImmutableDictionary<string, object> AuthorizationSettings;
+        public readonly ImmutableDictionary<string, string> AuthorizationSettings;
         public readonly string BaseUrl;
         public readonly bool BearerOnly;
         public readonly string Body;
@@ -220,7 +220,7 @@ namespace Pulumi.Keycloak
         public readonly bool PublicClient;
         public readonly string RealmId;
         public readonly ImmutableArray<string> RedirectUris;
-        public readonly ImmutableDictionary<string, object> RegisteredNodes;
+        public readonly ImmutableDictionary<string, string> RegisteredNodes;
         public readonly string RegistrationAccessToken;
         public readonly string RootUrl;
         public readonly string Secret;
@@ -231,17 +231,17 @@ namespace Pulumi.Keycloak
 
         [OutputConstructor]
         private GetClientDescriptionConverterResult(
-            ImmutableDictionary<string, object> access,
+            ImmutableDictionary<string, string> access,
 
             string adminUrl,
 
-            ImmutableDictionary<string, object> attributes,
+            ImmutableDictionary<string, string> attributes,
 
-            ImmutableDictionary<string, object> authenticationFlowBindingOverrides,
+            ImmutableDictionary<string, string> authenticationFlowBindingOverrides,
 
             bool authorizationServicesEnabled,
 
-            ImmutableDictionary<string, object> authorizationSettings,
+            ImmutableDictionary<string, string> authorizationSettings,
 
             string baseUrl,
 
@@ -291,7 +291,7 @@ namespace Pulumi.Keycloak
 
             ImmutableArray<string> redirectUris,
 
-            ImmutableDictionary<string, object> registeredNodes,
+            ImmutableDictionary<string, string> registeredNodes,
 
             string registrationAccessToken,
 

@@ -71,7 +71,7 @@ export class HardcodedRoleIdentityMapper extends pulumi.CustomResource {
         return obj['__pulumiType'] === HardcodedRoleIdentityMapper.__pulumiType;
     }
 
-    public readonly extraConfig!: pulumi.Output<{[key: string]: any} | undefined>;
+    public readonly extraConfig!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The IDP alias of the attribute to set.
      */
@@ -130,7 +130,7 @@ export class HardcodedRoleIdentityMapper extends pulumi.CustomResource {
  * Input properties used for looking up and filtering HardcodedRoleIdentityMapper resources.
  */
 export interface HardcodedRoleIdentityMapperState {
-    extraConfig?: pulumi.Input<{[key: string]: any}>;
+    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The IDP alias of the attribute to set.
      */
@@ -153,7 +153,7 @@ export interface HardcodedRoleIdentityMapperState {
  * The set of arguments for constructing a HardcodedRoleIdentityMapper resource.
  */
 export interface HardcodedRoleIdentityMapperArgs {
-    extraConfig?: pulumi.Input<{[key: string]: any}>;
+    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The IDP alias of the attribute to set.
      */

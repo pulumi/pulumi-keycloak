@@ -77,8 +77,8 @@ type CustomUserFederation struct {
 	CachePolicy pulumi.StringPtrOutput `pulumi:"cachePolicy"`
 	// How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users
 	// sync.
-	ChangedSyncPeriod pulumi.IntPtrOutput `pulumi:"changedSyncPeriod"`
-	Config            pulumi.MapOutput    `pulumi:"config"`
+	ChangedSyncPeriod pulumi.IntPtrOutput    `pulumi:"changedSyncPeriod"`
+	Config            pulumi.StringMapOutput `pulumi:"config"`
 	// When false, this provider will not be used when performing queries for users.
 	Enabled pulumi.BoolPtrOutput `pulumi:"enabled"`
 	// How frequently Keycloak should sync all users, in seconds. Omit this property to disable periodic full sync.
@@ -135,8 +135,8 @@ type customUserFederationState struct {
 	CachePolicy *string `pulumi:"cachePolicy"`
 	// How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users
 	// sync.
-	ChangedSyncPeriod *int                   `pulumi:"changedSyncPeriod"`
-	Config            map[string]interface{} `pulumi:"config"`
+	ChangedSyncPeriod *int              `pulumi:"changedSyncPeriod"`
+	Config            map[string]string `pulumi:"config"`
 	// When false, this provider will not be used when performing queries for users.
 	Enabled *bool `pulumi:"enabled"`
 	// How frequently Keycloak should sync all users, in seconds. Omit this property to disable periodic full sync.
@@ -159,7 +159,7 @@ type CustomUserFederationState struct {
 	// How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users
 	// sync.
 	ChangedSyncPeriod pulumi.IntPtrInput
-	Config            pulumi.MapInput
+	Config            pulumi.StringMapInput
 	// When false, this provider will not be used when performing queries for users.
 	Enabled pulumi.BoolPtrInput
 	// How frequently Keycloak should sync all users, in seconds. Omit this property to disable periodic full sync.
@@ -185,8 +185,8 @@ type customUserFederationArgs struct {
 	CachePolicy *string `pulumi:"cachePolicy"`
 	// How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users
 	// sync.
-	ChangedSyncPeriod *int                   `pulumi:"changedSyncPeriod"`
-	Config            map[string]interface{} `pulumi:"config"`
+	ChangedSyncPeriod *int              `pulumi:"changedSyncPeriod"`
+	Config            map[string]string `pulumi:"config"`
 	// When false, this provider will not be used when performing queries for users.
 	Enabled *bool `pulumi:"enabled"`
 	// How frequently Keycloak should sync all users, in seconds. Omit this property to disable periodic full sync.
@@ -210,7 +210,7 @@ type CustomUserFederationArgs struct {
 	// How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users
 	// sync.
 	ChangedSyncPeriod pulumi.IntPtrInput
-	Config            pulumi.MapInput
+	Config            pulumi.StringMapInput
 	// When false, this provider will not be used when performing queries for users.
 	Enabled pulumi.BoolPtrInput
 	// How frequently Keycloak should sync all users, in seconds. Omit this property to disable periodic full sync.
@@ -325,8 +325,8 @@ func (o CustomUserFederationOutput) ChangedSyncPeriod() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *CustomUserFederation) pulumi.IntPtrOutput { return v.ChangedSyncPeriod }).(pulumi.IntPtrOutput)
 }
 
-func (o CustomUserFederationOutput) Config() pulumi.MapOutput {
-	return o.ApplyT(func(v *CustomUserFederation) pulumi.MapOutput { return v.Config }).(pulumi.MapOutput)
+func (o CustomUserFederationOutput) Config() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *CustomUserFederation) pulumi.StringMapOutput { return v.Config }).(pulumi.StringMapOutput)
 }
 
 // When false, this provider will not be used when performing queries for users.

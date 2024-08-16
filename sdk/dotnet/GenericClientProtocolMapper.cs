@@ -96,7 +96,7 @@ namespace Pulumi.Keycloak
         public Output<string?> ClientScopeId { get; private set; } = null!;
 
         [Output("config")]
-        public Output<ImmutableDictionary<string, object>> Config { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>> Config { get; private set; } = null!;
 
         /// <summary>
         /// A human-friendly name that will appear in the Keycloak console.
@@ -181,10 +181,10 @@ namespace Pulumi.Keycloak
         public Input<string>? ClientScopeId { get; set; }
 
         [Input("config", required: true)]
-        private InputMap<object>? _config;
-        public InputMap<object> Config
+        private InputMap<string>? _config;
+        public InputMap<string> Config
         {
-            get => _config ?? (_config = new InputMap<object>());
+            get => _config ?? (_config = new InputMap<string>());
             set => _config = value;
         }
 
@@ -233,10 +233,10 @@ namespace Pulumi.Keycloak
         public Input<string>? ClientScopeId { get; set; }
 
         [Input("config")]
-        private InputMap<object>? _config;
-        public InputMap<object> Config
+        private InputMap<string>? _config;
+        public InputMap<string> Config
         {
-            get => _config ?? (_config = new InputMap<object>());
+            get => _config ?? (_config = new InputMap<string>());
             set => _config = value;
         }
 

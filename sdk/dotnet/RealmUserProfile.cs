@@ -37,7 +37,7 @@ namespace Pulumi.Keycloak
     ///         RealmName = "my-realm",
     ///         Attributes = 
     ///         {
-    ///             { "userProfileEnabled", true },
+    ///             { "userProfileEnabled", "true" },
     ///         },
     ///     });
     /// 

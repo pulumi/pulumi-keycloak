@@ -94,7 +94,7 @@ export class GenericProtocolMapper extends pulumi.CustomResource {
     /**
      * A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
      */
-    public readonly config!: pulumi.Output<{[key: string]: any}>;
+    public readonly config!: pulumi.Output<{[key: string]: string}>;
     /**
      * The display name of this protocol mapper in the GUI.
      */
@@ -174,7 +174,7 @@ export interface GenericProtocolMapperState {
     /**
      * A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
      */
-    config?: pulumi.Input<{[key: string]: any}>;
+    config?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The display name of this protocol mapper in the GUI.
      */
@@ -208,7 +208,7 @@ export interface GenericProtocolMapperArgs {
     /**
      * A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
      */
-    config: pulumi.Input<{[key: string]: any}>;
+    config: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The display name of this protocol mapper in the GUI.
      */

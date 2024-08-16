@@ -12,7 +12,6 @@ import com.pulumi.keycloak.Utilities;
 import com.pulumi.keycloak.inputs.CustomUserFederationState;
 import java.lang.Boolean;
 import java.lang.Integer;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Optional;
@@ -113,10 +112,10 @@ public class CustomUserFederation extends com.pulumi.resources.CustomResource {
     public Output<Optional<Integer>> changedSyncPeriod() {
         return Codegen.optional(this.changedSyncPeriod);
     }
-    @Export(name="config", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
-    private Output</* @Nullable */ Map<String,Object>> config;
+    @Export(name="config", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output</* @Nullable */ Map<String,String>> config;
 
-    public Output<Optional<Map<String,Object>>> config() {
+    public Output<Optional<Map<String,String>>> config() {
         return Codegen.optional(this.config);
     }
     /**

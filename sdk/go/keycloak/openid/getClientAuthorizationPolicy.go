@@ -64,8 +64,8 @@ import (
 //				Uris: pulumi.StringArray{
 //					pulumi.String("/endpoint/*"),
 //				},
-//				Attributes: pulumi.Map{
-//					"foo": pulumi.Any("bar"),
+//				Attributes: pulumi.StringMap{
+//					"foo": pulumi.String("bar"),
 //				},
 //			})
 //			if err != nil {

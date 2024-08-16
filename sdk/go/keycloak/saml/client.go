@@ -41,7 +41,7 @@ type Client struct {
 	EncryptAssertions                  pulumi.BoolPtrOutput                              `pulumi:"encryptAssertions"`
 	EncryptionCertificate              pulumi.StringOutput                               `pulumi:"encryptionCertificate"`
 	EncryptionCertificateSha1          pulumi.StringOutput                               `pulumi:"encryptionCertificateSha1"`
-	ExtraConfig                        pulumi.MapOutput                                  `pulumi:"extraConfig"`
+	ExtraConfig                        pulumi.StringMapOutput                            `pulumi:"extraConfig"`
 	ForceNameIdFormat                  pulumi.BoolPtrOutput                              `pulumi:"forceNameIdFormat"`
 	ForcePostBinding                   pulumi.BoolPtrOutput                              `pulumi:"forcePostBinding"`
 	FrontChannelLogout                 pulumi.BoolPtrOutput                              `pulumi:"frontChannelLogout"`
@@ -116,7 +116,7 @@ type clientState struct {
 	EncryptAssertions                  *bool                                     `pulumi:"encryptAssertions"`
 	EncryptionCertificate              *string                                   `pulumi:"encryptionCertificate"`
 	EncryptionCertificateSha1          *string                                   `pulumi:"encryptionCertificateSha1"`
-	ExtraConfig                        map[string]interface{}                    `pulumi:"extraConfig"`
+	ExtraConfig                        map[string]string                         `pulumi:"extraConfig"`
 	ForceNameIdFormat                  *bool                                     `pulumi:"forceNameIdFormat"`
 	ForcePostBinding                   *bool                                     `pulumi:"forcePostBinding"`
 	FrontChannelLogout                 *bool                                     `pulumi:"frontChannelLogout"`
@@ -156,7 +156,7 @@ type ClientState struct {
 	EncryptAssertions                  pulumi.BoolPtrInput
 	EncryptionCertificate              pulumi.StringPtrInput
 	EncryptionCertificateSha1          pulumi.StringPtrInput
-	ExtraConfig                        pulumi.MapInput
+	ExtraConfig                        pulumi.StringMapInput
 	ForceNameIdFormat                  pulumi.BoolPtrInput
 	ForcePostBinding                   pulumi.BoolPtrInput
 	FrontChannelLogout                 pulumi.BoolPtrInput
@@ -199,7 +199,7 @@ type clientArgs struct {
 	Enabled                            *bool                                     `pulumi:"enabled"`
 	EncryptAssertions                  *bool                                     `pulumi:"encryptAssertions"`
 	EncryptionCertificate              *string                                   `pulumi:"encryptionCertificate"`
-	ExtraConfig                        map[string]interface{}                    `pulumi:"extraConfig"`
+	ExtraConfig                        map[string]string                         `pulumi:"extraConfig"`
 	ForceNameIdFormat                  *bool                                     `pulumi:"forceNameIdFormat"`
 	ForcePostBinding                   *bool                                     `pulumi:"forcePostBinding"`
 	FrontChannelLogout                 *bool                                     `pulumi:"frontChannelLogout"`
@@ -237,7 +237,7 @@ type ClientArgs struct {
 	Enabled                            pulumi.BoolPtrInput
 	EncryptAssertions                  pulumi.BoolPtrInput
 	EncryptionCertificate              pulumi.StringPtrInput
-	ExtraConfig                        pulumi.MapInput
+	ExtraConfig                        pulumi.StringMapInput
 	ForceNameIdFormat                  pulumi.BoolPtrInput
 	ForcePostBinding                   pulumi.BoolPtrInput
 	FrontChannelLogout                 pulumi.BoolPtrInput
@@ -399,8 +399,8 @@ func (o ClientOutput) EncryptionCertificateSha1() pulumi.StringOutput {
 	return o.ApplyT(func(v *Client) pulumi.StringOutput { return v.EncryptionCertificateSha1 }).(pulumi.StringOutput)
 }
 
-func (o ClientOutput) ExtraConfig() pulumi.MapOutput {
-	return o.ApplyT(func(v *Client) pulumi.MapOutput { return v.ExtraConfig }).(pulumi.MapOutput)
+func (o ClientOutput) ExtraConfig() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *Client) pulumi.StringMapOutput { return v.ExtraConfig }).(pulumi.StringMapOutput)
 }
 
 func (o ClientOutput) ForceNameIdFormat() pulumi.BoolPtrOutput {

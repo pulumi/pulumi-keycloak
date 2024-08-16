@@ -66,9 +66,9 @@ import (
 //				LdapUserFederationId: pulumi.Any(openldap.Id),
 //				ProviderId:           pulumi.String("custom-provider-registered-in-keycloak"),
 //				ProviderType:         pulumi.String("com.example.custom.ldap.mappers.CustomMapper"),
-//				Config: pulumi.Map{
-//					"attribute.name":  pulumi.Any("name"),
-//					"attribute.value": pulumi.Any("value"),
+//				Config: pulumi.StringMap{
+//					"attribute.name":  pulumi.String("name"),
+//					"attribute.value": pulumi.String("value"),
 //				},
 //			})
 //			if err != nil {
@@ -97,7 +97,7 @@ type CustomMapper struct {
 	pulumi.CustomResourceState
 
 	// A map with key / value pairs for configuring the LDAP mapper. The supported keys depend on the protocol mapper.
-	Config pulumi.MapOutput `pulumi:"config"`
+	Config pulumi.StringMapOutput `pulumi:"config"`
 	// The ID of the LDAP user federation provider to attach this mapper to.
 	LdapUserFederationId pulumi.StringOutput `pulumi:"ldapUserFederationId"`
 	// Display name of this mapper when displayed in the console.
@@ -153,7 +153,7 @@ func GetCustomMapper(ctx *pulumi.Context,
 // Input properties used for looking up and filtering CustomMapper resources.
 type customMapperState struct {
 	// A map with key / value pairs for configuring the LDAP mapper. The supported keys depend on the protocol mapper.
-	Config map[string]interface{} `pulumi:"config"`
+	Config map[string]string `pulumi:"config"`
 	// The ID of the LDAP user federation provider to attach this mapper to.
 	LdapUserFederationId *string `pulumi:"ldapUserFederationId"`
 	// Display name of this mapper when displayed in the console.
@@ -168,7 +168,7 @@ type customMapperState struct {
 
 type CustomMapperState struct {
 	// A map with key / value pairs for configuring the LDAP mapper. The supported keys depend on the protocol mapper.
-	Config pulumi.MapInput
+	Config pulumi.StringMapInput
 	// The ID of the LDAP user federation provider to attach this mapper to.
 	LdapUserFederationId pulumi.StringPtrInput
 	// Display name of this mapper when displayed in the console.
@@ -187,7 +187,7 @@ func (CustomMapperState) ElementType() reflect.Type {
 
 type customMapperArgs struct {
 	// A map with key / value pairs for configuring the LDAP mapper. The supported keys depend on the protocol mapper.
-	Config map[string]interface{} `pulumi:"config"`
+	Config map[string]string `pulumi:"config"`
 	// The ID of the LDAP user federation provider to attach this mapper to.
 	LdapUserFederationId string `pulumi:"ldapUserFederationId"`
 	// Display name of this mapper when displayed in the console.
@@ -203,7 +203,7 @@ type customMapperArgs struct {
 // The set of arguments for constructing a CustomMapper resource.
 type CustomMapperArgs struct {
 	// A map with key / value pairs for configuring the LDAP mapper. The supported keys depend on the protocol mapper.
-	Config pulumi.MapInput
+	Config pulumi.StringMapInput
 	// The ID of the LDAP user federation provider to attach this mapper to.
 	LdapUserFederationId pulumi.StringInput
 	// Display name of this mapper when displayed in the console.
@@ -304,8 +304,8 @@ func (o CustomMapperOutput) ToCustomMapperOutputWithContext(ctx context.Context)
 }
 
 // A map with key / value pairs for configuring the LDAP mapper. The supported keys depend on the protocol mapper.
-func (o CustomMapperOutput) Config() pulumi.MapOutput {
-	return o.ApplyT(func(v *CustomMapper) pulumi.MapOutput { return v.Config }).(pulumi.MapOutput)
+func (o CustomMapperOutput) Config() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *CustomMapper) pulumi.StringMapOutput { return v.Config }).(pulumi.StringMapOutput)
 }
 
 // The ID of the LDAP user federation provider to attach this mapper to.

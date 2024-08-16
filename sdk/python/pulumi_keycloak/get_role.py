@@ -46,7 +46,7 @@ class GetRoleResult:
 
     @property
     @pulumi.getter
-    def attributes(self) -> Mapping[str, Any]:
+    def attributes(self) -> Mapping[str, str]:
         return pulumi.get(self, "attributes")
 
     @property

@@ -15,7 +15,7 @@ import (
 type ClientAuthorizationResource struct {
 	pulumi.CustomResourceState
 
-	Attributes         pulumi.MapOutput         `pulumi:"attributes"`
+	Attributes         pulumi.StringMapOutput   `pulumi:"attributes"`
 	DisplayName        pulumi.StringPtrOutput   `pulumi:"displayName"`
 	IconUri            pulumi.StringPtrOutput   `pulumi:"iconUri"`
 	Name               pulumi.StringOutput      `pulumi:"name"`
@@ -63,20 +63,20 @@ func GetClientAuthorizationResource(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ClientAuthorizationResource resources.
 type clientAuthorizationResourceState struct {
-	Attributes         map[string]interface{} `pulumi:"attributes"`
-	DisplayName        *string                `pulumi:"displayName"`
-	IconUri            *string                `pulumi:"iconUri"`
-	Name               *string                `pulumi:"name"`
-	OwnerManagedAccess *bool                  `pulumi:"ownerManagedAccess"`
-	RealmId            *string                `pulumi:"realmId"`
-	ResourceServerId   *string                `pulumi:"resourceServerId"`
-	Scopes             []string               `pulumi:"scopes"`
-	Type               *string                `pulumi:"type"`
-	Uris               []string               `pulumi:"uris"`
+	Attributes         map[string]string `pulumi:"attributes"`
+	DisplayName        *string           `pulumi:"displayName"`
+	IconUri            *string           `pulumi:"iconUri"`
+	Name               *string           `pulumi:"name"`
+	OwnerManagedAccess *bool             `pulumi:"ownerManagedAccess"`
+	RealmId            *string           `pulumi:"realmId"`
+	ResourceServerId   *string           `pulumi:"resourceServerId"`
+	Scopes             []string          `pulumi:"scopes"`
+	Type               *string           `pulumi:"type"`
+	Uris               []string          `pulumi:"uris"`
 }
 
 type ClientAuthorizationResourceState struct {
-	Attributes         pulumi.MapInput
+	Attributes         pulumi.StringMapInput
 	DisplayName        pulumi.StringPtrInput
 	IconUri            pulumi.StringPtrInput
 	Name               pulumi.StringPtrInput
@@ -93,21 +93,21 @@ func (ClientAuthorizationResourceState) ElementType() reflect.Type {
 }
 
 type clientAuthorizationResourceArgs struct {
-	Attributes         map[string]interface{} `pulumi:"attributes"`
-	DisplayName        *string                `pulumi:"displayName"`
-	IconUri            *string                `pulumi:"iconUri"`
-	Name               *string                `pulumi:"name"`
-	OwnerManagedAccess *bool                  `pulumi:"ownerManagedAccess"`
-	RealmId            string                 `pulumi:"realmId"`
-	ResourceServerId   string                 `pulumi:"resourceServerId"`
-	Scopes             []string               `pulumi:"scopes"`
-	Type               *string                `pulumi:"type"`
-	Uris               []string               `pulumi:"uris"`
+	Attributes         map[string]string `pulumi:"attributes"`
+	DisplayName        *string           `pulumi:"displayName"`
+	IconUri            *string           `pulumi:"iconUri"`
+	Name               *string           `pulumi:"name"`
+	OwnerManagedAccess *bool             `pulumi:"ownerManagedAccess"`
+	RealmId            string            `pulumi:"realmId"`
+	ResourceServerId   string            `pulumi:"resourceServerId"`
+	Scopes             []string          `pulumi:"scopes"`
+	Type               *string           `pulumi:"type"`
+	Uris               []string          `pulumi:"uris"`
 }
 
 // The set of arguments for constructing a ClientAuthorizationResource resource.
 type ClientAuthorizationResourceArgs struct {
-	Attributes         pulumi.MapInput
+	Attributes         pulumi.StringMapInput
 	DisplayName        pulumi.StringPtrInput
 	IconUri            pulumi.StringPtrInput
 	Name               pulumi.StringPtrInput
@@ -206,8 +206,8 @@ func (o ClientAuthorizationResourceOutput) ToClientAuthorizationResourceOutputWi
 	return o
 }
 
-func (o ClientAuthorizationResourceOutput) Attributes() pulumi.MapOutput {
-	return o.ApplyT(func(v *ClientAuthorizationResource) pulumi.MapOutput { return v.Attributes }).(pulumi.MapOutput)
+func (o ClientAuthorizationResourceOutput) Attributes() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ClientAuthorizationResource) pulumi.StringMapOutput { return v.Attributes }).(pulumi.StringMapOutput)
 }
 
 func (o ClientAuthorizationResourceOutput) DisplayName() pulumi.StringPtrOutput {

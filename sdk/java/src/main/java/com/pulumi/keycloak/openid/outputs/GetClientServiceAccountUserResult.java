@@ -7,7 +7,6 @@ import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.keycloak.openid.outputs.GetClientServiceAccountUserFederatedIdentity;
 import java.lang.Boolean;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -15,7 +14,7 @@ import java.util.Objects;
 
 @CustomType
 public final class GetClientServiceAccountUserResult {
-    private Map<String,Object> attributes;
+    private Map<String,String> attributes;
     private String clientId;
     private String email;
     private Boolean emailVerified;
@@ -33,7 +32,7 @@ public final class GetClientServiceAccountUserResult {
     private String username;
 
     private GetClientServiceAccountUserResult() {}
-    public Map<String,Object> attributes() {
+    public Map<String,String> attributes() {
         return this.attributes;
     }
     public String clientId() {
@@ -83,7 +82,7 @@ public final class GetClientServiceAccountUserResult {
     }
     @CustomType.Builder
     public static final class Builder {
-        private Map<String,Object> attributes;
+        private Map<String,String> attributes;
         private String clientId;
         private String email;
         private Boolean emailVerified;
@@ -113,7 +112,7 @@ public final class GetClientServiceAccountUserResult {
         }
 
         @CustomType.Setter
-        public Builder attributes(Map<String,Object> attributes) {
+        public Builder attributes(Map<String,String> attributes) {
             if (attributes == null) {
               throw new MissingRequiredPropertyException("GetClientServiceAccountUserResult", "attributes");
             }

@@ -13,7 +13,7 @@ namespace Pulumi.Keycloak.OpenId
     public partial class ClientAuthorizationResource : global::Pulumi.CustomResource
     {
         [Output("attributes")]
-        public Output<ImmutableDictionary<string, object>?> Attributes { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>?> Attributes { get; private set; } = null!;
 
         [Output("displayName")]
         public Output<string?> DisplayName { get; private set; } = null!;
@@ -89,10 +89,10 @@ namespace Pulumi.Keycloak.OpenId
     public sealed class ClientAuthorizationResourceArgs : global::Pulumi.ResourceArgs
     {
         [Input("attributes")]
-        private InputMap<object>? _attributes;
-        public InputMap<object> Attributes
+        private InputMap<string>? _attributes;
+        public InputMap<string> Attributes
         {
-            get => _attributes ?? (_attributes = new InputMap<object>());
+            get => _attributes ?? (_attributes = new InputMap<string>());
             set => _attributes = value;
         }
 
@@ -142,10 +142,10 @@ namespace Pulumi.Keycloak.OpenId
     public sealed class ClientAuthorizationResourceState : global::Pulumi.ResourceArgs
     {
         [Input("attributes")]
-        private InputMap<object>? _attributes;
-        public InputMap<object> Attributes
+        private InputMap<string>? _attributes;
+        public InputMap<string> Attributes
         {
-            get => _attributes ?? (_attributes = new InputMap<object>());
+            get => _attributes ?? (_attributes = new InputMap<string>());
             set => _attributes = value;
         }
 

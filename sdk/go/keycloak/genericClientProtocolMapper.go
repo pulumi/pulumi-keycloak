@@ -58,11 +58,11 @@ import (
 //				Name:           pulumi.String("tes-mapper"),
 //				Protocol:       pulumi.String("saml"),
 //				ProtocolMapper: pulumi.String("saml-hardcode-attribute-mapper"),
-//				Config: pulumi.Map{
-//					"attribute.name":       pulumi.Any("name"),
-//					"attribute.nameformat": pulumi.Any("Basic"),
-//					"attribute.value":      pulumi.Any("value"),
-//					"friendly.name":        pulumi.Any("display name"),
+//				Config: pulumi.StringMap{
+//					"attribute.name":       pulumi.String("name"),
+//					"attribute.nameformat": pulumi.String("Basic"),
+//					"attribute.value":      pulumi.String("value"),
+//					"friendly.name":        pulumi.String("display name"),
 //				},
 //			})
 //			if err != nil {
@@ -98,7 +98,7 @@ type GenericClientProtocolMapper struct {
 	ClientId pulumi.StringPtrOutput `pulumi:"clientId"`
 	// The mapper's associated client scope. Cannot be used at the same time as client_id.
 	ClientScopeId pulumi.StringPtrOutput `pulumi:"clientScopeId"`
-	Config        pulumi.MapOutput       `pulumi:"config"`
+	Config        pulumi.StringMapOutput `pulumi:"config"`
 	// A human-friendly name that will appear in the Keycloak console.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The protocol of the client (openid-connect / saml).
@@ -154,8 +154,8 @@ type genericClientProtocolMapperState struct {
 	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
 	ClientId *string `pulumi:"clientId"`
 	// The mapper's associated client scope. Cannot be used at the same time as client_id.
-	ClientScopeId *string                `pulumi:"clientScopeId"`
-	Config        map[string]interface{} `pulumi:"config"`
+	ClientScopeId *string           `pulumi:"clientScopeId"`
+	Config        map[string]string `pulumi:"config"`
 	// A human-friendly name that will appear in the Keycloak console.
 	Name *string `pulumi:"name"`
 	// The protocol of the client (openid-connect / saml).
@@ -171,7 +171,7 @@ type GenericClientProtocolMapperState struct {
 	ClientId pulumi.StringPtrInput
 	// The mapper's associated client scope. Cannot be used at the same time as client_id.
 	ClientScopeId pulumi.StringPtrInput
-	Config        pulumi.MapInput
+	Config        pulumi.StringMapInput
 	// A human-friendly name that will appear in the Keycloak console.
 	Name pulumi.StringPtrInput
 	// The protocol of the client (openid-connect / saml).
@@ -190,8 +190,8 @@ type genericClientProtocolMapperArgs struct {
 	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
 	ClientId *string `pulumi:"clientId"`
 	// The mapper's associated client scope. Cannot be used at the same time as client_id.
-	ClientScopeId *string                `pulumi:"clientScopeId"`
-	Config        map[string]interface{} `pulumi:"config"`
+	ClientScopeId *string           `pulumi:"clientScopeId"`
+	Config        map[string]string `pulumi:"config"`
 	// A human-friendly name that will appear in the Keycloak console.
 	Name *string `pulumi:"name"`
 	// The protocol of the client (openid-connect / saml).
@@ -208,7 +208,7 @@ type GenericClientProtocolMapperArgs struct {
 	ClientId pulumi.StringPtrInput
 	// The mapper's associated client scope. Cannot be used at the same time as client_id.
 	ClientScopeId pulumi.StringPtrInput
-	Config        pulumi.MapInput
+	Config        pulumi.StringMapInput
 	// A human-friendly name that will appear in the Keycloak console.
 	Name pulumi.StringPtrInput
 	// The protocol of the client (openid-connect / saml).
@@ -316,8 +316,8 @@ func (o GenericClientProtocolMapperOutput) ClientScopeId() pulumi.StringPtrOutpu
 	return o.ApplyT(func(v *GenericClientProtocolMapper) pulumi.StringPtrOutput { return v.ClientScopeId }).(pulumi.StringPtrOutput)
 }
 
-func (o GenericClientProtocolMapperOutput) Config() pulumi.MapOutput {
-	return o.ApplyT(func(v *GenericClientProtocolMapper) pulumi.MapOutput { return v.Config }).(pulumi.MapOutput)
+func (o GenericClientProtocolMapperOutput) Config() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *GenericClientProtocolMapper) pulumi.StringMapOutput { return v.Config }).(pulumi.StringMapOutput)
 }
 
 // A human-friendly name that will appear in the Keycloak console.

@@ -75,7 +75,7 @@ namespace Pulumi.Keycloak
         public Output<int?> ChangedSyncPeriod { get; private set; } = null!;
 
         [Output("config")]
-        public Output<ImmutableDictionary<string, object>?> Config { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>?> Config { get; private set; } = null!;
 
         /// <summary>
         /// When false, this provider will not be used when performing queries for users.
@@ -177,10 +177,10 @@ namespace Pulumi.Keycloak
         public Input<int>? ChangedSyncPeriod { get; set; }
 
         [Input("config")]
-        private InputMap<object>? _config;
-        public InputMap<object> Config
+        private InputMap<string>? _config;
+        public InputMap<string> Config
         {
-            get => _config ?? (_config = new InputMap<object>());
+            get => _config ?? (_config = new InputMap<string>());
             set => _config = value;
         }
 
@@ -246,10 +246,10 @@ namespace Pulumi.Keycloak
         public Input<int>? ChangedSyncPeriod { get; set; }
 
         [Input("config")]
-        private InputMap<object>? _config;
-        public InputMap<object> Config
+        private InputMap<string>? _config;
+        public InputMap<string> Config
         {
-            get => _config ?? (_config = new InputMap<object>());
+            get => _config ?? (_config = new InputMap<string>());
             set => _config = value;
         }
 

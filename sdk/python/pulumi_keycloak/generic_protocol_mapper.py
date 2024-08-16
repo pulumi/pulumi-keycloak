@@ -14,7 +14,7 @@ __all__ = ['GenericProtocolMapperArgs', 'GenericProtocolMapper']
 @pulumi.input_type
 class GenericProtocolMapperArgs:
     def __init__(__self__, *,
-                 config: pulumi.Input[Mapping[str, Any]],
+                 config: pulumi.Input[Mapping[str, pulumi.Input[str]]],
                  protocol: pulumi.Input[str],
                  protocol_mapper: pulumi.Input[str],
                  realm_id: pulumi.Input[str],
@@ -23,7 +23,7 @@ class GenericProtocolMapperArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a GenericProtocolMapper resource.
-        :param pulumi.Input[Mapping[str, Any]] config: A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] config: A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
         :param pulumi.Input[str] protocol: The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
         :param pulumi.Input[str] protocol_mapper: The name of the protocol mapper. The protocol mapper must be compatible with the specified client.
         :param pulumi.Input[str] realm_id: The realm this protocol mapper exists within.
@@ -44,14 +44,14 @@ class GenericProtocolMapperArgs:
 
     @property
     @pulumi.getter
-    def config(self) -> pulumi.Input[Mapping[str, Any]]:
+    def config(self) -> pulumi.Input[Mapping[str, pulumi.Input[str]]]:
         """
         A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
         """
         return pulumi.get(self, "config")
 
     @config.setter
-    def config(self, value: pulumi.Input[Mapping[str, Any]]):
+    def config(self, value: pulumi.Input[Mapping[str, pulumi.Input[str]]]):
         pulumi.set(self, "config", value)
 
     @property
@@ -132,7 +132,7 @@ class _GenericProtocolMapperState:
     def __init__(__self__, *,
                  client_id: Optional[pulumi.Input[str]] = None,
                  client_scope_id: Optional[pulumi.Input[str]] = None,
-                 config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
                  protocol_mapper: Optional[pulumi.Input[str]] = None,
@@ -141,7 +141,7 @@ class _GenericProtocolMapperState:
         Input properties used for looking up and filtering GenericProtocolMapper resources.
         :param pulumi.Input[str] client_id: The ID of the client this protocol mapper should be added to. Conflicts with `client_scope_id`. This argument is required if `client_scope_id` is not set.
         :param pulumi.Input[str] client_scope_id: The ID of the client scope this protocol mapper should be added to. Conflicts with `client_id`. This argument is required if `client_id` is not set.
-        :param pulumi.Input[Mapping[str, Any]] config: A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] config: A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
         :param pulumi.Input[str] name: The display name of this protocol mapper in the GUI.
         :param pulumi.Input[str] protocol: The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
         :param pulumi.Input[str] protocol_mapper: The name of the protocol mapper. The protocol mapper must be compatible with the specified client.
@@ -188,14 +188,14 @@ class _GenericProtocolMapperState:
 
     @property
     @pulumi.getter
-    def config(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
         """
         return pulumi.get(self, "config")
 
     @config.setter
-    def config(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def config(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "config", value)
 
     @property
@@ -254,7 +254,7 @@ class GenericProtocolMapper(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  client_id: Optional[pulumi.Input[str]] = None,
                  client_scope_id: Optional[pulumi.Input[str]] = None,
-                 config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
                  protocol_mapper: Optional[pulumi.Input[str]] = None,
@@ -312,7 +312,7 @@ class GenericProtocolMapper(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] client_id: The ID of the client this protocol mapper should be added to. Conflicts with `client_scope_id`. This argument is required if `client_scope_id` is not set.
         :param pulumi.Input[str] client_scope_id: The ID of the client scope this protocol mapper should be added to. Conflicts with `client_id`. This argument is required if `client_id` is not set.
-        :param pulumi.Input[Mapping[str, Any]] config: A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] config: A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
         :param pulumi.Input[str] name: The display name of this protocol mapper in the GUI.
         :param pulumi.Input[str] protocol: The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
         :param pulumi.Input[str] protocol_mapper: The name of the protocol mapper. The protocol mapper must be compatible with the specified client.
@@ -389,7 +389,7 @@ class GenericProtocolMapper(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  client_id: Optional[pulumi.Input[str]] = None,
                  client_scope_id: Optional[pulumi.Input[str]] = None,
-                 config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
                  protocol_mapper: Optional[pulumi.Input[str]] = None,
@@ -430,7 +430,7 @@ class GenericProtocolMapper(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             client_id: Optional[pulumi.Input[str]] = None,
             client_scope_id: Optional[pulumi.Input[str]] = None,
-            config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             protocol: Optional[pulumi.Input[str]] = None,
             protocol_mapper: Optional[pulumi.Input[str]] = None,
@@ -444,7 +444,7 @@ class GenericProtocolMapper(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] client_id: The ID of the client this protocol mapper should be added to. Conflicts with `client_scope_id`. This argument is required if `client_scope_id` is not set.
         :param pulumi.Input[str] client_scope_id: The ID of the client scope this protocol mapper should be added to. Conflicts with `client_id`. This argument is required if `client_id` is not set.
-        :param pulumi.Input[Mapping[str, Any]] config: A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] config: A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
         :param pulumi.Input[str] name: The display name of this protocol mapper in the GUI.
         :param pulumi.Input[str] protocol: The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
         :param pulumi.Input[str] protocol_mapper: The name of the protocol mapper. The protocol mapper must be compatible with the specified client.
@@ -481,7 +481,7 @@ class GenericProtocolMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def config(self) -> pulumi.Output[Mapping[str, Any]]:
+    def config(self) -> pulumi.Output[Mapping[str, str]]:
         """
         A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
         """

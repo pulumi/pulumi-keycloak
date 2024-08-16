@@ -10,7 +10,6 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.keycloak.AttributeImporterIdentityProviderMapperArgs;
 import com.pulumi.keycloak.Utilities;
 import com.pulumi.keycloak.inputs.AttributeImporterIdentityProviderMapperState;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Optional;
@@ -124,10 +123,10 @@ public class AttributeImporterIdentityProviderMapper extends com.pulumi.resource
     public Output<Optional<String>> claimName() {
         return Codegen.optional(this.claimName);
     }
-    @Export(name="extraConfig", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
-    private Output</* @Nullable */ Map<String,Object>> extraConfig;
+    @Export(name="extraConfig", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output</* @Nullable */ Map<String,String>> extraConfig;
 
-    public Output<Optional<Map<String,Object>>> extraConfig() {
+    public Output<Optional<Map<String,String>>> extraConfig() {
         return Codegen.optional(this.extraConfig);
     }
     /**

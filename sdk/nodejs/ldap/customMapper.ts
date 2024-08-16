@@ -96,7 +96,7 @@ export class CustomMapper extends pulumi.CustomResource {
     /**
      * A map with key / value pairs for configuring the LDAP mapper. The supported keys depend on the protocol mapper.
      */
-    public readonly config!: pulumi.Output<{[key: string]: any} | undefined>;
+    public readonly config!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The ID of the LDAP user federation provider to attach this mapper to.
      */
@@ -170,7 +170,7 @@ export interface CustomMapperState {
     /**
      * A map with key / value pairs for configuring the LDAP mapper. The supported keys depend on the protocol mapper.
      */
-    config?: pulumi.Input<{[key: string]: any}>;
+    config?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The ID of the LDAP user federation provider to attach this mapper to.
      */
@@ -200,7 +200,7 @@ export interface CustomMapperArgs {
     /**
      * A map with key / value pairs for configuring the LDAP mapper. The supported keys depend on the protocol mapper.
      */
-    config?: pulumi.Input<{[key: string]: any}>;
+    config?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The ID of the LDAP user federation provider to attach this mapper to.
      */
