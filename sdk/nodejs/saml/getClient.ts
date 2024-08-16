@@ -66,7 +66,7 @@ export interface GetClientResult {
     readonly encryptAssertions: boolean;
     readonly encryptionCertificate: string;
     readonly encryptionCertificateSha1: string;
-    readonly extraConfig: {[key: string]: any};
+    readonly extraConfig: {[key: string]: string};
     readonly forceNameIdFormat: boolean;
     readonly forcePostBinding: boolean;
     readonly frontChannelLogout: boolean;

@@ -5,14 +5,13 @@ package com.pulumi.keycloak.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
 
 @CustomType
 public final class GetGroupResult {
-    private Map<String,Object> attributes;
+    private Map<String,String> attributes;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
@@ -24,7 +23,7 @@ public final class GetGroupResult {
     private String realmId;
 
     private GetGroupResult() {}
-    public Map<String,Object> attributes() {
+    public Map<String,String> attributes() {
         return this.attributes;
     }
     /**
@@ -56,7 +55,7 @@ public final class GetGroupResult {
     }
     @CustomType.Builder
     public static final class Builder {
-        private Map<String,Object> attributes;
+        private Map<String,String> attributes;
         private String id;
         private String name;
         private String parentId;
@@ -74,7 +73,7 @@ public final class GetGroupResult {
         }
 
         @CustomType.Setter
-        public Builder attributes(Map<String,Object> attributes) {
+        public Builder attributes(Map<String,String> attributes) {
             if (attributes == null) {
               throw new MissingRequiredPropertyException("GetGroupResult", "attributes");
             }

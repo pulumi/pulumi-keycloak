@@ -68,7 +68,7 @@ type LookupUserArgs struct {
 // A collection of values returned by getUser.
 type LookupUserResult struct {
 	// (Computed) A map representing attributes for the user
-	Attributes map[string]interface{} `pulumi:"attributes"`
+	Attributes map[string]string `pulumi:"attributes"`
 	// (Computed) The user's email.
 	Email string `pulumi:"email"`
 	// (Computed) Whether the email address was validated or not. Default to `false`.
@@ -129,8 +129,8 @@ func (o LookupUserResultOutput) ToLookupUserResultOutputWithContext(ctx context.
 }
 
 // (Computed) A map representing attributes for the user
-func (o LookupUserResultOutput) Attributes() pulumi.MapOutput {
-	return o.ApplyT(func(v LookupUserResult) map[string]interface{} { return v.Attributes }).(pulumi.MapOutput)
+func (o LookupUserResultOutput) Attributes() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LookupUserResult) map[string]string { return v.Attributes }).(pulumi.StringMapOutput)
 }
 
 // (Computed) The user's email.

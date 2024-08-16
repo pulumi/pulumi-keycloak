@@ -69,7 +69,7 @@ namespace Pulumi.Keycloak
     [OutputType]
     public sealed class GetRoleResult
     {
-        public readonly ImmutableDictionary<string, object> Attributes;
+        public readonly ImmutableDictionary<string, string> Attributes;
         public readonly string? ClientId;
         public readonly ImmutableArray<string> CompositeRoles;
         public readonly string Description;
@@ -82,7 +82,7 @@ namespace Pulumi.Keycloak
 
         [OutputConstructor]
         private GetRoleResult(
-            ImmutableDictionary<string, object> attributes,
+            ImmutableDictionary<string, string> attributes,
 
             string? clientId,
 

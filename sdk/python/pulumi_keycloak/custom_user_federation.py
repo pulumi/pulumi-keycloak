@@ -18,7 +18,7 @@ class CustomUserFederationArgs:
                  realm_id: pulumi.Input[str],
                  cache_policy: Optional[pulumi.Input[str]] = None,
                  changed_sync_period: Optional[pulumi.Input[int]] = None,
-                 config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
                  full_sync_period: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -105,11 +105,11 @@ class CustomUserFederationArgs:
 
     @property
     @pulumi.getter
-    def config(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         return pulumi.get(self, "config")
 
     @config.setter
-    def config(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def config(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "config", value)
 
     @property
@@ -178,7 +178,7 @@ class _CustomUserFederationState:
     def __init__(__self__, *,
                  cache_policy: Optional[pulumi.Input[str]] = None,
                  changed_sync_period: Optional[pulumi.Input[int]] = None,
-                 config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
                  full_sync_period: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -244,11 +244,11 @@ class _CustomUserFederationState:
 
     @property
     @pulumi.getter
-    def config(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         return pulumi.get(self, "config")
 
     @config.setter
-    def config(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def config(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "config", value)
 
     @property
@@ -344,7 +344,7 @@ class CustomUserFederation(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cache_policy: Optional[pulumi.Input[str]] = None,
                  changed_sync_period: Optional[pulumi.Input[int]] = None,
-                 config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
                  full_sync_period: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -471,7 +471,7 @@ class CustomUserFederation(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cache_policy: Optional[pulumi.Input[str]] = None,
                  changed_sync_period: Optional[pulumi.Input[int]] = None,
-                 config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
                  full_sync_period: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -514,7 +514,7 @@ class CustomUserFederation(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             cache_policy: Optional[pulumi.Input[str]] = None,
             changed_sync_period: Optional[pulumi.Input[int]] = None,
-            config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             enabled: Optional[pulumi.Input[bool]] = None,
             full_sync_period: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
@@ -572,7 +572,7 @@ class CustomUserFederation(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def config(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
+    def config(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         return pulumi.get(self, "config")
 
     @property

@@ -56,8 +56,8 @@ import (
 //				AttributeName:         pulumi.String("attribute"),
 //				AttributeValue:        pulumi.String("value"),
 //				UserSession:           pulumi.Bool(true),
-//				ExtraConfig: pulumi.Map{
-//					"syncMode": pulumi.Any("INHERIT"),
+//				ExtraConfig: pulumi.StringMap{
+//					"syncMode": pulumi.String("INHERIT"),
 //				},
 //			})
 //			if err != nil {
@@ -75,7 +75,7 @@ type HardcodedAttributeIdentityProviderMapper struct {
 	AttributeName pulumi.StringPtrOutput `pulumi:"attributeName"`
 	// The value to set to the attribute. You can hardcode any value like 'foo'.
 	AttributeValue pulumi.StringPtrOutput `pulumi:"attributeValue"`
-	ExtraConfig    pulumi.MapOutput       `pulumi:"extraConfig"`
+	ExtraConfig    pulumi.StringMapOutput `pulumi:"extraConfig"`
 	// The IDP alias of the attribute to set.
 	IdentityProviderAlias pulumi.StringOutput `pulumi:"identityProviderAlias"`
 	// Display name of this mapper when displayed in the console.
@@ -128,8 +128,8 @@ type hardcodedAttributeIdentityProviderMapperState struct {
 	// The name of the IDP attribute to set.
 	AttributeName *string `pulumi:"attributeName"`
 	// The value to set to the attribute. You can hardcode any value like 'foo'.
-	AttributeValue *string                `pulumi:"attributeValue"`
-	ExtraConfig    map[string]interface{} `pulumi:"extraConfig"`
+	AttributeValue *string           `pulumi:"attributeValue"`
+	ExtraConfig    map[string]string `pulumi:"extraConfig"`
 	// The IDP alias of the attribute to set.
 	IdentityProviderAlias *string `pulumi:"identityProviderAlias"`
 	// Display name of this mapper when displayed in the console.
@@ -145,7 +145,7 @@ type HardcodedAttributeIdentityProviderMapperState struct {
 	AttributeName pulumi.StringPtrInput
 	// The value to set to the attribute. You can hardcode any value like 'foo'.
 	AttributeValue pulumi.StringPtrInput
-	ExtraConfig    pulumi.MapInput
+	ExtraConfig    pulumi.StringMapInput
 	// The IDP alias of the attribute to set.
 	IdentityProviderAlias pulumi.StringPtrInput
 	// Display name of this mapper when displayed in the console.
@@ -164,8 +164,8 @@ type hardcodedAttributeIdentityProviderMapperArgs struct {
 	// The name of the IDP attribute to set.
 	AttributeName *string `pulumi:"attributeName"`
 	// The value to set to the attribute. You can hardcode any value like 'foo'.
-	AttributeValue *string                `pulumi:"attributeValue"`
-	ExtraConfig    map[string]interface{} `pulumi:"extraConfig"`
+	AttributeValue *string           `pulumi:"attributeValue"`
+	ExtraConfig    map[string]string `pulumi:"extraConfig"`
 	// The IDP alias of the attribute to set.
 	IdentityProviderAlias string `pulumi:"identityProviderAlias"`
 	// Display name of this mapper when displayed in the console.
@@ -182,7 +182,7 @@ type HardcodedAttributeIdentityProviderMapperArgs struct {
 	AttributeName pulumi.StringPtrInput
 	// The value to set to the attribute. You can hardcode any value like 'foo'.
 	AttributeValue pulumi.StringPtrInput
-	ExtraConfig    pulumi.MapInput
+	ExtraConfig    pulumi.StringMapInput
 	// The IDP alias of the attribute to set.
 	IdentityProviderAlias pulumi.StringInput
 	// Display name of this mapper when displayed in the console.
@@ -290,8 +290,8 @@ func (o HardcodedAttributeIdentityProviderMapperOutput) AttributeValue() pulumi.
 	return o.ApplyT(func(v *HardcodedAttributeIdentityProviderMapper) pulumi.StringPtrOutput { return v.AttributeValue }).(pulumi.StringPtrOutput)
 }
 
-func (o HardcodedAttributeIdentityProviderMapperOutput) ExtraConfig() pulumi.MapOutput {
-	return o.ApplyT(func(v *HardcodedAttributeIdentityProviderMapper) pulumi.MapOutput { return v.ExtraConfig }).(pulumi.MapOutput)
+func (o HardcodedAttributeIdentityProviderMapperOutput) ExtraConfig() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *HardcodedAttributeIdentityProviderMapper) pulumi.StringMapOutput { return v.ExtraConfig }).(pulumi.StringMapOutput)
 }
 
 // The IDP alias of the attribute to set.

@@ -1634,7 +1634,7 @@ class UsersPermissionsViewScope(dict):
 @pulumi.output_type
 class GetClientDescriptionConverterProtocolMapperResult(dict):
     def __init__(__self__, *,
-                 config: Mapping[str, Any],
+                 config: Mapping[str, str],
                  id: str,
                  name: str,
                  protocol: str,
@@ -1647,7 +1647,7 @@ class GetClientDescriptionConverterProtocolMapperResult(dict):
 
     @property
     @pulumi.getter
-    def config(self) -> Mapping[str, Any]:
+    def config(self) -> Mapping[str, str]:
         return pulumi.get(self, "config")
 
     @property

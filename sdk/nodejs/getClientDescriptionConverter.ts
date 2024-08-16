@@ -84,12 +84,12 @@ export interface GetClientDescriptionConverterArgs {
  * A collection of values returned by getClientDescriptionConverter.
  */
 export interface GetClientDescriptionConverterResult {
-    readonly access: {[key: string]: any};
+    readonly access: {[key: string]: string};
     readonly adminUrl: string;
-    readonly attributes: {[key: string]: any};
-    readonly authenticationFlowBindingOverrides: {[key: string]: any};
+    readonly attributes: {[key: string]: string};
+    readonly authenticationFlowBindingOverrides: {[key: string]: string};
     readonly authorizationServicesEnabled: boolean;
-    readonly authorizationSettings: {[key: string]: any};
+    readonly authorizationSettings: {[key: string]: string};
     readonly baseUrl: string;
     readonly bearerOnly: boolean;
     readonly body: string;
@@ -117,7 +117,7 @@ export interface GetClientDescriptionConverterResult {
     readonly publicClient: boolean;
     readonly realmId: string;
     readonly redirectUris: string[];
-    readonly registeredNodes: {[key: string]: any};
+    readonly registeredNodes: {[key: string]: string};
     readonly registrationAccessToken: string;
     readonly rootUrl: string;
     readonly secret: string;

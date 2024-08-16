@@ -74,14 +74,14 @@ func LookupClient(ctx *pulumi.Context, args *LookupClientArgs, opts ...pulumi.In
 
 // A collection of arguments for invoking getClient.
 type LookupClientArgs struct {
-	ClientId                              string                 `pulumi:"clientId"`
-	ConsentScreenText                     *string                `pulumi:"consentScreenText"`
-	DisplayOnConsentScreen                *bool                  `pulumi:"displayOnConsentScreen"`
-	ExtraConfig                           map[string]interface{} `pulumi:"extraConfig"`
-	Oauth2DeviceAuthorizationGrantEnabled *bool                  `pulumi:"oauth2DeviceAuthorizationGrantEnabled"`
-	Oauth2DeviceCodeLifespan              *string                `pulumi:"oauth2DeviceCodeLifespan"`
-	Oauth2DevicePollingInterval           *string                `pulumi:"oauth2DevicePollingInterval"`
-	RealmId                               string                 `pulumi:"realmId"`
+	ClientId                              string            `pulumi:"clientId"`
+	ConsentScreenText                     *string           `pulumi:"consentScreenText"`
+	DisplayOnConsentScreen                *bool             `pulumi:"displayOnConsentScreen"`
+	ExtraConfig                           map[string]string `pulumi:"extraConfig"`
+	Oauth2DeviceAuthorizationGrantEnabled *bool             `pulumi:"oauth2DeviceAuthorizationGrantEnabled"`
+	Oauth2DeviceCodeLifespan              *string           `pulumi:"oauth2DeviceCodeLifespan"`
+	Oauth2DevicePollingInterval           *string           `pulumi:"oauth2DevicePollingInterval"`
+	RealmId                               string            `pulumi:"realmId"`
 }
 
 // A collection of values returned by getClient.
@@ -109,7 +109,7 @@ type LookupClientResult struct {
 	DisplayOnConsentScreen                 *bool                                        `pulumi:"displayOnConsentScreen"`
 	Enabled                                bool                                         `pulumi:"enabled"`
 	ExcludeSessionStateFromAuthResponse    bool                                         `pulumi:"excludeSessionStateFromAuthResponse"`
-	ExtraConfig                            map[string]interface{}                       `pulumi:"extraConfig"`
+	ExtraConfig                            map[string]string                            `pulumi:"extraConfig"`
 	FrontchannelLogoutEnabled              bool                                         `pulumi:"frontchannelLogoutEnabled"`
 	FrontchannelLogoutUrl                  string                                       `pulumi:"frontchannelLogoutUrl"`
 	FullScopeAllowed                       bool                                         `pulumi:"fullScopeAllowed"`
@@ -153,7 +153,7 @@ type LookupClientOutputArgs struct {
 	ClientId                              pulumi.StringInput    `pulumi:"clientId"`
 	ConsentScreenText                     pulumi.StringPtrInput `pulumi:"consentScreenText"`
 	DisplayOnConsentScreen                pulumi.BoolPtrInput   `pulumi:"displayOnConsentScreen"`
-	ExtraConfig                           pulumi.MapInput       `pulumi:"extraConfig"`
+	ExtraConfig                           pulumi.StringMapInput `pulumi:"extraConfig"`
 	Oauth2DeviceAuthorizationGrantEnabled pulumi.BoolPtrInput   `pulumi:"oauth2DeviceAuthorizationGrantEnabled"`
 	Oauth2DeviceCodeLifespan              pulumi.StringPtrInput `pulumi:"oauth2DeviceCodeLifespan"`
 	Oauth2DevicePollingInterval           pulumi.StringPtrInput `pulumi:"oauth2DevicePollingInterval"`
@@ -273,8 +273,8 @@ func (o LookupClientResultOutput) ExcludeSessionStateFromAuthResponse() pulumi.B
 	return o.ApplyT(func(v LookupClientResult) bool { return v.ExcludeSessionStateFromAuthResponse }).(pulumi.BoolOutput)
 }
 
-func (o LookupClientResultOutput) ExtraConfig() pulumi.MapOutput {
-	return o.ApplyT(func(v LookupClientResult) map[string]interface{} { return v.ExtraConfig }).(pulumi.MapOutput)
+func (o LookupClientResultOutput) ExtraConfig() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LookupClientResult) map[string]string { return v.ExtraConfig }).(pulumi.StringMapOutput)
 }
 
 func (o LookupClientResultOutput) FrontchannelLogoutEnabled() pulumi.BoolOutput {

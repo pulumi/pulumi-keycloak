@@ -41,8 +41,8 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
 //				Realm: pulumi.String("my-realm"),
-//				Attributes: pulumi.Map{
-//					"userProfileEnabled": pulumi.Any(true),
+//				Attributes: pulumi.StringMap{
+//					"userProfileEnabled": pulumi.String("true"),
 //				},
 //			})
 //			if err != nil {

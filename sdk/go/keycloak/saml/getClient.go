@@ -81,7 +81,7 @@ type LookupClientResult struct {
 	EncryptAssertions                  bool                                         `pulumi:"encryptAssertions"`
 	EncryptionCertificate              string                                       `pulumi:"encryptionCertificate"`
 	EncryptionCertificateSha1          string                                       `pulumi:"encryptionCertificateSha1"`
-	ExtraConfig                        map[string]interface{}                       `pulumi:"extraConfig"`
+	ExtraConfig                        map[string]string                            `pulumi:"extraConfig"`
 	ForceNameIdFormat                  bool                                         `pulumi:"forceNameIdFormat"`
 	ForcePostBinding                   bool                                         `pulumi:"forcePostBinding"`
 	FrontChannelLogout                 bool                                         `pulumi:"frontChannelLogout"`
@@ -201,8 +201,8 @@ func (o LookupClientResultOutput) EncryptionCertificateSha1() pulumi.StringOutpu
 	return o.ApplyT(func(v LookupClientResult) string { return v.EncryptionCertificateSha1 }).(pulumi.StringOutput)
 }
 
-func (o LookupClientResultOutput) ExtraConfig() pulumi.MapOutput {
-	return o.ApplyT(func(v LookupClientResult) map[string]interface{} { return v.ExtraConfig }).(pulumi.MapOutput)
+func (o LookupClientResultOutput) ExtraConfig() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LookupClientResult) map[string]string { return v.ExtraConfig }).(pulumi.StringMapOutput)
 }
 
 func (o LookupClientResultOutput) ForceNameIdFormat() pulumi.BoolOutput {

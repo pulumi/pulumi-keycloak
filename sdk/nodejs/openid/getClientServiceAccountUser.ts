@@ -73,7 +73,7 @@ export interface GetClientServiceAccountUserArgs {
  * A collection of values returned by getClientServiceAccountUser.
  */
 export interface GetClientServiceAccountUserResult {
-    readonly attributes: {[key: string]: any};
+    readonly attributes: {[key: string]: string};
     readonly clientId: string;
     readonly email: string;
     readonly emailVerified: boolean;

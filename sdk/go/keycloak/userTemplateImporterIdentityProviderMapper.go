@@ -59,8 +59,8 @@ import (
 //				Name:                  pulumi.String("username-template-importer"),
 //				IdentityProviderAlias: oidc.Alias,
 //				Template:              pulumi.String("${ALIAS}.${CLAIM.email}"),
-//				ExtraConfig: pulumi.Map{
-//					"syncMode": pulumi.Any("INHERIT"),
+//				ExtraConfig: pulumi.StringMap{
+//					"syncMode": pulumi.String("INHERIT"),
 //				},
 //			})
 //			if err != nil {
@@ -89,7 +89,7 @@ type UserTemplateImporterIdentityProviderMapper struct {
 	pulumi.CustomResourceState
 
 	// Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
-	ExtraConfig pulumi.MapOutput `pulumi:"extraConfig"`
+	ExtraConfig pulumi.StringMapOutput `pulumi:"extraConfig"`
 	// The alias of the associated identity provider.
 	IdentityProviderAlias pulumi.StringOutput `pulumi:"identityProviderAlias"`
 	// The name of the mapper.
@@ -137,7 +137,7 @@ func GetUserTemplateImporterIdentityProviderMapper(ctx *pulumi.Context,
 // Input properties used for looking up and filtering UserTemplateImporterIdentityProviderMapper resources.
 type userTemplateImporterIdentityProviderMapperState struct {
 	// Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
-	ExtraConfig map[string]interface{} `pulumi:"extraConfig"`
+	ExtraConfig map[string]string `pulumi:"extraConfig"`
 	// The alias of the associated identity provider.
 	IdentityProviderAlias *string `pulumi:"identityProviderAlias"`
 	// The name of the mapper.
@@ -150,7 +150,7 @@ type userTemplateImporterIdentityProviderMapperState struct {
 
 type UserTemplateImporterIdentityProviderMapperState struct {
 	// Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
-	ExtraConfig pulumi.MapInput
+	ExtraConfig pulumi.StringMapInput
 	// The alias of the associated identity provider.
 	IdentityProviderAlias pulumi.StringPtrInput
 	// The name of the mapper.
@@ -167,7 +167,7 @@ func (UserTemplateImporterIdentityProviderMapperState) ElementType() reflect.Typ
 
 type userTemplateImporterIdentityProviderMapperArgs struct {
 	// Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
-	ExtraConfig map[string]interface{} `pulumi:"extraConfig"`
+	ExtraConfig map[string]string `pulumi:"extraConfig"`
 	// The alias of the associated identity provider.
 	IdentityProviderAlias string `pulumi:"identityProviderAlias"`
 	// The name of the mapper.
@@ -181,7 +181,7 @@ type userTemplateImporterIdentityProviderMapperArgs struct {
 // The set of arguments for constructing a UserTemplateImporterIdentityProviderMapper resource.
 type UserTemplateImporterIdentityProviderMapperArgs struct {
 	// Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
-	ExtraConfig pulumi.MapInput
+	ExtraConfig pulumi.StringMapInput
 	// The alias of the associated identity provider.
 	IdentityProviderAlias pulumi.StringInput
 	// The name of the mapper.
@@ -280,8 +280,8 @@ func (o UserTemplateImporterIdentityProviderMapperOutput) ToUserTemplateImporter
 }
 
 // Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
-func (o UserTemplateImporterIdentityProviderMapperOutput) ExtraConfig() pulumi.MapOutput {
-	return o.ApplyT(func(v *UserTemplateImporterIdentityProviderMapper) pulumi.MapOutput { return v.ExtraConfig }).(pulumi.MapOutput)
+func (o UserTemplateImporterIdentityProviderMapperOutput) ExtraConfig() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *UserTemplateImporterIdentityProviderMapper) pulumi.StringMapOutput { return v.ExtraConfig }).(pulumi.StringMapOutput)
 }
 
 // The alias of the associated identity provider.

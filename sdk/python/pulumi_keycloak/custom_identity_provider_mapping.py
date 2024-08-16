@@ -17,14 +17,14 @@ class CustomIdentityProviderMappingArgs:
                  identity_provider_alias: pulumi.Input[str],
                  identity_provider_mapper: pulumi.Input[str],
                  realm: pulumi.Input[str],
-                 extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a CustomIdentityProviderMapping resource.
         :param pulumi.Input[str] identity_provider_alias: The alias of the associated identity provider.
         :param pulumi.Input[str] identity_provider_mapper: The type of the identity provider mapper. This can be a format string that includes a `%s` - this will be replaced by the provider id.
         :param pulumi.Input[str] realm: The name of the realm.
-        :param pulumi.Input[Mapping[str, Any]] extra_config: Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] extra_config: Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
         :param pulumi.Input[str] name: The name of the mapper.
         """
         pulumi.set(__self__, "identity_provider_alias", identity_provider_alias)
@@ -73,14 +73,14 @@ class CustomIdentityProviderMappingArgs:
 
     @property
     @pulumi.getter(name="extraConfig")
-    def extra_config(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def extra_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
         """
         return pulumi.get(self, "extra_config")
 
     @extra_config.setter
-    def extra_config(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def extra_config(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "extra_config", value)
 
     @property
@@ -99,14 +99,14 @@ class CustomIdentityProviderMappingArgs:
 @pulumi.input_type
 class _CustomIdentityProviderMappingState:
     def __init__(__self__, *,
-                 extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  identity_provider_alias: Optional[pulumi.Input[str]] = None,
                  identity_provider_mapper: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  realm: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering CustomIdentityProviderMapping resources.
-        :param pulumi.Input[Mapping[str, Any]] extra_config: Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] extra_config: Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
         :param pulumi.Input[str] identity_provider_alias: The alias of the associated identity provider.
         :param pulumi.Input[str] identity_provider_mapper: The type of the identity provider mapper. This can be a format string that includes a `%s` - this will be replaced by the provider id.
         :param pulumi.Input[str] name: The name of the mapper.
@@ -125,14 +125,14 @@ class _CustomIdentityProviderMappingState:
 
     @property
     @pulumi.getter(name="extraConfig")
-    def extra_config(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def extra_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
         """
         return pulumi.get(self, "extra_config")
 
     @extra_config.setter
-    def extra_config(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def extra_config(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "extra_config", value)
 
     @property
@@ -189,7 +189,7 @@ class CustomIdentityProviderMapping(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  identity_provider_alias: Optional[pulumi.Input[str]] = None,
                  identity_provider_mapper: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -241,7 +241,7 @@ class CustomIdentityProviderMapping(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Mapping[str, Any]] extra_config: Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] extra_config: Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
         :param pulumi.Input[str] identity_provider_alias: The alias of the associated identity provider.
         :param pulumi.Input[str] identity_provider_mapper: The type of the identity provider mapper. This can be a format string that includes a `%s` - this will be replaced by the provider id.
         :param pulumi.Input[str] name: The name of the mapper.
@@ -312,7 +312,7 @@ class CustomIdentityProviderMapping(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  identity_provider_alias: Optional[pulumi.Input[str]] = None,
                  identity_provider_mapper: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -347,7 +347,7 @@ class CustomIdentityProviderMapping(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             identity_provider_alias: Optional[pulumi.Input[str]] = None,
             identity_provider_mapper: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
@@ -359,7 +359,7 @@ class CustomIdentityProviderMapping(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Mapping[str, Any]] extra_config: Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] extra_config: Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
         :param pulumi.Input[str] identity_provider_alias: The alias of the associated identity provider.
         :param pulumi.Input[str] identity_provider_mapper: The type of the identity provider mapper. This can be a format string that includes a `%s` - this will be replaced by the provider id.
         :param pulumi.Input[str] name: The name of the mapper.
@@ -378,7 +378,7 @@ class CustomIdentityProviderMapping(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="extraConfig")
-    def extra_config(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
+    def extra_config(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
         Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
         """

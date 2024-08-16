@@ -73,7 +73,7 @@ namespace Pulumi.Keycloak
         public Output<string?> AttributeValue { get; private set; } = null!;
 
         [Output("extraConfig")]
-        public Output<ImmutableDictionary<string, object>?> ExtraConfig { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>?> ExtraConfig { get; private set; } = null!;
 
         /// <summary>
         /// The IDP alias of the attribute to set.
@@ -158,10 +158,10 @@ namespace Pulumi.Keycloak
         public Input<string>? AttributeValue { get; set; }
 
         [Input("extraConfig")]
-        private InputMap<object>? _extraConfig;
-        public InputMap<object> ExtraConfig
+        private InputMap<string>? _extraConfig;
+        public InputMap<string> ExtraConfig
         {
-            get => _extraConfig ?? (_extraConfig = new InputMap<object>());
+            get => _extraConfig ?? (_extraConfig = new InputMap<string>());
             set => _extraConfig = value;
         }
 
@@ -210,10 +210,10 @@ namespace Pulumi.Keycloak
         public Input<string>? AttributeValue { get; set; }
 
         [Input("extraConfig")]
-        private InputMap<object>? _extraConfig;
-        public InputMap<object> ExtraConfig
+        private InputMap<string>? _extraConfig;
+        public InputMap<string> ExtraConfig
         {
-            get => _extraConfig ?? (_extraConfig = new InputMap<object>());
+            get => _extraConfig ?? (_extraConfig = new InputMap<string>());
             set => _extraConfig = value;
         }
 

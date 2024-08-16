@@ -11,7 +11,6 @@ import com.pulumi.keycloak.HardcodedAttributeIdentityProviderMapperArgs;
 import com.pulumi.keycloak.Utilities;
 import com.pulumi.keycloak.inputs.HardcodedAttributeIdentityProviderMapperState;
 import java.lang.Boolean;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Optional;
@@ -112,10 +111,10 @@ public class HardcodedAttributeIdentityProviderMapper extends com.pulumi.resourc
     public Output<Optional<String>> attributeValue() {
         return Codegen.optional(this.attributeValue);
     }
-    @Export(name="extraConfig", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
-    private Output</* @Nullable */ Map<String,Object>> extraConfig;
+    @Export(name="extraConfig", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output</* @Nullable */ Map<String,String>> extraConfig;
 
-    public Output<Optional<Map<String,Object>>> extraConfig() {
+    public Output<Optional<Map<String,String>>> extraConfig() {
         return Codegen.optional(this.extraConfig);
     }
     /**

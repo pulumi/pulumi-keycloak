@@ -23,7 +23,7 @@ class GoogleIdentityProviderArgs:
                  default_scopes: Optional[pulumi.Input[str]] = None,
                  disable_user_info: Optional[pulumi.Input[bool]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
-                 extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  first_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
                  gui_order: Optional[pulumi.Input[str]] = None,
                  hide_on_login_page: Optional[pulumi.Input[bool]] = None,
@@ -212,11 +212,11 @@ class GoogleIdentityProviderArgs:
 
     @property
     @pulumi.getter(name="extraConfig")
-    def extra_config(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def extra_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         return pulumi.get(self, "extra_config")
 
     @extra_config.setter
-    def extra_config(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def extra_config(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "extra_config", value)
 
     @property
@@ -377,7 +377,7 @@ class _GoogleIdentityProviderState:
                  disable_user_info: Optional[pulumi.Input[bool]] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
-                 extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  first_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
                  gui_order: Optional[pulumi.Input[str]] = None,
                  hide_on_login_page: Optional[pulumi.Input[bool]] = None,
@@ -592,11 +592,11 @@ class _GoogleIdentityProviderState:
 
     @property
     @pulumi.getter(name="extraConfig")
-    def extra_config(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def extra_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         return pulumi.get(self, "extra_config")
 
     @extra_config.setter
-    def extra_config(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def extra_config(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "extra_config", value)
 
     @property
@@ -781,7 +781,7 @@ class GoogleIdentityProvider(pulumi.CustomResource):
                  default_scopes: Optional[pulumi.Input[str]] = None,
                  disable_user_info: Optional[pulumi.Input[bool]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
-                 extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  first_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
                  gui_order: Optional[pulumi.Input[str]] = None,
                  hide_on_login_page: Optional[pulumi.Input[bool]] = None,
@@ -925,7 +925,7 @@ class GoogleIdentityProvider(pulumi.CustomResource):
                  default_scopes: Optional[pulumi.Input[str]] = None,
                  disable_user_info: Optional[pulumi.Input[bool]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
-                 extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  first_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
                  gui_order: Optional[pulumi.Input[str]] = None,
                  hide_on_login_page: Optional[pulumi.Input[bool]] = None,
@@ -1001,7 +1001,7 @@ class GoogleIdentityProvider(pulumi.CustomResource):
             disable_user_info: Optional[pulumi.Input[bool]] = None,
             display_name: Optional[pulumi.Input[str]] = None,
             enabled: Optional[pulumi.Input[bool]] = None,
-            extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             first_broker_login_flow_alias: Optional[pulumi.Input[str]] = None,
             gui_order: Optional[pulumi.Input[str]] = None,
             hide_on_login_page: Optional[pulumi.Input[bool]] = None,
@@ -1161,7 +1161,7 @@ class GoogleIdentityProvider(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="extraConfig")
-    def extra_config(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
+    def extra_config(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         return pulumi.get(self, "extra_config")
 
     @property

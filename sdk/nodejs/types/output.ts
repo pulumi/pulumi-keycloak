@@ -6,7 +6,7 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
 export interface GetClientDescriptionConverterProtocolMapper {
-    config: {[key: string]: any};
+    config: {[key: string]: string};
     id: string;
     name: string;
     protocol: string;

@@ -22,7 +22,7 @@ class AttributeToRoleIdentityMapperArgs:
                  attribute_value: Optional[pulumi.Input[str]] = None,
                  claim_name: Optional[pulumi.Input[str]] = None,
                  claim_value: Optional[pulumi.Input[str]] = None,
-                 extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a AttributeToRoleIdentityMapper resource.
@@ -34,7 +34,7 @@ class AttributeToRoleIdentityMapperArgs:
         :param pulumi.Input[str] attribute_value: Attribute Value.
         :param pulumi.Input[str] claim_name: OIDC Claim Name
         :param pulumi.Input[str] claim_value: OIDC Claim Value
-        :param pulumi.Input[Mapping[str, Any]] extra_config: Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] extra_config: Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
         :param pulumi.Input[str] name: The name of the mapper.
         """
         pulumi.set(__self__, "identity_provider_alias", identity_provider_alias)
@@ -153,14 +153,14 @@ class AttributeToRoleIdentityMapperArgs:
 
     @property
     @pulumi.getter(name="extraConfig")
-    def extra_config(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def extra_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
         """
         return pulumi.get(self, "extra_config")
 
     @extra_config.setter
-    def extra_config(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def extra_config(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "extra_config", value)
 
     @property
@@ -184,7 +184,7 @@ class _AttributeToRoleIdentityMapperState:
                  attribute_value: Optional[pulumi.Input[str]] = None,
                  claim_name: Optional[pulumi.Input[str]] = None,
                  claim_value: Optional[pulumi.Input[str]] = None,
-                 extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  identity_provider_alias: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  realm: Optional[pulumi.Input[str]] = None,
@@ -196,7 +196,7 @@ class _AttributeToRoleIdentityMapperState:
         :param pulumi.Input[str] attribute_value: Attribute Value.
         :param pulumi.Input[str] claim_name: OIDC Claim Name
         :param pulumi.Input[str] claim_value: OIDC Claim Value
-        :param pulumi.Input[Mapping[str, Any]] extra_config: Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] extra_config: Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
         :param pulumi.Input[str] identity_provider_alias: The alias of the associated identity provider.
         :param pulumi.Input[str] name: The name of the mapper.
         :param pulumi.Input[str] realm: The name of the realm.
@@ -285,14 +285,14 @@ class _AttributeToRoleIdentityMapperState:
 
     @property
     @pulumi.getter(name="extraConfig")
-    def extra_config(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def extra_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
         """
         return pulumi.get(self, "extra_config")
 
     @extra_config.setter
-    def extra_config(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def extra_config(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "extra_config", value)
 
     @property
@@ -354,7 +354,7 @@ class AttributeToRoleIdentityMapper(pulumi.CustomResource):
                  attribute_value: Optional[pulumi.Input[str]] = None,
                  claim_name: Optional[pulumi.Input[str]] = None,
                  claim_value: Optional[pulumi.Input[str]] = None,
-                 extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  identity_provider_alias: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  realm: Optional[pulumi.Input[str]] = None,
@@ -419,7 +419,7 @@ class AttributeToRoleIdentityMapper(pulumi.CustomResource):
         :param pulumi.Input[str] attribute_value: Attribute Value.
         :param pulumi.Input[str] claim_name: OIDC Claim Name
         :param pulumi.Input[str] claim_value: OIDC Claim Value
-        :param pulumi.Input[Mapping[str, Any]] extra_config: Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] extra_config: Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
         :param pulumi.Input[str] identity_provider_alias: The alias of the associated identity provider.
         :param pulumi.Input[str] name: The name of the mapper.
         :param pulumi.Input[str] realm: The name of the realm.
@@ -503,7 +503,7 @@ class AttributeToRoleIdentityMapper(pulumi.CustomResource):
                  attribute_value: Optional[pulumi.Input[str]] = None,
                  claim_name: Optional[pulumi.Input[str]] = None,
                  claim_value: Optional[pulumi.Input[str]] = None,
-                 extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  identity_provider_alias: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  realm: Optional[pulumi.Input[str]] = None,
@@ -548,7 +548,7 @@ class AttributeToRoleIdentityMapper(pulumi.CustomResource):
             attribute_value: Optional[pulumi.Input[str]] = None,
             claim_name: Optional[pulumi.Input[str]] = None,
             claim_value: Optional[pulumi.Input[str]] = None,
-            extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             identity_provider_alias: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             realm: Optional[pulumi.Input[str]] = None,
@@ -565,7 +565,7 @@ class AttributeToRoleIdentityMapper(pulumi.CustomResource):
         :param pulumi.Input[str] attribute_value: Attribute Value.
         :param pulumi.Input[str] claim_name: OIDC Claim Name
         :param pulumi.Input[str] claim_value: OIDC Claim Value
-        :param pulumi.Input[Mapping[str, Any]] extra_config: Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] extra_config: Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
         :param pulumi.Input[str] identity_provider_alias: The alias of the associated identity provider.
         :param pulumi.Input[str] name: The name of the mapper.
         :param pulumi.Input[str] realm: The name of the realm.
@@ -629,7 +629,7 @@ class AttributeToRoleIdentityMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="extraConfig")
-    def extra_config(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
+    def extra_config(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
         Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
         """

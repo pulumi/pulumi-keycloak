@@ -34,10 +34,10 @@ type LookupRoleArgs struct {
 
 // A collection of values returned by getRole.
 type LookupRoleResult struct {
-	Attributes     map[string]interface{} `pulumi:"attributes"`
-	ClientId       *string                `pulumi:"clientId"`
-	CompositeRoles []string               `pulumi:"compositeRoles"`
-	Description    string                 `pulumi:"description"`
+	Attributes     map[string]string `pulumi:"attributes"`
+	ClientId       *string           `pulumi:"clientId"`
+	CompositeRoles []string          `pulumi:"compositeRoles"`
+	Description    string            `pulumi:"description"`
 	// The provider-assigned unique ID for this managed resource.
 	Id      string `pulumi:"id"`
 	Name    string `pulumi:"name"`
@@ -83,8 +83,8 @@ func (o LookupRoleResultOutput) ToLookupRoleResultOutputWithContext(ctx context.
 	return o
 }
 
-func (o LookupRoleResultOutput) Attributes() pulumi.MapOutput {
-	return o.ApplyT(func(v LookupRoleResult) map[string]interface{} { return v.Attributes }).(pulumi.MapOutput)
+func (o LookupRoleResultOutput) Attributes() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LookupRoleResult) map[string]string { return v.Attributes }).(pulumi.StringMapOutput)
 }
 
 func (o LookupRoleResultOutput) ClientId() pulumi.StringPtrOutput {

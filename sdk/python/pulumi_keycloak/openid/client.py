@@ -40,7 +40,7 @@ class ClientArgs:
                  display_on_consent_screen: Optional[pulumi.Input[bool]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
                  exclude_session_state_from_auth_response: Optional[pulumi.Input[bool]] = None,
-                 extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  frontchannel_logout_enabled: Optional[pulumi.Input[bool]] = None,
                  frontchannel_logout_url: Optional[pulumi.Input[str]] = None,
                  full_scope_allowed: Optional[pulumi.Input[bool]] = None,
@@ -367,11 +367,11 @@ class ClientArgs:
 
     @property
     @pulumi.getter(name="extraConfig")
-    def extra_config(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def extra_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         return pulumi.get(self, "extra_config")
 
     @extra_config.setter
-    def extra_config(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def extra_config(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "extra_config", value)
 
     @property
@@ -572,7 +572,7 @@ class _ClientState:
                  display_on_consent_screen: Optional[pulumi.Input[bool]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
                  exclude_session_state_from_auth_response: Optional[pulumi.Input[bool]] = None,
-                 extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  frontchannel_logout_enabled: Optional[pulumi.Input[bool]] = None,
                  frontchannel_logout_url: Optional[pulumi.Input[str]] = None,
                  full_scope_allowed: Optional[pulumi.Input[bool]] = None,
@@ -900,11 +900,11 @@ class _ClientState:
 
     @property
     @pulumi.getter(name="extraConfig")
-    def extra_config(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def extra_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         return pulumi.get(self, "extra_config")
 
     @extra_config.setter
-    def extra_config(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def extra_config(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "extra_config", value)
 
     @property
@@ -1134,7 +1134,7 @@ class Client(pulumi.CustomResource):
                  display_on_consent_screen: Optional[pulumi.Input[bool]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
                  exclude_session_state_from_auth_response: Optional[pulumi.Input[bool]] = None,
-                 extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  frontchannel_logout_enabled: Optional[pulumi.Input[bool]] = None,
                  frontchannel_logout_url: Optional[pulumi.Input[str]] = None,
                  full_scope_allowed: Optional[pulumi.Input[bool]] = None,
@@ -1343,7 +1343,7 @@ class Client(pulumi.CustomResource):
                  display_on_consent_screen: Optional[pulumi.Input[bool]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
                  exclude_session_state_from_auth_response: Optional[pulumi.Input[bool]] = None,
-                 extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  frontchannel_logout_enabled: Optional[pulumi.Input[bool]] = None,
                  frontchannel_logout_url: Optional[pulumi.Input[str]] = None,
                  full_scope_allowed: Optional[pulumi.Input[bool]] = None,
@@ -1460,7 +1460,7 @@ class Client(pulumi.CustomResource):
             display_on_consent_screen: Optional[pulumi.Input[bool]] = None,
             enabled: Optional[pulumi.Input[bool]] = None,
             exclude_session_state_from_auth_response: Optional[pulumi.Input[bool]] = None,
-            extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             frontchannel_logout_enabled: Optional[pulumi.Input[bool]] = None,
             frontchannel_logout_url: Optional[pulumi.Input[str]] = None,
             full_scope_allowed: Optional[pulumi.Input[bool]] = None,
@@ -1660,7 +1660,7 @@ class Client(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="extraConfig")
-    def extra_config(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
+    def extra_config(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         return pulumi.get(self, "extra_config")
 
     @property

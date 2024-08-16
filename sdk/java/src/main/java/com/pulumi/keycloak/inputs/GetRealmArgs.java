@@ -12,7 +12,6 @@ import com.pulumi.keycloak.inputs.GetRealmSecurityDefenseArgs;
 import com.pulumi.keycloak.inputs.GetRealmSmtpServerArgs;
 import com.pulumi.keycloak.inputs.GetRealmWebAuthnPasswordlessPolicyArgs;
 import com.pulumi.keycloak.inputs.GetRealmWebAuthnPolicyArgs;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -26,9 +25,9 @@ public final class GetRealmArgs extends com.pulumi.resources.InvokeArgs {
     public static final GetRealmArgs Empty = new GetRealmArgs();
 
     @Import(name="attributes")
-    private @Nullable Output<Map<String,Object>> attributes;
+    private @Nullable Output<Map<String,String>> attributes;
 
-    public Optional<Output<Map<String,Object>>> attributes() {
+    public Optional<Output<Map<String,String>>> attributes() {
         return Optional.ofNullable(this.attributes);
     }
 
@@ -136,12 +135,12 @@ public final class GetRealmArgs extends com.pulumi.resources.InvokeArgs {
             $ = new GetRealmArgs(Objects.requireNonNull(defaults));
         }
 
-        public Builder attributes(@Nullable Output<Map<String,Object>> attributes) {
+        public Builder attributes(@Nullable Output<Map<String,String>> attributes) {
             $.attributes = attributes;
             return this;
         }
 
-        public Builder attributes(Map<String,Object> attributes) {
+        public Builder attributes(Map<String,String> attributes) {
             return attributes(Output.of(attributes));
         }
 

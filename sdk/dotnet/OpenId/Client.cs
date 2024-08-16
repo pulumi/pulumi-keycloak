@@ -166,7 +166,7 @@ namespace Pulumi.Keycloak.OpenId
         public Output<bool> ExcludeSessionStateFromAuthResponse { get; private set; } = null!;
 
         [Output("extraConfig")]
-        public Output<ImmutableDictionary<string, object>?> ExtraConfig { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>?> ExtraConfig { get; private set; } = null!;
 
         [Output("frontchannelLogoutEnabled")]
         public Output<bool> FrontchannelLogoutEnabled { get; private set; } = null!;
@@ -363,10 +363,10 @@ namespace Pulumi.Keycloak.OpenId
         public Input<bool>? ExcludeSessionStateFromAuthResponse { get; set; }
 
         [Input("extraConfig")]
-        private InputMap<object>? _extraConfig;
-        public InputMap<object> ExtraConfig
+        private InputMap<string>? _extraConfig;
+        public InputMap<string> ExtraConfig
         {
-            get => _extraConfig ?? (_extraConfig = new InputMap<object>());
+            get => _extraConfig ?? (_extraConfig = new InputMap<string>());
             set => _extraConfig = value;
         }
 
@@ -532,10 +532,10 @@ namespace Pulumi.Keycloak.OpenId
         public Input<bool>? ExcludeSessionStateFromAuthResponse { get; set; }
 
         [Input("extraConfig")]
-        private InputMap<object>? _extraConfig;
-        public InputMap<object> ExtraConfig
+        private InputMap<string>? _extraConfig;
+        public InputMap<string> ExtraConfig
         {
-            get => _extraConfig ?? (_extraConfig = new InputMap<object>());
+            get => _extraConfig ?? (_extraConfig = new InputMap<string>());
             set => _extraConfig = value;
         }
 

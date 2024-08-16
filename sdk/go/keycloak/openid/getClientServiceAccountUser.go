@@ -97,7 +97,7 @@ type GetClientServiceAccountUserArgs struct {
 
 // A collection of values returned by getClientServiceAccountUser.
 type GetClientServiceAccountUserResult struct {
-	Attributes          map[string]interface{}                         `pulumi:"attributes"`
+	Attributes          map[string]string                              `pulumi:"attributes"`
 	ClientId            string                                         `pulumi:"clientId"`
 	Email               string                                         `pulumi:"email"`
 	EmailVerified       bool                                           `pulumi:"emailVerified"`
@@ -152,8 +152,8 @@ func (o GetClientServiceAccountUserResultOutput) ToGetClientServiceAccountUserRe
 	return o
 }
 
-func (o GetClientServiceAccountUserResultOutput) Attributes() pulumi.MapOutput {
-	return o.ApplyT(func(v GetClientServiceAccountUserResult) map[string]interface{} { return v.Attributes }).(pulumi.MapOutput)
+func (o GetClientServiceAccountUserResultOutput) Attributes() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetClientServiceAccountUserResult) map[string]string { return v.Attributes }).(pulumi.StringMapOutput)
 }
 
 func (o GetClientServiceAccountUserResultOutput) ClientId() pulumi.StringOutput {

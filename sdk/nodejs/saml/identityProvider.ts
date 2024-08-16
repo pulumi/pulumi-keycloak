@@ -140,7 +140,7 @@ export class IdentityProvider extends pulumi.CustomResource {
      * The Entity ID that will be used to uniquely identify this SAML Service Provider.
      */
     public readonly entityId!: pulumi.Output<string>;
-    public readonly extraConfig!: pulumi.Output<{[key: string]: any} | undefined>;
+    public readonly extraConfig!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
      * that there is not yet existing Keycloak account linked with the authenticated identity provider account.
@@ -408,7 +408,7 @@ export interface IdentityProviderState {
      * The Entity ID that will be used to uniquely identify this SAML Service Provider.
      */
     entityId?: pulumi.Input<string>;
-    extraConfig?: pulumi.Input<{[key: string]: any}>;
+    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
      * that there is not yet existing Keycloak account linked with the authenticated identity provider account.
@@ -568,7 +568,7 @@ export interface IdentityProviderArgs {
      * The Entity ID that will be used to uniquely identify this SAML Service Provider.
      */
     entityId: pulumi.Input<string>;
-    extraConfig?: pulumi.Input<{[key: string]: any}>;
+    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
      * that there is not yet existing Keycloak account linked with the authenticated identity provider account.

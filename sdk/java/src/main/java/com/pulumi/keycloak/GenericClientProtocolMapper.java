@@ -10,7 +10,6 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.keycloak.GenericClientProtocolMapperArgs;
 import com.pulumi.keycloak.Utilities;
 import com.pulumi.keycloak.inputs.GenericClientProtocolMapperState;
-import java.lang.Object;
 import java.lang.String;
 import java.util.Map;
 import java.util.Optional;
@@ -136,10 +135,10 @@ public class GenericClientProtocolMapper extends com.pulumi.resources.CustomReso
     public Output<Optional<String>> clientScopeId() {
         return Codegen.optional(this.clientScopeId);
     }
-    @Export(name="config", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
-    private Output<Map<String,Object>> config;
+    @Export(name="config", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output<Map<String,String>> config;
 
-    public Output<Map<String,Object>> config() {
+    public Output<Map<String,String>> config() {
         return this.config;
     }
     /**

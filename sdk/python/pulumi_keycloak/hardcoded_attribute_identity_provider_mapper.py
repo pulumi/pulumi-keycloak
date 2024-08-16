@@ -19,7 +19,7 @@ class HardcodedAttributeIdentityProviderMapperArgs:
                  user_session: pulumi.Input[bool],
                  attribute_name: Optional[pulumi.Input[str]] = None,
                  attribute_value: Optional[pulumi.Input[str]] = None,
-                 extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a HardcodedAttributeIdentityProviderMapper resource.
@@ -104,11 +104,11 @@ class HardcodedAttributeIdentityProviderMapperArgs:
 
     @property
     @pulumi.getter(name="extraConfig")
-    def extra_config(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def extra_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         return pulumi.get(self, "extra_config")
 
     @extra_config.setter
-    def extra_config(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def extra_config(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "extra_config", value)
 
     @property
@@ -129,7 +129,7 @@ class _HardcodedAttributeIdentityProviderMapperState:
     def __init__(__self__, *,
                  attribute_name: Optional[pulumi.Input[str]] = None,
                  attribute_value: Optional[pulumi.Input[str]] = None,
-                 extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  identity_provider_alias: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  realm: Optional[pulumi.Input[str]] = None,
@@ -184,11 +184,11 @@ class _HardcodedAttributeIdentityProviderMapperState:
 
     @property
     @pulumi.getter(name="extraConfig")
-    def extra_config(self) -> Optional[pulumi.Input[Mapping[str, Any]]]:
+    def extra_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         return pulumi.get(self, "extra_config")
 
     @extra_config.setter
-    def extra_config(self, value: Optional[pulumi.Input[Mapping[str, Any]]]):
+    def extra_config(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "extra_config", value)
 
     @property
@@ -247,7 +247,7 @@ class HardcodedAttributeIdentityProviderMapper(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  attribute_name: Optional[pulumi.Input[str]] = None,
                  attribute_value: Optional[pulumi.Input[str]] = None,
-                 extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  identity_provider_alias: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  realm: Optional[pulumi.Input[str]] = None,
@@ -351,7 +351,7 @@ class HardcodedAttributeIdentityProviderMapper(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  attribute_name: Optional[pulumi.Input[str]] = None,
                  attribute_value: Optional[pulumi.Input[str]] = None,
-                 extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  identity_provider_alias: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  realm: Optional[pulumi.Input[str]] = None,
@@ -390,7 +390,7 @@ class HardcodedAttributeIdentityProviderMapper(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             attribute_name: Optional[pulumi.Input[str]] = None,
             attribute_value: Optional[pulumi.Input[str]] = None,
-            extra_config: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             identity_provider_alias: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             realm: Optional[pulumi.Input[str]] = None,
@@ -440,7 +440,7 @@ class HardcodedAttributeIdentityProviderMapper(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="extraConfig")
-    def extra_config(self) -> pulumi.Output[Optional[Mapping[str, Any]]]:
+    def extra_config(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         return pulumi.get(self, "extra_config")
 
     @property

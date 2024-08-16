@@ -73,7 +73,7 @@ type AttributeImporterIdentityProviderMapper struct {
 	AttributeName pulumi.StringPtrOutput `pulumi:"attributeName"`
 	// Claim Name
 	ClaimName   pulumi.StringPtrOutput `pulumi:"claimName"`
-	ExtraConfig pulumi.MapOutput       `pulumi:"extraConfig"`
+	ExtraConfig pulumi.StringMapOutput `pulumi:"extraConfig"`
 	// IDP Alias
 	IdentityProviderAlias pulumi.StringOutput `pulumi:"identityProviderAlias"`
 	// IDP Mapper Name
@@ -128,8 +128,8 @@ type attributeImporterIdentityProviderMapperState struct {
 	// Attribute Name
 	AttributeName *string `pulumi:"attributeName"`
 	// Claim Name
-	ClaimName   *string                `pulumi:"claimName"`
-	ExtraConfig map[string]interface{} `pulumi:"extraConfig"`
+	ClaimName   *string           `pulumi:"claimName"`
+	ExtraConfig map[string]string `pulumi:"extraConfig"`
 	// IDP Alias
 	IdentityProviderAlias *string `pulumi:"identityProviderAlias"`
 	// IDP Mapper Name
@@ -147,7 +147,7 @@ type AttributeImporterIdentityProviderMapperState struct {
 	AttributeName pulumi.StringPtrInput
 	// Claim Name
 	ClaimName   pulumi.StringPtrInput
-	ExtraConfig pulumi.MapInput
+	ExtraConfig pulumi.StringMapInput
 	// IDP Alias
 	IdentityProviderAlias pulumi.StringPtrInput
 	// IDP Mapper Name
@@ -168,8 +168,8 @@ type attributeImporterIdentityProviderMapperArgs struct {
 	// Attribute Name
 	AttributeName *string `pulumi:"attributeName"`
 	// Claim Name
-	ClaimName   *string                `pulumi:"claimName"`
-	ExtraConfig map[string]interface{} `pulumi:"extraConfig"`
+	ClaimName   *string           `pulumi:"claimName"`
+	ExtraConfig map[string]string `pulumi:"extraConfig"`
 	// IDP Alias
 	IdentityProviderAlias string `pulumi:"identityProviderAlias"`
 	// IDP Mapper Name
@@ -188,7 +188,7 @@ type AttributeImporterIdentityProviderMapperArgs struct {
 	AttributeName pulumi.StringPtrInput
 	// Claim Name
 	ClaimName   pulumi.StringPtrInput
-	ExtraConfig pulumi.MapInput
+	ExtraConfig pulumi.StringMapInput
 	// IDP Alias
 	IdentityProviderAlias pulumi.StringInput
 	// IDP Mapper Name
@@ -303,8 +303,8 @@ func (o AttributeImporterIdentityProviderMapperOutput) ClaimName() pulumi.String
 	return o.ApplyT(func(v *AttributeImporterIdentityProviderMapper) pulumi.StringPtrOutput { return v.ClaimName }).(pulumi.StringPtrOutput)
 }
 
-func (o AttributeImporterIdentityProviderMapperOutput) ExtraConfig() pulumi.MapOutput {
-	return o.ApplyT(func(v *AttributeImporterIdentityProviderMapper) pulumi.MapOutput { return v.ExtraConfig }).(pulumi.MapOutput)
+func (o AttributeImporterIdentityProviderMapperOutput) ExtraConfig() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *AttributeImporterIdentityProviderMapper) pulumi.StringMapOutput { return v.ExtraConfig }).(pulumi.StringMapOutput)
 }
 
 // IDP Alias

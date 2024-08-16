@@ -40,7 +40,7 @@ namespace Pulumi.Keycloak
         public Output<string?> AdminTheme { get; private set; } = null!;
 
         [Output("attributes")]
-        public Output<ImmutableDictionary<string, object>?> Attributes { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>?> Attributes { get; private set; } = null!;
 
         /// <summary>
         /// Which flow should be used for BrowserFlow
@@ -280,10 +280,10 @@ namespace Pulumi.Keycloak
         public Input<string>? AdminTheme { get; set; }
 
         [Input("attributes")]
-        private InputMap<object>? _attributes;
-        public InputMap<object> Attributes
+        private InputMap<string>? _attributes;
+        public InputMap<string> Attributes
         {
-            get => _attributes ?? (_attributes = new InputMap<object>());
+            get => _attributes ?? (_attributes = new InputMap<string>());
             set => _attributes = value;
         }
 
@@ -497,10 +497,10 @@ namespace Pulumi.Keycloak
         public Input<string>? AdminTheme { get; set; }
 
         [Input("attributes")]
-        private InputMap<object>? _attributes;
-        public InputMap<object> Attributes
+        private InputMap<string>? _attributes;
+        public InputMap<string> Attributes
         {
-            get => _attributes ?? (_attributes = new InputMap<object>());
+            get => _attributes ?? (_attributes = new InputMap<string>());
             set => _attributes = value;
         }
 

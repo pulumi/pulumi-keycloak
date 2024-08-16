@@ -14,7 +14,6 @@ import com.pulumi.keycloak.inputs.RealmWebAuthnPasswordlessPolicyArgs;
 import com.pulumi.keycloak.inputs.RealmWebAuthnPolicyArgs;
 import java.lang.Boolean;
 import java.lang.Integer;
-import java.lang.Object;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -91,9 +90,9 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     @Import(name="attributes")
-    private @Nullable Output<Map<String,Object>> attributes;
+    private @Nullable Output<Map<String,String>> attributes;
 
-    public Optional<Output<Map<String,Object>>> attributes() {
+    public Optional<Output<Map<String,String>>> attributes() {
         return Optional.ofNullable(this.attributes);
     }
 
@@ -647,12 +646,12 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
             return adminTheme(Output.of(adminTheme));
         }
 
-        public Builder attributes(@Nullable Output<Map<String,Object>> attributes) {
+        public Builder attributes(@Nullable Output<Map<String,String>> attributes) {
             $.attributes = attributes;
             return this;
         }
 
-        public Builder attributes(Map<String,Object> attributes) {
+        public Builder attributes(Map<String,String> attributes) {
             return attributes(Output.of(attributes));
         }
 

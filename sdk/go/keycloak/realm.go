@@ -24,7 +24,7 @@ type Realm struct {
 	ActionTokenGeneratedByAdminLifespan pulumi.StringOutput    `pulumi:"actionTokenGeneratedByAdminLifespan"`
 	ActionTokenGeneratedByUserLifespan  pulumi.StringOutput    `pulumi:"actionTokenGeneratedByUserLifespan"`
 	AdminTheme                          pulumi.StringPtrOutput `pulumi:"adminTheme"`
-	Attributes                          pulumi.MapOutput       `pulumi:"attributes"`
+	Attributes                          pulumi.StringMapOutput `pulumi:"attributes"`
 	// Which flow should be used for BrowserFlow
 	BrowserFlow pulumi.StringOutput `pulumi:"browserFlow"`
 	// Which flow should be used for ClientAuthenticationFlow
@@ -116,16 +116,16 @@ func GetRealm(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Realm resources.
 type realmState struct {
-	AccessCodeLifespan                  *string                `pulumi:"accessCodeLifespan"`
-	AccessCodeLifespanLogin             *string                `pulumi:"accessCodeLifespanLogin"`
-	AccessCodeLifespanUserAction        *string                `pulumi:"accessCodeLifespanUserAction"`
-	AccessTokenLifespan                 *string                `pulumi:"accessTokenLifespan"`
-	AccessTokenLifespanForImplicitFlow  *string                `pulumi:"accessTokenLifespanForImplicitFlow"`
-	AccountTheme                        *string                `pulumi:"accountTheme"`
-	ActionTokenGeneratedByAdminLifespan *string                `pulumi:"actionTokenGeneratedByAdminLifespan"`
-	ActionTokenGeneratedByUserLifespan  *string                `pulumi:"actionTokenGeneratedByUserLifespan"`
-	AdminTheme                          *string                `pulumi:"adminTheme"`
-	Attributes                          map[string]interface{} `pulumi:"attributes"`
+	AccessCodeLifespan                  *string           `pulumi:"accessCodeLifespan"`
+	AccessCodeLifespanLogin             *string           `pulumi:"accessCodeLifespanLogin"`
+	AccessCodeLifespanUserAction        *string           `pulumi:"accessCodeLifespanUserAction"`
+	AccessTokenLifespan                 *string           `pulumi:"accessTokenLifespan"`
+	AccessTokenLifespanForImplicitFlow  *string           `pulumi:"accessTokenLifespanForImplicitFlow"`
+	AccountTheme                        *string           `pulumi:"accountTheme"`
+	ActionTokenGeneratedByAdminLifespan *string           `pulumi:"actionTokenGeneratedByAdminLifespan"`
+	ActionTokenGeneratedByUserLifespan  *string           `pulumi:"actionTokenGeneratedByUserLifespan"`
+	AdminTheme                          *string           `pulumi:"adminTheme"`
+	Attributes                          map[string]string `pulumi:"attributes"`
 	// Which flow should be used for BrowserFlow
 	BrowserFlow *string `pulumi:"browserFlow"`
 	// Which flow should be used for ClientAuthenticationFlow
@@ -194,7 +194,7 @@ type RealmState struct {
 	ActionTokenGeneratedByAdminLifespan pulumi.StringPtrInput
 	ActionTokenGeneratedByUserLifespan  pulumi.StringPtrInput
 	AdminTheme                          pulumi.StringPtrInput
-	Attributes                          pulumi.MapInput
+	Attributes                          pulumi.StringMapInput
 	// Which flow should be used for BrowserFlow
 	BrowserFlow pulumi.StringPtrInput
 	// Which flow should be used for ClientAuthenticationFlow
@@ -258,16 +258,16 @@ func (RealmState) ElementType() reflect.Type {
 }
 
 type realmArgs struct {
-	AccessCodeLifespan                  *string                `pulumi:"accessCodeLifespan"`
-	AccessCodeLifespanLogin             *string                `pulumi:"accessCodeLifespanLogin"`
-	AccessCodeLifespanUserAction        *string                `pulumi:"accessCodeLifespanUserAction"`
-	AccessTokenLifespan                 *string                `pulumi:"accessTokenLifespan"`
-	AccessTokenLifespanForImplicitFlow  *string                `pulumi:"accessTokenLifespanForImplicitFlow"`
-	AccountTheme                        *string                `pulumi:"accountTheme"`
-	ActionTokenGeneratedByAdminLifespan *string                `pulumi:"actionTokenGeneratedByAdminLifespan"`
-	ActionTokenGeneratedByUserLifespan  *string                `pulumi:"actionTokenGeneratedByUserLifespan"`
-	AdminTheme                          *string                `pulumi:"adminTheme"`
-	Attributes                          map[string]interface{} `pulumi:"attributes"`
+	AccessCodeLifespan                  *string           `pulumi:"accessCodeLifespan"`
+	AccessCodeLifespanLogin             *string           `pulumi:"accessCodeLifespanLogin"`
+	AccessCodeLifespanUserAction        *string           `pulumi:"accessCodeLifespanUserAction"`
+	AccessTokenLifespan                 *string           `pulumi:"accessTokenLifespan"`
+	AccessTokenLifespanForImplicitFlow  *string           `pulumi:"accessTokenLifespanForImplicitFlow"`
+	AccountTheme                        *string           `pulumi:"accountTheme"`
+	ActionTokenGeneratedByAdminLifespan *string           `pulumi:"actionTokenGeneratedByAdminLifespan"`
+	ActionTokenGeneratedByUserLifespan  *string           `pulumi:"actionTokenGeneratedByUserLifespan"`
+	AdminTheme                          *string           `pulumi:"adminTheme"`
+	Attributes                          map[string]string `pulumi:"attributes"`
 	// Which flow should be used for BrowserFlow
 	BrowserFlow *string `pulumi:"browserFlow"`
 	// Which flow should be used for ClientAuthenticationFlow
@@ -337,7 +337,7 @@ type RealmArgs struct {
 	ActionTokenGeneratedByAdminLifespan pulumi.StringPtrInput
 	ActionTokenGeneratedByUserLifespan  pulumi.StringPtrInput
 	AdminTheme                          pulumi.StringPtrInput
-	Attributes                          pulumi.MapInput
+	Attributes                          pulumi.StringMapInput
 	// Which flow should be used for BrowserFlow
 	BrowserFlow pulumi.StringPtrInput
 	// Which flow should be used for ClientAuthenticationFlow
@@ -519,8 +519,8 @@ func (o RealmOutput) AdminTheme() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Realm) pulumi.StringPtrOutput { return v.AdminTheme }).(pulumi.StringPtrOutput)
 }
 
-func (o RealmOutput) Attributes() pulumi.MapOutput {
-	return o.ApplyT(func(v *Realm) pulumi.MapOutput { return v.Attributes }).(pulumi.MapOutput)
+func (o RealmOutput) Attributes() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *Realm) pulumi.StringMapOutput { return v.Attributes }).(pulumi.StringMapOutput)
 }
 
 // Which flow should be used for BrowserFlow

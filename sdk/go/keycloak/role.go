@@ -216,7 +216,7 @@ import (
 type Role struct {
 	pulumi.CustomResourceState
 
-	Attributes     pulumi.MapOutput         `pulumi:"attributes"`
+	Attributes     pulumi.StringMapOutput   `pulumi:"attributes"`
 	ClientId       pulumi.StringPtrOutput   `pulumi:"clientId"`
 	CompositeRoles pulumi.StringArrayOutput `pulumi:"compositeRoles"`
 	Description    pulumi.StringPtrOutput   `pulumi:"description"`
@@ -257,16 +257,16 @@ func GetRole(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Role resources.
 type roleState struct {
-	Attributes     map[string]interface{} `pulumi:"attributes"`
-	ClientId       *string                `pulumi:"clientId"`
-	CompositeRoles []string               `pulumi:"compositeRoles"`
-	Description    *string                `pulumi:"description"`
-	Name           *string                `pulumi:"name"`
-	RealmId        *string                `pulumi:"realmId"`
+	Attributes     map[string]string `pulumi:"attributes"`
+	ClientId       *string           `pulumi:"clientId"`
+	CompositeRoles []string          `pulumi:"compositeRoles"`
+	Description    *string           `pulumi:"description"`
+	Name           *string           `pulumi:"name"`
+	RealmId        *string           `pulumi:"realmId"`
 }
 
 type RoleState struct {
-	Attributes     pulumi.MapInput
+	Attributes     pulumi.StringMapInput
 	ClientId       pulumi.StringPtrInput
 	CompositeRoles pulumi.StringArrayInput
 	Description    pulumi.StringPtrInput
@@ -279,17 +279,17 @@ func (RoleState) ElementType() reflect.Type {
 }
 
 type roleArgs struct {
-	Attributes     map[string]interface{} `pulumi:"attributes"`
-	ClientId       *string                `pulumi:"clientId"`
-	CompositeRoles []string               `pulumi:"compositeRoles"`
-	Description    *string                `pulumi:"description"`
-	Name           *string                `pulumi:"name"`
-	RealmId        string                 `pulumi:"realmId"`
+	Attributes     map[string]string `pulumi:"attributes"`
+	ClientId       *string           `pulumi:"clientId"`
+	CompositeRoles []string          `pulumi:"compositeRoles"`
+	Description    *string           `pulumi:"description"`
+	Name           *string           `pulumi:"name"`
+	RealmId        string            `pulumi:"realmId"`
 }
 
 // The set of arguments for constructing a Role resource.
 type RoleArgs struct {
-	Attributes     pulumi.MapInput
+	Attributes     pulumi.StringMapInput
 	ClientId       pulumi.StringPtrInput
 	CompositeRoles pulumi.StringArrayInput
 	Description    pulumi.StringPtrInput
@@ -384,8 +384,8 @@ func (o RoleOutput) ToRoleOutputWithContext(ctx context.Context) RoleOutput {
 	return o
 }
 
-func (o RoleOutput) Attributes() pulumi.MapOutput {
-	return o.ApplyT(func(v *Role) pulumi.MapOutput { return v.Attributes }).(pulumi.MapOutput)
+func (o RoleOutput) Attributes() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *Role) pulumi.StringMapOutput { return v.Attributes }).(pulumi.StringMapOutput)
 }
 
 func (o RoleOutput) ClientId() pulumi.StringPtrOutput {
