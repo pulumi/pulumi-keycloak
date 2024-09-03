@@ -16,7 +16,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # keycloak.ldap.MsadUserAccountControlMapper
+ * # keycloak.ldap.MsadUserAccountControlMapper
  * 
  * Allows for creating and managing MSAD user account control mappers for Keycloak
  * users federated via LDAP.

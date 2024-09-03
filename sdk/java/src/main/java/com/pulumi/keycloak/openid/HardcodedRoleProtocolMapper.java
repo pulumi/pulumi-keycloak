@@ -15,7 +15,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # keycloak.openid.HardcodedRoleProtocolMapper
+ * # keycloak.openid.HardcodedRoleProtocolMapper
  * 
  * Allows for creating and managing hardcoded role protocol mappers within
  * Keycloak.

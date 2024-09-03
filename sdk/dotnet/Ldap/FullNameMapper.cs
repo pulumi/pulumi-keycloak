@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Ldap
 {
     /// <summary>
-    /// ## # keycloak.ldap.FullNameMapper
+    /// # keycloak.ldap.FullNameMapper
     /// 
     /// Allows for creating and managing full name mappers for Keycloak users federated
     /// via LDAP.

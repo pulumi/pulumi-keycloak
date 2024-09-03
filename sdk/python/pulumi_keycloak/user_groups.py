@@ -170,7 +170,7 @@ class UserGroups(pulumi.CustomResource):
 
         ## Example Usage
 
-        ### Exhaustive Groups)
+        ### exhaustive groups)
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
@@ -211,7 +211,7 @@ class UserGroups(pulumi.CustomResource):
 
         ## Example Usage
 
-        ### Exhaustive Groups)
+        ### exhaustive groups)
         ```python
         import pulumi
         import pulumi_keycloak as keycloak

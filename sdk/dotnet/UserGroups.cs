@@ -17,7 +17,7 @@ namespace Pulumi.Keycloak
     /// 
     /// ## Example Usage
     /// 
-    /// ### Exhaustive Groups)
+    /// ### exhaustive groups)
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;

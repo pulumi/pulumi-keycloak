@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # GenericClientProtocolMapper
+// # GenericClientProtocolMapper
 //
 // Allows for creating and managing protocol mapper for both types of clients (openid-connect and saml) within Keycloak.
 //

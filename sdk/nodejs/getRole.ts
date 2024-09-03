@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # keycloak.Role data source
+ * # keycloak.Role data source
  *
  * This data source can be used to fetch properties of a Keycloak role for
  * usage with other resources, such as `keycloak.GroupRoles`.
@@ -45,7 +45,7 @@ export interface GetRoleResult {
     readonly realmId: string;
 }
 /**
- * ## # keycloak.Role data source
+ * # keycloak.Role data source
  *
  * This data source can be used to fetch properties of a Keycloak role for
  * usage with other resources, such as `keycloak.GroupRoles`.

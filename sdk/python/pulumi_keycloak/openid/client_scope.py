@@ -183,7 +183,7 @@ class ClientScope(pulumi.CustomResource):
                  realm_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## # openid.ClientScope
+        # openid.ClientScope
 
         Allows for creating and managing Keycloak client scopes that can be attached to
         clients that use the OpenID Connect protocol.
@@ -235,7 +235,7 @@ class ClientScope(pulumi.CustomResource):
                  args: ClientScopeArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # openid.ClientScope
+        # openid.ClientScope
 
         Allows for creating and managing Keycloak client scopes that can be attached to
         clients that use the OpenID Connect protocol.

@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # ldap.GroupMapper
+// # ldap.GroupMapper
 //
 // Allows for creating and managing group mappers for Keycloak users federated
 // via LDAP.

@@ -287,7 +287,7 @@ class AttributeImporterIdentityProviderMapper(pulumi.CustomResource):
                  user_attribute: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## # AttributeImporterIdentityProviderMapper
+        # AttributeImporterIdentityProviderMapper
 
         Allows to create and manage identity provider mappers within Keycloak.
 
@@ -341,7 +341,7 @@ class AttributeImporterIdentityProviderMapper(pulumi.CustomResource):
                  args: AttributeImporterIdentityProviderMapperArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # AttributeImporterIdentityProviderMapper
+        # AttributeImporterIdentityProviderMapper
 
         Allows to create and manage identity provider mappers within Keycloak.
 

@@ -18,7 +18,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # keycloak.saml.IdentityProvider
+ * # keycloak.saml.IdentityProvider
  * 
  * Allows to create and manage SAML Identity Providers within Keycloak.
  * 

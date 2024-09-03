@@ -174,7 +174,7 @@ class UserRoles(pulumi.CustomResource):
 
         ## Example Usage
 
-        ### Exhaustive Roles)
+        ### exhaustive roles)
 
         ```python
         import pulumi
@@ -253,7 +253,7 @@ class UserRoles(pulumi.CustomResource):
 
         ## Example Usage
 
-        ### Exhaustive Roles)
+        ### exhaustive roles)
 
         ```python
         import pulumi

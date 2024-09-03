@@ -345,7 +345,7 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
                  user_property: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## # openid.UserPropertyProtocolMapper
+        # openid.UserPropertyProtocolMapper
 
         Allows for creating and managing user property protocol mappers within
         Keycloak.
@@ -440,7 +440,7 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
                  args: UserPropertyProtocolMapperArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # openid.UserPropertyProtocolMapper
+        # openid.UserPropertyProtocolMapper
 
         Allows for creating and managing user property protocol mappers within
         Keycloak.

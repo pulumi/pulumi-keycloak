@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.OpenId
 {
     /// <summary>
-    /// ## # keycloak.openid.HardcodedRoleProtocolMapper
+    /// # keycloak.openid.HardcodedRoleProtocolMapper
     /// 
     /// Allows for creating and managing hardcoded role protocol mappers within
     /// Keycloak.

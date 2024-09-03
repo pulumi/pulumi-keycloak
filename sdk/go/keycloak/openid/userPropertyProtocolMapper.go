@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # openid.UserPropertyProtocolMapper
+// # openid.UserPropertyProtocolMapper
 //
 // Allows for creating and managing user property protocol mappers within
 // Keycloak.

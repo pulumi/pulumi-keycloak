@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # keycloak.User
+ * # keycloak.User
  *
  * Allows for creating and managing Users within Keycloak.
  *
@@ -54,9 +54,9 @@ import * as utilities from "./utilities";
  * - `realmId` - (Required) The realm this user belongs to.
  * - `username` - (Required) The unique username of this user.
  * - `initialPassword` (Optional) When given, the user's initial password will be set.
- *    This attribute is only respected during initial user creation.
- *     - `value` (Required) The initial password.
- *     - `temporary` (Optional) If set to `true`, the initial password is set up for renewal on first use. Default to `false`.
+ *   This attribute is only respected during initial user creation.
+ *   - `value` (Required) The initial password.
+ *   - `temporary` (Optional) If set to `true`, the initial password is set up for renewal on first use. Default to `false`.
  * - `enabled` - (Optional) When false, this user cannot log in. Defaults to `true`.
  * - `email` - (Optional) The user's email.
  * - `firstName` - (Optional) The user's first name.

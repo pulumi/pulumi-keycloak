@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Saml
 {
     /// <summary>
-    /// ## # keycloak.saml.Client
+    /// # keycloak.saml.Client
     /// 
     /// Allows for creating and managing Keycloak clients that use the SAML protocol.
     /// 

@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # CustomUserFederation
+// # CustomUserFederation
 //
 // Allows for creating and managing custom user federation providers within Keycloak.
 //

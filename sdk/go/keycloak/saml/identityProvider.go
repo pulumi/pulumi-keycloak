@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # saml.IdentityProvider
+// # saml.IdentityProvider
 //
 // Allows to create and manage SAML Identity Providers within Keycloak.
 //

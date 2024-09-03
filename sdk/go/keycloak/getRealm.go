@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Realm data source
+// # Realm data source
 //
 // This data source can be used to fetch properties of a Keycloak realm for
 // usage with other resources.

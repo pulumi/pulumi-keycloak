@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * ## # keycloak.openid.UserAttributeProtocolMapper
+ * # keycloak.openid.UserAttributeProtocolMapper
  *
  * Allows for creating and managing user attribute protocol mappers within
  * Keycloak.

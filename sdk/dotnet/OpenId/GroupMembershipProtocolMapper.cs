@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.OpenId
 {
     /// <summary>
-    /// ## # keycloak.openid.GroupMembershipProtocolMapper
+    /// # keycloak.openid.GroupMembershipProtocolMapper
     /// 
     /// Allows for creating and managing group membership protocol mappers within
     /// Keycloak.

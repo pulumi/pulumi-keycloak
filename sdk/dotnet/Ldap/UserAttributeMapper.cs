@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Ldap
 {
     /// <summary>
-    /// ## # keycloak.ldap.UserAttributeMapper
+    /// # keycloak.ldap.UserAttributeMapper
     /// 
     /// Allows for creating and managing user attribute mappers for Keycloak users
     /// federated via LDAP.

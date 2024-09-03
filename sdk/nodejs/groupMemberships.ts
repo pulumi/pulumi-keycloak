@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # keycloak.GroupMemberships
+ * # keycloak.GroupMemberships
  *
  * Allows for managing a Keycloak group's members.
  *

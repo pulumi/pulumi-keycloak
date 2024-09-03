@@ -131,7 +131,7 @@ class GroupRoles(pulumi.CustomResource):
                  role_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
-        ## # GroupRoles
+        # GroupRoles
 
         Allows you to manage roles assigned to a Keycloak group.
 
@@ -209,7 +209,7 @@ class GroupRoles(pulumi.CustomResource):
                  args: GroupRolesArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # GroupRoles
+        # GroupRoles
 
         Allows you to manage roles assigned to a Keycloak group.
 

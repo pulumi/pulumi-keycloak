@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * ## # keycloak.openid.HardcodedRoleProtocolMapper
+ * # keycloak.openid.HardcodedRoleProtocolMapper
  *
  * Allows for creating and managing hardcoded role protocol mappers within
  * Keycloak.

@@ -156,7 +156,7 @@ class MsadUserAccountControlMapper(pulumi.CustomResource):
                  realm_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## # ldap.MsadUserAccountControlMapper
+        # ldap.MsadUserAccountControlMapper
 
         Allows for creating and managing MSAD user account control mappers for Keycloak
         users federated via LDAP.
@@ -224,7 +224,7 @@ class MsadUserAccountControlMapper(pulumi.CustomResource):
                  args: MsadUserAccountControlMapperArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # ldap.MsadUserAccountControlMapper
+        # ldap.MsadUserAccountControlMapper
 
         Allows for creating and managing MSAD user account control mappers for Keycloak
         users federated via LDAP.

@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Ldap
 {
     /// <summary>
-    /// ## # keycloak.ldap.HardcodedRoleMapper
+    /// # keycloak.ldap.HardcodedRoleMapper
     /// 
     /// This mapper will grant a specified Keycloak role to each Keycloak user linked with LDAP.
     /// 

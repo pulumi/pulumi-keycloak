@@ -237,9 +237,9 @@ class GroupPermissions(pulumi.CustomResource):
                  view_scope: Optional[pulumi.Input[Union['GroupPermissionsViewScopeArgs', 'GroupPermissionsViewScopeArgsDict']]] = None,
                  __props__=None):
         """
-        Allows you to manage all group Scope Based Permissions https://www.keycloak.org/docs/latest/server_admin/#group.
+        Allows you to manage all group Scope Based Permissions <https://www.keycloak.org/docs/latest/server_admin/#group>.
 
-        This is part of a preview Keycloak feature: `admin_fine_grained_authz` (see https://www.keycloak.org/docs/latest/server_admin/#_fine_grain_permissions).
+        This is part of a preview Keycloak feature: `admin_fine_grained_authz` (see <https://www.keycloak.org/docs/latest/server_admin/#_fine_grain_permissions)>.
         This feature can be enabled with the Keycloak option `-Dkeycloak.profile.feature.admin_fine_grained_authz=enabled`. See the
         example `docker-compose.yml` file for an example.
 
@@ -259,9 +259,9 @@ class GroupPermissions(pulumi.CustomResource):
                  args: GroupPermissionsArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Allows you to manage all group Scope Based Permissions https://www.keycloak.org/docs/latest/server_admin/#group.
+        Allows you to manage all group Scope Based Permissions <https://www.keycloak.org/docs/latest/server_admin/#group>.
 
-        This is part of a preview Keycloak feature: `admin_fine_grained_authz` (see https://www.keycloak.org/docs/latest/server_admin/#_fine_grain_permissions).
+        This is part of a preview Keycloak feature: `admin_fine_grained_authz` (see <https://www.keycloak.org/docs/latest/server_admin/#_fine_grain_permissions)>.
         This feature can be enabled with the Keycloak option `-Dkeycloak.profile.feature.admin_fine_grained_authz=enabled`. See the
         example `docker-compose.yml` file for an example.
 

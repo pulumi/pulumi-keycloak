@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Saml
 {
     /// <summary>
-    /// ## # keycloak.saml.UserAttributeProtocolMapper
+    /// # keycloak.saml.UserAttributeProtocolMapper
     /// 
     /// Allows for creating and managing user attribute protocol mappers for
     /// SAML clients within Keycloak.

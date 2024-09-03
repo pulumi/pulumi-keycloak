@@ -208,7 +208,7 @@ class RealmEvents(pulumi.CustomResource):
                  realm_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## # RealmEvents
+        # RealmEvents
 
         Allows for managing Realm Events settings within Keycloak.
 
@@ -254,7 +254,7 @@ class RealmEvents(pulumi.CustomResource):
                  args: RealmEventsArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # RealmEvents
+        # RealmEvents
 
         Allows for managing Realm Events settings within Keycloak.
 

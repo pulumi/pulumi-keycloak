@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak
 {
     /// <summary>
-    /// ## # keycloak.CustomUserFederation
+    /// # keycloak.CustomUserFederation
     /// 
     /// Allows for creating and managing custom user federation providers within Keycloak.
     /// 

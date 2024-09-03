@@ -16,7 +16,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # keycloak.openid.UserRealmRoleProtocolMapper
+ * # keycloak.openid.UserRealmRoleProtocolMapper
  * 
  * Allows for creating and managing user realm role protocol mappers within
  * Keycloak.

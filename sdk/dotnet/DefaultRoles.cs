@@ -16,7 +16,7 @@ namespace Pulumi.Keycloak
     /// 
     /// ## Example Usage
     /// 
-    /// ### Realm Role)
+    /// ### Realm role)
     /// 
     /// ```csharp
     /// using System.Collections.Generic;

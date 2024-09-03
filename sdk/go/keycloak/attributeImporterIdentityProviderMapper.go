@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # AttributeImporterIdentityProviderMapper
+// # AttributeImporterIdentityProviderMapper
 //
 // Allows to create and manage identity provider mappers within Keycloak.
 //

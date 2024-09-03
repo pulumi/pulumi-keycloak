@@ -10,9 +10,9 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak
 {
     /// <summary>
-    /// Allows you to manage all group Scope Based Permissions https://www.keycloak.org/docs/latest/server_admin/#group.
+    /// Allows you to manage all group Scope Based Permissions &lt;https://www.keycloak.org/docs/latest/server_admin/#group&gt;.
     /// 
-    /// This is part of a preview Keycloak feature: `admin_fine_grained_authz` (see https://www.keycloak.org/docs/latest/server_admin/#_fine_grain_permissions).
+    /// This is part of a preview Keycloak feature: `admin_fine_grained_authz` (see &lt;https://www.keycloak.org/docs/latest/server_admin/#_fine_grain_permissions)&gt;.
     /// This feature can be enabled with the Keycloak option `-Dkeycloak.profile.feature.admin_fine_grained_authz=enabled`. See the
     /// example `docker-compose.yml` file for an example.
     /// 

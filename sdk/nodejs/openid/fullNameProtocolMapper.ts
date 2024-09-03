@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * ## # keycloak.openid.FullNameProtocolMapper
+ * # keycloak.openid.FullNameProtocolMapper
  *
  * Allows for creating and managing full name protocol mappers within
  * Keycloak.

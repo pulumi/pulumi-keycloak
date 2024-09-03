@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # User
+// # User
 //
 // Allows for creating and managing Users within Keycloak.
 //

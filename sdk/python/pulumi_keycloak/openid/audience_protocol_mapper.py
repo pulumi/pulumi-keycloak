@@ -297,7 +297,7 @@ class AudienceProtocolMapper(pulumi.CustomResource):
                  realm_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## # openid.AudienceProtocolMapper
+        # openid.AudienceProtocolMapper
 
         Allows for creating and managing audience protocol mappers within
         Keycloak. This mapper was added in Keycloak v4.6.0.Final.
@@ -387,7 +387,7 @@ class AudienceProtocolMapper(pulumi.CustomResource):
                  args: AudienceProtocolMapperArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # openid.AudienceProtocolMapper
+        # openid.AudienceProtocolMapper
 
         Allows for creating and managing audience protocol mappers within
         Keycloak. This mapper was added in Keycloak v4.6.0.Final.

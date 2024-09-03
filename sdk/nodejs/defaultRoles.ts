@@ -11,7 +11,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * ### Realm Role)
+ * ### Realm role)
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

@@ -183,7 +183,7 @@ class Role(pulumi.CustomResource):
                  realm_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## # Role
+        # Role
 
         Allows for creating and managing roles within Keycloak.
 
@@ -305,7 +305,7 @@ class Role(pulumi.CustomResource):
                  args: RoleArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # Role
+        # Role
 
         Allows for creating and managing roles within Keycloak.
 

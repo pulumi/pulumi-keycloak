@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # keycloak.GroupRoles
+ * # keycloak.GroupRoles
  *
  * Allows you to manage roles assigned to a Keycloak group.
  *

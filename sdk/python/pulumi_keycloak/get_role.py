@@ -103,7 +103,7 @@ def get_role(client_id: Optional[str] = None,
              realm_id: Optional[str] = None,
              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRoleResult:
     """
-    ## # Role data source
+    # Role data source
 
     This data source can be used to fetch properties of a Keycloak role for
     usage with other resources, such as `GroupRoles`.
@@ -131,7 +131,7 @@ def get_role_output(client_id: Optional[pulumi.Input[Optional[str]]] = None,
                     realm_id: Optional[pulumi.Input[str]] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRoleResult]:
     """
-    ## # Role data source
+    # Role data source
 
     This data source can be used to fetch properties of a Keycloak role for
     usage with other resources, such as `GroupRoles`.

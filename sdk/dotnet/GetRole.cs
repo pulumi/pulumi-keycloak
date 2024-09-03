@@ -12,7 +12,7 @@ namespace Pulumi.Keycloak
     public static class GetRole
     {
         /// <summary>
-        /// ## # keycloak.Role data source
+        /// # keycloak.Role data source
         /// 
         /// This data source can be used to fetch properties of a Keycloak role for
         /// usage with other resources, such as `keycloak.GroupRoles`.
@@ -21,7 +21,7 @@ namespace Pulumi.Keycloak
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetRoleResult>("keycloak:index/getRole:getRole", args ?? new GetRoleArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # keycloak.Role data source
+        /// # keycloak.Role data source
         /// 
         /// This data source can be used to fetch properties of a Keycloak role for
         /// usage with other resources, such as `keycloak.GroupRoles`.

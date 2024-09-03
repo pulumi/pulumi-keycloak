@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.OpenId
 {
     /// <summary>
-    /// ## # keycloak.openid.ClientScope
+    /// # keycloak.openid.ClientScope
     /// 
     /// Allows for creating and managing Keycloak client scopes that can be attached to
     /// clients that use the OpenID Connect protocol.

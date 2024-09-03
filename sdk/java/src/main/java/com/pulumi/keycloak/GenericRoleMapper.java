@@ -23,7 +23,7 @@ import javax.annotation.Nullable;
  * 
  * ## Example Usage
  * 
- * ### Realm Role To Client)
+ * ### Realm Role to Client)
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>
@@ -85,7 +85,7 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * ### Client Role To Client)
+ * ### Client Role to Client)
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>
@@ -164,7 +164,7 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * ### Realm Role To Client Scope)
+ * ### Realm Role to Client Scope)
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>
@@ -223,7 +223,7 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * ### Client Role To Client Scope)
+ * ### Client Role to Client Scope)
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>

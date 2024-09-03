@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # keycloak.DefaultGroups
+ * # keycloak.DefaultGroups
  *
  * Allows for managing a realm's default groups.
  *

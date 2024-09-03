@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * ## # keycloak.ldap.GroupMapper
+ * # keycloak.ldap.GroupMapper
  *
  * Allows for creating and managing group mappers for Keycloak users federated
  * via LDAP.

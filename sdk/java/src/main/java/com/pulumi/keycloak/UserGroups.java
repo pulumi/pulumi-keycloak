@@ -24,7 +24,7 @@ import javax.annotation.Nullable;
  * 
  * ## Example Usage
  * 
- * ### Exhaustive Groups)
+ * ### exhaustive groups)
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>
  * {@code

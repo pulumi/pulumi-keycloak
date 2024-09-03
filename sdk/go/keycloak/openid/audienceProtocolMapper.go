@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # openid.AudienceProtocolMapper
+// # openid.AudienceProtocolMapper
 //
 // Allows for creating and managing audience protocol mappers within
 // Keycloak. This mapper was added in Keycloak v4.6.0.Final.

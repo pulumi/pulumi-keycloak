@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # saml.UserPropertyProtocolMapper
+// # saml.UserPropertyProtocolMapper
 //
 // Allows for creating and managing user property protocol mappers for
 // SAML clients within Keycloak.

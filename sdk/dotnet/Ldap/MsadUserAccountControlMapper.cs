@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Ldap
 {
     /// <summary>
-    /// ## # keycloak.ldap.MsadUserAccountControlMapper
+    /// # keycloak.ldap.MsadUserAccountControlMapper
     /// 
     /// Allows for creating and managing MSAD user account control mappers for Keycloak
     /// users federated via LDAP.

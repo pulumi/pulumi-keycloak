@@ -563,7 +563,7 @@ def get_realm(attributes: Optional[Mapping[str, str]] = None,
               web_authn_policy: Optional[Union['GetRealmWebAuthnPolicyArgs', 'GetRealmWebAuthnPolicyArgsDict']] = None,
               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRealmResult:
     """
-    ## # Realm data source
+    # Realm data source
 
     This data source can be used to fetch properties of a Keycloak realm for
     usage with other resources.
@@ -680,7 +680,7 @@ def get_realm_output(attributes: Optional[pulumi.Input[Optional[Mapping[str, str
                      web_authn_policy: Optional[pulumi.Input[Optional[Union['GetRealmWebAuthnPolicyArgs', 'GetRealmWebAuthnPolicyArgsDict']]]] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRealmResult]:
     """
-    ## # Realm data source
+    # Realm data source
 
     This data source can be used to fetch properties of a Keycloak realm for
     usage with other resources.

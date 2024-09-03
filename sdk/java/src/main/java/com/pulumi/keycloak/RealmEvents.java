@@ -18,7 +18,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # keycloak.RealmEvents
+ * # keycloak.RealmEvents
  * 
  * Allows for managing Realm Events settings within Keycloak.
  * 

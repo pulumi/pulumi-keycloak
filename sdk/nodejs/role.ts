@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # keycloak.Role
+ * # keycloak.Role
  *
  * Allows for creating and managing roles within Keycloak.
  *

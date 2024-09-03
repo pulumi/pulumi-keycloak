@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # DefaultGroups
+// # DefaultGroups
 //
 // Allows for managing a realm's default groups.
 //

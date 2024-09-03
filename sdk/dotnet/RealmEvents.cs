@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak
 {
     /// <summary>
-    /// ## # keycloak.RealmEvents
+    /// # keycloak.RealmEvents
     /// 
     /// Allows for managing Realm Events settings within Keycloak.
     /// 

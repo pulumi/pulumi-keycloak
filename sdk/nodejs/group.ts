@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # keycloak.Group
+ * # keycloak.Group
  *
  * Allows for creating and managing Groups within Keycloak.
  *

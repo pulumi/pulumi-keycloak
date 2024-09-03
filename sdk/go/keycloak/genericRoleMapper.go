@@ -20,7 +20,7 @@ import (
 //
 // ## Example Usage
 //
-// ### Realm Role To Client)
+// ### Realm Role to Client)
 //
 // ```go
 // package main
@@ -74,7 +74,7 @@ import (
 //
 // ```
 //
-// ### Client Role To Client)
+// ### Client Role to Client)
 //
 // ```go
 // package main
@@ -149,7 +149,7 @@ import (
 //
 // ```
 //
-// ### Realm Role To Client Scope)
+// ### Realm Role to Client Scope)
 //
 // ```go
 // package main
@@ -200,7 +200,7 @@ import (
 //
 // ```
 //
-// ### Client Role To Client Scope)
+// ### Client Role to Client Scope)
 //
 // ```go
 // package main

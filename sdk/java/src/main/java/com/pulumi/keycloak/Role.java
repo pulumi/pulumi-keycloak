@@ -17,7 +17,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # keycloak.Role
+ * # keycloak.Role
  * 
  * Allows for creating and managing roles within Keycloak.
  * 

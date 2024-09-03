@@ -411,7 +411,7 @@ class UserAttributeProtocolMapper(pulumi.CustomResource):
                  user_attribute: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## # openid.UserAttributeProtocolMapper
+        # openid.UserAttributeProtocolMapper
 
         Allows for creating and managing user attribute protocol mappers within
         Keycloak.
@@ -509,7 +509,7 @@ class UserAttributeProtocolMapper(pulumi.CustomResource):
                  args: UserAttributeProtocolMapperArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # openid.UserAttributeProtocolMapper
+        # openid.UserAttributeProtocolMapper
 
         Allows for creating and managing user attribute protocol mappers within
         Keycloak.

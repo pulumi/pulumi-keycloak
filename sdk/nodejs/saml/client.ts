@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * ## # keycloak.saml.Client
+ * # keycloak.saml.Client
  *
  * Allows for creating and managing Keycloak clients that use the SAML protocol.
  *

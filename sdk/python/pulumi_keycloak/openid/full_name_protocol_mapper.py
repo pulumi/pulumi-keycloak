@@ -240,7 +240,7 @@ class FullNameProtocolMapper(pulumi.CustomResource):
                  realm_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## # openid.FullNameProtocolMapper
+        # openid.FullNameProtocolMapper
 
         Allows for creating and managing full name protocol mappers within
         Keycloak.
@@ -324,7 +324,7 @@ class FullNameProtocolMapper(pulumi.CustomResource):
                  args: FullNameProtocolMapperArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # openid.FullNameProtocolMapper
+        # openid.FullNameProtocolMapper
 
         Allows for creating and managing full name protocol mappers within
         Keycloak.

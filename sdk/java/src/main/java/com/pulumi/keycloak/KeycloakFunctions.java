@@ -787,7 +787,7 @@ public final class KeycloakFunctions {
         return Deployment.getInstance().invokeAsync("keycloak:index/getClientDescriptionConverter:getClientDescriptionConverter", TypeShape.of(GetClientDescriptionConverterResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * ## # keycloak.Group data source
+     * # keycloak.Group data source
      * 
      * This data source can be used to fetch properties of a Keycloak group for
      * usage with other resources, such as `keycloak.GroupRoles`.
@@ -816,7 +816,7 @@ public final class KeycloakFunctions {
         return getGroup(args, InvokeOptions.Empty);
     }
     /**
-     * ## # keycloak.Group data source
+     * # keycloak.Group data source
      * 
      * This data source can be used to fetch properties of a Keycloak group for
      * usage with other resources, such as `keycloak.GroupRoles`.
@@ -845,7 +845,7 @@ public final class KeycloakFunctions {
         return getGroupPlain(args, InvokeOptions.Empty);
     }
     /**
-     * ## # keycloak.Group data source
+     * # keycloak.Group data source
      * 
      * This data source can be used to fetch properties of a Keycloak group for
      * usage with other resources, such as `keycloak.GroupRoles`.
@@ -874,7 +874,7 @@ public final class KeycloakFunctions {
         return Deployment.getInstance().invoke("keycloak:index/getGroup:getGroup", TypeShape.of(GetGroupResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * ## # keycloak.Group data source
+     * # keycloak.Group data source
      * 
      * This data source can be used to fetch properties of a Keycloak group for
      * usage with other resources, such as `keycloak.GroupRoles`.
@@ -903,7 +903,7 @@ public final class KeycloakFunctions {
         return Deployment.getInstance().invokeAsync("keycloak:index/getGroup:getGroup", TypeShape.of(GetGroupResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * ## # keycloak.Realm data source
+     * # keycloak.Realm data source
      * 
      * This data source can be used to fetch properties of a Keycloak realm for
      * usage with other resources.
@@ -966,7 +966,7 @@ public final class KeycloakFunctions {
         return getRealm(args, InvokeOptions.Empty);
     }
     /**
-     * ## # keycloak.Realm data source
+     * # keycloak.Realm data source
      * 
      * This data source can be used to fetch properties of a Keycloak realm for
      * usage with other resources.
@@ -1029,7 +1029,7 @@ public final class KeycloakFunctions {
         return getRealmPlain(args, InvokeOptions.Empty);
     }
     /**
-     * ## # keycloak.Realm data source
+     * # keycloak.Realm data source
      * 
      * This data source can be used to fetch properties of a Keycloak realm for
      * usage with other resources.
@@ -1092,7 +1092,7 @@ public final class KeycloakFunctions {
         return Deployment.getInstance().invoke("keycloak:index/getRealm:getRealm", TypeShape.of(GetRealmResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * ## # keycloak.Realm data source
+     * # keycloak.Realm data source
      * 
      * This data source can be used to fetch properties of a Keycloak realm for
      * usage with other resources.
@@ -1155,7 +1155,7 @@ public final class KeycloakFunctions {
         return Deployment.getInstance().invokeAsync("keycloak:index/getRealm:getRealm", TypeShape.of(GetRealmResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * ## # keycloak.getRealmKeys data source
+     * # keycloak.getRealmKeys data source
      * 
      * Use this data source to get the keys of a realm. Keys can be filtered by algorithm and status.
      * 
@@ -1170,7 +1170,7 @@ public final class KeycloakFunctions {
         return getRealmKeys(args, InvokeOptions.Empty);
     }
     /**
-     * ## # keycloak.getRealmKeys data source
+     * # keycloak.getRealmKeys data source
      * 
      * Use this data source to get the keys of a realm. Keys can be filtered by algorithm and status.
      * 
@@ -1185,7 +1185,7 @@ public final class KeycloakFunctions {
         return getRealmKeysPlain(args, InvokeOptions.Empty);
     }
     /**
-     * ## # keycloak.getRealmKeys data source
+     * # keycloak.getRealmKeys data source
      * 
      * Use this data source to get the keys of a realm. Keys can be filtered by algorithm and status.
      * 
@@ -1200,7 +1200,7 @@ public final class KeycloakFunctions {
         return Deployment.getInstance().invoke("keycloak:index/getRealmKeys:getRealmKeys", TypeShape.of(GetRealmKeysResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * ## # keycloak.getRealmKeys data source
+     * # keycloak.getRealmKeys data source
      * 
      * Use this data source to get the keys of a realm. Keys can be filtered by algorithm and status.
      * 
@@ -1215,7 +1215,7 @@ public final class KeycloakFunctions {
         return Deployment.getInstance().invokeAsync("keycloak:index/getRealmKeys:getRealmKeys", TypeShape.of(GetRealmKeysResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * ## # keycloak.Role data source
+     * # keycloak.Role data source
      * 
      * This data source can be used to fetch properties of a Keycloak role for
      * usage with other resources, such as `keycloak.GroupRoles`.
@@ -1247,7 +1247,7 @@ public final class KeycloakFunctions {
         return getRole(args, InvokeOptions.Empty);
     }
     /**
-     * ## # keycloak.Role data source
+     * # keycloak.Role data source
      * 
      * This data source can be used to fetch properties of a Keycloak role for
      * usage with other resources, such as `keycloak.GroupRoles`.
@@ -1279,7 +1279,7 @@ public final class KeycloakFunctions {
         return getRolePlain(args, InvokeOptions.Empty);
     }
     /**
-     * ## # keycloak.Role data source
+     * # keycloak.Role data source
      * 
      * This data source can be used to fetch properties of a Keycloak role for
      * usage with other resources, such as `keycloak.GroupRoles`.
@@ -1311,7 +1311,7 @@ public final class KeycloakFunctions {
         return Deployment.getInstance().invoke("keycloak:index/getRole:getRole", TypeShape.of(GetRoleResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * ## # keycloak.Role data source
+     * # keycloak.Role data source
      * 
      * This data source can be used to fetch properties of a Keycloak role for
      * usage with other resources, such as `keycloak.GroupRoles`.

@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # ldap.MsadUserAccountControlMapper
+// # ldap.MsadUserAccountControlMapper
 //
 // Allows for creating and managing MSAD user account control mappers for Keycloak
 // users federated via LDAP.

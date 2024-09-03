@@ -345,7 +345,7 @@ class HardcodedClaimProtocolMapper(pulumi.CustomResource):
                  realm_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## # openid.HardcodedClaimProtocolMapper
+        # openid.HardcodedClaimProtocolMapper
 
         Allows for creating and managing hardcoded claim protocol mappers within
         Keycloak.
@@ -440,7 +440,7 @@ class HardcodedClaimProtocolMapper(pulumi.CustomResource):
                  args: HardcodedClaimProtocolMapperArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # openid.HardcodedClaimProtocolMapper
+        # openid.HardcodedClaimProtocolMapper
 
         Allows for creating and managing hardcoded claim protocol mappers within
         Keycloak.

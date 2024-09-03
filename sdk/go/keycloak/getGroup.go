@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Group data source
+// # Group data source
 //
 // This data source can be used to fetch properties of a Keycloak group for
 // usage with other resources, such as `GroupRoles`.

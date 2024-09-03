@@ -21,7 +21,7 @@ import javax.annotation.Nullable;
  * 
  * ## Example Usage
  * 
- * ### Realm Role)
+ * ### Realm role)
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>

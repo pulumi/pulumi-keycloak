@@ -230,7 +230,7 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
                  user_property: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## # saml.UserPropertyProtocolMapper
+        # saml.UserPropertyProtocolMapper
 
         Allows for creating and managing user property protocol mappers for
         SAML clients within Keycloak.
@@ -293,7 +293,7 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
                  args: UserPropertyProtocolMapperArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # saml.UserPropertyProtocolMapper
+        # saml.UserPropertyProtocolMapper
 
         Allows for creating and managing user property protocol mappers for
         SAML clients within Keycloak.

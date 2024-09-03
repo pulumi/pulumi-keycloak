@@ -18,7 +18,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # keycloak.CustomUserFederation
+ * # keycloak.CustomUserFederation
  * 
  * Allows for creating and managing custom user federation providers within Keycloak.
  * 

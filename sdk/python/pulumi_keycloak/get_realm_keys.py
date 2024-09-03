@@ -86,7 +86,7 @@ def get_realm_keys(algorithms: Optional[Sequence[str]] = None,
                    statuses: Optional[Sequence[str]] = None,
                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRealmKeysResult:
     """
-    ## # get_realm_keys data source
+    # get_realm_keys data source
 
     Use this data source to get the keys of a realm. Keys can be filtered by algorithm and status.
 
@@ -117,7 +117,7 @@ def get_realm_keys_output(algorithms: Optional[pulumi.Input[Optional[Sequence[st
                           statuses: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRealmKeysResult]:
     """
-    ## # get_realm_keys data source
+    # get_realm_keys data source
 
     Use this data source to get the keys of a realm. Keys can be filtered by algorithm and status.
 

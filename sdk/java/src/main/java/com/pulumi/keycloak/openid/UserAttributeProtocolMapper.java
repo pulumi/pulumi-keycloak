@@ -16,7 +16,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # keycloak.openid.UserAttributeProtocolMapper
+ * # keycloak.openid.UserAttributeProtocolMapper
  * 
  * Allows for creating and managing user attribute protocol mappers within
  * Keycloak.

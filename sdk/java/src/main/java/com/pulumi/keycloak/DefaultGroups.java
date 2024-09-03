@@ -15,7 +15,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 /**
- * ## # keycloak.DefaultGroups
+ * # keycloak.DefaultGroups
  * 
  * Allows for managing a realm&#39;s default groups.
  * 

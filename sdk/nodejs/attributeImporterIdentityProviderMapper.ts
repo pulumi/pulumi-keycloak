@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # keycloak.AttributeImporterIdentityProviderMapper
+ * # keycloak.AttributeImporterIdentityProviderMapper
  *
  * Allows to create and manage identity provider mappers within Keycloak.
  *

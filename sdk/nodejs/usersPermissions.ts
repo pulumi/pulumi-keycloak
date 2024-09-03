@@ -7,9 +7,9 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Allows you to manage fine-grained permissions for all users in a realm: https://www.keycloak.org/docs/latest/server_admin/#_users-permissions
+ * Allows you to manage fine-grained permissions for all users in a realm: <https://www.keycloak.org/docs/latest/server_admin/#_users-permissions>
  *
- * This is part of a preview Keycloak feature: `adminFineGrainedAuthz` (see https://www.keycloak.org/docs/latest/server_admin/#_fine_grain_permissions).
+ * This is part of a preview Keycloak feature: `adminFineGrainedAuthz` (see <https://www.keycloak.org/docs/latest/server_admin/#_fine_grain_permissions)>.
  * This feature can be enabled with the Keycloak option `-Dkeycloak.profile.feature.admin_fine_grained_authz=enabled`. See the
  * example `docker-compose.yml` file for an example.
  *

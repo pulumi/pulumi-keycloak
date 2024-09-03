@@ -17,7 +17,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # keycloak.openid.ClientScope
+ * # keycloak.openid.ClientScope
  * 
  * Allows for creating and managing Keycloak client scopes that can be attached to
  * clients that use the OpenID Connect protocol.
