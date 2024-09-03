@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # keycloak.CustomUserFederation
+ * # keycloak.CustomUserFederation
  *
  * Allows for creating and managing custom user federation providers within Keycloak.
  *

@@ -145,7 +145,7 @@ class Group(pulumi.CustomResource):
                  realm_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## # Group
+        # Group
 
         Allows for creating and managing Groups within Keycloak.
 
@@ -216,7 +216,7 @@ class Group(pulumi.CustomResource):
                  args: GroupArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # Group
+        # Group
 
         Allows for creating and managing Groups within Keycloak.
 

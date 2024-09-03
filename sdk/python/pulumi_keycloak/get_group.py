@@ -93,7 +93,7 @@ def get_group(name: Optional[str] = None,
               realm_id: Optional[str] = None,
               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetGroupResult:
     """
-    ## # Group data source
+    # Group data source
 
     This data source can be used to fetch properties of a Keycloak group for
     usage with other resources, such as `GroupRoles`.
@@ -118,7 +118,7 @@ def get_group_output(name: Optional[pulumi.Input[str]] = None,
                      realm_id: Optional[pulumi.Input[str]] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetGroupResult]:
     """
-    ## # Group data source
+    # Group data source
 
     This data source can be used to fetch properties of a Keycloak group for
     usage with other resources, such as `GroupRoles`.

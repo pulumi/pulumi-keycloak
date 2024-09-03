@@ -205,7 +205,7 @@ class FullNameMapper(pulumi.CustomResource):
                  write_only: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
-        ## # ldap.FullNameMapper
+        # ldap.FullNameMapper
 
         Allows for creating and managing full name mappers for Keycloak users federated
         via LDAP.
@@ -273,7 +273,7 @@ class FullNameMapper(pulumi.CustomResource):
                  args: FullNameMapperArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # ldap.FullNameMapper
+        # ldap.FullNameMapper
 
         Allows for creating and managing full name mappers for Keycloak users federated
         via LDAP.

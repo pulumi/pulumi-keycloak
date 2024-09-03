@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * ## # keycloak.ldap.HardcodedRoleMapper
+ * # keycloak.ldap.HardcodedRoleMapper
  *
  * This mapper will grant a specified Keycloak role to each Keycloak user linked with LDAP.
  *

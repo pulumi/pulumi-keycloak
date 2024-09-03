@@ -19,7 +19,7 @@ import (
 //
 // ## Example Usage
 //
-// ### Exhaustive Groups)
+// ### exhaustive groups)
 // ```go
 // package main
 //

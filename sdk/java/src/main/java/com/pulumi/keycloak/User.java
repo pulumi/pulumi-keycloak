@@ -20,7 +20,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # keycloak.User
+ * # keycloak.User
  * 
  * Allows for creating and managing Users within Keycloak.
  * 
@@ -96,9 +96,9 @@ import javax.annotation.Nullable;
  * - `realm_id` - (Required) The realm this user belongs to.
  * - `username` - (Required) The unique username of this user.
  * - `initial_password` (Optional) When given, the user&#39;s initial password will be set.
- *    This attribute is only respected during initial user creation.
- *     - `value` (Required) The initial password.
- *     - `temporary` (Optional) If set to `true`, the initial password is set up for renewal on first use. Default to `false`.
+ *   This attribute is only respected during initial user creation.
+ *   - `value` (Required) The initial password.
+ *   - `temporary` (Optional) If set to `true`, the initial password is set up for renewal on first use. Default to `false`.
  * - `enabled` - (Optional) When false, this user cannot log in. Defaults to `true`.
  * - `email` - (Optional) The user&#39;s email.
  * - `first_name` - (Optional) The user&#39;s first name.

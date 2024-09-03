@@ -104,7 +104,7 @@ class DefaultRoles(pulumi.CustomResource):
 
         ## Example Usage
 
-        ### Realm Role)
+        ### Realm role)
 
         ```python
         import pulumi
@@ -152,7 +152,7 @@ class DefaultRoles(pulumi.CustomResource):
 
         ## Example Usage
 
-        ### Realm Role)
+        ### Realm role)
 
         ```python
         import pulumi

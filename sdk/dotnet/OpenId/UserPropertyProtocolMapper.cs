@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.OpenId
 {
     /// <summary>
-    /// ## # keycloak.openid.UserPropertyProtocolMapper
+    /// # keycloak.openid.UserPropertyProtocolMapper
     /// 
     /// Allows for creating and managing user property protocol mappers within
     /// Keycloak.

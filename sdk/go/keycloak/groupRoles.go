@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # GroupRoles
+// # GroupRoles
 //
 // Allows you to manage roles assigned to a Keycloak group.
 //

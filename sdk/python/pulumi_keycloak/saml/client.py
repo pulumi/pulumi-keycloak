@@ -920,7 +920,7 @@ class Client(pulumi.CustomResource):
                  valid_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
-        ## # saml.Client
+        # saml.Client
 
         Allows for creating and managing Keycloak clients that use the SAML protocol.
 
@@ -945,7 +945,7 @@ class Client(pulumi.CustomResource):
                  args: ClientArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # saml.Client
+        # saml.Client
 
         Allows for creating and managing Keycloak clients that use the SAML protocol.
 

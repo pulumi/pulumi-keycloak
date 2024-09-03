@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * ## # keycloak.openid.GroupMembershipProtocolMapper
+ * # keycloak.openid.GroupMembershipProtocolMapper
  *
  * Allows for creating and managing group membership protocol mappers within
  * Keycloak.

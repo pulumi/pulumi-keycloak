@@ -12,7 +12,7 @@ namespace Pulumi.Keycloak.OpenId
     public static class GetClient
     {
         /// <summary>
-        /// ## # keycloak.openid.Client data source
+        /// # keycloak.openid.Client data source
         /// 
         /// This data source can be used to fetch properties of a Keycloak OpenID client for usage with other resources.
         /// 
@@ -58,7 +58,7 @@ namespace Pulumi.Keycloak.OpenId
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetClientResult>("keycloak:openid/getClient:getClient", args ?? new GetClientArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # keycloak.openid.Client data source
+        /// # keycloak.openid.Client data source
         /// 
         /// This data source can be used to fetch properties of a Keycloak OpenID client for usage with other resources.
         /// 

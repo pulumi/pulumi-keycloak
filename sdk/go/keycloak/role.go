@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Role
+// # Role
 //
 // Allows for creating and managing roles within Keycloak.
 //

@@ -501,7 +501,7 @@ class GroupMapper(pulumi.CustomResource):
                  user_roles_retrieve_strategy: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## # ldap.GroupMapper
+        # ldap.GroupMapper
 
         Allows for creating and managing group mappers for Keycloak users federated
         via LDAP.
@@ -587,7 +587,7 @@ class GroupMapper(pulumi.CustomResource):
                  args: GroupMapperArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # ldap.GroupMapper
+        # ldap.GroupMapper
 
         Allows for creating and managing group mappers for Keycloak users federated
         via LDAP.

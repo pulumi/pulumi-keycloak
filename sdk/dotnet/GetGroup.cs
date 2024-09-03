@@ -12,7 +12,7 @@ namespace Pulumi.Keycloak
     public static class GetGroup
     {
         /// <summary>
-        /// ## # keycloak.Group data source
+        /// # keycloak.Group data source
         /// 
         /// This data source can be used to fetch properties of a Keycloak group for
         /// usage with other resources, such as `keycloak.GroupRoles`.
@@ -21,7 +21,7 @@ namespace Pulumi.Keycloak
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetGroupResult>("keycloak:index/getGroup:getGroup", args ?? new GetGroupArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # keycloak.Group data source
+        /// # keycloak.Group data source
         /// 
         /// This data source can be used to fetch properties of a Keycloak group for
         /// usage with other resources, such as `keycloak.GroupRoles`.

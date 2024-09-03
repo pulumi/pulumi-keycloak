@@ -82,7 +82,7 @@ class DefaultGroups(pulumi.CustomResource):
                  realm_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## # DefaultGroups
+        # DefaultGroups
 
         Allows for managing a realm's default groups.
 
@@ -129,7 +129,7 @@ class DefaultGroups(pulumi.CustomResource):
                  args: DefaultGroupsArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # DefaultGroups
+        # DefaultGroups
 
         Allows for managing a realm's default groups.
 

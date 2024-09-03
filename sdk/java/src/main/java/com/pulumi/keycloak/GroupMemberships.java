@@ -16,7 +16,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # keycloak.GroupMemberships
+ * # keycloak.GroupMemberships
  * 
  * Allows for managing a Keycloak group&#39;s members.
  * 

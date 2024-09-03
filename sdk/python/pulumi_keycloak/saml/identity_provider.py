@@ -1279,7 +1279,7 @@ class IdentityProvider(pulumi.CustomResource):
                  xml_sign_key_info_key_name_transformer: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## # saml.IdentityProvider
+        # saml.IdentityProvider
 
         Allows to create and manage SAML Identity Providers within Keycloak.
 
@@ -1396,7 +1396,7 @@ class IdentityProvider(pulumi.CustomResource):
                  args: IdentityProviderArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # saml.IdentityProvider
+        # saml.IdentityProvider
 
         Allows to create and manage SAML Identity Providers within Keycloak.
 

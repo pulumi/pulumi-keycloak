@@ -18,7 +18,7 @@ import (
 //
 // ## Example Usage
 //
-// ### Realm Role)
+// ### Realm role)
 //
 // ```go
 // package main

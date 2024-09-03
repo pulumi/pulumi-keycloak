@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * ## # keycloak.ldap.UserFederation
+ * # keycloak.ldap.UserFederation
  *
  * Allows for creating and managing LDAP user federation providers within Keycloak.
  *
@@ -68,13 +68,13 @@ import * as utilities from "../utilities";
  * - `bindCredential` - (Optional) Password of LDAP admin. This attribute must be set if `bindDn` is set.
  * - `customUserSearchFilter` - (Optional) Additional LDAP filter for filtering searched users. Must begin with `(` and end with `)`.
  * - `searchScope` - (Optional) Can be one of `ONE_LEVEL` or `SUBTREE`:
- *     - `ONE_LEVEL`: Only search for users in the DN specified by `userDn`.
- *     - `SUBTREE`: Search entire LDAP subtree.
+ *   - `ONE_LEVEL`: Only search for users in the DN specified by `userDn`.
+ *   - `SUBTREE`: Search entire LDAP subtree.
  * - `validatePasswordPolicy` - (Optional) When `true`, Keycloak will validate passwords using the realm policy before updating it.
  * - `useTruststoreSpi` - (Optional) Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
- *     - `ALWAYS` - Always use the truststore SPI for LDAP connections.
- *     - `NEVER` - Never use the truststore SPI for LDAP connections.
- *     - `ONLY_FOR_LDAPS` - Only use the truststore SPI if your LDAP connection uses the ldaps protocol.
+ *   - `ALWAYS` - Always use the truststore SPI for LDAP connections.
+ *   - `NEVER` - Never use the truststore SPI for LDAP connections.
+ *   - `ONLY_FOR_LDAPS` - Only use the truststore SPI if your LDAP connection uses the ldaps protocol.
  * - `connectionTimeout` - (Optional) LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
  * - `readTimeout` - (Optional) LDAP read timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
  * - `pagination` - (Optional) When true, Keycloak assumes the LDAP server supports pagination. Defaults to `true`.

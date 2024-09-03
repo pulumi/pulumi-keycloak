@@ -107,7 +107,7 @@ class GroupMemberships(pulumi.CustomResource):
                  realm_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## # GroupMemberships
+        # GroupMemberships
 
         Allows for managing a Keycloak group's members.
 
@@ -167,7 +167,7 @@ class GroupMemberships(pulumi.CustomResource):
                  args: GroupMembershipsArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # GroupMemberships
+        # GroupMemberships
 
         Allows for managing a Keycloak group's members.
 

@@ -174,7 +174,7 @@ class GenericClientRoleMapper(pulumi.CustomResource):
 
         ## Example Usage
 
-        ### Realm Role To Client)
+        ### Realm Role to Client)
 
         ```python
         import pulumi
@@ -199,7 +199,7 @@ class GenericClientRoleMapper(pulumi.CustomResource):
             role_id=realm_role.id)
         ```
 
-        ### Client Role To Client)
+        ### Client Role to Client)
 
         ```python
         import pulumi
@@ -237,7 +237,7 @@ class GenericClientRoleMapper(pulumi.CustomResource):
             role_id=client_role_a.id)
         ```
 
-        ### Realm Role To Client Scope)
+        ### Realm Role to Client Scope)
 
         ```python
         import pulumi
@@ -259,7 +259,7 @@ class GenericClientRoleMapper(pulumi.CustomResource):
             role_id=realm_role.id)
         ```
 
-        ### Client Role To Client Scope)
+        ### Client Role to Client Scope)
 
         ```python
         import pulumi
@@ -328,7 +328,7 @@ class GenericClientRoleMapper(pulumi.CustomResource):
 
         ## Example Usage
 
-        ### Realm Role To Client)
+        ### Realm Role to Client)
 
         ```python
         import pulumi
@@ -353,7 +353,7 @@ class GenericClientRoleMapper(pulumi.CustomResource):
             role_id=realm_role.id)
         ```
 
-        ### Client Role To Client)
+        ### Client Role to Client)
 
         ```python
         import pulumi
@@ -391,7 +391,7 @@ class GenericClientRoleMapper(pulumi.CustomResource):
             role_id=client_role_a.id)
         ```
 
-        ### Realm Role To Client Scope)
+        ### Realm Role to Client Scope)
 
         ```python
         import pulumi
@@ -413,7 +413,7 @@ class GenericClientRoleMapper(pulumi.CustomResource):
             role_id=realm_role.id)
         ```
 
-        ### Client Role To Client Scope)
+        ### Client Role to Client Scope)
 
         ```python
         import pulumi

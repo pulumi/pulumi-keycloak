@@ -16,7 +16,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # keycloak.openid.FullNameProtocolMapper
+ * # keycloak.openid.FullNameProtocolMapper
  * 
  * Allows for creating and managing full name protocol mappers within
  * Keycloak.

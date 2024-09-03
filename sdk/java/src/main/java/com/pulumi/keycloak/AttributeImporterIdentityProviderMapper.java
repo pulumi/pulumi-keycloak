@@ -16,7 +16,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # keycloak.AttributeImporterIdentityProviderMapper
+ * # keycloak.AttributeImporterIdentityProviderMapper
  * 
  * Allows to create and manage identity provider mappers within Keycloak.
  * 

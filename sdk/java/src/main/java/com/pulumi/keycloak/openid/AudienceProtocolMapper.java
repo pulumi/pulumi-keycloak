@@ -16,7 +16,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # keycloak.openid.AudienceProtocolMapper
+ * # keycloak.openid.AudienceProtocolMapper
  * 
  * Allows for creating and managing audience protocol mappers within
  * Keycloak. This mapper was added in Keycloak v4.6.0.Final.

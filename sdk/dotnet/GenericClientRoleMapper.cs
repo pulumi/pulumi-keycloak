@@ -20,7 +20,7 @@ namespace Pulumi.Keycloak
     /// 
     /// ## Example Usage
     /// 
-    /// ### Realm Role To Client)
+    /// ### Realm Role to Client)
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -62,7 +62,7 @@ namespace Pulumi.Keycloak
     /// });
     /// ```
     /// 
-    /// ### Client Role To Client)
+    /// ### Client Role to Client)
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -123,7 +123,7 @@ namespace Pulumi.Keycloak
     /// });
     /// ```
     /// 
-    /// ### Realm Role To Client Scope)
+    /// ### Realm Role to Client Scope)
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -162,7 +162,7 @@ namespace Pulumi.Keycloak
     /// });
     /// ```
     /// 
-    /// ### Client Role To Client Scope)
+    /// ### Client Role to Client Scope)
     /// 
     /// ```csharp
     /// using System.Collections.Generic;

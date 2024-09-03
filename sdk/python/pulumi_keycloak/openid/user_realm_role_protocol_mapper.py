@@ -387,7 +387,7 @@ class UserRealmRoleProtocolMapper(pulumi.CustomResource):
                  realm_role_prefix: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## # openid.UserRealmRoleProtocolMapper
+        # openid.UserRealmRoleProtocolMapper
 
         Allows for creating and managing user realm role protocol mappers within
         Keycloak.
@@ -483,7 +483,7 @@ class UserRealmRoleProtocolMapper(pulumi.CustomResource):
                  args: UserRealmRoleProtocolMapperArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # openid.UserRealmRoleProtocolMapper
+        # openid.UserRealmRoleProtocolMapper
 
         Allows for creating and managing user realm role protocol mappers within
         Keycloak.

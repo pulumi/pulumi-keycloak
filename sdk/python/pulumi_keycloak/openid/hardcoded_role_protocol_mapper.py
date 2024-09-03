@@ -189,7 +189,7 @@ class HardcodedRoleProtocolMapper(pulumi.CustomResource):
                  role_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## # openid.HardcodedRoleProtocolMapper
+        # openid.HardcodedRoleProtocolMapper
 
         Allows for creating and managing hardcoded role protocol mappers within
         Keycloak.
@@ -280,7 +280,7 @@ class HardcodedRoleProtocolMapper(pulumi.CustomResource):
                  args: HardcodedRoleProtocolMapperArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # openid.HardcodedRoleProtocolMapper
+        # openid.HardcodedRoleProtocolMapper
 
         Allows for creating and managing hardcoded role protocol mappers within
         Keycloak.

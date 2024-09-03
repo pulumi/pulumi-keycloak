@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * ## # keycloak.saml.UserAttributeProtocolMapper
+ * # keycloak.saml.UserAttributeProtocolMapper
  *
  * Allows for creating and managing user attribute protocol mappers for
  * SAML clients within Keycloak.

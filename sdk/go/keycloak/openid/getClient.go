@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # openid.Client data source
+// # openid.Client data source
 //
 // This data source can be used to fetch properties of a Keycloak OpenID client for usage with other resources.
 //

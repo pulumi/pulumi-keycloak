@@ -1157,7 +1157,7 @@ class Client(pulumi.CustomResource):
                  web_origins: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
-        ## # openid.Client
+        # openid.Client
 
         Allows for creating and managing Keycloak clients that use the OpenID Connect protocol.
 
@@ -1193,11 +1193,11 @@ class Client(pulumi.CustomResource):
         - `enabled` - (Optional) When false, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
         - `description` - (Optional) The description of this client in the GUI.
         - `access_type` - (Required) Specifies the type of client, which can be one of the following:
-            - `CONFIDENTIAL` - Used for server-side clients that require both client ID and secret when authenticating.
-              This client should be used for applications using the Authorization Code or Client Credentials grant flows.
-            - `PUBLIC` - Used for browser-only applications that do not require a client secret, and instead rely only on authorized redirect
-              URIs for security. This client should be used for applications using the Implicit grant flow.
-            - `BEARER-ONLY` - Used for services that never initiate a login. This client will only allow bearer token requests.
+          - `CONFIDENTIAL` - Used for server-side clients that require both client ID and secret when authenticating.
+            This client should be used for applications using the Authorization Code or Client Credentials grant flows.
+          - `PUBLIC` - Used for browser-only applications that do not require a client secret, and instead rely only on authorized redirect
+            URIs for security. This client should be used for applications using the Implicit grant flow.
+          - `BEARER-ONLY` - Used for services that never initiate a login. This client will only allow bearer token requests.
         - `client_secret` - (Optional) The secret for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. This value is sensitive and
           should be treated with the same care as a password. If omitted, Keycloak will generate a GUID for this attribute.
         - `standard_flow_enabled` - (Optional) When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
@@ -1236,7 +1236,7 @@ class Client(pulumi.CustomResource):
                  args: ClientArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # openid.Client
+        # openid.Client
 
         Allows for creating and managing Keycloak clients that use the OpenID Connect protocol.
 
@@ -1272,11 +1272,11 @@ class Client(pulumi.CustomResource):
         - `enabled` - (Optional) When false, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
         - `description` - (Optional) The description of this client in the GUI.
         - `access_type` - (Required) Specifies the type of client, which can be one of the following:
-            - `CONFIDENTIAL` - Used for server-side clients that require both client ID and secret when authenticating.
-              This client should be used for applications using the Authorization Code or Client Credentials grant flows.
-            - `PUBLIC` - Used for browser-only applications that do not require a client secret, and instead rely only on authorized redirect
-              URIs for security. This client should be used for applications using the Implicit grant flow.
-            - `BEARER-ONLY` - Used for services that never initiate a login. This client will only allow bearer token requests.
+          - `CONFIDENTIAL` - Used for server-side clients that require both client ID and secret when authenticating.
+            This client should be used for applications using the Authorization Code or Client Credentials grant flows.
+          - `PUBLIC` - Used for browser-only applications that do not require a client secret, and instead rely only on authorized redirect
+            URIs for security. This client should be used for applications using the Implicit grant flow.
+          - `BEARER-ONLY` - Used for services that never initiate a login. This client will only allow bearer token requests.
         - `client_secret` - (Optional) The secret for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. This value is sensitive and
           should be treated with the same care as a password. If omitted, Keycloak will generate a GUID for this attribute.
         - `standard_flow_enabled` - (Optional) When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.

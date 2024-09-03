@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # RealmEvents
+// # RealmEvents
 //
 // Allows for managing Realm Events settings within Keycloak.
 //

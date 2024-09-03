@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak
 {
     /// <summary>
-    /// ## # keycloak.GroupMemberships
+    /// # keycloak.GroupMemberships
     /// 
     /// Allows for managing a Keycloak group's members.
     /// 

@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # openid.ClientScope
+// # openid.ClientScope
 //
 // Allows for creating and managing Keycloak client scopes that can be attached to
 // clients that use the OpenID Connect protocol.

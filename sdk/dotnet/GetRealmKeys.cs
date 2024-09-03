@@ -12,7 +12,7 @@ namespace Pulumi.Keycloak
     public static class GetRealmKeys
     {
         /// <summary>
-        /// ## # keycloak.getRealmKeys data source
+        /// # keycloak.getRealmKeys data source
         /// 
         /// Use this data source to get the keys of a realm. Keys can be filtered by algorithm and status.
         /// 
@@ -26,7 +26,7 @@ namespace Pulumi.Keycloak
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetRealmKeysResult>("keycloak:index/getRealmKeys:getRealmKeys", args ?? new GetRealmKeysArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # keycloak.getRealmKeys data source
+        /// # keycloak.getRealmKeys data source
         /// 
         /// Use this data source to get the keys of a realm. Keys can be filtered by algorithm and status.
         /// 

@@ -16,7 +16,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # keycloak.openid.UserPropertyProtocolMapper
+ * # keycloak.openid.UserPropertyProtocolMapper
  * 
  * Allows for creating and managing user property protocol mappers within
  * Keycloak.

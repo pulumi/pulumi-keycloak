@@ -16,7 +16,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # keycloak.Group
+ * # keycloak.Group
  * 
  * Allows for creating and managing Groups within Keycloak.
  * 

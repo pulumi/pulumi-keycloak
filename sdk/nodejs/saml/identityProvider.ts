@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * ## # keycloak.saml.IdentityProvider
+ * # keycloak.saml.IdentityProvider
  *
  * Allows to create and manage SAML Identity Providers within Keycloak.
  *

@@ -23,7 +23,7 @@ import (
 //
 // ## Example Usage
 //
-// ### Exhaustive Roles)
+// ### exhaustive roles)
 //
 // ```go
 // package main

@@ -360,7 +360,7 @@ class UserAttributeMapper(pulumi.CustomResource):
                  user_model_attribute: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## # ldap.UserAttributeMapper
+        # ldap.UserAttributeMapper
 
         Allows for creating and managing user attribute mappers for Keycloak users
         federated via LDAP.
@@ -438,7 +438,7 @@ class UserAttributeMapper(pulumi.CustomResource):
                  args: UserAttributeMapperArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # ldap.UserAttributeMapper
+        # ldap.UserAttributeMapper
 
         Allows for creating and managing user attribute mappers for Keycloak users
         federated via LDAP.

@@ -253,7 +253,7 @@ class GenericClientProtocolMapper(pulumi.CustomResource):
                  realm_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## # GenericClientProtocolMapper
+        # GenericClientProtocolMapper
 
         Allows for creating and managing protocol mapper for both types of clients (openid-connect and saml) within Keycloak.
 
@@ -299,7 +299,7 @@ class GenericClientProtocolMapper(pulumi.CustomResource):
         - `name` - (Required) The display name of this protocol mapper in the GUI.
         - `protocol` - (Required) The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
         - `protocol_mapper` - (Required) The name of the protocol mapper. The protocol mapper must be
-           compatible with the specified client.
+          compatible with the specified client.
         - `config` - (Required) A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
 
         ### Import
@@ -324,7 +324,7 @@ class GenericClientProtocolMapper(pulumi.CustomResource):
                  args: GenericClientProtocolMapperArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # GenericClientProtocolMapper
+        # GenericClientProtocolMapper
 
         Allows for creating and managing protocol mapper for both types of clients (openid-connect and saml) within Keycloak.
 
@@ -370,7 +370,7 @@ class GenericClientProtocolMapper(pulumi.CustomResource):
         - `name` - (Required) The display name of this protocol mapper in the GUI.
         - `protocol` - (Required) The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
         - `protocol_mapper` - (Required) The name of the protocol mapper. The protocol mapper must be
-           compatible with the specified client.
+          compatible with the specified client.
         - `config` - (Required) A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
 
         ### Import

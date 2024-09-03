@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # openid.HardcodedClaimProtocolMapper
+// # openid.HardcodedClaimProtocolMapper
 //
 // Allows for creating and managing hardcoded claim protocol mappers within
 // Keycloak.

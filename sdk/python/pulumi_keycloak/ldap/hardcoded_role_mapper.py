@@ -163,7 +163,7 @@ class HardcodedRoleMapper(pulumi.CustomResource):
                  role: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## # ldap.HardcodedRoleMapper
+        # ldap.HardcodedRoleMapper
 
         This mapper will grant a specified Keycloak role to each Keycloak user linked with LDAP.
 
@@ -226,7 +226,7 @@ class HardcodedRoleMapper(pulumi.CustomResource):
                  args: HardcodedRoleMapperArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # ldap.HardcodedRoleMapper
+        # ldap.HardcodedRoleMapper
 
         This mapper will grant a specified Keycloak role to each Keycloak user linked with LDAP.
 

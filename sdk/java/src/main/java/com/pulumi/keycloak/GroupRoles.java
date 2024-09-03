@@ -17,7 +17,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # keycloak.GroupRoles
+ * # keycloak.GroupRoles
  * 
  * Allows you to manage roles assigned to a Keycloak group.
  * 

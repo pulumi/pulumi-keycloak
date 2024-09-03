@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # GroupMemberships
+// # GroupMemberships
 //
 // Allows for managing a Keycloak group's members.
 //

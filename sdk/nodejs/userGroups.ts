@@ -12,7 +12,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * ### Exhaustive Groups)
+ * ### exhaustive groups)
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";

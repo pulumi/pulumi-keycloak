@@ -16,7 +16,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # keycloak.ldap.FullNameMapper
+ * # keycloak.ldap.FullNameMapper
  * 
  * Allows for creating and managing full name mappers for Keycloak users federated
  * via LDAP.

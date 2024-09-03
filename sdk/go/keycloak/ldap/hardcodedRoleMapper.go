@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # ldap.HardcodedRoleMapper
+// # ldap.HardcodedRoleMapper
 //
 // This mapper will grant a specified Keycloak role to each Keycloak user linked with LDAP.
 //

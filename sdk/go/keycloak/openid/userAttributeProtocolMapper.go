@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # openid.UserAttributeProtocolMapper
+// # openid.UserAttributeProtocolMapper
 //
 // Allows for creating and managing user attribute protocol mappers within
 // Keycloak.

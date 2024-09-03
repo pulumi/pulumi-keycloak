@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # saml.Client
+// # saml.Client
 //
 // Allows for creating and managing Keycloak clients that use the SAML protocol.
 //

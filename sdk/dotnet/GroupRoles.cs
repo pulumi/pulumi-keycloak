@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak
 {
     /// <summary>
-    /// ## # keycloak.GroupRoles
+    /// # keycloak.GroupRoles
     /// 
     /// Allows you to manage roles assigned to a Keycloak group.
     /// 

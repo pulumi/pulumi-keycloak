@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # keycloak.GenericClientProtocolMapper
+ * # keycloak.GenericClientProtocolMapper
  *
  * Allows for creating and managing protocol mapper for both types of clients (openid-connect and saml) within Keycloak.
  *
@@ -54,7 +54,7 @@ import * as utilities from "./utilities";
  * - `name` - (Required) The display name of this protocol mapper in the GUI.
  * - `protocol` - (Required) The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
  * - `protocolMapper` - (Required) The name of the protocol mapper. The protocol mapper must be
- *    compatible with the specified client.
+ *   compatible with the specified client.
  * - `config` - (Required) A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
  *
  * ### Import

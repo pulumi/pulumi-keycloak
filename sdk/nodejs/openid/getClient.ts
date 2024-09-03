@@ -7,7 +7,7 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * ## # keycloak.openid.Client data source
+ * # keycloak.openid.Client data source
  *
  * This data source can be used to fetch properties of a Keycloak OpenID client for usage with other resources.
  *
@@ -124,7 +124,7 @@ export interface GetClientResult {
     readonly webOrigins: string[];
 }
 /**
- * ## # keycloak.openid.Client data source
+ * # keycloak.openid.Client data source
  *
  * This data source can be used to fetch properties of a Keycloak OpenID client for usage with other resources.
  *

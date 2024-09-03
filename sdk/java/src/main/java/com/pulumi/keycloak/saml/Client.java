@@ -19,7 +19,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # keycloak.saml.Client
+ * # keycloak.saml.Client
  * 
  * Allows for creating and managing Keycloak clients that use the SAML protocol.
  * 

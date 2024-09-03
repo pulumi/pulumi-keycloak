@@ -24,7 +24,7 @@ import java.util.concurrent.CompletableFuture;
 
 public final class OpenidFunctions {
     /**
-     * ## # keycloak.openid.Client data source
+     * # keycloak.openid.Client data source
      * 
      * This data source can be used to fetch properties of a Keycloak OpenID client for usage with other resources.
      * 
@@ -89,7 +89,7 @@ public final class OpenidFunctions {
         return getClient(args, InvokeOptions.Empty);
     }
     /**
-     * ## # keycloak.openid.Client data source
+     * # keycloak.openid.Client data source
      * 
      * This data source can be used to fetch properties of a Keycloak OpenID client for usage with other resources.
      * 
@@ -154,7 +154,7 @@ public final class OpenidFunctions {
         return getClientPlain(args, InvokeOptions.Empty);
     }
     /**
-     * ## # keycloak.openid.Client data source
+     * # keycloak.openid.Client data source
      * 
      * This data source can be used to fetch properties of a Keycloak OpenID client for usage with other resources.
      * 
@@ -219,7 +219,7 @@ public final class OpenidFunctions {
         return Deployment.getInstance().invoke("keycloak:openid/getClient:getClient", TypeShape.of(GetClientResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * ## # keycloak.openid.Client data source
+     * # keycloak.openid.Client data source
      * 
      * This data source can be used to fetch properties of a Keycloak OpenID client for usage with other resources.
      * 

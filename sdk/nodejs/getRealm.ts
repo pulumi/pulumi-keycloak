@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # keycloak.Realm data source
+ * # keycloak.Realm data source
  *
  * This data source can be used to fetch properties of a Keycloak realm for
  * usage with other resources.
@@ -139,7 +139,7 @@ export interface GetRealmResult {
     readonly webAuthnPolicy: outputs.GetRealmWebAuthnPolicy;
 }
 /**
- * ## # keycloak.Realm data source
+ * # keycloak.Realm data source
  *
  * This data source can be used to fetch properties of a Keycloak realm for
  * usage with other resources.

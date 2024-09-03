@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.OpenId
 {
     /// <summary>
-    /// ## # keycloak.openid.HardcodedClaimProtocolMapper
+    /// # keycloak.openid.HardcodedClaimProtocolMapper
     /// 
     /// Allows for creating and managing hardcoded claim protocol mappers within
     /// Keycloak.

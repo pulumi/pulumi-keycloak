@@ -28,7 +28,7 @@ import javax.annotation.Nullable;
  * 
  * ## Example Usage
  * 
- * ### Exhaustive Roles)
+ * ### exhaustive roles)
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>

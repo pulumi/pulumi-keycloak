@@ -289,7 +289,7 @@ class GroupMembershipProtocolMapper(pulumi.CustomResource):
                  realm_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## # openid.GroupMembershipProtocolMapper
+        # openid.GroupMembershipProtocolMapper
 
         Allows for creating and managing group membership protocol mappers within
         Keycloak.
@@ -377,7 +377,7 @@ class GroupMembershipProtocolMapper(pulumi.CustomResource):
                  args: GroupMembershipProtocolMapperArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # openid.GroupMembershipProtocolMapper
+        # openid.GroupMembershipProtocolMapper
 
         Allows for creating and managing group membership protocol mappers within
         Keycloak.

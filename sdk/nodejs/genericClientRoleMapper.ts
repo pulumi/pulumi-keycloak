@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * ### Realm Role To Client)
+ * ### Realm Role to Client)
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -44,7 +44,7 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
- * ### Client Role To Client)
+ * ### Client Role to Client)
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -88,7 +88,7 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
- * ### Realm Role To Client Scope)
+ * ### Realm Role to Client Scope)
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -114,7 +114,7 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
- * ### Client Role To Client Scope)
+ * ### Client Role to Client Scope)
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

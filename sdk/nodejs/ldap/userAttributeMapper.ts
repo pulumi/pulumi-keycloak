@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * ## # keycloak.ldap.UserAttributeMapper
+ * # keycloak.ldap.UserAttributeMapper
  *
  * Allows for creating and managing user attribute mappers for Keycloak users
  * federated via LDAP.

@@ -460,7 +460,7 @@ def get_client(client_id: Optional[str] = None,
                realm_id: Optional[str] = None,
                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetClientResult:
     """
-    ## # openid.Client data source
+    # openid.Client data source
 
     This data source can be used to fetch properties of a Keycloak OpenID client for usage with other resources.
 
@@ -561,7 +561,7 @@ def get_client_output(client_id: Optional[pulumi.Input[str]] = None,
                       realm_id: Optional[pulumi.Input[str]] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetClientResult]:
     """
-    ## # openid.Client data source
+    # openid.Client data source
 
     This data source can be used to fetch properties of a Keycloak OpenID client for usage with other resources.
 

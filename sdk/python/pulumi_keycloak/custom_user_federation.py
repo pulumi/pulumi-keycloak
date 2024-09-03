@@ -354,7 +354,7 @@ class CustomUserFederation(pulumi.CustomResource):
                  realm_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## # CustomUserFederation
+        # CustomUserFederation
 
         Allows for creating and managing custom user federation providers within Keycloak.
 
@@ -414,7 +414,7 @@ class CustomUserFederation(pulumi.CustomResource):
                  args: CustomUserFederationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # CustomUserFederation
+        # CustomUserFederation
 
         Allows for creating and managing custom user federation providers within Keycloak.
 

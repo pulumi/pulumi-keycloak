@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # openid.HardcodedRoleProtocolMapper
+// # openid.HardcodedRoleProtocolMapper
 //
 // Allows for creating and managing hardcoded role protocol mappers within
 // Keycloak.

@@ -22,9 +22,9 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Allows you to manage fine-grained permissions for all users in a realm: https://www.keycloak.org/docs/latest/server_admin/#_users-permissions
+ * Allows you to manage fine-grained permissions for all users in a realm: &lt;https://www.keycloak.org/docs/latest/server_admin/#_users-permissions&gt;
  * 
- * This is part of a preview Keycloak feature: `admin_fine_grained_authz` (see https://www.keycloak.org/docs/latest/server_admin/#_fine_grain_permissions).
+ * This is part of a preview Keycloak feature: `admin_fine_grained_authz` (see &lt;https://www.keycloak.org/docs/latest/server_admin/#_fine_grain_permissions)&gt;.
  * This feature can be enabled with the Keycloak option `-Dkeycloak.profile.feature.admin_fine_grained_authz=enabled`. See the
  * example `docker-compose.yml` file for an example.
  * 

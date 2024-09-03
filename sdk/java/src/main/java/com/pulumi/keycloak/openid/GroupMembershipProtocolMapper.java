@@ -16,7 +16,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # keycloak.openid.GroupMembershipProtocolMapper
+ * # keycloak.openid.GroupMembershipProtocolMapper
  * 
  * Allows for creating and managing group membership protocol mappers within
  * Keycloak.

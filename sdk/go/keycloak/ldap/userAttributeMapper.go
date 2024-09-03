@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # ldap.UserAttributeMapper
+// # ldap.UserAttributeMapper
 //
 // Allows for creating and managing user attribute mappers for Keycloak users
 // federated via LDAP.

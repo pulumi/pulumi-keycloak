@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # openid.GroupMembershipProtocolMapper
+// # openid.GroupMembershipProtocolMapper
 //
 // Allows for creating and managing group membership protocol mappers within
 // Keycloak.

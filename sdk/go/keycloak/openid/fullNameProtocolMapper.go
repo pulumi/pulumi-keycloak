@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # openid.FullNameProtocolMapper
+// # openid.FullNameProtocolMapper
 //
 // Allows for creating and managing full name protocol mappers within
 // Keycloak.

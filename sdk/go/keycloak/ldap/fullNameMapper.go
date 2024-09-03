@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # ldap.FullNameMapper
+// # ldap.FullNameMapper
 //
 // Allows for creating and managing full name mappers for Keycloak users federated
 // via LDAP.

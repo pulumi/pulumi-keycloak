@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.Ldap
 {
     /// <summary>
-    /// ## # keycloak.ldap.GroupMapper
+    /// # keycloak.ldap.GroupMapper
     /// 
     /// Allows for creating and managing group mappers for Keycloak users federated
     /// via LDAP.

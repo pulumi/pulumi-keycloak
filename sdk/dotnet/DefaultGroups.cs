@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak
 {
     /// <summary>
-    /// ## # keycloak.DefaultGroups
+    /// # keycloak.DefaultGroups
     /// 
     /// Allows for managing a realm's default groups.
     /// 

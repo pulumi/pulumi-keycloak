@@ -16,7 +16,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # keycloak.ldap.UserAttributeMapper
+ * # keycloak.ldap.UserAttributeMapper
  * 
  * Allows for creating and managing user attribute mappers for Keycloak users
  * federated via LDAP.

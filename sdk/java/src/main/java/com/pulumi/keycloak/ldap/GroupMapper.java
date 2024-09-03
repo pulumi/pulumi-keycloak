@@ -17,7 +17,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # keycloak.ldap.GroupMapper
+ * # keycloak.ldap.GroupMapper
  * 
  * Allows for creating and managing group mappers for Keycloak users federated
  * via LDAP.

@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * ## # keycloak.openid.HardcodedClaimProtocolMapper
+ * # keycloak.openid.HardcodedClaimProtocolMapper
  *
  * Allows for creating and managing hardcoded claim protocol mappers within
  * Keycloak.

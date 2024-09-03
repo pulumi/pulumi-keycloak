@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # openid.UserRealmRoleProtocolMapper
+// # openid.UserRealmRoleProtocolMapper
 //
 // Allows for creating and managing user realm role protocol mappers within
 // Keycloak.
