@@ -27,7 +27,6 @@ import * as utilities from "../utilities";
  * ```
  */
 export function getClientScope(args: GetClientScopeArgs, opts?: pulumi.InvokeOptions): Promise<GetClientScopeResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("keycloak:openid/getClientScope:getClientScope", {
         "name": args.name,
@@ -87,7 +86,11 @@ export interface GetClientScopeResult {
  * ```
  */
 export function getClientScopeOutput(args: GetClientScopeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetClientScopeResult> {
-    return pulumi.output(args).apply((a: any) => getClientScope(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("keycloak:openid/getClientScope:getClientScope", {
+        "name": args.name,
+        "realmId": args.realmId,
+    }, opts);
 }
 
 /**

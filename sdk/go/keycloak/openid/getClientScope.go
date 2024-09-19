@@ -81,14 +81,20 @@ type LookupClientScopeResult struct {
 
 func LookupClientScopeOutput(ctx *pulumi.Context, args LookupClientScopeOutputArgs, opts ...pulumi.InvokeOption) LookupClientScopeResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupClientScopeResult, error) {
+		ApplyT(func(v interface{}) (LookupClientScopeResultOutput, error) {
 			args := v.(LookupClientScopeArgs)
-			r, err := LookupClientScope(ctx, &args, opts...)
-			var s LookupClientScopeResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupClientScopeResult
+			secret, err := ctx.InvokePackageRaw("keycloak:openid/getClientScope:getClientScope", args, &rv, "", opts...)
+			if err != nil {
+				return LookupClientScopeResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupClientScopeResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupClientScopeResultOutput), nil
+			}
+			return output, nil
 		}).(LookupClientScopeResultOutput)
 }
 

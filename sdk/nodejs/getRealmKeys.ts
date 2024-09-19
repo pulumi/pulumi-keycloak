@@ -18,7 +18,6 @@ import * as utilities from "./utilities";
  * - If no key matches the filter criteria, then an error is returned.
  */
 export function getRealmKeys(args: GetRealmKeysArgs, opts?: pulumi.InvokeOptions): Promise<GetRealmKeysResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("keycloak:index/getRealmKeys:getRealmKeys", {
         "algorithms": args.algorithms,
@@ -61,7 +60,12 @@ export interface GetRealmKeysResult {
  * - If no key matches the filter criteria, then an error is returned.
  */
 export function getRealmKeysOutput(args: GetRealmKeysOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRealmKeysResult> {
-    return pulumi.output(args).apply((a: any) => getRealmKeys(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("keycloak:index/getRealmKeys:getRealmKeys", {
+        "algorithms": args.algorithms,
+        "realmId": args.realmId,
+        "statuses": args.statuses,
+    }, opts);
 }
 
 /**

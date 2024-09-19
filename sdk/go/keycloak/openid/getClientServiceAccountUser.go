@@ -114,14 +114,20 @@ type GetClientServiceAccountUserResult struct {
 
 func GetClientServiceAccountUserOutput(ctx *pulumi.Context, args GetClientServiceAccountUserOutputArgs, opts ...pulumi.InvokeOption) GetClientServiceAccountUserResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetClientServiceAccountUserResult, error) {
+		ApplyT(func(v interface{}) (GetClientServiceAccountUserResultOutput, error) {
 			args := v.(GetClientServiceAccountUserArgs)
-			r, err := GetClientServiceAccountUser(ctx, &args, opts...)
-			var s GetClientServiceAccountUserResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetClientServiceAccountUserResult
+			secret, err := ctx.InvokePackageRaw("keycloak:openid/getClientServiceAccountUser:getClientServiceAccountUser", args, &rv, "", opts...)
+			if err != nil {
+				return GetClientServiceAccountUserResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetClientServiceAccountUserResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetClientServiceAccountUserResultOutput), nil
+			}
+			return output, nil
 		}).(GetClientServiceAccountUserResultOutput)
 }
 

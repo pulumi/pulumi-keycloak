@@ -55,7 +55,6 @@ import * as utilities from "../utilities";
  * ```
  */
 export function getClientAuthorizationPolicy(args: GetClientAuthorizationPolicyArgs, opts?: pulumi.InvokeOptions): Promise<GetClientAuthorizationPolicyResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("keycloak:openid/getClientAuthorizationPolicy:getClientAuthorizationPolicy", {
         "name": args.name,
@@ -173,7 +172,12 @@ export interface GetClientAuthorizationPolicyResult {
  * ```
  */
 export function getClientAuthorizationPolicyOutput(args: GetClientAuthorizationPolicyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetClientAuthorizationPolicyResult> {
-    return pulumi.output(args).apply((a: any) => getClientAuthorizationPolicy(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("keycloak:openid/getClientAuthorizationPolicy:getClientAuthorizationPolicy", {
+        "name": args.name,
+        "realmId": args.realmId,
+        "resourceServerId": args.resourceServerId,
+    }, opts);
 }
 
 /**

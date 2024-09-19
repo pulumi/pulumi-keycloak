@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  * usage with other resources, such as `keycloak.GroupRoles`.
  */
 export function getRole(args: GetRoleArgs, opts?: pulumi.InvokeOptions): Promise<GetRoleResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("keycloak:index/getRole:getRole", {
         "clientId": args.clientId,
@@ -51,7 +50,12 @@ export interface GetRoleResult {
  * usage with other resources, such as `keycloak.GroupRoles`.
  */
 export function getRoleOutput(args: GetRoleOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRoleResult> {
-    return pulumi.output(args).apply((a: any) => getRole(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("keycloak:index/getRole:getRole", {
+        "clientId": args.clientId,
+        "name": args.name,
+        "realmId": args.realmId,
+    }, opts);
 }
 
 /**
