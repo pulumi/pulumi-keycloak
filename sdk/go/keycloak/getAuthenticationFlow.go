@@ -71,14 +71,20 @@ type GetAuthenticationFlowResult struct {
 
 func GetAuthenticationFlowOutput(ctx *pulumi.Context, args GetAuthenticationFlowOutputArgs, opts ...pulumi.InvokeOption) GetAuthenticationFlowResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetAuthenticationFlowResult, error) {
+		ApplyT(func(v interface{}) (GetAuthenticationFlowResultOutput, error) {
 			args := v.(GetAuthenticationFlowArgs)
-			r, err := GetAuthenticationFlow(ctx, &args, opts...)
-			var s GetAuthenticationFlowResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetAuthenticationFlowResult
+			secret, err := ctx.InvokePackageRaw("keycloak:index/getAuthenticationFlow:getAuthenticationFlow", args, &rv, "", opts...)
+			if err != nil {
+				return GetAuthenticationFlowResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetAuthenticationFlowResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetAuthenticationFlowResultOutput), nil
+			}
+			return output, nil
 		}).(GetAuthenticationFlowResultOutput)
 }
 

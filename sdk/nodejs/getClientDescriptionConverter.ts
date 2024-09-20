@@ -58,7 +58,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getClientDescriptionConverter(args: GetClientDescriptionConverterArgs, opts?: pulumi.InvokeOptions): Promise<GetClientDescriptionConverterResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("keycloak:index/getClientDescriptionConverter:getClientDescriptionConverter", {
         "body": args.body,
@@ -178,7 +177,11 @@ export interface GetClientDescriptionConverterResult {
  * ```
  */
 export function getClientDescriptionConverterOutput(args: GetClientDescriptionConverterOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetClientDescriptionConverterResult> {
-    return pulumi.output(args).apply((a: any) => getClientDescriptionConverter(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("keycloak:index/getClientDescriptionConverter:getClientDescriptionConverter", {
+        "body": args.body,
+        "realmId": args.realmId,
+    }, opts);
 }
 
 /**

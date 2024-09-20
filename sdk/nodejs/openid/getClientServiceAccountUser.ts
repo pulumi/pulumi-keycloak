@@ -47,7 +47,6 @@ import * as utilities from "../utilities";
  * ```
  */
 export function getClientServiceAccountUser(args: GetClientServiceAccountUserArgs, opts?: pulumi.InvokeOptions): Promise<GetClientServiceAccountUserResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("keycloak:openid/getClientServiceAccountUser:getClientServiceAccountUser", {
         "clientId": args.clientId,
@@ -130,7 +129,11 @@ export interface GetClientServiceAccountUserResult {
  * ```
  */
 export function getClientServiceAccountUserOutput(args: GetClientServiceAccountUserOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetClientServiceAccountUserResult> {
-    return pulumi.output(args).apply((a: any) => getClientServiceAccountUser(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("keycloak:openid/getClientServiceAccountUser:getClientServiceAccountUser", {
+        "clientId": args.clientId,
+        "realmId": args.realmId,
+    }, opts);
 }
 
 /**

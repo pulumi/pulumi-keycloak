@@ -8,7 +8,6 @@ import * as utilities from "../utilities";
  * This data source can be used to retrieve Installation Provider of a SAML Client.
  */
 export function getClientInstallationProvider(args: GetClientInstallationProviderArgs, opts?: pulumi.InvokeOptions): Promise<GetClientInstallationProviderResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("keycloak:saml/getClientInstallationProvider:getClientInstallationProvider", {
         "clientId": args.clientId,
@@ -55,7 +54,12 @@ export interface GetClientInstallationProviderResult {
  * This data source can be used to retrieve Installation Provider of a SAML Client.
  */
 export function getClientInstallationProviderOutput(args: GetClientInstallationProviderOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetClientInstallationProviderResult> {
-    return pulumi.output(args).apply((a: any) => getClientInstallationProvider(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("keycloak:saml/getClientInstallationProvider:getClientInstallationProvider", {
+        "clientId": args.clientId,
+        "providerId": args.providerId,
+        "realmId": args.realmId,
+    }, opts);
 }
 
 /**

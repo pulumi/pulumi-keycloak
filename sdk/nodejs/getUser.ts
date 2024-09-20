@@ -25,7 +25,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getUser(args: GetUserArgs, opts?: pulumi.InvokeOptions): Promise<GetUserResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("keycloak:index/getUser:getUser", {
         "realmId": args.realmId,
@@ -108,7 +107,11 @@ export interface GetUserResult {
  * ```
  */
 export function getUserOutput(args: GetUserOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetUserResult> {
-    return pulumi.output(args).apply((a: any) => getUser(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("keycloak:index/getUser:getUser", {
+        "realmId": args.realmId,
+        "username": args.username,
+    }, opts);
 }
 
 /**
