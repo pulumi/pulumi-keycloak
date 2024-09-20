@@ -30,7 +30,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getUserRealmRoles(args: GetUserRealmRolesArgs, opts?: pulumi.InvokeOptions): Promise<GetUserRealmRolesResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("keycloak:index/getUserRealmRoles:getUserRealmRoles", {
         "realmId": args.realmId,
@@ -93,7 +92,11 @@ export interface GetUserRealmRolesResult {
  * ```
  */
 export function getUserRealmRolesOutput(args: GetUserRealmRolesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetUserRealmRolesResult> {
-    return pulumi.output(args).apply((a: any) => getUserRealmRoles(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("keycloak:index/getUserRealmRoles:getUserRealmRoles", {
+        "realmId": args.realmId,
+        "userId": args.userId,
+    }, opts);
 }
 
 /**

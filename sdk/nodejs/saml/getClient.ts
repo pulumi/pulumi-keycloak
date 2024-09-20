@@ -28,7 +28,6 @@ import * as utilities from "../utilities";
  * ```
  */
 export function getClient(args: GetClientArgs, opts?: pulumi.InvokeOptions): Promise<GetClientResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("keycloak:saml/getClient:getClient", {
         "clientId": args.clientId,
@@ -119,7 +118,11 @@ export interface GetClientResult {
  * ```
  */
 export function getClientOutput(args: GetClientOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetClientResult> {
-    return pulumi.output(args).apply((a: any) => getClient(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("keycloak:saml/getClient:getClient", {
+        "clientId": args.clientId,
+        "realmId": args.realmId,
+    }, opts);
 }
 
 /**

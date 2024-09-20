@@ -146,14 +146,20 @@ type GetClientDescriptionConverterResult struct {
 
 func GetClientDescriptionConverterOutput(ctx *pulumi.Context, args GetClientDescriptionConverterOutputArgs, opts ...pulumi.InvokeOption) GetClientDescriptionConverterResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetClientDescriptionConverterResult, error) {
+		ApplyT(func(v interface{}) (GetClientDescriptionConverterResultOutput, error) {
 			args := v.(GetClientDescriptionConverterArgs)
-			r, err := GetClientDescriptionConverter(ctx, &args, opts...)
-			var s GetClientDescriptionConverterResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetClientDescriptionConverterResult
+			secret, err := ctx.InvokePackageRaw("keycloak:index/getClientDescriptionConverter:getClientDescriptionConverter", args, &rv, "", opts...)
+			if err != nil {
+				return GetClientDescriptionConverterResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetClientDescriptionConverterResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetClientDescriptionConverterResultOutput), nil
+			}
+			return output, nil
 		}).(GetClientDescriptionConverterResultOutput)
 }
 

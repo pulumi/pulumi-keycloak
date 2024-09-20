@@ -41,7 +41,6 @@ import * as utilities from "../utilities";
  * See the docs for the `keycloak.openid.Client` resource for details on the exported attributes.
  */
 export function getClient(args: GetClientArgs, opts?: pulumi.InvokeOptions): Promise<GetClientResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("keycloak:openid/getClient:getClient", {
         "clientId": args.clientId,
@@ -158,7 +157,17 @@ export interface GetClientResult {
  * See the docs for the `keycloak.openid.Client` resource for details on the exported attributes.
  */
 export function getClientOutput(args: GetClientOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetClientResult> {
-    return pulumi.output(args).apply((a: any) => getClient(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("keycloak:openid/getClient:getClient", {
+        "clientId": args.clientId,
+        "consentScreenText": args.consentScreenText,
+        "displayOnConsentScreen": args.displayOnConsentScreen,
+        "extraConfig": args.extraConfig,
+        "oauth2DeviceAuthorizationGrantEnabled": args.oauth2DeviceAuthorizationGrantEnabled,
+        "oauth2DeviceCodeLifespan": args.oauth2DeviceCodeLifespan,
+        "oauth2DevicePollingInterval": args.oauth2DevicePollingInterval,
+        "realmId": args.realmId,
+    }, opts);
 }
 
 /**

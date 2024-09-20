@@ -24,7 +24,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getAuthenticationFlow(args: GetAuthenticationFlowArgs, opts?: pulumi.InvokeOptions): Promise<GetAuthenticationFlowResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("keycloak:index/getAuthenticationFlow:getAuthenticationFlow", {
         "alias": args.alias,
@@ -77,7 +76,11 @@ export interface GetAuthenticationFlowResult {
  * ```
  */
 export function getAuthenticationFlowOutput(args: GetAuthenticationFlowOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAuthenticationFlowResult> {
-    return pulumi.output(args).apply((a: any) => getAuthenticationFlow(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("keycloak:index/getAuthenticationFlow:getAuthenticationFlow", {
+        "alias": args.alias,
+        "realmId": args.realmId,
+    }, opts);
 }
 
 /**

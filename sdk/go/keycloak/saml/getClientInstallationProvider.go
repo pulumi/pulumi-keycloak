@@ -45,14 +45,20 @@ type GetClientInstallationProviderResult struct {
 
 func GetClientInstallationProviderOutput(ctx *pulumi.Context, args GetClientInstallationProviderOutputArgs, opts ...pulumi.InvokeOption) GetClientInstallationProviderResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetClientInstallationProviderResult, error) {
+		ApplyT(func(v interface{}) (GetClientInstallationProviderResultOutput, error) {
 			args := v.(GetClientInstallationProviderArgs)
-			r, err := GetClientInstallationProvider(ctx, &args, opts...)
-			var s GetClientInstallationProviderResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetClientInstallationProviderResult
+			secret, err := ctx.InvokePackageRaw("keycloak:saml/getClientInstallationProvider:getClientInstallationProvider", args, &rv, "", opts...)
+			if err != nil {
+				return GetClientInstallationProviderResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetClientInstallationProviderResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetClientInstallationProviderResultOutput), nil
+			}
+			return output, nil
 		}).(GetClientInstallationProviderResultOutput)
 }
 

@@ -39,7 +39,6 @@ import * as utilities from "./utilities";
  * See the docs for the `keycloak.Realm` resource for details on the exported attributes.
  */
 export function getRealm(args: GetRealmArgs, opts?: pulumi.InvokeOptions): Promise<GetRealmResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("keycloak:index/getRealm:getRealm", {
         "attributes": args.attributes,
@@ -171,7 +170,20 @@ export interface GetRealmResult {
  * See the docs for the `keycloak.Realm` resource for details on the exported attributes.
  */
 export function getRealmOutput(args: GetRealmOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRealmResult> {
-    return pulumi.output(args).apply((a: any) => getRealm(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("keycloak:index/getRealm:getRealm", {
+        "attributes": args.attributes,
+        "defaultDefaultClientScopes": args.defaultDefaultClientScopes,
+        "defaultOptionalClientScopes": args.defaultOptionalClientScopes,
+        "displayNameHtml": args.displayNameHtml,
+        "internationalizations": args.internationalizations,
+        "otpPolicy": args.otpPolicy,
+        "realm": args.realm,
+        "securityDefenses": args.securityDefenses,
+        "smtpServers": args.smtpServers,
+        "webAuthnPasswordlessPolicy": args.webAuthnPasswordlessPolicy,
+        "webAuthnPolicy": args.webAuthnPolicy,
+    }, opts);
 }
 
 /**
