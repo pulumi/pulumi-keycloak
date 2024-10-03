@@ -4,48 +4,98 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
     'GroupPermissionsManageMembersScopeArgs',
+    'GroupPermissionsManageMembersScopeArgsDict',
     'GroupPermissionsManageMembershipScopeArgs',
+    'GroupPermissionsManageMembershipScopeArgsDict',
     'GroupPermissionsManageScopeArgs',
+    'GroupPermissionsManageScopeArgsDict',
     'GroupPermissionsViewMembersScopeArgs',
+    'GroupPermissionsViewMembersScopeArgsDict',
     'GroupPermissionsViewScopeArgs',
+    'GroupPermissionsViewScopeArgsDict',
     'RealmInternationalizationArgs',
+    'RealmInternationalizationArgsDict',
     'RealmOtpPolicyArgs',
+    'RealmOtpPolicyArgsDict',
     'RealmSecurityDefensesArgs',
+    'RealmSecurityDefensesArgsDict',
     'RealmSecurityDefensesBruteForceDetectionArgs',
+    'RealmSecurityDefensesBruteForceDetectionArgsDict',
     'RealmSecurityDefensesHeadersArgs',
+    'RealmSecurityDefensesHeadersArgsDict',
     'RealmSmtpServerArgs',
+    'RealmSmtpServerArgsDict',
     'RealmSmtpServerAuthArgs',
+    'RealmSmtpServerAuthArgsDict',
     'RealmUserProfileAttributeArgs',
+    'RealmUserProfileAttributeArgsDict',
     'RealmUserProfileAttributePermissionsArgs',
+    'RealmUserProfileAttributePermissionsArgsDict',
     'RealmUserProfileAttributeValidatorArgs',
+    'RealmUserProfileAttributeValidatorArgsDict',
     'RealmUserProfileGroupArgs',
+    'RealmUserProfileGroupArgsDict',
     'RealmWebAuthnPasswordlessPolicyArgs',
+    'RealmWebAuthnPasswordlessPolicyArgsDict',
     'RealmWebAuthnPolicyArgs',
+    'RealmWebAuthnPolicyArgsDict',
     'UserFederatedIdentityArgs',
+    'UserFederatedIdentityArgsDict',
     'UserInitialPasswordArgs',
+    'UserInitialPasswordArgsDict',
     'UsersPermissionsImpersonateScopeArgs',
+    'UsersPermissionsImpersonateScopeArgsDict',
     'UsersPermissionsManageGroupMembershipScopeArgs',
+    'UsersPermissionsManageGroupMembershipScopeArgsDict',
     'UsersPermissionsManageScopeArgs',
+    'UsersPermissionsManageScopeArgsDict',
     'UsersPermissionsMapRolesScopeArgs',
+    'UsersPermissionsMapRolesScopeArgsDict',
     'UsersPermissionsUserImpersonatedScopeArgs',
+    'UsersPermissionsUserImpersonatedScopeArgsDict',
     'UsersPermissionsViewScopeArgs',
+    'UsersPermissionsViewScopeArgsDict',
     'GetRealmInternationalizationArgs',
+    'GetRealmInternationalizationArgsDict',
     'GetRealmOtpPolicyArgs',
+    'GetRealmOtpPolicyArgsDict',
     'GetRealmSecurityDefenseArgs',
+    'GetRealmSecurityDefenseArgsDict',
     'GetRealmSecurityDefenseBruteForceDetectionArgs',
+    'GetRealmSecurityDefenseBruteForceDetectionArgsDict',
     'GetRealmSecurityDefenseHeaderArgs',
+    'GetRealmSecurityDefenseHeaderArgsDict',
     'GetRealmSmtpServerArgs',
+    'GetRealmSmtpServerArgsDict',
     'GetRealmSmtpServerAuthArgs',
+    'GetRealmSmtpServerAuthArgsDict',
     'GetRealmWebAuthnPasswordlessPolicyArgs',
+    'GetRealmWebAuthnPasswordlessPolicyArgsDict',
     'GetRealmWebAuthnPolicyArgs',
+    'GetRealmWebAuthnPolicyArgsDict',
 ]
+
+MYPY = False
+
+if not MYPY:
+    class GroupPermissionsManageMembersScopeArgsDict(TypedDict):
+        decision_strategy: NotRequired[pulumi.Input[str]]
+        description: NotRequired[pulumi.Input[str]]
+        policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+elif False:
+    GroupPermissionsManageMembersScopeArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class GroupPermissionsManageMembersScopeArgs:
@@ -88,6 +138,14 @@ class GroupPermissionsManageMembersScopeArgs:
         pulumi.set(self, "policies", value)
 
 
+if not MYPY:
+    class GroupPermissionsManageMembershipScopeArgsDict(TypedDict):
+        decision_strategy: NotRequired[pulumi.Input[str]]
+        description: NotRequired[pulumi.Input[str]]
+        policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+elif False:
+    GroupPermissionsManageMembershipScopeArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class GroupPermissionsManageMembershipScopeArgs:
     def __init__(__self__, *,
@@ -128,6 +186,14 @@ class GroupPermissionsManageMembershipScopeArgs:
     def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "policies", value)
 
+
+if not MYPY:
+    class GroupPermissionsManageScopeArgsDict(TypedDict):
+        decision_strategy: NotRequired[pulumi.Input[str]]
+        description: NotRequired[pulumi.Input[str]]
+        policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+elif False:
+    GroupPermissionsManageScopeArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class GroupPermissionsManageScopeArgs:
@@ -170,6 +236,14 @@ class GroupPermissionsManageScopeArgs:
         pulumi.set(self, "policies", value)
 
 
+if not MYPY:
+    class GroupPermissionsViewMembersScopeArgsDict(TypedDict):
+        decision_strategy: NotRequired[pulumi.Input[str]]
+        description: NotRequired[pulumi.Input[str]]
+        policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+elif False:
+    GroupPermissionsViewMembersScopeArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class GroupPermissionsViewMembersScopeArgs:
     def __init__(__self__, *,
@@ -210,6 +284,14 @@ class GroupPermissionsViewMembersScopeArgs:
     def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "policies", value)
 
+
+if not MYPY:
+    class GroupPermissionsViewScopeArgsDict(TypedDict):
+        decision_strategy: NotRequired[pulumi.Input[str]]
+        description: NotRequired[pulumi.Input[str]]
+        policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+elif False:
+    GroupPermissionsViewScopeArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class GroupPermissionsViewScopeArgs:
@@ -252,6 +334,13 @@ class GroupPermissionsViewScopeArgs:
         pulumi.set(self, "policies", value)
 
 
+if not MYPY:
+    class RealmInternationalizationArgsDict(TypedDict):
+        default_locale: pulumi.Input[str]
+        supported_locales: pulumi.Input[Sequence[pulumi.Input[str]]]
+elif False:
+    RealmInternationalizationArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class RealmInternationalizationArgs:
     def __init__(__self__, *,
@@ -278,6 +367,23 @@ class RealmInternationalizationArgs:
     def supported_locales(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
         pulumi.set(self, "supported_locales", value)
 
+
+if not MYPY:
+    class RealmOtpPolicyArgsDict(TypedDict):
+        algorithm: NotRequired[pulumi.Input[str]]
+        """
+        What hashing algorithm should be used to generate the OTP.
+        """
+        digits: NotRequired[pulumi.Input[int]]
+        initial_counter: NotRequired[pulumi.Input[int]]
+        look_ahead_window: NotRequired[pulumi.Input[int]]
+        period: NotRequired[pulumi.Input[int]]
+        type: NotRequired[pulumi.Input[str]]
+        """
+        OTP Type, totp for Time-Based One Time Password or hotp for counter base one time password
+        """
+elif False:
+    RealmOtpPolicyArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class RealmOtpPolicyArgs:
@@ -366,6 +472,13 @@ class RealmOtpPolicyArgs:
         pulumi.set(self, "type", value)
 
 
+if not MYPY:
+    class RealmSecurityDefensesArgsDict(TypedDict):
+        brute_force_detection: NotRequired[pulumi.Input['RealmSecurityDefensesBruteForceDetectionArgsDict']]
+        headers: NotRequired[pulumi.Input['RealmSecurityDefensesHeadersArgsDict']]
+elif False:
+    RealmSecurityDefensesArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class RealmSecurityDefensesArgs:
     def __init__(__self__, *,
@@ -394,6 +507,18 @@ class RealmSecurityDefensesArgs:
     def headers(self, value: Optional[pulumi.Input['RealmSecurityDefensesHeadersArgs']]):
         pulumi.set(self, "headers", value)
 
+
+if not MYPY:
+    class RealmSecurityDefensesBruteForceDetectionArgsDict(TypedDict):
+        failure_reset_time_seconds: NotRequired[pulumi.Input[int]]
+        max_failure_wait_seconds: NotRequired[pulumi.Input[int]]
+        max_login_failures: NotRequired[pulumi.Input[int]]
+        minimum_quick_login_wait_seconds: NotRequired[pulumi.Input[int]]
+        permanent_lockout: NotRequired[pulumi.Input[bool]]
+        quick_login_check_milli_seconds: NotRequired[pulumi.Input[int]]
+        wait_increment_seconds: NotRequired[pulumi.Input[int]]
+elif False:
+    RealmSecurityDefensesBruteForceDetectionArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class RealmSecurityDefensesBruteForceDetectionArgs:
@@ -483,6 +608,19 @@ class RealmSecurityDefensesBruteForceDetectionArgs:
     def wait_increment_seconds(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "wait_increment_seconds", value)
 
+
+if not MYPY:
+    class RealmSecurityDefensesHeadersArgsDict(TypedDict):
+        content_security_policy: NotRequired[pulumi.Input[str]]
+        content_security_policy_report_only: NotRequired[pulumi.Input[str]]
+        referrer_policy: NotRequired[pulumi.Input[str]]
+        strict_transport_security: NotRequired[pulumi.Input[str]]
+        x_content_type_options: NotRequired[pulumi.Input[str]]
+        x_frame_options: NotRequired[pulumi.Input[str]]
+        x_robots_tag: NotRequired[pulumi.Input[str]]
+        x_xss_protection: NotRequired[pulumi.Input[str]]
+elif False:
+    RealmSecurityDefensesHeadersArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class RealmSecurityDefensesHeadersArgs:
@@ -584,6 +722,21 @@ class RealmSecurityDefensesHeadersArgs:
     def x_xss_protection(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "x_xss_protection", value)
 
+
+if not MYPY:
+    class RealmSmtpServerArgsDict(TypedDict):
+        from_: pulumi.Input[str]
+        host: pulumi.Input[str]
+        auth: NotRequired[pulumi.Input['RealmSmtpServerAuthArgsDict']]
+        envelope_from: NotRequired[pulumi.Input[str]]
+        from_display_name: NotRequired[pulumi.Input[str]]
+        port: NotRequired[pulumi.Input[str]]
+        reply_to: NotRequired[pulumi.Input[str]]
+        reply_to_display_name: NotRequired[pulumi.Input[str]]
+        ssl: NotRequired[pulumi.Input[bool]]
+        starttls: NotRequired[pulumi.Input[bool]]
+elif False:
+    RealmSmtpServerArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class RealmSmtpServerArgs:
@@ -708,6 +861,13 @@ class RealmSmtpServerArgs:
         pulumi.set(self, "starttls", value)
 
 
+if not MYPY:
+    class RealmSmtpServerAuthArgsDict(TypedDict):
+        password: pulumi.Input[str]
+        username: pulumi.Input[str]
+elif False:
+    RealmSmtpServerAuthArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class RealmSmtpServerAuthArgs:
     def __init__(__self__, *,
@@ -734,6 +894,41 @@ class RealmSmtpServerAuthArgs:
     def username(self, value: pulumi.Input[str]):
         pulumi.set(self, "username", value)
 
+
+if not MYPY:
+    class RealmUserProfileAttributeArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        annotations: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        display_name: NotRequired[pulumi.Input[str]]
+        """
+        The display name of the attribute.
+        """
+        enabled_when_scopes: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        A list of scopes. The attribute will only be enabled when these scopes are requested by clients.
+        """
+        group: NotRequired[pulumi.Input[str]]
+        """
+        A list of groups.
+        """
+        permissions: NotRequired[pulumi.Input['RealmUserProfileAttributePermissionsArgsDict']]
+        """
+        The permissions configuration information.
+        """
+        required_for_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        A list of roles for which the attribute will be required.
+        """
+        required_for_scopes: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        A list of scopes for which the attribute will be required.
+        """
+        validators: NotRequired[pulumi.Input[Sequence[pulumi.Input['RealmUserProfileAttributeValidatorArgsDict']]]]
+        """
+        A list of validators for the attribute.
+        """
+elif False:
+    RealmUserProfileAttributeArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class RealmUserProfileAttributeArgs:
@@ -877,6 +1072,19 @@ class RealmUserProfileAttributeArgs:
         pulumi.set(self, "validators", value)
 
 
+if not MYPY:
+    class RealmUserProfileAttributePermissionsArgsDict(TypedDict):
+        edits: pulumi.Input[Sequence[pulumi.Input[str]]]
+        """
+        A list of profiles that will be able to edit the attribute. One of `admin`, `user`.
+        """
+        views: pulumi.Input[Sequence[pulumi.Input[str]]]
+        """
+        A list of profiles that will be able to view the attribute. One of `admin`, `user`.
+        """
+elif False:
+    RealmUserProfileAttributePermissionsArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class RealmUserProfileAttributePermissionsArgs:
     def __init__(__self__, *,
@@ -914,6 +1122,16 @@ class RealmUserProfileAttributePermissionsArgs:
         pulumi.set(self, "views", value)
 
 
+if not MYPY:
+    class RealmUserProfileAttributeValidatorArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        config: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        """
+        A map defining the configuration of the validator. Values can be a String or a json object.
+        """
+elif False:
+    RealmUserProfileAttributeValidatorArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class RealmUserProfileAttributeValidatorArgs:
     def __init__(__self__, *,
@@ -947,6 +1165,21 @@ class RealmUserProfileAttributeValidatorArgs:
     def config(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "config", value)
 
+
+if not MYPY:
+    class RealmUserProfileGroupArgsDict(TypedDict):
+        name: pulumi.Input[str]
+        annotations: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        display_description: NotRequired[pulumi.Input[str]]
+        """
+        The display description of the group.
+        """
+        display_header: NotRequired[pulumi.Input[str]]
+        """
+        The display header of the group.
+        """
+elif False:
+    RealmUserProfileGroupArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class RealmUserProfileGroupArgs:
@@ -1009,6 +1242,36 @@ class RealmUserProfileGroupArgs:
     def display_header(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "display_header", value)
 
+
+if not MYPY:
+    class RealmWebAuthnPasswordlessPolicyArgsDict(TypedDict):
+        acceptable_aaguids: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        attestation_conveyance_preference: NotRequired[pulumi.Input[str]]
+        """
+        Either none, indirect or direct
+        """
+        authenticator_attachment: NotRequired[pulumi.Input[str]]
+        """
+        Either platform or cross-platform
+        """
+        avoid_same_authenticator_register: NotRequired[pulumi.Input[bool]]
+        create_timeout: NotRequired[pulumi.Input[int]]
+        relying_party_entity_name: NotRequired[pulumi.Input[str]]
+        relying_party_id: NotRequired[pulumi.Input[str]]
+        require_resident_key: NotRequired[pulumi.Input[str]]
+        """
+        Either Yes or No
+        """
+        signature_algorithms: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        Keycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing
+        """
+        user_verification_requirement: NotRequired[pulumi.Input[str]]
+        """
+        Either required, preferred or discouraged
+        """
+elif False:
+    RealmWebAuthnPasswordlessPolicyArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class RealmWebAuthnPasswordlessPolicyArgs:
@@ -1157,6 +1420,36 @@ class RealmWebAuthnPasswordlessPolicyArgs:
         pulumi.set(self, "user_verification_requirement", value)
 
 
+if not MYPY:
+    class RealmWebAuthnPolicyArgsDict(TypedDict):
+        acceptable_aaguids: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        attestation_conveyance_preference: NotRequired[pulumi.Input[str]]
+        """
+        Either none, indirect or direct
+        """
+        authenticator_attachment: NotRequired[pulumi.Input[str]]
+        """
+        Either platform or cross-platform
+        """
+        avoid_same_authenticator_register: NotRequired[pulumi.Input[bool]]
+        create_timeout: NotRequired[pulumi.Input[int]]
+        relying_party_entity_name: NotRequired[pulumi.Input[str]]
+        relying_party_id: NotRequired[pulumi.Input[str]]
+        require_resident_key: NotRequired[pulumi.Input[str]]
+        """
+        Either Yes or No
+        """
+        signature_algorithms: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        Keycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing
+        """
+        user_verification_requirement: NotRequired[pulumi.Input[str]]
+        """
+        Either required, preferred or discouraged
+        """
+elif False:
+    RealmWebAuthnPolicyArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class RealmWebAuthnPolicyArgs:
     def __init__(__self__, *,
@@ -1304,6 +1597,14 @@ class RealmWebAuthnPolicyArgs:
         pulumi.set(self, "user_verification_requirement", value)
 
 
+if not MYPY:
+    class UserFederatedIdentityArgsDict(TypedDict):
+        identity_provider: pulumi.Input[str]
+        user_id: pulumi.Input[str]
+        user_name: pulumi.Input[str]
+elif False:
+    UserFederatedIdentityArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class UserFederatedIdentityArgs:
     def __init__(__self__, *,
@@ -1342,6 +1643,13 @@ class UserFederatedIdentityArgs:
         pulumi.set(self, "user_name", value)
 
 
+if not MYPY:
+    class UserInitialPasswordArgsDict(TypedDict):
+        value: pulumi.Input[str]
+        temporary: NotRequired[pulumi.Input[bool]]
+elif False:
+    UserInitialPasswordArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class UserInitialPasswordArgs:
     def __init__(__self__, *,
@@ -1369,6 +1677,14 @@ class UserInitialPasswordArgs:
     def temporary(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "temporary", value)
 
+
+if not MYPY:
+    class UsersPermissionsImpersonateScopeArgsDict(TypedDict):
+        decision_strategy: NotRequired[pulumi.Input[str]]
+        description: NotRequired[pulumi.Input[str]]
+        policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+elif False:
+    UsersPermissionsImpersonateScopeArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class UsersPermissionsImpersonateScopeArgs:
@@ -1411,6 +1727,14 @@ class UsersPermissionsImpersonateScopeArgs:
         pulumi.set(self, "policies", value)
 
 
+if not MYPY:
+    class UsersPermissionsManageGroupMembershipScopeArgsDict(TypedDict):
+        decision_strategy: NotRequired[pulumi.Input[str]]
+        description: NotRequired[pulumi.Input[str]]
+        policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+elif False:
+    UsersPermissionsManageGroupMembershipScopeArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class UsersPermissionsManageGroupMembershipScopeArgs:
     def __init__(__self__, *,
@@ -1451,6 +1775,14 @@ class UsersPermissionsManageGroupMembershipScopeArgs:
     def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "policies", value)
 
+
+if not MYPY:
+    class UsersPermissionsManageScopeArgsDict(TypedDict):
+        decision_strategy: NotRequired[pulumi.Input[str]]
+        description: NotRequired[pulumi.Input[str]]
+        policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+elif False:
+    UsersPermissionsManageScopeArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class UsersPermissionsManageScopeArgs:
@@ -1493,6 +1825,14 @@ class UsersPermissionsManageScopeArgs:
         pulumi.set(self, "policies", value)
 
 
+if not MYPY:
+    class UsersPermissionsMapRolesScopeArgsDict(TypedDict):
+        decision_strategy: NotRequired[pulumi.Input[str]]
+        description: NotRequired[pulumi.Input[str]]
+        policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+elif False:
+    UsersPermissionsMapRolesScopeArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class UsersPermissionsMapRolesScopeArgs:
     def __init__(__self__, *,
@@ -1533,6 +1873,14 @@ class UsersPermissionsMapRolesScopeArgs:
     def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "policies", value)
 
+
+if not MYPY:
+    class UsersPermissionsUserImpersonatedScopeArgsDict(TypedDict):
+        decision_strategy: NotRequired[pulumi.Input[str]]
+        description: NotRequired[pulumi.Input[str]]
+        policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+elif False:
+    UsersPermissionsUserImpersonatedScopeArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class UsersPermissionsUserImpersonatedScopeArgs:
@@ -1575,6 +1923,14 @@ class UsersPermissionsUserImpersonatedScopeArgs:
         pulumi.set(self, "policies", value)
 
 
+if not MYPY:
+    class UsersPermissionsViewScopeArgsDict(TypedDict):
+        decision_strategy: NotRequired[pulumi.Input[str]]
+        description: NotRequired[pulumi.Input[str]]
+        policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+elif False:
+    UsersPermissionsViewScopeArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class UsersPermissionsViewScopeArgs:
     def __init__(__self__, *,
@@ -1616,6 +1972,13 @@ class UsersPermissionsViewScopeArgs:
         pulumi.set(self, "policies", value)
 
 
+if not MYPY:
+    class GetRealmInternationalizationArgsDict(TypedDict):
+        default_locale: str
+        supported_locales: Sequence[str]
+elif False:
+    GetRealmInternationalizationArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class GetRealmInternationalizationArgs:
     def __init__(__self__, *,
@@ -1642,6 +2005,17 @@ class GetRealmInternationalizationArgs:
     def supported_locales(self, value: Sequence[str]):
         pulumi.set(self, "supported_locales", value)
 
+
+if not MYPY:
+    class GetRealmOtpPolicyArgsDict(TypedDict):
+        algorithm: str
+        digits: int
+        initial_counter: int
+        look_ahead_window: int
+        period: int
+        type: str
+elif False:
+    GetRealmOtpPolicyArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class GetRealmOtpPolicyArgs:
@@ -1714,6 +2088,13 @@ class GetRealmOtpPolicyArgs:
         pulumi.set(self, "type", value)
 
 
+if not MYPY:
+    class GetRealmSecurityDefenseArgsDict(TypedDict):
+        brute_force_detections: Sequence['GetRealmSecurityDefenseBruteForceDetectionArgsDict']
+        headers: Sequence['GetRealmSecurityDefenseHeaderArgsDict']
+elif False:
+    GetRealmSecurityDefenseArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class GetRealmSecurityDefenseArgs:
     def __init__(__self__, *,
@@ -1740,6 +2121,18 @@ class GetRealmSecurityDefenseArgs:
     def headers(self, value: Sequence['GetRealmSecurityDefenseHeaderArgs']):
         pulumi.set(self, "headers", value)
 
+
+if not MYPY:
+    class GetRealmSecurityDefenseBruteForceDetectionArgsDict(TypedDict):
+        failure_reset_time_seconds: int
+        max_failure_wait_seconds: int
+        max_login_failures: int
+        minimum_quick_login_wait_seconds: int
+        permanent_lockout: bool
+        quick_login_check_milli_seconds: int
+        wait_increment_seconds: int
+elif False:
+    GetRealmSecurityDefenseBruteForceDetectionArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class GetRealmSecurityDefenseBruteForceDetectionArgs:
@@ -1822,6 +2215,19 @@ class GetRealmSecurityDefenseBruteForceDetectionArgs:
     def wait_increment_seconds(self, value: int):
         pulumi.set(self, "wait_increment_seconds", value)
 
+
+if not MYPY:
+    class GetRealmSecurityDefenseHeaderArgsDict(TypedDict):
+        content_security_policy: str
+        content_security_policy_report_only: str
+        referrer_policy: str
+        strict_transport_security: str
+        x_content_type_options: str
+        x_frame_options: str
+        x_robots_tag: str
+        x_xss_protection: str
+elif False:
+    GetRealmSecurityDefenseHeaderArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class GetRealmSecurityDefenseHeaderArgs:
@@ -1915,6 +2321,21 @@ class GetRealmSecurityDefenseHeaderArgs:
     def x_xss_protection(self, value: str):
         pulumi.set(self, "x_xss_protection", value)
 
+
+if not MYPY:
+    class GetRealmSmtpServerArgsDict(TypedDict):
+        auths: Sequence['GetRealmSmtpServerAuthArgsDict']
+        envelope_from: str
+        from_: str
+        from_display_name: str
+        host: str
+        port: str
+        reply_to: str
+        reply_to_display_name: str
+        ssl: bool
+        starttls: bool
+elif False:
+    GetRealmSmtpServerArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class GetRealmSmtpServerArgs:
@@ -2031,6 +2452,13 @@ class GetRealmSmtpServerArgs:
         pulumi.set(self, "starttls", value)
 
 
+if not MYPY:
+    class GetRealmSmtpServerAuthArgsDict(TypedDict):
+        password: str
+        username: str
+elif False:
+    GetRealmSmtpServerAuthArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class GetRealmSmtpServerAuthArgs:
     def __init__(__self__, *,
@@ -2057,6 +2485,36 @@ class GetRealmSmtpServerAuthArgs:
     def username(self, value: str):
         pulumi.set(self, "username", value)
 
+
+if not MYPY:
+    class GetRealmWebAuthnPasswordlessPolicyArgsDict(TypedDict):
+        acceptable_aaguids: Sequence[str]
+        attestation_conveyance_preference: str
+        """
+        Either none, indirect or direct
+        """
+        authenticator_attachment: str
+        """
+        Either platform or cross-platform
+        """
+        avoid_same_authenticator_register: bool
+        create_timeout: int
+        relying_party_entity_name: str
+        relying_party_id: str
+        require_resident_key: str
+        """
+        Either Yes or No
+        """
+        signature_algorithms: Sequence[str]
+        """
+        Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
+        """
+        user_verification_requirement: str
+        """
+        Either required, preferred or discouraged
+        """
+elif False:
+    GetRealmWebAuthnPasswordlessPolicyArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class GetRealmWebAuthnPasswordlessPolicyArgs:
@@ -2194,6 +2652,36 @@ class GetRealmWebAuthnPasswordlessPolicyArgs:
     def user_verification_requirement(self, value: str):
         pulumi.set(self, "user_verification_requirement", value)
 
+
+if not MYPY:
+    class GetRealmWebAuthnPolicyArgsDict(TypedDict):
+        acceptable_aaguids: Sequence[str]
+        attestation_conveyance_preference: str
+        """
+        Either none, indirect or direct
+        """
+        authenticator_attachment: str
+        """
+        Either platform or cross-platform
+        """
+        avoid_same_authenticator_register: bool
+        create_timeout: int
+        relying_party_entity_name: str
+        relying_party_id: str
+        require_resident_key: str
+        """
+        Either Yes or No
+        """
+        signature_algorithms: Sequence[str]
+        """
+        Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
+        """
+        user_verification_requirement: str
+        """
+        Either required, preferred or discouraged
+        """
+elif False:
+    GetRealmWebAuthnPolicyArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class GetRealmWebAuthnPolicyArgs:

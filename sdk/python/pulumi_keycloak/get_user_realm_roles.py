@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -111,9 +116,6 @@ def get_user_realm_roles(realm_id: Optional[str] = None,
         realm_id=pulumi.get(__ret__, 'realm_id'),
         role_names=pulumi.get(__ret__, 'role_names'),
         user_id=pulumi.get(__ret__, 'user_id'))
-
-
-@_utilities.lift_output_func(get_user_realm_roles)
 def get_user_realm_roles_output(realm_id: Optional[pulumi.Input[str]] = None,
                                 user_id: Optional[pulumi.Input[str]] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetUserRealmRolesResult]:
@@ -140,4 +142,13 @@ def get_user_realm_roles_output(realm_id: Optional[pulumi.Input[str]] = None,
     :param str realm_id: The realm this user belongs to.
     :param str user_id: The ID of the user to query realm roles for.
     """
-    ...
+    __args__ = dict()
+    __args__['realmId'] = realm_id
+    __args__['userId'] = user_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('keycloak:index/getUserRealmRoles:getUserRealmRoles', __args__, opts=opts, typ=GetUserRealmRolesResult)
+    return __ret__.apply(lambda __response__: GetUserRealmRolesResult(
+        id=pulumi.get(__response__, 'id'),
+        realm_id=pulumi.get(__response__, 'realm_id'),
+        role_names=pulumi.get(__response__, 'role_names'),
+        user_id=pulumi.get(__response__, 'user_id')))

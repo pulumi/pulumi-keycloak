@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -123,9 +128,6 @@ def get_role(client_id: Optional[str] = None,
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
         realm_id=pulumi.get(__ret__, 'realm_id'))
-
-
-@_utilities.lift_output_func(get_role)
 def get_role_output(client_id: Optional[pulumi.Input[Optional[str]]] = None,
                     name: Optional[pulumi.Input[str]] = None,
                     realm_id: Optional[pulumi.Input[str]] = None,
@@ -136,4 +138,17 @@ def get_role_output(client_id: Optional[pulumi.Input[Optional[str]]] = None,
     This data source can be used to fetch properties of a Keycloak role for
     usage with other resources, such as `GroupRoles`.
     """
-    ...
+    __args__ = dict()
+    __args__['clientId'] = client_id
+    __args__['name'] = name
+    __args__['realmId'] = realm_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('keycloak:index/getRole:getRole', __args__, opts=opts, typ=GetRoleResult)
+    return __ret__.apply(lambda __response__: GetRoleResult(
+        attributes=pulumi.get(__response__, 'attributes'),
+        client_id=pulumi.get(__response__, 'client_id'),
+        composite_roles=pulumi.get(__response__, 'composite_roles'),
+        description=pulumi.get(__response__, 'description'),
+        id=pulumi.get(__response__, 'id'),
+        name=pulumi.get(__response__, 'name'),
+        realm_id=pulumi.get(__response__, 'realm_id')))

@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
@@ -108,9 +113,6 @@ def get_client_installation_provider(client_id: Optional[str] = None,
         provider_id=pulumi.get(__ret__, 'provider_id'),
         realm_id=pulumi.get(__ret__, 'realm_id'),
         value=pulumi.get(__ret__, 'value'))
-
-
-@_utilities.lift_output_func(get_client_installation_provider)
 def get_client_installation_provider_output(client_id: Optional[pulumi.Input[str]] = None,
                                             provider_id: Optional[pulumi.Input[str]] = None,
                                             realm_id: Optional[pulumi.Input[str]] = None,
@@ -123,4 +125,15 @@ def get_client_installation_provider_output(client_id: Optional[pulumi.Input[str
     :param str provider_id: The ID of the SAML installation provider. Could be one of `saml-idp-descriptor`, `keycloak-saml`, `saml-sp-descriptor`, `keycloak-saml-subsystem`, `mod-auth-mellon`, etc.
     :param str realm_id: The realm that the SAML client exists within.
     """
-    ...
+    __args__ = dict()
+    __args__['clientId'] = client_id
+    __args__['providerId'] = provider_id
+    __args__['realmId'] = realm_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('keycloak:saml/getClientInstallationProvider:getClientInstallationProvider', __args__, opts=opts, typ=GetClientInstallationProviderResult)
+    return __ret__.apply(lambda __response__: GetClientInstallationProviderResult(
+        client_id=pulumi.get(__response__, 'client_id'),
+        id=pulumi.get(__response__, 'id'),
+        provider_id=pulumi.get(__response__, 'provider_id'),
+        realm_id=pulumi.get(__response__, 'realm_id'),
+        value=pulumi.get(__response__, 'value')))
