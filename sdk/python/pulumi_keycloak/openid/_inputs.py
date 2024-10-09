@@ -4,24 +4,49 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
     'ClientAuthenticationFlowBindingOverridesArgs',
+    'ClientAuthenticationFlowBindingOverridesArgsDict',
     'ClientAuthorizationArgs',
+    'ClientAuthorizationArgsDict',
     'ClientGroupPolicyGroupArgs',
+    'ClientGroupPolicyGroupArgsDict',
     'ClientPermissionsConfigureScopeArgs',
+    'ClientPermissionsConfigureScopeArgsDict',
     'ClientPermissionsManageScopeArgs',
+    'ClientPermissionsManageScopeArgsDict',
     'ClientPermissionsMapRolesClientScopeScopeArgs',
+    'ClientPermissionsMapRolesClientScopeScopeArgsDict',
     'ClientPermissionsMapRolesCompositeScopeArgs',
+    'ClientPermissionsMapRolesCompositeScopeArgsDict',
     'ClientPermissionsMapRolesScopeArgs',
+    'ClientPermissionsMapRolesScopeArgsDict',
     'ClientPermissionsTokenExchangeScopeArgs',
+    'ClientPermissionsTokenExchangeScopeArgsDict',
     'ClientPermissionsViewScopeArgs',
+    'ClientPermissionsViewScopeArgsDict',
     'ClientRolePolicyRoleArgs',
+    'ClientRolePolicyRoleArgsDict',
 ]
+
+MYPY = False
+
+if not MYPY:
+    class ClientAuthenticationFlowBindingOverridesArgsDict(TypedDict):
+        browser_id: NotRequired[pulumi.Input[str]]
+        direct_grant_id: NotRequired[pulumi.Input[str]]
+elif False:
+    ClientAuthenticationFlowBindingOverridesArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ClientAuthenticationFlowBindingOverridesArgs:
@@ -51,6 +76,15 @@ class ClientAuthenticationFlowBindingOverridesArgs:
     def direct_grant_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "direct_grant_id", value)
 
+
+if not MYPY:
+    class ClientAuthorizationArgsDict(TypedDict):
+        policy_enforcement_mode: pulumi.Input[str]
+        allow_remote_resource_management: NotRequired[pulumi.Input[bool]]
+        decision_strategy: NotRequired[pulumi.Input[str]]
+        keep_defaults: NotRequired[pulumi.Input[bool]]
+elif False:
+    ClientAuthorizationArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ClientAuthorizationArgs:
@@ -104,6 +138,14 @@ class ClientAuthorizationArgs:
         pulumi.set(self, "keep_defaults", value)
 
 
+if not MYPY:
+    class ClientGroupPolicyGroupArgsDict(TypedDict):
+        extend_children: pulumi.Input[bool]
+        id: pulumi.Input[str]
+        path: pulumi.Input[str]
+elif False:
+    ClientGroupPolicyGroupArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ClientGroupPolicyGroupArgs:
     def __init__(__self__, *,
@@ -141,6 +183,14 @@ class ClientGroupPolicyGroupArgs:
     def path(self, value: pulumi.Input[str]):
         pulumi.set(self, "path", value)
 
+
+if not MYPY:
+    class ClientPermissionsConfigureScopeArgsDict(TypedDict):
+        decision_strategy: NotRequired[pulumi.Input[str]]
+        description: NotRequired[pulumi.Input[str]]
+        policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+elif False:
+    ClientPermissionsConfigureScopeArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ClientPermissionsConfigureScopeArgs:
@@ -183,6 +233,14 @@ class ClientPermissionsConfigureScopeArgs:
         pulumi.set(self, "policies", value)
 
 
+if not MYPY:
+    class ClientPermissionsManageScopeArgsDict(TypedDict):
+        decision_strategy: NotRequired[pulumi.Input[str]]
+        description: NotRequired[pulumi.Input[str]]
+        policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+elif False:
+    ClientPermissionsManageScopeArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ClientPermissionsManageScopeArgs:
     def __init__(__self__, *,
@@ -223,6 +281,14 @@ class ClientPermissionsManageScopeArgs:
     def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "policies", value)
 
+
+if not MYPY:
+    class ClientPermissionsMapRolesClientScopeScopeArgsDict(TypedDict):
+        decision_strategy: NotRequired[pulumi.Input[str]]
+        description: NotRequired[pulumi.Input[str]]
+        policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+elif False:
+    ClientPermissionsMapRolesClientScopeScopeArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ClientPermissionsMapRolesClientScopeScopeArgs:
@@ -265,6 +331,14 @@ class ClientPermissionsMapRolesClientScopeScopeArgs:
         pulumi.set(self, "policies", value)
 
 
+if not MYPY:
+    class ClientPermissionsMapRolesCompositeScopeArgsDict(TypedDict):
+        decision_strategy: NotRequired[pulumi.Input[str]]
+        description: NotRequired[pulumi.Input[str]]
+        policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+elif False:
+    ClientPermissionsMapRolesCompositeScopeArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ClientPermissionsMapRolesCompositeScopeArgs:
     def __init__(__self__, *,
@@ -305,6 +379,14 @@ class ClientPermissionsMapRolesCompositeScopeArgs:
     def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "policies", value)
 
+
+if not MYPY:
+    class ClientPermissionsMapRolesScopeArgsDict(TypedDict):
+        decision_strategy: NotRequired[pulumi.Input[str]]
+        description: NotRequired[pulumi.Input[str]]
+        policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+elif False:
+    ClientPermissionsMapRolesScopeArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ClientPermissionsMapRolesScopeArgs:
@@ -347,6 +429,14 @@ class ClientPermissionsMapRolesScopeArgs:
         pulumi.set(self, "policies", value)
 
 
+if not MYPY:
+    class ClientPermissionsTokenExchangeScopeArgsDict(TypedDict):
+        decision_strategy: NotRequired[pulumi.Input[str]]
+        description: NotRequired[pulumi.Input[str]]
+        policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+elif False:
+    ClientPermissionsTokenExchangeScopeArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ClientPermissionsTokenExchangeScopeArgs:
     def __init__(__self__, *,
@@ -388,6 +478,14 @@ class ClientPermissionsTokenExchangeScopeArgs:
         pulumi.set(self, "policies", value)
 
 
+if not MYPY:
+    class ClientPermissionsViewScopeArgsDict(TypedDict):
+        decision_strategy: NotRequired[pulumi.Input[str]]
+        description: NotRequired[pulumi.Input[str]]
+        policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+elif False:
+    ClientPermissionsViewScopeArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class ClientPermissionsViewScopeArgs:
     def __init__(__self__, *,
@@ -428,6 +526,13 @@ class ClientPermissionsViewScopeArgs:
     def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "policies", value)
 
+
+if not MYPY:
+    class ClientRolePolicyRoleArgsDict(TypedDict):
+        id: pulumi.Input[str]
+        required: pulumi.Input[bool]
+elif False:
+    ClientRolePolicyRoleArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ClientRolePolicyRoleArgs:
