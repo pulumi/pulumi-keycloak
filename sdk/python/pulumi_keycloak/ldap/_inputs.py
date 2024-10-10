@@ -4,15 +4,46 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
     'UserFederationCacheArgs',
+    'UserFederationCacheArgsDict',
     'UserFederationKerberosArgs',
+    'UserFederationKerberosArgsDict',
 ]
+
+MYPY = False
+
+if not MYPY:
+    class UserFederationCacheArgsDict(TypedDict):
+        eviction_day: NotRequired[pulumi.Input[int]]
+        """
+        Day of the week the entry will become invalid on.
+        """
+        eviction_hour: NotRequired[pulumi.Input[int]]
+        """
+        Hour of day the entry will become invalid on.
+        """
+        eviction_minute: NotRequired[pulumi.Input[int]]
+        """
+        Minute of day the entry will become invalid on.
+        """
+        max_lifespan: NotRequired[pulumi.Input[str]]
+        """
+        Max lifespan of cache entry (duration string).
+        """
+        policy: NotRequired[pulumi.Input[str]]
+elif False:
+    UserFederationCacheArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class UserFederationCacheArgs:
@@ -96,6 +127,27 @@ class UserFederationCacheArgs:
     def policy(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "policy", value)
 
+
+if not MYPY:
+    class UserFederationKerberosArgsDict(TypedDict):
+        kerberos_realm: pulumi.Input[str]
+        """
+        The name of the kerberos realm, e.g. FOO.LOCAL
+        """
+        key_tab: pulumi.Input[str]
+        """
+        Path to the kerberos keytab file on the server with credentials of the service principal.
+        """
+        server_principal: pulumi.Input[str]
+        """
+        The kerberos server principal, e.g. 'HTTP/host.foo.com@FOO.LOCAL'.
+        """
+        use_kerberos_for_password_authentication: NotRequired[pulumi.Input[bool]]
+        """
+        Use kerberos login module instead of ldap service api. Defaults to `false`.
+        """
+elif False:
+    UserFederationKerberosArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class UserFederationKerberosArgs:

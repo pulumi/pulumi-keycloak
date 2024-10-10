@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -111,9 +116,6 @@ def get_group(name: Optional[str] = None,
         parent_id=pulumi.get(__ret__, 'parent_id'),
         path=pulumi.get(__ret__, 'path'),
         realm_id=pulumi.get(__ret__, 'realm_id'))
-
-
-@_utilities.lift_output_func(get_group)
 def get_group_output(name: Optional[pulumi.Input[str]] = None,
                      realm_id: Optional[pulumi.Input[str]] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetGroupResult]:
@@ -123,4 +125,15 @@ def get_group_output(name: Optional[pulumi.Input[str]] = None,
     This data source can be used to fetch properties of a Keycloak group for
     usage with other resources, such as `GroupRoles`.
     """
-    ...
+    __args__ = dict()
+    __args__['name'] = name
+    __args__['realmId'] = realm_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('keycloak:index/getGroup:getGroup', __args__, opts=opts, typ=GetGroupResult)
+    return __ret__.apply(lambda __response__: GetGroupResult(
+        attributes=pulumi.get(__response__, 'attributes'),
+        id=pulumi.get(__response__, 'id'),
+        name=pulumi.get(__response__, 'name'),
+        parent_id=pulumi.get(__response__, 'parent_id'),
+        path=pulumi.get(__response__, 'path'),
+        realm_id=pulumi.get(__response__, 'realm_id')))

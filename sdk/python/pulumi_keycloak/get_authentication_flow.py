@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -95,9 +100,6 @@ def get_authentication_flow(alias: Optional[str] = None,
         alias=pulumi.get(__ret__, 'alias'),
         id=pulumi.get(__ret__, 'id'),
         realm_id=pulumi.get(__ret__, 'realm_id'))
-
-
-@_utilities.lift_output_func(get_authentication_flow)
 def get_authentication_flow_output(alias: Optional[pulumi.Input[str]] = None,
                                    realm_id: Optional[pulumi.Input[str]] = None,
                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAuthenticationFlowResult]:
@@ -121,4 +123,12 @@ def get_authentication_flow_output(alias: Optional[pulumi.Input[str]] = None,
     :param str alias: The alias of the flow.
     :param str realm_id: The realm the authentication flow exists in.
     """
-    ...
+    __args__ = dict()
+    __args__['alias'] = alias
+    __args__['realmId'] = realm_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('keycloak:index/getAuthenticationFlow:getAuthenticationFlow', __args__, opts=opts, typ=GetAuthenticationFlowResult)
+    return __ret__.apply(lambda __response__: GetAuthenticationFlowResult(
+        alias=pulumi.get(__response__, 'alias'),
+        id=pulumi.get(__response__, 'id'),
+        realm_id=pulumi.get(__response__, 'realm_id')))

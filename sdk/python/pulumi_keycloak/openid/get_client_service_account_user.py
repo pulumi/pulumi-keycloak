@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 
@@ -203,9 +208,6 @@ def get_client_service_account_user(client_id: Optional[str] = None,
         realm_id=pulumi.get(__ret__, 'realm_id'),
         required_actions=pulumi.get(__ret__, 'required_actions'),
         username=pulumi.get(__ret__, 'username'))
-
-
-@_utilities.lift_output_func(get_client_service_account_user)
 def get_client_service_account_user_output(client_id: Optional[pulumi.Input[str]] = None,
                                            realm_id: Optional[pulumi.Input[str]] = None,
                                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetClientServiceAccountUserResult]:
@@ -246,4 +248,21 @@ def get_client_service_account_user_output(client_id: Optional[pulumi.Input[str]
     :param str client_id: The ID of the OpenID client with service accounts enabled.
     :param str realm_id: The realm that the OpenID client exists within.
     """
-    ...
+    __args__ = dict()
+    __args__['clientId'] = client_id
+    __args__['realmId'] = realm_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('keycloak:openid/getClientServiceAccountUser:getClientServiceAccountUser', __args__, opts=opts, typ=GetClientServiceAccountUserResult)
+    return __ret__.apply(lambda __response__: GetClientServiceAccountUserResult(
+        attributes=pulumi.get(__response__, 'attributes'),
+        client_id=pulumi.get(__response__, 'client_id'),
+        email=pulumi.get(__response__, 'email'),
+        email_verified=pulumi.get(__response__, 'email_verified'),
+        enabled=pulumi.get(__response__, 'enabled'),
+        federated_identities=pulumi.get(__response__, 'federated_identities'),
+        first_name=pulumi.get(__response__, 'first_name'),
+        id=pulumi.get(__response__, 'id'),
+        last_name=pulumi.get(__response__, 'last_name'),
+        realm_id=pulumi.get(__response__, 'realm_id'),
+        required_actions=pulumi.get(__response__, 'required_actions'),
+        username=pulumi.get(__response__, 'username')))

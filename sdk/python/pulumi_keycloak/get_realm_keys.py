@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -109,9 +114,6 @@ def get_realm_keys(algorithms: Optional[Sequence[str]] = None,
         keys=pulumi.get(__ret__, 'keys'),
         realm_id=pulumi.get(__ret__, 'realm_id'),
         statuses=pulumi.get(__ret__, 'statuses'))
-
-
-@_utilities.lift_output_func(get_realm_keys)
 def get_realm_keys_output(algorithms: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                           realm_id: Optional[pulumi.Input[str]] = None,
                           statuses: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
@@ -127,4 +129,15 @@ def get_realm_keys_output(algorithms: Optional[pulumi.Input[Optional[Sequence[st
     - This datasource may return more than one value.
     - If no key matches the filter criteria, then an error is returned.
     """
-    ...
+    __args__ = dict()
+    __args__['algorithms'] = algorithms
+    __args__['realmId'] = realm_id
+    __args__['statuses'] = statuses
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('keycloak:index/getRealmKeys:getRealmKeys', __args__, opts=opts, typ=GetRealmKeysResult)
+    return __ret__.apply(lambda __response__: GetRealmKeysResult(
+        algorithms=pulumi.get(__response__, 'algorithms'),
+        id=pulumi.get(__response__, 'id'),
+        keys=pulumi.get(__response__, 'keys'),
+        realm_id=pulumi.get(__response__, 'realm_id'),
+        statuses=pulumi.get(__response__, 'statuses')))
