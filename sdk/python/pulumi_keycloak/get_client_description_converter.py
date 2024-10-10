@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -477,9 +482,6 @@ def get_client_description_converter(body: Optional[str] = None,
         standard_flow_enabled=pulumi.get(__ret__, 'standard_flow_enabled'),
         surrogate_auth_required=pulumi.get(__ret__, 'surrogate_auth_required'),
         web_origins=pulumi.get(__ret__, 'web_origins'))
-
-
-@_utilities.lift_output_func(get_client_description_converter)
 def get_client_description_converter_output(body: Optional[pulumi.Input[str]] = None,
                                             realm_id: Optional[pulumi.Input[str]] = None,
                                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetClientDescriptionConverterResult]:
@@ -534,4 +536,47 @@ def get_client_description_converter_output(body: Optional[pulumi.Input[str]] = 
     :param str body: The body of the request to convert.
     :param str realm_id: The realm to use for the client description converter API call.
     """
-    ...
+    __args__ = dict()
+    __args__['body'] = body
+    __args__['realmId'] = realm_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('keycloak:index/getClientDescriptionConverter:getClientDescriptionConverter', __args__, opts=opts, typ=GetClientDescriptionConverterResult)
+    return __ret__.apply(lambda __response__: GetClientDescriptionConverterResult(
+        access=pulumi.get(__response__, 'access'),
+        admin_url=pulumi.get(__response__, 'admin_url'),
+        attributes=pulumi.get(__response__, 'attributes'),
+        authentication_flow_binding_overrides=pulumi.get(__response__, 'authentication_flow_binding_overrides'),
+        authorization_services_enabled=pulumi.get(__response__, 'authorization_services_enabled'),
+        authorization_settings=pulumi.get(__response__, 'authorization_settings'),
+        base_url=pulumi.get(__response__, 'base_url'),
+        bearer_only=pulumi.get(__response__, 'bearer_only'),
+        body=pulumi.get(__response__, 'body'),
+        client_authenticator_type=pulumi.get(__response__, 'client_authenticator_type'),
+        client_id=pulumi.get(__response__, 'client_id'),
+        consent_required=pulumi.get(__response__, 'consent_required'),
+        default_client_scopes=pulumi.get(__response__, 'default_client_scopes'),
+        default_roles=pulumi.get(__response__, 'default_roles'),
+        description=pulumi.get(__response__, 'description'),
+        direct_access_grants_enabled=pulumi.get(__response__, 'direct_access_grants_enabled'),
+        enabled=pulumi.get(__response__, 'enabled'),
+        frontchannel_logout=pulumi.get(__response__, 'frontchannel_logout'),
+        full_scope_allowed=pulumi.get(__response__, 'full_scope_allowed'),
+        id=pulumi.get(__response__, 'id'),
+        implicit_flow_enabled=pulumi.get(__response__, 'implicit_flow_enabled'),
+        name=pulumi.get(__response__, 'name'),
+        not_before=pulumi.get(__response__, 'not_before'),
+        optional_client_scopes=pulumi.get(__response__, 'optional_client_scopes'),
+        origin=pulumi.get(__response__, 'origin'),
+        protocol=pulumi.get(__response__, 'protocol'),
+        protocol_mappers=pulumi.get(__response__, 'protocol_mappers'),
+        public_client=pulumi.get(__response__, 'public_client'),
+        realm_id=pulumi.get(__response__, 'realm_id'),
+        redirect_uris=pulumi.get(__response__, 'redirect_uris'),
+        registered_nodes=pulumi.get(__response__, 'registered_nodes'),
+        registration_access_token=pulumi.get(__response__, 'registration_access_token'),
+        root_url=pulumi.get(__response__, 'root_url'),
+        secret=pulumi.get(__response__, 'secret'),
+        service_accounts_enabled=pulumi.get(__response__, 'service_accounts_enabled'),
+        standard_flow_enabled=pulumi.get(__response__, 'standard_flow_enabled'),
+        surrogate_auth_required=pulumi.get(__response__, 'surrogate_auth_required'),
+        web_origins=pulumi.get(__response__, 'web_origins')))

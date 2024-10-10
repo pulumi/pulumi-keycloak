@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
@@ -138,9 +143,6 @@ def get_client_scope(name: Optional[str] = None,
         include_in_token_scope=pulumi.get(__ret__, 'include_in_token_scope'),
         name=pulumi.get(__ret__, 'name'),
         realm_id=pulumi.get(__ret__, 'realm_id'))
-
-
-@_utilities.lift_output_func(get_client_scope)
 def get_client_scope_output(name: Optional[pulumi.Input[str]] = None,
                             realm_id: Optional[pulumi.Input[str]] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetClientScopeResult]:
@@ -167,4 +169,16 @@ def get_client_scope_output(name: Optional[pulumi.Input[str]] = None,
     :param str name: The name of the client scope.
     :param str realm_id: The realm id.
     """
-    ...
+    __args__ = dict()
+    __args__['name'] = name
+    __args__['realmId'] = realm_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('keycloak:openid/getClientScope:getClientScope', __args__, opts=opts, typ=GetClientScopeResult)
+    return __ret__.apply(lambda __response__: GetClientScopeResult(
+        consent_screen_text=pulumi.get(__response__, 'consent_screen_text'),
+        description=pulumi.get(__response__, 'description'),
+        gui_order=pulumi.get(__response__, 'gui_order'),
+        id=pulumi.get(__response__, 'id'),
+        include_in_token_scope=pulumi.get(__response__, 'include_in_token_scope'),
+        name=pulumi.get(__response__, 'name'),
+        realm_id=pulumi.get(__response__, 'realm_id')))

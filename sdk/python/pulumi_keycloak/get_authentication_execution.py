@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -109,9 +114,6 @@ def get_authentication_execution(parent_flow_alias: Optional[str] = None,
         parent_flow_alias=pulumi.get(__ret__, 'parent_flow_alias'),
         provider_id=pulumi.get(__ret__, 'provider_id'),
         realm_id=pulumi.get(__ret__, 'realm_id'))
-
-
-@_utilities.lift_output_func(get_authentication_execution)
 def get_authentication_execution_output(parent_flow_alias: Optional[pulumi.Input[str]] = None,
                                         provider_id: Optional[pulumi.Input[str]] = None,
                                         realm_id: Optional[pulumi.Input[str]] = None,
@@ -138,4 +140,14 @@ def get_authentication_execution_output(parent_flow_alias: Optional[pulumi.Input
     :param str provider_id: The name of the provider. This can be found by experimenting with the GUI and looking at HTTP requests within the network tab of your browser's development tools. This was previously known as the "authenticator".
     :param str realm_id: The realm the authentication execution exists in.
     """
-    ...
+    __args__ = dict()
+    __args__['parentFlowAlias'] = parent_flow_alias
+    __args__['providerId'] = provider_id
+    __args__['realmId'] = realm_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('keycloak:index/getAuthenticationExecution:getAuthenticationExecution', __args__, opts=opts, typ=GetAuthenticationExecutionResult)
+    return __ret__.apply(lambda __response__: GetAuthenticationExecutionResult(
+        id=pulumi.get(__response__, 'id'),
+        parent_flow_alias=pulumi.get(__response__, 'parent_flow_alias'),
+        provider_id=pulumi.get(__response__, 'provider_id'),
+        realm_id=pulumi.get(__response__, 'realm_id')))
