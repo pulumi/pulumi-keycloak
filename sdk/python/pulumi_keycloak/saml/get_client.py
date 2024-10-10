@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 
@@ -457,9 +462,6 @@ def get_client(client_id: Optional[str] = None,
         signing_private_key=pulumi.get(__ret__, 'signing_private_key'),
         signing_private_key_sha1=pulumi.get(__ret__, 'signing_private_key_sha1'),
         valid_redirect_uris=pulumi.get(__ret__, 'valid_redirect_uris'))
-
-
-@_utilities.lift_output_func(get_client)
 def get_client_output(client_id: Optional[pulumi.Input[str]] = None,
                       realm_id: Optional[pulumi.Input[str]] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetClientResult]:
@@ -484,4 +486,48 @@ def get_client_output(client_id: Optional[pulumi.Input[str]] = None,
     :param str client_id: The client id (not its unique ID).
     :param str realm_id: The realm id.
     """
-    ...
+    __args__ = dict()
+    __args__['clientId'] = client_id
+    __args__['realmId'] = realm_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('keycloak:saml/getClient:getClient', __args__, opts=opts, typ=GetClientResult)
+    return __ret__.apply(lambda __response__: GetClientResult(
+        assertion_consumer_post_url=pulumi.get(__response__, 'assertion_consumer_post_url'),
+        assertion_consumer_redirect_url=pulumi.get(__response__, 'assertion_consumer_redirect_url'),
+        authentication_flow_binding_overrides=pulumi.get(__response__, 'authentication_flow_binding_overrides'),
+        base_url=pulumi.get(__response__, 'base_url'),
+        canonicalization_method=pulumi.get(__response__, 'canonicalization_method'),
+        client_id=pulumi.get(__response__, 'client_id'),
+        client_signature_required=pulumi.get(__response__, 'client_signature_required'),
+        description=pulumi.get(__response__, 'description'),
+        enabled=pulumi.get(__response__, 'enabled'),
+        encrypt_assertions=pulumi.get(__response__, 'encrypt_assertions'),
+        encryption_certificate=pulumi.get(__response__, 'encryption_certificate'),
+        encryption_certificate_sha1=pulumi.get(__response__, 'encryption_certificate_sha1'),
+        extra_config=pulumi.get(__response__, 'extra_config'),
+        force_name_id_format=pulumi.get(__response__, 'force_name_id_format'),
+        force_post_binding=pulumi.get(__response__, 'force_post_binding'),
+        front_channel_logout=pulumi.get(__response__, 'front_channel_logout'),
+        full_scope_allowed=pulumi.get(__response__, 'full_scope_allowed'),
+        id=pulumi.get(__response__, 'id'),
+        idp_initiated_sso_relay_state=pulumi.get(__response__, 'idp_initiated_sso_relay_state'),
+        idp_initiated_sso_url_name=pulumi.get(__response__, 'idp_initiated_sso_url_name'),
+        include_authn_statement=pulumi.get(__response__, 'include_authn_statement'),
+        login_theme=pulumi.get(__response__, 'login_theme'),
+        logout_service_post_binding_url=pulumi.get(__response__, 'logout_service_post_binding_url'),
+        logout_service_redirect_binding_url=pulumi.get(__response__, 'logout_service_redirect_binding_url'),
+        master_saml_processing_url=pulumi.get(__response__, 'master_saml_processing_url'),
+        name=pulumi.get(__response__, 'name'),
+        name_id_format=pulumi.get(__response__, 'name_id_format'),
+        realm_id=pulumi.get(__response__, 'realm_id'),
+        root_url=pulumi.get(__response__, 'root_url'),
+        saml_signature_key_name=pulumi.get(__response__, 'saml_signature_key_name'),
+        sign_assertions=pulumi.get(__response__, 'sign_assertions'),
+        sign_documents=pulumi.get(__response__, 'sign_documents'),
+        signature_algorithm=pulumi.get(__response__, 'signature_algorithm'),
+        signature_key_name=pulumi.get(__response__, 'signature_key_name'),
+        signing_certificate=pulumi.get(__response__, 'signing_certificate'),
+        signing_certificate_sha1=pulumi.get(__response__, 'signing_certificate_sha1'),
+        signing_private_key=pulumi.get(__response__, 'signing_private_key'),
+        signing_private_key_sha1=pulumi.get(__response__, 'signing_private_key_sha1'),
+        valid_redirect_uris=pulumi.get(__response__, 'valid_redirect_uris')))

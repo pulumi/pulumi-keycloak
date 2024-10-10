@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
 
@@ -548,9 +553,6 @@ def get_client(client_id: Optional[str] = None,
         valid_post_logout_redirect_uris=pulumi.get(__ret__, 'valid_post_logout_redirect_uris'),
         valid_redirect_uris=pulumi.get(__ret__, 'valid_redirect_uris'),
         web_origins=pulumi.get(__ret__, 'web_origins'))
-
-
-@_utilities.lift_output_func(get_client)
 def get_client_output(client_id: Optional[pulumi.Input[str]] = None,
                       consent_screen_text: Optional[pulumi.Input[Optional[str]]] = None,
                       display_on_consent_screen: Optional[pulumi.Input[Optional[bool]]] = None,
@@ -590,4 +592,61 @@ def get_client_output(client_id: Optional[pulumi.Input[str]] = None,
 
     See the docs for the `openid.Client` resource for details on the exported attributes.
     """
-    ...
+    __args__ = dict()
+    __args__['clientId'] = client_id
+    __args__['consentScreenText'] = consent_screen_text
+    __args__['displayOnConsentScreen'] = display_on_consent_screen
+    __args__['extraConfig'] = extra_config
+    __args__['oauth2DeviceAuthorizationGrantEnabled'] = oauth2_device_authorization_grant_enabled
+    __args__['oauth2DeviceCodeLifespan'] = oauth2_device_code_lifespan
+    __args__['oauth2DevicePollingInterval'] = oauth2_device_polling_interval
+    __args__['realmId'] = realm_id
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('keycloak:openid/getClient:getClient', __args__, opts=opts, typ=GetClientResult)
+    return __ret__.apply(lambda __response__: GetClientResult(
+        access_token_lifespan=pulumi.get(__response__, 'access_token_lifespan'),
+        access_type=pulumi.get(__response__, 'access_type'),
+        admin_url=pulumi.get(__response__, 'admin_url'),
+        authentication_flow_binding_overrides=pulumi.get(__response__, 'authentication_flow_binding_overrides'),
+        authorizations=pulumi.get(__response__, 'authorizations'),
+        backchannel_logout_revoke_offline_sessions=pulumi.get(__response__, 'backchannel_logout_revoke_offline_sessions'),
+        backchannel_logout_session_required=pulumi.get(__response__, 'backchannel_logout_session_required'),
+        backchannel_logout_url=pulumi.get(__response__, 'backchannel_logout_url'),
+        base_url=pulumi.get(__response__, 'base_url'),
+        client_authenticator_type=pulumi.get(__response__, 'client_authenticator_type'),
+        client_id=pulumi.get(__response__, 'client_id'),
+        client_offline_session_idle_timeout=pulumi.get(__response__, 'client_offline_session_idle_timeout'),
+        client_offline_session_max_lifespan=pulumi.get(__response__, 'client_offline_session_max_lifespan'),
+        client_secret=pulumi.get(__response__, 'client_secret'),
+        client_session_idle_timeout=pulumi.get(__response__, 'client_session_idle_timeout'),
+        client_session_max_lifespan=pulumi.get(__response__, 'client_session_max_lifespan'),
+        consent_required=pulumi.get(__response__, 'consent_required'),
+        consent_screen_text=pulumi.get(__response__, 'consent_screen_text'),
+        description=pulumi.get(__response__, 'description'),
+        direct_access_grants_enabled=pulumi.get(__response__, 'direct_access_grants_enabled'),
+        display_on_consent_screen=pulumi.get(__response__, 'display_on_consent_screen'),
+        enabled=pulumi.get(__response__, 'enabled'),
+        exclude_session_state_from_auth_response=pulumi.get(__response__, 'exclude_session_state_from_auth_response'),
+        extra_config=pulumi.get(__response__, 'extra_config'),
+        frontchannel_logout_enabled=pulumi.get(__response__, 'frontchannel_logout_enabled'),
+        frontchannel_logout_url=pulumi.get(__response__, 'frontchannel_logout_url'),
+        full_scope_allowed=pulumi.get(__response__, 'full_scope_allowed'),
+        id=pulumi.get(__response__, 'id'),
+        implicit_flow_enabled=pulumi.get(__response__, 'implicit_flow_enabled'),
+        login_theme=pulumi.get(__response__, 'login_theme'),
+        name=pulumi.get(__response__, 'name'),
+        oauth2_device_authorization_grant_enabled=pulumi.get(__response__, 'oauth2_device_authorization_grant_enabled'),
+        oauth2_device_code_lifespan=pulumi.get(__response__, 'oauth2_device_code_lifespan'),
+        oauth2_device_polling_interval=pulumi.get(__response__, 'oauth2_device_polling_interval'),
+        pkce_code_challenge_method=pulumi.get(__response__, 'pkce_code_challenge_method'),
+        realm_id=pulumi.get(__response__, 'realm_id'),
+        resource_server_id=pulumi.get(__response__, 'resource_server_id'),
+        root_url=pulumi.get(__response__, 'root_url'),
+        service_account_user_id=pulumi.get(__response__, 'service_account_user_id'),
+        service_accounts_enabled=pulumi.get(__response__, 'service_accounts_enabled'),
+        standard_flow_enabled=pulumi.get(__response__, 'standard_flow_enabled'),
+        use_refresh_tokens=pulumi.get(__response__, 'use_refresh_tokens'),
+        use_refresh_tokens_client_credentials=pulumi.get(__response__, 'use_refresh_tokens_client_credentials'),
+        valid_post_logout_redirect_uris=pulumi.get(__response__, 'valid_post_logout_redirect_uris'),
+        valid_redirect_uris=pulumi.get(__response__, 'valid_redirect_uris'),
+        web_origins=pulumi.get(__response__, 'web_origins')))

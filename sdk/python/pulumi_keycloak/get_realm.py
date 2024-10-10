@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -664,9 +669,6 @@ def get_realm(attributes: Optional[Mapping[str, str]] = None,
         verify_email=pulumi.get(__ret__, 'verify_email'),
         web_authn_passwordless_policy=pulumi.get(__ret__, 'web_authn_passwordless_policy'),
         web_authn_policy=pulumi.get(__ret__, 'web_authn_policy'))
-
-
-@_utilities.lift_output_func(get_realm)
 def get_realm_output(attributes: Optional[pulumi.Input[Optional[Mapping[str, str]]]] = None,
                      default_default_client_scopes: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                      default_optional_client_scopes: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
@@ -708,4 +710,75 @@ def get_realm_output(attributes: Optional[pulumi.Input[Optional[Mapping[str, str
 
     See the docs for the `Realm` resource for details on the exported attributes.
     """
-    ...
+    __args__ = dict()
+    __args__['attributes'] = attributes
+    __args__['defaultDefaultClientScopes'] = default_default_client_scopes
+    __args__['defaultOptionalClientScopes'] = default_optional_client_scopes
+    __args__['displayNameHtml'] = display_name_html
+    __args__['internationalizations'] = internationalizations
+    __args__['otpPolicy'] = otp_policy
+    __args__['realm'] = realm
+    __args__['securityDefenses'] = security_defenses
+    __args__['smtpServers'] = smtp_servers
+    __args__['webAuthnPasswordlessPolicy'] = web_authn_passwordless_policy
+    __args__['webAuthnPolicy'] = web_authn_policy
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('keycloak:index/getRealm:getRealm', __args__, opts=opts, typ=GetRealmResult)
+    return __ret__.apply(lambda __response__: GetRealmResult(
+        access_code_lifespan=pulumi.get(__response__, 'access_code_lifespan'),
+        access_code_lifespan_login=pulumi.get(__response__, 'access_code_lifespan_login'),
+        access_code_lifespan_user_action=pulumi.get(__response__, 'access_code_lifespan_user_action'),
+        access_token_lifespan=pulumi.get(__response__, 'access_token_lifespan'),
+        access_token_lifespan_for_implicit_flow=pulumi.get(__response__, 'access_token_lifespan_for_implicit_flow'),
+        account_theme=pulumi.get(__response__, 'account_theme'),
+        action_token_generated_by_admin_lifespan=pulumi.get(__response__, 'action_token_generated_by_admin_lifespan'),
+        action_token_generated_by_user_lifespan=pulumi.get(__response__, 'action_token_generated_by_user_lifespan'),
+        admin_theme=pulumi.get(__response__, 'admin_theme'),
+        attributes=pulumi.get(__response__, 'attributes'),
+        browser_flow=pulumi.get(__response__, 'browser_flow'),
+        client_authentication_flow=pulumi.get(__response__, 'client_authentication_flow'),
+        client_session_idle_timeout=pulumi.get(__response__, 'client_session_idle_timeout'),
+        client_session_max_lifespan=pulumi.get(__response__, 'client_session_max_lifespan'),
+        default_default_client_scopes=pulumi.get(__response__, 'default_default_client_scopes'),
+        default_optional_client_scopes=pulumi.get(__response__, 'default_optional_client_scopes'),
+        default_signature_algorithm=pulumi.get(__response__, 'default_signature_algorithm'),
+        direct_grant_flow=pulumi.get(__response__, 'direct_grant_flow'),
+        display_name=pulumi.get(__response__, 'display_name'),
+        display_name_html=pulumi.get(__response__, 'display_name_html'),
+        docker_authentication_flow=pulumi.get(__response__, 'docker_authentication_flow'),
+        duplicate_emails_allowed=pulumi.get(__response__, 'duplicate_emails_allowed'),
+        edit_username_allowed=pulumi.get(__response__, 'edit_username_allowed'),
+        email_theme=pulumi.get(__response__, 'email_theme'),
+        enabled=pulumi.get(__response__, 'enabled'),
+        id=pulumi.get(__response__, 'id'),
+        internal_id=pulumi.get(__response__, 'internal_id'),
+        internationalizations=pulumi.get(__response__, 'internationalizations'),
+        login_theme=pulumi.get(__response__, 'login_theme'),
+        login_with_email_allowed=pulumi.get(__response__, 'login_with_email_allowed'),
+        oauth2_device_code_lifespan=pulumi.get(__response__, 'oauth2_device_code_lifespan'),
+        oauth2_device_polling_interval=pulumi.get(__response__, 'oauth2_device_polling_interval'),
+        offline_session_idle_timeout=pulumi.get(__response__, 'offline_session_idle_timeout'),
+        offline_session_max_lifespan=pulumi.get(__response__, 'offline_session_max_lifespan'),
+        offline_session_max_lifespan_enabled=pulumi.get(__response__, 'offline_session_max_lifespan_enabled'),
+        otp_policy=pulumi.get(__response__, 'otp_policy'),
+        password_policy=pulumi.get(__response__, 'password_policy'),
+        realm=pulumi.get(__response__, 'realm'),
+        refresh_token_max_reuse=pulumi.get(__response__, 'refresh_token_max_reuse'),
+        registration_allowed=pulumi.get(__response__, 'registration_allowed'),
+        registration_email_as_username=pulumi.get(__response__, 'registration_email_as_username'),
+        registration_flow=pulumi.get(__response__, 'registration_flow'),
+        remember_me=pulumi.get(__response__, 'remember_me'),
+        reset_credentials_flow=pulumi.get(__response__, 'reset_credentials_flow'),
+        reset_password_allowed=pulumi.get(__response__, 'reset_password_allowed'),
+        revoke_refresh_token=pulumi.get(__response__, 'revoke_refresh_token'),
+        security_defenses=pulumi.get(__response__, 'security_defenses'),
+        smtp_servers=pulumi.get(__response__, 'smtp_servers'),
+        ssl_required=pulumi.get(__response__, 'ssl_required'),
+        sso_session_idle_timeout=pulumi.get(__response__, 'sso_session_idle_timeout'),
+        sso_session_idle_timeout_remember_me=pulumi.get(__response__, 'sso_session_idle_timeout_remember_me'),
+        sso_session_max_lifespan=pulumi.get(__response__, 'sso_session_max_lifespan'),
+        sso_session_max_lifespan_remember_me=pulumi.get(__response__, 'sso_session_max_lifespan_remember_me'),
+        user_managed_access=pulumi.get(__response__, 'user_managed_access'),
+        verify_email=pulumi.get(__response__, 'verify_email'),
+        web_authn_passwordless_policy=pulumi.get(__response__, 'web_authn_passwordless_policy'),
+        web_authn_policy=pulumi.get(__response__, 'web_authn_policy')))
