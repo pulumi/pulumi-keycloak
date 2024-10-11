@@ -4,14 +4,29 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
 __all__ = [
     'ClientAuthenticationFlowBindingOverridesArgs',
+    'ClientAuthenticationFlowBindingOverridesArgsDict',
 ]
+
+MYPY = False
+
+if not MYPY:
+    class ClientAuthenticationFlowBindingOverridesArgsDict(TypedDict):
+        browser_id: NotRequired[pulumi.Input[str]]
+        direct_grant_id: NotRequired[pulumi.Input[str]]
+elif False:
+    ClientAuthenticationFlowBindingOverridesArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ClientAuthenticationFlowBindingOverridesArgs:
