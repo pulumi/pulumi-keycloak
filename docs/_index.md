@@ -6,7 +6,7 @@ layout: package
 ---
 ## Installation
 
-The keycloak provider is available as a package in all Pulumi languages:
+The Keycloak provider is available as a package in all Pulumi languages:
 
 * JavaScript/TypeScript: [`@pulumi/keycloak`](https://www.npmjs.com/package/@pulumi/keycloak)
 * Python: [`pulumi-keycloak`](https://pypi.org/project/pulumi-keycloak/)
