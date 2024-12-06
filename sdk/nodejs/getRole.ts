@@ -49,7 +49,7 @@ export interface GetRoleResult {
  * This data source can be used to fetch properties of a Keycloak role for
  * usage with other resources, such as `keycloak.GroupRoles`.
  */
-export function getRoleOutput(args: GetRoleOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRoleResult> {
+export function getRoleOutput(args: GetRoleOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetRoleResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("keycloak:index/getRole:getRole", {
         "clientId": args.clientId,

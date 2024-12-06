@@ -169,7 +169,7 @@ export interface GetRealmResult {
  *
  * See the docs for the `keycloak.Realm` resource for details on the exported attributes.
  */
-export function getRealmOutput(args: GetRealmOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRealmResult> {
+export function getRealmOutput(args: GetRealmOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetRealmResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("keycloak:index/getRealm:getRealm", {
         "attributes": args.attributes,

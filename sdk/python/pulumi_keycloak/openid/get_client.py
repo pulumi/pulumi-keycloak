@@ -561,7 +561,7 @@ def get_client_output(client_id: Optional[pulumi.Input[str]] = None,
                       oauth2_device_code_lifespan: Optional[pulumi.Input[Optional[str]]] = None,
                       oauth2_device_polling_interval: Optional[pulumi.Input[Optional[str]]] = None,
                       realm_id: Optional[pulumi.Input[str]] = None,
-                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetClientResult]:
+                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetClientResult]:
     """
     ## # openid.Client data source
 
@@ -601,7 +601,7 @@ def get_client_output(client_id: Optional[pulumi.Input[str]] = None,
     __args__['oauth2DeviceCodeLifespan'] = oauth2_device_code_lifespan
     __args__['oauth2DevicePollingInterval'] = oauth2_device_polling_interval
     __args__['realmId'] = realm_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('keycloak:openid/getClient:getClient', __args__, opts=opts, typ=GetClientResult)
     return __ret__.apply(lambda __response__: GetClientResult(
         access_token_lifespan=pulumi.get(__response__, 'access_token_lifespan'),

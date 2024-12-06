@@ -176,7 +176,7 @@ export interface GetClientDescriptionConverterResult {
  * });
  * ```
  */
-export function getClientDescriptionConverterOutput(args: GetClientDescriptionConverterOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetClientDescriptionConverterResult> {
+export function getClientDescriptionConverterOutput(args: GetClientDescriptionConverterOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetClientDescriptionConverterResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("keycloak:index/getClientDescriptionConverter:getClientDescriptionConverter", {
         "body": args.body,

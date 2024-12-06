@@ -59,7 +59,7 @@ export interface GetRealmKeysResult {
  * - This datasource may return more than one value.
  * - If no key matches the filter criteria, then an error is returned.
  */
-export function getRealmKeysOutput(args: GetRealmKeysOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRealmKeysResult> {
+export function getRealmKeysOutput(args: GetRealmKeysOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetRealmKeysResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("keycloak:index/getRealmKeys:getRealmKeys", {
         "algorithms": args.algorithms,

@@ -46,7 +46,7 @@ export interface GetGroupResult {
  * This data source can be used to fetch properties of a Keycloak group for
  * usage with other resources, such as `keycloak.GroupRoles`.
  */
-export function getGroupOutput(args: GetGroupOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetGroupResult> {
+export function getGroupOutput(args: GetGroupOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetGroupResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("keycloak:index/getGroup:getGroup", {
         "name": args.name,

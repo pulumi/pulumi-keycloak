@@ -117,7 +117,7 @@ def get_realm_keys(algorithms: Optional[Sequence[str]] = None,
 def get_realm_keys_output(algorithms: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                           realm_id: Optional[pulumi.Input[str]] = None,
                           statuses: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
-                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRealmKeysResult]:
+                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetRealmKeysResult]:
     """
     ## # get_realm_keys data source
 
@@ -133,7 +133,7 @@ def get_realm_keys_output(algorithms: Optional[pulumi.Input[Optional[Sequence[st
     __args__['algorithms'] = algorithms
     __args__['realmId'] = realm_id
     __args__['statuses'] = statuses
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('keycloak:index/getRealmKeys:getRealmKeys', __args__, opts=opts, typ=GetRealmKeysResult)
     return __ret__.apply(lambda __response__: GetRealmKeysResult(
         algorithms=pulumi.get(__response__, 'algorithms'),

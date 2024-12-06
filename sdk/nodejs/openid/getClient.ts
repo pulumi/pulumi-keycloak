@@ -156,7 +156,7 @@ export interface GetClientResult {
  *
  * See the docs for the `keycloak.openid.Client` resource for details on the exported attributes.
  */
-export function getClientOutput(args: GetClientOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetClientResult> {
+export function getClientOutput(args: GetClientOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetClientResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("keycloak:openid/getClient:getClient", {
         "clientId": args.clientId,

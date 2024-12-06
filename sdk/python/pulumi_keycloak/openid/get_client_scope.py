@@ -145,7 +145,7 @@ def get_client_scope(name: Optional[str] = None,
         realm_id=pulumi.get(__ret__, 'realm_id'))
 def get_client_scope_output(name: Optional[pulumi.Input[str]] = None,
                             realm_id: Optional[pulumi.Input[str]] = None,
-                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetClientScopeResult]:
+                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetClientScopeResult]:
     """
     This data source can be used to fetch properties of a Keycloak OpenID client scope for usage with other resources.
 
@@ -172,7 +172,7 @@ def get_client_scope_output(name: Optional[pulumi.Input[str]] = None,
     __args__ = dict()
     __args__['name'] = name
     __args__['realmId'] = realm_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('keycloak:openid/getClientScope:getClientScope', __args__, opts=opts, typ=GetClientScopeResult)
     return __ret__.apply(lambda __response__: GetClientScopeResult(
         consent_screen_text=pulumi.get(__response__, 'consent_screen_text'),

@@ -53,7 +53,7 @@ export interface GetClientInstallationProviderResult {
 /**
  * This data source can be used to retrieve Installation Provider of a SAML Client.
  */
-export function getClientInstallationProviderOutput(args: GetClientInstallationProviderOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetClientInstallationProviderResult> {
+export function getClientInstallationProviderOutput(args: GetClientInstallationProviderOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetClientInstallationProviderResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("keycloak:saml/getClientInstallationProvider:getClientInstallationProvider", {
         "clientId": args.clientId,
