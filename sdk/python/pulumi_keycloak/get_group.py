@@ -139,7 +139,7 @@ def get_group(name: Optional[str] = None,
         realm_id=pulumi.get(__ret__, 'realm_id'))
 def get_group_output(name: Optional[pulumi.Input[str]] = None,
                      realm_id: Optional[pulumi.Input[str]] = None,
-                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetGroupResult]:
+                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetGroupResult]:
     """
     This data source can be used to fetch properties of a Keycloak group for
     usage with other resources, such as `GroupRoles`.
@@ -170,7 +170,7 @@ def get_group_output(name: Optional[pulumi.Input[str]] = None,
     __args__ = dict()
     __args__['name'] = name
     __args__['realmId'] = realm_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('keycloak:index/getGroup:getGroup', __args__, opts=opts, typ=GetGroupResult)
     return __ret__.apply(lambda __response__: GetGroupResult(
         attributes=pulumi.get(__response__, 'attributes'),

@@ -102,7 +102,7 @@ def get_authentication_flow(alias: Optional[str] = None,
         realm_id=pulumi.get(__ret__, 'realm_id'))
 def get_authentication_flow_output(alias: Optional[pulumi.Input[str]] = None,
                                    realm_id: Optional[pulumi.Input[str]] = None,
-                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAuthenticationFlowResult]:
+                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAuthenticationFlowResult]:
     """
     This data source can be used to fetch the ID of an authentication flow within Keycloak.
 
@@ -126,7 +126,7 @@ def get_authentication_flow_output(alias: Optional[pulumi.Input[str]] = None,
     __args__ = dict()
     __args__['alias'] = alias
     __args__['realmId'] = realm_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('keycloak:index/getAuthenticationFlow:getAuthenticationFlow', __args__, opts=opts, typ=GetAuthenticationFlowResult)
     return __ret__.apply(lambda __response__: GetAuthenticationFlowResult(
         alias=pulumi.get(__response__, 'alias'),

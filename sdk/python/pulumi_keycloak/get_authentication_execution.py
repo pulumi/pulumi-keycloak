@@ -117,7 +117,7 @@ def get_authentication_execution(parent_flow_alias: Optional[str] = None,
 def get_authentication_execution_output(parent_flow_alias: Optional[pulumi.Input[str]] = None,
                                         provider_id: Optional[pulumi.Input[str]] = None,
                                         realm_id: Optional[pulumi.Input[str]] = None,
-                                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAuthenticationExecutionResult]:
+                                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAuthenticationExecutionResult]:
     """
     This data source can be used to fetch the ID of an authentication execution within Keycloak.
 
@@ -144,7 +144,7 @@ def get_authentication_execution_output(parent_flow_alias: Optional[pulumi.Input
     __args__['parentFlowAlias'] = parent_flow_alias
     __args__['providerId'] = provider_id
     __args__['realmId'] = realm_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('keycloak:index/getAuthenticationExecution:getAuthenticationExecution', __args__, opts=opts, typ=GetAuthenticationExecutionResult)
     return __ret__.apply(lambda __response__: GetAuthenticationExecutionResult(
         id=pulumi.get(__response__, 'id'),

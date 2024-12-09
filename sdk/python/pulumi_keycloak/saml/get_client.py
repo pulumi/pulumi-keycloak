@@ -464,7 +464,7 @@ def get_client(client_id: Optional[str] = None,
         valid_redirect_uris=pulumi.get(__ret__, 'valid_redirect_uris'))
 def get_client_output(client_id: Optional[pulumi.Input[str]] = None,
                       realm_id: Optional[pulumi.Input[str]] = None,
-                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetClientResult]:
+                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetClientResult]:
     """
     This data source can be used to fetch properties of a Keycloak client that uses the SAML protocol.
 
@@ -489,7 +489,7 @@ def get_client_output(client_id: Optional[pulumi.Input[str]] = None,
     __args__ = dict()
     __args__['clientId'] = client_id
     __args__['realmId'] = realm_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('keycloak:saml/getClient:getClient', __args__, opts=opts, typ=GetClientResult)
     return __ret__.apply(lambda __response__: GetClientResult(
         assertion_consumer_post_url=pulumi.get(__response__, 'assertion_consumer_post_url'),
