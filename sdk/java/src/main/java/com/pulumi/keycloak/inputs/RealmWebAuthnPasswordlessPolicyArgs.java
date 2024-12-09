@@ -18,9 +18,17 @@ public final class RealmWebAuthnPasswordlessPolicyArgs extends com.pulumi.resour
 
     public static final RealmWebAuthnPasswordlessPolicyArgs Empty = new RealmWebAuthnPasswordlessPolicyArgs();
 
+    /**
+     * A set of AAGUIDs for which an authenticator can be registered.
+     * 
+     */
     @Import(name="acceptableAaguids")
     private @Nullable Output<List<String>> acceptableAaguids;
 
+    /**
+     * @return A set of AAGUIDs for which an authenticator can be registered.
+     * 
+     */
     public Optional<Output<List<String>>> acceptableAaguids() {
         return Optional.ofNullable(this.acceptableAaguids);
     }
@@ -55,30 +63,62 @@ public final class RealmWebAuthnPasswordlessPolicyArgs extends com.pulumi.resour
         return Optional.ofNullable(this.authenticatorAttachment);
     }
 
+    /**
+     * When `true`, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to `false`.
+     * 
+     */
     @Import(name="avoidSameAuthenticatorRegister")
     private @Nullable Output<Boolean> avoidSameAuthenticatorRegister;
 
+    /**
+     * @return When `true`, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to `false`.
+     * 
+     */
     public Optional<Output<Boolean>> avoidSameAuthenticatorRegister() {
         return Optional.ofNullable(this.avoidSameAuthenticatorRegister);
     }
 
+    /**
+     * The timeout value for creating a user&#39;s public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
+     * 
+     */
     @Import(name="createTimeout")
     private @Nullable Output<Integer> createTimeout;
 
+    /**
+     * @return The timeout value for creating a user&#39;s public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
+     * 
+     */
     public Optional<Output<Integer>> createTimeout() {
         return Optional.ofNullable(this.createTimeout);
     }
 
+    /**
+     * A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
+     * 
+     */
     @Import(name="relyingPartyEntityName")
     private @Nullable Output<String> relyingPartyEntityName;
 
+    /**
+     * @return A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
+     * 
+     */
     public Optional<Output<String>> relyingPartyEntityName() {
         return Optional.ofNullable(this.relyingPartyEntityName);
     }
 
+    /**
+     * The WebAuthn relying party ID.
+     * 
+     */
     @Import(name="relyingPartyId")
     private @Nullable Output<String> relyingPartyId;
 
+    /**
+     * @return The WebAuthn relying party ID.
+     * 
+     */
     public Optional<Output<String>> relyingPartyId() {
         return Optional.ofNullable(this.relyingPartyId);
     }
@@ -161,15 +201,33 @@ public final class RealmWebAuthnPasswordlessPolicyArgs extends com.pulumi.resour
             $ = new RealmWebAuthnPasswordlessPolicyArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param acceptableAaguids A set of AAGUIDs for which an authenticator can be registered.
+         * 
+         * @return builder
+         * 
+         */
         public Builder acceptableAaguids(@Nullable Output<List<String>> acceptableAaguids) {
             $.acceptableAaguids = acceptableAaguids;
             return this;
         }
 
+        /**
+         * @param acceptableAaguids A set of AAGUIDs for which an authenticator can be registered.
+         * 
+         * @return builder
+         * 
+         */
         public Builder acceptableAaguids(List<String> acceptableAaguids) {
             return acceptableAaguids(Output.of(acceptableAaguids));
         }
 
+        /**
+         * @param acceptableAaguids A set of AAGUIDs for which an authenticator can be registered.
+         * 
+         * @return builder
+         * 
+         */
         public Builder acceptableAaguids(String... acceptableAaguids) {
             return acceptableAaguids(List.of(acceptableAaguids));
         }
@@ -216,38 +274,86 @@ public final class RealmWebAuthnPasswordlessPolicyArgs extends com.pulumi.resour
             return authenticatorAttachment(Output.of(authenticatorAttachment));
         }
 
+        /**
+         * @param avoidSameAuthenticatorRegister When `true`, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder avoidSameAuthenticatorRegister(@Nullable Output<Boolean> avoidSameAuthenticatorRegister) {
             $.avoidSameAuthenticatorRegister = avoidSameAuthenticatorRegister;
             return this;
         }
 
+        /**
+         * @param avoidSameAuthenticatorRegister When `true`, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder avoidSameAuthenticatorRegister(Boolean avoidSameAuthenticatorRegister) {
             return avoidSameAuthenticatorRegister(Output.of(avoidSameAuthenticatorRegister));
         }
 
+        /**
+         * @param createTimeout The timeout value for creating a user&#39;s public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder createTimeout(@Nullable Output<Integer> createTimeout) {
             $.createTimeout = createTimeout;
             return this;
         }
 
+        /**
+         * @param createTimeout The timeout value for creating a user&#39;s public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder createTimeout(Integer createTimeout) {
             return createTimeout(Output.of(createTimeout));
         }
 
+        /**
+         * @param relyingPartyEntityName A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder relyingPartyEntityName(@Nullable Output<String> relyingPartyEntityName) {
             $.relyingPartyEntityName = relyingPartyEntityName;
             return this;
         }
 
+        /**
+         * @param relyingPartyEntityName A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder relyingPartyEntityName(String relyingPartyEntityName) {
             return relyingPartyEntityName(Output.of(relyingPartyEntityName));
         }
 
+        /**
+         * @param relyingPartyId The WebAuthn relying party ID.
+         * 
+         * @return builder
+         * 
+         */
         public Builder relyingPartyId(@Nullable Output<String> relyingPartyId) {
             $.relyingPartyId = relyingPartyId;
             return this;
         }
 
+        /**
+         * @param relyingPartyId The WebAuthn relying party ID.
+         * 
+         * @return builder
+         * 
+         */
         public Builder relyingPartyId(String relyingPartyId) {
             return relyingPartyId(Output.of(relyingPartyId));
         }

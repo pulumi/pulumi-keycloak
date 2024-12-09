@@ -24,6 +24,122 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * Allows for creating and managing Realms within Keycloak.
+ * 
+ * A realm manages a logical collection of users, credentials, roles, and groups. Users log in to realms and can be federated
+ * from multiple sources.
+ * 
+ * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.keycloak.Realm;
+ * import com.pulumi.keycloak.RealmArgs;
+ * import com.pulumi.keycloak.inputs.RealmSmtpServerArgs;
+ * import com.pulumi.keycloak.inputs.RealmSmtpServerAuthArgs;
+ * import com.pulumi.keycloak.inputs.RealmInternationalizationArgs;
+ * import com.pulumi.keycloak.inputs.RealmSecurityDefensesArgs;
+ * import com.pulumi.keycloak.inputs.RealmSecurityDefensesHeadersArgs;
+ * import com.pulumi.keycloak.inputs.RealmSecurityDefensesBruteForceDetectionArgs;
+ * import com.pulumi.keycloak.inputs.RealmWebAuthnPolicyArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App }{{@code
+ *     public static void main(String[] args) }{{@code
+ *         Pulumi.run(App::stack);
+ *     }}{@code
+ * 
+ *     public static void stack(Context ctx) }{{@code
+ *         var realm = new Realm("realm", RealmArgs.builder()
+ *             .realm("my-realm")
+ *             .enabled(true)
+ *             .displayName("my realm")
+ *             .displayNameHtml("<b>my realm</b>")
+ *             .loginTheme("base")
+ *             .accessCodeLifespan("1h")
+ *             .sslRequired("external")
+ *             .passwordPolicy("upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername")
+ *             .attributes(Map.of("mycustomAttribute", "myCustomValue"))
+ *             .smtpServer(RealmSmtpServerArgs.builder()
+ *                 .host("smtp.example.com")
+ *                 .from("example}{@literal @}{@code example.com")
+ *                 .auth(RealmSmtpServerAuthArgs.builder()
+ *                     .username("tom")
+ *                     .password("password")
+ *                     .build())
+ *                 .build())
+ *             .internationalization(RealmInternationalizationArgs.builder()
+ *                 .supportedLocales(                
+ *                     "en",
+ *                     "de",
+ *                     "es")
+ *                 .defaultLocale("en")
+ *                 .build())
+ *             .securityDefenses(RealmSecurityDefensesArgs.builder()
+ *                 .headers(RealmSecurityDefensesHeadersArgs.builder()
+ *                     .xFrameOptions("DENY")
+ *                     .contentSecurityPolicy("frame-src 'self'; frame-ancestors 'self'; object-src 'none';")
+ *                     .contentSecurityPolicyReportOnly("")
+ *                     .xContentTypeOptions("nosniff")
+ *                     .xRobotsTag("none")
+ *                     .xXssProtection("1; mode=block")
+ *                     .strictTransportSecurity("max-age=31536000; includeSubDomains")
+ *                     .build())
+ *                 .bruteForceDetection(RealmSecurityDefensesBruteForceDetectionArgs.builder()
+ *                     .permanentLockout(false)
+ *                     .maxLoginFailures(30)
+ *                     .waitIncrementSeconds(60)
+ *                     .quickLoginCheckMilliSeconds(1000)
+ *                     .minimumQuickLoginWaitSeconds(60)
+ *                     .maxFailureWaitSeconds(900)
+ *                     .failureResetTimeSeconds(43200)
+ *                     .build())
+ *                 .build())
+ *             .webAuthnPolicy(RealmWebAuthnPolicyArgs.builder()
+ *                 .relyingPartyEntityName("Example")
+ *                 .relyingPartyId("keycloak.example.com")
+ *                 .signatureAlgorithms(                
+ *                     "ES256",
+ *                     "RS256")
+ *                 .build())
+ *             .build());
+ * 
+ *     }}{@code
+ * }}{@code
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * ## Default Client Scopes
+ * 
+ * - `default_default_client_scopes` - (Optional) A list of default default client scopes to be used for client definitions. Defaults to `[]` or keycloak&#39;s built-in default default client-scopes.
+ * - `default_optional_client_scopes` - (Optional) A list of default optional client scopes to be used for client definitions. Defaults to `[]` or keycloak&#39;s built-in default optional client-scopes.
+ * 
+ * ## Import
+ * 
+ * Realms can be imported using their name.
+ * 
+ * Example:
+ * 
+ * bash
+ * 
+ * ```sh
+ * $ pulumi import keycloak:index/realm:Realm realm my-realm
+ * ```
+ * 
+ */
 @ResourceType(type="keycloak:index/realm:Realm")
 public class Realm extends com.pulumi.resources.CustomResource {
     @Export(name="accessCodeLifespan", refs={String.class}, tree="[0]")
@@ -80,9 +196,17 @@ public class Realm extends com.pulumi.resources.CustomResource {
     public Output<Optional<String>> adminTheme() {
         return Codegen.optional(this.adminTheme);
     }
+    /**
+     * A map of custom attributes to add to the realm.
+     * 
+     */
     @Export(name="attributes", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> attributes;
 
+    /**
+     * @return A map of custom attributes to add to the realm.
+     * 
+     */
     public Output<Optional<Map<String,String>>> attributes() {
         return Codegen.optional(this.attributes);
     }
@@ -158,15 +282,31 @@ public class Realm extends com.pulumi.resources.CustomResource {
     public Output<String> directGrantFlow() {
         return this.directGrantFlow;
     }
+    /**
+     * The display name for the realm that is shown when logging in to the admin console.
+     * 
+     */
     @Export(name="displayName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> displayName;
 
+    /**
+     * @return The display name for the realm that is shown when logging in to the admin console.
+     * 
+     */
     public Output<Optional<String>> displayName() {
         return Codegen.optional(this.displayName);
     }
+    /**
+     * The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.
+     * 
+     */
     @Export(name="displayNameHtml", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> displayNameHtml;
 
+    /**
+     * @return The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.
+     * 
+     */
     public Output<Optional<String>> displayNameHtml() {
         return Codegen.optional(this.displayNameHtml);
     }
@@ -202,15 +342,31 @@ public class Realm extends com.pulumi.resources.CustomResource {
     public Output<Optional<String>> emailTheme() {
         return Codegen.optional(this.emailTheme);
     }
+    /**
+     * When `false`, users and clients will not be able to access this realm. Defaults to `true`.
+     * 
+     */
     @Export(name="enabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> enabled;
 
+    /**
+     * @return When `false`, users and clients will not be able to access this realm. Defaults to `true`.
+     * 
+     */
     public Output<Optional<Boolean>> enabled() {
         return Codegen.optional(this.enabled);
     }
+    /**
+     * When specified, this will be used as the realm&#39;s internal ID within Keycloak. When not specified, the realm&#39;s internal ID will be set to the realm&#39;s name.
+     * 
+     */
     @Export(name="internalId", refs={String.class}, tree="[0]")
     private Output<String> internalId;
 
+    /**
+     * @return When specified, this will be used as the realm&#39;s internal ID within Keycloak. When not specified, the realm&#39;s internal ID will be set to the realm&#39;s name.
+     * 
+     */
     public Output<String> internalId() {
         return this.internalId;
     }
@@ -286,9 +442,17 @@ public class Realm extends com.pulumi.resources.CustomResource {
     public Output<Optional<String>> passwordPolicy() {
         return Codegen.optional(this.passwordPolicy);
     }
+    /**
+     * The name of the realm. This is unique across Keycloak. This will also be used as the realm&#39;s internal ID within Keycloak.
+     * 
+     */
     @Export(name="realm", refs={String.class}, tree="[0]")
     private Output<String> realm;
 
+    /**
+     * @return The name of the realm. This is unique across Keycloak. This will also be used as the realm&#39;s internal ID within Keycloak.
+     * 
+     */
     public Output<String> realm() {
         return this.realm;
     }
@@ -406,9 +570,17 @@ public class Realm extends com.pulumi.resources.CustomResource {
     public Output<String> ssoSessionMaxLifespanRememberMe() {
         return this.ssoSessionMaxLifespanRememberMe;
     }
+    /**
+     * When `true`, users are allowed to manage their own resources. Defaults to `false`.
+     * 
+     */
     @Export(name="userManagedAccess", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> userManagedAccess;
 
+    /**
+     * @return When `true`, users are allowed to manage their own resources. Defaults to `false`.
+     * 
+     */
     public Output<Optional<Boolean>> userManagedAccess() {
         return Codegen.optional(this.userManagedAccess);
     }

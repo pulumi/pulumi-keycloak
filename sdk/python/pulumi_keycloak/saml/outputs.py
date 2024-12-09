@@ -43,6 +43,10 @@ class ClientAuthenticationFlowBindingOverrides(dict):
     def __init__(__self__, *,
                  browser_id: Optional[str] = None,
                  direct_grant_id: Optional[str] = None):
+        """
+        :param str browser_id: Browser flow id, (flow needs to exist)
+        :param str direct_grant_id: Direct grant flow id (flow needs to exist)
+        """
         if browser_id is not None:
             pulumi.set(__self__, "browser_id", browser_id)
         if direct_grant_id is not None:
@@ -51,11 +55,17 @@ class ClientAuthenticationFlowBindingOverrides(dict):
     @property
     @pulumi.getter(name="browserId")
     def browser_id(self) -> Optional[str]:
+        """
+        Browser flow id, (flow needs to exist)
+        """
         return pulumi.get(self, "browser_id")
 
     @property
     @pulumi.getter(name="directGrantId")
     def direct_grant_id(self) -> Optional[str]:
+        """
+        Direct grant flow id (flow needs to exist)
+        """
         return pulumi.get(self, "direct_grant_id")
 
 

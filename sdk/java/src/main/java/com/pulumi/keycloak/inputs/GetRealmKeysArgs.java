@@ -17,23 +17,47 @@ public final class GetRealmKeysArgs extends com.pulumi.resources.InvokeArgs {
 
     public static final GetRealmKeysArgs Empty = new GetRealmKeysArgs();
 
+    /**
+     * When specified, keys will be filtered by algorithm. The algorithms can be any of `HS256`, `RS256`,`AES`, etc.
+     * 
+     */
     @Import(name="algorithms")
     private @Nullable Output<List<String>> algorithms;
 
+    /**
+     * @return When specified, keys will be filtered by algorithm. The algorithms can be any of `HS256`, `RS256`,`AES`, etc.
+     * 
+     */
     public Optional<Output<List<String>>> algorithms() {
         return Optional.ofNullable(this.algorithms);
     }
 
+    /**
+     * The realm from which the keys will be retrieved.
+     * 
+     */
     @Import(name="realmId", required=true)
     private Output<String> realmId;
 
+    /**
+     * @return The realm from which the keys will be retrieved.
+     * 
+     */
     public Output<String> realmId() {
         return this.realmId;
     }
 
+    /**
+     * When specified, keys will be filtered by status. The statuses can be any of `ACTIVE`, `DISABLED` and `PASSIVE`.
+     * 
+     */
     @Import(name="statuses")
     private @Nullable Output<List<String>> statuses;
 
+    /**
+     * @return When specified, keys will be filtered by status. The statuses can be any of `ACTIVE`, `DISABLED` and `PASSIVE`.
+     * 
+     */
     public Optional<Output<List<String>>> statuses() {
         return Optional.ofNullable(this.statuses);
     }
@@ -64,37 +88,85 @@ public final class GetRealmKeysArgs extends com.pulumi.resources.InvokeArgs {
             $ = new GetRealmKeysArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param algorithms When specified, keys will be filtered by algorithm. The algorithms can be any of `HS256`, `RS256`,`AES`, etc.
+         * 
+         * @return builder
+         * 
+         */
         public Builder algorithms(@Nullable Output<List<String>> algorithms) {
             $.algorithms = algorithms;
             return this;
         }
 
+        /**
+         * @param algorithms When specified, keys will be filtered by algorithm. The algorithms can be any of `HS256`, `RS256`,`AES`, etc.
+         * 
+         * @return builder
+         * 
+         */
         public Builder algorithms(List<String> algorithms) {
             return algorithms(Output.of(algorithms));
         }
 
+        /**
+         * @param algorithms When specified, keys will be filtered by algorithm. The algorithms can be any of `HS256`, `RS256`,`AES`, etc.
+         * 
+         * @return builder
+         * 
+         */
         public Builder algorithms(String... algorithms) {
             return algorithms(List.of(algorithms));
         }
 
+        /**
+         * @param realmId The realm from which the keys will be retrieved.
+         * 
+         * @return builder
+         * 
+         */
         public Builder realmId(Output<String> realmId) {
             $.realmId = realmId;
             return this;
         }
 
+        /**
+         * @param realmId The realm from which the keys will be retrieved.
+         * 
+         * @return builder
+         * 
+         */
         public Builder realmId(String realmId) {
             return realmId(Output.of(realmId));
         }
 
+        /**
+         * @param statuses When specified, keys will be filtered by status. The statuses can be any of `ACTIVE`, `DISABLED` and `PASSIVE`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder statuses(@Nullable Output<List<String>> statuses) {
             $.statuses = statuses;
             return this;
         }
 
+        /**
+         * @param statuses When specified, keys will be filtered by status. The statuses can be any of `ACTIVE`, `DISABLED` and `PASSIVE`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder statuses(List<String> statuses) {
             return statuses(Output.of(statuses));
         }
 
+        /**
+         * @param statuses When specified, keys will be filtered by status. The statuses can be any of `ACTIVE`, `DISABLED` and `PASSIVE`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder statuses(String... statuses) {
             return statuses(List.of(statuses));
         }

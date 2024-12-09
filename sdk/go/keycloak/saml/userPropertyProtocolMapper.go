@@ -12,17 +12,15 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # saml.UserPropertyProtocolMapper
-//
-// Allows for creating and managing user property protocol mappers for
-// SAML clients within Keycloak.
+// Allows for creating and managing user property protocol mappers for SAML clients within Keycloak.
 //
 // SAML user property protocol mappers allow you to map properties of the Keycloak
-// user model to an attribute in a SAML assertion. Protocol mappers
-// can be defined for a single client, or they can be defined for a client scope which
-// can be shared between multiple different clients.
+// user model to an attribute in a SAML assertion.
 //
-// ### Example Usage (Client)
+// Protocol mappers can be defined for a single client, or they can be defined for a client scope which can be shared between
+// multiple different clients.
+//
+// ## Example Usage
 //
 // ```go
 // package main
@@ -37,7 +35,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
 //				Realm:   pulumi.String("my-realm"),
 //				Enabled: pulumi.Bool(true),
 //			})
@@ -45,15 +43,15 @@ import (
 //				return err
 //			}
 //			samlClient, err := saml.NewClient(ctx, "saml_client", &saml.ClientArgs{
-//				RealmId:  pulumi.Any(test.Id),
-//				ClientId: pulumi.String("test-saml-client"),
-//				Name:     pulumi.String("test-saml-client"),
+//				RealmId:  realm.ID(),
+//				ClientId: pulumi.String("saml-client"),
+//				Name:     pulumi.String("saml-client"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = saml.NewUserPropertyProtocolMapper(ctx, "saml_user_property_mapper", &saml.UserPropertyProtocolMapperArgs{
-//				RealmId:                 pulumi.Any(test.Id),
+//				RealmId:                 realm.ID(),
 //				ClientId:                samlClient.ID(),
 //				Name:                    pulumi.String("email-user-property-mapper"),
 //				UserProperty:            pulumi.String("email"),
@@ -69,37 +67,44 @@ import (
 //
 // ```
 //
-// ### Argument Reference
-//
-// The following arguments are supported:
-//
-// - `realmId` - (Required) The realm this protocol mapper exists within.
-// - `clientId` - (Required if `clientScopeId` is not specified) The SAML client this protocol mapper is attached to.
-// - `clientScopeId` - (Required if `clientId` is not specified) The SAML client scope this protocol mapper is attached to.
-// - `name` - (Required) The display name of this protocol mapper in the GUI.
-// - `userProperty` - (Required) The property of the Keycloak user model to map.
-// - `friendlyName` - (Optional) An optional human-friendly name for this attribute.
-// - `samlAttributeName` - (Required) The name of the SAML attribute.
-// - `samlAttributeNameFormat` - (Required) The SAML attribute Name Format. Can be one of `Unspecified`, `Basic`, or `URI Reference`.
-//
-// ### Import
+// ## Import
 //
 // Protocol mappers can be imported using one of the following formats:
+//
 // - Client: `{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}`
+//
 // - Client Scope: `{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}`
 //
 // Example:
+//
+// bash
+//
+// ```sh
+// $ pulumi import keycloak:saml/userPropertyProtocolMapper:UserPropertyProtocolMapper saml_user_property_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+// ```
+//
+// ```sh
+// $ pulumi import keycloak:saml/userPropertyProtocolMapper:UserPropertyProtocolMapper saml_user_property_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+// ```
 type UserPropertyProtocolMapper struct {
 	pulumi.CustomResourceState
 
-	ClientId                pulumi.StringPtrOutput `pulumi:"clientId"`
-	ClientScopeId           pulumi.StringPtrOutput `pulumi:"clientScopeId"`
-	FriendlyName            pulumi.StringPtrOutput `pulumi:"friendlyName"`
-	Name                    pulumi.StringOutput    `pulumi:"name"`
-	RealmId                 pulumi.StringOutput    `pulumi:"realmId"`
-	SamlAttributeName       pulumi.StringOutput    `pulumi:"samlAttributeName"`
-	SamlAttributeNameFormat pulumi.StringOutput    `pulumi:"samlAttributeNameFormat"`
-	UserProperty            pulumi.StringOutput    `pulumi:"userProperty"`
+	// The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
+	ClientId pulumi.StringPtrOutput `pulumi:"clientId"`
+	// The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
+	ClientScopeId pulumi.StringPtrOutput `pulumi:"clientScopeId"`
+	// An optional human-friendly name for this attribute.
+	FriendlyName pulumi.StringPtrOutput `pulumi:"friendlyName"`
+	// The display name of this protocol mapper in the GUI.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// The realm this protocol mapper exists within.
+	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// The name of the SAML attribute.
+	SamlAttributeName pulumi.StringOutput `pulumi:"samlAttributeName"`
+	// The SAML attribute Name Format. Can be one of `Unspecified`, `Basic`, or `URI Reference`.
+	SamlAttributeNameFormat pulumi.StringOutput `pulumi:"samlAttributeNameFormat"`
+	// The property of the Keycloak user model to map.
+	UserProperty pulumi.StringOutput `pulumi:"userProperty"`
 }
 
 // NewUserPropertyProtocolMapper registers a new resource with the given unique name, arguments, and options.
@@ -144,25 +149,41 @@ func GetUserPropertyProtocolMapper(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering UserPropertyProtocolMapper resources.
 type userPropertyProtocolMapperState struct {
-	ClientId                *string `pulumi:"clientId"`
-	ClientScopeId           *string `pulumi:"clientScopeId"`
-	FriendlyName            *string `pulumi:"friendlyName"`
-	Name                    *string `pulumi:"name"`
-	RealmId                 *string `pulumi:"realmId"`
-	SamlAttributeName       *string `pulumi:"samlAttributeName"`
+	// The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
+	ClientId *string `pulumi:"clientId"`
+	// The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
+	ClientScopeId *string `pulumi:"clientScopeId"`
+	// An optional human-friendly name for this attribute.
+	FriendlyName *string `pulumi:"friendlyName"`
+	// The display name of this protocol mapper in the GUI.
+	Name *string `pulumi:"name"`
+	// The realm this protocol mapper exists within.
+	RealmId *string `pulumi:"realmId"`
+	// The name of the SAML attribute.
+	SamlAttributeName *string `pulumi:"samlAttributeName"`
+	// The SAML attribute Name Format. Can be one of `Unspecified`, `Basic`, or `URI Reference`.
 	SamlAttributeNameFormat *string `pulumi:"samlAttributeNameFormat"`
-	UserProperty            *string `pulumi:"userProperty"`
+	// The property of the Keycloak user model to map.
+	UserProperty *string `pulumi:"userProperty"`
 }
 
 type UserPropertyProtocolMapperState struct {
-	ClientId                pulumi.StringPtrInput
-	ClientScopeId           pulumi.StringPtrInput
-	FriendlyName            pulumi.StringPtrInput
-	Name                    pulumi.StringPtrInput
-	RealmId                 pulumi.StringPtrInput
-	SamlAttributeName       pulumi.StringPtrInput
+	// The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
+	ClientId pulumi.StringPtrInput
+	// The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
+	ClientScopeId pulumi.StringPtrInput
+	// An optional human-friendly name for this attribute.
+	FriendlyName pulumi.StringPtrInput
+	// The display name of this protocol mapper in the GUI.
+	Name pulumi.StringPtrInput
+	// The realm this protocol mapper exists within.
+	RealmId pulumi.StringPtrInput
+	// The name of the SAML attribute.
+	SamlAttributeName pulumi.StringPtrInput
+	// The SAML attribute Name Format. Can be one of `Unspecified`, `Basic`, or `URI Reference`.
 	SamlAttributeNameFormat pulumi.StringPtrInput
-	UserProperty            pulumi.StringPtrInput
+	// The property of the Keycloak user model to map.
+	UserProperty pulumi.StringPtrInput
 }
 
 func (UserPropertyProtocolMapperState) ElementType() reflect.Type {
@@ -170,26 +191,42 @@ func (UserPropertyProtocolMapperState) ElementType() reflect.Type {
 }
 
 type userPropertyProtocolMapperArgs struct {
-	ClientId                *string `pulumi:"clientId"`
-	ClientScopeId           *string `pulumi:"clientScopeId"`
-	FriendlyName            *string `pulumi:"friendlyName"`
-	Name                    *string `pulumi:"name"`
-	RealmId                 string  `pulumi:"realmId"`
-	SamlAttributeName       string  `pulumi:"samlAttributeName"`
-	SamlAttributeNameFormat string  `pulumi:"samlAttributeNameFormat"`
-	UserProperty            string  `pulumi:"userProperty"`
+	// The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
+	ClientId *string `pulumi:"clientId"`
+	// The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
+	ClientScopeId *string `pulumi:"clientScopeId"`
+	// An optional human-friendly name for this attribute.
+	FriendlyName *string `pulumi:"friendlyName"`
+	// The display name of this protocol mapper in the GUI.
+	Name *string `pulumi:"name"`
+	// The realm this protocol mapper exists within.
+	RealmId string `pulumi:"realmId"`
+	// The name of the SAML attribute.
+	SamlAttributeName string `pulumi:"samlAttributeName"`
+	// The SAML attribute Name Format. Can be one of `Unspecified`, `Basic`, or `URI Reference`.
+	SamlAttributeNameFormat string `pulumi:"samlAttributeNameFormat"`
+	// The property of the Keycloak user model to map.
+	UserProperty string `pulumi:"userProperty"`
 }
 
 // The set of arguments for constructing a UserPropertyProtocolMapper resource.
 type UserPropertyProtocolMapperArgs struct {
-	ClientId                pulumi.StringPtrInput
-	ClientScopeId           pulumi.StringPtrInput
-	FriendlyName            pulumi.StringPtrInput
-	Name                    pulumi.StringPtrInput
-	RealmId                 pulumi.StringInput
-	SamlAttributeName       pulumi.StringInput
+	// The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
+	ClientId pulumi.StringPtrInput
+	// The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
+	ClientScopeId pulumi.StringPtrInput
+	// An optional human-friendly name for this attribute.
+	FriendlyName pulumi.StringPtrInput
+	// The display name of this protocol mapper in the GUI.
+	Name pulumi.StringPtrInput
+	// The realm this protocol mapper exists within.
+	RealmId pulumi.StringInput
+	// The name of the SAML attribute.
+	SamlAttributeName pulumi.StringInput
+	// The SAML attribute Name Format. Can be one of `Unspecified`, `Basic`, or `URI Reference`.
 	SamlAttributeNameFormat pulumi.StringInput
-	UserProperty            pulumi.StringInput
+	// The property of the Keycloak user model to map.
+	UserProperty pulumi.StringInput
 }
 
 func (UserPropertyProtocolMapperArgs) ElementType() reflect.Type {
@@ -279,34 +316,42 @@ func (o UserPropertyProtocolMapperOutput) ToUserPropertyProtocolMapperOutputWith
 	return o
 }
 
+// The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
 func (o UserPropertyProtocolMapperOutput) ClientId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *UserPropertyProtocolMapper) pulumi.StringPtrOutput { return v.ClientId }).(pulumi.StringPtrOutput)
 }
 
+// The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
 func (o UserPropertyProtocolMapperOutput) ClientScopeId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *UserPropertyProtocolMapper) pulumi.StringPtrOutput { return v.ClientScopeId }).(pulumi.StringPtrOutput)
 }
 
+// An optional human-friendly name for this attribute.
 func (o UserPropertyProtocolMapperOutput) FriendlyName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *UserPropertyProtocolMapper) pulumi.StringPtrOutput { return v.FriendlyName }).(pulumi.StringPtrOutput)
 }
 
+// The display name of this protocol mapper in the GUI.
 func (o UserPropertyProtocolMapperOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *UserPropertyProtocolMapper) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// The realm this protocol mapper exists within.
 func (o UserPropertyProtocolMapperOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *UserPropertyProtocolMapper) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
 }
 
+// The name of the SAML attribute.
 func (o UserPropertyProtocolMapperOutput) SamlAttributeName() pulumi.StringOutput {
 	return o.ApplyT(func(v *UserPropertyProtocolMapper) pulumi.StringOutput { return v.SamlAttributeName }).(pulumi.StringOutput)
 }
 
+// The SAML attribute Name Format. Can be one of `Unspecified`, `Basic`, or `URI Reference`.
 func (o UserPropertyProtocolMapperOutput) SamlAttributeNameFormat() pulumi.StringOutput {
 	return o.ApplyT(func(v *UserPropertyProtocolMapper) pulumi.StringOutput { return v.SamlAttributeNameFormat }).(pulumi.StringOutput)
 }
 
+// The property of the Keycloak user model to map.
 func (o UserPropertyProtocolMapperOutput) UserProperty() pulumi.StringOutput {
 	return o.ApplyT(func(v *UserPropertyProtocolMapper) pulumi.StringOutput { return v.UserProperty }).(pulumi.StringOutput)
 }

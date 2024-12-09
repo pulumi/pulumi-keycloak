@@ -13,7 +13,7 @@ namespace Pulumi.Keycloak.Ldap.Inputs
     public sealed class UserFederationKerberosGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The name of the kerberos realm, e.g. FOO.LOCAL
+        /// The name of the kerberos realm, e.g. FOO.LOCAL.
         /// </summary>
         [Input("kerberosRealm", required: true)]
         public Input<string> KerberosRealm { get; set; } = null!;

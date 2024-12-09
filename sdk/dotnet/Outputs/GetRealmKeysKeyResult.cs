@@ -13,13 +13,37 @@ namespace Pulumi.Keycloak.Outputs
     [OutputType]
     public sealed class GetRealmKeysKeyResult
     {
+        /// <summary>
+        /// Key algorithm (string)
+        /// </summary>
         public readonly string Algorithm;
+        /// <summary>
+        /// Key certificate (string)
+        /// </summary>
         public readonly string Certificate;
+        /// <summary>
+        /// Key ID (string)
+        /// </summary>
         public readonly string Kid;
+        /// <summary>
+        /// Key provider ID (string)
+        /// </summary>
         public readonly string ProviderId;
+        /// <summary>
+        /// Key provider priority (int64)
+        /// </summary>
         public readonly int ProviderPriority;
+        /// <summary>
+        /// Key public key (string)
+        /// </summary>
         public readonly string PublicKey;
+        /// <summary>
+        /// When specified, keys will be filtered by status. The statuses can be any of `ACTIVE`, `DISABLED` and `PASSIVE`.
+        /// </summary>
         public readonly string Status;
+        /// <summary>
+        /// Key type (string)
+        /// </summary>
         public readonly string Type;
 
         [OutputConstructor]

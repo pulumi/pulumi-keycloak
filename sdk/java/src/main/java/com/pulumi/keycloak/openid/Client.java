@@ -20,15 +20,13 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # keycloak.openid.Client
- * 
  * Allows for creating and managing Keycloak clients that use the OpenID Connect protocol.
  * 
  * Clients are entities that can use Keycloak for user authentication. Typically,
  * clients are applications that redirect users to Keycloak for authentication
  * in order to take advantage of Keycloak&#39;s user sessions for SSO.
  * 
- * ### Example Usage
+ * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>
@@ -67,6 +65,11 @@ import javax.annotation.Nullable;
  *             .enabled(true)
  *             .accessType("CONFIDENTIAL")
  *             .validRedirectUris("http://localhost:8080/openid-callback")
+ *             .loginTheme("keycloak")
+ *             .extraConfig(Map.ofEntries(
+ *                 Map.entry("key1", "value1"),
+ *                 Map.entry("key2", "value2")
+ *             ))
  *             .build());
  * 
  *     }
@@ -75,187 +78,360 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * ### Argument Reference
- * 
- * The following arguments are supported:
- * 
- * - `realm_id` - (Required) The realm this client is attached to.
- * - `client_id` - (Required) The unique ID of this client, referenced in the URI during authentication and in issued tokens.
- * - `name` - (Optional) The display name of this client in the GUI.
- * - `enabled` - (Optional) When false, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
- * - `description` - (Optional) The description of this client in the GUI.
- * - `access_type` - (Required) Specifies the type of client, which can be one of the following:
- *     - `CONFIDENTIAL` - Used for server-side clients that require both client ID and secret when authenticating.
- *       This client should be used for applications using the Authorization Code or Client Credentials grant flows.
- *     - `PUBLIC` - Used for browser-only applications that do not require a client secret, and instead rely only on authorized redirect
- *       URIs for security. This client should be used for applications using the Implicit grant flow.
- *     - `BEARER-ONLY` - Used for services that never initiate a login. This client will only allow bearer token requests.
- * - `client_secret` - (Optional) The secret for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. This value is sensitive and
- *   should be treated with the same care as a password. If omitted, Keycloak will generate a GUID for this attribute.
- * - `standard_flow_enabled` - (Optional) When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
- * - `implicit_flow_enabled` - (Optional) When `true`, the OAuth2 Implicit Grant will be enabled for this client. Defaults to `false`.
- * - `direct_access_grants_enabled` - (Optional) When `true`, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to `false`.
- * - `service_accounts_enabled` - (Optional) When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
- * - `valid_redirect_uris` - (Optional) A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
- *   wildcards in the form of an asterisk can be used here. This attribute must be set if either `standard_flow_enabled` or `implicit_flow_enabled`
- *   is set to `true`.
- * - `web_origins` - (Optional) A list of allowed CORS origins. `+` can be used to permit all valid redirect URIs, and `*` can be used to permit all origins.
- * - `admin_url` - (Optional) URL to the admin interface of the client.
- * - `base_url` - (Optional) Default URL to use when the auth server needs to redirect or link back to the client.
- * - `pkce_code_challenge_method` - (Optional) The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
- * - `full_scope_allowed` - (Optional) - Allow to include all roles mappings in the access token.
- * 
- * ### Attributes Reference
- * 
- * In addition to the arguments listed above, the following computed attributes are exported:
- * 
- * - `service_account_user_id` - When service accounts are enabled for this client, this attribute is the unique ID for the Keycloak user that represents this service account.
- * 
- * ### Import
+ * ## Import
  * 
  * Clients can be imported using the format `{{realm_id}}/{{client_keycloak_id}}`, where `client_keycloak_id` is the unique ID that Keycloak
+ * 
  * assigns to the client upon creation. This value can be found in the URI when editing this client in the GUI, and is typically a GUID.
  * 
  * Example:
  * 
+ * bash
+ * 
+ * ```sh
+ * $ pulumi import keycloak:openid/client:Client openid_client my-realm/dcbc4c73-e478-4928-ae2e-d5e420223352
+ * ```
+ * 
  */
 @ResourceType(type="keycloak:openid/client:Client")
 public class Client extends com.pulumi.resources.CustomResource {
+    /**
+     * The amount of time in seconds before an access token expires. This will override the default for the realm.
+     * 
+     */
     @Export(name="accessTokenLifespan", refs={String.class}, tree="[0]")
     private Output<String> accessTokenLifespan;
 
+    /**
+     * @return The amount of time in seconds before an access token expires. This will override the default for the realm.
+     * 
+     */
     public Output<String> accessTokenLifespan() {
         return this.accessTokenLifespan;
     }
+    /**
+     * Specifies the type of client, which can be one of the following:
+     * - `CONFIDENTIAL` - Used for server-side clients that require both client ID and secret when authenticating.
+     *   This client should be used for applications using the Authorization Code or Client Credentials grant flows.
+     * - `PUBLIC` - Used for browser-only applications that do not require a client secret, and instead rely only on authorized redirect
+     *   URIs for security. This client should be used for applications using the Implicit grant flow.
+     * - `BEARER-ONLY` - Used for services that never initiate a login. This client will only allow bearer token requests.
+     * 
+     */
     @Export(name="accessType", refs={String.class}, tree="[0]")
     private Output<String> accessType;
 
+    /**
+     * @return Specifies the type of client, which can be one of the following:
+     * - `CONFIDENTIAL` - Used for server-side clients that require both client ID and secret when authenticating.
+     *   This client should be used for applications using the Authorization Code or Client Credentials grant flows.
+     * - `PUBLIC` - Used for browser-only applications that do not require a client secret, and instead rely only on authorized redirect
+     *   URIs for security. This client should be used for applications using the Implicit grant flow.
+     * - `BEARER-ONLY` - Used for services that never initiate a login. This client will only allow bearer token requests.
+     * 
+     */
     public Output<String> accessType() {
         return this.accessType;
     }
+    /**
+     * URL to the admin interface of the client.
+     * 
+     */
     @Export(name="adminUrl", refs={String.class}, tree="[0]")
     private Output<String> adminUrl;
 
+    /**
+     * @return URL to the admin interface of the client.
+     * 
+     */
     public Output<String> adminUrl() {
         return this.adminUrl;
     }
+    /**
+     * Override realm authentication flow bindings
+     * 
+     */
     @Export(name="authenticationFlowBindingOverrides", refs={ClientAuthenticationFlowBindingOverrides.class}, tree="[0]")
     private Output</* @Nullable */ ClientAuthenticationFlowBindingOverrides> authenticationFlowBindingOverrides;
 
+    /**
+     * @return Override realm authentication flow bindings
+     * 
+     */
     public Output<Optional<ClientAuthenticationFlowBindingOverrides>> authenticationFlowBindingOverrides() {
         return Codegen.optional(this.authenticationFlowBindingOverrides);
     }
+    /**
+     * When this block is present, fine-grained authorization will be enabled for this client. The client&#39;s `access_type` must be `CONFIDENTIAL`, and `service_accounts_enabled` must be `true`. This block has the following arguments:
+     * 
+     */
     @Export(name="authorization", refs={ClientAuthorization.class}, tree="[0]")
     private Output</* @Nullable */ ClientAuthorization> authorization;
 
+    /**
+     * @return When this block is present, fine-grained authorization will be enabled for this client. The client&#39;s `access_type` must be `CONFIDENTIAL`, and `service_accounts_enabled` must be `true`. This block has the following arguments:
+     * 
+     */
     public Output<Optional<ClientAuthorization>> authorization() {
         return Codegen.optional(this.authorization);
     }
+    /**
+     * Specifying whether a &#34;revoke_offline_access&#34; event is included in the Logout Token when the Backchannel Logout URL is used. Keycloak will revoke offline sessions when receiving a Logout Token with this event.
+     * 
+     */
     @Export(name="backchannelLogoutRevokeOfflineSessions", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> backchannelLogoutRevokeOfflineSessions;
 
+    /**
+     * @return Specifying whether a &#34;revoke_offline_access&#34; event is included in the Logout Token when the Backchannel Logout URL is used. Keycloak will revoke offline sessions when receiving a Logout Token with this event.
+     * 
+     */
     public Output<Optional<Boolean>> backchannelLogoutRevokeOfflineSessions() {
         return Codegen.optional(this.backchannelLogoutRevokeOfflineSessions);
     }
+    /**
+     * When `true`, a sid (session ID) claim will be included in the logout token when the backchannel logout URL is used. Defaults to `true`.
+     * 
+     */
     @Export(name="backchannelLogoutSessionRequired", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> backchannelLogoutSessionRequired;
 
+    /**
+     * @return When `true`, a sid (session ID) claim will be included in the logout token when the backchannel logout URL is used. Defaults to `true`.
+     * 
+     */
     public Output<Optional<Boolean>> backchannelLogoutSessionRequired() {
         return Codegen.optional(this.backchannelLogoutSessionRequired);
     }
+    /**
+     * The URL that will cause the client to log itself out when a logout request is sent to this realm. If omitted, no logout request will be sent to the client is this case.
+     * 
+     */
     @Export(name="backchannelLogoutUrl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> backchannelLogoutUrl;
 
+    /**
+     * @return The URL that will cause the client to log itself out when a logout request is sent to this realm. If omitted, no logout request will be sent to the client is this case.
+     * 
+     */
     public Output<Optional<String>> backchannelLogoutUrl() {
         return Codegen.optional(this.backchannelLogoutUrl);
     }
+    /**
+     * Default URL to use when the auth server needs to redirect or link back to the client.
+     * 
+     */
     @Export(name="baseUrl", refs={String.class}, tree="[0]")
     private Output<String> baseUrl;
 
+    /**
+     * @return Default URL to use when the auth server needs to redirect or link back to the client.
+     * 
+     */
     public Output<String> baseUrl() {
         return this.baseUrl;
     }
+    /**
+     * Defaults to `client-secret`. The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. A default Keycloak installation will have the following available types:
+     * - `client-secret` (Default) Use client id and client secret to authenticate client.
+     * - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
+     * - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extra_config` with `attributes.x509.subjectdn = &lt;subjectDn&gt;`
+     * - `client-secret-jwt` Use signed JWT with client secret to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
+     * 
+     */
     @Export(name="clientAuthenticatorType", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientAuthenticatorType;
 
+    /**
+     * @return Defaults to `client-secret`. The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. A default Keycloak installation will have the following available types:
+     * - `client-secret` (Default) Use client id and client secret to authenticate client.
+     * - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
+     * - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extra_config` with `attributes.x509.subjectdn = &lt;subjectDn&gt;`
+     * - `client-secret-jwt` Use signed JWT with client secret to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
+     * 
+     */
     public Output<Optional<String>> clientAuthenticatorType() {
         return Codegen.optional(this.clientAuthenticatorType);
     }
+    /**
+     * The Client ID for this client, referenced in the URI during authentication and in issued tokens.
+     * 
+     */
     @Export(name="clientId", refs={String.class}, tree="[0]")
     private Output<String> clientId;
 
+    /**
+     * @return The Client ID for this client, referenced in the URI during authentication and in issued tokens.
+     * 
+     */
     public Output<String> clientId() {
         return this.clientId;
     }
+    /**
+     * Time a client session is allowed to be idle before it expires. Tokens are invalidated when a client session is expired. If not set it uses the standard SSO Session Idle value.
+     * 
+     */
     @Export(name="clientOfflineSessionIdleTimeout", refs={String.class}, tree="[0]")
     private Output<String> clientOfflineSessionIdleTimeout;
 
+    /**
+     * @return Time a client session is allowed to be idle before it expires. Tokens are invalidated when a client session is expired. If not set it uses the standard SSO Session Idle value.
+     * 
+     */
     public Output<String> clientOfflineSessionIdleTimeout() {
         return this.clientOfflineSessionIdleTimeout;
     }
+    /**
+     * Max time before a client session is expired. Tokens are invalidated when a client session is expired. If not set, it uses the standard SSO Session Max value.
+     * 
+     */
     @Export(name="clientOfflineSessionMaxLifespan", refs={String.class}, tree="[0]")
     private Output<String> clientOfflineSessionMaxLifespan;
 
+    /**
+     * @return Max time before a client session is expired. Tokens are invalidated when a client session is expired. If not set, it uses the standard SSO Session Max value.
+     * 
+     */
     public Output<String> clientOfflineSessionMaxLifespan() {
         return this.clientOfflineSessionMaxLifespan;
     }
+    /**
+     * The secret for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. This value is sensitive and should be treated with the same care as a password. If omitted, this will be generated by Keycloak.
+     * 
+     */
     @Export(name="clientSecret", refs={String.class}, tree="[0]")
     private Output<String> clientSecret;
 
+    /**
+     * @return The secret for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. This value is sensitive and should be treated with the same care as a password. If omitted, this will be generated by Keycloak.
+     * 
+     */
     public Output<String> clientSecret() {
         return this.clientSecret;
     }
+    /**
+     * Time a client offline session is allowed to be idle before it expires. Offline tokens are invalidated when a client offline session is expired. If not set it uses the Offline Session Idle value.
+     * 
+     */
     @Export(name="clientSessionIdleTimeout", refs={String.class}, tree="[0]")
     private Output<String> clientSessionIdleTimeout;
 
+    /**
+     * @return Time a client offline session is allowed to be idle before it expires. Offline tokens are invalidated when a client offline session is expired. If not set it uses the Offline Session Idle value.
+     * 
+     */
     public Output<String> clientSessionIdleTimeout() {
         return this.clientSessionIdleTimeout;
     }
+    /**
+     * Max time before a client offline session is expired. Offline tokens are invalidated when a client offline session is expired. If not set, it uses the Offline Session Max value.
+     * 
+     */
     @Export(name="clientSessionMaxLifespan", refs={String.class}, tree="[0]")
     private Output<String> clientSessionMaxLifespan;
 
+    /**
+     * @return Max time before a client offline session is expired. Offline tokens are invalidated when a client offline session is expired. If not set, it uses the Offline Session Max value.
+     * 
+     */
     public Output<String> clientSessionMaxLifespan() {
         return this.clientSessionMaxLifespan;
     }
+    /**
+     * When `true`, users have to consent to client access. Defaults to `false`.
+     * 
+     */
     @Export(name="consentRequired", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> consentRequired;
 
+    /**
+     * @return When `true`, users have to consent to client access. Defaults to `false`.
+     * 
+     */
     public Output<Boolean> consentRequired() {
         return this.consentRequired;
     }
+    /**
+     * The text to display on the consent screen about permissions specific to this client. This is applicable only when `display_on_consent_screen` is `true`.
+     * 
+     */
     @Export(name="consentScreenText", refs={String.class}, tree="[0]")
     private Output<String> consentScreenText;
 
+    /**
+     * @return The text to display on the consent screen about permissions specific to this client. This is applicable only when `display_on_consent_screen` is `true`.
+     * 
+     */
     public Output<String> consentScreenText() {
         return this.consentScreenText;
     }
+    /**
+     * The description of this client in the GUI.
+     * 
+     */
     @Export(name="description", refs={String.class}, tree="[0]")
     private Output<String> description;
 
+    /**
+     * @return The description of this client in the GUI.
+     * 
+     */
     public Output<String> description() {
         return this.description;
     }
+    /**
+     * When `true`, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to `false`.
+     * 
+     */
     @Export(name="directAccessGrantsEnabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> directAccessGrantsEnabled;
 
+    /**
+     * @return When `true`, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to `false`.
+     * 
+     */
     public Output<Boolean> directAccessGrantsEnabled() {
         return this.directAccessGrantsEnabled;
     }
+    /**
+     * When `true`, the consent screen will display information about the client itself. Defaults to `false`. This is applicable only when `consent_required` is `true`.
+     * 
+     */
     @Export(name="displayOnConsentScreen", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> displayOnConsentScreen;
 
+    /**
+     * @return When `true`, the consent screen will display information about the client itself. Defaults to `false`. This is applicable only when `consent_required` is `true`.
+     * 
+     */
     public Output<Boolean> displayOnConsentScreen() {
         return this.displayOnConsentScreen;
     }
+    /**
+     * When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
+     * 
+     */
     @Export(name="enabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> enabled;
 
+    /**
+     * @return When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
+     * 
+     */
     public Output<Optional<Boolean>> enabled() {
         return Codegen.optional(this.enabled);
     }
+    /**
+     * When `true`, the parameter `session_state` will not be included in OpenID Connect Authentication Response.
+     * 
+     */
     @Export(name="excludeSessionStateFromAuthResponse", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> excludeSessionStateFromAuthResponse;
 
+    /**
+     * @return When `true`, the parameter `session_state` will not be included in OpenID Connect Authentication Response.
+     * 
+     */
     public Output<Boolean> excludeSessionStateFromAuthResponse() {
         return this.excludeSessionStateFromAuthResponse;
     }
@@ -265,135 +441,315 @@ public class Client extends com.pulumi.resources.CustomResource {
     public Output<Optional<Map<String,String>>> extraConfig() {
         return Codegen.optional(this.extraConfig);
     }
+    /**
+     * When `true`, frontchannel logout will be enabled for this client. Specify the url with `frontchannel_logout_url`. Defaults to `false`.
+     * 
+     */
     @Export(name="frontchannelLogoutEnabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> frontchannelLogoutEnabled;
 
+    /**
+     * @return When `true`, frontchannel logout will be enabled for this client. Specify the url with `frontchannel_logout_url`. Defaults to `false`.
+     * 
+     */
     public Output<Boolean> frontchannelLogoutEnabled() {
         return this.frontchannelLogoutEnabled;
     }
+    /**
+     * The frontchannel logout url. This is applicable only when `frontchannel_logout_enabled` is `true`.
+     * 
+     */
     @Export(name="frontchannelLogoutUrl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> frontchannelLogoutUrl;
 
+    /**
+     * @return The frontchannel logout url. This is applicable only when `frontchannel_logout_enabled` is `true`.
+     * 
+     */
     public Output<Optional<String>> frontchannelLogoutUrl() {
         return Codegen.optional(this.frontchannelLogoutUrl);
     }
+    /**
+     * Allow to include all roles mappings in the access token.
+     * 
+     */
     @Export(name="fullScopeAllowed", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> fullScopeAllowed;
 
+    /**
+     * @return Allow to include all roles mappings in the access token.
+     * 
+     */
     public Output<Optional<Boolean>> fullScopeAllowed() {
         return Codegen.optional(this.fullScopeAllowed);
     }
+    /**
+     * When `true`, the OAuth2 Implicit Grant will be enabled for this client. Defaults to `false`.
+     * 
+     */
     @Export(name="implicitFlowEnabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> implicitFlowEnabled;
 
+    /**
+     * @return When `true`, the OAuth2 Implicit Grant will be enabled for this client. Defaults to `false`.
+     * 
+     */
     public Output<Boolean> implicitFlowEnabled() {
         return this.implicitFlowEnabled;
     }
+    /**
+     * When `true`, the client with the specified `client_id` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with clients that Keycloak creates automatically during realm creation, such as `account` and `admin-cli`. Note, that the client will not be removed during destruction if `import` is `true`.
+     * 
+     */
     @Export(name="import", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> import_;
 
+    /**
+     * @return When `true`, the client with the specified `client_id` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with clients that Keycloak creates automatically during realm creation, such as `account` and `admin-cli`. Note, that the client will not be removed during destruction if `import` is `true`.
+     * 
+     */
     public Output<Optional<Boolean>> import_() {
         return Codegen.optional(this.import_);
     }
+    /**
+     * The client login theme. This will override the default theme for the realm.
+     * 
+     */
     @Export(name="loginTheme", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> loginTheme;
 
+    /**
+     * @return The client login theme. This will override the default theme for the realm.
+     * 
+     */
     public Output<Optional<String>> loginTheme() {
         return Codegen.optional(this.loginTheme);
     }
+    /**
+     * The display name of this client in the GUI.
+     * 
+     */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
+    /**
+     * @return The display name of this client in the GUI.
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
+    /**
+     * Enables support for OAuth 2.0 Device Authorization Grant, which means that client is an application on device that has limited input capabilities or lack a suitable browser.
+     * 
+     */
     @Export(name="oauth2DeviceAuthorizationGrantEnabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> oauth2DeviceAuthorizationGrantEnabled;
 
+    /**
+     * @return Enables support for OAuth 2.0 Device Authorization Grant, which means that client is an application on device that has limited input capabilities or lack a suitable browser.
+     * 
+     */
     public Output<Optional<Boolean>> oauth2DeviceAuthorizationGrantEnabled() {
         return Codegen.optional(this.oauth2DeviceAuthorizationGrantEnabled);
     }
+    /**
+     * The maximum amount of time a client has to finish the device code flow before it expires.
+     * 
+     */
     @Export(name="oauth2DeviceCodeLifespan", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> oauth2DeviceCodeLifespan;
 
+    /**
+     * @return The maximum amount of time a client has to finish the device code flow before it expires.
+     * 
+     */
     public Output<Optional<String>> oauth2DeviceCodeLifespan() {
         return Codegen.optional(this.oauth2DeviceCodeLifespan);
     }
+    /**
+     * The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
+     * 
+     */
     @Export(name="oauth2DevicePollingInterval", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> oauth2DevicePollingInterval;
 
+    /**
+     * @return The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
+     * 
+     */
     public Output<Optional<String>> oauth2DevicePollingInterval() {
         return Codegen.optional(this.oauth2DevicePollingInterval);
     }
+    /**
+     * The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
+     * 
+     */
     @Export(name="pkceCodeChallengeMethod", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> pkceCodeChallengeMethod;
 
+    /**
+     * @return The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
+     * 
+     */
     public Output<Optional<String>> pkceCodeChallengeMethod() {
         return Codegen.optional(this.pkceCodeChallengeMethod);
     }
+    /**
+     * The realm this client is attached to.
+     * 
+     */
     @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
+    /**
+     * @return The realm this client is attached to.
+     * 
+     */
     public Output<String> realmId() {
         return this.realmId;
     }
+    /**
+     * (Computed) When authorization is enabled for this client, this attribute is the unique ID for the client (the same value as the `.id` attribute).
+     * 
+     */
     @Export(name="resourceServerId", refs={String.class}, tree="[0]")
     private Output<String> resourceServerId;
 
+    /**
+     * @return (Computed) When authorization is enabled for this client, this attribute is the unique ID for the client (the same value as the `.id` attribute).
+     * 
+     */
     public Output<String> resourceServerId() {
         return this.resourceServerId;
     }
+    /**
+     * When specified, this URL is prepended to any relative URLs found within `valid_redirect_uris`, `web_origins`, and `admin_url`. NOTE: Due to limitations in the Keycloak API, when the `root_url` attribute is used, the `valid_redirect_uris`, `web_origins`, and `admin_url` attributes will be required.
+     * 
+     */
     @Export(name="rootUrl", refs={String.class}, tree="[0]")
     private Output<String> rootUrl;
 
+    /**
+     * @return When specified, this URL is prepended to any relative URLs found within `valid_redirect_uris`, `web_origins`, and `admin_url`. NOTE: Due to limitations in the Keycloak API, when the `root_url` attribute is used, the `valid_redirect_uris`, `web_origins`, and `admin_url` attributes will be required.
+     * 
+     */
     public Output<String> rootUrl() {
         return this.rootUrl;
     }
+    /**
+     * (Computed) When service accounts are enabled for this client, this attribute is the unique ID for the Keycloak user that represents this service account.
+     * 
+     */
     @Export(name="serviceAccountUserId", refs={String.class}, tree="[0]")
     private Output<String> serviceAccountUserId;
 
+    /**
+     * @return (Computed) When service accounts are enabled for this client, this attribute is the unique ID for the Keycloak user that represents this service account.
+     * 
+     */
     public Output<String> serviceAccountUserId() {
         return this.serviceAccountUserId;
     }
+    /**
+     * When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
+     * 
+     */
     @Export(name="serviceAccountsEnabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> serviceAccountsEnabled;
 
+    /**
+     * @return When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
+     * 
+     */
     public Output<Boolean> serviceAccountsEnabled() {
         return this.serviceAccountsEnabled;
     }
+    /**
+     * When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
+     * 
+     */
     @Export(name="standardFlowEnabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> standardFlowEnabled;
 
+    /**
+     * @return When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
+     * 
+     */
     public Output<Boolean> standardFlowEnabled() {
         return this.standardFlowEnabled;
     }
+    /**
+     * If this is `true`, a refresh_token will be created and added to the token response. If this is `false` then no refresh_token will be generated.  Defaults to `true`.
+     * 
+     */
     @Export(name="useRefreshTokens", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> useRefreshTokens;
 
+    /**
+     * @return If this is `true`, a refresh_token will be created and added to the token response. If this is `false` then no refresh_token will be generated.  Defaults to `true`.
+     * 
+     */
     public Output<Optional<Boolean>> useRefreshTokens() {
         return Codegen.optional(this.useRefreshTokens);
     }
+    /**
+     * If this is `true`, a refresh_token will be created and added to the token response if the client_credentials grant is used and a user session will be created. If this is `false` then no refresh_token will be generated and the associated user session will be removed, in accordance with OAuth 2.0 RFC6749 Section 4.4.3. Defaults to `false`.
+     * 
+     */
     @Export(name="useRefreshTokensClientCredentials", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> useRefreshTokensClientCredentials;
 
+    /**
+     * @return If this is `true`, a refresh_token will be created and added to the token response if the client_credentials grant is used and a user session will be created. If this is `false` then no refresh_token will be generated and the associated user session will be removed, in accordance with OAuth 2.0 RFC6749 Section 4.4.3. Defaults to `false`.
+     * 
+     */
     public Output<Optional<Boolean>> useRefreshTokensClientCredentials() {
         return Codegen.optional(this.useRefreshTokensClientCredentials);
     }
+    /**
+     * A list of valid URIs a browser is permitted to redirect to after a successful logout.
+     * 
+     */
     @Export(name="validPostLogoutRedirectUris", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> validPostLogoutRedirectUris;
 
+    /**
+     * @return A list of valid URIs a browser is permitted to redirect to after a successful logout.
+     * 
+     */
     public Output<List<String>> validPostLogoutRedirectUris() {
         return this.validPostLogoutRedirectUris;
     }
+    /**
+     * A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
+     * wildcards in the form of an asterisk can be used here. This attribute must be set if either `standard_flow_enabled` or `implicit_flow_enabled`
+     * is set to `true`.
+     * 
+     */
     @Export(name="validRedirectUris", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> validRedirectUris;
 
+    /**
+     * @return A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
+     * wildcards in the form of an asterisk can be used here. This attribute must be set if either `standard_flow_enabled` or `implicit_flow_enabled`
+     * is set to `true`.
+     * 
+     */
     public Output<List<String>> validRedirectUris() {
         return this.validRedirectUris;
     }
+    /**
+     * A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`.&#34;
+     * 
+     */
     @Export(name="webOrigins", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> webOrigins;
 
+    /**
+     * @return A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`.&#34;
+     * 
+     */
     public Output<List<String>> webOrigins() {
         return this.webOrigins;
     }

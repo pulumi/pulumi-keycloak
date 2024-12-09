@@ -14,45 +14,125 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class RealmSmtpServer {
+    /**
+     * @return Enables authentication to the SMTP server.  This block supports the following arguments:
+     * 
+     */
     private @Nullable RealmSmtpServerAuth auth;
+    /**
+     * @return The email address uses for bounces.
+     * 
+     */
     private @Nullable String envelopeFrom;
+    /**
+     * @return The email address for the sender.
+     * 
+     */
     private String from;
+    /**
+     * @return The display name of the sender email address.
+     * 
+     */
     private @Nullable String fromDisplayName;
+    /**
+     * @return The host of the SMTP server.
+     * 
+     */
     private String host;
+    /**
+     * @return The port of the SMTP server (defaults to 25).
+     * 
+     */
     private @Nullable String port;
+    /**
+     * @return The &#34;reply to&#34; email address.
+     * 
+     */
     private @Nullable String replyTo;
+    /**
+     * @return The display name of the &#34;reply to&#34; email address.
+     * 
+     */
     private @Nullable String replyToDisplayName;
+    /**
+     * @return When `true`, enables SSL. Defaults to `false`.
+     * 
+     */
     private @Nullable Boolean ssl;
+    /**
+     * @return When `true`, enables StartTLS. Defaults to `false`.
+     * 
+     */
     private @Nullable Boolean starttls;
 
     private RealmSmtpServer() {}
+    /**
+     * @return Enables authentication to the SMTP server.  This block supports the following arguments:
+     * 
+     */
     public Optional<RealmSmtpServerAuth> auth() {
         return Optional.ofNullable(this.auth);
     }
+    /**
+     * @return The email address uses for bounces.
+     * 
+     */
     public Optional<String> envelopeFrom() {
         return Optional.ofNullable(this.envelopeFrom);
     }
+    /**
+     * @return The email address for the sender.
+     * 
+     */
     public String from() {
         return this.from;
     }
+    /**
+     * @return The display name of the sender email address.
+     * 
+     */
     public Optional<String> fromDisplayName() {
         return Optional.ofNullable(this.fromDisplayName);
     }
+    /**
+     * @return The host of the SMTP server.
+     * 
+     */
     public String host() {
         return this.host;
     }
+    /**
+     * @return The port of the SMTP server (defaults to 25).
+     * 
+     */
     public Optional<String> port() {
         return Optional.ofNullable(this.port);
     }
+    /**
+     * @return The &#34;reply to&#34; email address.
+     * 
+     */
     public Optional<String> replyTo() {
         return Optional.ofNullable(this.replyTo);
     }
+    /**
+     * @return The display name of the &#34;reply to&#34; email address.
+     * 
+     */
     public Optional<String> replyToDisplayName() {
         return Optional.ofNullable(this.replyToDisplayName);
     }
+    /**
+     * @return When `true`, enables SSL. Defaults to `false`.
+     * 
+     */
     public Optional<Boolean> ssl() {
         return Optional.ofNullable(this.ssl);
     }
+    /**
+     * @return When `true`, enables StartTLS. Defaults to `false`.
+     * 
+     */
     public Optional<Boolean> starttls() {
         return Optional.ofNullable(this.starttls);
     }

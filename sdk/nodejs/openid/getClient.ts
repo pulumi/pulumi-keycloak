@@ -7,11 +7,9 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * ## # keycloak.openid.Client data source
- *
  * This data source can be used to fetch properties of a Keycloak OpenID client for usage with other resources.
  *
- * ### Example Usage
+ * ## Example Usage
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -28,17 +26,6 @@ import * as utilities from "../utilities";
  *     name: "realm-admin",
  * }));
  * ```
- *
- * ### Argument Reference
- *
- * The following arguments are supported:
- *
- * - `realmId` - (Required) The realm id.
- * - `clientId` - (Required) The client id.
- *
- * ### Attributes Reference
- *
- * See the docs for the `keycloak.openid.Client` resource for details on the exported attributes.
  */
 export function getClient(args: GetClientArgs, opts?: pulumi.InvokeOptions): Promise<GetClientResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -58,6 +45,9 @@ export function getClient(args: GetClientArgs, opts?: pulumi.InvokeOptions): Pro
  * A collection of arguments for invoking getClient.
  */
 export interface GetClientArgs {
+    /**
+     * The client id (not its unique ID).
+     */
     clientId: string;
     consentScreenText?: string;
     displayOnConsentScreen?: boolean;
@@ -65,6 +55,9 @@ export interface GetClientArgs {
     oauth2DeviceAuthorizationGrantEnabled?: boolean;
     oauth2DeviceCodeLifespan?: string;
     oauth2DevicePollingInterval?: string;
+    /**
+     * The realm id.
+     */
     realmId: string;
 }
 
@@ -123,11 +116,9 @@ export interface GetClientResult {
     readonly webOrigins: string[];
 }
 /**
- * ## # keycloak.openid.Client data source
- *
  * This data source can be used to fetch properties of a Keycloak OpenID client for usage with other resources.
  *
- * ### Example Usage
+ * ## Example Usage
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -144,17 +135,6 @@ export interface GetClientResult {
  *     name: "realm-admin",
  * }));
  * ```
- *
- * ### Argument Reference
- *
- * The following arguments are supported:
- *
- * - `realmId` - (Required) The realm id.
- * - `clientId` - (Required) The client id.
- *
- * ### Attributes Reference
- *
- * See the docs for the `keycloak.openid.Client` resource for details on the exported attributes.
  */
 export function getClientOutput(args: GetClientOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetClientResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -174,6 +154,9 @@ export function getClientOutput(args: GetClientOutputArgs, opts?: pulumi.InvokeO
  * A collection of arguments for invoking getClient.
  */
 export interface GetClientOutputArgs {
+    /**
+     * The client id (not its unique ID).
+     */
     clientId: pulumi.Input<string>;
     consentScreenText?: pulumi.Input<string>;
     displayOnConsentScreen?: pulumi.Input<boolean>;
@@ -181,5 +164,8 @@ export interface GetClientOutputArgs {
     oauth2DeviceAuthorizationGrantEnabled?: pulumi.Input<boolean>;
     oauth2DeviceCodeLifespan?: pulumi.Input<string>;
     oauth2DevicePollingInterval?: pulumi.Input<string>;
+    /**
+     * The realm id.
+     */
     realmId: pulumi.Input<string>;
 }

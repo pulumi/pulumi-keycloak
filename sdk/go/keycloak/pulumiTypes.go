@@ -829,7 +829,9 @@ func (o GroupPermissionsViewScopePtrOutput) Policies() pulumi.StringArrayOutput 
 }
 
 type RealmInternationalization struct {
-	DefaultLocale    string   `pulumi:"defaultLocale"`
+	// The locale to use by default. This locale code must be present within the `supportedLocales` list.
+	DefaultLocale string `pulumi:"defaultLocale"`
+	// A list of [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) locale codes that the realm should support.
 	SupportedLocales []string `pulumi:"supportedLocales"`
 }
 
@@ -845,7 +847,9 @@ type RealmInternationalizationInput interface {
 }
 
 type RealmInternationalizationArgs struct {
-	DefaultLocale    pulumi.StringInput      `pulumi:"defaultLocale"`
+	// The locale to use by default. This locale code must be present within the `supportedLocales` list.
+	DefaultLocale pulumi.StringInput `pulumi:"defaultLocale"`
+	// A list of [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) locale codes that the realm should support.
 	SupportedLocales pulumi.StringArrayInput `pulumi:"supportedLocales"`
 }
 
@@ -926,10 +930,12 @@ func (o RealmInternationalizationOutput) ToRealmInternationalizationPtrOutputWit
 	}).(RealmInternationalizationPtrOutput)
 }
 
+// The locale to use by default. This locale code must be present within the `supportedLocales` list.
 func (o RealmInternationalizationOutput) DefaultLocale() pulumi.StringOutput {
 	return o.ApplyT(func(v RealmInternationalization) string { return v.DefaultLocale }).(pulumi.StringOutput)
 }
 
+// A list of [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) locale codes that the realm should support.
 func (o RealmInternationalizationOutput) SupportedLocales() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v RealmInternationalization) []string { return v.SupportedLocales }).(pulumi.StringArrayOutput)
 }
@@ -958,6 +964,7 @@ func (o RealmInternationalizationPtrOutput) Elem() RealmInternationalizationOutp
 	}).(RealmInternationalizationOutput)
 }
 
+// The locale to use by default. This locale code must be present within the `supportedLocales` list.
 func (o RealmInternationalizationPtrOutput) DefaultLocale() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RealmInternationalization) *string {
 		if v == nil {
@@ -967,6 +974,7 @@ func (o RealmInternationalizationPtrOutput) DefaultLocale() pulumi.StringPtrOutp
 	}).(pulumi.StringPtrOutput)
 }
 
+// A list of [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) locale codes that the realm should support.
 func (o RealmInternationalizationPtrOutput) SupportedLocales() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *RealmInternationalization) []string {
 		if v == nil {
@@ -977,13 +985,17 @@ func (o RealmInternationalizationPtrOutput) SupportedLocales() pulumi.StringArra
 }
 
 type RealmOtpPolicy struct {
-	// What hashing algorithm should be used to generate the OTP.
-	Algorithm       *string `pulumi:"algorithm"`
-	Digits          *int    `pulumi:"digits"`
-	InitialCounter  *int    `pulumi:"initialCounter"`
-	LookAheadWindow *int    `pulumi:"lookAheadWindow"`
-	Period          *int    `pulumi:"period"`
-	// OTP Type, totp for Time-Based One Time Password or hotp for counter base one time password
+	// What hashing algorithm should be used to generate the OTP, Valid options are `HmacSHA1`,`HmacSHA256` and `HmacSHA512`. Defaults to `HmacSHA1`.
+	Algorithm *string `pulumi:"algorithm"`
+	// How many digits the OTP have. Defaults to `6`.
+	Digits *int `pulumi:"digits"`
+	// What should the initial counter value be. Defaults to `2`.
+	InitialCounter *int `pulumi:"initialCounter"`
+	// How far ahead should the server look just in case the token generator and server are out of time sync or counter sync. Defaults to `1`.
+	LookAheadWindow *int `pulumi:"lookAheadWindow"`
+	// How many seconds should an OTP token be valid. Defaults to `30`.
+	Period *int `pulumi:"period"`
+	// One Time Password Type, supported Values are `totp` for Time-Based One Time Password and `hotp` for Counter Based. Defaults to `totp`.
 	Type *string `pulumi:"type"`
 }
 
@@ -999,13 +1011,17 @@ type RealmOtpPolicyInput interface {
 }
 
 type RealmOtpPolicyArgs struct {
-	// What hashing algorithm should be used to generate the OTP.
-	Algorithm       pulumi.StringPtrInput `pulumi:"algorithm"`
-	Digits          pulumi.IntPtrInput    `pulumi:"digits"`
-	InitialCounter  pulumi.IntPtrInput    `pulumi:"initialCounter"`
-	LookAheadWindow pulumi.IntPtrInput    `pulumi:"lookAheadWindow"`
-	Period          pulumi.IntPtrInput    `pulumi:"period"`
-	// OTP Type, totp for Time-Based One Time Password or hotp for counter base one time password
+	// What hashing algorithm should be used to generate the OTP, Valid options are `HmacSHA1`,`HmacSHA256` and `HmacSHA512`. Defaults to `HmacSHA1`.
+	Algorithm pulumi.StringPtrInput `pulumi:"algorithm"`
+	// How many digits the OTP have. Defaults to `6`.
+	Digits pulumi.IntPtrInput `pulumi:"digits"`
+	// What should the initial counter value be. Defaults to `2`.
+	InitialCounter pulumi.IntPtrInput `pulumi:"initialCounter"`
+	// How far ahead should the server look just in case the token generator and server are out of time sync or counter sync. Defaults to `1`.
+	LookAheadWindow pulumi.IntPtrInput `pulumi:"lookAheadWindow"`
+	// How many seconds should an OTP token be valid. Defaults to `30`.
+	Period pulumi.IntPtrInput `pulumi:"period"`
+	// One Time Password Type, supported Values are `totp` for Time-Based One Time Password and `hotp` for Counter Based. Defaults to `totp`.
 	Type pulumi.StringPtrInput `pulumi:"type"`
 }
 
@@ -1086,28 +1102,32 @@ func (o RealmOtpPolicyOutput) ToRealmOtpPolicyPtrOutputWithContext(ctx context.C
 	}).(RealmOtpPolicyPtrOutput)
 }
 
-// What hashing algorithm should be used to generate the OTP.
+// What hashing algorithm should be used to generate the OTP, Valid options are `HmacSHA1`,`HmacSHA256` and `HmacSHA512`. Defaults to `HmacSHA1`.
 func (o RealmOtpPolicyOutput) Algorithm() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RealmOtpPolicy) *string { return v.Algorithm }).(pulumi.StringPtrOutput)
 }
 
+// How many digits the OTP have. Defaults to `6`.
 func (o RealmOtpPolicyOutput) Digits() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v RealmOtpPolicy) *int { return v.Digits }).(pulumi.IntPtrOutput)
 }
 
+// What should the initial counter value be. Defaults to `2`.
 func (o RealmOtpPolicyOutput) InitialCounter() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v RealmOtpPolicy) *int { return v.InitialCounter }).(pulumi.IntPtrOutput)
 }
 
+// How far ahead should the server look just in case the token generator and server are out of time sync or counter sync. Defaults to `1`.
 func (o RealmOtpPolicyOutput) LookAheadWindow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v RealmOtpPolicy) *int { return v.LookAheadWindow }).(pulumi.IntPtrOutput)
 }
 
+// How many seconds should an OTP token be valid. Defaults to `30`.
 func (o RealmOtpPolicyOutput) Period() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v RealmOtpPolicy) *int { return v.Period }).(pulumi.IntPtrOutput)
 }
 
-// OTP Type, totp for Time-Based One Time Password or hotp for counter base one time password
+// One Time Password Type, supported Values are `totp` for Time-Based One Time Password and `hotp` for Counter Based. Defaults to `totp`.
 func (o RealmOtpPolicyOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RealmOtpPolicy) *string { return v.Type }).(pulumi.StringPtrOutput)
 }
@@ -1136,7 +1156,7 @@ func (o RealmOtpPolicyPtrOutput) Elem() RealmOtpPolicyOutput {
 	}).(RealmOtpPolicyOutput)
 }
 
-// What hashing algorithm should be used to generate the OTP.
+// What hashing algorithm should be used to generate the OTP, Valid options are `HmacSHA1`,`HmacSHA256` and `HmacSHA512`. Defaults to `HmacSHA1`.
 func (o RealmOtpPolicyPtrOutput) Algorithm() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RealmOtpPolicy) *string {
 		if v == nil {
@@ -1146,6 +1166,7 @@ func (o RealmOtpPolicyPtrOutput) Algorithm() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// How many digits the OTP have. Defaults to `6`.
 func (o RealmOtpPolicyPtrOutput) Digits() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *RealmOtpPolicy) *int {
 		if v == nil {
@@ -1155,6 +1176,7 @@ func (o RealmOtpPolicyPtrOutput) Digits() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
+// What should the initial counter value be. Defaults to `2`.
 func (o RealmOtpPolicyPtrOutput) InitialCounter() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *RealmOtpPolicy) *int {
 		if v == nil {
@@ -1164,6 +1186,7 @@ func (o RealmOtpPolicyPtrOutput) InitialCounter() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
+// How far ahead should the server look just in case the token generator and server are out of time sync or counter sync. Defaults to `1`.
 func (o RealmOtpPolicyPtrOutput) LookAheadWindow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *RealmOtpPolicy) *int {
 		if v == nil {
@@ -1173,6 +1196,7 @@ func (o RealmOtpPolicyPtrOutput) LookAheadWindow() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
+// How many seconds should an OTP token be valid. Defaults to `30`.
 func (o RealmOtpPolicyPtrOutput) Period() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *RealmOtpPolicy) *int {
 		if v == nil {
@@ -1182,7 +1206,7 @@ func (o RealmOtpPolicyPtrOutput) Period() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// OTP Type, totp for Time-Based One Time Password or hotp for counter base one time password
+// One Time Password Type, supported Values are `totp` for Time-Based One Time Password and `hotp` for Counter Based. Defaults to `totp`.
 func (o RealmOtpPolicyPtrOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RealmOtpPolicy) *string {
 		if v == nil {
@@ -1341,13 +1365,20 @@ func (o RealmSecurityDefensesPtrOutput) Headers() RealmSecurityDefensesHeadersPt
 }
 
 type RealmSecurityDefensesBruteForceDetection struct {
-	FailureResetTimeSeconds      *int  `pulumi:"failureResetTimeSeconds"`
-	MaxFailureWaitSeconds        *int  `pulumi:"maxFailureWaitSeconds"`
-	MaxLoginFailures             *int  `pulumi:"maxLoginFailures"`
-	MinimumQuickLoginWaitSeconds *int  `pulumi:"minimumQuickLoginWaitSeconds"`
-	PermanentLockout             *bool `pulumi:"permanentLockout"`
-	QuickLoginCheckMilliSeconds  *int  `pulumi:"quickLoginCheckMilliSeconds"`
-	WaitIncrementSeconds         *int  `pulumi:"waitIncrementSeconds"`
+	// When will failure count be reset?
+	FailureResetTimeSeconds *int `pulumi:"failureResetTimeSeconds"`
+	MaxFailureWaitSeconds   *int `pulumi:"maxFailureWaitSeconds"`
+	// How many failures before wait is triggered.
+	MaxLoginFailures *int `pulumi:"maxLoginFailures"`
+	// How long to wait after a quick login failure.
+	// - ` maxFailureWaitSeconds  ` - (Optional) Max. time a user will be locked out.
+	MinimumQuickLoginWaitSeconds *int `pulumi:"minimumQuickLoginWaitSeconds"`
+	// When `true`, this will lock the user permanently when the user exceeds the maximum login failures.
+	PermanentLockout *bool `pulumi:"permanentLockout"`
+	// Configures the amount of time, in milliseconds, for consecutive failures to lock a user out.
+	QuickLoginCheckMilliSeconds *int `pulumi:"quickLoginCheckMilliSeconds"`
+	// This represents the amount of time a user should be locked out when the login failure threshold has been met.
+	WaitIncrementSeconds *int `pulumi:"waitIncrementSeconds"`
 }
 
 // RealmSecurityDefensesBruteForceDetectionInput is an input type that accepts RealmSecurityDefensesBruteForceDetectionArgs and RealmSecurityDefensesBruteForceDetectionOutput values.
@@ -1362,13 +1393,20 @@ type RealmSecurityDefensesBruteForceDetectionInput interface {
 }
 
 type RealmSecurityDefensesBruteForceDetectionArgs struct {
-	FailureResetTimeSeconds      pulumi.IntPtrInput  `pulumi:"failureResetTimeSeconds"`
-	MaxFailureWaitSeconds        pulumi.IntPtrInput  `pulumi:"maxFailureWaitSeconds"`
-	MaxLoginFailures             pulumi.IntPtrInput  `pulumi:"maxLoginFailures"`
-	MinimumQuickLoginWaitSeconds pulumi.IntPtrInput  `pulumi:"minimumQuickLoginWaitSeconds"`
-	PermanentLockout             pulumi.BoolPtrInput `pulumi:"permanentLockout"`
-	QuickLoginCheckMilliSeconds  pulumi.IntPtrInput  `pulumi:"quickLoginCheckMilliSeconds"`
-	WaitIncrementSeconds         pulumi.IntPtrInput  `pulumi:"waitIncrementSeconds"`
+	// When will failure count be reset?
+	FailureResetTimeSeconds pulumi.IntPtrInput `pulumi:"failureResetTimeSeconds"`
+	MaxFailureWaitSeconds   pulumi.IntPtrInput `pulumi:"maxFailureWaitSeconds"`
+	// How many failures before wait is triggered.
+	MaxLoginFailures pulumi.IntPtrInput `pulumi:"maxLoginFailures"`
+	// How long to wait after a quick login failure.
+	// - ` maxFailureWaitSeconds  ` - (Optional) Max. time a user will be locked out.
+	MinimumQuickLoginWaitSeconds pulumi.IntPtrInput `pulumi:"minimumQuickLoginWaitSeconds"`
+	// When `true`, this will lock the user permanently when the user exceeds the maximum login failures.
+	PermanentLockout pulumi.BoolPtrInput `pulumi:"permanentLockout"`
+	// Configures the amount of time, in milliseconds, for consecutive failures to lock a user out.
+	QuickLoginCheckMilliSeconds pulumi.IntPtrInput `pulumi:"quickLoginCheckMilliSeconds"`
+	// This represents the amount of time a user should be locked out when the login failure threshold has been met.
+	WaitIncrementSeconds pulumi.IntPtrInput `pulumi:"waitIncrementSeconds"`
 }
 
 func (RealmSecurityDefensesBruteForceDetectionArgs) ElementType() reflect.Type {
@@ -1448,6 +1486,7 @@ func (o RealmSecurityDefensesBruteForceDetectionOutput) ToRealmSecurityDefensesB
 	}).(RealmSecurityDefensesBruteForceDetectionPtrOutput)
 }
 
+// When will failure count be reset?
 func (o RealmSecurityDefensesBruteForceDetectionOutput) FailureResetTimeSeconds() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v RealmSecurityDefensesBruteForceDetection) *int { return v.FailureResetTimeSeconds }).(pulumi.IntPtrOutput)
 }
@@ -1456,22 +1495,28 @@ func (o RealmSecurityDefensesBruteForceDetectionOutput) MaxFailureWaitSeconds() 
 	return o.ApplyT(func(v RealmSecurityDefensesBruteForceDetection) *int { return v.MaxFailureWaitSeconds }).(pulumi.IntPtrOutput)
 }
 
+// How many failures before wait is triggered.
 func (o RealmSecurityDefensesBruteForceDetectionOutput) MaxLoginFailures() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v RealmSecurityDefensesBruteForceDetection) *int { return v.MaxLoginFailures }).(pulumi.IntPtrOutput)
 }
 
+// How long to wait after a quick login failure.
+// - ` maxFailureWaitSeconds  ` - (Optional) Max. time a user will be locked out.
 func (o RealmSecurityDefensesBruteForceDetectionOutput) MinimumQuickLoginWaitSeconds() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v RealmSecurityDefensesBruteForceDetection) *int { return v.MinimumQuickLoginWaitSeconds }).(pulumi.IntPtrOutput)
 }
 
+// When `true`, this will lock the user permanently when the user exceeds the maximum login failures.
 func (o RealmSecurityDefensesBruteForceDetectionOutput) PermanentLockout() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v RealmSecurityDefensesBruteForceDetection) *bool { return v.PermanentLockout }).(pulumi.BoolPtrOutput)
 }
 
+// Configures the amount of time, in milliseconds, for consecutive failures to lock a user out.
 func (o RealmSecurityDefensesBruteForceDetectionOutput) QuickLoginCheckMilliSeconds() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v RealmSecurityDefensesBruteForceDetection) *int { return v.QuickLoginCheckMilliSeconds }).(pulumi.IntPtrOutput)
 }
 
+// This represents the amount of time a user should be locked out when the login failure threshold has been met.
 func (o RealmSecurityDefensesBruteForceDetectionOutput) WaitIncrementSeconds() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v RealmSecurityDefensesBruteForceDetection) *int { return v.WaitIncrementSeconds }).(pulumi.IntPtrOutput)
 }
@@ -1500,6 +1545,7 @@ func (o RealmSecurityDefensesBruteForceDetectionPtrOutput) Elem() RealmSecurityD
 	}).(RealmSecurityDefensesBruteForceDetectionOutput)
 }
 
+// When will failure count be reset?
 func (o RealmSecurityDefensesBruteForceDetectionPtrOutput) FailureResetTimeSeconds() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *RealmSecurityDefensesBruteForceDetection) *int {
 		if v == nil {
@@ -1518,6 +1564,7 @@ func (o RealmSecurityDefensesBruteForceDetectionPtrOutput) MaxFailureWaitSeconds
 	}).(pulumi.IntPtrOutput)
 }
 
+// How many failures before wait is triggered.
 func (o RealmSecurityDefensesBruteForceDetectionPtrOutput) MaxLoginFailures() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *RealmSecurityDefensesBruteForceDetection) *int {
 		if v == nil {
@@ -1527,6 +1574,8 @@ func (o RealmSecurityDefensesBruteForceDetectionPtrOutput) MaxLoginFailures() pu
 	}).(pulumi.IntPtrOutput)
 }
 
+// How long to wait after a quick login failure.
+// - ` maxFailureWaitSeconds  ` - (Optional) Max. time a user will be locked out.
 func (o RealmSecurityDefensesBruteForceDetectionPtrOutput) MinimumQuickLoginWaitSeconds() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *RealmSecurityDefensesBruteForceDetection) *int {
 		if v == nil {
@@ -1536,6 +1585,7 @@ func (o RealmSecurityDefensesBruteForceDetectionPtrOutput) MinimumQuickLoginWait
 	}).(pulumi.IntPtrOutput)
 }
 
+// When `true`, this will lock the user permanently when the user exceeds the maximum login failures.
 func (o RealmSecurityDefensesBruteForceDetectionPtrOutput) PermanentLockout() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *RealmSecurityDefensesBruteForceDetection) *bool {
 		if v == nil {
@@ -1545,6 +1595,7 @@ func (o RealmSecurityDefensesBruteForceDetectionPtrOutput) PermanentLockout() pu
 	}).(pulumi.BoolPtrOutput)
 }
 
+// Configures the amount of time, in milliseconds, for consecutive failures to lock a user out.
 func (o RealmSecurityDefensesBruteForceDetectionPtrOutput) QuickLoginCheckMilliSeconds() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *RealmSecurityDefensesBruteForceDetection) *int {
 		if v == nil {
@@ -1554,6 +1605,7 @@ func (o RealmSecurityDefensesBruteForceDetectionPtrOutput) QuickLoginCheckMilliS
 	}).(pulumi.IntPtrOutput)
 }
 
+// This represents the amount of time a user should be locked out when the login failure threshold has been met.
 func (o RealmSecurityDefensesBruteForceDetectionPtrOutput) WaitIncrementSeconds() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *RealmSecurityDefensesBruteForceDetection) *int {
 		if v == nil {
@@ -1564,14 +1616,22 @@ func (o RealmSecurityDefensesBruteForceDetectionPtrOutput) WaitIncrementSeconds(
 }
 
 type RealmSecurityDefensesHeaders struct {
-	ContentSecurityPolicy           *string `pulumi:"contentSecurityPolicy"`
+	// Sets the Content Security Policy, which can be used for prevent pages from being included by non-origin iframes. More information can be found in the [W3C-CSP](https://www.w3.org/TR/CSP/) Abstract.
+	ContentSecurityPolicy *string `pulumi:"contentSecurityPolicy"`
+	// Used for testing Content Security Policies.
 	ContentSecurityPolicyReportOnly *string `pulumi:"contentSecurityPolicyReportOnly"`
-	ReferrerPolicy                  *string `pulumi:"referrerPolicy"`
-	StrictTransportSecurity         *string `pulumi:"strictTransportSecurity"`
-	XContentTypeOptions             *string `pulumi:"xContentTypeOptions"`
-	XFrameOptions                   *string `pulumi:"xFrameOptions"`
-	XRobotsTag                      *string `pulumi:"xRobotsTag"`
-	XXssProtection                  *string `pulumi:"xXssProtection"`
+	// The Referrer-Policy HTTP header controls how much referrer information (sent with the Referer header) should be included with requests.
+	ReferrerPolicy *string `pulumi:"referrerPolicy"`
+	// The Script-Transport-Security HTTP header tells browsers to always use HTTPS.
+	StrictTransportSecurity *string `pulumi:"strictTransportSecurity"`
+	// Sets the X-Content-Type-Options, which can be used for prevent MIME-sniffing a response away from the declared content-type
+	XContentTypeOptions *string `pulumi:"xContentTypeOptions"`
+	// Sets the x-frame-option, which can be used to prevent pages from being included by non-origin iframes. More information can be found in the [RFC7034](https://tools.ietf.org/html/rfc7034)
+	XFrameOptions *string `pulumi:"xFrameOptions"`
+	// Prevent pages from appearing in search engines.
+	XRobotsTag *string `pulumi:"xRobotsTag"`
+	// This header configures the Cross-site scripting (XSS) filter in your browser.
+	XXssProtection *string `pulumi:"xXssProtection"`
 }
 
 // RealmSecurityDefensesHeadersInput is an input type that accepts RealmSecurityDefensesHeadersArgs and RealmSecurityDefensesHeadersOutput values.
@@ -1586,14 +1646,22 @@ type RealmSecurityDefensesHeadersInput interface {
 }
 
 type RealmSecurityDefensesHeadersArgs struct {
-	ContentSecurityPolicy           pulumi.StringPtrInput `pulumi:"contentSecurityPolicy"`
+	// Sets the Content Security Policy, which can be used for prevent pages from being included by non-origin iframes. More information can be found in the [W3C-CSP](https://www.w3.org/TR/CSP/) Abstract.
+	ContentSecurityPolicy pulumi.StringPtrInput `pulumi:"contentSecurityPolicy"`
+	// Used for testing Content Security Policies.
 	ContentSecurityPolicyReportOnly pulumi.StringPtrInput `pulumi:"contentSecurityPolicyReportOnly"`
-	ReferrerPolicy                  pulumi.StringPtrInput `pulumi:"referrerPolicy"`
-	StrictTransportSecurity         pulumi.StringPtrInput `pulumi:"strictTransportSecurity"`
-	XContentTypeOptions             pulumi.StringPtrInput `pulumi:"xContentTypeOptions"`
-	XFrameOptions                   pulumi.StringPtrInput `pulumi:"xFrameOptions"`
-	XRobotsTag                      pulumi.StringPtrInput `pulumi:"xRobotsTag"`
-	XXssProtection                  pulumi.StringPtrInput `pulumi:"xXssProtection"`
+	// The Referrer-Policy HTTP header controls how much referrer information (sent with the Referer header) should be included with requests.
+	ReferrerPolicy pulumi.StringPtrInput `pulumi:"referrerPolicy"`
+	// The Script-Transport-Security HTTP header tells browsers to always use HTTPS.
+	StrictTransportSecurity pulumi.StringPtrInput `pulumi:"strictTransportSecurity"`
+	// Sets the X-Content-Type-Options, which can be used for prevent MIME-sniffing a response away from the declared content-type
+	XContentTypeOptions pulumi.StringPtrInput `pulumi:"xContentTypeOptions"`
+	// Sets the x-frame-option, which can be used to prevent pages from being included by non-origin iframes. More information can be found in the [RFC7034](https://tools.ietf.org/html/rfc7034)
+	XFrameOptions pulumi.StringPtrInput `pulumi:"xFrameOptions"`
+	// Prevent pages from appearing in search engines.
+	XRobotsTag pulumi.StringPtrInput `pulumi:"xRobotsTag"`
+	// This header configures the Cross-site scripting (XSS) filter in your browser.
+	XXssProtection pulumi.StringPtrInput `pulumi:"xXssProtection"`
 }
 
 func (RealmSecurityDefensesHeadersArgs) ElementType() reflect.Type {
@@ -1673,34 +1741,42 @@ func (o RealmSecurityDefensesHeadersOutput) ToRealmSecurityDefensesHeadersPtrOut
 	}).(RealmSecurityDefensesHeadersPtrOutput)
 }
 
+// Sets the Content Security Policy, which can be used for prevent pages from being included by non-origin iframes. More information can be found in the [W3C-CSP](https://www.w3.org/TR/CSP/) Abstract.
 func (o RealmSecurityDefensesHeadersOutput) ContentSecurityPolicy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RealmSecurityDefensesHeaders) *string { return v.ContentSecurityPolicy }).(pulumi.StringPtrOutput)
 }
 
+// Used for testing Content Security Policies.
 func (o RealmSecurityDefensesHeadersOutput) ContentSecurityPolicyReportOnly() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RealmSecurityDefensesHeaders) *string { return v.ContentSecurityPolicyReportOnly }).(pulumi.StringPtrOutput)
 }
 
+// The Referrer-Policy HTTP header controls how much referrer information (sent with the Referer header) should be included with requests.
 func (o RealmSecurityDefensesHeadersOutput) ReferrerPolicy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RealmSecurityDefensesHeaders) *string { return v.ReferrerPolicy }).(pulumi.StringPtrOutput)
 }
 
+// The Script-Transport-Security HTTP header tells browsers to always use HTTPS.
 func (o RealmSecurityDefensesHeadersOutput) StrictTransportSecurity() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RealmSecurityDefensesHeaders) *string { return v.StrictTransportSecurity }).(pulumi.StringPtrOutput)
 }
 
+// Sets the X-Content-Type-Options, which can be used for prevent MIME-sniffing a response away from the declared content-type
 func (o RealmSecurityDefensesHeadersOutput) XContentTypeOptions() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RealmSecurityDefensesHeaders) *string { return v.XContentTypeOptions }).(pulumi.StringPtrOutput)
 }
 
+// Sets the x-frame-option, which can be used to prevent pages from being included by non-origin iframes. More information can be found in the [RFC7034](https://tools.ietf.org/html/rfc7034)
 func (o RealmSecurityDefensesHeadersOutput) XFrameOptions() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RealmSecurityDefensesHeaders) *string { return v.XFrameOptions }).(pulumi.StringPtrOutput)
 }
 
+// Prevent pages from appearing in search engines.
 func (o RealmSecurityDefensesHeadersOutput) XRobotsTag() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RealmSecurityDefensesHeaders) *string { return v.XRobotsTag }).(pulumi.StringPtrOutput)
 }
 
+// This header configures the Cross-site scripting (XSS) filter in your browser.
 func (o RealmSecurityDefensesHeadersOutput) XXssProtection() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RealmSecurityDefensesHeaders) *string { return v.XXssProtection }).(pulumi.StringPtrOutput)
 }
@@ -1729,6 +1805,7 @@ func (o RealmSecurityDefensesHeadersPtrOutput) Elem() RealmSecurityDefensesHeade
 	}).(RealmSecurityDefensesHeadersOutput)
 }
 
+// Sets the Content Security Policy, which can be used for prevent pages from being included by non-origin iframes. More information can be found in the [W3C-CSP](https://www.w3.org/TR/CSP/) Abstract.
 func (o RealmSecurityDefensesHeadersPtrOutput) ContentSecurityPolicy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RealmSecurityDefensesHeaders) *string {
 		if v == nil {
@@ -1738,6 +1815,7 @@ func (o RealmSecurityDefensesHeadersPtrOutput) ContentSecurityPolicy() pulumi.St
 	}).(pulumi.StringPtrOutput)
 }
 
+// Used for testing Content Security Policies.
 func (o RealmSecurityDefensesHeadersPtrOutput) ContentSecurityPolicyReportOnly() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RealmSecurityDefensesHeaders) *string {
 		if v == nil {
@@ -1747,6 +1825,7 @@ func (o RealmSecurityDefensesHeadersPtrOutput) ContentSecurityPolicyReportOnly()
 	}).(pulumi.StringPtrOutput)
 }
 
+// The Referrer-Policy HTTP header controls how much referrer information (sent with the Referer header) should be included with requests.
 func (o RealmSecurityDefensesHeadersPtrOutput) ReferrerPolicy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RealmSecurityDefensesHeaders) *string {
 		if v == nil {
@@ -1756,6 +1835,7 @@ func (o RealmSecurityDefensesHeadersPtrOutput) ReferrerPolicy() pulumi.StringPtr
 	}).(pulumi.StringPtrOutput)
 }
 
+// The Script-Transport-Security HTTP header tells browsers to always use HTTPS.
 func (o RealmSecurityDefensesHeadersPtrOutput) StrictTransportSecurity() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RealmSecurityDefensesHeaders) *string {
 		if v == nil {
@@ -1765,6 +1845,7 @@ func (o RealmSecurityDefensesHeadersPtrOutput) StrictTransportSecurity() pulumi.
 	}).(pulumi.StringPtrOutput)
 }
 
+// Sets the X-Content-Type-Options, which can be used for prevent MIME-sniffing a response away from the declared content-type
 func (o RealmSecurityDefensesHeadersPtrOutput) XContentTypeOptions() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RealmSecurityDefensesHeaders) *string {
 		if v == nil {
@@ -1774,6 +1855,7 @@ func (o RealmSecurityDefensesHeadersPtrOutput) XContentTypeOptions() pulumi.Stri
 	}).(pulumi.StringPtrOutput)
 }
 
+// Sets the x-frame-option, which can be used to prevent pages from being included by non-origin iframes. More information can be found in the [RFC7034](https://tools.ietf.org/html/rfc7034)
 func (o RealmSecurityDefensesHeadersPtrOutput) XFrameOptions() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RealmSecurityDefensesHeaders) *string {
 		if v == nil {
@@ -1783,6 +1865,7 @@ func (o RealmSecurityDefensesHeadersPtrOutput) XFrameOptions() pulumi.StringPtrO
 	}).(pulumi.StringPtrOutput)
 }
 
+// Prevent pages from appearing in search engines.
 func (o RealmSecurityDefensesHeadersPtrOutput) XRobotsTag() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RealmSecurityDefensesHeaders) *string {
 		if v == nil {
@@ -1792,6 +1875,7 @@ func (o RealmSecurityDefensesHeadersPtrOutput) XRobotsTag() pulumi.StringPtrOutp
 	}).(pulumi.StringPtrOutput)
 }
 
+// This header configures the Cross-site scripting (XSS) filter in your browser.
 func (o RealmSecurityDefensesHeadersPtrOutput) XXssProtection() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RealmSecurityDefensesHeaders) *string {
 		if v == nil {
@@ -1802,16 +1886,26 @@ func (o RealmSecurityDefensesHeadersPtrOutput) XXssProtection() pulumi.StringPtr
 }
 
 type RealmSmtpServer struct {
-	Auth               *RealmSmtpServerAuth `pulumi:"auth"`
-	EnvelopeFrom       *string              `pulumi:"envelopeFrom"`
-	From               string               `pulumi:"from"`
-	FromDisplayName    *string              `pulumi:"fromDisplayName"`
-	Host               string               `pulumi:"host"`
-	Port               *string              `pulumi:"port"`
-	ReplyTo            *string              `pulumi:"replyTo"`
-	ReplyToDisplayName *string              `pulumi:"replyToDisplayName"`
-	Ssl                *bool                `pulumi:"ssl"`
-	Starttls           *bool                `pulumi:"starttls"`
+	// Enables authentication to the SMTP server.  This block supports the following arguments:
+	Auth *RealmSmtpServerAuth `pulumi:"auth"`
+	// The email address uses for bounces.
+	EnvelopeFrom *string `pulumi:"envelopeFrom"`
+	// The email address for the sender.
+	From string `pulumi:"from"`
+	// The display name of the sender email address.
+	FromDisplayName *string `pulumi:"fromDisplayName"`
+	// The host of the SMTP server.
+	Host string `pulumi:"host"`
+	// The port of the SMTP server (defaults to 25).
+	Port *string `pulumi:"port"`
+	// The "reply to" email address.
+	ReplyTo *string `pulumi:"replyTo"`
+	// The display name of the "reply to" email address.
+	ReplyToDisplayName *string `pulumi:"replyToDisplayName"`
+	// When `true`, enables SSL. Defaults to `false`.
+	Ssl *bool `pulumi:"ssl"`
+	// When `true`, enables StartTLS. Defaults to `false`.
+	Starttls *bool `pulumi:"starttls"`
 }
 
 // RealmSmtpServerInput is an input type that accepts RealmSmtpServerArgs and RealmSmtpServerOutput values.
@@ -1826,16 +1920,26 @@ type RealmSmtpServerInput interface {
 }
 
 type RealmSmtpServerArgs struct {
-	Auth               RealmSmtpServerAuthPtrInput `pulumi:"auth"`
-	EnvelopeFrom       pulumi.StringPtrInput       `pulumi:"envelopeFrom"`
-	From               pulumi.StringInput          `pulumi:"from"`
-	FromDisplayName    pulumi.StringPtrInput       `pulumi:"fromDisplayName"`
-	Host               pulumi.StringInput          `pulumi:"host"`
-	Port               pulumi.StringPtrInput       `pulumi:"port"`
-	ReplyTo            pulumi.StringPtrInput       `pulumi:"replyTo"`
-	ReplyToDisplayName pulumi.StringPtrInput       `pulumi:"replyToDisplayName"`
-	Ssl                pulumi.BoolPtrInput         `pulumi:"ssl"`
-	Starttls           pulumi.BoolPtrInput         `pulumi:"starttls"`
+	// Enables authentication to the SMTP server.  This block supports the following arguments:
+	Auth RealmSmtpServerAuthPtrInput `pulumi:"auth"`
+	// The email address uses for bounces.
+	EnvelopeFrom pulumi.StringPtrInput `pulumi:"envelopeFrom"`
+	// The email address for the sender.
+	From pulumi.StringInput `pulumi:"from"`
+	// The display name of the sender email address.
+	FromDisplayName pulumi.StringPtrInput `pulumi:"fromDisplayName"`
+	// The host of the SMTP server.
+	Host pulumi.StringInput `pulumi:"host"`
+	// The port of the SMTP server (defaults to 25).
+	Port pulumi.StringPtrInput `pulumi:"port"`
+	// The "reply to" email address.
+	ReplyTo pulumi.StringPtrInput `pulumi:"replyTo"`
+	// The display name of the "reply to" email address.
+	ReplyToDisplayName pulumi.StringPtrInput `pulumi:"replyToDisplayName"`
+	// When `true`, enables SSL. Defaults to `false`.
+	Ssl pulumi.BoolPtrInput `pulumi:"ssl"`
+	// When `true`, enables StartTLS. Defaults to `false`.
+	Starttls pulumi.BoolPtrInput `pulumi:"starttls"`
 }
 
 func (RealmSmtpServerArgs) ElementType() reflect.Type {
@@ -1915,42 +2019,52 @@ func (o RealmSmtpServerOutput) ToRealmSmtpServerPtrOutputWithContext(ctx context
 	}).(RealmSmtpServerPtrOutput)
 }
 
+// Enables authentication to the SMTP server.  This block supports the following arguments:
 func (o RealmSmtpServerOutput) Auth() RealmSmtpServerAuthPtrOutput {
 	return o.ApplyT(func(v RealmSmtpServer) *RealmSmtpServerAuth { return v.Auth }).(RealmSmtpServerAuthPtrOutput)
 }
 
+// The email address uses for bounces.
 func (o RealmSmtpServerOutput) EnvelopeFrom() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RealmSmtpServer) *string { return v.EnvelopeFrom }).(pulumi.StringPtrOutput)
 }
 
+// The email address for the sender.
 func (o RealmSmtpServerOutput) From() pulumi.StringOutput {
 	return o.ApplyT(func(v RealmSmtpServer) string { return v.From }).(pulumi.StringOutput)
 }
 
+// The display name of the sender email address.
 func (o RealmSmtpServerOutput) FromDisplayName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RealmSmtpServer) *string { return v.FromDisplayName }).(pulumi.StringPtrOutput)
 }
 
+// The host of the SMTP server.
 func (o RealmSmtpServerOutput) Host() pulumi.StringOutput {
 	return o.ApplyT(func(v RealmSmtpServer) string { return v.Host }).(pulumi.StringOutput)
 }
 
+// The port of the SMTP server (defaults to 25).
 func (o RealmSmtpServerOutput) Port() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RealmSmtpServer) *string { return v.Port }).(pulumi.StringPtrOutput)
 }
 
+// The "reply to" email address.
 func (o RealmSmtpServerOutput) ReplyTo() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RealmSmtpServer) *string { return v.ReplyTo }).(pulumi.StringPtrOutput)
 }
 
+// The display name of the "reply to" email address.
 func (o RealmSmtpServerOutput) ReplyToDisplayName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RealmSmtpServer) *string { return v.ReplyToDisplayName }).(pulumi.StringPtrOutput)
 }
 
+// When `true`, enables SSL. Defaults to `false`.
 func (o RealmSmtpServerOutput) Ssl() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v RealmSmtpServer) *bool { return v.Ssl }).(pulumi.BoolPtrOutput)
 }
 
+// When `true`, enables StartTLS. Defaults to `false`.
 func (o RealmSmtpServerOutput) Starttls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v RealmSmtpServer) *bool { return v.Starttls }).(pulumi.BoolPtrOutput)
 }
@@ -1979,6 +2093,7 @@ func (o RealmSmtpServerPtrOutput) Elem() RealmSmtpServerOutput {
 	}).(RealmSmtpServerOutput)
 }
 
+// Enables authentication to the SMTP server.  This block supports the following arguments:
 func (o RealmSmtpServerPtrOutput) Auth() RealmSmtpServerAuthPtrOutput {
 	return o.ApplyT(func(v *RealmSmtpServer) *RealmSmtpServerAuth {
 		if v == nil {
@@ -1988,6 +2103,7 @@ func (o RealmSmtpServerPtrOutput) Auth() RealmSmtpServerAuthPtrOutput {
 	}).(RealmSmtpServerAuthPtrOutput)
 }
 
+// The email address uses for bounces.
 func (o RealmSmtpServerPtrOutput) EnvelopeFrom() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RealmSmtpServer) *string {
 		if v == nil {
@@ -1997,6 +2113,7 @@ func (o RealmSmtpServerPtrOutput) EnvelopeFrom() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// The email address for the sender.
 func (o RealmSmtpServerPtrOutput) From() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RealmSmtpServer) *string {
 		if v == nil {
@@ -2006,6 +2123,7 @@ func (o RealmSmtpServerPtrOutput) From() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// The display name of the sender email address.
 func (o RealmSmtpServerPtrOutput) FromDisplayName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RealmSmtpServer) *string {
 		if v == nil {
@@ -2015,6 +2133,7 @@ func (o RealmSmtpServerPtrOutput) FromDisplayName() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// The host of the SMTP server.
 func (o RealmSmtpServerPtrOutput) Host() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RealmSmtpServer) *string {
 		if v == nil {
@@ -2024,6 +2143,7 @@ func (o RealmSmtpServerPtrOutput) Host() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// The port of the SMTP server (defaults to 25).
 func (o RealmSmtpServerPtrOutput) Port() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RealmSmtpServer) *string {
 		if v == nil {
@@ -2033,6 +2153,7 @@ func (o RealmSmtpServerPtrOutput) Port() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// The "reply to" email address.
 func (o RealmSmtpServerPtrOutput) ReplyTo() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RealmSmtpServer) *string {
 		if v == nil {
@@ -2042,6 +2163,7 @@ func (o RealmSmtpServerPtrOutput) ReplyTo() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// The display name of the "reply to" email address.
 func (o RealmSmtpServerPtrOutput) ReplyToDisplayName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RealmSmtpServer) *string {
 		if v == nil {
@@ -2051,6 +2173,7 @@ func (o RealmSmtpServerPtrOutput) ReplyToDisplayName() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// When `true`, enables SSL. Defaults to `false`.
 func (o RealmSmtpServerPtrOutput) Ssl() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *RealmSmtpServer) *bool {
 		if v == nil {
@@ -2060,6 +2183,7 @@ func (o RealmSmtpServerPtrOutput) Ssl() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
+// When `true`, enables StartTLS. Defaults to `false`.
 func (o RealmSmtpServerPtrOutput) Starttls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *RealmSmtpServer) *bool {
 		if v == nil {
@@ -2070,7 +2194,9 @@ func (o RealmSmtpServerPtrOutput) Starttls() pulumi.BoolPtrOutput {
 }
 
 type RealmSmtpServerAuth struct {
+	// The SMTP server password.
 	Password string `pulumi:"password"`
+	// The SMTP server username.
 	Username string `pulumi:"username"`
 }
 
@@ -2086,7 +2212,9 @@ type RealmSmtpServerAuthInput interface {
 }
 
 type RealmSmtpServerAuthArgs struct {
+	// The SMTP server password.
 	Password pulumi.StringInput `pulumi:"password"`
+	// The SMTP server username.
 	Username pulumi.StringInput `pulumi:"username"`
 }
 
@@ -2167,10 +2295,12 @@ func (o RealmSmtpServerAuthOutput) ToRealmSmtpServerAuthPtrOutputWithContext(ctx
 	}).(RealmSmtpServerAuthPtrOutput)
 }
 
+// The SMTP server password.
 func (o RealmSmtpServerAuthOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v RealmSmtpServerAuth) string { return v.Password }).(pulumi.StringOutput)
 }
 
+// The SMTP server username.
 func (o RealmSmtpServerAuthOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v RealmSmtpServerAuth) string { return v.Username }).(pulumi.StringOutput)
 }
@@ -2199,6 +2329,7 @@ func (o RealmSmtpServerAuthPtrOutput) Elem() RealmSmtpServerAuthOutput {
 	}).(RealmSmtpServerAuthOutput)
 }
 
+// The SMTP server password.
 func (o RealmSmtpServerAuthPtrOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RealmSmtpServerAuth) *string {
 		if v == nil {
@@ -2208,6 +2339,7 @@ func (o RealmSmtpServerAuthPtrOutput) Password() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// The SMTP server username.
 func (o RealmSmtpServerAuthPtrOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RealmSmtpServerAuth) *string {
 		if v == nil {
@@ -2758,15 +2890,20 @@ func (o RealmUserProfileGroupArrayOutput) Index(i pulumi.IntInput) RealmUserProf
 }
 
 type RealmWebAuthnPasswordlessPolicy struct {
+	// A set of AAGUIDs for which an authenticator can be registered.
 	AcceptableAaguids []string `pulumi:"acceptableAaguids"`
 	// Either none, indirect or direct
 	AttestationConveyancePreference *string `pulumi:"attestationConveyancePreference"`
 	// Either platform or cross-platform
-	AuthenticatorAttachment        *string `pulumi:"authenticatorAttachment"`
-	AvoidSameAuthenticatorRegister *bool   `pulumi:"avoidSameAuthenticatorRegister"`
-	CreateTimeout                  *int    `pulumi:"createTimeout"`
-	RelyingPartyEntityName         *string `pulumi:"relyingPartyEntityName"`
-	RelyingPartyId                 *string `pulumi:"relyingPartyId"`
+	AuthenticatorAttachment *string `pulumi:"authenticatorAttachment"`
+	// When `true`, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to `false`.
+	AvoidSameAuthenticatorRegister *bool `pulumi:"avoidSameAuthenticatorRegister"`
+	// The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
+	CreateTimeout *int `pulumi:"createTimeout"`
+	// A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
+	RelyingPartyEntityName *string `pulumi:"relyingPartyEntityName"`
+	// The WebAuthn relying party ID.
+	RelyingPartyId *string `pulumi:"relyingPartyId"`
 	// Either Yes or No
 	RequireResidentKey *string `pulumi:"requireResidentKey"`
 	// Keycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing
@@ -2787,15 +2924,20 @@ type RealmWebAuthnPasswordlessPolicyInput interface {
 }
 
 type RealmWebAuthnPasswordlessPolicyArgs struct {
+	// A set of AAGUIDs for which an authenticator can be registered.
 	AcceptableAaguids pulumi.StringArrayInput `pulumi:"acceptableAaguids"`
 	// Either none, indirect or direct
 	AttestationConveyancePreference pulumi.StringPtrInput `pulumi:"attestationConveyancePreference"`
 	// Either platform or cross-platform
-	AuthenticatorAttachment        pulumi.StringPtrInput `pulumi:"authenticatorAttachment"`
-	AvoidSameAuthenticatorRegister pulumi.BoolPtrInput   `pulumi:"avoidSameAuthenticatorRegister"`
-	CreateTimeout                  pulumi.IntPtrInput    `pulumi:"createTimeout"`
-	RelyingPartyEntityName         pulumi.StringPtrInput `pulumi:"relyingPartyEntityName"`
-	RelyingPartyId                 pulumi.StringPtrInput `pulumi:"relyingPartyId"`
+	AuthenticatorAttachment pulumi.StringPtrInput `pulumi:"authenticatorAttachment"`
+	// When `true`, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to `false`.
+	AvoidSameAuthenticatorRegister pulumi.BoolPtrInput `pulumi:"avoidSameAuthenticatorRegister"`
+	// The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
+	CreateTimeout pulumi.IntPtrInput `pulumi:"createTimeout"`
+	// A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
+	RelyingPartyEntityName pulumi.StringPtrInput `pulumi:"relyingPartyEntityName"`
+	// The WebAuthn relying party ID.
+	RelyingPartyId pulumi.StringPtrInput `pulumi:"relyingPartyId"`
 	// Either Yes or No
 	RequireResidentKey pulumi.StringPtrInput `pulumi:"requireResidentKey"`
 	// Keycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing
@@ -2881,6 +3023,7 @@ func (o RealmWebAuthnPasswordlessPolicyOutput) ToRealmWebAuthnPasswordlessPolicy
 	}).(RealmWebAuthnPasswordlessPolicyPtrOutput)
 }
 
+// A set of AAGUIDs for which an authenticator can be registered.
 func (o RealmWebAuthnPasswordlessPolicyOutput) AcceptableAaguids() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v RealmWebAuthnPasswordlessPolicy) []string { return v.AcceptableAaguids }).(pulumi.StringArrayOutput)
 }
@@ -2895,18 +3038,22 @@ func (o RealmWebAuthnPasswordlessPolicyOutput) AuthenticatorAttachment() pulumi.
 	return o.ApplyT(func(v RealmWebAuthnPasswordlessPolicy) *string { return v.AuthenticatorAttachment }).(pulumi.StringPtrOutput)
 }
 
+// When `true`, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to `false`.
 func (o RealmWebAuthnPasswordlessPolicyOutput) AvoidSameAuthenticatorRegister() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v RealmWebAuthnPasswordlessPolicy) *bool { return v.AvoidSameAuthenticatorRegister }).(pulumi.BoolPtrOutput)
 }
 
+// The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
 func (o RealmWebAuthnPasswordlessPolicyOutput) CreateTimeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v RealmWebAuthnPasswordlessPolicy) *int { return v.CreateTimeout }).(pulumi.IntPtrOutput)
 }
 
+// A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
 func (o RealmWebAuthnPasswordlessPolicyOutput) RelyingPartyEntityName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RealmWebAuthnPasswordlessPolicy) *string { return v.RelyingPartyEntityName }).(pulumi.StringPtrOutput)
 }
 
+// The WebAuthn relying party ID.
 func (o RealmWebAuthnPasswordlessPolicyOutput) RelyingPartyId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RealmWebAuthnPasswordlessPolicy) *string { return v.RelyingPartyId }).(pulumi.StringPtrOutput)
 }
@@ -2950,6 +3097,7 @@ func (o RealmWebAuthnPasswordlessPolicyPtrOutput) Elem() RealmWebAuthnPasswordle
 	}).(RealmWebAuthnPasswordlessPolicyOutput)
 }
 
+// A set of AAGUIDs for which an authenticator can be registered.
 func (o RealmWebAuthnPasswordlessPolicyPtrOutput) AcceptableAaguids() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *RealmWebAuthnPasswordlessPolicy) []string {
 		if v == nil {
@@ -2979,6 +3127,7 @@ func (o RealmWebAuthnPasswordlessPolicyPtrOutput) AuthenticatorAttachment() pulu
 	}).(pulumi.StringPtrOutput)
 }
 
+// When `true`, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to `false`.
 func (o RealmWebAuthnPasswordlessPolicyPtrOutput) AvoidSameAuthenticatorRegister() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *RealmWebAuthnPasswordlessPolicy) *bool {
 		if v == nil {
@@ -2988,6 +3137,7 @@ func (o RealmWebAuthnPasswordlessPolicyPtrOutput) AvoidSameAuthenticatorRegister
 	}).(pulumi.BoolPtrOutput)
 }
 
+// The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
 func (o RealmWebAuthnPasswordlessPolicyPtrOutput) CreateTimeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *RealmWebAuthnPasswordlessPolicy) *int {
 		if v == nil {
@@ -2997,6 +3147,7 @@ func (o RealmWebAuthnPasswordlessPolicyPtrOutput) CreateTimeout() pulumi.IntPtrO
 	}).(pulumi.IntPtrOutput)
 }
 
+// A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
 func (o RealmWebAuthnPasswordlessPolicyPtrOutput) RelyingPartyEntityName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RealmWebAuthnPasswordlessPolicy) *string {
 		if v == nil {
@@ -3006,6 +3157,7 @@ func (o RealmWebAuthnPasswordlessPolicyPtrOutput) RelyingPartyEntityName() pulum
 	}).(pulumi.StringPtrOutput)
 }
 
+// The WebAuthn relying party ID.
 func (o RealmWebAuthnPasswordlessPolicyPtrOutput) RelyingPartyId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RealmWebAuthnPasswordlessPolicy) *string {
 		if v == nil {
@@ -3046,15 +3198,20 @@ func (o RealmWebAuthnPasswordlessPolicyPtrOutput) UserVerificationRequirement() 
 }
 
 type RealmWebAuthnPolicy struct {
+	// A set of AAGUIDs for which an authenticator can be registered.
 	AcceptableAaguids []string `pulumi:"acceptableAaguids"`
 	// Either none, indirect or direct
 	AttestationConveyancePreference *string `pulumi:"attestationConveyancePreference"`
 	// Either platform or cross-platform
-	AuthenticatorAttachment        *string `pulumi:"authenticatorAttachment"`
-	AvoidSameAuthenticatorRegister *bool   `pulumi:"avoidSameAuthenticatorRegister"`
-	CreateTimeout                  *int    `pulumi:"createTimeout"`
-	RelyingPartyEntityName         *string `pulumi:"relyingPartyEntityName"`
-	RelyingPartyId                 *string `pulumi:"relyingPartyId"`
+	AuthenticatorAttachment *string `pulumi:"authenticatorAttachment"`
+	// When `true`, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to `false`.
+	AvoidSameAuthenticatorRegister *bool `pulumi:"avoidSameAuthenticatorRegister"`
+	// The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
+	CreateTimeout *int `pulumi:"createTimeout"`
+	// A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
+	RelyingPartyEntityName *string `pulumi:"relyingPartyEntityName"`
+	// The WebAuthn relying party ID.
+	RelyingPartyId *string `pulumi:"relyingPartyId"`
 	// Either Yes or No
 	RequireResidentKey *string `pulumi:"requireResidentKey"`
 	// Keycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing
@@ -3075,15 +3232,20 @@ type RealmWebAuthnPolicyInput interface {
 }
 
 type RealmWebAuthnPolicyArgs struct {
+	// A set of AAGUIDs for which an authenticator can be registered.
 	AcceptableAaguids pulumi.StringArrayInput `pulumi:"acceptableAaguids"`
 	// Either none, indirect or direct
 	AttestationConveyancePreference pulumi.StringPtrInput `pulumi:"attestationConveyancePreference"`
 	// Either platform or cross-platform
-	AuthenticatorAttachment        pulumi.StringPtrInput `pulumi:"authenticatorAttachment"`
-	AvoidSameAuthenticatorRegister pulumi.BoolPtrInput   `pulumi:"avoidSameAuthenticatorRegister"`
-	CreateTimeout                  pulumi.IntPtrInput    `pulumi:"createTimeout"`
-	RelyingPartyEntityName         pulumi.StringPtrInput `pulumi:"relyingPartyEntityName"`
-	RelyingPartyId                 pulumi.StringPtrInput `pulumi:"relyingPartyId"`
+	AuthenticatorAttachment pulumi.StringPtrInput `pulumi:"authenticatorAttachment"`
+	// When `true`, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to `false`.
+	AvoidSameAuthenticatorRegister pulumi.BoolPtrInput `pulumi:"avoidSameAuthenticatorRegister"`
+	// The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
+	CreateTimeout pulumi.IntPtrInput `pulumi:"createTimeout"`
+	// A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
+	RelyingPartyEntityName pulumi.StringPtrInput `pulumi:"relyingPartyEntityName"`
+	// The WebAuthn relying party ID.
+	RelyingPartyId pulumi.StringPtrInput `pulumi:"relyingPartyId"`
 	// Either Yes or No
 	RequireResidentKey pulumi.StringPtrInput `pulumi:"requireResidentKey"`
 	// Keycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing
@@ -3169,6 +3331,7 @@ func (o RealmWebAuthnPolicyOutput) ToRealmWebAuthnPolicyPtrOutputWithContext(ctx
 	}).(RealmWebAuthnPolicyPtrOutput)
 }
 
+// A set of AAGUIDs for which an authenticator can be registered.
 func (o RealmWebAuthnPolicyOutput) AcceptableAaguids() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v RealmWebAuthnPolicy) []string { return v.AcceptableAaguids }).(pulumi.StringArrayOutput)
 }
@@ -3183,18 +3346,22 @@ func (o RealmWebAuthnPolicyOutput) AuthenticatorAttachment() pulumi.StringPtrOut
 	return o.ApplyT(func(v RealmWebAuthnPolicy) *string { return v.AuthenticatorAttachment }).(pulumi.StringPtrOutput)
 }
 
+// When `true`, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to `false`.
 func (o RealmWebAuthnPolicyOutput) AvoidSameAuthenticatorRegister() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v RealmWebAuthnPolicy) *bool { return v.AvoidSameAuthenticatorRegister }).(pulumi.BoolPtrOutput)
 }
 
+// The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
 func (o RealmWebAuthnPolicyOutput) CreateTimeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v RealmWebAuthnPolicy) *int { return v.CreateTimeout }).(pulumi.IntPtrOutput)
 }
 
+// A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
 func (o RealmWebAuthnPolicyOutput) RelyingPartyEntityName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RealmWebAuthnPolicy) *string { return v.RelyingPartyEntityName }).(pulumi.StringPtrOutput)
 }
 
+// The WebAuthn relying party ID.
 func (o RealmWebAuthnPolicyOutput) RelyingPartyId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RealmWebAuthnPolicy) *string { return v.RelyingPartyId }).(pulumi.StringPtrOutput)
 }
@@ -3238,6 +3405,7 @@ func (o RealmWebAuthnPolicyPtrOutput) Elem() RealmWebAuthnPolicyOutput {
 	}).(RealmWebAuthnPolicyOutput)
 }
 
+// A set of AAGUIDs for which an authenticator can be registered.
 func (o RealmWebAuthnPolicyPtrOutput) AcceptableAaguids() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *RealmWebAuthnPolicy) []string {
 		if v == nil {
@@ -3267,6 +3435,7 @@ func (o RealmWebAuthnPolicyPtrOutput) AuthenticatorAttachment() pulumi.StringPtr
 	}).(pulumi.StringPtrOutput)
 }
 
+// When `true`, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to `false`.
 func (o RealmWebAuthnPolicyPtrOutput) AvoidSameAuthenticatorRegister() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *RealmWebAuthnPolicy) *bool {
 		if v == nil {
@@ -3276,6 +3445,7 @@ func (o RealmWebAuthnPolicyPtrOutput) AvoidSameAuthenticatorRegister() pulumi.Bo
 	}).(pulumi.BoolPtrOutput)
 }
 
+// The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
 func (o RealmWebAuthnPolicyPtrOutput) CreateTimeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *RealmWebAuthnPolicy) *int {
 		if v == nil {
@@ -3285,6 +3455,7 @@ func (o RealmWebAuthnPolicyPtrOutput) CreateTimeout() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
+// A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
 func (o RealmWebAuthnPolicyPtrOutput) RelyingPartyEntityName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RealmWebAuthnPolicy) *string {
 		if v == nil {
@@ -3294,6 +3465,7 @@ func (o RealmWebAuthnPolicyPtrOutput) RelyingPartyEntityName() pulumi.StringPtrO
 	}).(pulumi.StringPtrOutput)
 }
 
+// The WebAuthn relying party ID.
 func (o RealmWebAuthnPolicyPtrOutput) RelyingPartyId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RealmWebAuthnPolicy) *string {
 		if v == nil {
@@ -3334,9 +3506,12 @@ func (o RealmWebAuthnPolicyPtrOutput) UserVerificationRequirement() pulumi.Strin
 }
 
 type UserFederatedIdentity struct {
+	// The name of the identity provider
 	IdentityProvider string `pulumi:"identityProvider"`
-	UserId           string `pulumi:"userId"`
-	UserName         string `pulumi:"userName"`
+	// The ID of the user defined in the identity provider
+	UserId string `pulumi:"userId"`
+	// The user name of the user defined in the identity provider
+	UserName string `pulumi:"userName"`
 }
 
 // UserFederatedIdentityInput is an input type that accepts UserFederatedIdentityArgs and UserFederatedIdentityOutput values.
@@ -3351,9 +3526,12 @@ type UserFederatedIdentityInput interface {
 }
 
 type UserFederatedIdentityArgs struct {
+	// The name of the identity provider
 	IdentityProvider pulumi.StringInput `pulumi:"identityProvider"`
-	UserId           pulumi.StringInput `pulumi:"userId"`
-	UserName         pulumi.StringInput `pulumi:"userName"`
+	// The ID of the user defined in the identity provider
+	UserId pulumi.StringInput `pulumi:"userId"`
+	// The user name of the user defined in the identity provider
+	UserName pulumi.StringInput `pulumi:"userName"`
 }
 
 func (UserFederatedIdentityArgs) ElementType() reflect.Type {
@@ -3407,14 +3585,17 @@ func (o UserFederatedIdentityOutput) ToUserFederatedIdentityOutputWithContext(ct
 	return o
 }
 
+// The name of the identity provider
 func (o UserFederatedIdentityOutput) IdentityProvider() pulumi.StringOutput {
 	return o.ApplyT(func(v UserFederatedIdentity) string { return v.IdentityProvider }).(pulumi.StringOutput)
 }
 
+// The ID of the user defined in the identity provider
 func (o UserFederatedIdentityOutput) UserId() pulumi.StringOutput {
 	return o.ApplyT(func(v UserFederatedIdentity) string { return v.UserId }).(pulumi.StringOutput)
 }
 
+// The user name of the user defined in the identity provider
 func (o UserFederatedIdentityOutput) UserName() pulumi.StringOutput {
 	return o.ApplyT(func(v UserFederatedIdentity) string { return v.UserName }).(pulumi.StringOutput)
 }
@@ -3440,8 +3621,10 @@ func (o UserFederatedIdentityArrayOutput) Index(i pulumi.IntInput) UserFederated
 }
 
 type UserInitialPassword struct {
-	Temporary *bool  `pulumi:"temporary"`
-	Value     string `pulumi:"value"`
+	// If set to `true`, the initial password is set up for renewal on first use. Default to `false`.
+	Temporary *bool `pulumi:"temporary"`
+	// The initial password.
+	Value string `pulumi:"value"`
 }
 
 // UserInitialPasswordInput is an input type that accepts UserInitialPasswordArgs and UserInitialPasswordOutput values.
@@ -3456,8 +3639,10 @@ type UserInitialPasswordInput interface {
 }
 
 type UserInitialPasswordArgs struct {
+	// If set to `true`, the initial password is set up for renewal on first use. Default to `false`.
 	Temporary pulumi.BoolPtrInput `pulumi:"temporary"`
-	Value     pulumi.StringInput  `pulumi:"value"`
+	// The initial password.
+	Value pulumi.StringInput `pulumi:"value"`
 }
 
 func (UserInitialPasswordArgs) ElementType() reflect.Type {
@@ -3537,10 +3722,12 @@ func (o UserInitialPasswordOutput) ToUserInitialPasswordPtrOutputWithContext(ctx
 	}).(UserInitialPasswordPtrOutput)
 }
 
+// If set to `true`, the initial password is set up for renewal on first use. Default to `false`.
 func (o UserInitialPasswordOutput) Temporary() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v UserInitialPassword) *bool { return v.Temporary }).(pulumi.BoolPtrOutput)
 }
 
+// The initial password.
 func (o UserInitialPasswordOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v UserInitialPassword) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -3569,6 +3756,7 @@ func (o UserInitialPasswordPtrOutput) Elem() UserInitialPasswordOutput {
 	}).(UserInitialPasswordOutput)
 }
 
+// If set to `true`, the initial password is set up for renewal on first use. Default to `false`.
 func (o UserInitialPasswordPtrOutput) Temporary() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *UserInitialPassword) *bool {
 		if v == nil {
@@ -3578,6 +3766,7 @@ func (o UserInitialPasswordPtrOutput) Temporary() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
+// The initial password.
 func (o UserInitialPasswordPtrOutput) Value() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *UserInitialPassword) *string {
 		if v == nil {
@@ -4784,14 +4973,22 @@ func (o GetRealmInternationalizationArrayOutput) Index(i pulumi.IntInput) GetRea
 }
 
 type GetRealmKeysKey struct {
-	Algorithm        string `pulumi:"algorithm"`
-	Certificate      string `pulumi:"certificate"`
-	Kid              string `pulumi:"kid"`
-	ProviderId       string `pulumi:"providerId"`
-	ProviderPriority int    `pulumi:"providerPriority"`
-	PublicKey        string `pulumi:"publicKey"`
-	Status           string `pulumi:"status"`
-	Type             string `pulumi:"type"`
+	// Key algorithm (string)
+	Algorithm string `pulumi:"algorithm"`
+	// Key certificate (string)
+	Certificate string `pulumi:"certificate"`
+	// Key ID (string)
+	Kid string `pulumi:"kid"`
+	// Key provider ID (string)
+	ProviderId string `pulumi:"providerId"`
+	// Key provider priority (int64)
+	ProviderPriority int `pulumi:"providerPriority"`
+	// Key public key (string)
+	PublicKey string `pulumi:"publicKey"`
+	// When specified, keys will be filtered by status. The statuses can be any of `ACTIVE`, `DISABLED` and `PASSIVE`.
+	Status string `pulumi:"status"`
+	// Key type (string)
+	Type string `pulumi:"type"`
 }
 
 // GetRealmKeysKeyInput is an input type that accepts GetRealmKeysKeyArgs and GetRealmKeysKeyOutput values.
@@ -4806,14 +5003,22 @@ type GetRealmKeysKeyInput interface {
 }
 
 type GetRealmKeysKeyArgs struct {
-	Algorithm        pulumi.StringInput `pulumi:"algorithm"`
-	Certificate      pulumi.StringInput `pulumi:"certificate"`
-	Kid              pulumi.StringInput `pulumi:"kid"`
-	ProviderId       pulumi.StringInput `pulumi:"providerId"`
-	ProviderPriority pulumi.IntInput    `pulumi:"providerPriority"`
-	PublicKey        pulumi.StringInput `pulumi:"publicKey"`
-	Status           pulumi.StringInput `pulumi:"status"`
-	Type             pulumi.StringInput `pulumi:"type"`
+	// Key algorithm (string)
+	Algorithm pulumi.StringInput `pulumi:"algorithm"`
+	// Key certificate (string)
+	Certificate pulumi.StringInput `pulumi:"certificate"`
+	// Key ID (string)
+	Kid pulumi.StringInput `pulumi:"kid"`
+	// Key provider ID (string)
+	ProviderId pulumi.StringInput `pulumi:"providerId"`
+	// Key provider priority (int64)
+	ProviderPriority pulumi.IntInput `pulumi:"providerPriority"`
+	// Key public key (string)
+	PublicKey pulumi.StringInput `pulumi:"publicKey"`
+	// When specified, keys will be filtered by status. The statuses can be any of `ACTIVE`, `DISABLED` and `PASSIVE`.
+	Status pulumi.StringInput `pulumi:"status"`
+	// Key type (string)
+	Type pulumi.StringInput `pulumi:"type"`
 }
 
 func (GetRealmKeysKeyArgs) ElementType() reflect.Type {
@@ -4867,34 +5072,42 @@ func (o GetRealmKeysKeyOutput) ToGetRealmKeysKeyOutputWithContext(ctx context.Co
 	return o
 }
 
+// Key algorithm (string)
 func (o GetRealmKeysKeyOutput) Algorithm() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRealmKeysKey) string { return v.Algorithm }).(pulumi.StringOutput)
 }
 
+// Key certificate (string)
 func (o GetRealmKeysKeyOutput) Certificate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRealmKeysKey) string { return v.Certificate }).(pulumi.StringOutput)
 }
 
+// Key ID (string)
 func (o GetRealmKeysKeyOutput) Kid() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRealmKeysKey) string { return v.Kid }).(pulumi.StringOutput)
 }
 
+// Key provider ID (string)
 func (o GetRealmKeysKeyOutput) ProviderId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRealmKeysKey) string { return v.ProviderId }).(pulumi.StringOutput)
 }
 
+// Key provider priority (int64)
 func (o GetRealmKeysKeyOutput) ProviderPriority() pulumi.IntOutput {
 	return o.ApplyT(func(v GetRealmKeysKey) int { return v.ProviderPriority }).(pulumi.IntOutput)
 }
 
+// Key public key (string)
 func (o GetRealmKeysKeyOutput) PublicKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRealmKeysKey) string { return v.PublicKey }).(pulumi.StringOutput)
 }
 
+// When specified, keys will be filtered by status. The statuses can be any of `ACTIVE`, `DISABLED` and `PASSIVE`.
 func (o GetRealmKeysKeyOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRealmKeysKey) string { return v.Status }).(pulumi.StringOutput)
 }
 
+// Key type (string)
 func (o GetRealmKeysKeyOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRealmKeysKey) string { return v.Type }).(pulumi.StringOutput)
 }

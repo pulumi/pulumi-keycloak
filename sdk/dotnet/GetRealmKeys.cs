@@ -12,29 +12,25 @@ namespace Pulumi.Keycloak
     public static class GetRealmKeys
     {
         /// <summary>
-        /// ## # keycloak.getRealmKeys data source
-        /// 
         /// Use this data source to get the keys of a realm. Keys can be filtered by algorithm and status.
         /// 
         /// Remarks:
         /// 
         /// - A key must meet all filter criteria
-        /// - This datasource may return more than one value.
-        /// - If no key matches the filter criteria, then an error is returned.
+        /// - This data source may return more than one value.
+        /// - If no key matches the filter criteria, then an error will be returned.
         /// </summary>
         public static Task<GetRealmKeysResult> InvokeAsync(GetRealmKeysArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetRealmKeysResult>("keycloak:index/getRealmKeys:getRealmKeys", args ?? new GetRealmKeysArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # keycloak.getRealmKeys data source
-        /// 
         /// Use this data source to get the keys of a realm. Keys can be filtered by algorithm and status.
         /// 
         /// Remarks:
         /// 
         /// - A key must meet all filter criteria
-        /// - This datasource may return more than one value.
-        /// - If no key matches the filter criteria, then an error is returned.
+        /// - This data source may return more than one value.
+        /// - If no key matches the filter criteria, then an error will be returned.
         /// </summary>
         public static Output<GetRealmKeysResult> Invoke(GetRealmKeysInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetRealmKeysResult>("keycloak:index/getRealmKeys:getRealmKeys", args ?? new GetRealmKeysInvokeArgs(), options.WithDefaults());
@@ -45,17 +41,28 @@ namespace Pulumi.Keycloak
     {
         [Input("algorithms")]
         private List<string>? _algorithms;
+
+        /// <summary>
+        /// When specified, keys will be filtered by algorithm. The algorithms can be any of `HS256`, `RS256`,`AES`, etc.
+        /// </summary>
         public List<string> Algorithms
         {
             get => _algorithms ?? (_algorithms = new List<string>());
             set => _algorithms = value;
         }
 
+        /// <summary>
+        /// The realm from which the keys will be retrieved.
+        /// </summary>
         [Input("realmId", required: true)]
         public string RealmId { get; set; } = null!;
 
         [Input("statuses")]
         private List<string>? _statuses;
+
+        /// <summary>
+        /// When specified, keys will be filtered by status. The statuses can be any of `ACTIVE`, `DISABLED` and `PASSIVE`.
+        /// </summary>
         public List<string> Statuses
         {
             get => _statuses ?? (_statuses = new List<string>());
@@ -72,17 +79,28 @@ namespace Pulumi.Keycloak
     {
         [Input("algorithms")]
         private InputList<string>? _algorithms;
+
+        /// <summary>
+        /// When specified, keys will be filtered by algorithm. The algorithms can be any of `HS256`, `RS256`,`AES`, etc.
+        /// </summary>
         public InputList<string> Algorithms
         {
             get => _algorithms ?? (_algorithms = new InputList<string>());
             set => _algorithms = value;
         }
 
+        /// <summary>
+        /// The realm from which the keys will be retrieved.
+        /// </summary>
         [Input("realmId", required: true)]
         public Input<string> RealmId { get; set; } = null!;
 
         [Input("statuses")]
         private InputList<string>? _statuses;
+
+        /// <summary>
+        /// When specified, keys will be filtered by status. The statuses can be any of `ACTIVE`, `DISABLED` and `PASSIVE`.
+        /// </summary>
         public InputList<string> Statuses
         {
             get => _statuses ?? (_statuses = new InputList<string>());
@@ -104,8 +122,14 @@ namespace Pulumi.Keycloak
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// (Computed) A list of keys that match the filter criteria. Each key has the following attributes:
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetRealmKeysKeyResult> Keys;
         public readonly string RealmId;
+        /// <summary>
+        /// Key status (string)
+        /// </summary>
         public readonly ImmutableArray<string> Statuses;
 
         [OutputConstructor]

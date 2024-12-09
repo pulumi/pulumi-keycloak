@@ -12,9 +12,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # GenericClientProtocolMapper
+// !> **WARNING:** This resource is deprecated and will be removed in the next major version. Please use `GenericProtocolMapper` instead.
 //
-// Allows for creating and managing protocol mapper for both types of clients (openid-connect and saml) within Keycloak.
+// Allows for creating and managing protocol mappers for both types of clients (openid-connect and saml) within Keycloak.
 //
 // There are two uses cases for using this resource:
 // * If you implemented a custom protocol mapper, this resource can be used to configure it
@@ -23,7 +23,7 @@ import (
 // Due to the generic nature of this mapper, it is less user-friendly and more prone to configuration errors.
 // Therefore, if possible, a specific mapper should be used.
 //
-// ### Example Usage
+// ## Example Usage
 //
 // ```go
 // package main
@@ -55,7 +55,7 @@ import (
 //			_, err = keycloak.NewGenericClientProtocolMapper(ctx, "saml_hardcode_attribute_mapper", &keycloak.GenericClientProtocolMapperArgs{
 //				RealmId:        realm.ID(),
 //				ClientId:       samlClient.ID(),
-//				Name:           pulumi.String("tes-mapper"),
+//				Name:           pulumi.String("test-mapper"),
 //				Protocol:       pulumi.String("saml"),
 //				ProtocolMapper: pulumi.String("saml-hardcode-attribute-mapper"),
 //				Config: pulumi.StringMap{
@@ -74,38 +74,33 @@ import (
 //
 // ```
 //
-// ### Argument Reference
-//
-// The following arguments are supported:
-//
-//   - `realmId` - (Required) The realm this protocol mapper exists within.
-//   - `clientId` - (Required) The client this protocol mapper is attached to.
-//   - `name` - (Required) The display name of this protocol mapper in the GUI.
-//   - `protocol` - (Required) The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
-//   - `protocolMapper` - (Required) The name of the protocol mapper. The protocol mapper must be
-//     compatible with the specified client.
-//   - `config` - (Required) A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
-//
-// ### Import
+// ## Import
 //
 // Protocol mappers can be imported using the following format: `{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}`
 //
 // Example:
+//
+// bash
+//
+// ```sh
+// $ pulumi import keycloak:index/genericClientProtocolMapper:GenericClientProtocolMapper saml_hardcode_attribute_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+// ```
 type GenericClientProtocolMapper struct {
 	pulumi.CustomResourceState
 
-	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
+	// The client this protocol mapper is attached to.
 	ClientId pulumi.StringPtrOutput `pulumi:"clientId"`
 	// The mapper's associated client scope. Cannot be used at the same time as client_id.
 	ClientScopeId pulumi.StringPtrOutput `pulumi:"clientScopeId"`
-	Config        pulumi.StringMapOutput `pulumi:"config"`
-	// A human-friendly name that will appear in the Keycloak console.
+	// A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
+	Config pulumi.StringMapOutput `pulumi:"config"`
+	// The display name of this protocol mapper in the GUI.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The protocol of the client (openid-connect / saml).
+	// The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
 	Protocol pulumi.StringOutput `pulumi:"protocol"`
-	// The type of the protocol mapper.
+	// The name of the protocol mapper. The protocol mapper must be compatible with the specified client.
 	ProtocolMapper pulumi.StringOutput `pulumi:"protocolMapper"`
-	// The realm id where the associated client or client scope exists.
+	// The realm this protocol mapper exists within.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
 }
 
@@ -151,34 +146,36 @@ func GetGenericClientProtocolMapper(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering GenericClientProtocolMapper resources.
 type genericClientProtocolMapperState struct {
-	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
+	// The client this protocol mapper is attached to.
 	ClientId *string `pulumi:"clientId"`
 	// The mapper's associated client scope. Cannot be used at the same time as client_id.
-	ClientScopeId *string           `pulumi:"clientScopeId"`
-	Config        map[string]string `pulumi:"config"`
-	// A human-friendly name that will appear in the Keycloak console.
+	ClientScopeId *string `pulumi:"clientScopeId"`
+	// A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
+	Config map[string]string `pulumi:"config"`
+	// The display name of this protocol mapper in the GUI.
 	Name *string `pulumi:"name"`
-	// The protocol of the client (openid-connect / saml).
+	// The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
 	Protocol *string `pulumi:"protocol"`
-	// The type of the protocol mapper.
+	// The name of the protocol mapper. The protocol mapper must be compatible with the specified client.
 	ProtocolMapper *string `pulumi:"protocolMapper"`
-	// The realm id where the associated client or client scope exists.
+	// The realm this protocol mapper exists within.
 	RealmId *string `pulumi:"realmId"`
 }
 
 type GenericClientProtocolMapperState struct {
-	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
+	// The client this protocol mapper is attached to.
 	ClientId pulumi.StringPtrInput
 	// The mapper's associated client scope. Cannot be used at the same time as client_id.
 	ClientScopeId pulumi.StringPtrInput
-	Config        pulumi.StringMapInput
-	// A human-friendly name that will appear in the Keycloak console.
+	// A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
+	Config pulumi.StringMapInput
+	// The display name of this protocol mapper in the GUI.
 	Name pulumi.StringPtrInput
-	// The protocol of the client (openid-connect / saml).
+	// The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
 	Protocol pulumi.StringPtrInput
-	// The type of the protocol mapper.
+	// The name of the protocol mapper. The protocol mapper must be compatible with the specified client.
 	ProtocolMapper pulumi.StringPtrInput
-	// The realm id where the associated client or client scope exists.
+	// The realm this protocol mapper exists within.
 	RealmId pulumi.StringPtrInput
 }
 
@@ -187,35 +184,37 @@ func (GenericClientProtocolMapperState) ElementType() reflect.Type {
 }
 
 type genericClientProtocolMapperArgs struct {
-	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
+	// The client this protocol mapper is attached to.
 	ClientId *string `pulumi:"clientId"`
 	// The mapper's associated client scope. Cannot be used at the same time as client_id.
-	ClientScopeId *string           `pulumi:"clientScopeId"`
-	Config        map[string]string `pulumi:"config"`
-	// A human-friendly name that will appear in the Keycloak console.
+	ClientScopeId *string `pulumi:"clientScopeId"`
+	// A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
+	Config map[string]string `pulumi:"config"`
+	// The display name of this protocol mapper in the GUI.
 	Name *string `pulumi:"name"`
-	// The protocol of the client (openid-connect / saml).
+	// The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
 	Protocol string `pulumi:"protocol"`
-	// The type of the protocol mapper.
+	// The name of the protocol mapper. The protocol mapper must be compatible with the specified client.
 	ProtocolMapper string `pulumi:"protocolMapper"`
-	// The realm id where the associated client or client scope exists.
+	// The realm this protocol mapper exists within.
 	RealmId string `pulumi:"realmId"`
 }
 
 // The set of arguments for constructing a GenericClientProtocolMapper resource.
 type GenericClientProtocolMapperArgs struct {
-	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
+	// The client this protocol mapper is attached to.
 	ClientId pulumi.StringPtrInput
 	// The mapper's associated client scope. Cannot be used at the same time as client_id.
 	ClientScopeId pulumi.StringPtrInput
-	Config        pulumi.StringMapInput
-	// A human-friendly name that will appear in the Keycloak console.
+	// A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
+	Config pulumi.StringMapInput
+	// The display name of this protocol mapper in the GUI.
 	Name pulumi.StringPtrInput
-	// The protocol of the client (openid-connect / saml).
+	// The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
 	Protocol pulumi.StringInput
-	// The type of the protocol mapper.
+	// The name of the protocol mapper. The protocol mapper must be compatible with the specified client.
 	ProtocolMapper pulumi.StringInput
-	// The realm id where the associated client or client scope exists.
+	// The realm this protocol mapper exists within.
 	RealmId pulumi.StringInput
 }
 
@@ -306,7 +305,7 @@ func (o GenericClientProtocolMapperOutput) ToGenericClientProtocolMapperOutputWi
 	return o
 }
 
-// The mapper's associated client. Cannot be used at the same time as client_scope_id.
+// The client this protocol mapper is attached to.
 func (o GenericClientProtocolMapperOutput) ClientId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GenericClientProtocolMapper) pulumi.StringPtrOutput { return v.ClientId }).(pulumi.StringPtrOutput)
 }
@@ -316,26 +315,27 @@ func (o GenericClientProtocolMapperOutput) ClientScopeId() pulumi.StringPtrOutpu
 	return o.ApplyT(func(v *GenericClientProtocolMapper) pulumi.StringPtrOutput { return v.ClientScopeId }).(pulumi.StringPtrOutput)
 }
 
+// A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
 func (o GenericClientProtocolMapperOutput) Config() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *GenericClientProtocolMapper) pulumi.StringMapOutput { return v.Config }).(pulumi.StringMapOutput)
 }
 
-// A human-friendly name that will appear in the Keycloak console.
+// The display name of this protocol mapper in the GUI.
 func (o GenericClientProtocolMapperOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *GenericClientProtocolMapper) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The protocol of the client (openid-connect / saml).
+// The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
 func (o GenericClientProtocolMapperOutput) Protocol() pulumi.StringOutput {
 	return o.ApplyT(func(v *GenericClientProtocolMapper) pulumi.StringOutput { return v.Protocol }).(pulumi.StringOutput)
 }
 
-// The type of the protocol mapper.
+// The name of the protocol mapper. The protocol mapper must be compatible with the specified client.
 func (o GenericClientProtocolMapperOutput) ProtocolMapper() pulumi.StringOutput {
 	return o.ApplyT(func(v *GenericClientProtocolMapper) pulumi.StringOutput { return v.ProtocolMapper }).(pulumi.StringOutput)
 }
 
-// The realm id where the associated client or client scope exists.
+// The realm this protocol mapper exists within.
 func (o GenericClientProtocolMapperOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *GenericClientProtocolMapper) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
 }

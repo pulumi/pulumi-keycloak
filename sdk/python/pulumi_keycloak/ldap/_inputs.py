@@ -27,7 +27,7 @@ if not MYPY:
     class UserFederationCacheArgsDict(TypedDict):
         eviction_day: NotRequired[pulumi.Input[int]]
         """
-        Day of the week the entry will become invalid on.
+        Day of the week the entry will become invalid on
         """
         eviction_hour: NotRequired[pulumi.Input[int]]
         """
@@ -42,6 +42,9 @@ if not MYPY:
         Max lifespan of cache entry (duration string).
         """
         policy: NotRequired[pulumi.Input[str]]
+        """
+        Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
+        """
 elif False:
     UserFederationCacheArgsDict: TypeAlias = Mapping[str, Any]
 
@@ -54,10 +57,11 @@ class UserFederationCacheArgs:
                  max_lifespan: Optional[pulumi.Input[str]] = None,
                  policy: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[int] eviction_day: Day of the week the entry will become invalid on.
+        :param pulumi.Input[int] eviction_day: Day of the week the entry will become invalid on
         :param pulumi.Input[int] eviction_hour: Hour of day the entry will become invalid on.
         :param pulumi.Input[int] eviction_minute: Minute of day the entry will become invalid on.
         :param pulumi.Input[str] max_lifespan: Max lifespan of cache entry (duration string).
+        :param pulumi.Input[str] policy: Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
         """
         if eviction_day is not None:
             pulumi.set(__self__, "eviction_day", eviction_day)
@@ -74,7 +78,7 @@ class UserFederationCacheArgs:
     @pulumi.getter(name="evictionDay")
     def eviction_day(self) -> Optional[pulumi.Input[int]]:
         """
-        Day of the week the entry will become invalid on.
+        Day of the week the entry will become invalid on
         """
         return pulumi.get(self, "eviction_day")
 
@@ -121,6 +125,9 @@ class UserFederationCacheArgs:
     @property
     @pulumi.getter
     def policy(self) -> Optional[pulumi.Input[str]]:
+        """
+        Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
+        """
         return pulumi.get(self, "policy")
 
     @policy.setter
@@ -132,7 +139,7 @@ if not MYPY:
     class UserFederationKerberosArgsDict(TypedDict):
         kerberos_realm: pulumi.Input[str]
         """
-        The name of the kerberos realm, e.g. FOO.LOCAL
+        The name of the kerberos realm, e.g. FOO.LOCAL.
         """
         key_tab: pulumi.Input[str]
         """
@@ -157,7 +164,7 @@ class UserFederationKerberosArgs:
                  server_principal: pulumi.Input[str],
                  use_kerberos_for_password_authentication: Optional[pulumi.Input[bool]] = None):
         """
-        :param pulumi.Input[str] kerberos_realm: The name of the kerberos realm, e.g. FOO.LOCAL
+        :param pulumi.Input[str] kerberos_realm: The name of the kerberos realm, e.g. FOO.LOCAL.
         :param pulumi.Input[str] key_tab: Path to the kerberos keytab file on the server with credentials of the service principal.
         :param pulumi.Input[str] server_principal: The kerberos server principal, e.g. 'HTTP/host.foo.com@FOO.LOCAL'.
         :param pulumi.Input[bool] use_kerberos_for_password_authentication: Use kerberos login module instead of ldap service api. Defaults to `false`.
@@ -172,7 +179,7 @@ class UserFederationKerberosArgs:
     @pulumi.getter(name="kerberosRealm")
     def kerberos_realm(self) -> pulumi.Input[str]:
         """
-        The name of the kerberos realm, e.g. FOO.LOCAL
+        The name of the kerberos realm, e.g. FOO.LOCAL.
         """
         return pulumi.get(self, "kerberos_realm")
 

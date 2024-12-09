@@ -12,11 +12,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # RealmEvents
-//
 // Allows for managing Realm Events settings within Keycloak.
 //
-// ### Example Usage
+// ## Example Usage
 //
 // ```go
 // package main
@@ -31,7 +29,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-//				Realm: pulumi.String("test"),
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
@@ -59,27 +58,26 @@ import (
 //
 // ```
 //
-// ### Argument Reference
+// ## Import
 //
-// The following arguments are supported:
-//
-// - `realmId` - (Required) The name of the realm the event settings apply to.
-// - `adminEventsEnabled` - (Optional) When true, admin events are saved to the database, making them available through the admin console. Defaults to `false`.
-// - `adminEventsDetailsEnabled` - (Optional) When true, saved admin events will included detailed information for create/update requests. Defaults to `false`.
-// - `eventsEnabled` - (Optional) When true, events from `enabledEventTypes` are saved to the database, making them available through the admin console. Defaults to `false`.
-// - `eventsExpiration` - (Optional) The amount of time in seconds events will be saved in the database. Defaults to `0` or never.
-// - `enabledEventTypes` - (Optional) The event types that will be saved to the database. Omitting this field enables all event types. Defaults to `[]` or all event types.
-// - `eventsListeners` - (Optional) The event listeners that events should be sent to. Defaults to `[]` or none. Note that new realms enable the `jboss-logging` listener by default, and this resource will remove that unless it is specified.
+// This resource currently does not support importing.
 type RealmEvents struct {
 	pulumi.CustomResourceState
 
-	AdminEventsDetailsEnabled pulumi.BoolPtrOutput     `pulumi:"adminEventsDetailsEnabled"`
-	AdminEventsEnabled        pulumi.BoolPtrOutput     `pulumi:"adminEventsEnabled"`
-	EnabledEventTypes         pulumi.StringArrayOutput `pulumi:"enabledEventTypes"`
-	EventsEnabled             pulumi.BoolPtrOutput     `pulumi:"eventsEnabled"`
-	EventsExpiration          pulumi.IntPtrOutput      `pulumi:"eventsExpiration"`
-	EventsListeners           pulumi.StringArrayOutput `pulumi:"eventsListeners"`
-	RealmId                   pulumi.StringOutput      `pulumi:"realmId"`
+	// When `true`, saved admin events will included detailed information for create/update requests. Defaults to `false`.
+	AdminEventsDetailsEnabled pulumi.BoolPtrOutput `pulumi:"adminEventsDetailsEnabled"`
+	// When `true`, admin events are saved to the database, making them available through the admin console. Defaults to `false`.
+	AdminEventsEnabled pulumi.BoolPtrOutput `pulumi:"adminEventsEnabled"`
+	// The event types that will be saved to the database. Omitting this field enables all event types. Defaults to `[]` or all event types.
+	EnabledEventTypes pulumi.StringArrayOutput `pulumi:"enabledEventTypes"`
+	// When `true`, events from `enabledEventTypes` are saved to the database, making them available through the admin console. Defaults to `false`.
+	EventsEnabled pulumi.BoolPtrOutput `pulumi:"eventsEnabled"`
+	// The amount of time in seconds events will be saved in the database. Defaults to `0` or never.
+	EventsExpiration pulumi.IntPtrOutput `pulumi:"eventsExpiration"`
+	// The event listeners that events should be sent to. Defaults to `[]` or none. Note that new realms enable the `jboss-logging` listener by default, and this resource will remove that unless it is specified.
+	EventsListeners pulumi.StringArrayOutput `pulumi:"eventsListeners"`
+	// The name of the realm the event settings apply to.
+	RealmId pulumi.StringOutput `pulumi:"realmId"`
 }
 
 // NewRealmEvents registers a new resource with the given unique name, arguments, and options.
@@ -115,23 +113,37 @@ func GetRealmEvents(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RealmEvents resources.
 type realmEventsState struct {
-	AdminEventsDetailsEnabled *bool    `pulumi:"adminEventsDetailsEnabled"`
-	AdminEventsEnabled        *bool    `pulumi:"adminEventsEnabled"`
-	EnabledEventTypes         []string `pulumi:"enabledEventTypes"`
-	EventsEnabled             *bool    `pulumi:"eventsEnabled"`
-	EventsExpiration          *int     `pulumi:"eventsExpiration"`
-	EventsListeners           []string `pulumi:"eventsListeners"`
-	RealmId                   *string  `pulumi:"realmId"`
+	// When `true`, saved admin events will included detailed information for create/update requests. Defaults to `false`.
+	AdminEventsDetailsEnabled *bool `pulumi:"adminEventsDetailsEnabled"`
+	// When `true`, admin events are saved to the database, making them available through the admin console. Defaults to `false`.
+	AdminEventsEnabled *bool `pulumi:"adminEventsEnabled"`
+	// The event types that will be saved to the database. Omitting this field enables all event types. Defaults to `[]` or all event types.
+	EnabledEventTypes []string `pulumi:"enabledEventTypes"`
+	// When `true`, events from `enabledEventTypes` are saved to the database, making them available through the admin console. Defaults to `false`.
+	EventsEnabled *bool `pulumi:"eventsEnabled"`
+	// The amount of time in seconds events will be saved in the database. Defaults to `0` or never.
+	EventsExpiration *int `pulumi:"eventsExpiration"`
+	// The event listeners that events should be sent to. Defaults to `[]` or none. Note that new realms enable the `jboss-logging` listener by default, and this resource will remove that unless it is specified.
+	EventsListeners []string `pulumi:"eventsListeners"`
+	// The name of the realm the event settings apply to.
+	RealmId *string `pulumi:"realmId"`
 }
 
 type RealmEventsState struct {
+	// When `true`, saved admin events will included detailed information for create/update requests. Defaults to `false`.
 	AdminEventsDetailsEnabled pulumi.BoolPtrInput
-	AdminEventsEnabled        pulumi.BoolPtrInput
-	EnabledEventTypes         pulumi.StringArrayInput
-	EventsEnabled             pulumi.BoolPtrInput
-	EventsExpiration          pulumi.IntPtrInput
-	EventsListeners           pulumi.StringArrayInput
-	RealmId                   pulumi.StringPtrInput
+	// When `true`, admin events are saved to the database, making them available through the admin console. Defaults to `false`.
+	AdminEventsEnabled pulumi.BoolPtrInput
+	// The event types that will be saved to the database. Omitting this field enables all event types. Defaults to `[]` or all event types.
+	EnabledEventTypes pulumi.StringArrayInput
+	// When `true`, events from `enabledEventTypes` are saved to the database, making them available through the admin console. Defaults to `false`.
+	EventsEnabled pulumi.BoolPtrInput
+	// The amount of time in seconds events will be saved in the database. Defaults to `0` or never.
+	EventsExpiration pulumi.IntPtrInput
+	// The event listeners that events should be sent to. Defaults to `[]` or none. Note that new realms enable the `jboss-logging` listener by default, and this resource will remove that unless it is specified.
+	EventsListeners pulumi.StringArrayInput
+	// The name of the realm the event settings apply to.
+	RealmId pulumi.StringPtrInput
 }
 
 func (RealmEventsState) ElementType() reflect.Type {
@@ -139,24 +151,38 @@ func (RealmEventsState) ElementType() reflect.Type {
 }
 
 type realmEventsArgs struct {
-	AdminEventsDetailsEnabled *bool    `pulumi:"adminEventsDetailsEnabled"`
-	AdminEventsEnabled        *bool    `pulumi:"adminEventsEnabled"`
-	EnabledEventTypes         []string `pulumi:"enabledEventTypes"`
-	EventsEnabled             *bool    `pulumi:"eventsEnabled"`
-	EventsExpiration          *int     `pulumi:"eventsExpiration"`
-	EventsListeners           []string `pulumi:"eventsListeners"`
-	RealmId                   string   `pulumi:"realmId"`
+	// When `true`, saved admin events will included detailed information for create/update requests. Defaults to `false`.
+	AdminEventsDetailsEnabled *bool `pulumi:"adminEventsDetailsEnabled"`
+	// When `true`, admin events are saved to the database, making them available through the admin console. Defaults to `false`.
+	AdminEventsEnabled *bool `pulumi:"adminEventsEnabled"`
+	// The event types that will be saved to the database. Omitting this field enables all event types. Defaults to `[]` or all event types.
+	EnabledEventTypes []string `pulumi:"enabledEventTypes"`
+	// When `true`, events from `enabledEventTypes` are saved to the database, making them available through the admin console. Defaults to `false`.
+	EventsEnabled *bool `pulumi:"eventsEnabled"`
+	// The amount of time in seconds events will be saved in the database. Defaults to `0` or never.
+	EventsExpiration *int `pulumi:"eventsExpiration"`
+	// The event listeners that events should be sent to. Defaults to `[]` or none. Note that new realms enable the `jboss-logging` listener by default, and this resource will remove that unless it is specified.
+	EventsListeners []string `pulumi:"eventsListeners"`
+	// The name of the realm the event settings apply to.
+	RealmId string `pulumi:"realmId"`
 }
 
 // The set of arguments for constructing a RealmEvents resource.
 type RealmEventsArgs struct {
+	// When `true`, saved admin events will included detailed information for create/update requests. Defaults to `false`.
 	AdminEventsDetailsEnabled pulumi.BoolPtrInput
-	AdminEventsEnabled        pulumi.BoolPtrInput
-	EnabledEventTypes         pulumi.StringArrayInput
-	EventsEnabled             pulumi.BoolPtrInput
-	EventsExpiration          pulumi.IntPtrInput
-	EventsListeners           pulumi.StringArrayInput
-	RealmId                   pulumi.StringInput
+	// When `true`, admin events are saved to the database, making them available through the admin console. Defaults to `false`.
+	AdminEventsEnabled pulumi.BoolPtrInput
+	// The event types that will be saved to the database. Omitting this field enables all event types. Defaults to `[]` or all event types.
+	EnabledEventTypes pulumi.StringArrayInput
+	// When `true`, events from `enabledEventTypes` are saved to the database, making them available through the admin console. Defaults to `false`.
+	EventsEnabled pulumi.BoolPtrInput
+	// The amount of time in seconds events will be saved in the database. Defaults to `0` or never.
+	EventsExpiration pulumi.IntPtrInput
+	// The event listeners that events should be sent to. Defaults to `[]` or none. Note that new realms enable the `jboss-logging` listener by default, and this resource will remove that unless it is specified.
+	EventsListeners pulumi.StringArrayInput
+	// The name of the realm the event settings apply to.
+	RealmId pulumi.StringInput
 }
 
 func (RealmEventsArgs) ElementType() reflect.Type {
@@ -246,30 +272,37 @@ func (o RealmEventsOutput) ToRealmEventsOutputWithContext(ctx context.Context) R
 	return o
 }
 
+// When `true`, saved admin events will included detailed information for create/update requests. Defaults to `false`.
 func (o RealmEventsOutput) AdminEventsDetailsEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *RealmEvents) pulumi.BoolPtrOutput { return v.AdminEventsDetailsEnabled }).(pulumi.BoolPtrOutput)
 }
 
+// When `true`, admin events are saved to the database, making them available through the admin console. Defaults to `false`.
 func (o RealmEventsOutput) AdminEventsEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *RealmEvents) pulumi.BoolPtrOutput { return v.AdminEventsEnabled }).(pulumi.BoolPtrOutput)
 }
 
+// The event types that will be saved to the database. Omitting this field enables all event types. Defaults to `[]` or all event types.
 func (o RealmEventsOutput) EnabledEventTypes() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *RealmEvents) pulumi.StringArrayOutput { return v.EnabledEventTypes }).(pulumi.StringArrayOutput)
 }
 
+// When `true`, events from `enabledEventTypes` are saved to the database, making them available through the admin console. Defaults to `false`.
 func (o RealmEventsOutput) EventsEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *RealmEvents) pulumi.BoolPtrOutput { return v.EventsEnabled }).(pulumi.BoolPtrOutput)
 }
 
+// The amount of time in seconds events will be saved in the database. Defaults to `0` or never.
 func (o RealmEventsOutput) EventsExpiration() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *RealmEvents) pulumi.IntPtrOutput { return v.EventsExpiration }).(pulumi.IntPtrOutput)
 }
 
+// The event listeners that events should be sent to. Defaults to `[]` or none. Note that new realms enable the `jboss-logging` listener by default, and this resource will remove that unless it is specified.
 func (o RealmEventsOutput) EventsListeners() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *RealmEvents) pulumi.StringArrayOutput { return v.EventsListeners }).(pulumi.StringArrayOutput)
 }
 
+// The name of the realm the event settings apply to.
 func (o RealmEventsOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *RealmEvents) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
 }

@@ -11,10 +11,57 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Group data source
-//
 // This data source can be used to fetch properties of a Keycloak group for
 // usage with other resources, such as `GroupRoles`.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			offlineAccess := keycloak.LookupRoleOutput(ctx, keycloak.GetRoleOutputArgs{
+//				RealmId: realm.ID(),
+//				Name:    pulumi.String("offline_access"),
+//			}, nil)
+//			group := keycloak.LookupGroupOutput(ctx, keycloak.GetGroupOutputArgs{
+//				RealmId: realm.ID(),
+//				Name:    pulumi.String("group"),
+//			}, nil)
+//			_, err = keycloak.NewGroupRoles(ctx, "group_roles", &keycloak.GroupRolesArgs{
+//				RealmId: realm.ID(),
+//				GroupId: pulumi.String(group.ApplyT(func(group keycloak.GetGroupResult) (*string, error) {
+//					return &group.Id, nil
+//				}).(pulumi.StringPtrOutput)),
+//				RoleIds: pulumi.StringArray{
+//					pulumi.String(offlineAccess.ApplyT(func(offlineAccess keycloak.GetRoleResult) (*string, error) {
+//						return &offlineAccess.Id, nil
+//					}).(pulumi.StringPtrOutput)),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupGroup(ctx *pulumi.Context, args *LookupGroupArgs, opts ...pulumi.InvokeOption) (*LookupGroupResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupGroupResult
@@ -27,7 +74,9 @@ func LookupGroup(ctx *pulumi.Context, args *LookupGroupArgs, opts ...pulumi.Invo
 
 // A collection of arguments for invoking getGroup.
 type LookupGroupArgs struct {
-	Name    string `pulumi:"name"`
+	// The name of the group. If there are multiple groups match `name`, the first result will be returned.
+	Name string `pulumi:"name"`
+	// The realm this group exists within.
 	RealmId string `pulumi:"realmId"`
 }
 
@@ -63,7 +112,9 @@ func LookupGroupOutput(ctx *pulumi.Context, args LookupGroupOutputArgs, opts ...
 
 // A collection of arguments for invoking getGroup.
 type LookupGroupOutputArgs struct {
-	Name    pulumi.StringInput `pulumi:"name"`
+	// The name of the group. If there are multiple groups match `name`, the first result will be returned.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The realm this group exists within.
 	RealmId pulumi.StringInput `pulumi:"realmId"`
 }
 

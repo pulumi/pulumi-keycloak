@@ -20,14 +20,14 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
     public static final IdentityProviderArgs Empty = new IdentityProviderArgs();
 
     /**
-     * Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role.
+     * When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
      * 
      */
     @Import(name="addReadTokenRoleOnCreate")
     private @Nullable Output<Boolean> addReadTokenRoleOnCreate;
 
     /**
-     * @return Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role.
+     * @return When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
      * 
      */
     public Optional<Output<Boolean>> addReadTokenRoleOnCreate() {
@@ -35,14 +35,14 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
+     * The unique name of identity provider.
      * 
      */
     @Import(name="alias", required=true)
     private Output<String> alias;
 
     /**
-     * @return The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
+     * @return The unique name of identity provider.
      * 
      */
     public Output<String> alias() {
@@ -50,14 +50,14 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Enable/disable authenticate users by default.
+     * Authenticate users by default. Defaults to `false`.
      * 
      */
     @Import(name="authenticateByDefault")
     private @Nullable Output<Boolean> authenticateByDefault;
 
     /**
-     * @return Enable/disable authenticate users by default.
+     * @return Authenticate users by default. Defaults to `false`.
      * 
      */
     public Optional<Output<Boolean>> authenticateByDefault() {
@@ -65,14 +65,14 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * AuthnContext ClassRefs
+     * Ordered list of requested AuthnContext ClassRefs.
      * 
      */
     @Import(name="authnContextClassRefs")
     private @Nullable Output<List<String>> authnContextClassRefs;
 
     /**
-     * @return AuthnContext ClassRefs
+     * @return Ordered list of requested AuthnContext ClassRefs.
      * 
      */
     public Optional<Output<List<String>>> authnContextClassRefs() {
@@ -80,14 +80,14 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * AuthnContext Comparison
+     * Specifies the comparison method used to evaluate the requested context classes or statements.
      * 
      */
     @Import(name="authnContextComparisonType")
     private @Nullable Output<String> authnContextComparisonType;
 
     /**
-     * @return AuthnContext Comparison
+     * @return Specifies the comparison method used to evaluate the requested context classes or statements.
      * 
      */
     public Optional<Output<String>> authnContextComparisonType() {
@@ -95,14 +95,14 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * AuthnContext DeclRefs
+     * Ordered list of requested AuthnContext DeclRefs.
      * 
      */
     @Import(name="authnContextDeclRefs")
     private @Nullable Output<List<String>> authnContextDeclRefs;
 
     /**
-     * @return AuthnContext DeclRefs
+     * @return Ordered list of requested AuthnContext DeclRefs.
      * 
      */
     public Optional<Output<List<String>>> authnContextDeclRefs() {
@@ -110,14 +110,14 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Does the external IDP support backchannel logout?
+     * Does the external IDP support backchannel logout?. Defaults to `false`.
      * 
      */
     @Import(name="backchannelSupported")
     private @Nullable Output<Boolean> backchannelSupported;
 
     /**
-     * @return Does the external IDP support backchannel logout?
+     * @return Does the external IDP support backchannel logout?. Defaults to `false`.
      * 
      */
     public Optional<Output<Boolean>> backchannelSupported() {
@@ -125,14 +125,14 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Friendly name for Identity Providers.
+     * The display name for the realm that is shown when logging in to the admin console.
      * 
      */
     @Import(name="displayName")
     private @Nullable Output<String> displayName;
 
     /**
-     * @return Friendly name for Identity Providers.
+     * @return The display name for the realm that is shown when logging in to the admin console.
      * 
      */
     public Optional<Output<String>> displayName() {
@@ -140,14 +140,14 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Enable/disable this identity provider.
+     * When `false`, users and clients will not be able to access this realm. Defaults to `true`.
      * 
      */
     @Import(name="enabled")
     private @Nullable Output<Boolean> enabled;
 
     /**
-     * @return Enable/disable this identity provider.
+     * @return When `false`, users and clients will not be able to access this realm. Defaults to `true`.
      * 
      */
     public Optional<Output<Boolean>> enabled() {
@@ -177,16 +177,14 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Alias of authentication flow, which is triggered after first login with this identity provider. Term &#39;First Login&#39; means
-     * that there is not yet existing Keycloak account linked with the authenticated identity provider account.
+     * Alias of authentication flow, which is triggered after first login with this identity provider. Term &#39;First Login&#39; means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
      * 
      */
     @Import(name="firstBrokerLoginFlowAlias")
     private @Nullable Output<String> firstBrokerLoginFlowAlias;
 
     /**
-     * @return Alias of authentication flow, which is triggered after first login with this identity provider. Term &#39;First Login&#39; means
-     * that there is not yet existing Keycloak account linked with the authenticated identity provider account.
+     * @return Alias of authentication flow, which is triggered after first login with this identity provider. Term &#39;First Login&#39; means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
      * 
      */
     public Optional<Output<String>> firstBrokerLoginFlowAlias() {
@@ -194,14 +192,14 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Require Force Authn.
+     * Indicates whether the identity provider must authenticate the presenter directly rather than rely on a previous security context.
      * 
      */
     @Import(name="forceAuthn")
     private @Nullable Output<Boolean> forceAuthn;
 
     /**
-     * @return Require Force Authn.
+     * @return Indicates whether the identity provider must authenticate the presenter directly rather than rely on a previous security context.
      * 
      */
     public Optional<Output<Boolean>> forceAuthn() {
@@ -209,14 +207,14 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * GUI Order
+     * A number defining the order of this identity provider in the GUI.
      * 
      */
     @Import(name="guiOrder")
     private @Nullable Output<String> guiOrder;
 
     /**
-     * @return GUI Order
+     * @return A number defining the order of this identity provider in the GUI.
      * 
      */
     public Optional<Output<String>> guiOrder() {
@@ -224,14 +222,14 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Hide On Login Page.
+     * If hidden, then login with this provider is possible only if requested explicitly, e.g. using the &#39;kc_idp_hint&#39; parameter.
      * 
      */
     @Import(name="hideOnLoginPage")
     private @Nullable Output<Boolean> hideOnLoginPage;
 
     /**
-     * @return Hide On Login Page.
+     * @return If hidden, then login with this provider is possible only if requested explicitly, e.g. using the &#39;kc_idp_hint&#39; parameter.
      * 
      */
     public Optional<Output<Boolean>> hideOnLoginPage() {
@@ -239,16 +237,14 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * If true, users cannot log in through this provider. They can only link to this provider. This is useful if you don&#39;t
-     * want to allow login from the provider, but want to integrate with a provider
+     * When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
      * 
      */
     @Import(name="linkOnly")
     private @Nullable Output<Boolean> linkOnly;
 
     /**
-     * @return If true, users cannot log in through this provider. They can only link to this provider. This is useful if you don&#39;t
-     * want to allow login from the provider, but want to integrate with a provider
+     * @return When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
      * 
      */
     public Optional<Output<Boolean>> linkOnly() {
@@ -271,14 +267,14 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Name ID Policy Format.
+     * Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
      * 
      */
     @Import(name="nameIdPolicyFormat")
     private @Nullable Output<String> nameIdPolicyFormat;
 
     /**
-     * @return Name ID Policy Format.
+     * @return Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
      * 
      */
     public Optional<Output<String>> nameIdPolicyFormat() {
@@ -286,14 +282,14 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Post Binding Authn Request.
+     * Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
      * 
      */
     @Import(name="postBindingAuthnRequest")
     private @Nullable Output<Boolean> postBindingAuthnRequest;
 
     /**
-     * @return Post Binding Authn Request.
+     * @return Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
      * 
      */
     public Optional<Output<Boolean>> postBindingAuthnRequest() {
@@ -301,14 +297,14 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Post Binding Logout.
+     * Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
      * 
      */
     @Import(name="postBindingLogout")
     private @Nullable Output<Boolean> postBindingLogout;
 
     /**
-     * @return Post Binding Logout.
+     * @return Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
      * 
      */
     public Optional<Output<Boolean>> postBindingLogout() {
@@ -316,14 +312,14 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Post Binding Response.
+     * Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
      * 
      */
     @Import(name="postBindingResponse")
     private @Nullable Output<Boolean> postBindingResponse;
 
     /**
-     * @return Post Binding Response.
+     * @return Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
      * 
      */
     public Optional<Output<Boolean>> postBindingResponse() {
@@ -331,20 +327,14 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want
-     * additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if
-     * you don&#39;t want any additional authenticators to be triggered after login with this identity provider. Also note, that
-     * authenticator implementations must assume that user is already set in ClientSession as identity provider already set it.
+     * Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don&#39;t want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it. Defaults to empty.
      * 
      */
     @Import(name="postBrokerLoginFlowAlias")
     private @Nullable Output<String> postBrokerLoginFlowAlias;
 
     /**
-     * @return Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want
-     * additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if
-     * you don&#39;t want any additional authenticators to be triggered after login with this identity provider. Also note, that
-     * authenticator implementations must assume that user is already set in ClientSession as identity provider already set it.
+     * @return Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don&#39;t want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it. Defaults to empty.
      * 
      */
     public Optional<Output<String>> postBrokerLoginFlowAlias() {
@@ -352,14 +342,14 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Principal Attribute
+     * The principal attribute.
      * 
      */
     @Import(name="principalAttribute")
     private @Nullable Output<String> principalAttribute;
 
     /**
-     * @return Principal Attribute
+     * @return The principal attribute.
      * 
      */
     public Optional<Output<String>> principalAttribute() {
@@ -367,14 +357,14 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Principal Type
+     * The principal type. Can be one of `SUBJECT`, `ATTRIBUTE` or `FRIENDLY_ATTRIBUTE`.
      * 
      */
     @Import(name="principalType")
     private @Nullable Output<String> principalType;
 
     /**
-     * @return Principal Type
+     * @return The principal type. Can be one of `SUBJECT`, `ATTRIBUTE` or `FRIENDLY_ATTRIBUTE`.
      * 
      */
     public Optional<Output<String>> principalType() {
@@ -382,14 +372,14 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * provider id, is always saml, unless you have a custom implementation
+     * The ID of the identity provider to use. Defaults to `saml`, which should be used unless you have extended Keycloak and provided your own implementation.
      * 
      */
     @Import(name="providerId")
     private @Nullable Output<String> providerId;
 
     /**
-     * @return provider id, is always saml, unless you have a custom implementation
+     * @return The ID of the identity provider to use. Defaults to `saml`, which should be used unless you have extended Keycloak and provided your own implementation.
      * 
      */
     public Optional<Output<String>> providerId() {
@@ -397,14 +387,14 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Realm Name
+     * The name of the realm. This is unique across Keycloak.
      * 
      */
     @Import(name="realm", required=true)
     private Output<String> realm;
 
     /**
-     * @return Realm Name
+     * @return The name of the realm. This is unique across Keycloak.
      * 
      */
     public Output<String> realm() {
@@ -412,14 +402,14 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Signing Algorithm.
+     * Signing Algorithm. Defaults to empty.
      * 
      */
     @Import(name="signatureAlgorithm")
     private @Nullable Output<String> signatureAlgorithm;
 
     /**
-     * @return Signing Algorithm.
+     * @return Signing Algorithm. Defaults to empty.
      * 
      */
     public Optional<Output<String>> signatureAlgorithm() {
@@ -442,14 +432,14 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Logout URL.
+     * The Url that must be used to send logout requests.
      * 
      */
     @Import(name="singleLogoutServiceUrl")
     private @Nullable Output<String> singleLogoutServiceUrl;
 
     /**
-     * @return Logout URL.
+     * @return The Url that must be used to send logout requests.
      * 
      */
     public Optional<Output<String>> singleLogoutServiceUrl() {
@@ -457,14 +447,14 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * SSO Logout URL.
+     * The Url that must be used to send authentication requests (SAML AuthnRequest).
      * 
      */
     @Import(name="singleSignOnServiceUrl", required=true)
     private Output<String> singleSignOnServiceUrl;
 
     /**
-     * @return SSO Logout URL.
+     * @return The Url that must be used to send authentication requests (SAML AuthnRequest).
      * 
      */
     public Output<String> singleSignOnServiceUrl() {
@@ -472,14 +462,14 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Enable/disable if tokens must be stored after authenticating users.
+     * When `true`, tokens will be stored after authenticating users. Defaults to `true`.
      * 
      */
     @Import(name="storeToken")
     private @Nullable Output<Boolean> storeToken;
 
     /**
-     * @return Enable/disable if tokens must be stored after authenticating users.
+     * @return When `true`, tokens will be stored after authenticating users. Defaults to `true`.
      * 
      */
     public Optional<Output<Boolean>> storeToken() {
@@ -487,14 +477,14 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Sync Mode
+     * The default sync mode to use for all mappers attached to this identity provider. Can be one of `IMPORT`, `FORCE`, or `LEGACY`.
      * 
      */
     @Import(name="syncMode")
     private @Nullable Output<String> syncMode;
 
     /**
-     * @return Sync Mode
+     * @return The default sync mode to use for all mappers attached to this identity provider. Can be one of `IMPORT`, `FORCE`, or `LEGACY`.
      * 
      */
     public Optional<Output<String>> syncMode() {
@@ -502,14 +492,14 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * If enabled then email provided by this provider is not verified even if verification is enabled for the realm.
+     * When `true`, email addresses for users in this provider will automatically be verified regardless of the realm&#39;s email verification policy. Defaults to `false`.
      * 
      */
     @Import(name="trustEmail")
     private @Nullable Output<Boolean> trustEmail;
 
     /**
-     * @return If enabled then email provided by this provider is not verified even if verification is enabled for the realm.
+     * @return When `true`, email addresses for users in this provider will automatically be verified regardless of the realm&#39;s email verification policy. Defaults to `false`.
      * 
      */
     public Optional<Output<Boolean>> trustEmail() {
@@ -532,14 +522,14 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Want Assertions Encrypted.
+     * Indicates whether this service provider expects an encrypted Assertion.
      * 
      */
     @Import(name="wantAssertionsEncrypted")
     private @Nullable Output<Boolean> wantAssertionsEncrypted;
 
     /**
-     * @return Want Assertions Encrypted.
+     * @return Indicates whether this service provider expects an encrypted Assertion.
      * 
      */
     public Optional<Output<Boolean>> wantAssertionsEncrypted() {
@@ -547,14 +537,14 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Want Assertions Signed.
+     * Indicates whether this service provider expects a signed Assertion.
      * 
      */
     @Import(name="wantAssertionsSigned")
     private @Nullable Output<Boolean> wantAssertionsSigned;
 
     /**
-     * @return Want Assertions Signed.
+     * @return Indicates whether this service provider expects a signed Assertion.
      * 
      */
     public Optional<Output<Boolean>> wantAssertionsSigned() {
@@ -562,14 +552,14 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Sign Key Transformer.
+     * The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.
      * 
      */
     @Import(name="xmlSignKeyInfoKeyNameTransformer")
     private @Nullable Output<String> xmlSignKeyInfoKeyNameTransformer;
 
     /**
-     * @return Sign Key Transformer.
+     * @return The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.
      * 
      */
     public Optional<Output<String>> xmlSignKeyInfoKeyNameTransformer() {
@@ -637,7 +627,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param addReadTokenRoleOnCreate Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role.
+         * @param addReadTokenRoleOnCreate When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
          * 
          * @return builder
          * 
@@ -648,7 +638,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param addReadTokenRoleOnCreate Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role.
+         * @param addReadTokenRoleOnCreate When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
          * 
          * @return builder
          * 
@@ -658,7 +648,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param alias The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
+         * @param alias The unique name of identity provider.
          * 
          * @return builder
          * 
@@ -669,7 +659,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param alias The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
+         * @param alias The unique name of identity provider.
          * 
          * @return builder
          * 
@@ -679,7 +669,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param authenticateByDefault Enable/disable authenticate users by default.
+         * @param authenticateByDefault Authenticate users by default. Defaults to `false`.
          * 
          * @return builder
          * 
@@ -690,7 +680,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param authenticateByDefault Enable/disable authenticate users by default.
+         * @param authenticateByDefault Authenticate users by default. Defaults to `false`.
          * 
          * @return builder
          * 
@@ -700,7 +690,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param authnContextClassRefs AuthnContext ClassRefs
+         * @param authnContextClassRefs Ordered list of requested AuthnContext ClassRefs.
          * 
          * @return builder
          * 
@@ -711,7 +701,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param authnContextClassRefs AuthnContext ClassRefs
+         * @param authnContextClassRefs Ordered list of requested AuthnContext ClassRefs.
          * 
          * @return builder
          * 
@@ -721,7 +711,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param authnContextClassRefs AuthnContext ClassRefs
+         * @param authnContextClassRefs Ordered list of requested AuthnContext ClassRefs.
          * 
          * @return builder
          * 
@@ -731,7 +721,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param authnContextComparisonType AuthnContext Comparison
+         * @param authnContextComparisonType Specifies the comparison method used to evaluate the requested context classes or statements.
          * 
          * @return builder
          * 
@@ -742,7 +732,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param authnContextComparisonType AuthnContext Comparison
+         * @param authnContextComparisonType Specifies the comparison method used to evaluate the requested context classes or statements.
          * 
          * @return builder
          * 
@@ -752,7 +742,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param authnContextDeclRefs AuthnContext DeclRefs
+         * @param authnContextDeclRefs Ordered list of requested AuthnContext DeclRefs.
          * 
          * @return builder
          * 
@@ -763,7 +753,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param authnContextDeclRefs AuthnContext DeclRefs
+         * @param authnContextDeclRefs Ordered list of requested AuthnContext DeclRefs.
          * 
          * @return builder
          * 
@@ -773,7 +763,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param authnContextDeclRefs AuthnContext DeclRefs
+         * @param authnContextDeclRefs Ordered list of requested AuthnContext DeclRefs.
          * 
          * @return builder
          * 
@@ -783,7 +773,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param backchannelSupported Does the external IDP support backchannel logout?
+         * @param backchannelSupported Does the external IDP support backchannel logout?. Defaults to `false`.
          * 
          * @return builder
          * 
@@ -794,7 +784,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param backchannelSupported Does the external IDP support backchannel logout?
+         * @param backchannelSupported Does the external IDP support backchannel logout?. Defaults to `false`.
          * 
          * @return builder
          * 
@@ -804,7 +794,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param displayName Friendly name for Identity Providers.
+         * @param displayName The display name for the realm that is shown when logging in to the admin console.
          * 
          * @return builder
          * 
@@ -815,7 +805,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param displayName Friendly name for Identity Providers.
+         * @param displayName The display name for the realm that is shown when logging in to the admin console.
          * 
          * @return builder
          * 
@@ -825,7 +815,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param enabled Enable/disable this identity provider.
+         * @param enabled When `false`, users and clients will not be able to access this realm. Defaults to `true`.
          * 
          * @return builder
          * 
@@ -836,7 +826,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param enabled Enable/disable this identity provider.
+         * @param enabled When `false`, users and clients will not be able to access this realm. Defaults to `true`.
          * 
          * @return builder
          * 
@@ -876,8 +866,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param firstBrokerLoginFlowAlias Alias of authentication flow, which is triggered after first login with this identity provider. Term &#39;First Login&#39; means
-         * that there is not yet existing Keycloak account linked with the authenticated identity provider account.
+         * @param firstBrokerLoginFlowAlias Alias of authentication flow, which is triggered after first login with this identity provider. Term &#39;First Login&#39; means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
          * 
          * @return builder
          * 
@@ -888,8 +877,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param firstBrokerLoginFlowAlias Alias of authentication flow, which is triggered after first login with this identity provider. Term &#39;First Login&#39; means
-         * that there is not yet existing Keycloak account linked with the authenticated identity provider account.
+         * @param firstBrokerLoginFlowAlias Alias of authentication flow, which is triggered after first login with this identity provider. Term &#39;First Login&#39; means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
          * 
          * @return builder
          * 
@@ -899,7 +887,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param forceAuthn Require Force Authn.
+         * @param forceAuthn Indicates whether the identity provider must authenticate the presenter directly rather than rely on a previous security context.
          * 
          * @return builder
          * 
@@ -910,7 +898,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param forceAuthn Require Force Authn.
+         * @param forceAuthn Indicates whether the identity provider must authenticate the presenter directly rather than rely on a previous security context.
          * 
          * @return builder
          * 
@@ -920,7 +908,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param guiOrder GUI Order
+         * @param guiOrder A number defining the order of this identity provider in the GUI.
          * 
          * @return builder
          * 
@@ -931,7 +919,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param guiOrder GUI Order
+         * @param guiOrder A number defining the order of this identity provider in the GUI.
          * 
          * @return builder
          * 
@@ -941,7 +929,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param hideOnLoginPage Hide On Login Page.
+         * @param hideOnLoginPage If hidden, then login with this provider is possible only if requested explicitly, e.g. using the &#39;kc_idp_hint&#39; parameter.
          * 
          * @return builder
          * 
@@ -952,7 +940,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param hideOnLoginPage Hide On Login Page.
+         * @param hideOnLoginPage If hidden, then login with this provider is possible only if requested explicitly, e.g. using the &#39;kc_idp_hint&#39; parameter.
          * 
          * @return builder
          * 
@@ -962,8 +950,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param linkOnly If true, users cannot log in through this provider. They can only link to this provider. This is useful if you don&#39;t
-         * want to allow login from the provider, but want to integrate with a provider
+         * @param linkOnly When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
          * 
          * @return builder
          * 
@@ -974,8 +961,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param linkOnly If true, users cannot log in through this provider. They can only link to this provider. This is useful if you don&#39;t
-         * want to allow login from the provider, but want to integrate with a provider
+         * @param linkOnly When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
          * 
          * @return builder
          * 
@@ -1006,7 +992,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param nameIdPolicyFormat Name ID Policy Format.
+         * @param nameIdPolicyFormat Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
          * 
          * @return builder
          * 
@@ -1017,7 +1003,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param nameIdPolicyFormat Name ID Policy Format.
+         * @param nameIdPolicyFormat Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
          * 
          * @return builder
          * 
@@ -1027,7 +1013,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param postBindingAuthnRequest Post Binding Authn Request.
+         * @param postBindingAuthnRequest Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
          * 
          * @return builder
          * 
@@ -1038,7 +1024,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param postBindingAuthnRequest Post Binding Authn Request.
+         * @param postBindingAuthnRequest Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
          * 
          * @return builder
          * 
@@ -1048,7 +1034,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param postBindingLogout Post Binding Logout.
+         * @param postBindingLogout Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
          * 
          * @return builder
          * 
@@ -1059,7 +1045,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param postBindingLogout Post Binding Logout.
+         * @param postBindingLogout Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
          * 
          * @return builder
          * 
@@ -1069,7 +1055,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param postBindingResponse Post Binding Response.
+         * @param postBindingResponse Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
          * 
          * @return builder
          * 
@@ -1080,7 +1066,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param postBindingResponse Post Binding Response.
+         * @param postBindingResponse Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
          * 
          * @return builder
          * 
@@ -1090,10 +1076,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param postBrokerLoginFlowAlias Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want
-         * additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if
-         * you don&#39;t want any additional authenticators to be triggered after login with this identity provider. Also note, that
-         * authenticator implementations must assume that user is already set in ClientSession as identity provider already set it.
+         * @param postBrokerLoginFlowAlias Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don&#39;t want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it. Defaults to empty.
          * 
          * @return builder
          * 
@@ -1104,10 +1087,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param postBrokerLoginFlowAlias Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want
-         * additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if
-         * you don&#39;t want any additional authenticators to be triggered after login with this identity provider. Also note, that
-         * authenticator implementations must assume that user is already set in ClientSession as identity provider already set it.
+         * @param postBrokerLoginFlowAlias Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don&#39;t want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it. Defaults to empty.
          * 
          * @return builder
          * 
@@ -1117,7 +1097,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param principalAttribute Principal Attribute
+         * @param principalAttribute The principal attribute.
          * 
          * @return builder
          * 
@@ -1128,7 +1108,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param principalAttribute Principal Attribute
+         * @param principalAttribute The principal attribute.
          * 
          * @return builder
          * 
@@ -1138,7 +1118,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param principalType Principal Type
+         * @param principalType The principal type. Can be one of `SUBJECT`, `ATTRIBUTE` or `FRIENDLY_ATTRIBUTE`.
          * 
          * @return builder
          * 
@@ -1149,7 +1129,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param principalType Principal Type
+         * @param principalType The principal type. Can be one of `SUBJECT`, `ATTRIBUTE` or `FRIENDLY_ATTRIBUTE`.
          * 
          * @return builder
          * 
@@ -1159,7 +1139,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param providerId provider id, is always saml, unless you have a custom implementation
+         * @param providerId The ID of the identity provider to use. Defaults to `saml`, which should be used unless you have extended Keycloak and provided your own implementation.
          * 
          * @return builder
          * 
@@ -1170,7 +1150,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param providerId provider id, is always saml, unless you have a custom implementation
+         * @param providerId The ID of the identity provider to use. Defaults to `saml`, which should be used unless you have extended Keycloak and provided your own implementation.
          * 
          * @return builder
          * 
@@ -1180,7 +1160,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param realm Realm Name
+         * @param realm The name of the realm. This is unique across Keycloak.
          * 
          * @return builder
          * 
@@ -1191,7 +1171,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param realm Realm Name
+         * @param realm The name of the realm. This is unique across Keycloak.
          * 
          * @return builder
          * 
@@ -1201,7 +1181,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param signatureAlgorithm Signing Algorithm.
+         * @param signatureAlgorithm Signing Algorithm. Defaults to empty.
          * 
          * @return builder
          * 
@@ -1212,7 +1192,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param signatureAlgorithm Signing Algorithm.
+         * @param signatureAlgorithm Signing Algorithm. Defaults to empty.
          * 
          * @return builder
          * 
@@ -1243,7 +1223,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param singleLogoutServiceUrl Logout URL.
+         * @param singleLogoutServiceUrl The Url that must be used to send logout requests.
          * 
          * @return builder
          * 
@@ -1254,7 +1234,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param singleLogoutServiceUrl Logout URL.
+         * @param singleLogoutServiceUrl The Url that must be used to send logout requests.
          * 
          * @return builder
          * 
@@ -1264,7 +1244,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param singleSignOnServiceUrl SSO Logout URL.
+         * @param singleSignOnServiceUrl The Url that must be used to send authentication requests (SAML AuthnRequest).
          * 
          * @return builder
          * 
@@ -1275,7 +1255,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param singleSignOnServiceUrl SSO Logout URL.
+         * @param singleSignOnServiceUrl The Url that must be used to send authentication requests (SAML AuthnRequest).
          * 
          * @return builder
          * 
@@ -1285,7 +1265,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param storeToken Enable/disable if tokens must be stored after authenticating users.
+         * @param storeToken When `true`, tokens will be stored after authenticating users. Defaults to `true`.
          * 
          * @return builder
          * 
@@ -1296,7 +1276,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param storeToken Enable/disable if tokens must be stored after authenticating users.
+         * @param storeToken When `true`, tokens will be stored after authenticating users. Defaults to `true`.
          * 
          * @return builder
          * 
@@ -1306,7 +1286,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param syncMode Sync Mode
+         * @param syncMode The default sync mode to use for all mappers attached to this identity provider. Can be one of `IMPORT`, `FORCE`, or `LEGACY`.
          * 
          * @return builder
          * 
@@ -1317,7 +1297,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param syncMode Sync Mode
+         * @param syncMode The default sync mode to use for all mappers attached to this identity provider. Can be one of `IMPORT`, `FORCE`, or `LEGACY`.
          * 
          * @return builder
          * 
@@ -1327,7 +1307,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param trustEmail If enabled then email provided by this provider is not verified even if verification is enabled for the realm.
+         * @param trustEmail When `true`, email addresses for users in this provider will automatically be verified regardless of the realm&#39;s email verification policy. Defaults to `false`.
          * 
          * @return builder
          * 
@@ -1338,7 +1318,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param trustEmail If enabled then email provided by this provider is not verified even if verification is enabled for the realm.
+         * @param trustEmail When `true`, email addresses for users in this provider will automatically be verified regardless of the realm&#39;s email verification policy. Defaults to `false`.
          * 
          * @return builder
          * 
@@ -1369,7 +1349,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param wantAssertionsEncrypted Want Assertions Encrypted.
+         * @param wantAssertionsEncrypted Indicates whether this service provider expects an encrypted Assertion.
          * 
          * @return builder
          * 
@@ -1380,7 +1360,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param wantAssertionsEncrypted Want Assertions Encrypted.
+         * @param wantAssertionsEncrypted Indicates whether this service provider expects an encrypted Assertion.
          * 
          * @return builder
          * 
@@ -1390,7 +1370,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param wantAssertionsSigned Want Assertions Signed.
+         * @param wantAssertionsSigned Indicates whether this service provider expects a signed Assertion.
          * 
          * @return builder
          * 
@@ -1401,7 +1381,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param wantAssertionsSigned Want Assertions Signed.
+         * @param wantAssertionsSigned Indicates whether this service provider expects a signed Assertion.
          * 
          * @return builder
          * 
@@ -1411,7 +1391,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param xmlSignKeyInfoKeyNameTransformer Sign Key Transformer.
+         * @param xmlSignKeyInfoKeyNameTransformer The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.
          * 
          * @return builder
          * 
@@ -1422,7 +1402,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param xmlSignKeyInfoKeyNameTransformer Sign Key Transformer.
+         * @param xmlSignKeyInfoKeyNameTransformer The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.
          * 
          * @return builder
          * 

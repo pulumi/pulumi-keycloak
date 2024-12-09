@@ -12,23 +12,23 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # GroupMemberships
-//
 // Allows for managing a Keycloak group's members.
 //
-// Note that this resource attempts to be an **authoritative** source over group members.
-// When this resource takes control over a group's members, users that are manually added
-// to the group will be removed, and users that are manually removed from the group will
-// be added upon the next run of `pulumi up`.  Eventually, a non-authoritative resource
-// for group membership will be added to this provider.
+// Note that this resource attempts to be an **authoritative** source over group members. When this resource takes control
+// over a group's members, users that are manually added to the group will be removed, and users that are manually removed
+// from the group will be added upon the next run of `pulumi up`.
 //
-// Also note that you should not use `GroupMemberships` with a group has been assigned
-// as a default group via `DefaultGroups`.
+// Also note that you should not use `GroupMemberships` with a group has been assigned as a default group via
+// `DefaultGroups`.
 //
-// This resource **should not** be used to control membership of a group that has its members
-// federated from an external source via group mapping.
+// This resource **should not** be used to control membership of a group that has its members federated from an external
+// source via group mapping.
 //
-// ### Example Usage
+// To non-exclusively manage the group's of a user, see the [`UserGroups` resource][1]
+//
+// This resource paginates its data loading on refresh by 50 items.
+//
+// ## Example Usage
 //
 // ```go
 // package main
@@ -79,24 +79,22 @@ import (
 //
 // ```
 //
-// ### Argument Reference
-//
-// The following arguments are supported:
-//
-// - `realmId` - (Required) The realm this group exists in.
-// - `groupId` - (Required) The ID of the group this resource should manage memberships for.
-// - `members` - (Required) An array of usernames that belong to this group.
-//
-// ### Import
+// ## Import
 //
 // This resource does not support import. Instead of importing, feel free to create this resource
+//
 // as if it did not already exist on the server.
+//
+// [1]: providers/mrparkers/keycloak/latest/docs/resources/group_memberships
 type GroupMemberships struct {
 	pulumi.CustomResourceState
 
-	GroupId pulumi.StringPtrOutput   `pulumi:"groupId"`
+	// The ID of the group this resource should manage memberships for.
+	GroupId pulumi.StringPtrOutput `pulumi:"groupId"`
+	// A list of usernames that belong to this group.
 	Members pulumi.StringArrayOutput `pulumi:"members"`
-	RealmId pulumi.StringOutput      `pulumi:"realmId"`
+	// The realm this group exists in.
+	RealmId pulumi.StringOutput `pulumi:"realmId"`
 }
 
 // NewGroupMemberships registers a new resource with the given unique name, arguments, and options.
@@ -135,14 +133,20 @@ func GetGroupMemberships(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering GroupMemberships resources.
 type groupMembershipsState struct {
-	GroupId *string  `pulumi:"groupId"`
+	// The ID of the group this resource should manage memberships for.
+	GroupId *string `pulumi:"groupId"`
+	// A list of usernames that belong to this group.
 	Members []string `pulumi:"members"`
-	RealmId *string  `pulumi:"realmId"`
+	// The realm this group exists in.
+	RealmId *string `pulumi:"realmId"`
 }
 
 type GroupMembershipsState struct {
+	// The ID of the group this resource should manage memberships for.
 	GroupId pulumi.StringPtrInput
+	// A list of usernames that belong to this group.
 	Members pulumi.StringArrayInput
+	// The realm this group exists in.
 	RealmId pulumi.StringPtrInput
 }
 
@@ -151,15 +155,21 @@ func (GroupMembershipsState) ElementType() reflect.Type {
 }
 
 type groupMembershipsArgs struct {
-	GroupId *string  `pulumi:"groupId"`
+	// The ID of the group this resource should manage memberships for.
+	GroupId *string `pulumi:"groupId"`
+	// A list of usernames that belong to this group.
 	Members []string `pulumi:"members"`
-	RealmId string   `pulumi:"realmId"`
+	// The realm this group exists in.
+	RealmId string `pulumi:"realmId"`
 }
 
 // The set of arguments for constructing a GroupMemberships resource.
 type GroupMembershipsArgs struct {
+	// The ID of the group this resource should manage memberships for.
 	GroupId pulumi.StringPtrInput
+	// A list of usernames that belong to this group.
 	Members pulumi.StringArrayInput
+	// The realm this group exists in.
 	RealmId pulumi.StringInput
 }
 
@@ -250,14 +260,17 @@ func (o GroupMembershipsOutput) ToGroupMembershipsOutputWithContext(ctx context.
 	return o
 }
 
+// The ID of the group this resource should manage memberships for.
 func (o GroupMembershipsOutput) GroupId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GroupMemberships) pulumi.StringPtrOutput { return v.GroupId }).(pulumi.StringPtrOutput)
 }
 
+// A list of usernames that belong to this group.
 func (o GroupMembershipsOutput) Members() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *GroupMemberships) pulumi.StringArrayOutput { return v.Members }).(pulumi.StringArrayOutput)
 }
 
+// The realm this group exists in.
 func (o GroupMembershipsOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *GroupMemberships) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
 }

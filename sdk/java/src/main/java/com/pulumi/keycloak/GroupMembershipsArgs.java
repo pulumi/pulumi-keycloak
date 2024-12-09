@@ -17,23 +17,47 @@ public final class GroupMembershipsArgs extends com.pulumi.resources.ResourceArg
 
     public static final GroupMembershipsArgs Empty = new GroupMembershipsArgs();
 
+    /**
+     * The ID of the group this resource should manage memberships for.
+     * 
+     */
     @Import(name="groupId")
     private @Nullable Output<String> groupId;
 
+    /**
+     * @return The ID of the group this resource should manage memberships for.
+     * 
+     */
     public Optional<Output<String>> groupId() {
         return Optional.ofNullable(this.groupId);
     }
 
+    /**
+     * A list of usernames that belong to this group.
+     * 
+     */
     @Import(name="members", required=true)
     private Output<List<String>> members;
 
+    /**
+     * @return A list of usernames that belong to this group.
+     * 
+     */
     public Output<List<String>> members() {
         return this.members;
     }
 
+    /**
+     * The realm this group exists in.
+     * 
+     */
     @Import(name="realmId", required=true)
     private Output<String> realmId;
 
+    /**
+     * @return The realm this group exists in.
+     * 
+     */
     public Output<String> realmId() {
         return this.realmId;
     }
@@ -64,33 +88,75 @@ public final class GroupMembershipsArgs extends com.pulumi.resources.ResourceArg
             $ = new GroupMembershipsArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param groupId The ID of the group this resource should manage memberships for.
+         * 
+         * @return builder
+         * 
+         */
         public Builder groupId(@Nullable Output<String> groupId) {
             $.groupId = groupId;
             return this;
         }
 
+        /**
+         * @param groupId The ID of the group this resource should manage memberships for.
+         * 
+         * @return builder
+         * 
+         */
         public Builder groupId(String groupId) {
             return groupId(Output.of(groupId));
         }
 
+        /**
+         * @param members A list of usernames that belong to this group.
+         * 
+         * @return builder
+         * 
+         */
         public Builder members(Output<List<String>> members) {
             $.members = members;
             return this;
         }
 
+        /**
+         * @param members A list of usernames that belong to this group.
+         * 
+         * @return builder
+         * 
+         */
         public Builder members(List<String> members) {
             return members(Output.of(members));
         }
 
+        /**
+         * @param members A list of usernames that belong to this group.
+         * 
+         * @return builder
+         * 
+         */
         public Builder members(String... members) {
             return members(List.of(members));
         }
 
+        /**
+         * @param realmId The realm this group exists in.
+         * 
+         * @return builder
+         * 
+         */
         public Builder realmId(Output<String> realmId) {
             $.realmId = realmId;
             return this;
         }
 
+        /**
+         * @param realmId The realm this group exists in.
+         * 
+         * @return builder
+         * 
+         */
         public Builder realmId(String realmId) {
             return realmId(Output.of(realmId));
         }

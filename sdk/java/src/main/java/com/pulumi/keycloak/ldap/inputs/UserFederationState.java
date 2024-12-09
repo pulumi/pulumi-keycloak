@@ -21,14 +21,14 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
     public static final UserFederationState Empty = new UserFederationState();
 
     /**
-     * The number of users to sync within a single transaction.
+     * The number of users to sync within a single transaction. Defaults to `1000`.
      * 
      */
     @Import(name="batchSizeForSync")
     private @Nullable Output<Integer> batchSizeForSync;
 
     /**
-     * @return The number of users to sync within a single transaction.
+     * @return The number of users to sync within a single transaction. Defaults to `1000`.
      * 
      */
     public Optional<Output<Integer>> batchSizeForSync() {
@@ -36,14 +36,14 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Password of LDAP admin.
+     * Password of LDAP admin. This attribute must be set if `bind_dn` is set.
      * 
      */
     @Import(name="bindCredential")
     private @Nullable Output<String> bindCredential;
 
     /**
-     * @return Password of LDAP admin.
+     * @return Password of LDAP admin. This attribute must be set if `bind_dn` is set.
      * 
      */
     public Optional<Output<String>> bindCredential() {
@@ -51,14 +51,14 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * DN of LDAP admin, which will be used by Keycloak to access LDAP server.
+     * DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` is set.
      * 
      */
     @Import(name="bindDn")
     private @Nullable Output<String> bindDn;
 
     /**
-     * @return DN of LDAP admin, which will be used by Keycloak to access LDAP server.
+     * @return DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` is set.
      * 
      */
     public Optional<Output<String>> bindDn() {
@@ -66,14 +66,14 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Settings regarding cache policy for this realm.
+     * A block containing the cache settings.
      * 
      */
     @Import(name="cache")
     private @Nullable Output<UserFederationCacheArgs> cache;
 
     /**
-     * @return Settings regarding cache policy for this realm.
+     * @return A block containing the cache settings.
      * 
      */
     public Optional<Output<UserFederationCacheArgs>> cache() {
@@ -81,16 +81,14 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users
-     * sync.
+     * How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
      * 
      */
     @Import(name="changedSyncPeriod")
     private @Nullable Output<Integer> changedSyncPeriod;
 
     /**
-     * @return How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users
-     * sync.
+     * @return How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
      * 
      */
     public Optional<Output<Integer>> changedSyncPeriod() {
@@ -98,14 +96,14 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * LDAP connection timeout (duration string)
+     * LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
      * 
      */
     @Import(name="connectionTimeout")
     private @Nullable Output<String> connectionTimeout;
 
     /**
-     * @return LDAP connection timeout (duration string)
+     * @return LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
      * 
      */
     public Optional<Output<String>> connectionTimeout() {
@@ -128,14 +126,14 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Additional LDAP filter for filtering searched users. Must begin with &#39;(&#39; and end with &#39;)&#39;.
+     * Additional LDAP filter for filtering searched users. Must begin with `(` and end with `)`.
      * 
      */
     @Import(name="customUserSearchFilter")
     private @Nullable Output<String> customUserSearchFilter;
 
     /**
-     * @return Additional LDAP filter for filtering searched users. Must begin with &#39;(&#39; and end with &#39;)&#39;.
+     * @return Additional LDAP filter for filtering searched users. Must begin with `(` and end with `)`.
      * 
      */
     public Optional<Output<String>> customUserSearchFilter() {
@@ -143,16 +141,14 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP
-     * user federation provider.
+     * When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `false`.
      * 
      */
     @Import(name="deleteDefaultMappers")
     private @Nullable Output<Boolean> deleteDefaultMappers;
 
     /**
-     * @return When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP
-     * user federation provider.
+     * @return When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `false`.
      * 
      */
     public Optional<Output<Boolean>> deleteDefaultMappers() {
@@ -160,14 +156,14 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * READ_ONLY and WRITABLE are self-explanatory. UNSYNCED allows user data to be imported but not synced back to LDAP.
+     * Can be one of `READ_ONLY`, `WRITABLE`, or `UNSYNCED`. `UNSYNCED` allows user data to be imported but not synced back to LDAP. Defaults to `READ_ONLY`.
      * 
      */
     @Import(name="editMode")
     private @Nullable Output<String> editMode;
 
     /**
-     * @return READ_ONLY and WRITABLE are self-explanatory. UNSYNCED allows user data to be imported but not synced back to LDAP.
+     * @return Can be one of `READ_ONLY`, `WRITABLE`, or `UNSYNCED`. `UNSYNCED` allows user data to be imported but not synced back to LDAP. Defaults to `READ_ONLY`.
      * 
      */
     public Optional<Output<String>> editMode() {
@@ -175,14 +171,14 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * When false, this provider will not be used when performing queries for users.
+     * When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
      * 
      */
     @Import(name="enabled")
     private @Nullable Output<Boolean> enabled;
 
     /**
-     * @return When false, this provider will not be used when performing queries for users.
+     * @return When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
      * 
      */
     public Optional<Output<Boolean>> enabled() {
@@ -205,14 +201,14 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * When true, LDAP users will be imported into the Keycloak database.
+     * When `true`, LDAP users will be imported into the Keycloak database. Defaults to `true`.
      * 
      */
     @Import(name="importEnabled")
     private @Nullable Output<Boolean> importEnabled;
 
     /**
-     * @return When true, LDAP users will be imported into the Keycloak database.
+     * @return When `true`, LDAP users will be imported into the Keycloak database. Defaults to `true`.
      * 
      */
     public Optional<Output<Boolean>> importEnabled() {
@@ -220,14 +216,14 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Settings regarding kerberos authentication for this realm.
+     * A block containing the kerberos settings.
      * 
      */
     @Import(name="kerberos")
     private @Nullable Output<UserFederationKerberosArgs> kerberos;
 
     /**
-     * @return Settings regarding kerberos authentication for this realm.
+     * @return A block containing the kerberos settings.
      * 
      */
     public Optional<Output<UserFederationKerberosArgs>> kerberos() {
@@ -250,14 +246,14 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * When true, Keycloak assumes the LDAP server supports pagination.
+     * When true, Keycloak assumes the LDAP server supports pagination. Defaults to `true`.
      * 
      */
     @Import(name="pagination")
     private @Nullable Output<Boolean> pagination;
 
     /**
-     * @return When true, Keycloak assumes the LDAP server supports pagination.
+     * @return When true, Keycloak assumes the LDAP server supports pagination. Defaults to `true`.
      * 
      */
     public Optional<Output<Boolean>> pagination() {
@@ -265,14 +261,14 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Priority of this provider when looking up users. Lower values are first.
+     * Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
      * 
      */
     @Import(name="priority")
     private @Nullable Output<Integer> priority;
 
     /**
-     * @return Priority of this provider when looking up users. Lower values are first.
+     * @return Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
      * 
      */
     public Optional<Output<Integer>> priority() {
@@ -295,14 +291,14 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * LDAP read timeout (duration string)
+     * LDAP read timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
      * 
      */
     @Import(name="readTimeout")
     private @Nullable Output<String> readTimeout;
 
     /**
-     * @return LDAP read timeout (duration string)
+     * @return LDAP read timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
      * 
      */
     public Optional<Output<String>> readTimeout() {
@@ -310,14 +306,14 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * The realm this provider will provide user federation for.
+     * The realm that this provider will provide user federation for.
      * 
      */
     @Import(name="realmId")
     private @Nullable Output<String> realmId;
 
     /**
-     * @return The realm this provider will provide user federation for.
+     * @return The realm that this provider will provide user federation for.
      * 
      */
     public Optional<Output<String>> realmId() {
@@ -325,14 +321,18 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * ONE_LEVEL: only search for users in the DN specified by user_dn. SUBTREE: search entire LDAP subtree.
+     * Can be one of `ONE_LEVEL` or `SUBTREE`:
+     * - `ONE_LEVEL`: Only search for users in the DN specified by `user_dn`.
+     * - `SUBTREE`: Search entire LDAP subtree.
      * 
      */
     @Import(name="searchScope")
     private @Nullable Output<String> searchScope;
 
     /**
-     * @return ONE_LEVEL: only search for users in the DN specified by user_dn. SUBTREE: search entire LDAP subtree.
+     * @return Can be one of `ONE_LEVEL` or `SUBTREE`:
+     * - `ONE_LEVEL`: Only search for users in the DN specified by `user_dn`.
+     * - `SUBTREE`: Search entire LDAP subtree.
      * 
      */
     public Optional<Output<String>> searchScope() {
@@ -340,14 +340,14 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * When true, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
+     * When `true`, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
      * 
      */
     @Import(name="startTls")
     private @Nullable Output<Boolean> startTls;
 
     /**
-     * @return When true, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
+     * @return When `true`, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
      * 
      */
     public Optional<Output<Boolean>> startTls() {
@@ -355,14 +355,14 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * When true, newly created users will be synced back to LDAP.
+     * When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
      * 
      */
     @Import(name="syncRegistrations")
     private @Nullable Output<Boolean> syncRegistrations;
 
     /**
-     * @return When true, newly created users will be synced back to LDAP.
+     * @return When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
      * 
      */
     public Optional<Output<Boolean>> syncRegistrations() {
@@ -399,22 +399,36 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
         return Optional.ofNullable(this.usePasswordModifyExtendedOp);
     }
 
+    /**
+     * Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
+     * - `ALWAYS` - Always use the truststore SPI for LDAP connections.
+     * - `NEVER` - Never use the truststore SPI for LDAP connections.
+     * - `ONLY_FOR_LDAPS` - Only use the truststore SPI if your LDAP connection uses the ldaps protocol.
+     * 
+     */
     @Import(name="useTruststoreSpi")
     private @Nullable Output<String> useTruststoreSpi;
 
+    /**
+     * @return Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
+     * - `ALWAYS` - Always use the truststore SPI for LDAP connections.
+     * - `NEVER` - Never use the truststore SPI for LDAP connections.
+     * - `ONLY_FOR_LDAPS` - Only use the truststore SPI if your LDAP connection uses the ldaps protocol.
+     * 
+     */
     public Optional<Output<String>> useTruststoreSpi() {
         return Optional.ofNullable(this.useTruststoreSpi);
     }
 
     /**
-     * All values of LDAP objectClass attribute for users in LDAP.
+     * Array of all values of LDAP objectClass attribute for users in LDAP. Must contain at least one.
      * 
      */
     @Import(name="userObjectClasses")
     private @Nullable Output<List<String>> userObjectClasses;
 
     /**
-     * @return All values of LDAP objectClass attribute for users in LDAP.
+     * @return Array of all values of LDAP objectClass attribute for users in LDAP. Must contain at least one.
      * 
      */
     public Optional<Output<List<String>>> userObjectClasses() {
@@ -467,14 +481,14 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * When true, Keycloak will validate passwords using the realm policy before updating it.
+     * When `true`, Keycloak will validate passwords using the realm policy before updating it.
      * 
      */
     @Import(name="validatePasswordPolicy")
     private @Nullable Output<Boolean> validatePasswordPolicy;
 
     /**
-     * @return When true, Keycloak will validate passwords using the realm policy before updating it.
+     * @return When `true`, Keycloak will validate passwords using the realm policy before updating it.
      * 
      */
     public Optional<Output<Boolean>> validatePasswordPolicy() {
@@ -482,14 +496,14 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * LDAP vendor. I am almost certain this field does nothing, but the UI indicates that it is required.
+     * Can be one of `OTHER`, `EDIRECTORY`, `AD`, `RHDS`, or `TIVOLI`. When this is selected in the GUI, it provides reasonable defaults for other fields. When used with the Keycloak API, this attribute does nothing, but is still required. Defaults to `OTHER`.
      * 
      */
     @Import(name="vendor")
     private @Nullable Output<String> vendor;
 
     /**
-     * @return LDAP vendor. I am almost certain this field does nothing, but the UI indicates that it is required.
+     * @return Can be one of `OTHER`, `EDIRECTORY`, `AD`, `RHDS`, or `TIVOLI`. When this is selected in the GUI, it provides reasonable defaults for other fields. When used with the Keycloak API, this attribute does nothing, but is still required. Defaults to `OTHER`.
      * 
      */
     public Optional<Output<String>> vendor() {
@@ -552,7 +566,7 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param batchSizeForSync The number of users to sync within a single transaction.
+         * @param batchSizeForSync The number of users to sync within a single transaction. Defaults to `1000`.
          * 
          * @return builder
          * 
@@ -563,7 +577,7 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param batchSizeForSync The number of users to sync within a single transaction.
+         * @param batchSizeForSync The number of users to sync within a single transaction. Defaults to `1000`.
          * 
          * @return builder
          * 
@@ -573,7 +587,7 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param bindCredential Password of LDAP admin.
+         * @param bindCredential Password of LDAP admin. This attribute must be set if `bind_dn` is set.
          * 
          * @return builder
          * 
@@ -584,7 +598,7 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param bindCredential Password of LDAP admin.
+         * @param bindCredential Password of LDAP admin. This attribute must be set if `bind_dn` is set.
          * 
          * @return builder
          * 
@@ -594,7 +608,7 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param bindDn DN of LDAP admin, which will be used by Keycloak to access LDAP server.
+         * @param bindDn DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` is set.
          * 
          * @return builder
          * 
@@ -605,7 +619,7 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param bindDn DN of LDAP admin, which will be used by Keycloak to access LDAP server.
+         * @param bindDn DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` is set.
          * 
          * @return builder
          * 
@@ -615,7 +629,7 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param cache Settings regarding cache policy for this realm.
+         * @param cache A block containing the cache settings.
          * 
          * @return builder
          * 
@@ -626,7 +640,7 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param cache Settings regarding cache policy for this realm.
+         * @param cache A block containing the cache settings.
          * 
          * @return builder
          * 
@@ -636,8 +650,7 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param changedSyncPeriod How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users
-         * sync.
+         * @param changedSyncPeriod How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
          * 
          * @return builder
          * 
@@ -648,8 +661,7 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param changedSyncPeriod How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users
-         * sync.
+         * @param changedSyncPeriod How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
          * 
          * @return builder
          * 
@@ -659,7 +671,7 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param connectionTimeout LDAP connection timeout (duration string)
+         * @param connectionTimeout LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
          * 
          * @return builder
          * 
@@ -670,7 +682,7 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param connectionTimeout LDAP connection timeout (duration string)
+         * @param connectionTimeout LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
          * 
          * @return builder
          * 
@@ -701,7 +713,7 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param customUserSearchFilter Additional LDAP filter for filtering searched users. Must begin with &#39;(&#39; and end with &#39;)&#39;.
+         * @param customUserSearchFilter Additional LDAP filter for filtering searched users. Must begin with `(` and end with `)`.
          * 
          * @return builder
          * 
@@ -712,7 +724,7 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param customUserSearchFilter Additional LDAP filter for filtering searched users. Must begin with &#39;(&#39; and end with &#39;)&#39;.
+         * @param customUserSearchFilter Additional LDAP filter for filtering searched users. Must begin with `(` and end with `)`.
          * 
          * @return builder
          * 
@@ -722,8 +734,7 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param deleteDefaultMappers When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP
-         * user federation provider.
+         * @param deleteDefaultMappers When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `false`.
          * 
          * @return builder
          * 
@@ -734,8 +745,7 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param deleteDefaultMappers When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP
-         * user federation provider.
+         * @param deleteDefaultMappers When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `false`.
          * 
          * @return builder
          * 
@@ -745,7 +755,7 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param editMode READ_ONLY and WRITABLE are self-explanatory. UNSYNCED allows user data to be imported but not synced back to LDAP.
+         * @param editMode Can be one of `READ_ONLY`, `WRITABLE`, or `UNSYNCED`. `UNSYNCED` allows user data to be imported but not synced back to LDAP. Defaults to `READ_ONLY`.
          * 
          * @return builder
          * 
@@ -756,7 +766,7 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param editMode READ_ONLY and WRITABLE are self-explanatory. UNSYNCED allows user data to be imported but not synced back to LDAP.
+         * @param editMode Can be one of `READ_ONLY`, `WRITABLE`, or `UNSYNCED`. `UNSYNCED` allows user data to be imported but not synced back to LDAP. Defaults to `READ_ONLY`.
          * 
          * @return builder
          * 
@@ -766,7 +776,7 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param enabled When false, this provider will not be used when performing queries for users.
+         * @param enabled When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
          * 
          * @return builder
          * 
@@ -777,7 +787,7 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param enabled When false, this provider will not be used when performing queries for users.
+         * @param enabled When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
          * 
          * @return builder
          * 
@@ -808,7 +818,7 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param importEnabled When true, LDAP users will be imported into the Keycloak database.
+         * @param importEnabled When `true`, LDAP users will be imported into the Keycloak database. Defaults to `true`.
          * 
          * @return builder
          * 
@@ -819,7 +829,7 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param importEnabled When true, LDAP users will be imported into the Keycloak database.
+         * @param importEnabled When `true`, LDAP users will be imported into the Keycloak database. Defaults to `true`.
          * 
          * @return builder
          * 
@@ -829,7 +839,7 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param kerberos Settings regarding kerberos authentication for this realm.
+         * @param kerberos A block containing the kerberos settings.
          * 
          * @return builder
          * 
@@ -840,7 +850,7 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param kerberos Settings regarding kerberos authentication for this realm.
+         * @param kerberos A block containing the kerberos settings.
          * 
          * @return builder
          * 
@@ -871,7 +881,7 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param pagination When true, Keycloak assumes the LDAP server supports pagination.
+         * @param pagination When true, Keycloak assumes the LDAP server supports pagination. Defaults to `true`.
          * 
          * @return builder
          * 
@@ -882,7 +892,7 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param pagination When true, Keycloak assumes the LDAP server supports pagination.
+         * @param pagination When true, Keycloak assumes the LDAP server supports pagination. Defaults to `true`.
          * 
          * @return builder
          * 
@@ -892,7 +902,7 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param priority Priority of this provider when looking up users. Lower values are first.
+         * @param priority Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
          * 
          * @return builder
          * 
@@ -903,7 +913,7 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param priority Priority of this provider when looking up users. Lower values are first.
+         * @param priority Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
          * 
          * @return builder
          * 
@@ -934,7 +944,7 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param readTimeout LDAP read timeout (duration string)
+         * @param readTimeout LDAP read timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
          * 
          * @return builder
          * 
@@ -945,7 +955,7 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param readTimeout LDAP read timeout (duration string)
+         * @param readTimeout LDAP read timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
          * 
          * @return builder
          * 
@@ -955,7 +965,7 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param realmId The realm this provider will provide user federation for.
+         * @param realmId The realm that this provider will provide user federation for.
          * 
          * @return builder
          * 
@@ -966,7 +976,7 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param realmId The realm this provider will provide user federation for.
+         * @param realmId The realm that this provider will provide user federation for.
          * 
          * @return builder
          * 
@@ -976,7 +986,9 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param searchScope ONE_LEVEL: only search for users in the DN specified by user_dn. SUBTREE: search entire LDAP subtree.
+         * @param searchScope Can be one of `ONE_LEVEL` or `SUBTREE`:
+         * - `ONE_LEVEL`: Only search for users in the DN specified by `user_dn`.
+         * - `SUBTREE`: Search entire LDAP subtree.
          * 
          * @return builder
          * 
@@ -987,7 +999,9 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param searchScope ONE_LEVEL: only search for users in the DN specified by user_dn. SUBTREE: search entire LDAP subtree.
+         * @param searchScope Can be one of `ONE_LEVEL` or `SUBTREE`:
+         * - `ONE_LEVEL`: Only search for users in the DN specified by `user_dn`.
+         * - `SUBTREE`: Search entire LDAP subtree.
          * 
          * @return builder
          * 
@@ -997,7 +1011,7 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param startTls When true, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
+         * @param startTls When `true`, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
          * 
          * @return builder
          * 
@@ -1008,7 +1022,7 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param startTls When true, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
+         * @param startTls When `true`, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
          * 
          * @return builder
          * 
@@ -1018,7 +1032,7 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param syncRegistrations When true, newly created users will be synced back to LDAP.
+         * @param syncRegistrations When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
          * 
          * @return builder
          * 
@@ -1029,7 +1043,7 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param syncRegistrations When true, newly created users will be synced back to LDAP.
+         * @param syncRegistrations When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
          * 
          * @return builder
          * 
@@ -1080,17 +1094,35 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
             return usePasswordModifyExtendedOp(Output.of(usePasswordModifyExtendedOp));
         }
 
+        /**
+         * @param useTruststoreSpi Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
+         * - `ALWAYS` - Always use the truststore SPI for LDAP connections.
+         * - `NEVER` - Never use the truststore SPI for LDAP connections.
+         * - `ONLY_FOR_LDAPS` - Only use the truststore SPI if your LDAP connection uses the ldaps protocol.
+         * 
+         * @return builder
+         * 
+         */
         public Builder useTruststoreSpi(@Nullable Output<String> useTruststoreSpi) {
             $.useTruststoreSpi = useTruststoreSpi;
             return this;
         }
 
+        /**
+         * @param useTruststoreSpi Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
+         * - `ALWAYS` - Always use the truststore SPI for LDAP connections.
+         * - `NEVER` - Never use the truststore SPI for LDAP connections.
+         * - `ONLY_FOR_LDAPS` - Only use the truststore SPI if your LDAP connection uses the ldaps protocol.
+         * 
+         * @return builder
+         * 
+         */
         public Builder useTruststoreSpi(String useTruststoreSpi) {
             return useTruststoreSpi(Output.of(useTruststoreSpi));
         }
 
         /**
-         * @param userObjectClasses All values of LDAP objectClass attribute for users in LDAP.
+         * @param userObjectClasses Array of all values of LDAP objectClass attribute for users in LDAP. Must contain at least one.
          * 
          * @return builder
          * 
@@ -1101,7 +1133,7 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param userObjectClasses All values of LDAP objectClass attribute for users in LDAP.
+         * @param userObjectClasses Array of all values of LDAP objectClass attribute for users in LDAP. Must contain at least one.
          * 
          * @return builder
          * 
@@ -1111,7 +1143,7 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param userObjectClasses All values of LDAP objectClass attribute for users in LDAP.
+         * @param userObjectClasses Array of all values of LDAP objectClass attribute for users in LDAP. Must contain at least one.
          * 
          * @return builder
          * 
@@ -1184,7 +1216,7 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param validatePasswordPolicy When true, Keycloak will validate passwords using the realm policy before updating it.
+         * @param validatePasswordPolicy When `true`, Keycloak will validate passwords using the realm policy before updating it.
          * 
          * @return builder
          * 
@@ -1195,7 +1227,7 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param validatePasswordPolicy When true, Keycloak will validate passwords using the realm policy before updating it.
+         * @param validatePasswordPolicy When `true`, Keycloak will validate passwords using the realm policy before updating it.
          * 
          * @return builder
          * 
@@ -1205,7 +1237,7 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param vendor LDAP vendor. I am almost certain this field does nothing, but the UI indicates that it is required.
+         * @param vendor Can be one of `OTHER`, `EDIRECTORY`, `AD`, `RHDS`, or `TIVOLI`. When this is selected in the GUI, it provides reasonable defaults for other fields. When used with the Keycloak API, this attribute does nothing, but is still required. Defaults to `OTHER`.
          * 
          * @return builder
          * 
@@ -1216,7 +1248,7 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param vendor LDAP vendor. I am almost certain this field does nothing, but the UI indicates that it is required.
+         * @param vendor Can be one of `OTHER`, `EDIRECTORY`, `AD`, `RHDS`, or `TIVOLI`. When this is selected in the GUI, it provides reasonable defaults for other fields. When used with the Keycloak API, this attribute does nothing, but is still required. Defaults to `OTHER`.
          * 
          * @return builder
          * 

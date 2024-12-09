@@ -19,86 +19,182 @@ public final class ClientState extends com.pulumi.resources.ResourceArgs {
 
     public static final ClientState Empty = new ClientState();
 
+    /**
+     * SAML POST Binding URL for the client&#39;s assertion consumer service (login responses).
+     * 
+     */
     @Import(name="assertionConsumerPostUrl")
     private @Nullable Output<String> assertionConsumerPostUrl;
 
+    /**
+     * @return SAML POST Binding URL for the client&#39;s assertion consumer service (login responses).
+     * 
+     */
     public Optional<Output<String>> assertionConsumerPostUrl() {
         return Optional.ofNullable(this.assertionConsumerPostUrl);
     }
 
+    /**
+     * SAML Redirect Binding URL for the client&#39;s assertion consumer service (login responses).
+     * 
+     */
     @Import(name="assertionConsumerRedirectUrl")
     private @Nullable Output<String> assertionConsumerRedirectUrl;
 
+    /**
+     * @return SAML Redirect Binding URL for the client&#39;s assertion consumer service (login responses).
+     * 
+     */
     public Optional<Output<String>> assertionConsumerRedirectUrl() {
         return Optional.ofNullable(this.assertionConsumerRedirectUrl);
     }
 
+    /**
+     * Override realm authentication flow bindings
+     * 
+     */
     @Import(name="authenticationFlowBindingOverrides")
     private @Nullable Output<ClientAuthenticationFlowBindingOverridesArgs> authenticationFlowBindingOverrides;
 
+    /**
+     * @return Override realm authentication flow bindings
+     * 
+     */
     public Optional<Output<ClientAuthenticationFlowBindingOverridesArgs>> authenticationFlowBindingOverrides() {
         return Optional.ofNullable(this.authenticationFlowBindingOverrides);
     }
 
+    /**
+     * When specified, this URL will be used whenever Keycloak needs to link to this client.
+     * 
+     */
     @Import(name="baseUrl")
     private @Nullable Output<String> baseUrl;
 
+    /**
+     * @return When specified, this URL will be used whenever Keycloak needs to link to this client.
+     * 
+     */
     public Optional<Output<String>> baseUrl() {
         return Optional.ofNullable(this.baseUrl);
     }
 
+    /**
+     * The Canonicalization Method for XML signatures. Should be one of &#34;EXCLUSIVE&#34;, &#34;EXCLUSIVE_WITH_COMMENTS&#34;, &#34;INCLUSIVE&#34;, or &#34;INCLUSIVE_WITH_COMMENTS&#34;. Defaults to &#34;EXCLUSIVE&#34;.
+     * 
+     */
     @Import(name="canonicalizationMethod")
     private @Nullable Output<String> canonicalizationMethod;
 
+    /**
+     * @return The Canonicalization Method for XML signatures. Should be one of &#34;EXCLUSIVE&#34;, &#34;EXCLUSIVE_WITH_COMMENTS&#34;, &#34;INCLUSIVE&#34;, or &#34;INCLUSIVE_WITH_COMMENTS&#34;. Defaults to &#34;EXCLUSIVE&#34;.
+     * 
+     */
     public Optional<Output<String>> canonicalizationMethod() {
         return Optional.ofNullable(this.canonicalizationMethod);
     }
 
+    /**
+     * The unique ID of this client, referenced in the URI during authentication and in issued tokens.
+     * 
+     */
     @Import(name="clientId")
     private @Nullable Output<String> clientId;
 
+    /**
+     * @return The unique ID of this client, referenced in the URI during authentication and in issued tokens.
+     * 
+     */
     public Optional<Output<String>> clientId() {
         return Optional.ofNullable(this.clientId);
     }
 
+    /**
+     * When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signing_certificate` and `signing_private_key`. Defaults to `true`.
+     * 
+     */
     @Import(name="clientSignatureRequired")
     private @Nullable Output<Boolean> clientSignatureRequired;
 
+    /**
+     * @return When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signing_certificate` and `signing_private_key`. Defaults to `true`.
+     * 
+     */
     public Optional<Output<Boolean>> clientSignatureRequired() {
         return Optional.ofNullable(this.clientSignatureRequired);
     }
 
+    /**
+     * The description of this client in the GUI.
+     * 
+     */
     @Import(name="description")
     private @Nullable Output<String> description;
 
+    /**
+     * @return The description of this client in the GUI.
+     * 
+     */
     public Optional<Output<String>> description() {
         return Optional.ofNullable(this.description);
     }
 
+    /**
+     * When false, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
+     * 
+     */
     @Import(name="enabled")
     private @Nullable Output<Boolean> enabled;
 
+    /**
+     * @return When false, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
+     * 
+     */
     public Optional<Output<Boolean>> enabled() {
         return Optional.ofNullable(this.enabled);
     }
 
+    /**
+     * When `true`, the SAML assertions will be encrypted by Keycloak using the client&#39;s public key. Defaults to `false`.
+     * 
+     */
     @Import(name="encryptAssertions")
     private @Nullable Output<Boolean> encryptAssertions;
 
+    /**
+     * @return When `true`, the SAML assertions will be encrypted by Keycloak using the client&#39;s public key. Defaults to `false`.
+     * 
+     */
     public Optional<Output<Boolean>> encryptAssertions() {
         return Optional.ofNullable(this.encryptAssertions);
     }
 
+    /**
+     * If assertions for the client are encrypted, this certificate will be used for encryption.
+     * 
+     */
     @Import(name="encryptionCertificate")
     private @Nullable Output<String> encryptionCertificate;
 
+    /**
+     * @return If assertions for the client are encrypted, this certificate will be used for encryption.
+     * 
+     */
     public Optional<Output<String>> encryptionCertificate() {
         return Optional.ofNullable(this.encryptionCertificate);
     }
 
+    /**
+     * (Computed) The sha1sum fingerprint of the encryption certificate. If the encryption certificate is not in correct base64 format, this will be left empty.
+     * 
+     */
     @Import(name="encryptionCertificateSha1")
     private @Nullable Output<String> encryptionCertificateSha1;
 
+    /**
+     * @return (Computed) The sha1sum fingerprint of the encryption certificate. If the encryption certificate is not in correct base64 format, this will be left empty.
+     * 
+     */
     public Optional<Output<String>> encryptionCertificateSha1() {
         return Optional.ofNullable(this.encryptionCertificateSha1);
     }
@@ -110,170 +206,362 @@ public final class ClientState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.extraConfig);
     }
 
+    /**
+     * Ignore requested NameID subject format and use the one defined in `name_id_format` instead. Defaults to `false`.
+     * 
+     */
     @Import(name="forceNameIdFormat")
     private @Nullable Output<Boolean> forceNameIdFormat;
 
+    /**
+     * @return Ignore requested NameID subject format and use the one defined in `name_id_format` instead. Defaults to `false`.
+     * 
+     */
     public Optional<Output<Boolean>> forceNameIdFormat() {
         return Optional.ofNullable(this.forceNameIdFormat);
     }
 
+    /**
+     * When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding. Defaults to `true`.
+     * 
+     */
     @Import(name="forcePostBinding")
     private @Nullable Output<Boolean> forcePostBinding;
 
+    /**
+     * @return When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding. Defaults to `true`.
+     * 
+     */
     public Optional<Output<Boolean>> forcePostBinding() {
         return Optional.ofNullable(this.forcePostBinding);
     }
 
+    /**
+     * When `true`, this client will require a browser redirect in order to perform a logout. Defaults to `true`.
+     * 
+     */
     @Import(name="frontChannelLogout")
     private @Nullable Output<Boolean> frontChannelLogout;
 
+    /**
+     * @return When `true`, this client will require a browser redirect in order to perform a logout. Defaults to `true`.
+     * 
+     */
     public Optional<Output<Boolean>> frontChannelLogout() {
         return Optional.ofNullable(this.frontChannelLogout);
     }
 
+    /**
+     * Allow to include all roles mappings in the access token
+     * 
+     */
     @Import(name="fullScopeAllowed")
     private @Nullable Output<Boolean> fullScopeAllowed;
 
+    /**
+     * @return Allow to include all roles mappings in the access token
+     * 
+     */
     public Optional<Output<Boolean>> fullScopeAllowed() {
         return Optional.ofNullable(this.fullScopeAllowed);
     }
 
+    /**
+     * Relay state you want to send with SAML request when you want to do IDP Initiated SSO.
+     * 
+     */
     @Import(name="idpInitiatedSsoRelayState")
     private @Nullable Output<String> idpInitiatedSsoRelayState;
 
+    /**
+     * @return Relay state you want to send with SAML request when you want to do IDP Initiated SSO.
+     * 
+     */
     public Optional<Output<String>> idpInitiatedSsoRelayState() {
         return Optional.ofNullable(this.idpInitiatedSsoRelayState);
     }
 
+    /**
+     * URL fragment name to reference client when you want to do IDP Initiated SSO.
+     * 
+     */
     @Import(name="idpInitiatedSsoUrlName")
     private @Nullable Output<String> idpInitiatedSsoUrlName;
 
+    /**
+     * @return URL fragment name to reference client when you want to do IDP Initiated SSO.
+     * 
+     */
     public Optional<Output<String>> idpInitiatedSsoUrlName() {
         return Optional.ofNullable(this.idpInitiatedSsoUrlName);
     }
 
+    /**
+     * When `true`, an `AuthnStatement` will be included in the SAML response. Defaults to `true`.
+     * 
+     */
     @Import(name="includeAuthnStatement")
     private @Nullable Output<Boolean> includeAuthnStatement;
 
+    /**
+     * @return When `true`, an `AuthnStatement` will be included in the SAML response. Defaults to `true`.
+     * 
+     */
     public Optional<Output<Boolean>> includeAuthnStatement() {
         return Optional.ofNullable(this.includeAuthnStatement);
     }
 
+    /**
+     * The login theme of this client.
+     * 
+     */
     @Import(name="loginTheme")
     private @Nullable Output<String> loginTheme;
 
+    /**
+     * @return The login theme of this client.
+     * 
+     */
     public Optional<Output<String>> loginTheme() {
         return Optional.ofNullable(this.loginTheme);
     }
 
+    /**
+     * SAML POST Binding URL for the client&#39;s single logout service.
+     * 
+     */
     @Import(name="logoutServicePostBindingUrl")
     private @Nullable Output<String> logoutServicePostBindingUrl;
 
+    /**
+     * @return SAML POST Binding URL for the client&#39;s single logout service.
+     * 
+     */
     public Optional<Output<String>> logoutServicePostBindingUrl() {
         return Optional.ofNullable(this.logoutServicePostBindingUrl);
     }
 
+    /**
+     * SAML Redirect Binding URL for the client&#39;s single logout service.
+     * 
+     */
     @Import(name="logoutServiceRedirectBindingUrl")
     private @Nullable Output<String> logoutServiceRedirectBindingUrl;
 
+    /**
+     * @return SAML Redirect Binding URL for the client&#39;s single logout service.
+     * 
+     */
     public Optional<Output<String>> logoutServiceRedirectBindingUrl() {
         return Optional.ofNullable(this.logoutServiceRedirectBindingUrl);
     }
 
+    /**
+     * When specified, this URL will be used for all SAML requests.
+     * 
+     */
     @Import(name="masterSamlProcessingUrl")
     private @Nullable Output<String> masterSamlProcessingUrl;
 
+    /**
+     * @return When specified, this URL will be used for all SAML requests.
+     * 
+     */
     public Optional<Output<String>> masterSamlProcessingUrl() {
         return Optional.ofNullable(this.masterSamlProcessingUrl);
     }
 
+    /**
+     * The display name of this client in the GUI.
+     * 
+     */
     @Import(name="name")
     private @Nullable Output<String> name;
 
+    /**
+     * @return The display name of this client in the GUI.
+     * 
+     */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
     }
 
+    /**
+     * Sets the Name ID format for the subject.
+     * 
+     */
     @Import(name="nameIdFormat")
     private @Nullable Output<String> nameIdFormat;
 
+    /**
+     * @return Sets the Name ID format for the subject.
+     * 
+     */
     public Optional<Output<String>> nameIdFormat() {
         return Optional.ofNullable(this.nameIdFormat);
     }
 
+    /**
+     * The realm this client is attached to.
+     * 
+     */
     @Import(name="realmId")
     private @Nullable Output<String> realmId;
 
+    /**
+     * @return The realm this client is attached to.
+     * 
+     */
     public Optional<Output<String>> realmId() {
         return Optional.ofNullable(this.realmId);
     }
 
+    /**
+     * When specified, this value is prepended to all relative URLs.
+     * 
+     */
     @Import(name="rootUrl")
     private @Nullable Output<String> rootUrl;
 
+    /**
+     * @return When specified, this value is prepended to all relative URLs.
+     * 
+     */
     public Optional<Output<String>> rootUrl() {
         return Optional.ofNullable(this.rootUrl);
     }
 
+    /**
+     * When `true`, the SAML assertions will be signed by Keycloak using the realm&#39;s private key, and embedded within the SAML XML Auth response. Defaults to `false`.
+     * 
+     */
     @Import(name="signAssertions")
     private @Nullable Output<Boolean> signAssertions;
 
+    /**
+     * @return When `true`, the SAML assertions will be signed by Keycloak using the realm&#39;s private key, and embedded within the SAML XML Auth response. Defaults to `false`.
+     * 
+     */
     public Optional<Output<Boolean>> signAssertions() {
         return Optional.ofNullable(this.signAssertions);
     }
 
+    /**
+     * When `true`, the SAML document will be signed by Keycloak using the realm&#39;s private key. Defaults to `true`.
+     * 
+     */
     @Import(name="signDocuments")
     private @Nullable Output<Boolean> signDocuments;
 
+    /**
+     * @return When `true`, the SAML document will be signed by Keycloak using the realm&#39;s private key. Defaults to `true`.
+     * 
+     */
     public Optional<Output<Boolean>> signDocuments() {
         return Optional.ofNullable(this.signDocuments);
     }
 
+    /**
+     * The signature algorithm used to sign documents. Should be one of &#34;RSA_SHA1&#34;, &#34;RSA_SHA256&#34;, &#34;RSA_SHA256_MGF1, &#34;RSA_SHA512&#34;, &#34;RSA_SHA512_MGF1&#34; or &#34;DSA_SHA1&#34;.
+     * 
+     */
     @Import(name="signatureAlgorithm")
     private @Nullable Output<String> signatureAlgorithm;
 
+    /**
+     * @return The signature algorithm used to sign documents. Should be one of &#34;RSA_SHA1&#34;, &#34;RSA_SHA256&#34;, &#34;RSA_SHA256_MGF1, &#34;RSA_SHA512&#34;, &#34;RSA_SHA512_MGF1&#34; or &#34;DSA_SHA1&#34;.
+     * 
+     */
     public Optional<Output<String>> signatureAlgorithm() {
         return Optional.ofNullable(this.signatureAlgorithm);
     }
 
+    /**
+     * The value of the `KeyName` element within the signed SAML document. Should be one of &#34;NONE&#34;, &#34;KEY_ID&#34;, or &#34;CERT_SUBJECT&#34;. Defaults to &#34;KEY_ID&#34;.
+     * 
+     */
     @Import(name="signatureKeyName")
     private @Nullable Output<String> signatureKeyName;
 
+    /**
+     * @return The value of the `KeyName` element within the signed SAML document. Should be one of &#34;NONE&#34;, &#34;KEY_ID&#34;, or &#34;CERT_SUBJECT&#34;. Defaults to &#34;KEY_ID&#34;.
+     * 
+     */
     public Optional<Output<String>> signatureKeyName() {
         return Optional.ofNullable(this.signatureKeyName);
     }
 
+    /**
+     * If documents or assertions from the client are signed, this certificate will be used to verify the signature.
+     * 
+     */
     @Import(name="signingCertificate")
     private @Nullable Output<String> signingCertificate;
 
+    /**
+     * @return If documents or assertions from the client are signed, this certificate will be used to verify the signature.
+     * 
+     */
     public Optional<Output<String>> signingCertificate() {
         return Optional.ofNullable(this.signingCertificate);
     }
 
+    /**
+     * (Computed) The sha1sum fingerprint of the signing certificate. If the signing certificate is not in correct base64 format, this will be left empty.
+     * 
+     */
     @Import(name="signingCertificateSha1")
     private @Nullable Output<String> signingCertificateSha1;
 
+    /**
+     * @return (Computed) The sha1sum fingerprint of the signing certificate. If the signing certificate is not in correct base64 format, this will be left empty.
+     * 
+     */
     public Optional<Output<String>> signingCertificateSha1() {
         return Optional.ofNullable(this.signingCertificateSha1);
     }
 
+    /**
+     * If documents or assertions from the client are signed, this private key will be used to verify the signature.
+     * 
+     */
     @Import(name="signingPrivateKey")
     private @Nullable Output<String> signingPrivateKey;
 
+    /**
+     * @return If documents or assertions from the client are signed, this private key will be used to verify the signature.
+     * 
+     */
     public Optional<Output<String>> signingPrivateKey() {
         return Optional.ofNullable(this.signingPrivateKey);
     }
 
+    /**
+     * (Computed) The sha1sum fingerprint of the signing private key. If the signing private key is not in correct base64 format, this will be left empty.
+     * 
+     */
     @Import(name="signingPrivateKeySha1")
     private @Nullable Output<String> signingPrivateKeySha1;
 
+    /**
+     * @return (Computed) The sha1sum fingerprint of the signing private key. If the signing private key is not in correct base64 format, this will be left empty.
+     * 
+     */
     public Optional<Output<String>> signingPrivateKeySha1() {
         return Optional.ofNullable(this.signingPrivateKeySha1);
     }
 
+    /**
+     * When specified, Keycloak will use this list to validate given Assertion Consumer URLs specified in the authentication request.
+     * 
+     */
     @Import(name="validRedirectUris")
     private @Nullable Output<List<String>> validRedirectUris;
 
+    /**
+     * @return When specified, Keycloak will use this list to validate given Assertion Consumer URLs specified in the authentication request.
+     * 
+     */
     public Optional<Output<List<String>>> validRedirectUris() {
         return Optional.ofNullable(this.validRedirectUris);
     }
@@ -338,110 +626,254 @@ public final class ClientState extends com.pulumi.resources.ResourceArgs {
             $ = new ClientState(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param assertionConsumerPostUrl SAML POST Binding URL for the client&#39;s assertion consumer service (login responses).
+         * 
+         * @return builder
+         * 
+         */
         public Builder assertionConsumerPostUrl(@Nullable Output<String> assertionConsumerPostUrl) {
             $.assertionConsumerPostUrl = assertionConsumerPostUrl;
             return this;
         }
 
+        /**
+         * @param assertionConsumerPostUrl SAML POST Binding URL for the client&#39;s assertion consumer service (login responses).
+         * 
+         * @return builder
+         * 
+         */
         public Builder assertionConsumerPostUrl(String assertionConsumerPostUrl) {
             return assertionConsumerPostUrl(Output.of(assertionConsumerPostUrl));
         }
 
+        /**
+         * @param assertionConsumerRedirectUrl SAML Redirect Binding URL for the client&#39;s assertion consumer service (login responses).
+         * 
+         * @return builder
+         * 
+         */
         public Builder assertionConsumerRedirectUrl(@Nullable Output<String> assertionConsumerRedirectUrl) {
             $.assertionConsumerRedirectUrl = assertionConsumerRedirectUrl;
             return this;
         }
 
+        /**
+         * @param assertionConsumerRedirectUrl SAML Redirect Binding URL for the client&#39;s assertion consumer service (login responses).
+         * 
+         * @return builder
+         * 
+         */
         public Builder assertionConsumerRedirectUrl(String assertionConsumerRedirectUrl) {
             return assertionConsumerRedirectUrl(Output.of(assertionConsumerRedirectUrl));
         }
 
+        /**
+         * @param authenticationFlowBindingOverrides Override realm authentication flow bindings
+         * 
+         * @return builder
+         * 
+         */
         public Builder authenticationFlowBindingOverrides(@Nullable Output<ClientAuthenticationFlowBindingOverridesArgs> authenticationFlowBindingOverrides) {
             $.authenticationFlowBindingOverrides = authenticationFlowBindingOverrides;
             return this;
         }
 
+        /**
+         * @param authenticationFlowBindingOverrides Override realm authentication flow bindings
+         * 
+         * @return builder
+         * 
+         */
         public Builder authenticationFlowBindingOverrides(ClientAuthenticationFlowBindingOverridesArgs authenticationFlowBindingOverrides) {
             return authenticationFlowBindingOverrides(Output.of(authenticationFlowBindingOverrides));
         }
 
+        /**
+         * @param baseUrl When specified, this URL will be used whenever Keycloak needs to link to this client.
+         * 
+         * @return builder
+         * 
+         */
         public Builder baseUrl(@Nullable Output<String> baseUrl) {
             $.baseUrl = baseUrl;
             return this;
         }
 
+        /**
+         * @param baseUrl When specified, this URL will be used whenever Keycloak needs to link to this client.
+         * 
+         * @return builder
+         * 
+         */
         public Builder baseUrl(String baseUrl) {
             return baseUrl(Output.of(baseUrl));
         }
 
+        /**
+         * @param canonicalizationMethod The Canonicalization Method for XML signatures. Should be one of &#34;EXCLUSIVE&#34;, &#34;EXCLUSIVE_WITH_COMMENTS&#34;, &#34;INCLUSIVE&#34;, or &#34;INCLUSIVE_WITH_COMMENTS&#34;. Defaults to &#34;EXCLUSIVE&#34;.
+         * 
+         * @return builder
+         * 
+         */
         public Builder canonicalizationMethod(@Nullable Output<String> canonicalizationMethod) {
             $.canonicalizationMethod = canonicalizationMethod;
             return this;
         }
 
+        /**
+         * @param canonicalizationMethod The Canonicalization Method for XML signatures. Should be one of &#34;EXCLUSIVE&#34;, &#34;EXCLUSIVE_WITH_COMMENTS&#34;, &#34;INCLUSIVE&#34;, or &#34;INCLUSIVE_WITH_COMMENTS&#34;. Defaults to &#34;EXCLUSIVE&#34;.
+         * 
+         * @return builder
+         * 
+         */
         public Builder canonicalizationMethod(String canonicalizationMethod) {
             return canonicalizationMethod(Output.of(canonicalizationMethod));
         }
 
+        /**
+         * @param clientId The unique ID of this client, referenced in the URI during authentication and in issued tokens.
+         * 
+         * @return builder
+         * 
+         */
         public Builder clientId(@Nullable Output<String> clientId) {
             $.clientId = clientId;
             return this;
         }
 
+        /**
+         * @param clientId The unique ID of this client, referenced in the URI during authentication and in issued tokens.
+         * 
+         * @return builder
+         * 
+         */
         public Builder clientId(String clientId) {
             return clientId(Output.of(clientId));
         }
 
+        /**
+         * @param clientSignatureRequired When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signing_certificate` and `signing_private_key`. Defaults to `true`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder clientSignatureRequired(@Nullable Output<Boolean> clientSignatureRequired) {
             $.clientSignatureRequired = clientSignatureRequired;
             return this;
         }
 
+        /**
+         * @param clientSignatureRequired When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signing_certificate` and `signing_private_key`. Defaults to `true`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder clientSignatureRequired(Boolean clientSignatureRequired) {
             return clientSignatureRequired(Output.of(clientSignatureRequired));
         }
 
+        /**
+         * @param description The description of this client in the GUI.
+         * 
+         * @return builder
+         * 
+         */
         public Builder description(@Nullable Output<String> description) {
             $.description = description;
             return this;
         }
 
+        /**
+         * @param description The description of this client in the GUI.
+         * 
+         * @return builder
+         * 
+         */
         public Builder description(String description) {
             return description(Output.of(description));
         }
 
+        /**
+         * @param enabled When false, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder enabled(@Nullable Output<Boolean> enabled) {
             $.enabled = enabled;
             return this;
         }
 
+        /**
+         * @param enabled When false, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder enabled(Boolean enabled) {
             return enabled(Output.of(enabled));
         }
 
+        /**
+         * @param encryptAssertions When `true`, the SAML assertions will be encrypted by Keycloak using the client&#39;s public key. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder encryptAssertions(@Nullable Output<Boolean> encryptAssertions) {
             $.encryptAssertions = encryptAssertions;
             return this;
         }
 
+        /**
+         * @param encryptAssertions When `true`, the SAML assertions will be encrypted by Keycloak using the client&#39;s public key. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder encryptAssertions(Boolean encryptAssertions) {
             return encryptAssertions(Output.of(encryptAssertions));
         }
 
+        /**
+         * @param encryptionCertificate If assertions for the client are encrypted, this certificate will be used for encryption.
+         * 
+         * @return builder
+         * 
+         */
         public Builder encryptionCertificate(@Nullable Output<String> encryptionCertificate) {
             $.encryptionCertificate = encryptionCertificate;
             return this;
         }
 
+        /**
+         * @param encryptionCertificate If assertions for the client are encrypted, this certificate will be used for encryption.
+         * 
+         * @return builder
+         * 
+         */
         public Builder encryptionCertificate(String encryptionCertificate) {
             return encryptionCertificate(Output.of(encryptionCertificate));
         }
 
+        /**
+         * @param encryptionCertificateSha1 (Computed) The sha1sum fingerprint of the encryption certificate. If the encryption certificate is not in correct base64 format, this will be left empty.
+         * 
+         * @return builder
+         * 
+         */
         public Builder encryptionCertificateSha1(@Nullable Output<String> encryptionCertificateSha1) {
             $.encryptionCertificateSha1 = encryptionCertificateSha1;
             return this;
         }
 
+        /**
+         * @param encryptionCertificateSha1 (Computed) The sha1sum fingerprint of the encryption certificate. If the encryption certificate is not in correct base64 format, this will be left empty.
+         * 
+         * @return builder
+         * 
+         */
         public Builder encryptionCertificateSha1(String encryptionCertificateSha1) {
             return encryptionCertificateSha1(Output.of(encryptionCertificateSha1));
         }
@@ -455,222 +887,516 @@ public final class ClientState extends com.pulumi.resources.ResourceArgs {
             return extraConfig(Output.of(extraConfig));
         }
 
+        /**
+         * @param forceNameIdFormat Ignore requested NameID subject format and use the one defined in `name_id_format` instead. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder forceNameIdFormat(@Nullable Output<Boolean> forceNameIdFormat) {
             $.forceNameIdFormat = forceNameIdFormat;
             return this;
         }
 
+        /**
+         * @param forceNameIdFormat Ignore requested NameID subject format and use the one defined in `name_id_format` instead. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder forceNameIdFormat(Boolean forceNameIdFormat) {
             return forceNameIdFormat(Output.of(forceNameIdFormat));
         }
 
+        /**
+         * @param forcePostBinding When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding. Defaults to `true`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder forcePostBinding(@Nullable Output<Boolean> forcePostBinding) {
             $.forcePostBinding = forcePostBinding;
             return this;
         }
 
+        /**
+         * @param forcePostBinding When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding. Defaults to `true`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder forcePostBinding(Boolean forcePostBinding) {
             return forcePostBinding(Output.of(forcePostBinding));
         }
 
+        /**
+         * @param frontChannelLogout When `true`, this client will require a browser redirect in order to perform a logout. Defaults to `true`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder frontChannelLogout(@Nullable Output<Boolean> frontChannelLogout) {
             $.frontChannelLogout = frontChannelLogout;
             return this;
         }
 
+        /**
+         * @param frontChannelLogout When `true`, this client will require a browser redirect in order to perform a logout. Defaults to `true`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder frontChannelLogout(Boolean frontChannelLogout) {
             return frontChannelLogout(Output.of(frontChannelLogout));
         }
 
+        /**
+         * @param fullScopeAllowed Allow to include all roles mappings in the access token
+         * 
+         * @return builder
+         * 
+         */
         public Builder fullScopeAllowed(@Nullable Output<Boolean> fullScopeAllowed) {
             $.fullScopeAllowed = fullScopeAllowed;
             return this;
         }
 
+        /**
+         * @param fullScopeAllowed Allow to include all roles mappings in the access token
+         * 
+         * @return builder
+         * 
+         */
         public Builder fullScopeAllowed(Boolean fullScopeAllowed) {
             return fullScopeAllowed(Output.of(fullScopeAllowed));
         }
 
+        /**
+         * @param idpInitiatedSsoRelayState Relay state you want to send with SAML request when you want to do IDP Initiated SSO.
+         * 
+         * @return builder
+         * 
+         */
         public Builder idpInitiatedSsoRelayState(@Nullable Output<String> idpInitiatedSsoRelayState) {
             $.idpInitiatedSsoRelayState = idpInitiatedSsoRelayState;
             return this;
         }
 
+        /**
+         * @param idpInitiatedSsoRelayState Relay state you want to send with SAML request when you want to do IDP Initiated SSO.
+         * 
+         * @return builder
+         * 
+         */
         public Builder idpInitiatedSsoRelayState(String idpInitiatedSsoRelayState) {
             return idpInitiatedSsoRelayState(Output.of(idpInitiatedSsoRelayState));
         }
 
+        /**
+         * @param idpInitiatedSsoUrlName URL fragment name to reference client when you want to do IDP Initiated SSO.
+         * 
+         * @return builder
+         * 
+         */
         public Builder idpInitiatedSsoUrlName(@Nullable Output<String> idpInitiatedSsoUrlName) {
             $.idpInitiatedSsoUrlName = idpInitiatedSsoUrlName;
             return this;
         }
 
+        /**
+         * @param idpInitiatedSsoUrlName URL fragment name to reference client when you want to do IDP Initiated SSO.
+         * 
+         * @return builder
+         * 
+         */
         public Builder idpInitiatedSsoUrlName(String idpInitiatedSsoUrlName) {
             return idpInitiatedSsoUrlName(Output.of(idpInitiatedSsoUrlName));
         }
 
+        /**
+         * @param includeAuthnStatement When `true`, an `AuthnStatement` will be included in the SAML response. Defaults to `true`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder includeAuthnStatement(@Nullable Output<Boolean> includeAuthnStatement) {
             $.includeAuthnStatement = includeAuthnStatement;
             return this;
         }
 
+        /**
+         * @param includeAuthnStatement When `true`, an `AuthnStatement` will be included in the SAML response. Defaults to `true`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder includeAuthnStatement(Boolean includeAuthnStatement) {
             return includeAuthnStatement(Output.of(includeAuthnStatement));
         }
 
+        /**
+         * @param loginTheme The login theme of this client.
+         * 
+         * @return builder
+         * 
+         */
         public Builder loginTheme(@Nullable Output<String> loginTheme) {
             $.loginTheme = loginTheme;
             return this;
         }
 
+        /**
+         * @param loginTheme The login theme of this client.
+         * 
+         * @return builder
+         * 
+         */
         public Builder loginTheme(String loginTheme) {
             return loginTheme(Output.of(loginTheme));
         }
 
+        /**
+         * @param logoutServicePostBindingUrl SAML POST Binding URL for the client&#39;s single logout service.
+         * 
+         * @return builder
+         * 
+         */
         public Builder logoutServicePostBindingUrl(@Nullable Output<String> logoutServicePostBindingUrl) {
             $.logoutServicePostBindingUrl = logoutServicePostBindingUrl;
             return this;
         }
 
+        /**
+         * @param logoutServicePostBindingUrl SAML POST Binding URL for the client&#39;s single logout service.
+         * 
+         * @return builder
+         * 
+         */
         public Builder logoutServicePostBindingUrl(String logoutServicePostBindingUrl) {
             return logoutServicePostBindingUrl(Output.of(logoutServicePostBindingUrl));
         }
 
+        /**
+         * @param logoutServiceRedirectBindingUrl SAML Redirect Binding URL for the client&#39;s single logout service.
+         * 
+         * @return builder
+         * 
+         */
         public Builder logoutServiceRedirectBindingUrl(@Nullable Output<String> logoutServiceRedirectBindingUrl) {
             $.logoutServiceRedirectBindingUrl = logoutServiceRedirectBindingUrl;
             return this;
         }
 
+        /**
+         * @param logoutServiceRedirectBindingUrl SAML Redirect Binding URL for the client&#39;s single logout service.
+         * 
+         * @return builder
+         * 
+         */
         public Builder logoutServiceRedirectBindingUrl(String logoutServiceRedirectBindingUrl) {
             return logoutServiceRedirectBindingUrl(Output.of(logoutServiceRedirectBindingUrl));
         }
 
+        /**
+         * @param masterSamlProcessingUrl When specified, this URL will be used for all SAML requests.
+         * 
+         * @return builder
+         * 
+         */
         public Builder masterSamlProcessingUrl(@Nullable Output<String> masterSamlProcessingUrl) {
             $.masterSamlProcessingUrl = masterSamlProcessingUrl;
             return this;
         }
 
+        /**
+         * @param masterSamlProcessingUrl When specified, this URL will be used for all SAML requests.
+         * 
+         * @return builder
+         * 
+         */
         public Builder masterSamlProcessingUrl(String masterSamlProcessingUrl) {
             return masterSamlProcessingUrl(Output.of(masterSamlProcessingUrl));
         }
 
+        /**
+         * @param name The display name of this client in the GUI.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(@Nullable Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name The display name of this client in the GUI.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
+        /**
+         * @param nameIdFormat Sets the Name ID format for the subject.
+         * 
+         * @return builder
+         * 
+         */
         public Builder nameIdFormat(@Nullable Output<String> nameIdFormat) {
             $.nameIdFormat = nameIdFormat;
             return this;
         }
 
+        /**
+         * @param nameIdFormat Sets the Name ID format for the subject.
+         * 
+         * @return builder
+         * 
+         */
         public Builder nameIdFormat(String nameIdFormat) {
             return nameIdFormat(Output.of(nameIdFormat));
         }
 
+        /**
+         * @param realmId The realm this client is attached to.
+         * 
+         * @return builder
+         * 
+         */
         public Builder realmId(@Nullable Output<String> realmId) {
             $.realmId = realmId;
             return this;
         }
 
+        /**
+         * @param realmId The realm this client is attached to.
+         * 
+         * @return builder
+         * 
+         */
         public Builder realmId(String realmId) {
             return realmId(Output.of(realmId));
         }
 
+        /**
+         * @param rootUrl When specified, this value is prepended to all relative URLs.
+         * 
+         * @return builder
+         * 
+         */
         public Builder rootUrl(@Nullable Output<String> rootUrl) {
             $.rootUrl = rootUrl;
             return this;
         }
 
+        /**
+         * @param rootUrl When specified, this value is prepended to all relative URLs.
+         * 
+         * @return builder
+         * 
+         */
         public Builder rootUrl(String rootUrl) {
             return rootUrl(Output.of(rootUrl));
         }
 
+        /**
+         * @param signAssertions When `true`, the SAML assertions will be signed by Keycloak using the realm&#39;s private key, and embedded within the SAML XML Auth response. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder signAssertions(@Nullable Output<Boolean> signAssertions) {
             $.signAssertions = signAssertions;
             return this;
         }
 
+        /**
+         * @param signAssertions When `true`, the SAML assertions will be signed by Keycloak using the realm&#39;s private key, and embedded within the SAML XML Auth response. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder signAssertions(Boolean signAssertions) {
             return signAssertions(Output.of(signAssertions));
         }
 
+        /**
+         * @param signDocuments When `true`, the SAML document will be signed by Keycloak using the realm&#39;s private key. Defaults to `true`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder signDocuments(@Nullable Output<Boolean> signDocuments) {
             $.signDocuments = signDocuments;
             return this;
         }
 
+        /**
+         * @param signDocuments When `true`, the SAML document will be signed by Keycloak using the realm&#39;s private key. Defaults to `true`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder signDocuments(Boolean signDocuments) {
             return signDocuments(Output.of(signDocuments));
         }
 
+        /**
+         * @param signatureAlgorithm The signature algorithm used to sign documents. Should be one of &#34;RSA_SHA1&#34;, &#34;RSA_SHA256&#34;, &#34;RSA_SHA256_MGF1, &#34;RSA_SHA512&#34;, &#34;RSA_SHA512_MGF1&#34; or &#34;DSA_SHA1&#34;.
+         * 
+         * @return builder
+         * 
+         */
         public Builder signatureAlgorithm(@Nullable Output<String> signatureAlgorithm) {
             $.signatureAlgorithm = signatureAlgorithm;
             return this;
         }
 
+        /**
+         * @param signatureAlgorithm The signature algorithm used to sign documents. Should be one of &#34;RSA_SHA1&#34;, &#34;RSA_SHA256&#34;, &#34;RSA_SHA256_MGF1, &#34;RSA_SHA512&#34;, &#34;RSA_SHA512_MGF1&#34; or &#34;DSA_SHA1&#34;.
+         * 
+         * @return builder
+         * 
+         */
         public Builder signatureAlgorithm(String signatureAlgorithm) {
             return signatureAlgorithm(Output.of(signatureAlgorithm));
         }
 
+        /**
+         * @param signatureKeyName The value of the `KeyName` element within the signed SAML document. Should be one of &#34;NONE&#34;, &#34;KEY_ID&#34;, or &#34;CERT_SUBJECT&#34;. Defaults to &#34;KEY_ID&#34;.
+         * 
+         * @return builder
+         * 
+         */
         public Builder signatureKeyName(@Nullable Output<String> signatureKeyName) {
             $.signatureKeyName = signatureKeyName;
             return this;
         }
 
+        /**
+         * @param signatureKeyName The value of the `KeyName` element within the signed SAML document. Should be one of &#34;NONE&#34;, &#34;KEY_ID&#34;, or &#34;CERT_SUBJECT&#34;. Defaults to &#34;KEY_ID&#34;.
+         * 
+         * @return builder
+         * 
+         */
         public Builder signatureKeyName(String signatureKeyName) {
             return signatureKeyName(Output.of(signatureKeyName));
         }
 
+        /**
+         * @param signingCertificate If documents or assertions from the client are signed, this certificate will be used to verify the signature.
+         * 
+         * @return builder
+         * 
+         */
         public Builder signingCertificate(@Nullable Output<String> signingCertificate) {
             $.signingCertificate = signingCertificate;
             return this;
         }
 
+        /**
+         * @param signingCertificate If documents or assertions from the client are signed, this certificate will be used to verify the signature.
+         * 
+         * @return builder
+         * 
+         */
         public Builder signingCertificate(String signingCertificate) {
             return signingCertificate(Output.of(signingCertificate));
         }
 
+        /**
+         * @param signingCertificateSha1 (Computed) The sha1sum fingerprint of the signing certificate. If the signing certificate is not in correct base64 format, this will be left empty.
+         * 
+         * @return builder
+         * 
+         */
         public Builder signingCertificateSha1(@Nullable Output<String> signingCertificateSha1) {
             $.signingCertificateSha1 = signingCertificateSha1;
             return this;
         }
 
+        /**
+         * @param signingCertificateSha1 (Computed) The sha1sum fingerprint of the signing certificate. If the signing certificate is not in correct base64 format, this will be left empty.
+         * 
+         * @return builder
+         * 
+         */
         public Builder signingCertificateSha1(String signingCertificateSha1) {
             return signingCertificateSha1(Output.of(signingCertificateSha1));
         }
 
+        /**
+         * @param signingPrivateKey If documents or assertions from the client are signed, this private key will be used to verify the signature.
+         * 
+         * @return builder
+         * 
+         */
         public Builder signingPrivateKey(@Nullable Output<String> signingPrivateKey) {
             $.signingPrivateKey = signingPrivateKey;
             return this;
         }
 
+        /**
+         * @param signingPrivateKey If documents or assertions from the client are signed, this private key will be used to verify the signature.
+         * 
+         * @return builder
+         * 
+         */
         public Builder signingPrivateKey(String signingPrivateKey) {
             return signingPrivateKey(Output.of(signingPrivateKey));
         }
 
+        /**
+         * @param signingPrivateKeySha1 (Computed) The sha1sum fingerprint of the signing private key. If the signing private key is not in correct base64 format, this will be left empty.
+         * 
+         * @return builder
+         * 
+         */
         public Builder signingPrivateKeySha1(@Nullable Output<String> signingPrivateKeySha1) {
             $.signingPrivateKeySha1 = signingPrivateKeySha1;
             return this;
         }
 
+        /**
+         * @param signingPrivateKeySha1 (Computed) The sha1sum fingerprint of the signing private key. If the signing private key is not in correct base64 format, this will be left empty.
+         * 
+         * @return builder
+         * 
+         */
         public Builder signingPrivateKeySha1(String signingPrivateKeySha1) {
             return signingPrivateKeySha1(Output.of(signingPrivateKeySha1));
         }
 
+        /**
+         * @param validRedirectUris When specified, Keycloak will use this list to validate given Assertion Consumer URLs specified in the authentication request.
+         * 
+         * @return builder
+         * 
+         */
         public Builder validRedirectUris(@Nullable Output<List<String>> validRedirectUris) {
             $.validRedirectUris = validRedirectUris;
             return this;
         }
 
+        /**
+         * @param validRedirectUris When specified, Keycloak will use this list to validate given Assertion Consumer URLs specified in the authentication request.
+         * 
+         * @return builder
+         * 
+         */
         public Builder validRedirectUris(List<String> validRedirectUris) {
             return validRedirectUris(Output.of(validRedirectUris));
         }
 
+        /**
+         * @param validRedirectUris When specified, Keycloak will use this list to validate given Assertion Consumer URLs specified in the authentication request.
+         * 
+         * @return builder
+         * 
+         */
         public Builder validRedirectUris(String... validRedirectUris) {
             return validRedirectUris(List.of(validRedirectUris));
         }

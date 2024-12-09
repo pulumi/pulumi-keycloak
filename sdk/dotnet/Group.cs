@@ -10,20 +10,17 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak
 {
     /// <summary>
-    /// ## # keycloak.Group
-    /// 
     /// Allows for creating and managing Groups within Keycloak.
     /// 
-    /// Groups provide a logical wrapping for users within Keycloak. Users within a
-    /// group can share attributes and roles, and group membership can be mapped
-    /// to a claim.
+    /// Groups provide a logical wrapping for users within Keycloak. Users within a group can share attributes and roles, and
+    /// group membership can be mapped to a claim.
     /// 
     /// Attributes can also be defined on Groups.
     /// 
-    /// Groups can also be federated from external data sources, such as LDAP or Active Directory.
-    /// This resource **should not** be used to manage groups that were created this way.
+    /// Groups can also be federated from external data sources, such as LDAP or Active Directory. This resource **should not**
+    /// be used to manage groups that were created this way.
     /// 
-    /// ### Example Usage
+    /// ## Example Usage
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -59,51 +56,58 @@ namespace Pulumi.Keycloak
     ///         Name = "child-group-with-optional-attributes",
     ///         Attributes = 
     ///         {
-    ///             { "key1", "value1" },
-    ///             { "key2", "value2" },
+    ///             { "foo", "bar" },
+    ///             { "multivalue", "value1##value2" },
     ///         },
     ///     });
     /// 
     /// });
     /// ```
     /// 
-    /// ### Argument Reference
-    /// 
-    /// The following arguments are supported:
-    /// 
-    /// - `realm_id` - (Required) The realm this group exists in.
-    /// - `parent_id` - (Optional) The ID of this group's parent. If omitted, this group will be defined at the root level.
-    /// - `name` - (Required) The name of the group.
-    /// - `attributes` - (Optional) A dict of key/value pairs to set as custom attributes for the group.
-    /// 
-    /// ### Attributes Reference
-    /// 
-    /// In addition to the arguments listed above, the following computed attributes are exported:
-    /// 
-    /// - `path` - The complete path of the group. For example, the child group's path in the example configuration would be `/parent-group/child-group`.
-    /// 
-    /// ### Import
+    /// ## Import
     /// 
     /// Groups can be imported using the format `{{realm_id}}/{{group_id}}`, where `group_id` is the unique ID that Keycloak
+    /// 
     /// assigns to the group upon creation. This value can be found in the URI when editing this group in the GUI, and is typically a GUID.
     /// 
     /// Example:
+    /// 
+    /// bash
+    /// 
+    /// ```sh
+    /// $ pulumi import keycloak:index/group:Group child_group my-realm/934a4a4e-28bd-4703-a0fa-332df153aabd
+    /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:index/group:Group")]
     public partial class Group : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
+        /// </summary>
         [Output("attributes")]
         public Output<ImmutableDictionary<string, string>?> Attributes { get; private set; } = null!;
 
+        /// <summary>
+        /// The name of the group.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// The ID of this group's parent. If omitted, this group will be defined at the root level.
+        /// </summary>
         [Output("parentId")]
         public Output<string?> ParentId { get; private set; } = null!;
 
+        /// <summary>
+        /// (Computed) The complete path of the group. For example, the child group's path in the example configuration would be `/parent-group/child-group`.
+        /// </summary>
         [Output("path")]
         public Output<string> Path { get; private set; } = null!;
 
+        /// <summary>
+        /// The realm this group exists in.
+        /// </summary>
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
 
@@ -155,18 +159,31 @@ namespace Pulumi.Keycloak
     {
         [Input("attributes")]
         private InputMap<string>? _attributes;
+
+        /// <summary>
+        /// A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
+        /// </summary>
         public InputMap<string> Attributes
         {
             get => _attributes ?? (_attributes = new InputMap<string>());
             set => _attributes = value;
         }
 
+        /// <summary>
+        /// The name of the group.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The ID of this group's parent. If omitted, this group will be defined at the root level.
+        /// </summary>
         [Input("parentId")]
         public Input<string>? ParentId { get; set; }
 
+        /// <summary>
+        /// The realm this group exists in.
+        /// </summary>
         [Input("realmId", required: true)]
         public Input<string> RealmId { get; set; } = null!;
 
@@ -180,21 +197,37 @@ namespace Pulumi.Keycloak
     {
         [Input("attributes")]
         private InputMap<string>? _attributes;
+
+        /// <summary>
+        /// A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
+        /// </summary>
         public InputMap<string> Attributes
         {
             get => _attributes ?? (_attributes = new InputMap<string>());
             set => _attributes = value;
         }
 
+        /// <summary>
+        /// The name of the group.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The ID of this group's parent. If omitted, this group will be defined at the root level.
+        /// </summary>
         [Input("parentId")]
         public Input<string>? ParentId { get; set; }
 
+        /// <summary>
+        /// (Computed) The complete path of the group. For example, the child group's path in the example configuration would be `/parent-group/child-group`.
+        /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
 
+        /// <summary>
+        /// The realm this group exists in.
+        /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
 

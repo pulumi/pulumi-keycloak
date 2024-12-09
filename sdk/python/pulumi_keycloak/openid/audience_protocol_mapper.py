@@ -29,14 +29,14 @@ class AudienceProtocolMapperArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a AudienceProtocolMapper resource.
-        :param pulumi.Input[str] realm_id: The realm id where the associated client or client scope exists.
-        :param pulumi.Input[bool] add_to_access_token: Indicates if this claim should be added to the access token.
-        :param pulumi.Input[bool] add_to_id_token: Indicates if this claim should be added to the id token.
-        :param pulumi.Input[str] client_id: The mapper's associated client. Cannot be used at the same time as client_scope_id.
-        :param pulumi.Input[str] client_scope_id: The mapper's associated client scope. Cannot be used at the same time as client_id.
-        :param pulumi.Input[str] included_client_audience: A client ID to include within the token's `aud` claim. Cannot be used with included_custom_audience
-        :param pulumi.Input[str] included_custom_audience: A custom audience to include within the token's `aud` claim. Cannot be used with included_custom_audience
-        :param pulumi.Input[str] name: A human-friendly name that will appear in the Keycloak console.
+        :param pulumi.Input[str] realm_id: The realm this protocol mapper exists within.
+        :param pulumi.Input[bool] add_to_access_token: Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
+        :param pulumi.Input[bool] add_to_id_token: Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
+        :param pulumi.Input[str] client_id: The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+        :param pulumi.Input[str] client_scope_id: The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+        :param pulumi.Input[str] included_client_audience: A client ID to include within the token's `aud` claim. Conflicts with `included_custom_audience`. One of `included_client_audience` or `included_custom_audience` must be specified.
+        :param pulumi.Input[str] included_custom_audience: A custom audience to include within the token's `aud` claim. Conflicts with `included_client_audience`. One of `included_client_audience` or `included_custom_audience` must be specified.
+        :param pulumi.Input[str] name: The display name of this protocol mapper in the GUI.
         """
         pulumi.set(__self__, "realm_id", realm_id)
         if add_to_access_token is not None:
@@ -58,7 +58,7 @@ class AudienceProtocolMapperArgs:
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Input[str]:
         """
-        The realm id where the associated client or client scope exists.
+        The realm this protocol mapper exists within.
         """
         return pulumi.get(self, "realm_id")
 
@@ -70,7 +70,7 @@ class AudienceProtocolMapperArgs:
     @pulumi.getter(name="addToAccessToken")
     def add_to_access_token(self) -> Optional[pulumi.Input[bool]]:
         """
-        Indicates if this claim should be added to the access token.
+        Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
         """
         return pulumi.get(self, "add_to_access_token")
 
@@ -82,7 +82,7 @@ class AudienceProtocolMapperArgs:
     @pulumi.getter(name="addToIdToken")
     def add_to_id_token(self) -> Optional[pulumi.Input[bool]]:
         """
-        Indicates if this claim should be added to the id token.
+        Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
         """
         return pulumi.get(self, "add_to_id_token")
 
@@ -94,7 +94,7 @@ class AudienceProtocolMapperArgs:
     @pulumi.getter(name="clientId")
     def client_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The mapper's associated client. Cannot be used at the same time as client_scope_id.
+        The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
         """
         return pulumi.get(self, "client_id")
 
@@ -106,7 +106,7 @@ class AudienceProtocolMapperArgs:
     @pulumi.getter(name="clientScopeId")
     def client_scope_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The mapper's associated client scope. Cannot be used at the same time as client_id.
+        The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
         """
         return pulumi.get(self, "client_scope_id")
 
@@ -118,7 +118,7 @@ class AudienceProtocolMapperArgs:
     @pulumi.getter(name="includedClientAudience")
     def included_client_audience(self) -> Optional[pulumi.Input[str]]:
         """
-        A client ID to include within the token's `aud` claim. Cannot be used with included_custom_audience
+        A client ID to include within the token's `aud` claim. Conflicts with `included_custom_audience`. One of `included_client_audience` or `included_custom_audience` must be specified.
         """
         return pulumi.get(self, "included_client_audience")
 
@@ -130,7 +130,7 @@ class AudienceProtocolMapperArgs:
     @pulumi.getter(name="includedCustomAudience")
     def included_custom_audience(self) -> Optional[pulumi.Input[str]]:
         """
-        A custom audience to include within the token's `aud` claim. Cannot be used with included_custom_audience
+        A custom audience to include within the token's `aud` claim. Conflicts with `included_client_audience`. One of `included_client_audience` or `included_custom_audience` must be specified.
         """
         return pulumi.get(self, "included_custom_audience")
 
@@ -142,7 +142,7 @@ class AudienceProtocolMapperArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        A human-friendly name that will appear in the Keycloak console.
+        The display name of this protocol mapper in the GUI.
         """
         return pulumi.get(self, "name")
 
@@ -164,14 +164,14 @@ class _AudienceProtocolMapperState:
                  realm_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering AudienceProtocolMapper resources.
-        :param pulumi.Input[bool] add_to_access_token: Indicates if this claim should be added to the access token.
-        :param pulumi.Input[bool] add_to_id_token: Indicates if this claim should be added to the id token.
-        :param pulumi.Input[str] client_id: The mapper's associated client. Cannot be used at the same time as client_scope_id.
-        :param pulumi.Input[str] client_scope_id: The mapper's associated client scope. Cannot be used at the same time as client_id.
-        :param pulumi.Input[str] included_client_audience: A client ID to include within the token's `aud` claim. Cannot be used with included_custom_audience
-        :param pulumi.Input[str] included_custom_audience: A custom audience to include within the token's `aud` claim. Cannot be used with included_custom_audience
-        :param pulumi.Input[str] name: A human-friendly name that will appear in the Keycloak console.
-        :param pulumi.Input[str] realm_id: The realm id where the associated client or client scope exists.
+        :param pulumi.Input[bool] add_to_access_token: Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
+        :param pulumi.Input[bool] add_to_id_token: Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
+        :param pulumi.Input[str] client_id: The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+        :param pulumi.Input[str] client_scope_id: The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+        :param pulumi.Input[str] included_client_audience: A client ID to include within the token's `aud` claim. Conflicts with `included_custom_audience`. One of `included_client_audience` or `included_custom_audience` must be specified.
+        :param pulumi.Input[str] included_custom_audience: A custom audience to include within the token's `aud` claim. Conflicts with `included_client_audience`. One of `included_client_audience` or `included_custom_audience` must be specified.
+        :param pulumi.Input[str] name: The display name of this protocol mapper in the GUI.
+        :param pulumi.Input[str] realm_id: The realm this protocol mapper exists within.
         """
         if add_to_access_token is not None:
             pulumi.set(__self__, "add_to_access_token", add_to_access_token)
@@ -194,7 +194,7 @@ class _AudienceProtocolMapperState:
     @pulumi.getter(name="addToAccessToken")
     def add_to_access_token(self) -> Optional[pulumi.Input[bool]]:
         """
-        Indicates if this claim should be added to the access token.
+        Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
         """
         return pulumi.get(self, "add_to_access_token")
 
@@ -206,7 +206,7 @@ class _AudienceProtocolMapperState:
     @pulumi.getter(name="addToIdToken")
     def add_to_id_token(self) -> Optional[pulumi.Input[bool]]:
         """
-        Indicates if this claim should be added to the id token.
+        Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
         """
         return pulumi.get(self, "add_to_id_token")
 
@@ -218,7 +218,7 @@ class _AudienceProtocolMapperState:
     @pulumi.getter(name="clientId")
     def client_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The mapper's associated client. Cannot be used at the same time as client_scope_id.
+        The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
         """
         return pulumi.get(self, "client_id")
 
@@ -230,7 +230,7 @@ class _AudienceProtocolMapperState:
     @pulumi.getter(name="clientScopeId")
     def client_scope_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The mapper's associated client scope. Cannot be used at the same time as client_id.
+        The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
         """
         return pulumi.get(self, "client_scope_id")
 
@@ -242,7 +242,7 @@ class _AudienceProtocolMapperState:
     @pulumi.getter(name="includedClientAudience")
     def included_client_audience(self) -> Optional[pulumi.Input[str]]:
         """
-        A client ID to include within the token's `aud` claim. Cannot be used with included_custom_audience
+        A client ID to include within the token's `aud` claim. Conflicts with `included_custom_audience`. One of `included_client_audience` or `included_custom_audience` must be specified.
         """
         return pulumi.get(self, "included_client_audience")
 
@@ -254,7 +254,7 @@ class _AudienceProtocolMapperState:
     @pulumi.getter(name="includedCustomAudience")
     def included_custom_audience(self) -> Optional[pulumi.Input[str]]:
         """
-        A custom audience to include within the token's `aud` claim. Cannot be used with included_custom_audience
+        A custom audience to include within the token's `aud` claim. Conflicts with `included_client_audience`. One of `included_client_audience` or `included_custom_audience` must be specified.
         """
         return pulumi.get(self, "included_custom_audience")
 
@@ -266,7 +266,7 @@ class _AudienceProtocolMapperState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        A human-friendly name that will appear in the Keycloak console.
+        The display name of this protocol mapper in the GUI.
         """
         return pulumi.get(self, "name")
 
@@ -278,7 +278,7 @@ class _AudienceProtocolMapperState:
     @pulumi.getter(name="realmId")
     def realm_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The realm id where the associated client or client scope exists.
+        The realm this protocol mapper exists within.
         """
         return pulumi.get(self, "realm_id")
 
@@ -302,16 +302,14 @@ class AudienceProtocolMapper(pulumi.CustomResource):
                  realm_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## # openid.AudienceProtocolMapper
+        Allows for creating and managing audience protocol mappers within Keycloak.
 
-        Allows for creating and managing audience protocol mappers within
-        Keycloak. This mapper was added in Keycloak v4.6.0.Final.
+        Audience protocol mappers allow you add audiences to the `aud` claim within issued tokens. The audience can be a custom
+        string, or it can be mapped to the ID of a pre-existing client.
 
-        Audience protocol mappers allow you add audiences to the `aud` claim
-        within issued tokens. The audience can be a custom string, or it can be
-        mapped to the ID of a pre-existing client.
+        ## Example Usage
 
-        ### Example Usage (Client)
+        ### Client)
 
         ```python
         import pulumi
@@ -322,8 +320,8 @@ class AudienceProtocolMapper(pulumi.CustomResource):
             enabled=True)
         openid_client = keycloak.openid.Client("openid_client",
             realm_id=realm.id,
-            client_id="test-client",
-            name="test client",
+            client_id="client",
+            name="client",
             enabled=True,
             access_type="CONFIDENTIAL",
             valid_redirect_uris=["http://localhost:8080/openid-callback"])
@@ -334,7 +332,7 @@ class AudienceProtocolMapper(pulumi.CustomResource):
             included_custom_audience="foo")
         ```
 
-        ### Example Usage (Client Scope)
+        ### Client Scope)
 
         ```python
         import pulumi
@@ -353,37 +351,36 @@ class AudienceProtocolMapper(pulumi.CustomResource):
             included_custom_audience="foo")
         ```
 
-        ### Argument Reference
-
-        The following arguments are supported:
-
-        - `realm_id` - (Required) The realm this protocol mapper exists within.
-        - `client_id` - (Required if `client_scope_id` is not specified) The client this protocol mapper is attached to.
-        - `client_scope_id` - (Required if `client_id` is not specified) The client scope this protocol mapper is attached to.
-        - `name` - (Required) The display name of this protocol mapper in the GUI.
-        - `included_client_audience` - (Required if `included_custom_audience` is not specified) A client ID to include within the token's `aud` claim.
-        - `included_custom_audience` - (Required if `included_client_audience` is not specified) A custom audience to include within the token's `aud` claim.
-        - `add_to_id_token` - (Optional) Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
-        - `add_to_access_token` - (Optional) Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
-
-        ### Import
+        ## Import
 
         Protocol mappers can be imported using one of the following formats:
+
         - Client: `{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}`
+
         - Client Scope: `{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}`
 
         Example:
 
+        bash
+
+        ```sh
+        $ pulumi import keycloak:openid/audienceProtocolMapper:AudienceProtocolMapper audience_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+        ```
+
+        ```sh
+        $ pulumi import keycloak:openid/audienceProtocolMapper:AudienceProtocolMapper audience_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] add_to_access_token: Indicates if this claim should be added to the access token.
-        :param pulumi.Input[bool] add_to_id_token: Indicates if this claim should be added to the id token.
-        :param pulumi.Input[str] client_id: The mapper's associated client. Cannot be used at the same time as client_scope_id.
-        :param pulumi.Input[str] client_scope_id: The mapper's associated client scope. Cannot be used at the same time as client_id.
-        :param pulumi.Input[str] included_client_audience: A client ID to include within the token's `aud` claim. Cannot be used with included_custom_audience
-        :param pulumi.Input[str] included_custom_audience: A custom audience to include within the token's `aud` claim. Cannot be used with included_custom_audience
-        :param pulumi.Input[str] name: A human-friendly name that will appear in the Keycloak console.
-        :param pulumi.Input[str] realm_id: The realm id where the associated client or client scope exists.
+        :param pulumi.Input[bool] add_to_access_token: Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
+        :param pulumi.Input[bool] add_to_id_token: Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
+        :param pulumi.Input[str] client_id: The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+        :param pulumi.Input[str] client_scope_id: The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+        :param pulumi.Input[str] included_client_audience: A client ID to include within the token's `aud` claim. Conflicts with `included_custom_audience`. One of `included_client_audience` or `included_custom_audience` must be specified.
+        :param pulumi.Input[str] included_custom_audience: A custom audience to include within the token's `aud` claim. Conflicts with `included_client_audience`. One of `included_client_audience` or `included_custom_audience` must be specified.
+        :param pulumi.Input[str] name: The display name of this protocol mapper in the GUI.
+        :param pulumi.Input[str] realm_id: The realm this protocol mapper exists within.
         """
         ...
     @overload
@@ -392,16 +389,14 @@ class AudienceProtocolMapper(pulumi.CustomResource):
                  args: AudienceProtocolMapperArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # openid.AudienceProtocolMapper
+        Allows for creating and managing audience protocol mappers within Keycloak.
 
-        Allows for creating and managing audience protocol mappers within
-        Keycloak. This mapper was added in Keycloak v4.6.0.Final.
+        Audience protocol mappers allow you add audiences to the `aud` claim within issued tokens. The audience can be a custom
+        string, or it can be mapped to the ID of a pre-existing client.
 
-        Audience protocol mappers allow you add audiences to the `aud` claim
-        within issued tokens. The audience can be a custom string, or it can be
-        mapped to the ID of a pre-existing client.
+        ## Example Usage
 
-        ### Example Usage (Client)
+        ### Client)
 
         ```python
         import pulumi
@@ -412,8 +407,8 @@ class AudienceProtocolMapper(pulumi.CustomResource):
             enabled=True)
         openid_client = keycloak.openid.Client("openid_client",
             realm_id=realm.id,
-            client_id="test-client",
-            name="test client",
+            client_id="client",
+            name="client",
             enabled=True,
             access_type="CONFIDENTIAL",
             valid_redirect_uris=["http://localhost:8080/openid-callback"])
@@ -424,7 +419,7 @@ class AudienceProtocolMapper(pulumi.CustomResource):
             included_custom_audience="foo")
         ```
 
-        ### Example Usage (Client Scope)
+        ### Client Scope)
 
         ```python
         import pulumi
@@ -443,26 +438,25 @@ class AudienceProtocolMapper(pulumi.CustomResource):
             included_custom_audience="foo")
         ```
 
-        ### Argument Reference
-
-        The following arguments are supported:
-
-        - `realm_id` - (Required) The realm this protocol mapper exists within.
-        - `client_id` - (Required if `client_scope_id` is not specified) The client this protocol mapper is attached to.
-        - `client_scope_id` - (Required if `client_id` is not specified) The client scope this protocol mapper is attached to.
-        - `name` - (Required) The display name of this protocol mapper in the GUI.
-        - `included_client_audience` - (Required if `included_custom_audience` is not specified) A client ID to include within the token's `aud` claim.
-        - `included_custom_audience` - (Required if `included_client_audience` is not specified) A custom audience to include within the token's `aud` claim.
-        - `add_to_id_token` - (Optional) Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
-        - `add_to_access_token` - (Optional) Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
-
-        ### Import
+        ## Import
 
         Protocol mappers can be imported using one of the following formats:
+
         - Client: `{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}`
+
         - Client Scope: `{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}`
 
         Example:
+
+        bash
+
+        ```sh
+        $ pulumi import keycloak:openid/audienceProtocolMapper:AudienceProtocolMapper audience_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+        ```
+
+        ```sh
+        $ pulumi import keycloak:openid/audienceProtocolMapper:AudienceProtocolMapper audience_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+        ```
 
         :param str resource_name: The name of the resource.
         :param AudienceProtocolMapperArgs args: The arguments to use to populate this resource's properties.
@@ -531,14 +525,14 @@ class AudienceProtocolMapper(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] add_to_access_token: Indicates if this claim should be added to the access token.
-        :param pulumi.Input[bool] add_to_id_token: Indicates if this claim should be added to the id token.
-        :param pulumi.Input[str] client_id: The mapper's associated client. Cannot be used at the same time as client_scope_id.
-        :param pulumi.Input[str] client_scope_id: The mapper's associated client scope. Cannot be used at the same time as client_id.
-        :param pulumi.Input[str] included_client_audience: A client ID to include within the token's `aud` claim. Cannot be used with included_custom_audience
-        :param pulumi.Input[str] included_custom_audience: A custom audience to include within the token's `aud` claim. Cannot be used with included_custom_audience
-        :param pulumi.Input[str] name: A human-friendly name that will appear in the Keycloak console.
-        :param pulumi.Input[str] realm_id: The realm id where the associated client or client scope exists.
+        :param pulumi.Input[bool] add_to_access_token: Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
+        :param pulumi.Input[bool] add_to_id_token: Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
+        :param pulumi.Input[str] client_id: The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+        :param pulumi.Input[str] client_scope_id: The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+        :param pulumi.Input[str] included_client_audience: A client ID to include within the token's `aud` claim. Conflicts with `included_custom_audience`. One of `included_client_audience` or `included_custom_audience` must be specified.
+        :param pulumi.Input[str] included_custom_audience: A custom audience to include within the token's `aud` claim. Conflicts with `included_client_audience`. One of `included_client_audience` or `included_custom_audience` must be specified.
+        :param pulumi.Input[str] name: The display name of this protocol mapper in the GUI.
+        :param pulumi.Input[str] realm_id: The realm this protocol mapper exists within.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -558,7 +552,7 @@ class AudienceProtocolMapper(pulumi.CustomResource):
     @pulumi.getter(name="addToAccessToken")
     def add_to_access_token(self) -> pulumi.Output[Optional[bool]]:
         """
-        Indicates if this claim should be added to the access token.
+        Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
         """
         return pulumi.get(self, "add_to_access_token")
 
@@ -566,7 +560,7 @@ class AudienceProtocolMapper(pulumi.CustomResource):
     @pulumi.getter(name="addToIdToken")
     def add_to_id_token(self) -> pulumi.Output[Optional[bool]]:
         """
-        Indicates if this claim should be added to the id token.
+        Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
         """
         return pulumi.get(self, "add_to_id_token")
 
@@ -574,7 +568,7 @@ class AudienceProtocolMapper(pulumi.CustomResource):
     @pulumi.getter(name="clientId")
     def client_id(self) -> pulumi.Output[Optional[str]]:
         """
-        The mapper's associated client. Cannot be used at the same time as client_scope_id.
+        The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
         """
         return pulumi.get(self, "client_id")
 
@@ -582,7 +576,7 @@ class AudienceProtocolMapper(pulumi.CustomResource):
     @pulumi.getter(name="clientScopeId")
     def client_scope_id(self) -> pulumi.Output[Optional[str]]:
         """
-        The mapper's associated client scope. Cannot be used at the same time as client_id.
+        The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
         """
         return pulumi.get(self, "client_scope_id")
 
@@ -590,7 +584,7 @@ class AudienceProtocolMapper(pulumi.CustomResource):
     @pulumi.getter(name="includedClientAudience")
     def included_client_audience(self) -> pulumi.Output[Optional[str]]:
         """
-        A client ID to include within the token's `aud` claim. Cannot be used with included_custom_audience
+        A client ID to include within the token's `aud` claim. Conflicts with `included_custom_audience`. One of `included_client_audience` or `included_custom_audience` must be specified.
         """
         return pulumi.get(self, "included_client_audience")
 
@@ -598,7 +592,7 @@ class AudienceProtocolMapper(pulumi.CustomResource):
     @pulumi.getter(name="includedCustomAudience")
     def included_custom_audience(self) -> pulumi.Output[Optional[str]]:
         """
-        A custom audience to include within the token's `aud` claim. Cannot be used with included_custom_audience
+        A custom audience to include within the token's `aud` claim. Conflicts with `included_client_audience`. One of `included_client_audience` or `included_custom_audience` must be specified.
         """
         return pulumi.get(self, "included_custom_audience")
 
@@ -606,7 +600,7 @@ class AudienceProtocolMapper(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        A human-friendly name that will appear in the Keycloak console.
+        The display name of this protocol mapper in the GUI.
         """
         return pulumi.get(self, "name")
 
@@ -614,7 +608,7 @@ class AudienceProtocolMapper(pulumi.CustomResource):
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Output[str]:
         """
-        The realm id where the associated client or client scope exists.
+        The realm this protocol mapper exists within.
         """
         return pulumi.get(self, "realm_id")
 

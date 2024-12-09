@@ -14,7 +14,7 @@ namespace Pulumi.Keycloak.Ldap.Outputs
     public sealed class UserFederationCache
     {
         /// <summary>
-        /// Day of the week the entry will become invalid on.
+        /// Day of the week the entry will become invalid on
         /// </summary>
         public readonly int? EvictionDay;
         /// <summary>
@@ -29,6 +29,9 @@ namespace Pulumi.Keycloak.Ldap.Outputs
         /// Max lifespan of cache entry (duration string).
         /// </summary>
         public readonly string? MaxLifespan;
+        /// <summary>
+        /// Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
+        /// </summary>
         public readonly string? Policy;
 
         [OutputConstructor]

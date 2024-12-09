@@ -12,33 +12,83 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class RealmSecurityDefensesBruteForceDetection {
+    /**
+     * @return When will failure count be reset?
+     * 
+     */
     private @Nullable Integer failureResetTimeSeconds;
     private @Nullable Integer maxFailureWaitSeconds;
+    /**
+     * @return How many failures before wait is triggered.
+     * 
+     */
     private @Nullable Integer maxLoginFailures;
+    /**
+     * @return How long to wait after a quick login failure.
+     * - ` max_failure_wait_seconds  ` - (Optional) Max. time a user will be locked out.
+     * 
+     */
     private @Nullable Integer minimumQuickLoginWaitSeconds;
+    /**
+     * @return When `true`, this will lock the user permanently when the user exceeds the maximum login failures.
+     * 
+     */
     private @Nullable Boolean permanentLockout;
+    /**
+     * @return Configures the amount of time, in milliseconds, for consecutive failures to lock a user out.
+     * 
+     */
     private @Nullable Integer quickLoginCheckMilliSeconds;
+    /**
+     * @return This represents the amount of time a user should be locked out when the login failure threshold has been met.
+     * 
+     */
     private @Nullable Integer waitIncrementSeconds;
 
     private RealmSecurityDefensesBruteForceDetection() {}
+    /**
+     * @return When will failure count be reset?
+     * 
+     */
     public Optional<Integer> failureResetTimeSeconds() {
         return Optional.ofNullable(this.failureResetTimeSeconds);
     }
     public Optional<Integer> maxFailureWaitSeconds() {
         return Optional.ofNullable(this.maxFailureWaitSeconds);
     }
+    /**
+     * @return How many failures before wait is triggered.
+     * 
+     */
     public Optional<Integer> maxLoginFailures() {
         return Optional.ofNullable(this.maxLoginFailures);
     }
+    /**
+     * @return How long to wait after a quick login failure.
+     * - ` max_failure_wait_seconds  ` - (Optional) Max. time a user will be locked out.
+     * 
+     */
     public Optional<Integer> minimumQuickLoginWaitSeconds() {
         return Optional.ofNullable(this.minimumQuickLoginWaitSeconds);
     }
+    /**
+     * @return When `true`, this will lock the user permanently when the user exceeds the maximum login failures.
+     * 
+     */
     public Optional<Boolean> permanentLockout() {
         return Optional.ofNullable(this.permanentLockout);
     }
+    /**
+     * @return Configures the amount of time, in milliseconds, for consecutive failures to lock a user out.
+     * 
+     */
     public Optional<Integer> quickLoginCheckMilliSeconds() {
         return Optional.ofNullable(this.quickLoginCheckMilliSeconds);
     }
+    /**
+     * @return This represents the amount of time a user should be locked out when the login failure threshold has been met.
+     * 
+     */
     public Optional<Integer> waitIncrementSeconds() {
         return Optional.ofNullable(this.waitIncrementSeconds);
     }

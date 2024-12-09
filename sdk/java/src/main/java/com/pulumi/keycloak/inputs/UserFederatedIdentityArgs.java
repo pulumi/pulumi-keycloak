@@ -14,23 +14,47 @@ public final class UserFederatedIdentityArgs extends com.pulumi.resources.Resour
 
     public static final UserFederatedIdentityArgs Empty = new UserFederatedIdentityArgs();
 
+    /**
+     * The name of the identity provider
+     * 
+     */
     @Import(name="identityProvider", required=true)
     private Output<String> identityProvider;
 
+    /**
+     * @return The name of the identity provider
+     * 
+     */
     public Output<String> identityProvider() {
         return this.identityProvider;
     }
 
+    /**
+     * The ID of the user defined in the identity provider
+     * 
+     */
     @Import(name="userId", required=true)
     private Output<String> userId;
 
+    /**
+     * @return The ID of the user defined in the identity provider
+     * 
+     */
     public Output<String> userId() {
         return this.userId;
     }
 
+    /**
+     * The user name of the user defined in the identity provider
+     * 
+     */
     @Import(name="userName", required=true)
     private Output<String> userName;
 
+    /**
+     * @return The user name of the user defined in the identity provider
+     * 
+     */
     public Output<String> userName() {
         return this.userName;
     }
@@ -61,29 +85,65 @@ public final class UserFederatedIdentityArgs extends com.pulumi.resources.Resour
             $ = new UserFederatedIdentityArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param identityProvider The name of the identity provider
+         * 
+         * @return builder
+         * 
+         */
         public Builder identityProvider(Output<String> identityProvider) {
             $.identityProvider = identityProvider;
             return this;
         }
 
+        /**
+         * @param identityProvider The name of the identity provider
+         * 
+         * @return builder
+         * 
+         */
         public Builder identityProvider(String identityProvider) {
             return identityProvider(Output.of(identityProvider));
         }
 
+        /**
+         * @param userId The ID of the user defined in the identity provider
+         * 
+         * @return builder
+         * 
+         */
         public Builder userId(Output<String> userId) {
             $.userId = userId;
             return this;
         }
 
+        /**
+         * @param userId The ID of the user defined in the identity provider
+         * 
+         * @return builder
+         * 
+         */
         public Builder userId(String userId) {
             return userId(Output.of(userId));
         }
 
+        /**
+         * @param userName The user name of the user defined in the identity provider
+         * 
+         * @return builder
+         * 
+         */
         public Builder userName(Output<String> userName) {
             $.userName = userName;
             return this;
         }
 
+        /**
+         * @param userName The user name of the user defined in the identity provider
+         * 
+         * @return builder
+         * 
+         */
         public Builder userName(String userName) {
             return userName(Output.of(userName));
         }

@@ -19,8 +19,16 @@ public final class GetRealmKeysResult {
      * 
      */
     private String id;
+    /**
+     * @return (Computed) A list of keys that match the filter criteria. Each key has the following attributes:
+     * 
+     */
     private List<GetRealmKeysKey> keys;
     private String realmId;
+    /**
+     * @return Key status (string)
+     * 
+     */
     private @Nullable List<String> statuses;
 
     private GetRealmKeysResult() {}
@@ -34,12 +42,20 @@ public final class GetRealmKeysResult {
     public String id() {
         return this.id;
     }
+    /**
+     * @return (Computed) A list of keys that match the filter criteria. Each key has the following attributes:
+     * 
+     */
     public List<GetRealmKeysKey> keys() {
         return this.keys;
     }
     public String realmId() {
         return this.realmId;
     }
+    /**
+     * @return Key status (string)
+     * 
+     */
     public List<String> statuses() {
         return this.statuses == null ? List.of() : this.statuses;
     }

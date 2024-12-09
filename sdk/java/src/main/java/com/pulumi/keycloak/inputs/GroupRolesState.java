@@ -17,30 +17,62 @@ public final class GroupRolesState extends com.pulumi.resources.ResourceArgs {
 
     public static final GroupRolesState Empty = new GroupRolesState();
 
+    /**
+     * Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `true`.
+     * 
+     */
     @Import(name="exhaustive")
     private @Nullable Output<Boolean> exhaustive;
 
+    /**
+     * @return Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `true`.
+     * 
+     */
     public Optional<Output<Boolean>> exhaustive() {
         return Optional.ofNullable(this.exhaustive);
     }
 
+    /**
+     * The ID of the group this resource should manage roles for.
+     * 
+     */
     @Import(name="groupId")
     private @Nullable Output<String> groupId;
 
+    /**
+     * @return The ID of the group this resource should manage roles for.
+     * 
+     */
     public Optional<Output<String>> groupId() {
         return Optional.ofNullable(this.groupId);
     }
 
+    /**
+     * The realm this group exists in.
+     * 
+     */
     @Import(name="realmId")
     private @Nullable Output<String> realmId;
 
+    /**
+     * @return The realm this group exists in.
+     * 
+     */
     public Optional<Output<String>> realmId() {
         return Optional.ofNullable(this.realmId);
     }
 
+    /**
+     * A list of role IDs to map to the group.
+     * 
+     */
     @Import(name="roleIds")
     private @Nullable Output<List<String>> roleIds;
 
+    /**
+     * @return A list of role IDs to map to the group.
+     * 
+     */
     public Optional<Output<List<String>>> roleIds() {
         return Optional.ofNullable(this.roleIds);
     }
@@ -72,42 +104,96 @@ public final class GroupRolesState extends com.pulumi.resources.ResourceArgs {
             $ = new GroupRolesState(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param exhaustive Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `true`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder exhaustive(@Nullable Output<Boolean> exhaustive) {
             $.exhaustive = exhaustive;
             return this;
         }
 
+        /**
+         * @param exhaustive Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `true`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder exhaustive(Boolean exhaustive) {
             return exhaustive(Output.of(exhaustive));
         }
 
+        /**
+         * @param groupId The ID of the group this resource should manage roles for.
+         * 
+         * @return builder
+         * 
+         */
         public Builder groupId(@Nullable Output<String> groupId) {
             $.groupId = groupId;
             return this;
         }
 
+        /**
+         * @param groupId The ID of the group this resource should manage roles for.
+         * 
+         * @return builder
+         * 
+         */
         public Builder groupId(String groupId) {
             return groupId(Output.of(groupId));
         }
 
+        /**
+         * @param realmId The realm this group exists in.
+         * 
+         * @return builder
+         * 
+         */
         public Builder realmId(@Nullable Output<String> realmId) {
             $.realmId = realmId;
             return this;
         }
 
+        /**
+         * @param realmId The realm this group exists in.
+         * 
+         * @return builder
+         * 
+         */
         public Builder realmId(String realmId) {
             return realmId(Output.of(realmId));
         }
 
+        /**
+         * @param roleIds A list of role IDs to map to the group.
+         * 
+         * @return builder
+         * 
+         */
         public Builder roleIds(@Nullable Output<List<String>> roleIds) {
             $.roleIds = roleIds;
             return this;
         }
 
+        /**
+         * @param roleIds A list of role IDs to map to the group.
+         * 
+         * @return builder
+         * 
+         */
         public Builder roleIds(List<String> roleIds) {
             return roleIds(Output.of(roleIds));
         }
 
+        /**
+         * @param roleIds A list of role IDs to map to the group.
+         * 
+         * @return builder
+         * 
+         */
         public Builder roleIds(String... roleIds) {
             return roleIds(List.of(roleIds));
         }

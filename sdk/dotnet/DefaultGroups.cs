@@ -10,14 +10,11 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak
 {
     /// <summary>
-    /// ## # keycloak.DefaultGroups
-    /// 
     /// Allows for managing a realm's default groups.
     /// 
-    /// Note that you should not use `keycloak.DefaultGroups` with a group with memberships managed
-    /// by `keycloak.GroupMemberships`.
+    /// &gt; You should not use `keycloak.DefaultGroups` with a group whose members are managed by `keycloak.GroupMemberships`.
     /// 
-    /// ### Example Usage
+    /// ## Example Usage
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -51,25 +48,30 @@ namespace Pulumi.Keycloak
     /// });
     /// ```
     /// 
-    /// ### Argument Reference
+    /// ## Import
     /// 
-    /// The following arguments are supported:
-    /// 
-    /// - `realm_id` - (Required) The realm this group exists in.
-    /// - `group_ids` - (Required) A set of group ids that should be default groups on the realm referenced by `realm_id`.
-    /// 
-    /// ### Import
-    /// 
-    /// Groups can be imported using the format `{{realm_id}}` where `realm_id` is the realm the group exists in.
+    /// Default groups can be imported using the format `{{realm_id}}` where `realm_id` is the realm the group exists in.
     /// 
     /// Example:
+    /// 
+    /// bash
+    /// 
+    /// ```sh
+    /// $ pulumi import keycloak:index/defaultGroups:DefaultGroups default my-realm
+    /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:index/defaultGroups:DefaultGroups")]
     public partial class DefaultGroups : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// A set of group ids that should be default groups on the realm referenced by `realm_id`.
+        /// </summary>
         [Output("groupIds")]
         public Output<ImmutableArray<string>> GroupIds { get; private set; } = null!;
 
+        /// <summary>
+        /// The realm this group exists in.
+        /// </summary>
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
 
@@ -121,12 +123,19 @@ namespace Pulumi.Keycloak
     {
         [Input("groupIds", required: true)]
         private InputList<string>? _groupIds;
+
+        /// <summary>
+        /// A set of group ids that should be default groups on the realm referenced by `realm_id`.
+        /// </summary>
         public InputList<string> GroupIds
         {
             get => _groupIds ?? (_groupIds = new InputList<string>());
             set => _groupIds = value;
         }
 
+        /// <summary>
+        /// The realm this group exists in.
+        /// </summary>
         [Input("realmId", required: true)]
         public Input<string> RealmId { get; set; } = null!;
 
@@ -140,12 +149,19 @@ namespace Pulumi.Keycloak
     {
         [Input("groupIds")]
         private InputList<string>? _groupIds;
+
+        /// <summary>
+        /// A set of group ids that should be default groups on the realm referenced by `realm_id`.
+        /// </summary>
         public InputList<string> GroupIds
         {
             get => _groupIds ?? (_groupIds = new InputList<string>());
             set => _groupIds = value;
         }
 
+        /// <summary>
+        /// The realm this group exists in.
+        /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
 

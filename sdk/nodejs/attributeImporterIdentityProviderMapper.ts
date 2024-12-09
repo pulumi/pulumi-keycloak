@@ -5,43 +5,59 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # keycloak.AttributeImporterIdentityProviderMapper
+ * Allows for creating and managing an attribute importer identity provider mapper within Keycloak.
  *
- * Allows to create and manage identity provider mappers within Keycloak.
+ * The attribute importer mapper can be used to map attributes from externally defined users to attributes or properties of the imported Keycloak user:
+ * - For the OIDC identity provider, this will map a claim on the ID or access token to an attribute for the imported Keycloak user.
+ * - For the SAML identity provider, this will map a SAML attribute found within the assertion to an attribute for the imported Keycloak user.
+ * - For social identity providers, this will map a JSON field from the user profile to an attribute for the imported Keycloak user.
  *
- * ### Example Usage
+ * > If you are using Keycloak 10 or higher, you will need to specify the `extraConfig` argument in order to define a `syncMode` for the mapper.
+ *
+ * ## Example Usage
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
  *
- * const testMapper = new keycloak.AttributeImporterIdentityProviderMapper("test_mapper", {
+ * const realm = new keycloak.Realm("realm", {
  *     realm: "my-realm",
- *     name: "my-mapper",
- *     identityProviderAlias: "idp_alias",
- *     attributeName: "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname",
- *     userAttribute: "lastName",
+ *     enabled: true,
+ * });
+ * const oidc = new keycloak.oidc.IdentityProvider("oidc", {
+ *     realm: realm.id,
+ *     alias: "oidc",
+ *     authorizationUrl: "https://example.com/auth",
+ *     tokenUrl: "https://example.com/token",
+ *     clientId: "example_id",
+ *     clientSecret: "example_token",
+ *     defaultScopes: "openid random profile",
+ * });
+ * const oidcAttributeImporterIdentityProviderMapper = new keycloak.AttributeImporterIdentityProviderMapper("oidc", {
+ *     realm: realm.id,
+ *     name: "email-attribute-importer",
+ *     claimName: "my-email-claim",
+ *     identityProviderAlias: oidc.alias,
+ *     userAttribute: "email",
+ *     extraConfig: {
+ *         syncMode: "INHERIT",
+ *     },
  * });
  * ```
  *
- * ### Argument Reference
+ * ## Import
  *
- * The following arguments are supported:
+ * Identity provider mappers can be imported using the format `{{realm_id}}/{{idp_alias}}/{{idp_mapper_id}}`, where `idp_alias` is the identity provider alias, and `idp_mapper_id` is the unique ID that Keycloak
  *
- * - `realm` - (Required) The name of the realm.
- * - `name` - (Required) The name of the mapper.
- * - `identityProviderAlias` - (Required) The alias of the associated identity provider.
- * - `userAttribute` - (Required) The user attribute name to store SAML attribute.
- * - `attributeName` - (Optional) The Name of attribute to search for in assertion. You can leave this blank and specify a friendly name instead.
- * - `attributeFriendlyName` - (Optional) The friendly name of attribute to search for in assertion.  You can leave this blank and specify an attribute name instead.
- * - `claimName` - (Optional) The claim name.
- *
- * ### Import
- *
- * Identity provider mapper can be imported using the format `{{realm_id}}/{{idp_alias}}/{{idp_mapper_id}}`, where `idpAlias` is the identity provider alias, and `idpMapperId` is the unique ID that Keycloak
  * assigns to the mapper upon creation. This value can be found in the URI when editing this mapper in the GUI, and is typically a GUID.
  *
  * Example:
+ *
+ * bash
+ *
+ * ```sh
+ * $ pulumi import keycloak:index/attributeImporterIdentityProviderMapper:AttributeImporterIdentityProviderMapper test_mapper my-realm/my-mapper/f446db98-7133-4e30-b18a-3d28fde7ca1b
+ * ```
  */
 export class AttributeImporterIdentityProviderMapper extends pulumi.CustomResource {
     /**
@@ -72,32 +88,35 @@ export class AttributeImporterIdentityProviderMapper extends pulumi.CustomResour
     }
 
     /**
-     * Attribute Friendly Name
+     * For SAML based providers, this is the friendly name of the attribute to search for in the assertion. Conflicts with `attributeName`.
      */
     public readonly attributeFriendlyName!: pulumi.Output<string | undefined>;
     /**
-     * Attribute Name
+     * For SAML based providers, this is the name of the attribute to search for in the assertion. Conflicts with `attributeFriendlyName`.
      */
     public readonly attributeName!: pulumi.Output<string | undefined>;
     /**
-     * Claim Name
+     * For OIDC based providers, this is the name of the claim to use.
      */
     public readonly claimName!: pulumi.Output<string | undefined>;
+    /**
+     * Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
+     */
     public readonly extraConfig!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
-     * IDP Alias
+     * The alias of the associated identity provider.
      */
     public readonly identityProviderAlias!: pulumi.Output<string>;
     /**
-     * IDP Mapper Name
+     * The name of the mapper.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * Realm Name
+     * The name of the realm.
      */
     public readonly realm!: pulumi.Output<string>;
     /**
-     * User Attribute
+     * The user attribute or property name to store the mapped result.
      */
     public readonly userAttribute!: pulumi.Output<string>;
 
@@ -152,32 +171,35 @@ export class AttributeImporterIdentityProviderMapper extends pulumi.CustomResour
  */
 export interface AttributeImporterIdentityProviderMapperState {
     /**
-     * Attribute Friendly Name
+     * For SAML based providers, this is the friendly name of the attribute to search for in the assertion. Conflicts with `attributeName`.
      */
     attributeFriendlyName?: pulumi.Input<string>;
     /**
-     * Attribute Name
+     * For SAML based providers, this is the name of the attribute to search for in the assertion. Conflicts with `attributeFriendlyName`.
      */
     attributeName?: pulumi.Input<string>;
     /**
-     * Claim Name
+     * For OIDC based providers, this is the name of the claim to use.
      */
     claimName?: pulumi.Input<string>;
+    /**
+     * Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
+     */
     extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * IDP Alias
+     * The alias of the associated identity provider.
      */
     identityProviderAlias?: pulumi.Input<string>;
     /**
-     * IDP Mapper Name
+     * The name of the mapper.
      */
     name?: pulumi.Input<string>;
     /**
-     * Realm Name
+     * The name of the realm.
      */
     realm?: pulumi.Input<string>;
     /**
-     * User Attribute
+     * The user attribute or property name to store the mapped result.
      */
     userAttribute?: pulumi.Input<string>;
 }
@@ -187,32 +209,35 @@ export interface AttributeImporterIdentityProviderMapperState {
  */
 export interface AttributeImporterIdentityProviderMapperArgs {
     /**
-     * Attribute Friendly Name
+     * For SAML based providers, this is the friendly name of the attribute to search for in the assertion. Conflicts with `attributeName`.
      */
     attributeFriendlyName?: pulumi.Input<string>;
     /**
-     * Attribute Name
+     * For SAML based providers, this is the name of the attribute to search for in the assertion. Conflicts with `attributeFriendlyName`.
      */
     attributeName?: pulumi.Input<string>;
     /**
-     * Claim Name
+     * For OIDC based providers, this is the name of the claim to use.
      */
     claimName?: pulumi.Input<string>;
+    /**
+     * Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
+     */
     extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * IDP Alias
+     * The alias of the associated identity provider.
      */
     identityProviderAlias: pulumi.Input<string>;
     /**
-     * IDP Mapper Name
+     * The name of the mapper.
      */
     name?: pulumi.Input<string>;
     /**
-     * Realm Name
+     * The name of the realm.
      */
     realm: pulumi.Input<string>;
     /**
-     * User Attribute
+     * The user attribute or property name to store the mapped result.
      */
     userAttribute: pulumi.Input<string>;
 }

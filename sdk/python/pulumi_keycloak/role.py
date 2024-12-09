@@ -27,6 +27,12 @@ class RoleArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Role resource.
+        :param pulumi.Input[str] realm_id: The realm this role exists within.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] attributes: A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
+        :param pulumi.Input[str] client_id: When specified, this role will be created as a client role attached to the client with the provided ID
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] composite_roles: When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
+        :param pulumi.Input[str] description: The description of the role
+        :param pulumi.Input[str] name: The name of the role
         """
         pulumi.set(__self__, "realm_id", realm_id)
         if attributes is not None:
@@ -43,6 +49,9 @@ class RoleArgs:
     @property
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Input[str]:
+        """
+        The realm this role exists within.
+        """
         return pulumi.get(self, "realm_id")
 
     @realm_id.setter
@@ -52,6 +61,9 @@ class RoleArgs:
     @property
     @pulumi.getter
     def attributes(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
+        """
         return pulumi.get(self, "attributes")
 
     @attributes.setter
@@ -61,6 +73,9 @@ class RoleArgs:
     @property
     @pulumi.getter(name="clientId")
     def client_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        When specified, this role will be created as a client role attached to the client with the provided ID
+        """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
@@ -70,6 +85,9 @@ class RoleArgs:
     @property
     @pulumi.getter(name="compositeRoles")
     def composite_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
+        """
         return pulumi.get(self, "composite_roles")
 
     @composite_roles.setter
@@ -79,6 +97,9 @@ class RoleArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        The description of the role
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -88,6 +109,9 @@ class RoleArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the role
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -106,6 +130,12 @@ class _RoleState:
                  realm_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Role resources.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] attributes: A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
+        :param pulumi.Input[str] client_id: When specified, this role will be created as a client role attached to the client with the provided ID
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] composite_roles: When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
+        :param pulumi.Input[str] description: The description of the role
+        :param pulumi.Input[str] name: The name of the role
+        :param pulumi.Input[str] realm_id: The realm this role exists within.
         """
         if attributes is not None:
             pulumi.set(__self__, "attributes", attributes)
@@ -123,6 +153,9 @@ class _RoleState:
     @property
     @pulumi.getter
     def attributes(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
+        """
         return pulumi.get(self, "attributes")
 
     @attributes.setter
@@ -132,6 +165,9 @@ class _RoleState:
     @property
     @pulumi.getter(name="clientId")
     def client_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        When specified, this role will be created as a client role attached to the client with the provided ID
+        """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
@@ -141,6 +177,9 @@ class _RoleState:
     @property
     @pulumi.getter(name="compositeRoles")
     def composite_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
+        """
         return pulumi.get(self, "composite_roles")
 
     @composite_roles.setter
@@ -150,6 +189,9 @@ class _RoleState:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        The description of the role
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -159,6 +201,9 @@ class _RoleState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the role
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -168,6 +213,9 @@ class _RoleState:
     @property
     @pulumi.getter(name="realmId")
     def realm_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The realm this role exists within.
+        """
         return pulumi.get(self, "realm_id")
 
     @realm_id.setter
@@ -188,14 +236,13 @@ class Role(pulumi.CustomResource):
                  realm_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## # Role
-
         Allows for creating and managing roles within Keycloak.
 
-        Roles allow you define privileges within Keycloak and map them to users
-        and groups.
+        Roles allow you define privileges within Keycloak and map them to users and groups.
 
-        ### Example Usage (Realm role)
+        ## Example Usage
+
+        ### Realm Role)
 
         ```python
         import pulumi
@@ -207,10 +254,14 @@ class Role(pulumi.CustomResource):
         realm_role = keycloak.Role("realm_role",
             realm_id=realm.id,
             name="my-realm-role",
-            description="My Realm Role")
+            description="My Realm Role",
+            attributes={
+                "key": "value",
+                "multivalue": "value1##value2",
+            })
         ```
 
-        ### Example Usage (Client role)
+        ### Client Role)
 
         ```python
         import pulumi
@@ -219,20 +270,24 @@ class Role(pulumi.CustomResource):
         realm = keycloak.Realm("realm",
             realm="my-realm",
             enabled=True)
-        client = keycloak.openid.Client("client",
+        openid_client = keycloak.openid.Client("openid_client",
             realm_id=realm.id,
             client_id="client",
             name="client",
             enabled=True,
-            access_type="BEARER-ONLY")
+            access_type="CONFIDENTIAL",
+            valid_redirect_uris=["http://localhost:8080/openid-callback"])
         client_role = keycloak.Role("client_role",
             realm_id=realm.id,
-            client_id=client_keycloak_client["id"],
+            client_id=openid_client_keycloak_client["id"],
             name="my-client-role",
-            description="My Client Role")
+            description="My Client Role",
+            attributes={
+                "key": "value",
+            })
         ```
 
-        ### Example Usage (Composite role)
+        ### Composite Role)
 
         ```python
         import pulumi
@@ -244,64 +299,81 @@ class Role(pulumi.CustomResource):
         # realm roles
         create_role = keycloak.Role("create_role",
             realm_id=realm.id,
-            name="create")
+            name="create",
+            attributes={
+                "key": "value",
+            })
         read_role = keycloak.Role("read_role",
             realm_id=realm.id,
-            name="read")
+            name="read",
+            attributes={
+                "key": "value",
+            })
         update_role = keycloak.Role("update_role",
             realm_id=realm.id,
-            name="update")
+            name="update",
+            attributes={
+                "key": "value",
+            })
         delete_role = keycloak.Role("delete_role",
             realm_id=realm.id,
-            name="delete")
+            name="delete",
+            attributes={
+                "key": "value",
+            })
         # client role
-        client = keycloak.openid.Client("client",
+        openid_client = keycloak.openid.Client("openid_client",
             realm_id=realm.id,
             client_id="client",
             name="client",
             enabled=True,
-            access_type="BEARER-ONLY")
+            access_type="CONFIDENTIAL",
+            valid_redirect_uris=["http://localhost:8080/openid-callback"])
         client_role = keycloak.Role("client_role",
             realm_id=realm.id,
-            client_id=client_keycloak_client["id"],
+            client_id=openid_client_keycloak_client["id"],
             name="my-client-role",
-            description="My Client Role")
+            description="My Client Role",
+            attributes={
+                "key": "value",
+            })
         admin_role = keycloak.Role("admin_role",
             realm_id=realm.id,
             name="admin",
             composite_roles=[
-                "{keycloak_role.create_role.id}",
-                "{keycloak_role.read_role.id}",
-                "{keycloak_role.update_role.id}",
-                "{keycloak_role.delete_role.id}",
-                "{keycloak_role.client_role.id}",
-            ])
+                create_role.id,
+                read_role.id,
+                update_role.id,
+                delete_role.id,
+                client_role.id,
+            ],
+            attributes={
+                "key": "value",
+            })
         ```
 
-        ### Argument Reference
+        ## Import
 
-        The following arguments are supported:
+        Roles can be imported using the format `{{realm_id}}/{{role_id}}`, where `role_id` is the unique ID that Keycloak assigns
 
-        - `realm_id` - (Required) The realm this role exists within.
-        - `client_id` - (Optional) When specified, this role will be created as
-          a client role attached to the client with the provided ID
-        - `name` - (Required) The name of the role
-        - `description` - (Optional) The description of the role
-        - `composite_roles` - (Optional) When specified, this role will be a
-          composite role, composed of all roles that have an ID present within
-          this list.
-
-        ### Import
-
-        Roles can be imported using the format `{{realm_id}}/{{role_id}}`, where
-        `role_id` is the unique ID that Keycloak assigns to the role. The ID is
-        not easy to find in the GUI, but it appears in the URL when editing the
-        role.
+        to the role. The ID is not easy to find in the GUI, but it appears in the URL when editing the role.
 
         Example:
 
+        bash
+
+        ```sh
+        $ pulumi import keycloak:index/role:Role role my-realm/7e8cf32a-8acb-4d34-89c4-04fb1d10ccad
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] attributes: A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
+        :param pulumi.Input[str] client_id: When specified, this role will be created as a client role attached to the client with the provided ID
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] composite_roles: When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
+        :param pulumi.Input[str] description: The description of the role
+        :param pulumi.Input[str] name: The name of the role
+        :param pulumi.Input[str] realm_id: The realm this role exists within.
         """
         ...
     @overload
@@ -310,14 +382,13 @@ class Role(pulumi.CustomResource):
                  args: RoleArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # Role
-
         Allows for creating and managing roles within Keycloak.
 
-        Roles allow you define privileges within Keycloak and map them to users
-        and groups.
+        Roles allow you define privileges within Keycloak and map them to users and groups.
 
-        ### Example Usage (Realm role)
+        ## Example Usage
+
+        ### Realm Role)
 
         ```python
         import pulumi
@@ -329,10 +400,14 @@ class Role(pulumi.CustomResource):
         realm_role = keycloak.Role("realm_role",
             realm_id=realm.id,
             name="my-realm-role",
-            description="My Realm Role")
+            description="My Realm Role",
+            attributes={
+                "key": "value",
+                "multivalue": "value1##value2",
+            })
         ```
 
-        ### Example Usage (Client role)
+        ### Client Role)
 
         ```python
         import pulumi
@@ -341,20 +416,24 @@ class Role(pulumi.CustomResource):
         realm = keycloak.Realm("realm",
             realm="my-realm",
             enabled=True)
-        client = keycloak.openid.Client("client",
+        openid_client = keycloak.openid.Client("openid_client",
             realm_id=realm.id,
             client_id="client",
             name="client",
             enabled=True,
-            access_type="BEARER-ONLY")
+            access_type="CONFIDENTIAL",
+            valid_redirect_uris=["http://localhost:8080/openid-callback"])
         client_role = keycloak.Role("client_role",
             realm_id=realm.id,
-            client_id=client_keycloak_client["id"],
+            client_id=openid_client_keycloak_client["id"],
             name="my-client-role",
-            description="My Client Role")
+            description="My Client Role",
+            attributes={
+                "key": "value",
+            })
         ```
 
-        ### Example Usage (Composite role)
+        ### Composite Role)
 
         ```python
         import pulumi
@@ -366,61 +445,72 @@ class Role(pulumi.CustomResource):
         # realm roles
         create_role = keycloak.Role("create_role",
             realm_id=realm.id,
-            name="create")
+            name="create",
+            attributes={
+                "key": "value",
+            })
         read_role = keycloak.Role("read_role",
             realm_id=realm.id,
-            name="read")
+            name="read",
+            attributes={
+                "key": "value",
+            })
         update_role = keycloak.Role("update_role",
             realm_id=realm.id,
-            name="update")
+            name="update",
+            attributes={
+                "key": "value",
+            })
         delete_role = keycloak.Role("delete_role",
             realm_id=realm.id,
-            name="delete")
+            name="delete",
+            attributes={
+                "key": "value",
+            })
         # client role
-        client = keycloak.openid.Client("client",
+        openid_client = keycloak.openid.Client("openid_client",
             realm_id=realm.id,
             client_id="client",
             name="client",
             enabled=True,
-            access_type="BEARER-ONLY")
+            access_type="CONFIDENTIAL",
+            valid_redirect_uris=["http://localhost:8080/openid-callback"])
         client_role = keycloak.Role("client_role",
             realm_id=realm.id,
-            client_id=client_keycloak_client["id"],
+            client_id=openid_client_keycloak_client["id"],
             name="my-client-role",
-            description="My Client Role")
+            description="My Client Role",
+            attributes={
+                "key": "value",
+            })
         admin_role = keycloak.Role("admin_role",
             realm_id=realm.id,
             name="admin",
             composite_roles=[
-                "{keycloak_role.create_role.id}",
-                "{keycloak_role.read_role.id}",
-                "{keycloak_role.update_role.id}",
-                "{keycloak_role.delete_role.id}",
-                "{keycloak_role.client_role.id}",
-            ])
+                create_role.id,
+                read_role.id,
+                update_role.id,
+                delete_role.id,
+                client_role.id,
+            ],
+            attributes={
+                "key": "value",
+            })
         ```
 
-        ### Argument Reference
+        ## Import
 
-        The following arguments are supported:
+        Roles can be imported using the format `{{realm_id}}/{{role_id}}`, where `role_id` is the unique ID that Keycloak assigns
 
-        - `realm_id` - (Required) The realm this role exists within.
-        - `client_id` - (Optional) When specified, this role will be created as
-          a client role attached to the client with the provided ID
-        - `name` - (Required) The name of the role
-        - `description` - (Optional) The description of the role
-        - `composite_roles` - (Optional) When specified, this role will be a
-          composite role, composed of all roles that have an ID present within
-          this list.
-
-        ### Import
-
-        Roles can be imported using the format `{{realm_id}}/{{role_id}}`, where
-        `role_id` is the unique ID that Keycloak assigns to the role. The ID is
-        not easy to find in the GUI, but it appears in the URL when editing the
-        role.
+        to the role. The ID is not easy to find in the GUI, but it appears in the URL when editing the role.
 
         Example:
+
+        bash
+
+        ```sh
+        $ pulumi import keycloak:index/role:Role role my-realm/7e8cf32a-8acb-4d34-89c4-04fb1d10ccad
+        ```
 
         :param str resource_name: The name of the resource.
         :param RoleArgs args: The arguments to use to populate this resource's properties.
@@ -483,6 +573,12 @@ class Role(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] attributes: A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
+        :param pulumi.Input[str] client_id: When specified, this role will be created as a client role attached to the client with the provided ID
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] composite_roles: When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
+        :param pulumi.Input[str] description: The description of the role
+        :param pulumi.Input[str] name: The name of the role
+        :param pulumi.Input[str] realm_id: The realm this role exists within.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -499,30 +595,48 @@ class Role(pulumi.CustomResource):
     @property
     @pulumi.getter
     def attributes(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
+        """
         return pulumi.get(self, "attributes")
 
     @property
     @pulumi.getter(name="clientId")
     def client_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        When specified, this role will be created as a client role attached to the client with the provided ID
+        """
         return pulumi.get(self, "client_id")
 
     @property
     @pulumi.getter(name="compositeRoles")
     def composite_roles(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
+        """
         return pulumi.get(self, "composite_roles")
 
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        The description of the role
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        The name of the role
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Output[str]:
+        """
+        The realm this role exists within.
+        """
         return pulumi.get(self, "realm_id")
 

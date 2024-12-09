@@ -15,17 +15,15 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # keycloak.saml.UserAttributeProtocolMapper
+ * Allows for creating and managing user attribute protocol mappers for SAML clients within Keycloak.
  * 
- * Allows for creating and managing user attribute protocol mappers for
- * SAML clients within Keycloak.
+ * SAML user attribute protocol mappers allow you to map custom attributes defined for a user within Keycloak to an attribute
+ * in a SAML assertion.
  * 
- * SAML user attribute protocol mappers allow you to map custom attributes defined
- * for a user within Keycloak to an attribute in a SAML assertion. Protocol mappers
- * can be defined for a single client, or they can be defined for a client scope which
- * can be shared between multiple different clients.
+ * Protocol mappers can be defined for a single client, or they can be defined for a client scope which can be shared between
+ * multiple different clients.
  * 
- * ### Example Usage (Client)
+ * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>
@@ -60,13 +58,13 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var samlClient = new Client("samlClient", ClientArgs.builder()
- *             .realmId(test.id())
- *             .clientId("test-saml-client")
- *             .name("test-saml-client")
+ *             .realmId(realm.id())
+ *             .clientId("saml-client")
+ *             .name("saml-client")
  *             .build());
  * 
  *         var samlUserAttributeMapper = new UserAttributeProtocolMapper("samlUserAttributeMapper", UserAttributeProtocolMapperArgs.builder()
- *             .realmId(test.id())
+ *             .realmId(realm.id())
  *             .clientId(samlClient.id())
  *             .name("displayname-user-attribute-mapper")
  *             .userAttribute("displayName")
@@ -80,75 +78,138 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * ### Argument Reference
- * 
- * The following arguments are supported:
- * 
- * - `realm_id` - (Required) The realm this protocol mapper exists within.
- * - `client_id` - (Required if `client_scope_id` is not specified) The SAML client this protocol mapper is attached to.
- * - `client_scope_id` - (Required if `client_id` is not specified) The SAML client scope this protocol mapper is attached to.
- * - `name` - (Required) The display name of this protocol mapper in the GUI.
- * - `user_attribute` - (Required) The custom user attribute to map.
- * - `friendly_name` - (Optional) An optional human-friendly name for this attribute.
- * - `saml_attribute_name` - (Required) The name of the SAML attribute.
- * - `saml_attribute_name_format` - (Required) The SAML attribute Name Format. Can be one of `Unspecified`, `Basic`, or `URI Reference`.
- * 
- * ### Import
+ * ## Import
  * 
  * Protocol mappers can be imported using one of the following formats:
+ * 
  * - Client: `{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}`
+ * 
  * - Client Scope: `{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}`
  * 
  * Example:
  * 
+ * bash
+ * 
+ * ```sh
+ * $ pulumi import keycloak:saml/userAttributeProtocolMapper:UserAttributeProtocolMapper saml_user_attribute_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+ * ```
+ * 
+ * ```sh
+ * $ pulumi import keycloak:saml/userAttributeProtocolMapper:UserAttributeProtocolMapper saml_user_attribute_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+ * ```
+ * 
  */
 @ResourceType(type="keycloak:saml/userAttributeProtocolMapper:UserAttributeProtocolMapper")
 public class UserAttributeProtocolMapper extends com.pulumi.resources.CustomResource {
+    /**
+     * The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+     * 
+     */
     @Export(name="clientId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientId;
 
+    /**
+     * @return The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+     * 
+     */
     public Output<Optional<String>> clientId() {
         return Codegen.optional(this.clientId);
     }
+    /**
+     * The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+     * 
+     */
     @Export(name="clientScopeId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientScopeId;
 
+    /**
+     * @return The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+     * 
+     */
     public Output<Optional<String>> clientScopeId() {
         return Codegen.optional(this.clientScopeId);
     }
+    /**
+     * An optional human-friendly name for this attribute.
+     * 
+     */
     @Export(name="friendlyName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> friendlyName;
 
+    /**
+     * @return An optional human-friendly name for this attribute.
+     * 
+     */
     public Output<Optional<String>> friendlyName() {
         return Codegen.optional(this.friendlyName);
     }
+    /**
+     * The display name of this protocol mapper in the GUI.
+     * 
+     */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
+    /**
+     * @return The display name of this protocol mapper in the GUI.
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
+    /**
+     * The realm this protocol mapper exists within.
+     * 
+     */
     @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
+    /**
+     * @return The realm this protocol mapper exists within.
+     * 
+     */
     public Output<String> realmId() {
         return this.realmId;
     }
+    /**
+     * The name of the SAML attribute.
+     * 
+     */
     @Export(name="samlAttributeName", refs={String.class}, tree="[0]")
     private Output<String> samlAttributeName;
 
+    /**
+     * @return The name of the SAML attribute.
+     * 
+     */
     public Output<String> samlAttributeName() {
         return this.samlAttributeName;
     }
+    /**
+     * The SAML attribute Name Format. Can be one of `Unspecified`, `Basic`, or `URI Reference`.
+     * 
+     */
     @Export(name="samlAttributeNameFormat", refs={String.class}, tree="[0]")
     private Output<String> samlAttributeNameFormat;
 
+    /**
+     * @return The SAML attribute Name Format. Can be one of `Unspecified`, `Basic`, or `URI Reference`.
+     * 
+     */
     public Output<String> samlAttributeNameFormat() {
         return this.samlAttributeNameFormat;
     }
+    /**
+     * The custom user attribute to map.
+     * 
+     */
     @Export(name="userAttribute", refs={String.class}, tree="[0]")
     private Output<String> userAttribute;
 
+    /**
+     * @return The custom user attribute to map.
+     * 
+     */
     public Output<String> userAttribute() {
         return this.userAttribute;
     }

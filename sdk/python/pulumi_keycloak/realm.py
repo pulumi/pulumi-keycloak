@@ -79,16 +79,23 @@ class RealmArgs:
                  web_authn_policy: Optional[pulumi.Input['RealmWebAuthnPolicyArgs']] = None):
         """
         The set of arguments for constructing a Realm resource.
+        :param pulumi.Input[str] realm: The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] attributes: A map of custom attributes to add to the realm.
         :param pulumi.Input[str] browser_flow: Which flow should be used for BrowserFlow
         :param pulumi.Input[str] client_authentication_flow: Which flow should be used for ClientAuthenticationFlow
         :param pulumi.Input[str] direct_grant_flow: Which flow should be used for DirectGrantFlow
+        :param pulumi.Input[str] display_name: The display name for the realm that is shown when logging in to the admin console.
+        :param pulumi.Input[str] display_name_html: The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.
         :param pulumi.Input[str] docker_authentication_flow: Which flow should be used for DockerAuthenticationFlow
+        :param pulumi.Input[bool] enabled: When `false`, users and clients will not be able to access this realm. Defaults to `true`.
+        :param pulumi.Input[str] internal_id: When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
         :param pulumi.Input[str] password_policy: String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
                can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365)
                and notUsername(undefined)"
         :param pulumi.Input[str] registration_flow: Which flow should be used for RegistrationFlow
         :param pulumi.Input[str] reset_credentials_flow: Which flow should be used for ResetCredentialsFlow
         :param pulumi.Input[str] ssl_required: SSL Required: Values can be 'none', 'external' or 'all'.
+        :param pulumi.Input[bool] user_managed_access: When `true`, users are allowed to manage their own resources. Defaults to `false`.
         """
         pulumi.set(__self__, "realm", realm)
         if access_code_lifespan is not None:
@@ -205,6 +212,9 @@ class RealmArgs:
     @property
     @pulumi.getter
     def realm(self) -> pulumi.Input[str]:
+        """
+        The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
+        """
         return pulumi.get(self, "realm")
 
     @realm.setter
@@ -295,6 +305,9 @@ class RealmArgs:
     @property
     @pulumi.getter
     def attributes(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A map of custom attributes to add to the realm.
+        """
         return pulumi.get(self, "attributes")
 
     @attributes.setter
@@ -385,6 +398,9 @@ class RealmArgs:
     @property
     @pulumi.getter(name="displayName")
     def display_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The display name for the realm that is shown when logging in to the admin console.
+        """
         return pulumi.get(self, "display_name")
 
     @display_name.setter
@@ -394,6 +410,9 @@ class RealmArgs:
     @property
     @pulumi.getter(name="displayNameHtml")
     def display_name_html(self) -> Optional[pulumi.Input[str]]:
+        """
+        The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.
+        """
         return pulumi.get(self, "display_name_html")
 
     @display_name_html.setter
@@ -442,6 +461,9 @@ class RealmArgs:
     @property
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When `false`, users and clients will not be able to access this realm. Defaults to `true`.
+        """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
@@ -451,6 +473,9 @@ class RealmArgs:
     @property
     @pulumi.getter(name="internalId")
     def internal_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
+        """
         return pulumi.get(self, "internal_id")
 
     @internal_id.setter
@@ -699,6 +724,9 @@ class RealmArgs:
     @property
     @pulumi.getter(name="userManagedAccess")
     def user_managed_access(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When `true`, users are allowed to manage their own resources. Defaults to `false`.
+        """
         return pulumi.get(self, "user_managed_access")
 
     @user_managed_access.setter
@@ -794,16 +822,23 @@ class _RealmState:
                  web_authn_policy: Optional[pulumi.Input['RealmWebAuthnPolicyArgs']] = None):
         """
         Input properties used for looking up and filtering Realm resources.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] attributes: A map of custom attributes to add to the realm.
         :param pulumi.Input[str] browser_flow: Which flow should be used for BrowserFlow
         :param pulumi.Input[str] client_authentication_flow: Which flow should be used for ClientAuthenticationFlow
         :param pulumi.Input[str] direct_grant_flow: Which flow should be used for DirectGrantFlow
+        :param pulumi.Input[str] display_name: The display name for the realm that is shown when logging in to the admin console.
+        :param pulumi.Input[str] display_name_html: The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.
         :param pulumi.Input[str] docker_authentication_flow: Which flow should be used for DockerAuthenticationFlow
+        :param pulumi.Input[bool] enabled: When `false`, users and clients will not be able to access this realm. Defaults to `true`.
+        :param pulumi.Input[str] internal_id: When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
         :param pulumi.Input[str] password_policy: String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
                can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365)
                and notUsername(undefined)"
+        :param pulumi.Input[str] realm: The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
         :param pulumi.Input[str] registration_flow: Which flow should be used for RegistrationFlow
         :param pulumi.Input[str] reset_credentials_flow: Which flow should be used for ResetCredentialsFlow
         :param pulumi.Input[str] ssl_required: SSL Required: Values can be 'none', 'external' or 'all'.
+        :param pulumi.Input[bool] user_managed_access: When `true`, users are allowed to manage their own resources. Defaults to `false`.
         """
         if access_code_lifespan is not None:
             pulumi.set(__self__, "access_code_lifespan", access_code_lifespan)
@@ -1002,6 +1037,9 @@ class _RealmState:
     @property
     @pulumi.getter
     def attributes(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A map of custom attributes to add to the realm.
+        """
         return pulumi.get(self, "attributes")
 
     @attributes.setter
@@ -1092,6 +1130,9 @@ class _RealmState:
     @property
     @pulumi.getter(name="displayName")
     def display_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The display name for the realm that is shown when logging in to the admin console.
+        """
         return pulumi.get(self, "display_name")
 
     @display_name.setter
@@ -1101,6 +1142,9 @@ class _RealmState:
     @property
     @pulumi.getter(name="displayNameHtml")
     def display_name_html(self) -> Optional[pulumi.Input[str]]:
+        """
+        The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.
+        """
         return pulumi.get(self, "display_name_html")
 
     @display_name_html.setter
@@ -1149,6 +1193,9 @@ class _RealmState:
     @property
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When `false`, users and clients will not be able to access this realm. Defaults to `true`.
+        """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
@@ -1158,6 +1205,9 @@ class _RealmState:
     @property
     @pulumi.getter(name="internalId")
     def internal_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
+        """
         return pulumi.get(self, "internal_id")
 
     @internal_id.setter
@@ -1262,6 +1312,9 @@ class _RealmState:
     @property
     @pulumi.getter
     def realm(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
+        """
         return pulumi.get(self, "realm")
 
     @realm.setter
@@ -1415,6 +1468,9 @@ class _RealmState:
     @property
     @pulumi.getter(name="userManagedAccess")
     def user_managed_access(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When `true`, users are allowed to manage their own resources. Defaults to `false`.
+        """
         return pulumi.get(self, "user_managed_access")
 
     @user_managed_access.setter
@@ -1512,19 +1568,111 @@ class Realm(pulumi.CustomResource):
                  web_authn_policy: Optional[pulumi.Input[Union['RealmWebAuthnPolicyArgs', 'RealmWebAuthnPolicyArgsDict']]] = None,
                  __props__=None):
         """
-        Create a Realm resource with the given unique name, props, and options.
+        Allows for creating and managing Realms within Keycloak.
+
+        A realm manages a logical collection of users, credentials, roles, and groups. Users log in to realms and can be federated
+        from multiple sources.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True,
+            display_name="my realm",
+            display_name_html="<b>my realm</b>",
+            login_theme="base",
+            access_code_lifespan="1h",
+            ssl_required="external",
+            password_policy="upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername",
+            attributes={
+                "mycustomAttribute": "myCustomValue",
+            },
+            smtp_server={
+                "host": "smtp.example.com",
+                "from_": "example@example.com",
+                "auth": {
+                    "username": "tom",
+                    "password": "password",
+                },
+            },
+            internationalization={
+                "supported_locales": [
+                    "en",
+                    "de",
+                    "es",
+                ],
+                "default_locale": "en",
+            },
+            security_defenses={
+                "headers": {
+                    "x_frame_options": "DENY",
+                    "content_security_policy": "frame-src 'self'; frame-ancestors 'self'; object-src 'none';",
+                    "content_security_policy_report_only": "",
+                    "x_content_type_options": "nosniff",
+                    "x_robots_tag": "none",
+                    "x_xss_protection": "1; mode=block",
+                    "strict_transport_security": "max-age=31536000; includeSubDomains",
+                },
+                "brute_force_detection": {
+                    "permanent_lockout": False,
+                    "max_login_failures": 30,
+                    "wait_increment_seconds": 60,
+                    "quick_login_check_milli_seconds": 1000,
+                    "minimum_quick_login_wait_seconds": 60,
+                    "max_failure_wait_seconds": 900,
+                    "failure_reset_time_seconds": 43200,
+                },
+            },
+            web_authn_policy={
+                "relying_party_entity_name": "Example",
+                "relying_party_id": "keycloak.example.com",
+                "signature_algorithms": [
+                    "ES256",
+                    "RS256",
+                ],
+            })
+        ```
+
+        ## Default Client Scopes
+
+        - `default_default_client_scopes` - (Optional) A list of default default client scopes to be used for client definitions. Defaults to `[]` or keycloak's built-in default default client-scopes.
+        - `default_optional_client_scopes` - (Optional) A list of default optional client scopes to be used for client definitions. Defaults to `[]` or keycloak's built-in default optional client-scopes.
+
+        ## Import
+
+        Realms can be imported using their name.
+
+        Example:
+
+        bash
+
+        ```sh
+        $ pulumi import keycloak:index/realm:Realm realm my-realm
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] attributes: A map of custom attributes to add to the realm.
         :param pulumi.Input[str] browser_flow: Which flow should be used for BrowserFlow
         :param pulumi.Input[str] client_authentication_flow: Which flow should be used for ClientAuthenticationFlow
         :param pulumi.Input[str] direct_grant_flow: Which flow should be used for DirectGrantFlow
+        :param pulumi.Input[str] display_name: The display name for the realm that is shown when logging in to the admin console.
+        :param pulumi.Input[str] display_name_html: The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.
         :param pulumi.Input[str] docker_authentication_flow: Which flow should be used for DockerAuthenticationFlow
+        :param pulumi.Input[bool] enabled: When `false`, users and clients will not be able to access this realm. Defaults to `true`.
+        :param pulumi.Input[str] internal_id: When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
         :param pulumi.Input[str] password_policy: String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
                can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365)
                and notUsername(undefined)"
+        :param pulumi.Input[str] realm: The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
         :param pulumi.Input[str] registration_flow: Which flow should be used for RegistrationFlow
         :param pulumi.Input[str] reset_credentials_flow: Which flow should be used for ResetCredentialsFlow
         :param pulumi.Input[str] ssl_required: SSL Required: Values can be 'none', 'external' or 'all'.
+        :param pulumi.Input[bool] user_managed_access: When `true`, users are allowed to manage their own resources. Defaults to `false`.
         """
         ...
     @overload
@@ -1533,7 +1681,92 @@ class Realm(pulumi.CustomResource):
                  args: RealmArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a Realm resource with the given unique name, props, and options.
+        Allows for creating and managing Realms within Keycloak.
+
+        A realm manages a logical collection of users, credentials, roles, and groups. Users log in to realms and can be federated
+        from multiple sources.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True,
+            display_name="my realm",
+            display_name_html="<b>my realm</b>",
+            login_theme="base",
+            access_code_lifespan="1h",
+            ssl_required="external",
+            password_policy="upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername",
+            attributes={
+                "mycustomAttribute": "myCustomValue",
+            },
+            smtp_server={
+                "host": "smtp.example.com",
+                "from_": "example@example.com",
+                "auth": {
+                    "username": "tom",
+                    "password": "password",
+                },
+            },
+            internationalization={
+                "supported_locales": [
+                    "en",
+                    "de",
+                    "es",
+                ],
+                "default_locale": "en",
+            },
+            security_defenses={
+                "headers": {
+                    "x_frame_options": "DENY",
+                    "content_security_policy": "frame-src 'self'; frame-ancestors 'self'; object-src 'none';",
+                    "content_security_policy_report_only": "",
+                    "x_content_type_options": "nosniff",
+                    "x_robots_tag": "none",
+                    "x_xss_protection": "1; mode=block",
+                    "strict_transport_security": "max-age=31536000; includeSubDomains",
+                },
+                "brute_force_detection": {
+                    "permanent_lockout": False,
+                    "max_login_failures": 30,
+                    "wait_increment_seconds": 60,
+                    "quick_login_check_milli_seconds": 1000,
+                    "minimum_quick_login_wait_seconds": 60,
+                    "max_failure_wait_seconds": 900,
+                    "failure_reset_time_seconds": 43200,
+                },
+            },
+            web_authn_policy={
+                "relying_party_entity_name": "Example",
+                "relying_party_id": "keycloak.example.com",
+                "signature_algorithms": [
+                    "ES256",
+                    "RS256",
+                ],
+            })
+        ```
+
+        ## Default Client Scopes
+
+        - `default_default_client_scopes` - (Optional) A list of default default client scopes to be used for client definitions. Defaults to `[]` or keycloak's built-in default default client-scopes.
+        - `default_optional_client_scopes` - (Optional) A list of default optional client scopes to be used for client definitions. Defaults to `[]` or keycloak's built-in default optional client-scopes.
+
+        ## Import
+
+        Realms can be imported using their name.
+
+        Example:
+
+        bash
+
+        ```sh
+        $ pulumi import keycloak:index/realm:Realm realm my-realm
+        ```
+
         :param str resource_name: The name of the resource.
         :param RealmArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1745,16 +1978,23 @@ class Realm(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] attributes: A map of custom attributes to add to the realm.
         :param pulumi.Input[str] browser_flow: Which flow should be used for BrowserFlow
         :param pulumi.Input[str] client_authentication_flow: Which flow should be used for ClientAuthenticationFlow
         :param pulumi.Input[str] direct_grant_flow: Which flow should be used for DirectGrantFlow
+        :param pulumi.Input[str] display_name: The display name for the realm that is shown when logging in to the admin console.
+        :param pulumi.Input[str] display_name_html: The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.
         :param pulumi.Input[str] docker_authentication_flow: Which flow should be used for DockerAuthenticationFlow
+        :param pulumi.Input[bool] enabled: When `false`, users and clients will not be able to access this realm. Defaults to `true`.
+        :param pulumi.Input[str] internal_id: When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
         :param pulumi.Input[str] password_policy: String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
                can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365)
                and notUsername(undefined)"
+        :param pulumi.Input[str] realm: The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
         :param pulumi.Input[str] registration_flow: Which flow should be used for RegistrationFlow
         :param pulumi.Input[str] reset_credentials_flow: Which flow should be used for ResetCredentialsFlow
         :param pulumi.Input[str] ssl_required: SSL Required: Values can be 'none', 'external' or 'all'.
+        :param pulumi.Input[bool] user_managed_access: When `true`, users are allowed to manage their own resources. Defaults to `false`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1866,6 +2106,9 @@ class Realm(pulumi.CustomResource):
     @property
     @pulumi.getter
     def attributes(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        A map of custom attributes to add to the realm.
+        """
         return pulumi.get(self, "attributes")
 
     @property
@@ -1920,11 +2163,17 @@ class Realm(pulumi.CustomResource):
     @property
     @pulumi.getter(name="displayName")
     def display_name(self) -> pulumi.Output[Optional[str]]:
+        """
+        The display name for the realm that is shown when logging in to the admin console.
+        """
         return pulumi.get(self, "display_name")
 
     @property
     @pulumi.getter(name="displayNameHtml")
     def display_name_html(self) -> pulumi.Output[Optional[str]]:
+        """
+        The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.
+        """
         return pulumi.get(self, "display_name_html")
 
     @property
@@ -1953,11 +2202,17 @@ class Realm(pulumi.CustomResource):
     @property
     @pulumi.getter
     def enabled(self) -> pulumi.Output[Optional[bool]]:
+        """
+        When `false`, users and clients will not be able to access this realm. Defaults to `true`.
+        """
         return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter(name="internalId")
     def internal_id(self) -> pulumi.Output[str]:
+        """
+        When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
+        """
         return pulumi.get(self, "internal_id")
 
     @property
@@ -2018,6 +2273,9 @@ class Realm(pulumi.CustomResource):
     @property
     @pulumi.getter
     def realm(self) -> pulumi.Output[str]:
+        """
+        The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
+        """
         return pulumi.get(self, "realm")
 
     @property
@@ -2107,6 +2365,9 @@ class Realm(pulumi.CustomResource):
     @property
     @pulumi.getter(name="userManagedAccess")
     def user_managed_access(self) -> pulumi.Output[Optional[bool]]:
+        """
+        When `true`, users are allowed to manage their own resources. Defaults to `false`.
+        """
         return pulumi.get(self, "user_managed_access")
 
     @property

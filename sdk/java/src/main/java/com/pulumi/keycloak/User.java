@@ -20,15 +20,13 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # keycloak.User
- * 
  * Allows for creating and managing Users within Keycloak.
  * 
- * This resource was created primarily to enable the acceptance tests for the `keycloak.Group` resource.
- * Creating users within Keycloak is not recommended. Instead, users should be federated from external sources
- * by configuring user federation providers or identity providers.
+ * This resource was created primarily to enable the acceptance tests for the `keycloak.Group` resource. Creating users within
+ * Keycloak is not recommended. Instead, users should be federated from external sources by configuring user federation providers
+ * or identity providers.
  * 
- * ### Example Usage
+ * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>
@@ -77,6 +75,10 @@ import javax.annotation.Nullable;
  *             .email("alice}{@literal @}{@code domain.com")
  *             .firstName("Alice")
  *             .lastName("Aliceberg")
+ *             .attributes(Map.ofEntries(
+ *                 Map.entry("foo", "bar"),
+ *                 Map.entry("multivalue", "value1##value2")
+ *             ))
  *             .initialPassword(UserInitialPasswordArgs.builder()
  *                 .value("some password")
  *                 .temporary(true)
@@ -89,94 +91,174 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * ### Argument Reference
- * 
- * The following arguments are supported:
- * 
- * - `realm_id` - (Required) The realm this user belongs to.
- * - `username` - (Required) The unique username of this user.
- * - `initial_password` (Optional) When given, the user&#39;s initial password will be set.
- *    This attribute is only respected during initial user creation.
- *     - `value` (Required) The initial password.
- *     - `temporary` (Optional) If set to `true`, the initial password is set up for renewal on first use. Default to `false`.
- * - `enabled` - (Optional) When false, this user cannot log in. Defaults to `true`.
- * - `email` - (Optional) The user&#39;s email.
- * - `first_name` - (Optional) The user&#39;s first name.
- * - `last_name` - (Optional) The user&#39;s last name.
- * 
- * ### Import
+ * ## Import
  * 
  * Users can be imported using the format `{{realm_id}}/{{user_id}}`, where `user_id` is the unique ID that Keycloak
+ * 
  * assigns to the user upon creation. This value can be found in the GUI when editing the user.
  * 
  * Example:
  * 
+ * bash
+ * 
+ * ```sh
+ * $ pulumi import keycloak:index/user:User user my-realm/60c3f971-b1d3-4b3a-9035-d16d7540a5e4
+ * ```
+ * 
  */
 @ResourceType(type="keycloak:index/user:User")
 public class User extends com.pulumi.resources.CustomResource {
+    /**
+     * A map representing attributes for the user. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
+     * 
+     */
     @Export(name="attributes", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> attributes;
 
+    /**
+     * @return A map representing attributes for the user. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
+     * 
+     */
     public Output<Optional<Map<String,String>>> attributes() {
         return Codegen.optional(this.attributes);
     }
+    /**
+     * The user&#39;s email.
+     * 
+     */
     @Export(name="email", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> email;
 
+    /**
+     * @return The user&#39;s email.
+     * 
+     */
     public Output<Optional<String>> email() {
         return Codegen.optional(this.email);
     }
+    /**
+     * Whether the email address was validated or not. Default to `false`.
+     * 
+     */
     @Export(name="emailVerified", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> emailVerified;
 
+    /**
+     * @return Whether the email address was validated or not. Default to `false`.
+     * 
+     */
     public Output<Optional<Boolean>> emailVerified() {
         return Codegen.optional(this.emailVerified);
     }
+    /**
+     * When false, this user cannot log in. Defaults to `true`.
+     * 
+     */
     @Export(name="enabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> enabled;
 
+    /**
+     * @return When false, this user cannot log in. Defaults to `true`.
+     * 
+     */
     public Output<Optional<Boolean>> enabled() {
         return Codegen.optional(this.enabled);
     }
+    /**
+     * When specified, the user will be linked to a federated identity provider. Refer to the federated user example for more details.
+     * 
+     */
     @Export(name="federatedIdentities", refs={List.class,UserFederatedIdentity.class}, tree="[0,1]")
     private Output</* @Nullable */ List<UserFederatedIdentity>> federatedIdentities;
 
+    /**
+     * @return When specified, the user will be linked to a federated identity provider. Refer to the federated user example for more details.
+     * 
+     */
     public Output<Optional<List<UserFederatedIdentity>>> federatedIdentities() {
         return Codegen.optional(this.federatedIdentities);
     }
+    /**
+     * The user&#39;s first name.
+     * 
+     */
     @Export(name="firstName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> firstName;
 
+    /**
+     * @return The user&#39;s first name.
+     * 
+     */
     public Output<Optional<String>> firstName() {
         return Codegen.optional(this.firstName);
     }
+    /**
+     * When given, the user&#39;s initial password will be set. This attribute is only respected during initial user creation.
+     * 
+     */
     @Export(name="initialPassword", refs={UserInitialPassword.class}, tree="[0]")
     private Output</* @Nullable */ UserInitialPassword> initialPassword;
 
+    /**
+     * @return When given, the user&#39;s initial password will be set. This attribute is only respected during initial user creation.
+     * 
+     */
     public Output<Optional<UserInitialPassword>> initialPassword() {
         return Codegen.optional(this.initialPassword);
     }
+    /**
+     * The user&#39;s last name.
+     * 
+     */
     @Export(name="lastName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> lastName;
 
+    /**
+     * @return The user&#39;s last name.
+     * 
+     */
     public Output<Optional<String>> lastName() {
         return Codegen.optional(this.lastName);
     }
+    /**
+     * The realm this user belongs to.
+     * 
+     */
     @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
+    /**
+     * @return The realm this user belongs to.
+     * 
+     */
     public Output<String> realmId() {
         return this.realmId;
     }
+    /**
+     * A list of required user actions.
+     * 
+     */
     @Export(name="requiredActions", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> requiredActions;
 
+    /**
+     * @return A list of required user actions.
+     * 
+     */
     public Output<Optional<List<String>>> requiredActions() {
         return Codegen.optional(this.requiredActions);
     }
+    /**
+     * The unique username of this user.
+     * 
+     */
     @Export(name="username", refs={String.class}, tree="[0]")
     private Output<String> username;
 
+    /**
+     * @return The unique username of this user.
+     * 
+     */
     public Output<String> username() {
         return this.username;
     }

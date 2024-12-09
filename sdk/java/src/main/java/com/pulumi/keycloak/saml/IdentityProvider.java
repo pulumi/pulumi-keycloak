@@ -18,13 +18,11 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # keycloak.saml.IdentityProvider
+ * Allows for creating and managing SAML Identity Providers within Keycloak.
  * 
- * Allows to create and manage SAML Identity Providers within Keycloak.
+ * SAML (Security Assertion Markup Language) identity providers allows users to authenticate through a third-party system using the SAML protocol.
  * 
- * SAML (Security Assertion Markup Language) identity providers allows to authenticate through a third-party system, using SAML standard.
- * 
- * ### Example Usage
+ * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>
@@ -34,6 +32,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
+ * import com.pulumi.keycloak.Realm;
+ * import com.pulumi.keycloak.RealmArgs;
  * import com.pulumi.keycloak.saml.IdentityProvider;
  * import com.pulumi.keycloak.saml.IdentityProviderArgs;
  * import java.util.List;
@@ -49,9 +49,15 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var realmIdentityProvider = new IdentityProvider("realmIdentityProvider", IdentityProviderArgs.builder()
+ *         var realm = new Realm("realm", RealmArgs.builder()
  *             .realm("my-realm")
- *             .alias("my-idp")
+ *             .enabled(true)
+ *             .build());
+ * 
+ *         var realmSamlIdentityProvider = new IdentityProvider("realmSamlIdentityProvider", IdentityProviderArgs.builder()
+ *             .realm(realm.id())
+ *             .alias("my-saml-idp")
+ *             .entityId("https://domain.com/entity_id")
  *             .singleSignOnServiceUrl("https://domain.com/adfs/ls/")
  *             .singleLogoutServiceUrl("https://domain.com/adfs/ls/?wa=wsignout1.0")
  *             .backchannelSupported(true)
@@ -69,170 +75,142 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * ### Argument Reference
- * 
- * The following arguments are supported:
- * 
- * - `realm` - (Required) The name of the realm. This is unique across Keycloak.
- * - `alias` - (Optional) The uniq name of identity provider.
- * - `enabled` - (Optional) When false, users and clients will not be able to access this realm. Defaults to `true`.
- * - `display_name` - (Optional) The display name for the realm that is shown when logging in to the admin console.
- * - `store_token` - (Optional) Enable/disable if tokens must be stored after authenticating users. Defaults to `true`.
- * - `add_read_token_role_on_create` - (Optional) Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role. Defaults to `false`.
- * - `trust_email` - (Optional) If enabled then email provided by this provider is not verified even if verification is enabled for the realm. Defaults to `false`.
- * - `link_only` - (Optional) If true, users cannot log in through this provider. They can only link to this provider. This is useful if you don&#39;t want to allow login from the provider, but want to integrate with a provider. Defaults to `false`.
- * - `hide_on_login_page` - (Optional) If hidden, then login with this provider is possible only if requested explicitly, e.g. using the &#39;kc_idp_hint&#39; parameter.
- * - `first_broker_login_flow_alias` - (Optional) Alias of authentication flow, which is triggered after first login with this identity provider. Term &#39;First Login&#39; means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
- * - `post_broker_login_flow_alias` - (Optional) Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don&#39;t want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it. Defaults to empty.
- * - `authenticate_by_default` - (Optional) Authenticate users by default. Defaults to `false`.
- * 
- * #### SAML Configuration
- * 
- * - `single_sign_on_service_url` - (Optional) The Url that must be used to send authentication requests (SAML AuthnRequest).
- * - `single_logout_service_url` - (Optional) The Url that must be used to send logout requests.
- * - `backchannel_supported` - (Optional) Does the external IDP support back-channel logout ?.
- * - `name_id_policy_format` - (Optional) Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
- * - `post_binding_response` - (Optional) Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
- * - `post_binding_authn_request` - (Optional) Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
- * - `post_binding_logout` - (Optional) Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
- * - `want_assertions_signed` - (Optional) Indicates whether this service provider expects a signed Assertion.
- * - `want_assertions_encrypted` - (Optional) Indicates whether this service provider expects an encrypted Assertion.
- * - `force_authn` - (Optional) Indicates whether the identity provider must authenticate the presenter directly rather than rely on a previous security context.
- * - `validate_signature` - (Optional) Enable/disable signature validation of SAML responses.
- * - `signing_certificate` - (Optional) Signing Certificate.
- * - `signature_algorithm` - (Optional) Signing Algorithm. Defaults to empty.
- * - `xml_sign_key_info_key_name_transformer` - (Optional) Sign Key Transformer. Defaults to empty.
- * 
- * ### Import
+ * ## Import
  * 
  * Identity providers can be imported using the format `{{realm_id}}/{{idp_alias}}`, where `idp_alias` is the identity provider alias.
  * 
  * Example:
  * 
+ * bash
+ * 
+ * ```sh
+ * $ pulumi import keycloak:saml/identityProvider:IdentityProvider realm_saml_identity_provider my-realm/my-saml-idp
+ * ```
+ * 
  */
 @ResourceType(type="keycloak:saml/identityProvider:IdentityProvider")
 public class IdentityProvider extends com.pulumi.resources.CustomResource {
     /**
-     * Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role.
+     * When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
      * 
      */
     @Export(name="addReadTokenRoleOnCreate", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> addReadTokenRoleOnCreate;
 
     /**
-     * @return Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role.
+     * @return When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
      * 
      */
     public Output<Optional<Boolean>> addReadTokenRoleOnCreate() {
         return Codegen.optional(this.addReadTokenRoleOnCreate);
     }
     /**
-     * The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
+     * The unique name of identity provider.
      * 
      */
     @Export(name="alias", refs={String.class}, tree="[0]")
     private Output<String> alias;
 
     /**
-     * @return The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
+     * @return The unique name of identity provider.
      * 
      */
     public Output<String> alias() {
         return this.alias;
     }
     /**
-     * Enable/disable authenticate users by default.
+     * Authenticate users by default. Defaults to `false`.
      * 
      */
     @Export(name="authenticateByDefault", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> authenticateByDefault;
 
     /**
-     * @return Enable/disable authenticate users by default.
+     * @return Authenticate users by default. Defaults to `false`.
      * 
      */
     public Output<Optional<Boolean>> authenticateByDefault() {
         return Codegen.optional(this.authenticateByDefault);
     }
     /**
-     * AuthnContext ClassRefs
+     * Ordered list of requested AuthnContext ClassRefs.
      * 
      */
     @Export(name="authnContextClassRefs", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> authnContextClassRefs;
 
     /**
-     * @return AuthnContext ClassRefs
+     * @return Ordered list of requested AuthnContext ClassRefs.
      * 
      */
     public Output<Optional<List<String>>> authnContextClassRefs() {
         return Codegen.optional(this.authnContextClassRefs);
     }
     /**
-     * AuthnContext Comparison
+     * Specifies the comparison method used to evaluate the requested context classes or statements.
      * 
      */
     @Export(name="authnContextComparisonType", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> authnContextComparisonType;
 
     /**
-     * @return AuthnContext Comparison
+     * @return Specifies the comparison method used to evaluate the requested context classes or statements.
      * 
      */
     public Output<Optional<String>> authnContextComparisonType() {
         return Codegen.optional(this.authnContextComparisonType);
     }
     /**
-     * AuthnContext DeclRefs
+     * Ordered list of requested AuthnContext DeclRefs.
      * 
      */
     @Export(name="authnContextDeclRefs", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> authnContextDeclRefs;
 
     /**
-     * @return AuthnContext DeclRefs
+     * @return Ordered list of requested AuthnContext DeclRefs.
      * 
      */
     public Output<Optional<List<String>>> authnContextDeclRefs() {
         return Codegen.optional(this.authnContextDeclRefs);
     }
     /**
-     * Does the external IDP support backchannel logout?
+     * Does the external IDP support backchannel logout?. Defaults to `false`.
      * 
      */
     @Export(name="backchannelSupported", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> backchannelSupported;
 
     /**
-     * @return Does the external IDP support backchannel logout?
+     * @return Does the external IDP support backchannel logout?. Defaults to `false`.
      * 
      */
     public Output<Optional<Boolean>> backchannelSupported() {
         return Codegen.optional(this.backchannelSupported);
     }
     /**
-     * Friendly name for Identity Providers.
+     * The display name for the realm that is shown when logging in to the admin console.
      * 
      */
     @Export(name="displayName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> displayName;
 
     /**
-     * @return Friendly name for Identity Providers.
+     * @return The display name for the realm that is shown when logging in to the admin console.
      * 
      */
     public Output<Optional<String>> displayName() {
         return Codegen.optional(this.displayName);
     }
     /**
-     * Enable/disable this identity provider.
+     * When `false`, users and clients will not be able to access this realm. Defaults to `true`.
      * 
      */
     @Export(name="enabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> enabled;
 
     /**
-     * @return Enable/disable this identity provider.
+     * @return When `false`, users and clients will not be able to access this realm. Defaults to `true`.
      * 
      */
     public Output<Optional<Boolean>> enabled() {
@@ -259,58 +237,56 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.extraConfig);
     }
     /**
-     * Alias of authentication flow, which is triggered after first login with this identity provider. Term &#39;First Login&#39; means
-     * that there is not yet existing Keycloak account linked with the authenticated identity provider account.
+     * Alias of authentication flow, which is triggered after first login with this identity provider. Term &#39;First Login&#39; means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
      * 
      */
     @Export(name="firstBrokerLoginFlowAlias", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> firstBrokerLoginFlowAlias;
 
     /**
-     * @return Alias of authentication flow, which is triggered after first login with this identity provider. Term &#39;First Login&#39; means
-     * that there is not yet existing Keycloak account linked with the authenticated identity provider account.
+     * @return Alias of authentication flow, which is triggered after first login with this identity provider. Term &#39;First Login&#39; means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
      * 
      */
     public Output<Optional<String>> firstBrokerLoginFlowAlias() {
         return Codegen.optional(this.firstBrokerLoginFlowAlias);
     }
     /**
-     * Require Force Authn.
+     * Indicates whether the identity provider must authenticate the presenter directly rather than rely on a previous security context.
      * 
      */
     @Export(name="forceAuthn", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> forceAuthn;
 
     /**
-     * @return Require Force Authn.
+     * @return Indicates whether the identity provider must authenticate the presenter directly rather than rely on a previous security context.
      * 
      */
     public Output<Optional<Boolean>> forceAuthn() {
         return Codegen.optional(this.forceAuthn);
     }
     /**
-     * GUI Order
+     * A number defining the order of this identity provider in the GUI.
      * 
      */
     @Export(name="guiOrder", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> guiOrder;
 
     /**
-     * @return GUI Order
+     * @return A number defining the order of this identity provider in the GUI.
      * 
      */
     public Output<Optional<String>> guiOrder() {
         return Codegen.optional(this.guiOrder);
     }
     /**
-     * Hide On Login Page.
+     * If hidden, then login with this provider is possible only if requested explicitly, e.g. using the &#39;kc_idp_hint&#39; parameter.
      * 
      */
     @Export(name="hideOnLoginPage", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> hideOnLoginPage;
 
     /**
-     * @return Hide On Login Page.
+     * @return If hidden, then login with this provider is possible only if requested explicitly, e.g. using the &#39;kc_idp_hint&#39; parameter.
      * 
      */
     public Output<Optional<Boolean>> hideOnLoginPage() {
@@ -331,16 +307,14 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
         return this.internalId;
     }
     /**
-     * If true, users cannot log in through this provider. They can only link to this provider. This is useful if you don&#39;t
-     * want to allow login from the provider, but want to integrate with a provider
+     * When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
      * 
      */
     @Export(name="linkOnly", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> linkOnly;
 
     /**
-     * @return If true, users cannot log in through this provider. They can only link to this provider. This is useful if you don&#39;t
-     * want to allow login from the provider, but want to integrate with a provider
+     * @return When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
      * 
      */
     public Output<Optional<Boolean>> linkOnly() {
@@ -361,146 +335,140 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.loginHint);
     }
     /**
-     * Name ID Policy Format.
+     * Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
      * 
      */
     @Export(name="nameIdPolicyFormat", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> nameIdPolicyFormat;
 
     /**
-     * @return Name ID Policy Format.
+     * @return Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
      * 
      */
     public Output<Optional<String>> nameIdPolicyFormat() {
         return Codegen.optional(this.nameIdPolicyFormat);
     }
     /**
-     * Post Binding Authn Request.
+     * Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
      * 
      */
     @Export(name="postBindingAuthnRequest", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> postBindingAuthnRequest;
 
     /**
-     * @return Post Binding Authn Request.
+     * @return Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
      * 
      */
     public Output<Optional<Boolean>> postBindingAuthnRequest() {
         return Codegen.optional(this.postBindingAuthnRequest);
     }
     /**
-     * Post Binding Logout.
+     * Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
      * 
      */
     @Export(name="postBindingLogout", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> postBindingLogout;
 
     /**
-     * @return Post Binding Logout.
+     * @return Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
      * 
      */
     public Output<Optional<Boolean>> postBindingLogout() {
         return Codegen.optional(this.postBindingLogout);
     }
     /**
-     * Post Binding Response.
+     * Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
      * 
      */
     @Export(name="postBindingResponse", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> postBindingResponse;
 
     /**
-     * @return Post Binding Response.
+     * @return Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
      * 
      */
     public Output<Optional<Boolean>> postBindingResponse() {
         return Codegen.optional(this.postBindingResponse);
     }
     /**
-     * Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want
-     * additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if
-     * you don&#39;t want any additional authenticators to be triggered after login with this identity provider. Also note, that
-     * authenticator implementations must assume that user is already set in ClientSession as identity provider already set it.
+     * Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don&#39;t want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it. Defaults to empty.
      * 
      */
     @Export(name="postBrokerLoginFlowAlias", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> postBrokerLoginFlowAlias;
 
     /**
-     * @return Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want
-     * additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if
-     * you don&#39;t want any additional authenticators to be triggered after login with this identity provider. Also note, that
-     * authenticator implementations must assume that user is already set in ClientSession as identity provider already set it.
+     * @return Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don&#39;t want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it. Defaults to empty.
      * 
      */
     public Output<Optional<String>> postBrokerLoginFlowAlias() {
         return Codegen.optional(this.postBrokerLoginFlowAlias);
     }
     /**
-     * Principal Attribute
+     * The principal attribute.
      * 
      */
     @Export(name="principalAttribute", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> principalAttribute;
 
     /**
-     * @return Principal Attribute
+     * @return The principal attribute.
      * 
      */
     public Output<Optional<String>> principalAttribute() {
         return Codegen.optional(this.principalAttribute);
     }
     /**
-     * Principal Type
+     * The principal type. Can be one of `SUBJECT`, `ATTRIBUTE` or `FRIENDLY_ATTRIBUTE`.
      * 
      */
     @Export(name="principalType", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> principalType;
 
     /**
-     * @return Principal Type
+     * @return The principal type. Can be one of `SUBJECT`, `ATTRIBUTE` or `FRIENDLY_ATTRIBUTE`.
      * 
      */
     public Output<Optional<String>> principalType() {
         return Codegen.optional(this.principalType);
     }
     /**
-     * provider id, is always saml, unless you have a custom implementation
+     * The ID of the identity provider to use. Defaults to `saml`, which should be used unless you have extended Keycloak and provided your own implementation.
      * 
      */
     @Export(name="providerId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> providerId;
 
     /**
-     * @return provider id, is always saml, unless you have a custom implementation
+     * @return The ID of the identity provider to use. Defaults to `saml`, which should be used unless you have extended Keycloak and provided your own implementation.
      * 
      */
     public Output<Optional<String>> providerId() {
         return Codegen.optional(this.providerId);
     }
     /**
-     * Realm Name
+     * The name of the realm. This is unique across Keycloak.
      * 
      */
     @Export(name="realm", refs={String.class}, tree="[0]")
     private Output<String> realm;
 
     /**
-     * @return Realm Name
+     * @return The name of the realm. This is unique across Keycloak.
      * 
      */
     public Output<String> realm() {
         return this.realm;
     }
     /**
-     * Signing Algorithm.
+     * Signing Algorithm. Defaults to empty.
      * 
      */
     @Export(name="signatureAlgorithm", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> signatureAlgorithm;
 
     /**
-     * @return Signing Algorithm.
+     * @return Signing Algorithm. Defaults to empty.
      * 
      */
     public Output<Optional<String>> signatureAlgorithm() {
@@ -521,70 +489,70 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.signingCertificate);
     }
     /**
-     * Logout URL.
+     * The Url that must be used to send logout requests.
      * 
      */
     @Export(name="singleLogoutServiceUrl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> singleLogoutServiceUrl;
 
     /**
-     * @return Logout URL.
+     * @return The Url that must be used to send logout requests.
      * 
      */
     public Output<Optional<String>> singleLogoutServiceUrl() {
         return Codegen.optional(this.singleLogoutServiceUrl);
     }
     /**
-     * SSO Logout URL.
+     * The Url that must be used to send authentication requests (SAML AuthnRequest).
      * 
      */
     @Export(name="singleSignOnServiceUrl", refs={String.class}, tree="[0]")
     private Output<String> singleSignOnServiceUrl;
 
     /**
-     * @return SSO Logout URL.
+     * @return The Url that must be used to send authentication requests (SAML AuthnRequest).
      * 
      */
     public Output<String> singleSignOnServiceUrl() {
         return this.singleSignOnServiceUrl;
     }
     /**
-     * Enable/disable if tokens must be stored after authenticating users.
+     * When `true`, tokens will be stored after authenticating users. Defaults to `true`.
      * 
      */
     @Export(name="storeToken", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> storeToken;
 
     /**
-     * @return Enable/disable if tokens must be stored after authenticating users.
+     * @return When `true`, tokens will be stored after authenticating users. Defaults to `true`.
      * 
      */
     public Output<Optional<Boolean>> storeToken() {
         return Codegen.optional(this.storeToken);
     }
     /**
-     * Sync Mode
+     * The default sync mode to use for all mappers attached to this identity provider. Can be one of `IMPORT`, `FORCE`, or `LEGACY`.
      * 
      */
     @Export(name="syncMode", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> syncMode;
 
     /**
-     * @return Sync Mode
+     * @return The default sync mode to use for all mappers attached to this identity provider. Can be one of `IMPORT`, `FORCE`, or `LEGACY`.
      * 
      */
     public Output<Optional<String>> syncMode() {
         return Codegen.optional(this.syncMode);
     }
     /**
-     * If enabled then email provided by this provider is not verified even if verification is enabled for the realm.
+     * When `true`, email addresses for users in this provider will automatically be verified regardless of the realm&#39;s email verification policy. Defaults to `false`.
      * 
      */
     @Export(name="trustEmail", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> trustEmail;
 
     /**
-     * @return If enabled then email provided by this provider is not verified even if verification is enabled for the realm.
+     * @return When `true`, email addresses for users in this provider will automatically be verified regardless of the realm&#39;s email verification policy. Defaults to `false`.
      * 
      */
     public Output<Optional<Boolean>> trustEmail() {
@@ -605,42 +573,42 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.validateSignature);
     }
     /**
-     * Want Assertions Encrypted.
+     * Indicates whether this service provider expects an encrypted Assertion.
      * 
      */
     @Export(name="wantAssertionsEncrypted", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> wantAssertionsEncrypted;
 
     /**
-     * @return Want Assertions Encrypted.
+     * @return Indicates whether this service provider expects an encrypted Assertion.
      * 
      */
     public Output<Optional<Boolean>> wantAssertionsEncrypted() {
         return Codegen.optional(this.wantAssertionsEncrypted);
     }
     /**
-     * Want Assertions Signed.
+     * Indicates whether this service provider expects a signed Assertion.
      * 
      */
     @Export(name="wantAssertionsSigned", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> wantAssertionsSigned;
 
     /**
-     * @return Want Assertions Signed.
+     * @return Indicates whether this service provider expects a signed Assertion.
      * 
      */
     public Output<Optional<Boolean>> wantAssertionsSigned() {
         return Codegen.optional(this.wantAssertionsSigned);
     }
     /**
-     * Sign Key Transformer.
+     * The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.
      * 
      */
     @Export(name="xmlSignKeyInfoKeyNameTransformer", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> xmlSignKeyInfoKeyNameTransformer;
 
     /**
-     * @return Sign Key Transformer.
+     * @return The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.
      * 
      */
     public Output<Optional<String>> xmlSignKeyInfoKeyNameTransformer() {

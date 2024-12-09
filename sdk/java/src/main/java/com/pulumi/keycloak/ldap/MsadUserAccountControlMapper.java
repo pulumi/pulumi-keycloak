@@ -16,8 +16,6 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # keycloak.ldap.MsadUserAccountControlMapper
- * 
  * Allows for creating and managing MSAD user account control mappers for Keycloak
  * users federated via LDAP.
  * 
@@ -26,7 +24,7 @@ import javax.annotation.Nullable;
  * AD user state to Keycloak in order to enforce settings like expired passwords
  * or disabled accounts.
  * 
- * ### Example Usage
+ * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>
@@ -56,7 +54,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var realm = new Realm("realm", RealmArgs.builder()
- *             .realm("test")
+ *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
@@ -88,67 +86,74 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * ### Argument Reference
- * 
- * The following arguments are supported:
- * 
- * - `realm_id` - (Required) The realm that this LDAP mapper will exist in.
- * - `ldap_user_federation_id` - (Required) The ID of the LDAP user federation provider to attach this mapper to.
- * - `name` - (Required) Display name of this mapper when displayed in the console.
- * - `ldap_password_policy_hints_enabled` - (Optional) When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
- * 
- * ### Import
+ * ## Import
  * 
  * LDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`.
- * The ID of the LDAP user federation provider and the mapper can be found within
- * the Keycloak GUI, and they are typically GUIDs:
+ * 
+ * The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs.
+ * 
+ * Example:
+ * 
+ * bash
+ * 
+ * ```sh
+ * $ pulumi import keycloak:ldap/msadUserAccountControlMapper:MsadUserAccountControlMapper msad_user_account_control_mapper my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
+ * ```
  * 
  */
 @ResourceType(type="keycloak:ldap/msadUserAccountControlMapper:MsadUserAccountControlMapper")
 public class MsadUserAccountControlMapper extends com.pulumi.resources.CustomResource {
+    /**
+     * When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
+     * 
+     */
     @Export(name="ldapPasswordPolicyHintsEnabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> ldapPasswordPolicyHintsEnabled;
 
+    /**
+     * @return When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
+     * 
+     */
     public Output<Optional<Boolean>> ldapPasswordPolicyHintsEnabled() {
         return Codegen.optional(this.ldapPasswordPolicyHintsEnabled);
     }
     /**
-     * The ldap user federation provider to attach this mapper to.
+     * The ID of the LDAP user federation provider to attach this mapper to.
      * 
      */
     @Export(name="ldapUserFederationId", refs={String.class}, tree="[0]")
     private Output<String> ldapUserFederationId;
 
     /**
-     * @return The ldap user federation provider to attach this mapper to.
+     * @return The ID of the LDAP user federation provider to attach this mapper to.
      * 
      */
     public Output<String> ldapUserFederationId() {
         return this.ldapUserFederationId;
     }
     /**
-     * Display name of the mapper when displayed in the console.
+     * Display name of this mapper when displayed in the console.
      * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
-     * @return Display name of the mapper when displayed in the console.
+     * @return Display name of this mapper when displayed in the console.
      * 
      */
     public Output<String> name() {
         return this.name;
     }
     /**
-     * The realm in which the ldap user federation provider exists.
+     * The realm that this LDAP mapper will exist in.
      * 
      */
     @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**
-     * @return The realm in which the ldap user federation provider exists.
+     * @return The realm that this LDAP mapper will exist in.
      * 
      */
     public Output<String> realmId() {

@@ -13,16 +13,32 @@ public final class GetGroupPlainArgs extends com.pulumi.resources.InvokeArgs {
 
     public static final GetGroupPlainArgs Empty = new GetGroupPlainArgs();
 
+    /**
+     * The name of the group. If there are multiple groups match `name`, the first result will be returned.
+     * 
+     */
     @Import(name="name", required=true)
     private String name;
 
+    /**
+     * @return The name of the group. If there are multiple groups match `name`, the first result will be returned.
+     * 
+     */
     public String name() {
         return this.name;
     }
 
+    /**
+     * The realm this group exists within.
+     * 
+     */
     @Import(name="realmId", required=true)
     private String realmId;
 
+    /**
+     * @return The realm this group exists within.
+     * 
+     */
     public String realmId() {
         return this.realmId;
     }
@@ -52,11 +68,23 @@ public final class GetGroupPlainArgs extends com.pulumi.resources.InvokeArgs {
             $ = new GetGroupPlainArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param name The name of the group. If there are multiple groups match `name`, the first result will be returned.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param realmId The realm this group exists within.
+         * 
+         * @return builder
+         * 
+         */
         public Builder realmId(String realmId) {
             $.realmId = realmId;
             return this;

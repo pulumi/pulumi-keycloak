@@ -18,15 +18,12 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # keycloak.CustomUserFederation
- * 
  * Allows for creating and managing custom user federation providers within Keycloak.
  * 
- * A custom user federation provider is an implementation of Keycloak&#39;s
- * [User Storage SPI](https://www.keycloak.org/docs/4.2/server_development/index.html#_user-storage-spi).
+ * A custom user federation provider is an implementation of Keycloak&#39;s [User Storage SPI](https://www.keycloak.org/docs/4.2/server_development/index.html#_user-storage-spi).
  * An example of this implementation can be found here.
  * 
- * ### Example Usage
+ * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>
@@ -63,6 +60,11 @@ import javax.annotation.Nullable;
  *             .realmId(realm.id())
  *             .providerId("custom")
  *             .enabled(true)
+ *             .config(Map.ofEntries(
+ *                 Map.entry("dummyString", "foobar"),
+ *                 Map.entry("dummyBool", true),
+ *                 Map.entry("multivalue", "value1##value2")
+ *             ))
  *             .build());
  * 
  *     }
@@ -71,62 +73,72 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * ### Argument Reference
- * 
- * The following arguments are supported:
- * 
- * - `realm_id` - (Required) The realm that this provider will provide user federation for.
- * - `name` - (Required) Display name of the provider when displayed in the console.
- * - `provider_id` - (Required) The unique ID of the custom provider, specified in the `getId` implementation for the `UserStorageProviderFactory` interface.
- * - `enabled` - (Optional) When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
- * - `priority` - (Optional) Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
- * - `cache_policy` - (Optional) Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
- * 
- * ### Import
+ * ## Import
  * 
  * Custom user federation providers can be imported using the format `{{realm_id}}/{{custom_user_federation_id}}`.
+ * 
  * The ID of the custom user federation provider can be found within the Keycloak GUI and is typically a GUID:
+ * 
+ * bash
+ * 
+ * ```sh
+ * $ pulumi import keycloak:index/customUserFederation:CustomUserFederation custom_user_federation my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860
+ * ```
  * 
  */
 @ResourceType(type="keycloak:index/customUserFederation:CustomUserFederation")
 public class CustomUserFederation extends com.pulumi.resources.CustomResource {
+    /**
+     * Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
+     * 
+     */
     @Export(name="cachePolicy", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> cachePolicy;
 
+    /**
+     * @return Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
+     * 
+     */
     public Output<Optional<String>> cachePolicy() {
         return Codegen.optional(this.cachePolicy);
     }
     /**
-     * How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users
-     * sync.
+     * How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users sync.
      * 
      */
     @Export(name="changedSyncPeriod", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> changedSyncPeriod;
 
     /**
-     * @return How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users
-     * sync.
+     * @return How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users sync.
      * 
      */
     public Output<Optional<Integer>> changedSyncPeriod() {
         return Codegen.optional(this.changedSyncPeriod);
     }
+    /**
+     * The provider configuration handed over to your custom user federation provider. In order to add multivalue settings, use `##` to seperate the values.
+     * 
+     */
     @Export(name="config", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> config;
 
+    /**
+     * @return The provider configuration handed over to your custom user federation provider. In order to add multivalue settings, use `##` to seperate the values.
+     * 
+     */
     public Output<Optional<Map<String,String>>> config() {
         return Codegen.optional(this.config);
     }
     /**
-     * When false, this provider will not be used when performing queries for users.
+     * When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
      * 
      */
     @Export(name="enabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> enabled;
 
     /**
-     * @return When false, this provider will not be used when performing queries for users.
+     * @return When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
      * 
      */
     public Output<Optional<Boolean>> enabled() {
@@ -161,58 +173,56 @@ public class CustomUserFederation extends com.pulumi.resources.CustomResource {
         return this.name;
     }
     /**
-     * The parent_id of the generated component. will use realm_id if not specified.
+     * Must be set to the realms&#39; `internal_id`  when it differs from the realm. This can happen when existing resources are imported into the state.
      * 
      */
     @Export(name="parentId", refs={String.class}, tree="[0]")
     private Output<String> parentId;
 
     /**
-     * @return The parent_id of the generated component. will use realm_id if not specified.
+     * @return Must be set to the realms&#39; `internal_id`  when it differs from the realm. This can happen when existing resources are imported into the state.
      * 
      */
     public Output<String> parentId() {
         return this.parentId;
     }
     /**
-     * Priority of this provider when looking up users. Lower values are first.
+     * Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
      * 
      */
     @Export(name="priority", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> priority;
 
     /**
-     * @return Priority of this provider when looking up users. Lower values are first.
+     * @return Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
      * 
      */
     public Output<Optional<Integer>> priority() {
         return Codegen.optional(this.priority);
     }
     /**
-     * The unique ID of the custom provider, specified in the `getId` implementation for the UserStorageProviderFactory
-     * interface
+     * The unique ID of the custom provider, specified in the `getId` implementation for the `UserStorageProviderFactory` interface.
      * 
      */
     @Export(name="providerId", refs={String.class}, tree="[0]")
     private Output<String> providerId;
 
     /**
-     * @return The unique ID of the custom provider, specified in the `getId` implementation for the UserStorageProviderFactory
-     * interface
+     * @return The unique ID of the custom provider, specified in the `getId` implementation for the `UserStorageProviderFactory` interface.
      * 
      */
     public Output<String> providerId() {
         return this.providerId;
     }
     /**
-     * The realm (name) this provider will provide user federation for.
+     * The realm that this provider will provide user federation for.
      * 
      */
     @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**
-     * @return The realm (name) this provider will provide user federation for.
+     * @return The realm that this provider will provide user federation for.
      * 
      */
     public Output<String> realmId() {

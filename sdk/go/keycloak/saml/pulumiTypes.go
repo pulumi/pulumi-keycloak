@@ -14,7 +14,9 @@ import (
 var _ = internal.GetEnvOrDefault
 
 type ClientAuthenticationFlowBindingOverrides struct {
-	BrowserId     *string `pulumi:"browserId"`
+	// Browser flow id, (flow needs to exist)
+	BrowserId *string `pulumi:"browserId"`
+	// Direct grant flow id (flow needs to exist)
 	DirectGrantId *string `pulumi:"directGrantId"`
 }
 
@@ -30,7 +32,9 @@ type ClientAuthenticationFlowBindingOverridesInput interface {
 }
 
 type ClientAuthenticationFlowBindingOverridesArgs struct {
-	BrowserId     pulumi.StringPtrInput `pulumi:"browserId"`
+	// Browser flow id, (flow needs to exist)
+	BrowserId pulumi.StringPtrInput `pulumi:"browserId"`
+	// Direct grant flow id (flow needs to exist)
 	DirectGrantId pulumi.StringPtrInput `pulumi:"directGrantId"`
 }
 
@@ -111,10 +115,12 @@ func (o ClientAuthenticationFlowBindingOverridesOutput) ToClientAuthenticationFl
 	}).(ClientAuthenticationFlowBindingOverridesPtrOutput)
 }
 
+// Browser flow id, (flow needs to exist)
 func (o ClientAuthenticationFlowBindingOverridesOutput) BrowserId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClientAuthenticationFlowBindingOverrides) *string { return v.BrowserId }).(pulumi.StringPtrOutput)
 }
 
+// Direct grant flow id (flow needs to exist)
 func (o ClientAuthenticationFlowBindingOverridesOutput) DirectGrantId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClientAuthenticationFlowBindingOverrides) *string { return v.DirectGrantId }).(pulumi.StringPtrOutput)
 }
@@ -143,6 +149,7 @@ func (o ClientAuthenticationFlowBindingOverridesPtrOutput) Elem() ClientAuthenti
 	}).(ClientAuthenticationFlowBindingOverridesOutput)
 }
 
+// Browser flow id, (flow needs to exist)
 func (o ClientAuthenticationFlowBindingOverridesPtrOutput) BrowserId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ClientAuthenticationFlowBindingOverrides) *string {
 		if v == nil {
@@ -152,6 +159,7 @@ func (o ClientAuthenticationFlowBindingOverridesPtrOutput) BrowserId() pulumi.St
 	}).(pulumi.StringPtrOutput)
 }
 
+// Direct grant flow id (flow needs to exist)
 func (o ClientAuthenticationFlowBindingOverridesPtrOutput) DirectGrantId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ClientAuthenticationFlowBindingOverrides) *string {
 		if v == nil {

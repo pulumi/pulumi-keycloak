@@ -12,6 +12,107 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Allows for creating and managing Realms within Keycloak.
+//
+// A realm manages a logical collection of users, credentials, roles, and groups. Users log in to realms and can be federated
+// from multiple sources.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:              pulumi.String("my-realm"),
+//				Enabled:            pulumi.Bool(true),
+//				DisplayName:        pulumi.String("my realm"),
+//				DisplayNameHtml:    pulumi.String("<b>my realm</b>"),
+//				LoginTheme:         pulumi.String("base"),
+//				AccessCodeLifespan: pulumi.String("1h"),
+//				SslRequired:        pulumi.String("external"),
+//				PasswordPolicy:     pulumi.String("upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername"),
+//				Attributes: pulumi.StringMap{
+//					"mycustomAttribute": pulumi.String("myCustomValue"),
+//				},
+//				SmtpServer: &keycloak.RealmSmtpServerArgs{
+//					Host: pulumi.String("smtp.example.com"),
+//					From: pulumi.String("example@example.com"),
+//					Auth: &keycloak.RealmSmtpServerAuthArgs{
+//						Username: pulumi.String("tom"),
+//						Password: pulumi.String("password"),
+//					},
+//				},
+//				Internationalization: &keycloak.RealmInternationalizationArgs{
+//					SupportedLocales: pulumi.StringArray{
+//						pulumi.String("en"),
+//						pulumi.String("de"),
+//						pulumi.String("es"),
+//					},
+//					DefaultLocale: pulumi.String("en"),
+//				},
+//				SecurityDefenses: &keycloak.RealmSecurityDefensesArgs{
+//					Headers: &keycloak.RealmSecurityDefensesHeadersArgs{
+//						XFrameOptions:                   pulumi.String("DENY"),
+//						ContentSecurityPolicy:           pulumi.String("frame-src 'self'; frame-ancestors 'self'; object-src 'none';"),
+//						ContentSecurityPolicyReportOnly: pulumi.String(""),
+//						XContentTypeOptions:             pulumi.String("nosniff"),
+//						XRobotsTag:                      pulumi.String("none"),
+//						XXssProtection:                  pulumi.String("1; mode=block"),
+//						StrictTransportSecurity:         pulumi.String("max-age=31536000; includeSubDomains"),
+//					},
+//					BruteForceDetection: &keycloak.RealmSecurityDefensesBruteForceDetectionArgs{
+//						PermanentLockout:             pulumi.Bool(false),
+//						MaxLoginFailures:             pulumi.Int(30),
+//						WaitIncrementSeconds:         pulumi.Int(60),
+//						QuickLoginCheckMilliSeconds:  pulumi.Int(1000),
+//						MinimumQuickLoginWaitSeconds: pulumi.Int(60),
+//						MaxFailureWaitSeconds:        pulumi.Int(900),
+//						FailureResetTimeSeconds:      pulumi.Int(43200),
+//					},
+//				},
+//				WebAuthnPolicy: &keycloak.RealmWebAuthnPolicyArgs{
+//					RelyingPartyEntityName: pulumi.String("Example"),
+//					RelyingPartyId:         pulumi.String("keycloak.example.com"),
+//					SignatureAlgorithms: pulumi.StringArray{
+//						pulumi.String("ES256"),
+//						pulumi.String("RS256"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Default Client Scopes
+//
+// - `defaultDefaultClientScopes` - (Optional) A list of default default client scopes to be used for client definitions. Defaults to `[]` or keycloak's built-in default default client-scopes.
+// - `defaultOptionalClientScopes` - (Optional) A list of default optional client scopes to be used for client definitions. Defaults to `[]` or keycloak's built-in default optional client-scopes.
+//
+// ## Import
+//
+// Realms can be imported using their name.
+//
+// Example:
+//
+// bash
+//
+// ```sh
+// $ pulumi import keycloak:index/realm:Realm realm my-realm
+// ```
 type Realm struct {
 	pulumi.CustomResourceState
 
@@ -24,7 +125,8 @@ type Realm struct {
 	ActionTokenGeneratedByAdminLifespan pulumi.StringOutput    `pulumi:"actionTokenGeneratedByAdminLifespan"`
 	ActionTokenGeneratedByUserLifespan  pulumi.StringOutput    `pulumi:"actionTokenGeneratedByUserLifespan"`
 	AdminTheme                          pulumi.StringPtrOutput `pulumi:"adminTheme"`
-	Attributes                          pulumi.StringMapOutput `pulumi:"attributes"`
+	// A map of custom attributes to add to the realm.
+	Attributes pulumi.StringMapOutput `pulumi:"attributes"`
 	// Which flow should be used for BrowserFlow
 	BrowserFlow pulumi.StringOutput `pulumi:"browserFlow"`
 	// Which flow should be used for ClientAuthenticationFlow
@@ -35,15 +137,19 @@ type Realm struct {
 	DefaultOptionalClientScopes pulumi.StringArrayOutput `pulumi:"defaultOptionalClientScopes"`
 	DefaultSignatureAlgorithm   pulumi.StringPtrOutput   `pulumi:"defaultSignatureAlgorithm"`
 	// Which flow should be used for DirectGrantFlow
-	DirectGrantFlow pulumi.StringOutput    `pulumi:"directGrantFlow"`
-	DisplayName     pulumi.StringPtrOutput `pulumi:"displayName"`
+	DirectGrantFlow pulumi.StringOutput `pulumi:"directGrantFlow"`
+	// The display name for the realm that is shown when logging in to the admin console.
+	DisplayName pulumi.StringPtrOutput `pulumi:"displayName"`
+	// The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.
 	DisplayNameHtml pulumi.StringPtrOutput `pulumi:"displayNameHtml"`
 	// Which flow should be used for DockerAuthenticationFlow
-	DockerAuthenticationFlow         pulumi.StringOutput                `pulumi:"dockerAuthenticationFlow"`
-	DuplicateEmailsAllowed           pulumi.BoolOutput                  `pulumi:"duplicateEmailsAllowed"`
-	EditUsernameAllowed              pulumi.BoolOutput                  `pulumi:"editUsernameAllowed"`
-	EmailTheme                       pulumi.StringPtrOutput             `pulumi:"emailTheme"`
-	Enabled                          pulumi.BoolPtrOutput               `pulumi:"enabled"`
+	DockerAuthenticationFlow pulumi.StringOutput    `pulumi:"dockerAuthenticationFlow"`
+	DuplicateEmailsAllowed   pulumi.BoolOutput      `pulumi:"duplicateEmailsAllowed"`
+	EditUsernameAllowed      pulumi.BoolOutput      `pulumi:"editUsernameAllowed"`
+	EmailTheme               pulumi.StringPtrOutput `pulumi:"emailTheme"`
+	// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
+	Enabled pulumi.BoolPtrOutput `pulumi:"enabled"`
+	// When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
 	InternalId                       pulumi.StringOutput                `pulumi:"internalId"`
 	Internationalization             RealmInternationalizationPtrOutput `pulumi:"internationalization"`
 	LoginTheme                       pulumi.StringPtrOutput             `pulumi:"loginTheme"`
@@ -57,11 +163,12 @@ type Realm struct {
 	// String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
 	// can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365)
 	// and notUsername(undefined)"
-	PasswordPolicy              pulumi.StringPtrOutput `pulumi:"passwordPolicy"`
-	Realm                       pulumi.StringOutput    `pulumi:"realm"`
-	RefreshTokenMaxReuse        pulumi.IntPtrOutput    `pulumi:"refreshTokenMaxReuse"`
-	RegistrationAllowed         pulumi.BoolOutput      `pulumi:"registrationAllowed"`
-	RegistrationEmailAsUsername pulumi.BoolOutput      `pulumi:"registrationEmailAsUsername"`
+	PasswordPolicy pulumi.StringPtrOutput `pulumi:"passwordPolicy"`
+	// The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
+	Realm                       pulumi.StringOutput `pulumi:"realm"`
+	RefreshTokenMaxReuse        pulumi.IntPtrOutput `pulumi:"refreshTokenMaxReuse"`
+	RegistrationAllowed         pulumi.BoolOutput   `pulumi:"registrationAllowed"`
+	RegistrationEmailAsUsername pulumi.BoolOutput   `pulumi:"registrationEmailAsUsername"`
 	// Which flow should be used for RegistrationFlow
 	RegistrationFlow pulumi.StringOutput `pulumi:"registrationFlow"`
 	RememberMe       pulumi.BoolOutput   `pulumi:"rememberMe"`
@@ -72,15 +179,16 @@ type Realm struct {
 	SecurityDefenses     RealmSecurityDefensesPtrOutput `pulumi:"securityDefenses"`
 	SmtpServer           RealmSmtpServerPtrOutput       `pulumi:"smtpServer"`
 	// SSL Required: Values can be 'none', 'external' or 'all'.
-	SslRequired                     pulumi.StringPtrOutput                `pulumi:"sslRequired"`
-	SsoSessionIdleTimeout           pulumi.StringOutput                   `pulumi:"ssoSessionIdleTimeout"`
-	SsoSessionIdleTimeoutRememberMe pulumi.StringOutput                   `pulumi:"ssoSessionIdleTimeoutRememberMe"`
-	SsoSessionMaxLifespan           pulumi.StringOutput                   `pulumi:"ssoSessionMaxLifespan"`
-	SsoSessionMaxLifespanRememberMe pulumi.StringOutput                   `pulumi:"ssoSessionMaxLifespanRememberMe"`
-	UserManagedAccess               pulumi.BoolPtrOutput                  `pulumi:"userManagedAccess"`
-	VerifyEmail                     pulumi.BoolOutput                     `pulumi:"verifyEmail"`
-	WebAuthnPasswordlessPolicy      RealmWebAuthnPasswordlessPolicyOutput `pulumi:"webAuthnPasswordlessPolicy"`
-	WebAuthnPolicy                  RealmWebAuthnPolicyOutput             `pulumi:"webAuthnPolicy"`
+	SslRequired                     pulumi.StringPtrOutput `pulumi:"sslRequired"`
+	SsoSessionIdleTimeout           pulumi.StringOutput    `pulumi:"ssoSessionIdleTimeout"`
+	SsoSessionIdleTimeoutRememberMe pulumi.StringOutput    `pulumi:"ssoSessionIdleTimeoutRememberMe"`
+	SsoSessionMaxLifespan           pulumi.StringOutput    `pulumi:"ssoSessionMaxLifespan"`
+	SsoSessionMaxLifespanRememberMe pulumi.StringOutput    `pulumi:"ssoSessionMaxLifespanRememberMe"`
+	// When `true`, users are allowed to manage their own resources. Defaults to `false`.
+	UserManagedAccess          pulumi.BoolPtrOutput                  `pulumi:"userManagedAccess"`
+	VerifyEmail                pulumi.BoolOutput                     `pulumi:"verifyEmail"`
+	WebAuthnPasswordlessPolicy RealmWebAuthnPasswordlessPolicyOutput `pulumi:"webAuthnPasswordlessPolicy"`
+	WebAuthnPolicy             RealmWebAuthnPolicyOutput             `pulumi:"webAuthnPolicy"`
 }
 
 // NewRealm registers a new resource with the given unique name, arguments, and options.
@@ -116,16 +224,17 @@ func GetRealm(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Realm resources.
 type realmState struct {
-	AccessCodeLifespan                  *string           `pulumi:"accessCodeLifespan"`
-	AccessCodeLifespanLogin             *string           `pulumi:"accessCodeLifespanLogin"`
-	AccessCodeLifespanUserAction        *string           `pulumi:"accessCodeLifespanUserAction"`
-	AccessTokenLifespan                 *string           `pulumi:"accessTokenLifespan"`
-	AccessTokenLifespanForImplicitFlow  *string           `pulumi:"accessTokenLifespanForImplicitFlow"`
-	AccountTheme                        *string           `pulumi:"accountTheme"`
-	ActionTokenGeneratedByAdminLifespan *string           `pulumi:"actionTokenGeneratedByAdminLifespan"`
-	ActionTokenGeneratedByUserLifespan  *string           `pulumi:"actionTokenGeneratedByUserLifespan"`
-	AdminTheme                          *string           `pulumi:"adminTheme"`
-	Attributes                          map[string]string `pulumi:"attributes"`
+	AccessCodeLifespan                  *string `pulumi:"accessCodeLifespan"`
+	AccessCodeLifespanLogin             *string `pulumi:"accessCodeLifespanLogin"`
+	AccessCodeLifespanUserAction        *string `pulumi:"accessCodeLifespanUserAction"`
+	AccessTokenLifespan                 *string `pulumi:"accessTokenLifespan"`
+	AccessTokenLifespanForImplicitFlow  *string `pulumi:"accessTokenLifespanForImplicitFlow"`
+	AccountTheme                        *string `pulumi:"accountTheme"`
+	ActionTokenGeneratedByAdminLifespan *string `pulumi:"actionTokenGeneratedByAdminLifespan"`
+	ActionTokenGeneratedByUserLifespan  *string `pulumi:"actionTokenGeneratedByUserLifespan"`
+	AdminTheme                          *string `pulumi:"adminTheme"`
+	// A map of custom attributes to add to the realm.
+	Attributes map[string]string `pulumi:"attributes"`
 	// Which flow should be used for BrowserFlow
 	BrowserFlow *string `pulumi:"browserFlow"`
 	// Which flow should be used for ClientAuthenticationFlow
@@ -137,14 +246,18 @@ type realmState struct {
 	DefaultSignatureAlgorithm   *string  `pulumi:"defaultSignatureAlgorithm"`
 	// Which flow should be used for DirectGrantFlow
 	DirectGrantFlow *string `pulumi:"directGrantFlow"`
-	DisplayName     *string `pulumi:"displayName"`
+	// The display name for the realm that is shown when logging in to the admin console.
+	DisplayName *string `pulumi:"displayName"`
+	// The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.
 	DisplayNameHtml *string `pulumi:"displayNameHtml"`
 	// Which flow should be used for DockerAuthenticationFlow
-	DockerAuthenticationFlow         *string                    `pulumi:"dockerAuthenticationFlow"`
-	DuplicateEmailsAllowed           *bool                      `pulumi:"duplicateEmailsAllowed"`
-	EditUsernameAllowed              *bool                      `pulumi:"editUsernameAllowed"`
-	EmailTheme                       *string                    `pulumi:"emailTheme"`
-	Enabled                          *bool                      `pulumi:"enabled"`
+	DockerAuthenticationFlow *string `pulumi:"dockerAuthenticationFlow"`
+	DuplicateEmailsAllowed   *bool   `pulumi:"duplicateEmailsAllowed"`
+	EditUsernameAllowed      *bool   `pulumi:"editUsernameAllowed"`
+	EmailTheme               *string `pulumi:"emailTheme"`
+	// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
+	Enabled *bool `pulumi:"enabled"`
+	// When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
 	InternalId                       *string                    `pulumi:"internalId"`
 	Internationalization             *RealmInternationalization `pulumi:"internationalization"`
 	LoginTheme                       *string                    `pulumi:"loginTheme"`
@@ -158,7 +271,8 @@ type realmState struct {
 	// String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
 	// can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365)
 	// and notUsername(undefined)"
-	PasswordPolicy              *string `pulumi:"passwordPolicy"`
+	PasswordPolicy *string `pulumi:"passwordPolicy"`
+	// The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
 	Realm                       *string `pulumi:"realm"`
 	RefreshTokenMaxReuse        *int    `pulumi:"refreshTokenMaxReuse"`
 	RegistrationAllowed         *bool   `pulumi:"registrationAllowed"`
@@ -173,15 +287,16 @@ type realmState struct {
 	SecurityDefenses     *RealmSecurityDefenses `pulumi:"securityDefenses"`
 	SmtpServer           *RealmSmtpServer       `pulumi:"smtpServer"`
 	// SSL Required: Values can be 'none', 'external' or 'all'.
-	SslRequired                     *string                          `pulumi:"sslRequired"`
-	SsoSessionIdleTimeout           *string                          `pulumi:"ssoSessionIdleTimeout"`
-	SsoSessionIdleTimeoutRememberMe *string                          `pulumi:"ssoSessionIdleTimeoutRememberMe"`
-	SsoSessionMaxLifespan           *string                          `pulumi:"ssoSessionMaxLifespan"`
-	SsoSessionMaxLifespanRememberMe *string                          `pulumi:"ssoSessionMaxLifespanRememberMe"`
-	UserManagedAccess               *bool                            `pulumi:"userManagedAccess"`
-	VerifyEmail                     *bool                            `pulumi:"verifyEmail"`
-	WebAuthnPasswordlessPolicy      *RealmWebAuthnPasswordlessPolicy `pulumi:"webAuthnPasswordlessPolicy"`
-	WebAuthnPolicy                  *RealmWebAuthnPolicy             `pulumi:"webAuthnPolicy"`
+	SslRequired                     *string `pulumi:"sslRequired"`
+	SsoSessionIdleTimeout           *string `pulumi:"ssoSessionIdleTimeout"`
+	SsoSessionIdleTimeoutRememberMe *string `pulumi:"ssoSessionIdleTimeoutRememberMe"`
+	SsoSessionMaxLifespan           *string `pulumi:"ssoSessionMaxLifespan"`
+	SsoSessionMaxLifespanRememberMe *string `pulumi:"ssoSessionMaxLifespanRememberMe"`
+	// When `true`, users are allowed to manage their own resources. Defaults to `false`.
+	UserManagedAccess          *bool                            `pulumi:"userManagedAccess"`
+	VerifyEmail                *bool                            `pulumi:"verifyEmail"`
+	WebAuthnPasswordlessPolicy *RealmWebAuthnPasswordlessPolicy `pulumi:"webAuthnPasswordlessPolicy"`
+	WebAuthnPolicy             *RealmWebAuthnPolicy             `pulumi:"webAuthnPolicy"`
 }
 
 type RealmState struct {
@@ -194,7 +309,8 @@ type RealmState struct {
 	ActionTokenGeneratedByAdminLifespan pulumi.StringPtrInput
 	ActionTokenGeneratedByUserLifespan  pulumi.StringPtrInput
 	AdminTheme                          pulumi.StringPtrInput
-	Attributes                          pulumi.StringMapInput
+	// A map of custom attributes to add to the realm.
+	Attributes pulumi.StringMapInput
 	// Which flow should be used for BrowserFlow
 	BrowserFlow pulumi.StringPtrInput
 	// Which flow should be used for ClientAuthenticationFlow
@@ -206,14 +322,18 @@ type RealmState struct {
 	DefaultSignatureAlgorithm   pulumi.StringPtrInput
 	// Which flow should be used for DirectGrantFlow
 	DirectGrantFlow pulumi.StringPtrInput
-	DisplayName     pulumi.StringPtrInput
+	// The display name for the realm that is shown when logging in to the admin console.
+	DisplayName pulumi.StringPtrInput
+	// The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.
 	DisplayNameHtml pulumi.StringPtrInput
 	// Which flow should be used for DockerAuthenticationFlow
-	DockerAuthenticationFlow         pulumi.StringPtrInput
-	DuplicateEmailsAllowed           pulumi.BoolPtrInput
-	EditUsernameAllowed              pulumi.BoolPtrInput
-	EmailTheme                       pulumi.StringPtrInput
-	Enabled                          pulumi.BoolPtrInput
+	DockerAuthenticationFlow pulumi.StringPtrInput
+	DuplicateEmailsAllowed   pulumi.BoolPtrInput
+	EditUsernameAllowed      pulumi.BoolPtrInput
+	EmailTheme               pulumi.StringPtrInput
+	// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
+	Enabled pulumi.BoolPtrInput
+	// When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
 	InternalId                       pulumi.StringPtrInput
 	Internationalization             RealmInternationalizationPtrInput
 	LoginTheme                       pulumi.StringPtrInput
@@ -227,7 +347,8 @@ type RealmState struct {
 	// String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
 	// can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365)
 	// and notUsername(undefined)"
-	PasswordPolicy              pulumi.StringPtrInput
+	PasswordPolicy pulumi.StringPtrInput
+	// The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
 	Realm                       pulumi.StringPtrInput
 	RefreshTokenMaxReuse        pulumi.IntPtrInput
 	RegistrationAllowed         pulumi.BoolPtrInput
@@ -247,10 +368,11 @@ type RealmState struct {
 	SsoSessionIdleTimeoutRememberMe pulumi.StringPtrInput
 	SsoSessionMaxLifespan           pulumi.StringPtrInput
 	SsoSessionMaxLifespanRememberMe pulumi.StringPtrInput
-	UserManagedAccess               pulumi.BoolPtrInput
-	VerifyEmail                     pulumi.BoolPtrInput
-	WebAuthnPasswordlessPolicy      RealmWebAuthnPasswordlessPolicyPtrInput
-	WebAuthnPolicy                  RealmWebAuthnPolicyPtrInput
+	// When `true`, users are allowed to manage their own resources. Defaults to `false`.
+	UserManagedAccess          pulumi.BoolPtrInput
+	VerifyEmail                pulumi.BoolPtrInput
+	WebAuthnPasswordlessPolicy RealmWebAuthnPasswordlessPolicyPtrInput
+	WebAuthnPolicy             RealmWebAuthnPolicyPtrInput
 }
 
 func (RealmState) ElementType() reflect.Type {
@@ -258,16 +380,17 @@ func (RealmState) ElementType() reflect.Type {
 }
 
 type realmArgs struct {
-	AccessCodeLifespan                  *string           `pulumi:"accessCodeLifespan"`
-	AccessCodeLifespanLogin             *string           `pulumi:"accessCodeLifespanLogin"`
-	AccessCodeLifespanUserAction        *string           `pulumi:"accessCodeLifespanUserAction"`
-	AccessTokenLifespan                 *string           `pulumi:"accessTokenLifespan"`
-	AccessTokenLifespanForImplicitFlow  *string           `pulumi:"accessTokenLifespanForImplicitFlow"`
-	AccountTheme                        *string           `pulumi:"accountTheme"`
-	ActionTokenGeneratedByAdminLifespan *string           `pulumi:"actionTokenGeneratedByAdminLifespan"`
-	ActionTokenGeneratedByUserLifespan  *string           `pulumi:"actionTokenGeneratedByUserLifespan"`
-	AdminTheme                          *string           `pulumi:"adminTheme"`
-	Attributes                          map[string]string `pulumi:"attributes"`
+	AccessCodeLifespan                  *string `pulumi:"accessCodeLifespan"`
+	AccessCodeLifespanLogin             *string `pulumi:"accessCodeLifespanLogin"`
+	AccessCodeLifespanUserAction        *string `pulumi:"accessCodeLifespanUserAction"`
+	AccessTokenLifespan                 *string `pulumi:"accessTokenLifespan"`
+	AccessTokenLifespanForImplicitFlow  *string `pulumi:"accessTokenLifespanForImplicitFlow"`
+	AccountTheme                        *string `pulumi:"accountTheme"`
+	ActionTokenGeneratedByAdminLifespan *string `pulumi:"actionTokenGeneratedByAdminLifespan"`
+	ActionTokenGeneratedByUserLifespan  *string `pulumi:"actionTokenGeneratedByUserLifespan"`
+	AdminTheme                          *string `pulumi:"adminTheme"`
+	// A map of custom attributes to add to the realm.
+	Attributes map[string]string `pulumi:"attributes"`
 	// Which flow should be used for BrowserFlow
 	BrowserFlow *string `pulumi:"browserFlow"`
 	// Which flow should be used for ClientAuthenticationFlow
@@ -279,14 +402,18 @@ type realmArgs struct {
 	DefaultSignatureAlgorithm   *string  `pulumi:"defaultSignatureAlgorithm"`
 	// Which flow should be used for DirectGrantFlow
 	DirectGrantFlow *string `pulumi:"directGrantFlow"`
-	DisplayName     *string `pulumi:"displayName"`
+	// The display name for the realm that is shown when logging in to the admin console.
+	DisplayName *string `pulumi:"displayName"`
+	// The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.
 	DisplayNameHtml *string `pulumi:"displayNameHtml"`
 	// Which flow should be used for DockerAuthenticationFlow
-	DockerAuthenticationFlow         *string                    `pulumi:"dockerAuthenticationFlow"`
-	DuplicateEmailsAllowed           *bool                      `pulumi:"duplicateEmailsAllowed"`
-	EditUsernameAllowed              *bool                      `pulumi:"editUsernameAllowed"`
-	EmailTheme                       *string                    `pulumi:"emailTheme"`
-	Enabled                          *bool                      `pulumi:"enabled"`
+	DockerAuthenticationFlow *string `pulumi:"dockerAuthenticationFlow"`
+	DuplicateEmailsAllowed   *bool   `pulumi:"duplicateEmailsAllowed"`
+	EditUsernameAllowed      *bool   `pulumi:"editUsernameAllowed"`
+	EmailTheme               *string `pulumi:"emailTheme"`
+	// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
+	Enabled *bool `pulumi:"enabled"`
+	// When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
 	InternalId                       *string                    `pulumi:"internalId"`
 	Internationalization             *RealmInternationalization `pulumi:"internationalization"`
 	LoginTheme                       *string                    `pulumi:"loginTheme"`
@@ -300,11 +427,12 @@ type realmArgs struct {
 	// String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
 	// can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365)
 	// and notUsername(undefined)"
-	PasswordPolicy              *string `pulumi:"passwordPolicy"`
-	Realm                       string  `pulumi:"realm"`
-	RefreshTokenMaxReuse        *int    `pulumi:"refreshTokenMaxReuse"`
-	RegistrationAllowed         *bool   `pulumi:"registrationAllowed"`
-	RegistrationEmailAsUsername *bool   `pulumi:"registrationEmailAsUsername"`
+	PasswordPolicy *string `pulumi:"passwordPolicy"`
+	// The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
+	Realm                       string `pulumi:"realm"`
+	RefreshTokenMaxReuse        *int   `pulumi:"refreshTokenMaxReuse"`
+	RegistrationAllowed         *bool  `pulumi:"registrationAllowed"`
+	RegistrationEmailAsUsername *bool  `pulumi:"registrationEmailAsUsername"`
 	// Which flow should be used for RegistrationFlow
 	RegistrationFlow *string `pulumi:"registrationFlow"`
 	RememberMe       *bool   `pulumi:"rememberMe"`
@@ -315,15 +443,16 @@ type realmArgs struct {
 	SecurityDefenses     *RealmSecurityDefenses `pulumi:"securityDefenses"`
 	SmtpServer           *RealmSmtpServer       `pulumi:"smtpServer"`
 	// SSL Required: Values can be 'none', 'external' or 'all'.
-	SslRequired                     *string                          `pulumi:"sslRequired"`
-	SsoSessionIdleTimeout           *string                          `pulumi:"ssoSessionIdleTimeout"`
-	SsoSessionIdleTimeoutRememberMe *string                          `pulumi:"ssoSessionIdleTimeoutRememberMe"`
-	SsoSessionMaxLifespan           *string                          `pulumi:"ssoSessionMaxLifespan"`
-	SsoSessionMaxLifespanRememberMe *string                          `pulumi:"ssoSessionMaxLifespanRememberMe"`
-	UserManagedAccess               *bool                            `pulumi:"userManagedAccess"`
-	VerifyEmail                     *bool                            `pulumi:"verifyEmail"`
-	WebAuthnPasswordlessPolicy      *RealmWebAuthnPasswordlessPolicy `pulumi:"webAuthnPasswordlessPolicy"`
-	WebAuthnPolicy                  *RealmWebAuthnPolicy             `pulumi:"webAuthnPolicy"`
+	SslRequired                     *string `pulumi:"sslRequired"`
+	SsoSessionIdleTimeout           *string `pulumi:"ssoSessionIdleTimeout"`
+	SsoSessionIdleTimeoutRememberMe *string `pulumi:"ssoSessionIdleTimeoutRememberMe"`
+	SsoSessionMaxLifespan           *string `pulumi:"ssoSessionMaxLifespan"`
+	SsoSessionMaxLifespanRememberMe *string `pulumi:"ssoSessionMaxLifespanRememberMe"`
+	// When `true`, users are allowed to manage their own resources. Defaults to `false`.
+	UserManagedAccess          *bool                            `pulumi:"userManagedAccess"`
+	VerifyEmail                *bool                            `pulumi:"verifyEmail"`
+	WebAuthnPasswordlessPolicy *RealmWebAuthnPasswordlessPolicy `pulumi:"webAuthnPasswordlessPolicy"`
+	WebAuthnPolicy             *RealmWebAuthnPolicy             `pulumi:"webAuthnPolicy"`
 }
 
 // The set of arguments for constructing a Realm resource.
@@ -337,7 +466,8 @@ type RealmArgs struct {
 	ActionTokenGeneratedByAdminLifespan pulumi.StringPtrInput
 	ActionTokenGeneratedByUserLifespan  pulumi.StringPtrInput
 	AdminTheme                          pulumi.StringPtrInput
-	Attributes                          pulumi.StringMapInput
+	// A map of custom attributes to add to the realm.
+	Attributes pulumi.StringMapInput
 	// Which flow should be used for BrowserFlow
 	BrowserFlow pulumi.StringPtrInput
 	// Which flow should be used for ClientAuthenticationFlow
@@ -349,14 +479,18 @@ type RealmArgs struct {
 	DefaultSignatureAlgorithm   pulumi.StringPtrInput
 	// Which flow should be used for DirectGrantFlow
 	DirectGrantFlow pulumi.StringPtrInput
-	DisplayName     pulumi.StringPtrInput
+	// The display name for the realm that is shown when logging in to the admin console.
+	DisplayName pulumi.StringPtrInput
+	// The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.
 	DisplayNameHtml pulumi.StringPtrInput
 	// Which flow should be used for DockerAuthenticationFlow
-	DockerAuthenticationFlow         pulumi.StringPtrInput
-	DuplicateEmailsAllowed           pulumi.BoolPtrInput
-	EditUsernameAllowed              pulumi.BoolPtrInput
-	EmailTheme                       pulumi.StringPtrInput
-	Enabled                          pulumi.BoolPtrInput
+	DockerAuthenticationFlow pulumi.StringPtrInput
+	DuplicateEmailsAllowed   pulumi.BoolPtrInput
+	EditUsernameAllowed      pulumi.BoolPtrInput
+	EmailTheme               pulumi.StringPtrInput
+	// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
+	Enabled pulumi.BoolPtrInput
+	// When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
 	InternalId                       pulumi.StringPtrInput
 	Internationalization             RealmInternationalizationPtrInput
 	LoginTheme                       pulumi.StringPtrInput
@@ -370,7 +504,8 @@ type RealmArgs struct {
 	// String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
 	// can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365)
 	// and notUsername(undefined)"
-	PasswordPolicy              pulumi.StringPtrInput
+	PasswordPolicy pulumi.StringPtrInput
+	// The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
 	Realm                       pulumi.StringInput
 	RefreshTokenMaxReuse        pulumi.IntPtrInput
 	RegistrationAllowed         pulumi.BoolPtrInput
@@ -390,10 +525,11 @@ type RealmArgs struct {
 	SsoSessionIdleTimeoutRememberMe pulumi.StringPtrInput
 	SsoSessionMaxLifespan           pulumi.StringPtrInput
 	SsoSessionMaxLifespanRememberMe pulumi.StringPtrInput
-	UserManagedAccess               pulumi.BoolPtrInput
-	VerifyEmail                     pulumi.BoolPtrInput
-	WebAuthnPasswordlessPolicy      RealmWebAuthnPasswordlessPolicyPtrInput
-	WebAuthnPolicy                  RealmWebAuthnPolicyPtrInput
+	// When `true`, users are allowed to manage their own resources. Defaults to `false`.
+	UserManagedAccess          pulumi.BoolPtrInput
+	VerifyEmail                pulumi.BoolPtrInput
+	WebAuthnPasswordlessPolicy RealmWebAuthnPasswordlessPolicyPtrInput
+	WebAuthnPolicy             RealmWebAuthnPolicyPtrInput
 }
 
 func (RealmArgs) ElementType() reflect.Type {
@@ -519,6 +655,7 @@ func (o RealmOutput) AdminTheme() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Realm) pulumi.StringPtrOutput { return v.AdminTheme }).(pulumi.StringPtrOutput)
 }
 
+// A map of custom attributes to add to the realm.
 func (o RealmOutput) Attributes() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *Realm) pulumi.StringMapOutput { return v.Attributes }).(pulumi.StringMapOutput)
 }
@@ -558,10 +695,12 @@ func (o RealmOutput) DirectGrantFlow() pulumi.StringOutput {
 	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.DirectGrantFlow }).(pulumi.StringOutput)
 }
 
+// The display name for the realm that is shown when logging in to the admin console.
 func (o RealmOutput) DisplayName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Realm) pulumi.StringPtrOutput { return v.DisplayName }).(pulumi.StringPtrOutput)
 }
 
+// The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.
 func (o RealmOutput) DisplayNameHtml() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Realm) pulumi.StringPtrOutput { return v.DisplayNameHtml }).(pulumi.StringPtrOutput)
 }
@@ -583,10 +722,12 @@ func (o RealmOutput) EmailTheme() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Realm) pulumi.StringPtrOutput { return v.EmailTheme }).(pulumi.StringPtrOutput)
 }
 
+// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
 func (o RealmOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Realm) pulumi.BoolPtrOutput { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
 
+// When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
 func (o RealmOutput) InternalId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.InternalId }).(pulumi.StringOutput)
 }
@@ -634,6 +775,7 @@ func (o RealmOutput) PasswordPolicy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Realm) pulumi.StringPtrOutput { return v.PasswordPolicy }).(pulumi.StringPtrOutput)
 }
 
+// The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
 func (o RealmOutput) Realm() pulumi.StringOutput {
 	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.Realm }).(pulumi.StringOutput)
 }
@@ -701,6 +843,7 @@ func (o RealmOutput) SsoSessionMaxLifespanRememberMe() pulumi.StringOutput {
 	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.SsoSessionMaxLifespanRememberMe }).(pulumi.StringOutput)
 }
 
+// When `true`, users are allowed to manage their own resources. Defaults to `false`.
 func (o RealmOutput) UserManagedAccess() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Realm) pulumi.BoolPtrOutput { return v.UserManagedAccess }).(pulumi.BoolPtrOutput)
 }

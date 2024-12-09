@@ -16,17 +16,16 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # keycloak.openid.FullNameProtocolMapper
+ * Allows for creating and managing full name protocol mappers within Keycloak.
  * 
- * Allows for creating and managing full name protocol mappers within
- * Keycloak.
+ * Full name protocol mappers allow you to map a user&#39;s first and last name to the OpenID Connect `name` claim in a token.
  * 
- * Full name protocol mappers allow you to map a user&#39;s first and last name
- * to the OpenID Connect `name` claim in a token. Protocol mappers can be defined
- * for a single client, or they can be defined for a client scope which can
- * be shared between multiple different clients.
+ * Protocol mappers can be defined for a single client, or they can be defined for a client scope which can be shared between
+ * multiple different clients.
  * 
- * ### Example Usage (Client)
+ * ## Example Usage
+ * 
+ * ### Client)
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>
@@ -62,8 +61,8 @@ import javax.annotation.Nullable;
  * 
  *         var openidClient = new Client("openidClient", ClientArgs.builder()
  *             .realmId(realm.id())
- *             .clientId("test-client")
- *             .name("test client")
+ *             .clientId("client")
+ *             .name("client")
  *             .enabled(true)
  *             .accessType("CONFIDENTIAL")
  *             .validRedirectUris("http://localhost:8080/openid-callback")
@@ -81,7 +80,7 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * ### Example Usage (Client Scope)
+ * ### Client Scope)
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>
@@ -117,7 +116,7 @@ import javax.annotation.Nullable;
  * 
  *         var clientScope = new ClientScope("clientScope", ClientScopeArgs.builder()
  *             .realmId(realm.id())
- *             .name("test-client-scope")
+ *             .name("client-scope")
  *             .build());
  * 
  *         var fullNameMapper = new FullNameProtocolMapper("fullNameMapper", FullNameProtocolMapperArgs.builder()
@@ -132,98 +131,122 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * ### Argument Reference
- * 
- * The following arguments are supported:
- * 
- * - `realm_id` - (Required) The realm this protocol mapper exists within.
- * - `client_id` - (Required if `client_scope_id` is not specified) The client this protocol mapper is attached to.
- * - `client_scope_id` - (Required if `client_id` is not specified) The client scope this protocol mapper is attached to.
- * - `name` - (Required) The display name of this protocol mapper in the GUI.
- * - `add_to_id_token` - (Optional) Indicates if the user&#39;s full name should be added as a claim to the id token. Defaults to `true`.
- * - `add_to_access_token` - (Optional) Indicates if the user&#39;s full name should be added as a claim to the access token. Defaults to `true`.
- * - `add_to_userinfo` - (Optional) Indicates if the user&#39;s full name should be added as a claim to the UserInfo response body. Defaults to `true`.
- * 
- * ### Import
+ * ## Import
  * 
  * Protocol mappers can be imported using one of the following formats:
+ * 
  * - Client: `{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}`
+ * 
  * - Client Scope: `{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}`
  * 
  * Example:
  * 
+ * bash
+ * 
+ * ```sh
+ * $ pulumi import keycloak:openid/fullNameProtocolMapper:FullNameProtocolMapper full_name_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+ * ```
+ * 
+ * ```sh
+ * $ pulumi import keycloak:openid/fullNameProtocolMapper:FullNameProtocolMapper full_name_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+ * ```
+ * 
  */
 @ResourceType(type="keycloak:openid/fullNameProtocolMapper:FullNameProtocolMapper")
 public class FullNameProtocolMapper extends com.pulumi.resources.CustomResource {
+    /**
+     * Indicates if the user&#39;s full name should be added as a claim to the access token. Defaults to `true`.
+     * 
+     */
     @Export(name="addToAccessToken", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> addToAccessToken;
 
+    /**
+     * @return Indicates if the user&#39;s full name should be added as a claim to the access token. Defaults to `true`.
+     * 
+     */
     public Output<Optional<Boolean>> addToAccessToken() {
         return Codegen.optional(this.addToAccessToken);
     }
+    /**
+     * Indicates if the user&#39;s full name should be added as a claim to the id token. Defaults to `true`.
+     * 
+     */
     @Export(name="addToIdToken", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> addToIdToken;
 
+    /**
+     * @return Indicates if the user&#39;s full name should be added as a claim to the id token. Defaults to `true`.
+     * 
+     */
     public Output<Optional<Boolean>> addToIdToken() {
         return Codegen.optional(this.addToIdToken);
     }
+    /**
+     * Indicates if the user&#39;s full name should be added as a claim to the UserInfo response body. Defaults to `true`.
+     * 
+     */
     @Export(name="addToUserinfo", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> addToUserinfo;
 
+    /**
+     * @return Indicates if the user&#39;s full name should be added as a claim to the UserInfo response body. Defaults to `true`.
+     * 
+     */
     public Output<Optional<Boolean>> addToUserinfo() {
         return Codegen.optional(this.addToUserinfo);
     }
     /**
-     * The mapper&#39;s associated client. Cannot be used at the same time as client_scope_id.
+     * The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
      * 
      */
     @Export(name="clientId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientId;
 
     /**
-     * @return The mapper&#39;s associated client. Cannot be used at the same time as client_scope_id.
+     * @return The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
      * 
      */
     public Output<Optional<String>> clientId() {
         return Codegen.optional(this.clientId);
     }
     /**
-     * The mapper&#39;s associated client scope. Cannot be used at the same time as client_id.
+     * The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
      * 
      */
     @Export(name="clientScopeId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientScopeId;
 
     /**
-     * @return The mapper&#39;s associated client scope. Cannot be used at the same time as client_id.
+     * @return The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
      * 
      */
     public Output<Optional<String>> clientScopeId() {
         return Codegen.optional(this.clientScopeId);
     }
     /**
-     * A human-friendly name that will appear in the Keycloak console.
+     * The display name of this protocol mapper in the GUI.
      * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
-     * @return A human-friendly name that will appear in the Keycloak console.
+     * @return The display name of this protocol mapper in the GUI.
      * 
      */
     public Output<String> name() {
         return this.name;
     }
     /**
-     * The realm id where the associated client or client scope exists.
+     * The realm this protocol mapper exists within.
      * 
      */
     @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**
-     * @return The realm id where the associated client or client scope exists.
+     * @return The realm this protocol mapper exists within.
      * 
      */
     public Output<String> realmId() {

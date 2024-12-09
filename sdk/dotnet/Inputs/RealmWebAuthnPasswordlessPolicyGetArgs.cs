@@ -14,6 +14,10 @@ namespace Pulumi.Keycloak.Inputs
     {
         [Input("acceptableAaguids")]
         private InputList<string>? _acceptableAaguids;
+
+        /// <summary>
+        /// A set of AAGUIDs for which an authenticator can be registered.
+        /// </summary>
         public InputList<string> AcceptableAaguids
         {
             get => _acceptableAaguids ?? (_acceptableAaguids = new InputList<string>());
@@ -32,15 +36,27 @@ namespace Pulumi.Keycloak.Inputs
         [Input("authenticatorAttachment")]
         public Input<string>? AuthenticatorAttachment { get; set; }
 
+        /// <summary>
+        /// When `true`, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to `false`.
+        /// </summary>
         [Input("avoidSameAuthenticatorRegister")]
         public Input<bool>? AvoidSameAuthenticatorRegister { get; set; }
 
+        /// <summary>
+        /// The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
+        /// </summary>
         [Input("createTimeout")]
         public Input<int>? CreateTimeout { get; set; }
 
+        /// <summary>
+        /// A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
+        /// </summary>
         [Input("relyingPartyEntityName")]
         public Input<string>? RelyingPartyEntityName { get; set; }
 
+        /// <summary>
+        /// The WebAuthn relying party ID.
+        /// </summary>
         [Input("relyingPartyId")]
         public Input<string>? RelyingPartyId { get; set; }
 

@@ -11,13 +11,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class ClientAuthenticationFlowBindingOverrides {
+    /**
+     * @return Browser flow id, (flow needs to exist)
+     * 
+     */
     private @Nullable String browserId;
+    /**
+     * @return Direct grant flow id (flow needs to exist)
+     * 
+     */
     private @Nullable String directGrantId;
 
     private ClientAuthenticationFlowBindingOverrides() {}
+    /**
+     * @return Browser flow id, (flow needs to exist)
+     * 
+     */
     public Optional<String> browserId() {
         return Optional.ofNullable(this.browserId);
     }
+    /**
+     * @return Direct grant flow id (flow needs to exist)
+     * 
+     */
     public Optional<String> directGrantId() {
         return Optional.ofNullable(this.directGrantId);
     }

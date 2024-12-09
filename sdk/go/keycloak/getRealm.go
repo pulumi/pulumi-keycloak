@@ -11,12 +11,10 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Realm data source
-//
 // This data source can be used to fetch properties of a Keycloak realm for
 // usage with other resources.
 //
-// ### Example Usage
+// ## Example Usage
 //
 // ```go
 // package main
@@ -30,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := keycloak.LookupRealm(ctx, &keycloak.LookupRealmArgs{
+//			realm, err := keycloak.LookupRealm(ctx, &keycloak.LookupRealmArgs{
 //				Realm: "my-realm",
 //			}, nil)
 //			if err != nil {
@@ -38,7 +36,7 @@ import (
 //			}
 //			// use the data source
 //			_, err = keycloak.NewRole(ctx, "group", &keycloak.RoleArgs{
-//				RealmId: pulumi.Any(id),
+//				RealmId: pulumi.String(realm.Id),
 //				Name:    pulumi.String("group"),
 //			})
 //			if err != nil {
@@ -49,16 +47,6 @@ import (
 //	}
 //
 // ```
-//
-// ### Argument Reference
-//
-// The following arguments are supported:
-//
-// - `realm` - (Required) The realm name.
-//
-// ### Attributes Reference
-//
-// See the docs for the `Realm` resource for details on the exported attributes.
 func LookupRealm(ctx *pulumi.Context, args *LookupRealmArgs, opts ...pulumi.InvokeOption) (*LookupRealmResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupRealmResult
@@ -71,17 +59,18 @@ func LookupRealm(ctx *pulumi.Context, args *LookupRealmArgs, opts ...pulumi.Invo
 
 // A collection of arguments for invoking getRealm.
 type LookupRealmArgs struct {
-	Attributes                  map[string]string                   `pulumi:"attributes"`
-	DefaultDefaultClientScopes  []string                            `pulumi:"defaultDefaultClientScopes"`
-	DefaultOptionalClientScopes []string                            `pulumi:"defaultOptionalClientScopes"`
-	DisplayNameHtml             *string                             `pulumi:"displayNameHtml"`
-	Internationalizations       []GetRealmInternationalization      `pulumi:"internationalizations"`
-	OtpPolicy                   *GetRealmOtpPolicy                  `pulumi:"otpPolicy"`
-	Realm                       string                              `pulumi:"realm"`
-	SecurityDefenses            []GetRealmSecurityDefense           `pulumi:"securityDefenses"`
-	SmtpServers                 []GetRealmSmtpServer                `pulumi:"smtpServers"`
-	WebAuthnPasswordlessPolicy  *GetRealmWebAuthnPasswordlessPolicy `pulumi:"webAuthnPasswordlessPolicy"`
-	WebAuthnPolicy              *GetRealmWebAuthnPolicy             `pulumi:"webAuthnPolicy"`
+	Attributes                  map[string]string              `pulumi:"attributes"`
+	DefaultDefaultClientScopes  []string                       `pulumi:"defaultDefaultClientScopes"`
+	DefaultOptionalClientScopes []string                       `pulumi:"defaultOptionalClientScopes"`
+	DisplayNameHtml             *string                        `pulumi:"displayNameHtml"`
+	Internationalizations       []GetRealmInternationalization `pulumi:"internationalizations"`
+	OtpPolicy                   *GetRealmOtpPolicy             `pulumi:"otpPolicy"`
+	// The realm name.
+	Realm                      string                              `pulumi:"realm"`
+	SecurityDefenses           []GetRealmSecurityDefense           `pulumi:"securityDefenses"`
+	SmtpServers                []GetRealmSmtpServer                `pulumi:"smtpServers"`
+	WebAuthnPasswordlessPolicy *GetRealmWebAuthnPasswordlessPolicy `pulumi:"webAuthnPasswordlessPolicy"`
+	WebAuthnPolicy             *GetRealmWebAuthnPolicy             `pulumi:"webAuthnPolicy"`
 }
 
 // A collection of values returned by getRealm.
@@ -167,17 +156,18 @@ func LookupRealmOutput(ctx *pulumi.Context, args LookupRealmOutputArgs, opts ...
 
 // A collection of arguments for invoking getRealm.
 type LookupRealmOutputArgs struct {
-	Attributes                  pulumi.StringMapInput                      `pulumi:"attributes"`
-	DefaultDefaultClientScopes  pulumi.StringArrayInput                    `pulumi:"defaultDefaultClientScopes"`
-	DefaultOptionalClientScopes pulumi.StringArrayInput                    `pulumi:"defaultOptionalClientScopes"`
-	DisplayNameHtml             pulumi.StringPtrInput                      `pulumi:"displayNameHtml"`
-	Internationalizations       GetRealmInternationalizationArrayInput     `pulumi:"internationalizations"`
-	OtpPolicy                   GetRealmOtpPolicyPtrInput                  `pulumi:"otpPolicy"`
-	Realm                       pulumi.StringInput                         `pulumi:"realm"`
-	SecurityDefenses            GetRealmSecurityDefenseArrayInput          `pulumi:"securityDefenses"`
-	SmtpServers                 GetRealmSmtpServerArrayInput               `pulumi:"smtpServers"`
-	WebAuthnPasswordlessPolicy  GetRealmWebAuthnPasswordlessPolicyPtrInput `pulumi:"webAuthnPasswordlessPolicy"`
-	WebAuthnPolicy              GetRealmWebAuthnPolicyPtrInput             `pulumi:"webAuthnPolicy"`
+	Attributes                  pulumi.StringMapInput                  `pulumi:"attributes"`
+	DefaultDefaultClientScopes  pulumi.StringArrayInput                `pulumi:"defaultDefaultClientScopes"`
+	DefaultOptionalClientScopes pulumi.StringArrayInput                `pulumi:"defaultOptionalClientScopes"`
+	DisplayNameHtml             pulumi.StringPtrInput                  `pulumi:"displayNameHtml"`
+	Internationalizations       GetRealmInternationalizationArrayInput `pulumi:"internationalizations"`
+	OtpPolicy                   GetRealmOtpPolicyPtrInput              `pulumi:"otpPolicy"`
+	// The realm name.
+	Realm                      pulumi.StringInput                         `pulumi:"realm"`
+	SecurityDefenses           GetRealmSecurityDefenseArrayInput          `pulumi:"securityDefenses"`
+	SmtpServers                GetRealmSmtpServerArrayInput               `pulumi:"smtpServers"`
+	WebAuthnPasswordlessPolicy GetRealmWebAuthnPasswordlessPolicyPtrInput `pulumi:"webAuthnPasswordlessPolicy"`
+	WebAuthnPolicy             GetRealmWebAuthnPolicyPtrInput             `pulumi:"webAuthnPolicy"`
 }
 
 func (LookupRealmOutputArgs) ElementType() reflect.Type {

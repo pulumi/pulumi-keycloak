@@ -17,30 +17,62 @@ public final class ClientAuthorizationArgs extends com.pulumi.resources.Resource
 
     public static final ClientAuthorizationArgs Empty = new ClientAuthorizationArgs();
 
+    /**
+     * When `true`, resources can be managed remotely by the resource server. Defaults to `false`.
+     * 
+     */
     @Import(name="allowRemoteResourceManagement")
     private @Nullable Output<Boolean> allowRemoteResourceManagement;
 
+    /**
+     * @return When `true`, resources can be managed remotely by the resource server. Defaults to `false`.
+     * 
+     */
     public Optional<Output<Boolean>> allowRemoteResourceManagement() {
         return Optional.ofNullable(this.allowRemoteResourceManagement);
     }
 
+    /**
+     * Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.
+     * 
+     */
     @Import(name="decisionStrategy")
     private @Nullable Output<String> decisionStrategy;
 
+    /**
+     * @return Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.
+     * 
+     */
     public Optional<Output<String>> decisionStrategy() {
         return Optional.ofNullable(this.decisionStrategy);
     }
 
+    /**
+     * When `true`, defaults set by Keycloak will be respected. Defaults to `false`.
+     * 
+     */
     @Import(name="keepDefaults")
     private @Nullable Output<Boolean> keepDefaults;
 
+    /**
+     * @return When `true`, defaults set by Keycloak will be respected. Defaults to `false`.
+     * 
+     */
     public Optional<Output<Boolean>> keepDefaults() {
         return Optional.ofNullable(this.keepDefaults);
     }
 
+    /**
+     * Dictates how policies are enforced when evaluating authorization requests. Can be one of `ENFORCING`, `PERMISSIVE`, or `DISABLED`.
+     * 
+     */
     @Import(name="policyEnforcementMode", required=true)
     private Output<String> policyEnforcementMode;
 
+    /**
+     * @return Dictates how policies are enforced when evaluating authorization requests. Can be one of `ENFORCING`, `PERMISSIVE`, or `DISABLED`.
+     * 
+     */
     public Output<String> policyEnforcementMode() {
         return this.policyEnforcementMode;
     }
@@ -72,38 +104,86 @@ public final class ClientAuthorizationArgs extends com.pulumi.resources.Resource
             $ = new ClientAuthorizationArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param allowRemoteResourceManagement When `true`, resources can be managed remotely by the resource server. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder allowRemoteResourceManagement(@Nullable Output<Boolean> allowRemoteResourceManagement) {
             $.allowRemoteResourceManagement = allowRemoteResourceManagement;
             return this;
         }
 
+        /**
+         * @param allowRemoteResourceManagement When `true`, resources can be managed remotely by the resource server. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder allowRemoteResourceManagement(Boolean allowRemoteResourceManagement) {
             return allowRemoteResourceManagement(Output.of(allowRemoteResourceManagement));
         }
 
+        /**
+         * @param decisionStrategy Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.
+         * 
+         * @return builder
+         * 
+         */
         public Builder decisionStrategy(@Nullable Output<String> decisionStrategy) {
             $.decisionStrategy = decisionStrategy;
             return this;
         }
 
+        /**
+         * @param decisionStrategy Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.
+         * 
+         * @return builder
+         * 
+         */
         public Builder decisionStrategy(String decisionStrategy) {
             return decisionStrategy(Output.of(decisionStrategy));
         }
 
+        /**
+         * @param keepDefaults When `true`, defaults set by Keycloak will be respected. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder keepDefaults(@Nullable Output<Boolean> keepDefaults) {
             $.keepDefaults = keepDefaults;
             return this;
         }
 
+        /**
+         * @param keepDefaults When `true`, defaults set by Keycloak will be respected. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder keepDefaults(Boolean keepDefaults) {
             return keepDefaults(Output.of(keepDefaults));
         }
 
+        /**
+         * @param policyEnforcementMode Dictates how policies are enforced when evaluating authorization requests. Can be one of `ENFORCING`, `PERMISSIVE`, or `DISABLED`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder policyEnforcementMode(Output<String> policyEnforcementMode) {
             $.policyEnforcementMode = policyEnforcementMode;
             return this;
         }
 
+        /**
+         * @param policyEnforcementMode Dictates how policies are enforced when evaluating authorization requests. Can be one of `ENFORCING`, `PERMISSIVE`, or `DISABLED`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder policyEnforcementMode(String policyEnforcementMode) {
             return policyEnforcementMode(Output.of(policyEnforcementMode));
         }

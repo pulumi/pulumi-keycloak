@@ -31,16 +31,16 @@ class UserAttributeMapperArgs:
                  read_only: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a UserAttributeMapper resource.
-        :param pulumi.Input[str] ldap_attribute: Name of the mapped attribute on LDAP object.
-        :param pulumi.Input[str] ldap_user_federation_id: The ldap user federation provider to attach this mapper to.
-        :param pulumi.Input[str] realm_id: The realm in which the ldap user federation provider exists.
-        :param pulumi.Input[str] user_model_attribute: Name of the UserModel property or attribute you want to map the LDAP attribute into.
-        :param pulumi.Input[bool] always_read_value_from_ldap: When true, the value fetched from LDAP will override the value stored in Keycloak.
-        :param pulumi.Input[str] attribute_default_value: Default value to set in LDAP if is_mandatory_in_ldap and the value is empty
-        :param pulumi.Input[bool] is_binary_attribute: Should be true for binary LDAP attributes
-        :param pulumi.Input[bool] is_mandatory_in_ldap: When true, this attribute must exist in LDAP.
-        :param pulumi.Input[str] name: Display name of the mapper when displayed in the console.
-        :param pulumi.Input[bool] read_only: When true, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak.
+        :param pulumi.Input[str] ldap_attribute: Name of the mapped attribute on the LDAP object.
+        :param pulumi.Input[str] ldap_user_federation_id: The ID of the LDAP user federation provider to attach this mapper to.
+        :param pulumi.Input[str] realm_id: The realm that this LDAP mapper will exist in.
+        :param pulumi.Input[str] user_model_attribute: Name of the user property or attribute you want to map the LDAP attribute into.
+        :param pulumi.Input[bool] always_read_value_from_ldap: When `true`, the value fetched from LDAP will override the value stored in Keycloak. Defaults to `false`.
+        :param pulumi.Input[str] attribute_default_value: Default value to set in LDAP if `is_mandatory_in_ldap` is true and the value is empty.
+        :param pulumi.Input[bool] is_binary_attribute: Should be true for binary LDAP attributes.
+        :param pulumi.Input[bool] is_mandatory_in_ldap: When `true`, this attribute must exist in LDAP. Defaults to `false`.
+        :param pulumi.Input[str] name: Display name of this mapper when displayed in the console.
+        :param pulumi.Input[bool] read_only: When `true`, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak. Defaults to `false`.
         """
         pulumi.set(__self__, "ldap_attribute", ldap_attribute)
         pulumi.set(__self__, "ldap_user_federation_id", ldap_user_federation_id)
@@ -63,7 +63,7 @@ class UserAttributeMapperArgs:
     @pulumi.getter(name="ldapAttribute")
     def ldap_attribute(self) -> pulumi.Input[str]:
         """
-        Name of the mapped attribute on LDAP object.
+        Name of the mapped attribute on the LDAP object.
         """
         return pulumi.get(self, "ldap_attribute")
 
@@ -75,7 +75,7 @@ class UserAttributeMapperArgs:
     @pulumi.getter(name="ldapUserFederationId")
     def ldap_user_federation_id(self) -> pulumi.Input[str]:
         """
-        The ldap user federation provider to attach this mapper to.
+        The ID of the LDAP user federation provider to attach this mapper to.
         """
         return pulumi.get(self, "ldap_user_federation_id")
 
@@ -87,7 +87,7 @@ class UserAttributeMapperArgs:
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Input[str]:
         """
-        The realm in which the ldap user federation provider exists.
+        The realm that this LDAP mapper will exist in.
         """
         return pulumi.get(self, "realm_id")
 
@@ -99,7 +99,7 @@ class UserAttributeMapperArgs:
     @pulumi.getter(name="userModelAttribute")
     def user_model_attribute(self) -> pulumi.Input[str]:
         """
-        Name of the UserModel property or attribute you want to map the LDAP attribute into.
+        Name of the user property or attribute you want to map the LDAP attribute into.
         """
         return pulumi.get(self, "user_model_attribute")
 
@@ -111,7 +111,7 @@ class UserAttributeMapperArgs:
     @pulumi.getter(name="alwaysReadValueFromLdap")
     def always_read_value_from_ldap(self) -> Optional[pulumi.Input[bool]]:
         """
-        When true, the value fetched from LDAP will override the value stored in Keycloak.
+        When `true`, the value fetched from LDAP will override the value stored in Keycloak. Defaults to `false`.
         """
         return pulumi.get(self, "always_read_value_from_ldap")
 
@@ -123,7 +123,7 @@ class UserAttributeMapperArgs:
     @pulumi.getter(name="attributeDefaultValue")
     def attribute_default_value(self) -> Optional[pulumi.Input[str]]:
         """
-        Default value to set in LDAP if is_mandatory_in_ldap and the value is empty
+        Default value to set in LDAP if `is_mandatory_in_ldap` is true and the value is empty.
         """
         return pulumi.get(self, "attribute_default_value")
 
@@ -135,7 +135,7 @@ class UserAttributeMapperArgs:
     @pulumi.getter(name="isBinaryAttribute")
     def is_binary_attribute(self) -> Optional[pulumi.Input[bool]]:
         """
-        Should be true for binary LDAP attributes
+        Should be true for binary LDAP attributes.
         """
         return pulumi.get(self, "is_binary_attribute")
 
@@ -147,7 +147,7 @@ class UserAttributeMapperArgs:
     @pulumi.getter(name="isMandatoryInLdap")
     def is_mandatory_in_ldap(self) -> Optional[pulumi.Input[bool]]:
         """
-        When true, this attribute must exist in LDAP.
+        When `true`, this attribute must exist in LDAP. Defaults to `false`.
         """
         return pulumi.get(self, "is_mandatory_in_ldap")
 
@@ -159,7 +159,7 @@ class UserAttributeMapperArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Display name of the mapper when displayed in the console.
+        Display name of this mapper when displayed in the console.
         """
         return pulumi.get(self, "name")
 
@@ -171,7 +171,7 @@ class UserAttributeMapperArgs:
     @pulumi.getter(name="readOnly")
     def read_only(self) -> Optional[pulumi.Input[bool]]:
         """
-        When true, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak.
+        When `true`, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak. Defaults to `false`.
         """
         return pulumi.get(self, "read_only")
 
@@ -195,16 +195,16 @@ class _UserAttributeMapperState:
                  user_model_attribute: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering UserAttributeMapper resources.
-        :param pulumi.Input[bool] always_read_value_from_ldap: When true, the value fetched from LDAP will override the value stored in Keycloak.
-        :param pulumi.Input[str] attribute_default_value: Default value to set in LDAP if is_mandatory_in_ldap and the value is empty
-        :param pulumi.Input[bool] is_binary_attribute: Should be true for binary LDAP attributes
-        :param pulumi.Input[bool] is_mandatory_in_ldap: When true, this attribute must exist in LDAP.
-        :param pulumi.Input[str] ldap_attribute: Name of the mapped attribute on LDAP object.
-        :param pulumi.Input[str] ldap_user_federation_id: The ldap user federation provider to attach this mapper to.
-        :param pulumi.Input[str] name: Display name of the mapper when displayed in the console.
-        :param pulumi.Input[bool] read_only: When true, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak.
-        :param pulumi.Input[str] realm_id: The realm in which the ldap user federation provider exists.
-        :param pulumi.Input[str] user_model_attribute: Name of the UserModel property or attribute you want to map the LDAP attribute into.
+        :param pulumi.Input[bool] always_read_value_from_ldap: When `true`, the value fetched from LDAP will override the value stored in Keycloak. Defaults to `false`.
+        :param pulumi.Input[str] attribute_default_value: Default value to set in LDAP if `is_mandatory_in_ldap` is true and the value is empty.
+        :param pulumi.Input[bool] is_binary_attribute: Should be true for binary LDAP attributes.
+        :param pulumi.Input[bool] is_mandatory_in_ldap: When `true`, this attribute must exist in LDAP. Defaults to `false`.
+        :param pulumi.Input[str] ldap_attribute: Name of the mapped attribute on the LDAP object.
+        :param pulumi.Input[str] ldap_user_federation_id: The ID of the LDAP user federation provider to attach this mapper to.
+        :param pulumi.Input[str] name: Display name of this mapper when displayed in the console.
+        :param pulumi.Input[bool] read_only: When `true`, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak. Defaults to `false`.
+        :param pulumi.Input[str] realm_id: The realm that this LDAP mapper will exist in.
+        :param pulumi.Input[str] user_model_attribute: Name of the user property or attribute you want to map the LDAP attribute into.
         """
         if always_read_value_from_ldap is not None:
             pulumi.set(__self__, "always_read_value_from_ldap", always_read_value_from_ldap)
@@ -231,7 +231,7 @@ class _UserAttributeMapperState:
     @pulumi.getter(name="alwaysReadValueFromLdap")
     def always_read_value_from_ldap(self) -> Optional[pulumi.Input[bool]]:
         """
-        When true, the value fetched from LDAP will override the value stored in Keycloak.
+        When `true`, the value fetched from LDAP will override the value stored in Keycloak. Defaults to `false`.
         """
         return pulumi.get(self, "always_read_value_from_ldap")
 
@@ -243,7 +243,7 @@ class _UserAttributeMapperState:
     @pulumi.getter(name="attributeDefaultValue")
     def attribute_default_value(self) -> Optional[pulumi.Input[str]]:
         """
-        Default value to set in LDAP if is_mandatory_in_ldap and the value is empty
+        Default value to set in LDAP if `is_mandatory_in_ldap` is true and the value is empty.
         """
         return pulumi.get(self, "attribute_default_value")
 
@@ -255,7 +255,7 @@ class _UserAttributeMapperState:
     @pulumi.getter(name="isBinaryAttribute")
     def is_binary_attribute(self) -> Optional[pulumi.Input[bool]]:
         """
-        Should be true for binary LDAP attributes
+        Should be true for binary LDAP attributes.
         """
         return pulumi.get(self, "is_binary_attribute")
 
@@ -267,7 +267,7 @@ class _UserAttributeMapperState:
     @pulumi.getter(name="isMandatoryInLdap")
     def is_mandatory_in_ldap(self) -> Optional[pulumi.Input[bool]]:
         """
-        When true, this attribute must exist in LDAP.
+        When `true`, this attribute must exist in LDAP. Defaults to `false`.
         """
         return pulumi.get(self, "is_mandatory_in_ldap")
 
@@ -279,7 +279,7 @@ class _UserAttributeMapperState:
     @pulumi.getter(name="ldapAttribute")
     def ldap_attribute(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of the mapped attribute on LDAP object.
+        Name of the mapped attribute on the LDAP object.
         """
         return pulumi.get(self, "ldap_attribute")
 
@@ -291,7 +291,7 @@ class _UserAttributeMapperState:
     @pulumi.getter(name="ldapUserFederationId")
     def ldap_user_federation_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ldap user federation provider to attach this mapper to.
+        The ID of the LDAP user federation provider to attach this mapper to.
         """
         return pulumi.get(self, "ldap_user_federation_id")
 
@@ -303,7 +303,7 @@ class _UserAttributeMapperState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Display name of the mapper when displayed in the console.
+        Display name of this mapper when displayed in the console.
         """
         return pulumi.get(self, "name")
 
@@ -315,7 +315,7 @@ class _UserAttributeMapperState:
     @pulumi.getter(name="readOnly")
     def read_only(self) -> Optional[pulumi.Input[bool]]:
         """
-        When true, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak.
+        When `true`, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak. Defaults to `false`.
         """
         return pulumi.get(self, "read_only")
 
@@ -327,7 +327,7 @@ class _UserAttributeMapperState:
     @pulumi.getter(name="realmId")
     def realm_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The realm in which the ldap user federation provider exists.
+        The realm that this LDAP mapper will exist in.
         """
         return pulumi.get(self, "realm_id")
 
@@ -339,7 +339,7 @@ class _UserAttributeMapperState:
     @pulumi.getter(name="userModelAttribute")
     def user_model_attribute(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of the UserModel property or attribute you want to map the LDAP attribute into.
+        Name of the user property or attribute you want to map the LDAP attribute into.
         """
         return pulumi.get(self, "user_model_attribute")
 
@@ -365,22 +365,20 @@ class UserAttributeMapper(pulumi.CustomResource):
                  user_model_attribute: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## # ldap.UserAttributeMapper
-
         Allows for creating and managing user attribute mappers for Keycloak users
         federated via LDAP.
 
         The LDAP user attribute mapper can be used to map a single LDAP attribute
         to an attribute on the Keycloak user model.
 
-        ### Example Usage
+        ## Example Usage
 
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            realm="test",
+            realm="my-realm",
             enabled=True)
         ldap_user_federation = keycloak.ldap.UserFederation("ldap_user_federation",
             name="openldap",
@@ -404,37 +402,32 @@ class UserAttributeMapper(pulumi.CustomResource):
             ldap_attribute="bar")
         ```
 
-        ### Argument Reference
-
-        The following arguments are supported:
-
-        - `realm_id` - (Required) The realm that this LDAP mapper will exist in.
-        - `ldap_user_federation_id` - (Required) The ID of the LDAP user federation provider to attach this mapper to.
-        - `name` - (Required) Display name of this mapper when displayed in the console.
-        - `user_model_attribute` - (Required) Name of the user property or attribute you want to map the LDAP attribute into.
-        - `ldap_attribute` - (Required) Name of the mapped attribute on the LDAP object.
-        - `read_only` - (Optional) When `true`, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak. Defaults to `false`.
-        - `always_read_value_from_ldap` - (Optional) When `true`, the value fetched from LDAP will override the value stored in Keycloak. Defaults to `false`.
-        - `is_mandatory_in_ldap` - (Optional) When `true`, this attribute must exist in LDAP. Defaults to `false`.
-
-        ### Import
+        ## Import
 
         LDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`.
-        The ID of the LDAP user federation provider and the mapper can be found within
-        the Keycloak GUI, and they are typically GUIDs:
+
+        The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs.
+
+        Example:
+
+        bash
+
+        ```sh
+        $ pulumi import keycloak:ldap/userAttributeMapper:UserAttributeMapper ldap_user_attribute_mapper my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] always_read_value_from_ldap: When true, the value fetched from LDAP will override the value stored in Keycloak.
-        :param pulumi.Input[str] attribute_default_value: Default value to set in LDAP if is_mandatory_in_ldap and the value is empty
-        :param pulumi.Input[bool] is_binary_attribute: Should be true for binary LDAP attributes
-        :param pulumi.Input[bool] is_mandatory_in_ldap: When true, this attribute must exist in LDAP.
-        :param pulumi.Input[str] ldap_attribute: Name of the mapped attribute on LDAP object.
-        :param pulumi.Input[str] ldap_user_federation_id: The ldap user federation provider to attach this mapper to.
-        :param pulumi.Input[str] name: Display name of the mapper when displayed in the console.
-        :param pulumi.Input[bool] read_only: When true, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak.
-        :param pulumi.Input[str] realm_id: The realm in which the ldap user federation provider exists.
-        :param pulumi.Input[str] user_model_attribute: Name of the UserModel property or attribute you want to map the LDAP attribute into.
+        :param pulumi.Input[bool] always_read_value_from_ldap: When `true`, the value fetched from LDAP will override the value stored in Keycloak. Defaults to `false`.
+        :param pulumi.Input[str] attribute_default_value: Default value to set in LDAP if `is_mandatory_in_ldap` is true and the value is empty.
+        :param pulumi.Input[bool] is_binary_attribute: Should be true for binary LDAP attributes.
+        :param pulumi.Input[bool] is_mandatory_in_ldap: When `true`, this attribute must exist in LDAP. Defaults to `false`.
+        :param pulumi.Input[str] ldap_attribute: Name of the mapped attribute on the LDAP object.
+        :param pulumi.Input[str] ldap_user_federation_id: The ID of the LDAP user federation provider to attach this mapper to.
+        :param pulumi.Input[str] name: Display name of this mapper when displayed in the console.
+        :param pulumi.Input[bool] read_only: When `true`, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak. Defaults to `false`.
+        :param pulumi.Input[str] realm_id: The realm that this LDAP mapper will exist in.
+        :param pulumi.Input[str] user_model_attribute: Name of the user property or attribute you want to map the LDAP attribute into.
         """
         ...
     @overload
@@ -443,22 +436,20 @@ class UserAttributeMapper(pulumi.CustomResource):
                  args: UserAttributeMapperArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # ldap.UserAttributeMapper
-
         Allows for creating and managing user attribute mappers for Keycloak users
         federated via LDAP.
 
         The LDAP user attribute mapper can be used to map a single LDAP attribute
         to an attribute on the Keycloak user model.
 
-        ### Example Usage
+        ## Example Usage
 
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
         realm = keycloak.Realm("realm",
-            realm="test",
+            realm="my-realm",
             enabled=True)
         ldap_user_federation = keycloak.ldap.UserFederation("ldap_user_federation",
             name="openldap",
@@ -482,24 +473,19 @@ class UserAttributeMapper(pulumi.CustomResource):
             ldap_attribute="bar")
         ```
 
-        ### Argument Reference
-
-        The following arguments are supported:
-
-        - `realm_id` - (Required) The realm that this LDAP mapper will exist in.
-        - `ldap_user_federation_id` - (Required) The ID of the LDAP user federation provider to attach this mapper to.
-        - `name` - (Required) Display name of this mapper when displayed in the console.
-        - `user_model_attribute` - (Required) Name of the user property or attribute you want to map the LDAP attribute into.
-        - `ldap_attribute` - (Required) Name of the mapped attribute on the LDAP object.
-        - `read_only` - (Optional) When `true`, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak. Defaults to `false`.
-        - `always_read_value_from_ldap` - (Optional) When `true`, the value fetched from LDAP will override the value stored in Keycloak. Defaults to `false`.
-        - `is_mandatory_in_ldap` - (Optional) When `true`, this attribute must exist in LDAP. Defaults to `false`.
-
-        ### Import
+        ## Import
 
         LDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`.
-        The ID of the LDAP user federation provider and the mapper can be found within
-        the Keycloak GUI, and they are typically GUIDs:
+
+        The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs.
+
+        Example:
+
+        bash
+
+        ```sh
+        $ pulumi import keycloak:ldap/userAttributeMapper:UserAttributeMapper ldap_user_attribute_mapper my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
+        ```
 
         :param str resource_name: The name of the resource.
         :param UserAttributeMapperArgs args: The arguments to use to populate this resource's properties.
@@ -580,16 +566,16 @@ class UserAttributeMapper(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] always_read_value_from_ldap: When true, the value fetched from LDAP will override the value stored in Keycloak.
-        :param pulumi.Input[str] attribute_default_value: Default value to set in LDAP if is_mandatory_in_ldap and the value is empty
-        :param pulumi.Input[bool] is_binary_attribute: Should be true for binary LDAP attributes
-        :param pulumi.Input[bool] is_mandatory_in_ldap: When true, this attribute must exist in LDAP.
-        :param pulumi.Input[str] ldap_attribute: Name of the mapped attribute on LDAP object.
-        :param pulumi.Input[str] ldap_user_federation_id: The ldap user federation provider to attach this mapper to.
-        :param pulumi.Input[str] name: Display name of the mapper when displayed in the console.
-        :param pulumi.Input[bool] read_only: When true, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak.
-        :param pulumi.Input[str] realm_id: The realm in which the ldap user federation provider exists.
-        :param pulumi.Input[str] user_model_attribute: Name of the UserModel property or attribute you want to map the LDAP attribute into.
+        :param pulumi.Input[bool] always_read_value_from_ldap: When `true`, the value fetched from LDAP will override the value stored in Keycloak. Defaults to `false`.
+        :param pulumi.Input[str] attribute_default_value: Default value to set in LDAP if `is_mandatory_in_ldap` is true and the value is empty.
+        :param pulumi.Input[bool] is_binary_attribute: Should be true for binary LDAP attributes.
+        :param pulumi.Input[bool] is_mandatory_in_ldap: When `true`, this attribute must exist in LDAP. Defaults to `false`.
+        :param pulumi.Input[str] ldap_attribute: Name of the mapped attribute on the LDAP object.
+        :param pulumi.Input[str] ldap_user_federation_id: The ID of the LDAP user federation provider to attach this mapper to.
+        :param pulumi.Input[str] name: Display name of this mapper when displayed in the console.
+        :param pulumi.Input[bool] read_only: When `true`, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak. Defaults to `false`.
+        :param pulumi.Input[str] realm_id: The realm that this LDAP mapper will exist in.
+        :param pulumi.Input[str] user_model_attribute: Name of the user property or attribute you want to map the LDAP attribute into.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -611,7 +597,7 @@ class UserAttributeMapper(pulumi.CustomResource):
     @pulumi.getter(name="alwaysReadValueFromLdap")
     def always_read_value_from_ldap(self) -> pulumi.Output[Optional[bool]]:
         """
-        When true, the value fetched from LDAP will override the value stored in Keycloak.
+        When `true`, the value fetched from LDAP will override the value stored in Keycloak. Defaults to `false`.
         """
         return pulumi.get(self, "always_read_value_from_ldap")
 
@@ -619,7 +605,7 @@ class UserAttributeMapper(pulumi.CustomResource):
     @pulumi.getter(name="attributeDefaultValue")
     def attribute_default_value(self) -> pulumi.Output[Optional[str]]:
         """
-        Default value to set in LDAP if is_mandatory_in_ldap and the value is empty
+        Default value to set in LDAP if `is_mandatory_in_ldap` is true and the value is empty.
         """
         return pulumi.get(self, "attribute_default_value")
 
@@ -627,7 +613,7 @@ class UserAttributeMapper(pulumi.CustomResource):
     @pulumi.getter(name="isBinaryAttribute")
     def is_binary_attribute(self) -> pulumi.Output[Optional[bool]]:
         """
-        Should be true for binary LDAP attributes
+        Should be true for binary LDAP attributes.
         """
         return pulumi.get(self, "is_binary_attribute")
 
@@ -635,7 +621,7 @@ class UserAttributeMapper(pulumi.CustomResource):
     @pulumi.getter(name="isMandatoryInLdap")
     def is_mandatory_in_ldap(self) -> pulumi.Output[Optional[bool]]:
         """
-        When true, this attribute must exist in LDAP.
+        When `true`, this attribute must exist in LDAP. Defaults to `false`.
         """
         return pulumi.get(self, "is_mandatory_in_ldap")
 
@@ -643,7 +629,7 @@ class UserAttributeMapper(pulumi.CustomResource):
     @pulumi.getter(name="ldapAttribute")
     def ldap_attribute(self) -> pulumi.Output[str]:
         """
-        Name of the mapped attribute on LDAP object.
+        Name of the mapped attribute on the LDAP object.
         """
         return pulumi.get(self, "ldap_attribute")
 
@@ -651,7 +637,7 @@ class UserAttributeMapper(pulumi.CustomResource):
     @pulumi.getter(name="ldapUserFederationId")
     def ldap_user_federation_id(self) -> pulumi.Output[str]:
         """
-        The ldap user federation provider to attach this mapper to.
+        The ID of the LDAP user federation provider to attach this mapper to.
         """
         return pulumi.get(self, "ldap_user_federation_id")
 
@@ -659,7 +645,7 @@ class UserAttributeMapper(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        Display name of the mapper when displayed in the console.
+        Display name of this mapper when displayed in the console.
         """
         return pulumi.get(self, "name")
 
@@ -667,7 +653,7 @@ class UserAttributeMapper(pulumi.CustomResource):
     @pulumi.getter(name="readOnly")
     def read_only(self) -> pulumi.Output[Optional[bool]]:
         """
-        When true, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak.
+        When `true`, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak. Defaults to `false`.
         """
         return pulumi.get(self, "read_only")
 
@@ -675,7 +661,7 @@ class UserAttributeMapper(pulumi.CustomResource):
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Output[str]:
         """
-        The realm in which the ldap user federation provider exists.
+        The realm that this LDAP mapper will exist in.
         """
         return pulumi.get(self, "realm_id")
 
@@ -683,7 +669,7 @@ class UserAttributeMapper(pulumi.CustomResource):
     @pulumi.getter(name="userModelAttribute")
     def user_model_attribute(self) -> pulumi.Output[str]:
         """
-        Name of the UserModel property or attribute you want to map the LDAP attribute into.
+        Name of the user property or attribute you want to map the LDAP attribute into.
         """
         return pulumi.get(self, "user_model_attribute")
 

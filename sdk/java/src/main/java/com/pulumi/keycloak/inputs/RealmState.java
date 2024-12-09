@@ -88,9 +88,17 @@ public final class RealmState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.adminTheme);
     }
 
+    /**
+     * A map of custom attributes to add to the realm.
+     * 
+     */
     @Import(name="attributes")
     private @Nullable Output<Map<String,String>> attributes;
 
+    /**
+     * @return A map of custom attributes to add to the realm.
+     * 
+     */
     public Optional<Output<Map<String,String>>> attributes() {
         return Optional.ofNullable(this.attributes);
     }
@@ -175,16 +183,32 @@ public final class RealmState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.directGrantFlow);
     }
 
+    /**
+     * The display name for the realm that is shown when logging in to the admin console.
+     * 
+     */
     @Import(name="displayName")
     private @Nullable Output<String> displayName;
 
+    /**
+     * @return The display name for the realm that is shown when logging in to the admin console.
+     * 
+     */
     public Optional<Output<String>> displayName() {
         return Optional.ofNullable(this.displayName);
     }
 
+    /**
+     * The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.
+     * 
+     */
     @Import(name="displayNameHtml")
     private @Nullable Output<String> displayNameHtml;
 
+    /**
+     * @return The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.
+     * 
+     */
     public Optional<Output<String>> displayNameHtml() {
         return Optional.ofNullable(this.displayNameHtml);
     }
@@ -225,16 +249,32 @@ public final class RealmState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.emailTheme);
     }
 
+    /**
+     * When `false`, users and clients will not be able to access this realm. Defaults to `true`.
+     * 
+     */
     @Import(name="enabled")
     private @Nullable Output<Boolean> enabled;
 
+    /**
+     * @return When `false`, users and clients will not be able to access this realm. Defaults to `true`.
+     * 
+     */
     public Optional<Output<Boolean>> enabled() {
         return Optional.ofNullable(this.enabled);
     }
 
+    /**
+     * When specified, this will be used as the realm&#39;s internal ID within Keycloak. When not specified, the realm&#39;s internal ID will be set to the realm&#39;s name.
+     * 
+     */
     @Import(name="internalId")
     private @Nullable Output<String> internalId;
 
+    /**
+     * @return When specified, this will be used as the realm&#39;s internal ID within Keycloak. When not specified, the realm&#39;s internal ID will be set to the realm&#39;s name.
+     * 
+     */
     public Optional<Output<String>> internalId() {
         return Optional.ofNullable(this.internalId);
     }
@@ -321,9 +361,17 @@ public final class RealmState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.passwordPolicy);
     }
 
+    /**
+     * The name of the realm. This is unique across Keycloak. This will also be used as the realm&#39;s internal ID within Keycloak.
+     * 
+     */
     @Import(name="realm")
     private @Nullable Output<String> realm;
 
+    /**
+     * @return The name of the realm. This is unique across Keycloak. This will also be used as the realm&#39;s internal ID within Keycloak.
+     * 
+     */
     public Optional<Output<String>> realm() {
         return Optional.ofNullable(this.realm);
     }
@@ -457,9 +505,17 @@ public final class RealmState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.ssoSessionMaxLifespanRememberMe);
     }
 
+    /**
+     * When `true`, users are allowed to manage their own resources. Defaults to `false`.
+     * 
+     */
     @Import(name="userManagedAccess")
     private @Nullable Output<Boolean> userManagedAccess;
 
+    /**
+     * @return When `true`, users are allowed to manage their own resources. Defaults to `false`.
+     * 
+     */
     public Optional<Output<Boolean>> userManagedAccess() {
         return Optional.ofNullable(this.userManagedAccess);
     }
@@ -645,11 +701,23 @@ public final class RealmState extends com.pulumi.resources.ResourceArgs {
             return adminTheme(Output.of(adminTheme));
         }
 
+        /**
+         * @param attributes A map of custom attributes to add to the realm.
+         * 
+         * @return builder
+         * 
+         */
         public Builder attributes(@Nullable Output<Map<String,String>> attributes) {
             $.attributes = attributes;
             return this;
         }
 
+        /**
+         * @param attributes A map of custom attributes to add to the realm.
+         * 
+         * @return builder
+         * 
+         */
         public Builder attributes(Map<String,String> attributes) {
             return attributes(Output.of(attributes));
         }
@@ -770,20 +838,44 @@ public final class RealmState extends com.pulumi.resources.ResourceArgs {
             return directGrantFlow(Output.of(directGrantFlow));
         }
 
+        /**
+         * @param displayName The display name for the realm that is shown when logging in to the admin console.
+         * 
+         * @return builder
+         * 
+         */
         public Builder displayName(@Nullable Output<String> displayName) {
             $.displayName = displayName;
             return this;
         }
 
+        /**
+         * @param displayName The display name for the realm that is shown when logging in to the admin console.
+         * 
+         * @return builder
+         * 
+         */
         public Builder displayName(String displayName) {
             return displayName(Output.of(displayName));
         }
 
+        /**
+         * @param displayNameHtml The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.
+         * 
+         * @return builder
+         * 
+         */
         public Builder displayNameHtml(@Nullable Output<String> displayNameHtml) {
             $.displayNameHtml = displayNameHtml;
             return this;
         }
 
+        /**
+         * @param displayNameHtml The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.
+         * 
+         * @return builder
+         * 
+         */
         public Builder displayNameHtml(String displayNameHtml) {
             return displayNameHtml(Output.of(displayNameHtml));
         }
@@ -836,20 +928,44 @@ public final class RealmState extends com.pulumi.resources.ResourceArgs {
             return emailTheme(Output.of(emailTheme));
         }
 
+        /**
+         * @param enabled When `false`, users and clients will not be able to access this realm. Defaults to `true`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder enabled(@Nullable Output<Boolean> enabled) {
             $.enabled = enabled;
             return this;
         }
 
+        /**
+         * @param enabled When `false`, users and clients will not be able to access this realm. Defaults to `true`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder enabled(Boolean enabled) {
             return enabled(Output.of(enabled));
         }
 
+        /**
+         * @param internalId When specified, this will be used as the realm&#39;s internal ID within Keycloak. When not specified, the realm&#39;s internal ID will be set to the realm&#39;s name.
+         * 
+         * @return builder
+         * 
+         */
         public Builder internalId(@Nullable Output<String> internalId) {
             $.internalId = internalId;
             return this;
         }
 
+        /**
+         * @param internalId When specified, this will be used as the realm&#39;s internal ID within Keycloak. When not specified, the realm&#39;s internal ID will be set to the realm&#39;s name.
+         * 
+         * @return builder
+         * 
+         */
         public Builder internalId(String internalId) {
             return internalId(Output.of(internalId));
         }
@@ -960,11 +1076,23 @@ public final class RealmState extends com.pulumi.resources.ResourceArgs {
             return passwordPolicy(Output.of(passwordPolicy));
         }
 
+        /**
+         * @param realm The name of the realm. This is unique across Keycloak. This will also be used as the realm&#39;s internal ID within Keycloak.
+         * 
+         * @return builder
+         * 
+         */
         public Builder realm(@Nullable Output<String> realm) {
             $.realm = realm;
             return this;
         }
 
+        /**
+         * @param realm The name of the realm. This is unique across Keycloak. This will also be used as the realm&#39;s internal ID within Keycloak.
+         * 
+         * @return builder
+         * 
+         */
         public Builder realm(String realm) {
             return realm(Output.of(realm));
         }
@@ -1140,11 +1268,23 @@ public final class RealmState extends com.pulumi.resources.ResourceArgs {
             return ssoSessionMaxLifespanRememberMe(Output.of(ssoSessionMaxLifespanRememberMe));
         }
 
+        /**
+         * @param userManagedAccess When `true`, users are allowed to manage their own resources. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder userManagedAccess(@Nullable Output<Boolean> userManagedAccess) {
             $.userManagedAccess = userManagedAccess;
             return this;
         }
 
+        /**
+         * @param userManagedAccess When `true`, users are allowed to manage their own resources. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder userManagedAccess(Boolean userManagedAccess) {
             return userManagedAccess(Output.of(userManagedAccess));
         }

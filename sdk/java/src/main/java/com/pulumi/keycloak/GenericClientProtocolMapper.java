@@ -16,9 +16,9 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # keycloak.GenericClientProtocolMapper
+ * !&gt; **WARNING:** This resource is deprecated and will be removed in the next major version. Please use `keycloak.GenericProtocolMapper` instead.
  * 
- * Allows for creating and managing protocol mapper for both types of clients (openid-connect and saml) within Keycloak.
+ * Allows for creating and managing protocol mappers for both types of clients (openid-connect and saml) within Keycloak.
  * 
  * There are two uses cases for using this resource:
  * * If you implemented a custom protocol mapper, this resource can be used to configure it
@@ -27,7 +27,7 @@ import javax.annotation.Nullable;
  * Due to the generic nature of this mapper, it is less user-friendly and more prone to configuration errors.
  * Therefore, if possible, a specific mapper should be used.
  * 
- * ### Example Usage
+ * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>
@@ -69,7 +69,7 @@ import javax.annotation.Nullable;
  *         var samlHardcodeAttributeMapper = new GenericClientProtocolMapper("samlHardcodeAttributeMapper", GenericClientProtocolMapperArgs.builder()
  *             .realmId(realm.id())
  *             .clientId(samlClient.id())
- *             .name("tes-mapper")
+ *             .name("test-mapper")
  *             .protocol("saml")
  *             .protocolMapper("saml-hardcode-attribute-mapper")
  *             .config(Map.ofEntries(
@@ -86,36 +86,30 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * ### Argument Reference
- * 
- * The following arguments are supported:
- * 
- * - `realm_id` - (Required) The realm this protocol mapper exists within.
- * - `client_id` - (Required) The client this protocol mapper is attached to.
- * - `name` - (Required) The display name of this protocol mapper in the GUI.
- * - `protocol` - (Required) The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
- * - `protocol_mapper` - (Required) The name of the protocol mapper. The protocol mapper must be
- *    compatible with the specified client.
- * - `config` - (Required) A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
- * 
- * ### Import
+ * ## Import
  * 
  * Protocol mappers can be imported using the following format: `{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}`
  * 
  * Example:
  * 
+ * bash
+ * 
+ * ```sh
+ * $ pulumi import keycloak:index/genericClientProtocolMapper:GenericClientProtocolMapper saml_hardcode_attribute_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+ * ```
+ * 
  */
 @ResourceType(type="keycloak:index/genericClientProtocolMapper:GenericClientProtocolMapper")
 public class GenericClientProtocolMapper extends com.pulumi.resources.CustomResource {
     /**
-     * The mapper&#39;s associated client. Cannot be used at the same time as client_scope_id.
+     * The client this protocol mapper is attached to.
      * 
      */
     @Export(name="clientId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientId;
 
     /**
-     * @return The mapper&#39;s associated client. Cannot be used at the same time as client_scope_id.
+     * @return The client this protocol mapper is attached to.
      * 
      */
     public Output<Optional<String>> clientId() {
@@ -135,63 +129,71 @@ public class GenericClientProtocolMapper extends com.pulumi.resources.CustomReso
     public Output<Optional<String>> clientScopeId() {
         return Codegen.optional(this.clientScopeId);
     }
+    /**
+     * A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
+     * 
+     */
     @Export(name="config", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output<Map<String,String>> config;
 
+    /**
+     * @return A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
+     * 
+     */
     public Output<Map<String,String>> config() {
         return this.config;
     }
     /**
-     * A human-friendly name that will appear in the Keycloak console.
+     * The display name of this protocol mapper in the GUI.
      * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
-     * @return A human-friendly name that will appear in the Keycloak console.
+     * @return The display name of this protocol mapper in the GUI.
      * 
      */
     public Output<String> name() {
         return this.name;
     }
     /**
-     * The protocol of the client (openid-connect / saml).
+     * The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
      * 
      */
     @Export(name="protocol", refs={String.class}, tree="[0]")
     private Output<String> protocol;
 
     /**
-     * @return The protocol of the client (openid-connect / saml).
+     * @return The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
      * 
      */
     public Output<String> protocol() {
         return this.protocol;
     }
     /**
-     * The type of the protocol mapper.
+     * The name of the protocol mapper. The protocol mapper must be compatible with the specified client.
      * 
      */
     @Export(name="protocolMapper", refs={String.class}, tree="[0]")
     private Output<String> protocolMapper;
 
     /**
-     * @return The type of the protocol mapper.
+     * @return The name of the protocol mapper. The protocol mapper must be compatible with the specified client.
      * 
      */
     public Output<String> protocolMapper() {
         return this.protocolMapper;
     }
     /**
-     * The realm id where the associated client or client scope exists.
+     * The realm this protocol mapper exists within.
      * 
      */
     @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**
-     * @return The realm id where the associated client or client scope exists.
+     * @return The realm this protocol mapper exists within.
      * 
      */
     public Output<String> realmId() {

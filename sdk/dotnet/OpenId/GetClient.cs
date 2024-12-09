@@ -12,11 +12,9 @@ namespace Pulumi.Keycloak.OpenId
     public static class GetClient
     {
         /// <summary>
-        /// ## # keycloak.openid.Client data source
-        /// 
         /// This data source can be used to fetch properties of a Keycloak OpenID client for usage with other resources.
         /// 
-        /// ### Example Usage
+        /// ## Example Usage
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -42,27 +40,14 @@ namespace Pulumi.Keycloak.OpenId
         /// 
         /// });
         /// ```
-        /// 
-        /// ### Argument Reference
-        /// 
-        /// The following arguments are supported:
-        /// 
-        /// - `realm_id` - (Required) The realm id.
-        /// - `client_id` - (Required) The client id.
-        /// 
-        /// ### Attributes Reference
-        /// 
-        /// See the docs for the `keycloak.openid.Client` resource for details on the exported attributes.
         /// </summary>
         public static Task<GetClientResult> InvokeAsync(GetClientArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetClientResult>("keycloak:openid/getClient:getClient", args ?? new GetClientArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # keycloak.openid.Client data source
-        /// 
         /// This data source can be used to fetch properties of a Keycloak OpenID client for usage with other resources.
         /// 
-        /// ### Example Usage
+        /// ## Example Usage
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -88,17 +73,6 @@ namespace Pulumi.Keycloak.OpenId
         /// 
         /// });
         /// ```
-        /// 
-        /// ### Argument Reference
-        /// 
-        /// The following arguments are supported:
-        /// 
-        /// - `realm_id` - (Required) The realm id.
-        /// - `client_id` - (Required) The client id.
-        /// 
-        /// ### Attributes Reference
-        /// 
-        /// See the docs for the `keycloak.openid.Client` resource for details on the exported attributes.
         /// </summary>
         public static Output<GetClientResult> Invoke(GetClientInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetClientResult>("keycloak:openid/getClient:getClient", args ?? new GetClientInvokeArgs(), options.WithDefaults());
@@ -107,6 +81,9 @@ namespace Pulumi.Keycloak.OpenId
 
     public sealed class GetClientArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The client id (not its unique ID).
+        /// </summary>
         [Input("clientId", required: true)]
         public string ClientId { get; set; } = null!;
 
@@ -133,6 +110,9 @@ namespace Pulumi.Keycloak.OpenId
         [Input("oauth2DevicePollingInterval")]
         public string? Oauth2DevicePollingInterval { get; set; }
 
+        /// <summary>
+        /// The realm id.
+        /// </summary>
         [Input("realmId", required: true)]
         public string RealmId { get; set; } = null!;
 
@@ -144,6 +124,9 @@ namespace Pulumi.Keycloak.OpenId
 
     public sealed class GetClientInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The client id (not its unique ID).
+        /// </summary>
         [Input("clientId", required: true)]
         public Input<string> ClientId { get; set; } = null!;
 
@@ -170,6 +153,9 @@ namespace Pulumi.Keycloak.OpenId
         [Input("oauth2DevicePollingInterval")]
         public Input<string>? Oauth2DevicePollingInterval { get; set; }
 
+        /// <summary>
+        /// The realm id.
+        /// </summary>
         [Input("realmId", required: true)]
         public Input<string> RealmId { get; set; } = null!;
 

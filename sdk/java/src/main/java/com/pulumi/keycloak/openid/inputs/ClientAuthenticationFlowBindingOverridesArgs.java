@@ -15,16 +15,32 @@ public final class ClientAuthenticationFlowBindingOverridesArgs extends com.pulu
 
     public static final ClientAuthenticationFlowBindingOverridesArgs Empty = new ClientAuthenticationFlowBindingOverridesArgs();
 
+    /**
+     * Browser flow id, (flow needs to exist)
+     * 
+     */
     @Import(name="browserId")
     private @Nullable Output<String> browserId;
 
+    /**
+     * @return Browser flow id, (flow needs to exist)
+     * 
+     */
     public Optional<Output<String>> browserId() {
         return Optional.ofNullable(this.browserId);
     }
 
+    /**
+     * Direct grant flow id (flow needs to exist)
+     * 
+     */
     @Import(name="directGrantId")
     private @Nullable Output<String> directGrantId;
 
+    /**
+     * @return Direct grant flow id (flow needs to exist)
+     * 
+     */
     public Optional<Output<String>> directGrantId() {
         return Optional.ofNullable(this.directGrantId);
     }
@@ -54,20 +70,44 @@ public final class ClientAuthenticationFlowBindingOverridesArgs extends com.pulu
             $ = new ClientAuthenticationFlowBindingOverridesArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param browserId Browser flow id, (flow needs to exist)
+         * 
+         * @return builder
+         * 
+         */
         public Builder browserId(@Nullable Output<String> browserId) {
             $.browserId = browserId;
             return this;
         }
 
+        /**
+         * @param browserId Browser flow id, (flow needs to exist)
+         * 
+         * @return builder
+         * 
+         */
         public Builder browserId(String browserId) {
             return browserId(Output.of(browserId));
         }
 
+        /**
+         * @param directGrantId Direct grant flow id (flow needs to exist)
+         * 
+         * @return builder
+         * 
+         */
         public Builder directGrantId(@Nullable Output<String> directGrantId) {
             $.directGrantId = directGrantId;
             return this;
         }
 
+        /**
+         * @param directGrantId Direct grant flow id (flow needs to exist)
+         * 
+         * @return builder
+         * 
+         */
         public Builder directGrantId(String directGrantId) {
             return directGrantId(Output.of(directGrantId));
         }

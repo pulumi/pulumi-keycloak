@@ -17,14 +17,14 @@ public final class UserFederationCacheArgs extends com.pulumi.resources.Resource
     public static final UserFederationCacheArgs Empty = new UserFederationCacheArgs();
 
     /**
-     * Day of the week the entry will become invalid on.
+     * Day of the week the entry will become invalid on
      * 
      */
     @Import(name="evictionDay")
     private @Nullable Output<Integer> evictionDay;
 
     /**
-     * @return Day of the week the entry will become invalid on.
+     * @return Day of the week the entry will become invalid on
      * 
      */
     public Optional<Output<Integer>> evictionDay() {
@@ -76,9 +76,17 @@ public final class UserFederationCacheArgs extends com.pulumi.resources.Resource
         return Optional.ofNullable(this.maxLifespan);
     }
 
+    /**
+     * Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
+     * 
+     */
     @Import(name="policy")
     private @Nullable Output<String> policy;
 
+    /**
+     * @return Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
+     * 
+     */
     public Optional<Output<String>> policy() {
         return Optional.ofNullable(this.policy);
     }
@@ -112,7 +120,7 @@ public final class UserFederationCacheArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param evictionDay Day of the week the entry will become invalid on.
+         * @param evictionDay Day of the week the entry will become invalid on
          * 
          * @return builder
          * 
@@ -123,7 +131,7 @@ public final class UserFederationCacheArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param evictionDay Day of the week the entry will become invalid on.
+         * @param evictionDay Day of the week the entry will become invalid on
          * 
          * @return builder
          * 
@@ -195,11 +203,23 @@ public final class UserFederationCacheArgs extends com.pulumi.resources.Resource
             return maxLifespan(Output.of(maxLifespan));
         }
 
+        /**
+         * @param policy Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder policy(@Nullable Output<String> policy) {
             $.policy = policy;
             return this;
         }
 
+        /**
+         * @param policy Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder policy(String policy) {
             return policy(Output.of(policy));
         }

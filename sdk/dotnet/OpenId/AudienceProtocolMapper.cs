@@ -10,16 +10,14 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.OpenId
 {
     /// <summary>
-    /// ## # keycloak.openid.AudienceProtocolMapper
+    /// Allows for creating and managing audience protocol mappers within Keycloak.
     /// 
-    /// Allows for creating and managing audience protocol mappers within
-    /// Keycloak. This mapper was added in Keycloak v4.6.0.Final.
+    /// Audience protocol mappers allow you add audiences to the `aud` claim within issued tokens. The audience can be a custom
+    /// string, or it can be mapped to the ID of a pre-existing client.
     /// 
-    /// Audience protocol mappers allow you add audiences to the `aud` claim
-    /// within issued tokens. The audience can be a custom string, or it can be
-    /// mapped to the ID of a pre-existing client.
+    /// ## Example Usage
     /// 
-    /// ### Example Usage (Client)
+    /// ### Client)
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -38,8 +36,8 @@ namespace Pulumi.Keycloak.OpenId
     ///     var openidClient = new Keycloak.OpenId.Client("openid_client", new()
     ///     {
     ///         RealmId = realm.Id,
-    ///         ClientId = "test-client",
-    ///         Name = "test client",
+    ///         ClientId = "client",
+    ///         Name = "client",
     ///         Enabled = true,
     ///         AccessType = "CONFIDENTIAL",
     ///         ValidRedirectUris = new[]
@@ -59,7 +57,7 @@ namespace Pulumi.Keycloak.OpenId
     /// });
     /// ```
     /// 
-    /// ### Example Usage (Client Scope)
+    /// ### Client Scope)
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -92,74 +90,73 @@ namespace Pulumi.Keycloak.OpenId
     /// });
     /// ```
     /// 
-    /// ### Argument Reference
-    /// 
-    /// The following arguments are supported:
-    /// 
-    /// - `realm_id` - (Required) The realm this protocol mapper exists within.
-    /// - `client_id` - (Required if `client_scope_id` is not specified) The client this protocol mapper is attached to.
-    /// - `client_scope_id` - (Required if `client_id` is not specified) The client scope this protocol mapper is attached to.
-    /// - `name` - (Required) The display name of this protocol mapper in the GUI.
-    /// - `included_client_audience` - (Required if `included_custom_audience` is not specified) A client ID to include within the token's `aud` claim.
-    /// - `included_custom_audience` - (Required if `included_client_audience` is not specified) A custom audience to include within the token's `aud` claim.
-    /// - `add_to_id_token` - (Optional) Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
-    /// - `add_to_access_token` - (Optional) Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
-    /// 
-    /// ### Import
+    /// ## Import
     /// 
     /// Protocol mappers can be imported using one of the following formats:
+    /// 
     /// - Client: `{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}`
+    /// 
     /// - Client Scope: `{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}`
     /// 
     /// Example:
+    /// 
+    /// bash
+    /// 
+    /// ```sh
+    /// $ pulumi import keycloak:openid/audienceProtocolMapper:AudienceProtocolMapper audience_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+    /// ```
+    /// 
+    /// ```sh
+    /// $ pulumi import keycloak:openid/audienceProtocolMapper:AudienceProtocolMapper audience_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+    /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:openid/audienceProtocolMapper:AudienceProtocolMapper")]
     public partial class AudienceProtocolMapper : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Indicates if this claim should be added to the access token.
+        /// Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
         /// </summary>
         [Output("addToAccessToken")]
         public Output<bool?> AddToAccessToken { get; private set; } = null!;
 
         /// <summary>
-        /// Indicates if this claim should be added to the id token.
+        /// Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
         /// </summary>
         [Output("addToIdToken")]
         public Output<bool?> AddToIdToken { get; private set; } = null!;
 
         /// <summary>
-        /// The mapper's associated client. Cannot be used at the same time as client_scope_id.
+        /// The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
         /// </summary>
         [Output("clientId")]
         public Output<string?> ClientId { get; private set; } = null!;
 
         /// <summary>
-        /// The mapper's associated client scope. Cannot be used at the same time as client_id.
+        /// The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
         /// </summary>
         [Output("clientScopeId")]
         public Output<string?> ClientScopeId { get; private set; } = null!;
 
         /// <summary>
-        /// A client ID to include within the token's `aud` claim. Cannot be used with included_custom_audience
+        /// A client ID to include within the token's `aud` claim. Conflicts with `included_custom_audience`. One of `included_client_audience` or `included_custom_audience` must be specified.
         /// </summary>
         [Output("includedClientAudience")]
         public Output<string?> IncludedClientAudience { get; private set; } = null!;
 
         /// <summary>
-        /// A custom audience to include within the token's `aud` claim. Cannot be used with included_custom_audience
+        /// A custom audience to include within the token's `aud` claim. Conflicts with `included_client_audience`. One of `included_client_audience` or `included_custom_audience` must be specified.
         /// </summary>
         [Output("includedCustomAudience")]
         public Output<string?> IncludedCustomAudience { get; private set; } = null!;
 
         /// <summary>
-        /// A human-friendly name that will appear in the Keycloak console.
+        /// The display name of this protocol mapper in the GUI.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The realm id where the associated client or client scope exists.
+        /// The realm this protocol mapper exists within.
         /// </summary>
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
@@ -211,49 +208,49 @@ namespace Pulumi.Keycloak.OpenId
     public sealed class AudienceProtocolMapperArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Indicates if this claim should be added to the access token.
+        /// Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
         /// </summary>
         [Input("addToAccessToken")]
         public Input<bool>? AddToAccessToken { get; set; }
 
         /// <summary>
-        /// Indicates if this claim should be added to the id token.
+        /// Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
         /// </summary>
         [Input("addToIdToken")]
         public Input<bool>? AddToIdToken { get; set; }
 
         /// <summary>
-        /// The mapper's associated client. Cannot be used at the same time as client_scope_id.
+        /// The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
         /// </summary>
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
 
         /// <summary>
-        /// The mapper's associated client scope. Cannot be used at the same time as client_id.
+        /// The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
         /// </summary>
         [Input("clientScopeId")]
         public Input<string>? ClientScopeId { get; set; }
 
         /// <summary>
-        /// A client ID to include within the token's `aud` claim. Cannot be used with included_custom_audience
+        /// A client ID to include within the token's `aud` claim. Conflicts with `included_custom_audience`. One of `included_client_audience` or `included_custom_audience` must be specified.
         /// </summary>
         [Input("includedClientAudience")]
         public Input<string>? IncludedClientAudience { get; set; }
 
         /// <summary>
-        /// A custom audience to include within the token's `aud` claim. Cannot be used with included_custom_audience
+        /// A custom audience to include within the token's `aud` claim. Conflicts with `included_client_audience`. One of `included_client_audience` or `included_custom_audience` must be specified.
         /// </summary>
         [Input("includedCustomAudience")]
         public Input<string>? IncludedCustomAudience { get; set; }
 
         /// <summary>
-        /// A human-friendly name that will appear in the Keycloak console.
+        /// The display name of this protocol mapper in the GUI.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The realm id where the associated client or client scope exists.
+        /// The realm this protocol mapper exists within.
         /// </summary>
         [Input("realmId", required: true)]
         public Input<string> RealmId { get; set; } = null!;
@@ -267,49 +264,49 @@ namespace Pulumi.Keycloak.OpenId
     public sealed class AudienceProtocolMapperState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Indicates if this claim should be added to the access token.
+        /// Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
         /// </summary>
         [Input("addToAccessToken")]
         public Input<bool>? AddToAccessToken { get; set; }
 
         /// <summary>
-        /// Indicates if this claim should be added to the id token.
+        /// Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
         /// </summary>
         [Input("addToIdToken")]
         public Input<bool>? AddToIdToken { get; set; }
 
         /// <summary>
-        /// The mapper's associated client. Cannot be used at the same time as client_scope_id.
+        /// The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
         /// </summary>
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
 
         /// <summary>
-        /// The mapper's associated client scope. Cannot be used at the same time as client_id.
+        /// The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
         /// </summary>
         [Input("clientScopeId")]
         public Input<string>? ClientScopeId { get; set; }
 
         /// <summary>
-        /// A client ID to include within the token's `aud` claim. Cannot be used with included_custom_audience
+        /// A client ID to include within the token's `aud` claim. Conflicts with `included_custom_audience`. One of `included_client_audience` or `included_custom_audience` must be specified.
         /// </summary>
         [Input("includedClientAudience")]
         public Input<string>? IncludedClientAudience { get; set; }
 
         /// <summary>
-        /// A custom audience to include within the token's `aud` claim. Cannot be used with included_custom_audience
+        /// A custom audience to include within the token's `aud` claim. Conflicts with `included_client_audience`. One of `included_client_audience` or `included_custom_audience` must be specified.
         /// </summary>
         [Input("includedCustomAudience")]
         public Input<string>? IncludedCustomAudience { get; set; }
 
         /// <summary>
-        /// A human-friendly name that will appear in the Keycloak console.
+        /// The display name of this protocol mapper in the GUI.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The realm id where the associated client or client scope exists.
+        /// The realm this protocol mapper exists within.
         /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }

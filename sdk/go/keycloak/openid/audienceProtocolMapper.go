@@ -12,16 +12,14 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # openid.AudienceProtocolMapper
+// Allows for creating and managing audience protocol mappers within Keycloak.
 //
-// Allows for creating and managing audience protocol mappers within
-// Keycloak. This mapper was added in Keycloak v4.6.0.Final.
+// Audience protocol mappers allow you add audiences to the `aud` claim within issued tokens. The audience can be a custom
+// string, or it can be mapped to the ID of a pre-existing client.
 //
-// Audience protocol mappers allow you add audiences to the `aud` claim
-// within issued tokens. The audience can be a custom string, or it can be
-// mapped to the ID of a pre-existing client.
+// ## Example Usage
 //
-// ### Example Usage (Client)
+// ### Client)
 //
 // ```go
 // package main
@@ -45,8 +43,8 @@ import (
 //			}
 //			openidClient, err := openid.NewClient(ctx, "openid_client", &openid.ClientArgs{
 //				RealmId:    realm.ID(),
-//				ClientId:   pulumi.String("test-client"),
-//				Name:       pulumi.String("test client"),
+//				ClientId:   pulumi.String("client"),
+//				Name:       pulumi.String("client"),
 //				Enabled:    pulumi.Bool(true),
 //				AccessType: pulumi.String("CONFIDENTIAL"),
 //				ValidRedirectUris: pulumi.StringArray{
@@ -71,7 +69,7 @@ import (
 //
 // ```
 //
-// ### Example Usage (Client Scope)
+// ### Client Scope)
 //
 // ```go
 // package main
@@ -115,44 +113,43 @@ import (
 //
 // ```
 //
-// ### Argument Reference
-//
-// The following arguments are supported:
-//
-// - `realmId` - (Required) The realm this protocol mapper exists within.
-// - `clientId` - (Required if `clientScopeId` is not specified) The client this protocol mapper is attached to.
-// - `clientScopeId` - (Required if `clientId` is not specified) The client scope this protocol mapper is attached to.
-// - `name` - (Required) The display name of this protocol mapper in the GUI.
-// - `includedClientAudience` - (Required if `includedCustomAudience` is not specified) A client ID to include within the token's `aud` claim.
-// - `includedCustomAudience` - (Required if `includedClientAudience` is not specified) A custom audience to include within the token's `aud` claim.
-// - `addToIdToken` - (Optional) Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
-// - `addToAccessToken` - (Optional) Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
-//
-// ### Import
+// ## Import
 //
 // Protocol mappers can be imported using one of the following formats:
+//
 // - Client: `{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}`
+//
 // - Client Scope: `{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}`
 //
 // Example:
+//
+// bash
+//
+// ```sh
+// $ pulumi import keycloak:openid/audienceProtocolMapper:AudienceProtocolMapper audience_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+// ```
+//
+// ```sh
+// $ pulumi import keycloak:openid/audienceProtocolMapper:AudienceProtocolMapper audience_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+// ```
 type AudienceProtocolMapper struct {
 	pulumi.CustomResourceState
 
-	// Indicates if this claim should be added to the access token.
+	// Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
 	AddToAccessToken pulumi.BoolPtrOutput `pulumi:"addToAccessToken"`
-	// Indicates if this claim should be added to the id token.
+	// Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
 	AddToIdToken pulumi.BoolPtrOutput `pulumi:"addToIdToken"`
-	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
+	// The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
 	ClientId pulumi.StringPtrOutput `pulumi:"clientId"`
-	// The mapper's associated client scope. Cannot be used at the same time as client_id.
+	// The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
 	ClientScopeId pulumi.StringPtrOutput `pulumi:"clientScopeId"`
-	// A client ID to include within the token's `aud` claim. Cannot be used with included_custom_audience
+	// A client ID to include within the token's `aud` claim. Conflicts with `includedCustomAudience`. One of `includedClientAudience` or `includedCustomAudience` must be specified.
 	IncludedClientAudience pulumi.StringPtrOutput `pulumi:"includedClientAudience"`
-	// A custom audience to include within the token's `aud` claim. Cannot be used with included_custom_audience
+	// A custom audience to include within the token's `aud` claim. Conflicts with `includedClientAudience`. One of `includedClientAudience` or `includedCustomAudience` must be specified.
 	IncludedCustomAudience pulumi.StringPtrOutput `pulumi:"includedCustomAudience"`
-	// A human-friendly name that will appear in the Keycloak console.
+	// The display name of this protocol mapper in the GUI.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The realm id where the associated client or client scope exists.
+	// The realm this protocol mapper exists within.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
 }
 
@@ -189,40 +186,40 @@ func GetAudienceProtocolMapper(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering AudienceProtocolMapper resources.
 type audienceProtocolMapperState struct {
-	// Indicates if this claim should be added to the access token.
+	// Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
 	AddToAccessToken *bool `pulumi:"addToAccessToken"`
-	// Indicates if this claim should be added to the id token.
+	// Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
 	AddToIdToken *bool `pulumi:"addToIdToken"`
-	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
+	// The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
 	ClientId *string `pulumi:"clientId"`
-	// The mapper's associated client scope. Cannot be used at the same time as client_id.
+	// The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
 	ClientScopeId *string `pulumi:"clientScopeId"`
-	// A client ID to include within the token's `aud` claim. Cannot be used with included_custom_audience
+	// A client ID to include within the token's `aud` claim. Conflicts with `includedCustomAudience`. One of `includedClientAudience` or `includedCustomAudience` must be specified.
 	IncludedClientAudience *string `pulumi:"includedClientAudience"`
-	// A custom audience to include within the token's `aud` claim. Cannot be used with included_custom_audience
+	// A custom audience to include within the token's `aud` claim. Conflicts with `includedClientAudience`. One of `includedClientAudience` or `includedCustomAudience` must be specified.
 	IncludedCustomAudience *string `pulumi:"includedCustomAudience"`
-	// A human-friendly name that will appear in the Keycloak console.
+	// The display name of this protocol mapper in the GUI.
 	Name *string `pulumi:"name"`
-	// The realm id where the associated client or client scope exists.
+	// The realm this protocol mapper exists within.
 	RealmId *string `pulumi:"realmId"`
 }
 
 type AudienceProtocolMapperState struct {
-	// Indicates if this claim should be added to the access token.
+	// Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
 	AddToAccessToken pulumi.BoolPtrInput
-	// Indicates if this claim should be added to the id token.
+	// Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
 	AddToIdToken pulumi.BoolPtrInput
-	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
+	// The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
 	ClientId pulumi.StringPtrInput
-	// The mapper's associated client scope. Cannot be used at the same time as client_id.
+	// The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
 	ClientScopeId pulumi.StringPtrInput
-	// A client ID to include within the token's `aud` claim. Cannot be used with included_custom_audience
+	// A client ID to include within the token's `aud` claim. Conflicts with `includedCustomAudience`. One of `includedClientAudience` or `includedCustomAudience` must be specified.
 	IncludedClientAudience pulumi.StringPtrInput
-	// A custom audience to include within the token's `aud` claim. Cannot be used with included_custom_audience
+	// A custom audience to include within the token's `aud` claim. Conflicts with `includedClientAudience`. One of `includedClientAudience` or `includedCustomAudience` must be specified.
 	IncludedCustomAudience pulumi.StringPtrInput
-	// A human-friendly name that will appear in the Keycloak console.
+	// The display name of this protocol mapper in the GUI.
 	Name pulumi.StringPtrInput
-	// The realm id where the associated client or client scope exists.
+	// The realm this protocol mapper exists within.
 	RealmId pulumi.StringPtrInput
 }
 
@@ -231,41 +228,41 @@ func (AudienceProtocolMapperState) ElementType() reflect.Type {
 }
 
 type audienceProtocolMapperArgs struct {
-	// Indicates if this claim should be added to the access token.
+	// Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
 	AddToAccessToken *bool `pulumi:"addToAccessToken"`
-	// Indicates if this claim should be added to the id token.
+	// Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
 	AddToIdToken *bool `pulumi:"addToIdToken"`
-	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
+	// The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
 	ClientId *string `pulumi:"clientId"`
-	// The mapper's associated client scope. Cannot be used at the same time as client_id.
+	// The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
 	ClientScopeId *string `pulumi:"clientScopeId"`
-	// A client ID to include within the token's `aud` claim. Cannot be used with included_custom_audience
+	// A client ID to include within the token's `aud` claim. Conflicts with `includedCustomAudience`. One of `includedClientAudience` or `includedCustomAudience` must be specified.
 	IncludedClientAudience *string `pulumi:"includedClientAudience"`
-	// A custom audience to include within the token's `aud` claim. Cannot be used with included_custom_audience
+	// A custom audience to include within the token's `aud` claim. Conflicts with `includedClientAudience`. One of `includedClientAudience` or `includedCustomAudience` must be specified.
 	IncludedCustomAudience *string `pulumi:"includedCustomAudience"`
-	// A human-friendly name that will appear in the Keycloak console.
+	// The display name of this protocol mapper in the GUI.
 	Name *string `pulumi:"name"`
-	// The realm id where the associated client or client scope exists.
+	// The realm this protocol mapper exists within.
 	RealmId string `pulumi:"realmId"`
 }
 
 // The set of arguments for constructing a AudienceProtocolMapper resource.
 type AudienceProtocolMapperArgs struct {
-	// Indicates if this claim should be added to the access token.
+	// Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
 	AddToAccessToken pulumi.BoolPtrInput
-	// Indicates if this claim should be added to the id token.
+	// Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
 	AddToIdToken pulumi.BoolPtrInput
-	// The mapper's associated client. Cannot be used at the same time as client_scope_id.
+	// The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
 	ClientId pulumi.StringPtrInput
-	// The mapper's associated client scope. Cannot be used at the same time as client_id.
+	// The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
 	ClientScopeId pulumi.StringPtrInput
-	// A client ID to include within the token's `aud` claim. Cannot be used with included_custom_audience
+	// A client ID to include within the token's `aud` claim. Conflicts with `includedCustomAudience`. One of `includedClientAudience` or `includedCustomAudience` must be specified.
 	IncludedClientAudience pulumi.StringPtrInput
-	// A custom audience to include within the token's `aud` claim. Cannot be used with included_custom_audience
+	// A custom audience to include within the token's `aud` claim. Conflicts with `includedClientAudience`. One of `includedClientAudience` or `includedCustomAudience` must be specified.
 	IncludedCustomAudience pulumi.StringPtrInput
-	// A human-friendly name that will appear in the Keycloak console.
+	// The display name of this protocol mapper in the GUI.
 	Name pulumi.StringPtrInput
-	// The realm id where the associated client or client scope exists.
+	// The realm this protocol mapper exists within.
 	RealmId pulumi.StringInput
 }
 
@@ -356,42 +353,42 @@ func (o AudienceProtocolMapperOutput) ToAudienceProtocolMapperOutputWithContext(
 	return o
 }
 
-// Indicates if this claim should be added to the access token.
+// Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
 func (o AudienceProtocolMapperOutput) AddToAccessToken() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *AudienceProtocolMapper) pulumi.BoolPtrOutput { return v.AddToAccessToken }).(pulumi.BoolPtrOutput)
 }
 
-// Indicates if this claim should be added to the id token.
+// Indicates if the audience should be included in the `aud` claim for the id token. Defaults to `true`.
 func (o AudienceProtocolMapperOutput) AddToIdToken() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *AudienceProtocolMapper) pulumi.BoolPtrOutput { return v.AddToIdToken }).(pulumi.BoolPtrOutput)
 }
 
-// The mapper's associated client. Cannot be used at the same time as client_scope_id.
+// The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
 func (o AudienceProtocolMapperOutput) ClientId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AudienceProtocolMapper) pulumi.StringPtrOutput { return v.ClientId }).(pulumi.StringPtrOutput)
 }
 
-// The mapper's associated client scope. Cannot be used at the same time as client_id.
+// The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
 func (o AudienceProtocolMapperOutput) ClientScopeId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AudienceProtocolMapper) pulumi.StringPtrOutput { return v.ClientScopeId }).(pulumi.StringPtrOutput)
 }
 
-// A client ID to include within the token's `aud` claim. Cannot be used with included_custom_audience
+// A client ID to include within the token's `aud` claim. Conflicts with `includedCustomAudience`. One of `includedClientAudience` or `includedCustomAudience` must be specified.
 func (o AudienceProtocolMapperOutput) IncludedClientAudience() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AudienceProtocolMapper) pulumi.StringPtrOutput { return v.IncludedClientAudience }).(pulumi.StringPtrOutput)
 }
 
-// A custom audience to include within the token's `aud` claim. Cannot be used with included_custom_audience
+// A custom audience to include within the token's `aud` claim. Conflicts with `includedClientAudience`. One of `includedClientAudience` or `includedCustomAudience` must be specified.
 func (o AudienceProtocolMapperOutput) IncludedCustomAudience() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AudienceProtocolMapper) pulumi.StringPtrOutput { return v.IncludedCustomAudience }).(pulumi.StringPtrOutput)
 }
 
-// A human-friendly name that will appear in the Keycloak console.
+// The display name of this protocol mapper in the GUI.
 func (o AudienceProtocolMapperOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *AudienceProtocolMapper) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The realm id where the associated client or client scope exists.
+// The realm this protocol mapper exists within.
 func (o AudienceProtocolMapperOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *AudienceProtocolMapper) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
 }

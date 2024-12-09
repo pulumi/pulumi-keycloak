@@ -66,9 +66,17 @@ public final class GetRealmArgs extends com.pulumi.resources.InvokeArgs {
         return Optional.ofNullable(this.otpPolicy);
     }
 
+    /**
+     * The realm name.
+     * 
+     */
     @Import(name="realm", required=true)
     private Output<String> realm;
 
+    /**
+     * @return The realm name.
+     * 
+     */
     public Output<String> realm() {
         return this.realm;
     }
@@ -201,11 +209,23 @@ public final class GetRealmArgs extends com.pulumi.resources.InvokeArgs {
             return otpPolicy(Output.of(otpPolicy));
         }
 
+        /**
+         * @param realm The realm name.
+         * 
+         * @return builder
+         * 
+         */
         public Builder realm(Output<String> realm) {
             $.realm = realm;
             return this;
         }
 
+        /**
+         * @param realm The realm name.
+         * 
+         * @return builder
+         * 
+         */
         public Builder realm(String realm) {
             return realm(Output.of(realm));
         }

@@ -10,13 +10,29 @@ import java.util.Objects;
 
 @CustomType
 public final class RealmSmtpServerAuth {
+    /**
+     * @return The SMTP server password.
+     * 
+     */
     private String password;
+    /**
+     * @return The SMTP server username.
+     * 
+     */
     private String username;
 
     private RealmSmtpServerAuth() {}
+    /**
+     * @return The SMTP server password.
+     * 
+     */
     public String password() {
         return this.password;
     }
+    /**
+     * @return The SMTP server username.
+     * 
+     */
     public String username() {
         return this.username;
     }
