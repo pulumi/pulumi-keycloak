@@ -116,7 +116,7 @@ def get_client_installation_provider(client_id: Optional[str] = None,
 def get_client_installation_provider_output(client_id: Optional[pulumi.Input[str]] = None,
                                             provider_id: Optional[pulumi.Input[str]] = None,
                                             realm_id: Optional[pulumi.Input[str]] = None,
-                                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetClientInstallationProviderResult]:
+                                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetClientInstallationProviderResult]:
     """
     This data source can be used to retrieve Installation Provider of a SAML Client.
 
@@ -129,7 +129,7 @@ def get_client_installation_provider_output(client_id: Optional[pulumi.Input[str
     __args__['clientId'] = client_id
     __args__['providerId'] = provider_id
     __args__['realmId'] = realm_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('keycloak:saml/getClientInstallationProvider:getClientInstallationProvider', __args__, opts=opts, typ=GetClientInstallationProviderResult)
     return __ret__.apply(lambda __response__: GetClientInstallationProviderResult(
         client_id=pulumi.get(__response__, 'client_id'),

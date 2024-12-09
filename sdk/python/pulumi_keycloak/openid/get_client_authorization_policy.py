@@ -235,7 +235,7 @@ def get_client_authorization_policy(name: Optional[str] = None,
 def get_client_authorization_policy_output(name: Optional[pulumi.Input[str]] = None,
                                            realm_id: Optional[pulumi.Input[str]] = None,
                                            resource_server_id: Optional[pulumi.Input[str]] = None,
-                                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetClientAuthorizationPolicyResult]:
+                                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetClientAuthorizationPolicyResult]:
     """
     This data source can be used to fetch policy and permission information for an OpenID client that has authorization enabled.
 
@@ -289,7 +289,7 @@ def get_client_authorization_policy_output(name: Optional[pulumi.Input[str]] = N
     __args__['name'] = name
     __args__['realmId'] = realm_id
     __args__['resourceServerId'] = resource_server_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('keycloak:openid/getClientAuthorizationPolicy:getClientAuthorizationPolicy', __args__, opts=opts, typ=GetClientAuthorizationPolicyResult)
     return __ret__.apply(lambda __response__: GetClientAuthorizationPolicyResult(
         decision_strategy=pulumi.get(__response__, 'decision_strategy'),

@@ -484,7 +484,7 @@ def get_client_description_converter(body: Optional[str] = None,
         web_origins=pulumi.get(__ret__, 'web_origins'))
 def get_client_description_converter_output(body: Optional[pulumi.Input[str]] = None,
                                             realm_id: Optional[pulumi.Input[str]] = None,
-                                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetClientDescriptionConverterResult]:
+                                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetClientDescriptionConverterResult]:
     """
     This data source uses the [ClientDescriptionConverter](https://www.keycloak.org/docs-api/6.0/javadocs/org/keycloak/exportimport/ClientDescriptionConverter.html) API to convert a generic client description into a Keycloak
     client. This data can then be used to manage the client within Keycloak.
@@ -539,7 +539,7 @@ def get_client_description_converter_output(body: Optional[pulumi.Input[str]] = 
     __args__ = dict()
     __args__['body'] = body
     __args__['realmId'] = realm_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('keycloak:index/getClientDescriptionConverter:getClientDescriptionConverter', __args__, opts=opts, typ=GetClientDescriptionConverterResult)
     return __ret__.apply(lambda __response__: GetClientDescriptionConverterResult(
         access=pulumi.get(__response__, 'access'),
