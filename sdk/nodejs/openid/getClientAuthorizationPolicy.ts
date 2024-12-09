@@ -171,7 +171,7 @@ export interface GetClientAuthorizationPolicyResult {
  * });
  * ```
  */
-export function getClientAuthorizationPolicyOutput(args: GetClientAuthorizationPolicyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetClientAuthorizationPolicyResult> {
+export function getClientAuthorizationPolicyOutput(args: GetClientAuthorizationPolicyOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetClientAuthorizationPolicyResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("keycloak:openid/getClientAuthorizationPolicy:getClientAuthorizationPolicy", {
         "name": args.name,
