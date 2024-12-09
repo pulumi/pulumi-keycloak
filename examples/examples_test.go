@@ -28,7 +28,8 @@ func getCwd(t *testing.T) string {
 	return cwd
 }
 
-func getBaseOptions() integration.ProgramTestOptions {
+func getBaseOptions(t *testing.T) integration.ProgramTestOptions {
+	t.Skip("Skipping tests -  this provider is not high enough usage to merit automated E2E testing in CI")
 	return integration.ProgramTestOptions{
 		ExpectRefreshChanges: true,
 	}

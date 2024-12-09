@@ -9,6 +9,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+//go:build python || all
 // +build python all
 
 package examples
@@ -21,19 +22,16 @@ import (
 	"github.com/pulumi/pulumi/pkg/v3/testing/integration"
 )
 
-func getPythonBaseOptions() integration.ProgramTestOptions {
-	base := getBaseOptions()
-	basePython := base.With(integration.ProgramTestOptions{
+func getPythonBaseOptions(t *testing.T) integration.ProgramTestOptions {
+	return getBaseOptions(t).With(integration.ProgramTestOptions{
 		Dependencies: []string{
 			filepath.Join("..", "sdk", "python", "bin"),
 		},
 	})
-
-	return basePython
 }
 
 func TestAccRealmPython(t *testing.T) {
-	test := getPythonBaseOptions().
+	test := getPythonBaseOptions(t).
 		With(integration.ProgramTestOptions{
 			Dir: path.Join(getCwd(t), "realm", "python"),
 		})

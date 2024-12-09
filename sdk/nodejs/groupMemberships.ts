@@ -52,7 +52,7 @@ import * as utilities from "./utilities";
  *
  * as if it did not already exist on the server.
  *
- * [1]: providers/mrparkers/keycloak/latest/docs/resources/group_memberships
+ * [1]: providers/keycloak/keycloak/latest/docs/resources/group_memberships
  */
 export class GroupMemberships extends pulumi.CustomResource {
     /**
