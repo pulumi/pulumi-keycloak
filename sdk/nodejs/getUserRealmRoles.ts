@@ -91,7 +91,7 @@ export interface GetUserRealmRolesResult {
  * export const keycloakUserRoleNames = userRealmRoles.then(userRealmRoles => userRealmRoles.roleNames);
  * ```
  */
-export function getUserRealmRolesOutput(args: GetUserRealmRolesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetUserRealmRolesResult> {
+export function getUserRealmRolesOutput(args: GetUserRealmRolesOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetUserRealmRolesResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("keycloak:index/getUserRealmRoles:getUserRealmRoles", {
         "realmId": args.realmId,

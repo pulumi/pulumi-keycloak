@@ -210,7 +210,7 @@ def get_client_service_account_user(client_id: Optional[str] = None,
         username=pulumi.get(__ret__, 'username'))
 def get_client_service_account_user_output(client_id: Optional[pulumi.Input[str]] = None,
                                            realm_id: Optional[pulumi.Input[str]] = None,
-                                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetClientServiceAccountUserResult]:
+                                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetClientServiceAccountUserResult]:
     """
     This data source can be used to fetch information about the service account user that is associated with an OpenID client
     that has service accounts enabled.
@@ -251,7 +251,7 @@ def get_client_service_account_user_output(client_id: Optional[pulumi.Input[str]
     __args__ = dict()
     __args__['clientId'] = client_id
     __args__['realmId'] = realm_id
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('keycloak:openid/getClientServiceAccountUser:getClientServiceAccountUser', __args__, opts=opts, typ=GetClientServiceAccountUserResult)
     return __ret__.apply(lambda __response__: GetClientServiceAccountUserResult(
         attributes=pulumi.get(__response__, 'attributes'),

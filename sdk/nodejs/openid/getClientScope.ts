@@ -85,7 +85,7 @@ export interface GetClientScopeResult {
  * });
  * ```
  */
-export function getClientScopeOutput(args: GetClientScopeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetClientScopeResult> {
+export function getClientScopeOutput(args: GetClientScopeOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetClientScopeResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("keycloak:openid/getClientScope:getClientScope", {
         "name": args.name,

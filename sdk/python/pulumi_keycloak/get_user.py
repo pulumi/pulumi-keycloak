@@ -203,7 +203,7 @@ def get_user(realm_id: Optional[str] = None,
         username=pulumi.get(__ret__, 'username'))
 def get_user_output(realm_id: Optional[pulumi.Input[str]] = None,
                     username: Optional[pulumi.Input[str]] = None,
-                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetUserResult]:
+                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetUserResult]:
     """
     This data source can be used to fetch properties of a user within Keycloak.
 
@@ -227,7 +227,7 @@ def get_user_output(realm_id: Optional[pulumi.Input[str]] = None,
     __args__ = dict()
     __args__['realmId'] = realm_id
     __args__['username'] = username
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('keycloak:index/getUser:getUser', __args__, opts=opts, typ=GetUserResult)
     return __ret__.apply(lambda __response__: GetUserResult(
         attributes=pulumi.get(__response__, 'attributes'),

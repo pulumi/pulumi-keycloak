@@ -75,7 +75,7 @@ export interface GetAuthenticationFlowResult {
  * });
  * ```
  */
-export function getAuthenticationFlowOutput(args: GetAuthenticationFlowOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetAuthenticationFlowResult> {
+export function getAuthenticationFlowOutput(args: GetAuthenticationFlowOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAuthenticationFlowResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("keycloak:index/getAuthenticationFlow:getAuthenticationFlow", {
         "alias": args.alias,
