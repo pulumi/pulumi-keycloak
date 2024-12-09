@@ -128,7 +128,7 @@ export interface GetClientServiceAccountUserResult {
  * });
  * ```
  */
-export function getClientServiceAccountUserOutput(args: GetClientServiceAccountUserOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetClientServiceAccountUserResult> {
+export function getClientServiceAccountUserOutput(args: GetClientServiceAccountUserOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetClientServiceAccountUserResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("keycloak:openid/getClientServiceAccountUser:getClientServiceAccountUser", {
         "clientId": args.clientId,

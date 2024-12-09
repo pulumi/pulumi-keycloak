@@ -671,7 +671,7 @@ def get_realm_output(attributes: Optional[pulumi.Input[Optional[Mapping[str, str
                      smtp_servers: Optional[pulumi.Input[Optional[Sequence[Union['GetRealmSmtpServerArgs', 'GetRealmSmtpServerArgsDict']]]]] = None,
                      web_authn_passwordless_policy: Optional[pulumi.Input[Optional[Union['GetRealmWebAuthnPasswordlessPolicyArgs', 'GetRealmWebAuthnPasswordlessPolicyArgsDict']]]] = None,
                      web_authn_policy: Optional[pulumi.Input[Optional[Union['GetRealmWebAuthnPolicyArgs', 'GetRealmWebAuthnPolicyArgsDict']]]] = None,
-                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRealmResult]:
+                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetRealmResult]:
     """
     This data source can be used to fetch properties of a Keycloak realm for
     usage with other resources.
@@ -704,7 +704,7 @@ def get_realm_output(attributes: Optional[pulumi.Input[Optional[Mapping[str, str
     __args__['smtpServers'] = smtp_servers
     __args__['webAuthnPasswordlessPolicy'] = web_authn_passwordless_policy
     __args__['webAuthnPolicy'] = web_authn_policy
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('keycloak:index/getRealm:getRealm', __args__, opts=opts, typ=GetRealmResult)
     return __ret__.apply(lambda __response__: GetRealmResult(
         access_code_lifespan=pulumi.get(__response__, 'access_code_lifespan'),
