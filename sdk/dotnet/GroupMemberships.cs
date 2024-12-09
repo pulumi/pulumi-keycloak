@@ -73,7 +73,7 @@ namespace Pulumi.Keycloak
     /// 
     /// as if it did not already exist on the server.
     /// 
-    /// [1]: providers/mrparkers/keycloak/latest/docs/resources/group_memberships
+    /// [1]: providers/keycloak/keycloak/latest/docs/resources/group_memberships
     /// </summary>
     [KeycloakResourceType("keycloak:index/groupMemberships:GroupMemberships")]
     public partial class GroupMemberships : global::Pulumi.CustomResource
