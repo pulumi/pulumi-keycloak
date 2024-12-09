@@ -12,21 +12,18 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # GroupRoles
-//
 // Allows you to manage roles assigned to a Keycloak group.
 //
-// Note that this resource attempts to be an **authoritative** source over
-// group roles. When this resource takes control over a group's roles,
-// roles that are manually added to the group will be removed, and roles
-// that are manually removed from the group will be added upon the next run
-// of `pulumi up`.
+// If `exhaustive` is true, this resource attempts to be an **authoritative** source over group roles: roles that are manually added to the group will be removed, and roles that are manually removed from the
+// group will be added upon the next run of `pulumi up`.
+// If `exhaustive` is false, this resource is a partial assignation of roles to a group. As a result, you can get multiple `GroupRoles` for the same `groupId`.
 //
-// Note that when assigning composite roles to a group, you may see a
-// non-empty plan following a `pulumi up` if you assign a role and a
-// composite that includes that role to the same group.
+// Note that when assigning composite roles to a group, you may see a non-empty plan following a `pulumi up` if you
+// assign a role and a composite that includes that role to the same group.
 //
-// ### Example Usage
+// ## Example Usage
+//
+// ### Exhaustive Roles)
 //
 // ```go
 // package main
@@ -99,30 +96,116 @@ import (
 //
 // ```
 //
-// ### Argument Reference
+// ### Non Exhaustive Roles)
 //
-// The following arguments are supported:
+// ```go
+// package main
 //
-//   - `realmId` - (Required) The realm this group exists in.
-//   - `groupId` - (Required) The ID of the group this resource should
-//     manage roles for.
-//   - `roleIds` - (Required) A list of role IDs to map to the group
+// import (
 //
-// ### Import
+//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/openid"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
-// This resource can be imported using the format
-// `{{realm_id}}/{{group_id}}`, where `groupId` is the unique ID that
-// Keycloak assigns to the group upon creation. This value can be found in
-// the URI when editing this group in the GUI, and is typically a GUID.
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			realmRole, err := keycloak.NewRole(ctx, "realm_role", &keycloak.RoleArgs{
+//				RealmId:     realm.ID(),
+//				Name:        pulumi.String("my-realm-role"),
+//				Description: pulumi.String("My Realm Role"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = openid.NewClient(ctx, "client", &openid.ClientArgs{
+//				RealmId:    realm.ID(),
+//				ClientId:   pulumi.String("client"),
+//				Name:       pulumi.String("client"),
+//				Enabled:    pulumi.Bool(true),
+//				AccessType: pulumi.String("BEARER-ONLY"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			clientRole, err := keycloak.NewRole(ctx, "client_role", &keycloak.RoleArgs{
+//				RealmId:     realm.ID(),
+//				ClientId:    pulumi.Any(clientKeycloakClient.Id),
+//				Name:        pulumi.String("my-client-role"),
+//				Description: pulumi.String("My Client Role"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			group, err := keycloak.NewGroup(ctx, "group", &keycloak.GroupArgs{
+//				RealmId: realm.ID(),
+//				Name:    pulumi.String("my-group"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = keycloak.NewGroupRoles(ctx, "group_role_association1", &keycloak.GroupRolesArgs{
+//				RealmId:    realm.ID(),
+//				GroupId:    group.ID(),
+//				Exhaustive: pulumi.Bool(false),
+//				RoleIds: pulumi.StringArray{
+//					realmRole.ID(),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = keycloak.NewGroupRoles(ctx, "group_role_association2", &keycloak.GroupRolesArgs{
+//				RealmId:    realm.ID(),
+//				GroupId:    group.ID(),
+//				Exhaustive: pulumi.Bool(false),
+//				RoleIds: pulumi.StringArray{
+//					clientRole.ID(),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// This resource can be imported using the format `{{realm_id}}/{{group_id}}`, where `group_id` is the unique ID that Keycloak
+//
+// assigns to the group upon creation. This value can be found in the URI when editing this group in the GUI, and is typically
+//
+// a GUID.
 //
 // Example:
+//
+// bash
+//
+// ```sh
+// $ pulumi import keycloak:index/groupRoles:GroupRoles group_roles my-realm/18cc6b87-2ce7-4e59-bdc8-b9d49ec98a94
+// ```
 type GroupRoles struct {
 	pulumi.CustomResourceState
 
-	Exhaustive pulumi.BoolPtrOutput     `pulumi:"exhaustive"`
-	GroupId    pulumi.StringOutput      `pulumi:"groupId"`
-	RealmId    pulumi.StringOutput      `pulumi:"realmId"`
-	RoleIds    pulumi.StringArrayOutput `pulumi:"roleIds"`
+	// Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `true`.
+	Exhaustive pulumi.BoolPtrOutput `pulumi:"exhaustive"`
+	// The ID of the group this resource should manage roles for.
+	GroupId pulumi.StringOutput `pulumi:"groupId"`
+	// The realm this group exists in.
+	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// A list of role IDs to map to the group.
+	RoleIds pulumi.StringArrayOutput `pulumi:"roleIds"`
 }
 
 // NewGroupRoles registers a new resource with the given unique name, arguments, and options.
@@ -164,17 +247,25 @@ func GetGroupRoles(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering GroupRoles resources.
 type groupRolesState struct {
-	Exhaustive *bool    `pulumi:"exhaustive"`
-	GroupId    *string  `pulumi:"groupId"`
-	RealmId    *string  `pulumi:"realmId"`
-	RoleIds    []string `pulumi:"roleIds"`
+	// Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `true`.
+	Exhaustive *bool `pulumi:"exhaustive"`
+	// The ID of the group this resource should manage roles for.
+	GroupId *string `pulumi:"groupId"`
+	// The realm this group exists in.
+	RealmId *string `pulumi:"realmId"`
+	// A list of role IDs to map to the group.
+	RoleIds []string `pulumi:"roleIds"`
 }
 
 type GroupRolesState struct {
+	// Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `true`.
 	Exhaustive pulumi.BoolPtrInput
-	GroupId    pulumi.StringPtrInput
-	RealmId    pulumi.StringPtrInput
-	RoleIds    pulumi.StringArrayInput
+	// The ID of the group this resource should manage roles for.
+	GroupId pulumi.StringPtrInput
+	// The realm this group exists in.
+	RealmId pulumi.StringPtrInput
+	// A list of role IDs to map to the group.
+	RoleIds pulumi.StringArrayInput
 }
 
 func (GroupRolesState) ElementType() reflect.Type {
@@ -182,18 +273,26 @@ func (GroupRolesState) ElementType() reflect.Type {
 }
 
 type groupRolesArgs struct {
-	Exhaustive *bool    `pulumi:"exhaustive"`
-	GroupId    string   `pulumi:"groupId"`
-	RealmId    string   `pulumi:"realmId"`
-	RoleIds    []string `pulumi:"roleIds"`
+	// Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `true`.
+	Exhaustive *bool `pulumi:"exhaustive"`
+	// The ID of the group this resource should manage roles for.
+	GroupId string `pulumi:"groupId"`
+	// The realm this group exists in.
+	RealmId string `pulumi:"realmId"`
+	// A list of role IDs to map to the group.
+	RoleIds []string `pulumi:"roleIds"`
 }
 
 // The set of arguments for constructing a GroupRoles resource.
 type GroupRolesArgs struct {
+	// Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `true`.
 	Exhaustive pulumi.BoolPtrInput
-	GroupId    pulumi.StringInput
-	RealmId    pulumi.StringInput
-	RoleIds    pulumi.StringArrayInput
+	// The ID of the group this resource should manage roles for.
+	GroupId pulumi.StringInput
+	// The realm this group exists in.
+	RealmId pulumi.StringInput
+	// A list of role IDs to map to the group.
+	RoleIds pulumi.StringArrayInput
 }
 
 func (GroupRolesArgs) ElementType() reflect.Type {
@@ -283,18 +382,22 @@ func (o GroupRolesOutput) ToGroupRolesOutputWithContext(ctx context.Context) Gro
 	return o
 }
 
+// Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `true`.
 func (o GroupRolesOutput) Exhaustive() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *GroupRoles) pulumi.BoolPtrOutput { return v.Exhaustive }).(pulumi.BoolPtrOutput)
 }
 
+// The ID of the group this resource should manage roles for.
 func (o GroupRolesOutput) GroupId() pulumi.StringOutput {
 	return o.ApplyT(func(v *GroupRoles) pulumi.StringOutput { return v.GroupId }).(pulumi.StringOutput)
 }
 
+// The realm this group exists in.
 func (o GroupRolesOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *GroupRoles) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
 }
 
+// A list of role IDs to map to the group.
 func (o GroupRolesOutput) RoleIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *GroupRoles) pulumi.StringArrayOutput { return v.RoleIds }).(pulumi.StringArrayOutput)
 }

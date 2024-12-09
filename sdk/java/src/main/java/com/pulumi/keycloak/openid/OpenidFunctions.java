@@ -24,11 +24,9 @@ import java.util.concurrent.CompletableFuture;
 
 public final class OpenidFunctions {
     /**
-     * ## # keycloak.openid.Client data source
-     * 
      * This data source can be used to fetch properties of a Keycloak OpenID client for usage with other resources.
      * 
-     * ### Example Usage
+     * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
      * <pre>
@@ -72,28 +70,15 @@ public final class OpenidFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * ### Argument Reference
-     * 
-     * The following arguments are supported:
-     * 
-     * - `realm_id` - (Required) The realm id.
-     * - `client_id` - (Required) The client id.
-     * 
-     * ### Attributes Reference
-     * 
-     * See the docs for the `keycloak.openid.Client` resource for details on the exported attributes.
      * 
      */
     public static Output<GetClientResult> getClient(GetClientArgs args) {
         return getClient(args, InvokeOptions.Empty);
     }
     /**
-     * ## # keycloak.openid.Client data source
-     * 
      * This data source can be used to fetch properties of a Keycloak OpenID client for usage with other resources.
      * 
-     * ### Example Usage
+     * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
      * <pre>
@@ -137,28 +122,15 @@ public final class OpenidFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * ### Argument Reference
-     * 
-     * The following arguments are supported:
-     * 
-     * - `realm_id` - (Required) The realm id.
-     * - `client_id` - (Required) The client id.
-     * 
-     * ### Attributes Reference
-     * 
-     * See the docs for the `keycloak.openid.Client` resource for details on the exported attributes.
      * 
      */
     public static CompletableFuture<GetClientResult> getClientPlain(GetClientPlainArgs args) {
         return getClientPlain(args, InvokeOptions.Empty);
     }
     /**
-     * ## # keycloak.openid.Client data source
-     * 
      * This data source can be used to fetch properties of a Keycloak OpenID client for usage with other resources.
      * 
-     * ### Example Usage
+     * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
      * <pre>
@@ -202,28 +174,15 @@ public final class OpenidFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * ### Argument Reference
-     * 
-     * The following arguments are supported:
-     * 
-     * - `realm_id` - (Required) The realm id.
-     * - `client_id` - (Required) The client id.
-     * 
-     * ### Attributes Reference
-     * 
-     * See the docs for the `keycloak.openid.Client` resource for details on the exported attributes.
      * 
      */
     public static Output<GetClientResult> getClient(GetClientArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("keycloak:openid/getClient:getClient", TypeShape.of(GetClientResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * ## # keycloak.openid.Client data source
-     * 
      * This data source can be used to fetch properties of a Keycloak OpenID client for usage with other resources.
      * 
-     * ### Example Usage
+     * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
      * <pre>
@@ -267,17 +226,6 @@ public final class OpenidFunctions {
      * }
      * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
-     * 
-     * ### Argument Reference
-     * 
-     * The following arguments are supported:
-     * 
-     * - `realm_id` - (Required) The realm id.
-     * - `client_id` - (Required) The client id.
-     * 
-     * ### Attributes Reference
-     * 
-     * See the docs for the `keycloak.openid.Client` resource for details on the exported attributes.
      * 
      */
     public static CompletableFuture<GetClientResult> getClientPlain(GetClientPlainArgs args, InvokeOptions options) {

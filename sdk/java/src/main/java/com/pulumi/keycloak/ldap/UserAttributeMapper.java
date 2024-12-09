@@ -16,15 +16,13 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # keycloak.ldap.UserAttributeMapper
- * 
  * Allows for creating and managing user attribute mappers for Keycloak users
  * federated via LDAP.
  * 
  * The LDAP user attribute mapper can be used to map a single LDAP attribute
  * to an attribute on the Keycloak user model.
  * 
- * ### Example Usage
+ * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>
@@ -54,7 +52,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var realm = new Realm("realm", RealmArgs.builder()
- *             .realm("test")
+ *             .realm("my-realm")
  *             .enabled(true)
  *             .build());
  * 
@@ -87,163 +85,158 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * ### Argument Reference
- * 
- * The following arguments are supported:
- * 
- * - `realm_id` - (Required) The realm that this LDAP mapper will exist in.
- * - `ldap_user_federation_id` - (Required) The ID of the LDAP user federation provider to attach this mapper to.
- * - `name` - (Required) Display name of this mapper when displayed in the console.
- * - `user_model_attribute` - (Required) Name of the user property or attribute you want to map the LDAP attribute into.
- * - `ldap_attribute` - (Required) Name of the mapped attribute on the LDAP object.
- * - `read_only` - (Optional) When `true`, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak. Defaults to `false`.
- * - `always_read_value_from_ldap` - (Optional) When `true`, the value fetched from LDAP will override the value stored in Keycloak. Defaults to `false`.
- * - `is_mandatory_in_ldap` - (Optional) When `true`, this attribute must exist in LDAP. Defaults to `false`.
- * 
- * ### Import
+ * ## Import
  * 
  * LDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`.
- * The ID of the LDAP user federation provider and the mapper can be found within
- * the Keycloak GUI, and they are typically GUIDs:
+ * 
+ * The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs.
+ * 
+ * Example:
+ * 
+ * bash
+ * 
+ * ```sh
+ * $ pulumi import keycloak:ldap/userAttributeMapper:UserAttributeMapper ldap_user_attribute_mapper my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
+ * ```
  * 
  */
 @ResourceType(type="keycloak:ldap/userAttributeMapper:UserAttributeMapper")
 public class UserAttributeMapper extends com.pulumi.resources.CustomResource {
     /**
-     * When true, the value fetched from LDAP will override the value stored in Keycloak.
+     * When `true`, the value fetched from LDAP will override the value stored in Keycloak. Defaults to `false`.
      * 
      */
     @Export(name="alwaysReadValueFromLdap", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> alwaysReadValueFromLdap;
 
     /**
-     * @return When true, the value fetched from LDAP will override the value stored in Keycloak.
+     * @return When `true`, the value fetched from LDAP will override the value stored in Keycloak. Defaults to `false`.
      * 
      */
     public Output<Optional<Boolean>> alwaysReadValueFromLdap() {
         return Codegen.optional(this.alwaysReadValueFromLdap);
     }
     /**
-     * Default value to set in LDAP if is_mandatory_in_ldap and the value is empty
+     * Default value to set in LDAP if `is_mandatory_in_ldap` is true and the value is empty.
      * 
      */
     @Export(name="attributeDefaultValue", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> attributeDefaultValue;
 
     /**
-     * @return Default value to set in LDAP if is_mandatory_in_ldap and the value is empty
+     * @return Default value to set in LDAP if `is_mandatory_in_ldap` is true and the value is empty.
      * 
      */
     public Output<Optional<String>> attributeDefaultValue() {
         return Codegen.optional(this.attributeDefaultValue);
     }
     /**
-     * Should be true for binary LDAP attributes
+     * Should be true for binary LDAP attributes.
      * 
      */
     @Export(name="isBinaryAttribute", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> isBinaryAttribute;
 
     /**
-     * @return Should be true for binary LDAP attributes
+     * @return Should be true for binary LDAP attributes.
      * 
      */
     public Output<Optional<Boolean>> isBinaryAttribute() {
         return Codegen.optional(this.isBinaryAttribute);
     }
     /**
-     * When true, this attribute must exist in LDAP.
+     * When `true`, this attribute must exist in LDAP. Defaults to `false`.
      * 
      */
     @Export(name="isMandatoryInLdap", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> isMandatoryInLdap;
 
     /**
-     * @return When true, this attribute must exist in LDAP.
+     * @return When `true`, this attribute must exist in LDAP. Defaults to `false`.
      * 
      */
     public Output<Optional<Boolean>> isMandatoryInLdap() {
         return Codegen.optional(this.isMandatoryInLdap);
     }
     /**
-     * Name of the mapped attribute on LDAP object.
+     * Name of the mapped attribute on the LDAP object.
      * 
      */
     @Export(name="ldapAttribute", refs={String.class}, tree="[0]")
     private Output<String> ldapAttribute;
 
     /**
-     * @return Name of the mapped attribute on LDAP object.
+     * @return Name of the mapped attribute on the LDAP object.
      * 
      */
     public Output<String> ldapAttribute() {
         return this.ldapAttribute;
     }
     /**
-     * The ldap user federation provider to attach this mapper to.
+     * The ID of the LDAP user federation provider to attach this mapper to.
      * 
      */
     @Export(name="ldapUserFederationId", refs={String.class}, tree="[0]")
     private Output<String> ldapUserFederationId;
 
     /**
-     * @return The ldap user federation provider to attach this mapper to.
+     * @return The ID of the LDAP user federation provider to attach this mapper to.
      * 
      */
     public Output<String> ldapUserFederationId() {
         return this.ldapUserFederationId;
     }
     /**
-     * Display name of the mapper when displayed in the console.
+     * Display name of this mapper when displayed in the console.
      * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
-     * @return Display name of the mapper when displayed in the console.
+     * @return Display name of this mapper when displayed in the console.
      * 
      */
     public Output<String> name() {
         return this.name;
     }
     /**
-     * When true, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak.
+     * When `true`, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak. Defaults to `false`.
      * 
      */
     @Export(name="readOnly", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> readOnly;
 
     /**
-     * @return When true, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak.
+     * @return When `true`, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak. Defaults to `false`.
      * 
      */
     public Output<Optional<Boolean>> readOnly() {
         return Codegen.optional(this.readOnly);
     }
     /**
-     * The realm in which the ldap user federation provider exists.
+     * The realm that this LDAP mapper will exist in.
      * 
      */
     @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**
-     * @return The realm in which the ldap user federation provider exists.
+     * @return The realm that this LDAP mapper will exist in.
      * 
      */
     public Output<String> realmId() {
         return this.realmId;
     }
     /**
-     * Name of the UserModel property or attribute you want to map the LDAP attribute into.
+     * Name of the user property or attribute you want to map the LDAP attribute into.
      * 
      */
     @Export(name="userModelAttribute", refs={String.class}, tree="[0]")
     private Output<String> userModelAttribute;
 
     /**
-     * @return Name of the UserModel property or attribute you want to map the LDAP attribute into.
+     * @return Name of the user property or attribute you want to map the LDAP attribute into.
      * 
      */
     public Output<String> userModelAttribute() {

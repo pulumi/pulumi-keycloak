@@ -14,6 +14,10 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class RealmWebAuthnPolicy {
+    /**
+     * @return A set of AAGUIDs for which an authenticator can be registered.
+     * 
+     */
     private @Nullable List<String> acceptableAaguids;
     /**
      * @return Either none, indirect or direct
@@ -25,9 +29,25 @@ public final class RealmWebAuthnPolicy {
      * 
      */
     private @Nullable String authenticatorAttachment;
+    /**
+     * @return When `true`, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to `false`.
+     * 
+     */
     private @Nullable Boolean avoidSameAuthenticatorRegister;
+    /**
+     * @return The timeout value for creating a user&#39;s public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
+     * 
+     */
     private @Nullable Integer createTimeout;
+    /**
+     * @return A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
+     * 
+     */
     private @Nullable String relyingPartyEntityName;
+    /**
+     * @return The WebAuthn relying party ID.
+     * 
+     */
     private @Nullable String relyingPartyId;
     /**
      * @return Either Yes or No
@@ -46,6 +66,10 @@ public final class RealmWebAuthnPolicy {
     private @Nullable String userVerificationRequirement;
 
     private RealmWebAuthnPolicy() {}
+    /**
+     * @return A set of AAGUIDs for which an authenticator can be registered.
+     * 
+     */
     public List<String> acceptableAaguids() {
         return this.acceptableAaguids == null ? List.of() : this.acceptableAaguids;
     }
@@ -63,15 +87,31 @@ public final class RealmWebAuthnPolicy {
     public Optional<String> authenticatorAttachment() {
         return Optional.ofNullable(this.authenticatorAttachment);
     }
+    /**
+     * @return When `true`, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to `false`.
+     * 
+     */
     public Optional<Boolean> avoidSameAuthenticatorRegister() {
         return Optional.ofNullable(this.avoidSameAuthenticatorRegister);
     }
+    /**
+     * @return The timeout value for creating a user&#39;s public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
+     * 
+     */
     public Optional<Integer> createTimeout() {
         return Optional.ofNullable(this.createTimeout);
     }
+    /**
+     * @return A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
+     * 
+     */
     public Optional<String> relyingPartyEntityName() {
         return Optional.ofNullable(this.relyingPartyEntityName);
     }
+    /**
+     * @return The WebAuthn relying party ID.
+     * 
+     */
     public Optional<String> relyingPartyId() {
         return Optional.ofNullable(this.relyingPartyId);
     }

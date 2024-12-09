@@ -14,7 +14,7 @@ import (
 var _ = internal.GetEnvOrDefault
 
 type UserFederationCache struct {
-	// Day of the week the entry will become invalid on.
+	// Day of the week the entry will become invalid on
 	EvictionDay *int `pulumi:"evictionDay"`
 	// Hour of day the entry will become invalid on.
 	EvictionHour *int `pulumi:"evictionHour"`
@@ -22,7 +22,8 @@ type UserFederationCache struct {
 	EvictionMinute *int `pulumi:"evictionMinute"`
 	// Max lifespan of cache entry (duration string).
 	MaxLifespan *string `pulumi:"maxLifespan"`
-	Policy      *string `pulumi:"policy"`
+	// Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
+	Policy *string `pulumi:"policy"`
 }
 
 // UserFederationCacheInput is an input type that accepts UserFederationCacheArgs and UserFederationCacheOutput values.
@@ -37,7 +38,7 @@ type UserFederationCacheInput interface {
 }
 
 type UserFederationCacheArgs struct {
-	// Day of the week the entry will become invalid on.
+	// Day of the week the entry will become invalid on
 	EvictionDay pulumi.IntPtrInput `pulumi:"evictionDay"`
 	// Hour of day the entry will become invalid on.
 	EvictionHour pulumi.IntPtrInput `pulumi:"evictionHour"`
@@ -45,7 +46,8 @@ type UserFederationCacheArgs struct {
 	EvictionMinute pulumi.IntPtrInput `pulumi:"evictionMinute"`
 	// Max lifespan of cache entry (duration string).
 	MaxLifespan pulumi.StringPtrInput `pulumi:"maxLifespan"`
-	Policy      pulumi.StringPtrInput `pulumi:"policy"`
+	// Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
+	Policy pulumi.StringPtrInput `pulumi:"policy"`
 }
 
 func (UserFederationCacheArgs) ElementType() reflect.Type {
@@ -125,7 +127,7 @@ func (o UserFederationCacheOutput) ToUserFederationCachePtrOutputWithContext(ctx
 	}).(UserFederationCachePtrOutput)
 }
 
-// Day of the week the entry will become invalid on.
+// Day of the week the entry will become invalid on
 func (o UserFederationCacheOutput) EvictionDay() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v UserFederationCache) *int { return v.EvictionDay }).(pulumi.IntPtrOutput)
 }
@@ -145,6 +147,7 @@ func (o UserFederationCacheOutput) MaxLifespan() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v UserFederationCache) *string { return v.MaxLifespan }).(pulumi.StringPtrOutput)
 }
 
+// Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
 func (o UserFederationCacheOutput) Policy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v UserFederationCache) *string { return v.Policy }).(pulumi.StringPtrOutput)
 }
@@ -173,7 +176,7 @@ func (o UserFederationCachePtrOutput) Elem() UserFederationCacheOutput {
 	}).(UserFederationCacheOutput)
 }
 
-// Day of the week the entry will become invalid on.
+// Day of the week the entry will become invalid on
 func (o UserFederationCachePtrOutput) EvictionDay() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *UserFederationCache) *int {
 		if v == nil {
@@ -213,6 +216,7 @@ func (o UserFederationCachePtrOutput) MaxLifespan() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
 func (o UserFederationCachePtrOutput) Policy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *UserFederationCache) *string {
 		if v == nil {
@@ -223,7 +227,7 @@ func (o UserFederationCachePtrOutput) Policy() pulumi.StringPtrOutput {
 }
 
 type UserFederationKerberos struct {
-	// The name of the kerberos realm, e.g. FOO.LOCAL
+	// The name of the kerberos realm, e.g. FOO.LOCAL.
 	KerberosRealm string `pulumi:"kerberosRealm"`
 	// Path to the kerberos keytab file on the server with credentials of the service principal.
 	KeyTab string `pulumi:"keyTab"`
@@ -245,7 +249,7 @@ type UserFederationKerberosInput interface {
 }
 
 type UserFederationKerberosArgs struct {
-	// The name of the kerberos realm, e.g. FOO.LOCAL
+	// The name of the kerberos realm, e.g. FOO.LOCAL.
 	KerberosRealm pulumi.StringInput `pulumi:"kerberosRealm"`
 	// Path to the kerberos keytab file on the server with credentials of the service principal.
 	KeyTab pulumi.StringInput `pulumi:"keyTab"`
@@ -332,7 +336,7 @@ func (o UserFederationKerberosOutput) ToUserFederationKerberosPtrOutputWithConte
 	}).(UserFederationKerberosPtrOutput)
 }
 
-// The name of the kerberos realm, e.g. FOO.LOCAL
+// The name of the kerberos realm, e.g. FOO.LOCAL.
 func (o UserFederationKerberosOutput) KerberosRealm() pulumi.StringOutput {
 	return o.ApplyT(func(v UserFederationKerberos) string { return v.KerberosRealm }).(pulumi.StringOutput)
 }
@@ -376,7 +380,7 @@ func (o UserFederationKerberosPtrOutput) Elem() UserFederationKerberosOutput {
 	}).(UserFederationKerberosOutput)
 }
 
-// The name of the kerberos realm, e.g. FOO.LOCAL
+// The name of the kerberos realm, e.g. FOO.LOCAL.
 func (o UserFederationKerberosPtrOutput) KerberosRealm() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *UserFederationKerberos) *string {
 		if v == nil {

@@ -15,16 +15,32 @@ public final class RealmInternationalizationArgs extends com.pulumi.resources.Re
 
     public static final RealmInternationalizationArgs Empty = new RealmInternationalizationArgs();
 
+    /**
+     * The locale to use by default. This locale code must be present within the `supported_locales` list.
+     * 
+     */
     @Import(name="defaultLocale", required=true)
     private Output<String> defaultLocale;
 
+    /**
+     * @return The locale to use by default. This locale code must be present within the `supported_locales` list.
+     * 
+     */
     public Output<String> defaultLocale() {
         return this.defaultLocale;
     }
 
+    /**
+     * A list of [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) locale codes that the realm should support.
+     * 
+     */
     @Import(name="supportedLocales", required=true)
     private Output<List<String>> supportedLocales;
 
+    /**
+     * @return A list of [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) locale codes that the realm should support.
+     * 
+     */
     public Output<List<String>> supportedLocales() {
         return this.supportedLocales;
     }
@@ -54,24 +70,54 @@ public final class RealmInternationalizationArgs extends com.pulumi.resources.Re
             $ = new RealmInternationalizationArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param defaultLocale The locale to use by default. This locale code must be present within the `supported_locales` list.
+         * 
+         * @return builder
+         * 
+         */
         public Builder defaultLocale(Output<String> defaultLocale) {
             $.defaultLocale = defaultLocale;
             return this;
         }
 
+        /**
+         * @param defaultLocale The locale to use by default. This locale code must be present within the `supported_locales` list.
+         * 
+         * @return builder
+         * 
+         */
         public Builder defaultLocale(String defaultLocale) {
             return defaultLocale(Output.of(defaultLocale));
         }
 
+        /**
+         * @param supportedLocales A list of [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) locale codes that the realm should support.
+         * 
+         * @return builder
+         * 
+         */
         public Builder supportedLocales(Output<List<String>> supportedLocales) {
             $.supportedLocales = supportedLocales;
             return this;
         }
 
+        /**
+         * @param supportedLocales A list of [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) locale codes that the realm should support.
+         * 
+         * @return builder
+         * 
+         */
         public Builder supportedLocales(List<String> supportedLocales) {
             return supportedLocales(Output.of(supportedLocales));
         }
 
+        /**
+         * @param supportedLocales A list of [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) locale codes that the realm should support.
+         * 
+         * @return builder
+         * 
+         */
         public Builder supportedLocales(String... supportedLocales) {
             return supportedLocales(List.of(supportedLocales));
         }

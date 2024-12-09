@@ -27,6 +27,12 @@ class ClientScopeArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a ClientScope resource.
+        :param pulumi.Input[str] realm_id: The realm this client scope belongs to.
+        :param pulumi.Input[str] consent_screen_text: When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
+        :param pulumi.Input[str] description: The description of this client scope in the GUI.
+        :param pulumi.Input[int] gui_order: Specify order of the client scope in GUI (such as in Consent page) as integer.
+        :param pulumi.Input[bool] include_in_token_scope: When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response.
+        :param pulumi.Input[str] name: The display name of this client scope in the GUI.
         """
         pulumi.set(__self__, "realm_id", realm_id)
         if consent_screen_text is not None:
@@ -43,6 +49,9 @@ class ClientScopeArgs:
     @property
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Input[str]:
+        """
+        The realm this client scope belongs to.
+        """
         return pulumi.get(self, "realm_id")
 
     @realm_id.setter
@@ -52,6 +61,9 @@ class ClientScopeArgs:
     @property
     @pulumi.getter(name="consentScreenText")
     def consent_screen_text(self) -> Optional[pulumi.Input[str]]:
+        """
+        When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
+        """
         return pulumi.get(self, "consent_screen_text")
 
     @consent_screen_text.setter
@@ -61,6 +73,9 @@ class ClientScopeArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        The description of this client scope in the GUI.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -70,6 +85,9 @@ class ClientScopeArgs:
     @property
     @pulumi.getter(name="guiOrder")
     def gui_order(self) -> Optional[pulumi.Input[int]]:
+        """
+        Specify order of the client scope in GUI (such as in Consent page) as integer.
+        """
         return pulumi.get(self, "gui_order")
 
     @gui_order.setter
@@ -79,6 +97,9 @@ class ClientScopeArgs:
     @property
     @pulumi.getter(name="includeInTokenScope")
     def include_in_token_scope(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response.
+        """
         return pulumi.get(self, "include_in_token_scope")
 
     @include_in_token_scope.setter
@@ -88,6 +109,9 @@ class ClientScopeArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The display name of this client scope in the GUI.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -106,6 +130,12 @@ class _ClientScopeState:
                  realm_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering ClientScope resources.
+        :param pulumi.Input[str] consent_screen_text: When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
+        :param pulumi.Input[str] description: The description of this client scope in the GUI.
+        :param pulumi.Input[int] gui_order: Specify order of the client scope in GUI (such as in Consent page) as integer.
+        :param pulumi.Input[bool] include_in_token_scope: When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response.
+        :param pulumi.Input[str] name: The display name of this client scope in the GUI.
+        :param pulumi.Input[str] realm_id: The realm this client scope belongs to.
         """
         if consent_screen_text is not None:
             pulumi.set(__self__, "consent_screen_text", consent_screen_text)
@@ -123,6 +153,9 @@ class _ClientScopeState:
     @property
     @pulumi.getter(name="consentScreenText")
     def consent_screen_text(self) -> Optional[pulumi.Input[str]]:
+        """
+        When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
+        """
         return pulumi.get(self, "consent_screen_text")
 
     @consent_screen_text.setter
@@ -132,6 +165,9 @@ class _ClientScopeState:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        The description of this client scope in the GUI.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -141,6 +177,9 @@ class _ClientScopeState:
     @property
     @pulumi.getter(name="guiOrder")
     def gui_order(self) -> Optional[pulumi.Input[int]]:
+        """
+        Specify order of the client scope in GUI (such as in Consent page) as integer.
+        """
         return pulumi.get(self, "gui_order")
 
     @gui_order.setter
@@ -150,6 +189,9 @@ class _ClientScopeState:
     @property
     @pulumi.getter(name="includeInTokenScope")
     def include_in_token_scope(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response.
+        """
         return pulumi.get(self, "include_in_token_scope")
 
     @include_in_token_scope.setter
@@ -159,6 +201,9 @@ class _ClientScopeState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The display name of this client scope in the GUI.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -168,6 +213,9 @@ class _ClientScopeState:
     @property
     @pulumi.getter(name="realmId")
     def realm_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The realm this client scope belongs to.
+        """
         return pulumi.get(self, "realm_id")
 
     @realm_id.setter
@@ -188,16 +236,12 @@ class ClientScope(pulumi.CustomResource):
                  realm_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## # openid.ClientScope
+        Allows for creating and managing Keycloak client scopes that can be attached to clients that use the OpenID Connect protocol.
 
-        Allows for creating and managing Keycloak client scopes that can be attached to
-        clients that use the OpenID Connect protocol.
+        Client Scopes can be used to share common protocol and role mappings between multiple clients within a realm. They can also
+        be used by clients to conditionally request claims or roles for a user based on the OAuth 2.0 `scope` parameter.
 
-        Client Scopes can be used to share common protocol and role mappings between multiple
-        clients within a realm. They can also be used by clients to conditionally request
-        claims or roles for a user based on the OAuth 2.0 `scope` parameter.
-
-        ### Example Usage
+        ## Example Usage
 
         ```python
         import pulumi
@@ -209,29 +253,33 @@ class ClientScope(pulumi.CustomResource):
         openid_client_scope = keycloak.openid.ClientScope("openid_client_scope",
             realm_id=realm.id,
             name="groups",
-            description="When requested, this scope will map a user's group memberships to a claim")
+            description="When requested, this scope will map a user's group memberships to a claim",
+            include_in_token_scope=True,
+            gui_order=1)
         ```
 
-        ### Argument Reference
-
-        The following arguments are supported:
-
-        - `realm_id` - (Required) The realm this client scope belongs to.
-        - `name` - (Required) The display name of this client scope in the GUI.
-        - `description` - (Optional) The description of this client scope in the GUI.
-        - `consent_screen_text` - (Optional) When set, a consent screen will be displayed to users
-          authenticating to clients with this scope attached. The consent screen will display the string
-          value of this attribute.
-
-        ### Import
+        ## Import
 
         Client scopes can be imported using the format `{{realm_id}}/{{client_scope_id}}`, where `client_scope_id` is the unique ID that Keycloak
+
         assigns to the client scope upon creation. This value can be found in the URI when editing this client scope in the GUI, and is typically a GUID.
 
         Example:
 
+        bash
+
+        ```sh
+        $ pulumi import keycloak:openid/clientScope:ClientScope openid_client_scope my-realm/8e8f7fe1-df9b-40ed-bed3-4597aa0dac52
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] consent_screen_text: When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
+        :param pulumi.Input[str] description: The description of this client scope in the GUI.
+        :param pulumi.Input[int] gui_order: Specify order of the client scope in GUI (such as in Consent page) as integer.
+        :param pulumi.Input[bool] include_in_token_scope: When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response.
+        :param pulumi.Input[str] name: The display name of this client scope in the GUI.
+        :param pulumi.Input[str] realm_id: The realm this client scope belongs to.
         """
         ...
     @overload
@@ -240,16 +288,12 @@ class ClientScope(pulumi.CustomResource):
                  args: ClientScopeArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # openid.ClientScope
+        Allows for creating and managing Keycloak client scopes that can be attached to clients that use the OpenID Connect protocol.
 
-        Allows for creating and managing Keycloak client scopes that can be attached to
-        clients that use the OpenID Connect protocol.
+        Client Scopes can be used to share common protocol and role mappings between multiple clients within a realm. They can also
+        be used by clients to conditionally request claims or roles for a user based on the OAuth 2.0 `scope` parameter.
 
-        Client Scopes can be used to share common protocol and role mappings between multiple
-        clients within a realm. They can also be used by clients to conditionally request
-        claims or roles for a user based on the OAuth 2.0 `scope` parameter.
-
-        ### Example Usage
+        ## Example Usage
 
         ```python
         import pulumi
@@ -261,26 +305,24 @@ class ClientScope(pulumi.CustomResource):
         openid_client_scope = keycloak.openid.ClientScope("openid_client_scope",
             realm_id=realm.id,
             name="groups",
-            description="When requested, this scope will map a user's group memberships to a claim")
+            description="When requested, this scope will map a user's group memberships to a claim",
+            include_in_token_scope=True,
+            gui_order=1)
         ```
 
-        ### Argument Reference
-
-        The following arguments are supported:
-
-        - `realm_id` - (Required) The realm this client scope belongs to.
-        - `name` - (Required) The display name of this client scope in the GUI.
-        - `description` - (Optional) The description of this client scope in the GUI.
-        - `consent_screen_text` - (Optional) When set, a consent screen will be displayed to users
-          authenticating to clients with this scope attached. The consent screen will display the string
-          value of this attribute.
-
-        ### Import
+        ## Import
 
         Client scopes can be imported using the format `{{realm_id}}/{{client_scope_id}}`, where `client_scope_id` is the unique ID that Keycloak
+
         assigns to the client scope upon creation. This value can be found in the URI when editing this client scope in the GUI, and is typically a GUID.
 
         Example:
+
+        bash
+
+        ```sh
+        $ pulumi import keycloak:openid/clientScope:ClientScope openid_client_scope my-realm/8e8f7fe1-df9b-40ed-bed3-4597aa0dac52
+        ```
 
         :param str resource_name: The name of the resource.
         :param ClientScopeArgs args: The arguments to use to populate this resource's properties.
@@ -343,6 +385,12 @@ class ClientScope(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] consent_screen_text: When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
+        :param pulumi.Input[str] description: The description of this client scope in the GUI.
+        :param pulumi.Input[int] gui_order: Specify order of the client scope in GUI (such as in Consent page) as integer.
+        :param pulumi.Input[bool] include_in_token_scope: When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response.
+        :param pulumi.Input[str] name: The display name of this client scope in the GUI.
+        :param pulumi.Input[str] realm_id: The realm this client scope belongs to.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -359,30 +407,48 @@ class ClientScope(pulumi.CustomResource):
     @property
     @pulumi.getter(name="consentScreenText")
     def consent_screen_text(self) -> pulumi.Output[Optional[str]]:
+        """
+        When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
+        """
         return pulumi.get(self, "consent_screen_text")
 
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        The description of this client scope in the GUI.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="guiOrder")
     def gui_order(self) -> pulumi.Output[Optional[int]]:
+        """
+        Specify order of the client scope in GUI (such as in Consent page) as integer.
+        """
         return pulumi.get(self, "gui_order")
 
     @property
     @pulumi.getter(name="includeInTokenScope")
     def include_in_token_scope(self) -> pulumi.Output[Optional[bool]]:
+        """
+        When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response.
+        """
         return pulumi.get(self, "include_in_token_scope")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        The display name of this client scope in the GUI.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Output[str]:
+        """
+        The realm this client scope belongs to.
+        """
         return pulumi.get(self, "realm_id")
 

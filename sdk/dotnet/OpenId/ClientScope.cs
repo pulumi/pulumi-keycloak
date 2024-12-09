@@ -10,16 +10,12 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.OpenId
 {
     /// <summary>
-    /// ## # keycloak.openid.ClientScope
+    /// Allows for creating and managing Keycloak client scopes that can be attached to clients that use the OpenID Connect protocol.
     /// 
-    /// Allows for creating and managing Keycloak client scopes that can be attached to
-    /// clients that use the OpenID Connect protocol.
+    /// Client Scopes can be used to share common protocol and role mappings between multiple clients within a realm. They can also
+    /// be used by clients to conditionally request claims or roles for a user based on the OAuth 2.0 `scope` parameter.
     /// 
-    /// Client Scopes can be used to share common protocol and role mappings between multiple
-    /// clients within a realm. They can also be used by clients to conditionally request
-    /// claims or roles for a user based on the OAuth 2.0 `scope` parameter.
-    /// 
-    /// ### Example Usage
+    /// ## Example Usage
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -40,47 +36,63 @@ namespace Pulumi.Keycloak.OpenId
     ///         RealmId = realm.Id,
     ///         Name = "groups",
     ///         Description = "When requested, this scope will map a user's group memberships to a claim",
+    ///         IncludeInTokenScope = true,
+    ///         GuiOrder = 1,
     ///     });
     /// 
     /// });
     /// ```
     /// 
-    /// ### Argument Reference
-    /// 
-    /// The following arguments are supported:
-    /// 
-    /// - `realm_id` - (Required) The realm this client scope belongs to.
-    /// - `name` - (Required) The display name of this client scope in the GUI.
-    /// - `description` - (Optional) The description of this client scope in the GUI.
-    /// - `consent_screen_text` - (Optional) When set, a consent screen will be displayed to users
-    ///   authenticating to clients with this scope attached. The consent screen will display the string
-    ///   value of this attribute.
-    /// 
-    /// ### Import
+    /// ## Import
     /// 
     /// Client scopes can be imported using the format `{{realm_id}}/{{client_scope_id}}`, where `client_scope_id` is the unique ID that Keycloak
+    /// 
     /// assigns to the client scope upon creation. This value can be found in the URI when editing this client scope in the GUI, and is typically a GUID.
     /// 
     /// Example:
+    /// 
+    /// bash
+    /// 
+    /// ```sh
+    /// $ pulumi import keycloak:openid/clientScope:ClientScope openid_client_scope my-realm/8e8f7fe1-df9b-40ed-bed3-4597aa0dac52
+    /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:openid/clientScope:ClientScope")]
     public partial class ClientScope : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
+        /// </summary>
         [Output("consentScreenText")]
         public Output<string?> ConsentScreenText { get; private set; } = null!;
 
+        /// <summary>
+        /// The description of this client scope in the GUI.
+        /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
+        /// <summary>
+        /// Specify order of the client scope in GUI (such as in Consent page) as integer.
+        /// </summary>
         [Output("guiOrder")]
         public Output<int?> GuiOrder { get; private set; } = null!;
 
+        /// <summary>
+        /// When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response.
+        /// </summary>
         [Output("includeInTokenScope")]
         public Output<bool?> IncludeInTokenScope { get; private set; } = null!;
 
+        /// <summary>
+        /// The display name of this client scope in the GUI.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// The realm this client scope belongs to.
+        /// </summary>
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
 
@@ -130,21 +142,39 @@ namespace Pulumi.Keycloak.OpenId
 
     public sealed class ClientScopeArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
+        /// </summary>
         [Input("consentScreenText")]
         public Input<string>? ConsentScreenText { get; set; }
 
+        /// <summary>
+        /// The description of this client scope in the GUI.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// Specify order of the client scope in GUI (such as in Consent page) as integer.
+        /// </summary>
         [Input("guiOrder")]
         public Input<int>? GuiOrder { get; set; }
 
+        /// <summary>
+        /// When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response.
+        /// </summary>
         [Input("includeInTokenScope")]
         public Input<bool>? IncludeInTokenScope { get; set; }
 
+        /// <summary>
+        /// The display name of this client scope in the GUI.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The realm this client scope belongs to.
+        /// </summary>
         [Input("realmId", required: true)]
         public Input<string> RealmId { get; set; } = null!;
 
@@ -156,21 +186,39 @@ namespace Pulumi.Keycloak.OpenId
 
     public sealed class ClientScopeState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
+        /// </summary>
         [Input("consentScreenText")]
         public Input<string>? ConsentScreenText { get; set; }
 
+        /// <summary>
+        /// The description of this client scope in the GUI.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// Specify order of the client scope in GUI (such as in Consent page) as integer.
+        /// </summary>
         [Input("guiOrder")]
         public Input<int>? GuiOrder { get; set; }
 
+        /// <summary>
+        /// When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response.
+        /// </summary>
         [Input("includeInTokenScope")]
         public Input<bool>? IncludeInTokenScope { get; set; }
 
+        /// <summary>
+        /// The display name of this client scope in the GUI.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The realm this client scope belongs to.
+        /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
 

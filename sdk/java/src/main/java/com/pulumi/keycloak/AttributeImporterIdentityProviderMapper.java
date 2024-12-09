@@ -16,11 +16,16 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # keycloak.AttributeImporterIdentityProviderMapper
+ * Allows for creating and managing an attribute importer identity provider mapper within Keycloak.
  * 
- * Allows to create and manage identity provider mappers within Keycloak.
+ * The attribute importer mapper can be used to map attributes from externally defined users to attributes or properties of the imported Keycloak user:
+ * - For the OIDC identity provider, this will map a claim on the ID or access token to an attribute for the imported Keycloak user.
+ * - For the SAML identity provider, this will map a SAML attribute found within the assertion to an attribute for the imported Keycloak user.
+ * - For social identity providers, this will map a JSON field from the user profile to an attribute for the imported Keycloak user.
  * 
- * ### Example Usage
+ * &gt; If you are using Keycloak 10 or higher, you will need to specify the `extra_config` argument in order to define a `syncMode` for the mapper.
+ * 
+ * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>
@@ -30,6 +35,10 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
+ * import com.pulumi.keycloak.Realm;
+ * import com.pulumi.keycloak.RealmArgs;
+ * import com.pulumi.keycloak.oidc.IdentityProvider;
+ * import com.pulumi.keycloak.oidc.IdentityProviderArgs;
  * import com.pulumi.keycloak.AttributeImporterIdentityProviderMapper;
  * import com.pulumi.keycloak.AttributeImporterIdentityProviderMapperArgs;
  * import java.util.List;
@@ -45,12 +54,28 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var testMapper = new AttributeImporterIdentityProviderMapper("testMapper", AttributeImporterIdentityProviderMapperArgs.builder()
+ *         var realm = new Realm("realm", RealmArgs.builder()
  *             .realm("my-realm")
- *             .name("my-mapper")
- *             .identityProviderAlias("idp_alias")
- *             .attributeName("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname")
- *             .userAttribute("lastName")
+ *             .enabled(true)
+ *             .build());
+ * 
+ *         var oidc = new IdentityProvider("oidc", IdentityProviderArgs.builder()
+ *             .realm(realm.id())
+ *             .alias("oidc")
+ *             .authorizationUrl("https://example.com/auth")
+ *             .tokenUrl("https://example.com/token")
+ *             .clientId("example_id")
+ *             .clientSecret("example_token")
+ *             .defaultScopes("openid random profile")
+ *             .build());
+ * 
+ *         var oidcAttributeImporterIdentityProviderMapper = new AttributeImporterIdentityProviderMapper("oidcAttributeImporterIdentityProviderMapper", AttributeImporterIdentityProviderMapperArgs.builder()
+ *             .realm(realm.id())
+ *             .name("email-attribute-importer")
+ *             .claimName("my-email-claim")
+ *             .identityProviderAlias(oidc.alias())
+ *             .userAttribute("email")
+ *             .extraConfig(Map.of("syncMode", "INHERIT"))
  *             .build());
  * 
  *     }
@@ -59,127 +84,130 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * ### Argument Reference
+ * ## Import
  * 
- * The following arguments are supported:
+ * Identity provider mappers can be imported using the format `{{realm_id}}/{{idp_alias}}/{{idp_mapper_id}}`, where `idp_alias` is the identity provider alias, and `idp_mapper_id` is the unique ID that Keycloak
  * 
- * - `realm` - (Required) The name of the realm.
- * - `name` - (Required) The name of the mapper.
- * - `identity_provider_alias` - (Required) The alias of the associated identity provider.
- * - `user_attribute` - (Required) The user attribute name to store SAML attribute.
- * - `attribute_name` - (Optional) The Name of attribute to search for in assertion. You can leave this blank and specify a friendly name instead.
- * - `attribute_friendly_name` - (Optional) The friendly name of attribute to search for in assertion.  You can leave this blank and specify an attribute name instead.
- * - `claim_name` - (Optional) The claim name.
- * 
- * ### Import
- * 
- * Identity provider mapper can be imported using the format `{{realm_id}}/{{idp_alias}}/{{idp_mapper_id}}`, where `idp_alias` is the identity provider alias, and `idp_mapper_id` is the unique ID that Keycloak
  * assigns to the mapper upon creation. This value can be found in the URI when editing this mapper in the GUI, and is typically a GUID.
  * 
  * Example:
+ * 
+ * bash
+ * 
+ * ```sh
+ * $ pulumi import keycloak:index/attributeImporterIdentityProviderMapper:AttributeImporterIdentityProviderMapper test_mapper my-realm/my-mapper/f446db98-7133-4e30-b18a-3d28fde7ca1b
+ * ```
  * 
  */
 @ResourceType(type="keycloak:index/attributeImporterIdentityProviderMapper:AttributeImporterIdentityProviderMapper")
 public class AttributeImporterIdentityProviderMapper extends com.pulumi.resources.CustomResource {
     /**
-     * Attribute Friendly Name
+     * For SAML based providers, this is the friendly name of the attribute to search for in the assertion. Conflicts with `attribute_name`.
      * 
      */
     @Export(name="attributeFriendlyName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> attributeFriendlyName;
 
     /**
-     * @return Attribute Friendly Name
+     * @return For SAML based providers, this is the friendly name of the attribute to search for in the assertion. Conflicts with `attribute_name`.
      * 
      */
     public Output<Optional<String>> attributeFriendlyName() {
         return Codegen.optional(this.attributeFriendlyName);
     }
     /**
-     * Attribute Name
+     * For SAML based providers, this is the name of the attribute to search for in the assertion. Conflicts with `attribute_friendly_name`.
      * 
      */
     @Export(name="attributeName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> attributeName;
 
     /**
-     * @return Attribute Name
+     * @return For SAML based providers, this is the name of the attribute to search for in the assertion. Conflicts with `attribute_friendly_name`.
      * 
      */
     public Output<Optional<String>> attributeName() {
         return Codegen.optional(this.attributeName);
     }
     /**
-     * Claim Name
+     * For OIDC based providers, this is the name of the claim to use.
      * 
      */
     @Export(name="claimName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> claimName;
 
     /**
-     * @return Claim Name
+     * @return For OIDC based providers, this is the name of the claim to use.
      * 
      */
     public Output<Optional<String>> claimName() {
         return Codegen.optional(this.claimName);
     }
+    /**
+     * Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
+     * 
+     */
     @Export(name="extraConfig", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> extraConfig;
 
+    /**
+     * @return Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
+     * 
+     */
     public Output<Optional<Map<String,String>>> extraConfig() {
         return Codegen.optional(this.extraConfig);
     }
     /**
-     * IDP Alias
+     * The alias of the associated identity provider.
      * 
      */
     @Export(name="identityProviderAlias", refs={String.class}, tree="[0]")
     private Output<String> identityProviderAlias;
 
     /**
-     * @return IDP Alias
+     * @return The alias of the associated identity provider.
      * 
      */
     public Output<String> identityProviderAlias() {
         return this.identityProviderAlias;
     }
     /**
-     * IDP Mapper Name
+     * The name of the mapper.
      * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
-     * @return IDP Mapper Name
+     * @return The name of the mapper.
      * 
      */
     public Output<String> name() {
         return this.name;
     }
     /**
-     * Realm Name
+     * The name of the realm.
      * 
      */
     @Export(name="realm", refs={String.class}, tree="[0]")
     private Output<String> realm;
 
     /**
-     * @return Realm Name
+     * @return The name of the realm.
      * 
      */
     public Output<String> realm() {
         return this.realm;
     }
     /**
-     * User Attribute
+     * The user attribute or property name to store the mapped result.
      * 
      */
     @Export(name="userAttribute", refs={String.class}, tree="[0]")
     private Output<String> userAttribute;
 
     /**
-     * @return User Attribute
+     * @return The user attribute or property name to store the mapped result.
      * 
      */
     public Output<String> userAttribute() {

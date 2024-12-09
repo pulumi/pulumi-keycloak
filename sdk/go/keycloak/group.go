@@ -12,20 +12,17 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Group
-//
 // Allows for creating and managing Groups within Keycloak.
 //
-// Groups provide a logical wrapping for users within Keycloak. Users within a
-// group can share attributes and roles, and group membership can be mapped
-// to a claim.
+// Groups provide a logical wrapping for users within Keycloak. Users within a group can share attributes and roles, and
+// group membership can be mapped to a claim.
 //
 // Attributes can also be defined on Groups.
 //
-// Groups can also be federated from external data sources, such as LDAP or Active Directory.
-// This resource **should not** be used to manage groups that were created this way.
+// Groups can also be federated from external data sources, such as LDAP or Active Directory. This resource **should not**
+// be used to manage groups that were created this way.
 //
-// ### Example Usage
+// ## Example Usage
 //
 // ```go
 // package main
@@ -66,8 +63,8 @@ import (
 //				ParentId: parentGroup.ID(),
 //				Name:     pulumi.String("child-group-with-optional-attributes"),
 //				Attributes: pulumi.StringMap{
-//					"key1": pulumi.String("value1"),
-//					"key2": pulumi.String("value2"),
+//					"foo":        pulumi.String("bar"),
+//					"multivalue": pulumi.String("value1##value2"),
 //				},
 //			})
 //			if err != nil {
@@ -79,35 +76,32 @@ import (
 //
 // ```
 //
-// ### Argument Reference
+// ## Import
 //
-// The following arguments are supported:
+// Groups can be imported using the format `{{realm_id}}/{{group_id}}`, where `group_id` is the unique ID that Keycloak
 //
-// - `realmId` - (Required) The realm this group exists in.
-// - `parentId` - (Optional) The ID of this group's parent. If omitted, this group will be defined at the root level.
-// - `name` - (Required) The name of the group.
-// - `attributes` - (Optional) A dict of key/value pairs to set as custom attributes for the group.
-//
-// ### Attributes Reference
-//
-// In addition to the arguments listed above, the following computed attributes are exported:
-//
-// - `path` - The complete path of the group. For example, the child group's path in the example configuration would be `/parent-group/child-group`.
-//
-// ### Import
-//
-// Groups can be imported using the format `{{realm_id}}/{{group_id}}`, where `groupId` is the unique ID that Keycloak
 // assigns to the group upon creation. This value can be found in the URI when editing this group in the GUI, and is typically a GUID.
 //
 // Example:
+//
+// bash
+//
+// ```sh
+// $ pulumi import keycloak:index/group:Group child_group my-realm/934a4a4e-28bd-4703-a0fa-332df153aabd
+// ```
 type Group struct {
 	pulumi.CustomResourceState
 
+	// A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
 	Attributes pulumi.StringMapOutput `pulumi:"attributes"`
-	Name       pulumi.StringOutput    `pulumi:"name"`
-	ParentId   pulumi.StringPtrOutput `pulumi:"parentId"`
-	Path       pulumi.StringOutput    `pulumi:"path"`
-	RealmId    pulumi.StringOutput    `pulumi:"realmId"`
+	// The name of the group.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// The ID of this group's parent. If omitted, this group will be defined at the root level.
+	ParentId pulumi.StringPtrOutput `pulumi:"parentId"`
+	// (Computed) The complete path of the group. For example, the child group's path in the example configuration would be `/parent-group/child-group`.
+	Path pulumi.StringOutput `pulumi:"path"`
+	// The realm this group exists in.
+	RealmId pulumi.StringOutput `pulumi:"realmId"`
 }
 
 // NewGroup registers a new resource with the given unique name, arguments, and options.
@@ -143,19 +137,29 @@ func GetGroup(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Group resources.
 type groupState struct {
+	// A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
 	Attributes map[string]string `pulumi:"attributes"`
-	Name       *string           `pulumi:"name"`
-	ParentId   *string           `pulumi:"parentId"`
-	Path       *string           `pulumi:"path"`
-	RealmId    *string           `pulumi:"realmId"`
+	// The name of the group.
+	Name *string `pulumi:"name"`
+	// The ID of this group's parent. If omitted, this group will be defined at the root level.
+	ParentId *string `pulumi:"parentId"`
+	// (Computed) The complete path of the group. For example, the child group's path in the example configuration would be `/parent-group/child-group`.
+	Path *string `pulumi:"path"`
+	// The realm this group exists in.
+	RealmId *string `pulumi:"realmId"`
 }
 
 type GroupState struct {
+	// A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
 	Attributes pulumi.StringMapInput
-	Name       pulumi.StringPtrInput
-	ParentId   pulumi.StringPtrInput
-	Path       pulumi.StringPtrInput
-	RealmId    pulumi.StringPtrInput
+	// The name of the group.
+	Name pulumi.StringPtrInput
+	// The ID of this group's parent. If omitted, this group will be defined at the root level.
+	ParentId pulumi.StringPtrInput
+	// (Computed) The complete path of the group. For example, the child group's path in the example configuration would be `/parent-group/child-group`.
+	Path pulumi.StringPtrInput
+	// The realm this group exists in.
+	RealmId pulumi.StringPtrInput
 }
 
 func (GroupState) ElementType() reflect.Type {
@@ -163,18 +167,26 @@ func (GroupState) ElementType() reflect.Type {
 }
 
 type groupArgs struct {
+	// A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
 	Attributes map[string]string `pulumi:"attributes"`
-	Name       *string           `pulumi:"name"`
-	ParentId   *string           `pulumi:"parentId"`
-	RealmId    string            `pulumi:"realmId"`
+	// The name of the group.
+	Name *string `pulumi:"name"`
+	// The ID of this group's parent. If omitted, this group will be defined at the root level.
+	ParentId *string `pulumi:"parentId"`
+	// The realm this group exists in.
+	RealmId string `pulumi:"realmId"`
 }
 
 // The set of arguments for constructing a Group resource.
 type GroupArgs struct {
+	// A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
 	Attributes pulumi.StringMapInput
-	Name       pulumi.StringPtrInput
-	ParentId   pulumi.StringPtrInput
-	RealmId    pulumi.StringInput
+	// The name of the group.
+	Name pulumi.StringPtrInput
+	// The ID of this group's parent. If omitted, this group will be defined at the root level.
+	ParentId pulumi.StringPtrInput
+	// The realm this group exists in.
+	RealmId pulumi.StringInput
 }
 
 func (GroupArgs) ElementType() reflect.Type {
@@ -264,22 +276,27 @@ func (o GroupOutput) ToGroupOutputWithContext(ctx context.Context) GroupOutput {
 	return o
 }
 
+// A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
 func (o GroupOutput) Attributes() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *Group) pulumi.StringMapOutput { return v.Attributes }).(pulumi.StringMapOutput)
 }
 
+// The name of the group.
 func (o GroupOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Group) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// The ID of this group's parent. If omitted, this group will be defined at the root level.
 func (o GroupOutput) ParentId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Group) pulumi.StringPtrOutput { return v.ParentId }).(pulumi.StringPtrOutput)
 }
 
+// (Computed) The complete path of the group. For example, the child group's path in the example configuration would be `/parent-group/child-group`.
 func (o GroupOutput) Path() pulumi.StringOutput {
 	return o.ApplyT(func(v *Group) pulumi.StringOutput { return v.Path }).(pulumi.StringOutput)
 }
 
+// The realm this group exists in.
 func (o GroupOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Group) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
 }

@@ -17,9 +17,17 @@ public final class GetClientPlainArgs extends com.pulumi.resources.InvokeArgs {
 
     public static final GetClientPlainArgs Empty = new GetClientPlainArgs();
 
+    /**
+     * The client id (not its unique ID).
+     * 
+     */
     @Import(name="clientId", required=true)
     private String clientId;
 
+    /**
+     * @return The client id (not its unique ID).
+     * 
+     */
     public String clientId() {
         return this.clientId;
     }
@@ -66,9 +74,17 @@ public final class GetClientPlainArgs extends com.pulumi.resources.InvokeArgs {
         return Optional.ofNullable(this.oauth2DevicePollingInterval);
     }
 
+    /**
+     * The realm id.
+     * 
+     */
     @Import(name="realmId", required=true)
     private String realmId;
 
+    /**
+     * @return The realm id.
+     * 
+     */
     public String realmId() {
         return this.realmId;
     }
@@ -104,6 +120,12 @@ public final class GetClientPlainArgs extends com.pulumi.resources.InvokeArgs {
             $ = new GetClientPlainArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param clientId The client id (not its unique ID).
+         * 
+         * @return builder
+         * 
+         */
         public Builder clientId(String clientId) {
             $.clientId = clientId;
             return this;
@@ -139,6 +161,12 @@ public final class GetClientPlainArgs extends com.pulumi.resources.InvokeArgs {
             return this;
         }
 
+        /**
+         * @param realmId The realm id.
+         * 
+         * @return builder
+         * 
+         */
         public Builder realmId(String realmId) {
             $.realmId = realmId;
             return this;

@@ -465,11 +465,9 @@ def get_client(client_id: Optional[str] = None,
                realm_id: Optional[str] = None,
                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetClientResult:
     """
-    ## # openid.Client data source
-
     This data source can be used to fetch properties of a Keycloak OpenID client for usage with other resources.
 
-    ### Example Usage
+    ## Example Usage
 
     ```python
     import pulumi
@@ -483,16 +481,9 @@ def get_client(client_id: Optional[str] = None,
         name="realm-admin")
     ```
 
-    ### Argument Reference
 
-    The following arguments are supported:
-
-    - `realm_id` - (Required) The realm id.
-    - `client_id` - (Required) The client id.
-
-    ### Attributes Reference
-
-    See the docs for the `openid.Client` resource for details on the exported attributes.
+    :param str client_id: The client id (not its unique ID).
+    :param str realm_id: The realm id.
     """
     __args__ = dict()
     __args__['clientId'] = client_id
@@ -563,11 +554,9 @@ def get_client_output(client_id: Optional[pulumi.Input[str]] = None,
                       realm_id: Optional[pulumi.Input[str]] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetClientResult]:
     """
-    ## # openid.Client data source
-
     This data source can be used to fetch properties of a Keycloak OpenID client for usage with other resources.
 
-    ### Example Usage
+    ## Example Usage
 
     ```python
     import pulumi
@@ -581,16 +570,9 @@ def get_client_output(client_id: Optional[pulumi.Input[str]] = None,
         name="realm-admin")
     ```
 
-    ### Argument Reference
 
-    The following arguments are supported:
-
-    - `realm_id` - (Required) The realm id.
-    - `client_id` - (Required) The client id.
-
-    ### Attributes Reference
-
-    See the docs for the `openid.Client` resource for details on the exported attributes.
+    :param str client_id: The client id (not its unique ID).
+    :param str realm_id: The realm id.
     """
     __args__ = dict()
     __args__['clientId'] = client_id

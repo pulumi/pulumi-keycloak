@@ -16,23 +16,47 @@ public final class GetRealmKeysPlainArgs extends com.pulumi.resources.InvokeArgs
 
     public static final GetRealmKeysPlainArgs Empty = new GetRealmKeysPlainArgs();
 
+    /**
+     * When specified, keys will be filtered by algorithm. The algorithms can be any of `HS256`, `RS256`,`AES`, etc.
+     * 
+     */
     @Import(name="algorithms")
     private @Nullable List<String> algorithms;
 
+    /**
+     * @return When specified, keys will be filtered by algorithm. The algorithms can be any of `HS256`, `RS256`,`AES`, etc.
+     * 
+     */
     public Optional<List<String>> algorithms() {
         return Optional.ofNullable(this.algorithms);
     }
 
+    /**
+     * The realm from which the keys will be retrieved.
+     * 
+     */
     @Import(name="realmId", required=true)
     private String realmId;
 
+    /**
+     * @return The realm from which the keys will be retrieved.
+     * 
+     */
     public String realmId() {
         return this.realmId;
     }
 
+    /**
+     * When specified, keys will be filtered by status. The statuses can be any of `ACTIVE`, `DISABLED` and `PASSIVE`.
+     * 
+     */
     @Import(name="statuses")
     private @Nullable List<String> statuses;
 
+    /**
+     * @return When specified, keys will be filtered by status. The statuses can be any of `ACTIVE`, `DISABLED` and `PASSIVE`.
+     * 
+     */
     public Optional<List<String>> statuses() {
         return Optional.ofNullable(this.statuses);
     }
@@ -63,25 +87,55 @@ public final class GetRealmKeysPlainArgs extends com.pulumi.resources.InvokeArgs
             $ = new GetRealmKeysPlainArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param algorithms When specified, keys will be filtered by algorithm. The algorithms can be any of `HS256`, `RS256`,`AES`, etc.
+         * 
+         * @return builder
+         * 
+         */
         public Builder algorithms(@Nullable List<String> algorithms) {
             $.algorithms = algorithms;
             return this;
         }
 
+        /**
+         * @param algorithms When specified, keys will be filtered by algorithm. The algorithms can be any of `HS256`, `RS256`,`AES`, etc.
+         * 
+         * @return builder
+         * 
+         */
         public Builder algorithms(String... algorithms) {
             return algorithms(List.of(algorithms));
         }
 
+        /**
+         * @param realmId The realm from which the keys will be retrieved.
+         * 
+         * @return builder
+         * 
+         */
         public Builder realmId(String realmId) {
             $.realmId = realmId;
             return this;
         }
 
+        /**
+         * @param statuses When specified, keys will be filtered by status. The statuses can be any of `ACTIVE`, `DISABLED` and `PASSIVE`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder statuses(@Nullable List<String> statuses) {
             $.statuses = statuses;
             return this;
         }
 
+        /**
+         * @param statuses When specified, keys will be filtered by status. The statuses can be any of `ACTIVE`, `DISABLED` and `PASSIVE`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder statuses(String... statuses) {
             return statuses(List.of(statuses));
         }

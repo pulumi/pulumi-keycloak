@@ -17,14 +17,13 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # keycloak.Role
- * 
  * Allows for creating and managing roles within Keycloak.
  * 
- * Roles allow you define privileges within Keycloak and map them to users
- * and groups.
+ * Roles allow you define privileges within Keycloak and map them to users and groups.
  * 
- * ### Example Usage (Realm role)
+ * ## Example Usage
+ * 
+ * ### Realm Role)
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>
@@ -60,6 +59,10 @@ import javax.annotation.Nullable;
  *             .realmId(realm.id())
  *             .name("my-realm-role")
  *             .description("My Realm Role")
+ *             .attributes(Map.ofEntries(
+ *                 Map.entry("key", "value"),
+ *                 Map.entry("multivalue", "value1##value2")
+ *             ))
  *             .build());
  * 
  *     }
@@ -68,7 +71,7 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * ### Example Usage (Client role)
+ * ### Client Role)
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>
@@ -102,19 +105,21 @@ import javax.annotation.Nullable;
  *             .enabled(true)
  *             .build());
  * 
- *         var client = new Client("client", ClientArgs.builder()
+ *         var openidClient = new Client("openidClient", ClientArgs.builder()
  *             .realmId(realm.id())
  *             .clientId("client")
  *             .name("client")
  *             .enabled(true)
- *             .accessType("BEARER-ONLY")
+ *             .accessType("CONFIDENTIAL")
+ *             .validRedirectUris("http://localhost:8080/openid-callback")
  *             .build());
  * 
  *         var clientRole = new Role("clientRole", RoleArgs.builder()
  *             .realmId(realm.id())
- *             .clientId(clientKeycloakClient.id())
+ *             .clientId(openidClientKeycloakClient.id())
  *             .name("my-client-role")
  *             .description("My Client Role")
+ *             .attributes(Map.of("key", "value"))
  *             .build());
  * 
  *     }
@@ -123,7 +128,7 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * ### Example Usage (Composite role)
+ * ### Composite Role)
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>
@@ -161,48 +166,55 @@ import javax.annotation.Nullable;
  *         var createRole = new Role("createRole", RoleArgs.builder()
  *             .realmId(realm.id())
  *             .name("create")
+ *             .attributes(Map.of("key", "value"))
  *             .build());
  * 
  *         var readRole = new Role("readRole", RoleArgs.builder()
  *             .realmId(realm.id())
  *             .name("read")
+ *             .attributes(Map.of("key", "value"))
  *             .build());
  * 
  *         var updateRole = new Role("updateRole", RoleArgs.builder()
  *             .realmId(realm.id())
  *             .name("update")
+ *             .attributes(Map.of("key", "value"))
  *             .build());
  * 
  *         var deleteRole = new Role("deleteRole", RoleArgs.builder()
  *             .realmId(realm.id())
  *             .name("delete")
+ *             .attributes(Map.of("key", "value"))
  *             .build());
  * 
  *         // client role
- *         var client = new Client("client", ClientArgs.builder()
+ *         var openidClient = new Client("openidClient", ClientArgs.builder()
  *             .realmId(realm.id())
  *             .clientId("client")
  *             .name("client")
  *             .enabled(true)
- *             .accessType("BEARER-ONLY")
+ *             .accessType("CONFIDENTIAL")
+ *             .validRedirectUris("http://localhost:8080/openid-callback")
  *             .build());
  * 
  *         var clientRole = new Role("clientRole", RoleArgs.builder()
  *             .realmId(realm.id())
- *             .clientId(clientKeycloakClient.id())
+ *             .clientId(openidClientKeycloakClient.id())
  *             .name("my-client-role")
  *             .description("My Client Role")
+ *             .attributes(Map.of("key", "value"))
  *             .build());
  * 
  *         var adminRole = new Role("adminRole", RoleArgs.builder()
  *             .realmId(realm.id())
  *             .name("admin")
  *             .compositeRoles(            
- *                 "{keycloak_role.create_role.id}",
- *                 "{keycloak_role.read_role.id}",
- *                 "{keycloak_role.update_role.id}",
- *                 "{keycloak_role.delete_role.id}",
- *                 "{keycloak_role.client_role.id}")
+ *                 createRole.id(),
+ *                 readRole.id(),
+ *                 updateRole.id(),
+ *                 deleteRole.id(),
+ *                 clientRole.id())
+ *             .attributes(Map.of("key", "value"))
  *             .build());
  * 
  *     }
@@ -211,64 +223,104 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * ### Argument Reference
+ * ## Import
  * 
- * The following arguments are supported:
+ * Roles can be imported using the format `{{realm_id}}/{{role_id}}`, where `role_id` is the unique ID that Keycloak assigns
  * 
- * - `realm_id` - (Required) The realm this role exists within.
- * - `client_id` - (Optional) When specified, this role will be created as
- *   a client role attached to the client with the provided ID
- * - `name` - (Required) The name of the role
- * - `description` - (Optional) The description of the role
- * - `composite_roles` - (Optional) When specified, this role will be a
- *   composite role, composed of all roles that have an ID present within
- *   this list.
- * 
- * ### Import
- * 
- * Roles can be imported using the format `{{realm_id}}/{{role_id}}`, where
- * `role_id` is the unique ID that Keycloak assigns to the role. The ID is
- * not easy to find in the GUI, but it appears in the URL when editing the
- * role.
+ * to the role. The ID is not easy to find in the GUI, but it appears in the URL when editing the role.
  * 
  * Example:
+ * 
+ * bash
+ * 
+ * ```sh
+ * $ pulumi import keycloak:index/role:Role role my-realm/7e8cf32a-8acb-4d34-89c4-04fb1d10ccad
+ * ```
  * 
  */
 @ResourceType(type="keycloak:index/role:Role")
 public class Role extends com.pulumi.resources.CustomResource {
+    /**
+     * A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
+     * 
+     */
     @Export(name="attributes", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> attributes;
 
+    /**
+     * @return A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
+     * 
+     */
     public Output<Optional<Map<String,String>>> attributes() {
         return Codegen.optional(this.attributes);
     }
+    /**
+     * When specified, this role will be created as a client role attached to the client with the provided ID
+     * 
+     */
     @Export(name="clientId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientId;
 
+    /**
+     * @return When specified, this role will be created as a client role attached to the client with the provided ID
+     * 
+     */
     public Output<Optional<String>> clientId() {
         return Codegen.optional(this.clientId);
     }
+    /**
+     * When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
+     * 
+     */
     @Export(name="compositeRoles", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> compositeRoles;
 
+    /**
+     * @return When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
+     * 
+     */
     public Output<Optional<List<String>>> compositeRoles() {
         return Codegen.optional(this.compositeRoles);
     }
+    /**
+     * The description of the role
+     * 
+     */
     @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
+    /**
+     * @return The description of the role
+     * 
+     */
     public Output<Optional<String>> description() {
         return Codegen.optional(this.description);
     }
+    /**
+     * The name of the role
+     * 
+     */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
+    /**
+     * @return The name of the role
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
+    /**
+     * The realm this role exists within.
+     * 
+     */
     @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
+    /**
+     * @return The realm this role exists within.
+     * 
+     */
     public Output<String> realmId() {
         return this.realmId;
     }

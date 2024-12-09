@@ -11,13 +11,29 @@ import java.util.Objects;
 
 @CustomType
 public final class RealmInternationalization {
+    /**
+     * @return The locale to use by default. This locale code must be present within the `supported_locales` list.
+     * 
+     */
     private String defaultLocale;
+    /**
+     * @return A list of [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) locale codes that the realm should support.
+     * 
+     */
     private List<String> supportedLocales;
 
     private RealmInternationalization() {}
+    /**
+     * @return The locale to use by default. This locale code must be present within the `supported_locales` list.
+     * 
+     */
     public String defaultLocale() {
         return this.defaultLocale;
     }
+    /**
+     * @return A list of [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) locale codes that the realm should support.
+     * 
+     */
     public List<String> supportedLocales() {
         return this.supportedLocales;
     }

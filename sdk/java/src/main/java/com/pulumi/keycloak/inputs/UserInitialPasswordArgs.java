@@ -17,16 +17,32 @@ public final class UserInitialPasswordArgs extends com.pulumi.resources.Resource
 
     public static final UserInitialPasswordArgs Empty = new UserInitialPasswordArgs();
 
+    /**
+     * If set to `true`, the initial password is set up for renewal on first use. Default to `false`.
+     * 
+     */
     @Import(name="temporary")
     private @Nullable Output<Boolean> temporary;
 
+    /**
+     * @return If set to `true`, the initial password is set up for renewal on first use. Default to `false`.
+     * 
+     */
     public Optional<Output<Boolean>> temporary() {
         return Optional.ofNullable(this.temporary);
     }
 
+    /**
+     * The initial password.
+     * 
+     */
     @Import(name="value", required=true)
     private Output<String> value;
 
+    /**
+     * @return The initial password.
+     * 
+     */
     public Output<String> value() {
         return this.value;
     }
@@ -56,20 +72,44 @@ public final class UserInitialPasswordArgs extends com.pulumi.resources.Resource
             $ = new UserInitialPasswordArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param temporary If set to `true`, the initial password is set up for renewal on first use. Default to `false`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder temporary(@Nullable Output<Boolean> temporary) {
             $.temporary = temporary;
             return this;
         }
 
+        /**
+         * @param temporary If set to `true`, the initial password is set up for renewal on first use. Default to `false`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder temporary(Boolean temporary) {
             return temporary(Output.of(temporary));
         }
 
+        /**
+         * @param value The initial password.
+         * 
+         * @return builder
+         * 
+         */
         public Builder value(Output<String> value) {
             $.value = value;
             return this;
         }
 
+        /**
+         * @param value The initial password.
+         * 
+         * @return builder
+         * 
+         */
         public Builder value(String value) {
             return value(Output.of(value));
         }

@@ -15,58 +15,122 @@ public final class UserPropertyProtocolMapperState extends com.pulumi.resources.
 
     public static final UserPropertyProtocolMapperState Empty = new UserPropertyProtocolMapperState();
 
+    /**
+     * The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+     * 
+     */
     @Import(name="clientId")
     private @Nullable Output<String> clientId;
 
+    /**
+     * @return The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+     * 
+     */
     public Optional<Output<String>> clientId() {
         return Optional.ofNullable(this.clientId);
     }
 
+    /**
+     * The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+     * 
+     */
     @Import(name="clientScopeId")
     private @Nullable Output<String> clientScopeId;
 
+    /**
+     * @return The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+     * 
+     */
     public Optional<Output<String>> clientScopeId() {
         return Optional.ofNullable(this.clientScopeId);
     }
 
+    /**
+     * An optional human-friendly name for this attribute.
+     * 
+     */
     @Import(name="friendlyName")
     private @Nullable Output<String> friendlyName;
 
+    /**
+     * @return An optional human-friendly name for this attribute.
+     * 
+     */
     public Optional<Output<String>> friendlyName() {
         return Optional.ofNullable(this.friendlyName);
     }
 
+    /**
+     * The display name of this protocol mapper in the GUI.
+     * 
+     */
     @Import(name="name")
     private @Nullable Output<String> name;
 
+    /**
+     * @return The display name of this protocol mapper in the GUI.
+     * 
+     */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
     }
 
+    /**
+     * The realm this protocol mapper exists within.
+     * 
+     */
     @Import(name="realmId")
     private @Nullable Output<String> realmId;
 
+    /**
+     * @return The realm this protocol mapper exists within.
+     * 
+     */
     public Optional<Output<String>> realmId() {
         return Optional.ofNullable(this.realmId);
     }
 
+    /**
+     * The name of the SAML attribute.
+     * 
+     */
     @Import(name="samlAttributeName")
     private @Nullable Output<String> samlAttributeName;
 
+    /**
+     * @return The name of the SAML attribute.
+     * 
+     */
     public Optional<Output<String>> samlAttributeName() {
         return Optional.ofNullable(this.samlAttributeName);
     }
 
+    /**
+     * The SAML attribute Name Format. Can be one of `Unspecified`, `Basic`, or `URI Reference`.
+     * 
+     */
     @Import(name="samlAttributeNameFormat")
     private @Nullable Output<String> samlAttributeNameFormat;
 
+    /**
+     * @return The SAML attribute Name Format. Can be one of `Unspecified`, `Basic`, or `URI Reference`.
+     * 
+     */
     public Optional<Output<String>> samlAttributeNameFormat() {
         return Optional.ofNullable(this.samlAttributeNameFormat);
     }
 
+    /**
+     * The property of the Keycloak user model to map.
+     * 
+     */
     @Import(name="userProperty")
     private @Nullable Output<String> userProperty;
 
+    /**
+     * @return The property of the Keycloak user model to map.
+     * 
+     */
     public Optional<Output<String>> userProperty() {
         return Optional.ofNullable(this.userProperty);
     }
@@ -102,74 +166,170 @@ public final class UserPropertyProtocolMapperState extends com.pulumi.resources.
             $ = new UserPropertyProtocolMapperState(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param clientId The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+         * 
+         * @return builder
+         * 
+         */
         public Builder clientId(@Nullable Output<String> clientId) {
             $.clientId = clientId;
             return this;
         }
 
+        /**
+         * @param clientId The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+         * 
+         * @return builder
+         * 
+         */
         public Builder clientId(String clientId) {
             return clientId(Output.of(clientId));
         }
 
+        /**
+         * @param clientScopeId The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+         * 
+         * @return builder
+         * 
+         */
         public Builder clientScopeId(@Nullable Output<String> clientScopeId) {
             $.clientScopeId = clientScopeId;
             return this;
         }
 
+        /**
+         * @param clientScopeId The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+         * 
+         * @return builder
+         * 
+         */
         public Builder clientScopeId(String clientScopeId) {
             return clientScopeId(Output.of(clientScopeId));
         }
 
+        /**
+         * @param friendlyName An optional human-friendly name for this attribute.
+         * 
+         * @return builder
+         * 
+         */
         public Builder friendlyName(@Nullable Output<String> friendlyName) {
             $.friendlyName = friendlyName;
             return this;
         }
 
+        /**
+         * @param friendlyName An optional human-friendly name for this attribute.
+         * 
+         * @return builder
+         * 
+         */
         public Builder friendlyName(String friendlyName) {
             return friendlyName(Output.of(friendlyName));
         }
 
+        /**
+         * @param name The display name of this protocol mapper in the GUI.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(@Nullable Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name The display name of this protocol mapper in the GUI.
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
+        /**
+         * @param realmId The realm this protocol mapper exists within.
+         * 
+         * @return builder
+         * 
+         */
         public Builder realmId(@Nullable Output<String> realmId) {
             $.realmId = realmId;
             return this;
         }
 
+        /**
+         * @param realmId The realm this protocol mapper exists within.
+         * 
+         * @return builder
+         * 
+         */
         public Builder realmId(String realmId) {
             return realmId(Output.of(realmId));
         }
 
+        /**
+         * @param samlAttributeName The name of the SAML attribute.
+         * 
+         * @return builder
+         * 
+         */
         public Builder samlAttributeName(@Nullable Output<String> samlAttributeName) {
             $.samlAttributeName = samlAttributeName;
             return this;
         }
 
+        /**
+         * @param samlAttributeName The name of the SAML attribute.
+         * 
+         * @return builder
+         * 
+         */
         public Builder samlAttributeName(String samlAttributeName) {
             return samlAttributeName(Output.of(samlAttributeName));
         }
 
+        /**
+         * @param samlAttributeNameFormat The SAML attribute Name Format. Can be one of `Unspecified`, `Basic`, or `URI Reference`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder samlAttributeNameFormat(@Nullable Output<String> samlAttributeNameFormat) {
             $.samlAttributeNameFormat = samlAttributeNameFormat;
             return this;
         }
 
+        /**
+         * @param samlAttributeNameFormat The SAML attribute Name Format. Can be one of `Unspecified`, `Basic`, or `URI Reference`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder samlAttributeNameFormat(String samlAttributeNameFormat) {
             return samlAttributeNameFormat(Output.of(samlAttributeNameFormat));
         }
 
+        /**
+         * @param userProperty The property of the Keycloak user model to map.
+         * 
+         * @return builder
+         * 
+         */
         public Builder userProperty(@Nullable Output<String> userProperty) {
             $.userProperty = userProperty;
             return this;
         }
 
+        /**
+         * @param userProperty The property of the Keycloak user model to map.
+         * 
+         * @return builder
+         * 
+         */
         public Builder userProperty(String userProperty) {
             return userProperty(Output.of(userProperty));
         }

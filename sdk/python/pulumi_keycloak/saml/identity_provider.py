@@ -58,47 +58,42 @@ class IdentityProviderArgs:
                  xml_sign_key_info_key_name_transformer: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a IdentityProvider resource.
-        :param pulumi.Input[str] alias: The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
+        :param pulumi.Input[str] alias: The unique name of identity provider.
         :param pulumi.Input[str] entity_id: The Entity ID that will be used to uniquely identify this SAML Service Provider.
-        :param pulumi.Input[str] realm: Realm Name
-        :param pulumi.Input[str] single_sign_on_service_url: SSO Logout URL.
-        :param pulumi.Input[bool] add_read_token_role_on_create: Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role.
-        :param pulumi.Input[bool] authenticate_by_default: Enable/disable authenticate users by default.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] authn_context_class_refs: AuthnContext ClassRefs
-        :param pulumi.Input[str] authn_context_comparison_type: AuthnContext Comparison
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] authn_context_decl_refs: AuthnContext DeclRefs
-        :param pulumi.Input[bool] backchannel_supported: Does the external IDP support backchannel logout?
-        :param pulumi.Input[str] display_name: Friendly name for Identity Providers.
-        :param pulumi.Input[bool] enabled: Enable/disable this identity provider.
-        :param pulumi.Input[str] first_broker_login_flow_alias: Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
-               that there is not yet existing Keycloak account linked with the authenticated identity provider account.
-        :param pulumi.Input[bool] force_authn: Require Force Authn.
-        :param pulumi.Input[str] gui_order: GUI Order
-        :param pulumi.Input[bool] hide_on_login_page: Hide On Login Page.
-        :param pulumi.Input[bool] link_only: If true, users cannot log in through this provider. They can only link to this provider. This is useful if you don't
-               want to allow login from the provider, but want to integrate with a provider
+        :param pulumi.Input[str] realm: The name of the realm. This is unique across Keycloak.
+        :param pulumi.Input[str] single_sign_on_service_url: The Url that must be used to send authentication requests (SAML AuthnRequest).
+        :param pulumi.Input[bool] add_read_token_role_on_create: When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
+        :param pulumi.Input[bool] authenticate_by_default: Authenticate users by default. Defaults to `false`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] authn_context_class_refs: Ordered list of requested AuthnContext ClassRefs.
+        :param pulumi.Input[str] authn_context_comparison_type: Specifies the comparison method used to evaluate the requested context classes or statements.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] authn_context_decl_refs: Ordered list of requested AuthnContext DeclRefs.
+        :param pulumi.Input[bool] backchannel_supported: Does the external IDP support backchannel logout?. Defaults to `false`.
+        :param pulumi.Input[str] display_name: The display name for the realm that is shown when logging in to the admin console.
+        :param pulumi.Input[bool] enabled: When `false`, users and clients will not be able to access this realm. Defaults to `true`.
+        :param pulumi.Input[str] first_broker_login_flow_alias: Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
+        :param pulumi.Input[bool] force_authn: Indicates whether the identity provider must authenticate the presenter directly rather than rely on a previous security context.
+        :param pulumi.Input[str] gui_order: A number defining the order of this identity provider in the GUI.
+        :param pulumi.Input[bool] hide_on_login_page: If hidden, then login with this provider is possible only if requested explicitly, e.g. using the 'kc_idp_hint' parameter.
+        :param pulumi.Input[bool] link_only: When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         :param pulumi.Input[str] login_hint: Login Hint.
-        :param pulumi.Input[str] name_id_policy_format: Name ID Policy Format.
-        :param pulumi.Input[bool] post_binding_authn_request: Post Binding Authn Request.
-        :param pulumi.Input[bool] post_binding_logout: Post Binding Logout.
-        :param pulumi.Input[bool] post_binding_response: Post Binding Response.
-        :param pulumi.Input[str] post_broker_login_flow_alias: Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want
-               additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if
-               you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that
-               authenticator implementations must assume that user is already set in ClientSession as identity provider already set it.
-        :param pulumi.Input[str] principal_attribute: Principal Attribute
-        :param pulumi.Input[str] principal_type: Principal Type
-        :param pulumi.Input[str] provider_id: provider id, is always saml, unless you have a custom implementation
-        :param pulumi.Input[str] signature_algorithm: Signing Algorithm.
+        :param pulumi.Input[str] name_id_policy_format: Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
+        :param pulumi.Input[bool] post_binding_authn_request: Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
+        :param pulumi.Input[bool] post_binding_logout: Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
+        :param pulumi.Input[bool] post_binding_response: Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
+        :param pulumi.Input[str] post_broker_login_flow_alias: Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it. Defaults to empty.
+        :param pulumi.Input[str] principal_attribute: The principal attribute.
+        :param pulumi.Input[str] principal_type: The principal type. Can be one of `SUBJECT`, `ATTRIBUTE` or `FRIENDLY_ATTRIBUTE`.
+        :param pulumi.Input[str] provider_id: The ID of the identity provider to use. Defaults to `saml`, which should be used unless you have extended Keycloak and provided your own implementation.
+        :param pulumi.Input[str] signature_algorithm: Signing Algorithm. Defaults to empty.
         :param pulumi.Input[str] signing_certificate: Signing Certificate.
-        :param pulumi.Input[str] single_logout_service_url: Logout URL.
-        :param pulumi.Input[bool] store_token: Enable/disable if tokens must be stored after authenticating users.
-        :param pulumi.Input[str] sync_mode: Sync Mode
-        :param pulumi.Input[bool] trust_email: If enabled then email provided by this provider is not verified even if verification is enabled for the realm.
+        :param pulumi.Input[str] single_logout_service_url: The Url that must be used to send logout requests.
+        :param pulumi.Input[bool] store_token: When `true`, tokens will be stored after authenticating users. Defaults to `true`.
+        :param pulumi.Input[str] sync_mode: The default sync mode to use for all mappers attached to this identity provider. Can be one of `IMPORT`, `FORCE`, or `LEGACY`.
+        :param pulumi.Input[bool] trust_email: When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
         :param pulumi.Input[bool] validate_signature: Enable/disable signature validation of SAML responses.
-        :param pulumi.Input[bool] want_assertions_encrypted: Want Assertions Encrypted.
-        :param pulumi.Input[bool] want_assertions_signed: Want Assertions Signed.
-        :param pulumi.Input[str] xml_sign_key_info_key_name_transformer: Sign Key Transformer.
+        :param pulumi.Input[bool] want_assertions_encrypted: Indicates whether this service provider expects an encrypted Assertion.
+        :param pulumi.Input[bool] want_assertions_signed: Indicates whether this service provider expects a signed Assertion.
+        :param pulumi.Input[str] xml_sign_key_info_key_name_transformer: The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.
         """
         pulumi.set(__self__, "alias", alias)
         pulumi.set(__self__, "entity_id", entity_id)
@@ -175,7 +170,7 @@ class IdentityProviderArgs:
     @pulumi.getter
     def alias(self) -> pulumi.Input[str]:
         """
-        The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
+        The unique name of identity provider.
         """
         return pulumi.get(self, "alias")
 
@@ -199,7 +194,7 @@ class IdentityProviderArgs:
     @pulumi.getter
     def realm(self) -> pulumi.Input[str]:
         """
-        Realm Name
+        The name of the realm. This is unique across Keycloak.
         """
         return pulumi.get(self, "realm")
 
@@ -211,7 +206,7 @@ class IdentityProviderArgs:
     @pulumi.getter(name="singleSignOnServiceUrl")
     def single_sign_on_service_url(self) -> pulumi.Input[str]:
         """
-        SSO Logout URL.
+        The Url that must be used to send authentication requests (SAML AuthnRequest).
         """
         return pulumi.get(self, "single_sign_on_service_url")
 
@@ -223,7 +218,7 @@ class IdentityProviderArgs:
     @pulumi.getter(name="addReadTokenRoleOnCreate")
     def add_read_token_role_on_create(self) -> Optional[pulumi.Input[bool]]:
         """
-        Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role.
+        When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
         """
         return pulumi.get(self, "add_read_token_role_on_create")
 
@@ -235,7 +230,7 @@ class IdentityProviderArgs:
     @pulumi.getter(name="authenticateByDefault")
     def authenticate_by_default(self) -> Optional[pulumi.Input[bool]]:
         """
-        Enable/disable authenticate users by default.
+        Authenticate users by default. Defaults to `false`.
         """
         return pulumi.get(self, "authenticate_by_default")
 
@@ -247,7 +242,7 @@ class IdentityProviderArgs:
     @pulumi.getter(name="authnContextClassRefs")
     def authn_context_class_refs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        AuthnContext ClassRefs
+        Ordered list of requested AuthnContext ClassRefs.
         """
         return pulumi.get(self, "authn_context_class_refs")
 
@@ -259,7 +254,7 @@ class IdentityProviderArgs:
     @pulumi.getter(name="authnContextComparisonType")
     def authn_context_comparison_type(self) -> Optional[pulumi.Input[str]]:
         """
-        AuthnContext Comparison
+        Specifies the comparison method used to evaluate the requested context classes or statements.
         """
         return pulumi.get(self, "authn_context_comparison_type")
 
@@ -271,7 +266,7 @@ class IdentityProviderArgs:
     @pulumi.getter(name="authnContextDeclRefs")
     def authn_context_decl_refs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        AuthnContext DeclRefs
+        Ordered list of requested AuthnContext DeclRefs.
         """
         return pulumi.get(self, "authn_context_decl_refs")
 
@@ -283,7 +278,7 @@ class IdentityProviderArgs:
     @pulumi.getter(name="backchannelSupported")
     def backchannel_supported(self) -> Optional[pulumi.Input[bool]]:
         """
-        Does the external IDP support backchannel logout?
+        Does the external IDP support backchannel logout?. Defaults to `false`.
         """
         return pulumi.get(self, "backchannel_supported")
 
@@ -295,7 +290,7 @@ class IdentityProviderArgs:
     @pulumi.getter(name="displayName")
     def display_name(self) -> Optional[pulumi.Input[str]]:
         """
-        Friendly name for Identity Providers.
+        The display name for the realm that is shown when logging in to the admin console.
         """
         return pulumi.get(self, "display_name")
 
@@ -307,7 +302,7 @@ class IdentityProviderArgs:
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input[bool]]:
         """
-        Enable/disable this identity provider.
+        When `false`, users and clients will not be able to access this realm. Defaults to `true`.
         """
         return pulumi.get(self, "enabled")
 
@@ -328,8 +323,7 @@ class IdentityProviderArgs:
     @pulumi.getter(name="firstBrokerLoginFlowAlias")
     def first_broker_login_flow_alias(self) -> Optional[pulumi.Input[str]]:
         """
-        Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
-        that there is not yet existing Keycloak account linked with the authenticated identity provider account.
+        Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
         """
         return pulumi.get(self, "first_broker_login_flow_alias")
 
@@ -341,7 +335,7 @@ class IdentityProviderArgs:
     @pulumi.getter(name="forceAuthn")
     def force_authn(self) -> Optional[pulumi.Input[bool]]:
         """
-        Require Force Authn.
+        Indicates whether the identity provider must authenticate the presenter directly rather than rely on a previous security context.
         """
         return pulumi.get(self, "force_authn")
 
@@ -353,7 +347,7 @@ class IdentityProviderArgs:
     @pulumi.getter(name="guiOrder")
     def gui_order(self) -> Optional[pulumi.Input[str]]:
         """
-        GUI Order
+        A number defining the order of this identity provider in the GUI.
         """
         return pulumi.get(self, "gui_order")
 
@@ -365,7 +359,7 @@ class IdentityProviderArgs:
     @pulumi.getter(name="hideOnLoginPage")
     def hide_on_login_page(self) -> Optional[pulumi.Input[bool]]:
         """
-        Hide On Login Page.
+        If hidden, then login with this provider is possible only if requested explicitly, e.g. using the 'kc_idp_hint' parameter.
         """
         return pulumi.get(self, "hide_on_login_page")
 
@@ -377,8 +371,7 @@ class IdentityProviderArgs:
     @pulumi.getter(name="linkOnly")
     def link_only(self) -> Optional[pulumi.Input[bool]]:
         """
-        If true, users cannot log in through this provider. They can only link to this provider. This is useful if you don't
-        want to allow login from the provider, but want to integrate with a provider
+        When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         """
         return pulumi.get(self, "link_only")
 
@@ -402,7 +395,7 @@ class IdentityProviderArgs:
     @pulumi.getter(name="nameIdPolicyFormat")
     def name_id_policy_format(self) -> Optional[pulumi.Input[str]]:
         """
-        Name ID Policy Format.
+        Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
         """
         return pulumi.get(self, "name_id_policy_format")
 
@@ -414,7 +407,7 @@ class IdentityProviderArgs:
     @pulumi.getter(name="postBindingAuthnRequest")
     def post_binding_authn_request(self) -> Optional[pulumi.Input[bool]]:
         """
-        Post Binding Authn Request.
+        Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
         """
         return pulumi.get(self, "post_binding_authn_request")
 
@@ -426,7 +419,7 @@ class IdentityProviderArgs:
     @pulumi.getter(name="postBindingLogout")
     def post_binding_logout(self) -> Optional[pulumi.Input[bool]]:
         """
-        Post Binding Logout.
+        Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
         """
         return pulumi.get(self, "post_binding_logout")
 
@@ -438,7 +431,7 @@ class IdentityProviderArgs:
     @pulumi.getter(name="postBindingResponse")
     def post_binding_response(self) -> Optional[pulumi.Input[bool]]:
         """
-        Post Binding Response.
+        Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
         """
         return pulumi.get(self, "post_binding_response")
 
@@ -450,10 +443,7 @@ class IdentityProviderArgs:
     @pulumi.getter(name="postBrokerLoginFlowAlias")
     def post_broker_login_flow_alias(self) -> Optional[pulumi.Input[str]]:
         """
-        Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want
-        additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if
-        you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that
-        authenticator implementations must assume that user is already set in ClientSession as identity provider already set it.
+        Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it. Defaults to empty.
         """
         return pulumi.get(self, "post_broker_login_flow_alias")
 
@@ -465,7 +455,7 @@ class IdentityProviderArgs:
     @pulumi.getter(name="principalAttribute")
     def principal_attribute(self) -> Optional[pulumi.Input[str]]:
         """
-        Principal Attribute
+        The principal attribute.
         """
         return pulumi.get(self, "principal_attribute")
 
@@ -477,7 +467,7 @@ class IdentityProviderArgs:
     @pulumi.getter(name="principalType")
     def principal_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Principal Type
+        The principal type. Can be one of `SUBJECT`, `ATTRIBUTE` or `FRIENDLY_ATTRIBUTE`.
         """
         return pulumi.get(self, "principal_type")
 
@@ -489,7 +479,7 @@ class IdentityProviderArgs:
     @pulumi.getter(name="providerId")
     def provider_id(self) -> Optional[pulumi.Input[str]]:
         """
-        provider id, is always saml, unless you have a custom implementation
+        The ID of the identity provider to use. Defaults to `saml`, which should be used unless you have extended Keycloak and provided your own implementation.
         """
         return pulumi.get(self, "provider_id")
 
@@ -501,7 +491,7 @@ class IdentityProviderArgs:
     @pulumi.getter(name="signatureAlgorithm")
     def signature_algorithm(self) -> Optional[pulumi.Input[str]]:
         """
-        Signing Algorithm.
+        Signing Algorithm. Defaults to empty.
         """
         return pulumi.get(self, "signature_algorithm")
 
@@ -525,7 +515,7 @@ class IdentityProviderArgs:
     @pulumi.getter(name="singleLogoutServiceUrl")
     def single_logout_service_url(self) -> Optional[pulumi.Input[str]]:
         """
-        Logout URL.
+        The Url that must be used to send logout requests.
         """
         return pulumi.get(self, "single_logout_service_url")
 
@@ -537,7 +527,7 @@ class IdentityProviderArgs:
     @pulumi.getter(name="storeToken")
     def store_token(self) -> Optional[pulumi.Input[bool]]:
         """
-        Enable/disable if tokens must be stored after authenticating users.
+        When `true`, tokens will be stored after authenticating users. Defaults to `true`.
         """
         return pulumi.get(self, "store_token")
 
@@ -549,7 +539,7 @@ class IdentityProviderArgs:
     @pulumi.getter(name="syncMode")
     def sync_mode(self) -> Optional[pulumi.Input[str]]:
         """
-        Sync Mode
+        The default sync mode to use for all mappers attached to this identity provider. Can be one of `IMPORT`, `FORCE`, or `LEGACY`.
         """
         return pulumi.get(self, "sync_mode")
 
@@ -561,7 +551,7 @@ class IdentityProviderArgs:
     @pulumi.getter(name="trustEmail")
     def trust_email(self) -> Optional[pulumi.Input[bool]]:
         """
-        If enabled then email provided by this provider is not verified even if verification is enabled for the realm.
+        When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
         """
         return pulumi.get(self, "trust_email")
 
@@ -585,7 +575,7 @@ class IdentityProviderArgs:
     @pulumi.getter(name="wantAssertionsEncrypted")
     def want_assertions_encrypted(self) -> Optional[pulumi.Input[bool]]:
         """
-        Want Assertions Encrypted.
+        Indicates whether this service provider expects an encrypted Assertion.
         """
         return pulumi.get(self, "want_assertions_encrypted")
 
@@ -597,7 +587,7 @@ class IdentityProviderArgs:
     @pulumi.getter(name="wantAssertionsSigned")
     def want_assertions_signed(self) -> Optional[pulumi.Input[bool]]:
         """
-        Want Assertions Signed.
+        Indicates whether this service provider expects a signed Assertion.
         """
         return pulumi.get(self, "want_assertions_signed")
 
@@ -609,7 +599,7 @@ class IdentityProviderArgs:
     @pulumi.getter(name="xmlSignKeyInfoKeyNameTransformer")
     def xml_sign_key_info_key_name_transformer(self) -> Optional[pulumi.Input[str]]:
         """
-        Sign Key Transformer.
+        The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.
         """
         return pulumi.get(self, "xml_sign_key_info_key_name_transformer")
 
@@ -661,48 +651,43 @@ class _IdentityProviderState:
                  xml_sign_key_info_key_name_transformer: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering IdentityProvider resources.
-        :param pulumi.Input[bool] add_read_token_role_on_create: Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role.
-        :param pulumi.Input[str] alias: The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
-        :param pulumi.Input[bool] authenticate_by_default: Enable/disable authenticate users by default.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] authn_context_class_refs: AuthnContext ClassRefs
-        :param pulumi.Input[str] authn_context_comparison_type: AuthnContext Comparison
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] authn_context_decl_refs: AuthnContext DeclRefs
-        :param pulumi.Input[bool] backchannel_supported: Does the external IDP support backchannel logout?
-        :param pulumi.Input[str] display_name: Friendly name for Identity Providers.
-        :param pulumi.Input[bool] enabled: Enable/disable this identity provider.
+        :param pulumi.Input[bool] add_read_token_role_on_create: When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
+        :param pulumi.Input[str] alias: The unique name of identity provider.
+        :param pulumi.Input[bool] authenticate_by_default: Authenticate users by default. Defaults to `false`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] authn_context_class_refs: Ordered list of requested AuthnContext ClassRefs.
+        :param pulumi.Input[str] authn_context_comparison_type: Specifies the comparison method used to evaluate the requested context classes or statements.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] authn_context_decl_refs: Ordered list of requested AuthnContext DeclRefs.
+        :param pulumi.Input[bool] backchannel_supported: Does the external IDP support backchannel logout?. Defaults to `false`.
+        :param pulumi.Input[str] display_name: The display name for the realm that is shown when logging in to the admin console.
+        :param pulumi.Input[bool] enabled: When `false`, users and clients will not be able to access this realm. Defaults to `true`.
         :param pulumi.Input[str] entity_id: The Entity ID that will be used to uniquely identify this SAML Service Provider.
-        :param pulumi.Input[str] first_broker_login_flow_alias: Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
-               that there is not yet existing Keycloak account linked with the authenticated identity provider account.
-        :param pulumi.Input[bool] force_authn: Require Force Authn.
-        :param pulumi.Input[str] gui_order: GUI Order
-        :param pulumi.Input[bool] hide_on_login_page: Hide On Login Page.
+        :param pulumi.Input[str] first_broker_login_flow_alias: Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
+        :param pulumi.Input[bool] force_authn: Indicates whether the identity provider must authenticate the presenter directly rather than rely on a previous security context.
+        :param pulumi.Input[str] gui_order: A number defining the order of this identity provider in the GUI.
+        :param pulumi.Input[bool] hide_on_login_page: If hidden, then login with this provider is possible only if requested explicitly, e.g. using the 'kc_idp_hint' parameter.
         :param pulumi.Input[str] internal_id: Internal Identity Provider Id
-        :param pulumi.Input[bool] link_only: If true, users cannot log in through this provider. They can only link to this provider. This is useful if you don't
-               want to allow login from the provider, but want to integrate with a provider
+        :param pulumi.Input[bool] link_only: When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         :param pulumi.Input[str] login_hint: Login Hint.
-        :param pulumi.Input[str] name_id_policy_format: Name ID Policy Format.
-        :param pulumi.Input[bool] post_binding_authn_request: Post Binding Authn Request.
-        :param pulumi.Input[bool] post_binding_logout: Post Binding Logout.
-        :param pulumi.Input[bool] post_binding_response: Post Binding Response.
-        :param pulumi.Input[str] post_broker_login_flow_alias: Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want
-               additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if
-               you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that
-               authenticator implementations must assume that user is already set in ClientSession as identity provider already set it.
-        :param pulumi.Input[str] principal_attribute: Principal Attribute
-        :param pulumi.Input[str] principal_type: Principal Type
-        :param pulumi.Input[str] provider_id: provider id, is always saml, unless you have a custom implementation
-        :param pulumi.Input[str] realm: Realm Name
-        :param pulumi.Input[str] signature_algorithm: Signing Algorithm.
+        :param pulumi.Input[str] name_id_policy_format: Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
+        :param pulumi.Input[bool] post_binding_authn_request: Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
+        :param pulumi.Input[bool] post_binding_logout: Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
+        :param pulumi.Input[bool] post_binding_response: Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
+        :param pulumi.Input[str] post_broker_login_flow_alias: Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it. Defaults to empty.
+        :param pulumi.Input[str] principal_attribute: The principal attribute.
+        :param pulumi.Input[str] principal_type: The principal type. Can be one of `SUBJECT`, `ATTRIBUTE` or `FRIENDLY_ATTRIBUTE`.
+        :param pulumi.Input[str] provider_id: The ID of the identity provider to use. Defaults to `saml`, which should be used unless you have extended Keycloak and provided your own implementation.
+        :param pulumi.Input[str] realm: The name of the realm. This is unique across Keycloak.
+        :param pulumi.Input[str] signature_algorithm: Signing Algorithm. Defaults to empty.
         :param pulumi.Input[str] signing_certificate: Signing Certificate.
-        :param pulumi.Input[str] single_logout_service_url: Logout URL.
-        :param pulumi.Input[str] single_sign_on_service_url: SSO Logout URL.
-        :param pulumi.Input[bool] store_token: Enable/disable if tokens must be stored after authenticating users.
-        :param pulumi.Input[str] sync_mode: Sync Mode
-        :param pulumi.Input[bool] trust_email: If enabled then email provided by this provider is not verified even if verification is enabled for the realm.
+        :param pulumi.Input[str] single_logout_service_url: The Url that must be used to send logout requests.
+        :param pulumi.Input[str] single_sign_on_service_url: The Url that must be used to send authentication requests (SAML AuthnRequest).
+        :param pulumi.Input[bool] store_token: When `true`, tokens will be stored after authenticating users. Defaults to `true`.
+        :param pulumi.Input[str] sync_mode: The default sync mode to use for all mappers attached to this identity provider. Can be one of `IMPORT`, `FORCE`, or `LEGACY`.
+        :param pulumi.Input[bool] trust_email: When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
         :param pulumi.Input[bool] validate_signature: Enable/disable signature validation of SAML responses.
-        :param pulumi.Input[bool] want_assertions_encrypted: Want Assertions Encrypted.
-        :param pulumi.Input[bool] want_assertions_signed: Want Assertions Signed.
-        :param pulumi.Input[str] xml_sign_key_info_key_name_transformer: Sign Key Transformer.
+        :param pulumi.Input[bool] want_assertions_encrypted: Indicates whether this service provider expects an encrypted Assertion.
+        :param pulumi.Input[bool] want_assertions_signed: Indicates whether this service provider expects a signed Assertion.
+        :param pulumi.Input[str] xml_sign_key_info_key_name_transformer: The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.
         """
         if add_read_token_role_on_create is not None:
             pulumi.set(__self__, "add_read_token_role_on_create", add_read_token_role_on_create)
@@ -785,7 +770,7 @@ class _IdentityProviderState:
     @pulumi.getter(name="addReadTokenRoleOnCreate")
     def add_read_token_role_on_create(self) -> Optional[pulumi.Input[bool]]:
         """
-        Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role.
+        When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
         """
         return pulumi.get(self, "add_read_token_role_on_create")
 
@@ -797,7 +782,7 @@ class _IdentityProviderState:
     @pulumi.getter
     def alias(self) -> Optional[pulumi.Input[str]]:
         """
-        The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
+        The unique name of identity provider.
         """
         return pulumi.get(self, "alias")
 
@@ -809,7 +794,7 @@ class _IdentityProviderState:
     @pulumi.getter(name="authenticateByDefault")
     def authenticate_by_default(self) -> Optional[pulumi.Input[bool]]:
         """
-        Enable/disable authenticate users by default.
+        Authenticate users by default. Defaults to `false`.
         """
         return pulumi.get(self, "authenticate_by_default")
 
@@ -821,7 +806,7 @@ class _IdentityProviderState:
     @pulumi.getter(name="authnContextClassRefs")
     def authn_context_class_refs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        AuthnContext ClassRefs
+        Ordered list of requested AuthnContext ClassRefs.
         """
         return pulumi.get(self, "authn_context_class_refs")
 
@@ -833,7 +818,7 @@ class _IdentityProviderState:
     @pulumi.getter(name="authnContextComparisonType")
     def authn_context_comparison_type(self) -> Optional[pulumi.Input[str]]:
         """
-        AuthnContext Comparison
+        Specifies the comparison method used to evaluate the requested context classes or statements.
         """
         return pulumi.get(self, "authn_context_comparison_type")
 
@@ -845,7 +830,7 @@ class _IdentityProviderState:
     @pulumi.getter(name="authnContextDeclRefs")
     def authn_context_decl_refs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        AuthnContext DeclRefs
+        Ordered list of requested AuthnContext DeclRefs.
         """
         return pulumi.get(self, "authn_context_decl_refs")
 
@@ -857,7 +842,7 @@ class _IdentityProviderState:
     @pulumi.getter(name="backchannelSupported")
     def backchannel_supported(self) -> Optional[pulumi.Input[bool]]:
         """
-        Does the external IDP support backchannel logout?
+        Does the external IDP support backchannel logout?. Defaults to `false`.
         """
         return pulumi.get(self, "backchannel_supported")
 
@@ -869,7 +854,7 @@ class _IdentityProviderState:
     @pulumi.getter(name="displayName")
     def display_name(self) -> Optional[pulumi.Input[str]]:
         """
-        Friendly name for Identity Providers.
+        The display name for the realm that is shown when logging in to the admin console.
         """
         return pulumi.get(self, "display_name")
 
@@ -881,7 +866,7 @@ class _IdentityProviderState:
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input[bool]]:
         """
-        Enable/disable this identity provider.
+        When `false`, users and clients will not be able to access this realm. Defaults to `true`.
         """
         return pulumi.get(self, "enabled")
 
@@ -914,8 +899,7 @@ class _IdentityProviderState:
     @pulumi.getter(name="firstBrokerLoginFlowAlias")
     def first_broker_login_flow_alias(self) -> Optional[pulumi.Input[str]]:
         """
-        Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
-        that there is not yet existing Keycloak account linked with the authenticated identity provider account.
+        Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
         """
         return pulumi.get(self, "first_broker_login_flow_alias")
 
@@ -927,7 +911,7 @@ class _IdentityProviderState:
     @pulumi.getter(name="forceAuthn")
     def force_authn(self) -> Optional[pulumi.Input[bool]]:
         """
-        Require Force Authn.
+        Indicates whether the identity provider must authenticate the presenter directly rather than rely on a previous security context.
         """
         return pulumi.get(self, "force_authn")
 
@@ -939,7 +923,7 @@ class _IdentityProviderState:
     @pulumi.getter(name="guiOrder")
     def gui_order(self) -> Optional[pulumi.Input[str]]:
         """
-        GUI Order
+        A number defining the order of this identity provider in the GUI.
         """
         return pulumi.get(self, "gui_order")
 
@@ -951,7 +935,7 @@ class _IdentityProviderState:
     @pulumi.getter(name="hideOnLoginPage")
     def hide_on_login_page(self) -> Optional[pulumi.Input[bool]]:
         """
-        Hide On Login Page.
+        If hidden, then login with this provider is possible only if requested explicitly, e.g. using the 'kc_idp_hint' parameter.
         """
         return pulumi.get(self, "hide_on_login_page")
 
@@ -975,8 +959,7 @@ class _IdentityProviderState:
     @pulumi.getter(name="linkOnly")
     def link_only(self) -> Optional[pulumi.Input[bool]]:
         """
-        If true, users cannot log in through this provider. They can only link to this provider. This is useful if you don't
-        want to allow login from the provider, but want to integrate with a provider
+        When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         """
         return pulumi.get(self, "link_only")
 
@@ -1000,7 +983,7 @@ class _IdentityProviderState:
     @pulumi.getter(name="nameIdPolicyFormat")
     def name_id_policy_format(self) -> Optional[pulumi.Input[str]]:
         """
-        Name ID Policy Format.
+        Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
         """
         return pulumi.get(self, "name_id_policy_format")
 
@@ -1012,7 +995,7 @@ class _IdentityProviderState:
     @pulumi.getter(name="postBindingAuthnRequest")
     def post_binding_authn_request(self) -> Optional[pulumi.Input[bool]]:
         """
-        Post Binding Authn Request.
+        Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
         """
         return pulumi.get(self, "post_binding_authn_request")
 
@@ -1024,7 +1007,7 @@ class _IdentityProviderState:
     @pulumi.getter(name="postBindingLogout")
     def post_binding_logout(self) -> Optional[pulumi.Input[bool]]:
         """
-        Post Binding Logout.
+        Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
         """
         return pulumi.get(self, "post_binding_logout")
 
@@ -1036,7 +1019,7 @@ class _IdentityProviderState:
     @pulumi.getter(name="postBindingResponse")
     def post_binding_response(self) -> Optional[pulumi.Input[bool]]:
         """
-        Post Binding Response.
+        Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
         """
         return pulumi.get(self, "post_binding_response")
 
@@ -1048,10 +1031,7 @@ class _IdentityProviderState:
     @pulumi.getter(name="postBrokerLoginFlowAlias")
     def post_broker_login_flow_alias(self) -> Optional[pulumi.Input[str]]:
         """
-        Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want
-        additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if
-        you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that
-        authenticator implementations must assume that user is already set in ClientSession as identity provider already set it.
+        Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it. Defaults to empty.
         """
         return pulumi.get(self, "post_broker_login_flow_alias")
 
@@ -1063,7 +1043,7 @@ class _IdentityProviderState:
     @pulumi.getter(name="principalAttribute")
     def principal_attribute(self) -> Optional[pulumi.Input[str]]:
         """
-        Principal Attribute
+        The principal attribute.
         """
         return pulumi.get(self, "principal_attribute")
 
@@ -1075,7 +1055,7 @@ class _IdentityProviderState:
     @pulumi.getter(name="principalType")
     def principal_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Principal Type
+        The principal type. Can be one of `SUBJECT`, `ATTRIBUTE` or `FRIENDLY_ATTRIBUTE`.
         """
         return pulumi.get(self, "principal_type")
 
@@ -1087,7 +1067,7 @@ class _IdentityProviderState:
     @pulumi.getter(name="providerId")
     def provider_id(self) -> Optional[pulumi.Input[str]]:
         """
-        provider id, is always saml, unless you have a custom implementation
+        The ID of the identity provider to use. Defaults to `saml`, which should be used unless you have extended Keycloak and provided your own implementation.
         """
         return pulumi.get(self, "provider_id")
 
@@ -1099,7 +1079,7 @@ class _IdentityProviderState:
     @pulumi.getter
     def realm(self) -> Optional[pulumi.Input[str]]:
         """
-        Realm Name
+        The name of the realm. This is unique across Keycloak.
         """
         return pulumi.get(self, "realm")
 
@@ -1111,7 +1091,7 @@ class _IdentityProviderState:
     @pulumi.getter(name="signatureAlgorithm")
     def signature_algorithm(self) -> Optional[pulumi.Input[str]]:
         """
-        Signing Algorithm.
+        Signing Algorithm. Defaults to empty.
         """
         return pulumi.get(self, "signature_algorithm")
 
@@ -1135,7 +1115,7 @@ class _IdentityProviderState:
     @pulumi.getter(name="singleLogoutServiceUrl")
     def single_logout_service_url(self) -> Optional[pulumi.Input[str]]:
         """
-        Logout URL.
+        The Url that must be used to send logout requests.
         """
         return pulumi.get(self, "single_logout_service_url")
 
@@ -1147,7 +1127,7 @@ class _IdentityProviderState:
     @pulumi.getter(name="singleSignOnServiceUrl")
     def single_sign_on_service_url(self) -> Optional[pulumi.Input[str]]:
         """
-        SSO Logout URL.
+        The Url that must be used to send authentication requests (SAML AuthnRequest).
         """
         return pulumi.get(self, "single_sign_on_service_url")
 
@@ -1159,7 +1139,7 @@ class _IdentityProviderState:
     @pulumi.getter(name="storeToken")
     def store_token(self) -> Optional[pulumi.Input[bool]]:
         """
-        Enable/disable if tokens must be stored after authenticating users.
+        When `true`, tokens will be stored after authenticating users. Defaults to `true`.
         """
         return pulumi.get(self, "store_token")
 
@@ -1171,7 +1151,7 @@ class _IdentityProviderState:
     @pulumi.getter(name="syncMode")
     def sync_mode(self) -> Optional[pulumi.Input[str]]:
         """
-        Sync Mode
+        The default sync mode to use for all mappers attached to this identity provider. Can be one of `IMPORT`, `FORCE`, or `LEGACY`.
         """
         return pulumi.get(self, "sync_mode")
 
@@ -1183,7 +1163,7 @@ class _IdentityProviderState:
     @pulumi.getter(name="trustEmail")
     def trust_email(self) -> Optional[pulumi.Input[bool]]:
         """
-        If enabled then email provided by this provider is not verified even if verification is enabled for the realm.
+        When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
         """
         return pulumi.get(self, "trust_email")
 
@@ -1207,7 +1187,7 @@ class _IdentityProviderState:
     @pulumi.getter(name="wantAssertionsEncrypted")
     def want_assertions_encrypted(self) -> Optional[pulumi.Input[bool]]:
         """
-        Want Assertions Encrypted.
+        Indicates whether this service provider expects an encrypted Assertion.
         """
         return pulumi.get(self, "want_assertions_encrypted")
 
@@ -1219,7 +1199,7 @@ class _IdentityProviderState:
     @pulumi.getter(name="wantAssertionsSigned")
     def want_assertions_signed(self) -> Optional[pulumi.Input[bool]]:
         """
-        Want Assertions Signed.
+        Indicates whether this service provider expects a signed Assertion.
         """
         return pulumi.get(self, "want_assertions_signed")
 
@@ -1231,7 +1211,7 @@ class _IdentityProviderState:
     @pulumi.getter(name="xmlSignKeyInfoKeyNameTransformer")
     def xml_sign_key_info_key_name_transformer(self) -> Optional[pulumi.Input[str]]:
         """
-        Sign Key Transformer.
+        The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.
         """
         return pulumi.get(self, "xml_sign_key_info_key_name_transformer")
 
@@ -1284,21 +1264,23 @@ class IdentityProvider(pulumi.CustomResource):
                  xml_sign_key_info_key_name_transformer: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        ## # saml.IdentityProvider
+        Allows for creating and managing SAML Identity Providers within Keycloak.
 
-        Allows to create and manage SAML Identity Providers within Keycloak.
+        SAML (Security Assertion Markup Language) identity providers allows users to authenticate through a third-party system using the SAML protocol.
 
-        SAML (Security Assertion Markup Language) identity providers allows to authenticate through a third-party system, using SAML standard.
-
-        ### Example Usage
+        ## Example Usage
 
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
-        realm_identity_provider = keycloak.saml.IdentityProvider("realm_identity_provider",
+        realm = keycloak.Realm("realm",
             realm="my-realm",
-            alias="my-idp",
+            enabled=True)
+        realm_saml_identity_provider = keycloak.saml.IdentityProvider("realm_saml_identity_provider",
+            realm=realm.id,
+            alias="my-saml-idp",
+            entity_id="https://domain.com/entity_id",
             single_sign_on_service_url="https://domain.com/adfs/ls/",
             single_logout_service_url="https://domain.com/adfs/ls/?wa=wsignout1.0",
             backchannel_supported=True,
@@ -1310,89 +1292,56 @@ class IdentityProvider(pulumi.CustomResource):
             force_authn=True)
         ```
 
-        ### Argument Reference
-
-        The following arguments are supported:
-
-        - `realm` - (Required) The name of the realm. This is unique across Keycloak.
-        - `alias` - (Optional) The uniq name of identity provider.
-        - `enabled` - (Optional) When false, users and clients will not be able to access this realm. Defaults to `true`.
-        - `display_name` - (Optional) The display name for the realm that is shown when logging in to the admin console.
-        - `store_token` - (Optional) Enable/disable if tokens must be stored after authenticating users. Defaults to `true`.
-        - `add_read_token_role_on_create` - (Optional) Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role. Defaults to `false`.
-        - `trust_email` - (Optional) If enabled then email provided by this provider is not verified even if verification is enabled for the realm. Defaults to `false`.
-        - `link_only` - (Optional) If true, users cannot log in through this provider. They can only link to this provider. This is useful if you don't want to allow login from the provider, but want to integrate with a provider. Defaults to `false`.
-        - `hide_on_login_page` - (Optional) If hidden, then login with this provider is possible only if requested explicitly, e.g. using the 'kc_idp_hint' parameter.
-        - `first_broker_login_flow_alias` - (Optional) Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
-        - `post_broker_login_flow_alias` - (Optional) Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it. Defaults to empty.
-        - `authenticate_by_default` - (Optional) Authenticate users by default. Defaults to `false`.
-
-        #### SAML Configuration
-
-        - `single_sign_on_service_url` - (Optional) The Url that must be used to send authentication requests (SAML AuthnRequest).
-        - `single_logout_service_url` - (Optional) The Url that must be used to send logout requests.
-        - `backchannel_supported` - (Optional) Does the external IDP support back-channel logout ?.
-        - `name_id_policy_format` - (Optional) Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
-        - `post_binding_response` - (Optional) Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
-        - `post_binding_authn_request` - (Optional) Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
-        - `post_binding_logout` - (Optional) Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
-        - `want_assertions_signed` - (Optional) Indicates whether this service provider expects a signed Assertion.
-        - `want_assertions_encrypted` - (Optional) Indicates whether this service provider expects an encrypted Assertion.
-        - `force_authn` - (Optional) Indicates whether the identity provider must authenticate the presenter directly rather than rely on a previous security context.
-        - `validate_signature` - (Optional) Enable/disable signature validation of SAML responses.
-        - `signing_certificate` - (Optional) Signing Certificate.
-        - `signature_algorithm` - (Optional) Signing Algorithm. Defaults to empty.
-        - `xml_sign_key_info_key_name_transformer` - (Optional) Sign Key Transformer. Defaults to empty.
-
-        ### Import
+        ## Import
 
         Identity providers can be imported using the format `{{realm_id}}/{{idp_alias}}`, where `idp_alias` is the identity provider alias.
 
         Example:
 
+        bash
+
+        ```sh
+        $ pulumi import keycloak:saml/identityProvider:IdentityProvider realm_saml_identity_provider my-realm/my-saml-idp
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] add_read_token_role_on_create: Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role.
-        :param pulumi.Input[str] alias: The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
-        :param pulumi.Input[bool] authenticate_by_default: Enable/disable authenticate users by default.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] authn_context_class_refs: AuthnContext ClassRefs
-        :param pulumi.Input[str] authn_context_comparison_type: AuthnContext Comparison
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] authn_context_decl_refs: AuthnContext DeclRefs
-        :param pulumi.Input[bool] backchannel_supported: Does the external IDP support backchannel logout?
-        :param pulumi.Input[str] display_name: Friendly name for Identity Providers.
-        :param pulumi.Input[bool] enabled: Enable/disable this identity provider.
+        :param pulumi.Input[bool] add_read_token_role_on_create: When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
+        :param pulumi.Input[str] alias: The unique name of identity provider.
+        :param pulumi.Input[bool] authenticate_by_default: Authenticate users by default. Defaults to `false`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] authn_context_class_refs: Ordered list of requested AuthnContext ClassRefs.
+        :param pulumi.Input[str] authn_context_comparison_type: Specifies the comparison method used to evaluate the requested context classes or statements.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] authn_context_decl_refs: Ordered list of requested AuthnContext DeclRefs.
+        :param pulumi.Input[bool] backchannel_supported: Does the external IDP support backchannel logout?. Defaults to `false`.
+        :param pulumi.Input[str] display_name: The display name for the realm that is shown when logging in to the admin console.
+        :param pulumi.Input[bool] enabled: When `false`, users and clients will not be able to access this realm. Defaults to `true`.
         :param pulumi.Input[str] entity_id: The Entity ID that will be used to uniquely identify this SAML Service Provider.
-        :param pulumi.Input[str] first_broker_login_flow_alias: Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
-               that there is not yet existing Keycloak account linked with the authenticated identity provider account.
-        :param pulumi.Input[bool] force_authn: Require Force Authn.
-        :param pulumi.Input[str] gui_order: GUI Order
-        :param pulumi.Input[bool] hide_on_login_page: Hide On Login Page.
-        :param pulumi.Input[bool] link_only: If true, users cannot log in through this provider. They can only link to this provider. This is useful if you don't
-               want to allow login from the provider, but want to integrate with a provider
+        :param pulumi.Input[str] first_broker_login_flow_alias: Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
+        :param pulumi.Input[bool] force_authn: Indicates whether the identity provider must authenticate the presenter directly rather than rely on a previous security context.
+        :param pulumi.Input[str] gui_order: A number defining the order of this identity provider in the GUI.
+        :param pulumi.Input[bool] hide_on_login_page: If hidden, then login with this provider is possible only if requested explicitly, e.g. using the 'kc_idp_hint' parameter.
+        :param pulumi.Input[bool] link_only: When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         :param pulumi.Input[str] login_hint: Login Hint.
-        :param pulumi.Input[str] name_id_policy_format: Name ID Policy Format.
-        :param pulumi.Input[bool] post_binding_authn_request: Post Binding Authn Request.
-        :param pulumi.Input[bool] post_binding_logout: Post Binding Logout.
-        :param pulumi.Input[bool] post_binding_response: Post Binding Response.
-        :param pulumi.Input[str] post_broker_login_flow_alias: Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want
-               additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if
-               you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that
-               authenticator implementations must assume that user is already set in ClientSession as identity provider already set it.
-        :param pulumi.Input[str] principal_attribute: Principal Attribute
-        :param pulumi.Input[str] principal_type: Principal Type
-        :param pulumi.Input[str] provider_id: provider id, is always saml, unless you have a custom implementation
-        :param pulumi.Input[str] realm: Realm Name
-        :param pulumi.Input[str] signature_algorithm: Signing Algorithm.
+        :param pulumi.Input[str] name_id_policy_format: Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
+        :param pulumi.Input[bool] post_binding_authn_request: Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
+        :param pulumi.Input[bool] post_binding_logout: Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
+        :param pulumi.Input[bool] post_binding_response: Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
+        :param pulumi.Input[str] post_broker_login_flow_alias: Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it. Defaults to empty.
+        :param pulumi.Input[str] principal_attribute: The principal attribute.
+        :param pulumi.Input[str] principal_type: The principal type. Can be one of `SUBJECT`, `ATTRIBUTE` or `FRIENDLY_ATTRIBUTE`.
+        :param pulumi.Input[str] provider_id: The ID of the identity provider to use. Defaults to `saml`, which should be used unless you have extended Keycloak and provided your own implementation.
+        :param pulumi.Input[str] realm: The name of the realm. This is unique across Keycloak.
+        :param pulumi.Input[str] signature_algorithm: Signing Algorithm. Defaults to empty.
         :param pulumi.Input[str] signing_certificate: Signing Certificate.
-        :param pulumi.Input[str] single_logout_service_url: Logout URL.
-        :param pulumi.Input[str] single_sign_on_service_url: SSO Logout URL.
-        :param pulumi.Input[bool] store_token: Enable/disable if tokens must be stored after authenticating users.
-        :param pulumi.Input[str] sync_mode: Sync Mode
-        :param pulumi.Input[bool] trust_email: If enabled then email provided by this provider is not verified even if verification is enabled for the realm.
+        :param pulumi.Input[str] single_logout_service_url: The Url that must be used to send logout requests.
+        :param pulumi.Input[str] single_sign_on_service_url: The Url that must be used to send authentication requests (SAML AuthnRequest).
+        :param pulumi.Input[bool] store_token: When `true`, tokens will be stored after authenticating users. Defaults to `true`.
+        :param pulumi.Input[str] sync_mode: The default sync mode to use for all mappers attached to this identity provider. Can be one of `IMPORT`, `FORCE`, or `LEGACY`.
+        :param pulumi.Input[bool] trust_email: When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
         :param pulumi.Input[bool] validate_signature: Enable/disable signature validation of SAML responses.
-        :param pulumi.Input[bool] want_assertions_encrypted: Want Assertions Encrypted.
-        :param pulumi.Input[bool] want_assertions_signed: Want Assertions Signed.
-        :param pulumi.Input[str] xml_sign_key_info_key_name_transformer: Sign Key Transformer.
+        :param pulumi.Input[bool] want_assertions_encrypted: Indicates whether this service provider expects an encrypted Assertion.
+        :param pulumi.Input[bool] want_assertions_signed: Indicates whether this service provider expects a signed Assertion.
+        :param pulumi.Input[str] xml_sign_key_info_key_name_transformer: The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.
         """
         ...
     @overload
@@ -1401,21 +1350,23 @@ class IdentityProvider(pulumi.CustomResource):
                  args: IdentityProviderArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # saml.IdentityProvider
+        Allows for creating and managing SAML Identity Providers within Keycloak.
 
-        Allows to create and manage SAML Identity Providers within Keycloak.
+        SAML (Security Assertion Markup Language) identity providers allows users to authenticate through a third-party system using the SAML protocol.
 
-        SAML (Security Assertion Markup Language) identity providers allows to authenticate through a third-party system, using SAML standard.
-
-        ### Example Usage
+        ## Example Usage
 
         ```python
         import pulumi
         import pulumi_keycloak as keycloak
 
-        realm_identity_provider = keycloak.saml.IdentityProvider("realm_identity_provider",
+        realm = keycloak.Realm("realm",
             realm="my-realm",
-            alias="my-idp",
+            enabled=True)
+        realm_saml_identity_provider = keycloak.saml.IdentityProvider("realm_saml_identity_provider",
+            realm=realm.id,
+            alias="my-saml-idp",
+            entity_id="https://domain.com/entity_id",
             single_sign_on_service_url="https://domain.com/adfs/ls/",
             single_logout_service_url="https://domain.com/adfs/ls/?wa=wsignout1.0",
             backchannel_supported=True,
@@ -1427,45 +1378,17 @@ class IdentityProvider(pulumi.CustomResource):
             force_authn=True)
         ```
 
-        ### Argument Reference
-
-        The following arguments are supported:
-
-        - `realm` - (Required) The name of the realm. This is unique across Keycloak.
-        - `alias` - (Optional) The uniq name of identity provider.
-        - `enabled` - (Optional) When false, users and clients will not be able to access this realm. Defaults to `true`.
-        - `display_name` - (Optional) The display name for the realm that is shown when logging in to the admin console.
-        - `store_token` - (Optional) Enable/disable if tokens must be stored after authenticating users. Defaults to `true`.
-        - `add_read_token_role_on_create` - (Optional) Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role. Defaults to `false`.
-        - `trust_email` - (Optional) If enabled then email provided by this provider is not verified even if verification is enabled for the realm. Defaults to `false`.
-        - `link_only` - (Optional) If true, users cannot log in through this provider. They can only link to this provider. This is useful if you don't want to allow login from the provider, but want to integrate with a provider. Defaults to `false`.
-        - `hide_on_login_page` - (Optional) If hidden, then login with this provider is possible only if requested explicitly, e.g. using the 'kc_idp_hint' parameter.
-        - `first_broker_login_flow_alias` - (Optional) Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
-        - `post_broker_login_flow_alias` - (Optional) Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it. Defaults to empty.
-        - `authenticate_by_default` - (Optional) Authenticate users by default. Defaults to `false`.
-
-        #### SAML Configuration
-
-        - `single_sign_on_service_url` - (Optional) The Url that must be used to send authentication requests (SAML AuthnRequest).
-        - `single_logout_service_url` - (Optional) The Url that must be used to send logout requests.
-        - `backchannel_supported` - (Optional) Does the external IDP support back-channel logout ?.
-        - `name_id_policy_format` - (Optional) Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
-        - `post_binding_response` - (Optional) Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
-        - `post_binding_authn_request` - (Optional) Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
-        - `post_binding_logout` - (Optional) Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
-        - `want_assertions_signed` - (Optional) Indicates whether this service provider expects a signed Assertion.
-        - `want_assertions_encrypted` - (Optional) Indicates whether this service provider expects an encrypted Assertion.
-        - `force_authn` - (Optional) Indicates whether the identity provider must authenticate the presenter directly rather than rely on a previous security context.
-        - `validate_signature` - (Optional) Enable/disable signature validation of SAML responses.
-        - `signing_certificate` - (Optional) Signing Certificate.
-        - `signature_algorithm` - (Optional) Signing Algorithm. Defaults to empty.
-        - `xml_sign_key_info_key_name_transformer` - (Optional) Sign Key Transformer. Defaults to empty.
-
-        ### Import
+        ## Import
 
         Identity providers can be imported using the format `{{realm_id}}/{{idp_alias}}`, where `idp_alias` is the identity provider alias.
 
         Example:
+
+        bash
+
+        ```sh
+        $ pulumi import keycloak:saml/identityProvider:IdentityProvider realm_saml_identity_provider my-realm/my-saml-idp
+        ```
 
         :param str resource_name: The name of the resource.
         :param IdentityProviderArgs args: The arguments to use to populate this resource's properties.
@@ -1629,48 +1552,43 @@ class IdentityProvider(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] add_read_token_role_on_create: Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role.
-        :param pulumi.Input[str] alias: The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
-        :param pulumi.Input[bool] authenticate_by_default: Enable/disable authenticate users by default.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] authn_context_class_refs: AuthnContext ClassRefs
-        :param pulumi.Input[str] authn_context_comparison_type: AuthnContext Comparison
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] authn_context_decl_refs: AuthnContext DeclRefs
-        :param pulumi.Input[bool] backchannel_supported: Does the external IDP support backchannel logout?
-        :param pulumi.Input[str] display_name: Friendly name for Identity Providers.
-        :param pulumi.Input[bool] enabled: Enable/disable this identity provider.
+        :param pulumi.Input[bool] add_read_token_role_on_create: When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
+        :param pulumi.Input[str] alias: The unique name of identity provider.
+        :param pulumi.Input[bool] authenticate_by_default: Authenticate users by default. Defaults to `false`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] authn_context_class_refs: Ordered list of requested AuthnContext ClassRefs.
+        :param pulumi.Input[str] authn_context_comparison_type: Specifies the comparison method used to evaluate the requested context classes or statements.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] authn_context_decl_refs: Ordered list of requested AuthnContext DeclRefs.
+        :param pulumi.Input[bool] backchannel_supported: Does the external IDP support backchannel logout?. Defaults to `false`.
+        :param pulumi.Input[str] display_name: The display name for the realm that is shown when logging in to the admin console.
+        :param pulumi.Input[bool] enabled: When `false`, users and clients will not be able to access this realm. Defaults to `true`.
         :param pulumi.Input[str] entity_id: The Entity ID that will be used to uniquely identify this SAML Service Provider.
-        :param pulumi.Input[str] first_broker_login_flow_alias: Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
-               that there is not yet existing Keycloak account linked with the authenticated identity provider account.
-        :param pulumi.Input[bool] force_authn: Require Force Authn.
-        :param pulumi.Input[str] gui_order: GUI Order
-        :param pulumi.Input[bool] hide_on_login_page: Hide On Login Page.
+        :param pulumi.Input[str] first_broker_login_flow_alias: Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
+        :param pulumi.Input[bool] force_authn: Indicates whether the identity provider must authenticate the presenter directly rather than rely on a previous security context.
+        :param pulumi.Input[str] gui_order: A number defining the order of this identity provider in the GUI.
+        :param pulumi.Input[bool] hide_on_login_page: If hidden, then login with this provider is possible only if requested explicitly, e.g. using the 'kc_idp_hint' parameter.
         :param pulumi.Input[str] internal_id: Internal Identity Provider Id
-        :param pulumi.Input[bool] link_only: If true, users cannot log in through this provider. They can only link to this provider. This is useful if you don't
-               want to allow login from the provider, but want to integrate with a provider
+        :param pulumi.Input[bool] link_only: When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         :param pulumi.Input[str] login_hint: Login Hint.
-        :param pulumi.Input[str] name_id_policy_format: Name ID Policy Format.
-        :param pulumi.Input[bool] post_binding_authn_request: Post Binding Authn Request.
-        :param pulumi.Input[bool] post_binding_logout: Post Binding Logout.
-        :param pulumi.Input[bool] post_binding_response: Post Binding Response.
-        :param pulumi.Input[str] post_broker_login_flow_alias: Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want
-               additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if
-               you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that
-               authenticator implementations must assume that user is already set in ClientSession as identity provider already set it.
-        :param pulumi.Input[str] principal_attribute: Principal Attribute
-        :param pulumi.Input[str] principal_type: Principal Type
-        :param pulumi.Input[str] provider_id: provider id, is always saml, unless you have a custom implementation
-        :param pulumi.Input[str] realm: Realm Name
-        :param pulumi.Input[str] signature_algorithm: Signing Algorithm.
+        :param pulumi.Input[str] name_id_policy_format: Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
+        :param pulumi.Input[bool] post_binding_authn_request: Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
+        :param pulumi.Input[bool] post_binding_logout: Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
+        :param pulumi.Input[bool] post_binding_response: Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
+        :param pulumi.Input[str] post_broker_login_flow_alias: Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it. Defaults to empty.
+        :param pulumi.Input[str] principal_attribute: The principal attribute.
+        :param pulumi.Input[str] principal_type: The principal type. Can be one of `SUBJECT`, `ATTRIBUTE` or `FRIENDLY_ATTRIBUTE`.
+        :param pulumi.Input[str] provider_id: The ID of the identity provider to use. Defaults to `saml`, which should be used unless you have extended Keycloak and provided your own implementation.
+        :param pulumi.Input[str] realm: The name of the realm. This is unique across Keycloak.
+        :param pulumi.Input[str] signature_algorithm: Signing Algorithm. Defaults to empty.
         :param pulumi.Input[str] signing_certificate: Signing Certificate.
-        :param pulumi.Input[str] single_logout_service_url: Logout URL.
-        :param pulumi.Input[str] single_sign_on_service_url: SSO Logout URL.
-        :param pulumi.Input[bool] store_token: Enable/disable if tokens must be stored after authenticating users.
-        :param pulumi.Input[str] sync_mode: Sync Mode
-        :param pulumi.Input[bool] trust_email: If enabled then email provided by this provider is not verified even if verification is enabled for the realm.
+        :param pulumi.Input[str] single_logout_service_url: The Url that must be used to send logout requests.
+        :param pulumi.Input[str] single_sign_on_service_url: The Url that must be used to send authentication requests (SAML AuthnRequest).
+        :param pulumi.Input[bool] store_token: When `true`, tokens will be stored after authenticating users. Defaults to `true`.
+        :param pulumi.Input[str] sync_mode: The default sync mode to use for all mappers attached to this identity provider. Can be one of `IMPORT`, `FORCE`, or `LEGACY`.
+        :param pulumi.Input[bool] trust_email: When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
         :param pulumi.Input[bool] validate_signature: Enable/disable signature validation of SAML responses.
-        :param pulumi.Input[bool] want_assertions_encrypted: Want Assertions Encrypted.
-        :param pulumi.Input[bool] want_assertions_signed: Want Assertions Signed.
-        :param pulumi.Input[str] xml_sign_key_info_key_name_transformer: Sign Key Transformer.
+        :param pulumi.Input[bool] want_assertions_encrypted: Indicates whether this service provider expects an encrypted Assertion.
+        :param pulumi.Input[bool] want_assertions_signed: Indicates whether this service provider expects a signed Assertion.
+        :param pulumi.Input[str] xml_sign_key_info_key_name_transformer: The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1720,7 +1638,7 @@ class IdentityProvider(pulumi.CustomResource):
     @pulumi.getter(name="addReadTokenRoleOnCreate")
     def add_read_token_role_on_create(self) -> pulumi.Output[Optional[bool]]:
         """
-        Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role.
+        When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
         """
         return pulumi.get(self, "add_read_token_role_on_create")
 
@@ -1728,7 +1646,7 @@ class IdentityProvider(pulumi.CustomResource):
     @pulumi.getter
     def alias(self) -> pulumi.Output[str]:
         """
-        The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
+        The unique name of identity provider.
         """
         return pulumi.get(self, "alias")
 
@@ -1736,7 +1654,7 @@ class IdentityProvider(pulumi.CustomResource):
     @pulumi.getter(name="authenticateByDefault")
     def authenticate_by_default(self) -> pulumi.Output[Optional[bool]]:
         """
-        Enable/disable authenticate users by default.
+        Authenticate users by default. Defaults to `false`.
         """
         return pulumi.get(self, "authenticate_by_default")
 
@@ -1744,7 +1662,7 @@ class IdentityProvider(pulumi.CustomResource):
     @pulumi.getter(name="authnContextClassRefs")
     def authn_context_class_refs(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        AuthnContext ClassRefs
+        Ordered list of requested AuthnContext ClassRefs.
         """
         return pulumi.get(self, "authn_context_class_refs")
 
@@ -1752,7 +1670,7 @@ class IdentityProvider(pulumi.CustomResource):
     @pulumi.getter(name="authnContextComparisonType")
     def authn_context_comparison_type(self) -> pulumi.Output[Optional[str]]:
         """
-        AuthnContext Comparison
+        Specifies the comparison method used to evaluate the requested context classes or statements.
         """
         return pulumi.get(self, "authn_context_comparison_type")
 
@@ -1760,7 +1678,7 @@ class IdentityProvider(pulumi.CustomResource):
     @pulumi.getter(name="authnContextDeclRefs")
     def authn_context_decl_refs(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
-        AuthnContext DeclRefs
+        Ordered list of requested AuthnContext DeclRefs.
         """
         return pulumi.get(self, "authn_context_decl_refs")
 
@@ -1768,7 +1686,7 @@ class IdentityProvider(pulumi.CustomResource):
     @pulumi.getter(name="backchannelSupported")
     def backchannel_supported(self) -> pulumi.Output[Optional[bool]]:
         """
-        Does the external IDP support backchannel logout?
+        Does the external IDP support backchannel logout?. Defaults to `false`.
         """
         return pulumi.get(self, "backchannel_supported")
 
@@ -1776,7 +1694,7 @@ class IdentityProvider(pulumi.CustomResource):
     @pulumi.getter(name="displayName")
     def display_name(self) -> pulumi.Output[Optional[str]]:
         """
-        Friendly name for Identity Providers.
+        The display name for the realm that is shown when logging in to the admin console.
         """
         return pulumi.get(self, "display_name")
 
@@ -1784,7 +1702,7 @@ class IdentityProvider(pulumi.CustomResource):
     @pulumi.getter
     def enabled(self) -> pulumi.Output[Optional[bool]]:
         """
-        Enable/disable this identity provider.
+        When `false`, users and clients will not be able to access this realm. Defaults to `true`.
         """
         return pulumi.get(self, "enabled")
 
@@ -1805,8 +1723,7 @@ class IdentityProvider(pulumi.CustomResource):
     @pulumi.getter(name="firstBrokerLoginFlowAlias")
     def first_broker_login_flow_alias(self) -> pulumi.Output[Optional[str]]:
         """
-        Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
-        that there is not yet existing Keycloak account linked with the authenticated identity provider account.
+        Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
         """
         return pulumi.get(self, "first_broker_login_flow_alias")
 
@@ -1814,7 +1731,7 @@ class IdentityProvider(pulumi.CustomResource):
     @pulumi.getter(name="forceAuthn")
     def force_authn(self) -> pulumi.Output[Optional[bool]]:
         """
-        Require Force Authn.
+        Indicates whether the identity provider must authenticate the presenter directly rather than rely on a previous security context.
         """
         return pulumi.get(self, "force_authn")
 
@@ -1822,7 +1739,7 @@ class IdentityProvider(pulumi.CustomResource):
     @pulumi.getter(name="guiOrder")
     def gui_order(self) -> pulumi.Output[Optional[str]]:
         """
-        GUI Order
+        A number defining the order of this identity provider in the GUI.
         """
         return pulumi.get(self, "gui_order")
 
@@ -1830,7 +1747,7 @@ class IdentityProvider(pulumi.CustomResource):
     @pulumi.getter(name="hideOnLoginPage")
     def hide_on_login_page(self) -> pulumi.Output[Optional[bool]]:
         """
-        Hide On Login Page.
+        If hidden, then login with this provider is possible only if requested explicitly, e.g. using the 'kc_idp_hint' parameter.
         """
         return pulumi.get(self, "hide_on_login_page")
 
@@ -1846,8 +1763,7 @@ class IdentityProvider(pulumi.CustomResource):
     @pulumi.getter(name="linkOnly")
     def link_only(self) -> pulumi.Output[Optional[bool]]:
         """
-        If true, users cannot log in through this provider. They can only link to this provider. This is useful if you don't
-        want to allow login from the provider, but want to integrate with a provider
+        When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         """
         return pulumi.get(self, "link_only")
 
@@ -1863,7 +1779,7 @@ class IdentityProvider(pulumi.CustomResource):
     @pulumi.getter(name="nameIdPolicyFormat")
     def name_id_policy_format(self) -> pulumi.Output[Optional[str]]:
         """
-        Name ID Policy Format.
+        Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
         """
         return pulumi.get(self, "name_id_policy_format")
 
@@ -1871,7 +1787,7 @@ class IdentityProvider(pulumi.CustomResource):
     @pulumi.getter(name="postBindingAuthnRequest")
     def post_binding_authn_request(self) -> pulumi.Output[Optional[bool]]:
         """
-        Post Binding Authn Request.
+        Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
         """
         return pulumi.get(self, "post_binding_authn_request")
 
@@ -1879,7 +1795,7 @@ class IdentityProvider(pulumi.CustomResource):
     @pulumi.getter(name="postBindingLogout")
     def post_binding_logout(self) -> pulumi.Output[Optional[bool]]:
         """
-        Post Binding Logout.
+        Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
         """
         return pulumi.get(self, "post_binding_logout")
 
@@ -1887,7 +1803,7 @@ class IdentityProvider(pulumi.CustomResource):
     @pulumi.getter(name="postBindingResponse")
     def post_binding_response(self) -> pulumi.Output[Optional[bool]]:
         """
-        Post Binding Response.
+        Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
         """
         return pulumi.get(self, "post_binding_response")
 
@@ -1895,10 +1811,7 @@ class IdentityProvider(pulumi.CustomResource):
     @pulumi.getter(name="postBrokerLoginFlowAlias")
     def post_broker_login_flow_alias(self) -> pulumi.Output[Optional[str]]:
         """
-        Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want
-        additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if
-        you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that
-        authenticator implementations must assume that user is already set in ClientSession as identity provider already set it.
+        Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it. Defaults to empty.
         """
         return pulumi.get(self, "post_broker_login_flow_alias")
 
@@ -1906,7 +1819,7 @@ class IdentityProvider(pulumi.CustomResource):
     @pulumi.getter(name="principalAttribute")
     def principal_attribute(self) -> pulumi.Output[Optional[str]]:
         """
-        Principal Attribute
+        The principal attribute.
         """
         return pulumi.get(self, "principal_attribute")
 
@@ -1914,7 +1827,7 @@ class IdentityProvider(pulumi.CustomResource):
     @pulumi.getter(name="principalType")
     def principal_type(self) -> pulumi.Output[Optional[str]]:
         """
-        Principal Type
+        The principal type. Can be one of `SUBJECT`, `ATTRIBUTE` or `FRIENDLY_ATTRIBUTE`.
         """
         return pulumi.get(self, "principal_type")
 
@@ -1922,7 +1835,7 @@ class IdentityProvider(pulumi.CustomResource):
     @pulumi.getter(name="providerId")
     def provider_id(self) -> pulumi.Output[Optional[str]]:
         """
-        provider id, is always saml, unless you have a custom implementation
+        The ID of the identity provider to use. Defaults to `saml`, which should be used unless you have extended Keycloak and provided your own implementation.
         """
         return pulumi.get(self, "provider_id")
 
@@ -1930,7 +1843,7 @@ class IdentityProvider(pulumi.CustomResource):
     @pulumi.getter
     def realm(self) -> pulumi.Output[str]:
         """
-        Realm Name
+        The name of the realm. This is unique across Keycloak.
         """
         return pulumi.get(self, "realm")
 
@@ -1938,7 +1851,7 @@ class IdentityProvider(pulumi.CustomResource):
     @pulumi.getter(name="signatureAlgorithm")
     def signature_algorithm(self) -> pulumi.Output[Optional[str]]:
         """
-        Signing Algorithm.
+        Signing Algorithm. Defaults to empty.
         """
         return pulumi.get(self, "signature_algorithm")
 
@@ -1954,7 +1867,7 @@ class IdentityProvider(pulumi.CustomResource):
     @pulumi.getter(name="singleLogoutServiceUrl")
     def single_logout_service_url(self) -> pulumi.Output[Optional[str]]:
         """
-        Logout URL.
+        The Url that must be used to send logout requests.
         """
         return pulumi.get(self, "single_logout_service_url")
 
@@ -1962,7 +1875,7 @@ class IdentityProvider(pulumi.CustomResource):
     @pulumi.getter(name="singleSignOnServiceUrl")
     def single_sign_on_service_url(self) -> pulumi.Output[str]:
         """
-        SSO Logout URL.
+        The Url that must be used to send authentication requests (SAML AuthnRequest).
         """
         return pulumi.get(self, "single_sign_on_service_url")
 
@@ -1970,7 +1883,7 @@ class IdentityProvider(pulumi.CustomResource):
     @pulumi.getter(name="storeToken")
     def store_token(self) -> pulumi.Output[Optional[bool]]:
         """
-        Enable/disable if tokens must be stored after authenticating users.
+        When `true`, tokens will be stored after authenticating users. Defaults to `true`.
         """
         return pulumi.get(self, "store_token")
 
@@ -1978,7 +1891,7 @@ class IdentityProvider(pulumi.CustomResource):
     @pulumi.getter(name="syncMode")
     def sync_mode(self) -> pulumi.Output[Optional[str]]:
         """
-        Sync Mode
+        The default sync mode to use for all mappers attached to this identity provider. Can be one of `IMPORT`, `FORCE`, or `LEGACY`.
         """
         return pulumi.get(self, "sync_mode")
 
@@ -1986,7 +1899,7 @@ class IdentityProvider(pulumi.CustomResource):
     @pulumi.getter(name="trustEmail")
     def trust_email(self) -> pulumi.Output[Optional[bool]]:
         """
-        If enabled then email provided by this provider is not verified even if verification is enabled for the realm.
+        When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
         """
         return pulumi.get(self, "trust_email")
 
@@ -2002,7 +1915,7 @@ class IdentityProvider(pulumi.CustomResource):
     @pulumi.getter(name="wantAssertionsEncrypted")
     def want_assertions_encrypted(self) -> pulumi.Output[Optional[bool]]:
         """
-        Want Assertions Encrypted.
+        Indicates whether this service provider expects an encrypted Assertion.
         """
         return pulumi.get(self, "want_assertions_encrypted")
 
@@ -2010,7 +1923,7 @@ class IdentityProvider(pulumi.CustomResource):
     @pulumi.getter(name="wantAssertionsSigned")
     def want_assertions_signed(self) -> pulumi.Output[Optional[bool]]:
         """
-        Want Assertions Signed.
+        Indicates whether this service provider expects a signed Assertion.
         """
         return pulumi.get(self, "want_assertions_signed")
 
@@ -2018,7 +1931,7 @@ class IdentityProvider(pulumi.CustomResource):
     @pulumi.getter(name="xmlSignKeyInfoKeyNameTransformer")
     def xml_sign_key_info_key_name_transformer(self) -> pulumi.Output[Optional[str]]:
         """
-        Sign Key Transformer.
+        The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.
         """
         return pulumi.get(self, "xml_sign_key_info_key_name_transformer")
 

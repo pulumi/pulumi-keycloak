@@ -17,6 +17,10 @@ public final class GetRoleResult {
     private Map<String,String> attributes;
     private @Nullable String clientId;
     private List<String> compositeRoles;
+    /**
+     * @return (Computed) The description of the role.
+     * 
+     */
     private String description;
     /**
      * @return The provider-assigned unique ID for this managed resource.
@@ -36,6 +40,10 @@ public final class GetRoleResult {
     public List<String> compositeRoles() {
         return this.compositeRoles;
     }
+    /**
+     * @return (Computed) The description of the role.
+     * 
+     */
     public String description() {
         return this.description;
     }

@@ -14,7 +14,7 @@ namespace Pulumi.Keycloak.Ldap.Outputs
     public sealed class UserFederationKerberos
     {
         /// <summary>
-        /// The name of the kerberos realm, e.g. FOO.LOCAL
+        /// The name of the kerberos realm, e.g. FOO.LOCAL.
         /// </summary>
         public readonly string KerberosRealm;
         /// <summary>

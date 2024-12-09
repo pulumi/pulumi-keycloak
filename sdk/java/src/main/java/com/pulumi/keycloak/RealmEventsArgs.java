@@ -19,51 +19,107 @@ public final class RealmEventsArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final RealmEventsArgs Empty = new RealmEventsArgs();
 
+    /**
+     * When `true`, saved admin events will included detailed information for create/update requests. Defaults to `false`.
+     * 
+     */
     @Import(name="adminEventsDetailsEnabled")
     private @Nullable Output<Boolean> adminEventsDetailsEnabled;
 
+    /**
+     * @return When `true`, saved admin events will included detailed information for create/update requests. Defaults to `false`.
+     * 
+     */
     public Optional<Output<Boolean>> adminEventsDetailsEnabled() {
         return Optional.ofNullable(this.adminEventsDetailsEnabled);
     }
 
+    /**
+     * When `true`, admin events are saved to the database, making them available through the admin console. Defaults to `false`.
+     * 
+     */
     @Import(name="adminEventsEnabled")
     private @Nullable Output<Boolean> adminEventsEnabled;
 
+    /**
+     * @return When `true`, admin events are saved to the database, making them available through the admin console. Defaults to `false`.
+     * 
+     */
     public Optional<Output<Boolean>> adminEventsEnabled() {
         return Optional.ofNullable(this.adminEventsEnabled);
     }
 
+    /**
+     * The event types that will be saved to the database. Omitting this field enables all event types. Defaults to `[]` or all event types.
+     * 
+     */
     @Import(name="enabledEventTypes")
     private @Nullable Output<List<String>> enabledEventTypes;
 
+    /**
+     * @return The event types that will be saved to the database. Omitting this field enables all event types. Defaults to `[]` or all event types.
+     * 
+     */
     public Optional<Output<List<String>>> enabledEventTypes() {
         return Optional.ofNullable(this.enabledEventTypes);
     }
 
+    /**
+     * When `true`, events from `enabled_event_types` are saved to the database, making them available through the admin console. Defaults to `false`.
+     * 
+     */
     @Import(name="eventsEnabled")
     private @Nullable Output<Boolean> eventsEnabled;
 
+    /**
+     * @return When `true`, events from `enabled_event_types` are saved to the database, making them available through the admin console. Defaults to `false`.
+     * 
+     */
     public Optional<Output<Boolean>> eventsEnabled() {
         return Optional.ofNullable(this.eventsEnabled);
     }
 
+    /**
+     * The amount of time in seconds events will be saved in the database. Defaults to `0` or never.
+     * 
+     */
     @Import(name="eventsExpiration")
     private @Nullable Output<Integer> eventsExpiration;
 
+    /**
+     * @return The amount of time in seconds events will be saved in the database. Defaults to `0` or never.
+     * 
+     */
     public Optional<Output<Integer>> eventsExpiration() {
         return Optional.ofNullable(this.eventsExpiration);
     }
 
+    /**
+     * The event listeners that events should be sent to. Defaults to `[]` or none. Note that new realms enable the `jboss-logging` listener by default, and this resource will remove that unless it is specified.
+     * 
+     */
     @Import(name="eventsListeners")
     private @Nullable Output<List<String>> eventsListeners;
 
+    /**
+     * @return The event listeners that events should be sent to. Defaults to `[]` or none. Note that new realms enable the `jboss-logging` listener by default, and this resource will remove that unless it is specified.
+     * 
+     */
     public Optional<Output<List<String>>> eventsListeners() {
         return Optional.ofNullable(this.eventsListeners);
     }
 
+    /**
+     * The name of the realm the event settings apply to.
+     * 
+     */
     @Import(name="realmId", required=true)
     private Output<String> realmId;
 
+    /**
+     * @return The name of the realm the event settings apply to.
+     * 
+     */
     public Output<String> realmId() {
         return this.realmId;
     }
@@ -98,73 +154,169 @@ public final class RealmEventsArgs extends com.pulumi.resources.ResourceArgs {
             $ = new RealmEventsArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param adminEventsDetailsEnabled When `true`, saved admin events will included detailed information for create/update requests. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder adminEventsDetailsEnabled(@Nullable Output<Boolean> adminEventsDetailsEnabled) {
             $.adminEventsDetailsEnabled = adminEventsDetailsEnabled;
             return this;
         }
 
+        /**
+         * @param adminEventsDetailsEnabled When `true`, saved admin events will included detailed information for create/update requests. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder adminEventsDetailsEnabled(Boolean adminEventsDetailsEnabled) {
             return adminEventsDetailsEnabled(Output.of(adminEventsDetailsEnabled));
         }
 
+        /**
+         * @param adminEventsEnabled When `true`, admin events are saved to the database, making them available through the admin console. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder adminEventsEnabled(@Nullable Output<Boolean> adminEventsEnabled) {
             $.adminEventsEnabled = adminEventsEnabled;
             return this;
         }
 
+        /**
+         * @param adminEventsEnabled When `true`, admin events are saved to the database, making them available through the admin console. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder adminEventsEnabled(Boolean adminEventsEnabled) {
             return adminEventsEnabled(Output.of(adminEventsEnabled));
         }
 
+        /**
+         * @param enabledEventTypes The event types that will be saved to the database. Omitting this field enables all event types. Defaults to `[]` or all event types.
+         * 
+         * @return builder
+         * 
+         */
         public Builder enabledEventTypes(@Nullable Output<List<String>> enabledEventTypes) {
             $.enabledEventTypes = enabledEventTypes;
             return this;
         }
 
+        /**
+         * @param enabledEventTypes The event types that will be saved to the database. Omitting this field enables all event types. Defaults to `[]` or all event types.
+         * 
+         * @return builder
+         * 
+         */
         public Builder enabledEventTypes(List<String> enabledEventTypes) {
             return enabledEventTypes(Output.of(enabledEventTypes));
         }
 
+        /**
+         * @param enabledEventTypes The event types that will be saved to the database. Omitting this field enables all event types. Defaults to `[]` or all event types.
+         * 
+         * @return builder
+         * 
+         */
         public Builder enabledEventTypes(String... enabledEventTypes) {
             return enabledEventTypes(List.of(enabledEventTypes));
         }
 
+        /**
+         * @param eventsEnabled When `true`, events from `enabled_event_types` are saved to the database, making them available through the admin console. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder eventsEnabled(@Nullable Output<Boolean> eventsEnabled) {
             $.eventsEnabled = eventsEnabled;
             return this;
         }
 
+        /**
+         * @param eventsEnabled When `true`, events from `enabled_event_types` are saved to the database, making them available through the admin console. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder eventsEnabled(Boolean eventsEnabled) {
             return eventsEnabled(Output.of(eventsEnabled));
         }
 
+        /**
+         * @param eventsExpiration The amount of time in seconds events will be saved in the database. Defaults to `0` or never.
+         * 
+         * @return builder
+         * 
+         */
         public Builder eventsExpiration(@Nullable Output<Integer> eventsExpiration) {
             $.eventsExpiration = eventsExpiration;
             return this;
         }
 
+        /**
+         * @param eventsExpiration The amount of time in seconds events will be saved in the database. Defaults to `0` or never.
+         * 
+         * @return builder
+         * 
+         */
         public Builder eventsExpiration(Integer eventsExpiration) {
             return eventsExpiration(Output.of(eventsExpiration));
         }
 
+        /**
+         * @param eventsListeners The event listeners that events should be sent to. Defaults to `[]` or none. Note that new realms enable the `jboss-logging` listener by default, and this resource will remove that unless it is specified.
+         * 
+         * @return builder
+         * 
+         */
         public Builder eventsListeners(@Nullable Output<List<String>> eventsListeners) {
             $.eventsListeners = eventsListeners;
             return this;
         }
 
+        /**
+         * @param eventsListeners The event listeners that events should be sent to. Defaults to `[]` or none. Note that new realms enable the `jboss-logging` listener by default, and this resource will remove that unless it is specified.
+         * 
+         * @return builder
+         * 
+         */
         public Builder eventsListeners(List<String> eventsListeners) {
             return eventsListeners(Output.of(eventsListeners));
         }
 
+        /**
+         * @param eventsListeners The event listeners that events should be sent to. Defaults to `[]` or none. Note that new realms enable the `jboss-logging` listener by default, and this resource will remove that unless it is specified.
+         * 
+         * @return builder
+         * 
+         */
         public Builder eventsListeners(String... eventsListeners) {
             return eventsListeners(List.of(eventsListeners));
         }
 
+        /**
+         * @param realmId The name of the realm the event settings apply to.
+         * 
+         * @return builder
+         * 
+         */
         public Builder realmId(Output<String> realmId) {
             $.realmId = realmId;
             return this;
         }
 
+        /**
+         * @param realmId The name of the realm the event settings apply to.
+         * 
+         * @return builder
+         * 
+         */
         public Builder realmId(String realmId) {
             return realmId(Output.of(realmId));
         }

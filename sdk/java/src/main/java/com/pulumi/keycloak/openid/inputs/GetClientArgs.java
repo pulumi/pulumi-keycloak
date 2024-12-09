@@ -18,9 +18,17 @@ public final class GetClientArgs extends com.pulumi.resources.InvokeArgs {
 
     public static final GetClientArgs Empty = new GetClientArgs();
 
+    /**
+     * The client id (not its unique ID).
+     * 
+     */
     @Import(name="clientId", required=true)
     private Output<String> clientId;
 
+    /**
+     * @return The client id (not its unique ID).
+     * 
+     */
     public Output<String> clientId() {
         return this.clientId;
     }
@@ -67,9 +75,17 @@ public final class GetClientArgs extends com.pulumi.resources.InvokeArgs {
         return Optional.ofNullable(this.oauth2DevicePollingInterval);
     }
 
+    /**
+     * The realm id.
+     * 
+     */
     @Import(name="realmId", required=true)
     private Output<String> realmId;
 
+    /**
+     * @return The realm id.
+     * 
+     */
     public Output<String> realmId() {
         return this.realmId;
     }
@@ -105,11 +121,23 @@ public final class GetClientArgs extends com.pulumi.resources.InvokeArgs {
             $ = new GetClientArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param clientId The client id (not its unique ID).
+         * 
+         * @return builder
+         * 
+         */
         public Builder clientId(Output<String> clientId) {
             $.clientId = clientId;
             return this;
         }
 
+        /**
+         * @param clientId The client id (not its unique ID).
+         * 
+         * @return builder
+         * 
+         */
         public Builder clientId(String clientId) {
             return clientId(Output.of(clientId));
         }
@@ -168,11 +196,23 @@ public final class GetClientArgs extends com.pulumi.resources.InvokeArgs {
             return oauth2DevicePollingInterval(Output.of(oauth2DevicePollingInterval));
         }
 
+        /**
+         * @param realmId The realm id.
+         * 
+         * @return builder
+         * 
+         */
         public Builder realmId(Output<String> realmId) {
             $.realmId = realmId;
             return this;
         }
 
+        /**
+         * @param realmId The realm id.
+         * 
+         * @return builder
+         * 
+         */
         public Builder realmId(String realmId) {
             return realmId(Output.of(realmId));
         }

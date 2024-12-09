@@ -11,37 +11,101 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class RealmSecurityDefensesHeaders {
+    /**
+     * @return Sets the Content Security Policy, which can be used for prevent pages from being included by non-origin iframes. More information can be found in the [W3C-CSP](https://www.w3.org/TR/CSP/) Abstract.
+     * 
+     */
     private @Nullable String contentSecurityPolicy;
+    /**
+     * @return Used for testing Content Security Policies.
+     * 
+     */
     private @Nullable String contentSecurityPolicyReportOnly;
+    /**
+     * @return The Referrer-Policy HTTP header controls how much referrer information (sent with the Referer header) should be included with requests.
+     * 
+     */
     private @Nullable String referrerPolicy;
+    /**
+     * @return The Script-Transport-Security HTTP header tells browsers to always use HTTPS.
+     * 
+     */
     private @Nullable String strictTransportSecurity;
+    /**
+     * @return Sets the X-Content-Type-Options, which can be used for prevent MIME-sniffing a response away from the declared content-type
+     * 
+     */
     private @Nullable String xContentTypeOptions;
+    /**
+     * @return Sets the x-frame-option, which can be used to prevent pages from being included by non-origin iframes. More information can be found in the [RFC7034](https://tools.ietf.org/html/rfc7034)
+     * 
+     */
     private @Nullable String xFrameOptions;
+    /**
+     * @return Prevent pages from appearing in search engines.
+     * 
+     */
     private @Nullable String xRobotsTag;
+    /**
+     * @return This header configures the Cross-site scripting (XSS) filter in your browser.
+     * 
+     */
     private @Nullable String xXssProtection;
 
     private RealmSecurityDefensesHeaders() {}
+    /**
+     * @return Sets the Content Security Policy, which can be used for prevent pages from being included by non-origin iframes. More information can be found in the [W3C-CSP](https://www.w3.org/TR/CSP/) Abstract.
+     * 
+     */
     public Optional<String> contentSecurityPolicy() {
         return Optional.ofNullable(this.contentSecurityPolicy);
     }
+    /**
+     * @return Used for testing Content Security Policies.
+     * 
+     */
     public Optional<String> contentSecurityPolicyReportOnly() {
         return Optional.ofNullable(this.contentSecurityPolicyReportOnly);
     }
+    /**
+     * @return The Referrer-Policy HTTP header controls how much referrer information (sent with the Referer header) should be included with requests.
+     * 
+     */
     public Optional<String> referrerPolicy() {
         return Optional.ofNullable(this.referrerPolicy);
     }
+    /**
+     * @return The Script-Transport-Security HTTP header tells browsers to always use HTTPS.
+     * 
+     */
     public Optional<String> strictTransportSecurity() {
         return Optional.ofNullable(this.strictTransportSecurity);
     }
+    /**
+     * @return Sets the X-Content-Type-Options, which can be used for prevent MIME-sniffing a response away from the declared content-type
+     * 
+     */
     public Optional<String> xContentTypeOptions() {
         return Optional.ofNullable(this.xContentTypeOptions);
     }
+    /**
+     * @return Sets the x-frame-option, which can be used to prevent pages from being included by non-origin iframes. More information can be found in the [RFC7034](https://tools.ietf.org/html/rfc7034)
+     * 
+     */
     public Optional<String> xFrameOptions() {
         return Optional.ofNullable(this.xFrameOptions);
     }
+    /**
+     * @return Prevent pages from appearing in search engines.
+     * 
+     */
     public Optional<String> xRobotsTag() {
         return Optional.ofNullable(this.xRobotsTag);
     }
+    /**
+     * @return This header configures the Cross-site scripting (XSS) filter in your browser.
+     * 
+     */
     public Optional<String> xXssProtection() {
         return Optional.ofNullable(this.xXssProtection);
     }

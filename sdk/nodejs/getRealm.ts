@@ -7,12 +7,10 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # keycloak.Realm data source
- *
  * This data source can be used to fetch properties of a Keycloak realm for
  * usage with other resources.
  *
- * ### Example Usage
+ * ## Example Usage
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -23,20 +21,10 @@ import * as utilities from "./utilities";
  * });
  * // use the data source
  * const group = new keycloak.Role("group", {
- *     realmId: id,
+ *     realmId: realm.then(realm => realm.id),
  *     name: "group",
  * });
  * ```
- *
- * ### Argument Reference
- *
- * The following arguments are supported:
- *
- * - `realm` - (Required) The realm name.
- *
- * ### Attributes Reference
- *
- * See the docs for the `keycloak.Realm` resource for details on the exported attributes.
  */
 export function getRealm(args: GetRealmArgs, opts?: pulumi.InvokeOptions): Promise<GetRealmResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -65,6 +53,9 @@ export interface GetRealmArgs {
     displayNameHtml?: string;
     internationalizations?: inputs.GetRealmInternationalization[];
     otpPolicy?: inputs.GetRealmOtpPolicy;
+    /**
+     * The realm name.
+     */
     realm: string;
     securityDefenses?: inputs.GetRealmSecurityDefense[];
     smtpServers?: inputs.GetRealmSmtpServer[];
@@ -138,12 +129,10 @@ export interface GetRealmResult {
     readonly webAuthnPolicy: outputs.GetRealmWebAuthnPolicy;
 }
 /**
- * ## # keycloak.Realm data source
- *
  * This data source can be used to fetch properties of a Keycloak realm for
  * usage with other resources.
  *
- * ### Example Usage
+ * ## Example Usage
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -154,20 +143,10 @@ export interface GetRealmResult {
  * });
  * // use the data source
  * const group = new keycloak.Role("group", {
- *     realmId: id,
+ *     realmId: realm.then(realm => realm.id),
  *     name: "group",
  * });
  * ```
- *
- * ### Argument Reference
- *
- * The following arguments are supported:
- *
- * - `realm` - (Required) The realm name.
- *
- * ### Attributes Reference
- *
- * See the docs for the `keycloak.Realm` resource for details on the exported attributes.
  */
 export function getRealmOutput(args: GetRealmOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRealmResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -196,6 +175,9 @@ export interface GetRealmOutputArgs {
     displayNameHtml?: pulumi.Input<string>;
     internationalizations?: pulumi.Input<pulumi.Input<inputs.GetRealmInternationalizationArgs>[]>;
     otpPolicy?: pulumi.Input<inputs.GetRealmOtpPolicyArgs>;
+    /**
+     * The realm name.
+     */
     realm: pulumi.Input<string>;
     securityDefenses?: pulumi.Input<pulumi.Input<inputs.GetRealmSecurityDefenseArgs>[]>;
     smtpServers?: pulumi.Input<pulumi.Input<inputs.GetRealmSmtpServerArgs>[]>;

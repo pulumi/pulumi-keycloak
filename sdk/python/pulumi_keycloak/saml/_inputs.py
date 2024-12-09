@@ -24,7 +24,13 @@ MYPY = False
 if not MYPY:
     class ClientAuthenticationFlowBindingOverridesArgsDict(TypedDict):
         browser_id: NotRequired[pulumi.Input[str]]
+        """
+        Browser flow id, (flow needs to exist)
+        """
         direct_grant_id: NotRequired[pulumi.Input[str]]
+        """
+        Direct grant flow id (flow needs to exist)
+        """
 elif False:
     ClientAuthenticationFlowBindingOverridesArgsDict: TypeAlias = Mapping[str, Any]
 
@@ -33,6 +39,10 @@ class ClientAuthenticationFlowBindingOverridesArgs:
     def __init__(__self__, *,
                  browser_id: Optional[pulumi.Input[str]] = None,
                  direct_grant_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] browser_id: Browser flow id, (flow needs to exist)
+        :param pulumi.Input[str] direct_grant_id: Direct grant flow id (flow needs to exist)
+        """
         if browser_id is not None:
             pulumi.set(__self__, "browser_id", browser_id)
         if direct_grant_id is not None:
@@ -41,6 +51,9 @@ class ClientAuthenticationFlowBindingOverridesArgs:
     @property
     @pulumi.getter(name="browserId")
     def browser_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Browser flow id, (flow needs to exist)
+        """
         return pulumi.get(self, "browser_id")
 
     @browser_id.setter
@@ -50,6 +63,9 @@ class ClientAuthenticationFlowBindingOverridesArgs:
     @property
     @pulumi.getter(name="directGrantId")
     def direct_grant_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Direct grant flow id (flow needs to exist)
+        """
         return pulumi.get(self, "direct_grant_id")
 
     @direct_grant_id.setter

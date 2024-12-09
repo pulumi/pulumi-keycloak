@@ -13,6 +13,9 @@ namespace Pulumi.Keycloak.Outputs
     [OutputType]
     public sealed class RealmWebAuthnPasswordlessPolicy
     {
+        /// <summary>
+        /// A set of AAGUIDs for which an authenticator can be registered.
+        /// </summary>
         public readonly ImmutableArray<string> AcceptableAaguids;
         /// <summary>
         /// Either none, indirect or direct
@@ -22,9 +25,21 @@ namespace Pulumi.Keycloak.Outputs
         /// Either platform or cross-platform
         /// </summary>
         public readonly string? AuthenticatorAttachment;
+        /// <summary>
+        /// When `true`, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to `false`.
+        /// </summary>
         public readonly bool? AvoidSameAuthenticatorRegister;
+        /// <summary>
+        /// The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
+        /// </summary>
         public readonly int? CreateTimeout;
+        /// <summary>
+        /// A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
+        /// </summary>
         public readonly string? RelyingPartyEntityName;
+        /// <summary>
+        /// The WebAuthn relying party ID.
+        /// </summary>
         public readonly string? RelyingPartyId;
         /// <summary>
         /// Either Yes or No

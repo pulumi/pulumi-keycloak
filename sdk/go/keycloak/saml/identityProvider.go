@@ -12,19 +12,18 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # saml.IdentityProvider
+// Allows for creating and managing SAML Identity Providers within Keycloak.
 //
-// Allows to create and manage SAML Identity Providers within Keycloak.
+// SAML (Security Assertion Markup Language) identity providers allows users to authenticate through a third-party system using the SAML protocol.
 //
-// SAML (Security Assertion Markup Language) identity providers allows to authenticate through a third-party system, using SAML standard.
-//
-// ### Example Usage
+// ## Example Usage
 //
 // ```go
 // package main
 //
 // import (
 //
+//	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak"
 //	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/saml"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -32,9 +31,17 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := saml.NewIdentityProvider(ctx, "realm_identity_provider", &saml.IdentityProviderArgs{
-//				Realm:                   pulumi.String("my-realm"),
-//				Alias:                   pulumi.String("my-idp"),
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = saml.NewIdentityProvider(ctx, "realm_saml_identity_provider", &saml.IdentityProviderArgs{
+//				Realm:                   realm.ID(),
+//				Alias:                   pulumi.String("my-saml-idp"),
+//				EntityId:                pulumi.String("https://domain.com/entity_id"),
 //				SingleSignOnServiceUrl:  pulumi.String("https://domain.com/adfs/ls/"),
 //				SingleLogoutServiceUrl:  pulumi.String("https://domain.com/adfs/ls/?wa=wsignout1.0"),
 //				BackchannelSupported:    pulumi.Bool(true),
@@ -54,127 +61,94 @@ import (
 //
 // ```
 //
-// ### Argument Reference
+// ## Import
 //
-// The following arguments are supported:
-//
-// - `realm` - (Required) The name of the realm. This is unique across Keycloak.
-// - `alias` - (Optional) The uniq name of identity provider.
-// - `enabled` - (Optional) When false, users and clients will not be able to access this realm. Defaults to `true`.
-// - `displayName` - (Optional) The display name for the realm that is shown when logging in to the admin console.
-// - `storeToken` - (Optional) Enable/disable if tokens must be stored after authenticating users. Defaults to `true`.
-// - `addReadTokenRoleOnCreate` - (Optional) Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role. Defaults to `false`.
-// - `trustEmail` - (Optional) If enabled then email provided by this provider is not verified even if verification is enabled for the realm. Defaults to `false`.
-// - `linkOnly` - (Optional) If true, users cannot log in through this provider. They can only link to this provider. This is useful if you don't want to allow login from the provider, but want to integrate with a provider. Defaults to `false`.
-// - `hideOnLoginPage` - (Optional) If hidden, then login with this provider is possible only if requested explicitly, e.g. using the 'kc_idp_hint' parameter.
-// - `firstBrokerLoginFlowAlias` - (Optional) Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
-// - `postBrokerLoginFlowAlias` - (Optional) Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it. Defaults to empty.
-// - `authenticateByDefault` - (Optional) Authenticate users by default. Defaults to `false`.
-//
-// #### SAML Configuration
-//
-// - `singleSignOnServiceUrl` - (Optional) The Url that must be used to send authentication requests (SAML AuthnRequest).
-// - `singleLogoutServiceUrl` - (Optional) The Url that must be used to send logout requests.
-// - `backchannelSupported` - (Optional) Does the external IDP support back-channel logout ?.
-// - `nameIdPolicyFormat` - (Optional) Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
-// - `postBindingResponse` - (Optional) Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
-// - `postBindingAuthnRequest` - (Optional) Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
-// - `postBindingLogout` - (Optional) Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
-// - `wantAssertionsSigned` - (Optional) Indicates whether this service provider expects a signed Assertion.
-// - `wantAssertionsEncrypted` - (Optional) Indicates whether this service provider expects an encrypted Assertion.
-// - `forceAuthn` - (Optional) Indicates whether the identity provider must authenticate the presenter directly rather than rely on a previous security context.
-// - `validateSignature` - (Optional) Enable/disable signature validation of SAML responses.
-// - `signingCertificate` - (Optional) Signing Certificate.
-// - `signatureAlgorithm` - (Optional) Signing Algorithm. Defaults to empty.
-// - `xmlSignKeyInfoKeyNameTransformer` - (Optional) Sign Key Transformer. Defaults to empty.
-//
-// ### Import
-//
-// Identity providers can be imported using the format `{{realm_id}}/{{idp_alias}}`, where `idpAlias` is the identity provider alias.
+// Identity providers can be imported using the format `{{realm_id}}/{{idp_alias}}`, where `idp_alias` is the identity provider alias.
 //
 // Example:
+//
+// bash
+//
+// ```sh
+// $ pulumi import keycloak:saml/identityProvider:IdentityProvider realm_saml_identity_provider my-realm/my-saml-idp
+// ```
 type IdentityProvider struct {
 	pulumi.CustomResourceState
 
-	// Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role.
+	// When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
 	AddReadTokenRoleOnCreate pulumi.BoolPtrOutput `pulumi:"addReadTokenRoleOnCreate"`
-	// The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
+	// The unique name of identity provider.
 	Alias pulumi.StringOutput `pulumi:"alias"`
-	// Enable/disable authenticate users by default.
+	// Authenticate users by default. Defaults to `false`.
 	AuthenticateByDefault pulumi.BoolPtrOutput `pulumi:"authenticateByDefault"`
-	// AuthnContext ClassRefs
+	// Ordered list of requested AuthnContext ClassRefs.
 	AuthnContextClassRefs pulumi.StringArrayOutput `pulumi:"authnContextClassRefs"`
-	// AuthnContext Comparison
+	// Specifies the comparison method used to evaluate the requested context classes or statements.
 	AuthnContextComparisonType pulumi.StringPtrOutput `pulumi:"authnContextComparisonType"`
-	// AuthnContext DeclRefs
+	// Ordered list of requested AuthnContext DeclRefs.
 	AuthnContextDeclRefs pulumi.StringArrayOutput `pulumi:"authnContextDeclRefs"`
-	// Does the external IDP support backchannel logout?
+	// Does the external IDP support backchannel logout?. Defaults to `false`.
 	BackchannelSupported pulumi.BoolPtrOutput `pulumi:"backchannelSupported"`
-	// Friendly name for Identity Providers.
+	// The display name for the realm that is shown when logging in to the admin console.
 	DisplayName pulumi.StringPtrOutput `pulumi:"displayName"`
-	// Enable/disable this identity provider.
+	// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
 	Enabled pulumi.BoolPtrOutput `pulumi:"enabled"`
 	// The Entity ID that will be used to uniquely identify this SAML Service Provider.
 	EntityId    pulumi.StringOutput    `pulumi:"entityId"`
 	ExtraConfig pulumi.StringMapOutput `pulumi:"extraConfig"`
-	// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
-	// that there is not yet existing Keycloak account linked with the authenticated identity provider account.
+	// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
 	FirstBrokerLoginFlowAlias pulumi.StringPtrOutput `pulumi:"firstBrokerLoginFlowAlias"`
-	// Require Force Authn.
+	// Indicates whether the identity provider must authenticate the presenter directly rather than rely on a previous security context.
 	ForceAuthn pulumi.BoolPtrOutput `pulumi:"forceAuthn"`
-	// GUI Order
+	// A number defining the order of this identity provider in the GUI.
 	GuiOrder pulumi.StringPtrOutput `pulumi:"guiOrder"`
-	// Hide On Login Page.
+	// If hidden, then login with this provider is possible only if requested explicitly, e.g. using the 'kc_idp_hint' parameter.
 	HideOnLoginPage pulumi.BoolPtrOutput `pulumi:"hideOnLoginPage"`
 	// Internal Identity Provider Id
 	InternalId pulumi.StringOutput `pulumi:"internalId"`
-	// If true, users cannot log in through this provider. They can only link to this provider. This is useful if you don't
-	// want to allow login from the provider, but want to integrate with a provider
+	// When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
 	LinkOnly pulumi.BoolPtrOutput `pulumi:"linkOnly"`
 	// Login Hint.
 	LoginHint pulumi.StringPtrOutput `pulumi:"loginHint"`
-	// Name ID Policy Format.
+	// Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
 	NameIdPolicyFormat pulumi.StringPtrOutput `pulumi:"nameIdPolicyFormat"`
-	// Post Binding Authn Request.
+	// Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
 	PostBindingAuthnRequest pulumi.BoolPtrOutput `pulumi:"postBindingAuthnRequest"`
-	// Post Binding Logout.
+	// Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
 	PostBindingLogout pulumi.BoolPtrOutput `pulumi:"postBindingLogout"`
-	// Post Binding Response.
+	// Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
 	PostBindingResponse pulumi.BoolPtrOutput `pulumi:"postBindingResponse"`
-	// Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want
-	// additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if
-	// you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that
-	// authenticator implementations must assume that user is already set in ClientSession as identity provider already set it.
+	// Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it. Defaults to empty.
 	PostBrokerLoginFlowAlias pulumi.StringPtrOutput `pulumi:"postBrokerLoginFlowAlias"`
-	// Principal Attribute
+	// The principal attribute.
 	PrincipalAttribute pulumi.StringPtrOutput `pulumi:"principalAttribute"`
-	// Principal Type
+	// The principal type. Can be one of `SUBJECT`, `ATTRIBUTE` or `FRIENDLY_ATTRIBUTE`.
 	PrincipalType pulumi.StringPtrOutput `pulumi:"principalType"`
-	// provider id, is always saml, unless you have a custom implementation
+	// The ID of the identity provider to use. Defaults to `saml`, which should be used unless you have extended Keycloak and provided your own implementation.
 	ProviderId pulumi.StringPtrOutput `pulumi:"providerId"`
-	// Realm Name
+	// The name of the realm. This is unique across Keycloak.
 	Realm pulumi.StringOutput `pulumi:"realm"`
-	// Signing Algorithm.
+	// Signing Algorithm. Defaults to empty.
 	SignatureAlgorithm pulumi.StringPtrOutput `pulumi:"signatureAlgorithm"`
 	// Signing Certificate.
 	SigningCertificate pulumi.StringPtrOutput `pulumi:"signingCertificate"`
-	// Logout URL.
+	// The Url that must be used to send logout requests.
 	SingleLogoutServiceUrl pulumi.StringPtrOutput `pulumi:"singleLogoutServiceUrl"`
-	// SSO Logout URL.
+	// The Url that must be used to send authentication requests (SAML AuthnRequest).
 	SingleSignOnServiceUrl pulumi.StringOutput `pulumi:"singleSignOnServiceUrl"`
-	// Enable/disable if tokens must be stored after authenticating users.
+	// When `true`, tokens will be stored after authenticating users. Defaults to `true`.
 	StoreToken pulumi.BoolPtrOutput `pulumi:"storeToken"`
-	// Sync Mode
+	// The default sync mode to use for all mappers attached to this identity provider. Can be one of `IMPORT`, `FORCE`, or `LEGACY`.
 	SyncMode pulumi.StringPtrOutput `pulumi:"syncMode"`
-	// If enabled then email provided by this provider is not verified even if verification is enabled for the realm.
+	// When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
 	TrustEmail pulumi.BoolPtrOutput `pulumi:"trustEmail"`
 	// Enable/disable signature validation of SAML responses.
 	ValidateSignature pulumi.BoolPtrOutput `pulumi:"validateSignature"`
-	// Want Assertions Encrypted.
+	// Indicates whether this service provider expects an encrypted Assertion.
 	WantAssertionsEncrypted pulumi.BoolPtrOutput `pulumi:"wantAssertionsEncrypted"`
-	// Want Assertions Signed.
+	// Indicates whether this service provider expects a signed Assertion.
 	WantAssertionsSigned pulumi.BoolPtrOutput `pulumi:"wantAssertionsSigned"`
-	// Sign Key Transformer.
+	// The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.
 	XmlSignKeyInfoKeyNameTransformer pulumi.StringPtrOutput `pulumi:"xmlSignKeyInfoKeyNameTransformer"`
 }
 
@@ -220,168 +194,158 @@ func GetIdentityProvider(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering IdentityProvider resources.
 type identityProviderState struct {
-	// Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role.
+	// When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
 	AddReadTokenRoleOnCreate *bool `pulumi:"addReadTokenRoleOnCreate"`
-	// The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
+	// The unique name of identity provider.
 	Alias *string `pulumi:"alias"`
-	// Enable/disable authenticate users by default.
+	// Authenticate users by default. Defaults to `false`.
 	AuthenticateByDefault *bool `pulumi:"authenticateByDefault"`
-	// AuthnContext ClassRefs
+	// Ordered list of requested AuthnContext ClassRefs.
 	AuthnContextClassRefs []string `pulumi:"authnContextClassRefs"`
-	// AuthnContext Comparison
+	// Specifies the comparison method used to evaluate the requested context classes or statements.
 	AuthnContextComparisonType *string `pulumi:"authnContextComparisonType"`
-	// AuthnContext DeclRefs
+	// Ordered list of requested AuthnContext DeclRefs.
 	AuthnContextDeclRefs []string `pulumi:"authnContextDeclRefs"`
-	// Does the external IDP support backchannel logout?
+	// Does the external IDP support backchannel logout?. Defaults to `false`.
 	BackchannelSupported *bool `pulumi:"backchannelSupported"`
-	// Friendly name for Identity Providers.
+	// The display name for the realm that is shown when logging in to the admin console.
 	DisplayName *string `pulumi:"displayName"`
-	// Enable/disable this identity provider.
+	// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
 	Enabled *bool `pulumi:"enabled"`
 	// The Entity ID that will be used to uniquely identify this SAML Service Provider.
 	EntityId    *string           `pulumi:"entityId"`
 	ExtraConfig map[string]string `pulumi:"extraConfig"`
-	// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
-	// that there is not yet existing Keycloak account linked with the authenticated identity provider account.
+	// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
 	FirstBrokerLoginFlowAlias *string `pulumi:"firstBrokerLoginFlowAlias"`
-	// Require Force Authn.
+	// Indicates whether the identity provider must authenticate the presenter directly rather than rely on a previous security context.
 	ForceAuthn *bool `pulumi:"forceAuthn"`
-	// GUI Order
+	// A number defining the order of this identity provider in the GUI.
 	GuiOrder *string `pulumi:"guiOrder"`
-	// Hide On Login Page.
+	// If hidden, then login with this provider is possible only if requested explicitly, e.g. using the 'kc_idp_hint' parameter.
 	HideOnLoginPage *bool `pulumi:"hideOnLoginPage"`
 	// Internal Identity Provider Id
 	InternalId *string `pulumi:"internalId"`
-	// If true, users cannot log in through this provider. They can only link to this provider. This is useful if you don't
-	// want to allow login from the provider, but want to integrate with a provider
+	// When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
 	LinkOnly *bool `pulumi:"linkOnly"`
 	// Login Hint.
 	LoginHint *string `pulumi:"loginHint"`
-	// Name ID Policy Format.
+	// Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
 	NameIdPolicyFormat *string `pulumi:"nameIdPolicyFormat"`
-	// Post Binding Authn Request.
+	// Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
 	PostBindingAuthnRequest *bool `pulumi:"postBindingAuthnRequest"`
-	// Post Binding Logout.
+	// Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
 	PostBindingLogout *bool `pulumi:"postBindingLogout"`
-	// Post Binding Response.
+	// Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
 	PostBindingResponse *bool `pulumi:"postBindingResponse"`
-	// Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want
-	// additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if
-	// you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that
-	// authenticator implementations must assume that user is already set in ClientSession as identity provider already set it.
+	// Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it. Defaults to empty.
 	PostBrokerLoginFlowAlias *string `pulumi:"postBrokerLoginFlowAlias"`
-	// Principal Attribute
+	// The principal attribute.
 	PrincipalAttribute *string `pulumi:"principalAttribute"`
-	// Principal Type
+	// The principal type. Can be one of `SUBJECT`, `ATTRIBUTE` or `FRIENDLY_ATTRIBUTE`.
 	PrincipalType *string `pulumi:"principalType"`
-	// provider id, is always saml, unless you have a custom implementation
+	// The ID of the identity provider to use. Defaults to `saml`, which should be used unless you have extended Keycloak and provided your own implementation.
 	ProviderId *string `pulumi:"providerId"`
-	// Realm Name
+	// The name of the realm. This is unique across Keycloak.
 	Realm *string `pulumi:"realm"`
-	// Signing Algorithm.
+	// Signing Algorithm. Defaults to empty.
 	SignatureAlgorithm *string `pulumi:"signatureAlgorithm"`
 	// Signing Certificate.
 	SigningCertificate *string `pulumi:"signingCertificate"`
-	// Logout URL.
+	// The Url that must be used to send logout requests.
 	SingleLogoutServiceUrl *string `pulumi:"singleLogoutServiceUrl"`
-	// SSO Logout URL.
+	// The Url that must be used to send authentication requests (SAML AuthnRequest).
 	SingleSignOnServiceUrl *string `pulumi:"singleSignOnServiceUrl"`
-	// Enable/disable if tokens must be stored after authenticating users.
+	// When `true`, tokens will be stored after authenticating users. Defaults to `true`.
 	StoreToken *bool `pulumi:"storeToken"`
-	// Sync Mode
+	// The default sync mode to use for all mappers attached to this identity provider. Can be one of `IMPORT`, `FORCE`, or `LEGACY`.
 	SyncMode *string `pulumi:"syncMode"`
-	// If enabled then email provided by this provider is not verified even if verification is enabled for the realm.
+	// When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
 	TrustEmail *bool `pulumi:"trustEmail"`
 	// Enable/disable signature validation of SAML responses.
 	ValidateSignature *bool `pulumi:"validateSignature"`
-	// Want Assertions Encrypted.
+	// Indicates whether this service provider expects an encrypted Assertion.
 	WantAssertionsEncrypted *bool `pulumi:"wantAssertionsEncrypted"`
-	// Want Assertions Signed.
+	// Indicates whether this service provider expects a signed Assertion.
 	WantAssertionsSigned *bool `pulumi:"wantAssertionsSigned"`
-	// Sign Key Transformer.
+	// The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.
 	XmlSignKeyInfoKeyNameTransformer *string `pulumi:"xmlSignKeyInfoKeyNameTransformer"`
 }
 
 type IdentityProviderState struct {
-	// Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role.
+	// When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
 	AddReadTokenRoleOnCreate pulumi.BoolPtrInput
-	// The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
+	// The unique name of identity provider.
 	Alias pulumi.StringPtrInput
-	// Enable/disable authenticate users by default.
+	// Authenticate users by default. Defaults to `false`.
 	AuthenticateByDefault pulumi.BoolPtrInput
-	// AuthnContext ClassRefs
+	// Ordered list of requested AuthnContext ClassRefs.
 	AuthnContextClassRefs pulumi.StringArrayInput
-	// AuthnContext Comparison
+	// Specifies the comparison method used to evaluate the requested context classes or statements.
 	AuthnContextComparisonType pulumi.StringPtrInput
-	// AuthnContext DeclRefs
+	// Ordered list of requested AuthnContext DeclRefs.
 	AuthnContextDeclRefs pulumi.StringArrayInput
-	// Does the external IDP support backchannel logout?
+	// Does the external IDP support backchannel logout?. Defaults to `false`.
 	BackchannelSupported pulumi.BoolPtrInput
-	// Friendly name for Identity Providers.
+	// The display name for the realm that is shown when logging in to the admin console.
 	DisplayName pulumi.StringPtrInput
-	// Enable/disable this identity provider.
+	// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
 	Enabled pulumi.BoolPtrInput
 	// The Entity ID that will be used to uniquely identify this SAML Service Provider.
 	EntityId    pulumi.StringPtrInput
 	ExtraConfig pulumi.StringMapInput
-	// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
-	// that there is not yet existing Keycloak account linked with the authenticated identity provider account.
+	// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
 	FirstBrokerLoginFlowAlias pulumi.StringPtrInput
-	// Require Force Authn.
+	// Indicates whether the identity provider must authenticate the presenter directly rather than rely on a previous security context.
 	ForceAuthn pulumi.BoolPtrInput
-	// GUI Order
+	// A number defining the order of this identity provider in the GUI.
 	GuiOrder pulumi.StringPtrInput
-	// Hide On Login Page.
+	// If hidden, then login with this provider is possible only if requested explicitly, e.g. using the 'kc_idp_hint' parameter.
 	HideOnLoginPage pulumi.BoolPtrInput
 	// Internal Identity Provider Id
 	InternalId pulumi.StringPtrInput
-	// If true, users cannot log in through this provider. They can only link to this provider. This is useful if you don't
-	// want to allow login from the provider, but want to integrate with a provider
+	// When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
 	LinkOnly pulumi.BoolPtrInput
 	// Login Hint.
 	LoginHint pulumi.StringPtrInput
-	// Name ID Policy Format.
+	// Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
 	NameIdPolicyFormat pulumi.StringPtrInput
-	// Post Binding Authn Request.
+	// Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
 	PostBindingAuthnRequest pulumi.BoolPtrInput
-	// Post Binding Logout.
+	// Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
 	PostBindingLogout pulumi.BoolPtrInput
-	// Post Binding Response.
+	// Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
 	PostBindingResponse pulumi.BoolPtrInput
-	// Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want
-	// additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if
-	// you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that
-	// authenticator implementations must assume that user is already set in ClientSession as identity provider already set it.
+	// Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it. Defaults to empty.
 	PostBrokerLoginFlowAlias pulumi.StringPtrInput
-	// Principal Attribute
+	// The principal attribute.
 	PrincipalAttribute pulumi.StringPtrInput
-	// Principal Type
+	// The principal type. Can be one of `SUBJECT`, `ATTRIBUTE` or `FRIENDLY_ATTRIBUTE`.
 	PrincipalType pulumi.StringPtrInput
-	// provider id, is always saml, unless you have a custom implementation
+	// The ID of the identity provider to use. Defaults to `saml`, which should be used unless you have extended Keycloak and provided your own implementation.
 	ProviderId pulumi.StringPtrInput
-	// Realm Name
+	// The name of the realm. This is unique across Keycloak.
 	Realm pulumi.StringPtrInput
-	// Signing Algorithm.
+	// Signing Algorithm. Defaults to empty.
 	SignatureAlgorithm pulumi.StringPtrInput
 	// Signing Certificate.
 	SigningCertificate pulumi.StringPtrInput
-	// Logout URL.
+	// The Url that must be used to send logout requests.
 	SingleLogoutServiceUrl pulumi.StringPtrInput
-	// SSO Logout URL.
+	// The Url that must be used to send authentication requests (SAML AuthnRequest).
 	SingleSignOnServiceUrl pulumi.StringPtrInput
-	// Enable/disable if tokens must be stored after authenticating users.
+	// When `true`, tokens will be stored after authenticating users. Defaults to `true`.
 	StoreToken pulumi.BoolPtrInput
-	// Sync Mode
+	// The default sync mode to use for all mappers attached to this identity provider. Can be one of `IMPORT`, `FORCE`, or `LEGACY`.
 	SyncMode pulumi.StringPtrInput
-	// If enabled then email provided by this provider is not verified even if verification is enabled for the realm.
+	// When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
 	TrustEmail pulumi.BoolPtrInput
 	// Enable/disable signature validation of SAML responses.
 	ValidateSignature pulumi.BoolPtrInput
-	// Want Assertions Encrypted.
+	// Indicates whether this service provider expects an encrypted Assertion.
 	WantAssertionsEncrypted pulumi.BoolPtrInput
-	// Want Assertions Signed.
+	// Indicates whether this service provider expects a signed Assertion.
 	WantAssertionsSigned pulumi.BoolPtrInput
-	// Sign Key Transformer.
+	// The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.
 	XmlSignKeyInfoKeyNameTransformer pulumi.StringPtrInput
 }
 
@@ -390,165 +354,155 @@ func (IdentityProviderState) ElementType() reflect.Type {
 }
 
 type identityProviderArgs struct {
-	// Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role.
+	// When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
 	AddReadTokenRoleOnCreate *bool `pulumi:"addReadTokenRoleOnCreate"`
-	// The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
+	// The unique name of identity provider.
 	Alias string `pulumi:"alias"`
-	// Enable/disable authenticate users by default.
+	// Authenticate users by default. Defaults to `false`.
 	AuthenticateByDefault *bool `pulumi:"authenticateByDefault"`
-	// AuthnContext ClassRefs
+	// Ordered list of requested AuthnContext ClassRefs.
 	AuthnContextClassRefs []string `pulumi:"authnContextClassRefs"`
-	// AuthnContext Comparison
+	// Specifies the comparison method used to evaluate the requested context classes or statements.
 	AuthnContextComparisonType *string `pulumi:"authnContextComparisonType"`
-	// AuthnContext DeclRefs
+	// Ordered list of requested AuthnContext DeclRefs.
 	AuthnContextDeclRefs []string `pulumi:"authnContextDeclRefs"`
-	// Does the external IDP support backchannel logout?
+	// Does the external IDP support backchannel logout?. Defaults to `false`.
 	BackchannelSupported *bool `pulumi:"backchannelSupported"`
-	// Friendly name for Identity Providers.
+	// The display name for the realm that is shown when logging in to the admin console.
 	DisplayName *string `pulumi:"displayName"`
-	// Enable/disable this identity provider.
+	// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
 	Enabled *bool `pulumi:"enabled"`
 	// The Entity ID that will be used to uniquely identify this SAML Service Provider.
 	EntityId    string            `pulumi:"entityId"`
 	ExtraConfig map[string]string `pulumi:"extraConfig"`
-	// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
-	// that there is not yet existing Keycloak account linked with the authenticated identity provider account.
+	// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
 	FirstBrokerLoginFlowAlias *string `pulumi:"firstBrokerLoginFlowAlias"`
-	// Require Force Authn.
+	// Indicates whether the identity provider must authenticate the presenter directly rather than rely on a previous security context.
 	ForceAuthn *bool `pulumi:"forceAuthn"`
-	// GUI Order
+	// A number defining the order of this identity provider in the GUI.
 	GuiOrder *string `pulumi:"guiOrder"`
-	// Hide On Login Page.
+	// If hidden, then login with this provider is possible only if requested explicitly, e.g. using the 'kc_idp_hint' parameter.
 	HideOnLoginPage *bool `pulumi:"hideOnLoginPage"`
-	// If true, users cannot log in through this provider. They can only link to this provider. This is useful if you don't
-	// want to allow login from the provider, but want to integrate with a provider
+	// When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
 	LinkOnly *bool `pulumi:"linkOnly"`
 	// Login Hint.
 	LoginHint *string `pulumi:"loginHint"`
-	// Name ID Policy Format.
+	// Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
 	NameIdPolicyFormat *string `pulumi:"nameIdPolicyFormat"`
-	// Post Binding Authn Request.
+	// Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
 	PostBindingAuthnRequest *bool `pulumi:"postBindingAuthnRequest"`
-	// Post Binding Logout.
+	// Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
 	PostBindingLogout *bool `pulumi:"postBindingLogout"`
-	// Post Binding Response.
+	// Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
 	PostBindingResponse *bool `pulumi:"postBindingResponse"`
-	// Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want
-	// additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if
-	// you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that
-	// authenticator implementations must assume that user is already set in ClientSession as identity provider already set it.
+	// Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it. Defaults to empty.
 	PostBrokerLoginFlowAlias *string `pulumi:"postBrokerLoginFlowAlias"`
-	// Principal Attribute
+	// The principal attribute.
 	PrincipalAttribute *string `pulumi:"principalAttribute"`
-	// Principal Type
+	// The principal type. Can be one of `SUBJECT`, `ATTRIBUTE` or `FRIENDLY_ATTRIBUTE`.
 	PrincipalType *string `pulumi:"principalType"`
-	// provider id, is always saml, unless you have a custom implementation
+	// The ID of the identity provider to use. Defaults to `saml`, which should be used unless you have extended Keycloak and provided your own implementation.
 	ProviderId *string `pulumi:"providerId"`
-	// Realm Name
+	// The name of the realm. This is unique across Keycloak.
 	Realm string `pulumi:"realm"`
-	// Signing Algorithm.
+	// Signing Algorithm. Defaults to empty.
 	SignatureAlgorithm *string `pulumi:"signatureAlgorithm"`
 	// Signing Certificate.
 	SigningCertificate *string `pulumi:"signingCertificate"`
-	// Logout URL.
+	// The Url that must be used to send logout requests.
 	SingleLogoutServiceUrl *string `pulumi:"singleLogoutServiceUrl"`
-	// SSO Logout URL.
+	// The Url that must be used to send authentication requests (SAML AuthnRequest).
 	SingleSignOnServiceUrl string `pulumi:"singleSignOnServiceUrl"`
-	// Enable/disable if tokens must be stored after authenticating users.
+	// When `true`, tokens will be stored after authenticating users. Defaults to `true`.
 	StoreToken *bool `pulumi:"storeToken"`
-	// Sync Mode
+	// The default sync mode to use for all mappers attached to this identity provider. Can be one of `IMPORT`, `FORCE`, or `LEGACY`.
 	SyncMode *string `pulumi:"syncMode"`
-	// If enabled then email provided by this provider is not verified even if verification is enabled for the realm.
+	// When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
 	TrustEmail *bool `pulumi:"trustEmail"`
 	// Enable/disable signature validation of SAML responses.
 	ValidateSignature *bool `pulumi:"validateSignature"`
-	// Want Assertions Encrypted.
+	// Indicates whether this service provider expects an encrypted Assertion.
 	WantAssertionsEncrypted *bool `pulumi:"wantAssertionsEncrypted"`
-	// Want Assertions Signed.
+	// Indicates whether this service provider expects a signed Assertion.
 	WantAssertionsSigned *bool `pulumi:"wantAssertionsSigned"`
-	// Sign Key Transformer.
+	// The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.
 	XmlSignKeyInfoKeyNameTransformer *string `pulumi:"xmlSignKeyInfoKeyNameTransformer"`
 }
 
 // The set of arguments for constructing a IdentityProvider resource.
 type IdentityProviderArgs struct {
-	// Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role.
+	// When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
 	AddReadTokenRoleOnCreate pulumi.BoolPtrInput
-	// The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
+	// The unique name of identity provider.
 	Alias pulumi.StringInput
-	// Enable/disable authenticate users by default.
+	// Authenticate users by default. Defaults to `false`.
 	AuthenticateByDefault pulumi.BoolPtrInput
-	// AuthnContext ClassRefs
+	// Ordered list of requested AuthnContext ClassRefs.
 	AuthnContextClassRefs pulumi.StringArrayInput
-	// AuthnContext Comparison
+	// Specifies the comparison method used to evaluate the requested context classes or statements.
 	AuthnContextComparisonType pulumi.StringPtrInput
-	// AuthnContext DeclRefs
+	// Ordered list of requested AuthnContext DeclRefs.
 	AuthnContextDeclRefs pulumi.StringArrayInput
-	// Does the external IDP support backchannel logout?
+	// Does the external IDP support backchannel logout?. Defaults to `false`.
 	BackchannelSupported pulumi.BoolPtrInput
-	// Friendly name for Identity Providers.
+	// The display name for the realm that is shown when logging in to the admin console.
 	DisplayName pulumi.StringPtrInput
-	// Enable/disable this identity provider.
+	// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
 	Enabled pulumi.BoolPtrInput
 	// The Entity ID that will be used to uniquely identify this SAML Service Provider.
 	EntityId    pulumi.StringInput
 	ExtraConfig pulumi.StringMapInput
-	// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
-	// that there is not yet existing Keycloak account linked with the authenticated identity provider account.
+	// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
 	FirstBrokerLoginFlowAlias pulumi.StringPtrInput
-	// Require Force Authn.
+	// Indicates whether the identity provider must authenticate the presenter directly rather than rely on a previous security context.
 	ForceAuthn pulumi.BoolPtrInput
-	// GUI Order
+	// A number defining the order of this identity provider in the GUI.
 	GuiOrder pulumi.StringPtrInput
-	// Hide On Login Page.
+	// If hidden, then login with this provider is possible only if requested explicitly, e.g. using the 'kc_idp_hint' parameter.
 	HideOnLoginPage pulumi.BoolPtrInput
-	// If true, users cannot log in through this provider. They can only link to this provider. This is useful if you don't
-	// want to allow login from the provider, but want to integrate with a provider
+	// When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
 	LinkOnly pulumi.BoolPtrInput
 	// Login Hint.
 	LoginHint pulumi.StringPtrInput
-	// Name ID Policy Format.
+	// Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
 	NameIdPolicyFormat pulumi.StringPtrInput
-	// Post Binding Authn Request.
+	// Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
 	PostBindingAuthnRequest pulumi.BoolPtrInput
-	// Post Binding Logout.
+	// Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
 	PostBindingLogout pulumi.BoolPtrInput
-	// Post Binding Response.
+	// Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
 	PostBindingResponse pulumi.BoolPtrInput
-	// Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want
-	// additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if
-	// you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that
-	// authenticator implementations must assume that user is already set in ClientSession as identity provider already set it.
+	// Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it. Defaults to empty.
 	PostBrokerLoginFlowAlias pulumi.StringPtrInput
-	// Principal Attribute
+	// The principal attribute.
 	PrincipalAttribute pulumi.StringPtrInput
-	// Principal Type
+	// The principal type. Can be one of `SUBJECT`, `ATTRIBUTE` or `FRIENDLY_ATTRIBUTE`.
 	PrincipalType pulumi.StringPtrInput
-	// provider id, is always saml, unless you have a custom implementation
+	// The ID of the identity provider to use. Defaults to `saml`, which should be used unless you have extended Keycloak and provided your own implementation.
 	ProviderId pulumi.StringPtrInput
-	// Realm Name
+	// The name of the realm. This is unique across Keycloak.
 	Realm pulumi.StringInput
-	// Signing Algorithm.
+	// Signing Algorithm. Defaults to empty.
 	SignatureAlgorithm pulumi.StringPtrInput
 	// Signing Certificate.
 	SigningCertificate pulumi.StringPtrInput
-	// Logout URL.
+	// The Url that must be used to send logout requests.
 	SingleLogoutServiceUrl pulumi.StringPtrInput
-	// SSO Logout URL.
+	// The Url that must be used to send authentication requests (SAML AuthnRequest).
 	SingleSignOnServiceUrl pulumi.StringInput
-	// Enable/disable if tokens must be stored after authenticating users.
+	// When `true`, tokens will be stored after authenticating users. Defaults to `true`.
 	StoreToken pulumi.BoolPtrInput
-	// Sync Mode
+	// The default sync mode to use for all mappers attached to this identity provider. Can be one of `IMPORT`, `FORCE`, or `LEGACY`.
 	SyncMode pulumi.StringPtrInput
-	// If enabled then email provided by this provider is not verified even if verification is enabled for the realm.
+	// When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
 	TrustEmail pulumi.BoolPtrInput
 	// Enable/disable signature validation of SAML responses.
 	ValidateSignature pulumi.BoolPtrInput
-	// Want Assertions Encrypted.
+	// Indicates whether this service provider expects an encrypted Assertion.
 	WantAssertionsEncrypted pulumi.BoolPtrInput
-	// Want Assertions Signed.
+	// Indicates whether this service provider expects a signed Assertion.
 	WantAssertionsSigned pulumi.BoolPtrInput
-	// Sign Key Transformer.
+	// The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.
 	XmlSignKeyInfoKeyNameTransformer pulumi.StringPtrInput
 }
 
@@ -639,47 +593,47 @@ func (o IdentityProviderOutput) ToIdentityProviderOutputWithContext(ctx context.
 	return o
 }
 
-// Enable/disable if new users can read any stored tokens. This assigns the broker.read-token role.
+// When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
 func (o IdentityProviderOutput) AddReadTokenRoleOnCreate() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.AddReadTokenRoleOnCreate }).(pulumi.BoolPtrOutput)
 }
 
-// The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
+// The unique name of identity provider.
 func (o IdentityProviderOutput) Alias() pulumi.StringOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.StringOutput { return v.Alias }).(pulumi.StringOutput)
 }
 
-// Enable/disable authenticate users by default.
+// Authenticate users by default. Defaults to `false`.
 func (o IdentityProviderOutput) AuthenticateByDefault() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.AuthenticateByDefault }).(pulumi.BoolPtrOutput)
 }
 
-// AuthnContext ClassRefs
+// Ordered list of requested AuthnContext ClassRefs.
 func (o IdentityProviderOutput) AuthnContextClassRefs() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.StringArrayOutput { return v.AuthnContextClassRefs }).(pulumi.StringArrayOutput)
 }
 
-// AuthnContext Comparison
+// Specifies the comparison method used to evaluate the requested context classes or statements.
 func (o IdentityProviderOutput) AuthnContextComparisonType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.AuthnContextComparisonType }).(pulumi.StringPtrOutput)
 }
 
-// AuthnContext DeclRefs
+// Ordered list of requested AuthnContext DeclRefs.
 func (o IdentityProviderOutput) AuthnContextDeclRefs() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.StringArrayOutput { return v.AuthnContextDeclRefs }).(pulumi.StringArrayOutput)
 }
 
-// Does the external IDP support backchannel logout?
+// Does the external IDP support backchannel logout?. Defaults to `false`.
 func (o IdentityProviderOutput) BackchannelSupported() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.BackchannelSupported }).(pulumi.BoolPtrOutput)
 }
 
-// Friendly name for Identity Providers.
+// The display name for the realm that is shown when logging in to the admin console.
 func (o IdentityProviderOutput) DisplayName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.DisplayName }).(pulumi.StringPtrOutput)
 }
 
-// Enable/disable this identity provider.
+// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
 func (o IdentityProviderOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
@@ -693,23 +647,22 @@ func (o IdentityProviderOutput) ExtraConfig() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.StringMapOutput { return v.ExtraConfig }).(pulumi.StringMapOutput)
 }
 
-// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means
-// that there is not yet existing Keycloak account linked with the authenticated identity provider account.
+// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
 func (o IdentityProviderOutput) FirstBrokerLoginFlowAlias() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.FirstBrokerLoginFlowAlias }).(pulumi.StringPtrOutput)
 }
 
-// Require Force Authn.
+// Indicates whether the identity provider must authenticate the presenter directly rather than rely on a previous security context.
 func (o IdentityProviderOutput) ForceAuthn() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.ForceAuthn }).(pulumi.BoolPtrOutput)
 }
 
-// GUI Order
+// A number defining the order of this identity provider in the GUI.
 func (o IdentityProviderOutput) GuiOrder() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.GuiOrder }).(pulumi.StringPtrOutput)
 }
 
-// Hide On Login Page.
+// If hidden, then login with this provider is possible only if requested explicitly, e.g. using the 'kc_idp_hint' parameter.
 func (o IdentityProviderOutput) HideOnLoginPage() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.HideOnLoginPage }).(pulumi.BoolPtrOutput)
 }
@@ -719,8 +672,7 @@ func (o IdentityProviderOutput) InternalId() pulumi.StringOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.StringOutput { return v.InternalId }).(pulumi.StringOutput)
 }
 
-// If true, users cannot log in through this provider. They can only link to this provider. This is useful if you don't
-// want to allow login from the provider, but want to integrate with a provider
+// When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
 func (o IdentityProviderOutput) LinkOnly() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.LinkOnly }).(pulumi.BoolPtrOutput)
 }
@@ -730,55 +682,52 @@ func (o IdentityProviderOutput) LoginHint() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.LoginHint }).(pulumi.StringPtrOutput)
 }
 
-// Name ID Policy Format.
+// Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
 func (o IdentityProviderOutput) NameIdPolicyFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.NameIdPolicyFormat }).(pulumi.StringPtrOutput)
 }
 
-// Post Binding Authn Request.
+// Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
 func (o IdentityProviderOutput) PostBindingAuthnRequest() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.PostBindingAuthnRequest }).(pulumi.BoolPtrOutput)
 }
 
-// Post Binding Logout.
+// Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
 func (o IdentityProviderOutput) PostBindingLogout() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.PostBindingLogout }).(pulumi.BoolPtrOutput)
 }
 
-// Post Binding Response.
+// Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
 func (o IdentityProviderOutput) PostBindingResponse() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.PostBindingResponse }).(pulumi.BoolPtrOutput)
 }
 
-// Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want
-// additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if
-// you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that
-// authenticator implementations must assume that user is already set in ClientSession as identity provider already set it.
+// Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it. Defaults to empty.
 func (o IdentityProviderOutput) PostBrokerLoginFlowAlias() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.PostBrokerLoginFlowAlias }).(pulumi.StringPtrOutput)
 }
 
-// Principal Attribute
+// The principal attribute.
 func (o IdentityProviderOutput) PrincipalAttribute() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.PrincipalAttribute }).(pulumi.StringPtrOutput)
 }
 
-// Principal Type
+// The principal type. Can be one of `SUBJECT`, `ATTRIBUTE` or `FRIENDLY_ATTRIBUTE`.
 func (o IdentityProviderOutput) PrincipalType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.PrincipalType }).(pulumi.StringPtrOutput)
 }
 
-// provider id, is always saml, unless you have a custom implementation
+// The ID of the identity provider to use. Defaults to `saml`, which should be used unless you have extended Keycloak and provided your own implementation.
 func (o IdentityProviderOutput) ProviderId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.ProviderId }).(pulumi.StringPtrOutput)
 }
 
-// Realm Name
+// The name of the realm. This is unique across Keycloak.
 func (o IdentityProviderOutput) Realm() pulumi.StringOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.StringOutput { return v.Realm }).(pulumi.StringOutput)
 }
 
-// Signing Algorithm.
+// Signing Algorithm. Defaults to empty.
 func (o IdentityProviderOutput) SignatureAlgorithm() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.SignatureAlgorithm }).(pulumi.StringPtrOutput)
 }
@@ -788,27 +737,27 @@ func (o IdentityProviderOutput) SigningCertificate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.SigningCertificate }).(pulumi.StringPtrOutput)
 }
 
-// Logout URL.
+// The Url that must be used to send logout requests.
 func (o IdentityProviderOutput) SingleLogoutServiceUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.SingleLogoutServiceUrl }).(pulumi.StringPtrOutput)
 }
 
-// SSO Logout URL.
+// The Url that must be used to send authentication requests (SAML AuthnRequest).
 func (o IdentityProviderOutput) SingleSignOnServiceUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.StringOutput { return v.SingleSignOnServiceUrl }).(pulumi.StringOutput)
 }
 
-// Enable/disable if tokens must be stored after authenticating users.
+// When `true`, tokens will be stored after authenticating users. Defaults to `true`.
 func (o IdentityProviderOutput) StoreToken() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.StoreToken }).(pulumi.BoolPtrOutput)
 }
 
-// Sync Mode
+// The default sync mode to use for all mappers attached to this identity provider. Can be one of `IMPORT`, `FORCE`, or `LEGACY`.
 func (o IdentityProviderOutput) SyncMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.SyncMode }).(pulumi.StringPtrOutput)
 }
 
-// If enabled then email provided by this provider is not verified even if verification is enabled for the realm.
+// When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
 func (o IdentityProviderOutput) TrustEmail() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.TrustEmail }).(pulumi.BoolPtrOutput)
 }
@@ -818,17 +767,17 @@ func (o IdentityProviderOutput) ValidateSignature() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.ValidateSignature }).(pulumi.BoolPtrOutput)
 }
 
-// Want Assertions Encrypted.
+// Indicates whether this service provider expects an encrypted Assertion.
 func (o IdentityProviderOutput) WantAssertionsEncrypted() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.WantAssertionsEncrypted }).(pulumi.BoolPtrOutput)
 }
 
-// Want Assertions Signed.
+// Indicates whether this service provider expects a signed Assertion.
 func (o IdentityProviderOutput) WantAssertionsSigned() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.WantAssertionsSigned }).(pulumi.BoolPtrOutput)
 }
 
-// Sign Key Transformer.
+// The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.
 func (o IdentityProviderOutput) XmlSignKeyInfoKeyNameTransformer() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.XmlSignKeyInfoKeyNameTransformer }).(pulumi.StringPtrOutput)
 }

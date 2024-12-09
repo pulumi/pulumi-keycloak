@@ -57,6 +57,39 @@ class ClientArgs:
                  valid_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a Client resource.
+        :param pulumi.Input[str] client_id: The unique ID of this client, referenced in the URI during authentication and in issued tokens.
+        :param pulumi.Input[str] realm_id: The realm this client is attached to.
+        :param pulumi.Input[str] assertion_consumer_post_url: SAML POST Binding URL for the client's assertion consumer service (login responses).
+        :param pulumi.Input[str] assertion_consumer_redirect_url: SAML Redirect Binding URL for the client's assertion consumer service (login responses).
+        :param pulumi.Input['ClientAuthenticationFlowBindingOverridesArgs'] authentication_flow_binding_overrides: Override realm authentication flow bindings
+        :param pulumi.Input[str] base_url: When specified, this URL will be used whenever Keycloak needs to link to this client.
+        :param pulumi.Input[str] canonicalization_method: The Canonicalization Method for XML signatures. Should be one of "EXCLUSIVE", "EXCLUSIVE_WITH_COMMENTS", "INCLUSIVE", or "INCLUSIVE_WITH_COMMENTS". Defaults to "EXCLUSIVE".
+        :param pulumi.Input[bool] client_signature_required: When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signing_certificate` and `signing_private_key`. Defaults to `true`.
+        :param pulumi.Input[str] description: The description of this client in the GUI.
+        :param pulumi.Input[bool] enabled: When false, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
+        :param pulumi.Input[bool] encrypt_assertions: When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key. Defaults to `false`.
+        :param pulumi.Input[str] encryption_certificate: If assertions for the client are encrypted, this certificate will be used for encryption.
+        :param pulumi.Input[bool] force_name_id_format: Ignore requested NameID subject format and use the one defined in `name_id_format` instead. Defaults to `false`.
+        :param pulumi.Input[bool] force_post_binding: When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding. Defaults to `true`.
+        :param pulumi.Input[bool] front_channel_logout: When `true`, this client will require a browser redirect in order to perform a logout. Defaults to `true`.
+        :param pulumi.Input[bool] full_scope_allowed: Allow to include all roles mappings in the access token
+        :param pulumi.Input[str] idp_initiated_sso_relay_state: Relay state you want to send with SAML request when you want to do IDP Initiated SSO.
+        :param pulumi.Input[str] idp_initiated_sso_url_name: URL fragment name to reference client when you want to do IDP Initiated SSO.
+        :param pulumi.Input[bool] include_authn_statement: When `true`, an `AuthnStatement` will be included in the SAML response. Defaults to `true`.
+        :param pulumi.Input[str] login_theme: The login theme of this client.
+        :param pulumi.Input[str] logout_service_post_binding_url: SAML POST Binding URL for the client's single logout service.
+        :param pulumi.Input[str] logout_service_redirect_binding_url: SAML Redirect Binding URL for the client's single logout service.
+        :param pulumi.Input[str] master_saml_processing_url: When specified, this URL will be used for all SAML requests.
+        :param pulumi.Input[str] name: The display name of this client in the GUI.
+        :param pulumi.Input[str] name_id_format: Sets the Name ID format for the subject.
+        :param pulumi.Input[str] root_url: When specified, this value is prepended to all relative URLs.
+        :param pulumi.Input[bool] sign_assertions: When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response. Defaults to `false`.
+        :param pulumi.Input[bool] sign_documents: When `true`, the SAML document will be signed by Keycloak using the realm's private key. Defaults to `true`.
+        :param pulumi.Input[str] signature_algorithm: The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA256_MGF1, "RSA_SHA512", "RSA_SHA512_MGF1" or "DSA_SHA1".
+        :param pulumi.Input[str] signature_key_name: The value of the `KeyName` element within the signed SAML document. Should be one of "NONE", "KEY_ID", or "CERT_SUBJECT". Defaults to "KEY_ID".
+        :param pulumi.Input[str] signing_certificate: If documents or assertions from the client are signed, this certificate will be used to verify the signature.
+        :param pulumi.Input[str] signing_private_key: If documents or assertions from the client are signed, this private key will be used to verify the signature.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] valid_redirect_uris: When specified, Keycloak will use this list to validate given Assertion Consumer URLs specified in the authentication request.
         """
         pulumi.set(__self__, "client_id", client_id)
         pulumi.set(__self__, "realm_id", realm_id)
@@ -128,6 +161,9 @@ class ClientArgs:
     @property
     @pulumi.getter(name="clientId")
     def client_id(self) -> pulumi.Input[str]:
+        """
+        The unique ID of this client, referenced in the URI during authentication and in issued tokens.
+        """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
@@ -137,6 +173,9 @@ class ClientArgs:
     @property
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Input[str]:
+        """
+        The realm this client is attached to.
+        """
         return pulumi.get(self, "realm_id")
 
     @realm_id.setter
@@ -146,6 +185,9 @@ class ClientArgs:
     @property
     @pulumi.getter(name="assertionConsumerPostUrl")
     def assertion_consumer_post_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        SAML POST Binding URL for the client's assertion consumer service (login responses).
+        """
         return pulumi.get(self, "assertion_consumer_post_url")
 
     @assertion_consumer_post_url.setter
@@ -155,6 +197,9 @@ class ClientArgs:
     @property
     @pulumi.getter(name="assertionConsumerRedirectUrl")
     def assertion_consumer_redirect_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        SAML Redirect Binding URL for the client's assertion consumer service (login responses).
+        """
         return pulumi.get(self, "assertion_consumer_redirect_url")
 
     @assertion_consumer_redirect_url.setter
@@ -164,6 +209,9 @@ class ClientArgs:
     @property
     @pulumi.getter(name="authenticationFlowBindingOverrides")
     def authentication_flow_binding_overrides(self) -> Optional[pulumi.Input['ClientAuthenticationFlowBindingOverridesArgs']]:
+        """
+        Override realm authentication flow bindings
+        """
         return pulumi.get(self, "authentication_flow_binding_overrides")
 
     @authentication_flow_binding_overrides.setter
@@ -173,6 +221,9 @@ class ClientArgs:
     @property
     @pulumi.getter(name="baseUrl")
     def base_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        When specified, this URL will be used whenever Keycloak needs to link to this client.
+        """
         return pulumi.get(self, "base_url")
 
     @base_url.setter
@@ -182,6 +233,9 @@ class ClientArgs:
     @property
     @pulumi.getter(name="canonicalizationMethod")
     def canonicalization_method(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Canonicalization Method for XML signatures. Should be one of "EXCLUSIVE", "EXCLUSIVE_WITH_COMMENTS", "INCLUSIVE", or "INCLUSIVE_WITH_COMMENTS". Defaults to "EXCLUSIVE".
+        """
         return pulumi.get(self, "canonicalization_method")
 
     @canonicalization_method.setter
@@ -191,6 +245,9 @@ class ClientArgs:
     @property
     @pulumi.getter(name="clientSignatureRequired")
     def client_signature_required(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signing_certificate` and `signing_private_key`. Defaults to `true`.
+        """
         return pulumi.get(self, "client_signature_required")
 
     @client_signature_required.setter
@@ -200,6 +257,9 @@ class ClientArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        The description of this client in the GUI.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -209,6 +269,9 @@ class ClientArgs:
     @property
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When false, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
+        """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
@@ -218,6 +281,9 @@ class ClientArgs:
     @property
     @pulumi.getter(name="encryptAssertions")
     def encrypt_assertions(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key. Defaults to `false`.
+        """
         return pulumi.get(self, "encrypt_assertions")
 
     @encrypt_assertions.setter
@@ -227,6 +293,9 @@ class ClientArgs:
     @property
     @pulumi.getter(name="encryptionCertificate")
     def encryption_certificate(self) -> Optional[pulumi.Input[str]]:
+        """
+        If assertions for the client are encrypted, this certificate will be used for encryption.
+        """
         return pulumi.get(self, "encryption_certificate")
 
     @encryption_certificate.setter
@@ -245,6 +314,9 @@ class ClientArgs:
     @property
     @pulumi.getter(name="forceNameIdFormat")
     def force_name_id_format(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Ignore requested NameID subject format and use the one defined in `name_id_format` instead. Defaults to `false`.
+        """
         return pulumi.get(self, "force_name_id_format")
 
     @force_name_id_format.setter
@@ -254,6 +326,9 @@ class ClientArgs:
     @property
     @pulumi.getter(name="forcePostBinding")
     def force_post_binding(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding. Defaults to `true`.
+        """
         return pulumi.get(self, "force_post_binding")
 
     @force_post_binding.setter
@@ -263,6 +338,9 @@ class ClientArgs:
     @property
     @pulumi.getter(name="frontChannelLogout")
     def front_channel_logout(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When `true`, this client will require a browser redirect in order to perform a logout. Defaults to `true`.
+        """
         return pulumi.get(self, "front_channel_logout")
 
     @front_channel_logout.setter
@@ -272,6 +350,9 @@ class ClientArgs:
     @property
     @pulumi.getter(name="fullScopeAllowed")
     def full_scope_allowed(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Allow to include all roles mappings in the access token
+        """
         return pulumi.get(self, "full_scope_allowed")
 
     @full_scope_allowed.setter
@@ -281,6 +362,9 @@ class ClientArgs:
     @property
     @pulumi.getter(name="idpInitiatedSsoRelayState")
     def idp_initiated_sso_relay_state(self) -> Optional[pulumi.Input[str]]:
+        """
+        Relay state you want to send with SAML request when you want to do IDP Initiated SSO.
+        """
         return pulumi.get(self, "idp_initiated_sso_relay_state")
 
     @idp_initiated_sso_relay_state.setter
@@ -290,6 +374,9 @@ class ClientArgs:
     @property
     @pulumi.getter(name="idpInitiatedSsoUrlName")
     def idp_initiated_sso_url_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        URL fragment name to reference client when you want to do IDP Initiated SSO.
+        """
         return pulumi.get(self, "idp_initiated_sso_url_name")
 
     @idp_initiated_sso_url_name.setter
@@ -299,6 +386,9 @@ class ClientArgs:
     @property
     @pulumi.getter(name="includeAuthnStatement")
     def include_authn_statement(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When `true`, an `AuthnStatement` will be included in the SAML response. Defaults to `true`.
+        """
         return pulumi.get(self, "include_authn_statement")
 
     @include_authn_statement.setter
@@ -308,6 +398,9 @@ class ClientArgs:
     @property
     @pulumi.getter(name="loginTheme")
     def login_theme(self) -> Optional[pulumi.Input[str]]:
+        """
+        The login theme of this client.
+        """
         return pulumi.get(self, "login_theme")
 
     @login_theme.setter
@@ -317,6 +410,9 @@ class ClientArgs:
     @property
     @pulumi.getter(name="logoutServicePostBindingUrl")
     def logout_service_post_binding_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        SAML POST Binding URL for the client's single logout service.
+        """
         return pulumi.get(self, "logout_service_post_binding_url")
 
     @logout_service_post_binding_url.setter
@@ -326,6 +422,9 @@ class ClientArgs:
     @property
     @pulumi.getter(name="logoutServiceRedirectBindingUrl")
     def logout_service_redirect_binding_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        SAML Redirect Binding URL for the client's single logout service.
+        """
         return pulumi.get(self, "logout_service_redirect_binding_url")
 
     @logout_service_redirect_binding_url.setter
@@ -335,6 +434,9 @@ class ClientArgs:
     @property
     @pulumi.getter(name="masterSamlProcessingUrl")
     def master_saml_processing_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        When specified, this URL will be used for all SAML requests.
+        """
         return pulumi.get(self, "master_saml_processing_url")
 
     @master_saml_processing_url.setter
@@ -344,6 +446,9 @@ class ClientArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The display name of this client in the GUI.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -353,6 +458,9 @@ class ClientArgs:
     @property
     @pulumi.getter(name="nameIdFormat")
     def name_id_format(self) -> Optional[pulumi.Input[str]]:
+        """
+        Sets the Name ID format for the subject.
+        """
         return pulumi.get(self, "name_id_format")
 
     @name_id_format.setter
@@ -362,6 +470,9 @@ class ClientArgs:
     @property
     @pulumi.getter(name="rootUrl")
     def root_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        When specified, this value is prepended to all relative URLs.
+        """
         return pulumi.get(self, "root_url")
 
     @root_url.setter
@@ -371,6 +482,9 @@ class ClientArgs:
     @property
     @pulumi.getter(name="signAssertions")
     def sign_assertions(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response. Defaults to `false`.
+        """
         return pulumi.get(self, "sign_assertions")
 
     @sign_assertions.setter
@@ -380,6 +494,9 @@ class ClientArgs:
     @property
     @pulumi.getter(name="signDocuments")
     def sign_documents(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When `true`, the SAML document will be signed by Keycloak using the realm's private key. Defaults to `true`.
+        """
         return pulumi.get(self, "sign_documents")
 
     @sign_documents.setter
@@ -389,6 +506,9 @@ class ClientArgs:
     @property
     @pulumi.getter(name="signatureAlgorithm")
     def signature_algorithm(self) -> Optional[pulumi.Input[str]]:
+        """
+        The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA256_MGF1, "RSA_SHA512", "RSA_SHA512_MGF1" or "DSA_SHA1".
+        """
         return pulumi.get(self, "signature_algorithm")
 
     @signature_algorithm.setter
@@ -398,6 +518,9 @@ class ClientArgs:
     @property
     @pulumi.getter(name="signatureKeyName")
     def signature_key_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The value of the `KeyName` element within the signed SAML document. Should be one of "NONE", "KEY_ID", or "CERT_SUBJECT". Defaults to "KEY_ID".
+        """
         return pulumi.get(self, "signature_key_name")
 
     @signature_key_name.setter
@@ -407,6 +530,9 @@ class ClientArgs:
     @property
     @pulumi.getter(name="signingCertificate")
     def signing_certificate(self) -> Optional[pulumi.Input[str]]:
+        """
+        If documents or assertions from the client are signed, this certificate will be used to verify the signature.
+        """
         return pulumi.get(self, "signing_certificate")
 
     @signing_certificate.setter
@@ -416,6 +542,9 @@ class ClientArgs:
     @property
     @pulumi.getter(name="signingPrivateKey")
     def signing_private_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        If documents or assertions from the client are signed, this private key will be used to verify the signature.
+        """
         return pulumi.get(self, "signing_private_key")
 
     @signing_private_key.setter
@@ -425,6 +554,9 @@ class ClientArgs:
     @property
     @pulumi.getter(name="validRedirectUris")
     def valid_redirect_uris(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        When specified, Keycloak will use this list to validate given Assertion Consumer URLs specified in the authentication request.
+        """
         return pulumi.get(self, "valid_redirect_uris")
 
     @valid_redirect_uris.setter
@@ -474,6 +606,42 @@ class _ClientState:
                  valid_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering Client resources.
+        :param pulumi.Input[str] assertion_consumer_post_url: SAML POST Binding URL for the client's assertion consumer service (login responses).
+        :param pulumi.Input[str] assertion_consumer_redirect_url: SAML Redirect Binding URL for the client's assertion consumer service (login responses).
+        :param pulumi.Input['ClientAuthenticationFlowBindingOverridesArgs'] authentication_flow_binding_overrides: Override realm authentication flow bindings
+        :param pulumi.Input[str] base_url: When specified, this URL will be used whenever Keycloak needs to link to this client.
+        :param pulumi.Input[str] canonicalization_method: The Canonicalization Method for XML signatures. Should be one of "EXCLUSIVE", "EXCLUSIVE_WITH_COMMENTS", "INCLUSIVE", or "INCLUSIVE_WITH_COMMENTS". Defaults to "EXCLUSIVE".
+        :param pulumi.Input[str] client_id: The unique ID of this client, referenced in the URI during authentication and in issued tokens.
+        :param pulumi.Input[bool] client_signature_required: When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signing_certificate` and `signing_private_key`. Defaults to `true`.
+        :param pulumi.Input[str] description: The description of this client in the GUI.
+        :param pulumi.Input[bool] enabled: When false, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
+        :param pulumi.Input[bool] encrypt_assertions: When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key. Defaults to `false`.
+        :param pulumi.Input[str] encryption_certificate: If assertions for the client are encrypted, this certificate will be used for encryption.
+        :param pulumi.Input[str] encryption_certificate_sha1: (Computed) The sha1sum fingerprint of the encryption certificate. If the encryption certificate is not in correct base64 format, this will be left empty.
+        :param pulumi.Input[bool] force_name_id_format: Ignore requested NameID subject format and use the one defined in `name_id_format` instead. Defaults to `false`.
+        :param pulumi.Input[bool] force_post_binding: When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding. Defaults to `true`.
+        :param pulumi.Input[bool] front_channel_logout: When `true`, this client will require a browser redirect in order to perform a logout. Defaults to `true`.
+        :param pulumi.Input[bool] full_scope_allowed: Allow to include all roles mappings in the access token
+        :param pulumi.Input[str] idp_initiated_sso_relay_state: Relay state you want to send with SAML request when you want to do IDP Initiated SSO.
+        :param pulumi.Input[str] idp_initiated_sso_url_name: URL fragment name to reference client when you want to do IDP Initiated SSO.
+        :param pulumi.Input[bool] include_authn_statement: When `true`, an `AuthnStatement` will be included in the SAML response. Defaults to `true`.
+        :param pulumi.Input[str] login_theme: The login theme of this client.
+        :param pulumi.Input[str] logout_service_post_binding_url: SAML POST Binding URL for the client's single logout service.
+        :param pulumi.Input[str] logout_service_redirect_binding_url: SAML Redirect Binding URL for the client's single logout service.
+        :param pulumi.Input[str] master_saml_processing_url: When specified, this URL will be used for all SAML requests.
+        :param pulumi.Input[str] name: The display name of this client in the GUI.
+        :param pulumi.Input[str] name_id_format: Sets the Name ID format for the subject.
+        :param pulumi.Input[str] realm_id: The realm this client is attached to.
+        :param pulumi.Input[str] root_url: When specified, this value is prepended to all relative URLs.
+        :param pulumi.Input[bool] sign_assertions: When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response. Defaults to `false`.
+        :param pulumi.Input[bool] sign_documents: When `true`, the SAML document will be signed by Keycloak using the realm's private key. Defaults to `true`.
+        :param pulumi.Input[str] signature_algorithm: The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA256_MGF1, "RSA_SHA512", "RSA_SHA512_MGF1" or "DSA_SHA1".
+        :param pulumi.Input[str] signature_key_name: The value of the `KeyName` element within the signed SAML document. Should be one of "NONE", "KEY_ID", or "CERT_SUBJECT". Defaults to "KEY_ID".
+        :param pulumi.Input[str] signing_certificate: If documents or assertions from the client are signed, this certificate will be used to verify the signature.
+        :param pulumi.Input[str] signing_certificate_sha1: (Computed) The sha1sum fingerprint of the signing certificate. If the signing certificate is not in correct base64 format, this will be left empty.
+        :param pulumi.Input[str] signing_private_key: If documents or assertions from the client are signed, this private key will be used to verify the signature.
+        :param pulumi.Input[str] signing_private_key_sha1: (Computed) The sha1sum fingerprint of the signing private key. If the signing private key is not in correct base64 format, this will be left empty.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] valid_redirect_uris: When specified, Keycloak will use this list to validate given Assertion Consumer URLs specified in the authentication request.
         """
         if assertion_consumer_post_url is not None:
             pulumi.set(__self__, "assertion_consumer_post_url", assertion_consumer_post_url)
@@ -553,6 +721,9 @@ class _ClientState:
     @property
     @pulumi.getter(name="assertionConsumerPostUrl")
     def assertion_consumer_post_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        SAML POST Binding URL for the client's assertion consumer service (login responses).
+        """
         return pulumi.get(self, "assertion_consumer_post_url")
 
     @assertion_consumer_post_url.setter
@@ -562,6 +733,9 @@ class _ClientState:
     @property
     @pulumi.getter(name="assertionConsumerRedirectUrl")
     def assertion_consumer_redirect_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        SAML Redirect Binding URL for the client's assertion consumer service (login responses).
+        """
         return pulumi.get(self, "assertion_consumer_redirect_url")
 
     @assertion_consumer_redirect_url.setter
@@ -571,6 +745,9 @@ class _ClientState:
     @property
     @pulumi.getter(name="authenticationFlowBindingOverrides")
     def authentication_flow_binding_overrides(self) -> Optional[pulumi.Input['ClientAuthenticationFlowBindingOverridesArgs']]:
+        """
+        Override realm authentication flow bindings
+        """
         return pulumi.get(self, "authentication_flow_binding_overrides")
 
     @authentication_flow_binding_overrides.setter
@@ -580,6 +757,9 @@ class _ClientState:
     @property
     @pulumi.getter(name="baseUrl")
     def base_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        When specified, this URL will be used whenever Keycloak needs to link to this client.
+        """
         return pulumi.get(self, "base_url")
 
     @base_url.setter
@@ -589,6 +769,9 @@ class _ClientState:
     @property
     @pulumi.getter(name="canonicalizationMethod")
     def canonicalization_method(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Canonicalization Method for XML signatures. Should be one of "EXCLUSIVE", "EXCLUSIVE_WITH_COMMENTS", "INCLUSIVE", or "INCLUSIVE_WITH_COMMENTS". Defaults to "EXCLUSIVE".
+        """
         return pulumi.get(self, "canonicalization_method")
 
     @canonicalization_method.setter
@@ -598,6 +781,9 @@ class _ClientState:
     @property
     @pulumi.getter(name="clientId")
     def client_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The unique ID of this client, referenced in the URI during authentication and in issued tokens.
+        """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
@@ -607,6 +793,9 @@ class _ClientState:
     @property
     @pulumi.getter(name="clientSignatureRequired")
     def client_signature_required(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signing_certificate` and `signing_private_key`. Defaults to `true`.
+        """
         return pulumi.get(self, "client_signature_required")
 
     @client_signature_required.setter
@@ -616,6 +805,9 @@ class _ClientState:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        The description of this client in the GUI.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -625,6 +817,9 @@ class _ClientState:
     @property
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When false, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
+        """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
@@ -634,6 +829,9 @@ class _ClientState:
     @property
     @pulumi.getter(name="encryptAssertions")
     def encrypt_assertions(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key. Defaults to `false`.
+        """
         return pulumi.get(self, "encrypt_assertions")
 
     @encrypt_assertions.setter
@@ -643,6 +841,9 @@ class _ClientState:
     @property
     @pulumi.getter(name="encryptionCertificate")
     def encryption_certificate(self) -> Optional[pulumi.Input[str]]:
+        """
+        If assertions for the client are encrypted, this certificate will be used for encryption.
+        """
         return pulumi.get(self, "encryption_certificate")
 
     @encryption_certificate.setter
@@ -652,6 +853,9 @@ class _ClientState:
     @property
     @pulumi.getter(name="encryptionCertificateSha1")
     def encryption_certificate_sha1(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Computed) The sha1sum fingerprint of the encryption certificate. If the encryption certificate is not in correct base64 format, this will be left empty.
+        """
         return pulumi.get(self, "encryption_certificate_sha1")
 
     @encryption_certificate_sha1.setter
@@ -670,6 +874,9 @@ class _ClientState:
     @property
     @pulumi.getter(name="forceNameIdFormat")
     def force_name_id_format(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Ignore requested NameID subject format and use the one defined in `name_id_format` instead. Defaults to `false`.
+        """
         return pulumi.get(self, "force_name_id_format")
 
     @force_name_id_format.setter
@@ -679,6 +886,9 @@ class _ClientState:
     @property
     @pulumi.getter(name="forcePostBinding")
     def force_post_binding(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding. Defaults to `true`.
+        """
         return pulumi.get(self, "force_post_binding")
 
     @force_post_binding.setter
@@ -688,6 +898,9 @@ class _ClientState:
     @property
     @pulumi.getter(name="frontChannelLogout")
     def front_channel_logout(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When `true`, this client will require a browser redirect in order to perform a logout. Defaults to `true`.
+        """
         return pulumi.get(self, "front_channel_logout")
 
     @front_channel_logout.setter
@@ -697,6 +910,9 @@ class _ClientState:
     @property
     @pulumi.getter(name="fullScopeAllowed")
     def full_scope_allowed(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Allow to include all roles mappings in the access token
+        """
         return pulumi.get(self, "full_scope_allowed")
 
     @full_scope_allowed.setter
@@ -706,6 +922,9 @@ class _ClientState:
     @property
     @pulumi.getter(name="idpInitiatedSsoRelayState")
     def idp_initiated_sso_relay_state(self) -> Optional[pulumi.Input[str]]:
+        """
+        Relay state you want to send with SAML request when you want to do IDP Initiated SSO.
+        """
         return pulumi.get(self, "idp_initiated_sso_relay_state")
 
     @idp_initiated_sso_relay_state.setter
@@ -715,6 +934,9 @@ class _ClientState:
     @property
     @pulumi.getter(name="idpInitiatedSsoUrlName")
     def idp_initiated_sso_url_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        URL fragment name to reference client when you want to do IDP Initiated SSO.
+        """
         return pulumi.get(self, "idp_initiated_sso_url_name")
 
     @idp_initiated_sso_url_name.setter
@@ -724,6 +946,9 @@ class _ClientState:
     @property
     @pulumi.getter(name="includeAuthnStatement")
     def include_authn_statement(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When `true`, an `AuthnStatement` will be included in the SAML response. Defaults to `true`.
+        """
         return pulumi.get(self, "include_authn_statement")
 
     @include_authn_statement.setter
@@ -733,6 +958,9 @@ class _ClientState:
     @property
     @pulumi.getter(name="loginTheme")
     def login_theme(self) -> Optional[pulumi.Input[str]]:
+        """
+        The login theme of this client.
+        """
         return pulumi.get(self, "login_theme")
 
     @login_theme.setter
@@ -742,6 +970,9 @@ class _ClientState:
     @property
     @pulumi.getter(name="logoutServicePostBindingUrl")
     def logout_service_post_binding_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        SAML POST Binding URL for the client's single logout service.
+        """
         return pulumi.get(self, "logout_service_post_binding_url")
 
     @logout_service_post_binding_url.setter
@@ -751,6 +982,9 @@ class _ClientState:
     @property
     @pulumi.getter(name="logoutServiceRedirectBindingUrl")
     def logout_service_redirect_binding_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        SAML Redirect Binding URL for the client's single logout service.
+        """
         return pulumi.get(self, "logout_service_redirect_binding_url")
 
     @logout_service_redirect_binding_url.setter
@@ -760,6 +994,9 @@ class _ClientState:
     @property
     @pulumi.getter(name="masterSamlProcessingUrl")
     def master_saml_processing_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        When specified, this URL will be used for all SAML requests.
+        """
         return pulumi.get(self, "master_saml_processing_url")
 
     @master_saml_processing_url.setter
@@ -769,6 +1006,9 @@ class _ClientState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The display name of this client in the GUI.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -778,6 +1018,9 @@ class _ClientState:
     @property
     @pulumi.getter(name="nameIdFormat")
     def name_id_format(self) -> Optional[pulumi.Input[str]]:
+        """
+        Sets the Name ID format for the subject.
+        """
         return pulumi.get(self, "name_id_format")
 
     @name_id_format.setter
@@ -787,6 +1030,9 @@ class _ClientState:
     @property
     @pulumi.getter(name="realmId")
     def realm_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The realm this client is attached to.
+        """
         return pulumi.get(self, "realm_id")
 
     @realm_id.setter
@@ -796,6 +1042,9 @@ class _ClientState:
     @property
     @pulumi.getter(name="rootUrl")
     def root_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        When specified, this value is prepended to all relative URLs.
+        """
         return pulumi.get(self, "root_url")
 
     @root_url.setter
@@ -805,6 +1054,9 @@ class _ClientState:
     @property
     @pulumi.getter(name="signAssertions")
     def sign_assertions(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response. Defaults to `false`.
+        """
         return pulumi.get(self, "sign_assertions")
 
     @sign_assertions.setter
@@ -814,6 +1066,9 @@ class _ClientState:
     @property
     @pulumi.getter(name="signDocuments")
     def sign_documents(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When `true`, the SAML document will be signed by Keycloak using the realm's private key. Defaults to `true`.
+        """
         return pulumi.get(self, "sign_documents")
 
     @sign_documents.setter
@@ -823,6 +1078,9 @@ class _ClientState:
     @property
     @pulumi.getter(name="signatureAlgorithm")
     def signature_algorithm(self) -> Optional[pulumi.Input[str]]:
+        """
+        The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA256_MGF1, "RSA_SHA512", "RSA_SHA512_MGF1" or "DSA_SHA1".
+        """
         return pulumi.get(self, "signature_algorithm")
 
     @signature_algorithm.setter
@@ -832,6 +1090,9 @@ class _ClientState:
     @property
     @pulumi.getter(name="signatureKeyName")
     def signature_key_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The value of the `KeyName` element within the signed SAML document. Should be one of "NONE", "KEY_ID", or "CERT_SUBJECT". Defaults to "KEY_ID".
+        """
         return pulumi.get(self, "signature_key_name")
 
     @signature_key_name.setter
@@ -841,6 +1102,9 @@ class _ClientState:
     @property
     @pulumi.getter(name="signingCertificate")
     def signing_certificate(self) -> Optional[pulumi.Input[str]]:
+        """
+        If documents or assertions from the client are signed, this certificate will be used to verify the signature.
+        """
         return pulumi.get(self, "signing_certificate")
 
     @signing_certificate.setter
@@ -850,6 +1114,9 @@ class _ClientState:
     @property
     @pulumi.getter(name="signingCertificateSha1")
     def signing_certificate_sha1(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Computed) The sha1sum fingerprint of the signing certificate. If the signing certificate is not in correct base64 format, this will be left empty.
+        """
         return pulumi.get(self, "signing_certificate_sha1")
 
     @signing_certificate_sha1.setter
@@ -859,6 +1126,9 @@ class _ClientState:
     @property
     @pulumi.getter(name="signingPrivateKey")
     def signing_private_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        If documents or assertions from the client are signed, this private key will be used to verify the signature.
+        """
         return pulumi.get(self, "signing_private_key")
 
     @signing_private_key.setter
@@ -868,6 +1138,9 @@ class _ClientState:
     @property
     @pulumi.getter(name="signingPrivateKeySha1")
     def signing_private_key_sha1(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Computed) The sha1sum fingerprint of the signing private key. If the signing private key is not in correct base64 format, this will be left empty.
+        """
         return pulumi.get(self, "signing_private_key_sha1")
 
     @signing_private_key_sha1.setter
@@ -877,6 +1150,9 @@ class _ClientState:
     @property
     @pulumi.getter(name="validRedirectUris")
     def valid_redirect_uris(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        When specified, Keycloak will use this list to validate given Assertion Consumer URLs specified in the authentication request.
+        """
         return pulumi.get(self, "valid_redirect_uris")
 
     @valid_redirect_uris.setter
@@ -925,23 +1201,60 @@ class Client(pulumi.CustomResource):
                  valid_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
-        ## # saml.Client
-
         Allows for creating and managing Keycloak clients that use the SAML protocol.
 
-        Clients are entities that can use Keycloak for user authentication. Typically,
-        clients are applications that redirect users to Keycloak for authentication
-        in order to take advantage of Keycloak's user sessions for SSO.
+        Clients are entities that can use Keycloak for user authentication. Typically, clients are applications that redirect users
+        to Keycloak for authentication in order to take advantage of Keycloak's user sessions for SSO.
 
-        ### Import
+        ## Import
 
         Clients can be imported using the format `{{realm_id}}/{{client_keycloak_id}}`, where `client_keycloak_id` is the unique ID that Keycloak
+
         assigns to the client upon creation. This value can be found in the URI when editing this client in the GUI, and is typically a GUID.
 
         Example:
 
+        bash
+
+        ```sh
+        $ pulumi import keycloak:saml/client:Client saml_client my-realm/dcbc4c73-e478-4928-ae2e-d5e420223352
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] assertion_consumer_post_url: SAML POST Binding URL for the client's assertion consumer service (login responses).
+        :param pulumi.Input[str] assertion_consumer_redirect_url: SAML Redirect Binding URL for the client's assertion consumer service (login responses).
+        :param pulumi.Input[Union['ClientAuthenticationFlowBindingOverridesArgs', 'ClientAuthenticationFlowBindingOverridesArgsDict']] authentication_flow_binding_overrides: Override realm authentication flow bindings
+        :param pulumi.Input[str] base_url: When specified, this URL will be used whenever Keycloak needs to link to this client.
+        :param pulumi.Input[str] canonicalization_method: The Canonicalization Method for XML signatures. Should be one of "EXCLUSIVE", "EXCLUSIVE_WITH_COMMENTS", "INCLUSIVE", or "INCLUSIVE_WITH_COMMENTS". Defaults to "EXCLUSIVE".
+        :param pulumi.Input[str] client_id: The unique ID of this client, referenced in the URI during authentication and in issued tokens.
+        :param pulumi.Input[bool] client_signature_required: When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signing_certificate` and `signing_private_key`. Defaults to `true`.
+        :param pulumi.Input[str] description: The description of this client in the GUI.
+        :param pulumi.Input[bool] enabled: When false, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
+        :param pulumi.Input[bool] encrypt_assertions: When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key. Defaults to `false`.
+        :param pulumi.Input[str] encryption_certificate: If assertions for the client are encrypted, this certificate will be used for encryption.
+        :param pulumi.Input[bool] force_name_id_format: Ignore requested NameID subject format and use the one defined in `name_id_format` instead. Defaults to `false`.
+        :param pulumi.Input[bool] force_post_binding: When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding. Defaults to `true`.
+        :param pulumi.Input[bool] front_channel_logout: When `true`, this client will require a browser redirect in order to perform a logout. Defaults to `true`.
+        :param pulumi.Input[bool] full_scope_allowed: Allow to include all roles mappings in the access token
+        :param pulumi.Input[str] idp_initiated_sso_relay_state: Relay state you want to send with SAML request when you want to do IDP Initiated SSO.
+        :param pulumi.Input[str] idp_initiated_sso_url_name: URL fragment name to reference client when you want to do IDP Initiated SSO.
+        :param pulumi.Input[bool] include_authn_statement: When `true`, an `AuthnStatement` will be included in the SAML response. Defaults to `true`.
+        :param pulumi.Input[str] login_theme: The login theme of this client.
+        :param pulumi.Input[str] logout_service_post_binding_url: SAML POST Binding URL for the client's single logout service.
+        :param pulumi.Input[str] logout_service_redirect_binding_url: SAML Redirect Binding URL for the client's single logout service.
+        :param pulumi.Input[str] master_saml_processing_url: When specified, this URL will be used for all SAML requests.
+        :param pulumi.Input[str] name: The display name of this client in the GUI.
+        :param pulumi.Input[str] name_id_format: Sets the Name ID format for the subject.
+        :param pulumi.Input[str] realm_id: The realm this client is attached to.
+        :param pulumi.Input[str] root_url: When specified, this value is prepended to all relative URLs.
+        :param pulumi.Input[bool] sign_assertions: When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response. Defaults to `false`.
+        :param pulumi.Input[bool] sign_documents: When `true`, the SAML document will be signed by Keycloak using the realm's private key. Defaults to `true`.
+        :param pulumi.Input[str] signature_algorithm: The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA256_MGF1, "RSA_SHA512", "RSA_SHA512_MGF1" or "DSA_SHA1".
+        :param pulumi.Input[str] signature_key_name: The value of the `KeyName` element within the signed SAML document. Should be one of "NONE", "KEY_ID", or "CERT_SUBJECT". Defaults to "KEY_ID".
+        :param pulumi.Input[str] signing_certificate: If documents or assertions from the client are signed, this certificate will be used to verify the signature.
+        :param pulumi.Input[str] signing_private_key: If documents or assertions from the client are signed, this private key will be used to verify the signature.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] valid_redirect_uris: When specified, Keycloak will use this list to validate given Assertion Consumer URLs specified in the authentication request.
         """
         ...
     @overload
@@ -950,20 +1263,24 @@ class Client(pulumi.CustomResource):
                  args: ClientArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # saml.Client
-
         Allows for creating and managing Keycloak clients that use the SAML protocol.
 
-        Clients are entities that can use Keycloak for user authentication. Typically,
-        clients are applications that redirect users to Keycloak for authentication
-        in order to take advantage of Keycloak's user sessions for SSO.
+        Clients are entities that can use Keycloak for user authentication. Typically, clients are applications that redirect users
+        to Keycloak for authentication in order to take advantage of Keycloak's user sessions for SSO.
 
-        ### Import
+        ## Import
 
         Clients can be imported using the format `{{realm_id}}/{{client_keycloak_id}}`, where `client_keycloak_id` is the unique ID that Keycloak
+
         assigns to the client upon creation. This value can be found in the URI when editing this client in the GUI, and is typically a GUID.
 
         Example:
+
+        bash
+
+        ```sh
+        $ pulumi import keycloak:saml/client:Client saml_client my-realm/dcbc4c73-e478-4928-ae2e-d5e420223352
+        ```
 
         :param str resource_name: The name of the resource.
         :param ClientArgs args: The arguments to use to populate this resource's properties.
@@ -1118,6 +1435,42 @@ class Client(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] assertion_consumer_post_url: SAML POST Binding URL for the client's assertion consumer service (login responses).
+        :param pulumi.Input[str] assertion_consumer_redirect_url: SAML Redirect Binding URL for the client's assertion consumer service (login responses).
+        :param pulumi.Input[Union['ClientAuthenticationFlowBindingOverridesArgs', 'ClientAuthenticationFlowBindingOverridesArgsDict']] authentication_flow_binding_overrides: Override realm authentication flow bindings
+        :param pulumi.Input[str] base_url: When specified, this URL will be used whenever Keycloak needs to link to this client.
+        :param pulumi.Input[str] canonicalization_method: The Canonicalization Method for XML signatures. Should be one of "EXCLUSIVE", "EXCLUSIVE_WITH_COMMENTS", "INCLUSIVE", or "INCLUSIVE_WITH_COMMENTS". Defaults to "EXCLUSIVE".
+        :param pulumi.Input[str] client_id: The unique ID of this client, referenced in the URI during authentication and in issued tokens.
+        :param pulumi.Input[bool] client_signature_required: When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signing_certificate` and `signing_private_key`. Defaults to `true`.
+        :param pulumi.Input[str] description: The description of this client in the GUI.
+        :param pulumi.Input[bool] enabled: When false, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
+        :param pulumi.Input[bool] encrypt_assertions: When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key. Defaults to `false`.
+        :param pulumi.Input[str] encryption_certificate: If assertions for the client are encrypted, this certificate will be used for encryption.
+        :param pulumi.Input[str] encryption_certificate_sha1: (Computed) The sha1sum fingerprint of the encryption certificate. If the encryption certificate is not in correct base64 format, this will be left empty.
+        :param pulumi.Input[bool] force_name_id_format: Ignore requested NameID subject format and use the one defined in `name_id_format` instead. Defaults to `false`.
+        :param pulumi.Input[bool] force_post_binding: When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding. Defaults to `true`.
+        :param pulumi.Input[bool] front_channel_logout: When `true`, this client will require a browser redirect in order to perform a logout. Defaults to `true`.
+        :param pulumi.Input[bool] full_scope_allowed: Allow to include all roles mappings in the access token
+        :param pulumi.Input[str] idp_initiated_sso_relay_state: Relay state you want to send with SAML request when you want to do IDP Initiated SSO.
+        :param pulumi.Input[str] idp_initiated_sso_url_name: URL fragment name to reference client when you want to do IDP Initiated SSO.
+        :param pulumi.Input[bool] include_authn_statement: When `true`, an `AuthnStatement` will be included in the SAML response. Defaults to `true`.
+        :param pulumi.Input[str] login_theme: The login theme of this client.
+        :param pulumi.Input[str] logout_service_post_binding_url: SAML POST Binding URL for the client's single logout service.
+        :param pulumi.Input[str] logout_service_redirect_binding_url: SAML Redirect Binding URL for the client's single logout service.
+        :param pulumi.Input[str] master_saml_processing_url: When specified, this URL will be used for all SAML requests.
+        :param pulumi.Input[str] name: The display name of this client in the GUI.
+        :param pulumi.Input[str] name_id_format: Sets the Name ID format for the subject.
+        :param pulumi.Input[str] realm_id: The realm this client is attached to.
+        :param pulumi.Input[str] root_url: When specified, this value is prepended to all relative URLs.
+        :param pulumi.Input[bool] sign_assertions: When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response. Defaults to `false`.
+        :param pulumi.Input[bool] sign_documents: When `true`, the SAML document will be signed by Keycloak using the realm's private key. Defaults to `true`.
+        :param pulumi.Input[str] signature_algorithm: The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA256_MGF1, "RSA_SHA512", "RSA_SHA512_MGF1" or "DSA_SHA1".
+        :param pulumi.Input[str] signature_key_name: The value of the `KeyName` element within the signed SAML document. Should be one of "NONE", "KEY_ID", or "CERT_SUBJECT". Defaults to "KEY_ID".
+        :param pulumi.Input[str] signing_certificate: If documents or assertions from the client are signed, this certificate will be used to verify the signature.
+        :param pulumi.Input[str] signing_certificate_sha1: (Computed) The sha1sum fingerprint of the signing certificate. If the signing certificate is not in correct base64 format, this will be left empty.
+        :param pulumi.Input[str] signing_private_key: If documents or assertions from the client are signed, this private key will be used to verify the signature.
+        :param pulumi.Input[str] signing_private_key_sha1: (Computed) The sha1sum fingerprint of the signing private key. If the signing private key is not in correct base64 format, this will be left empty.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] valid_redirect_uris: When specified, Keycloak will use this list to validate given Assertion Consumer URLs specified in the authentication request.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1165,61 +1518,97 @@ class Client(pulumi.CustomResource):
     @property
     @pulumi.getter(name="assertionConsumerPostUrl")
     def assertion_consumer_post_url(self) -> pulumi.Output[Optional[str]]:
+        """
+        SAML POST Binding URL for the client's assertion consumer service (login responses).
+        """
         return pulumi.get(self, "assertion_consumer_post_url")
 
     @property
     @pulumi.getter(name="assertionConsumerRedirectUrl")
     def assertion_consumer_redirect_url(self) -> pulumi.Output[Optional[str]]:
+        """
+        SAML Redirect Binding URL for the client's assertion consumer service (login responses).
+        """
         return pulumi.get(self, "assertion_consumer_redirect_url")
 
     @property
     @pulumi.getter(name="authenticationFlowBindingOverrides")
     def authentication_flow_binding_overrides(self) -> pulumi.Output[Optional['outputs.ClientAuthenticationFlowBindingOverrides']]:
+        """
+        Override realm authentication flow bindings
+        """
         return pulumi.get(self, "authentication_flow_binding_overrides")
 
     @property
     @pulumi.getter(name="baseUrl")
     def base_url(self) -> pulumi.Output[Optional[str]]:
+        """
+        When specified, this URL will be used whenever Keycloak needs to link to this client.
+        """
         return pulumi.get(self, "base_url")
 
     @property
     @pulumi.getter(name="canonicalizationMethod")
     def canonicalization_method(self) -> pulumi.Output[Optional[str]]:
+        """
+        The Canonicalization Method for XML signatures. Should be one of "EXCLUSIVE", "EXCLUSIVE_WITH_COMMENTS", "INCLUSIVE", or "INCLUSIVE_WITH_COMMENTS". Defaults to "EXCLUSIVE".
+        """
         return pulumi.get(self, "canonicalization_method")
 
     @property
     @pulumi.getter(name="clientId")
     def client_id(self) -> pulumi.Output[str]:
+        """
+        The unique ID of this client, referenced in the URI during authentication and in issued tokens.
+        """
         return pulumi.get(self, "client_id")
 
     @property
     @pulumi.getter(name="clientSignatureRequired")
     def client_signature_required(self) -> pulumi.Output[Optional[bool]]:
+        """
+        When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signing_certificate` and `signing_private_key`. Defaults to `true`.
+        """
         return pulumi.get(self, "client_signature_required")
 
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        The description of this client in the GUI.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def enabled(self) -> pulumi.Output[Optional[bool]]:
+        """
+        When false, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
+        """
         return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter(name="encryptAssertions")
     def encrypt_assertions(self) -> pulumi.Output[Optional[bool]]:
+        """
+        When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key. Defaults to `false`.
+        """
         return pulumi.get(self, "encrypt_assertions")
 
     @property
     @pulumi.getter(name="encryptionCertificate")
     def encryption_certificate(self) -> pulumi.Output[str]:
+        """
+        If assertions for the client are encrypted, this certificate will be used for encryption.
+        """
         return pulumi.get(self, "encryption_certificate")
 
     @property
     @pulumi.getter(name="encryptionCertificateSha1")
     def encryption_certificate_sha1(self) -> pulumi.Output[str]:
+        """
+        (Computed) The sha1sum fingerprint of the encryption certificate. If the encryption certificate is not in correct base64 format, this will be left empty.
+        """
         return pulumi.get(self, "encryption_certificate_sha1")
 
     @property
@@ -1230,120 +1619,192 @@ class Client(pulumi.CustomResource):
     @property
     @pulumi.getter(name="forceNameIdFormat")
     def force_name_id_format(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Ignore requested NameID subject format and use the one defined in `name_id_format` instead. Defaults to `false`.
+        """
         return pulumi.get(self, "force_name_id_format")
 
     @property
     @pulumi.getter(name="forcePostBinding")
     def force_post_binding(self) -> pulumi.Output[Optional[bool]]:
+        """
+        When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding. Defaults to `true`.
+        """
         return pulumi.get(self, "force_post_binding")
 
     @property
     @pulumi.getter(name="frontChannelLogout")
     def front_channel_logout(self) -> pulumi.Output[Optional[bool]]:
+        """
+        When `true`, this client will require a browser redirect in order to perform a logout. Defaults to `true`.
+        """
         return pulumi.get(self, "front_channel_logout")
 
     @property
     @pulumi.getter(name="fullScopeAllowed")
     def full_scope_allowed(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Allow to include all roles mappings in the access token
+        """
         return pulumi.get(self, "full_scope_allowed")
 
     @property
     @pulumi.getter(name="idpInitiatedSsoRelayState")
     def idp_initiated_sso_relay_state(self) -> pulumi.Output[Optional[str]]:
+        """
+        Relay state you want to send with SAML request when you want to do IDP Initiated SSO.
+        """
         return pulumi.get(self, "idp_initiated_sso_relay_state")
 
     @property
     @pulumi.getter(name="idpInitiatedSsoUrlName")
     def idp_initiated_sso_url_name(self) -> pulumi.Output[Optional[str]]:
+        """
+        URL fragment name to reference client when you want to do IDP Initiated SSO.
+        """
         return pulumi.get(self, "idp_initiated_sso_url_name")
 
     @property
     @pulumi.getter(name="includeAuthnStatement")
     def include_authn_statement(self) -> pulumi.Output[Optional[bool]]:
+        """
+        When `true`, an `AuthnStatement` will be included in the SAML response. Defaults to `true`.
+        """
         return pulumi.get(self, "include_authn_statement")
 
     @property
     @pulumi.getter(name="loginTheme")
     def login_theme(self) -> pulumi.Output[Optional[str]]:
+        """
+        The login theme of this client.
+        """
         return pulumi.get(self, "login_theme")
 
     @property
     @pulumi.getter(name="logoutServicePostBindingUrl")
     def logout_service_post_binding_url(self) -> pulumi.Output[Optional[str]]:
+        """
+        SAML POST Binding URL for the client's single logout service.
+        """
         return pulumi.get(self, "logout_service_post_binding_url")
 
     @property
     @pulumi.getter(name="logoutServiceRedirectBindingUrl")
     def logout_service_redirect_binding_url(self) -> pulumi.Output[Optional[str]]:
+        """
+        SAML Redirect Binding URL for the client's single logout service.
+        """
         return pulumi.get(self, "logout_service_redirect_binding_url")
 
     @property
     @pulumi.getter(name="masterSamlProcessingUrl")
     def master_saml_processing_url(self) -> pulumi.Output[Optional[str]]:
+        """
+        When specified, this URL will be used for all SAML requests.
+        """
         return pulumi.get(self, "master_saml_processing_url")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        The display name of this client in the GUI.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="nameIdFormat")
     def name_id_format(self) -> pulumi.Output[str]:
+        """
+        Sets the Name ID format for the subject.
+        """
         return pulumi.get(self, "name_id_format")
 
     @property
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Output[str]:
+        """
+        The realm this client is attached to.
+        """
         return pulumi.get(self, "realm_id")
 
     @property
     @pulumi.getter(name="rootUrl")
     def root_url(self) -> pulumi.Output[Optional[str]]:
+        """
+        When specified, this value is prepended to all relative URLs.
+        """
         return pulumi.get(self, "root_url")
 
     @property
     @pulumi.getter(name="signAssertions")
     def sign_assertions(self) -> pulumi.Output[Optional[bool]]:
+        """
+        When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response. Defaults to `false`.
+        """
         return pulumi.get(self, "sign_assertions")
 
     @property
     @pulumi.getter(name="signDocuments")
     def sign_documents(self) -> pulumi.Output[Optional[bool]]:
+        """
+        When `true`, the SAML document will be signed by Keycloak using the realm's private key. Defaults to `true`.
+        """
         return pulumi.get(self, "sign_documents")
 
     @property
     @pulumi.getter(name="signatureAlgorithm")
     def signature_algorithm(self) -> pulumi.Output[Optional[str]]:
+        """
+        The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA256_MGF1, "RSA_SHA512", "RSA_SHA512_MGF1" or "DSA_SHA1".
+        """
         return pulumi.get(self, "signature_algorithm")
 
     @property
     @pulumi.getter(name="signatureKeyName")
     def signature_key_name(self) -> pulumi.Output[Optional[str]]:
+        """
+        The value of the `KeyName` element within the signed SAML document. Should be one of "NONE", "KEY_ID", or "CERT_SUBJECT". Defaults to "KEY_ID".
+        """
         return pulumi.get(self, "signature_key_name")
 
     @property
     @pulumi.getter(name="signingCertificate")
     def signing_certificate(self) -> pulumi.Output[str]:
+        """
+        If documents or assertions from the client are signed, this certificate will be used to verify the signature.
+        """
         return pulumi.get(self, "signing_certificate")
 
     @property
     @pulumi.getter(name="signingCertificateSha1")
     def signing_certificate_sha1(self) -> pulumi.Output[str]:
+        """
+        (Computed) The sha1sum fingerprint of the signing certificate. If the signing certificate is not in correct base64 format, this will be left empty.
+        """
         return pulumi.get(self, "signing_certificate_sha1")
 
     @property
     @pulumi.getter(name="signingPrivateKey")
     def signing_private_key(self) -> pulumi.Output[str]:
+        """
+        If documents or assertions from the client are signed, this private key will be used to verify the signature.
+        """
         return pulumi.get(self, "signing_private_key")
 
     @property
     @pulumi.getter(name="signingPrivateKeySha1")
     def signing_private_key_sha1(self) -> pulumi.Output[str]:
+        """
+        (Computed) The sha1sum fingerprint of the signing private key. If the signing private key is not in correct base64 format, this will be left empty.
+        """
         return pulumi.get(self, "signing_private_key_sha1")
 
     @property
     @pulumi.getter(name="validRedirectUris")
     def valid_redirect_uris(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        When specified, Keycloak will use this list to validate given Assertion Consumer URLs specified in the authentication request.
+        """
         return pulumi.get(self, "valid_redirect_uris")
 

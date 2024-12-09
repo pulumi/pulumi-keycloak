@@ -6,6 +6,94 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * Allows for creating and managing Realms within Keycloak.
+ *
+ * A realm manages a logical collection of users, credentials, roles, and groups. Users log in to realms and can be federated
+ * from multiple sources.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ *     displayName: "my realm",
+ *     displayNameHtml: "<b>my realm</b>",
+ *     loginTheme: "base",
+ *     accessCodeLifespan: "1h",
+ *     sslRequired: "external",
+ *     passwordPolicy: "upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername",
+ *     attributes: {
+ *         mycustomAttribute: "myCustomValue",
+ *     },
+ *     smtpServer: {
+ *         host: "smtp.example.com",
+ *         from: "example@example.com",
+ *         auth: {
+ *             username: "tom",
+ *             password: "password",
+ *         },
+ *     },
+ *     internationalization: {
+ *         supportedLocales: [
+ *             "en",
+ *             "de",
+ *             "es",
+ *         ],
+ *         defaultLocale: "en",
+ *     },
+ *     securityDefenses: {
+ *         headers: {
+ *             xFrameOptions: "DENY",
+ *             contentSecurityPolicy: "frame-src 'self'; frame-ancestors 'self'; object-src 'none';",
+ *             contentSecurityPolicyReportOnly: "",
+ *             xContentTypeOptions: "nosniff",
+ *             xRobotsTag: "none",
+ *             xXssProtection: "1; mode=block",
+ *             strictTransportSecurity: "max-age=31536000; includeSubDomains",
+ *         },
+ *         bruteForceDetection: {
+ *             permanentLockout: false,
+ *             maxLoginFailures: 30,
+ *             waitIncrementSeconds: 60,
+ *             quickLoginCheckMilliSeconds: 1000,
+ *             minimumQuickLoginWaitSeconds: 60,
+ *             maxFailureWaitSeconds: 900,
+ *             failureResetTimeSeconds: 43200,
+ *         },
+ *     },
+ *     webAuthnPolicy: {
+ *         relyingPartyEntityName: "Example",
+ *         relyingPartyId: "keycloak.example.com",
+ *         signatureAlgorithms: [
+ *             "ES256",
+ *             "RS256",
+ *         ],
+ *     },
+ * });
+ * ```
+ *
+ * ## Default Client Scopes
+ *
+ * - `defaultDefaultClientScopes` - (Optional) A list of default default client scopes to be used for client definitions. Defaults to `[]` or keycloak's built-in default default client-scopes.
+ * - `defaultOptionalClientScopes` - (Optional) A list of default optional client scopes to be used for client definitions. Defaults to `[]` or keycloak's built-in default optional client-scopes.
+ *
+ * ## Import
+ *
+ * Realms can be imported using their name.
+ *
+ * Example:
+ *
+ * bash
+ *
+ * ```sh
+ * $ pulumi import keycloak:index/realm:Realm realm my-realm
+ * ```
+ */
 export class Realm extends pulumi.CustomResource {
     /**
      * Get an existing Realm resource's state with the given name, ID, and optional extra
@@ -43,6 +131,9 @@ export class Realm extends pulumi.CustomResource {
     public readonly actionTokenGeneratedByAdminLifespan!: pulumi.Output<string>;
     public readonly actionTokenGeneratedByUserLifespan!: pulumi.Output<string>;
     public readonly adminTheme!: pulumi.Output<string | undefined>;
+    /**
+     * A map of custom attributes to add to the realm.
+     */
     public readonly attributes!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * Which flow should be used for BrowserFlow
@@ -61,7 +152,13 @@ export class Realm extends pulumi.CustomResource {
      * Which flow should be used for DirectGrantFlow
      */
     public readonly directGrantFlow!: pulumi.Output<string>;
+    /**
+     * The display name for the realm that is shown when logging in to the admin console.
+     */
     public readonly displayName!: pulumi.Output<string | undefined>;
+    /**
+     * The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.
+     */
     public readonly displayNameHtml!: pulumi.Output<string | undefined>;
     /**
      * Which flow should be used for DockerAuthenticationFlow
@@ -70,7 +167,13 @@ export class Realm extends pulumi.CustomResource {
     public readonly duplicateEmailsAllowed!: pulumi.Output<boolean>;
     public readonly editUsernameAllowed!: pulumi.Output<boolean>;
     public readonly emailTheme!: pulumi.Output<string | undefined>;
+    /**
+     * When `false`, users and clients will not be able to access this realm. Defaults to `true`.
+     */
     public readonly enabled!: pulumi.Output<boolean | undefined>;
+    /**
+     * When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
+     */
     public readonly internalId!: pulumi.Output<string>;
     public readonly internationalization!: pulumi.Output<outputs.RealmInternationalization | undefined>;
     public readonly loginTheme!: pulumi.Output<string | undefined>;
@@ -87,6 +190,9 @@ export class Realm extends pulumi.CustomResource {
      * and notUsername(undefined)"
      */
     public readonly passwordPolicy!: pulumi.Output<string | undefined>;
+    /**
+     * The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
+     */
     public readonly realm!: pulumi.Output<string>;
     public readonly refreshTokenMaxReuse!: pulumi.Output<number | undefined>;
     public readonly registrationAllowed!: pulumi.Output<boolean>;
@@ -112,6 +218,9 @@ export class Realm extends pulumi.CustomResource {
     public readonly ssoSessionIdleTimeoutRememberMe!: pulumi.Output<string>;
     public readonly ssoSessionMaxLifespan!: pulumi.Output<string>;
     public readonly ssoSessionMaxLifespanRememberMe!: pulumi.Output<string>;
+    /**
+     * When `true`, users are allowed to manage their own resources. Defaults to `false`.
+     */
     public readonly userManagedAccess!: pulumi.Output<boolean | undefined>;
     public readonly verifyEmail!: pulumi.Output<boolean>;
     public readonly webAuthnPasswordlessPolicy!: pulumi.Output<outputs.RealmWebAuthnPasswordlessPolicy>;
@@ -266,6 +375,9 @@ export interface RealmState {
     actionTokenGeneratedByAdminLifespan?: pulumi.Input<string>;
     actionTokenGeneratedByUserLifespan?: pulumi.Input<string>;
     adminTheme?: pulumi.Input<string>;
+    /**
+     * A map of custom attributes to add to the realm.
+     */
     attributes?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Which flow should be used for BrowserFlow
@@ -284,7 +396,13 @@ export interface RealmState {
      * Which flow should be used for DirectGrantFlow
      */
     directGrantFlow?: pulumi.Input<string>;
+    /**
+     * The display name for the realm that is shown when logging in to the admin console.
+     */
     displayName?: pulumi.Input<string>;
+    /**
+     * The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.
+     */
     displayNameHtml?: pulumi.Input<string>;
     /**
      * Which flow should be used for DockerAuthenticationFlow
@@ -293,7 +411,13 @@ export interface RealmState {
     duplicateEmailsAllowed?: pulumi.Input<boolean>;
     editUsernameAllowed?: pulumi.Input<boolean>;
     emailTheme?: pulumi.Input<string>;
+    /**
+     * When `false`, users and clients will not be able to access this realm. Defaults to `true`.
+     */
     enabled?: pulumi.Input<boolean>;
+    /**
+     * When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
+     */
     internalId?: pulumi.Input<string>;
     internationalization?: pulumi.Input<inputs.RealmInternationalization>;
     loginTheme?: pulumi.Input<string>;
@@ -310,6 +434,9 @@ export interface RealmState {
      * and notUsername(undefined)"
      */
     passwordPolicy?: pulumi.Input<string>;
+    /**
+     * The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
+     */
     realm?: pulumi.Input<string>;
     refreshTokenMaxReuse?: pulumi.Input<number>;
     registrationAllowed?: pulumi.Input<boolean>;
@@ -335,6 +462,9 @@ export interface RealmState {
     ssoSessionIdleTimeoutRememberMe?: pulumi.Input<string>;
     ssoSessionMaxLifespan?: pulumi.Input<string>;
     ssoSessionMaxLifespanRememberMe?: pulumi.Input<string>;
+    /**
+     * When `true`, users are allowed to manage their own resources. Defaults to `false`.
+     */
     userManagedAccess?: pulumi.Input<boolean>;
     verifyEmail?: pulumi.Input<boolean>;
     webAuthnPasswordlessPolicy?: pulumi.Input<inputs.RealmWebAuthnPasswordlessPolicy>;
@@ -354,6 +484,9 @@ export interface RealmArgs {
     actionTokenGeneratedByAdminLifespan?: pulumi.Input<string>;
     actionTokenGeneratedByUserLifespan?: pulumi.Input<string>;
     adminTheme?: pulumi.Input<string>;
+    /**
+     * A map of custom attributes to add to the realm.
+     */
     attributes?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Which flow should be used for BrowserFlow
@@ -372,7 +505,13 @@ export interface RealmArgs {
      * Which flow should be used for DirectGrantFlow
      */
     directGrantFlow?: pulumi.Input<string>;
+    /**
+     * The display name for the realm that is shown when logging in to the admin console.
+     */
     displayName?: pulumi.Input<string>;
+    /**
+     * The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.
+     */
     displayNameHtml?: pulumi.Input<string>;
     /**
      * Which flow should be used for DockerAuthenticationFlow
@@ -381,7 +520,13 @@ export interface RealmArgs {
     duplicateEmailsAllowed?: pulumi.Input<boolean>;
     editUsernameAllowed?: pulumi.Input<boolean>;
     emailTheme?: pulumi.Input<string>;
+    /**
+     * When `false`, users and clients will not be able to access this realm. Defaults to `true`.
+     */
     enabled?: pulumi.Input<boolean>;
+    /**
+     * When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
+     */
     internalId?: pulumi.Input<string>;
     internationalization?: pulumi.Input<inputs.RealmInternationalization>;
     loginTheme?: pulumi.Input<string>;
@@ -398,6 +543,9 @@ export interface RealmArgs {
      * and notUsername(undefined)"
      */
     passwordPolicy?: pulumi.Input<string>;
+    /**
+     * The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
+     */
     realm: pulumi.Input<string>;
     refreshTokenMaxReuse?: pulumi.Input<number>;
     registrationAllowed?: pulumi.Input<boolean>;
@@ -423,6 +571,9 @@ export interface RealmArgs {
     ssoSessionIdleTimeoutRememberMe?: pulumi.Input<string>;
     ssoSessionMaxLifespan?: pulumi.Input<string>;
     ssoSessionMaxLifespanRememberMe?: pulumi.Input<string>;
+    /**
+     * When `true`, users are allowed to manage their own resources. Defaults to `false`.
+     */
     userManagedAccess?: pulumi.Input<boolean>;
     verifyEmail?: pulumi.Input<boolean>;
     webAuthnPasswordlessPolicy?: pulumi.Input<inputs.RealmWebAuthnPasswordlessPolicy>;

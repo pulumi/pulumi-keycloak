@@ -18,14 +18,14 @@ public final class UserAttributeMapperArgs extends com.pulumi.resources.Resource
     public static final UserAttributeMapperArgs Empty = new UserAttributeMapperArgs();
 
     /**
-     * When true, the value fetched from LDAP will override the value stored in Keycloak.
+     * When `true`, the value fetched from LDAP will override the value stored in Keycloak. Defaults to `false`.
      * 
      */
     @Import(name="alwaysReadValueFromLdap")
     private @Nullable Output<Boolean> alwaysReadValueFromLdap;
 
     /**
-     * @return When true, the value fetched from LDAP will override the value stored in Keycloak.
+     * @return When `true`, the value fetched from LDAP will override the value stored in Keycloak. Defaults to `false`.
      * 
      */
     public Optional<Output<Boolean>> alwaysReadValueFromLdap() {
@@ -33,14 +33,14 @@ public final class UserAttributeMapperArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * Default value to set in LDAP if is_mandatory_in_ldap and the value is empty
+     * Default value to set in LDAP if `is_mandatory_in_ldap` is true and the value is empty.
      * 
      */
     @Import(name="attributeDefaultValue")
     private @Nullable Output<String> attributeDefaultValue;
 
     /**
-     * @return Default value to set in LDAP if is_mandatory_in_ldap and the value is empty
+     * @return Default value to set in LDAP if `is_mandatory_in_ldap` is true and the value is empty.
      * 
      */
     public Optional<Output<String>> attributeDefaultValue() {
@@ -48,14 +48,14 @@ public final class UserAttributeMapperArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * Should be true for binary LDAP attributes
+     * Should be true for binary LDAP attributes.
      * 
      */
     @Import(name="isBinaryAttribute")
     private @Nullable Output<Boolean> isBinaryAttribute;
 
     /**
-     * @return Should be true for binary LDAP attributes
+     * @return Should be true for binary LDAP attributes.
      * 
      */
     public Optional<Output<Boolean>> isBinaryAttribute() {
@@ -63,14 +63,14 @@ public final class UserAttributeMapperArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * When true, this attribute must exist in LDAP.
+     * When `true`, this attribute must exist in LDAP. Defaults to `false`.
      * 
      */
     @Import(name="isMandatoryInLdap")
     private @Nullable Output<Boolean> isMandatoryInLdap;
 
     /**
-     * @return When true, this attribute must exist in LDAP.
+     * @return When `true`, this attribute must exist in LDAP. Defaults to `false`.
      * 
      */
     public Optional<Output<Boolean>> isMandatoryInLdap() {
@@ -78,14 +78,14 @@ public final class UserAttributeMapperArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * Name of the mapped attribute on LDAP object.
+     * Name of the mapped attribute on the LDAP object.
      * 
      */
     @Import(name="ldapAttribute", required=true)
     private Output<String> ldapAttribute;
 
     /**
-     * @return Name of the mapped attribute on LDAP object.
+     * @return Name of the mapped attribute on the LDAP object.
      * 
      */
     public Output<String> ldapAttribute() {
@@ -93,14 +93,14 @@ public final class UserAttributeMapperArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * The ldap user federation provider to attach this mapper to.
+     * The ID of the LDAP user federation provider to attach this mapper to.
      * 
      */
     @Import(name="ldapUserFederationId", required=true)
     private Output<String> ldapUserFederationId;
 
     /**
-     * @return The ldap user federation provider to attach this mapper to.
+     * @return The ID of the LDAP user federation provider to attach this mapper to.
      * 
      */
     public Output<String> ldapUserFederationId() {
@@ -108,14 +108,14 @@ public final class UserAttributeMapperArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * Display name of the mapper when displayed in the console.
+     * Display name of this mapper when displayed in the console.
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return Display name of the mapper when displayed in the console.
+     * @return Display name of this mapper when displayed in the console.
      * 
      */
     public Optional<Output<String>> name() {
@@ -123,14 +123,14 @@ public final class UserAttributeMapperArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * When true, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak.
+     * When `true`, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak. Defaults to `false`.
      * 
      */
     @Import(name="readOnly")
     private @Nullable Output<Boolean> readOnly;
 
     /**
-     * @return When true, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak.
+     * @return When `true`, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak. Defaults to `false`.
      * 
      */
     public Optional<Output<Boolean>> readOnly() {
@@ -138,14 +138,14 @@ public final class UserAttributeMapperArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * The realm in which the ldap user federation provider exists.
+     * The realm that this LDAP mapper will exist in.
      * 
      */
     @Import(name="realmId", required=true)
     private Output<String> realmId;
 
     /**
-     * @return The realm in which the ldap user federation provider exists.
+     * @return The realm that this LDAP mapper will exist in.
      * 
      */
     public Output<String> realmId() {
@@ -153,14 +153,14 @@ public final class UserAttributeMapperArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * Name of the UserModel property or attribute you want to map the LDAP attribute into.
+     * Name of the user property or attribute you want to map the LDAP attribute into.
      * 
      */
     @Import(name="userModelAttribute", required=true)
     private Output<String> userModelAttribute;
 
     /**
-     * @return Name of the UserModel property or attribute you want to map the LDAP attribute into.
+     * @return Name of the user property or attribute you want to map the LDAP attribute into.
      * 
      */
     public Output<String> userModelAttribute() {
@@ -201,7 +201,7 @@ public final class UserAttributeMapperArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param alwaysReadValueFromLdap When true, the value fetched from LDAP will override the value stored in Keycloak.
+         * @param alwaysReadValueFromLdap When `true`, the value fetched from LDAP will override the value stored in Keycloak. Defaults to `false`.
          * 
          * @return builder
          * 
@@ -212,7 +212,7 @@ public final class UserAttributeMapperArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param alwaysReadValueFromLdap When true, the value fetched from LDAP will override the value stored in Keycloak.
+         * @param alwaysReadValueFromLdap When `true`, the value fetched from LDAP will override the value stored in Keycloak. Defaults to `false`.
          * 
          * @return builder
          * 
@@ -222,7 +222,7 @@ public final class UserAttributeMapperArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param attributeDefaultValue Default value to set in LDAP if is_mandatory_in_ldap and the value is empty
+         * @param attributeDefaultValue Default value to set in LDAP if `is_mandatory_in_ldap` is true and the value is empty.
          * 
          * @return builder
          * 
@@ -233,7 +233,7 @@ public final class UserAttributeMapperArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param attributeDefaultValue Default value to set in LDAP if is_mandatory_in_ldap and the value is empty
+         * @param attributeDefaultValue Default value to set in LDAP if `is_mandatory_in_ldap` is true and the value is empty.
          * 
          * @return builder
          * 
@@ -243,7 +243,7 @@ public final class UserAttributeMapperArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param isBinaryAttribute Should be true for binary LDAP attributes
+         * @param isBinaryAttribute Should be true for binary LDAP attributes.
          * 
          * @return builder
          * 
@@ -254,7 +254,7 @@ public final class UserAttributeMapperArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param isBinaryAttribute Should be true for binary LDAP attributes
+         * @param isBinaryAttribute Should be true for binary LDAP attributes.
          * 
          * @return builder
          * 
@@ -264,7 +264,7 @@ public final class UserAttributeMapperArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param isMandatoryInLdap When true, this attribute must exist in LDAP.
+         * @param isMandatoryInLdap When `true`, this attribute must exist in LDAP. Defaults to `false`.
          * 
          * @return builder
          * 
@@ -275,7 +275,7 @@ public final class UserAttributeMapperArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param isMandatoryInLdap When true, this attribute must exist in LDAP.
+         * @param isMandatoryInLdap When `true`, this attribute must exist in LDAP. Defaults to `false`.
          * 
          * @return builder
          * 
@@ -285,7 +285,7 @@ public final class UserAttributeMapperArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param ldapAttribute Name of the mapped attribute on LDAP object.
+         * @param ldapAttribute Name of the mapped attribute on the LDAP object.
          * 
          * @return builder
          * 
@@ -296,7 +296,7 @@ public final class UserAttributeMapperArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param ldapAttribute Name of the mapped attribute on LDAP object.
+         * @param ldapAttribute Name of the mapped attribute on the LDAP object.
          * 
          * @return builder
          * 
@@ -306,7 +306,7 @@ public final class UserAttributeMapperArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param ldapUserFederationId The ldap user federation provider to attach this mapper to.
+         * @param ldapUserFederationId The ID of the LDAP user federation provider to attach this mapper to.
          * 
          * @return builder
          * 
@@ -317,7 +317,7 @@ public final class UserAttributeMapperArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param ldapUserFederationId The ldap user federation provider to attach this mapper to.
+         * @param ldapUserFederationId The ID of the LDAP user federation provider to attach this mapper to.
          * 
          * @return builder
          * 
@@ -327,7 +327,7 @@ public final class UserAttributeMapperArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param name Display name of the mapper when displayed in the console.
+         * @param name Display name of this mapper when displayed in the console.
          * 
          * @return builder
          * 
@@ -338,7 +338,7 @@ public final class UserAttributeMapperArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param name Display name of the mapper when displayed in the console.
+         * @param name Display name of this mapper when displayed in the console.
          * 
          * @return builder
          * 
@@ -348,7 +348,7 @@ public final class UserAttributeMapperArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param readOnly When true, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak.
+         * @param readOnly When `true`, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak. Defaults to `false`.
          * 
          * @return builder
          * 
@@ -359,7 +359,7 @@ public final class UserAttributeMapperArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param readOnly When true, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak.
+         * @param readOnly When `true`, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak. Defaults to `false`.
          * 
          * @return builder
          * 
@@ -369,7 +369,7 @@ public final class UserAttributeMapperArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param realmId The realm in which the ldap user federation provider exists.
+         * @param realmId The realm that this LDAP mapper will exist in.
          * 
          * @return builder
          * 
@@ -380,7 +380,7 @@ public final class UserAttributeMapperArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param realmId The realm in which the ldap user federation provider exists.
+         * @param realmId The realm that this LDAP mapper will exist in.
          * 
          * @return builder
          * 
@@ -390,7 +390,7 @@ public final class UserAttributeMapperArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param userModelAttribute Name of the UserModel property or attribute you want to map the LDAP attribute into.
+         * @param userModelAttribute Name of the user property or attribute you want to map the LDAP attribute into.
          * 
          * @return builder
          * 
@@ -401,7 +401,7 @@ public final class UserAttributeMapperArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param userModelAttribute Name of the UserModel property or attribute you want to map the LDAP attribute into.
+         * @param userModelAttribute Name of the user property or attribute you want to map the LDAP attribute into.
          * 
          * @return builder
          * 

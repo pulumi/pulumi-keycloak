@@ -7,15 +7,13 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # keycloak.getRealmKeys data source
- *
  * Use this data source to get the keys of a realm. Keys can be filtered by algorithm and status.
  *
  * Remarks:
  *
  * - A key must meet all filter criteria
- * - This datasource may return more than one value.
- * - If no key matches the filter criteria, then an error is returned.
+ * - This data source may return more than one value.
+ * - If no key matches the filter criteria, then an error will be returned.
  */
 export function getRealmKeys(args: GetRealmKeysArgs, opts?: pulumi.InvokeOptions): Promise<GetRealmKeysResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -30,8 +28,17 @@ export function getRealmKeys(args: GetRealmKeysArgs, opts?: pulumi.InvokeOptions
  * A collection of arguments for invoking getRealmKeys.
  */
 export interface GetRealmKeysArgs {
+    /**
+     * When specified, keys will be filtered by algorithm. The algorithms can be any of `HS256`, `RS256`,`AES`, etc.
+     */
     algorithms?: string[];
+    /**
+     * The realm from which the keys will be retrieved.
+     */
     realmId: string;
+    /**
+     * When specified, keys will be filtered by status. The statuses can be any of `ACTIVE`, `DISABLED` and `PASSIVE`.
+     */
     statuses?: string[];
 }
 
@@ -44,20 +51,24 @@ export interface GetRealmKeysResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * (Computed) A list of keys that match the filter criteria. Each key has the following attributes:
+     */
     readonly keys: outputs.GetRealmKeysKey[];
     readonly realmId: string;
+    /**
+     * Key status (string)
+     */
     readonly statuses?: string[];
 }
 /**
- * ## # keycloak.getRealmKeys data source
- *
  * Use this data source to get the keys of a realm. Keys can be filtered by algorithm and status.
  *
  * Remarks:
  *
  * - A key must meet all filter criteria
- * - This datasource may return more than one value.
- * - If no key matches the filter criteria, then an error is returned.
+ * - This data source may return more than one value.
+ * - If no key matches the filter criteria, then an error will be returned.
  */
 export function getRealmKeysOutput(args: GetRealmKeysOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRealmKeysResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -72,7 +83,16 @@ export function getRealmKeysOutput(args: GetRealmKeysOutputArgs, opts?: pulumi.I
  * A collection of arguments for invoking getRealmKeys.
  */
 export interface GetRealmKeysOutputArgs {
+    /**
+     * When specified, keys will be filtered by algorithm. The algorithms can be any of `HS256`, `RS256`,`AES`, etc.
+     */
     algorithms?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The realm from which the keys will be retrieved.
+     */
     realmId: pulumi.Input<string>;
+    /**
+     * When specified, keys will be filtered by status. The statuses can be any of `ACTIVE`, `DISABLED` and `PASSIVE`.
+     */
     statuses?: pulumi.Input<pulumi.Input<string>[]>;
 }

@@ -17,57 +17,89 @@ public final class RealmOtpPolicyArgs extends com.pulumi.resources.ResourceArgs 
     public static final RealmOtpPolicyArgs Empty = new RealmOtpPolicyArgs();
 
     /**
-     * What hashing algorithm should be used to generate the OTP.
+     * What hashing algorithm should be used to generate the OTP, Valid options are `HmacSHA1`,`HmacSHA256` and `HmacSHA512`. Defaults to `HmacSHA1`.
      * 
      */
     @Import(name="algorithm")
     private @Nullable Output<String> algorithm;
 
     /**
-     * @return What hashing algorithm should be used to generate the OTP.
+     * @return What hashing algorithm should be used to generate the OTP, Valid options are `HmacSHA1`,`HmacSHA256` and `HmacSHA512`. Defaults to `HmacSHA1`.
      * 
      */
     public Optional<Output<String>> algorithm() {
         return Optional.ofNullable(this.algorithm);
     }
 
+    /**
+     * How many digits the OTP have. Defaults to `6`.
+     * 
+     */
     @Import(name="digits")
     private @Nullable Output<Integer> digits;
 
+    /**
+     * @return How many digits the OTP have. Defaults to `6`.
+     * 
+     */
     public Optional<Output<Integer>> digits() {
         return Optional.ofNullable(this.digits);
     }
 
+    /**
+     * What should the initial counter value be. Defaults to `2`.
+     * 
+     */
     @Import(name="initialCounter")
     private @Nullable Output<Integer> initialCounter;
 
+    /**
+     * @return What should the initial counter value be. Defaults to `2`.
+     * 
+     */
     public Optional<Output<Integer>> initialCounter() {
         return Optional.ofNullable(this.initialCounter);
     }
 
+    /**
+     * How far ahead should the server look just in case the token generator and server are out of time sync or counter sync. Defaults to `1`.
+     * 
+     */
     @Import(name="lookAheadWindow")
     private @Nullable Output<Integer> lookAheadWindow;
 
+    /**
+     * @return How far ahead should the server look just in case the token generator and server are out of time sync or counter sync. Defaults to `1`.
+     * 
+     */
     public Optional<Output<Integer>> lookAheadWindow() {
         return Optional.ofNullable(this.lookAheadWindow);
     }
 
+    /**
+     * How many seconds should an OTP token be valid. Defaults to `30`.
+     * 
+     */
     @Import(name="period")
     private @Nullable Output<Integer> period;
 
+    /**
+     * @return How many seconds should an OTP token be valid. Defaults to `30`.
+     * 
+     */
     public Optional<Output<Integer>> period() {
         return Optional.ofNullable(this.period);
     }
 
     /**
-     * OTP Type, totp for Time-Based One Time Password or hotp for counter base one time password
+     * One Time Password Type, supported Values are `totp` for Time-Based One Time Password and `hotp` for Counter Based. Defaults to `totp`.
      * 
      */
     @Import(name="type")
     private @Nullable Output<String> type;
 
     /**
-     * @return OTP Type, totp for Time-Based One Time Password or hotp for counter base one time password
+     * @return One Time Password Type, supported Values are `totp` for Time-Based One Time Password and `hotp` for Counter Based. Defaults to `totp`.
      * 
      */
     public Optional<Output<String>> type() {
@@ -104,7 +136,7 @@ public final class RealmOtpPolicyArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param algorithm What hashing algorithm should be used to generate the OTP.
+         * @param algorithm What hashing algorithm should be used to generate the OTP, Valid options are `HmacSHA1`,`HmacSHA256` and `HmacSHA512`. Defaults to `HmacSHA1`.
          * 
          * @return builder
          * 
@@ -115,7 +147,7 @@ public final class RealmOtpPolicyArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param algorithm What hashing algorithm should be used to generate the OTP.
+         * @param algorithm What hashing algorithm should be used to generate the OTP, Valid options are `HmacSHA1`,`HmacSHA256` and `HmacSHA512`. Defaults to `HmacSHA1`.
          * 
          * @return builder
          * 
@@ -124,44 +156,92 @@ public final class RealmOtpPolicyArgs extends com.pulumi.resources.ResourceArgs 
             return algorithm(Output.of(algorithm));
         }
 
+        /**
+         * @param digits How many digits the OTP have. Defaults to `6`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder digits(@Nullable Output<Integer> digits) {
             $.digits = digits;
             return this;
         }
 
+        /**
+         * @param digits How many digits the OTP have. Defaults to `6`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder digits(Integer digits) {
             return digits(Output.of(digits));
         }
 
+        /**
+         * @param initialCounter What should the initial counter value be. Defaults to `2`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder initialCounter(@Nullable Output<Integer> initialCounter) {
             $.initialCounter = initialCounter;
             return this;
         }
 
+        /**
+         * @param initialCounter What should the initial counter value be. Defaults to `2`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder initialCounter(Integer initialCounter) {
             return initialCounter(Output.of(initialCounter));
         }
 
+        /**
+         * @param lookAheadWindow How far ahead should the server look just in case the token generator and server are out of time sync or counter sync. Defaults to `1`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder lookAheadWindow(@Nullable Output<Integer> lookAheadWindow) {
             $.lookAheadWindow = lookAheadWindow;
             return this;
         }
 
+        /**
+         * @param lookAheadWindow How far ahead should the server look just in case the token generator and server are out of time sync or counter sync. Defaults to `1`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder lookAheadWindow(Integer lookAheadWindow) {
             return lookAheadWindow(Output.of(lookAheadWindow));
         }
 
+        /**
+         * @param period How many seconds should an OTP token be valid. Defaults to `30`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder period(@Nullable Output<Integer> period) {
             $.period = period;
             return this;
         }
 
+        /**
+         * @param period How many seconds should an OTP token be valid. Defaults to `30`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder period(Integer period) {
             return period(Output.of(period));
         }
 
         /**
-         * @param type OTP Type, totp for Time-Based One Time Password or hotp for counter base one time password
+         * @param type One Time Password Type, supported Values are `totp` for Time-Based One Time Password and `hotp` for Counter Based. Defaults to `totp`.
          * 
          * @return builder
          * 
@@ -172,7 +252,7 @@ public final class RealmOtpPolicyArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param type OTP Type, totp for Time-Based One Time Password or hotp for counter base one time password
+         * @param type One Time Password Type, supported Values are `totp` for Time-Based One Time Password and `hotp` for Counter Based. Defaults to `totp`.
          * 
          * @return builder
          * 

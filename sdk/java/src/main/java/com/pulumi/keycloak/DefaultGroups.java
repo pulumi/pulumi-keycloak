@@ -15,14 +15,11 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 /**
- * ## # keycloak.DefaultGroups
- * 
  * Allows for managing a realm&#39;s default groups.
  * 
- * Note that you should not use `keycloak.DefaultGroups` with a group with memberships managed
- * by `keycloak.GroupMemberships`.
+ * &gt; You should not use `keycloak.DefaultGroups` with a group whose members are managed by `keycloak.GroupMemberships`.
  * 
- * ### Example Usage
+ * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
  * <pre>
@@ -72,31 +69,46 @@ import javax.annotation.Nullable;
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
- * ### Argument Reference
+ * ## Import
  * 
- * The following arguments are supported:
- * 
- * - `realm_id` - (Required) The realm this group exists in.
- * - `group_ids` - (Required) A set of group ids that should be default groups on the realm referenced by `realm_id`.
- * 
- * ### Import
- * 
- * Groups can be imported using the format `{{realm_id}}` where `realm_id` is the realm the group exists in.
+ * Default groups can be imported using the format `{{realm_id}}` where `realm_id` is the realm the group exists in.
  * 
  * Example:
+ * 
+ * bash
+ * 
+ * ```sh
+ * $ pulumi import keycloak:index/defaultGroups:DefaultGroups default my-realm
+ * ```
  * 
  */
 @ResourceType(type="keycloak:index/defaultGroups:DefaultGroups")
 public class DefaultGroups extends com.pulumi.resources.CustomResource {
+    /**
+     * A set of group ids that should be default groups on the realm referenced by `realm_id`.
+     * 
+     */
     @Export(name="groupIds", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> groupIds;
 
+    /**
+     * @return A set of group ids that should be default groups on the realm referenced by `realm_id`.
+     * 
+     */
     public Output<List<String>> groupIds() {
         return this.groupIds;
     }
+    /**
+     * The realm this group exists in.
+     * 
+     */
     @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
+    /**
+     * @return The realm this group exists in.
+     * 
+     */
     public Output<String> realmId() {
         return this.realmId;
     }

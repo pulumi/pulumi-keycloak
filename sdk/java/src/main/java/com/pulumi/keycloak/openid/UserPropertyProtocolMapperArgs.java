@@ -18,14 +18,14 @@ public final class UserPropertyProtocolMapperArgs extends com.pulumi.resources.R
     public static final UserPropertyProtocolMapperArgs Empty = new UserPropertyProtocolMapperArgs();
 
     /**
-     * Indicates if the property should be a claim in the access token.
+     * Indicates if the property should be added as a claim to the access token. Defaults to `true`.
      * 
      */
     @Import(name="addToAccessToken")
     private @Nullable Output<Boolean> addToAccessToken;
 
     /**
-     * @return Indicates if the property should be a claim in the access token.
+     * @return Indicates if the property should be added as a claim to the access token. Defaults to `true`.
      * 
      */
     public Optional<Output<Boolean>> addToAccessToken() {
@@ -33,14 +33,14 @@ public final class UserPropertyProtocolMapperArgs extends com.pulumi.resources.R
     }
 
     /**
-     * Indicates if the property should be a claim in the id token.
+     * Indicates if the property should be added as a claim to the id token. Defaults to `true`.
      * 
      */
     @Import(name="addToIdToken")
     private @Nullable Output<Boolean> addToIdToken;
 
     /**
-     * @return Indicates if the property should be a claim in the id token.
+     * @return Indicates if the property should be added as a claim to the id token. Defaults to `true`.
      * 
      */
     public Optional<Output<Boolean>> addToIdToken() {
@@ -48,36 +48,44 @@ public final class UserPropertyProtocolMapperArgs extends com.pulumi.resources.R
     }
 
     /**
-     * Indicates if the property should appear in the userinfo response body.
+     * Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
      * 
      */
     @Import(name="addToUserinfo")
     private @Nullable Output<Boolean> addToUserinfo;
 
     /**
-     * @return Indicates if the property should appear in the userinfo response body.
+     * @return Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
      * 
      */
     public Optional<Output<Boolean>> addToUserinfo() {
         return Optional.ofNullable(this.addToUserinfo);
     }
 
+    /**
+     * The name of the claim to insert into a token.
+     * 
+     */
     @Import(name="claimName", required=true)
     private Output<String> claimName;
 
+    /**
+     * @return The name of the claim to insert into a token.
+     * 
+     */
     public Output<String> claimName() {
         return this.claimName;
     }
 
     /**
-     * Claim type used when serializing tokens.
+     * The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
      * 
      */
     @Import(name="claimValueType")
     private @Nullable Output<String> claimValueType;
 
     /**
-     * @return Claim type used when serializing tokens.
+     * @return The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
      * 
      */
     public Optional<Output<String>> claimValueType() {
@@ -85,14 +93,14 @@ public final class UserPropertyProtocolMapperArgs extends com.pulumi.resources.R
     }
 
     /**
-     * The mapper&#39;s associated client. Cannot be used at the same time as client_scope_id.
+     * The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
      * 
      */
     @Import(name="clientId")
     private @Nullable Output<String> clientId;
 
     /**
-     * @return The mapper&#39;s associated client. Cannot be used at the same time as client_scope_id.
+     * @return The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
      * 
      */
     public Optional<Output<String>> clientId() {
@@ -100,14 +108,14 @@ public final class UserPropertyProtocolMapperArgs extends com.pulumi.resources.R
     }
 
     /**
-     * The mapper&#39;s associated client scope. Cannot be used at the same time as client_id.
+     * The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified. `client_scope_id` - (Required if `client_id` is not specified) The client scope this protocol mapper is attached to.
      * 
      */
     @Import(name="clientScopeId")
     private @Nullable Output<String> clientScopeId;
 
     /**
-     * @return The mapper&#39;s associated client scope. Cannot be used at the same time as client_id.
+     * @return The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified. `client_scope_id` - (Required if `client_id` is not specified) The client scope this protocol mapper is attached to.
      * 
      */
     public Optional<Output<String>> clientScopeId() {
@@ -115,14 +123,14 @@ public final class UserPropertyProtocolMapperArgs extends com.pulumi.resources.R
     }
 
     /**
-     * A human-friendly name that will appear in the Keycloak console.
+     * The display name of this protocol mapper in the GUI.
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return A human-friendly name that will appear in the Keycloak console.
+     * @return The display name of this protocol mapper in the GUI.
      * 
      */
     public Optional<Output<String>> name() {
@@ -130,23 +138,31 @@ public final class UserPropertyProtocolMapperArgs extends com.pulumi.resources.R
     }
 
     /**
-     * The realm id where the associated client or client scope exists.
+     * The realm this protocol mapper exists within.
      * 
      */
     @Import(name="realmId", required=true)
     private Output<String> realmId;
 
     /**
-     * @return The realm id where the associated client or client scope exists.
+     * @return The realm this protocol mapper exists within.
      * 
      */
     public Output<String> realmId() {
         return this.realmId;
     }
 
+    /**
+     * The built in user property (such as email) to map a claim for.
+     * 
+     */
     @Import(name="userProperty", required=true)
     private Output<String> userProperty;
 
+    /**
+     * @return The built in user property (such as email) to map a claim for.
+     * 
+     */
     public Output<String> userProperty() {
         return this.userProperty;
     }
@@ -185,7 +201,7 @@ public final class UserPropertyProtocolMapperArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param addToAccessToken Indicates if the property should be a claim in the access token.
+         * @param addToAccessToken Indicates if the property should be added as a claim to the access token. Defaults to `true`.
          * 
          * @return builder
          * 
@@ -196,7 +212,7 @@ public final class UserPropertyProtocolMapperArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param addToAccessToken Indicates if the property should be a claim in the access token.
+         * @param addToAccessToken Indicates if the property should be added as a claim to the access token. Defaults to `true`.
          * 
          * @return builder
          * 
@@ -206,7 +222,7 @@ public final class UserPropertyProtocolMapperArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param addToIdToken Indicates if the property should be a claim in the id token.
+         * @param addToIdToken Indicates if the property should be added as a claim to the id token. Defaults to `true`.
          * 
          * @return builder
          * 
@@ -217,7 +233,7 @@ public final class UserPropertyProtocolMapperArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param addToIdToken Indicates if the property should be a claim in the id token.
+         * @param addToIdToken Indicates if the property should be added as a claim to the id token. Defaults to `true`.
          * 
          * @return builder
          * 
@@ -227,7 +243,7 @@ public final class UserPropertyProtocolMapperArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param addToUserinfo Indicates if the property should appear in the userinfo response body.
+         * @param addToUserinfo Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
          * 
          * @return builder
          * 
@@ -238,7 +254,7 @@ public final class UserPropertyProtocolMapperArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param addToUserinfo Indicates if the property should appear in the userinfo response body.
+         * @param addToUserinfo Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
          * 
          * @return builder
          * 
@@ -247,17 +263,29 @@ public final class UserPropertyProtocolMapperArgs extends com.pulumi.resources.R
             return addToUserinfo(Output.of(addToUserinfo));
         }
 
+        /**
+         * @param claimName The name of the claim to insert into a token.
+         * 
+         * @return builder
+         * 
+         */
         public Builder claimName(Output<String> claimName) {
             $.claimName = claimName;
             return this;
         }
 
+        /**
+         * @param claimName The name of the claim to insert into a token.
+         * 
+         * @return builder
+         * 
+         */
         public Builder claimName(String claimName) {
             return claimName(Output.of(claimName));
         }
 
         /**
-         * @param claimValueType Claim type used when serializing tokens.
+         * @param claimValueType The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
          * 
          * @return builder
          * 
@@ -268,7 +296,7 @@ public final class UserPropertyProtocolMapperArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param claimValueType Claim type used when serializing tokens.
+         * @param claimValueType The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
          * 
          * @return builder
          * 
@@ -278,7 +306,7 @@ public final class UserPropertyProtocolMapperArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param clientId The mapper&#39;s associated client. Cannot be used at the same time as client_scope_id.
+         * @param clientId The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
          * 
          * @return builder
          * 
@@ -289,7 +317,7 @@ public final class UserPropertyProtocolMapperArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param clientId The mapper&#39;s associated client. Cannot be used at the same time as client_scope_id.
+         * @param clientId The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
          * 
          * @return builder
          * 
@@ -299,7 +327,7 @@ public final class UserPropertyProtocolMapperArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param clientScopeId The mapper&#39;s associated client scope. Cannot be used at the same time as client_id.
+         * @param clientScopeId The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified. `client_scope_id` - (Required if `client_id` is not specified) The client scope this protocol mapper is attached to.
          * 
          * @return builder
          * 
@@ -310,7 +338,7 @@ public final class UserPropertyProtocolMapperArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param clientScopeId The mapper&#39;s associated client scope. Cannot be used at the same time as client_id.
+         * @param clientScopeId The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified. `client_scope_id` - (Required if `client_id` is not specified) The client scope this protocol mapper is attached to.
          * 
          * @return builder
          * 
@@ -320,7 +348,7 @@ public final class UserPropertyProtocolMapperArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param name A human-friendly name that will appear in the Keycloak console.
+         * @param name The display name of this protocol mapper in the GUI.
          * 
          * @return builder
          * 
@@ -331,7 +359,7 @@ public final class UserPropertyProtocolMapperArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param name A human-friendly name that will appear in the Keycloak console.
+         * @param name The display name of this protocol mapper in the GUI.
          * 
          * @return builder
          * 
@@ -341,7 +369,7 @@ public final class UserPropertyProtocolMapperArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param realmId The realm id where the associated client or client scope exists.
+         * @param realmId The realm this protocol mapper exists within.
          * 
          * @return builder
          * 
@@ -352,7 +380,7 @@ public final class UserPropertyProtocolMapperArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param realmId The realm id where the associated client or client scope exists.
+         * @param realmId The realm this protocol mapper exists within.
          * 
          * @return builder
          * 
@@ -361,11 +389,23 @@ public final class UserPropertyProtocolMapperArgs extends com.pulumi.resources.R
             return realmId(Output.of(realmId));
         }
 
+        /**
+         * @param userProperty The built in user property (such as email) to map a claim for.
+         * 
+         * @return builder
+         * 
+         */
         public Builder userProperty(Output<String> userProperty) {
             $.userProperty = userProperty;
             return this;
         }
 
+        /**
+         * @param userProperty The built in user property (such as email) to map a claim for.
+         * 
+         * @return builder
+         * 
+         */
         public Builder userProperty(String userProperty) {
             return userProperty(Output.of(userProperty));
         }

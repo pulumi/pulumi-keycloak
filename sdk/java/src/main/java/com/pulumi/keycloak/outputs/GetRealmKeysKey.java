@@ -11,37 +11,101 @@ import java.util.Objects;
 
 @CustomType
 public final class GetRealmKeysKey {
+    /**
+     * @return Key algorithm (string)
+     * 
+     */
     private String algorithm;
+    /**
+     * @return Key certificate (string)
+     * 
+     */
     private String certificate;
+    /**
+     * @return Key ID (string)
+     * 
+     */
     private String kid;
+    /**
+     * @return Key provider ID (string)
+     * 
+     */
     private String providerId;
+    /**
+     * @return Key provider priority (int64)
+     * 
+     */
     private Integer providerPriority;
+    /**
+     * @return Key public key (string)
+     * 
+     */
     private String publicKey;
+    /**
+     * @return When specified, keys will be filtered by status. The statuses can be any of `ACTIVE`, `DISABLED` and `PASSIVE`.
+     * 
+     */
     private String status;
+    /**
+     * @return Key type (string)
+     * 
+     */
     private String type;
 
     private GetRealmKeysKey() {}
+    /**
+     * @return Key algorithm (string)
+     * 
+     */
     public String algorithm() {
         return this.algorithm;
     }
+    /**
+     * @return Key certificate (string)
+     * 
+     */
     public String certificate() {
         return this.certificate;
     }
+    /**
+     * @return Key ID (string)
+     * 
+     */
     public String kid() {
         return this.kid;
     }
+    /**
+     * @return Key provider ID (string)
+     * 
+     */
     public String providerId() {
         return this.providerId;
     }
+    /**
+     * @return Key provider priority (int64)
+     * 
+     */
     public Integer providerPriority() {
         return this.providerPriority;
     }
+    /**
+     * @return Key public key (string)
+     * 
+     */
     public String publicKey() {
         return this.publicKey;
     }
+    /**
+     * @return When specified, keys will be filtered by status. The statuses can be any of `ACTIVE`, `DISABLED` and `PASSIVE`.
+     * 
+     */
     public String status() {
         return this.status;
     }
+    /**
+     * @return Key type (string)
+     * 
+     */
     public String type() {
         return this.type;
     }

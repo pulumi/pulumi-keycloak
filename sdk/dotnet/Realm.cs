@@ -9,6 +9,111 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak
 {
+    /// <summary>
+    /// Allows for creating and managing Realms within Keycloak.
+    /// 
+    /// A realm manages a logical collection of users, credentials, roles, and groups. Users log in to realms and can be federated
+    /// from multiple sources.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///         DisplayName = "my realm",
+    ///         DisplayNameHtml = "&lt;b&gt;my realm&lt;/b&gt;",
+    ///         LoginTheme = "base",
+    ///         AccessCodeLifespan = "1h",
+    ///         SslRequired = "external",
+    ///         PasswordPolicy = "upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername",
+    ///         Attributes = 
+    ///         {
+    ///             { "mycustomAttribute", "myCustomValue" },
+    ///         },
+    ///         SmtpServer = new Keycloak.Inputs.RealmSmtpServerArgs
+    ///         {
+    ///             Host = "smtp.example.com",
+    ///             From = "example@example.com",
+    ///             Auth = new Keycloak.Inputs.RealmSmtpServerAuthArgs
+    ///             {
+    ///                 Username = "tom",
+    ///                 Password = "password",
+    ///             },
+    ///         },
+    ///         Internationalization = new Keycloak.Inputs.RealmInternationalizationArgs
+    ///         {
+    ///             SupportedLocales = new[]
+    ///             {
+    ///                 "en",
+    ///                 "de",
+    ///                 "es",
+    ///             },
+    ///             DefaultLocale = "en",
+    ///         },
+    ///         SecurityDefenses = new Keycloak.Inputs.RealmSecurityDefensesArgs
+    ///         {
+    ///             Headers = new Keycloak.Inputs.RealmSecurityDefensesHeadersArgs
+    ///             {
+    ///                 XFrameOptions = "DENY",
+    ///                 ContentSecurityPolicy = "frame-src 'self'; frame-ancestors 'self'; object-src 'none';",
+    ///                 ContentSecurityPolicyReportOnly = "",
+    ///                 XContentTypeOptions = "nosniff",
+    ///                 XRobotsTag = "none",
+    ///                 XXssProtection = "1; mode=block",
+    ///                 StrictTransportSecurity = "max-age=31536000; includeSubDomains",
+    ///             },
+    ///             BruteForceDetection = new Keycloak.Inputs.RealmSecurityDefensesBruteForceDetectionArgs
+    ///             {
+    ///                 PermanentLockout = false,
+    ///                 MaxLoginFailures = 30,
+    ///                 WaitIncrementSeconds = 60,
+    ///                 QuickLoginCheckMilliSeconds = 1000,
+    ///                 MinimumQuickLoginWaitSeconds = 60,
+    ///                 MaxFailureWaitSeconds = 900,
+    ///                 FailureResetTimeSeconds = 43200,
+    ///             },
+    ///         },
+    ///         WebAuthnPolicy = new Keycloak.Inputs.RealmWebAuthnPolicyArgs
+    ///         {
+    ///             RelyingPartyEntityName = "Example",
+    ///             RelyingPartyId = "keycloak.example.com",
+    ///             SignatureAlgorithms = new[]
+    ///             {
+    ///                 "ES256",
+    ///                 "RS256",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Default Client Scopes
+    /// 
+    /// - `default_default_client_scopes` - (Optional) A list of default default client scopes to be used for client definitions. Defaults to `[]` or keycloak's built-in default default client-scopes.
+    /// - `default_optional_client_scopes` - (Optional) A list of default optional client scopes to be used for client definitions. Defaults to `[]` or keycloak's built-in default optional client-scopes.
+    /// 
+    /// ## Import
+    /// 
+    /// Realms can be imported using their name.
+    /// 
+    /// Example:
+    /// 
+    /// bash
+    /// 
+    /// ```sh
+    /// $ pulumi import keycloak:index/realm:Realm realm my-realm
+    /// ```
+    /// </summary>
     [KeycloakResourceType("keycloak:index/realm:Realm")]
     public partial class Realm : global::Pulumi.CustomResource
     {
@@ -39,6 +144,9 @@ namespace Pulumi.Keycloak
         [Output("adminTheme")]
         public Output<string?> AdminTheme { get; private set; } = null!;
 
+        /// <summary>
+        /// A map of custom attributes to add to the realm.
+        /// </summary>
         [Output("attributes")]
         public Output<ImmutableDictionary<string, string>?> Attributes { get; private set; } = null!;
 
@@ -75,9 +183,15 @@ namespace Pulumi.Keycloak
         [Output("directGrantFlow")]
         public Output<string> DirectGrantFlow { get; private set; } = null!;
 
+        /// <summary>
+        /// The display name for the realm that is shown when logging in to the admin console.
+        /// </summary>
         [Output("displayName")]
         public Output<string?> DisplayName { get; private set; } = null!;
 
+        /// <summary>
+        /// The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.
+        /// </summary>
         [Output("displayNameHtml")]
         public Output<string?> DisplayNameHtml { get; private set; } = null!;
 
@@ -96,9 +210,15 @@ namespace Pulumi.Keycloak
         [Output("emailTheme")]
         public Output<string?> EmailTheme { get; private set; } = null!;
 
+        /// <summary>
+        /// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
+        /// </summary>
         [Output("enabled")]
         public Output<bool?> Enabled { get; private set; } = null!;
 
+        /// <summary>
+        /// When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
+        /// </summary>
         [Output("internalId")]
         public Output<string> InternalId { get; private set; } = null!;
 
@@ -137,6 +257,9 @@ namespace Pulumi.Keycloak
         [Output("passwordPolicy")]
         public Output<string?> PasswordPolicy { get; private set; } = null!;
 
+        /// <summary>
+        /// The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
+        /// </summary>
         [Output("realm")]
         public Output<string> RealmName { get; private set; } = null!;
 
@@ -194,6 +317,9 @@ namespace Pulumi.Keycloak
         [Output("ssoSessionMaxLifespanRememberMe")]
         public Output<string> SsoSessionMaxLifespanRememberMe { get; private set; } = null!;
 
+        /// <summary>
+        /// When `true`, users are allowed to manage their own resources. Defaults to `false`.
+        /// </summary>
         [Output("userManagedAccess")]
         public Output<bool?> UserManagedAccess { get; private set; } = null!;
 
@@ -281,6 +407,10 @@ namespace Pulumi.Keycloak
 
         [Input("attributes")]
         private InputMap<string>? _attributes;
+
+        /// <summary>
+        /// A map of custom attributes to add to the realm.
+        /// </summary>
         public InputMap<string> Attributes
         {
             get => _attributes ?? (_attributes = new InputMap<string>());
@@ -330,9 +460,15 @@ namespace Pulumi.Keycloak
         [Input("directGrantFlow")]
         public Input<string>? DirectGrantFlow { get; set; }
 
+        /// <summary>
+        /// The display name for the realm that is shown when logging in to the admin console.
+        /// </summary>
         [Input("displayName")]
         public Input<string>? DisplayName { get; set; }
 
+        /// <summary>
+        /// The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.
+        /// </summary>
         [Input("displayNameHtml")]
         public Input<string>? DisplayNameHtml { get; set; }
 
@@ -351,9 +487,15 @@ namespace Pulumi.Keycloak
         [Input("emailTheme")]
         public Input<string>? EmailTheme { get; set; }
 
+        /// <summary>
+        /// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
+        /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
+        /// <summary>
+        /// When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
+        /// </summary>
         [Input("internalId")]
         public Input<string>? InternalId { get; set; }
 
@@ -392,6 +534,9 @@ namespace Pulumi.Keycloak
         [Input("passwordPolicy")]
         public Input<string>? PasswordPolicy { get; set; }
 
+        /// <summary>
+        /// The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
+        /// </summary>
         [Input("realm", required: true)]
         public Input<string> RealmName { get; set; } = null!;
 
@@ -449,6 +594,9 @@ namespace Pulumi.Keycloak
         [Input("ssoSessionMaxLifespanRememberMe")]
         public Input<string>? SsoSessionMaxLifespanRememberMe { get; set; }
 
+        /// <summary>
+        /// When `true`, users are allowed to manage their own resources. Defaults to `false`.
+        /// </summary>
         [Input("userManagedAccess")]
         public Input<bool>? UserManagedAccess { get; set; }
 
@@ -498,6 +646,10 @@ namespace Pulumi.Keycloak
 
         [Input("attributes")]
         private InputMap<string>? _attributes;
+
+        /// <summary>
+        /// A map of custom attributes to add to the realm.
+        /// </summary>
         public InputMap<string> Attributes
         {
             get => _attributes ?? (_attributes = new InputMap<string>());
@@ -547,9 +699,15 @@ namespace Pulumi.Keycloak
         [Input("directGrantFlow")]
         public Input<string>? DirectGrantFlow { get; set; }
 
+        /// <summary>
+        /// The display name for the realm that is shown when logging in to the admin console.
+        /// </summary>
         [Input("displayName")]
         public Input<string>? DisplayName { get; set; }
 
+        /// <summary>
+        /// The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.
+        /// </summary>
         [Input("displayNameHtml")]
         public Input<string>? DisplayNameHtml { get; set; }
 
@@ -568,9 +726,15 @@ namespace Pulumi.Keycloak
         [Input("emailTheme")]
         public Input<string>? EmailTheme { get; set; }
 
+        /// <summary>
+        /// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
+        /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
+        /// <summary>
+        /// When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
+        /// </summary>
         [Input("internalId")]
         public Input<string>? InternalId { get; set; }
 
@@ -609,6 +773,9 @@ namespace Pulumi.Keycloak
         [Input("passwordPolicy")]
         public Input<string>? PasswordPolicy { get; set; }
 
+        /// <summary>
+        /// The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
+        /// </summary>
         [Input("realm")]
         public Input<string>? RealmName { get; set; }
 
@@ -666,6 +833,9 @@ namespace Pulumi.Keycloak
         [Input("ssoSessionMaxLifespanRememberMe")]
         public Input<string>? SsoSessionMaxLifespanRememberMe { get; set; }
 
+        /// <summary>
+        /// When `true`, users are allowed to manage their own resources. Defaults to `false`.
+        /// </summary>
         [Input("userManagedAccess")]
         public Input<bool>? UserManagedAccess { get; set; }
 

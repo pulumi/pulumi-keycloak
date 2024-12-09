@@ -11,15 +11,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # getRealmKeys data source
-//
 // Use this data source to get the keys of a realm. Keys can be filtered by algorithm and status.
 //
 // Remarks:
 //
 // - A key must meet all filter criteria
-// - This datasource may return more than one value.
-// - If no key matches the filter criteria, then an error is returned.
+// - This data source may return more than one value.
+// - If no key matches the filter criteria, then an error will be returned.
 func GetRealmKeys(ctx *pulumi.Context, args *GetRealmKeysArgs, opts ...pulumi.InvokeOption) (*GetRealmKeysResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetRealmKeysResult
@@ -32,19 +30,24 @@ func GetRealmKeys(ctx *pulumi.Context, args *GetRealmKeysArgs, opts ...pulumi.In
 
 // A collection of arguments for invoking getRealmKeys.
 type GetRealmKeysArgs struct {
+	// When specified, keys will be filtered by algorithm. The algorithms can be any of `HS256`, `RS256`,`AES`, etc.
 	Algorithms []string `pulumi:"algorithms"`
-	RealmId    string   `pulumi:"realmId"`
-	Statuses   []string `pulumi:"statuses"`
+	// The realm from which the keys will be retrieved.
+	RealmId string `pulumi:"realmId"`
+	// When specified, keys will be filtered by status. The statuses can be any of `ACTIVE`, `DISABLED` and `PASSIVE`.
+	Statuses []string `pulumi:"statuses"`
 }
 
 // A collection of values returned by getRealmKeys.
 type GetRealmKeysResult struct {
 	Algorithms []string `pulumi:"algorithms"`
 	// The provider-assigned unique ID for this managed resource.
-	Id       string            `pulumi:"id"`
-	Keys     []GetRealmKeysKey `pulumi:"keys"`
-	RealmId  string            `pulumi:"realmId"`
-	Statuses []string          `pulumi:"statuses"`
+	Id string `pulumi:"id"`
+	// (Computed) A list of keys that match the filter criteria. Each key has the following attributes:
+	Keys    []GetRealmKeysKey `pulumi:"keys"`
+	RealmId string            `pulumi:"realmId"`
+	// Key status (string)
+	Statuses []string `pulumi:"statuses"`
 }
 
 func GetRealmKeysOutput(ctx *pulumi.Context, args GetRealmKeysOutputArgs, opts ...pulumi.InvokeOption) GetRealmKeysResultOutput {
@@ -68,9 +71,12 @@ func GetRealmKeysOutput(ctx *pulumi.Context, args GetRealmKeysOutputArgs, opts .
 
 // A collection of arguments for invoking getRealmKeys.
 type GetRealmKeysOutputArgs struct {
+	// When specified, keys will be filtered by algorithm. The algorithms can be any of `HS256`, `RS256`,`AES`, etc.
 	Algorithms pulumi.StringArrayInput `pulumi:"algorithms"`
-	RealmId    pulumi.StringInput      `pulumi:"realmId"`
-	Statuses   pulumi.StringArrayInput `pulumi:"statuses"`
+	// The realm from which the keys will be retrieved.
+	RealmId pulumi.StringInput `pulumi:"realmId"`
+	// When specified, keys will be filtered by status. The statuses can be any of `ACTIVE`, `DISABLED` and `PASSIVE`.
+	Statuses pulumi.StringArrayInput `pulumi:"statuses"`
 }
 
 func (GetRealmKeysOutputArgs) ElementType() reflect.Type {
@@ -101,6 +107,7 @@ func (o GetRealmKeysResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRealmKeysResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// (Computed) A list of keys that match the filter criteria. Each key has the following attributes:
 func (o GetRealmKeysResultOutput) Keys() GetRealmKeysKeyArrayOutput {
 	return o.ApplyT(func(v GetRealmKeysResult) []GetRealmKeysKey { return v.Keys }).(GetRealmKeysKeyArrayOutput)
 }
@@ -109,6 +116,7 @@ func (o GetRealmKeysResultOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRealmKeysResult) string { return v.RealmId }).(pulumi.StringOutput)
 }
 
+// Key status (string)
 func (o GetRealmKeysResultOutput) Statuses() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetRealmKeysResult) []string { return v.Statuses }).(pulumi.StringArrayOutput)
 }

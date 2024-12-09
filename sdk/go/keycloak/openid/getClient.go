@@ -11,11 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # openid.Client data source
-//
 // This data source can be used to fetch properties of a Keycloak OpenID client for usage with other resources.
 //
-// ### Example Usage
+// ## Example Usage
 //
 // ```go
 // package main
@@ -51,17 +49,6 @@ import (
 //	}
 //
 // ```
-//
-// ### Argument Reference
-//
-// The following arguments are supported:
-//
-// - `realmId` - (Required) The realm id.
-// - `clientId` - (Required) The client id.
-//
-// ### Attributes Reference
-//
-// See the docs for the `openid.Client` resource for details on the exported attributes.
 func LookupClient(ctx *pulumi.Context, args *LookupClientArgs, opts ...pulumi.InvokeOption) (*LookupClientResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupClientResult
@@ -74,6 +61,7 @@ func LookupClient(ctx *pulumi.Context, args *LookupClientArgs, opts ...pulumi.In
 
 // A collection of arguments for invoking getClient.
 type LookupClientArgs struct {
+	// The client id (not its unique ID).
 	ClientId                              string            `pulumi:"clientId"`
 	ConsentScreenText                     *string           `pulumi:"consentScreenText"`
 	DisplayOnConsentScreen                *bool             `pulumi:"displayOnConsentScreen"`
@@ -81,7 +69,8 @@ type LookupClientArgs struct {
 	Oauth2DeviceAuthorizationGrantEnabled *bool             `pulumi:"oauth2DeviceAuthorizationGrantEnabled"`
 	Oauth2DeviceCodeLifespan              *string           `pulumi:"oauth2DeviceCodeLifespan"`
 	Oauth2DevicePollingInterval           *string           `pulumi:"oauth2DevicePollingInterval"`
-	RealmId                               string            `pulumi:"realmId"`
+	// The realm id.
+	RealmId string `pulumi:"realmId"`
 }
 
 // A collection of values returned by getClient.
@@ -156,6 +145,7 @@ func LookupClientOutput(ctx *pulumi.Context, args LookupClientOutputArgs, opts .
 
 // A collection of arguments for invoking getClient.
 type LookupClientOutputArgs struct {
+	// The client id (not its unique ID).
 	ClientId                              pulumi.StringInput    `pulumi:"clientId"`
 	ConsentScreenText                     pulumi.StringPtrInput `pulumi:"consentScreenText"`
 	DisplayOnConsentScreen                pulumi.BoolPtrInput   `pulumi:"displayOnConsentScreen"`
@@ -163,7 +153,8 @@ type LookupClientOutputArgs struct {
 	Oauth2DeviceAuthorizationGrantEnabled pulumi.BoolPtrInput   `pulumi:"oauth2DeviceAuthorizationGrantEnabled"`
 	Oauth2DeviceCodeLifespan              pulumi.StringPtrInput `pulumi:"oauth2DeviceCodeLifespan"`
 	Oauth2DevicePollingInterval           pulumi.StringPtrInput `pulumi:"oauth2DevicePollingInterval"`
-	RealmId                               pulumi.StringInput    `pulumi:"realmId"`
+	// The realm id.
+	RealmId pulumi.StringInput `pulumi:"realmId"`
 }
 
 func (LookupClientOutputArgs) ElementType() reflect.Type {

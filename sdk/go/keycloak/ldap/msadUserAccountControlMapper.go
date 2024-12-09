@@ -12,8 +12,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # ldap.MsadUserAccountControlMapper
-//
 // Allows for creating and managing MSAD user account control mappers for Keycloak
 // users federated via LDAP.
 //
@@ -22,7 +20,7 @@ import (
 // AD user state to Keycloak in order to enforce settings like expired passwords
 // or disabled accounts.
 //
-// ### Example Usage
+// ## Example Usage
 //
 // ```go
 // package main
@@ -38,7 +36,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-//				Realm:   pulumi.String("test"),
+//				Realm:   pulumi.String("my-realm"),
 //				Enabled: pulumi.Bool(true),
 //			})
 //			if err != nil {
@@ -77,29 +75,29 @@ import (
 //
 // ```
 //
-// ### Argument Reference
-//
-// The following arguments are supported:
-//
-// - `realmId` - (Required) The realm that this LDAP mapper will exist in.
-// - `ldapUserFederationId` - (Required) The ID of the LDAP user federation provider to attach this mapper to.
-// - `name` - (Required) Display name of this mapper when displayed in the console.
-// - `ldapPasswordPolicyHintsEnabled` - (Optional) When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
-//
-// ### Import
+// ## Import
 //
 // LDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`.
-// The ID of the LDAP user federation provider and the mapper can be found within
-// the Keycloak GUI, and they are typically GUIDs:
+//
+// The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs.
+//
+// Example:
+//
+// bash
+//
+// ```sh
+// $ pulumi import keycloak:ldap/msadUserAccountControlMapper:MsadUserAccountControlMapper msad_user_account_control_mapper my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
+// ```
 type MsadUserAccountControlMapper struct {
 	pulumi.CustomResourceState
 
+	// When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
 	LdapPasswordPolicyHintsEnabled pulumi.BoolPtrOutput `pulumi:"ldapPasswordPolicyHintsEnabled"`
-	// The ldap user federation provider to attach this mapper to.
+	// The ID of the LDAP user federation provider to attach this mapper to.
 	LdapUserFederationId pulumi.StringOutput `pulumi:"ldapUserFederationId"`
-	// Display name of the mapper when displayed in the console.
+	// Display name of this mapper when displayed in the console.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The realm in which the ldap user federation provider exists.
+	// The realm that this LDAP mapper will exist in.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
 }
 
@@ -139,22 +137,24 @@ func GetMsadUserAccountControlMapper(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering MsadUserAccountControlMapper resources.
 type msadUserAccountControlMapperState struct {
+	// When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
 	LdapPasswordPolicyHintsEnabled *bool `pulumi:"ldapPasswordPolicyHintsEnabled"`
-	// The ldap user federation provider to attach this mapper to.
+	// The ID of the LDAP user federation provider to attach this mapper to.
 	LdapUserFederationId *string `pulumi:"ldapUserFederationId"`
-	// Display name of the mapper when displayed in the console.
+	// Display name of this mapper when displayed in the console.
 	Name *string `pulumi:"name"`
-	// The realm in which the ldap user federation provider exists.
+	// The realm that this LDAP mapper will exist in.
 	RealmId *string `pulumi:"realmId"`
 }
 
 type MsadUserAccountControlMapperState struct {
+	// When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
 	LdapPasswordPolicyHintsEnabled pulumi.BoolPtrInput
-	// The ldap user federation provider to attach this mapper to.
+	// The ID of the LDAP user federation provider to attach this mapper to.
 	LdapUserFederationId pulumi.StringPtrInput
-	// Display name of the mapper when displayed in the console.
+	// Display name of this mapper when displayed in the console.
 	Name pulumi.StringPtrInput
-	// The realm in which the ldap user federation provider exists.
+	// The realm that this LDAP mapper will exist in.
 	RealmId pulumi.StringPtrInput
 }
 
@@ -163,23 +163,25 @@ func (MsadUserAccountControlMapperState) ElementType() reflect.Type {
 }
 
 type msadUserAccountControlMapperArgs struct {
+	// When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
 	LdapPasswordPolicyHintsEnabled *bool `pulumi:"ldapPasswordPolicyHintsEnabled"`
-	// The ldap user federation provider to attach this mapper to.
+	// The ID of the LDAP user federation provider to attach this mapper to.
 	LdapUserFederationId string `pulumi:"ldapUserFederationId"`
-	// Display name of the mapper when displayed in the console.
+	// Display name of this mapper when displayed in the console.
 	Name *string `pulumi:"name"`
-	// The realm in which the ldap user federation provider exists.
+	// The realm that this LDAP mapper will exist in.
 	RealmId string `pulumi:"realmId"`
 }
 
 // The set of arguments for constructing a MsadUserAccountControlMapper resource.
 type MsadUserAccountControlMapperArgs struct {
+	// When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
 	LdapPasswordPolicyHintsEnabled pulumi.BoolPtrInput
-	// The ldap user federation provider to attach this mapper to.
+	// The ID of the LDAP user federation provider to attach this mapper to.
 	LdapUserFederationId pulumi.StringInput
-	// Display name of the mapper when displayed in the console.
+	// Display name of this mapper when displayed in the console.
 	Name pulumi.StringPtrInput
-	// The realm in which the ldap user federation provider exists.
+	// The realm that this LDAP mapper will exist in.
 	RealmId pulumi.StringInput
 }
 
@@ -270,21 +272,22 @@ func (o MsadUserAccountControlMapperOutput) ToMsadUserAccountControlMapperOutput
 	return o
 }
 
+// When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
 func (o MsadUserAccountControlMapperOutput) LdapPasswordPolicyHintsEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *MsadUserAccountControlMapper) pulumi.BoolPtrOutput { return v.LdapPasswordPolicyHintsEnabled }).(pulumi.BoolPtrOutput)
 }
 
-// The ldap user federation provider to attach this mapper to.
+// The ID of the LDAP user federation provider to attach this mapper to.
 func (o MsadUserAccountControlMapperOutput) LdapUserFederationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *MsadUserAccountControlMapper) pulumi.StringOutput { return v.LdapUserFederationId }).(pulumi.StringOutput)
 }
 
-// Display name of the mapper when displayed in the console.
+// Display name of this mapper when displayed in the console.
 func (o MsadUserAccountControlMapperOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *MsadUserAccountControlMapper) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The realm in which the ldap user federation provider exists.
+// The realm that this LDAP mapper will exist in.
 func (o MsadUserAccountControlMapperOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *MsadUserAccountControlMapper) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
 }

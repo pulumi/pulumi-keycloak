@@ -17,43 +17,75 @@ public final class GroupMembershipProtocolMapperArgs extends com.pulumi.resource
 
     public static final GroupMembershipProtocolMapperArgs Empty = new GroupMembershipProtocolMapperArgs();
 
+    /**
+     * Indicates if the property should be added as a claim to the access token. Defaults to `true`.
+     * 
+     */
     @Import(name="addToAccessToken")
     private @Nullable Output<Boolean> addToAccessToken;
 
+    /**
+     * @return Indicates if the property should be added as a claim to the access token. Defaults to `true`.
+     * 
+     */
     public Optional<Output<Boolean>> addToAccessToken() {
         return Optional.ofNullable(this.addToAccessToken);
     }
 
+    /**
+     * Indicates if the property should be added as a claim to the id token. Defaults to `true`.
+     * 
+     */
     @Import(name="addToIdToken")
     private @Nullable Output<Boolean> addToIdToken;
 
+    /**
+     * @return Indicates if the property should be added as a claim to the id token. Defaults to `true`.
+     * 
+     */
     public Optional<Output<Boolean>> addToIdToken() {
         return Optional.ofNullable(this.addToIdToken);
     }
 
+    /**
+     * Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
+     * 
+     */
     @Import(name="addToUserinfo")
     private @Nullable Output<Boolean> addToUserinfo;
 
+    /**
+     * @return Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
+     * 
+     */
     public Optional<Output<Boolean>> addToUserinfo() {
         return Optional.ofNullable(this.addToUserinfo);
     }
 
+    /**
+     * The name of the claim to insert into a token.
+     * 
+     */
     @Import(name="claimName", required=true)
     private Output<String> claimName;
 
+    /**
+     * @return The name of the claim to insert into a token.
+     * 
+     */
     public Output<String> claimName() {
         return this.claimName;
     }
 
     /**
-     * The mapper&#39;s associated client. Cannot be used at the same time as client_scope_id.
+     * The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
      * 
      */
     @Import(name="clientId")
     private @Nullable Output<String> clientId;
 
     /**
-     * @return The mapper&#39;s associated client. Cannot be used at the same time as client_scope_id.
+     * @return The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
      * 
      */
     public Optional<Output<String>> clientId() {
@@ -61,36 +93,44 @@ public final class GroupMembershipProtocolMapperArgs extends com.pulumi.resource
     }
 
     /**
-     * The mapper&#39;s associated client scope. Cannot be used at the same time as client_id.
+     * The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
      * 
      */
     @Import(name="clientScopeId")
     private @Nullable Output<String> clientScopeId;
 
     /**
-     * @return The mapper&#39;s associated client scope. Cannot be used at the same time as client_id.
+     * @return The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
      * 
      */
     public Optional<Output<String>> clientScopeId() {
         return Optional.ofNullable(this.clientScopeId);
     }
 
+    /**
+     * Indicates whether the full path of the group including its parents will be used. Defaults to `true`.
+     * 
+     */
     @Import(name="fullPath")
     private @Nullable Output<Boolean> fullPath;
 
+    /**
+     * @return Indicates whether the full path of the group including its parents will be used. Defaults to `true`.
+     * 
+     */
     public Optional<Output<Boolean>> fullPath() {
         return Optional.ofNullable(this.fullPath);
     }
 
     /**
-     * A human-friendly name that will appear in the Keycloak console.
+     * The display name of this protocol mapper in the GUI.
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return A human-friendly name that will appear in the Keycloak console.
+     * @return The display name of this protocol mapper in the GUI.
      * 
      */
     public Optional<Output<String>> name() {
@@ -98,14 +138,14 @@ public final class GroupMembershipProtocolMapperArgs extends com.pulumi.resource
     }
 
     /**
-     * The realm id where the associated client or client scope exists.
+     * The realm this protocol mapper exists within.
      * 
      */
     @Import(name="realmId", required=true)
     private Output<String> realmId;
 
     /**
-     * @return The realm id where the associated client or client scope exists.
+     * @return The realm this protocol mapper exists within.
      * 
      */
     public Output<String> realmId() {
@@ -144,44 +184,92 @@ public final class GroupMembershipProtocolMapperArgs extends com.pulumi.resource
             $ = new GroupMembershipProtocolMapperArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param addToAccessToken Indicates if the property should be added as a claim to the access token. Defaults to `true`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder addToAccessToken(@Nullable Output<Boolean> addToAccessToken) {
             $.addToAccessToken = addToAccessToken;
             return this;
         }
 
+        /**
+         * @param addToAccessToken Indicates if the property should be added as a claim to the access token. Defaults to `true`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder addToAccessToken(Boolean addToAccessToken) {
             return addToAccessToken(Output.of(addToAccessToken));
         }
 
+        /**
+         * @param addToIdToken Indicates if the property should be added as a claim to the id token. Defaults to `true`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder addToIdToken(@Nullable Output<Boolean> addToIdToken) {
             $.addToIdToken = addToIdToken;
             return this;
         }
 
+        /**
+         * @param addToIdToken Indicates if the property should be added as a claim to the id token. Defaults to `true`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder addToIdToken(Boolean addToIdToken) {
             return addToIdToken(Output.of(addToIdToken));
         }
 
+        /**
+         * @param addToUserinfo Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder addToUserinfo(@Nullable Output<Boolean> addToUserinfo) {
             $.addToUserinfo = addToUserinfo;
             return this;
         }
 
+        /**
+         * @param addToUserinfo Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder addToUserinfo(Boolean addToUserinfo) {
             return addToUserinfo(Output.of(addToUserinfo));
         }
 
+        /**
+         * @param claimName The name of the claim to insert into a token.
+         * 
+         * @return builder
+         * 
+         */
         public Builder claimName(Output<String> claimName) {
             $.claimName = claimName;
             return this;
         }
 
+        /**
+         * @param claimName The name of the claim to insert into a token.
+         * 
+         * @return builder
+         * 
+         */
         public Builder claimName(String claimName) {
             return claimName(Output.of(claimName));
         }
 
         /**
-         * @param clientId The mapper&#39;s associated client. Cannot be used at the same time as client_scope_id.
+         * @param clientId The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
          * 
          * @return builder
          * 
@@ -192,7 +280,7 @@ public final class GroupMembershipProtocolMapperArgs extends com.pulumi.resource
         }
 
         /**
-         * @param clientId The mapper&#39;s associated client. Cannot be used at the same time as client_scope_id.
+         * @param clientId The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
          * 
          * @return builder
          * 
@@ -202,7 +290,7 @@ public final class GroupMembershipProtocolMapperArgs extends com.pulumi.resource
         }
 
         /**
-         * @param clientScopeId The mapper&#39;s associated client scope. Cannot be used at the same time as client_id.
+         * @param clientScopeId The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
          * 
          * @return builder
          * 
@@ -213,7 +301,7 @@ public final class GroupMembershipProtocolMapperArgs extends com.pulumi.resource
         }
 
         /**
-         * @param clientScopeId The mapper&#39;s associated client scope. Cannot be used at the same time as client_id.
+         * @param clientScopeId The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
          * 
          * @return builder
          * 
@@ -222,17 +310,29 @@ public final class GroupMembershipProtocolMapperArgs extends com.pulumi.resource
             return clientScopeId(Output.of(clientScopeId));
         }
 
+        /**
+         * @param fullPath Indicates whether the full path of the group including its parents will be used. Defaults to `true`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder fullPath(@Nullable Output<Boolean> fullPath) {
             $.fullPath = fullPath;
             return this;
         }
 
+        /**
+         * @param fullPath Indicates whether the full path of the group including its parents will be used. Defaults to `true`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder fullPath(Boolean fullPath) {
             return fullPath(Output.of(fullPath));
         }
 
         /**
-         * @param name A human-friendly name that will appear in the Keycloak console.
+         * @param name The display name of this protocol mapper in the GUI.
          * 
          * @return builder
          * 
@@ -243,7 +343,7 @@ public final class GroupMembershipProtocolMapperArgs extends com.pulumi.resource
         }
 
         /**
-         * @param name A human-friendly name that will appear in the Keycloak console.
+         * @param name The display name of this protocol mapper in the GUI.
          * 
          * @return builder
          * 
@@ -253,7 +353,7 @@ public final class GroupMembershipProtocolMapperArgs extends com.pulumi.resource
         }
 
         /**
-         * @param realmId The realm id where the associated client or client scope exists.
+         * @param realmId The realm this protocol mapper exists within.
          * 
          * @return builder
          * 
@@ -264,7 +364,7 @@ public final class GroupMembershipProtocolMapperArgs extends com.pulumi.resource
         }
 
         /**
-         * @param realmId The realm id where the associated client or client scope exists.
+         * @param realmId The realm this protocol mapper exists within.
          * 
          * @return builder
          * 

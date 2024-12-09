@@ -13,13 +13,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class UserInitialPassword {
+    /**
+     * @return If set to `true`, the initial password is set up for renewal on first use. Default to `false`.
+     * 
+     */
     private @Nullable Boolean temporary;
+    /**
+     * @return The initial password.
+     * 
+     */
     private String value;
 
     private UserInitialPassword() {}
+    /**
+     * @return If set to `true`, the initial password is set up for renewal on first use. Default to `false`.
+     * 
+     */
     public Optional<Boolean> temporary() {
         return Optional.ofNullable(this.temporary);
     }
+    /**
+     * @return The initial password.
+     * 
+     */
     public String value() {
         return this.value;
     }

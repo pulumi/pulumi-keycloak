@@ -5,18 +5,20 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * ## # keycloak.ldap.HardcodedRoleMapper
+ * Allows for creating and managing hardcoded role mappers for Keycloak users federated via LDAP.
  *
- * This mapper will grant a specified Keycloak role to each Keycloak user linked with LDAP.
+ * The LDAP hardcoded role mapper will grant a specified Keycloak role to each Keycloak user linked with LDAP.
  *
- * ### Example Usage
+ * ## Example Usage
+ *
+ * ### Realm Role)
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
  *
  * const realm = new keycloak.Realm("realm", {
- *     realm: "test",
+ *     realm: "my-realm",
  *     enabled: true,
  * });
  * const ldapUserFederation = new keycloak.ldap.UserFederation("ldap_user_federation", {
@@ -34,28 +36,75 @@ import * as utilities from "../utilities";
  *     bindDn: "cn=admin,dc=example,dc=org",
  *     bindCredential: "admin",
  * });
+ * const realmAdminRole = new keycloak.Role("realm_admin_role", {
+ *     realmId: realm.id,
+ *     name: "my-admin-role",
+ *     description: "My Realm Role",
+ * });
  * const assignAdminRoleToAllUsers = new keycloak.ldap.HardcodedRoleMapper("assign_admin_role_to_all_users", {
  *     realmId: realm.id,
  *     ldapUserFederationId: ldapUserFederation.id,
  *     name: "assign-admin-role-to-all-users",
- *     role: "admin",
+ *     role: realmAdminRole.name,
  * });
  * ```
  *
- * ### Argument Reference
+ * ### Client Role)
  *
- * The following arguments are supported:
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
  *
- * - `realmId` - (Required) The realm that this LDAP mapper will exist in.
- * - `ldapUserFederationId` - (Required) The ID of the LDAP user federation provider to attach this mapper to.
- * - `name` - (Required) Display name of this mapper when displayed in the console.
- * - `role` - (Required) The role which should be assigned to the users.
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * const ldapUserFederation = new keycloak.ldap.UserFederation("ldap_user_federation", {
+ *     name: "openldap",
+ *     realmId: realm.id,
+ *     usernameLdapAttribute: "cn",
+ *     rdnLdapAttribute: "cn",
+ *     uuidLdapAttribute: "entryDN",
+ *     userObjectClasses: [
+ *         "simpleSecurityObject",
+ *         "organizationalRole",
+ *     ],
+ *     connectionUrl: "ldap://openldap",
+ *     usersDn: "dc=example,dc=org",
+ *     bindDn: "cn=admin,dc=example,dc=org",
+ *     bindCredential: "admin",
+ * });
+ * // data sources aren't technically necessary here, but they are helpful for demonstration purposes
+ * const realmManagement = keycloak.openid.getClientOutput({
+ *     realmId: realm.id,
+ *     clientId: "realm-management",
+ * });
+ * const createClient = pulumi.all([realm.id, realmManagement]).apply(([id, realmManagement]) => keycloak.getRoleOutput({
+ *     realmId: id,
+ *     clientId: realmManagement.id,
+ *     name: "create-client",
+ * }));
+ * const assignAdminRoleToAllUsers = new keycloak.ldap.HardcodedRoleMapper("assign_admin_role_to_all_users", {
+ *     realmId: realm.id,
+ *     ldapUserFederationId: ldapUserFederation.id,
+ *     name: "assign-admin-role-to-all-users",
+ *     role: pulumi.all([realmManagement, createClient]).apply(([realmManagement, createClient]) => `${realmManagement.clientId}.${createClient.name}`),
+ * });
+ * ```
  *
- * ### Import
+ * ## Import
  *
  * LDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`.
- * The ID of the LDAP user federation provider and the mapper can be found within
- * the Keycloak GUI, and they are typically GUIDs:
+ *
+ * The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs.
+ *
+ * Example:
+ *
+ * bash
+ *
+ * ```sh
+ * $ pulumi import keycloak:ldap/hardcodedRoleMapper:HardcodedRoleMapper assign_admin_role_to_all_users my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
+ * ```
  */
 export class HardcodedRoleMapper extends pulumi.CustomResource {
     /**
@@ -86,19 +135,19 @@ export class HardcodedRoleMapper extends pulumi.CustomResource {
     }
 
     /**
-     * The ldap user federation provider to attach this mapper to.
+     * The ID of the LDAP user federation provider to attach this mapper to.
      */
     public readonly ldapUserFederationId!: pulumi.Output<string>;
     /**
-     * Display name of the mapper when displayed in the console.
+     * Display name of this mapper when displayed in the console.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The realm in which the ldap user federation provider exists.
+     * The realm that this LDAP mapper will exist in.
      */
     public readonly realmId!: pulumi.Output<string>;
     /**
-     * Role to grant to user.
+     * The name of the role which should be assigned to the users. Client roles should use the format `{{client_id}}.{{client_role_name}}`.
      */
     public readonly role!: pulumi.Output<string>;
 
@@ -145,19 +194,19 @@ export class HardcodedRoleMapper extends pulumi.CustomResource {
  */
 export interface HardcodedRoleMapperState {
     /**
-     * The ldap user federation provider to attach this mapper to.
+     * The ID of the LDAP user federation provider to attach this mapper to.
      */
     ldapUserFederationId?: pulumi.Input<string>;
     /**
-     * Display name of the mapper when displayed in the console.
+     * Display name of this mapper when displayed in the console.
      */
     name?: pulumi.Input<string>;
     /**
-     * The realm in which the ldap user federation provider exists.
+     * The realm that this LDAP mapper will exist in.
      */
     realmId?: pulumi.Input<string>;
     /**
-     * Role to grant to user.
+     * The name of the role which should be assigned to the users. Client roles should use the format `{{client_id}}.{{client_role_name}}`.
      */
     role?: pulumi.Input<string>;
 }
@@ -167,19 +216,19 @@ export interface HardcodedRoleMapperState {
  */
 export interface HardcodedRoleMapperArgs {
     /**
-     * The ldap user federation provider to attach this mapper to.
+     * The ID of the LDAP user federation provider to attach this mapper to.
      */
     ldapUserFederationId: pulumi.Input<string>;
     /**
-     * Display name of the mapper when displayed in the console.
+     * Display name of this mapper when displayed in the console.
      */
     name?: pulumi.Input<string>;
     /**
-     * The realm in which the ldap user federation provider exists.
+     * The realm that this LDAP mapper will exist in.
      */
     realmId: pulumi.Input<string>;
     /**
-     * Role to grant to user.
+     * The name of the role which should be assigned to the users. Client roles should use the format `{{client_id}}.{{client_role_name}}`.
      */
     role: pulumi.Input<string>;
 }

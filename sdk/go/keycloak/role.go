@@ -12,14 +12,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Role
-//
 // Allows for creating and managing roles within Keycloak.
 //
-// Roles allow you define privileges within Keycloak and map them to users
-// and groups.
+// Roles allow you define privileges within Keycloak and map them to users and groups.
 //
-// ### Example Usage (Realm role)
+// ## Example Usage
+//
+// ### Realm Role)
 //
 // ```go
 // package main
@@ -44,6 +43,10 @@ import (
 //				RealmId:     realm.ID(),
 //				Name:        pulumi.String("my-realm-role"),
 //				Description: pulumi.String("My Realm Role"),
+//				Attributes: pulumi.StringMap{
+//					"key":        pulumi.String("value"),
+//					"multivalue": pulumi.String("value1##value2"),
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -54,7 +57,7 @@ import (
 //
 // ```
 //
-// ### Example Usage (Client role)
+// ### Client Role)
 //
 // ```go
 // package main
@@ -76,21 +79,27 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = openid.NewClient(ctx, "client", &openid.ClientArgs{
+//			_, err = openid.NewClient(ctx, "openid_client", &openid.ClientArgs{
 //				RealmId:    realm.ID(),
 //				ClientId:   pulumi.String("client"),
 //				Name:       pulumi.String("client"),
 //				Enabled:    pulumi.Bool(true),
-//				AccessType: pulumi.String("BEARER-ONLY"),
+//				AccessType: pulumi.String("CONFIDENTIAL"),
+//				ValidRedirectUris: pulumi.StringArray{
+//					pulumi.String("http://localhost:8080/openid-callback"),
+//				},
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = keycloak.NewRole(ctx, "client_role", &keycloak.RoleArgs{
 //				RealmId:     realm.ID(),
-//				ClientId:    pulumi.Any(clientKeycloakClient.Id),
+//				ClientId:    pulumi.Any(openidClientKeycloakClient.Id),
 //				Name:        pulumi.String("my-client-role"),
 //				Description: pulumi.String("My Client Role"),
+//				Attributes: pulumi.StringMap{
+//					"key": pulumi.String("value"),
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -101,7 +110,7 @@ import (
 //
 // ```
 //
-// ### Example Usage (Composite role)
+// ### Composite Role)
 //
 // ```go
 // package main
@@ -124,50 +133,68 @@ import (
 //				return err
 //			}
 //			// realm roles
-//			_, err = keycloak.NewRole(ctx, "create_role", &keycloak.RoleArgs{
+//			createRole, err := keycloak.NewRole(ctx, "create_role", &keycloak.RoleArgs{
 //				RealmId: realm.ID(),
 //				Name:    pulumi.String("create"),
+//				Attributes: pulumi.StringMap{
+//					"key": pulumi.String("value"),
+//				},
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = keycloak.NewRole(ctx, "read_role", &keycloak.RoleArgs{
+//			readRole, err := keycloak.NewRole(ctx, "read_role", &keycloak.RoleArgs{
 //				RealmId: realm.ID(),
 //				Name:    pulumi.String("read"),
+//				Attributes: pulumi.StringMap{
+//					"key": pulumi.String("value"),
+//				},
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = keycloak.NewRole(ctx, "update_role", &keycloak.RoleArgs{
+//			updateRole, err := keycloak.NewRole(ctx, "update_role", &keycloak.RoleArgs{
 //				RealmId: realm.ID(),
 //				Name:    pulumi.String("update"),
+//				Attributes: pulumi.StringMap{
+//					"key": pulumi.String("value"),
+//				},
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = keycloak.NewRole(ctx, "delete_role", &keycloak.RoleArgs{
+//			deleteRole, err := keycloak.NewRole(ctx, "delete_role", &keycloak.RoleArgs{
 //				RealmId: realm.ID(),
 //				Name:    pulumi.String("delete"),
+//				Attributes: pulumi.StringMap{
+//					"key": pulumi.String("value"),
+//				},
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			// client role
-//			_, err = openid.NewClient(ctx, "client", &openid.ClientArgs{
+//			_, err = openid.NewClient(ctx, "openid_client", &openid.ClientArgs{
 //				RealmId:    realm.ID(),
 //				ClientId:   pulumi.String("client"),
 //				Name:       pulumi.String("client"),
 //				Enabled:    pulumi.Bool(true),
-//				AccessType: pulumi.String("BEARER-ONLY"),
+//				AccessType: pulumi.String("CONFIDENTIAL"),
+//				ValidRedirectUris: pulumi.StringArray{
+//					pulumi.String("http://localhost:8080/openid-callback"),
+//				},
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = keycloak.NewRole(ctx, "client_role", &keycloak.RoleArgs{
+//			clientRole, err := keycloak.NewRole(ctx, "client_role", &keycloak.RoleArgs{
 //				RealmId:     realm.ID(),
-//				ClientId:    pulumi.Any(clientKeycloakClient.Id),
+//				ClientId:    pulumi.Any(openidClientKeycloakClient.Id),
 //				Name:        pulumi.String("my-client-role"),
 //				Description: pulumi.String("My Client Role"),
+//				Attributes: pulumi.StringMap{
+//					"key": pulumi.String("value"),
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -176,11 +203,14 @@ import (
 //				RealmId: realm.ID(),
 //				Name:    pulumi.String("admin"),
 //				CompositeRoles: pulumi.StringArray{
-//					pulumi.String("{keycloak_role.create_role.id}"),
-//					pulumi.String("{keycloak_role.read_role.id}"),
-//					pulumi.String("{keycloak_role.update_role.id}"),
-//					pulumi.String("{keycloak_role.delete_role.id}"),
-//					pulumi.String("{keycloak_role.client_role.id}"),
+//					createRole.ID(),
+//					readRole.ID(),
+//					updateRole.ID(),
+//					deleteRole.ID(),
+//					clientRole.ID(),
+//				},
+//				Attributes: pulumi.StringMap{
+//					"key": pulumi.String("value"),
 //				},
 //			})
 //			if err != nil {
@@ -192,36 +222,34 @@ import (
 //
 // ```
 //
-// ### Argument Reference
+// ## Import
 //
-// The following arguments are supported:
+// Roles can be imported using the format `{{realm_id}}/{{role_id}}`, where `role_id` is the unique ID that Keycloak assigns
 //
-//   - `realmId` - (Required) The realm this role exists within.
-//   - `clientId` - (Optional) When specified, this role will be created as
-//     a client role attached to the client with the provided ID
-//   - `name` - (Required) The name of the role
-//   - `description` - (Optional) The description of the role
-//   - `compositeRoles` - (Optional) When specified, this role will be a
-//     composite role, composed of all roles that have an ID present within
-//     this list.
-//
-// ### Import
-//
-// Roles can be imported using the format `{{realm_id}}/{{role_id}}`, where
-// `roleId` is the unique ID that Keycloak assigns to the role. The ID is
-// not easy to find in the GUI, but it appears in the URL when editing the
-// role.
+// to the role. The ID is not easy to find in the GUI, but it appears in the URL when editing the role.
 //
 // Example:
+//
+// bash
+//
+// ```sh
+// $ pulumi import keycloak:index/role:Role role my-realm/7e8cf32a-8acb-4d34-89c4-04fb1d10ccad
+// ```
 type Role struct {
 	pulumi.CustomResourceState
 
-	Attributes     pulumi.StringMapOutput   `pulumi:"attributes"`
-	ClientId       pulumi.StringPtrOutput   `pulumi:"clientId"`
+	// A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
+	Attributes pulumi.StringMapOutput `pulumi:"attributes"`
+	// When specified, this role will be created as a client role attached to the client with the provided ID
+	ClientId pulumi.StringPtrOutput `pulumi:"clientId"`
+	// When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
 	CompositeRoles pulumi.StringArrayOutput `pulumi:"compositeRoles"`
-	Description    pulumi.StringPtrOutput   `pulumi:"description"`
-	Name           pulumi.StringOutput      `pulumi:"name"`
-	RealmId        pulumi.StringOutput      `pulumi:"realmId"`
+	// The description of the role
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// The name of the role
+	Name pulumi.StringOutput `pulumi:"name"`
+	// The realm this role exists within.
+	RealmId pulumi.StringOutput `pulumi:"realmId"`
 }
 
 // NewRole registers a new resource with the given unique name, arguments, and options.
@@ -257,21 +285,33 @@ func GetRole(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Role resources.
 type roleState struct {
-	Attributes     map[string]string `pulumi:"attributes"`
-	ClientId       *string           `pulumi:"clientId"`
-	CompositeRoles []string          `pulumi:"compositeRoles"`
-	Description    *string           `pulumi:"description"`
-	Name           *string           `pulumi:"name"`
-	RealmId        *string           `pulumi:"realmId"`
+	// A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
+	Attributes map[string]string `pulumi:"attributes"`
+	// When specified, this role will be created as a client role attached to the client with the provided ID
+	ClientId *string `pulumi:"clientId"`
+	// When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
+	CompositeRoles []string `pulumi:"compositeRoles"`
+	// The description of the role
+	Description *string `pulumi:"description"`
+	// The name of the role
+	Name *string `pulumi:"name"`
+	// The realm this role exists within.
+	RealmId *string `pulumi:"realmId"`
 }
 
 type RoleState struct {
-	Attributes     pulumi.StringMapInput
-	ClientId       pulumi.StringPtrInput
+	// A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
+	Attributes pulumi.StringMapInput
+	// When specified, this role will be created as a client role attached to the client with the provided ID
+	ClientId pulumi.StringPtrInput
+	// When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
 	CompositeRoles pulumi.StringArrayInput
-	Description    pulumi.StringPtrInput
-	Name           pulumi.StringPtrInput
-	RealmId        pulumi.StringPtrInput
+	// The description of the role
+	Description pulumi.StringPtrInput
+	// The name of the role
+	Name pulumi.StringPtrInput
+	// The realm this role exists within.
+	RealmId pulumi.StringPtrInput
 }
 
 func (RoleState) ElementType() reflect.Type {
@@ -279,22 +319,34 @@ func (RoleState) ElementType() reflect.Type {
 }
 
 type roleArgs struct {
-	Attributes     map[string]string `pulumi:"attributes"`
-	ClientId       *string           `pulumi:"clientId"`
-	CompositeRoles []string          `pulumi:"compositeRoles"`
-	Description    *string           `pulumi:"description"`
-	Name           *string           `pulumi:"name"`
-	RealmId        string            `pulumi:"realmId"`
+	// A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
+	Attributes map[string]string `pulumi:"attributes"`
+	// When specified, this role will be created as a client role attached to the client with the provided ID
+	ClientId *string `pulumi:"clientId"`
+	// When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
+	CompositeRoles []string `pulumi:"compositeRoles"`
+	// The description of the role
+	Description *string `pulumi:"description"`
+	// The name of the role
+	Name *string `pulumi:"name"`
+	// The realm this role exists within.
+	RealmId string `pulumi:"realmId"`
 }
 
 // The set of arguments for constructing a Role resource.
 type RoleArgs struct {
-	Attributes     pulumi.StringMapInput
-	ClientId       pulumi.StringPtrInput
+	// A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
+	Attributes pulumi.StringMapInput
+	// When specified, this role will be created as a client role attached to the client with the provided ID
+	ClientId pulumi.StringPtrInput
+	// When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
 	CompositeRoles pulumi.StringArrayInput
-	Description    pulumi.StringPtrInput
-	Name           pulumi.StringPtrInput
-	RealmId        pulumi.StringInput
+	// The description of the role
+	Description pulumi.StringPtrInput
+	// The name of the role
+	Name pulumi.StringPtrInput
+	// The realm this role exists within.
+	RealmId pulumi.StringInput
 }
 
 func (RoleArgs) ElementType() reflect.Type {
@@ -384,26 +436,32 @@ func (o RoleOutput) ToRoleOutputWithContext(ctx context.Context) RoleOutput {
 	return o
 }
 
+// A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
 func (o RoleOutput) Attributes() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *Role) pulumi.StringMapOutput { return v.Attributes }).(pulumi.StringMapOutput)
 }
 
+// When specified, this role will be created as a client role attached to the client with the provided ID
 func (o RoleOutput) ClientId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Role) pulumi.StringPtrOutput { return v.ClientId }).(pulumi.StringPtrOutput)
 }
 
+// When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
 func (o RoleOutput) CompositeRoles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Role) pulumi.StringArrayOutput { return v.CompositeRoles }).(pulumi.StringArrayOutput)
 }
 
+// The description of the role
 func (o RoleOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Role) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// The name of the role
 func (o RoleOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Role) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// The realm this role exists within.
 func (o RoleOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Role) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
 }

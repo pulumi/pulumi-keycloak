@@ -10,15 +10,13 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak
 {
     /// <summary>
-    /// ## # keycloak.User
-    /// 
     /// Allows for creating and managing Users within Keycloak.
     /// 
-    /// This resource was created primarily to enable the acceptance tests for the `keycloak.Group` resource.
-    /// Creating users within Keycloak is not recommended. Instead, users should be federated from external sources
-    /// by configuring user federation providers or identity providers.
+    /// This resource was created primarily to enable the acceptance tests for the `keycloak.Group` resource. Creating users within
+    /// Keycloak is not recommended. Instead, users should be federated from external sources by configuring user federation providers
+    /// or identity providers.
     /// 
-    /// ### Example Usage
+    /// ## Example Usage
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -52,6 +50,11 @@ namespace Pulumi.Keycloak
     ///         Email = "alice@domain.com",
     ///         FirstName = "Alice",
     ///         LastName = "Aliceberg",
+    ///         Attributes = 
+    ///         {
+    ///             { "foo", "bar" },
+    ///             { "multivalue", "value1##value2" },
+    ///         },
     ///         InitialPassword = new Keycloak.Inputs.UserInitialPasswordArgs
     ///         {
     ///             Value = "some password",
@@ -62,61 +65,86 @@ namespace Pulumi.Keycloak
     /// });
     /// ```
     /// 
-    /// ### Argument Reference
-    /// 
-    /// The following arguments are supported:
-    /// 
-    /// - `realm_id` - (Required) The realm this user belongs to.
-    /// - `username` - (Required) The unique username of this user.
-    /// - `initial_password` (Optional) When given, the user's initial password will be set.
-    ///    This attribute is only respected during initial user creation.
-    ///     - `value` (Required) The initial password.
-    ///     - `temporary` (Optional) If set to `true`, the initial password is set up for renewal on first use. Default to `false`.
-    /// - `enabled` - (Optional) When false, this user cannot log in. Defaults to `true`.
-    /// - `email` - (Optional) The user's email.
-    /// - `first_name` - (Optional) The user's first name.
-    /// - `last_name` - (Optional) The user's last name.
-    /// 
-    /// ### Import
+    /// ## Import
     /// 
     /// Users can be imported using the format `{{realm_id}}/{{user_id}}`, where `user_id` is the unique ID that Keycloak
+    /// 
     /// assigns to the user upon creation. This value can be found in the GUI when editing the user.
     /// 
     /// Example:
+    /// 
+    /// bash
+    /// 
+    /// ```sh
+    /// $ pulumi import keycloak:index/user:User user my-realm/60c3f971-b1d3-4b3a-9035-d16d7540a5e4
+    /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:index/user:User")]
     public partial class User : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// A map representing attributes for the user. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
+        /// </summary>
         [Output("attributes")]
         public Output<ImmutableDictionary<string, string>?> Attributes { get; private set; } = null!;
 
+        /// <summary>
+        /// The user's email.
+        /// </summary>
         [Output("email")]
         public Output<string?> Email { get; private set; } = null!;
 
+        /// <summary>
+        /// Whether the email address was validated or not. Default to `false`.
+        /// </summary>
         [Output("emailVerified")]
         public Output<bool?> EmailVerified { get; private set; } = null!;
 
+        /// <summary>
+        /// When false, this user cannot log in. Defaults to `true`.
+        /// </summary>
         [Output("enabled")]
         public Output<bool?> Enabled { get; private set; } = null!;
 
+        /// <summary>
+        /// When specified, the user will be linked to a federated identity provider. Refer to the federated user example for more details.
+        /// </summary>
         [Output("federatedIdentities")]
         public Output<ImmutableArray<Outputs.UserFederatedIdentity>> FederatedIdentities { get; private set; } = null!;
 
+        /// <summary>
+        /// The user's first name.
+        /// </summary>
         [Output("firstName")]
         public Output<string?> FirstName { get; private set; } = null!;
 
+        /// <summary>
+        /// When given, the user's initial password will be set. This attribute is only respected during initial user creation.
+        /// </summary>
         [Output("initialPassword")]
         public Output<Outputs.UserInitialPassword?> InitialPassword { get; private set; } = null!;
 
+        /// <summary>
+        /// The user's last name.
+        /// </summary>
         [Output("lastName")]
         public Output<string?> LastName { get; private set; } = null!;
 
+        /// <summary>
+        /// The realm this user belongs to.
+        /// </summary>
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
 
+        /// <summary>
+        /// A list of required user actions.
+        /// </summary>
         [Output("requiredActions")]
         public Output<ImmutableArray<string>> RequiredActions { get; private set; } = null!;
 
+        /// <summary>
+        /// The unique username of this user.
+        /// </summary>
         [Output("username")]
         public Output<string> Username { get; private set; } = null!;
 
@@ -168,49 +196,85 @@ namespace Pulumi.Keycloak
     {
         [Input("attributes")]
         private InputMap<string>? _attributes;
+
+        /// <summary>
+        /// A map representing attributes for the user. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
+        /// </summary>
         public InputMap<string> Attributes
         {
             get => _attributes ?? (_attributes = new InputMap<string>());
             set => _attributes = value;
         }
 
+        /// <summary>
+        /// The user's email.
+        /// </summary>
         [Input("email")]
         public Input<string>? Email { get; set; }
 
+        /// <summary>
+        /// Whether the email address was validated or not. Default to `false`.
+        /// </summary>
         [Input("emailVerified")]
         public Input<bool>? EmailVerified { get; set; }
 
+        /// <summary>
+        /// When false, this user cannot log in. Defaults to `true`.
+        /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
         [Input("federatedIdentities")]
         private InputList<Inputs.UserFederatedIdentityArgs>? _federatedIdentities;
+
+        /// <summary>
+        /// When specified, the user will be linked to a federated identity provider. Refer to the federated user example for more details.
+        /// </summary>
         public InputList<Inputs.UserFederatedIdentityArgs> FederatedIdentities
         {
             get => _federatedIdentities ?? (_federatedIdentities = new InputList<Inputs.UserFederatedIdentityArgs>());
             set => _federatedIdentities = value;
         }
 
+        /// <summary>
+        /// The user's first name.
+        /// </summary>
         [Input("firstName")]
         public Input<string>? FirstName { get; set; }
 
+        /// <summary>
+        /// When given, the user's initial password will be set. This attribute is only respected during initial user creation.
+        /// </summary>
         [Input("initialPassword")]
         public Input<Inputs.UserInitialPasswordArgs>? InitialPassword { get; set; }
 
+        /// <summary>
+        /// The user's last name.
+        /// </summary>
         [Input("lastName")]
         public Input<string>? LastName { get; set; }
 
+        /// <summary>
+        /// The realm this user belongs to.
+        /// </summary>
         [Input("realmId", required: true)]
         public Input<string> RealmId { get; set; } = null!;
 
         [Input("requiredActions")]
         private InputList<string>? _requiredActions;
+
+        /// <summary>
+        /// A list of required user actions.
+        /// </summary>
         public InputList<string> RequiredActions
         {
             get => _requiredActions ?? (_requiredActions = new InputList<string>());
             set => _requiredActions = value;
         }
 
+        /// <summary>
+        /// The unique username of this user.
+        /// </summary>
         [Input("username", required: true)]
         public Input<string> Username { get; set; } = null!;
 
@@ -224,49 +288,85 @@ namespace Pulumi.Keycloak
     {
         [Input("attributes")]
         private InputMap<string>? _attributes;
+
+        /// <summary>
+        /// A map representing attributes for the user. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
+        /// </summary>
         public InputMap<string> Attributes
         {
             get => _attributes ?? (_attributes = new InputMap<string>());
             set => _attributes = value;
         }
 
+        /// <summary>
+        /// The user's email.
+        /// </summary>
         [Input("email")]
         public Input<string>? Email { get; set; }
 
+        /// <summary>
+        /// Whether the email address was validated or not. Default to `false`.
+        /// </summary>
         [Input("emailVerified")]
         public Input<bool>? EmailVerified { get; set; }
 
+        /// <summary>
+        /// When false, this user cannot log in. Defaults to `true`.
+        /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
         [Input("federatedIdentities")]
         private InputList<Inputs.UserFederatedIdentityGetArgs>? _federatedIdentities;
+
+        /// <summary>
+        /// When specified, the user will be linked to a federated identity provider. Refer to the federated user example for more details.
+        /// </summary>
         public InputList<Inputs.UserFederatedIdentityGetArgs> FederatedIdentities
         {
             get => _federatedIdentities ?? (_federatedIdentities = new InputList<Inputs.UserFederatedIdentityGetArgs>());
             set => _federatedIdentities = value;
         }
 
+        /// <summary>
+        /// The user's first name.
+        /// </summary>
         [Input("firstName")]
         public Input<string>? FirstName { get; set; }
 
+        /// <summary>
+        /// When given, the user's initial password will be set. This attribute is only respected during initial user creation.
+        /// </summary>
         [Input("initialPassword")]
         public Input<Inputs.UserInitialPasswordGetArgs>? InitialPassword { get; set; }
 
+        /// <summary>
+        /// The user's last name.
+        /// </summary>
         [Input("lastName")]
         public Input<string>? LastName { get; set; }
 
+        /// <summary>
+        /// The realm this user belongs to.
+        /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
 
         [Input("requiredActions")]
         private InputList<string>? _requiredActions;
+
+        /// <summary>
+        /// A list of required user actions.
+        /// </summary>
         public InputList<string> RequiredActions
         {
             get => _requiredActions ?? (_requiredActions = new InputList<string>());
             set => _requiredActions = value;
         }
 
+        /// <summary>
+        /// The unique username of this user.
+        /// </summary>
         [Input("username")]
         public Input<string>? Username { get; set; }
 

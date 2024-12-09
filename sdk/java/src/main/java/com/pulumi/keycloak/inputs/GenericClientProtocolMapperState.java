@@ -17,14 +17,14 @@ public final class GenericClientProtocolMapperState extends com.pulumi.resources
     public static final GenericClientProtocolMapperState Empty = new GenericClientProtocolMapperState();
 
     /**
-     * The mapper&#39;s associated client. Cannot be used at the same time as client_scope_id.
+     * The client this protocol mapper is attached to.
      * 
      */
     @Import(name="clientId")
     private @Nullable Output<String> clientId;
 
     /**
-     * @return The mapper&#39;s associated client. Cannot be used at the same time as client_scope_id.
+     * @return The client this protocol mapper is attached to.
      * 
      */
     public Optional<Output<String>> clientId() {
@@ -46,22 +46,30 @@ public final class GenericClientProtocolMapperState extends com.pulumi.resources
         return Optional.ofNullable(this.clientScopeId);
     }
 
+    /**
+     * A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
+     * 
+     */
     @Import(name="config")
     private @Nullable Output<Map<String,String>> config;
 
+    /**
+     * @return A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
+     * 
+     */
     public Optional<Output<Map<String,String>>> config() {
         return Optional.ofNullable(this.config);
     }
 
     /**
-     * A human-friendly name that will appear in the Keycloak console.
+     * The display name of this protocol mapper in the GUI.
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return A human-friendly name that will appear in the Keycloak console.
+     * @return The display name of this protocol mapper in the GUI.
      * 
      */
     public Optional<Output<String>> name() {
@@ -69,14 +77,14 @@ public final class GenericClientProtocolMapperState extends com.pulumi.resources
     }
 
     /**
-     * The protocol of the client (openid-connect / saml).
+     * The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
      * 
      */
     @Import(name="protocol")
     private @Nullable Output<String> protocol;
 
     /**
-     * @return The protocol of the client (openid-connect / saml).
+     * @return The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
      * 
      */
     public Optional<Output<String>> protocol() {
@@ -84,14 +92,14 @@ public final class GenericClientProtocolMapperState extends com.pulumi.resources
     }
 
     /**
-     * The type of the protocol mapper.
+     * The name of the protocol mapper. The protocol mapper must be compatible with the specified client.
      * 
      */
     @Import(name="protocolMapper")
     private @Nullable Output<String> protocolMapper;
 
     /**
-     * @return The type of the protocol mapper.
+     * @return The name of the protocol mapper. The protocol mapper must be compatible with the specified client.
      * 
      */
     public Optional<Output<String>> protocolMapper() {
@@ -99,14 +107,14 @@ public final class GenericClientProtocolMapperState extends com.pulumi.resources
     }
 
     /**
-     * The realm id where the associated client or client scope exists.
+     * The realm this protocol mapper exists within.
      * 
      */
     @Import(name="realmId")
     private @Nullable Output<String> realmId;
 
     /**
-     * @return The realm id where the associated client or client scope exists.
+     * @return The realm this protocol mapper exists within.
      * 
      */
     public Optional<Output<String>> realmId() {
@@ -144,7 +152,7 @@ public final class GenericClientProtocolMapperState extends com.pulumi.resources
         }
 
         /**
-         * @param clientId The mapper&#39;s associated client. Cannot be used at the same time as client_scope_id.
+         * @param clientId The client this protocol mapper is attached to.
          * 
          * @return builder
          * 
@@ -155,7 +163,7 @@ public final class GenericClientProtocolMapperState extends com.pulumi.resources
         }
 
         /**
-         * @param clientId The mapper&#39;s associated client. Cannot be used at the same time as client_scope_id.
+         * @param clientId The client this protocol mapper is attached to.
          * 
          * @return builder
          * 
@@ -185,17 +193,29 @@ public final class GenericClientProtocolMapperState extends com.pulumi.resources
             return clientScopeId(Output.of(clientScopeId));
         }
 
+        /**
+         * @param config A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
+         * 
+         * @return builder
+         * 
+         */
         public Builder config(@Nullable Output<Map<String,String>> config) {
             $.config = config;
             return this;
         }
 
+        /**
+         * @param config A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
+         * 
+         * @return builder
+         * 
+         */
         public Builder config(Map<String,String> config) {
             return config(Output.of(config));
         }
 
         /**
-         * @param name A human-friendly name that will appear in the Keycloak console.
+         * @param name The display name of this protocol mapper in the GUI.
          * 
          * @return builder
          * 
@@ -206,7 +226,7 @@ public final class GenericClientProtocolMapperState extends com.pulumi.resources
         }
 
         /**
-         * @param name A human-friendly name that will appear in the Keycloak console.
+         * @param name The display name of this protocol mapper in the GUI.
          * 
          * @return builder
          * 
@@ -216,7 +236,7 @@ public final class GenericClientProtocolMapperState extends com.pulumi.resources
         }
 
         /**
-         * @param protocol The protocol of the client (openid-connect / saml).
+         * @param protocol The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
          * 
          * @return builder
          * 
@@ -227,7 +247,7 @@ public final class GenericClientProtocolMapperState extends com.pulumi.resources
         }
 
         /**
-         * @param protocol The protocol of the client (openid-connect / saml).
+         * @param protocol The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
          * 
          * @return builder
          * 
@@ -237,7 +257,7 @@ public final class GenericClientProtocolMapperState extends com.pulumi.resources
         }
 
         /**
-         * @param protocolMapper The type of the protocol mapper.
+         * @param protocolMapper The name of the protocol mapper. The protocol mapper must be compatible with the specified client.
          * 
          * @return builder
          * 
@@ -248,7 +268,7 @@ public final class GenericClientProtocolMapperState extends com.pulumi.resources
         }
 
         /**
-         * @param protocolMapper The type of the protocol mapper.
+         * @param protocolMapper The name of the protocol mapper. The protocol mapper must be compatible with the specified client.
          * 
          * @return builder
          * 
@@ -258,7 +278,7 @@ public final class GenericClientProtocolMapperState extends com.pulumi.resources
         }
 
         /**
-         * @param realmId The realm id where the associated client or client scope exists.
+         * @param realmId The realm this protocol mapper exists within.
          * 
          * @return builder
          * 
@@ -269,7 +289,7 @@ public final class GenericClientProtocolMapperState extends com.pulumi.resources
         }
 
         /**
-         * @param realmId The realm id where the associated client or client scope exists.
+         * @param realmId The realm this protocol mapper exists within.
          * 
          * @return builder
          * 
