@@ -9,6 +9,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+//go:build go || all
 // +build go all
 
 package examples
@@ -21,7 +22,7 @@ import (
 )
 
 func TestAccRealmGo(t *testing.T) {
-	test := getGoBaseOptions().
+	test := getGoBaseOptions(t).
 		With(integration.ProgramTestOptions{
 			Dir: filepath.Join(getCwd(t), "realm", "go"),
 		})
@@ -29,13 +30,10 @@ func TestAccRealmGo(t *testing.T) {
 	integration.ProgramTest(t, &test)
 }
 
-func getGoBaseOptions() integration.ProgramTestOptions {
-	base := getBaseOptions()
-	goBase := base.With(integration.ProgramTestOptions{
+func getGoBaseOptions(t *testing.T) integration.ProgramTestOptions {
+	return getBaseOptions(t).With(integration.ProgramTestOptions{
 		Dependencies: []string{
 			"github.com/pulumi/pulumi-keycloak/sdk/v4",
 		},
 	})
-
-	return goBase
 }

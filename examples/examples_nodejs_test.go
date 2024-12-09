@@ -9,6 +9,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+//go:build nodejs || all
 // +build nodejs all
 
 package examples
@@ -20,19 +21,16 @@ import (
 	"github.com/pulumi/pulumi/pkg/v3/testing/integration"
 )
 
-func getJSBaseOptions() integration.ProgramTestOptions {
-	base := getBaseOptions()
-	baseJS := base.With(integration.ProgramTestOptions{
+func getJSBaseOptions(t *testing.T) integration.ProgramTestOptions {
+	return getBaseOptions(t).With(integration.ProgramTestOptions{
 		Dependencies: []string{
 			"@pulumi/keycloak",
 		},
 	})
-
-	return baseJS
 }
 
 func TestAccRealmTs(t *testing.T) {
-	test := getJSBaseOptions().
+	test := getJSBaseOptions(t).
 		With(integration.ProgramTestOptions{
 			Dir: path.Join(getCwd(t), "realm", "ts"),
 		})
