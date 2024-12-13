@@ -136,21 +136,11 @@ type GetClientAuthorizationPolicyResult struct {
 }
 
 func GetClientAuthorizationPolicyOutput(ctx *pulumi.Context, args GetClientAuthorizationPolicyOutputArgs, opts ...pulumi.InvokeOption) GetClientAuthorizationPolicyResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetClientAuthorizationPolicyResultOutput, error) {
 			args := v.(GetClientAuthorizationPolicyArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetClientAuthorizationPolicyResult
-			secret, err := ctx.InvokePackageRaw("keycloak:openid/getClientAuthorizationPolicy:getClientAuthorizationPolicy", args, &rv, "", opts...)
-			if err != nil {
-				return GetClientAuthorizationPolicyResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetClientAuthorizationPolicyResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetClientAuthorizationPolicyResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("keycloak:openid/getClientAuthorizationPolicy:getClientAuthorizationPolicy", args, GetClientAuthorizationPolicyResultOutput{}, options).(GetClientAuthorizationPolicyResultOutput), nil
 		}).(GetClientAuthorizationPolicyResultOutput)
 }
 

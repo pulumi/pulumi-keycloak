@@ -136,21 +136,11 @@ type LookupRealmResult struct {
 }
 
 func LookupRealmOutput(ctx *pulumi.Context, args LookupRealmOutputArgs, opts ...pulumi.InvokeOption) LookupRealmResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupRealmResultOutput, error) {
 			args := v.(LookupRealmArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupRealmResult
-			secret, err := ctx.InvokePackageRaw("keycloak:index/getRealm:getRealm", args, &rv, "", opts...)
-			if err != nil {
-				return LookupRealmResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupRealmResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupRealmResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("keycloak:index/getRealm:getRealm", args, LookupRealmResultOutput{}, options).(LookupRealmResultOutput), nil
 		}).(LookupRealmResultOutput)
 }
 

@@ -108,6 +108,55 @@ namespace Pulumi.Keycloak
         /// </summary>
         public static Output<GetRoleResult> Invoke(GetRoleInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetRoleResult>("keycloak:index/getRole:getRole", args ?? new GetRoleInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// This data source can be used to fetch properties of a Keycloak role for
+        /// usage with other resources, such as `keycloak.GroupRoles`.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Keycloak = Pulumi.Keycloak;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var realm = new Keycloak.Realm("realm", new()
+        ///     {
+        ///         RealmName = "my-realm",
+        ///         Enabled = true,
+        ///     });
+        /// 
+        ///     var offlineAccess = Keycloak.GetRole.Invoke(new()
+        ///     {
+        ///         RealmId = realm.Id,
+        ///         Name = "offline_access",
+        ///     });
+        /// 
+        ///     // use the data source
+        ///     var @group = new Keycloak.Group("group", new()
+        ///     {
+        ///         RealmId = realm.Id,
+        ///         Name = "group",
+        ///     });
+        /// 
+        ///     var groupRoles = new Keycloak.GroupRoles("group_roles", new()
+        ///     {
+        ///         RealmId = realm.Id,
+        ///         GroupId = @group.Id,
+        ///         RoleIds = new[]
+        ///         {
+        ///             offlineAccess.Apply(getRoleResult =&gt; getRoleResult.Id),
+        ///         },
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetRoleResult> Invoke(GetRoleInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetRoleResult>("keycloak:index/getRole:getRole", args ?? new GetRoleInvokeArgs(), options.WithDefaults());
     }
 
 
