@@ -51,21 +51,11 @@ type GetRealmKeysResult struct {
 }
 
 func GetRealmKeysOutput(ctx *pulumi.Context, args GetRealmKeysOutputArgs, opts ...pulumi.InvokeOption) GetRealmKeysResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetRealmKeysResultOutput, error) {
 			args := v.(GetRealmKeysArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetRealmKeysResult
-			secret, err := ctx.InvokePackageRaw("keycloak:index/getRealmKeys:getRealmKeys", args, &rv, "", opts...)
-			if err != nil {
-				return GetRealmKeysResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetRealmKeysResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetRealmKeysResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("keycloak:index/getRealmKeys:getRealmKeys", args, GetRealmKeysResultOutput{}, options).(GetRealmKeysResultOutput), nil
 		}).(GetRealmKeysResultOutput)
 }
 

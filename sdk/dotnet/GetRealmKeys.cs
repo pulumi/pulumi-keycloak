@@ -34,6 +34,18 @@ namespace Pulumi.Keycloak
         /// </summary>
         public static Output<GetRealmKeysResult> Invoke(GetRealmKeysInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetRealmKeysResult>("keycloak:index/getRealmKeys:getRealmKeys", args ?? new GetRealmKeysInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Use this data source to get the keys of a realm. Keys can be filtered by algorithm and status.
+        /// 
+        /// Remarks:
+        /// 
+        /// - A key must meet all filter criteria
+        /// - This data source may return more than one value.
+        /// - If no key matches the filter criteria, then an error will be returned.
+        /// </summary>
+        public static Output<GetRealmKeysResult> Invoke(GetRealmKeysInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetRealmKeysResult>("keycloak:index/getRealmKeys:getRealmKeys", args ?? new GetRealmKeysInvokeArgs(), options.WithDefaults());
     }
 
 

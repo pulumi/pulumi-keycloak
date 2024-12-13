@@ -94,6 +94,48 @@ namespace Pulumi.Keycloak
         /// </summary>
         public static Output<GetUserRealmRolesResult> Invoke(GetUserRealmRolesInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetUserRealmRolesResult>("keycloak:index/getUserRealmRoles:getUserRealmRoles", args ?? new GetUserRealmRolesInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// This data source can be used to fetch the realm roles of a user within Keycloak.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Keycloak = Pulumi.Keycloak;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var masterRealm = Keycloak.GetRealm.Invoke(new()
+        ///     {
+        ///         Realm = "master",
+        ///     });
+        /// 
+        ///     // use the keycloak_user data source to grab the admin user's ID
+        ///     var defaultAdminUser = Keycloak.GetUser.Invoke(new()
+        ///     {
+        ///         RealmId = masterRealm.Apply(getRealmResult =&gt; getRealmResult.Id),
+        ///         Username = "keycloak",
+        ///     });
+        /// 
+        ///     // use the keycloak_user_realm_roles data source to list role names
+        ///     var userRealmRoles = Keycloak.GetUserRealmRoles.Invoke(new()
+        ///     {
+        ///         RealmId = masterRealm.Apply(getRealmResult =&gt; getRealmResult.Id),
+        ///         UserId = defaultAdminUser.Apply(getUserResult =&gt; getUserResult.Id),
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["keycloakUserRoleNames"] = userRealmRoles.Apply(getUserRealmRolesResult =&gt; getUserRealmRolesResult.RoleNames),
+        ///     };
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetUserRealmRolesResult> Invoke(GetUserRealmRolesInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetUserRealmRolesResult>("keycloak:index/getUserRealmRoles:getUserRealmRoles", args ?? new GetUserRealmRolesInvokeArgs(), options.WithDefaults());
     }
 
 

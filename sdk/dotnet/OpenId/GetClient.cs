@@ -76,6 +76,39 @@ namespace Pulumi.Keycloak.OpenId
         /// </summary>
         public static Output<GetClientResult> Invoke(GetClientInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetClientResult>("keycloak:openid/getClient:getClient", args ?? new GetClientInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// This data source can be used to fetch properties of a Keycloak OpenID client for usage with other resources.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Keycloak = Pulumi.Keycloak;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var realmManagement = Keycloak.OpenId.GetClient.Invoke(new()
+        ///     {
+        ///         RealmId = "my-realm",
+        ///         ClientId = "realm-management",
+        ///     });
+        /// 
+        ///     // use the data source
+        ///     var admin = Keycloak.GetRole.Invoke(new()
+        ///     {
+        ///         RealmId = "my-realm",
+        ///         ClientId = realmManagement.Apply(getClientResult =&gt; getClientResult.Id),
+        ///         Name = "realm-admin",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetClientResult> Invoke(GetClientInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetClientResult>("keycloak:openid/getClient:getClient", args ?? new GetClientInvokeArgs(), options.WithDefaults());
     }
 
 

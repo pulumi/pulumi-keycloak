@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.TypeShape;
 import com.pulumi.deployment.Deployment;
 import com.pulumi.deployment.InvokeOptions;
+import com.pulumi.deployment.InvokeOutputOptions;
 import com.pulumi.keycloak.Utilities;
 import com.pulumi.keycloak.saml.inputs.GetClientArgs;
 import com.pulumi.keycloak.saml.inputs.GetClientInstallationProviderArgs;
@@ -222,6 +223,58 @@ public final class SamlFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetClientResult> getClient(GetClientArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("keycloak:saml/getClient:getClient", TypeShape.of(GetClientResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * This data source can be used to fetch properties of a Keycloak client that uses the SAML protocol.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.saml.SamlFunctions;
+     * import com.pulumi.keycloak.saml.inputs.GetClientArgs;
+     * import com.pulumi.keycloak.KeycloakFunctions;
+     * import com.pulumi.keycloak.inputs.GetRoleArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var realmManagement = SamlFunctions.getClient(GetClientArgs.builder()
+     *             .realmId("my-realm")
+     *             .clientId("realm-management")
+     *             .build());
+     * 
+     *         // use the data source
+     *         final var admin = KeycloakFunctions.getRole(GetRoleArgs.builder()
+     *             .realmId("my-realm")
+     *             .clientId(realmManagement.applyValue(getClientResult -> getClientResult.id()))
+     *             .name("realm-admin")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetClientResult> getClientPlain(GetClientPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("keycloak:saml/getClient:getClient", TypeShape.of(GetClientResult.class), args, Utilities.withVersion(options));
     }
@@ -244,6 +297,13 @@ public final class SamlFunctions {
      * 
      */
     public static Output<GetClientInstallationProviderResult> getClientInstallationProvider(GetClientInstallationProviderArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("keycloak:saml/getClientInstallationProvider:getClientInstallationProvider", TypeShape.of(GetClientInstallationProviderResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * This data source can be used to retrieve Installation Provider of a SAML Client.
+     * 
+     */
+    public static Output<GetClientInstallationProviderResult> getClientInstallationProvider(GetClientInstallationProviderArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("keycloak:saml/getClientInstallationProvider:getClientInstallationProvider", TypeShape.of(GetClientInstallationProviderResult.class), args, Utilities.withVersion(options));
     }
     /**

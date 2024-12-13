@@ -84,21 +84,11 @@ type GetUserRealmRolesResult struct {
 }
 
 func GetUserRealmRolesOutput(ctx *pulumi.Context, args GetUserRealmRolesOutputArgs, opts ...pulumi.InvokeOption) GetUserRealmRolesResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetUserRealmRolesResultOutput, error) {
 			args := v.(GetUserRealmRolesArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetUserRealmRolesResult
-			secret, err := ctx.InvokePackageRaw("keycloak:index/getUserRealmRoles:getUserRealmRoles", args, &rv, "", opts...)
-			if err != nil {
-				return GetUserRealmRolesResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetUserRealmRolesResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetUserRealmRolesResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("keycloak:index/getUserRealmRoles:getUserRealmRoles", args, GetUserRealmRolesResultOutput{}, options).(GetUserRealmRolesResultOutput), nil
 		}).(GetUserRealmRolesResultOutput)
 }
 
