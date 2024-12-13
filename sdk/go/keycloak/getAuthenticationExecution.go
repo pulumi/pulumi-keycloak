@@ -74,21 +74,11 @@ type GetAuthenticationExecutionResult struct {
 }
 
 func GetAuthenticationExecutionOutput(ctx *pulumi.Context, args GetAuthenticationExecutionOutputArgs, opts ...pulumi.InvokeOption) GetAuthenticationExecutionResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetAuthenticationExecutionResultOutput, error) {
 			args := v.(GetAuthenticationExecutionArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetAuthenticationExecutionResult
-			secret, err := ctx.InvokePackageRaw("keycloak:index/getAuthenticationExecution:getAuthenticationExecution", args, &rv, "", opts...)
-			if err != nil {
-				return GetAuthenticationExecutionResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetAuthenticationExecutionResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetAuthenticationExecutionResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("keycloak:index/getAuthenticationExecution:getAuthenticationExecution", args, GetAuthenticationExecutionResultOutput{}, options).(GetAuthenticationExecutionResultOutput), nil
 		}).(GetAuthenticationExecutionResultOutput)
 }
 

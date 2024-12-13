@@ -78,6 +78,40 @@ namespace Pulumi.Keycloak.OpenId
         /// </summary>
         public static Output<GetClientScopeResult> Invoke(GetClientScopeInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetClientScopeResult>("keycloak:openid/getClientScope:getClientScope", args ?? new GetClientScopeInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// This data source can be used to fetch properties of a Keycloak OpenID client scope for usage with other resources.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Keycloak = Pulumi.Keycloak;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var offlineAccess = Keycloak.OpenId.GetClientScope.Invoke(new()
+        ///     {
+        ///         RealmId = "my-realm",
+        ///         Name = "offline_access",
+        ///     });
+        /// 
+        ///     // use the data source
+        ///     var audienceMapper = new Keycloak.OpenId.AudienceProtocolMapper("audience_mapper", new()
+        ///     {
+        ///         RealmId = offlineAccess.Apply(getClientScopeResult =&gt; getClientScopeResult.RealmId),
+        ///         ClientScopeId = offlineAccess.Apply(getClientScopeResult =&gt; getClientScopeResult.Id),
+        ///         Name = "audience-mapper",
+        ///         IncludedCustomAudience = "foo",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetClientScopeResult> Invoke(GetClientScopeInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetClientScopeResult>("keycloak:openid/getClientScope:getClientScope", args ?? new GetClientScopeInvokeArgs(), options.WithDefaults());
     }
 
 

@@ -168,6 +168,85 @@ namespace Pulumi.Keycloak.OpenId
         /// </summary>
         public static Output<GetClientAuthorizationPolicyResult> Invoke(GetClientAuthorizationPolicyInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetClientAuthorizationPolicyResult>("keycloak:openid/getClientAuthorizationPolicy:getClientAuthorizationPolicy", args ?? new GetClientAuthorizationPolicyInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// This data source can be used to fetch policy and permission information for an OpenID client that has authorization enabled.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// In this example, we'll create a new OpenID client with authorization enabled. This will cause Keycloak to create a default
+        /// permission for this client called "Default Permission". We'll use the `keycloak.openid.getClientAuthorizationPolicy` data
+        /// source to fetch information about this permission, so we can use it to create a new resource-based authorization permission.
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Keycloak = Pulumi.Keycloak;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var realm = new Keycloak.Realm("realm", new()
+        ///     {
+        ///         RealmName = "my-realm",
+        ///         Enabled = true,
+        ///     });
+        /// 
+        ///     var clientWithAuthz = new Keycloak.OpenId.Client("client_with_authz", new()
+        ///     {
+        ///         ClientId = "client-with-authz",
+        ///         Name = "client-with-authz",
+        ///         RealmId = realm.Id,
+        ///         AccessType = "CONFIDENTIAL",
+        ///         ServiceAccountsEnabled = true,
+        ///         Authorization = new Keycloak.OpenId.Inputs.ClientAuthorizationArgs
+        ///         {
+        ///             PolicyEnforcementMode = "ENFORCING",
+        ///         },
+        ///     });
+        /// 
+        ///     var defaultPermission = Keycloak.OpenId.GetClientAuthorizationPolicy.Invoke(new()
+        ///     {
+        ///         RealmId = realm.Id,
+        ///         ResourceServerId = clientWithAuthz.ResourceServerId,
+        ///         Name = "Default Permission",
+        ///     });
+        /// 
+        ///     var resource = new Keycloak.OpenId.ClientAuthorizationResource("resource", new()
+        ///     {
+        ///         ResourceServerId = clientWithAuthz.ResourceServerId,
+        ///         Name = "authorization-resource",
+        ///         RealmId = realm.Id,
+        ///         Uris = new[]
+        ///         {
+        ///             "/endpoint/*",
+        ///         },
+        ///         Attributes = 
+        ///         {
+        ///             { "foo", "bar" },
+        ///         },
+        ///     });
+        /// 
+        ///     var permission = new Keycloak.OpenId.ClientAuthorizationPermission("permission", new()
+        ///     {
+        ///         ResourceServerId = clientWithAuthz.ResourceServerId,
+        ///         RealmId = realm.Id,
+        ///         Name = "authorization-permission",
+        ///         Policies = new[]
+        ///         {
+        ///             defaultPermission.Apply(getClientAuthorizationPolicyResult =&gt; getClientAuthorizationPolicyResult.Id),
+        ///         },
+        ///         Resources = new[]
+        ///         {
+        ///             resource.Id,
+        ///         },
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetClientAuthorizationPolicyResult> Invoke(GetClientAuthorizationPolicyInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetClientAuthorizationPolicyResult>("keycloak:openid/getClientAuthorizationPolicy:getClientAuthorizationPolicy", args ?? new GetClientAuthorizationPolicyInvokeArgs(), options.WithDefaults());
     }
 
 

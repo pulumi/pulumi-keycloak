@@ -74,6 +74,38 @@ namespace Pulumi.Keycloak
         /// </summary>
         public static Output<GetRealmResult> Invoke(GetRealmInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetRealmResult>("keycloak:index/getRealm:getRealm", args ?? new GetRealmInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// This data source can be used to fetch properties of a Keycloak realm for
+        /// usage with other resources.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Keycloak = Pulumi.Keycloak;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var realm = Keycloak.GetRealm.Invoke(new()
+        ///     {
+        ///         Realm = "my-realm",
+        ///     });
+        /// 
+        ///     // use the data source
+        ///     var @group = new Keycloak.Role("group", new()
+        ///     {
+        ///         RealmId = realm.Apply(getRealmResult =&gt; getRealmResult.Id),
+        ///         Name = "group",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetRealmResult> Invoke(GetRealmInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetRealmResult>("keycloak:index/getRealm:getRealm", args ?? new GetRealmInvokeArgs(), options.WithDefaults());
     }
 
 
