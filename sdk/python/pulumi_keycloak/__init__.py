@@ -502,14 +502,6 @@ _utilities.register(
  },
  {
   "pkg": "keycloak",
-  "mod": "openid/audienceResolveProtocolMappter",
-  "fqn": "pulumi_keycloak.openid",
-  "classes": {
-   "keycloak:openid/audienceResolveProtocolMappter:AudienceResolveProtocolMappter": "AudienceResolveProtocolMappter"
-  }
- },
- {
-  "pkg": "keycloak",
   "mod": "openid/client",
   "fqn": "pulumi_keycloak.openid",
   "classes": {

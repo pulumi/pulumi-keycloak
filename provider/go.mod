@@ -1,4 +1,4 @@
-module github.com/pulumi/pulumi-keycloak/provider/v5
+module github.com/pulumi/pulumi-keycloak/provider/v6
 
 go 1.22.3
 
@@ -11,7 +11,7 @@ replace (
 )
 
 require (
-	github.com/mrparkers/terraform-provider-keycloak v0.0.0-00010101000000-000000000000
+	github.com/keycloak/terraform-provider-keycloak v0.0.0-20241206084240-f87470c95855
 	github.com/pulumi/providertest v0.1.3
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.101.0
 	github.com/pulumi/pulumi/sdk/v3 v3.145.0
@@ -143,7 +143,6 @@ require (
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/kevinburke/ssh_config v1.2.0 // indirect
-	github.com/keycloak/terraform-provider-keycloak v0.0.0-20241206084240-f87470c95855 // indirect
 	github.com/klauspost/compress v1.15.11 // indirect
 	github.com/kylelemons/godebug v1.1.0 // indirect
 	github.com/lucasb-eyer/go-colorful v1.2.0 // indirect

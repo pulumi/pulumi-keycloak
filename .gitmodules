@@ -1,4 +1,4 @@
 [submodule "upstream"]
 	path = upstream
-	url = https://github.com/mrparkers/terraform-provider-keycloak.git
+	url = https://github.com/keycloak/terraform-provider-keycloak.git
         ignore = dirty

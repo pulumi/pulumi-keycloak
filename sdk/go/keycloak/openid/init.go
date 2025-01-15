@@ -7,7 +7,7 @@ import (
 	"fmt"
 
 	"github.com/blang/semver"
-	"github.com/pulumi/pulumi-keycloak/sdk/v5/go/keycloak/internal"
+	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -25,8 +25,6 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &AudienceProtocolMapper{}
 	case "keycloak:openid/audienceResolveProtocolMapper:AudienceResolveProtocolMapper":
 		r = &AudienceResolveProtocolMapper{}
-	case "keycloak:openid/audienceResolveProtocolMappter:AudienceResolveProtocolMappter":
-		r = &AudienceResolveProtocolMappter{}
 	case "keycloak:openid/client:Client":
 		r = &Client{}
 	case "keycloak:openid/clientAggregatePolicy:ClientAggregatePolicy":
@@ -102,11 +100,6 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"keycloak",
 		"openid/audienceResolveProtocolMapper",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"keycloak",
-		"openid/audienceResolveProtocolMappter",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

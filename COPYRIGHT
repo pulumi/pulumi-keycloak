@@ -7,4 +7,4 @@ by third parties, licensed under their own terms.
 
 Notably, this larger work combines with the Terraform KeyCloak Provider,
 which is licensed as MIT or the project itself at
-<https://github.com/mrparkers/terraform-provider-aws>).
+<https://github.com/keycloak/terraform-provider-aws>).

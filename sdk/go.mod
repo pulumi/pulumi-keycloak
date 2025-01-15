@@ -1,4 +1,4 @@
-module github.com/pulumi/pulumi-keycloak/sdk/v5
+module github.com/pulumi/pulumi-keycloak/sdk/v6
 
 go 1.21
 
