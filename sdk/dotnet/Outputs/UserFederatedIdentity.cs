@@ -22,7 +22,7 @@ namespace Pulumi.Keycloak.Outputs
         /// </summary>
         public readonly string UserId;
         /// <summary>
-        /// The user name of the user defined in the identity provider
+        /// The username of the user defined in the identity provider
         /// </summary>
         public readonly string UserName;
 

@@ -250,14 +250,14 @@ public final class GoogleIdentityProviderState extends com.pulumi.resources.Reso
     }
 
     /**
-     * When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+     * When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
      * 
      */
     @Import(name="linkOnly")
     private @Nullable Output<Boolean> linkOnly;
 
     /**
-     * @return When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+     * @return When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
      * 
      */
     public Optional<Output<Boolean>> linkOnly() {
@@ -757,7 +757,7 @@ public final class GoogleIdentityProviderState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param linkOnly When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+         * @param linkOnly When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
          * 
          * @return builder
          * 
@@ -768,7 +768,7 @@ public final class GoogleIdentityProviderState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param linkOnly When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+         * @param linkOnly When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
          * 
          * @return builder
          * 

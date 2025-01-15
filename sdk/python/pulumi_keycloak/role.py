@@ -24,6 +24,7 @@ class RoleArgs:
                  client_id: Optional[pulumi.Input[str]] = None,
                  composite_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 import_: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Role resource.
@@ -32,6 +33,7 @@ class RoleArgs:
         :param pulumi.Input[str] client_id: When specified, this role will be created as a client role attached to the client with the provided ID
         :param pulumi.Input[Sequence[pulumi.Input[str]]] composite_roles: When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
         :param pulumi.Input[str] description: The description of the role
+        :param pulumi.Input[bool] import_: When `true`, the role with the specified `name` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with roles that Keycloak creates automatically during realm creation, such as the client roles `create-client`, `view-realm`, ... for the client `realm-management` created per realm. Note, that the role will not be removed during destruction if `import` is `true`.
         :param pulumi.Input[str] name: The name of the role
         """
         pulumi.set(__self__, "realm_id", realm_id)
@@ -43,6 +45,8 @@ class RoleArgs:
             pulumi.set(__self__, "composite_roles", composite_roles)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if import_ is not None:
+            pulumi.set(__self__, "import_", import_)
         if name is not None:
             pulumi.set(__self__, "name", name)
 
@@ -107,6 +111,18 @@ class RoleArgs:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter(name="import")
+    def import_(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When `true`, the role with the specified `name` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with roles that Keycloak creates automatically during realm creation, such as the client roles `create-client`, `view-realm`, ... for the client `realm-management` created per realm. Note, that the role will not be removed during destruction if `import` is `true`.
+        """
+        return pulumi.get(self, "import_")
+
+    @import_.setter
+    def import_(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "import_", value)
+
+    @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -126,6 +142,7 @@ class _RoleState:
                  client_id: Optional[pulumi.Input[str]] = None,
                  composite_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 import_: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  realm_id: Optional[pulumi.Input[str]] = None):
         """
@@ -134,6 +151,7 @@ class _RoleState:
         :param pulumi.Input[str] client_id: When specified, this role will be created as a client role attached to the client with the provided ID
         :param pulumi.Input[Sequence[pulumi.Input[str]]] composite_roles: When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
         :param pulumi.Input[str] description: The description of the role
+        :param pulumi.Input[bool] import_: When `true`, the role with the specified `name` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with roles that Keycloak creates automatically during realm creation, such as the client roles `create-client`, `view-realm`, ... for the client `realm-management` created per realm. Note, that the role will not be removed during destruction if `import` is `true`.
         :param pulumi.Input[str] name: The name of the role
         :param pulumi.Input[str] realm_id: The realm this role exists within.
         """
@@ -145,6 +163,8 @@ class _RoleState:
             pulumi.set(__self__, "composite_roles", composite_roles)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if import_ is not None:
+            pulumi.set(__self__, "import_", import_)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if realm_id is not None:
@@ -199,6 +219,18 @@ class _RoleState:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter(name="import")
+    def import_(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When `true`, the role with the specified `name` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with roles that Keycloak creates automatically during realm creation, such as the client roles `create-client`, `view-realm`, ... for the client `realm-management` created per realm. Note, that the role will not be removed during destruction if `import` is `true`.
+        """
+        return pulumi.get(self, "import_")
+
+    @import_.setter
+    def import_(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "import_", value)
+
+    @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -232,13 +264,14 @@ class Role(pulumi.CustomResource):
                  client_id: Optional[pulumi.Input[str]] = None,
                  composite_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 import_: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  realm_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Allows for creating and managing roles within Keycloak.
 
-        Roles allow you define privileges within Keycloak and map them to users and groups.
+        Roles allow you to define privileges within Keycloak and map them to users and groups.
 
         ## Example Usage
 
@@ -372,6 +405,7 @@ class Role(pulumi.CustomResource):
         :param pulumi.Input[str] client_id: When specified, this role will be created as a client role attached to the client with the provided ID
         :param pulumi.Input[Sequence[pulumi.Input[str]]] composite_roles: When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
         :param pulumi.Input[str] description: The description of the role
+        :param pulumi.Input[bool] import_: When `true`, the role with the specified `name` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with roles that Keycloak creates automatically during realm creation, such as the client roles `create-client`, `view-realm`, ... for the client `realm-management` created per realm. Note, that the role will not be removed during destruction if `import` is `true`.
         :param pulumi.Input[str] name: The name of the role
         :param pulumi.Input[str] realm_id: The realm this role exists within.
         """
@@ -384,7 +418,7 @@ class Role(pulumi.CustomResource):
         """
         Allows for creating and managing roles within Keycloak.
 
-        Roles allow you define privileges within Keycloak and map them to users and groups.
+        Roles allow you to define privileges within Keycloak and map them to users and groups.
 
         ## Example Usage
 
@@ -531,6 +565,7 @@ class Role(pulumi.CustomResource):
                  client_id: Optional[pulumi.Input[str]] = None,
                  composite_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 import_: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  realm_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -546,6 +581,7 @@ class Role(pulumi.CustomResource):
             __props__.__dict__["client_id"] = client_id
             __props__.__dict__["composite_roles"] = composite_roles
             __props__.__dict__["description"] = description
+            __props__.__dict__["import_"] = import_
             __props__.__dict__["name"] = name
             if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
@@ -564,6 +600,7 @@ class Role(pulumi.CustomResource):
             client_id: Optional[pulumi.Input[str]] = None,
             composite_roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             description: Optional[pulumi.Input[str]] = None,
+            import_: Optional[pulumi.Input[bool]] = None,
             name: Optional[pulumi.Input[str]] = None,
             realm_id: Optional[pulumi.Input[str]] = None) -> 'Role':
         """
@@ -577,6 +614,7 @@ class Role(pulumi.CustomResource):
         :param pulumi.Input[str] client_id: When specified, this role will be created as a client role attached to the client with the provided ID
         :param pulumi.Input[Sequence[pulumi.Input[str]]] composite_roles: When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
         :param pulumi.Input[str] description: The description of the role
+        :param pulumi.Input[bool] import_: When `true`, the role with the specified `name` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with roles that Keycloak creates automatically during realm creation, such as the client roles `create-client`, `view-realm`, ... for the client `realm-management` created per realm. Note, that the role will not be removed during destruction if `import` is `true`.
         :param pulumi.Input[str] name: The name of the role
         :param pulumi.Input[str] realm_id: The realm this role exists within.
         """
@@ -588,13 +626,14 @@ class Role(pulumi.CustomResource):
         __props__.__dict__["client_id"] = client_id
         __props__.__dict__["composite_roles"] = composite_roles
         __props__.__dict__["description"] = description
+        __props__.__dict__["import_"] = import_
         __props__.__dict__["name"] = name
         __props__.__dict__["realm_id"] = realm_id
         return Role(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter
-    def attributes(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+    def attributes(self) -> pulumi.Output[Mapping[str, str]]:
         """
         A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
         """
@@ -610,7 +649,7 @@ class Role(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="compositeRoles")
-    def composite_roles(self) -> pulumi.Output[Optional[Sequence[str]]]:
+    def composite_roles(self) -> pulumi.Output[Sequence[str]]:
         """
         When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
         """
@@ -618,11 +657,19 @@ class Role(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def description(self) -> pulumi.Output[Optional[str]]:
+    def description(self) -> pulumi.Output[str]:
         """
         The description of the role
         """
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="import")
+    def import_(self) -> pulumi.Output[Optional[bool]]:
+        """
+        When `true`, the role with the specified `name` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with roles that Keycloak creates automatically during realm creation, such as the client roles `create-client`, `view-realm`, ... for the client `realm-management` created per realm. Note, that the role will not be removed during destruction if `import` is `true`.
+        """
+        return pulumi.get(self, "import_")
 
     @property
     @pulumi.getter

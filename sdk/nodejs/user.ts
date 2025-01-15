@@ -116,6 +116,10 @@ export class User extends pulumi.CustomResource {
      */
     public readonly firstName!: pulumi.Output<string | undefined>;
     /**
+     * When `true`, the user with the specified `username` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with users that Keycloak creates automatically during realm creation, such as `admin`. Note, that the user will not be removed during destruction if `import` is `true`.
+     */
+    public readonly import!: pulumi.Output<boolean | undefined>;
+    /**
      * When given, the user's initial password will be set. This attribute is only respected during initial user creation.
      */
     public readonly initialPassword!: pulumi.Output<outputs.UserInitialPassword | undefined>;
@@ -155,6 +159,7 @@ export class User extends pulumi.CustomResource {
             resourceInputs["enabled"] = state ? state.enabled : undefined;
             resourceInputs["federatedIdentities"] = state ? state.federatedIdentities : undefined;
             resourceInputs["firstName"] = state ? state.firstName : undefined;
+            resourceInputs["import"] = state ? state.import : undefined;
             resourceInputs["initialPassword"] = state ? state.initialPassword : undefined;
             resourceInputs["lastName"] = state ? state.lastName : undefined;
             resourceInputs["realmId"] = state ? state.realmId : undefined;
@@ -174,6 +179,7 @@ export class User extends pulumi.CustomResource {
             resourceInputs["enabled"] = args ? args.enabled : undefined;
             resourceInputs["federatedIdentities"] = args ? args.federatedIdentities : undefined;
             resourceInputs["firstName"] = args ? args.firstName : undefined;
+            resourceInputs["import"] = args ? args.import : undefined;
             resourceInputs["initialPassword"] = args ? args.initialPassword : undefined;
             resourceInputs["lastName"] = args ? args.lastName : undefined;
             resourceInputs["realmId"] = args ? args.realmId : undefined;
@@ -213,6 +219,10 @@ export interface UserState {
      * The user's first name.
      */
     firstName?: pulumi.Input<string>;
+    /**
+     * When `true`, the user with the specified `username` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with users that Keycloak creates automatically during realm creation, such as `admin`. Note, that the user will not be removed during destruction if `import` is `true`.
+     */
+    import?: pulumi.Input<boolean>;
     /**
      * When given, the user's initial password will be set. This attribute is only respected during initial user creation.
      */
@@ -263,6 +273,10 @@ export interface UserArgs {
      * The user's first name.
      */
     firstName?: pulumi.Input<string>;
+    /**
+     * When `true`, the user with the specified `username` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with users that Keycloak creates automatically during realm creation, such as `admin`. Note, that the user will not be removed during destruction if `import` is `true`.
+     */
+    import?: pulumi.Input<boolean>;
     /**
      * When given, the user's initial password will be set. This attribute is only respected during initial user creation.
      */

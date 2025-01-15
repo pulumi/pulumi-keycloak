@@ -114,14 +114,14 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.addReadTokenRoleOnCreate);
     }
     /**
-     * The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
+     * The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
      * 
      */
     @Export(name="alias", refs={String.class}, tree="[0]")
     private Output<String> alias;
 
     /**
-     * @return The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
+     * @return The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
      * 
      */
     public Output<String> alias() {
@@ -344,14 +344,14 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.jwksUrl);
     }
     /**
-     * When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+     * When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
      * 
      */
     @Export(name="linkOnly", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> linkOnly;
 
     /**
-     * @return When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+     * @return When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
      * 
      */
     public Output<Optional<Boolean>> linkOnly() {
@@ -372,14 +372,14 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.loginHint);
     }
     /**
-     * The Logout URL is the end session endpoint to use to logout user from external identity provider.
+     * The Logout URL is the end session endpoint to use to sign-out the user from external identity provider.
      * 
      */
     @Export(name="logoutUrl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> logoutUrl;
 
     /**
-     * @return The Logout URL is the end session endpoint to use to logout user from external identity provider.
+     * @return The Logout URL is the end session endpoint to use to sign-out the user from external identity provider.
      * 
      */
     public Output<Optional<String>> logoutUrl() {

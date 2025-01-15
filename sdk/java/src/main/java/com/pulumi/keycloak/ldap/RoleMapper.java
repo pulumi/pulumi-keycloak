@@ -276,14 +276,14 @@ public class RoleMapper extends com.pulumi.resources.CustomResource {
         return this.roleObjectClasses;
     }
     /**
-     * When specified, adds an additional custom filter to be used when querying for roles. Must start with `(` and end with `)`.
+     * When specified, adds a custom filter to be used when querying for roles. Must start with `(` and end with `)`.
      * 
      */
     @Export(name="rolesLdapFilter", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> rolesLdapFilter;
 
     /**
-     * @return When specified, adds an additional custom filter to be used when querying for roles. Must start with `(` and end with `)`.
+     * @return When specified, adds a custom filter to be used when querying for roles. Must start with `(` and end with `)`.
      * 
      */
     public Output<Optional<String>> rolesLdapFilter() {

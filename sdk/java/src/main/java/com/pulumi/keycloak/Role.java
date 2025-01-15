@@ -10,6 +10,7 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.keycloak.RoleArgs;
 import com.pulumi.keycloak.Utilities;
 import com.pulumi.keycloak.inputs.RoleState;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -19,7 +20,7 @@ import javax.annotation.Nullable;
 /**
  * Allows for creating and managing roles within Keycloak.
  * 
- * Roles allow you define privileges within Keycloak and map them to users and groups.
+ * Roles allow you to define privileges within Keycloak and map them to users and groups.
  * 
  * ## Example Usage
  * 
@@ -245,14 +246,14 @@ public class Role extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="attributes", refs={Map.class,String.class}, tree="[0,1,1]")
-    private Output</* @Nullable */ Map<String,String>> attributes;
+    private Output<Map<String,String>> attributes;
 
     /**
      * @return A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
      * 
      */
-    public Output<Optional<Map<String,String>>> attributes() {
-        return Codegen.optional(this.attributes);
+    public Output<Map<String,String>> attributes() {
+        return this.attributes;
     }
     /**
      * When specified, this role will be created as a client role attached to the client with the provided ID
@@ -273,28 +274,42 @@ public class Role extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="compositeRoles", refs={List.class,String.class}, tree="[0,1]")
-    private Output</* @Nullable */ List<String>> compositeRoles;
+    private Output<List<String>> compositeRoles;
 
     /**
      * @return When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
      * 
      */
-    public Output<Optional<List<String>>> compositeRoles() {
-        return Codegen.optional(this.compositeRoles);
+    public Output<List<String>> compositeRoles() {
+        return this.compositeRoles;
     }
     /**
      * The description of the role
      * 
      */
     @Export(name="description", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> description;
+    private Output<String> description;
 
     /**
      * @return The description of the role
      * 
      */
-    public Output<Optional<String>> description() {
-        return Codegen.optional(this.description);
+    public Output<String> description() {
+        return this.description;
+    }
+    /**
+     * When `true`, the role with the specified `name` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with roles that Keycloak creates automatically during realm creation, such as the client roles `create-client`, `view-realm`, ... for the client `realm-management` created per realm. Note, that the role will not be removed during destruction if `import` is `true`.
+     * 
+     */
+    @Export(name="import", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> import_;
+
+    /**
+     * @return When `true`, the role with the specified `name` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with roles that Keycloak creates automatically during realm creation, such as the client roles `create-client`, `view-realm`, ... for the client `realm-management` created per realm. Note, that the role will not be removed during destruction if `import` is `true`.
+     * 
+     */
+    public Output<Optional<Boolean>> import_() {
+        return Codegen.optional(this.import_);
     }
     /**
      * The name of the role

@@ -152,14 +152,14 @@ public final class UserPropertyProtocolMapperState extends com.pulumi.resources.
     }
 
     /**
-     * The built in user property (such as email) to map a claim for.
+     * The built-in user property (such as email) to map a claim for.
      * 
      */
     @Import(name="userProperty")
     private @Nullable Output<String> userProperty;
 
     /**
-     * @return The built in user property (such as email) to map a claim for.
+     * @return The built-in user property (such as email) to map a claim for.
      * 
      */
     public Optional<Output<String>> userProperty() {
@@ -389,7 +389,7 @@ public final class UserPropertyProtocolMapperState extends com.pulumi.resources.
         }
 
         /**
-         * @param userProperty The built in user property (such as email) to map a claim for.
+         * @param userProperty The built-in user property (such as email) to map a claim for.
          * 
          * @return builder
          * 
@@ -400,7 +400,7 @@ public final class UserPropertyProtocolMapperState extends com.pulumi.resources.
         }
 
         /**
-         * @param userProperty The built in user property (such as email) to map a claim for.
+         * @param userProperty The built-in user property (such as email) to map a claim for.
          * 
          * @return builder
          * 

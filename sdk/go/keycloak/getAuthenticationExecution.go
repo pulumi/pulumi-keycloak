@@ -69,8 +69,10 @@ type GetAuthenticationExecutionResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id              string `pulumi:"id"`
 	ParentFlowAlias string `pulumi:"parentFlowAlias"`
-	ProviderId      string `pulumi:"providerId"`
-	RealmId         string `pulumi:"realmId"`
+	// (Computed) The authenticator priority.
+	Priority   int    `pulumi:"priority"`
+	ProviderId string `pulumi:"providerId"`
+	RealmId    string `pulumi:"realmId"`
 }
 
 func GetAuthenticationExecutionOutput(ctx *pulumi.Context, args GetAuthenticationExecutionOutputArgs, opts ...pulumi.InvokeOption) GetAuthenticationExecutionResultOutput {
@@ -118,6 +120,11 @@ func (o GetAuthenticationExecutionResultOutput) Id() pulumi.StringOutput {
 
 func (o GetAuthenticationExecutionResultOutput) ParentFlowAlias() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAuthenticationExecutionResult) string { return v.ParentFlowAlias }).(pulumi.StringOutput)
+}
+
+// (Computed) The authenticator priority.
+func (o GetAuthenticationExecutionResultOutput) Priority() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAuthenticationExecutionResult) int { return v.Priority }).(pulumi.IntOutput)
 }
 
 func (o GetAuthenticationExecutionResultOutput) ProviderId() pulumi.StringOutput {

@@ -7,7 +7,7 @@ import * as utilities from "./utilities";
 /**
  * Allows for creating and managing roles within Keycloak.
  *
- * Roles allow you define privileges within Keycloak and map them to users and groups.
+ * Roles allow you to define privileges within Keycloak and map them to users and groups.
  *
  * ## Example Usage
  *
@@ -179,7 +179,7 @@ export class Role extends pulumi.CustomResource {
     /**
      * A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
      */
-    public readonly attributes!: pulumi.Output<{[key: string]: string} | undefined>;
+    public readonly attributes!: pulumi.Output<{[key: string]: string}>;
     /**
      * When specified, this role will be created as a client role attached to the client with the provided ID
      */
@@ -187,11 +187,15 @@ export class Role extends pulumi.CustomResource {
     /**
      * When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
      */
-    public readonly compositeRoles!: pulumi.Output<string[] | undefined>;
+    public readonly compositeRoles!: pulumi.Output<string[]>;
     /**
      * The description of the role
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    public readonly description!: pulumi.Output<string>;
+    /**
+     * When `true`, the role with the specified `name` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with roles that Keycloak creates automatically during realm creation, such as the client roles `create-client`, `view-realm`, ... for the client `realm-management` created per realm. Note, that the role will not be removed during destruction if `import` is `true`.
+     */
+    public readonly import!: pulumi.Output<boolean | undefined>;
     /**
      * The name of the role
      */
@@ -218,6 +222,7 @@ export class Role extends pulumi.CustomResource {
             resourceInputs["clientId"] = state ? state.clientId : undefined;
             resourceInputs["compositeRoles"] = state ? state.compositeRoles : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["import"] = state ? state.import : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["realmId"] = state ? state.realmId : undefined;
         } else {
@@ -229,6 +234,7 @@ export class Role extends pulumi.CustomResource {
             resourceInputs["clientId"] = args ? args.clientId : undefined;
             resourceInputs["compositeRoles"] = args ? args.compositeRoles : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["import"] = args ? args.import : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["realmId"] = args ? args.realmId : undefined;
         }
@@ -257,6 +263,10 @@ export interface RoleState {
      * The description of the role
      */
     description?: pulumi.Input<string>;
+    /**
+     * When `true`, the role with the specified `name` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with roles that Keycloak creates automatically during realm creation, such as the client roles `create-client`, `view-realm`, ... for the client `realm-management` created per realm. Note, that the role will not be removed during destruction if `import` is `true`.
+     */
+    import?: pulumi.Input<boolean>;
     /**
      * The name of the role
      */
@@ -287,6 +297,10 @@ export interface RoleArgs {
      * The description of the role
      */
     description?: pulumi.Input<string>;
+    /**
+     * When `true`, the role with the specified `name` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with roles that Keycloak creates automatically during realm creation, such as the client roles `create-client`, `view-realm`, ... for the client `realm-management` created per realm. Note, that the role will not be removed during destruction if `import` is `true`.
+     */
+    import?: pulumi.Input<boolean>;
     /**
      * The name of the role
      */

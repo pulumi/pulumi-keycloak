@@ -111,6 +111,21 @@ public final class UserState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * When `true`, the user with the specified `username` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with users that Keycloak creates automatically during realm creation, such as `admin`. Note, that the user will not be removed during destruction if `import` is `true`.
+     * 
+     */
+    @Import(name="import")
+    private @Nullable Output<Boolean> import_;
+
+    /**
+     * @return When `true`, the user with the specified `username` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with users that Keycloak creates automatically during realm creation, such as `admin`. Note, that the user will not be removed during destruction if `import` is `true`.
+     * 
+     */
+    public Optional<Output<Boolean>> import_() {
+        return Optional.ofNullable(this.import_);
+    }
+
+    /**
      * When given, the user&#39;s initial password will be set. This attribute is only respected during initial user creation.
      * 
      */
@@ -194,6 +209,7 @@ public final class UserState extends com.pulumi.resources.ResourceArgs {
         this.enabled = $.enabled;
         this.federatedIdentities = $.federatedIdentities;
         this.firstName = $.firstName;
+        this.import_ = $.import_;
         this.initialPassword = $.initialPassword;
         this.lastName = $.lastName;
         this.realmId = $.realmId;
@@ -353,6 +369,27 @@ public final class UserState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder firstName(String firstName) {
             return firstName(Output.of(firstName));
+        }
+
+        /**
+         * @param import_ When `true`, the user with the specified `username` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with users that Keycloak creates automatically during realm creation, such as `admin`. Note, that the user will not be removed during destruction if `import` is `true`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder import_(@Nullable Output<Boolean> import_) {
+            $.import_ = import_;
+            return this;
+        }
+
+        /**
+         * @param import_ When `true`, the user with the specified `username` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with users that Keycloak creates automatically during realm creation, such as `admin`. Note, that the user will not be removed during destruction if `import` is `true`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder import_(Boolean import_) {
+            return import_(Output.of(import_));
         }
 
         /**

@@ -10,11 +10,8 @@ import * as utilities from "./utilities";
  * Allows for managing Realm User Profiles within Keycloak.
  *
  * A user profile defines a schema for representing user attributes and how they are managed within a realm.
- * This is a preview feature, hence not fully supported and disabled by default.
- * To enable it, start the server with one of the following flags:
- * - WildFly distribution: `-Dkeycloak.profile.feature.declarative_user_profile=enabled`
- * - Quarkus distribution: `--features=preview` or `--features=declarative-user-profile`
  *
+ * Information for Keycloak versions < 24:
  * The realm linked to the `keycloak.RealmUserProfile` resource must have the user profile feature enabled.
  * It can be done via the administration UI, or by setting the `userProfileEnabled` realm attribute to `true`.
  *
@@ -24,14 +21,10 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as keycloak from "@pulumi/keycloak";
  *
- * const realm = new keycloak.Realm("realm", {
- *     realm: "my-realm",
- *     attributes: {
- *         userProfileEnabled: "true",
- *     },
- * });
+ * const realm = new keycloak.Realm("realm", {realm: "my-realm"});
  * const userprofile = new keycloak.RealmUserProfile("userprofile", {
  *     realmId: myRealm.id,
+ *     unmanagedAttributePolicy: "ENABLED",
  *     attributes: [
  *         {
  *             name: "field1",
@@ -144,6 +137,10 @@ export class RealmUserProfile extends pulumi.CustomResource {
      * The ID of the realm the user profile applies to.
      */
     public readonly realmId!: pulumi.Output<string>;
+    /**
+     * Unmanaged attributes are user attributes not explicitly defined in the user profile configuration. By default, unmanaged attributes are not enabled. Value could be one of `DISABLED`, `ENABLED`, `ADMIN_EDIT` or `ADMIN_VIEW`. If value is not specified it means `DISABLED`
+     */
+    public readonly unmanagedAttributePolicy!: pulumi.Output<string | undefined>;
 
     /**
      * Create a RealmUserProfile resource with the given unique name, arguments, and options.
@@ -161,6 +158,7 @@ export class RealmUserProfile extends pulumi.CustomResource {
             resourceInputs["attributes"] = state ? state.attributes : undefined;
             resourceInputs["groups"] = state ? state.groups : undefined;
             resourceInputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["unmanagedAttributePolicy"] = state ? state.unmanagedAttributePolicy : undefined;
         } else {
             const args = argsOrState as RealmUserProfileArgs | undefined;
             if ((!args || args.realmId === undefined) && !opts.urn) {
@@ -169,6 +167,7 @@ export class RealmUserProfile extends pulumi.CustomResource {
             resourceInputs["attributes"] = args ? args.attributes : undefined;
             resourceInputs["groups"] = args ? args.groups : undefined;
             resourceInputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["unmanagedAttributePolicy"] = args ? args.unmanagedAttributePolicy : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(RealmUserProfile.__pulumiType, name, resourceInputs, opts);
@@ -191,6 +190,10 @@ export interface RealmUserProfileState {
      * The ID of the realm the user profile applies to.
      */
     realmId?: pulumi.Input<string>;
+    /**
+     * Unmanaged attributes are user attributes not explicitly defined in the user profile configuration. By default, unmanaged attributes are not enabled. Value could be one of `DISABLED`, `ENABLED`, `ADMIN_EDIT` or `ADMIN_VIEW`. If value is not specified it means `DISABLED`
+     */
+    unmanagedAttributePolicy?: pulumi.Input<string>;
 }
 
 /**
@@ -209,4 +212,8 @@ export interface RealmUserProfileArgs {
      * The ID of the realm the user profile applies to.
      */
     realmId: pulumi.Input<string>;
+    /**
+     * Unmanaged attributes are user attributes not explicitly defined in the user profile configuration. By default, unmanaged attributes are not enabled. Value could be one of `DISABLED`, `ENABLED`, `ADMIN_EDIT` or `ADMIN_VIEW`. If value is not specified it means `DISABLED`
+     */
+    unmanagedAttributePolicy?: pulumi.Input<string>;
 }

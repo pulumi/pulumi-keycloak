@@ -33,7 +33,7 @@ class UserPropertyProtocolMapperArgs:
         The set of arguments for constructing a UserPropertyProtocolMapper resource.
         :param pulumi.Input[str] claim_name: The name of the claim to insert into a token.
         :param pulumi.Input[str] realm_id: The realm this protocol mapper exists within.
-        :param pulumi.Input[str] user_property: The built in user property (such as email) to map a claim for.
+        :param pulumi.Input[str] user_property: The built-in user property (such as email) to map a claim for.
         :param pulumi.Input[bool] add_to_access_token: Indicates if the property should be added as a claim to the access token. Defaults to `true`.
         :param pulumi.Input[bool] add_to_id_token: Indicates if the property should be added as a claim to the id token. Defaults to `true`.
         :param pulumi.Input[bool] add_to_userinfo: Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
@@ -88,7 +88,7 @@ class UserPropertyProtocolMapperArgs:
     @pulumi.getter(name="userProperty")
     def user_property(self) -> pulumi.Input[str]:
         """
-        The built in user property (such as email) to map a claim for.
+        The built-in user property (such as email) to map a claim for.
         """
         return pulumi.get(self, "user_property")
 
@@ -205,7 +205,7 @@ class _UserPropertyProtocolMapperState:
         :param pulumi.Input[str] client_scope_id: The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified. `client_scope_id` - (Required if `client_id` is not specified) The client scope this protocol mapper is attached to.
         :param pulumi.Input[str] name: The display name of this protocol mapper in the GUI.
         :param pulumi.Input[str] realm_id: The realm this protocol mapper exists within.
-        :param pulumi.Input[str] user_property: The built in user property (such as email) to map a claim for.
+        :param pulumi.Input[str] user_property: The built-in user property (such as email) to map a claim for.
         """
         if add_to_access_token is not None:
             pulumi.set(__self__, "add_to_access_token", add_to_access_token)
@@ -340,7 +340,7 @@ class _UserPropertyProtocolMapperState:
     @pulumi.getter(name="userProperty")
     def user_property(self) -> Optional[pulumi.Input[str]]:
         """
-        The built in user property (such as email) to map a claim for.
+        The built-in user property (such as email) to map a claim for.
         """
         return pulumi.get(self, "user_property")
 
@@ -451,7 +451,7 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
         :param pulumi.Input[str] client_scope_id: The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified. `client_scope_id` - (Required if `client_id` is not specified) The client scope this protocol mapper is attached to.
         :param pulumi.Input[str] name: The display name of this protocol mapper in the GUI.
         :param pulumi.Input[str] realm_id: The realm this protocol mapper exists within.
-        :param pulumi.Input[str] user_property: The built in user property (such as email) to map a claim for.
+        :param pulumi.Input[str] user_property: The built-in user property (such as email) to map a claim for.
         """
         ...
     @overload
@@ -620,7 +620,7 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
         :param pulumi.Input[str] client_scope_id: The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified. `client_scope_id` - (Required if `client_id` is not specified) The client scope this protocol mapper is attached to.
         :param pulumi.Input[str] name: The display name of this protocol mapper in the GUI.
         :param pulumi.Input[str] realm_id: The realm this protocol mapper exists within.
-        :param pulumi.Input[str] user_property: The built in user property (such as email) to map a claim for.
+        :param pulumi.Input[str] user_property: The built-in user property (such as email) to map a claim for.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -714,7 +714,7 @@ class UserPropertyProtocolMapper(pulumi.CustomResource):
     @pulumi.getter(name="userProperty")
     def user_property(self) -> pulumi.Output[str]:
         """
-        The built in user property (such as email) to map a claim for.
+        The built-in user property (such as email) to map a claim for.
         """
         return pulumi.get(self, "user_property")
 

@@ -10,6 +10,7 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.keycloak.Utilities;
 import com.pulumi.keycloak.authentication.SubflowArgs;
 import com.pulumi.keycloak.authentication.inputs.SubflowState;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -65,6 +66,7 @@ import javax.annotation.Nullable;
  *             .parentFlowAlias(flow.alias())
  *             .providerId("basic-flow")
  *             .requirement("ALTERNATIVE")
+ *             .priority(10)
  *             .build());
  * 
  *     }
@@ -155,6 +157,20 @@ public class Subflow extends com.pulumi.resources.CustomResource {
      */
     public Output<String> parentFlowAlias() {
         return this.parentFlowAlias;
+    }
+    /**
+     * The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak &gt;= 25).
+     * 
+     */
+    @Export(name="priority", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> priority;
+
+    /**
+     * @return The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak &gt;= 25).
+     * 
+     */
+    public Output<Optional<Integer>> priority() {
+        return Codegen.optional(this.priority);
     }
     /**
      * The type of authentication subflow to create. Valid choices include `basic-flow`, `form-flow`

@@ -13,11 +13,8 @@ namespace Pulumi.Keycloak
     /// Allows for managing Realm User Profiles within Keycloak.
     /// 
     /// A user profile defines a schema for representing user attributes and how they are managed within a realm.
-    /// This is a preview feature, hence not fully supported and disabled by default.
-    /// To enable it, start the server with one of the following flags:
-    /// - WildFly distribution: `-Dkeycloak.profile.feature.declarative_user_profile=enabled`
-    /// - Quarkus distribution: `--features=preview` or `--features=declarative-user-profile`
     /// 
+    /// Information for Keycloak versions &lt; 24:
     /// The realm linked to the `keycloak.RealmUserProfile` resource must have the user profile feature enabled.
     /// It can be done via the administration UI, or by setting the `userProfileEnabled` realm attribute to `true`.
     /// 
@@ -35,15 +32,12 @@ namespace Pulumi.Keycloak
     ///     var realm = new Keycloak.Realm("realm", new()
     ///     {
     ///         RealmName = "my-realm",
-    ///         Attributes = 
-    ///         {
-    ///             { "userProfileEnabled", "true" },
-    ///         },
     ///     });
     /// 
     ///     var userprofile = new Keycloak.RealmUserProfile("userprofile", new()
     ///     {
     ///         RealmId = myRealm.Id,
+    ///         UnmanagedAttributePolicy = "ENABLED",
     ///         Attributes = new[]
     ///         {
     ///             new Keycloak.Inputs.RealmUserProfileAttributeArgs
@@ -174,6 +168,12 @@ namespace Pulumi.Keycloak
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
 
+        /// <summary>
+        /// Unmanaged attributes are user attributes not explicitly defined in the user profile configuration. By default, unmanaged attributes are not enabled. Value could be one of `DISABLED`, `ENABLED`, `ADMIN_EDIT` or `ADMIN_VIEW`. If value is not specified it means `DISABLED`
+        /// </summary>
+        [Output("unmanagedAttributePolicy")]
+        public Output<string?> UnmanagedAttributePolicy { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a RealmUserProfile resource with the given unique name, arguments, and options.
@@ -250,6 +250,12 @@ namespace Pulumi.Keycloak
         [Input("realmId", required: true)]
         public Input<string> RealmId { get; set; } = null!;
 
+        /// <summary>
+        /// Unmanaged attributes are user attributes not explicitly defined in the user profile configuration. By default, unmanaged attributes are not enabled. Value could be one of `DISABLED`, `ENABLED`, `ADMIN_EDIT` or `ADMIN_VIEW`. If value is not specified it means `DISABLED`
+        /// </summary>
+        [Input("unmanagedAttributePolicy")]
+        public Input<string>? UnmanagedAttributePolicy { get; set; }
+
         public RealmUserProfileArgs()
         {
         }
@@ -287,6 +293,12 @@ namespace Pulumi.Keycloak
         /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
+
+        /// <summary>
+        /// Unmanaged attributes are user attributes not explicitly defined in the user profile configuration. By default, unmanaged attributes are not enabled. Value could be one of `DISABLED`, `ENABLED`, `ADMIN_EDIT` or `ADMIN_VIEW`. If value is not specified it means `DISABLED`
+        /// </summary>
+        [Input("unmanagedAttributePolicy")]
+        public Input<string>? UnmanagedAttributePolicy { get; set; }
 
         public RealmUserProfileState()
         {

@@ -76,7 +76,7 @@ type IdentityProvider struct {
 	AcceptsPromptNoneForwardFromClient pulumi.BoolPtrOutput `pulumi:"acceptsPromptNoneForwardFromClient"`
 	// When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
 	AddReadTokenRoleOnCreate pulumi.BoolPtrOutput `pulumi:"addReadTokenRoleOnCreate"`
-	// The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
+	// The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
 	Alias pulumi.StringOutput `pulumi:"alias"`
 	// Enable/disable authenticate users by default.
 	AuthenticateByDefault pulumi.BoolPtrOutput `pulumi:"authenticateByDefault"`
@@ -109,11 +109,11 @@ type IdentityProvider struct {
 	Issuer pulumi.StringPtrOutput `pulumi:"issuer"`
 	// JSON Web Key Set URL.
 	JwksUrl pulumi.StringPtrOutput `pulumi:"jwksUrl"`
-	// When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+	// When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
 	LinkOnly pulumi.BoolPtrOutput `pulumi:"linkOnly"`
 	// Pass login hint to identity provider.
 	LoginHint pulumi.StringPtrOutput `pulumi:"loginHint"`
-	// The Logout URL is the end session endpoint to use to logout user from external identity provider.
+	// The Logout URL is the end session endpoint to use to sign-out the user from external identity provider.
 	LogoutUrl pulumi.StringPtrOutput `pulumi:"logoutUrl"`
 	// The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
 	PostBrokerLoginFlowAlias pulumi.StringPtrOutput `pulumi:"postBrokerLoginFlowAlias"`
@@ -196,7 +196,7 @@ type identityProviderState struct {
 	AcceptsPromptNoneForwardFromClient *bool `pulumi:"acceptsPromptNoneForwardFromClient"`
 	// When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
 	AddReadTokenRoleOnCreate *bool `pulumi:"addReadTokenRoleOnCreate"`
-	// The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
+	// The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
 	Alias *string `pulumi:"alias"`
 	// Enable/disable authenticate users by default.
 	AuthenticateByDefault *bool `pulumi:"authenticateByDefault"`
@@ -229,11 +229,11 @@ type identityProviderState struct {
 	Issuer *string `pulumi:"issuer"`
 	// JSON Web Key Set URL.
 	JwksUrl *string `pulumi:"jwksUrl"`
-	// When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+	// When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
 	LinkOnly *bool `pulumi:"linkOnly"`
 	// Pass login hint to identity provider.
 	LoginHint *string `pulumi:"loginHint"`
-	// The Logout URL is the end session endpoint to use to logout user from external identity provider.
+	// The Logout URL is the end session endpoint to use to sign-out the user from external identity provider.
 	LogoutUrl *string `pulumi:"logoutUrl"`
 	// The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
 	PostBrokerLoginFlowAlias *string `pulumi:"postBrokerLoginFlowAlias"`
@@ -262,7 +262,7 @@ type IdentityProviderState struct {
 	AcceptsPromptNoneForwardFromClient pulumi.BoolPtrInput
 	// When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
 	AddReadTokenRoleOnCreate pulumi.BoolPtrInput
-	// The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
+	// The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
 	Alias pulumi.StringPtrInput
 	// Enable/disable authenticate users by default.
 	AuthenticateByDefault pulumi.BoolPtrInput
@@ -295,11 +295,11 @@ type IdentityProviderState struct {
 	Issuer pulumi.StringPtrInput
 	// JSON Web Key Set URL.
 	JwksUrl pulumi.StringPtrInput
-	// When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+	// When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
 	LinkOnly pulumi.BoolPtrInput
 	// Pass login hint to identity provider.
 	LoginHint pulumi.StringPtrInput
-	// The Logout URL is the end session endpoint to use to logout user from external identity provider.
+	// The Logout URL is the end session endpoint to use to sign-out the user from external identity provider.
 	LogoutUrl pulumi.StringPtrInput
 	// The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
 	PostBrokerLoginFlowAlias pulumi.StringPtrInput
@@ -332,7 +332,7 @@ type identityProviderArgs struct {
 	AcceptsPromptNoneForwardFromClient *bool `pulumi:"acceptsPromptNoneForwardFromClient"`
 	// When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
 	AddReadTokenRoleOnCreate *bool `pulumi:"addReadTokenRoleOnCreate"`
-	// The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
+	// The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
 	Alias string `pulumi:"alias"`
 	// Enable/disable authenticate users by default.
 	AuthenticateByDefault *bool `pulumi:"authenticateByDefault"`
@@ -363,11 +363,11 @@ type identityProviderArgs struct {
 	Issuer *string `pulumi:"issuer"`
 	// JSON Web Key Set URL.
 	JwksUrl *string `pulumi:"jwksUrl"`
-	// When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+	// When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
 	LinkOnly *bool `pulumi:"linkOnly"`
 	// Pass login hint to identity provider.
 	LoginHint *string `pulumi:"loginHint"`
-	// The Logout URL is the end session endpoint to use to logout user from external identity provider.
+	// The Logout URL is the end session endpoint to use to sign-out the user from external identity provider.
 	LogoutUrl *string `pulumi:"logoutUrl"`
 	// The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
 	PostBrokerLoginFlowAlias *string `pulumi:"postBrokerLoginFlowAlias"`
@@ -397,7 +397,7 @@ type IdentityProviderArgs struct {
 	AcceptsPromptNoneForwardFromClient pulumi.BoolPtrInput
 	// When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
 	AddReadTokenRoleOnCreate pulumi.BoolPtrInput
-	// The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
+	// The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
 	Alias pulumi.StringInput
 	// Enable/disable authenticate users by default.
 	AuthenticateByDefault pulumi.BoolPtrInput
@@ -428,11 +428,11 @@ type IdentityProviderArgs struct {
 	Issuer pulumi.StringPtrInput
 	// JSON Web Key Set URL.
 	JwksUrl pulumi.StringPtrInput
-	// When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+	// When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
 	LinkOnly pulumi.BoolPtrInput
 	// Pass login hint to identity provider.
 	LoginHint pulumi.StringPtrInput
-	// The Logout URL is the end session endpoint to use to logout user from external identity provider.
+	// The Logout URL is the end session endpoint to use to sign-out the user from external identity provider.
 	LogoutUrl pulumi.StringPtrInput
 	// The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
 	PostBrokerLoginFlowAlias pulumi.StringPtrInput
@@ -553,7 +553,7 @@ func (o IdentityProviderOutput) AddReadTokenRoleOnCreate() pulumi.BoolPtrOutput 
 	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.AddReadTokenRoleOnCreate }).(pulumi.BoolPtrOutput)
 }
 
-// The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
+// The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
 func (o IdentityProviderOutput) Alias() pulumi.StringOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.StringOutput { return v.Alias }).(pulumi.StringOutput)
 }
@@ -637,7 +637,7 @@ func (o IdentityProviderOutput) JwksUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.JwksUrl }).(pulumi.StringPtrOutput)
 }
 
-// When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+// When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
 func (o IdentityProviderOutput) LinkOnly() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.LinkOnly }).(pulumi.BoolPtrOutput)
 }
@@ -647,7 +647,7 @@ func (o IdentityProviderOutput) LoginHint() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.LoginHint }).(pulumi.StringPtrOutput)
 }
 
-// The Logout URL is the end session endpoint to use to logout user from external identity provider.
+// The Logout URL is the end session endpoint to use to sign-out the user from external identity provider.
 func (o IdentityProviderOutput) LogoutUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.LogoutUrl }).(pulumi.StringPtrOutput)
 }

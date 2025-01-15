@@ -119,6 +119,12 @@ namespace Pulumi.Keycloak
         public Output<string?> FirstName { get; private set; } = null!;
 
         /// <summary>
+        /// When `true`, the user with the specified `username` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with users that Keycloak creates automatically during realm creation, such as `admin`. Note, that the user will not be removed during destruction if `import` is `true`.
+        /// </summary>
+        [Output("import")]
+        public Output<bool?> Import { get; private set; } = null!;
+
+        /// <summary>
         /// When given, the user's initial password will be set. This attribute is only respected during initial user creation.
         /// </summary>
         [Output("initialPassword")]
@@ -243,6 +249,12 @@ namespace Pulumi.Keycloak
         public Input<string>? FirstName { get; set; }
 
         /// <summary>
+        /// When `true`, the user with the specified `username` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with users that Keycloak creates automatically during realm creation, such as `admin`. Note, that the user will not be removed during destruction if `import` is `true`.
+        /// </summary>
+        [Input("import")]
+        public Input<bool>? Import { get; set; }
+
+        /// <summary>
         /// When given, the user's initial password will be set. This attribute is only respected during initial user creation.
         /// </summary>
         [Input("initialPassword")]
@@ -333,6 +345,12 @@ namespace Pulumi.Keycloak
         /// </summary>
         [Input("firstName")]
         public Input<string>? FirstName { get; set; }
+
+        /// <summary>
+        /// When `true`, the user with the specified `username` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with users that Keycloak creates automatically during realm creation, such as `admin`. Note, that the user will not be removed during destruction if `import` is `true`.
+        /// </summary>
+        [Input("import")]
+        public Input<bool>? Import { get; set; }
 
         /// <summary>
         /// When given, the user's initial password will be set. This attribute is only respected during initial user creation.

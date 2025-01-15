@@ -81,7 +81,7 @@ export class IdentityProvider extends pulumi.CustomResource {
      */
     public readonly addReadTokenRoleOnCreate!: pulumi.Output<boolean | undefined>;
     /**
-     * The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
+     * The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
      */
     public readonly alias!: pulumi.Output<string>;
     /**
@@ -146,7 +146,7 @@ export class IdentityProvider extends pulumi.CustomResource {
      */
     public readonly jwksUrl!: pulumi.Output<string | undefined>;
     /**
-     * When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+     * When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
      */
     public readonly linkOnly!: pulumi.Output<boolean | undefined>;
     /**
@@ -154,7 +154,7 @@ export class IdentityProvider extends pulumi.CustomResource {
      */
     public readonly loginHint!: pulumi.Output<string | undefined>;
     /**
-     * The Logout URL is the end session endpoint to use to logout user from external identity provider.
+     * The Logout URL is the end session endpoint to use to sign-out the user from external identity provider.
      */
     public readonly logoutUrl!: pulumi.Output<string | undefined>;
     /**
@@ -316,7 +316,7 @@ export interface IdentityProviderState {
      */
     addReadTokenRoleOnCreate?: pulumi.Input<boolean>;
     /**
-     * The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
+     * The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
      */
     alias?: pulumi.Input<string>;
     /**
@@ -381,7 +381,7 @@ export interface IdentityProviderState {
      */
     jwksUrl?: pulumi.Input<string>;
     /**
-     * When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+     * When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
      */
     linkOnly?: pulumi.Input<boolean>;
     /**
@@ -389,7 +389,7 @@ export interface IdentityProviderState {
      */
     loginHint?: pulumi.Input<string>;
     /**
-     * The Logout URL is the end session endpoint to use to logout user from external identity provider.
+     * The Logout URL is the end session endpoint to use to sign-out the user from external identity provider.
      */
     logoutUrl?: pulumi.Input<string>;
     /**
@@ -447,7 +447,7 @@ export interface IdentityProviderArgs {
      */
     addReadTokenRoleOnCreate?: pulumi.Input<boolean>;
     /**
-     * The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
+     * The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
      */
     alias: pulumi.Input<string>;
     /**
@@ -508,7 +508,7 @@ export interface IdentityProviderArgs {
      */
     jwksUrl?: pulumi.Input<string>;
     /**
-     * When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+     * When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
      */
     linkOnly?: pulumi.Input<boolean>;
     /**
@@ -516,7 +516,7 @@ export interface IdentityProviderArgs {
      */
     loginHint?: pulumi.Input<string>;
     /**
-     * The Logout URL is the end session endpoint to use to logout user from external identity provider.
+     * The Logout URL is the end session endpoint to use to sign-out the user from external identity provider.
      */
     logoutUrl?: pulumi.Input<string>;
     /**

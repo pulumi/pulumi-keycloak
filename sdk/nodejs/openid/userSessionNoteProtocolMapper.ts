@@ -147,7 +147,7 @@ export class UserSessionNoteProtocolMapper extends pulumi.CustomResource {
      */
     public readonly realmId!: pulumi.Output<string>;
     /**
-     * String value being the name of stored user session note within the UserSessionModel.note map.
+     * String value being the name of stored user session note within the `UserSessionModel.note` map.
      */
     public readonly sessionNote!: pulumi.Output<string | undefined>;
 
@@ -233,7 +233,7 @@ export interface UserSessionNoteProtocolMapperState {
      */
     realmId?: pulumi.Input<string>;
     /**
-     * String value being the name of stored user session note within the UserSessionModel.note map.
+     * String value being the name of stored user session note within the `UserSessionModel.note` map.
      */
     sessionNote?: pulumi.Input<string>;
 }
@@ -275,7 +275,7 @@ export interface UserSessionNoteProtocolMapperArgs {
      */
     realmId: pulumi.Input<string>;
     /**
-     * String value being the name of stored user session note within the UserSessionModel.note map.
+     * String value being the name of stored user session note within the `UserSessionModel.note` map.
      */
     sessionNote?: pulumi.Input<string>;
 }

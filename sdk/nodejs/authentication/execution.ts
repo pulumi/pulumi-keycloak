@@ -10,7 +10,7 @@ import * as utilities from "../utilities";
  * An authentication execution is an action that the user or service may or may not take when authenticating through an authentication
  * flow.
  *
- * > Due to limitations in the Keycloak API, the ordering of authentication executions within a flow must be specified using `dependsOn`. Authentication executions that are created first will appear first within the flow.
+ * > Following limitation affects Keycloak < 25:  Due to limitations in the Keycloak API, the ordering of authentication executions within a flow must be specified using `dependsOn`. Authentication executions that are created first will appear first within the flow.
  *
  * ## Example Usage
  *
@@ -32,6 +32,7 @@ import * as utilities from "../utilities";
  *     parentFlowAlias: flow.alias,
  *     authenticator: "auth-cookie",
  *     requirement: "ALTERNATIVE",
+ *     priority: 10,
  * });
  * // second execution
  * const executionTwo = new keycloak.authentication.Execution("execution_two", {
@@ -39,8 +40,7 @@ import * as utilities from "../utilities";
  *     parentFlowAlias: flow.alias,
  *     authenticator: "identity-provider-redirector",
  *     requirement: "ALTERNATIVE",
- * }, {
- *     dependsOn: [executionOne],
+ *     priority: 20,
  * });
  * ```
  *
@@ -93,6 +93,10 @@ export class Execution extends pulumi.CustomResource {
      */
     public readonly parentFlowAlias!: pulumi.Output<string>;
     /**
+     * The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak >= 25).
+     */
+    public readonly priority!: pulumi.Output<number | undefined>;
+    /**
      * The realm the authentication execution exists in.
      */
     public readonly realmId!: pulumi.Output<string>;
@@ -116,6 +120,7 @@ export class Execution extends pulumi.CustomResource {
             const state = argsOrState as ExecutionState | undefined;
             resourceInputs["authenticator"] = state ? state.authenticator : undefined;
             resourceInputs["parentFlowAlias"] = state ? state.parentFlowAlias : undefined;
+            resourceInputs["priority"] = state ? state.priority : undefined;
             resourceInputs["realmId"] = state ? state.realmId : undefined;
             resourceInputs["requirement"] = state ? state.requirement : undefined;
         } else {
@@ -131,6 +136,7 @@ export class Execution extends pulumi.CustomResource {
             }
             resourceInputs["authenticator"] = args ? args.authenticator : undefined;
             resourceInputs["parentFlowAlias"] = args ? args.parentFlowAlias : undefined;
+            resourceInputs["priority"] = args ? args.priority : undefined;
             resourceInputs["realmId"] = args ? args.realmId : undefined;
             resourceInputs["requirement"] = args ? args.requirement : undefined;
         }
@@ -151,6 +157,10 @@ export interface ExecutionState {
      * The alias of the flow this execution is attached to.
      */
     parentFlowAlias?: pulumi.Input<string>;
+    /**
+     * The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak >= 25).
+     */
+    priority?: pulumi.Input<number>;
     /**
      * The realm the authentication execution exists in.
      */
@@ -173,6 +183,10 @@ export interface ExecutionArgs {
      * The alias of the flow this execution is attached to.
      */
     parentFlowAlias: pulumi.Input<string>;
+    /**
+     * The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak >= 25).
+     */
+    priority?: pulumi.Input<number>;
     /**
      * The realm the authentication execution exists in.
      */

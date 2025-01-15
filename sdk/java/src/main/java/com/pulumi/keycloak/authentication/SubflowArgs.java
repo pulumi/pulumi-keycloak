@@ -6,6 +6,7 @@ package com.pulumi.keycloak.authentication;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -79,6 +80,21 @@ public final class SubflowArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak &gt;= 25).
+     * 
+     */
+    @Import(name="priority")
+    private @Nullable Output<Integer> priority;
+
+    /**
+     * @return The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak &gt;= 25).
+     * 
+     */
+    public Optional<Output<Integer>> priority() {
+        return Optional.ofNullable(this.priority);
+    }
+
+    /**
      * The type of authentication subflow to create. Valid choices include `basic-flow`, `form-flow`
      * and `client-flow`. Defaults to `basic-flow`.
      * 
@@ -134,6 +150,7 @@ public final class SubflowArgs extends com.pulumi.resources.ResourceArgs {
         this.authenticator = $.authenticator;
         this.description = $.description;
         this.parentFlowAlias = $.parentFlowAlias;
+        this.priority = $.priority;
         this.providerId = $.providerId;
         this.realmId = $.realmId;
         this.requirement = $.requirement;
@@ -241,6 +258,27 @@ public final class SubflowArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder parentFlowAlias(String parentFlowAlias) {
             return parentFlowAlias(Output.of(parentFlowAlias));
+        }
+
+        /**
+         * @param priority The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak &gt;= 25).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder priority(@Nullable Output<Integer> priority) {
+            $.priority = priority;
+            return this;
+        }
+
+        /**
+         * @param priority The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak &gt;= 25).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder priority(Integer priority) {
+            return priority(Output.of(priority));
         }
 
         /**

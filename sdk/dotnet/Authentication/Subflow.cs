@@ -44,6 +44,7 @@ namespace Pulumi.Keycloak.Authentication
     ///         ParentFlowAlias = flow.Alias,
     ///         ProviderId = "basic-flow",
     ///         Requirement = "ALTERNATIVE",
+    ///         Priority = 10,
     ///     });
     /// 
     /// });
@@ -98,6 +99,12 @@ namespace Pulumi.Keycloak.Authentication
         /// </summary>
         [Output("parentFlowAlias")]
         public Output<string> ParentFlowAlias { get; private set; } = null!;
+
+        /// <summary>
+        /// The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak &gt;= 25).
+        /// </summary>
+        [Output("priority")]
+        public Output<int?> Priority { get; private set; } = null!;
 
         /// <summary>
         /// The type of authentication subflow to create. Valid choices include `basic-flow`, `form-flow`
@@ -191,6 +198,12 @@ namespace Pulumi.Keycloak.Authentication
         public Input<string> ParentFlowAlias { get; set; } = null!;
 
         /// <summary>
+        /// The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak &gt;= 25).
+        /// </summary>
+        [Input("priority")]
+        public Input<int>? Priority { get; set; }
+
+        /// <summary>
         /// The type of authentication subflow to create. Valid choices include `basic-flow`, `form-flow`
         /// and `client-flow`. Defaults to `basic-flow`.
         /// </summary>
@@ -242,6 +255,12 @@ namespace Pulumi.Keycloak.Authentication
         /// </summary>
         [Input("parentFlowAlias")]
         public Input<string>? ParentFlowAlias { get; set; }
+
+        /// <summary>
+        /// The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak &gt;= 25).
+        /// </summary>
+        [Input("priority")]
+        public Input<int>? Priority { get; set; }
 
         /// <summary>
         /// The type of authentication subflow to create. Valid choices include `basic-flow`, `form-flow`

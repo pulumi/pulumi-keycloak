@@ -94,6 +94,8 @@ type UserAttributeMapper struct {
 	AlwaysReadValueFromLdap pulumi.BoolPtrOutput `pulumi:"alwaysReadValueFromLdap"`
 	// Default value to set in LDAP if `isMandatoryInLdap` is true and the value is empty.
 	AttributeDefaultValue pulumi.StringPtrOutput `pulumi:"attributeDefaultValue"`
+	// When `true`, an empty default value is forced for mandatory attributes even when a default value is not specified. Defaults to `true`.
+	AttributeForceDefault pulumi.BoolPtrOutput `pulumi:"attributeForceDefault"`
 	// Should be true for binary LDAP attributes.
 	IsBinaryAttribute pulumi.BoolPtrOutput `pulumi:"isBinaryAttribute"`
 	// When `true`, this attribute must exist in LDAP. Defaults to `false`.
@@ -158,6 +160,8 @@ type userAttributeMapperState struct {
 	AlwaysReadValueFromLdap *bool `pulumi:"alwaysReadValueFromLdap"`
 	// Default value to set in LDAP if `isMandatoryInLdap` is true and the value is empty.
 	AttributeDefaultValue *string `pulumi:"attributeDefaultValue"`
+	// When `true`, an empty default value is forced for mandatory attributes even when a default value is not specified. Defaults to `true`.
+	AttributeForceDefault *bool `pulumi:"attributeForceDefault"`
 	// Should be true for binary LDAP attributes.
 	IsBinaryAttribute *bool `pulumi:"isBinaryAttribute"`
 	// When `true`, this attribute must exist in LDAP. Defaults to `false`.
@@ -181,6 +185,8 @@ type UserAttributeMapperState struct {
 	AlwaysReadValueFromLdap pulumi.BoolPtrInput
 	// Default value to set in LDAP if `isMandatoryInLdap` is true and the value is empty.
 	AttributeDefaultValue pulumi.StringPtrInput
+	// When `true`, an empty default value is forced for mandatory attributes even when a default value is not specified. Defaults to `true`.
+	AttributeForceDefault pulumi.BoolPtrInput
 	// Should be true for binary LDAP attributes.
 	IsBinaryAttribute pulumi.BoolPtrInput
 	// When `true`, this attribute must exist in LDAP. Defaults to `false`.
@@ -208,6 +214,8 @@ type userAttributeMapperArgs struct {
 	AlwaysReadValueFromLdap *bool `pulumi:"alwaysReadValueFromLdap"`
 	// Default value to set in LDAP if `isMandatoryInLdap` is true and the value is empty.
 	AttributeDefaultValue *string `pulumi:"attributeDefaultValue"`
+	// When `true`, an empty default value is forced for mandatory attributes even when a default value is not specified. Defaults to `true`.
+	AttributeForceDefault *bool `pulumi:"attributeForceDefault"`
 	// Should be true for binary LDAP attributes.
 	IsBinaryAttribute *bool `pulumi:"isBinaryAttribute"`
 	// When `true`, this attribute must exist in LDAP. Defaults to `false`.
@@ -232,6 +240,8 @@ type UserAttributeMapperArgs struct {
 	AlwaysReadValueFromLdap pulumi.BoolPtrInput
 	// Default value to set in LDAP if `isMandatoryInLdap` is true and the value is empty.
 	AttributeDefaultValue pulumi.StringPtrInput
+	// When `true`, an empty default value is forced for mandatory attributes even when a default value is not specified. Defaults to `true`.
+	AttributeForceDefault pulumi.BoolPtrInput
 	// Should be true for binary LDAP attributes.
 	IsBinaryAttribute pulumi.BoolPtrInput
 	// When `true`, this attribute must exist in LDAP. Defaults to `false`.
@@ -345,6 +355,11 @@ func (o UserAttributeMapperOutput) AlwaysReadValueFromLdap() pulumi.BoolPtrOutpu
 // Default value to set in LDAP if `isMandatoryInLdap` is true and the value is empty.
 func (o UserAttributeMapperOutput) AttributeDefaultValue() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *UserAttributeMapper) pulumi.StringPtrOutput { return v.AttributeDefaultValue }).(pulumi.StringPtrOutput)
+}
+
+// When `true`, an empty default value is forced for mandatory attributes even when a default value is not specified. Defaults to `true`.
+func (o UserAttributeMapperOutput) AttributeForceDefault() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *UserAttributeMapper) pulumi.BoolPtrOutput { return v.AttributeForceDefault }).(pulumi.BoolPtrOutput)
 }
 
 // Should be true for binary LDAP attributes.

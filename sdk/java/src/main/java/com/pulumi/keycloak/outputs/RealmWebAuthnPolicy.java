@@ -40,7 +40,7 @@ public final class RealmWebAuthnPolicy {
      */
     private @Nullable Integer createTimeout;
     /**
-     * @return A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
+     * @return A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
      * 
      */
     private @Nullable String relyingPartyEntityName;
@@ -102,7 +102,7 @@ public final class RealmWebAuthnPolicy {
         return Optional.ofNullable(this.createTimeout);
     }
     /**
-     * @return A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
+     * @return A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
      * 
      */
     public Optional<String> relyingPartyEntityName() {

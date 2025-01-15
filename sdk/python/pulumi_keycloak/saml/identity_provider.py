@@ -74,12 +74,12 @@ class IdentityProviderArgs:
         :param pulumi.Input[bool] force_authn: Indicates whether the identity provider must authenticate the presenter directly rather than rely on a previous security context.
         :param pulumi.Input[str] gui_order: A number defining the order of this identity provider in the GUI.
         :param pulumi.Input[bool] hide_on_login_page: If hidden, then login with this provider is possible only if requested explicitly, e.g. using the 'kc_idp_hint' parameter.
-        :param pulumi.Input[bool] link_only: When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+        :param pulumi.Input[bool] link_only: When `true`, users cannot log in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         :param pulumi.Input[str] login_hint: Login Hint.
         :param pulumi.Input[str] name_id_policy_format: Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
         :param pulumi.Input[bool] post_binding_authn_request: Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
         :param pulumi.Input[bool] post_binding_logout: Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
-        :param pulumi.Input[bool] post_binding_response: Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
+        :param pulumi.Input[bool] post_binding_response: Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
         :param pulumi.Input[str] post_broker_login_flow_alias: Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it. Defaults to empty.
         :param pulumi.Input[str] principal_attribute: The principal attribute.
         :param pulumi.Input[str] principal_type: The principal type. Can be one of `SUBJECT`, `ATTRIBUTE` or `FRIENDLY_ATTRIBUTE`.
@@ -371,7 +371,7 @@ class IdentityProviderArgs:
     @pulumi.getter(name="linkOnly")
     def link_only(self) -> Optional[pulumi.Input[bool]]:
         """
-        When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+        When `true`, users cannot log in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         """
         return pulumi.get(self, "link_only")
 
@@ -431,7 +431,7 @@ class IdentityProviderArgs:
     @pulumi.getter(name="postBindingResponse")
     def post_binding_response(self) -> Optional[pulumi.Input[bool]]:
         """
-        Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
+        Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
         """
         return pulumi.get(self, "post_binding_response")
 
@@ -666,12 +666,12 @@ class _IdentityProviderState:
         :param pulumi.Input[str] gui_order: A number defining the order of this identity provider in the GUI.
         :param pulumi.Input[bool] hide_on_login_page: If hidden, then login with this provider is possible only if requested explicitly, e.g. using the 'kc_idp_hint' parameter.
         :param pulumi.Input[str] internal_id: Internal Identity Provider Id
-        :param pulumi.Input[bool] link_only: When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+        :param pulumi.Input[bool] link_only: When `true`, users cannot log in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         :param pulumi.Input[str] login_hint: Login Hint.
         :param pulumi.Input[str] name_id_policy_format: Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
         :param pulumi.Input[bool] post_binding_authn_request: Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
         :param pulumi.Input[bool] post_binding_logout: Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
-        :param pulumi.Input[bool] post_binding_response: Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
+        :param pulumi.Input[bool] post_binding_response: Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
         :param pulumi.Input[str] post_broker_login_flow_alias: Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it. Defaults to empty.
         :param pulumi.Input[str] principal_attribute: The principal attribute.
         :param pulumi.Input[str] principal_type: The principal type. Can be one of `SUBJECT`, `ATTRIBUTE` or `FRIENDLY_ATTRIBUTE`.
@@ -959,7 +959,7 @@ class _IdentityProviderState:
     @pulumi.getter(name="linkOnly")
     def link_only(self) -> Optional[pulumi.Input[bool]]:
         """
-        When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+        When `true`, users cannot log in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         """
         return pulumi.get(self, "link_only")
 
@@ -1019,7 +1019,7 @@ class _IdentityProviderState:
     @pulumi.getter(name="postBindingResponse")
     def post_binding_response(self) -> Optional[pulumi.Input[bool]]:
         """
-        Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
+        Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
         """
         return pulumi.get(self, "post_binding_response")
 
@@ -1320,12 +1320,12 @@ class IdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[bool] force_authn: Indicates whether the identity provider must authenticate the presenter directly rather than rely on a previous security context.
         :param pulumi.Input[str] gui_order: A number defining the order of this identity provider in the GUI.
         :param pulumi.Input[bool] hide_on_login_page: If hidden, then login with this provider is possible only if requested explicitly, e.g. using the 'kc_idp_hint' parameter.
-        :param pulumi.Input[bool] link_only: When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+        :param pulumi.Input[bool] link_only: When `true`, users cannot log in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         :param pulumi.Input[str] login_hint: Login Hint.
         :param pulumi.Input[str] name_id_policy_format: Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
         :param pulumi.Input[bool] post_binding_authn_request: Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
         :param pulumi.Input[bool] post_binding_logout: Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
-        :param pulumi.Input[bool] post_binding_response: Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
+        :param pulumi.Input[bool] post_binding_response: Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
         :param pulumi.Input[str] post_broker_login_flow_alias: Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it. Defaults to empty.
         :param pulumi.Input[str] principal_attribute: The principal attribute.
         :param pulumi.Input[str] principal_type: The principal type. Can be one of `SUBJECT`, `ATTRIBUTE` or `FRIENDLY_ATTRIBUTE`.
@@ -1567,12 +1567,12 @@ class IdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[str] gui_order: A number defining the order of this identity provider in the GUI.
         :param pulumi.Input[bool] hide_on_login_page: If hidden, then login with this provider is possible only if requested explicitly, e.g. using the 'kc_idp_hint' parameter.
         :param pulumi.Input[str] internal_id: Internal Identity Provider Id
-        :param pulumi.Input[bool] link_only: When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+        :param pulumi.Input[bool] link_only: When `true`, users cannot log in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         :param pulumi.Input[str] login_hint: Login Hint.
         :param pulumi.Input[str] name_id_policy_format: Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
         :param pulumi.Input[bool] post_binding_authn_request: Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
         :param pulumi.Input[bool] post_binding_logout: Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
-        :param pulumi.Input[bool] post_binding_response: Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
+        :param pulumi.Input[bool] post_binding_response: Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
         :param pulumi.Input[str] post_broker_login_flow_alias: Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it. Defaults to empty.
         :param pulumi.Input[str] principal_attribute: The principal attribute.
         :param pulumi.Input[str] principal_type: The principal type. Can be one of `SUBJECT`, `ATTRIBUTE` or `FRIENDLY_ATTRIBUTE`.
@@ -1763,7 +1763,7 @@ class IdentityProvider(pulumi.CustomResource):
     @pulumi.getter(name="linkOnly")
     def link_only(self) -> pulumi.Output[Optional[bool]]:
         """
-        When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+        When `true`, users cannot log in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         """
         return pulumi.get(self, "link_only")
 
@@ -1803,7 +1803,7 @@ class IdentityProvider(pulumi.CustomResource):
     @pulumi.getter(name="postBindingResponse")
     def post_binding_response(self) -> pulumi.Output[Optional[bool]]:
         """
-        Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
+        Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
         """
         return pulumi.get(self, "post_binding_response")
 

@@ -21,11 +21,8 @@ import javax.annotation.Nullable;
  * Allows for managing Realm User Profiles within Keycloak.
  * 
  * A user profile defines a schema for representing user attributes and how they are managed within a realm.
- * This is a preview feature, hence not fully supported and disabled by default.
- * To enable it, start the server with one of the following flags:
- * - WildFly distribution: `-Dkeycloak.profile.feature.declarative_user_profile=enabled`
- * - Quarkus distribution: `--features=preview` or `--features=declarative-user-profile`
  * 
+ * Information for Keycloak versions &lt; 24:
  * The realm linked to the `keycloak.RealmUserProfile` resource must have the user profile feature enabled.
  * It can be done via the administration UI, or by setting the `userProfileEnabled` realm attribute to `true`.
  * 
@@ -62,11 +59,11 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var realm = new Realm("realm", RealmArgs.builder()
  *             .realm("my-realm")
- *             .attributes(Map.of("userProfileEnabled", true))
  *             .build());
  * 
  *         var userprofile = new RealmUserProfile("userprofile", RealmUserProfileArgs.builder()
  *             .realmId(myRealm.id())
+ *             .unmanagedAttributePolicy("ENABLED")
  *             .attributes(            
  *                 RealmUserProfileAttributeArgs.builder()
  *                     .name("field1")
@@ -180,6 +177,20 @@ public class RealmUserProfile extends com.pulumi.resources.CustomResource {
      */
     public Output<String> realmId() {
         return this.realmId;
+    }
+    /**
+     * Unmanaged attributes are user attributes not explicitly defined in the user profile configuration. By default, unmanaged attributes are not enabled. Value could be one of `DISABLED`, `ENABLED`, `ADMIN_EDIT` or `ADMIN_VIEW`. If value is not specified it means `DISABLED`
+     * 
+     */
+    @Export(name="unmanagedAttributePolicy", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> unmanagedAttributePolicy;
+
+    /**
+     * @return Unmanaged attributes are user attributes not explicitly defined in the user profile configuration. By default, unmanaged attributes are not enabled. Value could be one of `DISABLED`, `ENABLED`, `ADMIN_EDIT` or `ADMIN_VIEW`. If value is not specified it means `DISABLED`
+     * 
+     */
+    public Output<Optional<String>> unmanagedAttributePolicy() {
+        return Codegen.optional(this.unmanagedAttributePolicy);
     }
 
     /**

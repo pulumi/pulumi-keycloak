@@ -157,7 +157,7 @@ type UserSessionNoteProtocolMapper struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The realm this protocol mapper exists within.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
-	// String value being the name of stored user session note within the UserSessionModel.note map.
+	// String value being the name of stored user session note within the `UserSessionModel.note` map.
 	SessionNote pulumi.StringPtrOutput `pulumi:"sessionNote"`
 }
 
@@ -213,7 +213,7 @@ type userSessionNoteProtocolMapperState struct {
 	Name *string `pulumi:"name"`
 	// The realm this protocol mapper exists within.
 	RealmId *string `pulumi:"realmId"`
-	// String value being the name of stored user session note within the UserSessionModel.note map.
+	// String value being the name of stored user session note within the `UserSessionModel.note` map.
 	SessionNote *string `pulumi:"sessionNote"`
 }
 
@@ -234,7 +234,7 @@ type UserSessionNoteProtocolMapperState struct {
 	Name pulumi.StringPtrInput
 	// The realm this protocol mapper exists within.
 	RealmId pulumi.StringPtrInput
-	// String value being the name of stored user session note within the UserSessionModel.note map.
+	// String value being the name of stored user session note within the `UserSessionModel.note` map.
 	SessionNote pulumi.StringPtrInput
 }
 
@@ -259,7 +259,7 @@ type userSessionNoteProtocolMapperArgs struct {
 	Name *string `pulumi:"name"`
 	// The realm this protocol mapper exists within.
 	RealmId string `pulumi:"realmId"`
-	// String value being the name of stored user session note within the UserSessionModel.note map.
+	// String value being the name of stored user session note within the `UserSessionModel.note` map.
 	SessionNote *string `pulumi:"sessionNote"`
 }
 
@@ -281,7 +281,7 @@ type UserSessionNoteProtocolMapperArgs struct {
 	Name pulumi.StringPtrInput
 	// The realm this protocol mapper exists within.
 	RealmId pulumi.StringInput
-	// String value being the name of stored user session note within the UserSessionModel.note map.
+	// String value being the name of stored user session note within the `UserSessionModel.note` map.
 	SessionNote pulumi.StringPtrInput
 }
 
@@ -412,7 +412,7 @@ func (o UserSessionNoteProtocolMapperOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *UserSessionNoteProtocolMapper) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
 }
 
-// String value being the name of stored user session note within the UserSessionModel.note map.
+// String value being the name of stored user session note within the `UserSessionModel.note` map.
 func (o UserSessionNoteProtocolMapperOutput) SessionNote() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *UserSessionNoteProtocolMapper) pulumi.StringPtrOutput { return v.SessionNote }).(pulumi.StringPtrOutput)
 }

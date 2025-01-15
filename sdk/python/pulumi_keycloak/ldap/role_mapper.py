@@ -48,7 +48,7 @@ class RoleMapperArgs:
         :param pulumi.Input[str] membership_attribute_type: Can be one of `DN` or `UID`. Defaults to `DN`.
         :param pulumi.Input[str] mode: Can be one of `READ_ONLY`, `LDAP_ONLY` or `IMPORT`. Defaults to `READ_ONLY`.
         :param pulumi.Input[str] name: Display name of this mapper when displayed in the console.
-        :param pulumi.Input[str] roles_ldap_filter: When specified, adds an additional custom filter to be used when querying for roles. Must start with `(` and end with `)`.
+        :param pulumi.Input[str] roles_ldap_filter: When specified, adds a custom filter to be used when querying for roles. Must start with `(` and end with `)`.
         :param pulumi.Input[bool] use_realm_roles_mapping: When `true`, LDAP role mappings will be mapped to realm roles within Keycloak. Defaults to `true`.
         :param pulumi.Input[str] user_roles_retrieve_strategy: Can be one of `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`, `GET_ROLES_FROM_USER_MEMBEROF_ATTRIBUTE`, or `LOAD_ROLES_BY_MEMBER_ATTRIBUTE_RECURSIVELY`. Defaults to `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`.
         """
@@ -224,7 +224,7 @@ class RoleMapperArgs:
     @pulumi.getter(name="rolesLdapFilter")
     def roles_ldap_filter(self) -> Optional[pulumi.Input[str]]:
         """
-        When specified, adds an additional custom filter to be used when querying for roles. Must start with `(` and end with `)`.
+        When specified, adds a custom filter to be used when querying for roles. Must start with `(` and end with `)`.
         """
         return pulumi.get(self, "roles_ldap_filter")
 
@@ -289,7 +289,7 @@ class _RoleMapperState:
         :param pulumi.Input[str] realm_id: The realm that this LDAP mapper will exist in.
         :param pulumi.Input[str] role_name_ldap_attribute: The name of the LDAP attribute that is used in role objects for the name and RDN of the role. Typically `cn`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] role_object_classes: List of strings representing the object classes for the role. Must contain at least one.
-        :param pulumi.Input[str] roles_ldap_filter: When specified, adds an additional custom filter to be used when querying for roles. Must start with `(` and end with `)`.
+        :param pulumi.Input[str] roles_ldap_filter: When specified, adds a custom filter to be used when querying for roles. Must start with `(` and end with `)`.
         :param pulumi.Input[bool] use_realm_roles_mapping: When `true`, LDAP role mappings will be mapped to realm roles within Keycloak. Defaults to `true`.
         :param pulumi.Input[str] user_roles_retrieve_strategy: Can be one of `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`, `GET_ROLES_FROM_USER_MEMBEROF_ATTRIBUTE`, or `LOAD_ROLES_BY_MEMBER_ATTRIBUTE_RECURSIVELY`. Defaults to `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`.
         """
@@ -472,7 +472,7 @@ class _RoleMapperState:
     @pulumi.getter(name="rolesLdapFilter")
     def roles_ldap_filter(self) -> Optional[pulumi.Input[str]]:
         """
-        When specified, adds an additional custom filter to be used when querying for roles. Must start with `(` and end with `)`.
+        When specified, adds a custom filter to be used when querying for roles. Must start with `(` and end with `)`.
         """
         return pulumi.get(self, "roles_ldap_filter")
 
@@ -596,7 +596,7 @@ class RoleMapper(pulumi.CustomResource):
         :param pulumi.Input[str] realm_id: The realm that this LDAP mapper will exist in.
         :param pulumi.Input[str] role_name_ldap_attribute: The name of the LDAP attribute that is used in role objects for the name and RDN of the role. Typically `cn`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] role_object_classes: List of strings representing the object classes for the role. Must contain at least one.
-        :param pulumi.Input[str] roles_ldap_filter: When specified, adds an additional custom filter to be used when querying for roles. Must start with `(` and end with `)`.
+        :param pulumi.Input[str] roles_ldap_filter: When specified, adds a custom filter to be used when querying for roles. Must start with `(` and end with `)`.
         :param pulumi.Input[bool] use_realm_roles_mapping: When `true`, LDAP role mappings will be mapped to realm roles within Keycloak. Defaults to `true`.
         :param pulumi.Input[str] user_roles_retrieve_strategy: Can be one of `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`, `GET_ROLES_FROM_USER_MEMBEROF_ATTRIBUTE`, or `LOAD_ROLES_BY_MEMBER_ATTRIBUTE_RECURSIVELY`. Defaults to `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`.
         """
@@ -774,7 +774,7 @@ class RoleMapper(pulumi.CustomResource):
         :param pulumi.Input[str] realm_id: The realm that this LDAP mapper will exist in.
         :param pulumi.Input[str] role_name_ldap_attribute: The name of the LDAP attribute that is used in role objects for the name and RDN of the role. Typically `cn`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] role_object_classes: List of strings representing the object classes for the role. Must contain at least one.
-        :param pulumi.Input[str] roles_ldap_filter: When specified, adds an additional custom filter to be used when querying for roles. Must start with `(` and end with `)`.
+        :param pulumi.Input[str] roles_ldap_filter: When specified, adds a custom filter to be used when querying for roles. Must start with `(` and end with `)`.
         :param pulumi.Input[bool] use_realm_roles_mapping: When `true`, LDAP role mappings will be mapped to realm roles within Keycloak. Defaults to `true`.
         :param pulumi.Input[str] user_roles_retrieve_strategy: Can be one of `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`, `GET_ROLES_FROM_USER_MEMBEROF_ATTRIBUTE`, or `LOAD_ROLES_BY_MEMBER_ATTRIBUTE_RECURSIVELY`. Defaults to `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`.
         """
@@ -899,7 +899,7 @@ class RoleMapper(pulumi.CustomResource):
     @pulumi.getter(name="rolesLdapFilter")
     def roles_ldap_filter(self) -> pulumi.Output[Optional[str]]:
         """
-        When specified, adds an additional custom filter to be used when querying for roles. Must start with `(` and end with `)`.
+        When specified, adds a custom filter to be used when querying for roles. Must start with `(` and end with `)`.
         """
         return pulumi.get(self, "roles_ldap_filter")
 

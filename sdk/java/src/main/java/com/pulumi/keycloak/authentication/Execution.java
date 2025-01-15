@@ -10,6 +10,7 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.keycloak.Utilities;
 import com.pulumi.keycloak.authentication.ExecutionArgs;
 import com.pulumi.keycloak.authentication.inputs.ExecutionState;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -20,7 +21,7 @@ import javax.annotation.Nullable;
  * An authentication execution is an action that the user or service may or may not take when authenticating through an authentication
  * flow.
  * 
- * &gt; Due to limitations in the Keycloak API, the ordering of authentication executions within a flow must be specified using `depends_on`. Authentication executions that are created first will appear first within the flow.
+ * &gt; Following limitation affects Keycloak &lt; 25:  Due to limitations in the Keycloak API, the ordering of authentication executions within a flow must be specified using `depends_on`. Authentication executions that are created first will appear first within the flow.
  * 
  * ## Example Usage
  * 
@@ -38,7 +39,6 @@ import javax.annotation.Nullable;
  * import com.pulumi.keycloak.authentication.FlowArgs;
  * import com.pulumi.keycloak.authentication.Execution;
  * import com.pulumi.keycloak.authentication.ExecutionArgs;
- * import com.pulumi.resources.CustomResourceOptions;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -68,6 +68,7 @@ import javax.annotation.Nullable;
  *             .parentFlowAlias(flow.alias())
  *             .authenticator("auth-cookie")
  *             .requirement("ALTERNATIVE")
+ *             .priority(10)
  *             .build());
  * 
  *         // second execution
@@ -76,9 +77,8 @@ import javax.annotation.Nullable;
  *             .parentFlowAlias(flow.alias())
  *             .authenticator("identity-provider-redirector")
  *             .requirement("ALTERNATIVE")
- *             .build(), CustomResourceOptions.builder()
- *                 .dependsOn(executionOne)
- *                 .build());
+ *             .priority(20)
+ *             .build());
  * 
  *     }
  * }
@@ -128,6 +128,20 @@ public class Execution extends com.pulumi.resources.CustomResource {
      */
     public Output<String> parentFlowAlias() {
         return this.parentFlowAlias;
+    }
+    /**
+     * The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak &gt;= 25).
+     * 
+     */
+    @Export(name="priority", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> priority;
+
+    /**
+     * @return The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak &gt;= 25).
+     * 
+     */
+    public Output<Optional<Integer>> priority() {
+        return Codegen.optional(this.priority);
     }
     /**
      * The realm the authentication execution exists in.

@@ -106,7 +106,7 @@ type IdentityProvider struct {
 	HideOnLoginPage pulumi.BoolPtrOutput `pulumi:"hideOnLoginPage"`
 	// Internal Identity Provider Id
 	InternalId pulumi.StringOutput `pulumi:"internalId"`
-	// When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+	// When `true`, users cannot log in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
 	LinkOnly pulumi.BoolPtrOutput `pulumi:"linkOnly"`
 	// Login Hint.
 	LoginHint pulumi.StringPtrOutput `pulumi:"loginHint"`
@@ -116,7 +116,7 @@ type IdentityProvider struct {
 	PostBindingAuthnRequest pulumi.BoolPtrOutput `pulumi:"postBindingAuthnRequest"`
 	// Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
 	PostBindingLogout pulumi.BoolPtrOutput `pulumi:"postBindingLogout"`
-	// Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
+	// Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
 	PostBindingResponse pulumi.BoolPtrOutput `pulumi:"postBindingResponse"`
 	// Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it. Defaults to empty.
 	PostBrokerLoginFlowAlias pulumi.StringPtrOutput `pulumi:"postBrokerLoginFlowAlias"`
@@ -225,7 +225,7 @@ type identityProviderState struct {
 	HideOnLoginPage *bool `pulumi:"hideOnLoginPage"`
 	// Internal Identity Provider Id
 	InternalId *string `pulumi:"internalId"`
-	// When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+	// When `true`, users cannot log in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
 	LinkOnly *bool `pulumi:"linkOnly"`
 	// Login Hint.
 	LoginHint *string `pulumi:"loginHint"`
@@ -235,7 +235,7 @@ type identityProviderState struct {
 	PostBindingAuthnRequest *bool `pulumi:"postBindingAuthnRequest"`
 	// Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
 	PostBindingLogout *bool `pulumi:"postBindingLogout"`
-	// Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
+	// Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
 	PostBindingResponse *bool `pulumi:"postBindingResponse"`
 	// Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it. Defaults to empty.
 	PostBrokerLoginFlowAlias *string `pulumi:"postBrokerLoginFlowAlias"`
@@ -303,7 +303,7 @@ type IdentityProviderState struct {
 	HideOnLoginPage pulumi.BoolPtrInput
 	// Internal Identity Provider Id
 	InternalId pulumi.StringPtrInput
-	// When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+	// When `true`, users cannot log in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
 	LinkOnly pulumi.BoolPtrInput
 	// Login Hint.
 	LoginHint pulumi.StringPtrInput
@@ -313,7 +313,7 @@ type IdentityProviderState struct {
 	PostBindingAuthnRequest pulumi.BoolPtrInput
 	// Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
 	PostBindingLogout pulumi.BoolPtrInput
-	// Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
+	// Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
 	PostBindingResponse pulumi.BoolPtrInput
 	// Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it. Defaults to empty.
 	PostBrokerLoginFlowAlias pulumi.StringPtrInput
@@ -383,7 +383,7 @@ type identityProviderArgs struct {
 	GuiOrder *string `pulumi:"guiOrder"`
 	// If hidden, then login with this provider is possible only if requested explicitly, e.g. using the 'kc_idp_hint' parameter.
 	HideOnLoginPage *bool `pulumi:"hideOnLoginPage"`
-	// When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+	// When `true`, users cannot log in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
 	LinkOnly *bool `pulumi:"linkOnly"`
 	// Login Hint.
 	LoginHint *string `pulumi:"loginHint"`
@@ -393,7 +393,7 @@ type identityProviderArgs struct {
 	PostBindingAuthnRequest *bool `pulumi:"postBindingAuthnRequest"`
 	// Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
 	PostBindingLogout *bool `pulumi:"postBindingLogout"`
-	// Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
+	// Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
 	PostBindingResponse *bool `pulumi:"postBindingResponse"`
 	// Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it. Defaults to empty.
 	PostBrokerLoginFlowAlias *string `pulumi:"postBrokerLoginFlowAlias"`
@@ -460,7 +460,7 @@ type IdentityProviderArgs struct {
 	GuiOrder pulumi.StringPtrInput
 	// If hidden, then login with this provider is possible only if requested explicitly, e.g. using the 'kc_idp_hint' parameter.
 	HideOnLoginPage pulumi.BoolPtrInput
-	// When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+	// When `true`, users cannot log in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
 	LinkOnly pulumi.BoolPtrInput
 	// Login Hint.
 	LoginHint pulumi.StringPtrInput
@@ -470,7 +470,7 @@ type IdentityProviderArgs struct {
 	PostBindingAuthnRequest pulumi.BoolPtrInput
 	// Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
 	PostBindingLogout pulumi.BoolPtrInput
-	// Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
+	// Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
 	PostBindingResponse pulumi.BoolPtrInput
 	// Alias of authentication flow, which is triggered after each login with this identity provider. Useful if you want additional verification of each user authenticated with this identity provider (for example OTP). Leave this empty if you don't want any additional authenticators to be triggered after login with this identity provider. Also note, that authenticator implementations must assume that user is already set in ClientSession as identity provider already set it. Defaults to empty.
 	PostBrokerLoginFlowAlias pulumi.StringPtrInput
@@ -672,7 +672,7 @@ func (o IdentityProviderOutput) InternalId() pulumi.StringOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.StringOutput { return v.InternalId }).(pulumi.StringOutput)
 }
 
-// When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+// When `true`, users cannot log in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
 func (o IdentityProviderOutput) LinkOnly() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.LinkOnly }).(pulumi.BoolPtrOutput)
 }
@@ -697,7 +697,7 @@ func (o IdentityProviderOutput) PostBindingLogout() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.PostBindingLogout }).(pulumi.BoolPtrOutput)
 }
 
-// Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
+// Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
 func (o IdentityProviderOutput) PostBindingResponse() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.PostBindingResponse }).(pulumi.BoolPtrOutput)
 }

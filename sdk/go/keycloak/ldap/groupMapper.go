@@ -102,7 +102,7 @@ type GroupMapper struct {
 	GroupNameLdapAttribute pulumi.StringOutput `pulumi:"groupNameLdapAttribute"`
 	// List of strings representing the object classes for the group. Must contain at least one.
 	GroupObjectClasses pulumi.StringArrayOutput `pulumi:"groupObjectClasses"`
-	// When specified, adds an additional custom filter to be used when querying for groups. Must start with `(` and end with `)`.
+	// When specified, adds a custom filter to be used when querying for groups. Must start with `(` and end with `)`.
 	GroupsLdapFilter pulumi.StringPtrOutput `pulumi:"groupsLdapFilter"`
 	// Keycloak group path the LDAP groups are added to. For example if value `/Applications/App1` is used, then LDAP groups will be available in Keycloak under group `App1`, which is the child of top level group `Applications`. The configured group path must already exist in Keycloak when creating this mapper.
 	GroupsPath pulumi.StringOutput `pulumi:"groupsPath"`
@@ -191,7 +191,7 @@ type groupMapperState struct {
 	GroupNameLdapAttribute *string `pulumi:"groupNameLdapAttribute"`
 	// List of strings representing the object classes for the group. Must contain at least one.
 	GroupObjectClasses []string `pulumi:"groupObjectClasses"`
-	// When specified, adds an additional custom filter to be used when querying for groups. Must start with `(` and end with `)`.
+	// When specified, adds a custom filter to be used when querying for groups. Must start with `(` and end with `)`.
 	GroupsLdapFilter *string `pulumi:"groupsLdapFilter"`
 	// Keycloak group path the LDAP groups are added to. For example if value `/Applications/App1` is used, then LDAP groups will be available in Keycloak under group `App1`, which is the child of top level group `Applications`. The configured group path must already exist in Keycloak when creating this mapper.
 	GroupsPath *string `pulumi:"groupsPath"`
@@ -230,7 +230,7 @@ type GroupMapperState struct {
 	GroupNameLdapAttribute pulumi.StringPtrInput
 	// List of strings representing the object classes for the group. Must contain at least one.
 	GroupObjectClasses pulumi.StringArrayInput
-	// When specified, adds an additional custom filter to be used when querying for groups. Must start with `(` and end with `)`.
+	// When specified, adds a custom filter to be used when querying for groups. Must start with `(` and end with `)`.
 	GroupsLdapFilter pulumi.StringPtrInput
 	// Keycloak group path the LDAP groups are added to. For example if value `/Applications/App1` is used, then LDAP groups will be available in Keycloak under group `App1`, which is the child of top level group `Applications`. The configured group path must already exist in Keycloak when creating this mapper.
 	GroupsPath pulumi.StringPtrInput
@@ -273,7 +273,7 @@ type groupMapperArgs struct {
 	GroupNameLdapAttribute string `pulumi:"groupNameLdapAttribute"`
 	// List of strings representing the object classes for the group. Must contain at least one.
 	GroupObjectClasses []string `pulumi:"groupObjectClasses"`
-	// When specified, adds an additional custom filter to be used when querying for groups. Must start with `(` and end with `)`.
+	// When specified, adds a custom filter to be used when querying for groups. Must start with `(` and end with `)`.
 	GroupsLdapFilter *string `pulumi:"groupsLdapFilter"`
 	// Keycloak group path the LDAP groups are added to. For example if value `/Applications/App1` is used, then LDAP groups will be available in Keycloak under group `App1`, which is the child of top level group `Applications`. The configured group path must already exist in Keycloak when creating this mapper.
 	GroupsPath *string `pulumi:"groupsPath"`
@@ -313,7 +313,7 @@ type GroupMapperArgs struct {
 	GroupNameLdapAttribute pulumi.StringInput
 	// List of strings representing the object classes for the group. Must contain at least one.
 	GroupObjectClasses pulumi.StringArrayInput
-	// When specified, adds an additional custom filter to be used when querying for groups. Must start with `(` and end with `)`.
+	// When specified, adds a custom filter to be used when querying for groups. Must start with `(` and end with `)`.
 	GroupsLdapFilter pulumi.StringPtrInput
 	// Keycloak group path the LDAP groups are added to. For example if value `/Applications/App1` is used, then LDAP groups will be available in Keycloak under group `App1`, which is the child of top level group `Applications`. The configured group path must already exist in Keycloak when creating this mapper.
 	GroupsPath pulumi.StringPtrInput
@@ -447,7 +447,7 @@ func (o GroupMapperOutput) GroupObjectClasses() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *GroupMapper) pulumi.StringArrayOutput { return v.GroupObjectClasses }).(pulumi.StringArrayOutput)
 }
 
-// When specified, adds an additional custom filter to be used when querying for groups. Must start with `(` and end with `)`.
+// When specified, adds a custom filter to be used when querying for groups. Must start with `(` and end with `)`.
 func (o GroupMapperOutput) GroupsLdapFilter() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GroupMapper) pulumi.StringPtrOutput { return v.GroupsLdapFilter }).(pulumi.StringPtrOutput)
 }

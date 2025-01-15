@@ -120,7 +120,7 @@ type RoleMapper struct {
 	RoleNameLdapAttribute pulumi.StringOutput `pulumi:"roleNameLdapAttribute"`
 	// List of strings representing the object classes for the role. Must contain at least one.
 	RoleObjectClasses pulumi.StringArrayOutput `pulumi:"roleObjectClasses"`
-	// When specified, adds an additional custom filter to be used when querying for roles. Must start with `(` and end with `)`.
+	// When specified, adds a custom filter to be used when querying for roles. Must start with `(` and end with `)`.
 	RolesLdapFilter pulumi.StringPtrOutput `pulumi:"rolesLdapFilter"`
 	// When `true`, LDAP role mappings will be mapped to realm roles within Keycloak. Defaults to `true`.
 	UseRealmRolesMapping pulumi.BoolPtrOutput `pulumi:"useRealmRolesMapping"`
@@ -203,7 +203,7 @@ type roleMapperState struct {
 	RoleNameLdapAttribute *string `pulumi:"roleNameLdapAttribute"`
 	// List of strings representing the object classes for the role. Must contain at least one.
 	RoleObjectClasses []string `pulumi:"roleObjectClasses"`
-	// When specified, adds an additional custom filter to be used when querying for roles. Must start with `(` and end with `)`.
+	// When specified, adds a custom filter to be used when querying for roles. Must start with `(` and end with `)`.
 	RolesLdapFilter *string `pulumi:"rolesLdapFilter"`
 	// When `true`, LDAP role mappings will be mapped to realm roles within Keycloak. Defaults to `true`.
 	UseRealmRolesMapping *bool `pulumi:"useRealmRolesMapping"`
@@ -236,7 +236,7 @@ type RoleMapperState struct {
 	RoleNameLdapAttribute pulumi.StringPtrInput
 	// List of strings representing the object classes for the role. Must contain at least one.
 	RoleObjectClasses pulumi.StringArrayInput
-	// When specified, adds an additional custom filter to be used when querying for roles. Must start with `(` and end with `)`.
+	// When specified, adds a custom filter to be used when querying for roles. Must start with `(` and end with `)`.
 	RolesLdapFilter pulumi.StringPtrInput
 	// When `true`, LDAP role mappings will be mapped to realm roles within Keycloak. Defaults to `true`.
 	UseRealmRolesMapping pulumi.BoolPtrInput
@@ -273,7 +273,7 @@ type roleMapperArgs struct {
 	RoleNameLdapAttribute string `pulumi:"roleNameLdapAttribute"`
 	// List of strings representing the object classes for the role. Must contain at least one.
 	RoleObjectClasses []string `pulumi:"roleObjectClasses"`
-	// When specified, adds an additional custom filter to be used when querying for roles. Must start with `(` and end with `)`.
+	// When specified, adds a custom filter to be used when querying for roles. Must start with `(` and end with `)`.
 	RolesLdapFilter *string `pulumi:"rolesLdapFilter"`
 	// When `true`, LDAP role mappings will be mapped to realm roles within Keycloak. Defaults to `true`.
 	UseRealmRolesMapping *bool `pulumi:"useRealmRolesMapping"`
@@ -307,7 +307,7 @@ type RoleMapperArgs struct {
 	RoleNameLdapAttribute pulumi.StringInput
 	// List of strings representing the object classes for the role. Must contain at least one.
 	RoleObjectClasses pulumi.StringArrayInput
-	// When specified, adds an additional custom filter to be used when querying for roles. Must start with `(` and end with `)`.
+	// When specified, adds a custom filter to be used when querying for roles. Must start with `(` and end with `)`.
 	RolesLdapFilter pulumi.StringPtrInput
 	// When `true`, LDAP role mappings will be mapped to realm roles within Keycloak. Defaults to `true`.
 	UseRealmRolesMapping pulumi.BoolPtrInput
@@ -462,7 +462,7 @@ func (o RoleMapperOutput) RoleObjectClasses() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *RoleMapper) pulumi.StringArrayOutput { return v.RoleObjectClasses }).(pulumi.StringArrayOutput)
 }
 
-// When specified, adds an additional custom filter to be used when querying for roles. Must start with `(` and end with `)`.
+// When specified, adds a custom filter to be used when querying for roles. Must start with `(` and end with `)`.
 func (o RoleMapperOutput) RolesLdapFilter() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RoleMapper) pulumi.StringPtrOutput { return v.RolesLdapFilter }).(pulumi.StringPtrOutput)
 }

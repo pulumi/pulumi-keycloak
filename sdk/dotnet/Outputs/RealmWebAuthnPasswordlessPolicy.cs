@@ -34,7 +34,7 @@ namespace Pulumi.Keycloak.Outputs
         /// </summary>
         public readonly int? CreateTimeout;
         /// <summary>
-        /// A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
+        /// A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
         /// </summary>
         public readonly string? RelyingPartyEntityName;
         /// <summary>

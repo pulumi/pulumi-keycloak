@@ -17,7 +17,7 @@ import (
 // An authentication execution is an action that the user or service may or may not take when authenticating through an authentication
 // flow.
 //
-// > Due to limitations in the Keycloak API, the ordering of authentication executions within a flow must be specified using `dependsOn`. Authentication executions that are created first will appear first within the flow.
+// > Following limitation affects Keycloak < 25:  Due to limitations in the Keycloak API, the ordering of authentication executions within a flow must be specified using `dependsOn`. Authentication executions that are created first will appear first within the flow.
 //
 // ## Example Usage
 //
@@ -49,11 +49,12 @@ import (
 //				return err
 //			}
 //			// first execution
-//			executionOne, err := authentication.NewExecution(ctx, "execution_one", &authentication.ExecutionArgs{
+//			_, err = authentication.NewExecution(ctx, "execution_one", &authentication.ExecutionArgs{
 //				RealmId:         realm.ID(),
 //				ParentFlowAlias: flow.Alias,
 //				Authenticator:   pulumi.String("auth-cookie"),
 //				Requirement:     pulumi.String("ALTERNATIVE"),
+//				Priority:        pulumi.Int(10),
 //			})
 //			if err != nil {
 //				return err
@@ -64,9 +65,8 @@ import (
 //				ParentFlowAlias: flow.Alias,
 //				Authenticator:   pulumi.String("identity-provider-redirector"),
 //				Requirement:     pulumi.String("ALTERNATIVE"),
-//			}, pulumi.DependsOn([]pulumi.Resource{
-//				executionOne,
-//			}))
+//				Priority:        pulumi.Int(20),
+//			})
 //			if err != nil {
 //				return err
 //			}
@@ -94,6 +94,8 @@ type Execution struct {
 	Authenticator pulumi.StringOutput `pulumi:"authenticator"`
 	// The alias of the flow this execution is attached to.
 	ParentFlowAlias pulumi.StringOutput `pulumi:"parentFlowAlias"`
+	// The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak >= 25).
+	Priority pulumi.IntPtrOutput `pulumi:"priority"`
 	// The realm the authentication execution exists in.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
 	// The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`. Defaults to `DISABLED`.
@@ -143,6 +145,8 @@ type executionState struct {
 	Authenticator *string `pulumi:"authenticator"`
 	// The alias of the flow this execution is attached to.
 	ParentFlowAlias *string `pulumi:"parentFlowAlias"`
+	// The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak >= 25).
+	Priority *int `pulumi:"priority"`
 	// The realm the authentication execution exists in.
 	RealmId *string `pulumi:"realmId"`
 	// The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`. Defaults to `DISABLED`.
@@ -154,6 +158,8 @@ type ExecutionState struct {
 	Authenticator pulumi.StringPtrInput
 	// The alias of the flow this execution is attached to.
 	ParentFlowAlias pulumi.StringPtrInput
+	// The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak >= 25).
+	Priority pulumi.IntPtrInput
 	// The realm the authentication execution exists in.
 	RealmId pulumi.StringPtrInput
 	// The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`. Defaults to `DISABLED`.
@@ -169,6 +175,8 @@ type executionArgs struct {
 	Authenticator string `pulumi:"authenticator"`
 	// The alias of the flow this execution is attached to.
 	ParentFlowAlias string `pulumi:"parentFlowAlias"`
+	// The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak >= 25).
+	Priority *int `pulumi:"priority"`
 	// The realm the authentication execution exists in.
 	RealmId string `pulumi:"realmId"`
 	// The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`. Defaults to `DISABLED`.
@@ -181,6 +189,8 @@ type ExecutionArgs struct {
 	Authenticator pulumi.StringInput
 	// The alias of the flow this execution is attached to.
 	ParentFlowAlias pulumi.StringInput
+	// The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak >= 25).
+	Priority pulumi.IntPtrInput
 	// The realm the authentication execution exists in.
 	RealmId pulumi.StringInput
 	// The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`. Defaults to `DISABLED`.
@@ -282,6 +292,11 @@ func (o ExecutionOutput) Authenticator() pulumi.StringOutput {
 // The alias of the flow this execution is attached to.
 func (o ExecutionOutput) ParentFlowAlias() pulumi.StringOutput {
 	return o.ApplyT(func(v *Execution) pulumi.StringOutput { return v.ParentFlowAlias }).(pulumi.StringOutput)
+}
+
+// The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak >= 25).
+func (o ExecutionOutput) Priority() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Execution) pulumi.IntPtrOutput { return v.Priority }).(pulumi.IntPtrOutput)
 }
 
 // The realm the authentication execution exists in.

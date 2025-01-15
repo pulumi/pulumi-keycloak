@@ -48,6 +48,21 @@ public final class UserAttributeMapperArgs extends com.pulumi.resources.Resource
     }
 
     /**
+     * When `true`, an empty default value is forced for mandatory attributes even when a default value is not specified. Defaults to `true`.
+     * 
+     */
+    @Import(name="attributeForceDefault")
+    private @Nullable Output<Boolean> attributeForceDefault;
+
+    /**
+     * @return When `true`, an empty default value is forced for mandatory attributes even when a default value is not specified. Defaults to `true`.
+     * 
+     */
+    public Optional<Output<Boolean>> attributeForceDefault() {
+        return Optional.ofNullable(this.attributeForceDefault);
+    }
+
+    /**
      * Should be true for binary LDAP attributes.
      * 
      */
@@ -172,6 +187,7 @@ public final class UserAttributeMapperArgs extends com.pulumi.resources.Resource
     private UserAttributeMapperArgs(UserAttributeMapperArgs $) {
         this.alwaysReadValueFromLdap = $.alwaysReadValueFromLdap;
         this.attributeDefaultValue = $.attributeDefaultValue;
+        this.attributeForceDefault = $.attributeForceDefault;
         this.isBinaryAttribute = $.isBinaryAttribute;
         this.isMandatoryInLdap = $.isMandatoryInLdap;
         this.ldapAttribute = $.ldapAttribute;
@@ -240,6 +256,27 @@ public final class UserAttributeMapperArgs extends com.pulumi.resources.Resource
          */
         public Builder attributeDefaultValue(String attributeDefaultValue) {
             return attributeDefaultValue(Output.of(attributeDefaultValue));
+        }
+
+        /**
+         * @param attributeForceDefault When `true`, an empty default value is forced for mandatory attributes even when a default value is not specified. Defaults to `true`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder attributeForceDefault(@Nullable Output<Boolean> attributeForceDefault) {
+            $.attributeForceDefault = attributeForceDefault;
+            return this;
+        }
+
+        /**
+         * @param attributeForceDefault When `true`, an empty default value is forced for mandatory attributes even when a default value is not specified. Defaults to `true`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder attributeForceDefault(Boolean attributeForceDefault) {
+            return attributeForceDefault(Output.of(attributeForceDefault));
         }
 
         /**

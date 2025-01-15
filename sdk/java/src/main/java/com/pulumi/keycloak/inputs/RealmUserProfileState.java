@@ -63,12 +63,28 @@ public final class RealmUserProfileState extends com.pulumi.resources.ResourceAr
         return Optional.ofNullable(this.realmId);
     }
 
+    /**
+     * Unmanaged attributes are user attributes not explicitly defined in the user profile configuration. By default, unmanaged attributes are not enabled. Value could be one of `DISABLED`, `ENABLED`, `ADMIN_EDIT` or `ADMIN_VIEW`. If value is not specified it means `DISABLED`
+     * 
+     */
+    @Import(name="unmanagedAttributePolicy")
+    private @Nullable Output<String> unmanagedAttributePolicy;
+
+    /**
+     * @return Unmanaged attributes are user attributes not explicitly defined in the user profile configuration. By default, unmanaged attributes are not enabled. Value could be one of `DISABLED`, `ENABLED`, `ADMIN_EDIT` or `ADMIN_VIEW`. If value is not specified it means `DISABLED`
+     * 
+     */
+    public Optional<Output<String>> unmanagedAttributePolicy() {
+        return Optional.ofNullable(this.unmanagedAttributePolicy);
+    }
+
     private RealmUserProfileState() {}
 
     private RealmUserProfileState(RealmUserProfileState $) {
         this.attributes = $.attributes;
         this.groups = $.groups;
         this.realmId = $.realmId;
+        this.unmanagedAttributePolicy = $.unmanagedAttributePolicy;
     }
 
     public static Builder builder() {
@@ -170,6 +186,27 @@ public final class RealmUserProfileState extends com.pulumi.resources.ResourceAr
          */
         public Builder realmId(String realmId) {
             return realmId(Output.of(realmId));
+        }
+
+        /**
+         * @param unmanagedAttributePolicy Unmanaged attributes are user attributes not explicitly defined in the user profile configuration. By default, unmanaged attributes are not enabled. Value could be one of `DISABLED`, `ENABLED`, `ADMIN_EDIT` or `ADMIN_VIEW`. If value is not specified it means `DISABLED`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder unmanagedAttributePolicy(@Nullable Output<String> unmanagedAttributePolicy) {
+            $.unmanagedAttributePolicy = unmanagedAttributePolicy;
+            return this;
+        }
+
+        /**
+         * @param unmanagedAttributePolicy Unmanaged attributes are user attributes not explicitly defined in the user profile configuration. By default, unmanaged attributes are not enabled. Value could be one of `DISABLED`, `ENABLED`, `ADMIN_EDIT` or `ADMIN_VIEW`. If value is not specified it means `DISABLED`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder unmanagedAttributePolicy(String unmanagedAttributePolicy) {
+            return unmanagedAttributePolicy(Output.of(unmanagedAttributePolicy));
         }
 
         public RealmUserProfileState build() {

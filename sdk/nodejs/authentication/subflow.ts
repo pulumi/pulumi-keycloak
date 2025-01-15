@@ -30,6 +30,7 @@ import * as utilities from "../utilities";
  *     parentFlowAlias: flow.alias,
  *     providerId: "basic-flow",
  *     requirement: "ALTERNATIVE",
+ *     priority: 10,
  * });
  * ```
  *
@@ -101,6 +102,10 @@ export class Subflow extends pulumi.CustomResource {
      */
     public readonly parentFlowAlias!: pulumi.Output<string>;
     /**
+     * The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak >= 25).
+     */
+    public readonly priority!: pulumi.Output<number | undefined>;
+    /**
      * The type of authentication subflow to create. Valid choices include `basic-flow`, `form-flow`
      * and `client-flow`. Defaults to `basic-flow`.
      */
@@ -132,6 +137,7 @@ export class Subflow extends pulumi.CustomResource {
             resourceInputs["authenticator"] = state ? state.authenticator : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["parentFlowAlias"] = state ? state.parentFlowAlias : undefined;
+            resourceInputs["priority"] = state ? state.priority : undefined;
             resourceInputs["providerId"] = state ? state.providerId : undefined;
             resourceInputs["realmId"] = state ? state.realmId : undefined;
             resourceInputs["requirement"] = state ? state.requirement : undefined;
@@ -150,6 +156,7 @@ export class Subflow extends pulumi.CustomResource {
             resourceInputs["authenticator"] = args ? args.authenticator : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["parentFlowAlias"] = args ? args.parentFlowAlias : undefined;
+            resourceInputs["priority"] = args ? args.priority : undefined;
             resourceInputs["providerId"] = args ? args.providerId : undefined;
             resourceInputs["realmId"] = args ? args.realmId : undefined;
             resourceInputs["requirement"] = args ? args.requirement : undefined;
@@ -180,6 +187,10 @@ export interface SubflowState {
      * The alias for the parent authentication flow.
      */
     parentFlowAlias?: pulumi.Input<string>;
+    /**
+     * The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak >= 25).
+     */
+    priority?: pulumi.Input<number>;
     /**
      * The type of authentication subflow to create. Valid choices include `basic-flow`, `form-flow`
      * and `client-flow`. Defaults to `basic-flow`.
@@ -217,6 +228,10 @@ export interface SubflowArgs {
      * The alias for the parent authentication flow.
      */
     parentFlowAlias: pulumi.Input<string>;
+    /**
+     * The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak >= 25).
+     */
+    priority?: pulumi.Input<number>;
     /**
      * The type of authentication subflow to create. Valid choices include `basic-flow`, `form-flow`
      * and `client-flow`. Defaults to `basic-flow`.

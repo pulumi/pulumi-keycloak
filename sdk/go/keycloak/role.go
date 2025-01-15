@@ -14,7 +14,7 @@ import (
 
 // Allows for creating and managing roles within Keycloak.
 //
-// Roles allow you define privileges within Keycloak and map them to users and groups.
+// Roles allow you to define privileges within Keycloak and map them to users and groups.
 //
 // ## Example Usage
 //
@@ -245,7 +245,9 @@ type Role struct {
 	// When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
 	CompositeRoles pulumi.StringArrayOutput `pulumi:"compositeRoles"`
 	// The description of the role
-	Description pulumi.StringPtrOutput `pulumi:"description"`
+	Description pulumi.StringOutput `pulumi:"description"`
+	// When `true`, the role with the specified `name` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with roles that Keycloak creates automatically during realm creation, such as the client roles `create-client`, `view-realm`, ... for the client `realm-management` created per realm. Note, that the role will not be removed during destruction if `import` is `true`.
+	Import pulumi.BoolPtrOutput `pulumi:"import"`
 	// The name of the role
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The realm this role exists within.
@@ -293,6 +295,8 @@ type roleState struct {
 	CompositeRoles []string `pulumi:"compositeRoles"`
 	// The description of the role
 	Description *string `pulumi:"description"`
+	// When `true`, the role with the specified `name` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with roles that Keycloak creates automatically during realm creation, such as the client roles `create-client`, `view-realm`, ... for the client `realm-management` created per realm. Note, that the role will not be removed during destruction if `import` is `true`.
+	Import *bool `pulumi:"import"`
 	// The name of the role
 	Name *string `pulumi:"name"`
 	// The realm this role exists within.
@@ -308,6 +312,8 @@ type RoleState struct {
 	CompositeRoles pulumi.StringArrayInput
 	// The description of the role
 	Description pulumi.StringPtrInput
+	// When `true`, the role with the specified `name` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with roles that Keycloak creates automatically during realm creation, such as the client roles `create-client`, `view-realm`, ... for the client `realm-management` created per realm. Note, that the role will not be removed during destruction if `import` is `true`.
+	Import pulumi.BoolPtrInput
 	// The name of the role
 	Name pulumi.StringPtrInput
 	// The realm this role exists within.
@@ -327,6 +333,8 @@ type roleArgs struct {
 	CompositeRoles []string `pulumi:"compositeRoles"`
 	// The description of the role
 	Description *string `pulumi:"description"`
+	// When `true`, the role with the specified `name` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with roles that Keycloak creates automatically during realm creation, such as the client roles `create-client`, `view-realm`, ... for the client `realm-management` created per realm. Note, that the role will not be removed during destruction if `import` is `true`.
+	Import *bool `pulumi:"import"`
 	// The name of the role
 	Name *string `pulumi:"name"`
 	// The realm this role exists within.
@@ -343,6 +351,8 @@ type RoleArgs struct {
 	CompositeRoles pulumi.StringArrayInput
 	// The description of the role
 	Description pulumi.StringPtrInput
+	// When `true`, the role with the specified `name` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with roles that Keycloak creates automatically during realm creation, such as the client roles `create-client`, `view-realm`, ... for the client `realm-management` created per realm. Note, that the role will not be removed during destruction if `import` is `true`.
+	Import pulumi.BoolPtrInput
 	// The name of the role
 	Name pulumi.StringPtrInput
 	// The realm this role exists within.
@@ -452,8 +462,13 @@ func (o RoleOutput) CompositeRoles() pulumi.StringArrayOutput {
 }
 
 // The description of the role
-func (o RoleOutput) Description() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Role) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+func (o RoleOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v *Role) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
+}
+
+// When `true`, the role with the specified `name` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with roles that Keycloak creates automatically during realm creation, such as the client roles `create-client`, `view-realm`, ... for the client `realm-management` created per realm. Note, that the role will not be removed during destruction if `import` is `true`.
+func (o RoleOutput) Import() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Role) pulumi.BoolPtrOutput { return v.Import }).(pulumi.BoolPtrOutput)
 }
 
 // The name of the role

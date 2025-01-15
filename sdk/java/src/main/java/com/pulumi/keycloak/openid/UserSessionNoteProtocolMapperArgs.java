@@ -138,14 +138,14 @@ public final class UserSessionNoteProtocolMapperArgs extends com.pulumi.resource
     }
 
     /**
-     * String value being the name of stored user session note within the UserSessionModel.note map.
+     * String value being the name of stored user session note within the `UserSessionModel.note` map.
      * 
      */
     @Import(name="sessionNote")
     private @Nullable Output<String> sessionNote;
 
     /**
-     * @return String value being the name of stored user session note within the UserSessionModel.note map.
+     * @return String value being the name of stored user session note within the `UserSessionModel.note` map.
      * 
      */
     public Optional<Output<String>> sessionNote() {
@@ -353,7 +353,7 @@ public final class UserSessionNoteProtocolMapperArgs extends com.pulumi.resource
         }
 
         /**
-         * @param sessionNote String value being the name of stored user session note within the UserSessionModel.note map.
+         * @param sessionNote String value being the name of stored user session note within the `UserSessionModel.note` map.
          * 
          * @return builder
          * 
@@ -364,7 +364,7 @@ public final class UserSessionNoteProtocolMapperArgs extends com.pulumi.resource
         }
 
         /**
-         * @param sessionNote String value being the name of stored user session note within the UserSessionModel.note map.
+         * @param sessionNote String value being the name of stored user session note within the `UserSessionModel.note` map.
          * 
          * @return builder
          * 
