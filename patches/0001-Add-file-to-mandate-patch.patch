@@ -6,7 +6,7 @@ Subject: [PATCH] Add file to mandate patch
 
 diff --git a/patch.md b/patch.md
 new file mode 100644
-index 0000000..a8fee35
+index 0000000..2ed2d3f
 --- /dev/null
 +++ b/patch.md
 @@ -0,0 +1,7 @@
@@ -15,5 +15,5 @@ index 0000000..a8fee35
 +This provider needs a patch since it's [`go.mod`](https://github.com/keycloak/terraform-provider-keycloak/blob/3f6b75b79ada48eddb41de6055f57a357d9b691c/go.mod#L1) is not valid:
 +
 +```go
-+module github.com/mrparkers/terraform-provider-keycloak
++module github.com/keycloak/terraform-provider-keycloak
 +```
