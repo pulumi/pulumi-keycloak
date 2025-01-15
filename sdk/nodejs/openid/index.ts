@@ -15,11 +15,6 @@ export type AudienceResolveProtocolMapper = import("./audienceResolveProtocolMap
 export const AudienceResolveProtocolMapper: typeof import("./audienceResolveProtocolMapper").AudienceResolveProtocolMapper = null as any;
 utilities.lazyLoad(exports, ["AudienceResolveProtocolMapper"], () => require("./audienceResolveProtocolMapper"));
 
-export { AudienceResolveProtocolMappterArgs, AudienceResolveProtocolMappterState } from "./audienceResolveProtocolMappter";
-export type AudienceResolveProtocolMappter = import("./audienceResolveProtocolMappter").AudienceResolveProtocolMappter;
-export const AudienceResolveProtocolMappter: typeof import("./audienceResolveProtocolMappter").AudienceResolveProtocolMappter = null as any;
-utilities.lazyLoad(exports, ["AudienceResolveProtocolMappter"], () => require("./audienceResolveProtocolMappter"));
-
 export { ClientArgs, ClientState } from "./client";
 export type Client = import("./client").Client;
 export const Client: typeof import("./client").Client = null as any;
@@ -184,8 +179,6 @@ const _module = {
                 return new AudienceProtocolMapper(name, <any>undefined, { urn })
             case "keycloak:openid/audienceResolveProtocolMapper:AudienceResolveProtocolMapper":
                 return new AudienceResolveProtocolMapper(name, <any>undefined, { urn })
-            case "keycloak:openid/audienceResolveProtocolMappter:AudienceResolveProtocolMappter":
-                return new AudienceResolveProtocolMappter(name, <any>undefined, { urn })
             case "keycloak:openid/client:Client":
                 return new Client(name, <any>undefined, { urn })
             case "keycloak:openid/clientAggregatePolicy:ClientAggregatePolicy":
@@ -247,7 +240,6 @@ const _module = {
 };
 pulumi.runtime.registerResourceModule("keycloak", "openid/audienceProtocolMapper", _module)
 pulumi.runtime.registerResourceModule("keycloak", "openid/audienceResolveProtocolMapper", _module)
-pulumi.runtime.registerResourceModule("keycloak", "openid/audienceResolveProtocolMappter", _module)
 pulumi.runtime.registerResourceModule("keycloak", "openid/client", _module)
 pulumi.runtime.registerResourceModule("keycloak", "openid/clientAggregatePolicy", _module)
 pulumi.runtime.registerResourceModule("keycloak", "openid/clientAuthorizationPermission", _module)
