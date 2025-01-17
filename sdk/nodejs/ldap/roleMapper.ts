@@ -140,7 +140,7 @@ export class RoleMapper extends pulumi.CustomResource {
      */
     public readonly roleObjectClasses!: pulumi.Output<string[]>;
     /**
-     * When specified, adds an additional custom filter to be used when querying for roles. Must start with `(` and end with `)`.
+     * When specified, adds a custom filter to be used when querying for roles. Must start with `(` and end with `)`.
      */
     public readonly rolesLdapFilter!: pulumi.Output<string | undefined>;
     /**
@@ -277,7 +277,7 @@ export interface RoleMapperState {
      */
     roleObjectClasses?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * When specified, adds an additional custom filter to be used when querying for roles. Must start with `(` and end with `)`.
+     * When specified, adds a custom filter to be used when querying for roles. Must start with `(` and end with `)`.
      */
     rolesLdapFilter?: pulumi.Input<string>;
     /**
@@ -343,7 +343,7 @@ export interface RoleMapperArgs {
      */
     roleObjectClasses: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * When specified, adds an additional custom filter to be used when querying for roles. Must start with `(` and end with `)`.
+     * When specified, adds a custom filter to be used when querying for roles. Must start with `(` and end with `)`.
      */
     rolesLdapFilter?: pulumi.Input<string>;
     /**

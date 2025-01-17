@@ -179,7 +179,7 @@ class GroupMemberships(pulumi.CustomResource):
 
         as if it did not already exist on the server.
 
-        [1]: providers/keycloak/keycloak/latest/docs/resources/group_memberships
+        [1]: https://registry.terraform.io/providers/keycloak/keycloak/latest/docs/resources/group_memberships
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -237,7 +237,7 @@ class GroupMemberships(pulumi.CustomResource):
 
         as if it did not already exist on the server.
 
-        [1]: providers/keycloak/keycloak/latest/docs/resources/group_memberships
+        [1]: https://registry.terraform.io/providers/keycloak/keycloak/latest/docs/resources/group_memberships
 
         :param str resource_name: The name of the resource.
         :param GroupMembershipsArgs args: The arguments to use to populate this resource's properties.

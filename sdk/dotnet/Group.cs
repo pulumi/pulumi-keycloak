@@ -82,7 +82,7 @@ namespace Pulumi.Keycloak
     public partial class Group : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
+        /// A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars
         /// </summary>
         [Output("attributes")]
         public Output<ImmutableDictionary<string, string>?> Attributes { get; private set; } = null!;
@@ -161,7 +161,7 @@ namespace Pulumi.Keycloak
         private InputMap<string>? _attributes;
 
         /// <summary>
-        /// A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
+        /// A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars
         /// </summary>
         public InputMap<string> Attributes
         {
@@ -199,7 +199,7 @@ namespace Pulumi.Keycloak
         private InputMap<string>? _attributes;
 
         /// <summary>
-        /// A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
+        /// A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars
         /// </summary>
         public InputMap<string> Attributes
         {

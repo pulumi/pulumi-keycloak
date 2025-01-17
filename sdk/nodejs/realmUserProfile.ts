@@ -10,99 +10,10 @@ import * as utilities from "./utilities";
  * Allows for managing Realm User Profiles within Keycloak.
  *
  * A user profile defines a schema for representing user attributes and how they are managed within a realm.
- * This is a preview feature, hence not fully supported and disabled by default.
- * To enable it, start the server with one of the following flags:
- * - WildFly distribution: `-Dkeycloak.profile.feature.declarative_user_profile=enabled`
- * - Quarkus distribution: `--features=preview` or `--features=declarative-user-profile`
  *
+ * Information for Keycloak versions < 24:
  * The realm linked to the `keycloak.RealmUserProfile` resource must have the user profile feature enabled.
  * It can be done via the administration UI, or by setting the `userProfileEnabled` realm attribute to `true`.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as keycloak from "@pulumi/keycloak";
- *
- * const realm = new keycloak.Realm("realm", {
- *     realm: "my-realm",
- *     attributes: {
- *         userProfileEnabled: "true",
- *     },
- * });
- * const userprofile = new keycloak.RealmUserProfile("userprofile", {
- *     realmId: myRealm.id,
- *     attributes: [
- *         {
- *             name: "field1",
- *             displayName: "Field 1",
- *             group: "group1",
- *             enabledWhenScopes: ["offline_access"],
- *             requiredForRoles: ["user"],
- *             requiredForScopes: ["offline_access"],
- *             permissions: {
- *                 views: [
- *                     "admin",
- *                     "user",
- *                 ],
- *                 edits: [
- *                     "admin",
- *                     "user",
- *                 ],
- *             },
- *             validators: [
- *                 {
- *                     name: "person-name-prohibited-characters",
- *                 },
- *                 {
- *                     name: "pattern",
- *                     config: {
- *                         pattern: "^[a-z]+$",
- *                         "error-message": "Nope",
- *                     },
- *                 },
- *             ],
- *             annotations: {
- *                 foo: "bar",
- *             },
- *         },
- *         {
- *             name: "field2",
- *             validators: [{
- *                 name: "options",
- *                 config: {
- *                     options: JSON.stringify(["opt1"]),
- *                 },
- *             }],
- *             annotations: {
- *                 foo: JSON.stringify({
- *                     key: "val",
- *                 }),
- *             },
- *         },
- *     ],
- *     groups: [
- *         {
- *             name: "group1",
- *             displayHeader: "Group 1",
- *             displayDescription: "A first group",
- *             annotations: {
- *                 foo: "bar",
- *                 foo2: JSON.stringify({
- *                     key: "val",
- *                 }),
- *             },
- *         },
- *         {
- *             name: "group2",
- *         },
- *     ],
- * });
- * ```
- *
- * ## Import
- *
- * This resource currently does not support importing.
  */
 export class RealmUserProfile extends pulumi.CustomResource {
     /**

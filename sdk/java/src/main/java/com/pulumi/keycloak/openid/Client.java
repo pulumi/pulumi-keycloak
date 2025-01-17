@@ -740,14 +740,14 @@ public class Client extends com.pulumi.resources.CustomResource {
         return this.validRedirectUris;
     }
     /**
-     * A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`.&#34;
+     * A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`.
      * 
      */
     @Export(name="webOrigins", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> webOrigins;
 
     /**
-     * @return A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`.&#34;
+     * @return A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`.
      * 
      */
     public Output<List<String>> webOrigins() {

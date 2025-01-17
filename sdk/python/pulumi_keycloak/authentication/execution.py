@@ -173,34 +173,7 @@ class Execution(pulumi.CustomResource):
         An authentication execution is an action that the user or service may or may not take when authenticating through an authentication
         flow.
 
-        > Due to limitations in the Keycloak API, the ordering of authentication executions within a flow must be specified using `depends_on`. Authentication executions that are created first will appear first within the flow.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_keycloak as keycloak
-
-        realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
-        flow = keycloak.authentication.Flow("flow",
-            realm_id=realm.id,
-            alias="my-flow-alias")
-        # first execution
-        execution_one = keycloak.authentication.Execution("execution_one",
-            realm_id=realm.id,
-            parent_flow_alias=flow.alias,
-            authenticator="auth-cookie",
-            requirement="ALTERNATIVE")
-        # second execution
-        execution_two = keycloak.authentication.Execution("execution_two",
-            realm_id=realm.id,
-            parent_flow_alias=flow.alias,
-            authenticator="identity-provider-redirector",
-            requirement="ALTERNATIVE",
-            opts = pulumi.ResourceOptions(depends_on=[execution_one]))
-        ```
+        > Following limitation affects Keycloak < 25:  Due to limitations in the Keycloak API, the ordering of authentication executions within a flow must be specified using `depends_on`. Authentication executions that are created first will appear first within the flow.
 
         ## Import
 
@@ -233,34 +206,7 @@ class Execution(pulumi.CustomResource):
         An authentication execution is an action that the user or service may or may not take when authenticating through an authentication
         flow.
 
-        > Due to limitations in the Keycloak API, the ordering of authentication executions within a flow must be specified using `depends_on`. Authentication executions that are created first will appear first within the flow.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_keycloak as keycloak
-
-        realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
-        flow = keycloak.authentication.Flow("flow",
-            realm_id=realm.id,
-            alias="my-flow-alias")
-        # first execution
-        execution_one = keycloak.authentication.Execution("execution_one",
-            realm_id=realm.id,
-            parent_flow_alias=flow.alias,
-            authenticator="auth-cookie",
-            requirement="ALTERNATIVE")
-        # second execution
-        execution_two = keycloak.authentication.Execution("execution_two",
-            realm_id=realm.id,
-            parent_flow_alias=flow.alias,
-            authenticator="identity-provider-redirector",
-            requirement="ALTERNATIVE",
-            opts = pulumi.ResourceOptions(depends_on=[execution_one]))
-        ```
+        > Following limitation affects Keycloak < 25:  Due to limitations in the Keycloak API, the ordering of authentication executions within a flow must be specified using `depends_on`. Authentication executions that are created first will appear first within the flow.
 
         ## Import
 

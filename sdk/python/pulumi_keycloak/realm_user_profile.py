@@ -142,98 +142,10 @@ class RealmUserProfile(pulumi.CustomResource):
         Allows for managing Realm User Profiles within Keycloak.
 
         A user profile defines a schema for representing user attributes and how they are managed within a realm.
-        This is a preview feature, hence not fully supported and disabled by default.
-        To enable it, start the server with one of the following flags:
-        - WildFly distribution: `-Dkeycloak.profile.feature.declarative_user_profile=enabled`
-        - Quarkus distribution: `--features=preview` or `--features=declarative-user-profile`
 
+        Information for Keycloak versions < 24:
         The realm linked to the `RealmUserProfile` resource must have the user profile feature enabled.
         It can be done via the administration UI, or by setting the `userProfileEnabled` realm attribute to `true`.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import json
-        import pulumi_keycloak as keycloak
-
-        realm = keycloak.Realm("realm",
-            realm="my-realm",
-            attributes={
-                "userProfileEnabled": "true",
-            })
-        userprofile = keycloak.RealmUserProfile("userprofile",
-            realm_id=my_realm["id"],
-            attributes=[
-                {
-                    "name": "field1",
-                    "display_name": "Field 1",
-                    "group": "group1",
-                    "enabled_when_scopes": ["offline_access"],
-                    "required_for_roles": ["user"],
-                    "required_for_scopes": ["offline_access"],
-                    "permissions": {
-                        "views": [
-                            "admin",
-                            "user",
-                        ],
-                        "edits": [
-                            "admin",
-                            "user",
-                        ],
-                    },
-                    "validators": [
-                        {
-                            "name": "person-name-prohibited-characters",
-                        },
-                        {
-                            "name": "pattern",
-                            "config": {
-                                "pattern": "^[a-z]+$",
-                                "error-message": "Nope",
-                            },
-                        },
-                    ],
-                    "annotations": {
-                        "foo": "bar",
-                    },
-                },
-                {
-                    "name": "field2",
-                    "validators": [{
-                        "name": "options",
-                        "config": {
-                            "options": json.dumps(["opt1"]),
-                        },
-                    }],
-                    "annotations": {
-                        "foo": json.dumps({
-                            "key": "val",
-                        }),
-                    },
-                },
-            ],
-            groups=[
-                {
-                    "name": "group1",
-                    "display_header": "Group 1",
-                    "display_description": "A first group",
-                    "annotations": {
-                        "foo": "bar",
-                        "foo2": json.dumps({
-                            "key": "val",
-                        }),
-                    },
-                },
-                {
-                    "name": "group2",
-                },
-            ])
-        ```
-
-        ## Import
-
-        This resource currently does not support importing.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -251,98 +163,10 @@ class RealmUserProfile(pulumi.CustomResource):
         Allows for managing Realm User Profiles within Keycloak.
 
         A user profile defines a schema for representing user attributes and how they are managed within a realm.
-        This is a preview feature, hence not fully supported and disabled by default.
-        To enable it, start the server with one of the following flags:
-        - WildFly distribution: `-Dkeycloak.profile.feature.declarative_user_profile=enabled`
-        - Quarkus distribution: `--features=preview` or `--features=declarative-user-profile`
 
+        Information for Keycloak versions < 24:
         The realm linked to the `RealmUserProfile` resource must have the user profile feature enabled.
         It can be done via the administration UI, or by setting the `userProfileEnabled` realm attribute to `true`.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import json
-        import pulumi_keycloak as keycloak
-
-        realm = keycloak.Realm("realm",
-            realm="my-realm",
-            attributes={
-                "userProfileEnabled": "true",
-            })
-        userprofile = keycloak.RealmUserProfile("userprofile",
-            realm_id=my_realm["id"],
-            attributes=[
-                {
-                    "name": "field1",
-                    "display_name": "Field 1",
-                    "group": "group1",
-                    "enabled_when_scopes": ["offline_access"],
-                    "required_for_roles": ["user"],
-                    "required_for_scopes": ["offline_access"],
-                    "permissions": {
-                        "views": [
-                            "admin",
-                            "user",
-                        ],
-                        "edits": [
-                            "admin",
-                            "user",
-                        ],
-                    },
-                    "validators": [
-                        {
-                            "name": "person-name-prohibited-characters",
-                        },
-                        {
-                            "name": "pattern",
-                            "config": {
-                                "pattern": "^[a-z]+$",
-                                "error-message": "Nope",
-                            },
-                        },
-                    ],
-                    "annotations": {
-                        "foo": "bar",
-                    },
-                },
-                {
-                    "name": "field2",
-                    "validators": [{
-                        "name": "options",
-                        "config": {
-                            "options": json.dumps(["opt1"]),
-                        },
-                    }],
-                    "annotations": {
-                        "foo": json.dumps({
-                            "key": "val",
-                        }),
-                    },
-                },
-            ],
-            groups=[
-                {
-                    "name": "group1",
-                    "display_header": "Group 1",
-                    "display_description": "A first group",
-                    "annotations": {
-                        "foo": "bar",
-                        "foo2": json.dumps({
-                            "key": "val",
-                        }),
-                    },
-                },
-                {
-                    "name": "group2",
-                },
-            ])
-        ```
-
-        ## Import
-
-        This resource currently does not support importing.
 
         :param str resource_name: The name of the resource.
         :param RealmUserProfileArgs args: The arguments to use to populate this resource's properties.

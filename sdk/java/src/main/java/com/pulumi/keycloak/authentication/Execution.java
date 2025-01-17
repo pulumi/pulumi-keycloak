@@ -20,70 +20,11 @@ import javax.annotation.Nullable;
  * An authentication execution is an action that the user or service may or may not take when authenticating through an authentication
  * flow.
  * 
- * &gt; Due to limitations in the Keycloak API, the ordering of authentication executions within a flow must be specified using `depends_on`. Authentication executions that are created first will appear first within the flow.
+ * &gt; Following limitation affects Keycloak &lt; 25:  Due to limitations in the Keycloak API, the ordering of authentication executions within a flow must be specified using `depends_on`. Authentication executions that are created first will appear first within the flow.
  * 
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.keycloak.Realm;
- * import com.pulumi.keycloak.RealmArgs;
- * import com.pulumi.keycloak.authentication.Flow;
- * import com.pulumi.keycloak.authentication.FlowArgs;
- * import com.pulumi.keycloak.authentication.Execution;
- * import com.pulumi.keycloak.authentication.ExecutionArgs;
- * import com.pulumi.resources.CustomResourceOptions;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var realm = new Realm("realm", RealmArgs.builder()
- *             .realm("my-realm")
- *             .enabled(true)
- *             .build());
- * 
- *         var flow = new Flow("flow", FlowArgs.builder()
- *             .realmId(realm.id())
- *             .alias("my-flow-alias")
- *             .build());
- * 
- *         // first execution
- *         var executionOne = new Execution("executionOne", ExecutionArgs.builder()
- *             .realmId(realm.id())
- *             .parentFlowAlias(flow.alias())
- *             .authenticator("auth-cookie")
- *             .requirement("ALTERNATIVE")
- *             .build());
- * 
- *         // second execution
- *         var executionTwo = new Execution("executionTwo", ExecutionArgs.builder()
- *             .realmId(realm.id())
- *             .parentFlowAlias(flow.alias())
- *             .authenticator("identity-provider-redirector")
- *             .requirement("ALTERNATIVE")
- *             .build(), CustomResourceOptions.builder()
- *                 .dependsOn(executionOne)
- *                 .build());
- * 
- *     }
- * }
- * }
- * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

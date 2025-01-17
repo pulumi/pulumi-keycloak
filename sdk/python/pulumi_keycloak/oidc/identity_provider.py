@@ -52,7 +52,7 @@ class IdentityProviderArgs:
                  validate_signature: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a IdentityProvider resource.
-        :param pulumi.Input[str] alias: The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
+        :param pulumi.Input[str] alias: The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
         :param pulumi.Input[str] authorization_url: The Authorization Url.
         :param pulumi.Input[str] client_id: The client or client identifier registered within the identity provider.
         :param pulumi.Input[str] client_secret: The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
@@ -71,9 +71,9 @@ class IdentityProviderArgs:
         :param pulumi.Input[bool] hide_on_login_page: When `true`, this provider will be hidden on the login page, and is only accessible when requested explicitly. Defaults to `false`.
         :param pulumi.Input[str] issuer: The issuer identifier for the issuer of the response. If not provided, no validation will be performed.
         :param pulumi.Input[str] jwks_url: JSON Web Key Set URL.
-        :param pulumi.Input[bool] link_only: When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+        :param pulumi.Input[bool] link_only: When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         :param pulumi.Input[str] login_hint: Pass login hint to identity provider.
-        :param pulumi.Input[str] logout_url: The Logout URL is the end session endpoint to use to logout user from external identity provider.
+        :param pulumi.Input[str] logout_url: The Logout URL is the end session endpoint to use to sign-out the user from external identity provider.
         :param pulumi.Input[str] post_broker_login_flow_alias: The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
         :param pulumi.Input[str] provider_id: The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
         :param pulumi.Input[bool] store_token: When `true`, tokens will be stored after authenticating users. Defaults to `true`.
@@ -144,7 +144,7 @@ class IdentityProviderArgs:
     @pulumi.getter
     def alias(self) -> pulumi.Input[str]:
         """
-        The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
+        The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
         """
         return pulumi.get(self, "alias")
 
@@ -381,7 +381,7 @@ class IdentityProviderArgs:
     @pulumi.getter(name="linkOnly")
     def link_only(self) -> Optional[pulumi.Input[bool]]:
         """
-        When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+        When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         """
         return pulumi.get(self, "link_only")
 
@@ -405,7 +405,7 @@ class IdentityProviderArgs:
     @pulumi.getter(name="logoutUrl")
     def logout_url(self) -> Optional[pulumi.Input[str]]:
         """
-        The Logout URL is the end session endpoint to use to logout user from external identity provider.
+        The Logout URL is the end session endpoint to use to sign-out the user from external identity provider.
         """
         return pulumi.get(self, "logout_url")
 
@@ -549,7 +549,7 @@ class _IdentityProviderState:
         Input properties used for looking up and filtering IdentityProvider resources.
         :param pulumi.Input[bool] accepts_prompt_none_forward_from_client: When `true`, the IDP will accept forwarded authentication requests that contain the `prompt=none` query parameter. Defaults to `false`.
         :param pulumi.Input[bool] add_read_token_role_on_create: When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
-        :param pulumi.Input[str] alias: The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
+        :param pulumi.Input[str] alias: The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
         :param pulumi.Input[bool] authenticate_by_default: Enable/disable authenticate users by default.
         :param pulumi.Input[str] authorization_url: The Authorization Url.
         :param pulumi.Input[bool] backchannel_supported: Does the external IDP support backchannel logout? Defaults to `true`.
@@ -565,9 +565,9 @@ class _IdentityProviderState:
         :param pulumi.Input[str] internal_id: (Computed) The unique ID that Keycloak assigns to the identity provider upon creation.
         :param pulumi.Input[str] issuer: The issuer identifier for the issuer of the response. If not provided, no validation will be performed.
         :param pulumi.Input[str] jwks_url: JSON Web Key Set URL.
-        :param pulumi.Input[bool] link_only: When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+        :param pulumi.Input[bool] link_only: When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         :param pulumi.Input[str] login_hint: Pass login hint to identity provider.
-        :param pulumi.Input[str] logout_url: The Logout URL is the end session endpoint to use to logout user from external identity provider.
+        :param pulumi.Input[str] logout_url: The Logout URL is the end session endpoint to use to sign-out the user from external identity provider.
         :param pulumi.Input[str] post_broker_login_flow_alias: The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
         :param pulumi.Input[str] provider_id: The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
         :param pulumi.Input[str] realm: The name of the realm. This is unique across Keycloak.
@@ -672,7 +672,7 @@ class _IdentityProviderState:
     @pulumi.getter
     def alias(self) -> Optional[pulumi.Input[str]]:
         """
-        The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
+        The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
         """
         return pulumi.get(self, "alias")
 
@@ -873,7 +873,7 @@ class _IdentityProviderState:
     @pulumi.getter(name="linkOnly")
     def link_only(self) -> Optional[pulumi.Input[bool]]:
         """
-        When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+        When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         """
         return pulumi.get(self, "link_only")
 
@@ -897,7 +897,7 @@ class _IdentityProviderState:
     @pulumi.getter(name="logoutUrl")
     def logout_url(self) -> Optional[pulumi.Input[str]]:
         """
-        The Logout URL is the end session endpoint to use to logout user from external identity provider.
+        The Logout URL is the end session endpoint to use to sign-out the user from external identity provider.
         """
         return pulumi.get(self, "logout_url")
 
@@ -1105,7 +1105,7 @@ class IdentityProvider(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] accepts_prompt_none_forward_from_client: When `true`, the IDP will accept forwarded authentication requests that contain the `prompt=none` query parameter. Defaults to `false`.
         :param pulumi.Input[bool] add_read_token_role_on_create: When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
-        :param pulumi.Input[str] alias: The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
+        :param pulumi.Input[str] alias: The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
         :param pulumi.Input[bool] authenticate_by_default: Enable/disable authenticate users by default.
         :param pulumi.Input[str] authorization_url: The Authorization Url.
         :param pulumi.Input[bool] backchannel_supported: Does the external IDP support backchannel logout? Defaults to `true`.
@@ -1120,9 +1120,9 @@ class IdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[bool] hide_on_login_page: When `true`, this provider will be hidden on the login page, and is only accessible when requested explicitly. Defaults to `false`.
         :param pulumi.Input[str] issuer: The issuer identifier for the issuer of the response. If not provided, no validation will be performed.
         :param pulumi.Input[str] jwks_url: JSON Web Key Set URL.
-        :param pulumi.Input[bool] link_only: When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+        :param pulumi.Input[bool] link_only: When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         :param pulumi.Input[str] login_hint: Pass login hint to identity provider.
-        :param pulumi.Input[str] logout_url: The Logout URL is the end session endpoint to use to logout user from external identity provider.
+        :param pulumi.Input[str] logout_url: The Logout URL is the end session endpoint to use to sign-out the user from external identity provider.
         :param pulumi.Input[str] post_broker_login_flow_alias: The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
         :param pulumi.Input[str] provider_id: The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
         :param pulumi.Input[str] realm: The name of the realm. This is unique across Keycloak.
@@ -1330,7 +1330,7 @@ class IdentityProvider(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] accepts_prompt_none_forward_from_client: When `true`, the IDP will accept forwarded authentication requests that contain the `prompt=none` query parameter. Defaults to `false`.
         :param pulumi.Input[bool] add_read_token_role_on_create: When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
-        :param pulumi.Input[str] alias: The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
+        :param pulumi.Input[str] alias: The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
         :param pulumi.Input[bool] authenticate_by_default: Enable/disable authenticate users by default.
         :param pulumi.Input[str] authorization_url: The Authorization Url.
         :param pulumi.Input[bool] backchannel_supported: Does the external IDP support backchannel logout? Defaults to `true`.
@@ -1346,9 +1346,9 @@ class IdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[str] internal_id: (Computed) The unique ID that Keycloak assigns to the identity provider upon creation.
         :param pulumi.Input[str] issuer: The issuer identifier for the issuer of the response. If not provided, no validation will be performed.
         :param pulumi.Input[str] jwks_url: JSON Web Key Set URL.
-        :param pulumi.Input[bool] link_only: When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+        :param pulumi.Input[bool] link_only: When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         :param pulumi.Input[str] login_hint: Pass login hint to identity provider.
-        :param pulumi.Input[str] logout_url: The Logout URL is the end session endpoint to use to logout user from external identity provider.
+        :param pulumi.Input[str] logout_url: The Logout URL is the end session endpoint to use to sign-out the user from external identity provider.
         :param pulumi.Input[str] post_broker_login_flow_alias: The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
         :param pulumi.Input[str] provider_id: The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
         :param pulumi.Input[str] realm: The name of the realm. This is unique across Keycloak.
@@ -1418,7 +1418,7 @@ class IdentityProvider(pulumi.CustomResource):
     @pulumi.getter
     def alias(self) -> pulumi.Output[str]:
         """
-        The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
+        The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
         """
         return pulumi.get(self, "alias")
 
@@ -1551,7 +1551,7 @@ class IdentityProvider(pulumi.CustomResource):
     @pulumi.getter(name="linkOnly")
     def link_only(self) -> pulumi.Output[Optional[bool]]:
         """
-        When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+        When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         """
         return pulumi.get(self, "link_only")
 
@@ -1567,7 +1567,7 @@ class IdentityProvider(pulumi.CustomResource):
     @pulumi.getter(name="logoutUrl")
     def logout_url(self) -> pulumi.Output[Optional[str]]:
         """
-        The Logout URL is the end session endpoint to use to logout user from external identity provider.
+        The Logout URL is the end session endpoint to use to sign-out the user from external identity provider.
         """
         return pulumi.get(self, "logout_url")
 

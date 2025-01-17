@@ -120,7 +120,7 @@ class ClientArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] valid_redirect_uris: A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
                wildcards in the form of an asterisk can be used here. This attribute must be set if either `standard_flow_enabled` or `implicit_flow_enabled`
                is set to `true`.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] web_origins: A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`."
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] web_origins: A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`.
         """
         pulumi.set(__self__, "access_type", access_type)
         pulumi.set(__self__, "client_id", client_id)
@@ -736,7 +736,7 @@ class ClientArgs:
     @pulumi.getter(name="webOrigins")
     def web_origins(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`."
+        A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`.
         """
         return pulumi.get(self, "web_origins")
 
@@ -851,7 +851,7 @@ class _ClientState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] valid_redirect_uris: A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
                wildcards in the form of an asterisk can be used here. This attribute must be set if either `standard_flow_enabled` or `implicit_flow_enabled`
                is set to `true`.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] web_origins: A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`."
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] web_origins: A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`.
         """
         if access_token_lifespan is not None:
             pulumi.set(__self__, "access_token_lifespan", access_token_lifespan)
@@ -1498,7 +1498,7 @@ class _ClientState:
     @pulumi.getter(name="webOrigins")
     def web_origins(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`."
+        A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`.
         """
         return pulumi.get(self, "web_origins")
 
@@ -1656,7 +1656,7 @@ class Client(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] valid_redirect_uris: A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
                wildcards in the form of an asterisk can be used here. This attribute must be set if either `standard_flow_enabled` or `implicit_flow_enabled`
                is set to `true`.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] web_origins: A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`."
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] web_origins: A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`.
         """
         ...
     @overload
@@ -1948,7 +1948,7 @@ class Client(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] valid_redirect_uris: A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
                wildcards in the form of an asterisk can be used here. This attribute must be set if either `standard_flow_enabled` or `implicit_flow_enabled`
                is set to `true`.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] web_origins: A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`."
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] web_origins: A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -2374,7 +2374,7 @@ class Client(pulumi.CustomResource):
     @pulumi.getter(name="webOrigins")
     def web_origins(self) -> pulumi.Output[Sequence[str]]:
         """
-        A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`."
+        A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`.
         """
         return pulumi.get(self, "web_origins")
 

@@ -150,14 +150,14 @@ public class GroupMapper extends com.pulumi.resources.CustomResource {
         return this.groupObjectClasses;
     }
     /**
-     * When specified, adds an additional custom filter to be used when querying for groups. Must start with `(` and end with `)`.
+     * When specified, adds a custom filter to be used when querying for groups. Must start with `(` and end with `)`.
      * 
      */
     @Export(name="groupsLdapFilter", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> groupsLdapFilter;
 
     /**
-     * @return When specified, adds an additional custom filter to be used when querying for groups. Must start with `(` and end with `)`.
+     * @return When specified, adds a custom filter to be used when querying for groups. Must start with `(` and end with `)`.
      * 
      */
     public Output<Optional<String>> groupsLdapFilter() {

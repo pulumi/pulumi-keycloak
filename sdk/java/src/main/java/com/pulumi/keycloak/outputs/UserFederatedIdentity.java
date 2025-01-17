@@ -21,7 +21,7 @@ public final class UserFederatedIdentity {
      */
     private String userId;
     /**
-     * @return The user name of the user defined in the identity provider
+     * @return The username of the user defined in the identity provider
      * 
      */
     private String userName;
@@ -42,7 +42,7 @@ public final class UserFederatedIdentity {
         return this.userId;
     }
     /**
-     * @return The user name of the user defined in the identity provider
+     * @return The username of the user defined in the identity provider
      * 
      */
     public String userName() {

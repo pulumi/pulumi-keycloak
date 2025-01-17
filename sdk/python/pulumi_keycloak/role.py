@@ -238,7 +238,7 @@ class Role(pulumi.CustomResource):
         """
         Allows for creating and managing roles within Keycloak.
 
-        Roles allow you define privileges within Keycloak and map them to users and groups.
+        Roles allow you to define privileges within Keycloak and map them to users and groups.
 
         ## Example Usage
 
@@ -384,7 +384,7 @@ class Role(pulumi.CustomResource):
         """
         Allows for creating and managing roles within Keycloak.
 
-        Roles allow you define privileges within Keycloak and map them to users and groups.
+        Roles allow you to define privileges within Keycloak and map them to users and groups.
 
         ## Example Usage
 

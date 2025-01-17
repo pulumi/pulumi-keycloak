@@ -269,7 +269,7 @@ export class Client extends pulumi.CustomResource {
      */
     public readonly validRedirectUris!: pulumi.Output<string[]>;
     /**
-     * A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`."
+     * A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`.
      */
     public readonly webOrigins!: pulumi.Output<string[]>;
 
@@ -590,7 +590,7 @@ export interface ClientState {
      */
     validRedirectUris?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`."
+     * A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`.
      */
     webOrigins?: pulumi.Input<pulumi.Input<string>[]>;
 }
@@ -780,7 +780,7 @@ export interface ClientArgs {
      */
     validRedirectUris?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`."
+     * A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`.
      */
     webOrigins?: pulumi.Input<pulumi.Input<string>[]>;
 }

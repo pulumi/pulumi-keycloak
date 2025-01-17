@@ -94,14 +94,14 @@ public final class RealmWebAuthnPolicyArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
+     * A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
      * 
      */
     @Import(name="relyingPartyEntityName")
     private @Nullable Output<String> relyingPartyEntityName;
 
     /**
-     * @return A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
+     * @return A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
      * 
      */
     public Optional<Output<String>> relyingPartyEntityName() {
@@ -317,7 +317,7 @@ public final class RealmWebAuthnPolicyArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param relyingPartyEntityName A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
+         * @param relyingPartyEntityName A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
          * 
          * @return builder
          * 
@@ -328,7 +328,7 @@ public final class RealmWebAuthnPolicyArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param relyingPartyEntityName A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
+         * @param relyingPartyEntityName A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
          * 
          * @return builder
          * 

@@ -45,14 +45,14 @@ public final class UserFederatedIdentityArgs extends com.pulumi.resources.Resour
     }
 
     /**
-     * The user name of the user defined in the identity provider
+     * The username of the user defined in the identity provider
      * 
      */
     @Import(name="userName", required=true)
     private Output<String> userName;
 
     /**
-     * @return The user name of the user defined in the identity provider
+     * @return The username of the user defined in the identity provider
      * 
      */
     public Output<String> userName() {
@@ -128,7 +128,7 @@ public final class UserFederatedIdentityArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param userName The user name of the user defined in the identity provider
+         * @param userName The username of the user defined in the identity provider
          * 
          * @return builder
          * 
@@ -139,7 +139,7 @@ public final class UserFederatedIdentityArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param userName The user name of the user defined in the identity provider
+         * @param userName The username of the user defined in the identity provider
          * 
          * @return builder
          * 

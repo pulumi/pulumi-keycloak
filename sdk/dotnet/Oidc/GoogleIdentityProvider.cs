@@ -156,7 +156,7 @@ namespace Pulumi.Keycloak.Oidc
         public Output<string> InternalId { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+        /// When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         /// </summary>
         [Output("linkOnly")]
         public Output<bool?> LinkOnly { get; private set; } = null!;
@@ -350,7 +350,7 @@ namespace Pulumi.Keycloak.Oidc
         public Input<string>? HostedDomain { get; set; }
 
         /// <summary>
-        /// When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+        /// When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         /// </summary>
         [Input("linkOnly")]
         public Input<bool>? LinkOnly { get; set; }
@@ -520,7 +520,7 @@ namespace Pulumi.Keycloak.Oidc
         public Input<string>? InternalId { get; set; }
 
         /// <summary>
-        /// When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+        /// When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         /// </summary>
         [Input("linkOnly")]
         public Input<bool>? LinkOnly { get; set; }

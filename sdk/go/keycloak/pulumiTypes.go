@@ -2900,7 +2900,7 @@ type RealmWebAuthnPasswordlessPolicy struct {
 	AvoidSameAuthenticatorRegister *bool `pulumi:"avoidSameAuthenticatorRegister"`
 	// The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
 	CreateTimeout *int `pulumi:"createTimeout"`
-	// A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
+	// A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
 	RelyingPartyEntityName *string `pulumi:"relyingPartyEntityName"`
 	// The WebAuthn relying party ID.
 	RelyingPartyId *string `pulumi:"relyingPartyId"`
@@ -2934,7 +2934,7 @@ type RealmWebAuthnPasswordlessPolicyArgs struct {
 	AvoidSameAuthenticatorRegister pulumi.BoolPtrInput `pulumi:"avoidSameAuthenticatorRegister"`
 	// The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
 	CreateTimeout pulumi.IntPtrInput `pulumi:"createTimeout"`
-	// A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
+	// A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
 	RelyingPartyEntityName pulumi.StringPtrInput `pulumi:"relyingPartyEntityName"`
 	// The WebAuthn relying party ID.
 	RelyingPartyId pulumi.StringPtrInput `pulumi:"relyingPartyId"`
@@ -3048,7 +3048,7 @@ func (o RealmWebAuthnPasswordlessPolicyOutput) CreateTimeout() pulumi.IntPtrOutp
 	return o.ApplyT(func(v RealmWebAuthnPasswordlessPolicy) *int { return v.CreateTimeout }).(pulumi.IntPtrOutput)
 }
 
-// A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
+// A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
 func (o RealmWebAuthnPasswordlessPolicyOutput) RelyingPartyEntityName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RealmWebAuthnPasswordlessPolicy) *string { return v.RelyingPartyEntityName }).(pulumi.StringPtrOutput)
 }
@@ -3147,7 +3147,7 @@ func (o RealmWebAuthnPasswordlessPolicyPtrOutput) CreateTimeout() pulumi.IntPtrO
 	}).(pulumi.IntPtrOutput)
 }
 
-// A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
+// A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
 func (o RealmWebAuthnPasswordlessPolicyPtrOutput) RelyingPartyEntityName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RealmWebAuthnPasswordlessPolicy) *string {
 		if v == nil {
@@ -3208,7 +3208,7 @@ type RealmWebAuthnPolicy struct {
 	AvoidSameAuthenticatorRegister *bool `pulumi:"avoidSameAuthenticatorRegister"`
 	// The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
 	CreateTimeout *int `pulumi:"createTimeout"`
-	// A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
+	// A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
 	RelyingPartyEntityName *string `pulumi:"relyingPartyEntityName"`
 	// The WebAuthn relying party ID.
 	RelyingPartyId *string `pulumi:"relyingPartyId"`
@@ -3242,7 +3242,7 @@ type RealmWebAuthnPolicyArgs struct {
 	AvoidSameAuthenticatorRegister pulumi.BoolPtrInput `pulumi:"avoidSameAuthenticatorRegister"`
 	// The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
 	CreateTimeout pulumi.IntPtrInput `pulumi:"createTimeout"`
-	// A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
+	// A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
 	RelyingPartyEntityName pulumi.StringPtrInput `pulumi:"relyingPartyEntityName"`
 	// The WebAuthn relying party ID.
 	RelyingPartyId pulumi.StringPtrInput `pulumi:"relyingPartyId"`
@@ -3356,7 +3356,7 @@ func (o RealmWebAuthnPolicyOutput) CreateTimeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v RealmWebAuthnPolicy) *int { return v.CreateTimeout }).(pulumi.IntPtrOutput)
 }
 
-// A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
+// A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
 func (o RealmWebAuthnPolicyOutput) RelyingPartyEntityName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RealmWebAuthnPolicy) *string { return v.RelyingPartyEntityName }).(pulumi.StringPtrOutput)
 }
@@ -3455,7 +3455,7 @@ func (o RealmWebAuthnPolicyPtrOutput) CreateTimeout() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
+// A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
 func (o RealmWebAuthnPolicyPtrOutput) RelyingPartyEntityName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RealmWebAuthnPolicy) *string {
 		if v == nil {
@@ -3510,7 +3510,7 @@ type UserFederatedIdentity struct {
 	IdentityProvider string `pulumi:"identityProvider"`
 	// The ID of the user defined in the identity provider
 	UserId string `pulumi:"userId"`
-	// The user name of the user defined in the identity provider
+	// The username of the user defined in the identity provider
 	UserName string `pulumi:"userName"`
 }
 
@@ -3530,7 +3530,7 @@ type UserFederatedIdentityArgs struct {
 	IdentityProvider pulumi.StringInput `pulumi:"identityProvider"`
 	// The ID of the user defined in the identity provider
 	UserId pulumi.StringInput `pulumi:"userId"`
-	// The user name of the user defined in the identity provider
+	// The username of the user defined in the identity provider
 	UserName pulumi.StringInput `pulumi:"userName"`
 }
 
@@ -3595,7 +3595,7 @@ func (o UserFederatedIdentityOutput) UserId() pulumi.StringOutput {
 	return o.ApplyT(func(v UserFederatedIdentity) string { return v.UserId }).(pulumi.StringOutput)
 }
 
-// The user name of the user defined in the identity provider
+// The username of the user defined in the identity provider
 func (o UserFederatedIdentityOutput) UserName() pulumi.StringOutput {
 	return o.ApplyT(func(v UserFederatedIdentity) string { return v.UserName }).(pulumi.StringOutput)
 }

@@ -21,115 +21,14 @@ import javax.annotation.Nullable;
  * Allows for managing Realm User Profiles within Keycloak.
  * 
  * A user profile defines a schema for representing user attributes and how they are managed within a realm.
- * This is a preview feature, hence not fully supported and disabled by default.
- * To enable it, start the server with one of the following flags:
- * - WildFly distribution: `-Dkeycloak.profile.feature.declarative_user_profile=enabled`
- * - Quarkus distribution: `--features=preview` or `--features=declarative-user-profile`
  * 
+ * Information for Keycloak versions &lt; 24:
  * The realm linked to the `keycloak.RealmUserProfile` resource must have the user profile feature enabled.
  * It can be done via the administration UI, or by setting the `userProfileEnabled` realm attribute to `true`.
  * 
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.keycloak.Realm;
- * import com.pulumi.keycloak.RealmArgs;
- * import com.pulumi.keycloak.RealmUserProfile;
- * import com.pulumi.keycloak.RealmUserProfileArgs;
- * import com.pulumi.keycloak.inputs.RealmUserProfileAttributeArgs;
- * import com.pulumi.keycloak.inputs.RealmUserProfileAttributePermissionsArgs;
- * import com.pulumi.keycloak.inputs.RealmUserProfileGroupArgs;
- * import static com.pulumi.codegen.internal.Serialization.*;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var realm = new Realm("realm", RealmArgs.builder()
- *             .realm("my-realm")
- *             .attributes(Map.of("userProfileEnabled", true))
- *             .build());
- * 
- *         var userprofile = new RealmUserProfile("userprofile", RealmUserProfileArgs.builder()
- *             .realmId(myRealm.id())
- *             .attributes(            
- *                 RealmUserProfileAttributeArgs.builder()
- *                     .name("field1")
- *                     .displayName("Field 1")
- *                     .group("group1")
- *                     .enabledWhenScopes("offline_access")
- *                     .requiredForRoles("user")
- *                     .requiredForScopes("offline_access")
- *                     .permissions(RealmUserProfileAttributePermissionsArgs.builder()
- *                         .views(                        
- *                             "admin",
- *                             "user")
- *                         .edits(                        
- *                             "admin",
- *                             "user")
- *                         .build())
- *                     .validators(                    
- *                         RealmUserProfileAttributeValidatorArgs.builder()
- *                             .name("person-name-prohibited-characters")
- *                             .build(),
- *                         RealmUserProfileAttributeValidatorArgs.builder()
- *                             .name("pattern")
- *                             .config(Map.ofEntries(
- *                                 Map.entry("pattern", "^[a-z]+$"),
- *                                 Map.entry("error-message", "Nope")
- *                             ))
- *                             .build())
- *                     .annotations(Map.of("foo", "bar"))
- *                     .build(),
- *                 RealmUserProfileAttributeArgs.builder()
- *                     .name("field2")
- *                     .validators(RealmUserProfileAttributeValidatorArgs.builder()
- *                         .name("options")
- *                         .config(Map.of("options", serializeJson(
- *                             jsonArray("opt1"))))
- *                         .build())
- *                     .annotations(Map.of("foo", serializeJson(
- *                         jsonObject(
- *                             jsonProperty("key", "val")
- *                         ))))
- *                     .build())
- *             .groups(            
- *                 RealmUserProfileGroupArgs.builder()
- *                     .name("group1")
- *                     .displayHeader("Group 1")
- *                     .displayDescription("A first group")
- *                     .annotations(Map.ofEntries(
- *                         Map.entry("foo", "bar"),
- *                         Map.entry("foo2", serializeJson(
- *                             jsonObject(
- *                                 jsonProperty("key", "val")
- *                             )))
- *                     ))
- *                     .build(),
- *                 RealmUserProfileGroupArgs.builder()
- *                     .name("group2")
- *                     .build())
- *             .build());
- * 
- *     }
- * }
- * }
- * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

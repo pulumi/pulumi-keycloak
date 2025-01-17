@@ -168,7 +168,7 @@ namespace Pulumi.Keycloak.OpenId
         public Output<string> RealmId { get; private set; } = null!;
 
         /// <summary>
-        /// String value being the name of stored user session note within the UserSessionModel.note map.
+        /// String value being the name of stored user session note within the `UserSessionModel.note` map.
         /// </summary>
         [Output("sessionNote")]
         public Output<string?> SessionNote { get; private set; } = null!;
@@ -268,7 +268,7 @@ namespace Pulumi.Keycloak.OpenId
         public Input<string> RealmId { get; set; } = null!;
 
         /// <summary>
-        /// String value being the name of stored user session note within the UserSessionModel.note map.
+        /// String value being the name of stored user session note within the `UserSessionModel.note` map.
         /// </summary>
         [Input("sessionNote")]
         public Input<string>? SessionNote { get; set; }
@@ -330,7 +330,7 @@ namespace Pulumi.Keycloak.OpenId
         public Input<string>? RealmId { get; set; }
 
         /// <summary>
-        /// String value being the name of stored user session note within the UserSessionModel.note map.
+        /// String value being the name of stored user session note within the `UserSessionModel.note` map.
         /// </summary>
         [Input("sessionNote")]
         public Input<string>? SessionNote { get; set; }

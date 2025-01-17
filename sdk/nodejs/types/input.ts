@@ -511,7 +511,7 @@ export interface RealmWebAuthnPasswordlessPolicy {
      */
     createTimeout?: pulumi.Input<number>;
     /**
-     * A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
+     * A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
      */
     relyingPartyEntityName?: pulumi.Input<string>;
     /**
@@ -554,7 +554,7 @@ export interface RealmWebAuthnPolicy {
      */
     createTimeout?: pulumi.Input<number>;
     /**
-     * A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
+     * A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
      */
     relyingPartyEntityName?: pulumi.Input<string>;
     /**
@@ -585,7 +585,7 @@ export interface UserFederatedIdentity {
      */
     userId: pulumi.Input<string>;
     /**
-     * The user name of the user defined in the identity provider
+     * The username of the user defined in the identity provider
      */
     userName: pulumi.Input<string>;
 }

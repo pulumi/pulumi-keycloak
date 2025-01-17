@@ -17,14 +17,14 @@ public final class GroupState extends com.pulumi.resources.ResourceArgs {
     public static final GroupState Empty = new GroupState();
 
     /**
-     * A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
+     * A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars
      * 
      */
     @Import(name="attributes")
     private @Nullable Output<Map<String,String>> attributes;
 
     /**
-     * @return A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
+     * @return A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars
      * 
      */
     public Optional<Output<Map<String,String>>> attributes() {
@@ -120,7 +120,7 @@ public final class GroupState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param attributes A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
+         * @param attributes A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars
          * 
          * @return builder
          * 
@@ -131,7 +131,7 @@ public final class GroupState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param attributes A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
+         * @param attributes A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars
          * 
          * @return builder
          * 

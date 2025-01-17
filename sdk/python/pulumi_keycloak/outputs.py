@@ -1203,7 +1203,7 @@ class RealmWebAuthnPasswordlessPolicy(dict):
         :param str authenticator_attachment: Either platform or cross-platform
         :param bool avoid_same_authenticator_register: When `true`, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to `false`.
         :param int create_timeout: The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
-        :param str relying_party_entity_name: A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
+        :param str relying_party_entity_name: A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
         :param str relying_party_id: The WebAuthn relying party ID.
         :param str require_resident_key: Either Yes or No
         :param Sequence[str] signature_algorithms: Keycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing
@@ -1274,7 +1274,7 @@ class RealmWebAuthnPasswordlessPolicy(dict):
     @pulumi.getter(name="relyingPartyEntityName")
     def relying_party_entity_name(self) -> Optional[str]:
         """
-        A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
+        A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
         """
         return pulumi.get(self, "relying_party_entity_name")
 
@@ -1365,7 +1365,7 @@ class RealmWebAuthnPolicy(dict):
         :param str authenticator_attachment: Either platform or cross-platform
         :param bool avoid_same_authenticator_register: When `true`, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to `false`.
         :param int create_timeout: The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
-        :param str relying_party_entity_name: A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
+        :param str relying_party_entity_name: A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
         :param str relying_party_id: The WebAuthn relying party ID.
         :param str require_resident_key: Either Yes or No
         :param Sequence[str] signature_algorithms: Keycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing
@@ -1436,7 +1436,7 @@ class RealmWebAuthnPolicy(dict):
     @pulumi.getter(name="relyingPartyEntityName")
     def relying_party_entity_name(self) -> Optional[str]:
         """
-        A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
+        A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
         """
         return pulumi.get(self, "relying_party_entity_name")
 
@@ -1503,7 +1503,7 @@ class UserFederatedIdentity(dict):
         """
         :param str identity_provider: The name of the identity provider
         :param str user_id: The ID of the user defined in the identity provider
-        :param str user_name: The user name of the user defined in the identity provider
+        :param str user_name: The username of the user defined in the identity provider
         """
         pulumi.set(__self__, "identity_provider", identity_provider)
         pulumi.set(__self__, "user_id", user_id)
@@ -1529,7 +1529,7 @@ class UserFederatedIdentity(dict):
     @pulumi.getter(name="userName")
     def user_name(self) -> str:
         """
-        The user name of the user defined in the identity provider
+        The username of the user defined in the identity provider
         """
         return pulumi.get(self, "user_name")
 

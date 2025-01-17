@@ -99,8 +99,8 @@ import (
 //
 // ## Default Client Scopes
 //
-// - `defaultDefaultClientScopes` - (Optional) A list of default default client scopes to be used for client definitions. Defaults to `[]` or keycloak's built-in default default client-scopes.
-// - `defaultOptionalClientScopes` - (Optional) A list of default optional client scopes to be used for client definitions. Defaults to `[]` or keycloak's built-in default optional client-scopes.
+// - `defaultDefaultClientScopes` - (Optional) A list of default `default client scopes` to be used for client definitions. Defaults to `[]` or keycloak's built-in default `default client-scopes`.
+// - `defaultOptionalClientScopes` - (Optional) A list of default `optional client scopes` to be used for client definitions. Defaults to `[]` or keycloak's built-in default `optional client-scopes`.
 //
 // ## Import
 //

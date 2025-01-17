@@ -23,54 +23,6 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.keycloak.Realm;
- * import com.pulumi.keycloak.RealmArgs;
- * import com.pulumi.keycloak.authentication.Flow;
- * import com.pulumi.keycloak.authentication.FlowArgs;
- * import com.pulumi.keycloak.authentication.Subflow;
- * import com.pulumi.keycloak.authentication.SubflowArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var realm = new Realm("realm", RealmArgs.builder()
- *             .realm("my-realm")
- *             .enabled(true)
- *             .build());
- * 
- *         var flow = new Flow("flow", FlowArgs.builder()
- *             .realmId(realm.id())
- *             .alias("my-flow-alias")
- *             .build());
- * 
- *         var subflow = new Subflow("subflow", SubflowArgs.builder()
- *             .realmId(realm.id())
- *             .alias("my-subflow-alias")
- *             .parentFlowAlias(flow.alias())
- *             .providerId("basic-flow")
- *             .requirement("ALTERNATIVE")
- *             .build());
- * 
- *     }
- * }
- * }
- * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

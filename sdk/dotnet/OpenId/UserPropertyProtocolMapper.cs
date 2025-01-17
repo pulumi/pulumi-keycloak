@@ -173,7 +173,7 @@ namespace Pulumi.Keycloak.OpenId
         public Output<string> RealmId { get; private set; } = null!;
 
         /// <summary>
-        /// The built in user property (such as email) to map a claim for.
+        /// The built-in user property (such as email) to map a claim for.
         /// </summary>
         [Output("userProperty")]
         public Output<string> UserProperty { get; private set; } = null!;
@@ -279,7 +279,7 @@ namespace Pulumi.Keycloak.OpenId
         public Input<string> RealmId { get; set; } = null!;
 
         /// <summary>
-        /// The built in user property (such as email) to map a claim for.
+        /// The built-in user property (such as email) to map a claim for.
         /// </summary>
         [Input("userProperty", required: true)]
         public Input<string> UserProperty { get; set; } = null!;
@@ -347,7 +347,7 @@ namespace Pulumi.Keycloak.OpenId
         public Input<string>? RealmId { get; set; }
 
         /// <summary>
-        /// The built in user property (such as email) to map a claim for.
+        /// The built-in user property (such as email) to map a claim for.
         /// </summary>
         [Input("userProperty")]
         public Input<string>? UserProperty { get; set; }

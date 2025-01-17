@@ -307,14 +307,14 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
         return this.internalId;
     }
     /**
-     * When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+     * When `true`, users cannot log in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
      * 
      */
     @Export(name="linkOnly", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> linkOnly;
 
     /**
-     * @return When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+     * @return When `true`, users cannot log in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
      * 
      */
     public Output<Optional<Boolean>> linkOnly() {
@@ -377,14 +377,14 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.postBindingLogout);
     }
     /**
-     * Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
+     * Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
      * 
      */
     @Export(name="postBindingResponse", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> postBindingResponse;
 
     /**
-     * @return Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
+     * @return Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
      * 
      */
     public Output<Optional<Boolean>> postBindingResponse() {

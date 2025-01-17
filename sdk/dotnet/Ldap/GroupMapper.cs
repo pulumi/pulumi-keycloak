@@ -105,7 +105,7 @@ namespace Pulumi.Keycloak.Ldap
         public Output<ImmutableArray<string>> GroupObjectClasses { get; private set; } = null!;
 
         /// <summary>
-        /// When specified, adds an additional custom filter to be used when querying for groups. Must start with `(` and end with `)`.
+        /// When specified, adds a custom filter to be used when querying for groups. Must start with `(` and end with `)`.
         /// </summary>
         [Output("groupsLdapFilter")]
         public Output<string?> GroupsLdapFilter { get; private set; } = null!;
@@ -265,7 +265,7 @@ namespace Pulumi.Keycloak.Ldap
         }
 
         /// <summary>
-        /// When specified, adds an additional custom filter to be used when querying for groups. Must start with `(` and end with `)`.
+        /// When specified, adds a custom filter to be used when querying for groups. Must start with `(` and end with `)`.
         /// </summary>
         [Input("groupsLdapFilter")]
         public Input<string>? GroupsLdapFilter { get; set; }
@@ -393,7 +393,7 @@ namespace Pulumi.Keycloak.Ldap
         }
 
         /// <summary>
-        /// When specified, adds an additional custom filter to be used when querying for groups. Must start with `(` and end with `)`.
+        /// When specified, adds a custom filter to be used when querying for groups. Must start with `(` and end with `)`.
         /// </summary>
         [Input("groupsLdapFilter")]
         public Input<string>? GroupsLdapFilter { get; set; }

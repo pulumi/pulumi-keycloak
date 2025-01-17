@@ -710,14 +710,14 @@ public final class ClientState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`.&#34;
+     * A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`.
      * 
      */
     @Import(name="webOrigins")
     private @Nullable Output<List<String>> webOrigins;
 
     /**
-     * @return A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`.&#34;
+     * @return A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`.
      * 
      */
     public Optional<Output<List<String>>> webOrigins() {
@@ -1771,7 +1771,7 @@ public final class ClientState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param webOrigins A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`.&#34;
+         * @param webOrigins A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`.
          * 
          * @return builder
          * 
@@ -1782,7 +1782,7 @@ public final class ClientState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param webOrigins A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`.&#34;
+         * @param webOrigins A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`.
          * 
          * @return builder
          * 
@@ -1792,7 +1792,7 @@ public final class ClientState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param webOrigins A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`.&#34;
+         * @param webOrigins A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`.
          * 
          * @return builder
          * 

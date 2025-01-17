@@ -25,7 +25,7 @@ namespace Pulumi.Keycloak.Inputs
         public Input<string> UserId { get; set; } = null!;
 
         /// <summary>
-        /// The user name of the user defined in the identity provider
+        /// The username of the user defined in the identity provider
         /// </summary>
         [Input("userName", required: true)]
         public Input<string> UserName { get; set; } = null!;

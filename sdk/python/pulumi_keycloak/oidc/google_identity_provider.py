@@ -56,7 +56,7 @@ class GoogleIdentityProviderArgs:
         :param pulumi.Input[str] gui_order: A number defining the order of this identity provider in the GUI.
         :param pulumi.Input[bool] hide_on_login_page: When `true`, this identity provider will be hidden on the login page. Defaults to `false`.
         :param pulumi.Input[str] hosted_domain: Sets the "hd" query parameter when logging in with Google. Google will only list accounts for this domain. Keycloak will validate that the returned identity token has a claim for this domain. When `*` is entered, an account from any domain can be used.
-        :param pulumi.Input[bool] link_only: When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+        :param pulumi.Input[bool] link_only: When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         :param pulumi.Input[str] post_broker_login_flow_alias: The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
         :param pulumi.Input[str] provider_id: The ID of the identity provider to use. Defaults to `google`, which should be used unless you have extended Keycloak and provided your own implementation.
         :param pulumi.Input[bool] request_refresh_token: Sets the "access_type" query parameter to "offline" when redirecting to google authorization endpoint,to get a refresh token back. This is useful for using Token Exchange to retrieve a Google token to access Google APIs when the user is offline.
@@ -276,7 +276,7 @@ class GoogleIdentityProviderArgs:
     @pulumi.getter(name="linkOnly")
     def link_only(self) -> Optional[pulumi.Input[bool]]:
         """
-        When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+        When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         """
         return pulumi.get(self, "link_only")
 
@@ -414,7 +414,7 @@ class _GoogleIdentityProviderState:
         :param pulumi.Input[bool] hide_on_login_page: When `true`, this identity provider will be hidden on the login page. Defaults to `false`.
         :param pulumi.Input[str] hosted_domain: Sets the "hd" query parameter when logging in with Google. Google will only list accounts for this domain. Keycloak will validate that the returned identity token has a claim for this domain. When `*` is entered, an account from any domain can be used.
         :param pulumi.Input[str] internal_id: (Computed) The unique ID that Keycloak assigns to the identity provider upon creation.
-        :param pulumi.Input[bool] link_only: When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+        :param pulumi.Input[bool] link_only: When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         :param pulumi.Input[str] post_broker_login_flow_alias: The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
         :param pulumi.Input[str] provider_id: The ID of the identity provider to use. Defaults to `google`, which should be used unless you have extended Keycloak and provided your own implementation.
         :param pulumi.Input[str] realm: The name of the realm. This is unique across Keycloak.
@@ -668,7 +668,7 @@ class _GoogleIdentityProviderState:
     @pulumi.getter(name="linkOnly")
     def link_only(self) -> Optional[pulumi.Input[bool]]:
         """
-        When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+        When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         """
         return pulumi.get(self, "link_only")
 
@@ -853,7 +853,7 @@ class GoogleIdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[str] gui_order: A number defining the order of this identity provider in the GUI.
         :param pulumi.Input[bool] hide_on_login_page: When `true`, this identity provider will be hidden on the login page. Defaults to `false`.
         :param pulumi.Input[str] hosted_domain: Sets the "hd" query parameter when logging in with Google. Google will only list accounts for this domain. Keycloak will validate that the returned identity token has a claim for this domain. When `*` is entered, an account from any domain can be used.
-        :param pulumi.Input[bool] link_only: When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+        :param pulumi.Input[bool] link_only: When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         :param pulumi.Input[str] post_broker_login_flow_alias: The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
         :param pulumi.Input[str] provider_id: The ID of the identity provider to use. Defaults to `google`, which should be used unless you have extended Keycloak and provided your own implementation.
         :param pulumi.Input[str] realm: The name of the realm. This is unique across Keycloak.
@@ -1043,7 +1043,7 @@ class GoogleIdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[bool] hide_on_login_page: When `true`, this identity provider will be hidden on the login page. Defaults to `false`.
         :param pulumi.Input[str] hosted_domain: Sets the "hd" query parameter when logging in with Google. Google will only list accounts for this domain. Keycloak will validate that the returned identity token has a claim for this domain. When `*` is entered, an account from any domain can be used.
         :param pulumi.Input[str] internal_id: (Computed) The unique ID that Keycloak assigns to the identity provider upon creation.
-        :param pulumi.Input[bool] link_only: When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+        :param pulumi.Input[bool] link_only: When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         :param pulumi.Input[str] post_broker_login_flow_alias: The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
         :param pulumi.Input[str] provider_id: The ID of the identity provider to use. Defaults to `google`, which should be used unless you have extended Keycloak and provided your own implementation.
         :param pulumi.Input[str] realm: The name of the realm. This is unique across Keycloak.
@@ -1213,7 +1213,7 @@ class GoogleIdentityProvider(pulumi.CustomResource):
     @pulumi.getter(name="linkOnly")
     def link_only(self) -> pulumi.Output[Optional[bool]]:
         """
-        When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+        When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         """
         return pulumi.get(self, "link_only")
 

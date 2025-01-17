@@ -137,7 +137,7 @@ export class IdentityProvider extends pulumi.CustomResource {
      */
     public /*out*/ readonly internalId!: pulumi.Output<string>;
     /**
-     * When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+     * When `true`, users cannot log in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
      */
     public readonly linkOnly!: pulumi.Output<boolean | undefined>;
     /**
@@ -157,7 +157,7 @@ export class IdentityProvider extends pulumi.CustomResource {
      */
     public readonly postBindingLogout!: pulumi.Output<boolean | undefined>;
     /**
-     * Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
+     * Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
      */
     public readonly postBindingResponse!: pulumi.Output<boolean | undefined>;
     /**
@@ -400,7 +400,7 @@ export interface IdentityProviderState {
      */
     internalId?: pulumi.Input<string>;
     /**
-     * When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+     * When `true`, users cannot log in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
      */
     linkOnly?: pulumi.Input<boolean>;
     /**
@@ -420,7 +420,7 @@ export interface IdentityProviderState {
      */
     postBindingLogout?: pulumi.Input<boolean>;
     /**
-     * Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
+     * Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
      */
     postBindingResponse?: pulumi.Input<boolean>;
     /**
@@ -551,7 +551,7 @@ export interface IdentityProviderArgs {
      */
     hideOnLoginPage?: pulumi.Input<boolean>;
     /**
-     * When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+     * When `true`, users cannot log in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
      */
     linkOnly?: pulumi.Input<boolean>;
     /**
@@ -571,7 +571,7 @@ export interface IdentityProviderArgs {
      */
     postBindingLogout?: pulumi.Input<boolean>;
     /**
-     * Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
+     * Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
      */
     postBindingResponse?: pulumi.Input<boolean>;
     /**

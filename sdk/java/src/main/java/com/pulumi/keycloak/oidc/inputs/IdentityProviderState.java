@@ -48,14 +48,14 @@ public final class IdentityProviderState extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
+     * The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
      * 
      */
     @Import(name="alias")
     private @Nullable Output<String> alias;
 
     /**
-     * @return The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
+     * @return The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
      * 
      */
     public Optional<Output<String>> alias() {
@@ -295,14 +295,14 @@ public final class IdentityProviderState extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+     * When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
      * 
      */
     @Import(name="linkOnly")
     private @Nullable Output<Boolean> linkOnly;
 
     /**
-     * @return When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+     * @return When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
      * 
      */
     public Optional<Output<Boolean>> linkOnly() {
@@ -325,14 +325,14 @@ public final class IdentityProviderState extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * The Logout URL is the end session endpoint to use to logout user from external identity provider.
+     * The Logout URL is the end session endpoint to use to sign-out the user from external identity provider.
      * 
      */
     @Import(name="logoutUrl")
     private @Nullable Output<String> logoutUrl;
 
     /**
-     * @return The Logout URL is the end session endpoint to use to logout user from external identity provider.
+     * @return The Logout URL is the end session endpoint to use to sign-out the user from external identity provider.
      * 
      */
     public Optional<Output<String>> logoutUrl() {
@@ -587,7 +587,7 @@ public final class IdentityProviderState extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param alias The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
+         * @param alias The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
          * 
          * @return builder
          * 
@@ -598,7 +598,7 @@ public final class IdentityProviderState extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param alias The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
+         * @param alias The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
          * 
          * @return builder
          * 
@@ -932,7 +932,7 @@ public final class IdentityProviderState extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param linkOnly When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+         * @param linkOnly When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
          * 
          * @return builder
          * 
@@ -943,7 +943,7 @@ public final class IdentityProviderState extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param linkOnly When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+         * @param linkOnly When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
          * 
          * @return builder
          * 
@@ -974,7 +974,7 @@ public final class IdentityProviderState extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param logoutUrl The Logout URL is the end session endpoint to use to logout user from external identity provider.
+         * @param logoutUrl The Logout URL is the end session endpoint to use to sign-out the user from external identity provider.
          * 
          * @return builder
          * 
@@ -985,7 +985,7 @@ public final class IdentityProviderState extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param logoutUrl The Logout URL is the end session endpoint to use to logout user from external identity provider.
+         * @param logoutUrl The Logout URL is the end session endpoint to use to sign-out the user from external identity provider.
          * 
          * @return builder
          * 
