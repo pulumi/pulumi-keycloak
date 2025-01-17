@@ -88,7 +88,7 @@ export class Group extends pulumi.CustomResource {
     }
 
     /**
-     * A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
+     * A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars
      */
     public readonly attributes!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
@@ -147,7 +147,7 @@ export class Group extends pulumi.CustomResource {
  */
 export interface GroupState {
     /**
-     * A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
+     * A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars
      */
     attributes?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -173,7 +173,7 @@ export interface GroupState {
  */
 export interface GroupArgs {
     /**
-     * A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
+     * A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars
      */
     attributes?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**

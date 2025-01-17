@@ -75,7 +75,7 @@ namespace Pulumi.Keycloak.Oidc
         public Output<bool?> AddReadTokenRoleOnCreate { get; private set; } = null!;
 
         /// <summary>
-        /// The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
+        /// The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
         /// </summary>
         [Output("alias")]
         public Output<string> Alias { get; private set; } = null!;
@@ -174,7 +174,7 @@ namespace Pulumi.Keycloak.Oidc
         public Output<string?> JwksUrl { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+        /// When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         /// </summary>
         [Output("linkOnly")]
         public Output<bool?> LinkOnly { get; private set; } = null!;
@@ -186,7 +186,7 @@ namespace Pulumi.Keycloak.Oidc
         public Output<string?> LoginHint { get; private set; } = null!;
 
         /// <summary>
-        /// The Logout URL is the end session endpoint to use to logout user from external identity provider.
+        /// The Logout URL is the end session endpoint to use to sign-out the user from external identity provider.
         /// </summary>
         [Output("logoutUrl")]
         public Output<string?> LogoutUrl { get; private set; } = null!;
@@ -314,7 +314,7 @@ namespace Pulumi.Keycloak.Oidc
         public Input<bool>? AddReadTokenRoleOnCreate { get; set; }
 
         /// <summary>
-        /// The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
+        /// The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
         /// </summary>
         [Input("alias", required: true)]
         public Input<string> Alias { get; set; } = null!;
@@ -422,7 +422,7 @@ namespace Pulumi.Keycloak.Oidc
         public Input<string>? JwksUrl { get; set; }
 
         /// <summary>
-        /// When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+        /// When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         /// </summary>
         [Input("linkOnly")]
         public Input<bool>? LinkOnly { get; set; }
@@ -434,7 +434,7 @@ namespace Pulumi.Keycloak.Oidc
         public Input<string>? LoginHint { get; set; }
 
         /// <summary>
-        /// The Logout URL is the end session endpoint to use to logout user from external identity provider.
+        /// The Logout URL is the end session endpoint to use to sign-out the user from external identity provider.
         /// </summary>
         [Input("logoutUrl")]
         public Input<string>? LogoutUrl { get; set; }
@@ -520,7 +520,7 @@ namespace Pulumi.Keycloak.Oidc
         public Input<bool>? AddReadTokenRoleOnCreate { get; set; }
 
         /// <summary>
-        /// The alias uniquely identifies an identity provider and it is also used to build the redirect uri.
+        /// The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
         /// </summary>
         [Input("alias")]
         public Input<string>? Alias { get; set; }
@@ -634,7 +634,7 @@ namespace Pulumi.Keycloak.Oidc
         public Input<string>? JwksUrl { get; set; }
 
         /// <summary>
-        /// When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+        /// When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         /// </summary>
         [Input("linkOnly")]
         public Input<bool>? LinkOnly { get; set; }
@@ -646,7 +646,7 @@ namespace Pulumi.Keycloak.Oidc
         public Input<string>? LoginHint { get; set; }
 
         /// <summary>
-        /// The Logout URL is the end session endpoint to use to logout user from external identity provider.
+        /// The Logout URL is the end session endpoint to use to sign-out the user from external identity provider.
         /// </summary>
         [Input("logoutUrl")]
         public Input<string>? LogoutUrl { get; set; }

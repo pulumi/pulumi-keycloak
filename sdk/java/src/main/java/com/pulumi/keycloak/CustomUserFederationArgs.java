@@ -50,14 +50,14 @@ public final class CustomUserFederationArgs extends com.pulumi.resources.Resourc
     }
 
     /**
-     * The provider configuration handed over to your custom user federation provider. In order to add multivalue settings, use `##` to seperate the values.
+     * The provider configuration handed over to your custom user federation provider. In order to add multivalued settings, use `##` to separate the values.
      * 
      */
     @Import(name="config")
     private @Nullable Output<Map<String,String>> config;
 
     /**
-     * @return The provider configuration handed over to your custom user federation provider. In order to add multivalue settings, use `##` to seperate the values.
+     * @return The provider configuration handed over to your custom user federation provider. In order to add multivalued settings, use `##` to separate the values.
      * 
      */
     public Optional<Output<Map<String,String>>> config() {
@@ -245,7 +245,7 @@ public final class CustomUserFederationArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param config The provider configuration handed over to your custom user federation provider. In order to add multivalue settings, use `##` to seperate the values.
+         * @param config The provider configuration handed over to your custom user federation provider. In order to add multivalued settings, use `##` to separate the values.
          * 
          * @return builder
          * 
@@ -256,7 +256,7 @@ public final class CustomUserFederationArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param config The provider configuration handed over to your custom user federation provider. In order to add multivalue settings, use `##` to seperate the values.
+         * @param config The provider configuration handed over to your custom user federation provider. In order to add multivalued settings, use `##` to separate the values.
          * 
          * @return builder
          * 

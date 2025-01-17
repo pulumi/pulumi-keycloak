@@ -104,7 +104,7 @@ export class GroupMapper extends pulumi.CustomResource {
      */
     public readonly groupObjectClasses!: pulumi.Output<string[]>;
     /**
-     * When specified, adds an additional custom filter to be used when querying for groups. Must start with `(` and end with `)`.
+     * When specified, adds a custom filter to be used when querying for groups. Must start with `(` and end with `)`.
      */
     public readonly groupsLdapFilter!: pulumi.Output<string | undefined>;
     /**
@@ -259,7 +259,7 @@ export interface GroupMapperState {
      */
     groupObjectClasses?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * When specified, adds an additional custom filter to be used when querying for groups. Must start with `(` and end with `)`.
+     * When specified, adds a custom filter to be used when querying for groups. Must start with `(` and end with `)`.
      */
     groupsLdapFilter?: pulumi.Input<string>;
     /**
@@ -337,7 +337,7 @@ export interface GroupMapperArgs {
      */
     groupObjectClasses: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * When specified, adds an additional custom filter to be used when querying for groups. Must start with `(` and end with `)`.
+     * When specified, adds a custom filter to be used when querying for groups. Must start with `(` and end with `)`.
      */
     groupsLdapFilter?: pulumi.Input<string>;
     /**

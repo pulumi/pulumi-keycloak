@@ -103,7 +103,7 @@ type GoogleIdentityProvider struct {
 	HostedDomain pulumi.StringPtrOutput `pulumi:"hostedDomain"`
 	// (Computed) The unique ID that Keycloak assigns to the identity provider upon creation.
 	InternalId pulumi.StringOutput `pulumi:"internalId"`
-	// When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+	// When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
 	LinkOnly pulumi.BoolPtrOutput `pulumi:"linkOnly"`
 	// The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
 	PostBrokerLoginFlowAlias pulumi.StringPtrOutput `pulumi:"postBrokerLoginFlowAlias"`
@@ -200,7 +200,7 @@ type googleIdentityProviderState struct {
 	HostedDomain *string `pulumi:"hostedDomain"`
 	// (Computed) The unique ID that Keycloak assigns to the identity provider upon creation.
 	InternalId *string `pulumi:"internalId"`
-	// When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+	// When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
 	LinkOnly *bool `pulumi:"linkOnly"`
 	// The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
 	PostBrokerLoginFlowAlias *string `pulumi:"postBrokerLoginFlowAlias"`
@@ -252,7 +252,7 @@ type GoogleIdentityProviderState struct {
 	HostedDomain pulumi.StringPtrInput
 	// (Computed) The unique ID that Keycloak assigns to the identity provider upon creation.
 	InternalId pulumi.StringPtrInput
-	// When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+	// When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
 	LinkOnly pulumi.BoolPtrInput
 	// The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
 	PostBrokerLoginFlowAlias pulumi.StringPtrInput
@@ -302,7 +302,7 @@ type googleIdentityProviderArgs struct {
 	HideOnLoginPage *bool `pulumi:"hideOnLoginPage"`
 	// Sets the "hd" query parameter when logging in with Google. Google will only list accounts for this domain. Keycloak will validate that the returned identity token has a claim for this domain. When `*` is entered, an account from any domain can be used.
 	HostedDomain *string `pulumi:"hostedDomain"`
-	// When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+	// When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
 	LinkOnly *bool `pulumi:"linkOnly"`
 	// The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
 	PostBrokerLoginFlowAlias *string `pulumi:"postBrokerLoginFlowAlias"`
@@ -349,7 +349,7 @@ type GoogleIdentityProviderArgs struct {
 	HideOnLoginPage pulumi.BoolPtrInput
 	// Sets the "hd" query parameter when logging in with Google. Google will only list accounts for this domain. Keycloak will validate that the returned identity token has a claim for this domain. When `*` is entered, an account from any domain can be used.
 	HostedDomain pulumi.StringPtrInput
-	// When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+	// When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
 	LinkOnly pulumi.BoolPtrInput
 	// The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
 	PostBrokerLoginFlowAlias pulumi.StringPtrInput
@@ -535,7 +535,7 @@ func (o GoogleIdentityProviderOutput) InternalId() pulumi.StringOutput {
 	return o.ApplyT(func(v *GoogleIdentityProvider) pulumi.StringOutput { return v.InternalId }).(pulumi.StringOutput)
 }
 
-// When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+// When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
 func (o GoogleIdentityProviderOutput) LinkOnly() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *GoogleIdentityProvider) pulumi.BoolPtrOutput { return v.LinkOnly }).(pulumi.BoolPtrOutput)
 }

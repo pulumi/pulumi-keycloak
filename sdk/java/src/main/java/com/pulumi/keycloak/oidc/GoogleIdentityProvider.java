@@ -302,14 +302,14 @@ public class GoogleIdentityProvider extends com.pulumi.resources.CustomResource 
         return this.internalId;
     }
     /**
-     * When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+     * When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
      * 
      */
     @Export(name="linkOnly", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> linkOnly;
 
     /**
-     * @return When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+     * @return When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
      * 
      */
     public Output<Optional<Boolean>> linkOnly() {

@@ -350,7 +350,7 @@ namespace Pulumi.Keycloak.OpenId
         public Output<ImmutableArray<string>> ValidRedirectUris { get; private set; } = null!;
 
         /// <summary>
-        /// A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`."
+        /// A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`.
         /// </summary>
         [Output("webOrigins")]
         public Output<ImmutableArray<string>> WebOrigins { get; private set; } = null!;
@@ -702,7 +702,7 @@ namespace Pulumi.Keycloak.OpenId
         private InputList<string>? _webOrigins;
 
         /// <summary>
-        /// A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`."
+        /// A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`.
         /// </summary>
         public InputList<string> WebOrigins
         {
@@ -1027,7 +1027,7 @@ namespace Pulumi.Keycloak.OpenId
         private InputList<string>? _webOrigins;
 
         /// <summary>
-        /// A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`."
+        /// A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`.
         /// </summary>
         public InputList<string> WebOrigins
         {

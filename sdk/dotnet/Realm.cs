@@ -99,8 +99,8 @@ namespace Pulumi.Keycloak
     /// 
     /// ## Default Client Scopes
     /// 
-    /// - `default_default_client_scopes` - (Optional) A list of default default client scopes to be used for client definitions. Defaults to `[]` or keycloak's built-in default default client-scopes.
-    /// - `default_optional_client_scopes` - (Optional) A list of default optional client scopes to be used for client definitions. Defaults to `[]` or keycloak's built-in default optional client-scopes.
+    /// - `default_default_client_scopes` - (Optional) A list of default `default client scopes` to be used for client definitions. Defaults to `[]` or keycloak's built-in default `default client-scopes`.
+    /// - `default_optional_client_scopes` - (Optional) A list of default `optional client scopes` to be used for client definitions. Defaults to `[]` or keycloak's built-in default `optional client-scopes`.
     /// 
     /// ## Import
     /// 

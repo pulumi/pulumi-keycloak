@@ -158,7 +158,7 @@ namespace Pulumi.Keycloak.Saml
         public Output<string> InternalId { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+        /// When `true`, users cannot log in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         /// </summary>
         [Output("linkOnly")]
         public Output<bool?> LinkOnly { get; private set; } = null!;
@@ -188,7 +188,7 @@ namespace Pulumi.Keycloak.Saml
         public Output<bool?> PostBindingLogout { get; private set; } = null!;
 
         /// <summary>
-        /// Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
+        /// Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
         /// </summary>
         [Output("postBindingResponse")]
         public Output<bool?> PostBindingResponse { get; private set; } = null!;
@@ -440,7 +440,7 @@ namespace Pulumi.Keycloak.Saml
         public Input<bool>? HideOnLoginPage { get; set; }
 
         /// <summary>
-        /// When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+        /// When `true`, users cannot log in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         /// </summary>
         [Input("linkOnly")]
         public Input<bool>? LinkOnly { get; set; }
@@ -470,7 +470,7 @@ namespace Pulumi.Keycloak.Saml
         public Input<bool>? PostBindingLogout { get; set; }
 
         /// <summary>
-        /// Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
+        /// Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
         /// </summary>
         [Input("postBindingResponse")]
         public Input<bool>? PostBindingResponse { get; set; }
@@ -690,7 +690,7 @@ namespace Pulumi.Keycloak.Saml
         public Input<string>? InternalId { get; set; }
 
         /// <summary>
-        /// When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+        /// When `true`, users cannot log in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         /// </summary>
         [Input("linkOnly")]
         public Input<bool>? LinkOnly { get; set; }
@@ -720,7 +720,7 @@ namespace Pulumi.Keycloak.Saml
         public Input<bool>? PostBindingLogout { get; set; }
 
         /// <summary>
-        /// Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
+        /// Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
         /// </summary>
         [Input("postBindingResponse")]
         public Input<bool>? PostBindingResponse { get; set; }

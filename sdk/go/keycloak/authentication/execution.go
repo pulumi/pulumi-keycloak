@@ -17,64 +17,7 @@ import (
 // An authentication execution is an action that the user or service may or may not take when authenticating through an authentication
 // flow.
 //
-// > Due to limitations in the Keycloak API, the ordering of authentication executions within a flow must be specified using `dependsOn`. Authentication executions that are created first will appear first within the flow.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak"
-//	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak/authentication"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-//				Realm:   pulumi.String("my-realm"),
-//				Enabled: pulumi.Bool(true),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			flow, err := authentication.NewFlow(ctx, "flow", &authentication.FlowArgs{
-//				RealmId: realm.ID(),
-//				Alias:   pulumi.String("my-flow-alias"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			// first execution
-//			executionOne, err := authentication.NewExecution(ctx, "execution_one", &authentication.ExecutionArgs{
-//				RealmId:         realm.ID(),
-//				ParentFlowAlias: flow.Alias,
-//				Authenticator:   pulumi.String("auth-cookie"),
-//				Requirement:     pulumi.String("ALTERNATIVE"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			// second execution
-//			_, err = authentication.NewExecution(ctx, "execution_two", &authentication.ExecutionArgs{
-//				RealmId:         realm.ID(),
-//				ParentFlowAlias: flow.Alias,
-//				Authenticator:   pulumi.String("identity-provider-redirector"),
-//				Requirement:     pulumi.String("ALTERNATIVE"),
-//			}, pulumi.DependsOn([]pulumi.Resource{
-//				executionOne,
-//			}))
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
+// > Following limitation affects Keycloak < 25:  Due to limitations in the Keycloak API, the ordering of authentication executions within a flow must be specified using `dependsOn`. Authentication executions that are created first will appear first within the flow.
 //
 // ## Import
 //

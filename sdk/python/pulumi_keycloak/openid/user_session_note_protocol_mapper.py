@@ -38,7 +38,7 @@ class UserSessionNoteProtocolMapperArgs:
         :param pulumi.Input[str] client_id: The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
         :param pulumi.Input[str] client_scope_id: The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
         :param pulumi.Input[str] name: The display name of this protocol mapper in the GUI.
-        :param pulumi.Input[str] session_note: String value being the name of stored user session note within the UserSessionModel.note map.
+        :param pulumi.Input[str] session_note: String value being the name of stored user session note within the `UserSessionModel.note` map.
         """
         pulumi.set(__self__, "claim_name", claim_name)
         pulumi.set(__self__, "realm_id", realm_id)
@@ -157,7 +157,7 @@ class UserSessionNoteProtocolMapperArgs:
     @pulumi.getter(name="sessionNote")
     def session_note(self) -> Optional[pulumi.Input[str]]:
         """
-        String value being the name of stored user session note within the UserSessionModel.note map.
+        String value being the name of stored user session note within the `UserSessionModel.note` map.
         """
         return pulumi.get(self, "session_note")
 
@@ -188,7 +188,7 @@ class _UserSessionNoteProtocolMapperState:
         :param pulumi.Input[str] client_scope_id: The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
         :param pulumi.Input[str] name: The display name of this protocol mapper in the GUI.
         :param pulumi.Input[str] realm_id: The realm this protocol mapper exists within.
-        :param pulumi.Input[str] session_note: String value being the name of stored user session note within the UserSessionModel.note map.
+        :param pulumi.Input[str] session_note: String value being the name of stored user session note within the `UserSessionModel.note` map.
         """
         if add_to_access_token is not None:
             pulumi.set(__self__, "add_to_access_token", add_to_access_token)
@@ -309,7 +309,7 @@ class _UserSessionNoteProtocolMapperState:
     @pulumi.getter(name="sessionNote")
     def session_note(self) -> Optional[pulumi.Input[str]]:
         """
-        String value being the name of stored user session note within the UserSessionModel.note map.
+        String value being the name of stored user session note within the `UserSessionModel.note` map.
         """
         return pulumi.get(self, "session_note")
 
@@ -419,7 +419,7 @@ class UserSessionNoteProtocolMapper(pulumi.CustomResource):
         :param pulumi.Input[str] client_scope_id: The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
         :param pulumi.Input[str] name: The display name of this protocol mapper in the GUI.
         :param pulumi.Input[str] realm_id: The realm this protocol mapper exists within.
-        :param pulumi.Input[str] session_note: String value being the name of stored user session note within the UserSessionModel.note map.
+        :param pulumi.Input[str] session_note: String value being the name of stored user session note within the `UserSessionModel.note` map.
         """
         ...
     @overload
@@ -583,7 +583,7 @@ class UserSessionNoteProtocolMapper(pulumi.CustomResource):
         :param pulumi.Input[str] client_scope_id: The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
         :param pulumi.Input[str] name: The display name of this protocol mapper in the GUI.
         :param pulumi.Input[str] realm_id: The realm this protocol mapper exists within.
-        :param pulumi.Input[str] session_note: String value being the name of stored user session note within the UserSessionModel.note map.
+        :param pulumi.Input[str] session_note: String value being the name of stored user session note within the `UserSessionModel.note` map.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -668,7 +668,7 @@ class UserSessionNoteProtocolMapper(pulumi.CustomResource):
     @pulumi.getter(name="sessionNote")
     def session_note(self) -> pulumi.Output[Optional[str]]:
         """
-        String value being the name of stored user session note within the UserSessionModel.note map.
+        String value being the name of stored user session note within the `UserSessionModel.note` map.
         """
         return pulumi.get(self, "session_note")
 

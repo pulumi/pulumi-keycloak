@@ -17,51 +17,6 @@ import (
 // Like authentication flows, authentication subflows are containers for authentication executions.
 // As its name implies, an authentication subflow is contained in an authentication flow.
 //
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak"
-//	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak/authentication"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
-//				Realm:   pulumi.String("my-realm"),
-//				Enabled: pulumi.Bool(true),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			flow, err := authentication.NewFlow(ctx, "flow", &authentication.FlowArgs{
-//				RealmId: realm.ID(),
-//				Alias:   pulumi.String("my-flow-alias"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = authentication.NewSubflow(ctx, "subflow", &authentication.SubflowArgs{
-//				RealmId:         realm.ID(),
-//				Alias:           pulumi.String("my-subflow-alias"),
-//				ParentFlowAlias: flow.Alias,
-//				ProviderId:      pulumi.String("basic-flow"),
-//				Requirement:     pulumi.String("ALTERNATIVE"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
 // Authentication flows can be imported using the format `{{realmId}}/{{parentFlowAlias}}/{{authenticationSubflowId}}`.

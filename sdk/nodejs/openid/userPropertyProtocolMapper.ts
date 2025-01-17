@@ -150,7 +150,7 @@ export class UserPropertyProtocolMapper extends pulumi.CustomResource {
      */
     public readonly realmId!: pulumi.Output<string>;
     /**
-     * The built in user property (such as email) to map a claim for.
+     * The built-in user property (such as email) to map a claim for.
      */
     public readonly userProperty!: pulumi.Output<string>;
 
@@ -245,7 +245,7 @@ export interface UserPropertyProtocolMapperState {
      */
     realmId?: pulumi.Input<string>;
     /**
-     * The built in user property (such as email) to map a claim for.
+     * The built-in user property (such as email) to map a claim for.
      */
     userProperty?: pulumi.Input<string>;
 }
@@ -291,7 +291,7 @@ export interface UserPropertyProtocolMapperArgs {
      */
     realmId: pulumi.Input<string>;
     /**
-     * The built in user property (such as email) to map a claim for.
+     * The built-in user property (such as email) to map a claim for.
      */
     userProperty: pulumi.Input<string>;
 }

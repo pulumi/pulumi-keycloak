@@ -10,39 +10,7 @@ import * as utilities from "../utilities";
  * An authentication execution is an action that the user or service may or may not take when authenticating through an authentication
  * flow.
  *
- * > Due to limitations in the Keycloak API, the ordering of authentication executions within a flow must be specified using `dependsOn`. Authentication executions that are created first will appear first within the flow.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as keycloak from "@pulumi/keycloak";
- *
- * const realm = new keycloak.Realm("realm", {
- *     realm: "my-realm",
- *     enabled: true,
- * });
- * const flow = new keycloak.authentication.Flow("flow", {
- *     realmId: realm.id,
- *     alias: "my-flow-alias",
- * });
- * // first execution
- * const executionOne = new keycloak.authentication.Execution("execution_one", {
- *     realmId: realm.id,
- *     parentFlowAlias: flow.alias,
- *     authenticator: "auth-cookie",
- *     requirement: "ALTERNATIVE",
- * });
- * // second execution
- * const executionTwo = new keycloak.authentication.Execution("execution_two", {
- *     realmId: realm.id,
- *     parentFlowAlias: flow.alias,
- *     authenticator: "identity-provider-redirector",
- *     requirement: "ALTERNATIVE",
- * }, {
- *     dependsOn: [executionOne],
- * });
- * ```
+ * > Following limitation affects Keycloak < 25:  Due to limitations in the Keycloak API, the ordering of authentication executions within a flow must be specified using `dependsOn`. Authentication executions that are created first will appear first within the flow.
  *
  * ## Import
  *

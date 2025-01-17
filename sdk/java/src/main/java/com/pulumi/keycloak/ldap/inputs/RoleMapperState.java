@@ -198,14 +198,14 @@ public final class RoleMapperState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * When specified, adds an additional custom filter to be used when querying for roles. Must start with `(` and end with `)`.
+     * When specified, adds a custom filter to be used when querying for roles. Must start with `(` and end with `)`.
      * 
      */
     @Import(name="rolesLdapFilter")
     private @Nullable Output<String> rolesLdapFilter;
 
     /**
-     * @return When specified, adds an additional custom filter to be used when querying for roles. Must start with `(` and end with `)`.
+     * @return When specified, adds a custom filter to be used when querying for roles. Must start with `(` and end with `)`.
      * 
      */
     public Optional<Output<String>> rolesLdapFilter() {
@@ -543,7 +543,7 @@ public final class RoleMapperState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param rolesLdapFilter When specified, adds an additional custom filter to be used when querying for roles. Must start with `(` and end with `)`.
+         * @param rolesLdapFilter When specified, adds a custom filter to be used when querying for roles. Must start with `(` and end with `)`.
          * 
          * @return builder
          * 
@@ -554,7 +554,7 @@ public final class RoleMapperState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param rolesLdapFilter When specified, adds an additional custom filter to be used when querying for roles. Must start with `(` and end with `)`.
+         * @param rolesLdapFilter When specified, adds a custom filter to be used when querying for roles. Must start with `(` and end with `)`.
          * 
          * @return builder
          * 

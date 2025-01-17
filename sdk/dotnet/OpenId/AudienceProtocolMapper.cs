@@ -12,7 +12,7 @@ namespace Pulumi.Keycloak.OpenId
     /// <summary>
     /// Allows for creating and managing audience protocol mappers within Keycloak.
     /// 
-    /// Audience protocol mappers allow you add audiences to the `aud` claim within issued tokens. The audience can be a custom
+    /// Audience protocol mappers allow you to add audiences to the `aud` claim within issued tokens. The audience can be a custom
     /// string, or it can be mapped to the ID of a pre-existing client.
     /// 
     /// ## Example Usage

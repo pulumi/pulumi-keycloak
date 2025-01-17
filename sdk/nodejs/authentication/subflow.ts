@@ -10,29 +10,6 @@ import * as utilities from "../utilities";
  * Like authentication flows, authentication subflows are containers for authentication executions.
  * As its name implies, an authentication subflow is contained in an authentication flow.
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as keycloak from "@pulumi/keycloak";
- *
- * const realm = new keycloak.Realm("realm", {
- *     realm: "my-realm",
- *     enabled: true,
- * });
- * const flow = new keycloak.authentication.Flow("flow", {
- *     realmId: realm.id,
- *     alias: "my-flow-alias",
- * });
- * const subflow = new keycloak.authentication.Subflow("subflow", {
- *     realmId: realm.id,
- *     alias: "my-subflow-alias",
- *     parentFlowAlias: flow.alias,
- *     providerId: "basic-flow",
- *     requirement: "ALTERNATIVE",
- * });
- * ```
- *
  * ## Import
  *
  * Authentication flows can be imported using the format `{{realmId}}/{{parentFlowAlias}}/{{authenticationSubflowId}}`.

@@ -103,14 +103,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="keycloak:index/group:Group")
 public class Group extends com.pulumi.resources.CustomResource {
     /**
-     * A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
+     * A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars
      * 
      */
     @Export(name="attributes", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> attributes;
 
     /**
-     * @return A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
+     * @return A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars
      * 
      */
     public Output<Optional<Map<String,String>>> attributes() {

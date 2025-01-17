@@ -134,7 +134,7 @@ export class GoogleIdentityProvider extends pulumi.CustomResource {
      */
     public /*out*/ readonly internalId!: pulumi.Output<string>;
     /**
-     * When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+     * When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
      */
     public readonly linkOnly!: pulumi.Output<boolean | undefined>;
     /**
@@ -318,7 +318,7 @@ export interface GoogleIdentityProviderState {
      */
     internalId?: pulumi.Input<string>;
     /**
-     * When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+     * When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
      */
     linkOnly?: pulumi.Input<boolean>;
     /**
@@ -409,7 +409,7 @@ export interface GoogleIdentityProviderArgs {
      */
     hostedDomain?: pulumi.Input<string>;
     /**
-     * When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+     * When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
      */
     linkOnly?: pulumi.Input<boolean>;
     /**

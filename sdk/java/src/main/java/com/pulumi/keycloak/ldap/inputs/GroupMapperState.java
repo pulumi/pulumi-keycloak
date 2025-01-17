@@ -63,14 +63,14 @@ public final class GroupMapperState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * When specified, adds an additional custom filter to be used when querying for groups. Must start with `(` and end with `)`.
+     * When specified, adds a custom filter to be used when querying for groups. Must start with `(` and end with `)`.
      * 
      */
     @Import(name="groupsLdapFilter")
     private @Nullable Output<String> groupsLdapFilter;
 
     /**
-     * @return When specified, adds an additional custom filter to be used when querying for groups. Must start with `(` and end with `)`.
+     * @return When specified, adds a custom filter to be used when querying for groups. Must start with `(` and end with `)`.
      * 
      */
     public Optional<Output<String>> groupsLdapFilter() {
@@ -402,7 +402,7 @@ public final class GroupMapperState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param groupsLdapFilter When specified, adds an additional custom filter to be used when querying for groups. Must start with `(` and end with `)`.
+         * @param groupsLdapFilter When specified, adds a custom filter to be used when querying for groups. Must start with `(` and end with `)`.
          * 
          * @return builder
          * 
@@ -413,7 +413,7 @@ public final class GroupMapperState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param groupsLdapFilter When specified, adds an additional custom filter to be used when querying for groups. Must start with `(` and end with `)`.
+         * @param groupsLdapFilter When specified, adds a custom filter to be used when querying for groups. Must start with `(` and end with `)`.
          * 
          * @return builder
          * 

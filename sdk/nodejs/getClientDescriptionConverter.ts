@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * This data source uses the [ClientDescriptionConverter](https://www.keycloak.org/docs-api/6.0/javadocs/org/keycloak/exportimport/ClientDescriptionConverter.html) API to convert a generic client description into a Keycloak
+ * This data source uses the [ClientDescriptionConverter](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/exportimport/ClientDescriptionConverter.html) API to convert a generic client description into a Keycloak
  * client. This data can then be used to manage the client within Keycloak.
  *
  * ## Example Usage
@@ -126,7 +126,7 @@ export interface GetClientDescriptionConverterResult {
     readonly webOrigins: string[];
 }
 /**
- * This data source uses the [ClientDescriptionConverter](https://www.keycloak.org/docs-api/6.0/javadocs/org/keycloak/exportimport/ClientDescriptionConverter.html) API to convert a generic client description into a Keycloak
+ * This data source uses the [ClientDescriptionConverter](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/exportimport/ClientDescriptionConverter.html) API to convert a generic client description into a Keycloak
  * client. This data can then be used to manage the client within Keycloak.
  *
  * ## Example Usage

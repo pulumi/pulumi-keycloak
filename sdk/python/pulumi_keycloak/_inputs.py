@@ -1504,7 +1504,7 @@ if not MYPY:
         """
         relying_party_entity_name: NotRequired[pulumi.Input[str]]
         """
-        A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
+        A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
         """
         relying_party_id: NotRequired[pulumi.Input[str]]
         """
@@ -1544,7 +1544,7 @@ class RealmWebAuthnPasswordlessPolicyArgs:
         :param pulumi.Input[str] authenticator_attachment: Either platform or cross-platform
         :param pulumi.Input[bool] avoid_same_authenticator_register: When `true`, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to `false`.
         :param pulumi.Input[int] create_timeout: The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
-        :param pulumi.Input[str] relying_party_entity_name: A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
+        :param pulumi.Input[str] relying_party_entity_name: A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
         :param pulumi.Input[str] relying_party_id: The WebAuthn relying party ID.
         :param pulumi.Input[str] require_resident_key: Either Yes or No
         :param pulumi.Input[Sequence[pulumi.Input[str]]] signature_algorithms: Keycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing
@@ -1635,7 +1635,7 @@ class RealmWebAuthnPasswordlessPolicyArgs:
     @pulumi.getter(name="relyingPartyEntityName")
     def relying_party_entity_name(self) -> Optional[pulumi.Input[str]]:
         """
-        A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
+        A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
         """
         return pulumi.get(self, "relying_party_entity_name")
 
@@ -1716,7 +1716,7 @@ if not MYPY:
         """
         relying_party_entity_name: NotRequired[pulumi.Input[str]]
         """
-        A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
+        A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
         """
         relying_party_id: NotRequired[pulumi.Input[str]]
         """
@@ -1756,7 +1756,7 @@ class RealmWebAuthnPolicyArgs:
         :param pulumi.Input[str] authenticator_attachment: Either platform or cross-platform
         :param pulumi.Input[bool] avoid_same_authenticator_register: When `true`, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to `false`.
         :param pulumi.Input[int] create_timeout: The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
-        :param pulumi.Input[str] relying_party_entity_name: A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
+        :param pulumi.Input[str] relying_party_entity_name: A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
         :param pulumi.Input[str] relying_party_id: The WebAuthn relying party ID.
         :param pulumi.Input[str] require_resident_key: Either Yes or No
         :param pulumi.Input[Sequence[pulumi.Input[str]]] signature_algorithms: Keycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing
@@ -1847,7 +1847,7 @@ class RealmWebAuthnPolicyArgs:
     @pulumi.getter(name="relyingPartyEntityName")
     def relying_party_entity_name(self) -> Optional[pulumi.Input[str]]:
         """
-        A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
+        A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
         """
         return pulumi.get(self, "relying_party_entity_name")
 
@@ -1916,7 +1916,7 @@ if not MYPY:
         """
         user_name: pulumi.Input[str]
         """
-        The user name of the user defined in the identity provider
+        The username of the user defined in the identity provider
         """
 elif False:
     UserFederatedIdentityArgsDict: TypeAlias = Mapping[str, Any]
@@ -1930,7 +1930,7 @@ class UserFederatedIdentityArgs:
         """
         :param pulumi.Input[str] identity_provider: The name of the identity provider
         :param pulumi.Input[str] user_id: The ID of the user defined in the identity provider
-        :param pulumi.Input[str] user_name: The user name of the user defined in the identity provider
+        :param pulumi.Input[str] user_name: The username of the user defined in the identity provider
         """
         pulumi.set(__self__, "identity_provider", identity_provider)
         pulumi.set(__self__, "user_id", user_id)
@@ -1964,7 +1964,7 @@ class UserFederatedIdentityArgs:
     @pulumi.getter(name="userName")
     def user_name(self) -> pulumi.Input[str]:
         """
-        The user name of the user defined in the identity provider
+        The username of the user defined in the identity provider
         """
         return pulumi.get(self, "user_name")
 

@@ -49,7 +49,7 @@ namespace Pulumi.Keycloak.Inputs
         public Input<int>? CreateTimeout { get; set; }
 
         /// <summary>
-        /// A human readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
+        /// A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
         /// </summary>
         [Input("relyingPartyEntityName")]
         public Input<string>? RelyingPartyEntityName { get; set; }

@@ -284,26 +284,6 @@ class Subflow(pulumi.CustomResource):
         Like authentication flows, authentication subflows are containers for authentication executions.
         As its name implies, an authentication subflow is contained in an authentication flow.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_keycloak as keycloak
-
-        realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
-        flow = keycloak.authentication.Flow("flow",
-            realm_id=realm.id,
-            alias="my-flow-alias")
-        subflow = keycloak.authentication.Subflow("subflow",
-            realm_id=realm.id,
-            alias="my-subflow-alias",
-            parent_flow_alias=flow.alias,
-            provider_id="basic-flow",
-            requirement="ALTERNATIVE")
-        ```
-
         ## Import
 
         Authentication flows can be imported using the format `{{realmId}}/{{parentFlowAlias}}/{{authenticationSubflowId}}`.
@@ -350,26 +330,6 @@ class Subflow(pulumi.CustomResource):
 
         Like authentication flows, authentication subflows are containers for authentication executions.
         As its name implies, an authentication subflow is contained in an authentication flow.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_keycloak as keycloak
-
-        realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
-        flow = keycloak.authentication.Flow("flow",
-            realm_id=realm.id,
-            alias="my-flow-alias")
-        subflow = keycloak.authentication.Subflow("subflow",
-            realm_id=realm.id,
-            alias="my-subflow-alias",
-            parent_flow_alias=flow.alias,
-            provider_id="basic-flow",
-            requirement="ALTERNATIVE")
-        ```
 
         ## Import
 

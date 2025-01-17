@@ -47,7 +47,7 @@ class GroupMapperArgs:
         :param pulumi.Input[str] membership_user_ldap_attribute: The name of the LDAP attribute on a user that is used for membership mappings.
         :param pulumi.Input[str] realm_id: The realm that this LDAP mapper will exist in.
         :param pulumi.Input[bool] drop_non_existing_groups_during_sync: When `true`, groups that no longer exist within LDAP will be dropped in Keycloak during sync. Defaults to `false`.
-        :param pulumi.Input[str] groups_ldap_filter: When specified, adds an additional custom filter to be used when querying for groups. Must start with `(` and end with `)`.
+        :param pulumi.Input[str] groups_ldap_filter: When specified, adds a custom filter to be used when querying for groups. Must start with `(` and end with `)`.
         :param pulumi.Input[str] groups_path: Keycloak group path the LDAP groups are added to. For example if value `/Applications/App1` is used, then LDAP groups will be available in Keycloak under group `App1`, which is the child of top level group `Applications`. The configured group path must already exist in Keycloak when creating this mapper.
         :param pulumi.Input[bool] ignore_missing_groups: When `true`, missing groups in the hierarchy will be ignored.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] mapped_group_attributes: Array of strings representing attributes on the LDAP group which will be mapped to attributes on the Keycloak group.
@@ -188,7 +188,7 @@ class GroupMapperArgs:
     @pulumi.getter(name="groupsLdapFilter")
     def groups_ldap_filter(self) -> Optional[pulumi.Input[str]]:
         """
-        When specified, adds an additional custom filter to be used when querying for groups. Must start with `(` and end with `)`.
+        When specified, adds a custom filter to be used when querying for groups. Must start with `(` and end with `)`.
         """
         return pulumi.get(self, "groups_ldap_filter")
 
@@ -331,7 +331,7 @@ class _GroupMapperState:
         :param pulumi.Input[bool] drop_non_existing_groups_during_sync: When `true`, groups that no longer exist within LDAP will be dropped in Keycloak during sync. Defaults to `false`.
         :param pulumi.Input[str] group_name_ldap_attribute: The name of the LDAP attribute that is used in group objects for the name and RDN of the group. Typically `cn`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] group_object_classes: List of strings representing the object classes for the group. Must contain at least one.
-        :param pulumi.Input[str] groups_ldap_filter: When specified, adds an additional custom filter to be used when querying for groups. Must start with `(` and end with `)`.
+        :param pulumi.Input[str] groups_ldap_filter: When specified, adds a custom filter to be used when querying for groups. Must start with `(` and end with `)`.
         :param pulumi.Input[str] groups_path: Keycloak group path the LDAP groups are added to. For example if value `/Applications/App1` is used, then LDAP groups will be available in Keycloak under group `App1`, which is the child of top level group `Applications`. The configured group path must already exist in Keycloak when creating this mapper.
         :param pulumi.Input[bool] ignore_missing_groups: When `true`, missing groups in the hierarchy will be ignored.
         :param pulumi.Input[str] ldap_groups_dn: The LDAP DN where groups can be found.
@@ -424,7 +424,7 @@ class _GroupMapperState:
     @pulumi.getter(name="groupsLdapFilter")
     def groups_ldap_filter(self) -> Optional[pulumi.Input[str]]:
         """
-        When specified, adds an additional custom filter to be used when querying for groups. Must start with `(` and end with `)`.
+        When specified, adds a custom filter to be used when querying for groups. Must start with `(` and end with `)`.
         """
         return pulumi.get(self, "groups_ldap_filter")
 
@@ -686,7 +686,7 @@ class GroupMapper(pulumi.CustomResource):
         :param pulumi.Input[bool] drop_non_existing_groups_during_sync: When `true`, groups that no longer exist within LDAP will be dropped in Keycloak during sync. Defaults to `false`.
         :param pulumi.Input[str] group_name_ldap_attribute: The name of the LDAP attribute that is used in group objects for the name and RDN of the group. Typically `cn`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] group_object_classes: List of strings representing the object classes for the group. Must contain at least one.
-        :param pulumi.Input[str] groups_ldap_filter: When specified, adds an additional custom filter to be used when querying for groups. Must start with `(` and end with `)`.
+        :param pulumi.Input[str] groups_ldap_filter: When specified, adds a custom filter to be used when querying for groups. Must start with `(` and end with `)`.
         :param pulumi.Input[str] groups_path: Keycloak group path the LDAP groups are added to. For example if value `/Applications/App1` is used, then LDAP groups will be available in Keycloak under group `App1`, which is the child of top level group `Applications`. The configured group path must already exist in Keycloak when creating this mapper.
         :param pulumi.Input[bool] ignore_missing_groups: When `true`, missing groups in the hierarchy will be ignored.
         :param pulumi.Input[str] ldap_groups_dn: The LDAP DN where groups can be found.
@@ -876,7 +876,7 @@ class GroupMapper(pulumi.CustomResource):
         :param pulumi.Input[bool] drop_non_existing_groups_during_sync: When `true`, groups that no longer exist within LDAP will be dropped in Keycloak during sync. Defaults to `false`.
         :param pulumi.Input[str] group_name_ldap_attribute: The name of the LDAP attribute that is used in group objects for the name and RDN of the group. Typically `cn`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] group_object_classes: List of strings representing the object classes for the group. Must contain at least one.
-        :param pulumi.Input[str] groups_ldap_filter: When specified, adds an additional custom filter to be used when querying for groups. Must start with `(` and end with `)`.
+        :param pulumi.Input[str] groups_ldap_filter: When specified, adds a custom filter to be used when querying for groups. Must start with `(` and end with `)`.
         :param pulumi.Input[str] groups_path: Keycloak group path the LDAP groups are added to. For example if value `/Applications/App1` is used, then LDAP groups will be available in Keycloak under group `App1`, which is the child of top level group `Applications`. The configured group path must already exist in Keycloak when creating this mapper.
         :param pulumi.Input[bool] ignore_missing_groups: When `true`, missing groups in the hierarchy will be ignored.
         :param pulumi.Input[str] ldap_groups_dn: The LDAP DN where groups can be found.
@@ -944,7 +944,7 @@ class GroupMapper(pulumi.CustomResource):
     @pulumi.getter(name="groupsLdapFilter")
     def groups_ldap_filter(self) -> pulumi.Output[Optional[str]]:
         """
-        When specified, adds an additional custom filter to be used when querying for groups. Must start with `(` and end with `)`.
+        When specified, adds a custom filter to be used when querying for groups. Must start with `(` and end with `)`.
         """
         return pulumi.get(self, "groups_ldap_filter")
 

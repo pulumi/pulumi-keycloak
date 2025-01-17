@@ -15,40 +15,6 @@ namespace Pulumi.Keycloak.Authentication
     /// Like authentication flows, authentication subflows are containers for authentication executions.
     /// As its name implies, an authentication subflow is contained in an authentication flow.
     /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Keycloak = Pulumi.Keycloak;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var realm = new Keycloak.Realm("realm", new()
-    ///     {
-    ///         RealmName = "my-realm",
-    ///         Enabled = true,
-    ///     });
-    /// 
-    ///     var flow = new Keycloak.Authentication.Flow("flow", new()
-    ///     {
-    ///         RealmId = realm.Id,
-    ///         Alias = "my-flow-alias",
-    ///     });
-    /// 
-    ///     var subflow = new Keycloak.Authentication.Subflow("subflow", new()
-    ///     {
-    ///         RealmId = realm.Id,
-    ///         Alias = "my-subflow-alias",
-    ///         ParentFlowAlias = flow.Alias,
-    ///         ProviderId = "basic-flow",
-    ///         Requirement = "ALTERNATIVE",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// Authentication flows can be imported using the format `{{realmId}}/{{parentFlowAlias}}/{{authenticationSubflowId}}`.

@@ -158,7 +158,7 @@ type UserPropertyProtocolMapper struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The realm this protocol mapper exists within.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
-	// The built in user property (such as email) to map a claim for.
+	// The built-in user property (such as email) to map a claim for.
 	UserProperty pulumi.StringOutput `pulumi:"userProperty"`
 }
 
@@ -219,7 +219,7 @@ type userPropertyProtocolMapperState struct {
 	Name *string `pulumi:"name"`
 	// The realm this protocol mapper exists within.
 	RealmId *string `pulumi:"realmId"`
-	// The built in user property (such as email) to map a claim for.
+	// The built-in user property (such as email) to map a claim for.
 	UserProperty *string `pulumi:"userProperty"`
 }
 
@@ -242,7 +242,7 @@ type UserPropertyProtocolMapperState struct {
 	Name pulumi.StringPtrInput
 	// The realm this protocol mapper exists within.
 	RealmId pulumi.StringPtrInput
-	// The built in user property (such as email) to map a claim for.
+	// The built-in user property (such as email) to map a claim for.
 	UserProperty pulumi.StringPtrInput
 }
 
@@ -269,7 +269,7 @@ type userPropertyProtocolMapperArgs struct {
 	Name *string `pulumi:"name"`
 	// The realm this protocol mapper exists within.
 	RealmId string `pulumi:"realmId"`
-	// The built in user property (such as email) to map a claim for.
+	// The built-in user property (such as email) to map a claim for.
 	UserProperty string `pulumi:"userProperty"`
 }
 
@@ -293,7 +293,7 @@ type UserPropertyProtocolMapperArgs struct {
 	Name pulumi.StringPtrInput
 	// The realm this protocol mapper exists within.
 	RealmId pulumi.StringInput
-	// The built in user property (such as email) to map a claim for.
+	// The built-in user property (such as email) to map a claim for.
 	UserProperty pulumi.StringInput
 }
 
@@ -429,7 +429,7 @@ func (o UserPropertyProtocolMapperOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *UserPropertyProtocolMapper) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
 }
 
-// The built in user property (such as email) to map a claim for.
+// The built-in user property (such as email) to map a claim for.
 func (o UserPropertyProtocolMapperOutput) UserProperty() pulumi.StringOutput {
 	return o.ApplyT(func(v *UserPropertyProtocolMapper) pulumi.StringOutput { return v.UserProperty }).(pulumi.StringOutput)
 }

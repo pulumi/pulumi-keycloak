@@ -180,7 +180,7 @@ type Client struct {
 	// wildcards in the form of an asterisk can be used here. This attribute must be set if either `standardFlowEnabled` or `implicitFlowEnabled`
 	// is set to `true`.
 	ValidRedirectUris pulumi.StringArrayOutput `pulumi:"validRedirectUris"`
-	// A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`."
+	// A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`.
 	WebOrigins pulumi.StringArrayOutput `pulumi:"webOrigins"`
 }
 
@@ -330,7 +330,7 @@ type clientState struct {
 	// wildcards in the form of an asterisk can be used here. This attribute must be set if either `standardFlowEnabled` or `implicitFlowEnabled`
 	// is set to `true`.
 	ValidRedirectUris []string `pulumi:"validRedirectUris"`
-	// A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`."
+	// A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`.
 	WebOrigins []string `pulumi:"webOrigins"`
 }
 
@@ -435,7 +435,7 @@ type ClientState struct {
 	// wildcards in the form of an asterisk can be used here. This attribute must be set if either `standardFlowEnabled` or `implicitFlowEnabled`
 	// is set to `true`.
 	ValidRedirectUris pulumi.StringArrayInput
-	// A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`."
+	// A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`.
 	WebOrigins pulumi.StringArrayInput
 }
 
@@ -540,7 +540,7 @@ type clientArgs struct {
 	// wildcards in the form of an asterisk can be used here. This attribute must be set if either `standardFlowEnabled` or `implicitFlowEnabled`
 	// is set to `true`.
 	ValidRedirectUris []string `pulumi:"validRedirectUris"`
-	// A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`."
+	// A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`.
 	WebOrigins []string `pulumi:"webOrigins"`
 }
 
@@ -642,7 +642,7 @@ type ClientArgs struct {
 	// wildcards in the form of an asterisk can be used here. This attribute must be set if either `standardFlowEnabled` or `implicitFlowEnabled`
 	// is set to `true`.
 	ValidRedirectUris pulumi.StringArrayInput
-	// A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`."
+	// A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`.
 	WebOrigins pulumi.StringArrayInput
 }
 
@@ -970,7 +970,7 @@ func (o ClientOutput) ValidRedirectUris() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Client) pulumi.StringArrayOutput { return v.ValidRedirectUris }).(pulumi.StringArrayOutput)
 }
 
-// A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`."
+// A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`.
 func (o ClientOutput) WebOrigins() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Client) pulumi.StringArrayOutput { return v.WebOrigins }).(pulumi.StringArrayOutput)
 }

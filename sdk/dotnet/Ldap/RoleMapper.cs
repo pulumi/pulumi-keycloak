@@ -159,7 +159,7 @@ namespace Pulumi.Keycloak.Ldap
         public Output<ImmutableArray<string>> RoleObjectClasses { get; private set; } = null!;
 
         /// <summary>
-        /// When specified, adds an additional custom filter to be used when querying for roles. Must start with `(` and end with `)`.
+        /// When specified, adds a custom filter to be used when querying for roles. Must start with `(` and end with `)`.
         /// </summary>
         [Output("rolesLdapFilter")]
         public Output<string?> RolesLdapFilter { get; private set; } = null!;
@@ -301,7 +301,7 @@ namespace Pulumi.Keycloak.Ldap
         }
 
         /// <summary>
-        /// When specified, adds an additional custom filter to be used when querying for roles. Must start with `(` and end with `)`.
+        /// When specified, adds a custom filter to be used when querying for roles. Must start with `(` and end with `)`.
         /// </summary>
         [Input("rolesLdapFilter")]
         public Input<string>? RolesLdapFilter { get; set; }
@@ -405,7 +405,7 @@ namespace Pulumi.Keycloak.Ldap
         }
 
         /// <summary>
-        /// When specified, adds an additional custom filter to be used when querying for roles. Must start with `(` and end with `)`.
+        /// When specified, adds a custom filter to be used when querying for roles. Must start with `(` and end with `)`.
         /// </summary>
         [Input("rolesLdapFilter")]
         public Input<string>? RolesLdapFilter { get; set; }

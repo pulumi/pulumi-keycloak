@@ -545,7 +545,7 @@ public final class KeycloakFunctions {
         return Deployment.getInstance().invokeAsync("keycloak:index/getAuthenticationFlow:getAuthenticationFlow", TypeShape.of(GetAuthenticationFlowResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * This data source uses the [ClientDescriptionConverter](https://www.keycloak.org/docs-api/6.0/javadocs/org/keycloak/exportimport/ClientDescriptionConverter.html) API to convert a generic client description into a Keycloak
+     * This data source uses the [ClientDescriptionConverter](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/exportimport/ClientDescriptionConverter.html) API to convert a generic client description into a Keycloak
      * client. This data can then be used to manage the client within Keycloak.
      * 
      * ## Example Usage
@@ -631,7 +631,7 @@ public final class KeycloakFunctions {
         return getClientDescriptionConverter(args, InvokeOptions.Empty);
     }
     /**
-     * This data source uses the [ClientDescriptionConverter](https://www.keycloak.org/docs-api/6.0/javadocs/org/keycloak/exportimport/ClientDescriptionConverter.html) API to convert a generic client description into a Keycloak
+     * This data source uses the [ClientDescriptionConverter](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/exportimport/ClientDescriptionConverter.html) API to convert a generic client description into a Keycloak
      * client. This data can then be used to manage the client within Keycloak.
      * 
      * ## Example Usage
@@ -717,7 +717,7 @@ public final class KeycloakFunctions {
         return getClientDescriptionConverterPlain(args, InvokeOptions.Empty);
     }
     /**
-     * This data source uses the [ClientDescriptionConverter](https://www.keycloak.org/docs-api/6.0/javadocs/org/keycloak/exportimport/ClientDescriptionConverter.html) API to convert a generic client description into a Keycloak
+     * This data source uses the [ClientDescriptionConverter](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/exportimport/ClientDescriptionConverter.html) API to convert a generic client description into a Keycloak
      * client. This data can then be used to manage the client within Keycloak.
      * 
      * ## Example Usage
@@ -803,7 +803,7 @@ public final class KeycloakFunctions {
         return Deployment.getInstance().invoke("keycloak:index/getClientDescriptionConverter:getClientDescriptionConverter", TypeShape.of(GetClientDescriptionConverterResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * This data source uses the [ClientDescriptionConverter](https://www.keycloak.org/docs-api/6.0/javadocs/org/keycloak/exportimport/ClientDescriptionConverter.html) API to convert a generic client description into a Keycloak
+     * This data source uses the [ClientDescriptionConverter](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/exportimport/ClientDescriptionConverter.html) API to convert a generic client description into a Keycloak
      * client. This data can then be used to manage the client within Keycloak.
      * 
      * ## Example Usage
@@ -889,7 +889,7 @@ public final class KeycloakFunctions {
         return Deployment.getInstance().invoke("keycloak:index/getClientDescriptionConverter:getClientDescriptionConverter", TypeShape.of(GetClientDescriptionConverterResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * This data source uses the [ClientDescriptionConverter](https://www.keycloak.org/docs-api/6.0/javadocs/org/keycloak/exportimport/ClientDescriptionConverter.html) API to convert a generic client description into a Keycloak
+     * This data source uses the [ClientDescriptionConverter](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/exportimport/ClientDescriptionConverter.html) API to convert a generic client description into a Keycloak
      * client. This data can then be used to manage the client within Keycloak.
      * 
      * ## Example Usage

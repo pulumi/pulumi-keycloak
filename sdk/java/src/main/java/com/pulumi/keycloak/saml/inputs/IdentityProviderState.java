@@ -251,14 +251,14 @@ public final class IdentityProviderState extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+     * When `true`, users cannot log in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
      * 
      */
     @Import(name="linkOnly")
     private @Nullable Output<Boolean> linkOnly;
 
     /**
-     * @return When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+     * @return When `true`, users cannot log in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
      * 
      */
     public Optional<Output<Boolean>> linkOnly() {
@@ -326,14 +326,14 @@ public final class IdentityProviderState extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
+     * Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
      * 
      */
     @Import(name="postBindingResponse")
     private @Nullable Output<Boolean> postBindingResponse;
 
     /**
-     * @return Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
+     * @return Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
      * 
      */
     public Optional<Output<Boolean>> postBindingResponse() {
@@ -986,7 +986,7 @@ public final class IdentityProviderState extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param linkOnly When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+         * @param linkOnly When `true`, users cannot log in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
          * 
          * @return builder
          * 
@@ -997,7 +997,7 @@ public final class IdentityProviderState extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param linkOnly When `true`, users cannot login using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+         * @param linkOnly When `true`, users cannot log in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
          * 
          * @return builder
          * 
@@ -1091,7 +1091,7 @@ public final class IdentityProviderState extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param postBindingResponse Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
+         * @param postBindingResponse Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
          * 
          * @return builder
          * 
@@ -1102,7 +1102,7 @@ public final class IdentityProviderState extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param postBindingResponse Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used..
+         * @param postBindingResponse Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
          * 
          * @return builder
          * 

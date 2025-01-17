@@ -273,14 +273,14 @@ public class UserSessionNoteProtocolMapper extends com.pulumi.resources.CustomRe
         return this.realmId;
     }
     /**
-     * String value being the name of stored user session note within the UserSessionModel.note map.
+     * String value being the name of stored user session note within the `UserSessionModel.note` map.
      * 
      */
     @Export(name="sessionNote", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> sessionNote;
 
     /**
-     * @return String value being the name of stored user session note within the UserSessionModel.note map.
+     * @return String value being the name of stored user session note within the `UserSessionModel.note` map.
      * 
      */
     public Output<Optional<String>> sessionNote() {

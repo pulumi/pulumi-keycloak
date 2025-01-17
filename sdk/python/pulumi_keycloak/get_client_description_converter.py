@@ -387,7 +387,7 @@ def get_client_description_converter(body: Optional[str] = None,
                                      realm_id: Optional[str] = None,
                                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetClientDescriptionConverterResult:
     """
-    This data source uses the [ClientDescriptionConverter](https://www.keycloak.org/docs-api/6.0/javadocs/org/keycloak/exportimport/ClientDescriptionConverter.html) API to convert a generic client description into a Keycloak
+    This data source uses the [ClientDescriptionConverter](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/exportimport/ClientDescriptionConverter.html) API to convert a generic client description into a Keycloak
     client. This data can then be used to manage the client within Keycloak.
 
     ## Example Usage
@@ -486,7 +486,7 @@ def get_client_description_converter_output(body: Optional[pulumi.Input[str]] = 
                                             realm_id: Optional[pulumi.Input[str]] = None,
                                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetClientDescriptionConverterResult]:
     """
-    This data source uses the [ClientDescriptionConverter](https://www.keycloak.org/docs-api/6.0/javadocs/org/keycloak/exportimport/ClientDescriptionConverter.html) API to convert a generic client description into a Keycloak
+    This data source uses the [ClientDescriptionConverter](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/exportimport/ClientDescriptionConverter.html) API to convert a generic client description into a Keycloak
     client. This data can then be used to manage the client within Keycloak.
 
     ## Example Usage

@@ -286,14 +286,14 @@ public class UserPropertyProtocolMapper extends com.pulumi.resources.CustomResou
         return this.realmId;
     }
     /**
-     * The built in user property (such as email) to map a claim for.
+     * The built-in user property (such as email) to map a claim for.
      * 
      */
     @Export(name="userProperty", refs={String.class}, tree="[0]")
     private Output<String> userProperty;
 
     /**
-     * @return The built in user property (such as email) to map a claim for.
+     * @return The built-in user property (such as email) to map a claim for.
      * 
      */
     public Output<String> userProperty() {

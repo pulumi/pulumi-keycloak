@@ -92,7 +92,7 @@ import (
 type Group struct {
 	pulumi.CustomResourceState
 
-	// A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
+	// A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars
 	Attributes pulumi.StringMapOutput `pulumi:"attributes"`
 	// The name of the group.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -137,7 +137,7 @@ func GetGroup(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Group resources.
 type groupState struct {
-	// A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
+	// A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars
 	Attributes map[string]string `pulumi:"attributes"`
 	// The name of the group.
 	Name *string `pulumi:"name"`
@@ -150,7 +150,7 @@ type groupState struct {
 }
 
 type GroupState struct {
-	// A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
+	// A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars
 	Attributes pulumi.StringMapInput
 	// The name of the group.
 	Name pulumi.StringPtrInput
@@ -167,7 +167,7 @@ func (GroupState) ElementType() reflect.Type {
 }
 
 type groupArgs struct {
-	// A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
+	// A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars
 	Attributes map[string]string `pulumi:"attributes"`
 	// The name of the group.
 	Name *string `pulumi:"name"`
@@ -179,7 +179,7 @@ type groupArgs struct {
 
 // The set of arguments for constructing a Group resource.
 type GroupArgs struct {
-	// A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
+	// A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars
 	Attributes pulumi.StringMapInput
 	// The name of the group.
 	Name pulumi.StringPtrInput
@@ -276,7 +276,7 @@ func (o GroupOutput) ToGroupOutputWithContext(ctx context.Context) GroupOutput {
 	return o
 }
 
-// A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
+// A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars
 func (o GroupOutput) Attributes() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *Group) pulumi.StringMapOutput { return v.Attributes }).(pulumi.StringMapOutput)
 }

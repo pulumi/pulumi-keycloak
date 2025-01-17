@@ -26,7 +26,7 @@ class GroupArgs:
         """
         The set of arguments for constructing a Group resource.
         :param pulumi.Input[str] realm_id: The realm this group exists in.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] attributes: A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] attributes: A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars
         :param pulumi.Input[str] name: The name of the group.
         :param pulumi.Input[str] parent_id: The ID of this group's parent. If omitted, this group will be defined at the root level.
         """
@@ -54,7 +54,7 @@ class GroupArgs:
     @pulumi.getter
     def attributes(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
+        A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars
         """
         return pulumi.get(self, "attributes")
 
@@ -97,7 +97,7 @@ class _GroupState:
                  realm_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Group resources.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] attributes: A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] attributes: A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars
         :param pulumi.Input[str] name: The name of the group.
         :param pulumi.Input[str] parent_id: The ID of this group's parent. If omitted, this group will be defined at the root level.
         :param pulumi.Input[str] path: (Computed) The complete path of the group. For example, the child group's path in the example configuration would be `/parent-group/child-group`.
@@ -118,7 +118,7 @@ class _GroupState:
     @pulumi.getter
     def attributes(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
+        A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars
         """
         return pulumi.get(self, "attributes")
 
@@ -238,7 +238,7 @@ class Group(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] attributes: A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] attributes: A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars
         :param pulumi.Input[str] name: The name of the group.
         :param pulumi.Input[str] parent_id: The ID of this group's parent. If omitted, this group will be defined at the root level.
         :param pulumi.Input[str] realm_id: The realm this group exists in.
@@ -357,7 +357,7 @@ class Group(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] attributes: A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] attributes: A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars
         :param pulumi.Input[str] name: The name of the group.
         :param pulumi.Input[str] parent_id: The ID of this group's parent. If omitted, this group will be defined at the root level.
         :param pulumi.Input[str] path: (Computed) The complete path of the group. For example, the child group's path in the example configuration would be `/parent-group/child-group`.
@@ -378,7 +378,7 @@ class Group(pulumi.CustomResource):
     @pulumi.getter
     def attributes(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
-        A map representing attributes for the group. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
+        A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars
         """
         return pulumi.get(self, "attributes")
 
