@@ -47,7 +47,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = openid.NewClient(ctx, "token-exchange_webapp_client", &openid.ClientArgs{
+//			token_exchangeWebappClient, err := openid.NewClient(ctx, "token-exchange_webapp_client", &openid.ClientArgs{
 //				RealmId:             tokenExchangeRealm.ID(),
 //				Name:                pulumi.String("webapp_client"),
 //				ClientId:            pulumi.String("webapp_client"),
