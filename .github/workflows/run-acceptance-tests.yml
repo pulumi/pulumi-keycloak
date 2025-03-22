@@ -63,6 +63,7 @@ jobs:
         {
           "platform": [
             {"os": "linux", "arch": "amd64"},
+            {"os": "windows", "arch": "amd64"}
           ]
         }
 
