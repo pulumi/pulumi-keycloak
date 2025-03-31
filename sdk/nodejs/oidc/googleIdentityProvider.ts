@@ -107,7 +107,7 @@ export class GoogleIdentityProvider extends pulumi.CustomResource {
     /**
      * (Computed) Display name for the Google identity provider in the GUI.
      */
-    public /*out*/ readonly displayName!: pulumi.Output<string>;
+    public readonly displayName!: pulumi.Output<string>;
     /**
      * When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
      */
@@ -226,6 +226,7 @@ export class GoogleIdentityProvider extends pulumi.CustomResource {
             resourceInputs["clientSecret"] = args?.clientSecret ? pulumi.secret(args.clientSecret) : undefined;
             resourceInputs["defaultScopes"] = args ? args.defaultScopes : undefined;
             resourceInputs["disableUserInfo"] = args ? args.disableUserInfo : undefined;
+            resourceInputs["displayName"] = args ? args.displayName : undefined;
             resourceInputs["enabled"] = args ? args.enabled : undefined;
             resourceInputs["extraConfig"] = args ? args.extraConfig : undefined;
             resourceInputs["firstBrokerLoginFlowAlias"] = args ? args.firstBrokerLoginFlowAlias : undefined;
@@ -242,7 +243,6 @@ export class GoogleIdentityProvider extends pulumi.CustomResource {
             resourceInputs["trustEmail"] = args ? args.trustEmail : undefined;
             resourceInputs["useUserIpParam"] = args ? args.useUserIpParam : undefined;
             resourceInputs["alias"] = undefined /*out*/;
-            resourceInputs["displayName"] = undefined /*out*/;
             resourceInputs["internalId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -387,6 +387,10 @@ export interface GoogleIdentityProviderArgs {
      * When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
      */
     disableUserInfo?: pulumi.Input<boolean>;
+    /**
+     * (Computed) Display name for the Google identity provider in the GUI.
+     */
+    displayName?: pulumi.Input<string>;
     /**
      * When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
      */

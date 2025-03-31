@@ -38,6 +38,30 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * ### With Regenerating The Client Secret Using Time Provider
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ * import * as time from "@pulumi/time";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * const rotate = new time.index.Rotating("rotate", {rotationDays: 10});
+ * const openidClient = new keycloak.openid.Client("openid_client", {
+ *     realmId: realm.id,
+ *     clientId: "test-client",
+ *     name: "test client",
+ *     enabled: true,
+ *     accessType: "CONFIDENTIAL",
+ *     clientSecretRegenerateWhenChanged: {
+ *         rotation: rotate.rotationRfc3339,
+ *     },
+ * });
+ * ```
+ *
  * ## Import
  *
  * Clients can be imported using the format `{{realm_id}}/{{client_keycloak_id}}`, where `client_keycloak_id` is the unique ID that Keycloak
@@ -98,6 +122,10 @@ export class Client extends pulumi.CustomResource {
      */
     public readonly adminUrl!: pulumi.Output<string>;
     /**
+     * Always list this client in the Account UI, even if the user does not have an active session.
+     */
+    public readonly alwaysDisplayInConsole!: pulumi.Output<boolean | undefined>;
+    /**
      * Override realm authentication flow bindings
      */
     public readonly authenticationFlowBindingOverrides!: pulumi.Output<outputs.openid.ClientAuthenticationFlowBindingOverrides | undefined>;
@@ -146,6 +174,10 @@ export class Client extends pulumi.CustomResource {
      */
     public readonly clientSecret!: pulumi.Output<string>;
     /**
+     * Arbitrary map of values that, when changed, will trigger rotation of the secret. NOTE! Conflicts with `clientSecret` atttribute and can't be used together
+     */
+    public readonly clientSecretRegenerateWhenChanged!: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
      * Time a client offline session is allowed to be idle before it expires. Offline tokens are invalidated when a client offline session is expired. If not set it uses the Offline Session Idle value.
      */
     public readonly clientSessionIdleTimeout!: pulumi.Output<string>;
@@ -177,6 +209,10 @@ export class Client extends pulumi.CustomResource {
      * When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
      */
     public readonly enabled!: pulumi.Output<boolean | undefined>;
+    /**
+     * When `true`, the parameter `iss` will not be included in OpenID Connect Authentication Response.
+     */
+    public readonly excludeIssuerFromAuthResponse!: pulumi.Output<boolean>;
     /**
      * When `true`, the parameter `sessionState` will not be included in OpenID Connect Authentication Response.
      */
@@ -289,6 +325,7 @@ export class Client extends pulumi.CustomResource {
             resourceInputs["accessTokenLifespan"] = state ? state.accessTokenLifespan : undefined;
             resourceInputs["accessType"] = state ? state.accessType : undefined;
             resourceInputs["adminUrl"] = state ? state.adminUrl : undefined;
+            resourceInputs["alwaysDisplayInConsole"] = state ? state.alwaysDisplayInConsole : undefined;
             resourceInputs["authenticationFlowBindingOverrides"] = state ? state.authenticationFlowBindingOverrides : undefined;
             resourceInputs["authorization"] = state ? state.authorization : undefined;
             resourceInputs["backchannelLogoutRevokeOfflineSessions"] = state ? state.backchannelLogoutRevokeOfflineSessions : undefined;
@@ -300,6 +337,7 @@ export class Client extends pulumi.CustomResource {
             resourceInputs["clientOfflineSessionIdleTimeout"] = state ? state.clientOfflineSessionIdleTimeout : undefined;
             resourceInputs["clientOfflineSessionMaxLifespan"] = state ? state.clientOfflineSessionMaxLifespan : undefined;
             resourceInputs["clientSecret"] = state ? state.clientSecret : undefined;
+            resourceInputs["clientSecretRegenerateWhenChanged"] = state ? state.clientSecretRegenerateWhenChanged : undefined;
             resourceInputs["clientSessionIdleTimeout"] = state ? state.clientSessionIdleTimeout : undefined;
             resourceInputs["clientSessionMaxLifespan"] = state ? state.clientSessionMaxLifespan : undefined;
             resourceInputs["consentRequired"] = state ? state.consentRequired : undefined;
@@ -308,6 +346,7 @@ export class Client extends pulumi.CustomResource {
             resourceInputs["directAccessGrantsEnabled"] = state ? state.directAccessGrantsEnabled : undefined;
             resourceInputs["displayOnConsentScreen"] = state ? state.displayOnConsentScreen : undefined;
             resourceInputs["enabled"] = state ? state.enabled : undefined;
+            resourceInputs["excludeIssuerFromAuthResponse"] = state ? state.excludeIssuerFromAuthResponse : undefined;
             resourceInputs["excludeSessionStateFromAuthResponse"] = state ? state.excludeSessionStateFromAuthResponse : undefined;
             resourceInputs["extraConfig"] = state ? state.extraConfig : undefined;
             resourceInputs["frontchannelLogoutEnabled"] = state ? state.frontchannelLogoutEnabled : undefined;
@@ -346,6 +385,7 @@ export class Client extends pulumi.CustomResource {
             resourceInputs["accessTokenLifespan"] = args ? args.accessTokenLifespan : undefined;
             resourceInputs["accessType"] = args ? args.accessType : undefined;
             resourceInputs["adminUrl"] = args ? args.adminUrl : undefined;
+            resourceInputs["alwaysDisplayInConsole"] = args ? args.alwaysDisplayInConsole : undefined;
             resourceInputs["authenticationFlowBindingOverrides"] = args ? args.authenticationFlowBindingOverrides : undefined;
             resourceInputs["authorization"] = args ? args.authorization : undefined;
             resourceInputs["backchannelLogoutRevokeOfflineSessions"] = args ? args.backchannelLogoutRevokeOfflineSessions : undefined;
@@ -357,6 +397,7 @@ export class Client extends pulumi.CustomResource {
             resourceInputs["clientOfflineSessionIdleTimeout"] = args ? args.clientOfflineSessionIdleTimeout : undefined;
             resourceInputs["clientOfflineSessionMaxLifespan"] = args ? args.clientOfflineSessionMaxLifespan : undefined;
             resourceInputs["clientSecret"] = args?.clientSecret ? pulumi.secret(args.clientSecret) : undefined;
+            resourceInputs["clientSecretRegenerateWhenChanged"] = args ? args.clientSecretRegenerateWhenChanged : undefined;
             resourceInputs["clientSessionIdleTimeout"] = args ? args.clientSessionIdleTimeout : undefined;
             resourceInputs["clientSessionMaxLifespan"] = args ? args.clientSessionMaxLifespan : undefined;
             resourceInputs["consentRequired"] = args ? args.consentRequired : undefined;
@@ -365,6 +406,7 @@ export class Client extends pulumi.CustomResource {
             resourceInputs["directAccessGrantsEnabled"] = args ? args.directAccessGrantsEnabled : undefined;
             resourceInputs["displayOnConsentScreen"] = args ? args.displayOnConsentScreen : undefined;
             resourceInputs["enabled"] = args ? args.enabled : undefined;
+            resourceInputs["excludeIssuerFromAuthResponse"] = args ? args.excludeIssuerFromAuthResponse : undefined;
             resourceInputs["excludeSessionStateFromAuthResponse"] = args ? args.excludeSessionStateFromAuthResponse : undefined;
             resourceInputs["extraConfig"] = args ? args.extraConfig : undefined;
             resourceInputs["frontchannelLogoutEnabled"] = args ? args.frontchannelLogoutEnabled : undefined;
@@ -419,6 +461,10 @@ export interface ClientState {
      */
     adminUrl?: pulumi.Input<string>;
     /**
+     * Always list this client in the Account UI, even if the user does not have an active session.
+     */
+    alwaysDisplayInConsole?: pulumi.Input<boolean>;
+    /**
      * Override realm authentication flow bindings
      */
     authenticationFlowBindingOverrides?: pulumi.Input<inputs.openid.ClientAuthenticationFlowBindingOverrides>;
@@ -467,6 +513,10 @@ export interface ClientState {
      */
     clientSecret?: pulumi.Input<string>;
     /**
+     * Arbitrary map of values that, when changed, will trigger rotation of the secret. NOTE! Conflicts with `clientSecret` atttribute and can't be used together
+     */
+    clientSecretRegenerateWhenChanged?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
      * Time a client offline session is allowed to be idle before it expires. Offline tokens are invalidated when a client offline session is expired. If not set it uses the Offline Session Idle value.
      */
     clientSessionIdleTimeout?: pulumi.Input<string>;
@@ -498,6 +548,10 @@ export interface ClientState {
      * When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
      */
     enabled?: pulumi.Input<boolean>;
+    /**
+     * When `true`, the parameter `iss` will not be included in OpenID Connect Authentication Response.
+     */
+    excludeIssuerFromAuthResponse?: pulumi.Input<boolean>;
     /**
      * When `true`, the parameter `sessionState` will not be included in OpenID Connect Authentication Response.
      */
@@ -617,6 +671,10 @@ export interface ClientArgs {
      */
     adminUrl?: pulumi.Input<string>;
     /**
+     * Always list this client in the Account UI, even if the user does not have an active session.
+     */
+    alwaysDisplayInConsole?: pulumi.Input<boolean>;
+    /**
      * Override realm authentication flow bindings
      */
     authenticationFlowBindingOverrides?: pulumi.Input<inputs.openid.ClientAuthenticationFlowBindingOverrides>;
@@ -665,6 +723,10 @@ export interface ClientArgs {
      */
     clientSecret?: pulumi.Input<string>;
     /**
+     * Arbitrary map of values that, when changed, will trigger rotation of the secret. NOTE! Conflicts with `clientSecret` atttribute and can't be used together
+     */
+    clientSecretRegenerateWhenChanged?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
      * Time a client offline session is allowed to be idle before it expires. Offline tokens are invalidated when a client offline session is expired. If not set it uses the Offline Session Idle value.
      */
     clientSessionIdleTimeout?: pulumi.Input<string>;
@@ -696,6 +758,10 @@ export interface ClientArgs {
      * When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
      */
     enabled?: pulumi.Input<boolean>;
+    /**
+     * When `true`, the parameter `iss` will not be included in OpenID Connect Authentication Response.
+     */
+    excludeIssuerFromAuthResponse?: pulumi.Input<boolean>;
     /**
      * When `true`, the parameter `sessionState` will not be included in OpenID Connect Authentication Response.
      */

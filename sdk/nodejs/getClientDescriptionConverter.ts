@@ -85,6 +85,7 @@ export interface GetClientDescriptionConverterArgs {
 export interface GetClientDescriptionConverterResult {
     readonly access: {[key: string]: string};
     readonly adminUrl: string;
+    readonly alwaysDisplayInConsole: boolean;
     readonly attributes: {[key: string]: string};
     readonly authenticationFlowBindingOverrides: {[key: string]: string};
     readonly authorizationServicesEnabled: boolean;

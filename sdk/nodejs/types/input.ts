@@ -263,6 +263,16 @@ export interface GroupPermissionsViewScope {
     policies?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
+export interface RealmClientPolicyProfileExecutor {
+    configuration?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    name: pulumi.Input<string>;
+}
+
+export interface RealmClientPolicyProfilePolicyCondition {
+    configuration?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    name: pulumi.Input<string>;
+}
+
 export interface RealmInternationalization {
     /**
      * The locale to use by default. This locale code must be present within the `supportedLocales` list.
@@ -438,6 +448,10 @@ export interface RealmUserProfileAttribute {
      * A list of groups.
      */
     group?: pulumi.Input<string>;
+    /**
+     * If the attribute supports multiple values. Defaults to `false`.
+     */
+    multiValued?: pulumi.Input<boolean>;
     name: pulumi.Input<string>;
     /**
      * The permissions configuration information.

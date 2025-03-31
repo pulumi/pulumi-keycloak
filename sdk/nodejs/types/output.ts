@@ -192,6 +192,16 @@ export interface GroupPermissionsViewScope {
     policies?: string[];
 }
 
+export interface RealmClientPolicyProfileExecutor {
+    configuration?: {[key: string]: string};
+    name: string;
+}
+
+export interface RealmClientPolicyProfilePolicyCondition {
+    configuration?: {[key: string]: string};
+    name: string;
+}
+
 export interface RealmInternationalization {
     /**
      * The locale to use by default. This locale code must be present within the `supportedLocales` list.
@@ -367,6 +377,10 @@ export interface RealmUserProfileAttribute {
      * A list of groups.
      */
     group?: string;
+    /**
+     * If the attribute supports multiple values. Defaults to `false`.
+     */
+    multiValued?: boolean;
     name: string;
     /**
      * The permissions configuration information.

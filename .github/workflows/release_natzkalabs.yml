@@ -1,0 +1,119 @@
+name: release-natzkalabs
+
+on:
+  pull_request:
+    branches:
+      - master
+
+permissions:
+  contents: write
+  packages: write
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+  NPM_REGISTRY_URL: https://registry.npmjs.org
+
+jobs:
+
+
+  publish_binary:
+    name: publish
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repo
+      uses: actions/checkout@v4
+      with:
+        submodules: true
+        ref: v0.0.6
+
+    - name: Unshallow clone for tags
+      run: git fetch --prune --unshallow --tags
+
+    - name: Install Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: 1.23.x
+
+    - name: Install pulumictl
+      uses: jaxxstorm/action-install-gh-release@v1.10.0
+      with:
+        repo: pulumi/pulumictl
+
+    - name: Set PreRelease Version
+      run: |
+        echo "GORELEASER_CURRENT_TAG=v$(pulumictl get version --language generic)" >> $GITHUB_ENV
+        echo "PROVIDER_VERSION=$(pulumictl get version --language generic)" >> $GITHUB_ENV
+
+
+    - name: Run GoReleaser
+      uses: goreleaser/goreleaser-action@v5
+      with:
+        args: release --rm-dist
+        version: latest
+
+  publish_sdk:
+    name: Publish SDKs
+    runs-on: ubuntu-latest
+    needs: publish_binary
+    strategy:
+      fail-fast: true
+      matrix:
+        language:
+          - nodejs
+        nodeversion:
+          - 20.x
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Unshallow clone for tags
+        run: git fetch --prune --unshallow --tags
+
+      - name: Install Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: 1.23.x
+
+      - name: Install pulumictl
+        uses: jaxxstorm/action-install-gh-release@v1.10.0
+        with:
+          repo: pulumi/pulumictl
+
+      - name: Install pulumi
+        uses: pulumi/actions@v4
+
+      - if: ${{ matrix.language == 'nodejs'}}
+        name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.nodeversion }}
+          registry-url: ${{ env.NPM_REGISTRY_URL }}
+
+      - name: Build SDK
+        run: |
+          export PROVIDER_VERSION=$(echo -n "${{ github.ref_name }}" | cut -c '2-')
+          make build_${{ matrix.language }}
+
+      - name: Check worktree clean
+        run: |
+          git update-index -q --refresh
+          if ! git diff-files --quiet; then
+              >&2 echo "error: working tree is not clean, aborting!"
+              git status
+              git diff
+              # exit 1
+          fi
+          
+          export VERSION=$(echo -n "${{ github.ref_name }}" | cut -c '2-')
+          sed -i.bak -e "s/\${VERSION}/$VERSION/g" "${{github.workspace}}/sdk/nodejs/bin/package.json"
+          rm "${{github.workspace}}/sdk/nodejs/bin/package.json.bak"
+          
+      - if: ${{ matrix.language == 'nodejs' }}
+        uses: JS-DevTools/npm-publish@v3
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          registry: ${{ env.NPM_REGISTRY_URL }}
+          access: "public"
+          package: ${{github.workspace}}/sdk/nodejs/bin/package.json
