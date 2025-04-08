@@ -77,7 +77,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var tokenExchange = new ClientPolicy("tokenExchange", ClientPolicyArgs.builder()
- *             .resourceServerId(realmManagement.applyValue(getClientResult -> getClientResult.id()))
+ *             .resourceServerId(realmManagement.id())
  *             .realmId(realm.id())
  *             .name("my-policy")
  *             .logic("POSITIVE")
