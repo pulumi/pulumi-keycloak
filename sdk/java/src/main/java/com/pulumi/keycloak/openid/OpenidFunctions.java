@@ -62,7 +62,7 @@ public final class OpenidFunctions {
      *         // use the data source
      *         final var admin = KeycloakFunctions.getRole(GetRoleArgs.builder()
      *             .realmId("my-realm")
-     *             .clientId(realmManagement.applyValue(getClientResult -> getClientResult.id()))
+     *             .clientId(realmManagement.id())
      *             .name("realm-admin")
      *             .build());
      * 
@@ -114,7 +114,7 @@ public final class OpenidFunctions {
      *         // use the data source
      *         final var admin = KeycloakFunctions.getRole(GetRoleArgs.builder()
      *             .realmId("my-realm")
-     *             .clientId(realmManagement.applyValue(getClientResult -> getClientResult.id()))
+     *             .clientId(realmManagement.id())
      *             .name("realm-admin")
      *             .build());
      * 
@@ -166,7 +166,7 @@ public final class OpenidFunctions {
      *         // use the data source
      *         final var admin = KeycloakFunctions.getRole(GetRoleArgs.builder()
      *             .realmId("my-realm")
-     *             .clientId(realmManagement.applyValue(getClientResult -> getClientResult.id()))
+     *             .clientId(realmManagement.id())
      *             .name("realm-admin")
      *             .build());
      * 
@@ -218,7 +218,7 @@ public final class OpenidFunctions {
      *         // use the data source
      *         final var admin = KeycloakFunctions.getRole(GetRoleArgs.builder()
      *             .realmId("my-realm")
-     *             .clientId(realmManagement.applyValue(getClientResult -> getClientResult.id()))
+     *             .clientId(realmManagement.id())
      *             .name("realm-admin")
      *             .build());
      * 
@@ -270,7 +270,7 @@ public final class OpenidFunctions {
      *         // use the data source
      *         final var admin = KeycloakFunctions.getRole(GetRoleArgs.builder()
      *             .realmId("my-realm")
-     *             .clientId(realmManagement.applyValue(getClientResult -> getClientResult.id()))
+     *             .clientId(realmManagement.id())
      *             .name("realm-admin")
      *             .build());
      * 
@@ -359,7 +359,7 @@ public final class OpenidFunctions {
      *             .resourceServerId(clientWithAuthz.resourceServerId())
      *             .realmId(realm.id())
      *             .name("authorization-permission")
-     *             .policies(defaultPermission.applyValue(getClientAuthorizationPolicyResult -> getClientAuthorizationPolicyResult).applyValue(defaultPermission -> defaultPermission.applyValue(getClientAuthorizationPolicyResult -> getClientAuthorizationPolicyResult.id())))
+     *             .policies(defaultPermission.applyValue(_defaultPermission -> _defaultPermission.id()))
      *             .resources(resource.id())
      *             .build());
      * 
@@ -448,7 +448,7 @@ public final class OpenidFunctions {
      *             .resourceServerId(clientWithAuthz.resourceServerId())
      *             .realmId(realm.id())
      *             .name("authorization-permission")
-     *             .policies(defaultPermission.applyValue(getClientAuthorizationPolicyResult -> getClientAuthorizationPolicyResult).applyValue(defaultPermission -> defaultPermission.applyValue(getClientAuthorizationPolicyResult -> getClientAuthorizationPolicyResult.id())))
+     *             .policies(defaultPermission.applyValue(_defaultPermission -> _defaultPermission.id()))
      *             .resources(resource.id())
      *             .build());
      * 
@@ -537,7 +537,7 @@ public final class OpenidFunctions {
      *             .resourceServerId(clientWithAuthz.resourceServerId())
      *             .realmId(realm.id())
      *             .name("authorization-permission")
-     *             .policies(defaultPermission.applyValue(getClientAuthorizationPolicyResult -> getClientAuthorizationPolicyResult).applyValue(defaultPermission -> defaultPermission.applyValue(getClientAuthorizationPolicyResult -> getClientAuthorizationPolicyResult.id())))
+     *             .policies(defaultPermission.applyValue(_defaultPermission -> _defaultPermission.id()))
      *             .resources(resource.id())
      *             .build());
      * 
@@ -626,7 +626,7 @@ public final class OpenidFunctions {
      *             .resourceServerId(clientWithAuthz.resourceServerId())
      *             .realmId(realm.id())
      *             .name("authorization-permission")
-     *             .policies(defaultPermission.applyValue(getClientAuthorizationPolicyResult -> getClientAuthorizationPolicyResult).applyValue(defaultPermission -> defaultPermission.applyValue(getClientAuthorizationPolicyResult -> getClientAuthorizationPolicyResult.id())))
+     *             .policies(defaultPermission.applyValue(_defaultPermission -> _defaultPermission.id()))
      *             .resources(resource.id())
      *             .build());
      * 
@@ -715,7 +715,7 @@ public final class OpenidFunctions {
      *             .resourceServerId(clientWithAuthz.resourceServerId())
      *             .realmId(realm.id())
      *             .name("authorization-permission")
-     *             .policies(defaultPermission.applyValue(getClientAuthorizationPolicyResult -> getClientAuthorizationPolicyResult).applyValue(defaultPermission -> defaultPermission.applyValue(getClientAuthorizationPolicyResult -> getClientAuthorizationPolicyResult.id())))
+     *             .policies(defaultPermission.applyValue(_defaultPermission -> _defaultPermission.id()))
      *             .resources(resource.id())
      *             .build());
      * 
@@ -766,8 +766,8 @@ public final class OpenidFunctions {
      * 
      *         // use the data source
      *         var audienceMapper = new AudienceProtocolMapper("audienceMapper", AudienceProtocolMapperArgs.builder()
-     *             .realmId(offlineAccess.applyValue(getClientScopeResult -> getClientScopeResult.realmId()))
-     *             .clientScopeId(offlineAccess.applyValue(getClientScopeResult -> getClientScopeResult.id()))
+     *             .realmId(offlineAccess.realmId())
+     *             .clientScopeId(offlineAccess.id())
      *             .name("audience-mapper")
      *             .includedCustomAudience("foo")
      *             .build());
@@ -819,8 +819,8 @@ public final class OpenidFunctions {
      * 
      *         // use the data source
      *         var audienceMapper = new AudienceProtocolMapper("audienceMapper", AudienceProtocolMapperArgs.builder()
-     *             .realmId(offlineAccess.applyValue(getClientScopeResult -> getClientScopeResult.realmId()))
-     *             .clientScopeId(offlineAccess.applyValue(getClientScopeResult -> getClientScopeResult.id()))
+     *             .realmId(offlineAccess.realmId())
+     *             .clientScopeId(offlineAccess.id())
      *             .name("audience-mapper")
      *             .includedCustomAudience("foo")
      *             .build());
@@ -872,8 +872,8 @@ public final class OpenidFunctions {
      * 
      *         // use the data source
      *         var audienceMapper = new AudienceProtocolMapper("audienceMapper", AudienceProtocolMapperArgs.builder()
-     *             .realmId(offlineAccess.applyValue(getClientScopeResult -> getClientScopeResult.realmId()))
-     *             .clientScopeId(offlineAccess.applyValue(getClientScopeResult -> getClientScopeResult.id()))
+     *             .realmId(offlineAccess.realmId())
+     *             .clientScopeId(offlineAccess.id())
      *             .name("audience-mapper")
      *             .includedCustomAudience("foo")
      *             .build());
@@ -925,8 +925,8 @@ public final class OpenidFunctions {
      * 
      *         // use the data source
      *         var audienceMapper = new AudienceProtocolMapper("audienceMapper", AudienceProtocolMapperArgs.builder()
-     *             .realmId(offlineAccess.applyValue(getClientScopeResult -> getClientScopeResult.realmId()))
-     *             .clientScopeId(offlineAccess.applyValue(getClientScopeResult -> getClientScopeResult.id()))
+     *             .realmId(offlineAccess.realmId())
+     *             .clientScopeId(offlineAccess.id())
      *             .name("audience-mapper")
      *             .includedCustomAudience("foo")
      *             .build());
@@ -978,8 +978,8 @@ public final class OpenidFunctions {
      * 
      *         // use the data source
      *         var audienceMapper = new AudienceProtocolMapper("audienceMapper", AudienceProtocolMapperArgs.builder()
-     *             .realmId(offlineAccess.applyValue(getClientScopeResult -> getClientScopeResult.realmId()))
-     *             .clientScopeId(offlineAccess.applyValue(getClientScopeResult -> getClientScopeResult.id()))
+     *             .realmId(offlineAccess.realmId())
+     *             .clientScopeId(offlineAccess.id())
      *             .name("audience-mapper")
      *             .includedCustomAudience("foo")
      *             .build());
@@ -1060,8 +1060,8 @@ public final class OpenidFunctions {
      * 
      *         var serviceAccountUserRoles = new UserRoles("serviceAccountUserRoles", UserRolesArgs.builder()
      *             .realmId(realm.id())
-     *             .userId(serviceAccountUser.applyValue(getClientServiceAccountUserResult -> getClientServiceAccountUserResult).applyValue(serviceAccountUser -> serviceAccountUser.applyValue(getClientServiceAccountUserResult -> getClientServiceAccountUserResult.id())))
-     *             .roleIds(offlineAccess.applyValue(getRoleResult -> getRoleResult).applyValue(offlineAccess -> offlineAccess.applyValue(getRoleResult -> getRoleResult.id())))
+     *             .userId(serviceAccountUser.applyValue(_serviceAccountUser -> _serviceAccountUser.id()))
+     *             .roleIds(offlineAccess.applyValue(_offlineAccess -> _offlineAccess.id()))
      *             .build());
      * 
      *     }
@@ -1140,8 +1140,8 @@ public final class OpenidFunctions {
      * 
      *         var serviceAccountUserRoles = new UserRoles("serviceAccountUserRoles", UserRolesArgs.builder()
      *             .realmId(realm.id())
-     *             .userId(serviceAccountUser.applyValue(getClientServiceAccountUserResult -> getClientServiceAccountUserResult).applyValue(serviceAccountUser -> serviceAccountUser.applyValue(getClientServiceAccountUserResult -> getClientServiceAccountUserResult.id())))
-     *             .roleIds(offlineAccess.applyValue(getRoleResult -> getRoleResult).applyValue(offlineAccess -> offlineAccess.applyValue(getRoleResult -> getRoleResult.id())))
+     *             .userId(serviceAccountUser.applyValue(_serviceAccountUser -> _serviceAccountUser.id()))
+     *             .roleIds(offlineAccess.applyValue(_offlineAccess -> _offlineAccess.id()))
      *             .build());
      * 
      *     }
@@ -1220,8 +1220,8 @@ public final class OpenidFunctions {
      * 
      *         var serviceAccountUserRoles = new UserRoles("serviceAccountUserRoles", UserRolesArgs.builder()
      *             .realmId(realm.id())
-     *             .userId(serviceAccountUser.applyValue(getClientServiceAccountUserResult -> getClientServiceAccountUserResult).applyValue(serviceAccountUser -> serviceAccountUser.applyValue(getClientServiceAccountUserResult -> getClientServiceAccountUserResult.id())))
-     *             .roleIds(offlineAccess.applyValue(getRoleResult -> getRoleResult).applyValue(offlineAccess -> offlineAccess.applyValue(getRoleResult -> getRoleResult.id())))
+     *             .userId(serviceAccountUser.applyValue(_serviceAccountUser -> _serviceAccountUser.id()))
+     *             .roleIds(offlineAccess.applyValue(_offlineAccess -> _offlineAccess.id()))
      *             .build());
      * 
      *     }
@@ -1300,8 +1300,8 @@ public final class OpenidFunctions {
      * 
      *         var serviceAccountUserRoles = new UserRoles("serviceAccountUserRoles", UserRolesArgs.builder()
      *             .realmId(realm.id())
-     *             .userId(serviceAccountUser.applyValue(getClientServiceAccountUserResult -> getClientServiceAccountUserResult).applyValue(serviceAccountUser -> serviceAccountUser.applyValue(getClientServiceAccountUserResult -> getClientServiceAccountUserResult.id())))
-     *             .roleIds(offlineAccess.applyValue(getRoleResult -> getRoleResult).applyValue(offlineAccess -> offlineAccess.applyValue(getRoleResult -> getRoleResult.id())))
+     *             .userId(serviceAccountUser.applyValue(_serviceAccountUser -> _serviceAccountUser.id()))
+     *             .roleIds(offlineAccess.applyValue(_offlineAccess -> _offlineAccess.id()))
      *             .build());
      * 
      *     }
@@ -1380,8 +1380,8 @@ public final class OpenidFunctions {
      * 
      *         var serviceAccountUserRoles = new UserRoles("serviceAccountUserRoles", UserRolesArgs.builder()
      *             .realmId(realm.id())
-     *             .userId(serviceAccountUser.applyValue(getClientServiceAccountUserResult -> getClientServiceAccountUserResult).applyValue(serviceAccountUser -> serviceAccountUser.applyValue(getClientServiceAccountUserResult -> getClientServiceAccountUserResult.id())))
-     *             .roleIds(offlineAccess.applyValue(getRoleResult -> getRoleResult).applyValue(offlineAccess -> offlineAccess.applyValue(getRoleResult -> getRoleResult.id())))
+     *             .userId(serviceAccountUser.applyValue(_serviceAccountUser -> _serviceAccountUser.id()))
+     *             .roleIds(offlineAccess.applyValue(_offlineAccess -> _offlineAccess.id()))
      *             .build());
      * 
      *     }

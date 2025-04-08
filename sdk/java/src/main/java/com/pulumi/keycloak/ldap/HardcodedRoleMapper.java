@@ -149,20 +149,24 @@ import javax.annotation.Nullable;
  *             .clientId("realm-management")
  *             .build());
  * 
- *         final var createClient = KeycloakFunctions.getRole(GetRoleArgs.builder()
- *             .realmId(realm.id())
- *             .clientId(realmManagement.applyValue(getClientResult -> getClientResult).applyValue(realmManagement -> realmManagement.applyValue(getClientResult -> getClientResult.id())))
- *             .name("create-client")
- *             .build());
+ *         final var createClient = Output.tuple(realm.id(), realmManagement).applyValue(values -> {
+ *             var id = values.t1;
+ *             var realmManagement = values.t2;
+ *             return KeycloakFunctions.getRole(GetRoleArgs.builder()
+ *                 .realmId(id)
+ *                 .clientId(realmManagement.id())
+ *                 .name("create-client")
+ *                 .build());
+ *         });
  * 
  *         var assignAdminRoleToAllUsers = new HardcodedRoleMapper("assignAdminRoleToAllUsers", HardcodedRoleMapperArgs.builder()
  *             .realmId(realm.id())
  *             .ldapUserFederationId(ldapUserFederation.id())
  *             .name("assign-admin-role-to-all-users")
- *             .role(Output.tuple(realmManagement.applyValue(getClientResult -> getClientResult), createClient.applyValue(getRoleResult -> getRoleResult)).applyValue(values -> {
+ *             .role(Output.tuple(realmManagement, createClient).applyValue(values -> {
  *                 var realmManagement = values.t1;
  *                 var createClient = values.t2;
- *                 return String.format("%s.%s", realmManagement.applyValue(getClientResult -> getClientResult.clientId()),createClient.applyValue(getRoleResult -> getRoleResult.name()));
+ *                 return String.format("%s.%s", realmManagement.clientId(),createClient.name());
  *             }))
  *             .build());
  * 
