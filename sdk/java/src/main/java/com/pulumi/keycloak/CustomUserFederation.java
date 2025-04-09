@@ -62,7 +62,7 @@ import javax.annotation.Nullable;
  *             .enabled(true)
  *             .config(Map.ofEntries(
  *                 Map.entry("dummyString", "foobar"),
- *                 Map.entry("dummyBool", true),
+ *                 Map.entry("dummyBool", "true"),
  *                 Map.entry("multivalue", "value1##value2")
  *             ))
  *             .build());
