@@ -617,7 +617,7 @@ public final class KeycloakFunctions {
      * 
      *         var samlClientClient = new Client("samlClientClient", ClientArgs.builder()
      *             .realmId(realm.id())
-     *             .clientId(samlClient.applyValue(getClientDescriptionConverterResult -> getClientDescriptionConverterResult).applyValue(samlClient -> samlClient.applyValue(getClientDescriptionConverterResult -> getClientDescriptionConverterResult.clientId())))
+     *             .clientId(samlClient.applyValue(_samlClient -> _samlClient.clientId()))
      *             .build());
      * 
      *     }
@@ -703,7 +703,7 @@ public final class KeycloakFunctions {
      * 
      *         var samlClientClient = new Client("samlClientClient", ClientArgs.builder()
      *             .realmId(realm.id())
-     *             .clientId(samlClient.applyValue(getClientDescriptionConverterResult -> getClientDescriptionConverterResult).applyValue(samlClient -> samlClient.applyValue(getClientDescriptionConverterResult -> getClientDescriptionConverterResult.clientId())))
+     *             .clientId(samlClient.applyValue(_samlClient -> _samlClient.clientId()))
      *             .build());
      * 
      *     }
@@ -789,7 +789,7 @@ public final class KeycloakFunctions {
      * 
      *         var samlClientClient = new Client("samlClientClient", ClientArgs.builder()
      *             .realmId(realm.id())
-     *             .clientId(samlClient.applyValue(getClientDescriptionConverterResult -> getClientDescriptionConverterResult).applyValue(samlClient -> samlClient.applyValue(getClientDescriptionConverterResult -> getClientDescriptionConverterResult.clientId())))
+     *             .clientId(samlClient.applyValue(_samlClient -> _samlClient.clientId()))
      *             .build());
      * 
      *     }
@@ -875,7 +875,7 @@ public final class KeycloakFunctions {
      * 
      *         var samlClientClient = new Client("samlClientClient", ClientArgs.builder()
      *             .realmId(realm.id())
-     *             .clientId(samlClient.applyValue(getClientDescriptionConverterResult -> getClientDescriptionConverterResult).applyValue(samlClient -> samlClient.applyValue(getClientDescriptionConverterResult -> getClientDescriptionConverterResult.clientId())))
+     *             .clientId(samlClient.applyValue(_samlClient -> _samlClient.clientId()))
      *             .build());
      * 
      *     }
@@ -961,7 +961,7 @@ public final class KeycloakFunctions {
      * 
      *         var samlClientClient = new Client("samlClientClient", ClientArgs.builder()
      *             .realmId(realm.id())
-     *             .clientId(samlClient.applyValue(getClientDescriptionConverterResult -> getClientDescriptionConverterResult).applyValue(samlClient -> samlClient.applyValue(getClientDescriptionConverterResult -> getClientDescriptionConverterResult.clientId())))
+     *             .clientId(samlClient.applyValue(_samlClient -> _samlClient.clientId()))
      *             .build());
      * 
      *     }
@@ -1025,8 +1025,8 @@ public final class KeycloakFunctions {
      * 
      *         var groupRoles = new GroupRoles("groupRoles", GroupRolesArgs.builder()
      *             .realmId(realm.id())
-     *             .groupId(group.applyValue(getGroupResult -> getGroupResult).applyValue(group -> group.applyValue(getGroupResult -> getGroupResult.id())))
-     *             .roleIds(offlineAccess.applyValue(getRoleResult -> getRoleResult).applyValue(offlineAccess -> offlineAccess.applyValue(getRoleResult -> getRoleResult.id())))
+     *             .groupId(group.applyValue(_group -> _group.id()))
+     *             .roleIds(offlineAccess.applyValue(_offlineAccess -> _offlineAccess.id()))
      *             .build());
      * 
      *     }
@@ -1090,8 +1090,8 @@ public final class KeycloakFunctions {
      * 
      *         var groupRoles = new GroupRoles("groupRoles", GroupRolesArgs.builder()
      *             .realmId(realm.id())
-     *             .groupId(group.applyValue(getGroupResult -> getGroupResult).applyValue(group -> group.applyValue(getGroupResult -> getGroupResult.id())))
-     *             .roleIds(offlineAccess.applyValue(getRoleResult -> getRoleResult).applyValue(offlineAccess -> offlineAccess.applyValue(getRoleResult -> getRoleResult.id())))
+     *             .groupId(group.applyValue(_group -> _group.id()))
+     *             .roleIds(offlineAccess.applyValue(_offlineAccess -> _offlineAccess.id()))
      *             .build());
      * 
      *     }
@@ -1155,8 +1155,8 @@ public final class KeycloakFunctions {
      * 
      *         var groupRoles = new GroupRoles("groupRoles", GroupRolesArgs.builder()
      *             .realmId(realm.id())
-     *             .groupId(group.applyValue(getGroupResult -> getGroupResult).applyValue(group -> group.applyValue(getGroupResult -> getGroupResult.id())))
-     *             .roleIds(offlineAccess.applyValue(getRoleResult -> getRoleResult).applyValue(offlineAccess -> offlineAccess.applyValue(getRoleResult -> getRoleResult.id())))
+     *             .groupId(group.applyValue(_group -> _group.id()))
+     *             .roleIds(offlineAccess.applyValue(_offlineAccess -> _offlineAccess.id()))
      *             .build());
      * 
      *     }
@@ -1220,8 +1220,8 @@ public final class KeycloakFunctions {
      * 
      *         var groupRoles = new GroupRoles("groupRoles", GroupRolesArgs.builder()
      *             .realmId(realm.id())
-     *             .groupId(group.applyValue(getGroupResult -> getGroupResult).applyValue(group -> group.applyValue(getGroupResult -> getGroupResult.id())))
-     *             .roleIds(offlineAccess.applyValue(getRoleResult -> getRoleResult).applyValue(offlineAccess -> offlineAccess.applyValue(getRoleResult -> getRoleResult.id())))
+     *             .groupId(group.applyValue(_group -> _group.id()))
+     *             .roleIds(offlineAccess.applyValue(_offlineAccess -> _offlineAccess.id()))
      *             .build());
      * 
      *     }
@@ -1285,8 +1285,8 @@ public final class KeycloakFunctions {
      * 
      *         var groupRoles = new GroupRoles("groupRoles", GroupRolesArgs.builder()
      *             .realmId(realm.id())
-     *             .groupId(group.applyValue(getGroupResult -> getGroupResult).applyValue(group -> group.applyValue(getGroupResult -> getGroupResult.id())))
-     *             .roleIds(offlineAccess.applyValue(getRoleResult -> getRoleResult).applyValue(offlineAccess -> offlineAccess.applyValue(getRoleResult -> getRoleResult.id())))
+     *             .groupId(group.applyValue(_group -> _group.id()))
+     *             .roleIds(offlineAccess.applyValue(_offlineAccess -> _offlineAccess.id()))
      *             .build());
      * 
      *     }
@@ -1336,7 +1336,7 @@ public final class KeycloakFunctions {
      * 
      *         // use the data source
      *         var group = new Role("group", RoleArgs.builder()
-     *             .realmId(realm.applyValue(getRealmResult -> getRealmResult.id()))
+     *             .realmId(realm.id())
      *             .name("group")
      *             .build());
      * 
@@ -1387,7 +1387,7 @@ public final class KeycloakFunctions {
      * 
      *         // use the data source
      *         var group = new Role("group", RoleArgs.builder()
-     *             .realmId(realm.applyValue(getRealmResult -> getRealmResult.id()))
+     *             .realmId(realm.id())
      *             .name("group")
      *             .build());
      * 
@@ -1438,7 +1438,7 @@ public final class KeycloakFunctions {
      * 
      *         // use the data source
      *         var group = new Role("group", RoleArgs.builder()
-     *             .realmId(realm.applyValue(getRealmResult -> getRealmResult.id()))
+     *             .realmId(realm.id())
      *             .name("group")
      *             .build());
      * 
@@ -1489,7 +1489,7 @@ public final class KeycloakFunctions {
      * 
      *         // use the data source
      *         var group = new Role("group", RoleArgs.builder()
-     *             .realmId(realm.applyValue(getRealmResult -> getRealmResult.id()))
+     *             .realmId(realm.id())
      *             .name("group")
      *             .build());
      * 
@@ -1540,7 +1540,7 @@ public final class KeycloakFunctions {
      * 
      *         // use the data source
      *         var group = new Role("group", RoleArgs.builder()
-     *             .realmId(realm.applyValue(getRealmResult -> getRealmResult.id()))
+     *             .realmId(realm.id())
      *             .name("group")
      *             .build());
      * 
@@ -1673,7 +1673,7 @@ public final class KeycloakFunctions {
      *         var groupRoles = new GroupRoles("groupRoles", GroupRolesArgs.builder()
      *             .realmId(realm.id())
      *             .groupId(group.id())
-     *             .roleIds(offlineAccess.applyValue(getRoleResult -> getRoleResult).applyValue(offlineAccess -> offlineAccess.applyValue(getRoleResult -> getRoleResult.id())))
+     *             .roleIds(offlineAccess.applyValue(_offlineAccess -> _offlineAccess.id()))
      *             .build());
      * 
      *     }
@@ -1740,7 +1740,7 @@ public final class KeycloakFunctions {
      *         var groupRoles = new GroupRoles("groupRoles", GroupRolesArgs.builder()
      *             .realmId(realm.id())
      *             .groupId(group.id())
-     *             .roleIds(offlineAccess.applyValue(getRoleResult -> getRoleResult).applyValue(offlineAccess -> offlineAccess.applyValue(getRoleResult -> getRoleResult.id())))
+     *             .roleIds(offlineAccess.applyValue(_offlineAccess -> _offlineAccess.id()))
      *             .build());
      * 
      *     }
@@ -1807,7 +1807,7 @@ public final class KeycloakFunctions {
      *         var groupRoles = new GroupRoles("groupRoles", GroupRolesArgs.builder()
      *             .realmId(realm.id())
      *             .groupId(group.id())
-     *             .roleIds(offlineAccess.applyValue(getRoleResult -> getRoleResult).applyValue(offlineAccess -> offlineAccess.applyValue(getRoleResult -> getRoleResult.id())))
+     *             .roleIds(offlineAccess.applyValue(_offlineAccess -> _offlineAccess.id()))
      *             .build());
      * 
      *     }
@@ -1874,7 +1874,7 @@ public final class KeycloakFunctions {
      *         var groupRoles = new GroupRoles("groupRoles", GroupRolesArgs.builder()
      *             .realmId(realm.id())
      *             .groupId(group.id())
-     *             .roleIds(offlineAccess.applyValue(getRoleResult -> getRoleResult).applyValue(offlineAccess -> offlineAccess.applyValue(getRoleResult -> getRoleResult.id())))
+     *             .roleIds(offlineAccess.applyValue(_offlineAccess -> _offlineAccess.id()))
      *             .build());
      * 
      *     }
@@ -1941,7 +1941,7 @@ public final class KeycloakFunctions {
      *         var groupRoles = new GroupRoles("groupRoles", GroupRolesArgs.builder()
      *             .realmId(realm.id())
      *             .groupId(group.id())
-     *             .roleIds(offlineAccess.applyValue(getRoleResult -> getRoleResult).applyValue(offlineAccess -> offlineAccess.applyValue(getRoleResult -> getRoleResult.id())))
+     *             .roleIds(offlineAccess.applyValue(_offlineAccess -> _offlineAccess.id()))
      *             .build());
      * 
      *     }
@@ -1989,11 +1989,11 @@ public final class KeycloakFunctions {
      * 
      *         // use the keycloak_user data source to grab the admin user's ID
      *         final var defaultAdminUser = KeycloakFunctions.getUser(GetUserArgs.builder()
-     *             .realmId(masterRealm.applyValue(getRealmResult -> getRealmResult.id()))
+     *             .realmId(masterRealm.id())
      *             .username("keycloak")
      *             .build());
      * 
-     *         ctx.export("keycloakUserId", defaultAdminUser.applyValue(getUserResult -> getUserResult.id()));
+     *         ctx.export("keycloakUserId", defaultAdminUser.id());
      *     }
      * }
      * }
@@ -2039,11 +2039,11 @@ public final class KeycloakFunctions {
      * 
      *         // use the keycloak_user data source to grab the admin user's ID
      *         final var defaultAdminUser = KeycloakFunctions.getUser(GetUserArgs.builder()
-     *             .realmId(masterRealm.applyValue(getRealmResult -> getRealmResult.id()))
+     *             .realmId(masterRealm.id())
      *             .username("keycloak")
      *             .build());
      * 
-     *         ctx.export("keycloakUserId", defaultAdminUser.applyValue(getUserResult -> getUserResult.id()));
+     *         ctx.export("keycloakUserId", defaultAdminUser.id());
      *     }
      * }
      * }
@@ -2089,11 +2089,11 @@ public final class KeycloakFunctions {
      * 
      *         // use the keycloak_user data source to grab the admin user's ID
      *         final var defaultAdminUser = KeycloakFunctions.getUser(GetUserArgs.builder()
-     *             .realmId(masterRealm.applyValue(getRealmResult -> getRealmResult.id()))
+     *             .realmId(masterRealm.id())
      *             .username("keycloak")
      *             .build());
      * 
-     *         ctx.export("keycloakUserId", defaultAdminUser.applyValue(getUserResult -> getUserResult.id()));
+     *         ctx.export("keycloakUserId", defaultAdminUser.id());
      *     }
      * }
      * }
@@ -2139,11 +2139,11 @@ public final class KeycloakFunctions {
      * 
      *         // use the keycloak_user data source to grab the admin user's ID
      *         final var defaultAdminUser = KeycloakFunctions.getUser(GetUserArgs.builder()
-     *             .realmId(masterRealm.applyValue(getRealmResult -> getRealmResult.id()))
+     *             .realmId(masterRealm.id())
      *             .username("keycloak")
      *             .build());
      * 
-     *         ctx.export("keycloakUserId", defaultAdminUser.applyValue(getUserResult -> getUserResult.id()));
+     *         ctx.export("keycloakUserId", defaultAdminUser.id());
      *     }
      * }
      * }
@@ -2189,11 +2189,11 @@ public final class KeycloakFunctions {
      * 
      *         // use the keycloak_user data source to grab the admin user's ID
      *         final var defaultAdminUser = KeycloakFunctions.getUser(GetUserArgs.builder()
-     *             .realmId(masterRealm.applyValue(getRealmResult -> getRealmResult.id()))
+     *             .realmId(masterRealm.id())
      *             .username("keycloak")
      *             .build());
      * 
-     *         ctx.export("keycloakUserId", defaultAdminUser.applyValue(getUserResult -> getUserResult.id()));
+     *         ctx.export("keycloakUserId", defaultAdminUser.id());
      *     }
      * }
      * }
@@ -2240,17 +2240,17 @@ public final class KeycloakFunctions {
      * 
      *         // use the keycloak_user data source to grab the admin user's ID
      *         final var defaultAdminUser = KeycloakFunctions.getUser(GetUserArgs.builder()
-     *             .realmId(masterRealm.applyValue(getRealmResult -> getRealmResult.id()))
+     *             .realmId(masterRealm.id())
      *             .username("keycloak")
      *             .build());
      * 
      *         // use the keycloak_user_realm_roles data source to list role names
      *         final var userRealmRoles = KeycloakFunctions.getUserRealmRoles(GetUserRealmRolesArgs.builder()
-     *             .realmId(masterRealm.applyValue(getRealmResult -> getRealmResult.id()))
-     *             .userId(defaultAdminUser.applyValue(getUserResult -> getUserResult.id()))
+     *             .realmId(masterRealm.id())
+     *             .userId(defaultAdminUser.id())
      *             .build());
      * 
-     *         ctx.export("keycloakUserRoleNames", userRealmRoles.applyValue(getUserRealmRolesResult -> getUserRealmRolesResult.roleNames()));
+     *         ctx.export("keycloakUserRoleNames", userRealmRoles.roleNames());
      *     }
      * }
      * }
@@ -2297,17 +2297,17 @@ public final class KeycloakFunctions {
      * 
      *         // use the keycloak_user data source to grab the admin user's ID
      *         final var defaultAdminUser = KeycloakFunctions.getUser(GetUserArgs.builder()
-     *             .realmId(masterRealm.applyValue(getRealmResult -> getRealmResult.id()))
+     *             .realmId(masterRealm.id())
      *             .username("keycloak")
      *             .build());
      * 
      *         // use the keycloak_user_realm_roles data source to list role names
      *         final var userRealmRoles = KeycloakFunctions.getUserRealmRoles(GetUserRealmRolesArgs.builder()
-     *             .realmId(masterRealm.applyValue(getRealmResult -> getRealmResult.id()))
-     *             .userId(defaultAdminUser.applyValue(getUserResult -> getUserResult.id()))
+     *             .realmId(masterRealm.id())
+     *             .userId(defaultAdminUser.id())
      *             .build());
      * 
-     *         ctx.export("keycloakUserRoleNames", userRealmRoles.applyValue(getUserRealmRolesResult -> getUserRealmRolesResult.roleNames()));
+     *         ctx.export("keycloakUserRoleNames", userRealmRoles.roleNames());
      *     }
      * }
      * }
@@ -2354,17 +2354,17 @@ public final class KeycloakFunctions {
      * 
      *         // use the keycloak_user data source to grab the admin user's ID
      *         final var defaultAdminUser = KeycloakFunctions.getUser(GetUserArgs.builder()
-     *             .realmId(masterRealm.applyValue(getRealmResult -> getRealmResult.id()))
+     *             .realmId(masterRealm.id())
      *             .username("keycloak")
      *             .build());
      * 
      *         // use the keycloak_user_realm_roles data source to list role names
      *         final var userRealmRoles = KeycloakFunctions.getUserRealmRoles(GetUserRealmRolesArgs.builder()
-     *             .realmId(masterRealm.applyValue(getRealmResult -> getRealmResult.id()))
-     *             .userId(defaultAdminUser.applyValue(getUserResult -> getUserResult.id()))
+     *             .realmId(masterRealm.id())
+     *             .userId(defaultAdminUser.id())
      *             .build());
      * 
-     *         ctx.export("keycloakUserRoleNames", userRealmRoles.applyValue(getUserRealmRolesResult -> getUserRealmRolesResult.roleNames()));
+     *         ctx.export("keycloakUserRoleNames", userRealmRoles.roleNames());
      *     }
      * }
      * }
@@ -2411,17 +2411,17 @@ public final class KeycloakFunctions {
      * 
      *         // use the keycloak_user data source to grab the admin user's ID
      *         final var defaultAdminUser = KeycloakFunctions.getUser(GetUserArgs.builder()
-     *             .realmId(masterRealm.applyValue(getRealmResult -> getRealmResult.id()))
+     *             .realmId(masterRealm.id())
      *             .username("keycloak")
      *             .build());
      * 
      *         // use the keycloak_user_realm_roles data source to list role names
      *         final var userRealmRoles = KeycloakFunctions.getUserRealmRoles(GetUserRealmRolesArgs.builder()
-     *             .realmId(masterRealm.applyValue(getRealmResult -> getRealmResult.id()))
-     *             .userId(defaultAdminUser.applyValue(getUserResult -> getUserResult.id()))
+     *             .realmId(masterRealm.id())
+     *             .userId(defaultAdminUser.id())
      *             .build());
      * 
-     *         ctx.export("keycloakUserRoleNames", userRealmRoles.applyValue(getUserRealmRolesResult -> getUserRealmRolesResult.roleNames()));
+     *         ctx.export("keycloakUserRoleNames", userRealmRoles.roleNames());
      *     }
      * }
      * }
@@ -2468,17 +2468,17 @@ public final class KeycloakFunctions {
      * 
      *         // use the keycloak_user data source to grab the admin user's ID
      *         final var defaultAdminUser = KeycloakFunctions.getUser(GetUserArgs.builder()
-     *             .realmId(masterRealm.applyValue(getRealmResult -> getRealmResult.id()))
+     *             .realmId(masterRealm.id())
      *             .username("keycloak")
      *             .build());
      * 
      *         // use the keycloak_user_realm_roles data source to list role names
      *         final var userRealmRoles = KeycloakFunctions.getUserRealmRoles(GetUserRealmRolesArgs.builder()
-     *             .realmId(masterRealm.applyValue(getRealmResult -> getRealmResult.id()))
-     *             .userId(defaultAdminUser.applyValue(getUserResult -> getUserResult.id()))
+     *             .realmId(masterRealm.id())
+     *             .userId(defaultAdminUser.id())
      *             .build());
      * 
-     *         ctx.export("keycloakUserRoleNames", userRealmRoles.applyValue(getUserRealmRolesResult -> getUserRealmRolesResult.roleNames()));
+     *         ctx.export("keycloakUserRoleNames", userRealmRoles.roleNames());
      *     }
      * }
      * }

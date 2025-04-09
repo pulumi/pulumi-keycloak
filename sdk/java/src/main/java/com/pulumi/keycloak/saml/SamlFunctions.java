@@ -56,7 +56,7 @@ public final class SamlFunctions {
      *         // use the data source
      *         final var admin = KeycloakFunctions.getRole(GetRoleArgs.builder()
      *             .realmId("my-realm")
-     *             .clientId(realmManagement.applyValue(getClientResult -> getClientResult.id()))
+     *             .clientId(realmManagement.id())
      *             .name("realm-admin")
      *             .build());
      * 
@@ -108,7 +108,7 @@ public final class SamlFunctions {
      *         // use the data source
      *         final var admin = KeycloakFunctions.getRole(GetRoleArgs.builder()
      *             .realmId("my-realm")
-     *             .clientId(realmManagement.applyValue(getClientResult -> getClientResult.id()))
+     *             .clientId(realmManagement.id())
      *             .name("realm-admin")
      *             .build());
      * 
@@ -160,7 +160,7 @@ public final class SamlFunctions {
      *         // use the data source
      *         final var admin = KeycloakFunctions.getRole(GetRoleArgs.builder()
      *             .realmId("my-realm")
-     *             .clientId(realmManagement.applyValue(getClientResult -> getClientResult.id()))
+     *             .clientId(realmManagement.id())
      *             .name("realm-admin")
      *             .build());
      * 
@@ -212,7 +212,7 @@ public final class SamlFunctions {
      *         // use the data source
      *         final var admin = KeycloakFunctions.getRole(GetRoleArgs.builder()
      *             .realmId("my-realm")
-     *             .clientId(realmManagement.applyValue(getClientResult -> getClientResult.id()))
+     *             .clientId(realmManagement.id())
      *             .name("realm-admin")
      *             .build());
      * 
@@ -264,7 +264,7 @@ public final class SamlFunctions {
      *         // use the data source
      *         final var admin = KeycloakFunctions.getRole(GetRoleArgs.builder()
      *             .realmId("my-realm")
-     *             .clientId(realmManagement.applyValue(getClientResult -> getClientResult.id()))
+     *             .clientId(realmManagement.id())
      *             .name("realm-admin")
      *             .build());
      * 
