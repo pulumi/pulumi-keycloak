@@ -81,7 +81,7 @@ export class GoogleIdentityProvider extends pulumi.CustomResource {
      */
     public readonly addReadTokenRoleOnCreate!: pulumi.Output<boolean | undefined>;
     /**
-     * (Computed) The alias for the Google identity provider.
+     * The alias for the Google identity provider.
      */
     public /*out*/ readonly alias!: pulumi.Output<string>;
     /**
@@ -105,7 +105,7 @@ export class GoogleIdentityProvider extends pulumi.CustomResource {
      */
     public readonly disableUserInfo!: pulumi.Output<boolean | undefined>;
     /**
-     * (Computed) Display name for the Google identity provider in the GUI.
+     * Display name for the Google identity provider in the GUI.
      */
     public /*out*/ readonly displayName!: pulumi.Output<string>;
     /**
@@ -265,7 +265,7 @@ export interface GoogleIdentityProviderState {
      */
     addReadTokenRoleOnCreate?: pulumi.Input<boolean>;
     /**
-     * (Computed) The alias for the Google identity provider.
+     * The alias for the Google identity provider.
      */
     alias?: pulumi.Input<string>;
     /**
@@ -289,7 +289,7 @@ export interface GoogleIdentityProviderState {
      */
     disableUserInfo?: pulumi.Input<boolean>;
     /**
-     * (Computed) Display name for the Google identity provider in the GUI.
+     * Display name for the Google identity provider in the GUI.
      */
     displayName?: pulumi.Input<string>;
     /**

@@ -1563,6 +1563,55 @@ public final class KeycloakFunctions {
      * - This data source may return more than one value.
      * - If no key matches the filter criteria, then an error will be returned.
      * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.Realm;
+     * import com.pulumi.keycloak.RealmArgs;
+     * import com.pulumi.keycloak.KeycloakFunctions;
+     * import com.pulumi.keycloak.inputs.GetRealmKeysArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var realm = new Realm("realm", RealmArgs.builder()
+     *             .realm("my-realm")
+     *             .enabled(true)
+     *             .build());
+     * 
+     *         final var realmKeys = KeycloakFunctions.getRealmKeys(GetRealmKeysArgs.builder()
+     *             .realmId(realm.id())
+     *             .algorithms(            
+     *                 "AES",
+     *                 "RS256")
+     *             .statuses(            
+     *                 "ACTIVE",
+     *                 "PASSIVE")
+     *             .build());
+     * 
+     *         ctx.export("certificate", realmKeys.applyValue(_realmKeys -> _realmKeys.keys()[0].certificate()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      */
     public static Output<GetRealmKeysResult> getRealmKeys(GetRealmKeysArgs args) {
         return getRealmKeys(args, InvokeOptions.Empty);
@@ -1575,6 +1624,55 @@ public final class KeycloakFunctions {
      * - A key must meet all filter criteria
      * - This data source may return more than one value.
      * - If no key matches the filter criteria, then an error will be returned.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.Realm;
+     * import com.pulumi.keycloak.RealmArgs;
+     * import com.pulumi.keycloak.KeycloakFunctions;
+     * import com.pulumi.keycloak.inputs.GetRealmKeysArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var realm = new Realm("realm", RealmArgs.builder()
+     *             .realm("my-realm")
+     *             .enabled(true)
+     *             .build());
+     * 
+     *         final var realmKeys = KeycloakFunctions.getRealmKeys(GetRealmKeysArgs.builder()
+     *             .realmId(realm.id())
+     *             .algorithms(            
+     *                 "AES",
+     *                 "RS256")
+     *             .statuses(            
+     *                 "ACTIVE",
+     *                 "PASSIVE")
+     *             .build());
+     * 
+     *         ctx.export("certificate", realmKeys.applyValue(_realmKeys -> _realmKeys.keys()[0].certificate()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetRealmKeysResult> getRealmKeysPlain(GetRealmKeysPlainArgs args) {
@@ -1589,6 +1687,55 @@ public final class KeycloakFunctions {
      * - This data source may return more than one value.
      * - If no key matches the filter criteria, then an error will be returned.
      * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.Realm;
+     * import com.pulumi.keycloak.RealmArgs;
+     * import com.pulumi.keycloak.KeycloakFunctions;
+     * import com.pulumi.keycloak.inputs.GetRealmKeysArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var realm = new Realm("realm", RealmArgs.builder()
+     *             .realm("my-realm")
+     *             .enabled(true)
+     *             .build());
+     * 
+     *         final var realmKeys = KeycloakFunctions.getRealmKeys(GetRealmKeysArgs.builder()
+     *             .realmId(realm.id())
+     *             .algorithms(            
+     *                 "AES",
+     *                 "RS256")
+     *             .statuses(            
+     *                 "ACTIVE",
+     *                 "PASSIVE")
+     *             .build());
+     * 
+     *         ctx.export("certificate", realmKeys.applyValue(_realmKeys -> _realmKeys.keys()[0].certificate()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      */
     public static Output<GetRealmKeysResult> getRealmKeys(GetRealmKeysArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("keycloak:index/getRealmKeys:getRealmKeys", TypeShape.of(GetRealmKeysResult.class), args, Utilities.withVersion(options));
@@ -1602,6 +1749,55 @@ public final class KeycloakFunctions {
      * - This data source may return more than one value.
      * - If no key matches the filter criteria, then an error will be returned.
      * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.Realm;
+     * import com.pulumi.keycloak.RealmArgs;
+     * import com.pulumi.keycloak.KeycloakFunctions;
+     * import com.pulumi.keycloak.inputs.GetRealmKeysArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var realm = new Realm("realm", RealmArgs.builder()
+     *             .realm("my-realm")
+     *             .enabled(true)
+     *             .build());
+     * 
+     *         final var realmKeys = KeycloakFunctions.getRealmKeys(GetRealmKeysArgs.builder()
+     *             .realmId(realm.id())
+     *             .algorithms(            
+     *                 "AES",
+     *                 "RS256")
+     *             .statuses(            
+     *                 "ACTIVE",
+     *                 "PASSIVE")
+     *             .build());
+     * 
+     *         ctx.export("certificate", realmKeys.applyValue(_realmKeys -> _realmKeys.keys()[0].certificate()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
      */
     public static Output<GetRealmKeysResult> getRealmKeys(GetRealmKeysArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("keycloak:index/getRealmKeys:getRealmKeys", TypeShape.of(GetRealmKeysResult.class), args, Utilities.withVersion(options));
@@ -1614,6 +1810,55 @@ public final class KeycloakFunctions {
      * - A key must meet all filter criteria
      * - This data source may return more than one value.
      * - If no key matches the filter criteria, then an error will be returned.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.Realm;
+     * import com.pulumi.keycloak.RealmArgs;
+     * import com.pulumi.keycloak.KeycloakFunctions;
+     * import com.pulumi.keycloak.inputs.GetRealmKeysArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var realm = new Realm("realm", RealmArgs.builder()
+     *             .realm("my-realm")
+     *             .enabled(true)
+     *             .build());
+     * 
+     *         final var realmKeys = KeycloakFunctions.getRealmKeys(GetRealmKeysArgs.builder()
+     *             .realmId(realm.id())
+     *             .algorithms(            
+     *                 "AES",
+     *                 "RS256")
+     *             .statuses(            
+     *                 "ACTIVE",
+     *                 "PASSIVE")
+     *             .build());
+     * 
+     *         ctx.export("certificate", realmKeys.applyValue(_realmKeys -> _realmKeys.keys()[0].certificate()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetRealmKeysResult> getRealmKeysPlain(GetRealmKeysPlainArgs args, InvokeOptions options) {

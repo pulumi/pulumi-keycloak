@@ -402,13 +402,13 @@ class _GoogleIdentityProviderState:
         Input properties used for looking up and filtering GoogleIdentityProvider resources.
         :param pulumi.Input[builtins.bool] accepts_prompt_none_forward_from_client: When `true`, unauthenticated requests with `prompt=none` will be forwarded to Google instead of returning an error. Defaults to `false`.
         :param pulumi.Input[builtins.bool] add_read_token_role_on_create: When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
-        :param pulumi.Input[builtins.str] alias: (Computed) The alias for the Google identity provider.
+        :param pulumi.Input[builtins.str] alias: The alias for the Google identity provider.
         :param pulumi.Input[builtins.bool] authenticate_by_default: Enable/disable authenticate users by default.
         :param pulumi.Input[builtins.str] client_id: The client or client identifier registered within the identity provider.
         :param pulumi.Input[builtins.str] client_secret: The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
         :param pulumi.Input[builtins.str] default_scopes: The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid profile email`.
         :param pulumi.Input[builtins.bool] disable_user_info: When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
-        :param pulumi.Input[builtins.str] display_name: (Computed) Display name for the Google identity provider in the GUI.
+        :param pulumi.Input[builtins.str] display_name: Display name for the Google identity provider in the GUI.
         :param pulumi.Input[builtins.bool] enabled: When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
         :param pulumi.Input[builtins.str] first_broker_login_flow_alias: The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
         :param pulumi.Input[builtins.str] gui_order: A number defining the order of this identity provider in the GUI.
@@ -504,7 +504,7 @@ class _GoogleIdentityProviderState:
     @pulumi.getter
     def alias(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        (Computed) The alias for the Google identity provider.
+        The alias for the Google identity provider.
         """
         return pulumi.get(self, "alias")
 
@@ -576,7 +576,7 @@ class _GoogleIdentityProviderState:
     @pulumi.getter(name="displayName")
     def display_name(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        (Computed) Display name for the Google identity provider in the GUI.
+        Display name for the Google identity provider in the GUI.
         """
         return pulumi.get(self, "display_name")
 
@@ -1031,13 +1031,13 @@ class GoogleIdentityProvider(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[builtins.bool] accepts_prompt_none_forward_from_client: When `true`, unauthenticated requests with `prompt=none` will be forwarded to Google instead of returning an error. Defaults to `false`.
         :param pulumi.Input[builtins.bool] add_read_token_role_on_create: When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
-        :param pulumi.Input[builtins.str] alias: (Computed) The alias for the Google identity provider.
+        :param pulumi.Input[builtins.str] alias: The alias for the Google identity provider.
         :param pulumi.Input[builtins.bool] authenticate_by_default: Enable/disable authenticate users by default.
         :param pulumi.Input[builtins.str] client_id: The client or client identifier registered within the identity provider.
         :param pulumi.Input[builtins.str] client_secret: The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
         :param pulumi.Input[builtins.str] default_scopes: The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid profile email`.
         :param pulumi.Input[builtins.bool] disable_user_info: When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
-        :param pulumi.Input[builtins.str] display_name: (Computed) Display name for the Google identity provider in the GUI.
+        :param pulumi.Input[builtins.str] display_name: Display name for the Google identity provider in the GUI.
         :param pulumi.Input[builtins.bool] enabled: When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
         :param pulumi.Input[builtins.str] first_broker_login_flow_alias: The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
         :param pulumi.Input[builtins.str] gui_order: A number defining the order of this identity provider in the GUI.
@@ -1105,7 +1105,7 @@ class GoogleIdentityProvider(pulumi.CustomResource):
     @pulumi.getter
     def alias(self) -> pulumi.Output[builtins.str]:
         """
-        (Computed) The alias for the Google identity provider.
+        The alias for the Google identity provider.
         """
         return pulumi.get(self, "alias")
 
@@ -1153,7 +1153,7 @@ class GoogleIdentityProvider(pulumi.CustomResource):
     @pulumi.getter(name="displayName")
     def display_name(self) -> pulumi.Output[builtins.str]:
         """
-        (Computed) Display name for the Google identity provider in the GUI.
+        Display name for the Google identity provider in the GUI.
         """
         return pulumi.get(self, "display_name")
 

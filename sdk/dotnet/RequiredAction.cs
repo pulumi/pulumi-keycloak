@@ -14,33 +14,6 @@ namespace Pulumi.Keycloak
     /// 
     /// [Required actions](https://www.keycloak.org/docs/latest/server_admin/#con-required-actions_server_administration_guide) specify actions required before the first login of all new users.
     /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Keycloak = Pulumi.Keycloak;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var realm = new Keycloak.Realm("realm", new()
-    ///     {
-    ///         RealmName = "my-realm",
-    ///         Enabled = true,
-    ///     });
-    /// 
-    ///     var requiredAction = new Keycloak.RequiredAction("required_action", new()
-    ///     {
-    ///         RealmId = realm.RealmName,
-    ///         Alias = "webauthn-register",
-    ///         Enabled = true,
-    ///         Name = "Webauthn Register",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// Authentication executions can be imported using the formats: `{{realm}}/{{alias}}`.

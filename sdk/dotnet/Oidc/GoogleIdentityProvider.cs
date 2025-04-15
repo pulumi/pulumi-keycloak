@@ -75,7 +75,7 @@ namespace Pulumi.Keycloak.Oidc
         public Output<bool?> AddReadTokenRoleOnCreate { get; private set; } = null!;
 
         /// <summary>
-        /// (Computed) The alias for the Google identity provider.
+        /// The alias for the Google identity provider.
         /// </summary>
         [Output("alias")]
         public Output<string> Alias { get; private set; } = null!;
@@ -111,7 +111,7 @@ namespace Pulumi.Keycloak.Oidc
         public Output<bool?> DisableUserInfo { get; private set; } = null!;
 
         /// <summary>
-        /// (Computed) Display name for the Google identity provider in the GUI.
+        /// Display name for the Google identity provider in the GUI.
         /// </summary>
         [Output("displayName")]
         public Output<string> DisplayName { get; private set; } = null!;
@@ -424,7 +424,7 @@ namespace Pulumi.Keycloak.Oidc
         public Input<bool>? AddReadTokenRoleOnCreate { get; set; }
 
         /// <summary>
-        /// (Computed) The alias for the Google identity provider.
+        /// The alias for the Google identity provider.
         /// </summary>
         [Input("alias")]
         public Input<string>? Alias { get; set; }
@@ -470,7 +470,7 @@ namespace Pulumi.Keycloak.Oidc
         public Input<bool>? DisableUserInfo { get; set; }
 
         /// <summary>
-        /// (Computed) Display name for the Google identity provider in the GUI.
+        /// Display name for the Google identity provider in the GUI.
         /// </summary>
         [Input("displayName")]
         public Input<string>? DisplayName { get; set; }

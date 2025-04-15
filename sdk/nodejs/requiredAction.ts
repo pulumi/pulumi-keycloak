@@ -9,24 +9,6 @@ import * as utilities from "./utilities";
  *
  * [Required actions](https://www.keycloak.org/docs/latest/server_admin/#con-required-actions_server_administration_guide) specify actions required before the first login of all new users.
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as keycloak from "@pulumi/keycloak";
- *
- * const realm = new keycloak.Realm("realm", {
- *     realm: "my-realm",
- *     enabled: true,
- * });
- * const requiredAction = new keycloak.RequiredAction("required_action", {
- *     realmId: realm.realm,
- *     alias: "webauthn-register",
- *     enabled: true,
- *     name: "Webauthn Register",
- * });
- * ```
- *
  * ## Import
  *
  * Authentication executions can be imported using the formats: `{{realm}}/{{alias}}`.

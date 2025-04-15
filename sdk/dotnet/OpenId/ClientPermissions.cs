@@ -14,7 +14,7 @@ namespace Pulumi.Keycloak.OpenId
     /// 
     /// This is part of a preview keycloak feature. You need to enable this feature to be able to use this resource. More
     /// information about enabling the preview feature can be found
-    /// here: https://www.keycloak.org/docs/latest/securing_apps/index.html#_token-exchange
+    /// here: https://www.keycloak.org/securing-apps/token-exchange
     /// 
     /// When enabling Openid Client Permissions, Keycloak does several things automatically:
     /// 
