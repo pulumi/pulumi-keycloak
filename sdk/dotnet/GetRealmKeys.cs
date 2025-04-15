@@ -19,6 +19,44 @@ namespace Pulumi.Keycloak
         /// - A key must meet all filter criteria
         /// - This data source may return more than one value.
         /// - If no key matches the filter criteria, then an error will be returned.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Keycloak = Pulumi.Keycloak;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var realm = new Keycloak.Realm("realm", new()
+        ///     {
+        ///         RealmName = "my-realm",
+        ///         Enabled = true,
+        ///     });
+        /// 
+        ///     var realmKeys = Keycloak.GetRealmKeys.Invoke(new()
+        ///     {
+        ///         RealmId = realm.Id,
+        ///         Algorithms = new[]
+        ///         {
+        ///             "AES",
+        ///             "RS256",
+        ///         },
+        ///         Statuses = new[]
+        ///         {
+        ///             "ACTIVE",
+        ///             "PASSIVE",
+        ///         },
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["certificate"] = realmKeys.Apply(getRealmKeysResult =&gt; getRealmKeysResult.Keys[0]?.Certificate),
+        ///     };
+        /// });
+        /// ```
         /// </summary>
         public static Task<GetRealmKeysResult> InvokeAsync(GetRealmKeysArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetRealmKeysResult>("keycloak:index/getRealmKeys:getRealmKeys", args ?? new GetRealmKeysArgs(), options.WithDefaults());
@@ -31,6 +69,44 @@ namespace Pulumi.Keycloak
         /// - A key must meet all filter criteria
         /// - This data source may return more than one value.
         /// - If no key matches the filter criteria, then an error will be returned.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Keycloak = Pulumi.Keycloak;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var realm = new Keycloak.Realm("realm", new()
+        ///     {
+        ///         RealmName = "my-realm",
+        ///         Enabled = true,
+        ///     });
+        /// 
+        ///     var realmKeys = Keycloak.GetRealmKeys.Invoke(new()
+        ///     {
+        ///         RealmId = realm.Id,
+        ///         Algorithms = new[]
+        ///         {
+        ///             "AES",
+        ///             "RS256",
+        ///         },
+        ///         Statuses = new[]
+        ///         {
+        ///             "ACTIVE",
+        ///             "PASSIVE",
+        ///         },
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["certificate"] = realmKeys.Apply(getRealmKeysResult =&gt; getRealmKeysResult.Keys[0]?.Certificate),
+        ///     };
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetRealmKeysResult> Invoke(GetRealmKeysInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetRealmKeysResult>("keycloak:index/getRealmKeys:getRealmKeys", args ?? new GetRealmKeysInvokeArgs(), options.WithDefaults());
@@ -43,6 +119,44 @@ namespace Pulumi.Keycloak
         /// - A key must meet all filter criteria
         /// - This data source may return more than one value.
         /// - If no key matches the filter criteria, then an error will be returned.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Keycloak = Pulumi.Keycloak;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var realm = new Keycloak.Realm("realm", new()
+        ///     {
+        ///         RealmName = "my-realm",
+        ///         Enabled = true,
+        ///     });
+        /// 
+        ///     var realmKeys = Keycloak.GetRealmKeys.Invoke(new()
+        ///     {
+        ///         RealmId = realm.Id,
+        ///         Algorithms = new[]
+        ///         {
+        ///             "AES",
+        ///             "RS256",
+        ///         },
+        ///         Statuses = new[]
+        ///         {
+        ///             "ACTIVE",
+        ///             "PASSIVE",
+        ///         },
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["certificate"] = realmKeys.Apply(getRealmKeysResult =&gt; getRealmKeysResult.Keys[0]?.Certificate),
+        ///     };
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetRealmKeysResult> Invoke(GetRealmKeysInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetRealmKeysResult>("keycloak:index/getRealmKeys:getRealmKeys", args ?? new GetRealmKeysInvokeArgs(), options.WithDefaults());

@@ -18,6 +18,47 @@ import (
 // - A key must meet all filter criteria
 // - This data source may return more than one value.
 // - If no key matches the filter criteria, then an error will be returned.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			realmKeys := keycloak.GetRealmKeysOutput(ctx, keycloak.GetRealmKeysOutputArgs{
+//				RealmId: realm.ID(),
+//				Algorithms: pulumi.StringArray{
+//					pulumi.String("AES"),
+//					pulumi.String("RS256"),
+//				},
+//				Statuses: pulumi.StringArray{
+//					pulumi.String("ACTIVE"),
+//					pulumi.String("PASSIVE"),
+//				},
+//			}, nil)
+//			ctx.Export("certificate", realmKeys.ApplyT(func(realmKeys keycloak.GetRealmKeysResult) (*string, error) {
+//				return &realmKeys.Keys[0].Certificate, nil
+//			}).(pulumi.StringPtrOutput))
+//			return nil
+//		})
+//	}
+//
+// ```
 func GetRealmKeys(ctx *pulumi.Context, args *GetRealmKeysArgs, opts ...pulumi.InvokeOption) (*GetRealmKeysResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetRealmKeysResult

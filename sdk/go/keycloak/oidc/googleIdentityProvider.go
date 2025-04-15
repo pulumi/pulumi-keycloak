@@ -76,7 +76,7 @@ type GoogleIdentityProvider struct {
 	AcceptsPromptNoneForwardFromClient pulumi.BoolPtrOutput `pulumi:"acceptsPromptNoneForwardFromClient"`
 	// When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
 	AddReadTokenRoleOnCreate pulumi.BoolPtrOutput `pulumi:"addReadTokenRoleOnCreate"`
-	// (Computed) The alias for the Google identity provider.
+	// The alias for the Google identity provider.
 	Alias pulumi.StringOutput `pulumi:"alias"`
 	// Enable/disable authenticate users by default.
 	AuthenticateByDefault pulumi.BoolPtrOutput `pulumi:"authenticateByDefault"`
@@ -88,7 +88,7 @@ type GoogleIdentityProvider struct {
 	DefaultScopes pulumi.StringPtrOutput `pulumi:"defaultScopes"`
 	// When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
 	DisableUserInfo pulumi.BoolPtrOutput `pulumi:"disableUserInfo"`
-	// (Computed) Display name for the Google identity provider in the GUI.
+	// Display name for the Google identity provider in the GUI.
 	DisplayName pulumi.StringOutput `pulumi:"displayName"`
 	// When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
 	Enabled     pulumi.BoolPtrOutput   `pulumi:"enabled"`
@@ -173,7 +173,7 @@ type googleIdentityProviderState struct {
 	AcceptsPromptNoneForwardFromClient *bool `pulumi:"acceptsPromptNoneForwardFromClient"`
 	// When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
 	AddReadTokenRoleOnCreate *bool `pulumi:"addReadTokenRoleOnCreate"`
-	// (Computed) The alias for the Google identity provider.
+	// The alias for the Google identity provider.
 	Alias *string `pulumi:"alias"`
 	// Enable/disable authenticate users by default.
 	AuthenticateByDefault *bool `pulumi:"authenticateByDefault"`
@@ -185,7 +185,7 @@ type googleIdentityProviderState struct {
 	DefaultScopes *string `pulumi:"defaultScopes"`
 	// When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
 	DisableUserInfo *bool `pulumi:"disableUserInfo"`
-	// (Computed) Display name for the Google identity provider in the GUI.
+	// Display name for the Google identity provider in the GUI.
 	DisplayName *string `pulumi:"displayName"`
 	// When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
 	Enabled     *bool             `pulumi:"enabled"`
@@ -225,7 +225,7 @@ type GoogleIdentityProviderState struct {
 	AcceptsPromptNoneForwardFromClient pulumi.BoolPtrInput
 	// When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
 	AddReadTokenRoleOnCreate pulumi.BoolPtrInput
-	// (Computed) The alias for the Google identity provider.
+	// The alias for the Google identity provider.
 	Alias pulumi.StringPtrInput
 	// Enable/disable authenticate users by default.
 	AuthenticateByDefault pulumi.BoolPtrInput
@@ -237,7 +237,7 @@ type GoogleIdentityProviderState struct {
 	DefaultScopes pulumi.StringPtrInput
 	// When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
 	DisableUserInfo pulumi.BoolPtrInput
-	// (Computed) Display name for the Google identity provider in the GUI.
+	// Display name for the Google identity provider in the GUI.
 	DisplayName pulumi.StringPtrInput
 	// When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
 	Enabled     pulumi.BoolPtrInput
@@ -466,7 +466,7 @@ func (o GoogleIdentityProviderOutput) AddReadTokenRoleOnCreate() pulumi.BoolPtrO
 	return o.ApplyT(func(v *GoogleIdentityProvider) pulumi.BoolPtrOutput { return v.AddReadTokenRoleOnCreate }).(pulumi.BoolPtrOutput)
 }
 
-// (Computed) The alias for the Google identity provider.
+// The alias for the Google identity provider.
 func (o GoogleIdentityProviderOutput) Alias() pulumi.StringOutput {
 	return o.ApplyT(func(v *GoogleIdentityProvider) pulumi.StringOutput { return v.Alias }).(pulumi.StringOutput)
 }
@@ -496,7 +496,7 @@ func (o GoogleIdentityProviderOutput) DisableUserInfo() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *GoogleIdentityProvider) pulumi.BoolPtrOutput { return v.DisableUserInfo }).(pulumi.BoolPtrOutput)
 }
 
-// (Computed) Display name for the Google identity provider in the GUI.
+// Display name for the Google identity provider in the GUI.
 func (o GoogleIdentityProviderOutput) DisplayName() pulumi.StringOutput {
 	return o.ApplyT(func(v *GoogleIdentityProvider) pulumi.StringOutput { return v.DisplayName }).(pulumi.StringOutput)
 }

@@ -240,22 +240,6 @@ class RequiredAction(pulumi.CustomResource):
 
         [Required actions](https://www.keycloak.org/docs/latest/server_admin/#con-required-actions_server_administration_guide) specify actions required before the first login of all new users.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_keycloak as keycloak
-
-        realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
-        required_action = keycloak.RequiredAction("required_action",
-            realm_id=realm.realm,
-            alias="webauthn-register",
-            enabled=True,
-            name="Webauthn Register")
-        ```
-
         ## Import
 
         Authentication executions can be imported using the formats: `{{realm}}/{{alias}}`.
@@ -287,22 +271,6 @@ class RequiredAction(pulumi.CustomResource):
         Allows for creating and managing required actions within Keycloak.
 
         [Required actions](https://www.keycloak.org/docs/latest/server_admin/#con-required-actions_server_administration_guide) specify actions required before the first login of all new users.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_keycloak as keycloak
-
-        realm = keycloak.Realm("realm",
-            realm="my-realm",
-            enabled=True)
-        required_action = keycloak.RequiredAction("required_action",
-            realm_id=realm.realm,
-            alias="webauthn-register",
-            enabled=True,
-            name="Webauthn Register")
-        ```
 
         ## Import
 

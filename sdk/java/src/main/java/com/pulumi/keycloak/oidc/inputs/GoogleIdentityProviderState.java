@@ -48,14 +48,14 @@ public final class GoogleIdentityProviderState extends com.pulumi.resources.Reso
     }
 
     /**
-     * (Computed) The alias for the Google identity provider.
+     * The alias for the Google identity provider.
      * 
      */
     @Import(name="alias")
     private @Nullable Output<String> alias;
 
     /**
-     * @return (Computed) The alias for the Google identity provider.
+     * @return The alias for the Google identity provider.
      * 
      */
     public Optional<Output<String>> alias() {
@@ -138,14 +138,14 @@ public final class GoogleIdentityProviderState extends com.pulumi.resources.Reso
     }
 
     /**
-     * (Computed) Display name for the Google identity provider in the GUI.
+     * Display name for the Google identity provider in the GUI.
      * 
      */
     @Import(name="displayName")
     private @Nullable Output<String> displayName;
 
     /**
-     * @return (Computed) Display name for the Google identity provider in the GUI.
+     * @return Display name for the Google identity provider in the GUI.
      * 
      */
     public Optional<Output<String>> displayName() {
@@ -475,7 +475,7 @@ public final class GoogleIdentityProviderState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param alias (Computed) The alias for the Google identity provider.
+         * @param alias The alias for the Google identity provider.
          * 
          * @return builder
          * 
@@ -486,7 +486,7 @@ public final class GoogleIdentityProviderState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param alias (Computed) The alias for the Google identity provider.
+         * @param alias The alias for the Google identity provider.
          * 
          * @return builder
          * 
@@ -601,7 +601,7 @@ public final class GoogleIdentityProviderState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param displayName (Computed) Display name for the Google identity provider in the GUI.
+         * @param displayName Display name for the Google identity provider in the GUI.
          * 
          * @return builder
          * 
@@ -612,7 +612,7 @@ public final class GoogleIdentityProviderState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param displayName (Computed) Display name for the Google identity provider in the GUI.
+         * @param displayName Display name for the Google identity provider in the GUI.
          * 
          * @return builder
          * 

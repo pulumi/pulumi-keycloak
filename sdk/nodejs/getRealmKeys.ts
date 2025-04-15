@@ -14,6 +14,30 @@ import * as utilities from "./utilities";
  * - A key must meet all filter criteria
  * - This data source may return more than one value.
  * - If no key matches the filter criteria, then an error will be returned.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * const realmKeys = keycloak.getRealmKeysOutput({
+ *     realmId: realm.id,
+ *     algorithms: [
+ *         "AES",
+ *         "RS256",
+ *     ],
+ *     statuses: [
+ *         "ACTIVE",
+ *         "PASSIVE",
+ *     ],
+ * });
+ * export const certificate = realmKeys.apply(realmKeys => realmKeys.keys?.[0]?.certificate);
+ * ```
  */
 export function getRealmKeys(args: GetRealmKeysArgs, opts?: pulumi.InvokeOptions): Promise<GetRealmKeysResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -69,6 +93,30 @@ export interface GetRealmKeysResult {
  * - A key must meet all filter criteria
  * - This data source may return more than one value.
  * - If no key matches the filter criteria, then an error will be returned.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * const realmKeys = keycloak.getRealmKeysOutput({
+ *     realmId: realm.id,
+ *     algorithms: [
+ *         "AES",
+ *         "RS256",
+ *     ],
+ *     statuses: [
+ *         "ACTIVE",
+ *         "PASSIVE",
+ *     ],
+ * });
+ * export const certificate = realmKeys.apply(realmKeys => realmKeys.keys?.[0]?.certificate);
+ * ```
  */
 export function getRealmKeysOutput(args: GetRealmKeysOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetRealmKeysResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

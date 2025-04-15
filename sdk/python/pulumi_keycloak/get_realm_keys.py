@@ -106,6 +106,27 @@ def get_realm_keys(algorithms: Optional[Sequence[builtins.str]] = None,
     - This data source may return more than one value.
     - If no key matches the filter criteria, then an error will be returned.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_keycloak as keycloak
+
+    realm = keycloak.Realm("realm",
+        realm="my-realm",
+        enabled=True)
+    realm_keys = keycloak.get_realm_keys_output(realm_id=realm.id,
+        algorithms=[
+            "AES",
+            "RS256",
+        ],
+        statuses=[
+            "ACTIVE",
+            "PASSIVE",
+        ])
+    pulumi.export("certificate", realm_keys.keys[0].certificate)
+    ```
+
 
     :param Sequence[builtins.str] algorithms: When specified, keys will be filtered by algorithm. The algorithms can be any of `HS256`, `RS256`,`AES`, etc.
     :param builtins.str realm_id: The realm from which the keys will be retrieved.
@@ -136,6 +157,27 @@ def get_realm_keys_output(algorithms: Optional[pulumi.Input[Optional[Sequence[bu
     - A key must meet all filter criteria
     - This data source may return more than one value.
     - If no key matches the filter criteria, then an error will be returned.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_keycloak as keycloak
+
+    realm = keycloak.Realm("realm",
+        realm="my-realm",
+        enabled=True)
+    realm_keys = keycloak.get_realm_keys_output(realm_id=realm.id,
+        algorithms=[
+            "AES",
+            "RS256",
+        ],
+        statuses=[
+            "ACTIVE",
+            "PASSIVE",
+        ])
+    pulumi.export("certificate", realm_keys.keys[0].certificate)
+    ```
 
 
     :param Sequence[builtins.str] algorithms: When specified, keys will be filtered by algorithm. The algorithms can be any of `HS256`, `RS256`,`AES`, etc.

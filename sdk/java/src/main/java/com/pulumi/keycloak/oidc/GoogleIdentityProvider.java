@@ -114,14 +114,14 @@ public class GoogleIdentityProvider extends com.pulumi.resources.CustomResource 
         return Codegen.optional(this.addReadTokenRoleOnCreate);
     }
     /**
-     * (Computed) The alias for the Google identity provider.
+     * The alias for the Google identity provider.
      * 
      */
     @Export(name="alias", refs={String.class}, tree="[0]")
     private Output<String> alias;
 
     /**
-     * @return (Computed) The alias for the Google identity provider.
+     * @return The alias for the Google identity provider.
      * 
      */
     public Output<String> alias() {
@@ -198,14 +198,14 @@ public class GoogleIdentityProvider extends com.pulumi.resources.CustomResource 
         return Codegen.optional(this.disableUserInfo);
     }
     /**
-     * (Computed) Display name for the Google identity provider in the GUI.
+     * Display name for the Google identity provider in the GUI.
      * 
      */
     @Export(name="displayName", refs={String.class}, tree="[0]")
     private Output<String> displayName;
 
     /**
-     * @return (Computed) Display name for the Google identity provider in the GUI.
+     * @return Display name for the Google identity provider in the GUI.
      * 
      */
     public Output<String> displayName() {
