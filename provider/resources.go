@@ -66,7 +66,7 @@ func Provider() tfbridge.ProviderInfo {
 	prov := tfbridge.ProviderInfo{
 		P:                 p,
 		Name:              "keycloak",
-		GitHubOrg:         "mrparkers",
+		GitHubOrg:         "keycloak",
 		Description:       "A Pulumi package for creating and managing keycloak cloud resources.",
 		Keywords:          []string{"pulumi", "keycloak"},
 		License:           "Apache-2.0",
