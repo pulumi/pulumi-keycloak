@@ -53,6 +53,7 @@ export interface GetClientArgs {
  * A collection of values returned by getClient.
  */
 export interface GetClientResult {
+    readonly alwaysDisplayInConsole: boolean;
     readonly assertionConsumerPostUrl: string;
     readonly assertionConsumerRedirectUrl: string;
     readonly authenticationFlowBindingOverrides: outputs.saml.GetClientAuthenticationFlowBindingOverride[];
@@ -60,6 +61,7 @@ export interface GetClientResult {
     readonly canonicalizationMethod: string;
     readonly clientId: string;
     readonly clientSignatureRequired: boolean;
+    readonly consentRequired: boolean;
     readonly description: string;
     readonly enabled: boolean;
     readonly encryptAssertions: boolean;

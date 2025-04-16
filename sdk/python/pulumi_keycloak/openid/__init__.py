@@ -10,6 +10,7 @@ from .audience_protocol_mapper import *
 from .audience_resolve_protocol_mapper import *
 from .client import *
 from .client_aggregate_policy import *
+from .client_authorization_client_scope_policy import *
 from .client_authorization_permission import *
 from .client_authorization_resource import *
 from .client_authorization_scope import *

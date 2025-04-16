@@ -30,6 +30,7 @@ class UserArgs:
                  enabled: Optional[pulumi.Input[builtins.bool]] = None,
                  federated_identities: Optional[pulumi.Input[Sequence[pulumi.Input['UserFederatedIdentityArgs']]]] = None,
                  first_name: Optional[pulumi.Input[builtins.str]] = None,
+                 import_: Optional[pulumi.Input[builtins.bool]] = None,
                  initial_password: Optional[pulumi.Input['UserInitialPasswordArgs']] = None,
                  last_name: Optional[pulumi.Input[builtins.str]] = None,
                  required_actions: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None):
@@ -43,6 +44,7 @@ class UserArgs:
         :param pulumi.Input[builtins.bool] enabled: When false, this user cannot log in. Defaults to `true`.
         :param pulumi.Input[Sequence[pulumi.Input['UserFederatedIdentityArgs']]] federated_identities: When specified, the user will be linked to a federated identity provider. Refer to the federated user example for more details.
         :param pulumi.Input[builtins.str] first_name: The user's first name.
+        :param pulumi.Input[builtins.bool] import_: When `true`, the user with the specified `username` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with users that Keycloak creates automatically during realm creation, such as `admin`. Note, that the user will not be removed during destruction if `import` is `true`.
         :param pulumi.Input['UserInitialPasswordArgs'] initial_password: When given, the user's initial password will be set. This attribute is only respected during initial user creation.
         :param pulumi.Input[builtins.str] last_name: The user's last name.
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] required_actions: A list of required user actions.
@@ -61,6 +63,8 @@ class UserArgs:
             pulumi.set(__self__, "federated_identities", federated_identities)
         if first_name is not None:
             pulumi.set(__self__, "first_name", first_name)
+        if import_ is not None:
+            pulumi.set(__self__, "import_", import_)
         if initial_password is not None:
             pulumi.set(__self__, "initial_password", initial_password)
         if last_name is not None:
@@ -165,6 +169,18 @@ class UserArgs:
         pulumi.set(self, "first_name", value)
 
     @property
+    @pulumi.getter(name="import")
+    def import_(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        When `true`, the user with the specified `username` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with users that Keycloak creates automatically during realm creation, such as `admin`. Note, that the user will not be removed during destruction if `import` is `true`.
+        """
+        return pulumi.get(self, "import_")
+
+    @import_.setter
+    def import_(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "import_", value)
+
+    @property
     @pulumi.getter(name="initialPassword")
     def initial_password(self) -> Optional[pulumi.Input['UserInitialPasswordArgs']]:
         """
@@ -210,6 +226,7 @@ class _UserState:
                  enabled: Optional[pulumi.Input[builtins.bool]] = None,
                  federated_identities: Optional[pulumi.Input[Sequence[pulumi.Input['UserFederatedIdentityArgs']]]] = None,
                  first_name: Optional[pulumi.Input[builtins.str]] = None,
+                 import_: Optional[pulumi.Input[builtins.bool]] = None,
                  initial_password: Optional[pulumi.Input['UserInitialPasswordArgs']] = None,
                  last_name: Optional[pulumi.Input[builtins.str]] = None,
                  realm_id: Optional[pulumi.Input[builtins.str]] = None,
@@ -223,6 +240,7 @@ class _UserState:
         :param pulumi.Input[builtins.bool] enabled: When false, this user cannot log in. Defaults to `true`.
         :param pulumi.Input[Sequence[pulumi.Input['UserFederatedIdentityArgs']]] federated_identities: When specified, the user will be linked to a federated identity provider. Refer to the federated user example for more details.
         :param pulumi.Input[builtins.str] first_name: The user's first name.
+        :param pulumi.Input[builtins.bool] import_: When `true`, the user with the specified `username` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with users that Keycloak creates automatically during realm creation, such as `admin`. Note, that the user will not be removed during destruction if `import` is `true`.
         :param pulumi.Input['UserInitialPasswordArgs'] initial_password: When given, the user's initial password will be set. This attribute is only respected during initial user creation.
         :param pulumi.Input[builtins.str] last_name: The user's last name.
         :param pulumi.Input[builtins.str] realm_id: The realm this user belongs to.
@@ -241,6 +259,8 @@ class _UserState:
             pulumi.set(__self__, "federated_identities", federated_identities)
         if first_name is not None:
             pulumi.set(__self__, "first_name", first_name)
+        if import_ is not None:
+            pulumi.set(__self__, "import_", import_)
         if initial_password is not None:
             pulumi.set(__self__, "initial_password", initial_password)
         if last_name is not None:
@@ -325,6 +345,18 @@ class _UserState:
         pulumi.set(self, "first_name", value)
 
     @property
+    @pulumi.getter(name="import")
+    def import_(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        When `true`, the user with the specified `username` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with users that Keycloak creates automatically during realm creation, such as `admin`. Note, that the user will not be removed during destruction if `import` is `true`.
+        """
+        return pulumi.get(self, "import_")
+
+    @import_.setter
+    def import_(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "import_", value)
+
+    @property
     @pulumi.getter(name="initialPassword")
     def initial_password(self) -> Optional[pulumi.Input['UserInitialPasswordArgs']]:
         """
@@ -396,6 +428,7 @@ class User(pulumi.CustomResource):
                  enabled: Optional[pulumi.Input[builtins.bool]] = None,
                  federated_identities: Optional[pulumi.Input[Sequence[pulumi.Input[Union['UserFederatedIdentityArgs', 'UserFederatedIdentityArgsDict']]]]] = None,
                  first_name: Optional[pulumi.Input[builtins.str]] = None,
+                 import_: Optional[pulumi.Input[builtins.bool]] = None,
                  initial_password: Optional[pulumi.Input[Union['UserInitialPasswordArgs', 'UserInitialPasswordArgsDict']]] = None,
                  last_name: Optional[pulumi.Input[builtins.str]] = None,
                  realm_id: Optional[pulumi.Input[builtins.str]] = None,
@@ -464,6 +497,7 @@ class User(pulumi.CustomResource):
         :param pulumi.Input[builtins.bool] enabled: When false, this user cannot log in. Defaults to `true`.
         :param pulumi.Input[Sequence[pulumi.Input[Union['UserFederatedIdentityArgs', 'UserFederatedIdentityArgsDict']]]] federated_identities: When specified, the user will be linked to a federated identity provider. Refer to the federated user example for more details.
         :param pulumi.Input[builtins.str] first_name: The user's first name.
+        :param pulumi.Input[builtins.bool] import_: When `true`, the user with the specified `username` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with users that Keycloak creates automatically during realm creation, such as `admin`. Note, that the user will not be removed during destruction if `import` is `true`.
         :param pulumi.Input[Union['UserInitialPasswordArgs', 'UserInitialPasswordArgsDict']] initial_password: When given, the user's initial password will be set. This attribute is only respected during initial user creation.
         :param pulumi.Input[builtins.str] last_name: The user's last name.
         :param pulumi.Input[builtins.str] realm_id: The realm this user belongs to.
@@ -551,6 +585,7 @@ class User(pulumi.CustomResource):
                  enabled: Optional[pulumi.Input[builtins.bool]] = None,
                  federated_identities: Optional[pulumi.Input[Sequence[pulumi.Input[Union['UserFederatedIdentityArgs', 'UserFederatedIdentityArgsDict']]]]] = None,
                  first_name: Optional[pulumi.Input[builtins.str]] = None,
+                 import_: Optional[pulumi.Input[builtins.bool]] = None,
                  initial_password: Optional[pulumi.Input[Union['UserInitialPasswordArgs', 'UserInitialPasswordArgsDict']]] = None,
                  last_name: Optional[pulumi.Input[builtins.str]] = None,
                  realm_id: Optional[pulumi.Input[builtins.str]] = None,
@@ -571,6 +606,7 @@ class User(pulumi.CustomResource):
             __props__.__dict__["enabled"] = enabled
             __props__.__dict__["federated_identities"] = federated_identities
             __props__.__dict__["first_name"] = first_name
+            __props__.__dict__["import_"] = import_
             __props__.__dict__["initial_password"] = initial_password
             __props__.__dict__["last_name"] = last_name
             if realm_id is None and not opts.urn:
@@ -596,6 +632,7 @@ class User(pulumi.CustomResource):
             enabled: Optional[pulumi.Input[builtins.bool]] = None,
             federated_identities: Optional[pulumi.Input[Sequence[pulumi.Input[Union['UserFederatedIdentityArgs', 'UserFederatedIdentityArgsDict']]]]] = None,
             first_name: Optional[pulumi.Input[builtins.str]] = None,
+            import_: Optional[pulumi.Input[builtins.bool]] = None,
             initial_password: Optional[pulumi.Input[Union['UserInitialPasswordArgs', 'UserInitialPasswordArgsDict']]] = None,
             last_name: Optional[pulumi.Input[builtins.str]] = None,
             realm_id: Optional[pulumi.Input[builtins.str]] = None,
@@ -614,6 +651,7 @@ class User(pulumi.CustomResource):
         :param pulumi.Input[builtins.bool] enabled: When false, this user cannot log in. Defaults to `true`.
         :param pulumi.Input[Sequence[pulumi.Input[Union['UserFederatedIdentityArgs', 'UserFederatedIdentityArgsDict']]]] federated_identities: When specified, the user will be linked to a federated identity provider. Refer to the federated user example for more details.
         :param pulumi.Input[builtins.str] first_name: The user's first name.
+        :param pulumi.Input[builtins.bool] import_: When `true`, the user with the specified `username` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with users that Keycloak creates automatically during realm creation, such as `admin`. Note, that the user will not be removed during destruction if `import` is `true`.
         :param pulumi.Input[Union['UserInitialPasswordArgs', 'UserInitialPasswordArgsDict']] initial_password: When given, the user's initial password will be set. This attribute is only respected during initial user creation.
         :param pulumi.Input[builtins.str] last_name: The user's last name.
         :param pulumi.Input[builtins.str] realm_id: The realm this user belongs to.
@@ -630,6 +668,7 @@ class User(pulumi.CustomResource):
         __props__.__dict__["enabled"] = enabled
         __props__.__dict__["federated_identities"] = federated_identities
         __props__.__dict__["first_name"] = first_name
+        __props__.__dict__["import_"] = import_
         __props__.__dict__["initial_password"] = initial_password
         __props__.__dict__["last_name"] = last_name
         __props__.__dict__["realm_id"] = realm_id
@@ -684,6 +723,14 @@ class User(pulumi.CustomResource):
         The user's first name.
         """
         return pulumi.get(self, "first_name")
+
+    @property
+    @pulumi.getter(name="import")
+    def import_(self) -> pulumi.Output[Optional[builtins.bool]]:
+        """
+        When `true`, the user with the specified `username` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with users that Keycloak creates automatically during realm creation, such as `admin`. Note, that the user will not be removed during destruction if `import` is `true`.
+        """
+        return pulumi.get(self, "import_")
 
     @property
     @pulumi.getter(name="initialPassword")

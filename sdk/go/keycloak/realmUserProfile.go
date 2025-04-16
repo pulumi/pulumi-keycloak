@@ -19,6 +19,136 @@ import (
 // Information for Keycloak versions < 24:
 // The realm linked to the `RealmUserProfile` resource must have the user profile feature enabled.
 // It can be done via the administration UI, or by setting the `userProfileEnabled` realm attribute to `true`.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"encoding/json"
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm: pulumi.String("my-realm"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			tmpJSON0, err := json.Marshal([]string{
+//				"opt1",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json0 := string(tmpJSON0)
+//			tmpJSON1, err := json.Marshal(map[string]interface{}{
+//				"key": "val",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json1 := string(tmpJSON1)
+//			tmpJSON2, err := json.Marshal(map[string]interface{}{
+//				"key": "val",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json2 := string(tmpJSON2)
+//			_, err = keycloak.NewRealmUserProfile(ctx, "userprofile", &keycloak.RealmUserProfileArgs{
+//				RealmId:                  pulumi.Any(myRealm.Id),
+//				UnmanagedAttributePolicy: pulumi.String("ENABLED"),
+//				Attributes: keycloak.RealmUserProfileAttributeArray{
+//					&keycloak.RealmUserProfileAttributeArgs{
+//						Name:        pulumi.String("field1"),
+//						DisplayName: pulumi.String("Field 1"),
+//						Group:       pulumi.String("group1"),
+//						MultiValued: pulumi.Bool(false),
+//						EnabledWhenScopes: pulumi.StringArray{
+//							pulumi.String("offline_access"),
+//						},
+//						RequiredForRoles: pulumi.StringArray{
+//							pulumi.String("user"),
+//						},
+//						RequiredForScopes: pulumi.StringArray{
+//							pulumi.String("offline_access"),
+//						},
+//						Permissions: &keycloak.RealmUserProfileAttributePermissionsArgs{
+//							Views: pulumi.StringArray{
+//								pulumi.String("admin"),
+//								pulumi.String("user"),
+//							},
+//							Edits: pulumi.StringArray{
+//								pulumi.String("admin"),
+//								pulumi.String("user"),
+//							},
+//						},
+//						Validators: keycloak.RealmUserProfileAttributeValidatorArray{
+//							&keycloak.RealmUserProfileAttributeValidatorArgs{
+//								Name: pulumi.String("person-name-prohibited-characters"),
+//							},
+//							&keycloak.RealmUserProfileAttributeValidatorArgs{
+//								Name: pulumi.String("pattern"),
+//								Config: pulumi.StringMap{
+//									"pattern":       pulumi.String("^[a-z]+$"),
+//									"error-message": pulumi.String("Nope"),
+//								},
+//							},
+//						},
+//						Annotations: pulumi.StringMap{
+//							"foo": pulumi.String("bar"),
+//						},
+//					},
+//					&keycloak.RealmUserProfileAttributeArgs{
+//						Name: pulumi.String("field2"),
+//						Validators: keycloak.RealmUserProfileAttributeValidatorArray{
+//							&keycloak.RealmUserProfileAttributeValidatorArgs{
+//								Name: pulumi.String("options"),
+//								Config: pulumi.StringMap{
+//									"options": pulumi.String(json0),
+//								},
+//							},
+//						},
+//						Annotations: pulumi.StringMap{
+//							"foo": pulumi.String(json1),
+//						},
+//					},
+//				},
+//				Groups: keycloak.RealmUserProfileGroupArray{
+//					&keycloak.RealmUserProfileGroupArgs{
+//						Name:               pulumi.String("group1"),
+//						DisplayHeader:      pulumi.String("Group 1"),
+//						DisplayDescription: pulumi.String("A first group"),
+//						Annotations: pulumi.StringMap{
+//							"foo":  pulumi.String("bar"),
+//							"foo2": pulumi.String(json2),
+//						},
+//					},
+//					&keycloak.RealmUserProfileGroupArgs{
+//						Name: pulumi.String("group2"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// This resource currently does not support importing.
 type RealmUserProfile struct {
 	pulumi.CustomResourceState
 
@@ -28,6 +158,8 @@ type RealmUserProfile struct {
 	Groups RealmUserProfileGroupArrayOutput `pulumi:"groups"`
 	// The ID of the realm the user profile applies to.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// Unmanaged attributes are user attributes not explicitly defined in the user profile configuration. By default, unmanaged attributes are not enabled. Value could be one of `DISABLED`, `ENABLED`, `ADMIN_EDIT` or `ADMIN_VIEW`. If value is not specified it means `DISABLED`
+	UnmanagedAttributePolicy pulumi.StringPtrOutput `pulumi:"unmanagedAttributePolicy"`
 }
 
 // NewRealmUserProfile registers a new resource with the given unique name, arguments, and options.
@@ -69,6 +201,8 @@ type realmUserProfileState struct {
 	Groups []RealmUserProfileGroup `pulumi:"groups"`
 	// The ID of the realm the user profile applies to.
 	RealmId *string `pulumi:"realmId"`
+	// Unmanaged attributes are user attributes not explicitly defined in the user profile configuration. By default, unmanaged attributes are not enabled. Value could be one of `DISABLED`, `ENABLED`, `ADMIN_EDIT` or `ADMIN_VIEW`. If value is not specified it means `DISABLED`
+	UnmanagedAttributePolicy *string `pulumi:"unmanagedAttributePolicy"`
 }
 
 type RealmUserProfileState struct {
@@ -78,6 +212,8 @@ type RealmUserProfileState struct {
 	Groups RealmUserProfileGroupArrayInput
 	// The ID of the realm the user profile applies to.
 	RealmId pulumi.StringPtrInput
+	// Unmanaged attributes are user attributes not explicitly defined in the user profile configuration. By default, unmanaged attributes are not enabled. Value could be one of `DISABLED`, `ENABLED`, `ADMIN_EDIT` or `ADMIN_VIEW`. If value is not specified it means `DISABLED`
+	UnmanagedAttributePolicy pulumi.StringPtrInput
 }
 
 func (RealmUserProfileState) ElementType() reflect.Type {
@@ -91,6 +227,8 @@ type realmUserProfileArgs struct {
 	Groups []RealmUserProfileGroup `pulumi:"groups"`
 	// The ID of the realm the user profile applies to.
 	RealmId string `pulumi:"realmId"`
+	// Unmanaged attributes are user attributes not explicitly defined in the user profile configuration. By default, unmanaged attributes are not enabled. Value could be one of `DISABLED`, `ENABLED`, `ADMIN_EDIT` or `ADMIN_VIEW`. If value is not specified it means `DISABLED`
+	UnmanagedAttributePolicy *string `pulumi:"unmanagedAttributePolicy"`
 }
 
 // The set of arguments for constructing a RealmUserProfile resource.
@@ -101,6 +239,8 @@ type RealmUserProfileArgs struct {
 	Groups RealmUserProfileGroupArrayInput
 	// The ID of the realm the user profile applies to.
 	RealmId pulumi.StringInput
+	// Unmanaged attributes are user attributes not explicitly defined in the user profile configuration. By default, unmanaged attributes are not enabled. Value could be one of `DISABLED`, `ENABLED`, `ADMIN_EDIT` or `ADMIN_VIEW`. If value is not specified it means `DISABLED`
+	UnmanagedAttributePolicy pulumi.StringPtrInput
 }
 
 func (RealmUserProfileArgs) ElementType() reflect.Type {
@@ -203,6 +343,11 @@ func (o RealmUserProfileOutput) Groups() RealmUserProfileGroupArrayOutput {
 // The ID of the realm the user profile applies to.
 func (o RealmUserProfileOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *RealmUserProfile) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// Unmanaged attributes are user attributes not explicitly defined in the user profile configuration. By default, unmanaged attributes are not enabled. Value could be one of `DISABLED`, `ENABLED`, `ADMIN_EDIT` or `ADMIN_VIEW`. If value is not specified it means `DISABLED`
+func (o RealmUserProfileOutput) UnmanagedAttributePolicy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RealmUserProfile) pulumi.StringPtrOutput { return v.UnmanagedAttributePolicy }).(pulumi.StringPtrOutput)
 }
 
 type RealmUserProfileArrayOutput struct{ *pulumi.OutputState }

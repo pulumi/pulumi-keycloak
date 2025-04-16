@@ -55,6 +55,10 @@ export class Client extends pulumi.CustomResource {
     }
 
     /**
+     * Always list this client in the Account UI, even if the user does not have an active session.
+     */
+    public readonly alwaysDisplayInConsole!: pulumi.Output<boolean | undefined>;
+    /**
      * SAML POST Binding URL for the client's assertion consumer service (login responses).
      */
     public readonly assertionConsumerPostUrl!: pulumi.Output<string | undefined>;
@@ -82,6 +86,10 @@ export class Client extends pulumi.CustomResource {
      * When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signingCertificate` and `signingPrivateKey`. Defaults to `true`.
      */
     public readonly clientSignatureRequired!: pulumi.Output<boolean | undefined>;
+    /**
+     * When `true`, users have to consent to client access. Defaults to `false`.
+     */
+    public readonly consentRequired!: pulumi.Output<boolean>;
     /**
      * The description of this client in the GUI.
      */
@@ -213,6 +221,7 @@ export class Client extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ClientState | undefined;
+            resourceInputs["alwaysDisplayInConsole"] = state ? state.alwaysDisplayInConsole : undefined;
             resourceInputs["assertionConsumerPostUrl"] = state ? state.assertionConsumerPostUrl : undefined;
             resourceInputs["assertionConsumerRedirectUrl"] = state ? state.assertionConsumerRedirectUrl : undefined;
             resourceInputs["authenticationFlowBindingOverrides"] = state ? state.authenticationFlowBindingOverrides : undefined;
@@ -220,6 +229,7 @@ export class Client extends pulumi.CustomResource {
             resourceInputs["canonicalizationMethod"] = state ? state.canonicalizationMethod : undefined;
             resourceInputs["clientId"] = state ? state.clientId : undefined;
             resourceInputs["clientSignatureRequired"] = state ? state.clientSignatureRequired : undefined;
+            resourceInputs["consentRequired"] = state ? state.consentRequired : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["enabled"] = state ? state.enabled : undefined;
             resourceInputs["encryptAssertions"] = state ? state.encryptAssertions : undefined;
@@ -258,6 +268,7 @@ export class Client extends pulumi.CustomResource {
             if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
+            resourceInputs["alwaysDisplayInConsole"] = args ? args.alwaysDisplayInConsole : undefined;
             resourceInputs["assertionConsumerPostUrl"] = args ? args.assertionConsumerPostUrl : undefined;
             resourceInputs["assertionConsumerRedirectUrl"] = args ? args.assertionConsumerRedirectUrl : undefined;
             resourceInputs["authenticationFlowBindingOverrides"] = args ? args.authenticationFlowBindingOverrides : undefined;
@@ -265,6 +276,7 @@ export class Client extends pulumi.CustomResource {
             resourceInputs["canonicalizationMethod"] = args ? args.canonicalizationMethod : undefined;
             resourceInputs["clientId"] = args ? args.clientId : undefined;
             resourceInputs["clientSignatureRequired"] = args ? args.clientSignatureRequired : undefined;
+            resourceInputs["consentRequired"] = args ? args.consentRequired : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["enabled"] = args ? args.enabled : undefined;
             resourceInputs["encryptAssertions"] = args ? args.encryptAssertions : undefined;
@@ -306,6 +318,10 @@ export class Client extends pulumi.CustomResource {
  */
 export interface ClientState {
     /**
+     * Always list this client in the Account UI, even if the user does not have an active session.
+     */
+    alwaysDisplayInConsole?: pulumi.Input<boolean>;
+    /**
      * SAML POST Binding URL for the client's assertion consumer service (login responses).
      */
     assertionConsumerPostUrl?: pulumi.Input<string>;
@@ -333,6 +349,10 @@ export interface ClientState {
      * When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signingCertificate` and `signingPrivateKey`. Defaults to `true`.
      */
     clientSignatureRequired?: pulumi.Input<boolean>;
+    /**
+     * When `true`, users have to consent to client access. Defaults to `false`.
+     */
+    consentRequired?: pulumi.Input<boolean>;
     /**
      * The description of this client in the GUI.
      */
@@ -457,6 +477,10 @@ export interface ClientState {
  */
 export interface ClientArgs {
     /**
+     * Always list this client in the Account UI, even if the user does not have an active session.
+     */
+    alwaysDisplayInConsole?: pulumi.Input<boolean>;
+    /**
      * SAML POST Binding URL for the client's assertion consumer service (login responses).
      */
     assertionConsumerPostUrl?: pulumi.Input<string>;
@@ -484,6 +508,10 @@ export interface ClientArgs {
      * When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signingCertificate` and `signingPrivateKey`. Defaults to `true`.
      */
     clientSignatureRequired?: pulumi.Input<boolean>;
+    /**
+     * When `true`, users have to consent to client access. Defaults to `false`.
+     */
+    consentRequired?: pulumi.Input<boolean>;
     /**
      * The description of this client in the GUI.
      */

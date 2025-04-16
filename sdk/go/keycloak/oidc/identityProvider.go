@@ -93,7 +93,7 @@ type IdentityProvider struct {
 	// When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
 	DisableUserInfo pulumi.BoolPtrOutput `pulumi:"disableUserInfo"`
 	// Display name for the identity provider in the GUI.
-	DisplayName pulumi.StringPtrOutput `pulumi:"displayName"`
+	DisplayName pulumi.StringOutput `pulumi:"displayName"`
 	// When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
 	Enabled     pulumi.BoolPtrOutput   `pulumi:"enabled"`
 	ExtraConfig pulumi.StringMapOutput `pulumi:"extraConfig"`
@@ -594,8 +594,8 @@ func (o IdentityProviderOutput) DisableUserInfo() pulumi.BoolPtrOutput {
 }
 
 // Display name for the identity provider in the GUI.
-func (o IdentityProviderOutput) DisplayName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.DisplayName }).(pulumi.StringPtrOutput)
+func (o IdentityProviderOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.StringOutput { return v.DisplayName }).(pulumi.StringOutput)
 }
 
 // When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.

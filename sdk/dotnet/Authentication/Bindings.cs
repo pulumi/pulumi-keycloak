@@ -107,6 +107,12 @@ namespace Pulumi.Keycloak.Authentication
         public Output<string> DockerAuthenticationFlow { get; private set; } = null!;
 
         /// <summary>
+        /// The alias of the flow to assign to the realm FirstBrokerLoginFlow (since Keycloak 24).
+        /// </summary>
+        [Output("firstBrokerLoginFlow")]
+        public Output<string> FirstBrokerLoginFlow { get; private set; } = null!;
+
+        /// <summary>
         /// The realm the authentication flow binding exists in.
         /// </summary>
         [Output("realmId")]
@@ -195,6 +201,12 @@ namespace Pulumi.Keycloak.Authentication
         public Input<string>? DockerAuthenticationFlow { get; set; }
 
         /// <summary>
+        /// The alias of the flow to assign to the realm FirstBrokerLoginFlow (since Keycloak 24).
+        /// </summary>
+        [Input("firstBrokerLoginFlow")]
+        public Input<string>? FirstBrokerLoginFlow { get; set; }
+
+        /// <summary>
         /// The realm the authentication flow binding exists in.
         /// </summary>
         [Input("realmId", required: true)]
@@ -243,6 +255,12 @@ namespace Pulumi.Keycloak.Authentication
         /// </summary>
         [Input("dockerAuthenticationFlow")]
         public Input<string>? DockerAuthenticationFlow { get; set; }
+
+        /// <summary>
+        /// The alias of the flow to assign to the realm FirstBrokerLoginFlow (since Keycloak 24).
+        /// </summary>
+        [Input("firstBrokerLoginFlow")]
+        public Input<string>? FirstBrokerLoginFlow { get; set; }
 
         /// <summary>
         /// The realm the authentication flow binding exists in.

@@ -79,8 +79,8 @@ import * as utilities from "./utilities";
  *
  * ## Default Client Scopes
  *
- * - `defaultDefaultClientScopes` - (Optional) A list of default `default client scopes` to be used for client definitions. Defaults to `[]` or keycloak's built-in default `default client-scopes`. For an alternative, please refer to the dedicated resource `keycloakRealmDefaultClientScopes`.
- * - `defaultOptionalClientScopes` - (Optional) A list of default `optional client scopes` to be used for client definitions. Defaults to `[]` or keycloak's built-in default `optional client-scopes`. For an alternative, please refer to the dedicated resource `keycloakRealmOptionalClientScopes`.
+ * - `defaultDefaultClientScopes` - (Optional) A list of default `default client scopes` to be used for client definitions. Defaults to `[]` or keycloak's built-in default `default client-scopes`. For an alternative, please refer to the dedicated resource `keycloak.RealmDefaultClientScopes`.
+ * - `defaultOptionalClientScopes` - (Optional) A list of default `optional client scopes` to be used for client definitions. Defaults to `[]` or keycloak's built-in default `optional client-scopes`. For an alternative, please refer to the dedicated resource `keycloak.RealmOptionalClientScopes`.
  *
  * ## Import
  *
@@ -172,6 +172,10 @@ export class Realm extends pulumi.CustomResource {
      */
     public readonly enabled!: pulumi.Output<boolean | undefined>;
     /**
+     * Which flow should be used for FirstBrokerLoginFlow
+     */
+    public readonly firstBrokerLoginFlow!: pulumi.Output<string>;
+    /**
      * When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
      */
     public readonly internalId!: pulumi.Output<string>;
@@ -183,6 +187,10 @@ export class Realm extends pulumi.CustomResource {
     public readonly offlineSessionIdleTimeout!: pulumi.Output<string>;
     public readonly offlineSessionMaxLifespan!: pulumi.Output<string>;
     public readonly offlineSessionMaxLifespanEnabled!: pulumi.Output<boolean | undefined>;
+    /**
+     * When `true`, organization support is enabled. Defaults to `false`.
+     */
+    public readonly organizationsEnabled!: pulumi.Output<boolean | undefined>;
     public readonly otpPolicy!: pulumi.Output<outputs.RealmOtpPolicy>;
     /**
      * String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
@@ -264,6 +272,7 @@ export class Realm extends pulumi.CustomResource {
             resourceInputs["editUsernameAllowed"] = state ? state.editUsernameAllowed : undefined;
             resourceInputs["emailTheme"] = state ? state.emailTheme : undefined;
             resourceInputs["enabled"] = state ? state.enabled : undefined;
+            resourceInputs["firstBrokerLoginFlow"] = state ? state.firstBrokerLoginFlow : undefined;
             resourceInputs["internalId"] = state ? state.internalId : undefined;
             resourceInputs["internationalization"] = state ? state.internationalization : undefined;
             resourceInputs["loginTheme"] = state ? state.loginTheme : undefined;
@@ -273,6 +282,7 @@ export class Realm extends pulumi.CustomResource {
             resourceInputs["offlineSessionIdleTimeout"] = state ? state.offlineSessionIdleTimeout : undefined;
             resourceInputs["offlineSessionMaxLifespan"] = state ? state.offlineSessionMaxLifespan : undefined;
             resourceInputs["offlineSessionMaxLifespanEnabled"] = state ? state.offlineSessionMaxLifespanEnabled : undefined;
+            resourceInputs["organizationsEnabled"] = state ? state.organizationsEnabled : undefined;
             resourceInputs["otpPolicy"] = state ? state.otpPolicy : undefined;
             resourceInputs["passwordPolicy"] = state ? state.passwordPolicy : undefined;
             resourceInputs["realm"] = state ? state.realm : undefined;
@@ -325,6 +335,7 @@ export class Realm extends pulumi.CustomResource {
             resourceInputs["editUsernameAllowed"] = args ? args.editUsernameAllowed : undefined;
             resourceInputs["emailTheme"] = args ? args.emailTheme : undefined;
             resourceInputs["enabled"] = args ? args.enabled : undefined;
+            resourceInputs["firstBrokerLoginFlow"] = args ? args.firstBrokerLoginFlow : undefined;
             resourceInputs["internalId"] = args ? args.internalId : undefined;
             resourceInputs["internationalization"] = args ? args.internationalization : undefined;
             resourceInputs["loginTheme"] = args ? args.loginTheme : undefined;
@@ -334,6 +345,7 @@ export class Realm extends pulumi.CustomResource {
             resourceInputs["offlineSessionIdleTimeout"] = args ? args.offlineSessionIdleTimeout : undefined;
             resourceInputs["offlineSessionMaxLifespan"] = args ? args.offlineSessionMaxLifespan : undefined;
             resourceInputs["offlineSessionMaxLifespanEnabled"] = args ? args.offlineSessionMaxLifespanEnabled : undefined;
+            resourceInputs["organizationsEnabled"] = args ? args.organizationsEnabled : undefined;
             resourceInputs["otpPolicy"] = args ? args.otpPolicy : undefined;
             resourceInputs["passwordPolicy"] = args ? args.passwordPolicy : undefined;
             resourceInputs["realm"] = args ? args.realm : undefined;
@@ -416,6 +428,10 @@ export interface RealmState {
      */
     enabled?: pulumi.Input<boolean>;
     /**
+     * Which flow should be used for FirstBrokerLoginFlow
+     */
+    firstBrokerLoginFlow?: pulumi.Input<string>;
+    /**
      * When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
      */
     internalId?: pulumi.Input<string>;
@@ -427,6 +443,10 @@ export interface RealmState {
     offlineSessionIdleTimeout?: pulumi.Input<string>;
     offlineSessionMaxLifespan?: pulumi.Input<string>;
     offlineSessionMaxLifespanEnabled?: pulumi.Input<boolean>;
+    /**
+     * When `true`, organization support is enabled. Defaults to `false`.
+     */
+    organizationsEnabled?: pulumi.Input<boolean>;
     otpPolicy?: pulumi.Input<inputs.RealmOtpPolicy>;
     /**
      * String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
@@ -525,6 +545,10 @@ export interface RealmArgs {
      */
     enabled?: pulumi.Input<boolean>;
     /**
+     * Which flow should be used for FirstBrokerLoginFlow
+     */
+    firstBrokerLoginFlow?: pulumi.Input<string>;
+    /**
      * When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
      */
     internalId?: pulumi.Input<string>;
@@ -536,6 +560,10 @@ export interface RealmArgs {
     offlineSessionIdleTimeout?: pulumi.Input<string>;
     offlineSessionMaxLifespan?: pulumi.Input<string>;
     offlineSessionMaxLifespanEnabled?: pulumi.Input<boolean>;
+    /**
+     * When `true`, organization support is enabled. Defaults to `false`.
+     */
+    organizationsEnabled?: pulumi.Input<boolean>;
     otpPolicy?: pulumi.Input<inputs.RealmOtpPolicy>;
     /**
      * String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies

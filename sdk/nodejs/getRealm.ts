@@ -92,6 +92,7 @@ export interface GetRealmResult {
     readonly editUsernameAllowed: boolean;
     readonly emailTheme: string;
     readonly enabled: boolean;
+    readonly firstBrokerLoginFlow: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
@@ -105,6 +106,7 @@ export interface GetRealmResult {
     readonly offlineSessionIdleTimeout: string;
     readonly offlineSessionMaxLifespan: string;
     readonly offlineSessionMaxLifespanEnabled: boolean;
+    readonly organizationsEnabled: boolean;
     readonly otpPolicy: outputs.GetRealmOtpPolicy;
     readonly passwordPolicy: string;
     readonly realm: string;

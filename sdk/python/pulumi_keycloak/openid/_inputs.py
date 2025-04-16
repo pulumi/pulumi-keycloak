@@ -20,6 +20,8 @@ __all__ = [
     'ClientAuthenticationFlowBindingOverridesArgsDict',
     'ClientAuthorizationArgs',
     'ClientAuthorizationArgsDict',
+    'ClientAuthorizationClientScopePolicyScopeArgs',
+    'ClientAuthorizationClientScopePolicyScopeArgsDict',
     'ClientGroupPolicyGroupArgs',
     'ClientGroupPolicyGroupArgsDict',
     'ClientPermissionsConfigureScopeArgs',
@@ -183,6 +185,41 @@ class ClientAuthorizationArgs:
     @keep_defaults.setter
     def keep_defaults(self, value: Optional[pulumi.Input[builtins.bool]]):
         pulumi.set(self, "keep_defaults", value)
+
+
+if not MYPY:
+    class ClientAuthorizationClientScopePolicyScopeArgsDict(TypedDict):
+        id: pulumi.Input[builtins.str]
+        required: NotRequired[pulumi.Input[builtins.bool]]
+elif False:
+    ClientAuthorizationClientScopePolicyScopeArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ClientAuthorizationClientScopePolicyScopeArgs:
+    def __init__(__self__, *,
+                 id: pulumi.Input[builtins.str],
+                 required: Optional[pulumi.Input[builtins.bool]] = None):
+        pulumi.set(__self__, "id", id)
+        if required is not None:
+            pulumi.set(__self__, "required", required)
+
+    @property
+    @pulumi.getter
+    def id(self) -> pulumi.Input[builtins.str]:
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: pulumi.Input[builtins.str]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter
+    def required(self) -> Optional[pulumi.Input[builtins.bool]]:
+        return pulumi.get(self, "required")
+
+    @required.setter
+    def required(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "required", value)
 
 
 if not MYPY:

@@ -281,6 +281,8 @@ type googleIdentityProviderArgs struct {
 	AcceptsPromptNoneForwardFromClient *bool `pulumi:"acceptsPromptNoneForwardFromClient"`
 	// When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
 	AddReadTokenRoleOnCreate *bool `pulumi:"addReadTokenRoleOnCreate"`
+	// The alias for the Google identity provider.
+	Alias *string `pulumi:"alias"`
 	// Enable/disable authenticate users by default.
 	AuthenticateByDefault *bool `pulumi:"authenticateByDefault"`
 	// The client or client identifier registered within the identity provider.
@@ -291,6 +293,8 @@ type googleIdentityProviderArgs struct {
 	DefaultScopes *string `pulumi:"defaultScopes"`
 	// When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
 	DisableUserInfo *bool `pulumi:"disableUserInfo"`
+	// Display name for the Google identity provider in the GUI.
+	DisplayName *string `pulumi:"displayName"`
 	// When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
 	Enabled     *bool             `pulumi:"enabled"`
 	ExtraConfig map[string]string `pulumi:"extraConfig"`
@@ -328,6 +332,8 @@ type GoogleIdentityProviderArgs struct {
 	AcceptsPromptNoneForwardFromClient pulumi.BoolPtrInput
 	// When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
 	AddReadTokenRoleOnCreate pulumi.BoolPtrInput
+	// The alias for the Google identity provider.
+	Alias pulumi.StringPtrInput
 	// Enable/disable authenticate users by default.
 	AuthenticateByDefault pulumi.BoolPtrInput
 	// The client or client identifier registered within the identity provider.
@@ -338,6 +344,8 @@ type GoogleIdentityProviderArgs struct {
 	DefaultScopes pulumi.StringPtrInput
 	// When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
 	DisableUserInfo pulumi.BoolPtrInput
+	// Display name for the Google identity provider in the GUI.
+	DisplayName pulumi.StringPtrInput
 	// When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
 	Enabled     pulumi.BoolPtrInput
 	ExtraConfig pulumi.StringMapInput

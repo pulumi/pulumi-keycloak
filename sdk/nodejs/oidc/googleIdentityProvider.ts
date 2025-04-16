@@ -83,7 +83,7 @@ export class GoogleIdentityProvider extends pulumi.CustomResource {
     /**
      * The alias for the Google identity provider.
      */
-    public /*out*/ readonly alias!: pulumi.Output<string>;
+    public readonly alias!: pulumi.Output<string>;
     /**
      * Enable/disable authenticate users by default.
      */
@@ -107,7 +107,7 @@ export class GoogleIdentityProvider extends pulumi.CustomResource {
     /**
      * Display name for the Google identity provider in the GUI.
      */
-    public /*out*/ readonly displayName!: pulumi.Output<string>;
+    public readonly displayName!: pulumi.Output<string>;
     /**
      * When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
      */
@@ -221,11 +221,13 @@ export class GoogleIdentityProvider extends pulumi.CustomResource {
             }
             resourceInputs["acceptsPromptNoneForwardFromClient"] = args ? args.acceptsPromptNoneForwardFromClient : undefined;
             resourceInputs["addReadTokenRoleOnCreate"] = args ? args.addReadTokenRoleOnCreate : undefined;
+            resourceInputs["alias"] = args ? args.alias : undefined;
             resourceInputs["authenticateByDefault"] = args ? args.authenticateByDefault : undefined;
             resourceInputs["clientId"] = args ? args.clientId : undefined;
             resourceInputs["clientSecret"] = args?.clientSecret ? pulumi.secret(args.clientSecret) : undefined;
             resourceInputs["defaultScopes"] = args ? args.defaultScopes : undefined;
             resourceInputs["disableUserInfo"] = args ? args.disableUserInfo : undefined;
+            resourceInputs["displayName"] = args ? args.displayName : undefined;
             resourceInputs["enabled"] = args ? args.enabled : undefined;
             resourceInputs["extraConfig"] = args ? args.extraConfig : undefined;
             resourceInputs["firstBrokerLoginFlowAlias"] = args ? args.firstBrokerLoginFlowAlias : undefined;
@@ -241,8 +243,6 @@ export class GoogleIdentityProvider extends pulumi.CustomResource {
             resourceInputs["syncMode"] = args ? args.syncMode : undefined;
             resourceInputs["trustEmail"] = args ? args.trustEmail : undefined;
             resourceInputs["useUserIpParam"] = args ? args.useUserIpParam : undefined;
-            resourceInputs["alias"] = undefined /*out*/;
-            resourceInputs["displayName"] = undefined /*out*/;
             resourceInputs["internalId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -368,6 +368,10 @@ export interface GoogleIdentityProviderArgs {
      */
     addReadTokenRoleOnCreate?: pulumi.Input<boolean>;
     /**
+     * The alias for the Google identity provider.
+     */
+    alias?: pulumi.Input<string>;
+    /**
      * Enable/disable authenticate users by default.
      */
     authenticateByDefault?: pulumi.Input<boolean>;
@@ -387,6 +391,10 @@ export interface GoogleIdentityProviderArgs {
      * When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
      */
     disableUserInfo?: pulumi.Input<boolean>;
+    /**
+     * Display name for the Google identity provider in the GUI.
+     */
+    displayName?: pulumi.Input<string>;
     /**
      * When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
      */

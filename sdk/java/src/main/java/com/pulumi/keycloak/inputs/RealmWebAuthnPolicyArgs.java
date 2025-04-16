@@ -94,6 +94,21 @@ public final class RealmWebAuthnPolicyArgs extends com.pulumi.resources.Resource
     }
 
     /**
+     * A set of extra origins for non-web applications.
+     * 
+     */
+    @Import(name="extraOrigins")
+    private @Nullable Output<List<String>> extraOrigins;
+
+    /**
+     * @return A set of extra origins for non-web applications.
+     * 
+     */
+    public Optional<Output<List<String>>> extraOrigins() {
+        return Optional.ofNullable(this.extraOrigins);
+    }
+
+    /**
      * A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
      * 
      */
@@ -176,6 +191,7 @@ public final class RealmWebAuthnPolicyArgs extends com.pulumi.resources.Resource
         this.authenticatorAttachment = $.authenticatorAttachment;
         this.avoidSameAuthenticatorRegister = $.avoidSameAuthenticatorRegister;
         this.createTimeout = $.createTimeout;
+        this.extraOrigins = $.extraOrigins;
         this.relyingPartyEntityName = $.relyingPartyEntityName;
         this.relyingPartyId = $.relyingPartyId;
         this.requireResidentKey = $.requireResidentKey;
@@ -314,6 +330,37 @@ public final class RealmWebAuthnPolicyArgs extends com.pulumi.resources.Resource
          */
         public Builder createTimeout(Integer createTimeout) {
             return createTimeout(Output.of(createTimeout));
+        }
+
+        /**
+         * @param extraOrigins A set of extra origins for non-web applications.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder extraOrigins(@Nullable Output<List<String>> extraOrigins) {
+            $.extraOrigins = extraOrigins;
+            return this;
+        }
+
+        /**
+         * @param extraOrigins A set of extra origins for non-web applications.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder extraOrigins(List<String> extraOrigins) {
+            return extraOrigins(Output.of(extraOrigins));
+        }
+
+        /**
+         * @param extraOrigins A set of extra origins for non-web applications.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder extraOrigins(String... extraOrigins) {
+            return extraOrigins(List.of(extraOrigins));
         }
 
         /**

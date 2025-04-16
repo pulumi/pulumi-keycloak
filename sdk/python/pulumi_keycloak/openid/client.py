@@ -27,6 +27,7 @@ class ClientArgs:
                  realm_id: pulumi.Input[builtins.str],
                  access_token_lifespan: Optional[pulumi.Input[builtins.str]] = None,
                  admin_url: Optional[pulumi.Input[builtins.str]] = None,
+                 always_display_in_console: Optional[pulumi.Input[builtins.bool]] = None,
                  authentication_flow_binding_overrides: Optional[pulumi.Input['ClientAuthenticationFlowBindingOverridesArgs']] = None,
                  authorization: Optional[pulumi.Input['ClientAuthorizationArgs']] = None,
                  backchannel_logout_revoke_offline_sessions: Optional[pulumi.Input[builtins.bool]] = None,
@@ -45,6 +46,7 @@ class ClientArgs:
                  direct_access_grants_enabled: Optional[pulumi.Input[builtins.bool]] = None,
                  display_on_consent_screen: Optional[pulumi.Input[builtins.bool]] = None,
                  enabled: Optional[pulumi.Input[builtins.bool]] = None,
+                 exclude_issuer_from_auth_response: Optional[pulumi.Input[builtins.bool]] = None,
                  exclude_session_state_from_auth_response: Optional[pulumi.Input[builtins.bool]] = None,
                  extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]] = None,
                  frontchannel_logout_enabled: Optional[pulumi.Input[builtins.bool]] = None,
@@ -78,6 +80,7 @@ class ClientArgs:
         :param pulumi.Input[builtins.str] realm_id: The realm this client is attached to.
         :param pulumi.Input[builtins.str] access_token_lifespan: The amount of time in seconds before an access token expires. This will override the default for the realm.
         :param pulumi.Input[builtins.str] admin_url: URL to the admin interface of the client.
+        :param pulumi.Input[builtins.bool] always_display_in_console: Always list this client in the Account UI, even if the user does not have an active session.
         :param pulumi.Input['ClientAuthenticationFlowBindingOverridesArgs'] authentication_flow_binding_overrides: Override realm authentication flow bindings
         :param pulumi.Input['ClientAuthorizationArgs'] authorization: When this block is present, fine-grained authorization will be enabled for this client. The client's `access_type` must be `CONFIDENTIAL`, and `service_accounts_enabled` must be `true`. This block has the following arguments:
         :param pulumi.Input[builtins.bool] backchannel_logout_revoke_offline_sessions: Specifying whether a "revoke_offline_access" event is included in the Logout Token when the Backchannel Logout URL is used. Keycloak will revoke offline sessions when receiving a Logout Token with this event.
@@ -100,6 +103,7 @@ class ClientArgs:
         :param pulumi.Input[builtins.bool] direct_access_grants_enabled: When `true`, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to `false`.
         :param pulumi.Input[builtins.bool] display_on_consent_screen: When `true`, the consent screen will display information about the client itself. Defaults to `false`. This is applicable only when `consent_required` is `true`.
         :param pulumi.Input[builtins.bool] enabled: When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
+        :param pulumi.Input[builtins.bool] exclude_issuer_from_auth_response: When `true`, the parameter `iss` will not be included in OpenID Connect Authentication Response.
         :param pulumi.Input[builtins.bool] exclude_session_state_from_auth_response: When `true`, the parameter `session_state` will not be included in OpenID Connect Authentication Response.
         :param pulumi.Input[builtins.bool] frontchannel_logout_enabled: When `true`, frontchannel logout will be enabled for this client. Specify the url with `frontchannel_logout_url`. Defaults to `false`.
         :param pulumi.Input[builtins.str] frontchannel_logout_url: The frontchannel logout url. This is applicable only when `frontchannel_logout_enabled` is `true`.
@@ -130,6 +134,8 @@ class ClientArgs:
             pulumi.set(__self__, "access_token_lifespan", access_token_lifespan)
         if admin_url is not None:
             pulumi.set(__self__, "admin_url", admin_url)
+        if always_display_in_console is not None:
+            pulumi.set(__self__, "always_display_in_console", always_display_in_console)
         if authentication_flow_binding_overrides is not None:
             pulumi.set(__self__, "authentication_flow_binding_overrides", authentication_flow_binding_overrides)
         if authorization is not None:
@@ -166,6 +172,8 @@ class ClientArgs:
             pulumi.set(__self__, "display_on_consent_screen", display_on_consent_screen)
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
+        if exclude_issuer_from_auth_response is not None:
+            pulumi.set(__self__, "exclude_issuer_from_auth_response", exclude_issuer_from_auth_response)
         if exclude_session_state_from_auth_response is not None:
             pulumi.set(__self__, "exclude_session_state_from_auth_response", exclude_session_state_from_auth_response)
         if extra_config is not None:
@@ -273,6 +281,18 @@ class ClientArgs:
     @admin_url.setter
     def admin_url(self, value: Optional[pulumi.Input[builtins.str]]):
         pulumi.set(self, "admin_url", value)
+
+    @property
+    @pulumi.getter(name="alwaysDisplayInConsole")
+    def always_display_in_console(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        Always list this client in the Account UI, even if the user does not have an active session.
+        """
+        return pulumi.get(self, "always_display_in_console")
+
+    @always_display_in_console.setter
+    def always_display_in_console(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "always_display_in_console", value)
 
     @property
     @pulumi.getter(name="authenticationFlowBindingOverrides")
@@ -493,6 +513,18 @@ class ClientArgs:
     @enabled.setter
     def enabled(self, value: Optional[pulumi.Input[builtins.bool]]):
         pulumi.set(self, "enabled", value)
+
+    @property
+    @pulumi.getter(name="excludeIssuerFromAuthResponse")
+    def exclude_issuer_from_auth_response(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        When `true`, the parameter `iss` will not be included in OpenID Connect Authentication Response.
+        """
+        return pulumi.get(self, "exclude_issuer_from_auth_response")
+
+    @exclude_issuer_from_auth_response.setter
+    def exclude_issuer_from_auth_response(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "exclude_issuer_from_auth_response", value)
 
     @property
     @pulumi.getter(name="excludeSessionStateFromAuthResponse")
@@ -752,6 +784,7 @@ class _ClientState:
                  access_token_lifespan: Optional[pulumi.Input[builtins.str]] = None,
                  access_type: Optional[pulumi.Input[builtins.str]] = None,
                  admin_url: Optional[pulumi.Input[builtins.str]] = None,
+                 always_display_in_console: Optional[pulumi.Input[builtins.bool]] = None,
                  authentication_flow_binding_overrides: Optional[pulumi.Input['ClientAuthenticationFlowBindingOverridesArgs']] = None,
                  authorization: Optional[pulumi.Input['ClientAuthorizationArgs']] = None,
                  backchannel_logout_revoke_offline_sessions: Optional[pulumi.Input[builtins.bool]] = None,
@@ -771,6 +804,7 @@ class _ClientState:
                  direct_access_grants_enabled: Optional[pulumi.Input[builtins.bool]] = None,
                  display_on_consent_screen: Optional[pulumi.Input[builtins.bool]] = None,
                  enabled: Optional[pulumi.Input[builtins.bool]] = None,
+                 exclude_issuer_from_auth_response: Optional[pulumi.Input[builtins.bool]] = None,
                  exclude_session_state_from_auth_response: Optional[pulumi.Input[builtins.bool]] = None,
                  extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]] = None,
                  frontchannel_logout_enabled: Optional[pulumi.Input[builtins.bool]] = None,
@@ -805,6 +839,7 @@ class _ClientState:
                URIs for security. This client should be used for applications using the Implicit grant flow.
                - `BEARER-ONLY` - Used for services that never initiate a login. This client will only allow bearer token requests.
         :param pulumi.Input[builtins.str] admin_url: URL to the admin interface of the client.
+        :param pulumi.Input[builtins.bool] always_display_in_console: Always list this client in the Account UI, even if the user does not have an active session.
         :param pulumi.Input['ClientAuthenticationFlowBindingOverridesArgs'] authentication_flow_binding_overrides: Override realm authentication flow bindings
         :param pulumi.Input['ClientAuthorizationArgs'] authorization: When this block is present, fine-grained authorization will be enabled for this client. The client's `access_type` must be `CONFIDENTIAL`, and `service_accounts_enabled` must be `true`. This block has the following arguments:
         :param pulumi.Input[builtins.bool] backchannel_logout_revoke_offline_sessions: Specifying whether a "revoke_offline_access" event is included in the Logout Token when the Backchannel Logout URL is used. Keycloak will revoke offline sessions when receiving a Logout Token with this event.
@@ -828,6 +863,7 @@ class _ClientState:
         :param pulumi.Input[builtins.bool] direct_access_grants_enabled: When `true`, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to `false`.
         :param pulumi.Input[builtins.bool] display_on_consent_screen: When `true`, the consent screen will display information about the client itself. Defaults to `false`. This is applicable only when `consent_required` is `true`.
         :param pulumi.Input[builtins.bool] enabled: When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
+        :param pulumi.Input[builtins.bool] exclude_issuer_from_auth_response: When `true`, the parameter `iss` will not be included in OpenID Connect Authentication Response.
         :param pulumi.Input[builtins.bool] exclude_session_state_from_auth_response: When `true`, the parameter `session_state` will not be included in OpenID Connect Authentication Response.
         :param pulumi.Input[builtins.bool] frontchannel_logout_enabled: When `true`, frontchannel logout will be enabled for this client. Specify the url with `frontchannel_logout_url`. Defaults to `false`.
         :param pulumi.Input[builtins.str] frontchannel_logout_url: The frontchannel logout url. This is applicable only when `frontchannel_logout_enabled` is `true`.
@@ -860,6 +896,8 @@ class _ClientState:
             pulumi.set(__self__, "access_type", access_type)
         if admin_url is not None:
             pulumi.set(__self__, "admin_url", admin_url)
+        if always_display_in_console is not None:
+            pulumi.set(__self__, "always_display_in_console", always_display_in_console)
         if authentication_flow_binding_overrides is not None:
             pulumi.set(__self__, "authentication_flow_binding_overrides", authentication_flow_binding_overrides)
         if authorization is not None:
@@ -898,6 +936,8 @@ class _ClientState:
             pulumi.set(__self__, "display_on_consent_screen", display_on_consent_screen)
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
+        if exclude_issuer_from_auth_response is not None:
+            pulumi.set(__self__, "exclude_issuer_from_auth_response", exclude_issuer_from_auth_response)
         if exclude_session_state_from_auth_response is not None:
             pulumi.set(__self__, "exclude_session_state_from_auth_response", exclude_session_state_from_auth_response)
         if extra_config is not None:
@@ -987,6 +1027,18 @@ class _ClientState:
     @admin_url.setter
     def admin_url(self, value: Optional[pulumi.Input[builtins.str]]):
         pulumi.set(self, "admin_url", value)
+
+    @property
+    @pulumi.getter(name="alwaysDisplayInConsole")
+    def always_display_in_console(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        Always list this client in the Account UI, even if the user does not have an active session.
+        """
+        return pulumi.get(self, "always_display_in_console")
+
+    @always_display_in_console.setter
+    def always_display_in_console(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "always_display_in_console", value)
 
     @property
     @pulumi.getter(name="authenticationFlowBindingOverrides")
@@ -1219,6 +1271,18 @@ class _ClientState:
     @enabled.setter
     def enabled(self, value: Optional[pulumi.Input[builtins.bool]]):
         pulumi.set(self, "enabled", value)
+
+    @property
+    @pulumi.getter(name="excludeIssuerFromAuthResponse")
+    def exclude_issuer_from_auth_response(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        When `true`, the parameter `iss` will not be included in OpenID Connect Authentication Response.
+        """
+        return pulumi.get(self, "exclude_issuer_from_auth_response")
+
+    @exclude_issuer_from_auth_response.setter
+    def exclude_issuer_from_auth_response(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "exclude_issuer_from_auth_response", value)
 
     @property
     @pulumi.getter(name="excludeSessionStateFromAuthResponse")
@@ -1516,6 +1580,7 @@ class Client(pulumi.CustomResource):
                  access_token_lifespan: Optional[pulumi.Input[builtins.str]] = None,
                  access_type: Optional[pulumi.Input[builtins.str]] = None,
                  admin_url: Optional[pulumi.Input[builtins.str]] = None,
+                 always_display_in_console: Optional[pulumi.Input[builtins.bool]] = None,
                  authentication_flow_binding_overrides: Optional[pulumi.Input[Union['ClientAuthenticationFlowBindingOverridesArgs', 'ClientAuthenticationFlowBindingOverridesArgsDict']]] = None,
                  authorization: Optional[pulumi.Input[Union['ClientAuthorizationArgs', 'ClientAuthorizationArgsDict']]] = None,
                  backchannel_logout_revoke_offline_sessions: Optional[pulumi.Input[builtins.bool]] = None,
@@ -1535,6 +1600,7 @@ class Client(pulumi.CustomResource):
                  direct_access_grants_enabled: Optional[pulumi.Input[builtins.bool]] = None,
                  display_on_consent_screen: Optional[pulumi.Input[builtins.bool]] = None,
                  enabled: Optional[pulumi.Input[builtins.bool]] = None,
+                 exclude_issuer_from_auth_response: Optional[pulumi.Input[builtins.bool]] = None,
                  exclude_session_state_from_auth_response: Optional[pulumi.Input[builtins.bool]] = None,
                  extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]] = None,
                  frontchannel_logout_enabled: Optional[pulumi.Input[builtins.bool]] = None,
@@ -1612,6 +1678,7 @@ class Client(pulumi.CustomResource):
                URIs for security. This client should be used for applications using the Implicit grant flow.
                - `BEARER-ONLY` - Used for services that never initiate a login. This client will only allow bearer token requests.
         :param pulumi.Input[builtins.str] admin_url: URL to the admin interface of the client.
+        :param pulumi.Input[builtins.bool] always_display_in_console: Always list this client in the Account UI, even if the user does not have an active session.
         :param pulumi.Input[Union['ClientAuthenticationFlowBindingOverridesArgs', 'ClientAuthenticationFlowBindingOverridesArgsDict']] authentication_flow_binding_overrides: Override realm authentication flow bindings
         :param pulumi.Input[Union['ClientAuthorizationArgs', 'ClientAuthorizationArgsDict']] authorization: When this block is present, fine-grained authorization will be enabled for this client. The client's `access_type` must be `CONFIDENTIAL`, and `service_accounts_enabled` must be `true`. This block has the following arguments:
         :param pulumi.Input[builtins.bool] backchannel_logout_revoke_offline_sessions: Specifying whether a "revoke_offline_access" event is included in the Logout Token when the Backchannel Logout URL is used. Keycloak will revoke offline sessions when receiving a Logout Token with this event.
@@ -1635,6 +1702,7 @@ class Client(pulumi.CustomResource):
         :param pulumi.Input[builtins.bool] direct_access_grants_enabled: When `true`, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to `false`.
         :param pulumi.Input[builtins.bool] display_on_consent_screen: When `true`, the consent screen will display information about the client itself. Defaults to `false`. This is applicable only when `consent_required` is `true`.
         :param pulumi.Input[builtins.bool] enabled: When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
+        :param pulumi.Input[builtins.bool] exclude_issuer_from_auth_response: When `true`, the parameter `iss` will not be included in OpenID Connect Authentication Response.
         :param pulumi.Input[builtins.bool] exclude_session_state_from_auth_response: When `true`, the parameter `session_state` will not be included in OpenID Connect Authentication Response.
         :param pulumi.Input[builtins.bool] frontchannel_logout_enabled: When `true`, frontchannel logout will be enabled for this client. Specify the url with `frontchannel_logout_url`. Defaults to `false`.
         :param pulumi.Input[builtins.str] frontchannel_logout_url: The frontchannel logout url. This is applicable only when `frontchannel_logout_enabled` is `true`.
@@ -1727,6 +1795,7 @@ class Client(pulumi.CustomResource):
                  access_token_lifespan: Optional[pulumi.Input[builtins.str]] = None,
                  access_type: Optional[pulumi.Input[builtins.str]] = None,
                  admin_url: Optional[pulumi.Input[builtins.str]] = None,
+                 always_display_in_console: Optional[pulumi.Input[builtins.bool]] = None,
                  authentication_flow_binding_overrides: Optional[pulumi.Input[Union['ClientAuthenticationFlowBindingOverridesArgs', 'ClientAuthenticationFlowBindingOverridesArgsDict']]] = None,
                  authorization: Optional[pulumi.Input[Union['ClientAuthorizationArgs', 'ClientAuthorizationArgsDict']]] = None,
                  backchannel_logout_revoke_offline_sessions: Optional[pulumi.Input[builtins.bool]] = None,
@@ -1746,6 +1815,7 @@ class Client(pulumi.CustomResource):
                  direct_access_grants_enabled: Optional[pulumi.Input[builtins.bool]] = None,
                  display_on_consent_screen: Optional[pulumi.Input[builtins.bool]] = None,
                  enabled: Optional[pulumi.Input[builtins.bool]] = None,
+                 exclude_issuer_from_auth_response: Optional[pulumi.Input[builtins.bool]] = None,
                  exclude_session_state_from_auth_response: Optional[pulumi.Input[builtins.bool]] = None,
                  extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]] = None,
                  frontchannel_logout_enabled: Optional[pulumi.Input[builtins.bool]] = None,
@@ -1782,6 +1852,7 @@ class Client(pulumi.CustomResource):
                 raise TypeError("Missing required property 'access_type'")
             __props__.__dict__["access_type"] = access_type
             __props__.__dict__["admin_url"] = admin_url
+            __props__.__dict__["always_display_in_console"] = always_display_in_console
             __props__.__dict__["authentication_flow_binding_overrides"] = authentication_flow_binding_overrides
             __props__.__dict__["authorization"] = authorization
             __props__.__dict__["backchannel_logout_revoke_offline_sessions"] = backchannel_logout_revoke_offline_sessions
@@ -1803,6 +1874,7 @@ class Client(pulumi.CustomResource):
             __props__.__dict__["direct_access_grants_enabled"] = direct_access_grants_enabled
             __props__.__dict__["display_on_consent_screen"] = display_on_consent_screen
             __props__.__dict__["enabled"] = enabled
+            __props__.__dict__["exclude_issuer_from_auth_response"] = exclude_issuer_from_auth_response
             __props__.__dict__["exclude_session_state_from_auth_response"] = exclude_session_state_from_auth_response
             __props__.__dict__["extra_config"] = extra_config
             __props__.__dict__["frontchannel_logout_enabled"] = frontchannel_logout_enabled
@@ -1844,6 +1916,7 @@ class Client(pulumi.CustomResource):
             access_token_lifespan: Optional[pulumi.Input[builtins.str]] = None,
             access_type: Optional[pulumi.Input[builtins.str]] = None,
             admin_url: Optional[pulumi.Input[builtins.str]] = None,
+            always_display_in_console: Optional[pulumi.Input[builtins.bool]] = None,
             authentication_flow_binding_overrides: Optional[pulumi.Input[Union['ClientAuthenticationFlowBindingOverridesArgs', 'ClientAuthenticationFlowBindingOverridesArgsDict']]] = None,
             authorization: Optional[pulumi.Input[Union['ClientAuthorizationArgs', 'ClientAuthorizationArgsDict']]] = None,
             backchannel_logout_revoke_offline_sessions: Optional[pulumi.Input[builtins.bool]] = None,
@@ -1863,6 +1936,7 @@ class Client(pulumi.CustomResource):
             direct_access_grants_enabled: Optional[pulumi.Input[builtins.bool]] = None,
             display_on_consent_screen: Optional[pulumi.Input[builtins.bool]] = None,
             enabled: Optional[pulumi.Input[builtins.bool]] = None,
+            exclude_issuer_from_auth_response: Optional[pulumi.Input[builtins.bool]] = None,
             exclude_session_state_from_auth_response: Optional[pulumi.Input[builtins.bool]] = None,
             extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]] = None,
             frontchannel_logout_enabled: Optional[pulumi.Input[builtins.bool]] = None,
@@ -1902,6 +1976,7 @@ class Client(pulumi.CustomResource):
                URIs for security. This client should be used for applications using the Implicit grant flow.
                - `BEARER-ONLY` - Used for services that never initiate a login. This client will only allow bearer token requests.
         :param pulumi.Input[builtins.str] admin_url: URL to the admin interface of the client.
+        :param pulumi.Input[builtins.bool] always_display_in_console: Always list this client in the Account UI, even if the user does not have an active session.
         :param pulumi.Input[Union['ClientAuthenticationFlowBindingOverridesArgs', 'ClientAuthenticationFlowBindingOverridesArgsDict']] authentication_flow_binding_overrides: Override realm authentication flow bindings
         :param pulumi.Input[Union['ClientAuthorizationArgs', 'ClientAuthorizationArgsDict']] authorization: When this block is present, fine-grained authorization will be enabled for this client. The client's `access_type` must be `CONFIDENTIAL`, and `service_accounts_enabled` must be `true`. This block has the following arguments:
         :param pulumi.Input[builtins.bool] backchannel_logout_revoke_offline_sessions: Specifying whether a "revoke_offline_access" event is included in the Logout Token when the Backchannel Logout URL is used. Keycloak will revoke offline sessions when receiving a Logout Token with this event.
@@ -1925,6 +2000,7 @@ class Client(pulumi.CustomResource):
         :param pulumi.Input[builtins.bool] direct_access_grants_enabled: When `true`, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to `false`.
         :param pulumi.Input[builtins.bool] display_on_consent_screen: When `true`, the consent screen will display information about the client itself. Defaults to `false`. This is applicable only when `consent_required` is `true`.
         :param pulumi.Input[builtins.bool] enabled: When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
+        :param pulumi.Input[builtins.bool] exclude_issuer_from_auth_response: When `true`, the parameter `iss` will not be included in OpenID Connect Authentication Response.
         :param pulumi.Input[builtins.bool] exclude_session_state_from_auth_response: When `true`, the parameter `session_state` will not be included in OpenID Connect Authentication Response.
         :param pulumi.Input[builtins.bool] frontchannel_logout_enabled: When `true`, frontchannel logout will be enabled for this client. Specify the url with `frontchannel_logout_url`. Defaults to `false`.
         :param pulumi.Input[builtins.str] frontchannel_logout_url: The frontchannel logout url. This is applicable only when `frontchannel_logout_enabled` is `true`.
@@ -1958,6 +2034,7 @@ class Client(pulumi.CustomResource):
         __props__.__dict__["access_token_lifespan"] = access_token_lifespan
         __props__.__dict__["access_type"] = access_type
         __props__.__dict__["admin_url"] = admin_url
+        __props__.__dict__["always_display_in_console"] = always_display_in_console
         __props__.__dict__["authentication_flow_binding_overrides"] = authentication_flow_binding_overrides
         __props__.__dict__["authorization"] = authorization
         __props__.__dict__["backchannel_logout_revoke_offline_sessions"] = backchannel_logout_revoke_offline_sessions
@@ -1977,6 +2054,7 @@ class Client(pulumi.CustomResource):
         __props__.__dict__["direct_access_grants_enabled"] = direct_access_grants_enabled
         __props__.__dict__["display_on_consent_screen"] = display_on_consent_screen
         __props__.__dict__["enabled"] = enabled
+        __props__.__dict__["exclude_issuer_from_auth_response"] = exclude_issuer_from_auth_response
         __props__.__dict__["exclude_session_state_from_auth_response"] = exclude_session_state_from_auth_response
         __props__.__dict__["extra_config"] = extra_config
         __props__.__dict__["frontchannel_logout_enabled"] = frontchannel_logout_enabled
@@ -2031,6 +2109,14 @@ class Client(pulumi.CustomResource):
         URL to the admin interface of the client.
         """
         return pulumi.get(self, "admin_url")
+
+    @property
+    @pulumi.getter(name="alwaysDisplayInConsole")
+    def always_display_in_console(self) -> pulumi.Output[Optional[builtins.bool]]:
+        """
+        Always list this client in the Account UI, even if the user does not have an active session.
+        """
+        return pulumi.get(self, "always_display_in_console")
 
     @property
     @pulumi.getter(name="authenticationFlowBindingOverrides")
@@ -2187,6 +2273,14 @@ class Client(pulumi.CustomResource):
         When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
         """
         return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter(name="excludeIssuerFromAuthResponse")
+    def exclude_issuer_from_auth_response(self) -> pulumi.Output[builtins.bool]:
+        """
+        When `true`, the parameter `iss` will not be included in OpenID Connect Authentication Response.
+        """
+        return pulumi.get(self, "exclude_issuer_from_auth_response")
 
     @property
     @pulumi.getter(name="excludeSessionStateFromAuthResponse")

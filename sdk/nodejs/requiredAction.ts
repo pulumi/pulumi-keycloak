@@ -9,6 +9,27 @@ import * as utilities from "./utilities";
  *
  * [Required actions](https://www.keycloak.org/docs/latest/server_admin/#con-required-actions_server_administration_guide) specify actions required before the first login of all new users.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * const requiredAction = new keycloak.RequiredAction("required_action", {
+ *     realmId: realm.realm,
+ *     alias: "UPDATE_PASSWORD",
+ *     enabled: true,
+ *     name: "Update Password",
+ *     config: {
+ *         max_auth_age: "600",
+ *     },
+ * });
+ * ```
+ *
  * ## Import
  *
  * Authentication executions can be imported using the formats: `{{realm}}/{{alias}}`.
@@ -54,6 +75,10 @@ export class RequiredAction extends pulumi.CustomResource {
      */
     public readonly alias!: pulumi.Output<string>;
     /**
+     * The configuration. Keys are specific to each configurable required action and not checked when applying.
+     */
+    public readonly config!: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
      * When `true`, the required action is set as the default action for new users. Defaults to `false`.
      */
     public readonly defaultAction!: pulumi.Output<boolean | undefined>;
@@ -88,6 +113,7 @@ export class RequiredAction extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as RequiredActionState | undefined;
             resourceInputs["alias"] = state ? state.alias : undefined;
+            resourceInputs["config"] = state ? state.config : undefined;
             resourceInputs["defaultAction"] = state ? state.defaultAction : undefined;
             resourceInputs["enabled"] = state ? state.enabled : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -102,6 +128,7 @@ export class RequiredAction extends pulumi.CustomResource {
                 throw new Error("Missing required property 'realmId'");
             }
             resourceInputs["alias"] = args ? args.alias : undefined;
+            resourceInputs["config"] = args ? args.config : undefined;
             resourceInputs["defaultAction"] = args ? args.defaultAction : undefined;
             resourceInputs["enabled"] = args ? args.enabled : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -121,6 +148,10 @@ export interface RequiredActionState {
      * The alias of the action to attach as a required action.
      */
     alias?: pulumi.Input<string>;
+    /**
+     * The configuration. Keys are specific to each configurable required action and not checked when applying.
+     */
+    config?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * When `true`, the required action is set as the default action for new users. Defaults to `false`.
      */
@@ -151,6 +182,10 @@ export interface RequiredActionArgs {
      * The alias of the action to attach as a required action.
      */
     alias: pulumi.Input<string>;
+    /**
+     * The configuration. Keys are specific to each configurable required action and not checked when applying.
+     */
+    config?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * When `true`, the required action is set as the default action for new users. Defaults to `false`.
      */

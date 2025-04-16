@@ -6,6 +6,7 @@ package com.pulumi.keycloak;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -79,6 +80,21 @@ public final class RoleArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * When `true`, the role with the specified `name` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with roles that Keycloak creates automatically during realm creation, such as the client roles `create-client`, `view-realm`, ... for the client `realm-management` created per realm. Note, that the role will not be removed during destruction if `import` is `true`.
+     * 
+     */
+    @Import(name="import")
+    private @Nullable Output<Boolean> import_;
+
+    /**
+     * @return When `true`, the role with the specified `name` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with roles that Keycloak creates automatically during realm creation, such as the client roles `create-client`, `view-realm`, ... for the client `realm-management` created per realm. Note, that the role will not be removed during destruction if `import` is `true`.
+     * 
+     */
+    public Optional<Output<Boolean>> import_() {
+        return Optional.ofNullable(this.import_);
+    }
+
+    /**
      * The name of the role
      * 
      */
@@ -115,6 +131,7 @@ public final class RoleArgs extends com.pulumi.resources.ResourceArgs {
         this.clientId = $.clientId;
         this.compositeRoles = $.compositeRoles;
         this.description = $.description;
+        this.import_ = $.import_;
         this.name = $.name;
         this.realmId = $.realmId;
     }
@@ -229,6 +246,27 @@ public final class RoleArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder description(String description) {
             return description(Output.of(description));
+        }
+
+        /**
+         * @param import_ When `true`, the role with the specified `name` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with roles that Keycloak creates automatically during realm creation, such as the client roles `create-client`, `view-realm`, ... for the client `realm-management` created per realm. Note, that the role will not be removed during destruction if `import` is `true`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder import_(@Nullable Output<Boolean> import_) {
+            $.import_ = import_;
+            return this;
+        }
+
+        /**
+         * @param import_ When `true`, the role with the specified `name` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with roles that Keycloak creates automatically during realm creation, such as the client roles `create-client`, `view-realm`, ... for the client `realm-management` created per realm. Note, that the role will not be removed during destruction if `import` is `true`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder import_(Boolean import_) {
+            return import_(Output.of(import_));
         }
 
         /**

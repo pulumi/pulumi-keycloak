@@ -124,8 +124,8 @@ import javax.annotation.Nullable;
  * 
  * ## Default Client Scopes
  * 
- * - `default_default_client_scopes` - (Optional) A list of default `default client scopes` to be used for client definitions. Defaults to `[]` or keycloak&#39;s built-in default `default client-scopes`. For an alternative, please refer to the dedicated resource `keycloak_realm_default_client_scopes`.
- * - `default_optional_client_scopes` - (Optional) A list of default `optional client scopes` to be used for client definitions. Defaults to `[]` or keycloak&#39;s built-in default `optional client-scopes`. For an alternative, please refer to the dedicated resource `keycloak_realm_optional_client_scopes`.
+ * - `default_default_client_scopes` - (Optional) A list of default `default client scopes` to be used for client definitions. Defaults to `[]` or keycloak&#39;s built-in default `default client-scopes`. For an alternative, please refer to the dedicated resource `keycloak.RealmDefaultClientScopes`.
+ * - `default_optional_client_scopes` - (Optional) A list of default `optional client scopes` to be used for client definitions. Defaults to `[]` or keycloak&#39;s built-in default `optional client-scopes`. For an alternative, please refer to the dedicated resource `keycloak.RealmOptionalClientScopes`.
  * 
  * ## Import
  * 
@@ -357,6 +357,20 @@ public class Realm extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.enabled);
     }
     /**
+     * Which flow should be used for FirstBrokerLoginFlow
+     * 
+     */
+    @Export(name="firstBrokerLoginFlow", refs={String.class}, tree="[0]")
+    private Output<String> firstBrokerLoginFlow;
+
+    /**
+     * @return Which flow should be used for FirstBrokerLoginFlow
+     * 
+     */
+    public Output<String> firstBrokerLoginFlow() {
+        return this.firstBrokerLoginFlow;
+    }
+    /**
      * When specified, this will be used as the realm&#39;s internal ID within Keycloak. When not specified, the realm&#39;s internal ID will be set to the realm&#39;s name.
      * 
      */
@@ -417,6 +431,20 @@ public class Realm extends com.pulumi.resources.CustomResource {
 
     public Output<Optional<Boolean>> offlineSessionMaxLifespanEnabled() {
         return Codegen.optional(this.offlineSessionMaxLifespanEnabled);
+    }
+    /**
+     * When `true`, organization support is enabled. Defaults to `false`.
+     * 
+     */
+    @Export(name="organizationsEnabled", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> organizationsEnabled;
+
+    /**
+     * @return When `true`, organization support is enabled. Defaults to `false`.
+     * 
+     */
+    public Output<Optional<Boolean>> organizationsEnabled() {
+        return Codegen.optional(this.organizationsEnabled);
     }
     @Export(name="otpPolicy", refs={RealmOtpPolicy.class}, tree="[0]")
     private Output<RealmOtpPolicy> otpPolicy;

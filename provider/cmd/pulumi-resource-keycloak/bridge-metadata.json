@@ -153,6 +153,14 @@
                 "current": "keycloak:index/hardcodedAttributeIdentityProviderMapper:HardcodedAttributeIdentityProviderMapper",
                 "majorVersion": 6
             },
+            "keycloak_hardcoded_attribute_mapper": {
+                "current": "keycloak:index/hardcodedAttributeMapper:HardcodedAttributeMapper",
+                "majorVersion": 6
+            },
+            "keycloak_hardcoded_group_identity_provider_mapper": {
+                "current": "keycloak:index/hardcodedGroupIdentityProviderMapper:HardcodedGroupIdentityProviderMapper",
+                "majorVersion": 6
+            },
             "keycloak_hardcoded_role_identity_provider_mapper": {
                 "current": "keycloak:index/hardcodedRoleIdentityMapper:HardcodedRoleIdentityMapper",
                 "majorVersion": 6
@@ -283,6 +291,15 @@
                 "majorVersion": 6,
                 "fields": {
                     "policies": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "keycloak_openid_client_authorization_client_scope_policy": {
+                "current": "keycloak:openid/clientAuthorizationClientScopePolicy:ClientAuthorizationClientScopePolicy",
+                "majorVersion": 6,
+                "fields": {
+                    "scope": {
                         "maxItemsOne": false
                     }
                 }
@@ -561,6 +578,9 @@
                                 "acceptable_aaguids": {
                                     "maxItemsOne": false
                                 },
+                                "extra_origins": {
+                                    "maxItemsOne": false
+                                },
                                 "signature_algorithms": {
                                     "maxItemsOne": false
                                 }
@@ -574,11 +594,23 @@
                                 "acceptable_aaguids": {
                                     "maxItemsOne": false
                                 },
+                                "extra_origins": {
+                                    "maxItemsOne": false
+                                },
                                 "signature_algorithms": {
                                     "maxItemsOne": false
                                 }
                             }
                         }
+                    }
+                }
+            },
+            "keycloak_realm_default_client_scopes": {
+                "current": "keycloak:index/realmDefaultClientScopes:RealmDefaultClientScopes",
+                "majorVersion": 6,
+                "fields": {
+                    "default_scopes": {
+                        "maxItemsOne": false
                     }
                 }
             },
@@ -617,6 +649,19 @@
             "keycloak_realm_keystore_rsa_generated": {
                 "current": "keycloak:index/realmKeystoreRsaGenerated:RealmKeystoreRsaGenerated",
                 "majorVersion": 6
+            },
+            "keycloak_realm_localization": {
+                "current": "keycloak:index/realmLocalization:RealmLocalization",
+                "majorVersion": 6
+            },
+            "keycloak_realm_optional_client_scopes": {
+                "current": "keycloak:index/realmOptionalClientScopes:RealmOptionalClientScopes",
+                "majorVersion": 6,
+                "fields": {
+                    "optional_scopes": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "keycloak_realm_user_profile": {
                 "current": "keycloak:index/realmUserProfile:RealmUserProfile",
@@ -967,6 +1012,9 @@
                                 "acceptable_aaguids": {
                                     "maxItemsOne": false
                                 },
+                                "extra_origins": {
+                                    "maxItemsOne": false
+                                },
                                 "signature_algorithms": {
                                     "maxItemsOne": false
                                 }
@@ -978,6 +1026,9 @@
                         "elem": {
                             "fields": {
                                 "acceptable_aaguids": {
+                                    "maxItemsOne": false
+                                },
+                                "extra_origins": {
                                     "maxItemsOne": false
                                 },
                                 "signature_algorithms": {

@@ -159,6 +159,20 @@ public class Bindings extends com.pulumi.resources.CustomResource {
         return this.dockerAuthenticationFlow;
     }
     /**
+     * The alias of the flow to assign to the realm FirstBrokerLoginFlow (since Keycloak 24).
+     * 
+     */
+    @Export(name="firstBrokerLoginFlow", refs={String.class}, tree="[0]")
+    private Output<String> firstBrokerLoginFlow;
+
+    /**
+     * @return The alias of the flow to assign to the realm FirstBrokerLoginFlow (since Keycloak 24).
+     * 
+     */
+    public Output<String> firstBrokerLoginFlow() {
+        return this.firstBrokerLoginFlow;
+    }
+    /**
      * The realm the authentication flow binding exists in.
      * 
      */

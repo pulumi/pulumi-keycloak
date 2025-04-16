@@ -95,6 +95,12 @@ namespace Pulumi.Keycloak.OpenId
         public Output<string> AdminUrl { get; private set; } = null!;
 
         /// <summary>
+        /// Always list this client in the Account UI, even if the user does not have an active session.
+        /// </summary>
+        [Output("alwaysDisplayInConsole")]
+        public Output<bool?> AlwaysDisplayInConsole { get; private set; } = null!;
+
+        /// <summary>
         /// Override realm authentication flow bindings
         /// </summary>
         [Output("authenticationFlowBindingOverrides")]
@@ -211,6 +217,12 @@ namespace Pulumi.Keycloak.OpenId
         /// </summary>
         [Output("enabled")]
         public Output<bool?> Enabled { get; private set; } = null!;
+
+        /// <summary>
+        /// When `true`, the parameter `iss` will not be included in OpenID Connect Authentication Response.
+        /// </summary>
+        [Output("excludeIssuerFromAuthResponse")]
+        public Output<bool> ExcludeIssuerFromAuthResponse { get; private set; } = null!;
 
         /// <summary>
         /// When `true`, the parameter `session_state` will not be included in OpenID Connect Authentication Response.
@@ -429,6 +441,12 @@ namespace Pulumi.Keycloak.OpenId
         public Input<string>? AdminUrl { get; set; }
 
         /// <summary>
+        /// Always list this client in the Account UI, even if the user does not have an active session.
+        /// </summary>
+        [Input("alwaysDisplayInConsole")]
+        public Input<bool>? AlwaysDisplayInConsole { get; set; }
+
+        /// <summary>
         /// Override realm authentication flow bindings
         /// </summary>
         [Input("authenticationFlowBindingOverrides")]
@@ -555,6 +573,12 @@ namespace Pulumi.Keycloak.OpenId
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
+
+        /// <summary>
+        /// When `true`, the parameter `iss` will not be included in OpenID Connect Authentication Response.
+        /// </summary>
+        [Input("excludeIssuerFromAuthResponse")]
+        public Input<bool>? ExcludeIssuerFromAuthResponse { get; set; }
 
         /// <summary>
         /// When `true`, the parameter `session_state` will not be included in OpenID Connect Authentication Response.
@@ -742,6 +766,12 @@ namespace Pulumi.Keycloak.OpenId
         public Input<string>? AdminUrl { get; set; }
 
         /// <summary>
+        /// Always list this client in the Account UI, even if the user does not have an active session.
+        /// </summary>
+        [Input("alwaysDisplayInConsole")]
+        public Input<bool>? AlwaysDisplayInConsole { get; set; }
+
+        /// <summary>
         /// Override realm authentication flow bindings
         /// </summary>
         [Input("authenticationFlowBindingOverrides")]
@@ -868,6 +898,12 @@ namespace Pulumi.Keycloak.OpenId
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
+
+        /// <summary>
+        /// When `true`, the parameter `iss` will not be included in OpenID Connect Authentication Response.
+        /// </summary>
+        [Input("excludeIssuerFromAuthResponse")]
+        public Input<bool>? ExcludeIssuerFromAuthResponse { get; set; }
 
         /// <summary>
         /// When `true`, the parameter `session_state` will not be included in OpenID Connect Authentication Response.

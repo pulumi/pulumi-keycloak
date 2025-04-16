@@ -13,6 +13,7 @@ import com.pulumi.keycloak.inputs.RequiredActionState;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
@@ -24,6 +25,47 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.keycloak.Realm;
+ * import com.pulumi.keycloak.RealmArgs;
+ * import com.pulumi.keycloak.RequiredAction;
+ * import com.pulumi.keycloak.RequiredActionArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var realm = new Realm("realm", RealmArgs.builder()
+ *             .realm("my-realm")
+ *             .enabled(true)
+ *             .build());
+ * 
+ *         var requiredAction = new RequiredAction("requiredAction", RequiredActionArgs.builder()
+ *             .realmId(realm.realm())
+ *             .alias("UPDATE_PASSWORD")
+ *             .enabled(true)
+ *             .name("Update Password")
+ *             .config(Map.of("max_auth_age", "600"))
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
@@ -54,6 +96,20 @@ public class RequiredAction extends com.pulumi.resources.CustomResource {
      */
     public Output<String> alias() {
         return this.alias;
+    }
+    /**
+     * The configuration. Keys are specific to each configurable required action and not checked when applying.
+     * 
+     */
+    @Export(name="config", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output</* @Nullable */ Map<String,String>> config;
+
+    /**
+     * @return The configuration. Keys are specific to each configurable required action and not checked when applying.
+     * 
+     */
+    public Output<Optional<Map<String,String>>> config() {
+        return Codegen.optional(this.config);
     }
     /**
      * When `true`, the required action is set as the default action for new users. Defaults to `false`.

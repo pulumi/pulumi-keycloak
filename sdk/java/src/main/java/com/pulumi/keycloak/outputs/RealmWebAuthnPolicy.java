@@ -40,6 +40,11 @@ public final class RealmWebAuthnPolicy {
      */
     private @Nullable Integer createTimeout;
     /**
+     * @return A set of extra origins for non-web applications.
+     * 
+     */
+    private @Nullable List<String> extraOrigins;
+    /**
      * @return A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
      * 
      */
@@ -102,6 +107,13 @@ public final class RealmWebAuthnPolicy {
         return Optional.ofNullable(this.createTimeout);
     }
     /**
+     * @return A set of extra origins for non-web applications.
+     * 
+     */
+    public List<String> extraOrigins() {
+        return this.extraOrigins == null ? List.of() : this.extraOrigins;
+    }
+    /**
      * @return A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
      * 
      */
@@ -151,6 +163,7 @@ public final class RealmWebAuthnPolicy {
         private @Nullable String authenticatorAttachment;
         private @Nullable Boolean avoidSameAuthenticatorRegister;
         private @Nullable Integer createTimeout;
+        private @Nullable List<String> extraOrigins;
         private @Nullable String relyingPartyEntityName;
         private @Nullable String relyingPartyId;
         private @Nullable String requireResidentKey;
@@ -164,6 +177,7 @@ public final class RealmWebAuthnPolicy {
     	      this.authenticatorAttachment = defaults.authenticatorAttachment;
     	      this.avoidSameAuthenticatorRegister = defaults.avoidSameAuthenticatorRegister;
     	      this.createTimeout = defaults.createTimeout;
+    	      this.extraOrigins = defaults.extraOrigins;
     	      this.relyingPartyEntityName = defaults.relyingPartyEntityName;
     	      this.relyingPartyId = defaults.relyingPartyId;
     	      this.requireResidentKey = defaults.requireResidentKey;
@@ -205,6 +219,15 @@ public final class RealmWebAuthnPolicy {
             return this;
         }
         @CustomType.Setter
+        public Builder extraOrigins(@Nullable List<String> extraOrigins) {
+
+            this.extraOrigins = extraOrigins;
+            return this;
+        }
+        public Builder extraOrigins(String... extraOrigins) {
+            return extraOrigins(List.of(extraOrigins));
+        }
+        @CustomType.Setter
         public Builder relyingPartyEntityName(@Nullable String relyingPartyEntityName) {
 
             this.relyingPartyEntityName = relyingPartyEntityName;
@@ -244,6 +267,7 @@ public final class RealmWebAuthnPolicy {
             _resultValue.authenticatorAttachment = authenticatorAttachment;
             _resultValue.avoidSameAuthenticatorRegister = avoidSameAuthenticatorRegister;
             _resultValue.createTimeout = createTimeout;
+            _resultValue.extraOrigins = extraOrigins;
             _resultValue.relyingPartyEntityName = relyingPartyEntityName;
             _resultValue.relyingPartyId = relyingPartyId;
             _resultValue.requireResidentKey = requireResidentKey;

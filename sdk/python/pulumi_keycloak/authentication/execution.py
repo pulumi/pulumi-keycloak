@@ -23,17 +23,21 @@ class ExecutionArgs:
                  authenticator: pulumi.Input[builtins.str],
                  parent_flow_alias: pulumi.Input[builtins.str],
                  realm_id: pulumi.Input[builtins.str],
+                 priority: Optional[pulumi.Input[builtins.int]] = None,
                  requirement: Optional[pulumi.Input[builtins.str]] = None):
         """
         The set of arguments for constructing a Execution resource.
         :param pulumi.Input[builtins.str] authenticator: The name of the authenticator. This can be found by experimenting with the GUI and looking at HTTP requests within the network tab of your browser's development tools.
         :param pulumi.Input[builtins.str] parent_flow_alias: The alias of the flow this execution is attached to.
         :param pulumi.Input[builtins.str] realm_id: The realm the authentication execution exists in.
+        :param pulumi.Input[builtins.int] priority: The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak >= 25).
         :param pulumi.Input[builtins.str] requirement: The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`. Defaults to `DISABLED`.
         """
         pulumi.set(__self__, "authenticator", authenticator)
         pulumi.set(__self__, "parent_flow_alias", parent_flow_alias)
         pulumi.set(__self__, "realm_id", realm_id)
+        if priority is not None:
+            pulumi.set(__self__, "priority", priority)
         if requirement is not None:
             pulumi.set(__self__, "requirement", requirement)
 
@@ -75,6 +79,18 @@ class ExecutionArgs:
 
     @property
     @pulumi.getter
+    def priority(self) -> Optional[pulumi.Input[builtins.int]]:
+        """
+        The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak >= 25).
+        """
+        return pulumi.get(self, "priority")
+
+    @priority.setter
+    def priority(self, value: Optional[pulumi.Input[builtins.int]]):
+        pulumi.set(self, "priority", value)
+
+    @property
+    @pulumi.getter
     def requirement(self) -> Optional[pulumi.Input[builtins.str]]:
         """
         The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`. Defaults to `DISABLED`.
@@ -91,12 +107,14 @@ class _ExecutionState:
     def __init__(__self__, *,
                  authenticator: Optional[pulumi.Input[builtins.str]] = None,
                  parent_flow_alias: Optional[pulumi.Input[builtins.str]] = None,
+                 priority: Optional[pulumi.Input[builtins.int]] = None,
                  realm_id: Optional[pulumi.Input[builtins.str]] = None,
                  requirement: Optional[pulumi.Input[builtins.str]] = None):
         """
         Input properties used for looking up and filtering Execution resources.
         :param pulumi.Input[builtins.str] authenticator: The name of the authenticator. This can be found by experimenting with the GUI and looking at HTTP requests within the network tab of your browser's development tools.
         :param pulumi.Input[builtins.str] parent_flow_alias: The alias of the flow this execution is attached to.
+        :param pulumi.Input[builtins.int] priority: The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak >= 25).
         :param pulumi.Input[builtins.str] realm_id: The realm the authentication execution exists in.
         :param pulumi.Input[builtins.str] requirement: The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`. Defaults to `DISABLED`.
         """
@@ -104,6 +122,8 @@ class _ExecutionState:
             pulumi.set(__self__, "authenticator", authenticator)
         if parent_flow_alias is not None:
             pulumi.set(__self__, "parent_flow_alias", parent_flow_alias)
+        if priority is not None:
+            pulumi.set(__self__, "priority", priority)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
         if requirement is not None:
@@ -132,6 +152,18 @@ class _ExecutionState:
     @parent_flow_alias.setter
     def parent_flow_alias(self, value: Optional[pulumi.Input[builtins.str]]):
         pulumi.set(self, "parent_flow_alias", value)
+
+    @property
+    @pulumi.getter
+    def priority(self) -> Optional[pulumi.Input[builtins.int]]:
+        """
+        The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak >= 25).
+        """
+        return pulumi.get(self, "priority")
+
+    @priority.setter
+    def priority(self, value: Optional[pulumi.Input[builtins.int]]):
+        pulumi.set(self, "priority", value)
 
     @property
     @pulumi.getter(name="realmId")
@@ -165,6 +197,7 @@ class Execution(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  authenticator: Optional[pulumi.Input[builtins.str]] = None,
                  parent_flow_alias: Optional[pulumi.Input[builtins.str]] = None,
+                 priority: Optional[pulumi.Input[builtins.int]] = None,
                  realm_id: Optional[pulumi.Input[builtins.str]] = None,
                  requirement: Optional[pulumi.Input[builtins.str]] = None,
                  __props__=None):
@@ -175,6 +208,34 @@ class Execution(pulumi.CustomResource):
         flow.
 
         > Following limitation affects Keycloak < 25:  Due to limitations in the Keycloak API, the ordering of authentication executions within a flow must be specified using `depends_on`. Authentication executions that are created first will appear first within the flow.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        flow = keycloak.authentication.Flow("flow",
+            realm_id=realm.id,
+            alias="my-flow-alias")
+        # first execution
+        execution_one = keycloak.authentication.Execution("execution_one",
+            realm_id=realm.id,
+            parent_flow_alias=flow.alias,
+            authenticator="auth-cookie",
+            requirement="ALTERNATIVE",
+            priority=10)
+        # second execution
+        execution_two = keycloak.authentication.Execution("execution_two",
+            realm_id=realm.id,
+            parent_flow_alias=flow.alias,
+            authenticator="identity-provider-redirector",
+            requirement="ALTERNATIVE",
+            priority=20)
+        ```
 
         ## Import
 
@@ -192,6 +253,7 @@ class Execution(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[builtins.str] authenticator: The name of the authenticator. This can be found by experimenting with the GUI and looking at HTTP requests within the network tab of your browser's development tools.
         :param pulumi.Input[builtins.str] parent_flow_alias: The alias of the flow this execution is attached to.
+        :param pulumi.Input[builtins.int] priority: The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak >= 25).
         :param pulumi.Input[builtins.str] realm_id: The realm the authentication execution exists in.
         :param pulumi.Input[builtins.str] requirement: The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`. Defaults to `DISABLED`.
         """
@@ -208,6 +270,34 @@ class Execution(pulumi.CustomResource):
         flow.
 
         > Following limitation affects Keycloak < 25:  Due to limitations in the Keycloak API, the ordering of authentication executions within a flow must be specified using `depends_on`. Authentication executions that are created first will appear first within the flow.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        flow = keycloak.authentication.Flow("flow",
+            realm_id=realm.id,
+            alias="my-flow-alias")
+        # first execution
+        execution_one = keycloak.authentication.Execution("execution_one",
+            realm_id=realm.id,
+            parent_flow_alias=flow.alias,
+            authenticator="auth-cookie",
+            requirement="ALTERNATIVE",
+            priority=10)
+        # second execution
+        execution_two = keycloak.authentication.Execution("execution_two",
+            realm_id=realm.id,
+            parent_flow_alias=flow.alias,
+            authenticator="identity-provider-redirector",
+            requirement="ALTERNATIVE",
+            priority=20)
+        ```
 
         ## Import
 
@@ -238,6 +328,7 @@ class Execution(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  authenticator: Optional[pulumi.Input[builtins.str]] = None,
                  parent_flow_alias: Optional[pulumi.Input[builtins.str]] = None,
+                 priority: Optional[pulumi.Input[builtins.int]] = None,
                  realm_id: Optional[pulumi.Input[builtins.str]] = None,
                  requirement: Optional[pulumi.Input[builtins.str]] = None,
                  __props__=None):
@@ -255,6 +346,7 @@ class Execution(pulumi.CustomResource):
             if parent_flow_alias is None and not opts.urn:
                 raise TypeError("Missing required property 'parent_flow_alias'")
             __props__.__dict__["parent_flow_alias"] = parent_flow_alias
+            __props__.__dict__["priority"] = priority
             if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
@@ -271,6 +363,7 @@ class Execution(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             authenticator: Optional[pulumi.Input[builtins.str]] = None,
             parent_flow_alias: Optional[pulumi.Input[builtins.str]] = None,
+            priority: Optional[pulumi.Input[builtins.int]] = None,
             realm_id: Optional[pulumi.Input[builtins.str]] = None,
             requirement: Optional[pulumi.Input[builtins.str]] = None) -> 'Execution':
         """
@@ -282,6 +375,7 @@ class Execution(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[builtins.str] authenticator: The name of the authenticator. This can be found by experimenting with the GUI and looking at HTTP requests within the network tab of your browser's development tools.
         :param pulumi.Input[builtins.str] parent_flow_alias: The alias of the flow this execution is attached to.
+        :param pulumi.Input[builtins.int] priority: The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak >= 25).
         :param pulumi.Input[builtins.str] realm_id: The realm the authentication execution exists in.
         :param pulumi.Input[builtins.str] requirement: The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`, or `DISABLED`. Defaults to `DISABLED`.
         """
@@ -291,6 +385,7 @@ class Execution(pulumi.CustomResource):
 
         __props__.__dict__["authenticator"] = authenticator
         __props__.__dict__["parent_flow_alias"] = parent_flow_alias
+        __props__.__dict__["priority"] = priority
         __props__.__dict__["realm_id"] = realm_id
         __props__.__dict__["requirement"] = requirement
         return Execution(resource_name, opts=opts, __props__=__props__)
@@ -310,6 +405,14 @@ class Execution(pulumi.CustomResource):
         The alias of the flow this execution is attached to.
         """
         return pulumi.get(self, "parent_flow_alias")
+
+    @property
+    @pulumi.getter
+    def priority(self) -> pulumi.Output[Optional[builtins.int]]:
+        """
+        The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak >= 25).
+        """
+        return pulumi.get(self, "priority")
 
     @property
     @pulumi.getter(name="realmId")

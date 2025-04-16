@@ -126,7 +126,7 @@ namespace Pulumi.Keycloak.Oidc
         /// Display name for the identity provider in the GUI.
         /// </summary>
         [Output("displayName")]
-        public Output<string?> DisplayName { get; private set; } = null!;
+        public Output<string> DisplayName { get; private set; } = null!;
 
         /// <summary>
         /// When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.

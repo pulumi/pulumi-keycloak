@@ -48,6 +48,7 @@ class RealmArgs:
                  edit_username_allowed: Optional[pulumi.Input[builtins.bool]] = None,
                  email_theme: Optional[pulumi.Input[builtins.str]] = None,
                  enabled: Optional[pulumi.Input[builtins.bool]] = None,
+                 first_broker_login_flow: Optional[pulumi.Input[builtins.str]] = None,
                  internal_id: Optional[pulumi.Input[builtins.str]] = None,
                  internationalization: Optional[pulumi.Input['RealmInternationalizationArgs']] = None,
                  login_theme: Optional[pulumi.Input[builtins.str]] = None,
@@ -57,6 +58,7 @@ class RealmArgs:
                  offline_session_idle_timeout: Optional[pulumi.Input[builtins.str]] = None,
                  offline_session_max_lifespan: Optional[pulumi.Input[builtins.str]] = None,
                  offline_session_max_lifespan_enabled: Optional[pulumi.Input[builtins.bool]] = None,
+                 organizations_enabled: Optional[pulumi.Input[builtins.bool]] = None,
                  otp_policy: Optional[pulumi.Input['RealmOtpPolicyArgs']] = None,
                  password_policy: Optional[pulumi.Input[builtins.str]] = None,
                  refresh_token_max_reuse: Optional[pulumi.Input[builtins.int]] = None,
@@ -89,7 +91,9 @@ class RealmArgs:
         :param pulumi.Input[builtins.str] display_name_html: The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.
         :param pulumi.Input[builtins.str] docker_authentication_flow: Which flow should be used for DockerAuthenticationFlow
         :param pulumi.Input[builtins.bool] enabled: When `false`, users and clients will not be able to access this realm. Defaults to `true`.
+        :param pulumi.Input[builtins.str] first_broker_login_flow: Which flow should be used for FirstBrokerLoginFlow
         :param pulumi.Input[builtins.str] internal_id: When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
+        :param pulumi.Input[builtins.bool] organizations_enabled: When `true`, organization support is enabled. Defaults to `false`.
         :param pulumi.Input[builtins.str] password_policy: String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
                can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365)
                and notUsername(undefined)"
@@ -149,6 +153,8 @@ class RealmArgs:
             pulumi.set(__self__, "email_theme", email_theme)
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
+        if first_broker_login_flow is not None:
+            pulumi.set(__self__, "first_broker_login_flow", first_broker_login_flow)
         if internal_id is not None:
             pulumi.set(__self__, "internal_id", internal_id)
         if internationalization is not None:
@@ -167,6 +173,8 @@ class RealmArgs:
             pulumi.set(__self__, "offline_session_max_lifespan", offline_session_max_lifespan)
         if offline_session_max_lifespan_enabled is not None:
             pulumi.set(__self__, "offline_session_max_lifespan_enabled", offline_session_max_lifespan_enabled)
+        if organizations_enabled is not None:
+            pulumi.set(__self__, "organizations_enabled", organizations_enabled)
         if otp_policy is not None:
             pulumi.set(__self__, "otp_policy", otp_policy)
         if password_policy is not None:
@@ -472,6 +480,18 @@ class RealmArgs:
         pulumi.set(self, "enabled", value)
 
     @property
+    @pulumi.getter(name="firstBrokerLoginFlow")
+    def first_broker_login_flow(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        Which flow should be used for FirstBrokerLoginFlow
+        """
+        return pulumi.get(self, "first_broker_login_flow")
+
+    @first_broker_login_flow.setter
+    def first_broker_login_flow(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "first_broker_login_flow", value)
+
+    @property
     @pulumi.getter(name="internalId")
     def internal_id(self) -> Optional[pulumi.Input[builtins.str]]:
         """
@@ -554,6 +574,18 @@ class RealmArgs:
     @offline_session_max_lifespan_enabled.setter
     def offline_session_max_lifespan_enabled(self, value: Optional[pulumi.Input[builtins.bool]]):
         pulumi.set(self, "offline_session_max_lifespan_enabled", value)
+
+    @property
+    @pulumi.getter(name="organizationsEnabled")
+    def organizations_enabled(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        When `true`, organization support is enabled. Defaults to `false`.
+        """
+        return pulumi.get(self, "organizations_enabled")
+
+    @organizations_enabled.setter
+    def organizations_enabled(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "organizations_enabled", value)
 
     @property
     @pulumi.getter(name="otpPolicy")
@@ -790,6 +822,7 @@ class _RealmState:
                  edit_username_allowed: Optional[pulumi.Input[builtins.bool]] = None,
                  email_theme: Optional[pulumi.Input[builtins.str]] = None,
                  enabled: Optional[pulumi.Input[builtins.bool]] = None,
+                 first_broker_login_flow: Optional[pulumi.Input[builtins.str]] = None,
                  internal_id: Optional[pulumi.Input[builtins.str]] = None,
                  internationalization: Optional[pulumi.Input['RealmInternationalizationArgs']] = None,
                  login_theme: Optional[pulumi.Input[builtins.str]] = None,
@@ -799,6 +832,7 @@ class _RealmState:
                  offline_session_idle_timeout: Optional[pulumi.Input[builtins.str]] = None,
                  offline_session_max_lifespan: Optional[pulumi.Input[builtins.str]] = None,
                  offline_session_max_lifespan_enabled: Optional[pulumi.Input[builtins.bool]] = None,
+                 organizations_enabled: Optional[pulumi.Input[builtins.bool]] = None,
                  otp_policy: Optional[pulumi.Input['RealmOtpPolicyArgs']] = None,
                  password_policy: Optional[pulumi.Input[builtins.str]] = None,
                  realm: Optional[pulumi.Input[builtins.str]] = None,
@@ -831,7 +865,9 @@ class _RealmState:
         :param pulumi.Input[builtins.str] display_name_html: The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.
         :param pulumi.Input[builtins.str] docker_authentication_flow: Which flow should be used for DockerAuthenticationFlow
         :param pulumi.Input[builtins.bool] enabled: When `false`, users and clients will not be able to access this realm. Defaults to `true`.
+        :param pulumi.Input[builtins.str] first_broker_login_flow: Which flow should be used for FirstBrokerLoginFlow
         :param pulumi.Input[builtins.str] internal_id: When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
+        :param pulumi.Input[builtins.bool] organizations_enabled: When `true`, organization support is enabled. Defaults to `false`.
         :param pulumi.Input[builtins.str] password_policy: String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
                can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365)
                and notUsername(undefined)"
@@ -891,6 +927,8 @@ class _RealmState:
             pulumi.set(__self__, "email_theme", email_theme)
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
+        if first_broker_login_flow is not None:
+            pulumi.set(__self__, "first_broker_login_flow", first_broker_login_flow)
         if internal_id is not None:
             pulumi.set(__self__, "internal_id", internal_id)
         if internationalization is not None:
@@ -909,6 +947,8 @@ class _RealmState:
             pulumi.set(__self__, "offline_session_max_lifespan", offline_session_max_lifespan)
         if offline_session_max_lifespan_enabled is not None:
             pulumi.set(__self__, "offline_session_max_lifespan_enabled", offline_session_max_lifespan_enabled)
+        if organizations_enabled is not None:
+            pulumi.set(__self__, "organizations_enabled", organizations_enabled)
         if otp_policy is not None:
             pulumi.set(__self__, "otp_policy", otp_policy)
         if password_policy is not None:
@@ -1204,6 +1244,18 @@ class _RealmState:
         pulumi.set(self, "enabled", value)
 
     @property
+    @pulumi.getter(name="firstBrokerLoginFlow")
+    def first_broker_login_flow(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        Which flow should be used for FirstBrokerLoginFlow
+        """
+        return pulumi.get(self, "first_broker_login_flow")
+
+    @first_broker_login_flow.setter
+    def first_broker_login_flow(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "first_broker_login_flow", value)
+
+    @property
     @pulumi.getter(name="internalId")
     def internal_id(self) -> Optional[pulumi.Input[builtins.str]]:
         """
@@ -1286,6 +1338,18 @@ class _RealmState:
     @offline_session_max_lifespan_enabled.setter
     def offline_session_max_lifespan_enabled(self, value: Optional[pulumi.Input[builtins.bool]]):
         pulumi.set(self, "offline_session_max_lifespan_enabled", value)
+
+    @property
+    @pulumi.getter(name="organizationsEnabled")
+    def organizations_enabled(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        When `true`, organization support is enabled. Defaults to `false`.
+        """
+        return pulumi.get(self, "organizations_enabled")
+
+    @organizations_enabled.setter
+    def organizations_enabled(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "organizations_enabled", value)
 
     @property
     @pulumi.getter(name="otpPolicy")
@@ -1536,6 +1600,7 @@ class Realm(pulumi.CustomResource):
                  edit_username_allowed: Optional[pulumi.Input[builtins.bool]] = None,
                  email_theme: Optional[pulumi.Input[builtins.str]] = None,
                  enabled: Optional[pulumi.Input[builtins.bool]] = None,
+                 first_broker_login_flow: Optional[pulumi.Input[builtins.str]] = None,
                  internal_id: Optional[pulumi.Input[builtins.str]] = None,
                  internationalization: Optional[pulumi.Input[Union['RealmInternationalizationArgs', 'RealmInternationalizationArgsDict']]] = None,
                  login_theme: Optional[pulumi.Input[builtins.str]] = None,
@@ -1545,6 +1610,7 @@ class Realm(pulumi.CustomResource):
                  offline_session_idle_timeout: Optional[pulumi.Input[builtins.str]] = None,
                  offline_session_max_lifespan: Optional[pulumi.Input[builtins.str]] = None,
                  offline_session_max_lifespan_enabled: Optional[pulumi.Input[builtins.bool]] = None,
+                 organizations_enabled: Optional[pulumi.Input[builtins.bool]] = None,
                  otp_policy: Optional[pulumi.Input[Union['RealmOtpPolicyArgs', 'RealmOtpPolicyArgsDict']]] = None,
                  password_policy: Optional[pulumi.Input[builtins.str]] = None,
                  realm: Optional[pulumi.Input[builtins.str]] = None,
@@ -1640,8 +1706,8 @@ class Realm(pulumi.CustomResource):
 
         ## Default Client Scopes
 
-        - `default_default_client_scopes` - (Optional) A list of default `default client scopes` to be used for client definitions. Defaults to `[]` or keycloak's built-in default `default client-scopes`. For an alternative, please refer to the dedicated resource `keycloak_realm_default_client_scopes`.
-        - `default_optional_client_scopes` - (Optional) A list of default `optional client scopes` to be used for client definitions. Defaults to `[]` or keycloak's built-in default `optional client-scopes`. For an alternative, please refer to the dedicated resource `keycloak_realm_optional_client_scopes`.
+        - `default_default_client_scopes` - (Optional) A list of default `default client scopes` to be used for client definitions. Defaults to `[]` or keycloak's built-in default `default client-scopes`. For an alternative, please refer to the dedicated resource `RealmDefaultClientScopes`.
+        - `default_optional_client_scopes` - (Optional) A list of default `optional client scopes` to be used for client definitions. Defaults to `[]` or keycloak's built-in default `optional client-scopes`. For an alternative, please refer to the dedicated resource `RealmOptionalClientScopes`.
 
         ## Import
 
@@ -1665,7 +1731,9 @@ class Realm(pulumi.CustomResource):
         :param pulumi.Input[builtins.str] display_name_html: The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.
         :param pulumi.Input[builtins.str] docker_authentication_flow: Which flow should be used for DockerAuthenticationFlow
         :param pulumi.Input[builtins.bool] enabled: When `false`, users and clients will not be able to access this realm. Defaults to `true`.
+        :param pulumi.Input[builtins.str] first_broker_login_flow: Which flow should be used for FirstBrokerLoginFlow
         :param pulumi.Input[builtins.str] internal_id: When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
+        :param pulumi.Input[builtins.bool] organizations_enabled: When `true`, organization support is enabled. Defaults to `false`.
         :param pulumi.Input[builtins.str] password_policy: String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
                can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365)
                and notUsername(undefined)"
@@ -1753,8 +1821,8 @@ class Realm(pulumi.CustomResource):
 
         ## Default Client Scopes
 
-        - `default_default_client_scopes` - (Optional) A list of default `default client scopes` to be used for client definitions. Defaults to `[]` or keycloak's built-in default `default client-scopes`. For an alternative, please refer to the dedicated resource `keycloak_realm_default_client_scopes`.
-        - `default_optional_client_scopes` - (Optional) A list of default `optional client scopes` to be used for client definitions. Defaults to `[]` or keycloak's built-in default `optional client-scopes`. For an alternative, please refer to the dedicated resource `keycloak_realm_optional_client_scopes`.
+        - `default_default_client_scopes` - (Optional) A list of default `default client scopes` to be used for client definitions. Defaults to `[]` or keycloak's built-in default `default client-scopes`. For an alternative, please refer to the dedicated resource `RealmDefaultClientScopes`.
+        - `default_optional_client_scopes` - (Optional) A list of default `optional client scopes` to be used for client definitions. Defaults to `[]` or keycloak's built-in default `optional client-scopes`. For an alternative, please refer to the dedicated resource `RealmOptionalClientScopes`.
 
         ## Import
 
@@ -1808,6 +1876,7 @@ class Realm(pulumi.CustomResource):
                  edit_username_allowed: Optional[pulumi.Input[builtins.bool]] = None,
                  email_theme: Optional[pulumi.Input[builtins.str]] = None,
                  enabled: Optional[pulumi.Input[builtins.bool]] = None,
+                 first_broker_login_flow: Optional[pulumi.Input[builtins.str]] = None,
                  internal_id: Optional[pulumi.Input[builtins.str]] = None,
                  internationalization: Optional[pulumi.Input[Union['RealmInternationalizationArgs', 'RealmInternationalizationArgsDict']]] = None,
                  login_theme: Optional[pulumi.Input[builtins.str]] = None,
@@ -1817,6 +1886,7 @@ class Realm(pulumi.CustomResource):
                  offline_session_idle_timeout: Optional[pulumi.Input[builtins.str]] = None,
                  offline_session_max_lifespan: Optional[pulumi.Input[builtins.str]] = None,
                  offline_session_max_lifespan_enabled: Optional[pulumi.Input[builtins.bool]] = None,
+                 organizations_enabled: Optional[pulumi.Input[builtins.bool]] = None,
                  otp_policy: Optional[pulumi.Input[Union['RealmOtpPolicyArgs', 'RealmOtpPolicyArgsDict']]] = None,
                  password_policy: Optional[pulumi.Input[builtins.str]] = None,
                  realm: Optional[pulumi.Input[builtins.str]] = None,
@@ -1873,6 +1943,7 @@ class Realm(pulumi.CustomResource):
             __props__.__dict__["edit_username_allowed"] = edit_username_allowed
             __props__.__dict__["email_theme"] = email_theme
             __props__.__dict__["enabled"] = enabled
+            __props__.__dict__["first_broker_login_flow"] = first_broker_login_flow
             __props__.__dict__["internal_id"] = internal_id
             __props__.__dict__["internationalization"] = internationalization
             __props__.__dict__["login_theme"] = login_theme
@@ -1882,6 +1953,7 @@ class Realm(pulumi.CustomResource):
             __props__.__dict__["offline_session_idle_timeout"] = offline_session_idle_timeout
             __props__.__dict__["offline_session_max_lifespan"] = offline_session_max_lifespan
             __props__.__dict__["offline_session_max_lifespan_enabled"] = offline_session_max_lifespan_enabled
+            __props__.__dict__["organizations_enabled"] = organizations_enabled
             __props__.__dict__["otp_policy"] = otp_policy
             __props__.__dict__["password_policy"] = password_policy
             if realm is None and not opts.urn:
@@ -1941,6 +2013,7 @@ class Realm(pulumi.CustomResource):
             edit_username_allowed: Optional[pulumi.Input[builtins.bool]] = None,
             email_theme: Optional[pulumi.Input[builtins.str]] = None,
             enabled: Optional[pulumi.Input[builtins.bool]] = None,
+            first_broker_login_flow: Optional[pulumi.Input[builtins.str]] = None,
             internal_id: Optional[pulumi.Input[builtins.str]] = None,
             internationalization: Optional[pulumi.Input[Union['RealmInternationalizationArgs', 'RealmInternationalizationArgsDict']]] = None,
             login_theme: Optional[pulumi.Input[builtins.str]] = None,
@@ -1950,6 +2023,7 @@ class Realm(pulumi.CustomResource):
             offline_session_idle_timeout: Optional[pulumi.Input[builtins.str]] = None,
             offline_session_max_lifespan: Optional[pulumi.Input[builtins.str]] = None,
             offline_session_max_lifespan_enabled: Optional[pulumi.Input[builtins.bool]] = None,
+            organizations_enabled: Optional[pulumi.Input[builtins.bool]] = None,
             otp_policy: Optional[pulumi.Input[Union['RealmOtpPolicyArgs', 'RealmOtpPolicyArgsDict']]] = None,
             password_policy: Optional[pulumi.Input[builtins.str]] = None,
             realm: Optional[pulumi.Input[builtins.str]] = None,
@@ -1987,7 +2061,9 @@ class Realm(pulumi.CustomResource):
         :param pulumi.Input[builtins.str] display_name_html: The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.
         :param pulumi.Input[builtins.str] docker_authentication_flow: Which flow should be used for DockerAuthenticationFlow
         :param pulumi.Input[builtins.bool] enabled: When `false`, users and clients will not be able to access this realm. Defaults to `true`.
+        :param pulumi.Input[builtins.str] first_broker_login_flow: Which flow should be used for FirstBrokerLoginFlow
         :param pulumi.Input[builtins.str] internal_id: When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
+        :param pulumi.Input[builtins.bool] organizations_enabled: When `true`, organization support is enabled. Defaults to `false`.
         :param pulumi.Input[builtins.str] password_policy: String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
                can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365)
                and notUsername(undefined)"
@@ -2026,6 +2102,7 @@ class Realm(pulumi.CustomResource):
         __props__.__dict__["edit_username_allowed"] = edit_username_allowed
         __props__.__dict__["email_theme"] = email_theme
         __props__.__dict__["enabled"] = enabled
+        __props__.__dict__["first_broker_login_flow"] = first_broker_login_flow
         __props__.__dict__["internal_id"] = internal_id
         __props__.__dict__["internationalization"] = internationalization
         __props__.__dict__["login_theme"] = login_theme
@@ -2035,6 +2112,7 @@ class Realm(pulumi.CustomResource):
         __props__.__dict__["offline_session_idle_timeout"] = offline_session_idle_timeout
         __props__.__dict__["offline_session_max_lifespan"] = offline_session_max_lifespan
         __props__.__dict__["offline_session_max_lifespan_enabled"] = offline_session_max_lifespan_enabled
+        __props__.__dict__["organizations_enabled"] = organizations_enabled
         __props__.__dict__["otp_policy"] = otp_policy
         __props__.__dict__["password_policy"] = password_policy
         __props__.__dict__["realm"] = realm
@@ -2209,6 +2287,14 @@ class Realm(pulumi.CustomResource):
         return pulumi.get(self, "enabled")
 
     @property
+    @pulumi.getter(name="firstBrokerLoginFlow")
+    def first_broker_login_flow(self) -> pulumi.Output[builtins.str]:
+        """
+        Which flow should be used for FirstBrokerLoginFlow
+        """
+        return pulumi.get(self, "first_broker_login_flow")
+
+    @property
     @pulumi.getter(name="internalId")
     def internal_id(self) -> pulumi.Output[builtins.str]:
         """
@@ -2255,6 +2341,14 @@ class Realm(pulumi.CustomResource):
     @pulumi.getter(name="offlineSessionMaxLifespanEnabled")
     def offline_session_max_lifespan_enabled(self) -> pulumi.Output[Optional[builtins.bool]]:
         return pulumi.get(self, "offline_session_max_lifespan_enabled")
+
+    @property
+    @pulumi.getter(name="organizationsEnabled")
+    def organizations_enabled(self) -> pulumi.Output[Optional[builtins.bool]]:
+        """
+        When `true`, organization support is enabled. Defaults to `false`.
+        """
+        return pulumi.get(self, "organizations_enabled")
 
     @property
     @pulumi.getter(name="otpPolicy")

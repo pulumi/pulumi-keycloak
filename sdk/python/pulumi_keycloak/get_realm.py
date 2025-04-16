@@ -29,7 +29,7 @@ class GetRealmResult:
     """
     A collection of values returned by getRealm.
     """
-    def __init__(__self__, access_code_lifespan=None, access_code_lifespan_login=None, access_code_lifespan_user_action=None, access_token_lifespan=None, access_token_lifespan_for_implicit_flow=None, account_theme=None, action_token_generated_by_admin_lifespan=None, action_token_generated_by_user_lifespan=None, admin_theme=None, attributes=None, browser_flow=None, client_authentication_flow=None, client_session_idle_timeout=None, client_session_max_lifespan=None, default_default_client_scopes=None, default_optional_client_scopes=None, default_signature_algorithm=None, direct_grant_flow=None, display_name=None, display_name_html=None, docker_authentication_flow=None, duplicate_emails_allowed=None, edit_username_allowed=None, email_theme=None, enabled=None, id=None, internal_id=None, internationalizations=None, login_theme=None, login_with_email_allowed=None, oauth2_device_code_lifespan=None, oauth2_device_polling_interval=None, offline_session_idle_timeout=None, offline_session_max_lifespan=None, offline_session_max_lifespan_enabled=None, otp_policy=None, password_policy=None, realm=None, refresh_token_max_reuse=None, registration_allowed=None, registration_email_as_username=None, registration_flow=None, remember_me=None, reset_credentials_flow=None, reset_password_allowed=None, revoke_refresh_token=None, security_defenses=None, smtp_servers=None, ssl_required=None, sso_session_idle_timeout=None, sso_session_idle_timeout_remember_me=None, sso_session_max_lifespan=None, sso_session_max_lifespan_remember_me=None, user_managed_access=None, verify_email=None, web_authn_passwordless_policy=None, web_authn_policy=None):
+    def __init__(__self__, access_code_lifespan=None, access_code_lifespan_login=None, access_code_lifespan_user_action=None, access_token_lifespan=None, access_token_lifespan_for_implicit_flow=None, account_theme=None, action_token_generated_by_admin_lifespan=None, action_token_generated_by_user_lifespan=None, admin_theme=None, attributes=None, browser_flow=None, client_authentication_flow=None, client_session_idle_timeout=None, client_session_max_lifespan=None, default_default_client_scopes=None, default_optional_client_scopes=None, default_signature_algorithm=None, direct_grant_flow=None, display_name=None, display_name_html=None, docker_authentication_flow=None, duplicate_emails_allowed=None, edit_username_allowed=None, email_theme=None, enabled=None, first_broker_login_flow=None, id=None, internal_id=None, internationalizations=None, login_theme=None, login_with_email_allowed=None, oauth2_device_code_lifespan=None, oauth2_device_polling_interval=None, offline_session_idle_timeout=None, offline_session_max_lifespan=None, offline_session_max_lifespan_enabled=None, organizations_enabled=None, otp_policy=None, password_policy=None, realm=None, refresh_token_max_reuse=None, registration_allowed=None, registration_email_as_username=None, registration_flow=None, remember_me=None, reset_credentials_flow=None, reset_password_allowed=None, revoke_refresh_token=None, security_defenses=None, smtp_servers=None, ssl_required=None, sso_session_idle_timeout=None, sso_session_idle_timeout_remember_me=None, sso_session_max_lifespan=None, sso_session_max_lifespan_remember_me=None, user_managed_access=None, verify_email=None, web_authn_passwordless_policy=None, web_authn_policy=None):
         if access_code_lifespan and not isinstance(access_code_lifespan, str):
             raise TypeError("Expected argument 'access_code_lifespan' to be a str")
         pulumi.set(__self__, "access_code_lifespan", access_code_lifespan)
@@ -105,6 +105,9 @@ class GetRealmResult:
         if enabled and not isinstance(enabled, bool):
             raise TypeError("Expected argument 'enabled' to be a bool")
         pulumi.set(__self__, "enabled", enabled)
+        if first_broker_login_flow and not isinstance(first_broker_login_flow, str):
+            raise TypeError("Expected argument 'first_broker_login_flow' to be a str")
+        pulumi.set(__self__, "first_broker_login_flow", first_broker_login_flow)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -135,6 +138,9 @@ class GetRealmResult:
         if offline_session_max_lifespan_enabled and not isinstance(offline_session_max_lifespan_enabled, bool):
             raise TypeError("Expected argument 'offline_session_max_lifespan_enabled' to be a bool")
         pulumi.set(__self__, "offline_session_max_lifespan_enabled", offline_session_max_lifespan_enabled)
+        if organizations_enabled and not isinstance(organizations_enabled, bool):
+            raise TypeError("Expected argument 'organizations_enabled' to be a bool")
+        pulumi.set(__self__, "organizations_enabled", organizations_enabled)
         if otp_policy and not isinstance(otp_policy, dict):
             raise TypeError("Expected argument 'otp_policy' to be a dict")
         pulumi.set(__self__, "otp_policy", otp_policy)
@@ -328,6 +334,11 @@ class GetRealmResult:
         return pulumi.get(self, "enabled")
 
     @property
+    @pulumi.getter(name="firstBrokerLoginFlow")
+    def first_broker_login_flow(self) -> builtins.str:
+        return pulumi.get(self, "first_broker_login_flow")
+
+    @property
     @pulumi.getter
     def id(self) -> builtins.str:
         """
@@ -379,6 +390,11 @@ class GetRealmResult:
     @pulumi.getter(name="offlineSessionMaxLifespanEnabled")
     def offline_session_max_lifespan_enabled(self) -> builtins.bool:
         return pulumi.get(self, "offline_session_max_lifespan_enabled")
+
+    @property
+    @pulumi.getter(name="organizationsEnabled")
+    def organizations_enabled(self) -> builtins.bool:
+        return pulumi.get(self, "organizations_enabled")
 
     @property
     @pulumi.getter(name="otpPolicy")
@@ -522,6 +538,7 @@ class AwaitableGetRealmResult(GetRealmResult):
             edit_username_allowed=self.edit_username_allowed,
             email_theme=self.email_theme,
             enabled=self.enabled,
+            first_broker_login_flow=self.first_broker_login_flow,
             id=self.id,
             internal_id=self.internal_id,
             internationalizations=self.internationalizations,
@@ -532,6 +549,7 @@ class AwaitableGetRealmResult(GetRealmResult):
             offline_session_idle_timeout=self.offline_session_idle_timeout,
             offline_session_max_lifespan=self.offline_session_max_lifespan,
             offline_session_max_lifespan_enabled=self.offline_session_max_lifespan_enabled,
+            organizations_enabled=self.organizations_enabled,
             otp_policy=self.otp_policy,
             password_policy=self.password_policy,
             realm=self.realm,
@@ -629,6 +647,7 @@ def get_realm(attributes: Optional[Mapping[str, builtins.str]] = None,
         edit_username_allowed=pulumi.get(__ret__, 'edit_username_allowed'),
         email_theme=pulumi.get(__ret__, 'email_theme'),
         enabled=pulumi.get(__ret__, 'enabled'),
+        first_broker_login_flow=pulumi.get(__ret__, 'first_broker_login_flow'),
         id=pulumi.get(__ret__, 'id'),
         internal_id=pulumi.get(__ret__, 'internal_id'),
         internationalizations=pulumi.get(__ret__, 'internationalizations'),
@@ -639,6 +658,7 @@ def get_realm(attributes: Optional[Mapping[str, builtins.str]] = None,
         offline_session_idle_timeout=pulumi.get(__ret__, 'offline_session_idle_timeout'),
         offline_session_max_lifespan=pulumi.get(__ret__, 'offline_session_max_lifespan'),
         offline_session_max_lifespan_enabled=pulumi.get(__ret__, 'offline_session_max_lifespan_enabled'),
+        organizations_enabled=pulumi.get(__ret__, 'organizations_enabled'),
         otp_policy=pulumi.get(__ret__, 'otp_policy'),
         password_policy=pulumi.get(__ret__, 'password_policy'),
         realm=pulumi.get(__ret__, 'realm'),
@@ -733,6 +753,7 @@ def get_realm_output(attributes: Optional[pulumi.Input[Optional[Mapping[str, bui
         edit_username_allowed=pulumi.get(__response__, 'edit_username_allowed'),
         email_theme=pulumi.get(__response__, 'email_theme'),
         enabled=pulumi.get(__response__, 'enabled'),
+        first_broker_login_flow=pulumi.get(__response__, 'first_broker_login_flow'),
         id=pulumi.get(__response__, 'id'),
         internal_id=pulumi.get(__response__, 'internal_id'),
         internationalizations=pulumi.get(__response__, 'internationalizations'),
@@ -743,6 +764,7 @@ def get_realm_output(attributes: Optional[pulumi.Input[Optional[Mapping[str, bui
         offline_session_idle_timeout=pulumi.get(__response__, 'offline_session_idle_timeout'),
         offline_session_max_lifespan=pulumi.get(__response__, 'offline_session_max_lifespan'),
         offline_session_max_lifespan_enabled=pulumi.get(__response__, 'offline_session_max_lifespan_enabled'),
+        organizations_enabled=pulumi.get(__response__, 'organizations_enabled'),
         otp_policy=pulumi.get(__response__, 'otp_policy'),
         password_policy=pulumi.get(__response__, 'password_policy'),
         realm=pulumi.get(__response__, 'realm'),

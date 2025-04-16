@@ -24,12 +24,14 @@ class ClientArgs:
     def __init__(__self__, *,
                  client_id: pulumi.Input[builtins.str],
                  realm_id: pulumi.Input[builtins.str],
+                 always_display_in_console: Optional[pulumi.Input[builtins.bool]] = None,
                  assertion_consumer_post_url: Optional[pulumi.Input[builtins.str]] = None,
                  assertion_consumer_redirect_url: Optional[pulumi.Input[builtins.str]] = None,
                  authentication_flow_binding_overrides: Optional[pulumi.Input['ClientAuthenticationFlowBindingOverridesArgs']] = None,
                  base_url: Optional[pulumi.Input[builtins.str]] = None,
                  canonicalization_method: Optional[pulumi.Input[builtins.str]] = None,
                  client_signature_required: Optional[pulumi.Input[builtins.bool]] = None,
+                 consent_required: Optional[pulumi.Input[builtins.bool]] = None,
                  description: Optional[pulumi.Input[builtins.str]] = None,
                  enabled: Optional[pulumi.Input[builtins.bool]] = None,
                  encrypt_assertions: Optional[pulumi.Input[builtins.bool]] = None,
@@ -60,12 +62,14 @@ class ClientArgs:
         The set of arguments for constructing a Client resource.
         :param pulumi.Input[builtins.str] client_id: The unique ID of this client, referenced in the URI during authentication and in issued tokens.
         :param pulumi.Input[builtins.str] realm_id: The realm this client is attached to.
+        :param pulumi.Input[builtins.bool] always_display_in_console: Always list this client in the Account UI, even if the user does not have an active session.
         :param pulumi.Input[builtins.str] assertion_consumer_post_url: SAML POST Binding URL for the client's assertion consumer service (login responses).
         :param pulumi.Input[builtins.str] assertion_consumer_redirect_url: SAML Redirect Binding URL for the client's assertion consumer service (login responses).
         :param pulumi.Input['ClientAuthenticationFlowBindingOverridesArgs'] authentication_flow_binding_overrides: Override realm authentication flow bindings
         :param pulumi.Input[builtins.str] base_url: When specified, this URL will be used whenever Keycloak needs to link to this client.
         :param pulumi.Input[builtins.str] canonicalization_method: The Canonicalization Method for XML signatures. Should be one of "EXCLUSIVE", "EXCLUSIVE_WITH_COMMENTS", "INCLUSIVE", or "INCLUSIVE_WITH_COMMENTS". Defaults to "EXCLUSIVE".
         :param pulumi.Input[builtins.bool] client_signature_required: When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signing_certificate` and `signing_private_key`. Defaults to `true`.
+        :param pulumi.Input[builtins.bool] consent_required: When `true`, users have to consent to client access. Defaults to `false`.
         :param pulumi.Input[builtins.str] description: The description of this client in the GUI.
         :param pulumi.Input[builtins.bool] enabled: When false, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
         :param pulumi.Input[builtins.bool] encrypt_assertions: When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key. Defaults to `false`.
@@ -94,6 +98,8 @@ class ClientArgs:
         """
         pulumi.set(__self__, "client_id", client_id)
         pulumi.set(__self__, "realm_id", realm_id)
+        if always_display_in_console is not None:
+            pulumi.set(__self__, "always_display_in_console", always_display_in_console)
         if assertion_consumer_post_url is not None:
             pulumi.set(__self__, "assertion_consumer_post_url", assertion_consumer_post_url)
         if assertion_consumer_redirect_url is not None:
@@ -106,6 +112,8 @@ class ClientArgs:
             pulumi.set(__self__, "canonicalization_method", canonicalization_method)
         if client_signature_required is not None:
             pulumi.set(__self__, "client_signature_required", client_signature_required)
+        if consent_required is not None:
+            pulumi.set(__self__, "consent_required", consent_required)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if enabled is not None:
@@ -184,6 +192,18 @@ class ClientArgs:
         pulumi.set(self, "realm_id", value)
 
     @property
+    @pulumi.getter(name="alwaysDisplayInConsole")
+    def always_display_in_console(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        Always list this client in the Account UI, even if the user does not have an active session.
+        """
+        return pulumi.get(self, "always_display_in_console")
+
+    @always_display_in_console.setter
+    def always_display_in_console(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "always_display_in_console", value)
+
+    @property
     @pulumi.getter(name="assertionConsumerPostUrl")
     def assertion_consumer_post_url(self) -> Optional[pulumi.Input[builtins.str]]:
         """
@@ -254,6 +274,18 @@ class ClientArgs:
     @client_signature_required.setter
     def client_signature_required(self, value: Optional[pulumi.Input[builtins.bool]]):
         pulumi.set(self, "client_signature_required", value)
+
+    @property
+    @pulumi.getter(name="consentRequired")
+    def consent_required(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        When `true`, users have to consent to client access. Defaults to `false`.
+        """
+        return pulumi.get(self, "consent_required")
+
+    @consent_required.setter
+    def consent_required(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "consent_required", value)
 
     @property
     @pulumi.getter
@@ -568,6 +600,7 @@ class ClientArgs:
 @pulumi.input_type
 class _ClientState:
     def __init__(__self__, *,
+                 always_display_in_console: Optional[pulumi.Input[builtins.bool]] = None,
                  assertion_consumer_post_url: Optional[pulumi.Input[builtins.str]] = None,
                  assertion_consumer_redirect_url: Optional[pulumi.Input[builtins.str]] = None,
                  authentication_flow_binding_overrides: Optional[pulumi.Input['ClientAuthenticationFlowBindingOverridesArgs']] = None,
@@ -575,6 +608,7 @@ class _ClientState:
                  canonicalization_method: Optional[pulumi.Input[builtins.str]] = None,
                  client_id: Optional[pulumi.Input[builtins.str]] = None,
                  client_signature_required: Optional[pulumi.Input[builtins.bool]] = None,
+                 consent_required: Optional[pulumi.Input[builtins.bool]] = None,
                  description: Optional[pulumi.Input[builtins.str]] = None,
                  enabled: Optional[pulumi.Input[builtins.bool]] = None,
                  encrypt_assertions: Optional[pulumi.Input[builtins.bool]] = None,
@@ -607,6 +641,7 @@ class _ClientState:
                  valid_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering Client resources.
+        :param pulumi.Input[builtins.bool] always_display_in_console: Always list this client in the Account UI, even if the user does not have an active session.
         :param pulumi.Input[builtins.str] assertion_consumer_post_url: SAML POST Binding URL for the client's assertion consumer service (login responses).
         :param pulumi.Input[builtins.str] assertion_consumer_redirect_url: SAML Redirect Binding URL for the client's assertion consumer service (login responses).
         :param pulumi.Input['ClientAuthenticationFlowBindingOverridesArgs'] authentication_flow_binding_overrides: Override realm authentication flow bindings
@@ -614,6 +649,7 @@ class _ClientState:
         :param pulumi.Input[builtins.str] canonicalization_method: The Canonicalization Method for XML signatures. Should be one of "EXCLUSIVE", "EXCLUSIVE_WITH_COMMENTS", "INCLUSIVE", or "INCLUSIVE_WITH_COMMENTS". Defaults to "EXCLUSIVE".
         :param pulumi.Input[builtins.str] client_id: The unique ID of this client, referenced in the URI during authentication and in issued tokens.
         :param pulumi.Input[builtins.bool] client_signature_required: When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signing_certificate` and `signing_private_key`. Defaults to `true`.
+        :param pulumi.Input[builtins.bool] consent_required: When `true`, users have to consent to client access. Defaults to `false`.
         :param pulumi.Input[builtins.str] description: The description of this client in the GUI.
         :param pulumi.Input[builtins.bool] enabled: When false, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
         :param pulumi.Input[builtins.bool] encrypt_assertions: When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key. Defaults to `false`.
@@ -644,6 +680,8 @@ class _ClientState:
         :param pulumi.Input[builtins.str] signing_private_key_sha1: (Computed) The sha1sum fingerprint of the signing private key. If the signing private key is not in correct base64 format, this will be left empty.
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] valid_redirect_uris: When specified, Keycloak will use this list to validate given Assertion Consumer URLs specified in the authentication request.
         """
+        if always_display_in_console is not None:
+            pulumi.set(__self__, "always_display_in_console", always_display_in_console)
         if assertion_consumer_post_url is not None:
             pulumi.set(__self__, "assertion_consumer_post_url", assertion_consumer_post_url)
         if assertion_consumer_redirect_url is not None:
@@ -658,6 +696,8 @@ class _ClientState:
             pulumi.set(__self__, "client_id", client_id)
         if client_signature_required is not None:
             pulumi.set(__self__, "client_signature_required", client_signature_required)
+        if consent_required is not None:
+            pulumi.set(__self__, "consent_required", consent_required)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if enabled is not None:
@@ -718,6 +758,18 @@ class _ClientState:
             pulumi.set(__self__, "signing_private_key_sha1", signing_private_key_sha1)
         if valid_redirect_uris is not None:
             pulumi.set(__self__, "valid_redirect_uris", valid_redirect_uris)
+
+    @property
+    @pulumi.getter(name="alwaysDisplayInConsole")
+    def always_display_in_console(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        Always list this client in the Account UI, even if the user does not have an active session.
+        """
+        return pulumi.get(self, "always_display_in_console")
+
+    @always_display_in_console.setter
+    def always_display_in_console(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "always_display_in_console", value)
 
     @property
     @pulumi.getter(name="assertionConsumerPostUrl")
@@ -802,6 +854,18 @@ class _ClientState:
     @client_signature_required.setter
     def client_signature_required(self, value: Optional[pulumi.Input[builtins.bool]]):
         pulumi.set(self, "client_signature_required", value)
+
+    @property
+    @pulumi.getter(name="consentRequired")
+    def consent_required(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        When `true`, users have to consent to client access. Defaults to `false`.
+        """
+        return pulumi.get(self, "consent_required")
+
+    @consent_required.setter
+    def consent_required(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "consent_required", value)
 
     @property
     @pulumi.getter
@@ -1166,6 +1230,7 @@ class Client(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 always_display_in_console: Optional[pulumi.Input[builtins.bool]] = None,
                  assertion_consumer_post_url: Optional[pulumi.Input[builtins.str]] = None,
                  assertion_consumer_redirect_url: Optional[pulumi.Input[builtins.str]] = None,
                  authentication_flow_binding_overrides: Optional[pulumi.Input[Union['ClientAuthenticationFlowBindingOverridesArgs', 'ClientAuthenticationFlowBindingOverridesArgsDict']]] = None,
@@ -1173,6 +1238,7 @@ class Client(pulumi.CustomResource):
                  canonicalization_method: Optional[pulumi.Input[builtins.str]] = None,
                  client_id: Optional[pulumi.Input[builtins.str]] = None,
                  client_signature_required: Optional[pulumi.Input[builtins.bool]] = None,
+                 consent_required: Optional[pulumi.Input[builtins.bool]] = None,
                  description: Optional[pulumi.Input[builtins.str]] = None,
                  enabled: Optional[pulumi.Input[builtins.bool]] = None,
                  encrypt_assertions: Optional[pulumi.Input[builtins.bool]] = None,
@@ -1223,6 +1289,7 @@ class Client(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[builtins.bool] always_display_in_console: Always list this client in the Account UI, even if the user does not have an active session.
         :param pulumi.Input[builtins.str] assertion_consumer_post_url: SAML POST Binding URL for the client's assertion consumer service (login responses).
         :param pulumi.Input[builtins.str] assertion_consumer_redirect_url: SAML Redirect Binding URL for the client's assertion consumer service (login responses).
         :param pulumi.Input[Union['ClientAuthenticationFlowBindingOverridesArgs', 'ClientAuthenticationFlowBindingOverridesArgsDict']] authentication_flow_binding_overrides: Override realm authentication flow bindings
@@ -1230,6 +1297,7 @@ class Client(pulumi.CustomResource):
         :param pulumi.Input[builtins.str] canonicalization_method: The Canonicalization Method for XML signatures. Should be one of "EXCLUSIVE", "EXCLUSIVE_WITH_COMMENTS", "INCLUSIVE", or "INCLUSIVE_WITH_COMMENTS". Defaults to "EXCLUSIVE".
         :param pulumi.Input[builtins.str] client_id: The unique ID of this client, referenced in the URI during authentication and in issued tokens.
         :param pulumi.Input[builtins.bool] client_signature_required: When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signing_certificate` and `signing_private_key`. Defaults to `true`.
+        :param pulumi.Input[builtins.bool] consent_required: When `true`, users have to consent to client access. Defaults to `false`.
         :param pulumi.Input[builtins.str] description: The description of this client in the GUI.
         :param pulumi.Input[builtins.bool] enabled: When false, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
         :param pulumi.Input[builtins.bool] encrypt_assertions: When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key. Defaults to `false`.
@@ -1298,6 +1366,7 @@ class Client(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 always_display_in_console: Optional[pulumi.Input[builtins.bool]] = None,
                  assertion_consumer_post_url: Optional[pulumi.Input[builtins.str]] = None,
                  assertion_consumer_redirect_url: Optional[pulumi.Input[builtins.str]] = None,
                  authentication_flow_binding_overrides: Optional[pulumi.Input[Union['ClientAuthenticationFlowBindingOverridesArgs', 'ClientAuthenticationFlowBindingOverridesArgsDict']]] = None,
@@ -1305,6 +1374,7 @@ class Client(pulumi.CustomResource):
                  canonicalization_method: Optional[pulumi.Input[builtins.str]] = None,
                  client_id: Optional[pulumi.Input[builtins.str]] = None,
                  client_signature_required: Optional[pulumi.Input[builtins.bool]] = None,
+                 consent_required: Optional[pulumi.Input[builtins.bool]] = None,
                  description: Optional[pulumi.Input[builtins.str]] = None,
                  enabled: Optional[pulumi.Input[builtins.bool]] = None,
                  encrypt_assertions: Optional[pulumi.Input[builtins.bool]] = None,
@@ -1341,6 +1411,7 @@ class Client(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ClientArgs.__new__(ClientArgs)
 
+            __props__.__dict__["always_display_in_console"] = always_display_in_console
             __props__.__dict__["assertion_consumer_post_url"] = assertion_consumer_post_url
             __props__.__dict__["assertion_consumer_redirect_url"] = assertion_consumer_redirect_url
             __props__.__dict__["authentication_flow_binding_overrides"] = authentication_flow_binding_overrides
@@ -1350,6 +1421,7 @@ class Client(pulumi.CustomResource):
                 raise TypeError("Missing required property 'client_id'")
             __props__.__dict__["client_id"] = client_id
             __props__.__dict__["client_signature_required"] = client_signature_required
+            __props__.__dict__["consent_required"] = consent_required
             __props__.__dict__["description"] = description
             __props__.__dict__["enabled"] = enabled
             __props__.__dict__["encrypt_assertions"] = encrypt_assertions
@@ -1392,6 +1464,7 @@ class Client(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            always_display_in_console: Optional[pulumi.Input[builtins.bool]] = None,
             assertion_consumer_post_url: Optional[pulumi.Input[builtins.str]] = None,
             assertion_consumer_redirect_url: Optional[pulumi.Input[builtins.str]] = None,
             authentication_flow_binding_overrides: Optional[pulumi.Input[Union['ClientAuthenticationFlowBindingOverridesArgs', 'ClientAuthenticationFlowBindingOverridesArgsDict']]] = None,
@@ -1399,6 +1472,7 @@ class Client(pulumi.CustomResource):
             canonicalization_method: Optional[pulumi.Input[builtins.str]] = None,
             client_id: Optional[pulumi.Input[builtins.str]] = None,
             client_signature_required: Optional[pulumi.Input[builtins.bool]] = None,
+            consent_required: Optional[pulumi.Input[builtins.bool]] = None,
             description: Optional[pulumi.Input[builtins.str]] = None,
             enabled: Optional[pulumi.Input[builtins.bool]] = None,
             encrypt_assertions: Optional[pulumi.Input[builtins.bool]] = None,
@@ -1436,6 +1510,7 @@ class Client(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[builtins.bool] always_display_in_console: Always list this client in the Account UI, even if the user does not have an active session.
         :param pulumi.Input[builtins.str] assertion_consumer_post_url: SAML POST Binding URL for the client's assertion consumer service (login responses).
         :param pulumi.Input[builtins.str] assertion_consumer_redirect_url: SAML Redirect Binding URL for the client's assertion consumer service (login responses).
         :param pulumi.Input[Union['ClientAuthenticationFlowBindingOverridesArgs', 'ClientAuthenticationFlowBindingOverridesArgsDict']] authentication_flow_binding_overrides: Override realm authentication flow bindings
@@ -1443,6 +1518,7 @@ class Client(pulumi.CustomResource):
         :param pulumi.Input[builtins.str] canonicalization_method: The Canonicalization Method for XML signatures. Should be one of "EXCLUSIVE", "EXCLUSIVE_WITH_COMMENTS", "INCLUSIVE", or "INCLUSIVE_WITH_COMMENTS". Defaults to "EXCLUSIVE".
         :param pulumi.Input[builtins.str] client_id: The unique ID of this client, referenced in the URI during authentication and in issued tokens.
         :param pulumi.Input[builtins.bool] client_signature_required: When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signing_certificate` and `signing_private_key`. Defaults to `true`.
+        :param pulumi.Input[builtins.bool] consent_required: When `true`, users have to consent to client access. Defaults to `false`.
         :param pulumi.Input[builtins.str] description: The description of this client in the GUI.
         :param pulumi.Input[builtins.bool] enabled: When false, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
         :param pulumi.Input[builtins.bool] encrypt_assertions: When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key. Defaults to `false`.
@@ -1477,6 +1553,7 @@ class Client(pulumi.CustomResource):
 
         __props__ = _ClientState.__new__(_ClientState)
 
+        __props__.__dict__["always_display_in_console"] = always_display_in_console
         __props__.__dict__["assertion_consumer_post_url"] = assertion_consumer_post_url
         __props__.__dict__["assertion_consumer_redirect_url"] = assertion_consumer_redirect_url
         __props__.__dict__["authentication_flow_binding_overrides"] = authentication_flow_binding_overrides
@@ -1484,6 +1561,7 @@ class Client(pulumi.CustomResource):
         __props__.__dict__["canonicalization_method"] = canonicalization_method
         __props__.__dict__["client_id"] = client_id
         __props__.__dict__["client_signature_required"] = client_signature_required
+        __props__.__dict__["consent_required"] = consent_required
         __props__.__dict__["description"] = description
         __props__.__dict__["enabled"] = enabled
         __props__.__dict__["encrypt_assertions"] = encrypt_assertions
@@ -1515,6 +1593,14 @@ class Client(pulumi.CustomResource):
         __props__.__dict__["signing_private_key_sha1"] = signing_private_key_sha1
         __props__.__dict__["valid_redirect_uris"] = valid_redirect_uris
         return Client(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="alwaysDisplayInConsole")
+    def always_display_in_console(self) -> pulumi.Output[Optional[builtins.bool]]:
+        """
+        Always list this client in the Account UI, even if the user does not have an active session.
+        """
+        return pulumi.get(self, "always_display_in_console")
 
     @property
     @pulumi.getter(name="assertionConsumerPostUrl")
@@ -1571,6 +1657,14 @@ class Client(pulumi.CustomResource):
         When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signing_certificate` and `signing_private_key`. Defaults to `true`.
         """
         return pulumi.get(self, "client_signature_required")
+
+    @property
+    @pulumi.getter(name="consentRequired")
+    def consent_required(self) -> pulumi.Output[builtins.bool]:
+        """
+        When `true`, users have to consent to client access. Defaults to `false`.
+        """
+        return pulumi.get(self, "consent_required")
 
     @property
     @pulumi.getter

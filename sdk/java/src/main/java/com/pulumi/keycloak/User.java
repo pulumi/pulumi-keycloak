@@ -193,6 +193,20 @@ public class User extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.firstName);
     }
     /**
+     * When `true`, the user with the specified `username` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with users that Keycloak creates automatically during realm creation, such as `admin`. Note, that the user will not be removed during destruction if `import` is `true`.
+     * 
+     */
+    @Export(name="import", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> import_;
+
+    /**
+     * @return When `true`, the user with the specified `username` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with users that Keycloak creates automatically during realm creation, such as `admin`. Note, that the user will not be removed during destruction if `import` is `true`.
+     * 
+     */
+    public Output<Optional<Boolean>> import_() {
+        return Codegen.optional(this.import_);
+    }
+    /**
      * When given, the user&#39;s initial password will be set. This attribute is only respected during initial user creation.
      * 
      */

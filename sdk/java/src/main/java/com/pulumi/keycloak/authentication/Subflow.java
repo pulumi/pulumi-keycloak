@@ -10,6 +10,7 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.keycloak.Utilities;
 import com.pulumi.keycloak.authentication.SubflowArgs;
 import com.pulumi.keycloak.authentication.inputs.SubflowState;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -23,6 +24,55 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.keycloak.Realm;
+ * import com.pulumi.keycloak.RealmArgs;
+ * import com.pulumi.keycloak.authentication.Flow;
+ * import com.pulumi.keycloak.authentication.FlowArgs;
+ * import com.pulumi.keycloak.authentication.Subflow;
+ * import com.pulumi.keycloak.authentication.SubflowArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var realm = new Realm("realm", RealmArgs.builder()
+ *             .realm("my-realm")
+ *             .enabled(true)
+ *             .build());
+ * 
+ *         var flow = new Flow("flow", FlowArgs.builder()
+ *             .realmId(realm.id())
+ *             .alias("my-flow-alias")
+ *             .build());
+ * 
+ *         var subflow = new Subflow("subflow", SubflowArgs.builder()
+ *             .realmId(realm.id())
+ *             .alias("my-subflow-alias")
+ *             .parentFlowAlias(flow.alias())
+ *             .providerId("basic-flow")
+ *             .requirement("ALTERNATIVE")
+ *             .priority(10)
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
@@ -107,6 +157,20 @@ public class Subflow extends com.pulumi.resources.CustomResource {
      */
     public Output<String> parentFlowAlias() {
         return this.parentFlowAlias;
+    }
+    /**
+     * The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak &gt;= 25).
+     * 
+     */
+    @Export(name="priority", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> priority;
+
+    /**
+     * @return The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak &gt;= 25).
+     * 
+     */
+    public Output<Optional<Integer>> priority() {
+        return Codegen.optional(this.priority);
     }
     /**
      * The type of authentication subflow to create. Valid choices include `basic-flow`, `form-flow`

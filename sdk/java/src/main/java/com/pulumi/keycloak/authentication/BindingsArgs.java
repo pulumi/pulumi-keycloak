@@ -77,6 +77,21 @@ public final class BindingsArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The alias of the flow to assign to the realm FirstBrokerLoginFlow (since Keycloak 24).
+     * 
+     */
+    @Import(name="firstBrokerLoginFlow")
+    private @Nullable Output<String> firstBrokerLoginFlow;
+
+    /**
+     * @return The alias of the flow to assign to the realm FirstBrokerLoginFlow (since Keycloak 24).
+     * 
+     */
+    public Optional<Output<String>> firstBrokerLoginFlow() {
+        return Optional.ofNullable(this.firstBrokerLoginFlow);
+    }
+
+    /**
      * The realm the authentication flow binding exists in.
      * 
      */
@@ -128,6 +143,7 @@ public final class BindingsArgs extends com.pulumi.resources.ResourceArgs {
         this.clientAuthenticationFlow = $.clientAuthenticationFlow;
         this.directGrantFlow = $.directGrantFlow;
         this.dockerAuthenticationFlow = $.dockerAuthenticationFlow;
+        this.firstBrokerLoginFlow = $.firstBrokerLoginFlow;
         this.realmId = $.realmId;
         this.registrationFlow = $.registrationFlow;
         this.resetCredentialsFlow = $.resetCredentialsFlow;
@@ -233,6 +249,27 @@ public final class BindingsArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder dockerAuthenticationFlow(String dockerAuthenticationFlow) {
             return dockerAuthenticationFlow(Output.of(dockerAuthenticationFlow));
+        }
+
+        /**
+         * @param firstBrokerLoginFlow The alias of the flow to assign to the realm FirstBrokerLoginFlow (since Keycloak 24).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder firstBrokerLoginFlow(@Nullable Output<String> firstBrokerLoginFlow) {
+            $.firstBrokerLoginFlow = firstBrokerLoginFlow;
+            return this;
+        }
+
+        /**
+         * @param firstBrokerLoginFlow The alias of the flow to assign to the realm FirstBrokerLoginFlow (since Keycloak 24).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder firstBrokerLoginFlow(String firstBrokerLoginFlow) {
+            return firstBrokerLoginFlow(Output.of(firstBrokerLoginFlow));
         }
 
         /**

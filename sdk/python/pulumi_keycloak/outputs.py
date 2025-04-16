@@ -910,6 +910,8 @@ class RealmUserProfileAttribute(dict):
             suggest = "display_name"
         elif key == "enabledWhenScopes":
             suggest = "enabled_when_scopes"
+        elif key == "multiValued":
+            suggest = "multi_valued"
         elif key == "requiredForRoles":
             suggest = "required_for_roles"
         elif key == "requiredForScopes":
@@ -932,6 +934,7 @@ class RealmUserProfileAttribute(dict):
                  display_name: Optional[builtins.str] = None,
                  enabled_when_scopes: Optional[Sequence[builtins.str]] = None,
                  group: Optional[builtins.str] = None,
+                 multi_valued: Optional[builtins.bool] = None,
                  permissions: Optional['outputs.RealmUserProfileAttributePermissions'] = None,
                  required_for_roles: Optional[Sequence[builtins.str]] = None,
                  required_for_scopes: Optional[Sequence[builtins.str]] = None,
@@ -940,6 +943,7 @@ class RealmUserProfileAttribute(dict):
         :param builtins.str display_name: The display name of the attribute.
         :param Sequence[builtins.str] enabled_when_scopes: A list of scopes. The attribute will only be enabled when these scopes are requested by clients.
         :param builtins.str group: A list of groups.
+        :param builtins.bool multi_valued: If the attribute supports multiple values. Defaults to `false`.
         :param 'RealmUserProfileAttributePermissionsArgs' permissions: The permissions configuration information.
         :param Sequence[builtins.str] required_for_roles: A list of roles for which the attribute will be required.
         :param Sequence[builtins.str] required_for_scopes: A list of scopes for which the attribute will be required.
@@ -954,6 +958,8 @@ class RealmUserProfileAttribute(dict):
             pulumi.set(__self__, "enabled_when_scopes", enabled_when_scopes)
         if group is not None:
             pulumi.set(__self__, "group", group)
+        if multi_valued is not None:
+            pulumi.set(__self__, "multi_valued", multi_valued)
         if permissions is not None:
             pulumi.set(__self__, "permissions", permissions)
         if required_for_roles is not None:
@@ -996,6 +1002,14 @@ class RealmUserProfileAttribute(dict):
         A list of groups.
         """
         return pulumi.get(self, "group")
+
+    @property
+    @pulumi.getter(name="multiValued")
+    def multi_valued(self) -> Optional[builtins.bool]:
+        """
+        If the attribute supports multiple values. Defaults to `false`.
+        """
+        return pulumi.get(self, "multi_valued")
 
     @property
     @pulumi.getter
@@ -1165,6 +1179,8 @@ class RealmWebAuthnPasswordlessPolicy(dict):
             suggest = "avoid_same_authenticator_register"
         elif key == "createTimeout":
             suggest = "create_timeout"
+        elif key == "extraOrigins":
+            suggest = "extra_origins"
         elif key == "relyingPartyEntityName":
             suggest = "relying_party_entity_name"
         elif key == "relyingPartyId":
@@ -1193,6 +1209,7 @@ class RealmWebAuthnPasswordlessPolicy(dict):
                  authenticator_attachment: Optional[builtins.str] = None,
                  avoid_same_authenticator_register: Optional[builtins.bool] = None,
                  create_timeout: Optional[builtins.int] = None,
+                 extra_origins: Optional[Sequence[builtins.str]] = None,
                  relying_party_entity_name: Optional[builtins.str] = None,
                  relying_party_id: Optional[builtins.str] = None,
                  require_resident_key: Optional[builtins.str] = None,
@@ -1204,6 +1221,7 @@ class RealmWebAuthnPasswordlessPolicy(dict):
         :param builtins.str authenticator_attachment: Either platform or cross-platform
         :param builtins.bool avoid_same_authenticator_register: When `true`, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to `false`.
         :param builtins.int create_timeout: The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
+        :param Sequence[builtins.str] extra_origins: A set of extra origins for non-web applications.
         :param builtins.str relying_party_entity_name: A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
         :param builtins.str relying_party_id: The WebAuthn relying party ID.
         :param builtins.str require_resident_key: Either Yes or No
@@ -1220,6 +1238,8 @@ class RealmWebAuthnPasswordlessPolicy(dict):
             pulumi.set(__self__, "avoid_same_authenticator_register", avoid_same_authenticator_register)
         if create_timeout is not None:
             pulumi.set(__self__, "create_timeout", create_timeout)
+        if extra_origins is not None:
+            pulumi.set(__self__, "extra_origins", extra_origins)
         if relying_party_entity_name is not None:
             pulumi.set(__self__, "relying_party_entity_name", relying_party_entity_name)
         if relying_party_id is not None:
@@ -1270,6 +1290,14 @@ class RealmWebAuthnPasswordlessPolicy(dict):
         The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
         """
         return pulumi.get(self, "create_timeout")
+
+    @property
+    @pulumi.getter(name="extraOrigins")
+    def extra_origins(self) -> Optional[Sequence[builtins.str]]:
+        """
+        A set of extra origins for non-web applications.
+        """
+        return pulumi.get(self, "extra_origins")
 
     @property
     @pulumi.getter(name="relyingPartyEntityName")
@@ -1327,6 +1355,8 @@ class RealmWebAuthnPolicy(dict):
             suggest = "avoid_same_authenticator_register"
         elif key == "createTimeout":
             suggest = "create_timeout"
+        elif key == "extraOrigins":
+            suggest = "extra_origins"
         elif key == "relyingPartyEntityName":
             suggest = "relying_party_entity_name"
         elif key == "relyingPartyId":
@@ -1355,6 +1385,7 @@ class RealmWebAuthnPolicy(dict):
                  authenticator_attachment: Optional[builtins.str] = None,
                  avoid_same_authenticator_register: Optional[builtins.bool] = None,
                  create_timeout: Optional[builtins.int] = None,
+                 extra_origins: Optional[Sequence[builtins.str]] = None,
                  relying_party_entity_name: Optional[builtins.str] = None,
                  relying_party_id: Optional[builtins.str] = None,
                  require_resident_key: Optional[builtins.str] = None,
@@ -1366,6 +1397,7 @@ class RealmWebAuthnPolicy(dict):
         :param builtins.str authenticator_attachment: Either platform or cross-platform
         :param builtins.bool avoid_same_authenticator_register: When `true`, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to `false`.
         :param builtins.int create_timeout: The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
+        :param Sequence[builtins.str] extra_origins: A set of extra origins for non-web applications.
         :param builtins.str relying_party_entity_name: A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
         :param builtins.str relying_party_id: The WebAuthn relying party ID.
         :param builtins.str require_resident_key: Either Yes or No
@@ -1382,6 +1414,8 @@ class RealmWebAuthnPolicy(dict):
             pulumi.set(__self__, "avoid_same_authenticator_register", avoid_same_authenticator_register)
         if create_timeout is not None:
             pulumi.set(__self__, "create_timeout", create_timeout)
+        if extra_origins is not None:
+            pulumi.set(__self__, "extra_origins", extra_origins)
         if relying_party_entity_name is not None:
             pulumi.set(__self__, "relying_party_entity_name", relying_party_entity_name)
         if relying_party_id is not None:
@@ -1432,6 +1466,14 @@ class RealmWebAuthnPolicy(dict):
         The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
         """
         return pulumi.get(self, "create_timeout")
+
+    @property
+    @pulumi.getter(name="extraOrigins")
+    def extra_origins(self) -> Optional[Sequence[builtins.str]]:
+        """
+        A set of extra origins for non-web applications.
+        """
+        return pulumi.get(self, "extra_origins")
 
     @property
     @pulumi.getter(name="relyingPartyEntityName")
@@ -2278,6 +2320,7 @@ class GetRealmWebAuthnPasswordlessPolicyResult(dict):
                  authenticator_attachment: builtins.str,
                  avoid_same_authenticator_register: builtins.bool,
                  create_timeout: builtins.int,
+                 extra_origins: Sequence[builtins.str],
                  relying_party_entity_name: builtins.str,
                  relying_party_id: builtins.str,
                  require_resident_key: builtins.str,
@@ -2295,6 +2338,7 @@ class GetRealmWebAuthnPasswordlessPolicyResult(dict):
         pulumi.set(__self__, "authenticator_attachment", authenticator_attachment)
         pulumi.set(__self__, "avoid_same_authenticator_register", avoid_same_authenticator_register)
         pulumi.set(__self__, "create_timeout", create_timeout)
+        pulumi.set(__self__, "extra_origins", extra_origins)
         pulumi.set(__self__, "relying_party_entity_name", relying_party_entity_name)
         pulumi.set(__self__, "relying_party_id", relying_party_id)
         pulumi.set(__self__, "require_resident_key", require_resident_key)
@@ -2331,6 +2375,11 @@ class GetRealmWebAuthnPasswordlessPolicyResult(dict):
     @pulumi.getter(name="createTimeout")
     def create_timeout(self) -> builtins.int:
         return pulumi.get(self, "create_timeout")
+
+    @property
+    @pulumi.getter(name="extraOrigins")
+    def extra_origins(self) -> Sequence[builtins.str]:
+        return pulumi.get(self, "extra_origins")
 
     @property
     @pulumi.getter(name="relyingPartyEntityName")
@@ -2375,6 +2424,7 @@ class GetRealmWebAuthnPolicyResult(dict):
                  authenticator_attachment: builtins.str,
                  avoid_same_authenticator_register: builtins.bool,
                  create_timeout: builtins.int,
+                 extra_origins: Sequence[builtins.str],
                  relying_party_entity_name: builtins.str,
                  relying_party_id: builtins.str,
                  require_resident_key: builtins.str,
@@ -2392,6 +2442,7 @@ class GetRealmWebAuthnPolicyResult(dict):
         pulumi.set(__self__, "authenticator_attachment", authenticator_attachment)
         pulumi.set(__self__, "avoid_same_authenticator_register", avoid_same_authenticator_register)
         pulumi.set(__self__, "create_timeout", create_timeout)
+        pulumi.set(__self__, "extra_origins", extra_origins)
         pulumi.set(__self__, "relying_party_entity_name", relying_party_entity_name)
         pulumi.set(__self__, "relying_party_id", relying_party_id)
         pulumi.set(__self__, "require_resident_key", require_resident_key)
@@ -2428,6 +2479,11 @@ class GetRealmWebAuthnPolicyResult(dict):
     @pulumi.getter(name="createTimeout")
     def create_timeout(self) -> builtins.int:
         return pulumi.get(self, "create_timeout")
+
+    @property
+    @pulumi.getter(name="extraOrigins")
+    def extra_origins(self) -> Sequence[builtins.str]:
+        return pulumi.get(self, "extra_origins")
 
     @property
     @pulumi.getter(name="relyingPartyEntityName")

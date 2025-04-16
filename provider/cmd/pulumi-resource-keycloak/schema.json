@@ -7,7 +7,7 @@
     ],
     "homepage": "https://pulumi.io",
     "license": "Apache-2.0",
-    "attribution": "This Pulumi package is based on the [`keycloak` Terraform Provider](https://github.com/mrparkers/terraform-provider-keycloak).",
+    "attribution": "This Pulumi package is based on the [`keycloak` Terraform Provider](https://github.com/keycloak/terraform-provider-keycloak).",
     "repository": "https://github.com/pulumi/pulumi-keycloak",
     "meta": {
         "moduleFormat": "(.*)(?:/[^/]*)"
@@ -37,7 +37,7 @@
         },
         "nodejs": {
             "packageDescription": "A Pulumi package for creating and managing keycloak cloud resources.",
-            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/mrparkers/terraform-provider-keycloak)\n\u003e distributed under [MIT](https://mit-license.org/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-keycloak` repo](https://github.com/pulumi/pulumi-keycloak/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-keycloak` repo](https://github.com/mrparkers/terraform-provider-keycloak/issues).",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/keycloak/terraform-provider-keycloak)\n\u003e distributed under [MIT](https://mit-license.org/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-keycloak` repo](https://github.com/pulumi/pulumi-keycloak/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-keycloak` repo](https://github.com/keycloak/terraform-provider-keycloak/issues).",
             "devDependencies": {
                 "@types/mime": "^2.0.0",
                 "@types/node": "^10.0.0"
@@ -47,7 +47,7 @@
             "respectSchemaVersion": true
         },
         "python": {
-            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/mrparkers/terraform-provider-keycloak)\n\u003e distributed under [MIT](https://mit-license.org/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-keycloak` repo](https://github.com/pulumi/pulumi-keycloak/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-keycloak` repo](https://github.com/mrparkers/terraform-provider-keycloak/issues).",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/keycloak/terraform-provider-keycloak)\n\u003e distributed under [MIT](https://mit-license.org/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-keycloak` repo](https://github.com/pulumi/pulumi-keycloak/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-keycloak` repo](https://github.com/keycloak/terraform-provider-keycloak/issues).",
             "compatibility": "tfbridge20",
             "respectSchemaVersion": true,
             "pyproject": {
@@ -422,6 +422,10 @@
                     "type": "string",
                     "description": "A list of groups.\n"
                 },
+                "multiValued": {
+                    "type": "boolean",
+                    "description": "If the attribute supports multiple values. Defaults to `false`.\n"
+                },
                 "name": {
                     "type": "string"
                 },
@@ -547,6 +551,13 @@
                     "type": "integer",
                     "description": "The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.\n"
                 },
+                "extraOrigins": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A set of extra origins for non-web applications.\n"
+                },
                 "relyingPartyEntityName": {
                     "type": "string",
                     "description": "A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.\n"
@@ -604,6 +615,13 @@
                 "createTimeout": {
                     "type": "integer",
                     "description": "The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.\n"
+                },
+                "extraOrigins": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A set of extra origins for non-web applications.\n"
                 },
                 "relyingPartyEntityName": {
                     "type": "string",
@@ -1133,6 +1151,12 @@
                 "createTimeout": {
                     "type": "integer"
                 },
+                "extraOrigins": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
                 "relyingPartyEntityName": {
                     "type": "string"
                 },
@@ -1162,6 +1186,7 @@
                 "authenticatorAttachment",
                 "avoidSameAuthenticatorRegister",
                 "createTimeout",
+                "extraOrigins",
                 "relyingPartyEntityName",
                 "relyingPartyId",
                 "requireResidentKey",
@@ -1196,6 +1221,12 @@
                 "createTimeout": {
                     "type": "integer"
                 },
+                "extraOrigins": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
                 "relyingPartyEntityName": {
                     "type": "string"
                 },
@@ -1225,6 +1256,7 @@
                 "authenticatorAttachment",
                 "avoidSameAuthenticatorRegister",
                 "createTimeout",
+                "extraOrigins",
                 "relyingPartyEntityName",
                 "relyingPartyId",
                 "requireResidentKey",
@@ -1323,6 +1355,20 @@
             "type": "object",
             "required": [
                 "policyEnforcementMode"
+            ]
+        },
+        "keycloak:openid/ClientAuthorizationClientScopePolicyScope:ClientAuthorizationClientScopePolicyScope": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "required": {
+                    "type": "boolean"
+                }
+            },
+            "type": "object",
+            "required": [
+                "id"
             ]
         },
         "keycloak:openid/ClientGroupPolicyGroup:ClientGroupPolicyGroup": {
@@ -1721,6 +1767,10 @@
                     "type": "string",
                     "description": "The alias of the flow to assign to the realm DockerAuthenticationFlow.\n"
                 },
+                "firstBrokerLoginFlow": {
+                    "type": "string",
+                    "description": "The alias of the flow to assign to the realm FirstBrokerLoginFlow (since Keycloak 24).\n"
+                },
                 "realmId": {
                     "type": "string",
                     "description": "The realm the authentication flow binding exists in.\n"
@@ -1739,6 +1789,7 @@
                 "clientAuthenticationFlow",
                 "directGrantFlow",
                 "dockerAuthenticationFlow",
+                "firstBrokerLoginFlow",
                 "realmId",
                 "registrationFlow",
                 "resetCredentialsFlow"
@@ -1759,6 +1810,10 @@
                 "dockerAuthenticationFlow": {
                     "type": "string",
                     "description": "The alias of the flow to assign to the realm DockerAuthenticationFlow.\n"
+                },
+                "firstBrokerLoginFlow": {
+                    "type": "string",
+                    "description": "The alias of the flow to assign to the realm FirstBrokerLoginFlow (since Keycloak 24).\n"
                 },
                 "realmId": {
                     "type": "string",
@@ -1796,6 +1851,10 @@
                         "type": "string",
                         "description": "The alias of the flow to assign to the realm DockerAuthenticationFlow.\n"
                     },
+                    "firstBrokerLoginFlow": {
+                        "type": "string",
+                        "description": "The alias of the flow to assign to the realm FirstBrokerLoginFlow (since Keycloak 24).\n"
+                    },
                     "realmId": {
                         "type": "string",
                         "description": "The realm the authentication flow binding exists in.\n",
@@ -1814,7 +1873,7 @@
             }
         },
         "keycloak:authentication/execution:Execution": {
-            "description": "Allows for creating and managing an authentication execution within Keycloak.\n\nAn authentication execution is an action that the user or service may or may not take when authenticating through an authentication\nflow.\n\n\u003e Following limitation affects Keycloak \u003c 25:  Due to limitations in the Keycloak API, the ordering of authentication executions within a flow must be specified using `depends_on`. Authentication executions that are created first will appear first within the flow.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```yaml\nresources:\n  realm:\n    type: keycloak:Realm\n    properties:\n      realm: my-realm\n      enabled: true\n  flow:\n    type: keycloak:authentication:Flow\n    properties:\n      realmId: ${realm.id}\n      alias: my-flow-alias\n  # first execution\n  executionOne:\n    type: keycloak:authentication:Execution\n    name: execution_one\n    properties:\n      realmId: ${realm.id}\n      parentFlowAlias: ${flow.alias}\n      authenticator: auth-cookie\n      requirement: ALTERNATIVE\n      priority: 10\n  # second execution\n  executionTwo:\n    type: keycloak:authentication:Execution\n    name: execution_two\n    properties:\n      realmId: ${realm.id}\n      parentFlowAlias: ${flow.alias}\n      authenticator: identity-provider-redirector\n      requirement: ALTERNATIVE\n      priority: 20\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nAuthentication executions can be imported using the formats: `{{realmId}}/{{parentFlowAlias}}/{{authenticationExecutionId}}`.\n\nExample:\n\nbash\n\n```sh\n$ pulumi import keycloak:authentication/execution:Execution execution_one my-realm/my-flow-alias/30559fcf-6fb8-45ea-8c46-2b86f46ebc17\n```\n\n",
+            "description": "Allows for creating and managing an authentication execution within Keycloak.\n\nAn authentication execution is an action that the user or service may or may not take when authenticating through an authentication\nflow.\n\n\u003e Following limitation affects Keycloak \u003c 25:  Due to limitations in the Keycloak API, the ordering of authentication executions within a flow must be specified using `depends_on`. Authentication executions that are created first will appear first within the flow.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n});\nconst flow = new keycloak.authentication.Flow(\"flow\", {\n    realmId: realm.id,\n    alias: \"my-flow-alias\",\n});\n// first execution\nconst executionOne = new keycloak.authentication.Execution(\"execution_one\", {\n    realmId: realm.id,\n    parentFlowAlias: flow.alias,\n    authenticator: \"auth-cookie\",\n    requirement: \"ALTERNATIVE\",\n    priority: 10,\n});\n// second execution\nconst executionTwo = new keycloak.authentication.Execution(\"execution_two\", {\n    realmId: realm.id,\n    parentFlowAlias: flow.alias,\n    authenticator: \"identity-provider-redirector\",\n    requirement: \"ALTERNATIVE\",\n    priority: 20,\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True)\nflow = keycloak.authentication.Flow(\"flow\",\n    realm_id=realm.id,\n    alias=\"my-flow-alias\")\n# first execution\nexecution_one = keycloak.authentication.Execution(\"execution_one\",\n    realm_id=realm.id,\n    parent_flow_alias=flow.alias,\n    authenticator=\"auth-cookie\",\n    requirement=\"ALTERNATIVE\",\n    priority=10)\n# second execution\nexecution_two = keycloak.authentication.Execution(\"execution_two\",\n    realm_id=realm.id,\n    parent_flow_alias=flow.alias,\n    authenticator=\"identity-provider-redirector\",\n    requirement=\"ALTERNATIVE\",\n    priority=20)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var realm = new Keycloak.Realm(\"realm\", new()\n    {\n        RealmName = \"my-realm\",\n        Enabled = true,\n    });\n\n    var flow = new Keycloak.Authentication.Flow(\"flow\", new()\n    {\n        RealmId = realm.Id,\n        Alias = \"my-flow-alias\",\n    });\n\n    // first execution\n    var executionOne = new Keycloak.Authentication.Execution(\"execution_one\", new()\n    {\n        RealmId = realm.Id,\n        ParentFlowAlias = flow.Alias,\n        Authenticator = \"auth-cookie\",\n        Requirement = \"ALTERNATIVE\",\n        Priority = 10,\n    });\n\n    // second execution\n    var executionTwo = new Keycloak.Authentication.Execution(\"execution_two\", new()\n    {\n        RealmId = realm.Id,\n        ParentFlowAlias = flow.Alias,\n        Authenticator = \"identity-provider-redirector\",\n        Requirement = \"ALTERNATIVE\",\n        Priority = 20,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak\"\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak/authentication\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:   pulumi.String(\"my-realm\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tflow, err := authentication.NewFlow(ctx, \"flow\", \u0026authentication.FlowArgs{\n\t\t\tRealmId: realm.ID(),\n\t\t\tAlias:   pulumi.String(\"my-flow-alias\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// first execution\n\t\t_, err = authentication.NewExecution(ctx, \"execution_one\", \u0026authentication.ExecutionArgs{\n\t\t\tRealmId:         realm.ID(),\n\t\t\tParentFlowAlias: flow.Alias,\n\t\t\tAuthenticator:   pulumi.String(\"auth-cookie\"),\n\t\t\tRequirement:     pulumi.String(\"ALTERNATIVE\"),\n\t\t\tPriority:        pulumi.Int(10),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// second execution\n\t\t_, err = authentication.NewExecution(ctx, \"execution_two\", \u0026authentication.ExecutionArgs{\n\t\t\tRealmId:         realm.ID(),\n\t\t\tParentFlowAlias: flow.Alias,\n\t\t\tAuthenticator:   pulumi.String(\"identity-provider-redirector\"),\n\t\t\tRequirement:     pulumi.String(\"ALTERNATIVE\"),\n\t\t\tPriority:        pulumi.Int(20),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.keycloak.Realm;\nimport com.pulumi.keycloak.RealmArgs;\nimport com.pulumi.keycloak.authentication.Flow;\nimport com.pulumi.keycloak.authentication.FlowArgs;\nimport com.pulumi.keycloak.authentication.Execution;\nimport com.pulumi.keycloak.authentication.ExecutionArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var realm = new Realm(\"realm\", RealmArgs.builder()\n            .realm(\"my-realm\")\n            .enabled(true)\n            .build());\n\n        var flow = new Flow(\"flow\", FlowArgs.builder()\n            .realmId(realm.id())\n            .alias(\"my-flow-alias\")\n            .build());\n\n        // first execution\n        var executionOne = new Execution(\"executionOne\", ExecutionArgs.builder()\n            .realmId(realm.id())\n            .parentFlowAlias(flow.alias())\n            .authenticator(\"auth-cookie\")\n            .requirement(\"ALTERNATIVE\")\n            .priority(10)\n            .build());\n\n        // second execution\n        var executionTwo = new Execution(\"executionTwo\", ExecutionArgs.builder()\n            .realmId(realm.id())\n            .parentFlowAlias(flow.alias())\n            .authenticator(\"identity-provider-redirector\")\n            .requirement(\"ALTERNATIVE\")\n            .priority(20)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  realm:\n    type: keycloak:Realm\n    properties:\n      realm: my-realm\n      enabled: true\n  flow:\n    type: keycloak:authentication:Flow\n    properties:\n      realmId: ${realm.id}\n      alias: my-flow-alias\n  # first execution\n  executionOne:\n    type: keycloak:authentication:Execution\n    name: execution_one\n    properties:\n      realmId: ${realm.id}\n      parentFlowAlias: ${flow.alias}\n      authenticator: auth-cookie\n      requirement: ALTERNATIVE\n      priority: 10\n  # second execution\n  executionTwo:\n    type: keycloak:authentication:Execution\n    name: execution_two\n    properties:\n      realmId: ${realm.id}\n      parentFlowAlias: ${flow.alias}\n      authenticator: identity-provider-redirector\n      requirement: ALTERNATIVE\n      priority: 20\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nAuthentication executions can be imported using the formats: `{{realmId}}/{{parentFlowAlias}}/{{authenticationExecutionId}}`.\n\nExample:\n\nbash\n\n```sh\n$ pulumi import keycloak:authentication/execution:Execution execution_one my-realm/my-flow-alias/30559fcf-6fb8-45ea-8c46-2b86f46ebc17\n```\n\n",
             "properties": {
                 "authenticator": {
                     "type": "string",
@@ -1823,6 +1882,10 @@
                 "parentFlowAlias": {
                     "type": "string",
                     "description": "The alias of the flow this execution is attached to.\n"
+                },
+                "priority": {
+                    "type": "integer",
+                    "description": "The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak \u003e= 25).\n"
                 },
                 "realmId": {
                     "type": "string",
@@ -1848,6 +1911,10 @@
                     "type": "string",
                     "description": "The alias of the flow this execution is attached to.\n",
                     "willReplaceOnChanges": true
+                },
+                "priority": {
+                    "type": "integer",
+                    "description": "The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak \u003e= 25).\n"
                 },
                 "realmId": {
                     "type": "string",
@@ -1876,6 +1943,10 @@
                         "type": "string",
                         "description": "The alias of the flow this execution is attached to.\n",
                         "willReplaceOnChanges": true
+                    },
+                    "priority": {
+                        "type": "integer",
+                        "description": "The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak \u003e= 25).\n"
                     },
                     "realmId": {
                         "type": "string",
@@ -2050,7 +2121,7 @@
             }
         },
         "keycloak:authentication/subflow:Subflow": {
-            "description": "Allows for creating and managing an authentication subflow within Keycloak.\n\nLike authentication flows, authentication subflows are containers for authentication executions.\nAs its name implies, an authentication subflow is contained in an authentication flow.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```yaml\nresources:\n  realm:\n    type: keycloak:Realm\n    properties:\n      realm: my-realm\n      enabled: true\n  flow:\n    type: keycloak:authentication:Flow\n    properties:\n      realmId: ${realm.id}\n      alias: my-flow-alias\n  subflow:\n    type: keycloak:authentication:Subflow\n    properties:\n      realmId: ${realm.id}\n      alias: my-subflow-alias\n      parentFlowAlias: ${flow.alias}\n      providerId: basic-flow\n      requirement: ALTERNATIVE\n      priority: 10\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nAuthentication flows can be imported using the format `{{realmId}}/{{parentFlowAlias}}/{{authenticationSubflowId}}`.\n\nThe authentication subflow ID is typically a GUID which is autogenerated when the subflow is created via Keycloak.\n\nUnfortunately, it is not trivial to retrieve the authentication subflow ID from the UI. The best way to do this is to visit the\n\n\"Authentication\" page in Keycloak, and use the network tab of your browser to view the response of the API call to\n\n`/auth/admin/realms/${realm}/authentication/flows/{flow}/executions`, which will be a list of executions, where the subflow will be.\n\n__The subflow ID is contained in the `flowID` field__ (not, as one could guess, the `id` field).\n\nExample:\n\nbash\n\n```sh\n$ pulumi import keycloak:authentication/subflow:Subflow subflow my-realm/\"Parent Flow\"/3bad1172-bb5c-4a77-9615-c2606eb03081\n```\n\n",
+            "description": "Allows for creating and managing an authentication subflow within Keycloak.\n\nLike authentication flows, authentication subflows are containers for authentication executions.\nAs its name implies, an authentication subflow is contained in an authentication flow.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n});\nconst flow = new keycloak.authentication.Flow(\"flow\", {\n    realmId: realm.id,\n    alias: \"my-flow-alias\",\n});\nconst subflow = new keycloak.authentication.Subflow(\"subflow\", {\n    realmId: realm.id,\n    alias: \"my-subflow-alias\",\n    parentFlowAlias: flow.alias,\n    providerId: \"basic-flow\",\n    requirement: \"ALTERNATIVE\",\n    priority: 10,\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True)\nflow = keycloak.authentication.Flow(\"flow\",\n    realm_id=realm.id,\n    alias=\"my-flow-alias\")\nsubflow = keycloak.authentication.Subflow(\"subflow\",\n    realm_id=realm.id,\n    alias=\"my-subflow-alias\",\n    parent_flow_alias=flow.alias,\n    provider_id=\"basic-flow\",\n    requirement=\"ALTERNATIVE\",\n    priority=10)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var realm = new Keycloak.Realm(\"realm\", new()\n    {\n        RealmName = \"my-realm\",\n        Enabled = true,\n    });\n\n    var flow = new Keycloak.Authentication.Flow(\"flow\", new()\n    {\n        RealmId = realm.Id,\n        Alias = \"my-flow-alias\",\n    });\n\n    var subflow = new Keycloak.Authentication.Subflow(\"subflow\", new()\n    {\n        RealmId = realm.Id,\n        Alias = \"my-subflow-alias\",\n        ParentFlowAlias = flow.Alias,\n        ProviderId = \"basic-flow\",\n        Requirement = \"ALTERNATIVE\",\n        Priority = 10,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak\"\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak/authentication\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:   pulumi.String(\"my-realm\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tflow, err := authentication.NewFlow(ctx, \"flow\", \u0026authentication.FlowArgs{\n\t\t\tRealmId: realm.ID(),\n\t\t\tAlias:   pulumi.String(\"my-flow-alias\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = authentication.NewSubflow(ctx, \"subflow\", \u0026authentication.SubflowArgs{\n\t\t\tRealmId:         realm.ID(),\n\t\t\tAlias:           pulumi.String(\"my-subflow-alias\"),\n\t\t\tParentFlowAlias: flow.Alias,\n\t\t\tProviderId:      pulumi.String(\"basic-flow\"),\n\t\t\tRequirement:     pulumi.String(\"ALTERNATIVE\"),\n\t\t\tPriority:        pulumi.Int(10),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.keycloak.Realm;\nimport com.pulumi.keycloak.RealmArgs;\nimport com.pulumi.keycloak.authentication.Flow;\nimport com.pulumi.keycloak.authentication.FlowArgs;\nimport com.pulumi.keycloak.authentication.Subflow;\nimport com.pulumi.keycloak.authentication.SubflowArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var realm = new Realm(\"realm\", RealmArgs.builder()\n            .realm(\"my-realm\")\n            .enabled(true)\n            .build());\n\n        var flow = new Flow(\"flow\", FlowArgs.builder()\n            .realmId(realm.id())\n            .alias(\"my-flow-alias\")\n            .build());\n\n        var subflow = new Subflow(\"subflow\", SubflowArgs.builder()\n            .realmId(realm.id())\n            .alias(\"my-subflow-alias\")\n            .parentFlowAlias(flow.alias())\n            .providerId(\"basic-flow\")\n            .requirement(\"ALTERNATIVE\")\n            .priority(10)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  realm:\n    type: keycloak:Realm\n    properties:\n      realm: my-realm\n      enabled: true\n  flow:\n    type: keycloak:authentication:Flow\n    properties:\n      realmId: ${realm.id}\n      alias: my-flow-alias\n  subflow:\n    type: keycloak:authentication:Subflow\n    properties:\n      realmId: ${realm.id}\n      alias: my-subflow-alias\n      parentFlowAlias: ${flow.alias}\n      providerId: basic-flow\n      requirement: ALTERNATIVE\n      priority: 10\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nAuthentication flows can be imported using the format `{{realmId}}/{{parentFlowAlias}}/{{authenticationSubflowId}}`.\n\nThe authentication subflow ID is typically a GUID which is autogenerated when the subflow is created via Keycloak.\n\nUnfortunately, it is not trivial to retrieve the authentication subflow ID from the UI. The best way to do this is to visit the\n\n\"Authentication\" page in Keycloak, and use the network tab of your browser to view the response of the API call to\n\n`/auth/admin/realms/${realm}/authentication/flows/{flow}/executions`, which will be a list of executions, where the subflow will be.\n\n__The subflow ID is contained in the `flowID` field__ (not, as one could guess, the `id` field).\n\nExample:\n\nbash\n\n```sh\n$ pulumi import keycloak:authentication/subflow:Subflow subflow my-realm/\"Parent Flow\"/3bad1172-bb5c-4a77-9615-c2606eb03081\n```\n\n",
             "properties": {
                 "alias": {
                     "type": "string",
@@ -2067,6 +2138,10 @@
                 "parentFlowAlias": {
                     "type": "string",
                     "description": "The alias for the parent authentication flow.\n"
+                },
+                "priority": {
+                    "type": "integer",
+                    "description": "The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak \u003e= 25).\n"
                 },
                 "providerId": {
                     "type": "string",
@@ -2104,6 +2179,10 @@
                     "type": "string",
                     "description": "The alias for the parent authentication flow.\n",
                     "willReplaceOnChanges": true
+                },
+                "priority": {
+                    "type": "integer",
+                    "description": "The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak \u003e= 25).\n"
                 },
                 "providerId": {
                     "type": "string",
@@ -2144,6 +2223,10 @@
                         "type": "string",
                         "description": "The alias for the parent authentication flow.\n",
                         "willReplaceOnChanges": true
+                    },
+                    "priority": {
+                        "type": "integer",
+                        "description": "The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak \u003e= 25).\n"
                     },
                     "providerId": {
                         "type": "string",
@@ -3726,6 +3809,194 @@
                 "type": "object"
             }
         },
+        "keycloak:index/hardcodedAttributeMapper:HardcodedAttributeMapper": {
+            "description": "Allows for creating and managing hardcoded attribute mappers for Keycloak users federated via LDAP.\n\nThe user model hardcoded attribute mapper will set the specified value to the attribute.\n\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n});\nconst ldapUserFederation = new keycloak.ldap.UserFederation(\"ldap_user_federation\", {\n    name: \"openldap\",\n    realmId: realm.id,\n    usernameLdapAttribute: \"cn\",\n    rdnLdapAttribute: \"cn\",\n    uuidLdapAttribute: \"entryDN\",\n    userObjectClasses: [\n        \"simpleSecurityObject\",\n        \"organizationalRole\",\n    ],\n    connectionUrl: \"ldap://openldap\",\n    usersDn: \"dc=example,dc=org\",\n    bindDn: \"cn=admin,dc=example,dc=org\",\n    bindCredential: \"admin\",\n    syncRegistrations: true,\n});\nconst emailVerified = new keycloak.HardcodedAttributeMapper(\"email_verified\", {\n    realmId: realm.id,\n    ldapUserFederationId: ldapUserFederation.id,\n    name: \"email_verified\",\n    attributeName: \"email_verified\",\n    attributeValue: \"true\",\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True)\nldap_user_federation = keycloak.ldap.UserFederation(\"ldap_user_federation\",\n    name=\"openldap\",\n    realm_id=realm.id,\n    username_ldap_attribute=\"cn\",\n    rdn_ldap_attribute=\"cn\",\n    uuid_ldap_attribute=\"entryDN\",\n    user_object_classes=[\n        \"simpleSecurityObject\",\n        \"organizationalRole\",\n    ],\n    connection_url=\"ldap://openldap\",\n    users_dn=\"dc=example,dc=org\",\n    bind_dn=\"cn=admin,dc=example,dc=org\",\n    bind_credential=\"admin\",\n    sync_registrations=True)\nemail_verified = keycloak.HardcodedAttributeMapper(\"email_verified\",\n    realm_id=realm.id,\n    ldap_user_federation_id=ldap_user_federation.id,\n    name=\"email_verified\",\n    attribute_name=\"email_verified\",\n    attribute_value=\"true\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var realm = new Keycloak.Realm(\"realm\", new()\n    {\n        RealmName = \"my-realm\",\n        Enabled = true,\n    });\n\n    var ldapUserFederation = new Keycloak.Ldap.UserFederation(\"ldap_user_federation\", new()\n    {\n        Name = \"openldap\",\n        RealmId = realm.Id,\n        UsernameLdapAttribute = \"cn\",\n        RdnLdapAttribute = \"cn\",\n        UuidLdapAttribute = \"entryDN\",\n        UserObjectClasses = new[]\n        {\n            \"simpleSecurityObject\",\n            \"organizationalRole\",\n        },\n        ConnectionUrl = \"ldap://openldap\",\n        UsersDn = \"dc=example,dc=org\",\n        BindDn = \"cn=admin,dc=example,dc=org\",\n        BindCredential = \"admin\",\n        SyncRegistrations = true,\n    });\n\n    var emailVerified = new Keycloak.HardcodedAttributeMapper(\"email_verified\", new()\n    {\n        RealmId = realm.Id,\n        LdapUserFederationId = ldapUserFederation.Id,\n        Name = \"email_verified\",\n        AttributeName = \"email_verified\",\n        AttributeValue = \"true\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak\"\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak/ldap\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:   pulumi.String(\"my-realm\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tldapUserFederation, err := ldap.NewUserFederation(ctx, \"ldap_user_federation\", \u0026ldap.UserFederationArgs{\n\t\t\tName:                  pulumi.String(\"openldap\"),\n\t\t\tRealmId:               realm.ID(),\n\t\t\tUsernameLdapAttribute: pulumi.String(\"cn\"),\n\t\t\tRdnLdapAttribute:      pulumi.String(\"cn\"),\n\t\t\tUuidLdapAttribute:     pulumi.String(\"entryDN\"),\n\t\t\tUserObjectClasses: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"simpleSecurityObject\"),\n\t\t\t\tpulumi.String(\"organizationalRole\"),\n\t\t\t},\n\t\t\tConnectionUrl:     pulumi.String(\"ldap://openldap\"),\n\t\t\tUsersDn:           pulumi.String(\"dc=example,dc=org\"),\n\t\t\tBindDn:            pulumi.String(\"cn=admin,dc=example,dc=org\"),\n\t\t\tBindCredential:    pulumi.String(\"admin\"),\n\t\t\tSyncRegistrations: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = keycloak.NewHardcodedAttributeMapper(ctx, \"email_verified\", \u0026keycloak.HardcodedAttributeMapperArgs{\n\t\t\tRealmId:              realm.ID(),\n\t\t\tLdapUserFederationId: ldapUserFederation.ID(),\n\t\t\tName:                 pulumi.String(\"email_verified\"),\n\t\t\tAttributeName:        pulumi.String(\"email_verified\"),\n\t\t\tAttributeValue:       pulumi.String(\"true\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.keycloak.Realm;\nimport com.pulumi.keycloak.RealmArgs;\nimport com.pulumi.keycloak.ldap.UserFederation;\nimport com.pulumi.keycloak.ldap.UserFederationArgs;\nimport com.pulumi.keycloak.HardcodedAttributeMapper;\nimport com.pulumi.keycloak.HardcodedAttributeMapperArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var realm = new Realm(\"realm\", RealmArgs.builder()\n            .realm(\"my-realm\")\n            .enabled(true)\n            .build());\n\n        var ldapUserFederation = new UserFederation(\"ldapUserFederation\", UserFederationArgs.builder()\n            .name(\"openldap\")\n            .realmId(realm.id())\n            .usernameLdapAttribute(\"cn\")\n            .rdnLdapAttribute(\"cn\")\n            .uuidLdapAttribute(\"entryDN\")\n            .userObjectClasses(            \n                \"simpleSecurityObject\",\n                \"organizationalRole\")\n            .connectionUrl(\"ldap://openldap\")\n            .usersDn(\"dc=example,dc=org\")\n            .bindDn(\"cn=admin,dc=example,dc=org\")\n            .bindCredential(\"admin\")\n            .syncRegistrations(true)\n            .build());\n\n        var emailVerified = new HardcodedAttributeMapper(\"emailVerified\", HardcodedAttributeMapperArgs.builder()\n            .realmId(realm.id())\n            .ldapUserFederationId(ldapUserFederation.id())\n            .name(\"email_verified\")\n            .attributeName(\"email_verified\")\n            .attributeValue(\"true\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  realm:\n    type: keycloak:Realm\n    properties:\n      realm: my-realm\n      enabled: true\n  ldapUserFederation:\n    type: keycloak:ldap:UserFederation\n    name: ldap_user_federation\n    properties:\n      name: openldap\n      realmId: ${realm.id}\n      usernameLdapAttribute: cn\n      rdnLdapAttribute: cn\n      uuidLdapAttribute: entryDN\n      userObjectClasses:\n        - simpleSecurityObject\n        - organizationalRole\n      connectionUrl: ldap://openldap\n      usersDn: dc=example,dc=org\n      bindDn: cn=admin,dc=example,dc=org\n      bindCredential: admin\n      syncRegistrations: true\n  emailVerified:\n    type: keycloak:HardcodedAttributeMapper\n    name: email_verified\n    properties:\n      realmId: ${realm.id}\n      ldapUserFederationId: ${ldapUserFederation.id}\n      name: email_verified\n      attributeName: email_verified\n      attributeValue: 'true'\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nLDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{attribute__mapper_id}}`.\n\nThe ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs.\n\nExample:\n\nbash\n\n```sh\n$ pulumi import keycloak:index/hardcodedAttributeMapper:HardcodedAttributeMapper email_verified my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67\n```\n\n",
+            "properties": {
+                "attributeName": {
+                    "type": "string",
+                    "description": "The name of the user model attribute to set.\n"
+                },
+                "attributeValue": {
+                    "type": "string",
+                    "description": "The value to set to model attribute. You can hardcode any value like 'foo'.\n"
+                },
+                "ldapUserFederationId": {
+                    "type": "string",
+                    "description": "The ID of the LDAP user federation provider to attach this mapper to.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Display name of this mapper when displayed in the console.\n"
+                },
+                "realmId": {
+                    "type": "string",
+                    "description": "The realm that this LDAP mapper will exist in.\n"
+                }
+            },
+            "required": [
+                "attributeName",
+                "attributeValue",
+                "ldapUserFederationId",
+                "name",
+                "realmId"
+            ],
+            "inputProperties": {
+                "attributeName": {
+                    "type": "string",
+                    "description": "The name of the user model attribute to set.\n",
+                    "willReplaceOnChanges": true
+                },
+                "attributeValue": {
+                    "type": "string",
+                    "description": "The value to set to model attribute. You can hardcode any value like 'foo'.\n",
+                    "willReplaceOnChanges": true
+                },
+                "ldapUserFederationId": {
+                    "type": "string",
+                    "description": "The ID of the LDAP user federation provider to attach this mapper to.\n",
+                    "willReplaceOnChanges": true
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Display name of this mapper when displayed in the console.\n"
+                },
+                "realmId": {
+                    "type": "string",
+                    "description": "The realm that this LDAP mapper will exist in.\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "attributeName",
+                "attributeValue",
+                "ldapUserFederationId",
+                "realmId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering HardcodedAttributeMapper resources.\n",
+                "properties": {
+                    "attributeName": {
+                        "type": "string",
+                        "description": "The name of the user model attribute to set.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "attributeValue": {
+                        "type": "string",
+                        "description": "The value to set to model attribute. You can hardcode any value like 'foo'.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "ldapUserFederationId": {
+                        "type": "string",
+                        "description": "The ID of the LDAP user federation provider to attach this mapper to.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Display name of this mapper when displayed in the console.\n"
+                    },
+                    "realmId": {
+                        "type": "string",
+                        "description": "The realm that this LDAP mapper will exist in.\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "keycloak:index/hardcodedGroupIdentityProviderMapper:HardcodedGroupIdentityProviderMapper": {
+            "description": "Allows for creating and managing hardcoded group mappers for Keycloak identity provider.\n\nThe identity provider hardcoded group mapper grants a specified Keycloak group to each Keycloak user from the identity provider.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```yaml\nresources:\n  realm:\n    type: keycloak:Realm\n    properties:\n      realm: my-realm\n      enabled: true\n  oidc:\n    type: keycloak:oidc:IdentityProvider\n    properties:\n      realm: ${realm.id}\n      alias: my-idp\n      authorizationUrl: https://authorizationurl.com\n      clientId: clientID\n      clientSecret: clientSecret\n      tokenUrl: https://tokenurl.com\n  realmGroup:\n    type: keycloak:Group\n    name: realm_group\n    properties:\n      realmId: ${realm.id}\n      name: my-realm-group\n      description: My Realm Group\n  oidcHardcodedGroupIdentityProviderMapper:\n    type: keycloak:HardcodedGroupIdentityProviderMapper\n    name: oidc\n    properties:\n      realm: ${realm.id}\n      name: hardcodedGroup\n      identityProviderAlias: ${oidc.alias}\n      group: my-realm-group\n      extraConfig:\n        syncMode: INHERIT\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "properties": {
+                "extraConfig": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "group": {
+                    "type": "string",
+                    "description": "The name of the group which should be assigned to the users.\n"
+                },
+                "identityProviderAlias": {
+                    "type": "string",
+                    "description": "The IDP alias of the attribute to set.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Display name of this mapper when displayed in the console.\n"
+                },
+                "realm": {
+                    "type": "string",
+                    "description": "The realm ID that this mapper will exist in.\n"
+                }
+            },
+            "required": [
+                "identityProviderAlias",
+                "name",
+                "realm"
+            ],
+            "inputProperties": {
+                "extraConfig": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "group": {
+                    "type": "string",
+                    "description": "The name of the group which should be assigned to the users.\n"
+                },
+                "identityProviderAlias": {
+                    "type": "string",
+                    "description": "The IDP alias of the attribute to set.\n",
+                    "willReplaceOnChanges": true
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Display name of this mapper when displayed in the console.\n",
+                    "willReplaceOnChanges": true
+                },
+                "realm": {
+                    "type": "string",
+                    "description": "The realm ID that this mapper will exist in.\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "identityProviderAlias",
+                "realm"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering HardcodedGroupIdentityProviderMapper resources.\n",
+                "properties": {
+                    "extraConfig": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        }
+                    },
+                    "group": {
+                        "type": "string",
+                        "description": "The name of the group which should be assigned to the users.\n"
+                    },
+                    "identityProviderAlias": {
+                        "type": "string",
+                        "description": "The IDP alias of the attribute to set.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Display name of this mapper when displayed in the console.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "realm": {
+                        "type": "string",
+                        "description": "The realm ID that this mapper will exist in.\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
         "keycloak:index/hardcodedRoleIdentityMapper:HardcodedRoleIdentityMapper": {
             "description": "Allows for creating and managing hardcoded role mappers for Keycloak identity provider.\n\nThe identity provider hardcoded role mapper grants a specified Keycloak role to each Keycloak user from the LDAP provider.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n});\nconst oidc = new keycloak.oidc.IdentityProvider(\"oidc\", {\n    realm: realm.id,\n    alias: \"my-idp\",\n    authorizationUrl: \"https://authorizationurl.com\",\n    clientId: \"clientID\",\n    clientSecret: \"clientSecret\",\n    tokenUrl: \"https://tokenurl.com\",\n});\nconst realmRole = new keycloak.Role(\"realm_role\", {\n    realmId: realm.id,\n    name: \"my-realm-role\",\n    description: \"My Realm Role\",\n});\nconst oidcHardcodedRoleIdentityMapper = new keycloak.HardcodedRoleIdentityMapper(\"oidc\", {\n    realm: realm.id,\n    name: \"hardcodedRole\",\n    identityProviderAlias: oidc.alias,\n    role: \"my-realm-role\",\n    extraConfig: {\n        syncMode: \"INHERIT\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True)\noidc = keycloak.oidc.IdentityProvider(\"oidc\",\n    realm=realm.id,\n    alias=\"my-idp\",\n    authorization_url=\"https://authorizationurl.com\",\n    client_id=\"clientID\",\n    client_secret=\"clientSecret\",\n    token_url=\"https://tokenurl.com\")\nrealm_role = keycloak.Role(\"realm_role\",\n    realm_id=realm.id,\n    name=\"my-realm-role\",\n    description=\"My Realm Role\")\noidc_hardcoded_role_identity_mapper = keycloak.HardcodedRoleIdentityMapper(\"oidc\",\n    realm=realm.id,\n    name=\"hardcodedRole\",\n    identity_provider_alias=oidc.alias,\n    role=\"my-realm-role\",\n    extra_config={\n        \"syncMode\": \"INHERIT\",\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var realm = new Keycloak.Realm(\"realm\", new()\n    {\n        RealmName = \"my-realm\",\n        Enabled = true,\n    });\n\n    var oidc = new Keycloak.Oidc.IdentityProvider(\"oidc\", new()\n    {\n        Realm = realm.Id,\n        Alias = \"my-idp\",\n        AuthorizationUrl = \"https://authorizationurl.com\",\n        ClientId = \"clientID\",\n        ClientSecret = \"clientSecret\",\n        TokenUrl = \"https://tokenurl.com\",\n    });\n\n    var realmRole = new Keycloak.Role(\"realm_role\", new()\n    {\n        RealmId = realm.Id,\n        Name = \"my-realm-role\",\n        Description = \"My Realm Role\",\n    });\n\n    var oidcHardcodedRoleIdentityMapper = new Keycloak.HardcodedRoleIdentityMapper(\"oidc\", new()\n    {\n        Realm = realm.Id,\n        Name = \"hardcodedRole\",\n        IdentityProviderAlias = oidc.Alias,\n        Role = \"my-realm-role\",\n        ExtraConfig = \n        {\n            { \"syncMode\", \"INHERIT\" },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak\"\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak/oidc\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:   pulumi.String(\"my-realm\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\toidc, err := oidc.NewIdentityProvider(ctx, \"oidc\", \u0026oidc.IdentityProviderArgs{\n\t\t\tRealm:            realm.ID(),\n\t\t\tAlias:            pulumi.String(\"my-idp\"),\n\t\t\tAuthorizationUrl: pulumi.String(\"https://authorizationurl.com\"),\n\t\t\tClientId:         pulumi.String(\"clientID\"),\n\t\t\tClientSecret:     pulumi.String(\"clientSecret\"),\n\t\t\tTokenUrl:         pulumi.String(\"https://tokenurl.com\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = keycloak.NewRole(ctx, \"realm_role\", \u0026keycloak.RoleArgs{\n\t\t\tRealmId:     realm.ID(),\n\t\t\tName:        pulumi.String(\"my-realm-role\"),\n\t\t\tDescription: pulumi.String(\"My Realm Role\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = keycloak.NewHardcodedRoleIdentityMapper(ctx, \"oidc\", \u0026keycloak.HardcodedRoleIdentityMapperArgs{\n\t\t\tRealm:                 realm.ID(),\n\t\t\tName:                  pulumi.String(\"hardcodedRole\"),\n\t\t\tIdentityProviderAlias: oidc.Alias,\n\t\t\tRole:                  pulumi.String(\"my-realm-role\"),\n\t\t\tExtraConfig: pulumi.StringMap{\n\t\t\t\t\"syncMode\": pulumi.String(\"INHERIT\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.keycloak.Realm;\nimport com.pulumi.keycloak.RealmArgs;\nimport com.pulumi.keycloak.oidc.IdentityProvider;\nimport com.pulumi.keycloak.oidc.IdentityProviderArgs;\nimport com.pulumi.keycloak.Role;\nimport com.pulumi.keycloak.RoleArgs;\nimport com.pulumi.keycloak.HardcodedRoleIdentityMapper;\nimport com.pulumi.keycloak.HardcodedRoleIdentityMapperArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var realm = new Realm(\"realm\", RealmArgs.builder()\n            .realm(\"my-realm\")\n            .enabled(true)\n            .build());\n\n        var oidc = new IdentityProvider(\"oidc\", IdentityProviderArgs.builder()\n            .realm(realm.id())\n            .alias(\"my-idp\")\n            .authorizationUrl(\"https://authorizationurl.com\")\n            .clientId(\"clientID\")\n            .clientSecret(\"clientSecret\")\n            .tokenUrl(\"https://tokenurl.com\")\n            .build());\n\n        var realmRole = new Role(\"realmRole\", RoleArgs.builder()\n            .realmId(realm.id())\n            .name(\"my-realm-role\")\n            .description(\"My Realm Role\")\n            .build());\n\n        var oidcHardcodedRoleIdentityMapper = new HardcodedRoleIdentityMapper(\"oidcHardcodedRoleIdentityMapper\", HardcodedRoleIdentityMapperArgs.builder()\n            .realm(realm.id())\n            .name(\"hardcodedRole\")\n            .identityProviderAlias(oidc.alias())\n            .role(\"my-realm-role\")\n            .extraConfig(Map.of(\"syncMode\", \"INHERIT\"))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  realm:\n    type: keycloak:Realm\n    properties:\n      realm: my-realm\n      enabled: true\n  oidc:\n    type: keycloak:oidc:IdentityProvider\n    properties:\n      realm: ${realm.id}\n      alias: my-idp\n      authorizationUrl: https://authorizationurl.com\n      clientId: clientID\n      clientSecret: clientSecret\n      tokenUrl: https://tokenurl.com\n  realmRole:\n    type: keycloak:Role\n    name: realm_role\n    properties:\n      realmId: ${realm.id}\n      name: my-realm-role\n      description: My Realm Role\n  oidcHardcodedRoleIdentityMapper:\n    type: keycloak:HardcodedRoleIdentityMapper\n    name: oidc\n    properties:\n      realm: ${realm.id}\n      name: hardcodedRole\n      identityProviderAlias: ${oidc.alias}\n      role: my-realm-role\n      extraConfig:\n        syncMode: INHERIT\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "properties": {
@@ -3941,7 +4212,7 @@
             }
         },
         "keycloak:index/realm:Realm": {
-            "description": "Allows for creating and managing Realms within Keycloak.\n\nA realm manages a logical collection of users, credentials, roles, and groups. Users log in to realms and can be federated\nfrom multiple sources.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n    displayName: \"my realm\",\n    displayNameHtml: \"\u003cb\u003emy realm\u003c/b\u003e\",\n    loginTheme: \"base\",\n    accessCodeLifespan: \"1h\",\n    sslRequired: \"external\",\n    passwordPolicy: \"upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername\",\n    attributes: {\n        mycustomAttribute: \"myCustomValue\",\n    },\n    smtpServer: {\n        host: \"smtp.example.com\",\n        from: \"example@example.com\",\n        auth: {\n            username: \"tom\",\n            password: \"password\",\n        },\n    },\n    internationalization: {\n        supportedLocales: [\n            \"en\",\n            \"de\",\n            \"es\",\n        ],\n        defaultLocale: \"en\",\n    },\n    securityDefenses: {\n        headers: {\n            xFrameOptions: \"DENY\",\n            contentSecurityPolicy: \"frame-src 'self'; frame-ancestors 'self'; object-src 'none';\",\n            contentSecurityPolicyReportOnly: \"\",\n            xContentTypeOptions: \"nosniff\",\n            xRobotsTag: \"none\",\n            xXssProtection: \"1; mode=block\",\n            strictTransportSecurity: \"max-age=31536000; includeSubDomains\",\n        },\n        bruteForceDetection: {\n            permanentLockout: false,\n            maxLoginFailures: 30,\n            waitIncrementSeconds: 60,\n            quickLoginCheckMilliSeconds: 1000,\n            minimumQuickLoginWaitSeconds: 60,\n            maxFailureWaitSeconds: 900,\n            failureResetTimeSeconds: 43200,\n        },\n    },\n    webAuthnPolicy: {\n        relyingPartyEntityName: \"Example\",\n        relyingPartyId: \"keycloak.example.com\",\n        signatureAlgorithms: [\n            \"ES256\",\n            \"RS256\",\n        ],\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True,\n    display_name=\"my realm\",\n    display_name_html=\"\u003cb\u003emy realm\u003c/b\u003e\",\n    login_theme=\"base\",\n    access_code_lifespan=\"1h\",\n    ssl_required=\"external\",\n    password_policy=\"upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername\",\n    attributes={\n        \"mycustomAttribute\": \"myCustomValue\",\n    },\n    smtp_server={\n        \"host\": \"smtp.example.com\",\n        \"from_\": \"example@example.com\",\n        \"auth\": {\n            \"username\": \"tom\",\n            \"password\": \"password\",\n        },\n    },\n    internationalization={\n        \"supported_locales\": [\n            \"en\",\n            \"de\",\n            \"es\",\n        ],\n        \"default_locale\": \"en\",\n    },\n    security_defenses={\n        \"headers\": {\n            \"x_frame_options\": \"DENY\",\n            \"content_security_policy\": \"frame-src 'self'; frame-ancestors 'self'; object-src 'none';\",\n            \"content_security_policy_report_only\": \"\",\n            \"x_content_type_options\": \"nosniff\",\n            \"x_robots_tag\": \"none\",\n            \"x_xss_protection\": \"1; mode=block\",\n            \"strict_transport_security\": \"max-age=31536000; includeSubDomains\",\n        },\n        \"brute_force_detection\": {\n            \"permanent_lockout\": False,\n            \"max_login_failures\": 30,\n            \"wait_increment_seconds\": 60,\n            \"quick_login_check_milli_seconds\": 1000,\n            \"minimum_quick_login_wait_seconds\": 60,\n            \"max_failure_wait_seconds\": 900,\n            \"failure_reset_time_seconds\": 43200,\n        },\n    },\n    web_authn_policy={\n        \"relying_party_entity_name\": \"Example\",\n        \"relying_party_id\": \"keycloak.example.com\",\n        \"signature_algorithms\": [\n            \"ES256\",\n            \"RS256\",\n        ],\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var realm = new Keycloak.Realm(\"realm\", new()\n    {\n        RealmName = \"my-realm\",\n        Enabled = true,\n        DisplayName = \"my realm\",\n        DisplayNameHtml = \"\u003cb\u003emy realm\u003c/b\u003e\",\n        LoginTheme = \"base\",\n        AccessCodeLifespan = \"1h\",\n        SslRequired = \"external\",\n        PasswordPolicy = \"upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername\",\n        Attributes = \n        {\n            { \"mycustomAttribute\", \"myCustomValue\" },\n        },\n        SmtpServer = new Keycloak.Inputs.RealmSmtpServerArgs\n        {\n            Host = \"smtp.example.com\",\n            From = \"example@example.com\",\n            Auth = new Keycloak.Inputs.RealmSmtpServerAuthArgs\n            {\n                Username = \"tom\",\n                Password = \"password\",\n            },\n        },\n        Internationalization = new Keycloak.Inputs.RealmInternationalizationArgs\n        {\n            SupportedLocales = new[]\n            {\n                \"en\",\n                \"de\",\n                \"es\",\n            },\n            DefaultLocale = \"en\",\n        },\n        SecurityDefenses = new Keycloak.Inputs.RealmSecurityDefensesArgs\n        {\n            Headers = new Keycloak.Inputs.RealmSecurityDefensesHeadersArgs\n            {\n                XFrameOptions = \"DENY\",\n                ContentSecurityPolicy = \"frame-src 'self'; frame-ancestors 'self'; object-src 'none';\",\n                ContentSecurityPolicyReportOnly = \"\",\n                XContentTypeOptions = \"nosniff\",\n                XRobotsTag = \"none\",\n                XXssProtection = \"1; mode=block\",\n                StrictTransportSecurity = \"max-age=31536000; includeSubDomains\",\n            },\n            BruteForceDetection = new Keycloak.Inputs.RealmSecurityDefensesBruteForceDetectionArgs\n            {\n                PermanentLockout = false,\n                MaxLoginFailures = 30,\n                WaitIncrementSeconds = 60,\n                QuickLoginCheckMilliSeconds = 1000,\n                MinimumQuickLoginWaitSeconds = 60,\n                MaxFailureWaitSeconds = 900,\n                FailureResetTimeSeconds = 43200,\n            },\n        },\n        WebAuthnPolicy = new Keycloak.Inputs.RealmWebAuthnPolicyArgs\n        {\n            RelyingPartyEntityName = \"Example\",\n            RelyingPartyId = \"keycloak.example.com\",\n            SignatureAlgorithms = new[]\n            {\n                \"ES256\",\n                \"RS256\",\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:              pulumi.String(\"my-realm\"),\n\t\t\tEnabled:            pulumi.Bool(true),\n\t\t\tDisplayName:        pulumi.String(\"my realm\"),\n\t\t\tDisplayNameHtml:    pulumi.String(\"\u003cb\u003emy realm\u003c/b\u003e\"),\n\t\t\tLoginTheme:         pulumi.String(\"base\"),\n\t\t\tAccessCodeLifespan: pulumi.String(\"1h\"),\n\t\t\tSslRequired:        pulumi.String(\"external\"),\n\t\t\tPasswordPolicy:     pulumi.String(\"upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername\"),\n\t\t\tAttributes: pulumi.StringMap{\n\t\t\t\t\"mycustomAttribute\": pulumi.String(\"myCustomValue\"),\n\t\t\t},\n\t\t\tSmtpServer: \u0026keycloak.RealmSmtpServerArgs{\n\t\t\t\tHost: pulumi.String(\"smtp.example.com\"),\n\t\t\t\tFrom: pulumi.String(\"example@example.com\"),\n\t\t\t\tAuth: \u0026keycloak.RealmSmtpServerAuthArgs{\n\t\t\t\t\tUsername: pulumi.String(\"tom\"),\n\t\t\t\t\tPassword: pulumi.String(\"password\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tInternationalization: \u0026keycloak.RealmInternationalizationArgs{\n\t\t\t\tSupportedLocales: pulumi.StringArray{\n\t\t\t\t\tpulumi.String(\"en\"),\n\t\t\t\t\tpulumi.String(\"de\"),\n\t\t\t\t\tpulumi.String(\"es\"),\n\t\t\t\t},\n\t\t\t\tDefaultLocale: pulumi.String(\"en\"),\n\t\t\t},\n\t\t\tSecurityDefenses: \u0026keycloak.RealmSecurityDefensesArgs{\n\t\t\t\tHeaders: \u0026keycloak.RealmSecurityDefensesHeadersArgs{\n\t\t\t\t\tXFrameOptions:                   pulumi.String(\"DENY\"),\n\t\t\t\t\tContentSecurityPolicy:           pulumi.String(\"frame-src 'self'; frame-ancestors 'self'; object-src 'none';\"),\n\t\t\t\t\tContentSecurityPolicyReportOnly: pulumi.String(\"\"),\n\t\t\t\t\tXContentTypeOptions:             pulumi.String(\"nosniff\"),\n\t\t\t\t\tXRobotsTag:                      pulumi.String(\"none\"),\n\t\t\t\t\tXXssProtection:                  pulumi.String(\"1; mode=block\"),\n\t\t\t\t\tStrictTransportSecurity:         pulumi.String(\"max-age=31536000; includeSubDomains\"),\n\t\t\t\t},\n\t\t\t\tBruteForceDetection: \u0026keycloak.RealmSecurityDefensesBruteForceDetectionArgs{\n\t\t\t\t\tPermanentLockout:             pulumi.Bool(false),\n\t\t\t\t\tMaxLoginFailures:             pulumi.Int(30),\n\t\t\t\t\tWaitIncrementSeconds:         pulumi.Int(60),\n\t\t\t\t\tQuickLoginCheckMilliSeconds:  pulumi.Int(1000),\n\t\t\t\t\tMinimumQuickLoginWaitSeconds: pulumi.Int(60),\n\t\t\t\t\tMaxFailureWaitSeconds:        pulumi.Int(900),\n\t\t\t\t\tFailureResetTimeSeconds:      pulumi.Int(43200),\n\t\t\t\t},\n\t\t\t},\n\t\t\tWebAuthnPolicy: \u0026keycloak.RealmWebAuthnPolicyArgs{\n\t\t\t\tRelyingPartyEntityName: pulumi.String(\"Example\"),\n\t\t\t\tRelyingPartyId:         pulumi.String(\"keycloak.example.com\"),\n\t\t\t\tSignatureAlgorithms: pulumi.StringArray{\n\t\t\t\t\tpulumi.String(\"ES256\"),\n\t\t\t\t\tpulumi.String(\"RS256\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.keycloak.Realm;\nimport com.pulumi.keycloak.RealmArgs;\nimport com.pulumi.keycloak.inputs.RealmSmtpServerArgs;\nimport com.pulumi.keycloak.inputs.RealmSmtpServerAuthArgs;\nimport com.pulumi.keycloak.inputs.RealmInternationalizationArgs;\nimport com.pulumi.keycloak.inputs.RealmSecurityDefensesArgs;\nimport com.pulumi.keycloak.inputs.RealmSecurityDefensesHeadersArgs;\nimport com.pulumi.keycloak.inputs.RealmSecurityDefensesBruteForceDetectionArgs;\nimport com.pulumi.keycloak.inputs.RealmWebAuthnPolicyArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var realm = new Realm(\"realm\", RealmArgs.builder()\n            .realm(\"my-realm\")\n            .enabled(true)\n            .displayName(\"my realm\")\n            .displayNameHtml(\"\u003cb\u003emy realm\u003c/b\u003e\")\n            .loginTheme(\"base\")\n            .accessCodeLifespan(\"1h\")\n            .sslRequired(\"external\")\n            .passwordPolicy(\"upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername\")\n            .attributes(Map.of(\"mycustomAttribute\", \"myCustomValue\"))\n            .smtpServer(RealmSmtpServerArgs.builder()\n                .host(\"smtp.example.com\")\n                .from(\"example@example.com\")\n                .auth(RealmSmtpServerAuthArgs.builder()\n                    .username(\"tom\")\n                    .password(\"password\")\n                    .build())\n                .build())\n            .internationalization(RealmInternationalizationArgs.builder()\n                .supportedLocales(                \n                    \"en\",\n                    \"de\",\n                    \"es\")\n                .defaultLocale(\"en\")\n                .build())\n            .securityDefenses(RealmSecurityDefensesArgs.builder()\n                .headers(RealmSecurityDefensesHeadersArgs.builder()\n                    .xFrameOptions(\"DENY\")\n                    .contentSecurityPolicy(\"frame-src 'self'; frame-ancestors 'self'; object-src 'none';\")\n                    .contentSecurityPolicyReportOnly(\"\")\n                    .xContentTypeOptions(\"nosniff\")\n                    .xRobotsTag(\"none\")\n                    .xXssProtection(\"1; mode=block\")\n                    .strictTransportSecurity(\"max-age=31536000; includeSubDomains\")\n                    .build())\n                .bruteForceDetection(RealmSecurityDefensesBruteForceDetectionArgs.builder()\n                    .permanentLockout(false)\n                    .maxLoginFailures(30)\n                    .waitIncrementSeconds(60)\n                    .quickLoginCheckMilliSeconds(1000)\n                    .minimumQuickLoginWaitSeconds(60)\n                    .maxFailureWaitSeconds(900)\n                    .failureResetTimeSeconds(43200)\n                    .build())\n                .build())\n            .webAuthnPolicy(RealmWebAuthnPolicyArgs.builder()\n                .relyingPartyEntityName(\"Example\")\n                .relyingPartyId(\"keycloak.example.com\")\n                .signatureAlgorithms(                \n                    \"ES256\",\n                    \"RS256\")\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  realm:\n    type: keycloak:Realm\n    properties:\n      realm: my-realm\n      enabled: true\n      displayName: my realm\n      displayNameHtml: \u003cb\u003emy realm\u003c/b\u003e\n      loginTheme: base\n      accessCodeLifespan: 1h\n      sslRequired: external\n      passwordPolicy: upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername\n      attributes:\n        mycustomAttribute: myCustomValue\n      smtpServer:\n        host: smtp.example.com\n        from: example@example.com\n        auth:\n          username: tom\n          password: password\n      internationalization:\n        supportedLocales:\n          - en\n          - de\n          - es\n        defaultLocale: en\n      securityDefenses:\n        headers:\n          xFrameOptions: DENY\n          contentSecurityPolicy: frame-src 'self'; frame-ancestors 'self'; object-src 'none';\n          contentSecurityPolicyReportOnly: \"\"\n          xContentTypeOptions: nosniff\n          xRobotsTag: none\n          xXssProtection: 1; mode=block\n          strictTransportSecurity: max-age=31536000; includeSubDomains\n        bruteForceDetection:\n          permanentLockout: false\n          maxLoginFailures: 30\n          waitIncrementSeconds: 60\n          quickLoginCheckMilliSeconds: 1000\n          minimumQuickLoginWaitSeconds: 60\n          maxFailureWaitSeconds: 900\n          failureResetTimeSeconds: 43200\n      webAuthnPolicy:\n        relyingPartyEntityName: Example\n        relyingPartyId: keycloak.example.com\n        signatureAlgorithms:\n          - ES256\n          - RS256\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Default Client Scopes\n\n- `default_default_client_scopes` - (Optional) A list of default `default client scopes` to be used for client definitions. Defaults to `[]` or keycloak's built-in default `default client-scopes`. For an alternative, please refer to the dedicated resource `keycloak_realm_default_client_scopes`.\n- `default_optional_client_scopes` - (Optional) A list of default `optional client scopes` to be used for client definitions. Defaults to `[]` or keycloak's built-in default `optional client-scopes`. For an alternative, please refer to the dedicated resource `keycloak_realm_optional_client_scopes`.\n\n## Import\n\nRealms can be imported using their name.\n\nExample:\n\nbash\n\n```sh\n$ pulumi import keycloak:index/realm:Realm realm my-realm\n```\n\n",
+            "description": "Allows for creating and managing Realms within Keycloak.\n\nA realm manages a logical collection of users, credentials, roles, and groups. Users log in to realms and can be federated\nfrom multiple sources.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n    displayName: \"my realm\",\n    displayNameHtml: \"\u003cb\u003emy realm\u003c/b\u003e\",\n    loginTheme: \"base\",\n    accessCodeLifespan: \"1h\",\n    sslRequired: \"external\",\n    passwordPolicy: \"upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername\",\n    attributes: {\n        mycustomAttribute: \"myCustomValue\",\n    },\n    smtpServer: {\n        host: \"smtp.example.com\",\n        from: \"example@example.com\",\n        auth: {\n            username: \"tom\",\n            password: \"password\",\n        },\n    },\n    internationalization: {\n        supportedLocales: [\n            \"en\",\n            \"de\",\n            \"es\",\n        ],\n        defaultLocale: \"en\",\n    },\n    securityDefenses: {\n        headers: {\n            xFrameOptions: \"DENY\",\n            contentSecurityPolicy: \"frame-src 'self'; frame-ancestors 'self'; object-src 'none';\",\n            contentSecurityPolicyReportOnly: \"\",\n            xContentTypeOptions: \"nosniff\",\n            xRobotsTag: \"none\",\n            xXssProtection: \"1; mode=block\",\n            strictTransportSecurity: \"max-age=31536000; includeSubDomains\",\n        },\n        bruteForceDetection: {\n            permanentLockout: false,\n            maxLoginFailures: 30,\n            waitIncrementSeconds: 60,\n            quickLoginCheckMilliSeconds: 1000,\n            minimumQuickLoginWaitSeconds: 60,\n            maxFailureWaitSeconds: 900,\n            failureResetTimeSeconds: 43200,\n        },\n    },\n    webAuthnPolicy: {\n        relyingPartyEntityName: \"Example\",\n        relyingPartyId: \"keycloak.example.com\",\n        signatureAlgorithms: [\n            \"ES256\",\n            \"RS256\",\n        ],\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True,\n    display_name=\"my realm\",\n    display_name_html=\"\u003cb\u003emy realm\u003c/b\u003e\",\n    login_theme=\"base\",\n    access_code_lifespan=\"1h\",\n    ssl_required=\"external\",\n    password_policy=\"upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername\",\n    attributes={\n        \"mycustomAttribute\": \"myCustomValue\",\n    },\n    smtp_server={\n        \"host\": \"smtp.example.com\",\n        \"from_\": \"example@example.com\",\n        \"auth\": {\n            \"username\": \"tom\",\n            \"password\": \"password\",\n        },\n    },\n    internationalization={\n        \"supported_locales\": [\n            \"en\",\n            \"de\",\n            \"es\",\n        ],\n        \"default_locale\": \"en\",\n    },\n    security_defenses={\n        \"headers\": {\n            \"x_frame_options\": \"DENY\",\n            \"content_security_policy\": \"frame-src 'self'; frame-ancestors 'self'; object-src 'none';\",\n            \"content_security_policy_report_only\": \"\",\n            \"x_content_type_options\": \"nosniff\",\n            \"x_robots_tag\": \"none\",\n            \"x_xss_protection\": \"1; mode=block\",\n            \"strict_transport_security\": \"max-age=31536000; includeSubDomains\",\n        },\n        \"brute_force_detection\": {\n            \"permanent_lockout\": False,\n            \"max_login_failures\": 30,\n            \"wait_increment_seconds\": 60,\n            \"quick_login_check_milli_seconds\": 1000,\n            \"minimum_quick_login_wait_seconds\": 60,\n            \"max_failure_wait_seconds\": 900,\n            \"failure_reset_time_seconds\": 43200,\n        },\n    },\n    web_authn_policy={\n        \"relying_party_entity_name\": \"Example\",\n        \"relying_party_id\": \"keycloak.example.com\",\n        \"signature_algorithms\": [\n            \"ES256\",\n            \"RS256\",\n        ],\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var realm = new Keycloak.Realm(\"realm\", new()\n    {\n        RealmName = \"my-realm\",\n        Enabled = true,\n        DisplayName = \"my realm\",\n        DisplayNameHtml = \"\u003cb\u003emy realm\u003c/b\u003e\",\n        LoginTheme = \"base\",\n        AccessCodeLifespan = \"1h\",\n        SslRequired = \"external\",\n        PasswordPolicy = \"upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername\",\n        Attributes = \n        {\n            { \"mycustomAttribute\", \"myCustomValue\" },\n        },\n        SmtpServer = new Keycloak.Inputs.RealmSmtpServerArgs\n        {\n            Host = \"smtp.example.com\",\n            From = \"example@example.com\",\n            Auth = new Keycloak.Inputs.RealmSmtpServerAuthArgs\n            {\n                Username = \"tom\",\n                Password = \"password\",\n            },\n        },\n        Internationalization = new Keycloak.Inputs.RealmInternationalizationArgs\n        {\n            SupportedLocales = new[]\n            {\n                \"en\",\n                \"de\",\n                \"es\",\n            },\n            DefaultLocale = \"en\",\n        },\n        SecurityDefenses = new Keycloak.Inputs.RealmSecurityDefensesArgs\n        {\n            Headers = new Keycloak.Inputs.RealmSecurityDefensesHeadersArgs\n            {\n                XFrameOptions = \"DENY\",\n                ContentSecurityPolicy = \"frame-src 'self'; frame-ancestors 'self'; object-src 'none';\",\n                ContentSecurityPolicyReportOnly = \"\",\n                XContentTypeOptions = \"nosniff\",\n                XRobotsTag = \"none\",\n                XXssProtection = \"1; mode=block\",\n                StrictTransportSecurity = \"max-age=31536000; includeSubDomains\",\n            },\n            BruteForceDetection = new Keycloak.Inputs.RealmSecurityDefensesBruteForceDetectionArgs\n            {\n                PermanentLockout = false,\n                MaxLoginFailures = 30,\n                WaitIncrementSeconds = 60,\n                QuickLoginCheckMilliSeconds = 1000,\n                MinimumQuickLoginWaitSeconds = 60,\n                MaxFailureWaitSeconds = 900,\n                FailureResetTimeSeconds = 43200,\n            },\n        },\n        WebAuthnPolicy = new Keycloak.Inputs.RealmWebAuthnPolicyArgs\n        {\n            RelyingPartyEntityName = \"Example\",\n            RelyingPartyId = \"keycloak.example.com\",\n            SignatureAlgorithms = new[]\n            {\n                \"ES256\",\n                \"RS256\",\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:              pulumi.String(\"my-realm\"),\n\t\t\tEnabled:            pulumi.Bool(true),\n\t\t\tDisplayName:        pulumi.String(\"my realm\"),\n\t\t\tDisplayNameHtml:    pulumi.String(\"\u003cb\u003emy realm\u003c/b\u003e\"),\n\t\t\tLoginTheme:         pulumi.String(\"base\"),\n\t\t\tAccessCodeLifespan: pulumi.String(\"1h\"),\n\t\t\tSslRequired:        pulumi.String(\"external\"),\n\t\t\tPasswordPolicy:     pulumi.String(\"upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername\"),\n\t\t\tAttributes: pulumi.StringMap{\n\t\t\t\t\"mycustomAttribute\": pulumi.String(\"myCustomValue\"),\n\t\t\t},\n\t\t\tSmtpServer: \u0026keycloak.RealmSmtpServerArgs{\n\t\t\t\tHost: pulumi.String(\"smtp.example.com\"),\n\t\t\t\tFrom: pulumi.String(\"example@example.com\"),\n\t\t\t\tAuth: \u0026keycloak.RealmSmtpServerAuthArgs{\n\t\t\t\t\tUsername: pulumi.String(\"tom\"),\n\t\t\t\t\tPassword: pulumi.String(\"password\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tInternationalization: \u0026keycloak.RealmInternationalizationArgs{\n\t\t\t\tSupportedLocales: pulumi.StringArray{\n\t\t\t\t\tpulumi.String(\"en\"),\n\t\t\t\t\tpulumi.String(\"de\"),\n\t\t\t\t\tpulumi.String(\"es\"),\n\t\t\t\t},\n\t\t\t\tDefaultLocale: pulumi.String(\"en\"),\n\t\t\t},\n\t\t\tSecurityDefenses: \u0026keycloak.RealmSecurityDefensesArgs{\n\t\t\t\tHeaders: \u0026keycloak.RealmSecurityDefensesHeadersArgs{\n\t\t\t\t\tXFrameOptions:                   pulumi.String(\"DENY\"),\n\t\t\t\t\tContentSecurityPolicy:           pulumi.String(\"frame-src 'self'; frame-ancestors 'self'; object-src 'none';\"),\n\t\t\t\t\tContentSecurityPolicyReportOnly: pulumi.String(\"\"),\n\t\t\t\t\tXContentTypeOptions:             pulumi.String(\"nosniff\"),\n\t\t\t\t\tXRobotsTag:                      pulumi.String(\"none\"),\n\t\t\t\t\tXXssProtection:                  pulumi.String(\"1; mode=block\"),\n\t\t\t\t\tStrictTransportSecurity:         pulumi.String(\"max-age=31536000; includeSubDomains\"),\n\t\t\t\t},\n\t\t\t\tBruteForceDetection: \u0026keycloak.RealmSecurityDefensesBruteForceDetectionArgs{\n\t\t\t\t\tPermanentLockout:             pulumi.Bool(false),\n\t\t\t\t\tMaxLoginFailures:             pulumi.Int(30),\n\t\t\t\t\tWaitIncrementSeconds:         pulumi.Int(60),\n\t\t\t\t\tQuickLoginCheckMilliSeconds:  pulumi.Int(1000),\n\t\t\t\t\tMinimumQuickLoginWaitSeconds: pulumi.Int(60),\n\t\t\t\t\tMaxFailureWaitSeconds:        pulumi.Int(900),\n\t\t\t\t\tFailureResetTimeSeconds:      pulumi.Int(43200),\n\t\t\t\t},\n\t\t\t},\n\t\t\tWebAuthnPolicy: \u0026keycloak.RealmWebAuthnPolicyArgs{\n\t\t\t\tRelyingPartyEntityName: pulumi.String(\"Example\"),\n\t\t\t\tRelyingPartyId:         pulumi.String(\"keycloak.example.com\"),\n\t\t\t\tSignatureAlgorithms: pulumi.StringArray{\n\t\t\t\t\tpulumi.String(\"ES256\"),\n\t\t\t\t\tpulumi.String(\"RS256\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.keycloak.Realm;\nimport com.pulumi.keycloak.RealmArgs;\nimport com.pulumi.keycloak.inputs.RealmSmtpServerArgs;\nimport com.pulumi.keycloak.inputs.RealmSmtpServerAuthArgs;\nimport com.pulumi.keycloak.inputs.RealmInternationalizationArgs;\nimport com.pulumi.keycloak.inputs.RealmSecurityDefensesArgs;\nimport com.pulumi.keycloak.inputs.RealmSecurityDefensesHeadersArgs;\nimport com.pulumi.keycloak.inputs.RealmSecurityDefensesBruteForceDetectionArgs;\nimport com.pulumi.keycloak.inputs.RealmWebAuthnPolicyArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var realm = new Realm(\"realm\", RealmArgs.builder()\n            .realm(\"my-realm\")\n            .enabled(true)\n            .displayName(\"my realm\")\n            .displayNameHtml(\"\u003cb\u003emy realm\u003c/b\u003e\")\n            .loginTheme(\"base\")\n            .accessCodeLifespan(\"1h\")\n            .sslRequired(\"external\")\n            .passwordPolicy(\"upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername\")\n            .attributes(Map.of(\"mycustomAttribute\", \"myCustomValue\"))\n            .smtpServer(RealmSmtpServerArgs.builder()\n                .host(\"smtp.example.com\")\n                .from(\"example@example.com\")\n                .auth(RealmSmtpServerAuthArgs.builder()\n                    .username(\"tom\")\n                    .password(\"password\")\n                    .build())\n                .build())\n            .internationalization(RealmInternationalizationArgs.builder()\n                .supportedLocales(                \n                    \"en\",\n                    \"de\",\n                    \"es\")\n                .defaultLocale(\"en\")\n                .build())\n            .securityDefenses(RealmSecurityDefensesArgs.builder()\n                .headers(RealmSecurityDefensesHeadersArgs.builder()\n                    .xFrameOptions(\"DENY\")\n                    .contentSecurityPolicy(\"frame-src 'self'; frame-ancestors 'self'; object-src 'none';\")\n                    .contentSecurityPolicyReportOnly(\"\")\n                    .xContentTypeOptions(\"nosniff\")\n                    .xRobotsTag(\"none\")\n                    .xXssProtection(\"1; mode=block\")\n                    .strictTransportSecurity(\"max-age=31536000; includeSubDomains\")\n                    .build())\n                .bruteForceDetection(RealmSecurityDefensesBruteForceDetectionArgs.builder()\n                    .permanentLockout(false)\n                    .maxLoginFailures(30)\n                    .waitIncrementSeconds(60)\n                    .quickLoginCheckMilliSeconds(1000)\n                    .minimumQuickLoginWaitSeconds(60)\n                    .maxFailureWaitSeconds(900)\n                    .failureResetTimeSeconds(43200)\n                    .build())\n                .build())\n            .webAuthnPolicy(RealmWebAuthnPolicyArgs.builder()\n                .relyingPartyEntityName(\"Example\")\n                .relyingPartyId(\"keycloak.example.com\")\n                .signatureAlgorithms(                \n                    \"ES256\",\n                    \"RS256\")\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  realm:\n    type: keycloak:Realm\n    properties:\n      realm: my-realm\n      enabled: true\n      displayName: my realm\n      displayNameHtml: \u003cb\u003emy realm\u003c/b\u003e\n      loginTheme: base\n      accessCodeLifespan: 1h\n      sslRequired: external\n      passwordPolicy: upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername\n      attributes:\n        mycustomAttribute: myCustomValue\n      smtpServer:\n        host: smtp.example.com\n        from: example@example.com\n        auth:\n          username: tom\n          password: password\n      internationalization:\n        supportedLocales:\n          - en\n          - de\n          - es\n        defaultLocale: en\n      securityDefenses:\n        headers:\n          xFrameOptions: DENY\n          contentSecurityPolicy: frame-src 'self'; frame-ancestors 'self'; object-src 'none';\n          contentSecurityPolicyReportOnly: \"\"\n          xContentTypeOptions: nosniff\n          xRobotsTag: none\n          xXssProtection: 1; mode=block\n          strictTransportSecurity: max-age=31536000; includeSubDomains\n        bruteForceDetection:\n          permanentLockout: false\n          maxLoginFailures: 30\n          waitIncrementSeconds: 60\n          quickLoginCheckMilliSeconds: 1000\n          minimumQuickLoginWaitSeconds: 60\n          maxFailureWaitSeconds: 900\n          failureResetTimeSeconds: 43200\n      webAuthnPolicy:\n        relyingPartyEntityName: Example\n        relyingPartyId: keycloak.example.com\n        signatureAlgorithms:\n          - ES256\n          - RS256\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Default Client Scopes\n\n- `default_default_client_scopes` - (Optional) A list of default `default client scopes` to be used for client definitions. Defaults to `[]` or keycloak's built-in default `default client-scopes`. For an alternative, please refer to the dedicated resource `keycloak.RealmDefaultClientScopes`.\n- `default_optional_client_scopes` - (Optional) A list of default `optional client scopes` to be used for client definitions. Defaults to `[]` or keycloak's built-in default `optional client-scopes`. For an alternative, please refer to the dedicated resource `keycloak.RealmOptionalClientScopes`.\n\n## Import\n\nRealms can be imported using their name.\n\nExample:\n\nbash\n\n```sh\n$ pulumi import keycloak:index/realm:Realm realm my-realm\n```\n\n",
             "properties": {
                 "accessCodeLifespan": {
                     "type": "string"
@@ -4035,6 +4306,10 @@
                     "type": "boolean",
                     "description": "When `false`, users and clients will not be able to access this realm. Defaults to `true`.\n"
                 },
+                "firstBrokerLoginFlow": {
+                    "type": "string",
+                    "description": "Which flow should be used for FirstBrokerLoginFlow\n"
+                },
                 "internalId": {
                     "type": "string",
                     "description": "When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.\n"
@@ -4062,6 +4337,10 @@
                 },
                 "offlineSessionMaxLifespanEnabled": {
                     "type": "boolean"
+                },
+                "organizationsEnabled": {
+                    "type": "boolean",
+                    "description": "When `true`, organization support is enabled. Defaults to `false`.\n"
                 },
                 "otpPolicy": {
                     "$ref": "#/types/keycloak:index/RealmOtpPolicy:RealmOtpPolicy"
@@ -4157,6 +4436,7 @@
                 "dockerAuthenticationFlow",
                 "duplicateEmailsAllowed",
                 "editUsernameAllowed",
+                "firstBrokerLoginFlow",
                 "internalId",
                 "loginWithEmailAllowed",
                 "oauth2DeviceCodeLifespan",
@@ -4272,6 +4552,10 @@
                     "type": "boolean",
                     "description": "When `false`, users and clients will not be able to access this realm. Defaults to `true`.\n"
                 },
+                "firstBrokerLoginFlow": {
+                    "type": "string",
+                    "description": "Which flow should be used for FirstBrokerLoginFlow\n"
+                },
                 "internalId": {
                     "type": "string",
                     "description": "When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.\n",
@@ -4300,6 +4584,10 @@
                 },
                 "offlineSessionMaxLifespanEnabled": {
                     "type": "boolean"
+                },
+                "organizationsEnabled": {
+                    "type": "boolean",
+                    "description": "When `true`, organization support is enabled. Defaults to `false`.\n"
                 },
                 "otpPolicy": {
                     "$ref": "#/types/keycloak:index/RealmOtpPolicy:RealmOtpPolicy"
@@ -4478,6 +4766,10 @@
                         "type": "boolean",
                         "description": "When `false`, users and clients will not be able to access this realm. Defaults to `true`.\n"
                     },
+                    "firstBrokerLoginFlow": {
+                        "type": "string",
+                        "description": "Which flow should be used for FirstBrokerLoginFlow\n"
+                    },
                     "internalId": {
                         "type": "string",
                         "description": "When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.\n",
@@ -4506,6 +4798,10 @@
                     },
                     "offlineSessionMaxLifespanEnabled": {
                         "type": "boolean"
+                    },
+                    "organizationsEnabled": {
+                        "type": "boolean",
+                        "description": "When `true`, organization support is enabled. Defaults to `false`.\n"
                     },
                     "otpPolicy": {
                         "$ref": "#/types/keycloak:index/RealmOtpPolicy:RealmOtpPolicy"
@@ -4584,6 +4880,62 @@
                     },
                     "webAuthnPolicy": {
                         "$ref": "#/types/keycloak:index/RealmWebAuthnPolicy:RealmWebAuthnPolicy"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "keycloak:index/realmDefaultClientScopes:RealmDefaultClientScopes": {
+            "description": "Allows you to manage the set of default client scopes for a Keycloak realm, which are used when new clients are created.\n\nNote that this resource attempts to be an **authoritative** source over the default client scopes for a Keycloak realm,\nso any Keycloak defaults and manual adjustments will be overwritten.\n\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n});\nconst clientScope = new keycloak.openid.ClientScope(\"client_scope\", {\n    realmId: realm.id,\n    name: \"test-client-scope\",\n});\nconst defaultScopes = new keycloak.RealmDefaultClientScopes(\"default_scopes\", {\n    realmId: realm.id,\n    defaultScopes: [\n        \"profile\",\n        \"email\",\n        \"roles\",\n        \"web-origins\",\n        clientScope.name,\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True)\nclient_scope = keycloak.openid.ClientScope(\"client_scope\",\n    realm_id=realm.id,\n    name=\"test-client-scope\")\ndefault_scopes = keycloak.RealmDefaultClientScopes(\"default_scopes\",\n    realm_id=realm.id,\n    default_scopes=[\n        \"profile\",\n        \"email\",\n        \"roles\",\n        \"web-origins\",\n        client_scope.name,\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var realm = new Keycloak.Realm(\"realm\", new()\n    {\n        RealmName = \"my-realm\",\n        Enabled = true,\n    });\n\n    var clientScope = new Keycloak.OpenId.ClientScope(\"client_scope\", new()\n    {\n        RealmId = realm.Id,\n        Name = \"test-client-scope\",\n    });\n\n    var defaultScopes = new Keycloak.RealmDefaultClientScopes(\"default_scopes\", new()\n    {\n        RealmId = realm.Id,\n        DefaultScopes = new[]\n        {\n            \"profile\",\n            \"email\",\n            \"roles\",\n            \"web-origins\",\n            clientScope.Name,\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak\"\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak/openid\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:   pulumi.String(\"my-realm\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tclientScope, err := openid.NewClientScope(ctx, \"client_scope\", \u0026openid.ClientScopeArgs{\n\t\t\tRealmId: realm.ID(),\n\t\t\tName:    pulumi.String(\"test-client-scope\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = keycloak.NewRealmDefaultClientScopes(ctx, \"default_scopes\", \u0026keycloak.RealmDefaultClientScopesArgs{\n\t\t\tRealmId: realm.ID(),\n\t\t\tDefaultScopes: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"profile\"),\n\t\t\t\tpulumi.String(\"email\"),\n\t\t\t\tpulumi.String(\"roles\"),\n\t\t\t\tpulumi.String(\"web-origins\"),\n\t\t\t\tclientScope.Name,\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.keycloak.Realm;\nimport com.pulumi.keycloak.RealmArgs;\nimport com.pulumi.keycloak.openid.ClientScope;\nimport com.pulumi.keycloak.openid.ClientScopeArgs;\nimport com.pulumi.keycloak.RealmDefaultClientScopes;\nimport com.pulumi.keycloak.RealmDefaultClientScopesArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var realm = new Realm(\"realm\", RealmArgs.builder()\n            .realm(\"my-realm\")\n            .enabled(true)\n            .build());\n\n        var clientScope = new ClientScope(\"clientScope\", ClientScopeArgs.builder()\n            .realmId(realm.id())\n            .name(\"test-client-scope\")\n            .build());\n\n        var defaultScopes = new RealmDefaultClientScopes(\"defaultScopes\", RealmDefaultClientScopesArgs.builder()\n            .realmId(realm.id())\n            .defaultScopes(            \n                \"profile\",\n                \"email\",\n                \"roles\",\n                \"web-origins\",\n                clientScope.name())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  realm:\n    type: keycloak:Realm\n    properties:\n      realm: my-realm\n      enabled: true\n  clientScope:\n    type: keycloak:openid:ClientScope\n    name: client_scope\n    properties:\n      realmId: ${realm.id}\n      name: test-client-scope\n  defaultScopes:\n    type: keycloak:RealmDefaultClientScopes\n    name: default_scopes\n    properties:\n      realmId: ${realm.id}\n      defaultScopes:\n        - profile\n        - email\n        - roles\n        - web-origins\n        - ${clientScope.name}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nThis resource does not support import. Instead of importing, feel free to create this resource\n\nas if it did not already exist on the server.\n\n",
+            "properties": {
+                "defaultScopes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "An array of default client scope names that should be used when creating new Keycloak clients.\n"
+                },
+                "realmId": {
+                    "type": "string",
+                    "description": "The realm this client and scopes exists in.\n"
+                }
+            },
+            "required": [
+                "defaultScopes",
+                "realmId"
+            ],
+            "inputProperties": {
+                "defaultScopes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "An array of default client scope names that should be used when creating new Keycloak clients.\n"
+                },
+                "realmId": {
+                    "type": "string",
+                    "description": "The realm this client and scopes exists in.\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "defaultScopes",
+                "realmId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering RealmDefaultClientScopes resources.\n",
+                "properties": {
+                    "defaultScopes": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "An array of default client scope names that should be used when creating new Keycloak clients.\n"
+                    },
+                    "realmId": {
+                        "type": "string",
+                        "description": "The realm this client and scopes exists in.\n",
+                        "willReplaceOnChanges": true
                     }
                 },
                 "type": "object"
@@ -5398,8 +5750,133 @@
                 "type": "object"
             }
         },
+        "keycloak:index/realmLocalization:RealmLocalization": {
+            "properties": {
+                "locale": {
+                    "type": "string",
+                    "description": "The locale for the localization texts.\n"
+                },
+                "realmId": {
+                    "type": "string",
+                    "description": "The realm in which the texts exists.\n"
+                },
+                "texts": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "The mapping of localization texts keys to values.\n"
+                }
+            },
+            "required": [
+                "locale",
+                "realmId"
+            ],
+            "inputProperties": {
+                "locale": {
+                    "type": "string",
+                    "description": "The locale for the localization texts.\n",
+                    "willReplaceOnChanges": true
+                },
+                "realmId": {
+                    "type": "string",
+                    "description": "The realm in which the texts exists.\n",
+                    "willReplaceOnChanges": true
+                },
+                "texts": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "The mapping of localization texts keys to values.\n"
+                }
+            },
+            "requiredInputs": [
+                "locale",
+                "realmId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering RealmLocalization resources.\n",
+                "properties": {
+                    "locale": {
+                        "type": "string",
+                        "description": "The locale for the localization texts.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "realmId": {
+                        "type": "string",
+                        "description": "The realm in which the texts exists.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "texts": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "The mapping of localization texts keys to values.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "keycloak:index/realmOptionalClientScopes:RealmOptionalClientScopes": {
+            "description": "Allows you to manage the set of optional client scopes for a Keycloak realm, which are used when new clients are created.\n\nNote that this resource attempts to be an **authoritative** source over the optional client scopes for a Keycloak realm,\nso any Keycloak defaults and manual adjustments will be overwritten.\n\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n});\nconst clientScope = new keycloak.openid.ClientScope(\"client_scope\", {\n    realmId: realm.id,\n    name: \"test-client-scope\",\n});\nconst optionalScopes = new keycloak.RealmOptionalClientScopes(\"optional_scopes\", {\n    realmId: realm.id,\n    optionalScopes: [\n        \"address\",\n        \"phone\",\n        \"offline_access\",\n        \"microprofile-jwt\",\n        clientScope.name,\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True)\nclient_scope = keycloak.openid.ClientScope(\"client_scope\",\n    realm_id=realm.id,\n    name=\"test-client-scope\")\noptional_scopes = keycloak.RealmOptionalClientScopes(\"optional_scopes\",\n    realm_id=realm.id,\n    optional_scopes=[\n        \"address\",\n        \"phone\",\n        \"offline_access\",\n        \"microprofile-jwt\",\n        client_scope.name,\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var realm = new Keycloak.Realm(\"realm\", new()\n    {\n        RealmName = \"my-realm\",\n        Enabled = true,\n    });\n\n    var clientScope = new Keycloak.OpenId.ClientScope(\"client_scope\", new()\n    {\n        RealmId = realm.Id,\n        Name = \"test-client-scope\",\n    });\n\n    var optionalScopes = new Keycloak.RealmOptionalClientScopes(\"optional_scopes\", new()\n    {\n        RealmId = realm.Id,\n        OptionalScopes = new[]\n        {\n            \"address\",\n            \"phone\",\n            \"offline_access\",\n            \"microprofile-jwt\",\n            clientScope.Name,\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak\"\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak/openid\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:   pulumi.String(\"my-realm\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tclientScope, err := openid.NewClientScope(ctx, \"client_scope\", \u0026openid.ClientScopeArgs{\n\t\t\tRealmId: realm.ID(),\n\t\t\tName:    pulumi.String(\"test-client-scope\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = keycloak.NewRealmOptionalClientScopes(ctx, \"optional_scopes\", \u0026keycloak.RealmOptionalClientScopesArgs{\n\t\t\tRealmId: realm.ID(),\n\t\t\tOptionalScopes: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"address\"),\n\t\t\t\tpulumi.String(\"phone\"),\n\t\t\t\tpulumi.String(\"offline_access\"),\n\t\t\t\tpulumi.String(\"microprofile-jwt\"),\n\t\t\t\tclientScope.Name,\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.keycloak.Realm;\nimport com.pulumi.keycloak.RealmArgs;\nimport com.pulumi.keycloak.openid.ClientScope;\nimport com.pulumi.keycloak.openid.ClientScopeArgs;\nimport com.pulumi.keycloak.RealmOptionalClientScopes;\nimport com.pulumi.keycloak.RealmOptionalClientScopesArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var realm = new Realm(\"realm\", RealmArgs.builder()\n            .realm(\"my-realm\")\n            .enabled(true)\n            .build());\n\n        var clientScope = new ClientScope(\"clientScope\", ClientScopeArgs.builder()\n            .realmId(realm.id())\n            .name(\"test-client-scope\")\n            .build());\n\n        var optionalScopes = new RealmOptionalClientScopes(\"optionalScopes\", RealmOptionalClientScopesArgs.builder()\n            .realmId(realm.id())\n            .optionalScopes(            \n                \"address\",\n                \"phone\",\n                \"offline_access\",\n                \"microprofile-jwt\",\n                clientScope.name())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  realm:\n    type: keycloak:Realm\n    properties:\n      realm: my-realm\n      enabled: true\n  clientScope:\n    type: keycloak:openid:ClientScope\n    name: client_scope\n    properties:\n      realmId: ${realm.id}\n      name: test-client-scope\n  optionalScopes:\n    type: keycloak:RealmOptionalClientScopes\n    name: optional_scopes\n    properties:\n      realmId: ${realm.id}\n      optionalScopes:\n        - address\n        - phone\n        - offline_access\n        - microprofile-jwt\n        - ${clientScope.name}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nThis resource does not support import. Instead of importing, feel free to create this resource\n\nas if it did not already exist on the server.\n\n",
+            "properties": {
+                "optionalScopes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "An array of optional client scope names that should be used when creating new Keycloak clients.\n"
+                },
+                "realmId": {
+                    "type": "string",
+                    "description": "The realm this client and scopes exists in.\n"
+                }
+            },
+            "required": [
+                "optionalScopes",
+                "realmId"
+            ],
+            "inputProperties": {
+                "optionalScopes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "An array of optional client scope names that should be used when creating new Keycloak clients.\n"
+                },
+                "realmId": {
+                    "type": "string",
+                    "description": "The realm this client and scopes exists in.\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "optionalScopes",
+                "realmId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering RealmOptionalClientScopes resources.\n",
+                "properties": {
+                    "optionalScopes": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "An array of optional client scope names that should be used when creating new Keycloak clients.\n"
+                    },
+                    "realmId": {
+                        "type": "string",
+                        "description": "The realm this client and scopes exists in.\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
         "keycloak:index/realmUserProfile:RealmUserProfile": {
-            "description": "Allows for managing Realm User Profiles within Keycloak.\n\nA user profile defines a schema for representing user attributes and how they are managed within a realm.\n\nInformation for Keycloak versions \u003c 24:\nThe realm linked to the `keycloak.RealmUserProfile` resource must have the user profile feature enabled.\nIt can be done via the administration UI, or by setting the `userProfileEnabled` realm attribute to `true`.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```yaml\nresources:\n  realm:\n    type: keycloak:Realm\n    properties:\n      realm: my-realm\n  userprofile:\n    type: keycloak:RealmUserProfile\n    properties:\n      realmId: ${myRealm.id}\n      unmanagedAttributePolicy: ENABLED\n      attributes:\n        - name: field1\n          displayName: Field 1\n          group: group1\n          multiValued: false\n          enabledWhenScopes:\n            - offline_access\n          requiredForRoles:\n            - user\n          requiredForScopes:\n            - offline_access\n          permissions:\n            views:\n              - admin\n              - user\n            edits:\n              - admin\n              - user\n          validators:\n            - name: person-name-prohibited-characters\n            - name: pattern\n              config:\n                pattern: ^[a-z]+$\n                error-message: Nope\n          annotations:\n            foo: bar\n        - name: field2\n          validators:\n            - name: options\n              config:\n                options:\n                  fn::toJSON:\n                    - opt1\n          annotations:\n            foo:\n              fn::toJSON:\n                key: val\n      groups:\n        - name: group1\n          displayHeader: Group 1\n          displayDescription: A first group\n          annotations:\n            foo: bar\n            foo2:\n              fn::toJSON:\n                key: val\n        - name: group2\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nThis resource currently does not support importing.\n\n",
+            "description": "Allows for managing Realm User Profiles within Keycloak.\n\nA user profile defines a schema for representing user attributes and how they are managed within a realm.\n\nInformation for Keycloak versions \u003c 24:\nThe realm linked to the `keycloak.RealmUserProfile` resource must have the user profile feature enabled.\nIt can be done via the administration UI, or by setting the `userProfileEnabled` realm attribute to `true`.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {realm: \"my-realm\"});\nconst userprofile = new keycloak.RealmUserProfile(\"userprofile\", {\n    realmId: myRealm.id,\n    unmanagedAttributePolicy: \"ENABLED\",\n    attributes: [\n        {\n            name: \"field1\",\n            displayName: \"Field 1\",\n            group: \"group1\",\n            multiValued: false,\n            enabledWhenScopes: [\"offline_access\"],\n            requiredForRoles: [\"user\"],\n            requiredForScopes: [\"offline_access\"],\n            permissions: {\n                views: [\n                    \"admin\",\n                    \"user\",\n                ],\n                edits: [\n                    \"admin\",\n                    \"user\",\n                ],\n            },\n            validators: [\n                {\n                    name: \"person-name-prohibited-characters\",\n                },\n                {\n                    name: \"pattern\",\n                    config: {\n                        pattern: \"^[a-z]+$\",\n                        \"error-message\": \"Nope\",\n                    },\n                },\n            ],\n            annotations: {\n                foo: \"bar\",\n            },\n        },\n        {\n            name: \"field2\",\n            validators: [{\n                name: \"options\",\n                config: {\n                    options: JSON.stringify([\"opt1\"]),\n                },\n            }],\n            annotations: {\n                foo: JSON.stringify({\n                    key: \"val\",\n                }),\n            },\n        },\n    ],\n    groups: [\n        {\n            name: \"group1\",\n            displayHeader: \"Group 1\",\n            displayDescription: \"A first group\",\n            annotations: {\n                foo: \"bar\",\n                foo2: JSON.stringify({\n                    key: \"val\",\n                }),\n            },\n        },\n        {\n            name: \"group2\",\n        },\n    ],\n});\n```\n```python\nimport pulumi\nimport json\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\", realm=\"my-realm\")\nuserprofile = keycloak.RealmUserProfile(\"userprofile\",\n    realm_id=my_realm[\"id\"],\n    unmanaged_attribute_policy=\"ENABLED\",\n    attributes=[\n        {\n            \"name\": \"field1\",\n            \"display_name\": \"Field 1\",\n            \"group\": \"group1\",\n            \"multi_valued\": False,\n            \"enabled_when_scopes\": [\"offline_access\"],\n            \"required_for_roles\": [\"user\"],\n            \"required_for_scopes\": [\"offline_access\"],\n            \"permissions\": {\n                \"views\": [\n                    \"admin\",\n                    \"user\",\n                ],\n                \"edits\": [\n                    \"admin\",\n                    \"user\",\n                ],\n            },\n            \"validators\": [\n                {\n                    \"name\": \"person-name-prohibited-characters\",\n                },\n                {\n                    \"name\": \"pattern\",\n                    \"config\": {\n                        \"pattern\": \"^[a-z]+$\",\n                        \"error-message\": \"Nope\",\n                    },\n                },\n            ],\n            \"annotations\": {\n                \"foo\": \"bar\",\n            },\n        },\n        {\n            \"name\": \"field2\",\n            \"validators\": [{\n                \"name\": \"options\",\n                \"config\": {\n                    \"options\": json.dumps([\"opt1\"]),\n                },\n            }],\n            \"annotations\": {\n                \"foo\": json.dumps({\n                    \"key\": \"val\",\n                }),\n            },\n        },\n    ],\n    groups=[\n        {\n            \"name\": \"group1\",\n            \"display_header\": \"Group 1\",\n            \"display_description\": \"A first group\",\n            \"annotations\": {\n                \"foo\": \"bar\",\n                \"foo2\": json.dumps({\n                    \"key\": \"val\",\n                }),\n            },\n        },\n        {\n            \"name\": \"group2\",\n        },\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing System.Text.Json;\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var realm = new Keycloak.Realm(\"realm\", new()\n    {\n        RealmName = \"my-realm\",\n    });\n\n    var userprofile = new Keycloak.RealmUserProfile(\"userprofile\", new()\n    {\n        RealmId = myRealm.Id,\n        UnmanagedAttributePolicy = \"ENABLED\",\n        Attributes = new[]\n        {\n            new Keycloak.Inputs.RealmUserProfileAttributeArgs\n            {\n                Name = \"field1\",\n                DisplayName = \"Field 1\",\n                Group = \"group1\",\n                MultiValued = false,\n                EnabledWhenScopes = new[]\n                {\n                    \"offline_access\",\n                },\n                RequiredForRoles = new[]\n                {\n                    \"user\",\n                },\n                RequiredForScopes = new[]\n                {\n                    \"offline_access\",\n                },\n                Permissions = new Keycloak.Inputs.RealmUserProfileAttributePermissionsArgs\n                {\n                    Views = new[]\n                    {\n                        \"admin\",\n                        \"user\",\n                    },\n                    Edits = new[]\n                    {\n                        \"admin\",\n                        \"user\",\n                    },\n                },\n                Validators = new[]\n                {\n                    new Keycloak.Inputs.RealmUserProfileAttributeValidatorArgs\n                    {\n                        Name = \"person-name-prohibited-characters\",\n                    },\n                    new Keycloak.Inputs.RealmUserProfileAttributeValidatorArgs\n                    {\n                        Name = \"pattern\",\n                        Config = \n                        {\n                            { \"pattern\", \"^[a-z]+$\" },\n                            { \"error-message\", \"Nope\" },\n                        },\n                    },\n                },\n                Annotations = \n                {\n                    { \"foo\", \"bar\" },\n                },\n            },\n            new Keycloak.Inputs.RealmUserProfileAttributeArgs\n            {\n                Name = \"field2\",\n                Validators = new[]\n                {\n                    new Keycloak.Inputs.RealmUserProfileAttributeValidatorArgs\n                    {\n                        Name = \"options\",\n                        Config = \n                        {\n                            { \"options\", JsonSerializer.Serialize(new[]\n                            {\n                                \"opt1\",\n                            }) },\n                        },\n                    },\n                },\n                Annotations = \n                {\n                    { \"foo\", JsonSerializer.Serialize(new Dictionary\u003cstring, object?\u003e\n                    {\n                        [\"key\"] = \"val\",\n                    }) },\n                },\n            },\n        },\n        Groups = new[]\n        {\n            new Keycloak.Inputs.RealmUserProfileGroupArgs\n            {\n                Name = \"group1\",\n                DisplayHeader = \"Group 1\",\n                DisplayDescription = \"A first group\",\n                Annotations = \n                {\n                    { \"foo\", \"bar\" },\n                    { \"foo2\", JsonSerializer.Serialize(new Dictionary\u003cstring, object?\u003e\n                    {\n                        [\"key\"] = \"val\",\n                    }) },\n                },\n            },\n            new Keycloak.Inputs.RealmUserProfileGroupArgs\n            {\n                Name = \"group2\",\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"encoding/json\"\n\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm: pulumi.String(\"my-realm\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttmpJSON0, err := json.Marshal([]string{\n\t\t\t\"opt1\",\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tjson0 := string(tmpJSON0)\n\t\ttmpJSON1, err := json.Marshal(map[string]interface{}{\n\t\t\t\"key\": \"val\",\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tjson1 := string(tmpJSON1)\n\t\ttmpJSON2, err := json.Marshal(map[string]interface{}{\n\t\t\t\"key\": \"val\",\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tjson2 := string(tmpJSON2)\n\t\t_, err = keycloak.NewRealmUserProfile(ctx, \"userprofile\", \u0026keycloak.RealmUserProfileArgs{\n\t\t\tRealmId:                  pulumi.Any(myRealm.Id),\n\t\t\tUnmanagedAttributePolicy: pulumi.String(\"ENABLED\"),\n\t\t\tAttributes: keycloak.RealmUserProfileAttributeArray{\n\t\t\t\t\u0026keycloak.RealmUserProfileAttributeArgs{\n\t\t\t\t\tName:        pulumi.String(\"field1\"),\n\t\t\t\t\tDisplayName: pulumi.String(\"Field 1\"),\n\t\t\t\t\tGroup:       pulumi.String(\"group1\"),\n\t\t\t\t\tMultiValued: pulumi.Bool(false),\n\t\t\t\t\tEnabledWhenScopes: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"offline_access\"),\n\t\t\t\t\t},\n\t\t\t\t\tRequiredForRoles: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"user\"),\n\t\t\t\t\t},\n\t\t\t\t\tRequiredForScopes: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"offline_access\"),\n\t\t\t\t\t},\n\t\t\t\t\tPermissions: \u0026keycloak.RealmUserProfileAttributePermissionsArgs{\n\t\t\t\t\t\tViews: pulumi.StringArray{\n\t\t\t\t\t\t\tpulumi.String(\"admin\"),\n\t\t\t\t\t\t\tpulumi.String(\"user\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t\tEdits: pulumi.StringArray{\n\t\t\t\t\t\t\tpulumi.String(\"admin\"),\n\t\t\t\t\t\t\tpulumi.String(\"user\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t\tValidators: keycloak.RealmUserProfileAttributeValidatorArray{\n\t\t\t\t\t\t\u0026keycloak.RealmUserProfileAttributeValidatorArgs{\n\t\t\t\t\t\t\tName: pulumi.String(\"person-name-prohibited-characters\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\u0026keycloak.RealmUserProfileAttributeValidatorArgs{\n\t\t\t\t\t\t\tName: pulumi.String(\"pattern\"),\n\t\t\t\t\t\t\tConfig: pulumi.StringMap{\n\t\t\t\t\t\t\t\t\"pattern\":       pulumi.String(\"^[a-z]+$\"),\n\t\t\t\t\t\t\t\t\"error-message\": pulumi.String(\"Nope\"),\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t\tAnnotations: pulumi.StringMap{\n\t\t\t\t\t\t\"foo\": pulumi.String(\"bar\"),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t\t\u0026keycloak.RealmUserProfileAttributeArgs{\n\t\t\t\t\tName: pulumi.String(\"field2\"),\n\t\t\t\t\tValidators: keycloak.RealmUserProfileAttributeValidatorArray{\n\t\t\t\t\t\t\u0026keycloak.RealmUserProfileAttributeValidatorArgs{\n\t\t\t\t\t\t\tName: pulumi.String(\"options\"),\n\t\t\t\t\t\t\tConfig: pulumi.StringMap{\n\t\t\t\t\t\t\t\t\"options\": pulumi.String(json0),\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t\tAnnotations: pulumi.StringMap{\n\t\t\t\t\t\t\"foo\": pulumi.String(json1),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t\tGroups: keycloak.RealmUserProfileGroupArray{\n\t\t\t\t\u0026keycloak.RealmUserProfileGroupArgs{\n\t\t\t\t\tName:               pulumi.String(\"group1\"),\n\t\t\t\t\tDisplayHeader:      pulumi.String(\"Group 1\"),\n\t\t\t\t\tDisplayDescription: pulumi.String(\"A first group\"),\n\t\t\t\t\tAnnotations: pulumi.StringMap{\n\t\t\t\t\t\t\"foo\":  pulumi.String(\"bar\"),\n\t\t\t\t\t\t\"foo2\": pulumi.String(json2),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t\t\u0026keycloak.RealmUserProfileGroupArgs{\n\t\t\t\t\tName: pulumi.String(\"group2\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.keycloak.Realm;\nimport com.pulumi.keycloak.RealmArgs;\nimport com.pulumi.keycloak.RealmUserProfile;\nimport com.pulumi.keycloak.RealmUserProfileArgs;\nimport com.pulumi.keycloak.inputs.RealmUserProfileAttributeArgs;\nimport com.pulumi.keycloak.inputs.RealmUserProfileAttributePermissionsArgs;\nimport com.pulumi.keycloak.inputs.RealmUserProfileGroupArgs;\nimport static com.pulumi.codegen.internal.Serialization.*;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var realm = new Realm(\"realm\", RealmArgs.builder()\n            .realm(\"my-realm\")\n            .build());\n\n        var userprofile = new RealmUserProfile(\"userprofile\", RealmUserProfileArgs.builder()\n            .realmId(myRealm.id())\n            .unmanagedAttributePolicy(\"ENABLED\")\n            .attributes(            \n                RealmUserProfileAttributeArgs.builder()\n                    .name(\"field1\")\n                    .displayName(\"Field 1\")\n                    .group(\"group1\")\n                    .multiValued(false)\n                    .enabledWhenScopes(\"offline_access\")\n                    .requiredForRoles(\"user\")\n                    .requiredForScopes(\"offline_access\")\n                    .permissions(RealmUserProfileAttributePermissionsArgs.builder()\n                        .views(                        \n                            \"admin\",\n                            \"user\")\n                        .edits(                        \n                            \"admin\",\n                            \"user\")\n                        .build())\n                    .validators(                    \n                        RealmUserProfileAttributeValidatorArgs.builder()\n                            .name(\"person-name-prohibited-characters\")\n                            .build(),\n                        RealmUserProfileAttributeValidatorArgs.builder()\n                            .name(\"pattern\")\n                            .config(Map.ofEntries(\n                                Map.entry(\"pattern\", \"^[a-z]+$\"),\n                                Map.entry(\"error-message\", \"Nope\")\n                            ))\n                            .build())\n                    .annotations(Map.of(\"foo\", \"bar\"))\n                    .build(),\n                RealmUserProfileAttributeArgs.builder()\n                    .name(\"field2\")\n                    .validators(RealmUserProfileAttributeValidatorArgs.builder()\n                        .name(\"options\")\n                        .config(Map.of(\"options\", serializeJson(\n                            jsonArray(\"opt1\"))))\n                        .build())\n                    .annotations(Map.of(\"foo\", serializeJson(\n                        jsonObject(\n                            jsonProperty(\"key\", \"val\")\n                        ))))\n                    .build())\n            .groups(            \n                RealmUserProfileGroupArgs.builder()\n                    .name(\"group1\")\n                    .displayHeader(\"Group 1\")\n                    .displayDescription(\"A first group\")\n                    .annotations(Map.ofEntries(\n                        Map.entry(\"foo\", \"bar\"),\n                        Map.entry(\"foo2\", serializeJson(\n                            jsonObject(\n                                jsonProperty(\"key\", \"val\")\n                            )))\n                    ))\n                    .build(),\n                RealmUserProfileGroupArgs.builder()\n                    .name(\"group2\")\n                    .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  realm:\n    type: keycloak:Realm\n    properties:\n      realm: my-realm\n  userprofile:\n    type: keycloak:RealmUserProfile\n    properties:\n      realmId: ${myRealm.id}\n      unmanagedAttributePolicy: ENABLED\n      attributes:\n        - name: field1\n          displayName: Field 1\n          group: group1\n          multiValued: false\n          enabledWhenScopes:\n            - offline_access\n          requiredForRoles:\n            - user\n          requiredForScopes:\n            - offline_access\n          permissions:\n            views:\n              - admin\n              - user\n            edits:\n              - admin\n              - user\n          validators:\n            - name: person-name-prohibited-characters\n            - name: pattern\n              config:\n                pattern: ^[a-z]+$\n                error-message: Nope\n          annotations:\n            foo: bar\n        - name: field2\n          validators:\n            - name: options\n              config:\n                options:\n                  fn::toJSON:\n                    - opt1\n          annotations:\n            foo:\n              fn::toJSON:\n                key: val\n      groups:\n        - name: group1\n          displayHeader: Group 1\n          displayDescription: A first group\n          annotations:\n            foo: bar\n            foo2:\n              fn::toJSON:\n                key: val\n        - name: group2\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nThis resource currently does not support importing.\n\n",
             "properties": {
                 "attributes": {
                     "type": "array",
@@ -5418,6 +5895,10 @@
                 "realmId": {
                     "type": "string",
                     "description": "The ID of the realm the user profile applies to.\n"
+                },
+                "unmanagedAttributePolicy": {
+                    "type": "string",
+                    "description": "Unmanaged attributes are user attributes not explicitly defined in the user profile configuration. By default, unmanaged attributes are not enabled. Value could be one of `DISABLED`, `ENABLED`, `ADMIN_EDIT` or `ADMIN_VIEW`. If value is not specified it means `DISABLED`\n"
                 }
             },
             "required": [
@@ -5442,6 +5923,10 @@
                     "type": "string",
                     "description": "The ID of the realm the user profile applies to.\n",
                     "willReplaceOnChanges": true
+                },
+                "unmanagedAttributePolicy": {
+                    "type": "string",
+                    "description": "Unmanaged attributes are user attributes not explicitly defined in the user profile configuration. By default, unmanaged attributes are not enabled. Value could be one of `DISABLED`, `ENABLED`, `ADMIN_EDIT` or `ADMIN_VIEW`. If value is not specified it means `DISABLED`\n"
                 }
             },
             "requiredInputs": [
@@ -5468,17 +5953,28 @@
                         "type": "string",
                         "description": "The ID of the realm the user profile applies to.\n",
                         "willReplaceOnChanges": true
+                    },
+                    "unmanagedAttributePolicy": {
+                        "type": "string",
+                        "description": "Unmanaged attributes are user attributes not explicitly defined in the user profile configuration. By default, unmanaged attributes are not enabled. Value could be one of `DISABLED`, `ENABLED`, `ADMIN_EDIT` or `ADMIN_VIEW`. If value is not specified it means `DISABLED`\n"
                     }
                 },
                 "type": "object"
             }
         },
         "keycloak:index/requiredAction:RequiredAction": {
-            "description": "Allows for creating and managing required actions within Keycloak.\n\n[Required actions](https://www.keycloak.org/docs/latest/server_admin/#con-required-actions_server_administration_guide) specify actions required before the first login of all new users.\n\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```yaml\nresources:\n  realm:\n    type: keycloak:Realm\n    properties:\n      realm: my-realm\n      enabled: true\n  requiredAction:\n    type: keycloak:RequiredAction\n    name: required_action\n    properties:\n      realmId: ${realm.realm}\n      alias: UPDATE_PASSWORD\n      enabled: true\n      name: Update Password\n      config:\n        maxAuthAge: '600'\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nAuthentication executions can be imported using the formats: `{{realm}}/{{alias}}`.\n\nExample:\n\nbash\n\n```sh\n$ pulumi import keycloak:index/requiredAction:RequiredAction required_action my-realm/my-default-action-alias\n```\n\n",
+            "description": "Allows for creating and managing required actions within Keycloak.\n\n[Required actions](https://www.keycloak.org/docs/latest/server_admin/#con-required-actions_server_administration_guide) specify actions required before the first login of all new users.\n\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n});\nconst requiredAction = new keycloak.RequiredAction(\"required_action\", {\n    realmId: realm.realm,\n    alias: \"UPDATE_PASSWORD\",\n    enabled: true,\n    name: \"Update Password\",\n    config: {\n        max_auth_age: \"600\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True)\nrequired_action = keycloak.RequiredAction(\"required_action\",\n    realm_id=realm.realm,\n    alias=\"UPDATE_PASSWORD\",\n    enabled=True,\n    name=\"Update Password\",\n    config={\n        \"max_auth_age\": \"600\",\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var realm = new Keycloak.Realm(\"realm\", new()\n    {\n        RealmName = \"my-realm\",\n        Enabled = true,\n    });\n\n    var requiredAction = new Keycloak.RequiredAction(\"required_action\", new()\n    {\n        RealmId = realm.RealmName,\n        Alias = \"UPDATE_PASSWORD\",\n        Enabled = true,\n        Name = \"Update Password\",\n        Config = \n        {\n            { \"max_auth_age\", \"600\" },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:   pulumi.String(\"my-realm\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = keycloak.NewRequiredAction(ctx, \"required_action\", \u0026keycloak.RequiredActionArgs{\n\t\t\tRealmId: realm.Realm,\n\t\t\tAlias:   pulumi.String(\"UPDATE_PASSWORD\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t\tName:    pulumi.String(\"Update Password\"),\n\t\t\tConfig: pulumi.StringMap{\n\t\t\t\t\"max_auth_age\": pulumi.String(\"600\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.keycloak.Realm;\nimport com.pulumi.keycloak.RealmArgs;\nimport com.pulumi.keycloak.RequiredAction;\nimport com.pulumi.keycloak.RequiredActionArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var realm = new Realm(\"realm\", RealmArgs.builder()\n            .realm(\"my-realm\")\n            .enabled(true)\n            .build());\n\n        var requiredAction = new RequiredAction(\"requiredAction\", RequiredActionArgs.builder()\n            .realmId(realm.realm())\n            .alias(\"UPDATE_PASSWORD\")\n            .enabled(true)\n            .name(\"Update Password\")\n            .config(Map.of(\"max_auth_age\", \"600\"))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  realm:\n    type: keycloak:Realm\n    properties:\n      realm: my-realm\n      enabled: true\n  requiredAction:\n    type: keycloak:RequiredAction\n    name: required_action\n    properties:\n      realmId: ${realm.realm}\n      alias: UPDATE_PASSWORD\n      enabled: true\n      name: Update Password\n      config:\n        max_auth_age: '600'\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nAuthentication executions can be imported using the formats: `{{realm}}/{{alias}}`.\n\nExample:\n\nbash\n\n```sh\n$ pulumi import keycloak:index/requiredAction:RequiredAction required_action my-realm/my-default-action-alias\n```\n\n",
             "properties": {
                 "alias": {
                     "type": "string",
                     "description": "The alias of the action to attach as a required action.\n"
+                },
+                "config": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "The configuration. Keys are specific to each configurable required action and not checked when applying.\n"
                 },
                 "defaultAction": {
                     "type": "boolean",
@@ -5512,6 +6008,13 @@
                     "type": "string",
                     "description": "The alias of the action to attach as a required action.\n"
                 },
+                "config": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "The configuration. Keys are specific to each configurable required action and not checked when applying.\n"
+                },
                 "defaultAction": {
                     "type": "boolean",
                     "description": "When `true`, the required action is set as the default action for new users. Defaults to `false`.\n"
@@ -5543,6 +6046,13 @@
                     "alias": {
                         "type": "string",
                         "description": "The alias of the action to attach as a required action.\n"
+                    },
+                    "config": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "The configuration. Keys are specific to each configurable required action and not checked when applying.\n"
                     },
                     "defaultAction": {
                         "type": "boolean",
@@ -5593,6 +6103,10 @@
                     "type": "string",
                     "description": "The description of the role\n"
                 },
+                "import": {
+                    "type": "boolean",
+                    "description": "When `true`, the role with the specified `name` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with roles that Keycloak creates automatically during realm creation, such as the client roles `create-client`, `view-realm`, ... for the client `realm-management` created per realm. Note, that the role will not be removed during destruction if `import` is `true`.\n"
+                },
                 "name": {
                     "type": "string",
                     "description": "The name of the role\n"
@@ -5603,6 +6117,9 @@
                 }
             },
             "required": [
+                "attributes",
+                "compositeRoles",
+                "description",
                 "name",
                 "realmId"
             ],
@@ -5629,6 +6146,11 @@
                 "description": {
                     "type": "string",
                     "description": "The description of the role\n"
+                },
+                "import": {
+                    "type": "boolean",
+                    "description": "When `true`, the role with the specified `name` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with roles that Keycloak creates automatically during realm creation, such as the client roles `create-client`, `view-realm`, ... for the client `realm-management` created per realm. Note, that the role will not be removed during destruction if `import` is `true`.\n",
+                    "willReplaceOnChanges": true
                 },
                 "name": {
                     "type": "string",
@@ -5668,6 +6190,11 @@
                     "description": {
                         "type": "string",
                         "description": "The description of the role\n"
+                    },
+                    "import": {
+                        "type": "boolean",
+                        "description": "When `true`, the role with the specified `name` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with roles that Keycloak creates automatically during realm creation, such as the client roles `create-client`, `view-realm`, ... for the client `realm-management` created per realm. Note, that the role will not be removed during destruction if `import` is `true`.\n",
+                        "willReplaceOnChanges": true
                     },
                     "name": {
                         "type": "string",
@@ -5714,6 +6241,10 @@
                 "firstName": {
                     "type": "string",
                     "description": "The user's first name.\n"
+                },
+                "import": {
+                    "type": "boolean",
+                    "description": "When `true`, the user with the specified `username` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with users that Keycloak creates automatically during realm creation, such as `admin`. Note, that the user will not be removed during destruction if `import` is `true`.\n"
                 },
                 "initialPassword": {
                     "$ref": "#/types/keycloak:index/UserInitialPassword:UserInitialPassword",
@@ -5773,6 +6304,11 @@
                 "firstName": {
                     "type": "string",
                     "description": "The user's first name.\n"
+                },
+                "import": {
+                    "type": "boolean",
+                    "description": "When `true`, the user with the specified `username` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with users that Keycloak creates automatically during realm creation, such as `admin`. Note, that the user will not be removed during destruction if `import` is `true`.\n",
+                    "willReplaceOnChanges": true
                 },
                 "initialPassword": {
                     "$ref": "#/types/keycloak:index/UserInitialPassword:UserInitialPassword",
@@ -5836,6 +6372,11 @@
                     "firstName": {
                         "type": "string",
                         "description": "The user's first name.\n"
+                    },
+                    "import": {
+                        "type": "boolean",
+                        "description": "When `true`, the user with the specified `username` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with users that Keycloak creates automatically during realm creation, such as `admin`. Note, that the user will not be removed during destruction if `import` is `true`.\n",
+                        "willReplaceOnChanges": true
                     },
                     "initialPassword": {
                         "$ref": "#/types/keycloak:index/UserInitialPassword:UserInitialPassword",
@@ -7339,6 +7880,10 @@
                     "type": "string",
                     "description": "Default value to set in LDAP if `is_mandatory_in_ldap` is true and the value is empty.\n"
                 },
+                "attributeForceDefault": {
+                    "type": "boolean",
+                    "description": "When `true`, an empty default value is forced for mandatory attributes even when a default value is not specified. Defaults to `true`.\n"
+                },
                 "isBinaryAttribute": {
                     "type": "boolean",
                     "description": "Should be true for binary LDAP attributes.\n"
@@ -7387,6 +7932,10 @@
                 "attributeDefaultValue": {
                     "type": "string",
                     "description": "Default value to set in LDAP if `is_mandatory_in_ldap` is true and the value is empty.\n"
+                },
+                "attributeForceDefault": {
+                    "type": "boolean",
+                    "description": "When `true`, an empty default value is forced for mandatory attributes even when a default value is not specified. Defaults to `true`.\n"
                 },
                 "isBinaryAttribute": {
                     "type": "boolean",
@@ -7439,6 +7988,10 @@
                     "attributeDefaultValue": {
                         "type": "string",
                         "description": "Default value to set in LDAP if `is_mandatory_in_ldap` is true and the value is empty.\n"
+                    },
+                    "attributeForceDefault": {
+                        "type": "boolean",
+                        "description": "When `true`, an empty default value is forced for mandatory attributes even when a default value is not specified. Defaults to `true`.\n"
                     },
                     "isBinaryAttribute": {
                         "type": "boolean",
@@ -8035,6 +8588,10 @@
                     "description": "When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.\n",
                     "willReplaceOnChanges": true
                 },
+                "alias": {
+                    "type": "string",
+                    "description": "The alias for the Google identity provider.\n"
+                },
                 "authenticateByDefault": {
                     "type": "boolean",
                     "description": "Enable/disable authenticate users by default.\n"
@@ -8055,6 +8612,10 @@
                 "disableUserInfo": {
                     "type": "boolean",
                     "description": "When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.\n"
+                },
+                "displayName": {
+                    "type": "string",
+                    "description": "Display name for the Google identity provider in the GUI.\n"
                 },
                 "enabled": {
                     "type": "boolean",
@@ -8377,6 +8938,7 @@
                 "authorizationUrl",
                 "clientId",
                 "clientSecret",
+                "displayName",
                 "internalId",
                 "realm",
                 "tokenUrl"
@@ -8880,6 +9442,10 @@
                     "type": "string",
                     "description": "URL to the admin interface of the client.\n"
                 },
+                "alwaysDisplayInConsole": {
+                    "type": "boolean",
+                    "description": "Always list this client in the Account UI, even if the user does not have an active session.\n"
+                },
                 "authenticationFlowBindingOverrides": {
                     "$ref": "#/types/keycloak:openid/ClientAuthenticationFlowBindingOverrides:ClientAuthenticationFlowBindingOverrides",
                     "description": "Override realm authentication flow bindings\n"
@@ -8956,6 +9522,10 @@
                 "enabled": {
                     "type": "boolean",
                     "description": "When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.\n"
+                },
+                "excludeIssuerFromAuthResponse": {
+                    "type": "boolean",
+                    "description": "When `true`, the parameter `iss` will not be included in OpenID Connect Authentication Response.\n"
                 },
                 "excludeSessionStateFromAuthResponse": {
                     "type": "boolean",
@@ -9081,6 +9651,7 @@
                 "description",
                 "directAccessGrantsEnabled",
                 "displayOnConsentScreen",
+                "excludeIssuerFromAuthResponse",
                 "excludeSessionStateFromAuthResponse",
                 "frontchannelLogoutEnabled",
                 "implicitFlowEnabled",
@@ -9107,6 +9678,10 @@
                 "adminUrl": {
                     "type": "string",
                     "description": "URL to the admin interface of the client.\n"
+                },
+                "alwaysDisplayInConsole": {
+                    "type": "boolean",
+                    "description": "Always list this client in the Account UI, even if the user does not have an active session.\n"
                 },
                 "authenticationFlowBindingOverrides": {
                     "$ref": "#/types/keycloak:openid/ClientAuthenticationFlowBindingOverrides:ClientAuthenticationFlowBindingOverrides",
@@ -9184,6 +9759,10 @@
                 "enabled": {
                     "type": "boolean",
                     "description": "When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.\n"
+                },
+                "excludeIssuerFromAuthResponse": {
+                    "type": "boolean",
+                    "description": "When `true`, the parameter `iss` will not be included in OpenID Connect Authentication Response.\n"
                 },
                 "excludeSessionStateFromAuthResponse": {
                     "type": "boolean",
@@ -9307,6 +9886,10 @@
                         "type": "string",
                         "description": "URL to the admin interface of the client.\n"
                     },
+                    "alwaysDisplayInConsole": {
+                        "type": "boolean",
+                        "description": "Always list this client in the Account UI, even if the user does not have an active session.\n"
+                    },
                     "authenticationFlowBindingOverrides": {
                         "$ref": "#/types/keycloak:openid/ClientAuthenticationFlowBindingOverrides:ClientAuthenticationFlowBindingOverrides",
                         "description": "Override realm authentication flow bindings\n"
@@ -9383,6 +9966,10 @@
                     "enabled": {
                         "type": "boolean",
                         "description": "When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.\n"
+                    },
+                    "excludeIssuerFromAuthResponse": {
+                        "type": "boolean",
+                        "description": "When `true`, the parameter `iss` will not be included in OpenID Connect Authentication Response.\n"
                     },
                     "excludeSessionStateFromAuthResponse": {
                         "type": "boolean",
@@ -9589,6 +10176,102 @@
                     },
                     "resourceServerId": {
                         "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "keycloak:openid/clientAuthorizationClientScopePolicy:ClientAuthorizationClientScopePolicy": {
+            "description": "Allows you to manage openid Client Authorization Client Scope type Policies.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n});\nconst test = new keycloak.openid.Client(\"test\", {\n    clientId: \"client_id\",\n    realmId: realm.id,\n    accessType: \"CONFIDENTIAL\",\n    serviceAccountsEnabled: true,\n    authorization: {\n        policyEnforcementMode: \"ENFORCING\",\n    },\n});\nconst test1 = new keycloak.openid.ClientScope(\"test1\", {\n    realmId: realm.id,\n    name: \"test1\",\n    description: \"test1\",\n});\nconst test2 = new keycloak.openid.ClientScope(\"test2\", {\n    realmId: realm.id,\n    name: \"test2\",\n    description: \"test2\",\n});\nconst testClientAuthorizationClientScopePolicy = new keycloak.openid.ClientAuthorizationClientScopePolicy(\"test\", {\n    resourceServerId: test.resourceServerId,\n    realmId: realm.id,\n    name: \"test_policy_single\",\n    description: \"test\",\n    decisionStrategy: \"AFFIRMATIVE\",\n    logic: \"POSITIVE\",\n    scopes: [{\n        id: test1.id,\n        required: false,\n    }],\n});\nconst testMultiple = new keycloak.openid.ClientAuthorizationClientScopePolicy(\"test_multiple\", {\n    resourceServerId: test.resourceServerId,\n    realmId: realm.id,\n    name: \"test_policy_multiple\",\n    description: \"test\",\n    decisionStrategy: \"AFFIRMATIVE\",\n    logic: \"POSITIVE\",\n    scopes: [\n        {\n            id: test1.id,\n            required: false,\n        },\n        {\n            id: test2.id,\n            required: true,\n        },\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True)\ntest = keycloak.openid.Client(\"test\",\n    client_id=\"client_id\",\n    realm_id=realm.id,\n    access_type=\"CONFIDENTIAL\",\n    service_accounts_enabled=True,\n    authorization={\n        \"policy_enforcement_mode\": \"ENFORCING\",\n    })\ntest1 = keycloak.openid.ClientScope(\"test1\",\n    realm_id=realm.id,\n    name=\"test1\",\n    description=\"test1\")\ntest2 = keycloak.openid.ClientScope(\"test2\",\n    realm_id=realm.id,\n    name=\"test2\",\n    description=\"test2\")\ntest_client_authorization_client_scope_policy = keycloak.openid.ClientAuthorizationClientScopePolicy(\"test\",\n    resource_server_id=test.resource_server_id,\n    realm_id=realm.id,\n    name=\"test_policy_single\",\n    description=\"test\",\n    decision_strategy=\"AFFIRMATIVE\",\n    logic=\"POSITIVE\",\n    scopes=[{\n        \"id\": test1.id,\n        \"required\": False,\n    }])\ntest_multiple = keycloak.openid.ClientAuthorizationClientScopePolicy(\"test_multiple\",\n    resource_server_id=test.resource_server_id,\n    realm_id=realm.id,\n    name=\"test_policy_multiple\",\n    description=\"test\",\n    decision_strategy=\"AFFIRMATIVE\",\n    logic=\"POSITIVE\",\n    scopes=[\n        {\n            \"id\": test1.id,\n            \"required\": False,\n        },\n        {\n            \"id\": test2.id,\n            \"required\": True,\n        },\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var realm = new Keycloak.Realm(\"realm\", new()\n    {\n        RealmName = \"my-realm\",\n        Enabled = true,\n    });\n\n    var test = new Keycloak.OpenId.Client(\"test\", new()\n    {\n        ClientId = \"client_id\",\n        RealmId = realm.Id,\n        AccessType = \"CONFIDENTIAL\",\n        ServiceAccountsEnabled = true,\n        Authorization = new Keycloak.OpenId.Inputs.ClientAuthorizationArgs\n        {\n            PolicyEnforcementMode = \"ENFORCING\",\n        },\n    });\n\n    var test1 = new Keycloak.OpenId.ClientScope(\"test1\", new()\n    {\n        RealmId = realm.Id,\n        Name = \"test1\",\n        Description = \"test1\",\n    });\n\n    var test2 = new Keycloak.OpenId.ClientScope(\"test2\", new()\n    {\n        RealmId = realm.Id,\n        Name = \"test2\",\n        Description = \"test2\",\n    });\n\n    var testClientAuthorizationClientScopePolicy = new Keycloak.OpenId.ClientAuthorizationClientScopePolicy(\"test\", new()\n    {\n        ResourceServerId = test.ResourceServerId,\n        RealmId = realm.Id,\n        Name = \"test_policy_single\",\n        Description = \"test\",\n        DecisionStrategy = \"AFFIRMATIVE\",\n        Logic = \"POSITIVE\",\n        Scopes = new[]\n        {\n            new Keycloak.OpenId.Inputs.ClientAuthorizationClientScopePolicyScopeArgs\n            {\n                Id = test1.Id,\n                Required = false,\n            },\n        },\n    });\n\n    var testMultiple = new Keycloak.OpenId.ClientAuthorizationClientScopePolicy(\"test_multiple\", new()\n    {\n        ResourceServerId = test.ResourceServerId,\n        RealmId = realm.Id,\n        Name = \"test_policy_multiple\",\n        Description = \"test\",\n        DecisionStrategy = \"AFFIRMATIVE\",\n        Logic = \"POSITIVE\",\n        Scopes = new[]\n        {\n            new Keycloak.OpenId.Inputs.ClientAuthorizationClientScopePolicyScopeArgs\n            {\n                Id = test1.Id,\n                Required = false,\n            },\n            new Keycloak.OpenId.Inputs.ClientAuthorizationClientScopePolicyScopeArgs\n            {\n                Id = test2.Id,\n                Required = true,\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak\"\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak/openid\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:   pulumi.String(\"my-realm\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttest, err := openid.NewClient(ctx, \"test\", \u0026openid.ClientArgs{\n\t\t\tClientId:               pulumi.String(\"client_id\"),\n\t\t\tRealmId:                realm.ID(),\n\t\t\tAccessType:             pulumi.String(\"CONFIDENTIAL\"),\n\t\t\tServiceAccountsEnabled: pulumi.Bool(true),\n\t\t\tAuthorization: \u0026openid.ClientAuthorizationArgs{\n\t\t\t\tPolicyEnforcementMode: pulumi.String(\"ENFORCING\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttest1, err := openid.NewClientScope(ctx, \"test1\", \u0026openid.ClientScopeArgs{\n\t\t\tRealmId:     realm.ID(),\n\t\t\tName:        pulumi.String(\"test1\"),\n\t\t\tDescription: pulumi.String(\"test1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\ttest2, err := openid.NewClientScope(ctx, \"test2\", \u0026openid.ClientScopeArgs{\n\t\t\tRealmId:     realm.ID(),\n\t\t\tName:        pulumi.String(\"test2\"),\n\t\t\tDescription: pulumi.String(\"test2\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = openid.NewClientAuthorizationClientScopePolicy(ctx, \"test\", \u0026openid.ClientAuthorizationClientScopePolicyArgs{\n\t\t\tResourceServerId: test.ResourceServerId,\n\t\t\tRealmId:          realm.ID(),\n\t\t\tName:             pulumi.String(\"test_policy_single\"),\n\t\t\tDescription:      pulumi.String(\"test\"),\n\t\t\tDecisionStrategy: pulumi.String(\"AFFIRMATIVE\"),\n\t\t\tLogic:            pulumi.String(\"POSITIVE\"),\n\t\t\tScopes: openid.ClientAuthorizationClientScopePolicyScopeArray{\n\t\t\t\t\u0026openid.ClientAuthorizationClientScopePolicyScopeArgs{\n\t\t\t\t\tId:       test1.ID(),\n\t\t\t\t\tRequired: pulumi.Bool(false),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = openid.NewClientAuthorizationClientScopePolicy(ctx, \"test_multiple\", \u0026openid.ClientAuthorizationClientScopePolicyArgs{\n\t\t\tResourceServerId: test.ResourceServerId,\n\t\t\tRealmId:          realm.ID(),\n\t\t\tName:             pulumi.String(\"test_policy_multiple\"),\n\t\t\tDescription:      pulumi.String(\"test\"),\n\t\t\tDecisionStrategy: pulumi.String(\"AFFIRMATIVE\"),\n\t\t\tLogic:            pulumi.String(\"POSITIVE\"),\n\t\t\tScopes: openid.ClientAuthorizationClientScopePolicyScopeArray{\n\t\t\t\t\u0026openid.ClientAuthorizationClientScopePolicyScopeArgs{\n\t\t\t\t\tId:       test1.ID(),\n\t\t\t\t\tRequired: pulumi.Bool(false),\n\t\t\t\t},\n\t\t\t\t\u0026openid.ClientAuthorizationClientScopePolicyScopeArgs{\n\t\t\t\t\tId:       test2.ID(),\n\t\t\t\t\tRequired: pulumi.Bool(true),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.keycloak.Realm;\nimport com.pulumi.keycloak.RealmArgs;\nimport com.pulumi.keycloak.openid.Client;\nimport com.pulumi.keycloak.openid.ClientArgs;\nimport com.pulumi.keycloak.openid.inputs.ClientAuthorizationArgs;\nimport com.pulumi.keycloak.openid.ClientScope;\nimport com.pulumi.keycloak.openid.ClientScopeArgs;\nimport com.pulumi.keycloak.openid.ClientAuthorizationClientScopePolicy;\nimport com.pulumi.keycloak.openid.ClientAuthorizationClientScopePolicyArgs;\nimport com.pulumi.keycloak.openid.inputs.ClientAuthorizationClientScopePolicyScopeArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var realm = new Realm(\"realm\", RealmArgs.builder()\n            .realm(\"my-realm\")\n            .enabled(true)\n            .build());\n\n        var test = new Client(\"test\", ClientArgs.builder()\n            .clientId(\"client_id\")\n            .realmId(realm.id())\n            .accessType(\"CONFIDENTIAL\")\n            .serviceAccountsEnabled(true)\n            .authorization(ClientAuthorizationArgs.builder()\n                .policyEnforcementMode(\"ENFORCING\")\n                .build())\n            .build());\n\n        var test1 = new ClientScope(\"test1\", ClientScopeArgs.builder()\n            .realmId(realm.id())\n            .name(\"test1\")\n            .description(\"test1\")\n            .build());\n\n        var test2 = new ClientScope(\"test2\", ClientScopeArgs.builder()\n            .realmId(realm.id())\n            .name(\"test2\")\n            .description(\"test2\")\n            .build());\n\n        var testClientAuthorizationClientScopePolicy = new ClientAuthorizationClientScopePolicy(\"testClientAuthorizationClientScopePolicy\", ClientAuthorizationClientScopePolicyArgs.builder()\n            .resourceServerId(test.resourceServerId())\n            .realmId(realm.id())\n            .name(\"test_policy_single\")\n            .description(\"test\")\n            .decisionStrategy(\"AFFIRMATIVE\")\n            .logic(\"POSITIVE\")\n            .scopes(ClientAuthorizationClientScopePolicyScopeArgs.builder()\n                .id(test1.id())\n                .required(false)\n                .build())\n            .build());\n\n        var testMultiple = new ClientAuthorizationClientScopePolicy(\"testMultiple\", ClientAuthorizationClientScopePolicyArgs.builder()\n            .resourceServerId(test.resourceServerId())\n            .realmId(realm.id())\n            .name(\"test_policy_multiple\")\n            .description(\"test\")\n            .decisionStrategy(\"AFFIRMATIVE\")\n            .logic(\"POSITIVE\")\n            .scopes(            \n                ClientAuthorizationClientScopePolicyScopeArgs.builder()\n                    .id(test1.id())\n                    .required(false)\n                    .build(),\n                ClientAuthorizationClientScopePolicyScopeArgs.builder()\n                    .id(test2.id())\n                    .required(true)\n                    .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  realm:\n    type: keycloak:Realm\n    properties:\n      realm: my-realm\n      enabled: true\n  test:\n    type: keycloak:openid:Client\n    properties:\n      clientId: client_id\n      realmId: ${realm.id}\n      accessType: CONFIDENTIAL\n      serviceAccountsEnabled: true\n      authorization:\n        policyEnforcementMode: ENFORCING\n  test1:\n    type: keycloak:openid:ClientScope\n    properties:\n      realmId: ${realm.id}\n      name: test1\n      description: test1\n  test2:\n    type: keycloak:openid:ClientScope\n    properties:\n      realmId: ${realm.id}\n      name: test2\n      description: test2\n  testClientAuthorizationClientScopePolicy:\n    type: keycloak:openid:ClientAuthorizationClientScopePolicy\n    name: test\n    properties:\n      resourceServerId: ${test.resourceServerId}\n      realmId: ${realm.id}\n      name: test_policy_single\n      description: test\n      decisionStrategy: AFFIRMATIVE\n      logic: POSITIVE\n      scopes:\n        - id: ${test1.id}\n          required: false\n  testMultiple:\n    type: keycloak:openid:ClientAuthorizationClientScopePolicy\n    name: test_multiple\n    properties:\n      resourceServerId: ${test.resourceServerId}\n      realmId: ${realm.id}\n      name: test_policy_multiple\n      description: test\n      decisionStrategy: AFFIRMATIVE\n      logic: POSITIVE\n      scopes:\n        - id: ${test1.id}\n          required: false\n        - id: ${test2.id}\n          required: true\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### Argument Reference\n\nThe following arguments are supported:\n\n- `realm_id` - (Required) The realm this group exists in.\n- `resource_server_id` - (Required) The ID of the resource server.\n- `name` - (Required) The name of the policy.\n- `description` - (Optional) A description for the authorization policy.\n- `decision_strategy` - (Optional) The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`. Defaults to `UNANIMOUS`.\n- `logic` - (Optional) The logic, can be one of `POSITIVE` or `NEGATIVE`. Defaults to `POSITIVE`.\n- `scope` - An client scope to add client scope. At least one should be defined.\n\n### Scope Arguments\n\n- `id` - (Required) Id of client scope.\n- `required` - (Optional) When `true`, then this client scope will be set as required. Defaults to `false`.\n\n### Attributes Reference\n\nIn addition to the arguments listed above, the following computed attributes are exported:\n\n- `id` - Policy ID representing the policy.\n\n## Import\n\nClient authorization policies can be imported using the format: `{{realmId}}/{{resourceServerId}}/{{policyId}}`.\n\nExample:\n\nbash\n\n```sh\n$ pulumi import keycloak:openid/clientAuthorizationClientScopePolicy:ClientAuthorizationClientScopePolicy test my-realm/3bd4a686-1062-4b59-97b8-e4e3f10b99da/63b3cde8-987d-4cd9-9306-1955579281d9\n```\n\n",
+            "properties": {
+                "decisionStrategy": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "logic": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "realmId": {
+                    "type": "string"
+                },
+                "resourceServerId": {
+                    "type": "string"
+                },
+                "scopes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/keycloak:openid/ClientAuthorizationClientScopePolicyScope:ClientAuthorizationClientScopePolicyScope"
+                    }
+                }
+            },
+            "required": [
+                "name",
+                "realmId",
+                "resourceServerId",
+                "scopes"
+            ],
+            "inputProperties": {
+                "decisionStrategy": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "logic": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "realmId": {
+                    "type": "string"
+                },
+                "resourceServerId": {
+                    "type": "string"
+                },
+                "scopes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/keycloak:openid/ClientAuthorizationClientScopePolicyScope:ClientAuthorizationClientScopePolicyScope"
+                    }
+                }
+            },
+            "requiredInputs": [
+                "realmId",
+                "resourceServerId",
+                "scopes"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering ClientAuthorizationClientScopePolicy resources.\n",
+                "properties": {
+                    "decisionStrategy": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "logic": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "realmId": {
+                        "type": "string"
+                    },
+                    "resourceServerId": {
+                        "type": "string"
+                    },
+                    "scopes": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/keycloak:openid/ClientAuthorizationClientScopePolicyScope:ClientAuthorizationClientScopePolicyScope"
+                        }
                     }
                 },
                 "type": "object"
@@ -12610,6 +13293,10 @@
         "keycloak:saml/client:Client": {
             "description": "Allows for creating and managing Keycloak clients that use the SAML protocol.\n\nClients are entities that can use Keycloak for user authentication. Typically, clients are applications that redirect users\nto Keycloak for authentication in order to take advantage of Keycloak's user sessions for SSO.\n\n## Import\n\nClients can be imported using the format `{{realm_id}}/{{client_keycloak_id}}`, where `client_keycloak_id` is the unique ID that Keycloak\n\nassigns to the client upon creation. This value can be found in the URI when editing this client in the GUI, and is typically a GUID.\n\nExample:\n\nbash\n\n```sh\n$ pulumi import keycloak:saml/client:Client saml_client my-realm/dcbc4c73-e478-4928-ae2e-d5e420223352\n```\n\n",
             "properties": {
+                "alwaysDisplayInConsole": {
+                    "type": "boolean",
+                    "description": "Always list this client in the Account UI, even if the user does not have an active session.\n"
+                },
                 "assertionConsumerPostUrl": {
                     "type": "string",
                     "description": "SAML POST Binding URL for the client's assertion consumer service (login responses).\n"
@@ -12637,6 +13324,10 @@
                 "clientSignatureRequired": {
                     "type": "boolean",
                     "description": "When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signing_certificate` and `signing_private_key`. Defaults to `true`.\n"
+                },
+                "consentRequired": {
+                    "type": "boolean",
+                    "description": "When `true`, users have to consent to client access. Defaults to `false`.\n"
                 },
                 "description": {
                     "type": "string",
@@ -12766,6 +13457,7 @@
             },
             "required": [
                 "clientId",
+                "consentRequired",
                 "encryptionCertificate",
                 "encryptionCertificateSha1",
                 "name",
@@ -12777,6 +13469,10 @@
                 "signingPrivateKeySha1"
             ],
             "inputProperties": {
+                "alwaysDisplayInConsole": {
+                    "type": "boolean",
+                    "description": "Always list this client in the Account UI, even if the user does not have an active session.\n"
+                },
                 "assertionConsumerPostUrl": {
                     "type": "string",
                     "description": "SAML POST Binding URL for the client's assertion consumer service (login responses).\n"
@@ -12804,6 +13500,10 @@
                 "clientSignatureRequired": {
                     "type": "boolean",
                     "description": "When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signing_certificate` and `signing_private_key`. Defaults to `true`.\n"
+                },
+                "consentRequired": {
+                    "type": "boolean",
+                    "description": "When `true`, users have to consent to client access. Defaults to `false`.\n"
                 },
                 "description": {
                     "type": "string",
@@ -12927,6 +13627,10 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering Client resources.\n",
                 "properties": {
+                    "alwaysDisplayInConsole": {
+                        "type": "boolean",
+                        "description": "Always list this client in the Account UI, even if the user does not have an active session.\n"
+                    },
                     "assertionConsumerPostUrl": {
                         "type": "string",
                         "description": "SAML POST Binding URL for the client's assertion consumer service (login responses).\n"
@@ -12954,6 +13658,10 @@
                     "clientSignatureRequired": {
                         "type": "boolean",
                         "description": "When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signing_certificate` and `signing_private_key`. Defaults to `true`.\n"
+                    },
+                    "consentRequired": {
+                        "type": "boolean",
+                        "description": "When `true`, users have to consent to client access. Defaults to `false`.\n"
                     },
                     "description": {
                         "type": "string",
@@ -13890,6 +14598,10 @@
         "keycloak:saml/userAttributeProtocolMapper:UserAttributeProtocolMapper": {
             "description": "Allows for creating and managing user attribute protocol mappers for SAML clients within Keycloak.\n\nSAML user attribute protocol mappers allow you to map custom attributes defined for a user within Keycloak to an attribute\nin a SAML assertion.\n\nProtocol mappers can be defined for a single client, or they can be defined for a client scope which can be shared between\nmultiple different clients.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n});\nconst samlClient = new keycloak.saml.Client(\"saml_client\", {\n    realmId: realm.id,\n    clientId: \"saml-client\",\n    name: \"saml-client\",\n});\nconst samlUserAttributeMapper = new keycloak.saml.UserAttributeProtocolMapper(\"saml_user_attribute_mapper\", {\n    realmId: realm.id,\n    clientId: samlClient.id,\n    name: \"displayname-user-attribute-mapper\",\n    userAttribute: \"displayName\",\n    samlAttributeName: \"displayName\",\n    samlAttributeNameFormat: \"Unspecified\",\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True)\nsaml_client = keycloak.saml.Client(\"saml_client\",\n    realm_id=realm.id,\n    client_id=\"saml-client\",\n    name=\"saml-client\")\nsaml_user_attribute_mapper = keycloak.saml.UserAttributeProtocolMapper(\"saml_user_attribute_mapper\",\n    realm_id=realm.id,\n    client_id=saml_client.id,\n    name=\"displayname-user-attribute-mapper\",\n    user_attribute=\"displayName\",\n    saml_attribute_name=\"displayName\",\n    saml_attribute_name_format=\"Unspecified\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var realm = new Keycloak.Realm(\"realm\", new()\n    {\n        RealmName = \"my-realm\",\n        Enabled = true,\n    });\n\n    var samlClient = new Keycloak.Saml.Client(\"saml_client\", new()\n    {\n        RealmId = realm.Id,\n        ClientId = \"saml-client\",\n        Name = \"saml-client\",\n    });\n\n    var samlUserAttributeMapper = new Keycloak.Saml.UserAttributeProtocolMapper(\"saml_user_attribute_mapper\", new()\n    {\n        RealmId = realm.Id,\n        ClientId = samlClient.Id,\n        Name = \"displayname-user-attribute-mapper\",\n        UserAttribute = \"displayName\",\n        SamlAttributeName = \"displayName\",\n        SamlAttributeNameFormat = \"Unspecified\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak\"\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak/saml\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:   pulumi.String(\"my-realm\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tsamlClient, err := saml.NewClient(ctx, \"saml_client\", \u0026saml.ClientArgs{\n\t\t\tRealmId:  realm.ID(),\n\t\t\tClientId: pulumi.String(\"saml-client\"),\n\t\t\tName:     pulumi.String(\"saml-client\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = saml.NewUserAttributeProtocolMapper(ctx, \"saml_user_attribute_mapper\", \u0026saml.UserAttributeProtocolMapperArgs{\n\t\t\tRealmId:                 realm.ID(),\n\t\t\tClientId:                samlClient.ID(),\n\t\t\tName:                    pulumi.String(\"displayname-user-attribute-mapper\"),\n\t\t\tUserAttribute:           pulumi.String(\"displayName\"),\n\t\t\tSamlAttributeName:       pulumi.String(\"displayName\"),\n\t\t\tSamlAttributeNameFormat: pulumi.String(\"Unspecified\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.keycloak.Realm;\nimport com.pulumi.keycloak.RealmArgs;\nimport com.pulumi.keycloak.saml.Client;\nimport com.pulumi.keycloak.saml.ClientArgs;\nimport com.pulumi.keycloak.saml.UserAttributeProtocolMapper;\nimport com.pulumi.keycloak.saml.UserAttributeProtocolMapperArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var realm = new Realm(\"realm\", RealmArgs.builder()\n            .realm(\"my-realm\")\n            .enabled(true)\n            .build());\n\n        var samlClient = new Client(\"samlClient\", ClientArgs.builder()\n            .realmId(realm.id())\n            .clientId(\"saml-client\")\n            .name(\"saml-client\")\n            .build());\n\n        var samlUserAttributeMapper = new UserAttributeProtocolMapper(\"samlUserAttributeMapper\", UserAttributeProtocolMapperArgs.builder()\n            .realmId(realm.id())\n            .clientId(samlClient.id())\n            .name(\"displayname-user-attribute-mapper\")\n            .userAttribute(\"displayName\")\n            .samlAttributeName(\"displayName\")\n            .samlAttributeNameFormat(\"Unspecified\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  realm:\n    type: keycloak:Realm\n    properties:\n      realm: my-realm\n      enabled: true\n  samlClient:\n    type: keycloak:saml:Client\n    name: saml_client\n    properties:\n      realmId: ${realm.id}\n      clientId: saml-client\n      name: saml-client\n  samlUserAttributeMapper:\n    type: keycloak:saml:UserAttributeProtocolMapper\n    name: saml_user_attribute_mapper\n    properties:\n      realmId: ${realm.id}\n      clientId: ${samlClient.id}\n      name: displayname-user-attribute-mapper\n      userAttribute: displayName\n      samlAttributeName: displayName\n      samlAttributeNameFormat: Unspecified\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nProtocol mappers can be imported using one of the following formats:\n\n- Client: `{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}`\n\n- Client Scope: `{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}`\n\nExample:\n\nbash\n\n```sh\n$ pulumi import keycloak:saml/userAttributeProtocolMapper:UserAttributeProtocolMapper saml_user_attribute_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4\n```\n\n```sh\n$ pulumi import keycloak:saml/userAttributeProtocolMapper:UserAttributeProtocolMapper saml_user_attribute_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4\n```\n\n",
             "properties": {
+                "aggregateAttributes": {
+                    "type": "boolean",
+                    "description": "Indicates whether this attribute is a single value or an array of values. Defaults to `false`.\n"
+                },
                 "clientId": {
                     "type": "string",
                     "description": "The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.\n"
@@ -13931,6 +14643,10 @@
                 "userAttribute"
             ],
             "inputProperties": {
+                "aggregateAttributes": {
+                    "type": "boolean",
+                    "description": "Indicates whether this attribute is a single value or an array of values. Defaults to `false`.\n"
+                },
                 "clientId": {
                     "type": "string",
                     "description": "The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.\n",
@@ -13976,6 +14692,10 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering UserAttributeProtocolMapper resources.\n",
                 "properties": {
+                    "aggregateAttributes": {
+                        "type": "boolean",
+                        "description": "Indicates whether this attribute is a single value or an array of values. Defaults to `false`.\n"
+                    },
                     "clientId": {
                         "type": "string",
                         "description": "The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.\n",
@@ -14180,6 +14900,10 @@
                     "parentFlowAlias": {
                         "type": "string"
                     },
+                    "priority": {
+                        "description": "(Computed) The authenticator priority.\n",
+                        "type": "integer"
+                    },
                     "providerId": {
                         "type": "string"
                     },
@@ -14189,6 +14913,7 @@
                 },
                 "required": [
                     "parentFlowAlias",
+                    "priority",
                     "providerId",
                     "realmId",
                     "id"
@@ -14269,6 +14994,9 @@
                     },
                     "adminUrl": {
                         "type": "string"
+                    },
+                    "alwaysDisplayInConsole": {
+                        "type": "boolean"
                     },
                     "attributes": {
                         "additionalProperties": {
@@ -14413,6 +15141,7 @@
                 "required": [
                     "access",
                     "adminUrl",
+                    "alwaysDisplayInConsole",
                     "attributes",
                     "authenticationFlowBindingOverrides",
                     "authorizationServicesEnabled",
@@ -14660,6 +15389,9 @@
                     "enabled": {
                         "type": "boolean"
                     },
+                    "firstBrokerLoginFlow": {
+                        "type": "string"
+                    },
                     "id": {
                         "description": "The provider-assigned unique ID for this managed resource.\n",
                         "type": "string"
@@ -14692,6 +15424,9 @@
                         "type": "string"
                     },
                     "offlineSessionMaxLifespanEnabled": {
+                        "type": "boolean"
+                    },
+                    "organizationsEnabled": {
                         "type": "boolean"
                     },
                     "otpPolicy": {
@@ -14792,6 +15527,7 @@
                     "editUsernameAllowed",
                     "emailTheme",
                     "enabled",
+                    "firstBrokerLoginFlow",
                     "internalId",
                     "internationalizations",
                     "loginTheme",
@@ -14801,6 +15537,7 @@
                     "offlineSessionIdleTimeout",
                     "offlineSessionMaxLifespan",
                     "offlineSessionMaxLifespanEnabled",
+                    "organizationsEnabled",
                     "otpPolicy",
                     "passwordPolicy",
                     "realm",
@@ -15109,6 +15846,9 @@
             "inputs": {
                 "description": "A collection of arguments for invoking getClient.\n",
                 "properties": {
+                    "alwaysDisplayInConsole": {
+                        "type": "boolean"
+                    },
                     "clientId": {
                         "type": "string",
                         "description": "The client id (not its unique ID).\n"
@@ -15156,6 +15896,9 @@
                     },
                     "adminUrl": {
                         "type": "string"
+                    },
+                    "alwaysDisplayInConsole": {
+                        "type": "boolean"
                     },
                     "authenticationFlowBindingOverrides": {
                         "items": {
@@ -15219,6 +15962,9 @@
                         "type": "boolean"
                     },
                     "enabled": {
+                        "type": "boolean"
+                    },
+                    "excludeIssuerFromAuthResponse": {
                         "type": "boolean"
                     },
                     "excludeSessionStateFromAuthResponse": {
@@ -15328,6 +16074,7 @@
                     "description",
                     "directAccessGrantsEnabled",
                     "enabled",
+                    "excludeIssuerFromAuthResponse",
                     "excludeSessionStateFromAuthResponse",
                     "extraConfig",
                     "frontchannelLogoutEnabled",
@@ -15616,6 +16363,9 @@
             "outputs": {
                 "description": "A collection of values returned by getClient.\n",
                 "properties": {
+                    "alwaysDisplayInConsole": {
+                        "type": "boolean"
+                    },
                     "assertionConsumerPostUrl": {
                         "type": "string"
                     },
@@ -15638,6 +16388,9 @@
                         "type": "string"
                     },
                     "clientSignatureRequired": {
+                        "type": "boolean"
+                    },
+                    "consentRequired": {
                         "type": "boolean"
                     },
                     "description": {
@@ -15745,6 +16498,7 @@
                     }
                 },
                 "required": [
+                    "alwaysDisplayInConsole",
                     "assertionConsumerPostUrl",
                     "assertionConsumerRedirectUrl",
                     "authenticationFlowBindingOverrides",
@@ -15752,6 +16506,7 @@
                     "canonicalizationMethod",
                     "clientId",
                     "clientSignatureRequired",
+                    "consentRequired",
                     "description",
                     "enabled",
                     "encryptAssertions",

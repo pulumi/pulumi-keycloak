@@ -29,6 +29,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Client{}
 	case "keycloak:openid/clientAggregatePolicy:ClientAggregatePolicy":
 		r = &ClientAggregatePolicy{}
+	case "keycloak:openid/clientAuthorizationClientScopePolicy:ClientAuthorizationClientScopePolicy":
+		r = &ClientAuthorizationClientScopePolicy{}
 	case "keycloak:openid/clientAuthorizationPermission:ClientAuthorizationPermission":
 		r = &ClientAuthorizationPermission{}
 	case "keycloak:openid/clientAuthorizationResource:ClientAuthorizationResource":
@@ -110,6 +112,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"keycloak",
 		"openid/clientAggregatePolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"keycloak",
+		"openid/clientAuthorizationClientScopePolicy",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

@@ -28,7 +28,10 @@ class GetClientResult:
     """
     A collection of values returned by getClient.
     """
-    def __init__(__self__, assertion_consumer_post_url=None, assertion_consumer_redirect_url=None, authentication_flow_binding_overrides=None, base_url=None, canonicalization_method=None, client_id=None, client_signature_required=None, description=None, enabled=None, encrypt_assertions=None, encryption_certificate=None, encryption_certificate_sha1=None, extra_config=None, force_name_id_format=None, force_post_binding=None, front_channel_logout=None, full_scope_allowed=None, id=None, idp_initiated_sso_relay_state=None, idp_initiated_sso_url_name=None, include_authn_statement=None, login_theme=None, logout_service_post_binding_url=None, logout_service_redirect_binding_url=None, master_saml_processing_url=None, name=None, name_id_format=None, realm_id=None, root_url=None, saml_signature_key_name=None, sign_assertions=None, sign_documents=None, signature_algorithm=None, signature_key_name=None, signing_certificate=None, signing_certificate_sha1=None, signing_private_key=None, signing_private_key_sha1=None, valid_redirect_uris=None):
+    def __init__(__self__, always_display_in_console=None, assertion_consumer_post_url=None, assertion_consumer_redirect_url=None, authentication_flow_binding_overrides=None, base_url=None, canonicalization_method=None, client_id=None, client_signature_required=None, consent_required=None, description=None, enabled=None, encrypt_assertions=None, encryption_certificate=None, encryption_certificate_sha1=None, extra_config=None, force_name_id_format=None, force_post_binding=None, front_channel_logout=None, full_scope_allowed=None, id=None, idp_initiated_sso_relay_state=None, idp_initiated_sso_url_name=None, include_authn_statement=None, login_theme=None, logout_service_post_binding_url=None, logout_service_redirect_binding_url=None, master_saml_processing_url=None, name=None, name_id_format=None, realm_id=None, root_url=None, saml_signature_key_name=None, sign_assertions=None, sign_documents=None, signature_algorithm=None, signature_key_name=None, signing_certificate=None, signing_certificate_sha1=None, signing_private_key=None, signing_private_key_sha1=None, valid_redirect_uris=None):
+        if always_display_in_console and not isinstance(always_display_in_console, bool):
+            raise TypeError("Expected argument 'always_display_in_console' to be a bool")
+        pulumi.set(__self__, "always_display_in_console", always_display_in_console)
         if assertion_consumer_post_url and not isinstance(assertion_consumer_post_url, str):
             raise TypeError("Expected argument 'assertion_consumer_post_url' to be a str")
         pulumi.set(__self__, "assertion_consumer_post_url", assertion_consumer_post_url)
@@ -50,6 +53,9 @@ class GetClientResult:
         if client_signature_required and not isinstance(client_signature_required, bool):
             raise TypeError("Expected argument 'client_signature_required' to be a bool")
         pulumi.set(__self__, "client_signature_required", client_signature_required)
+        if consent_required and not isinstance(consent_required, bool):
+            raise TypeError("Expected argument 'consent_required' to be a bool")
+        pulumi.set(__self__, "consent_required", consent_required)
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
@@ -148,6 +154,11 @@ class GetClientResult:
         pulumi.set(__self__, "valid_redirect_uris", valid_redirect_uris)
 
     @property
+    @pulumi.getter(name="alwaysDisplayInConsole")
+    def always_display_in_console(self) -> builtins.bool:
+        return pulumi.get(self, "always_display_in_console")
+
+    @property
     @pulumi.getter(name="assertionConsumerPostUrl")
     def assertion_consumer_post_url(self) -> builtins.str:
         return pulumi.get(self, "assertion_consumer_post_url")
@@ -181,6 +192,11 @@ class GetClientResult:
     @pulumi.getter(name="clientSignatureRequired")
     def client_signature_required(self) -> builtins.bool:
         return pulumi.get(self, "client_signature_required")
+
+    @property
+    @pulumi.getter(name="consentRequired")
+    def consent_required(self) -> builtins.bool:
+        return pulumi.get(self, "consent_required")
 
     @property
     @pulumi.getter
@@ -352,6 +368,7 @@ class AwaitableGetClientResult(GetClientResult):
         if False:
             yield self
         return GetClientResult(
+            always_display_in_console=self.always_display_in_console,
             assertion_consumer_post_url=self.assertion_consumer_post_url,
             assertion_consumer_redirect_url=self.assertion_consumer_redirect_url,
             authentication_flow_binding_overrides=self.authentication_flow_binding_overrides,
@@ -359,6 +376,7 @@ class AwaitableGetClientResult(GetClientResult):
             canonicalization_method=self.canonicalization_method,
             client_id=self.client_id,
             client_signature_required=self.client_signature_required,
+            consent_required=self.consent_required,
             description=self.description,
             enabled=self.enabled,
             encrypt_assertions=self.encrypt_assertions,
@@ -424,6 +442,7 @@ def get_client(client_id: Optional[builtins.str] = None,
     __ret__ = pulumi.runtime.invoke('keycloak:saml/getClient:getClient', __args__, opts=opts, typ=GetClientResult).value
 
     return AwaitableGetClientResult(
+        always_display_in_console=pulumi.get(__ret__, 'always_display_in_console'),
         assertion_consumer_post_url=pulumi.get(__ret__, 'assertion_consumer_post_url'),
         assertion_consumer_redirect_url=pulumi.get(__ret__, 'assertion_consumer_redirect_url'),
         authentication_flow_binding_overrides=pulumi.get(__ret__, 'authentication_flow_binding_overrides'),
@@ -431,6 +450,7 @@ def get_client(client_id: Optional[builtins.str] = None,
         canonicalization_method=pulumi.get(__ret__, 'canonicalization_method'),
         client_id=pulumi.get(__ret__, 'client_id'),
         client_signature_required=pulumi.get(__ret__, 'client_signature_required'),
+        consent_required=pulumi.get(__ret__, 'consent_required'),
         description=pulumi.get(__ret__, 'description'),
         enabled=pulumi.get(__ret__, 'enabled'),
         encrypt_assertions=pulumi.get(__ret__, 'encrypt_assertions'),
@@ -493,6 +513,7 @@ def get_client_output(client_id: Optional[pulumi.Input[builtins.str]] = None,
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('keycloak:saml/getClient:getClient', __args__, opts=opts, typ=GetClientResult)
     return __ret__.apply(lambda __response__: GetClientResult(
+        always_display_in_console=pulumi.get(__response__, 'always_display_in_console'),
         assertion_consumer_post_url=pulumi.get(__response__, 'assertion_consumer_post_url'),
         assertion_consumer_redirect_url=pulumi.get(__response__, 'assertion_consumer_redirect_url'),
         authentication_flow_binding_overrides=pulumi.get(__response__, 'authentication_flow_binding_overrides'),
@@ -500,6 +521,7 @@ def get_client_output(client_id: Optional[pulumi.Input[builtins.str]] = None,
         canonicalization_method=pulumi.get(__response__, 'canonicalization_method'),
         client_id=pulumi.get(__response__, 'client_id'),
         client_signature_required=pulumi.get(__response__, 'client_signature_required'),
+        consent_required=pulumi.get(__response__, 'consent_required'),
         description=pulumi.get(__response__, 'description'),
         enabled=pulumi.get(__response__, 'enabled'),
         encrypt_assertions=pulumi.get(__response__, 'encrypt_assertions'),

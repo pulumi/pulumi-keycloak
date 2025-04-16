@@ -99,8 +99,8 @@ import (
 //
 // ## Default Client Scopes
 //
-// - `defaultDefaultClientScopes` - (Optional) A list of default `default client scopes` to be used for client definitions. Defaults to `[]` or keycloak's built-in default `default client-scopes`. For an alternative, please refer to the dedicated resource `keycloakRealmDefaultClientScopes`.
-// - `defaultOptionalClientScopes` - (Optional) A list of default `optional client scopes` to be used for client definitions. Defaults to `[]` or keycloak's built-in default `optional client-scopes`. For an alternative, please refer to the dedicated resource `keycloakRealmOptionalClientScopes`.
+// - `defaultDefaultClientScopes` - (Optional) A list of default `default client scopes` to be used for client definitions. Defaults to `[]` or keycloak's built-in default `default client-scopes`. For an alternative, please refer to the dedicated resource `RealmDefaultClientScopes`.
+// - `defaultOptionalClientScopes` - (Optional) A list of default `optional client scopes` to be used for client definitions. Defaults to `[]` or keycloak's built-in default `optional client-scopes`. For an alternative, please refer to the dedicated resource `RealmOptionalClientScopes`.
 //
 // ## Import
 //
@@ -149,6 +149,8 @@ type Realm struct {
 	EmailTheme               pulumi.StringPtrOutput `pulumi:"emailTheme"`
 	// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
 	Enabled pulumi.BoolPtrOutput `pulumi:"enabled"`
+	// Which flow should be used for FirstBrokerLoginFlow
+	FirstBrokerLoginFlow pulumi.StringOutput `pulumi:"firstBrokerLoginFlow"`
 	// When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
 	InternalId                       pulumi.StringOutput                `pulumi:"internalId"`
 	Internationalization             RealmInternationalizationPtrOutput `pulumi:"internationalization"`
@@ -159,7 +161,9 @@ type Realm struct {
 	OfflineSessionIdleTimeout        pulumi.StringOutput                `pulumi:"offlineSessionIdleTimeout"`
 	OfflineSessionMaxLifespan        pulumi.StringOutput                `pulumi:"offlineSessionMaxLifespan"`
 	OfflineSessionMaxLifespanEnabled pulumi.BoolPtrOutput               `pulumi:"offlineSessionMaxLifespanEnabled"`
-	OtpPolicy                        RealmOtpPolicyOutput               `pulumi:"otpPolicy"`
+	// When `true`, organization support is enabled. Defaults to `false`.
+	OrganizationsEnabled pulumi.BoolPtrOutput `pulumi:"organizationsEnabled"`
+	OtpPolicy            RealmOtpPolicyOutput `pulumi:"otpPolicy"`
 	// String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
 	// can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365)
 	// and notUsername(undefined)"
@@ -257,6 +261,8 @@ type realmState struct {
 	EmailTheme               *string `pulumi:"emailTheme"`
 	// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
 	Enabled *bool `pulumi:"enabled"`
+	// Which flow should be used for FirstBrokerLoginFlow
+	FirstBrokerLoginFlow *string `pulumi:"firstBrokerLoginFlow"`
 	// When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
 	InternalId                       *string                    `pulumi:"internalId"`
 	Internationalization             *RealmInternationalization `pulumi:"internationalization"`
@@ -267,7 +273,9 @@ type realmState struct {
 	OfflineSessionIdleTimeout        *string                    `pulumi:"offlineSessionIdleTimeout"`
 	OfflineSessionMaxLifespan        *string                    `pulumi:"offlineSessionMaxLifespan"`
 	OfflineSessionMaxLifespanEnabled *bool                      `pulumi:"offlineSessionMaxLifespanEnabled"`
-	OtpPolicy                        *RealmOtpPolicy            `pulumi:"otpPolicy"`
+	// When `true`, organization support is enabled. Defaults to `false`.
+	OrganizationsEnabled *bool           `pulumi:"organizationsEnabled"`
+	OtpPolicy            *RealmOtpPolicy `pulumi:"otpPolicy"`
 	// String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
 	// can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365)
 	// and notUsername(undefined)"
@@ -333,6 +341,8 @@ type RealmState struct {
 	EmailTheme               pulumi.StringPtrInput
 	// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
 	Enabled pulumi.BoolPtrInput
+	// Which flow should be used for FirstBrokerLoginFlow
+	FirstBrokerLoginFlow pulumi.StringPtrInput
 	// When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
 	InternalId                       pulumi.StringPtrInput
 	Internationalization             RealmInternationalizationPtrInput
@@ -343,7 +353,9 @@ type RealmState struct {
 	OfflineSessionIdleTimeout        pulumi.StringPtrInput
 	OfflineSessionMaxLifespan        pulumi.StringPtrInput
 	OfflineSessionMaxLifespanEnabled pulumi.BoolPtrInput
-	OtpPolicy                        RealmOtpPolicyPtrInput
+	// When `true`, organization support is enabled. Defaults to `false`.
+	OrganizationsEnabled pulumi.BoolPtrInput
+	OtpPolicy            RealmOtpPolicyPtrInput
 	// String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
 	// can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365)
 	// and notUsername(undefined)"
@@ -413,6 +425,8 @@ type realmArgs struct {
 	EmailTheme               *string `pulumi:"emailTheme"`
 	// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
 	Enabled *bool `pulumi:"enabled"`
+	// Which flow should be used for FirstBrokerLoginFlow
+	FirstBrokerLoginFlow *string `pulumi:"firstBrokerLoginFlow"`
 	// When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
 	InternalId                       *string                    `pulumi:"internalId"`
 	Internationalization             *RealmInternationalization `pulumi:"internationalization"`
@@ -423,7 +437,9 @@ type realmArgs struct {
 	OfflineSessionIdleTimeout        *string                    `pulumi:"offlineSessionIdleTimeout"`
 	OfflineSessionMaxLifespan        *string                    `pulumi:"offlineSessionMaxLifespan"`
 	OfflineSessionMaxLifespanEnabled *bool                      `pulumi:"offlineSessionMaxLifespanEnabled"`
-	OtpPolicy                        *RealmOtpPolicy            `pulumi:"otpPolicy"`
+	// When `true`, organization support is enabled. Defaults to `false`.
+	OrganizationsEnabled *bool           `pulumi:"organizationsEnabled"`
+	OtpPolicy            *RealmOtpPolicy `pulumi:"otpPolicy"`
 	// String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
 	// can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365)
 	// and notUsername(undefined)"
@@ -490,6 +506,8 @@ type RealmArgs struct {
 	EmailTheme               pulumi.StringPtrInput
 	// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
 	Enabled pulumi.BoolPtrInput
+	// Which flow should be used for FirstBrokerLoginFlow
+	FirstBrokerLoginFlow pulumi.StringPtrInput
 	// When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
 	InternalId                       pulumi.StringPtrInput
 	Internationalization             RealmInternationalizationPtrInput
@@ -500,7 +518,9 @@ type RealmArgs struct {
 	OfflineSessionIdleTimeout        pulumi.StringPtrInput
 	OfflineSessionMaxLifespan        pulumi.StringPtrInput
 	OfflineSessionMaxLifespanEnabled pulumi.BoolPtrInput
-	OtpPolicy                        RealmOtpPolicyPtrInput
+	// When `true`, organization support is enabled. Defaults to `false`.
+	OrganizationsEnabled pulumi.BoolPtrInput
+	OtpPolicy            RealmOtpPolicyPtrInput
 	// String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
 	// can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365)
 	// and notUsername(undefined)"
@@ -727,6 +747,11 @@ func (o RealmOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Realm) pulumi.BoolPtrOutput { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
 
+// Which flow should be used for FirstBrokerLoginFlow
+func (o RealmOutput) FirstBrokerLoginFlow() pulumi.StringOutput {
+	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.FirstBrokerLoginFlow }).(pulumi.StringOutput)
+}
+
 // When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
 func (o RealmOutput) InternalId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.InternalId }).(pulumi.StringOutput)
@@ -762,6 +787,11 @@ func (o RealmOutput) OfflineSessionMaxLifespan() pulumi.StringOutput {
 
 func (o RealmOutput) OfflineSessionMaxLifespanEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Realm) pulumi.BoolPtrOutput { return v.OfflineSessionMaxLifespanEnabled }).(pulumi.BoolPtrOutput)
+}
+
+// When `true`, organization support is enabled. Defaults to `false`.
+func (o RealmOutput) OrganizationsEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Realm) pulumi.BoolPtrOutput { return v.OrganizationsEnabled }).(pulumi.BoolPtrOutput)
 }
 
 func (o RealmOutput) OtpPolicy() RealmOtpPolicyOutput {

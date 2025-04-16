@@ -17,6 +17,52 @@ import (
 // Like authentication flows, authentication subflows are containers for authentication executions.
 // As its name implies, an authentication subflow is contained in an authentication flow.
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak/authentication"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			flow, err := authentication.NewFlow(ctx, "flow", &authentication.FlowArgs{
+//				RealmId: realm.ID(),
+//				Alias:   pulumi.String("my-flow-alias"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = authentication.NewSubflow(ctx, "subflow", &authentication.SubflowArgs{
+//				RealmId:         realm.ID(),
+//				Alias:           pulumi.String("my-subflow-alias"),
+//				ParentFlowAlias: flow.Alias,
+//				ProviderId:      pulumi.String("basic-flow"),
+//				Requirement:     pulumi.String("ALTERNATIVE"),
+//				Priority:        pulumi.Int(10),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Authentication flows can be imported using the format `{{realmId}}/{{parentFlowAlias}}/{{authenticationSubflowId}}`.
@@ -50,6 +96,8 @@ type Subflow struct {
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The alias for the parent authentication flow.
 	ParentFlowAlias pulumi.StringOutput `pulumi:"parentFlowAlias"`
+	// The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak >= 25).
+	Priority pulumi.IntPtrOutput `pulumi:"priority"`
 	// The type of authentication subflow to create. Valid choices include `basic-flow`, `form-flow`
 	// and `client-flow`. Defaults to `basic-flow`.
 	ProviderId pulumi.StringPtrOutput `pulumi:"providerId"`
@@ -108,6 +156,8 @@ type subflowState struct {
 	Description *string `pulumi:"description"`
 	// The alias for the parent authentication flow.
 	ParentFlowAlias *string `pulumi:"parentFlowAlias"`
+	// The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak >= 25).
+	Priority *int `pulumi:"priority"`
 	// The type of authentication subflow to create. Valid choices include `basic-flow`, `form-flow`
 	// and `client-flow`. Defaults to `basic-flow`.
 	ProviderId *string `pulumi:"providerId"`
@@ -128,6 +178,8 @@ type SubflowState struct {
 	Description pulumi.StringPtrInput
 	// The alias for the parent authentication flow.
 	ParentFlowAlias pulumi.StringPtrInput
+	// The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak >= 25).
+	Priority pulumi.IntPtrInput
 	// The type of authentication subflow to create. Valid choices include `basic-flow`, `form-flow`
 	// and `client-flow`. Defaults to `basic-flow`.
 	ProviderId pulumi.StringPtrInput
@@ -152,6 +204,8 @@ type subflowArgs struct {
 	Description *string `pulumi:"description"`
 	// The alias for the parent authentication flow.
 	ParentFlowAlias string `pulumi:"parentFlowAlias"`
+	// The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak >= 25).
+	Priority *int `pulumi:"priority"`
 	// The type of authentication subflow to create. Valid choices include `basic-flow`, `form-flow`
 	// and `client-flow`. Defaults to `basic-flow`.
 	ProviderId *string `pulumi:"providerId"`
@@ -173,6 +227,8 @@ type SubflowArgs struct {
 	Description pulumi.StringPtrInput
 	// The alias for the parent authentication flow.
 	ParentFlowAlias pulumi.StringInput
+	// The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak >= 25).
+	Priority pulumi.IntPtrInput
 	// The type of authentication subflow to create. Valid choices include `basic-flow`, `form-flow`
 	// and `client-flow`. Defaults to `basic-flow`.
 	ProviderId pulumi.StringPtrInput
@@ -289,6 +345,11 @@ func (o SubflowOutput) Description() pulumi.StringPtrOutput {
 // The alias for the parent authentication flow.
 func (o SubflowOutput) ParentFlowAlias() pulumi.StringOutput {
 	return o.ApplyT(func(v *Subflow) pulumi.StringOutput { return v.ParentFlowAlias }).(pulumi.StringOutput)
+}
+
+// The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak >= 25).
+func (o SubflowOutput) Priority() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Subflow) pulumi.IntPtrOutput { return v.Priority }).(pulumi.IntPtrOutput)
 }
 
 // The type of authentication subflow to create. Valid choices include `basic-flow`, `form-flow`

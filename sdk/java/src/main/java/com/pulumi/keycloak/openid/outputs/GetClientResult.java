@@ -20,6 +20,7 @@ public final class GetClientResult {
     private String accessTokenLifespan;
     private String accessType;
     private String adminUrl;
+    private @Nullable Boolean alwaysDisplayInConsole;
     private List<GetClientAuthenticationFlowBindingOverride> authenticationFlowBindingOverrides;
     private List<GetClientAuthorization> authorizations;
     private Boolean backchannelLogoutRevokeOfflineSessions;
@@ -39,6 +40,7 @@ public final class GetClientResult {
     private Boolean directAccessGrantsEnabled;
     private @Nullable Boolean displayOnConsentScreen;
     private Boolean enabled;
+    private Boolean excludeIssuerFromAuthResponse;
     private Boolean excludeSessionStateFromAuthResponse;
     private Map<String,String> extraConfig;
     private Boolean frontchannelLogoutEnabled;
@@ -77,6 +79,9 @@ public final class GetClientResult {
     }
     public String adminUrl() {
         return this.adminUrl;
+    }
+    public Optional<Boolean> alwaysDisplayInConsole() {
+        return Optional.ofNullable(this.alwaysDisplayInConsole);
     }
     public List<GetClientAuthenticationFlowBindingOverride> authenticationFlowBindingOverrides() {
         return this.authenticationFlowBindingOverrides;
@@ -134,6 +139,9 @@ public final class GetClientResult {
     }
     public Boolean enabled() {
         return this.enabled;
+    }
+    public Boolean excludeIssuerFromAuthResponse() {
+        return this.excludeIssuerFromAuthResponse;
     }
     public Boolean excludeSessionStateFromAuthResponse() {
         return this.excludeSessionStateFromAuthResponse;
@@ -224,6 +232,7 @@ public final class GetClientResult {
         private String accessTokenLifespan;
         private String accessType;
         private String adminUrl;
+        private @Nullable Boolean alwaysDisplayInConsole;
         private List<GetClientAuthenticationFlowBindingOverride> authenticationFlowBindingOverrides;
         private List<GetClientAuthorization> authorizations;
         private Boolean backchannelLogoutRevokeOfflineSessions;
@@ -243,6 +252,7 @@ public final class GetClientResult {
         private Boolean directAccessGrantsEnabled;
         private @Nullable Boolean displayOnConsentScreen;
         private Boolean enabled;
+        private Boolean excludeIssuerFromAuthResponse;
         private Boolean excludeSessionStateFromAuthResponse;
         private Map<String,String> extraConfig;
         private Boolean frontchannelLogoutEnabled;
@@ -273,6 +283,7 @@ public final class GetClientResult {
     	      this.accessTokenLifespan = defaults.accessTokenLifespan;
     	      this.accessType = defaults.accessType;
     	      this.adminUrl = defaults.adminUrl;
+    	      this.alwaysDisplayInConsole = defaults.alwaysDisplayInConsole;
     	      this.authenticationFlowBindingOverrides = defaults.authenticationFlowBindingOverrides;
     	      this.authorizations = defaults.authorizations;
     	      this.backchannelLogoutRevokeOfflineSessions = defaults.backchannelLogoutRevokeOfflineSessions;
@@ -292,6 +303,7 @@ public final class GetClientResult {
     	      this.directAccessGrantsEnabled = defaults.directAccessGrantsEnabled;
     	      this.displayOnConsentScreen = defaults.displayOnConsentScreen;
     	      this.enabled = defaults.enabled;
+    	      this.excludeIssuerFromAuthResponse = defaults.excludeIssuerFromAuthResponse;
     	      this.excludeSessionStateFromAuthResponse = defaults.excludeSessionStateFromAuthResponse;
     	      this.extraConfig = defaults.extraConfig;
     	      this.frontchannelLogoutEnabled = defaults.frontchannelLogoutEnabled;
@@ -340,6 +352,12 @@ public final class GetClientResult {
               throw new MissingRequiredPropertyException("GetClientResult", "adminUrl");
             }
             this.adminUrl = adminUrl;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder alwaysDisplayInConsole(@Nullable Boolean alwaysDisplayInConsole) {
+
+            this.alwaysDisplayInConsole = alwaysDisplayInConsole;
             return this;
         }
         @CustomType.Setter
@@ -494,6 +512,14 @@ public final class GetClientResult {
               throw new MissingRequiredPropertyException("GetClientResult", "enabled");
             }
             this.enabled = enabled;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder excludeIssuerFromAuthResponse(Boolean excludeIssuerFromAuthResponse) {
+            if (excludeIssuerFromAuthResponse == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "excludeIssuerFromAuthResponse");
+            }
+            this.excludeIssuerFromAuthResponse = excludeIssuerFromAuthResponse;
             return this;
         }
         @CustomType.Setter
@@ -696,6 +722,7 @@ public final class GetClientResult {
             _resultValue.accessTokenLifespan = accessTokenLifespan;
             _resultValue.accessType = accessType;
             _resultValue.adminUrl = adminUrl;
+            _resultValue.alwaysDisplayInConsole = alwaysDisplayInConsole;
             _resultValue.authenticationFlowBindingOverrides = authenticationFlowBindingOverrides;
             _resultValue.authorizations = authorizations;
             _resultValue.backchannelLogoutRevokeOfflineSessions = backchannelLogoutRevokeOfflineSessions;
@@ -715,6 +742,7 @@ public final class GetClientResult {
             _resultValue.directAccessGrantsEnabled = directAccessGrantsEnabled;
             _resultValue.displayOnConsentScreen = displayOnConsentScreen;
             _resultValue.enabled = enabled;
+            _resultValue.excludeIssuerFromAuthResponse = excludeIssuerFromAuthResponse;
             _resultValue.excludeSessionStateFromAuthResponse = excludeSessionStateFromAuthResponse;
             _resultValue.extraConfig = extraConfig;
             _resultValue.frontchannelLogoutEnabled = frontchannelLogoutEnabled;

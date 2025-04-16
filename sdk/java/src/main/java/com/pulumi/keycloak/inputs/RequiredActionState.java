@@ -8,6 +8,7 @@ import com.pulumi.core.annotations.Import;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -30,6 +31,21 @@ public final class RequiredActionState extends com.pulumi.resources.ResourceArgs
      */
     public Optional<Output<String>> alias() {
         return Optional.ofNullable(this.alias);
+    }
+
+    /**
+     * The configuration. Keys are specific to each configurable required action and not checked when applying.
+     * 
+     */
+    @Import(name="config")
+    private @Nullable Output<Map<String,String>> config;
+
+    /**
+     * @return The configuration. Keys are specific to each configurable required action and not checked when applying.
+     * 
+     */
+    public Optional<Output<Map<String,String>>> config() {
+        return Optional.ofNullable(this.config);
     }
 
     /**
@@ -111,6 +127,7 @@ public final class RequiredActionState extends com.pulumi.resources.ResourceArgs
 
     private RequiredActionState(RequiredActionState $) {
         this.alias = $.alias;
+        this.config = $.config;
         this.defaultAction = $.defaultAction;
         this.enabled = $.enabled;
         this.name = $.name;
@@ -155,6 +172,27 @@ public final class RequiredActionState extends com.pulumi.resources.ResourceArgs
          */
         public Builder alias(String alias) {
             return alias(Output.of(alias));
+        }
+
+        /**
+         * @param config The configuration. Keys are specific to each configurable required action and not checked when applying.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder config(@Nullable Output<Map<String,String>> config) {
+            $.config = config;
+            return this;
+        }
+
+        /**
+         * @param config The configuration. Keys are specific to each configurable required action and not checked when applying.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder config(Map<String,String> config) {
+            return config(Output.of(config));
         }
 
         /**

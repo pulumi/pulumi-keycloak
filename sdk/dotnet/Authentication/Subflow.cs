@@ -15,6 +15,41 @@ namespace Pulumi.Keycloak.Authentication
     /// Like authentication flows, authentication subflows are containers for authentication executions.
     /// As its name implies, an authentication subflow is contained in an authentication flow.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
+    /// 
+    ///     var flow = new Keycloak.Authentication.Flow("flow", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Alias = "my-flow-alias",
+    ///     });
+    /// 
+    ///     var subflow = new Keycloak.Authentication.Subflow("subflow", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Alias = "my-subflow-alias",
+    ///         ParentFlowAlias = flow.Alias,
+    ///         ProviderId = "basic-flow",
+    ///         Requirement = "ALTERNATIVE",
+    ///         Priority = 10,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Authentication flows can be imported using the format `{{realmId}}/{{parentFlowAlias}}/{{authenticationSubflowId}}`.
@@ -64,6 +99,12 @@ namespace Pulumi.Keycloak.Authentication
         /// </summary>
         [Output("parentFlowAlias")]
         public Output<string> ParentFlowAlias { get; private set; } = null!;
+
+        /// <summary>
+        /// The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak &gt;= 25).
+        /// </summary>
+        [Output("priority")]
+        public Output<int?> Priority { get; private set; } = null!;
 
         /// <summary>
         /// The type of authentication subflow to create. Valid choices include `basic-flow`, `form-flow`
@@ -157,6 +198,12 @@ namespace Pulumi.Keycloak.Authentication
         public Input<string> ParentFlowAlias { get; set; } = null!;
 
         /// <summary>
+        /// The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak &gt;= 25).
+        /// </summary>
+        [Input("priority")]
+        public Input<int>? Priority { get; set; }
+
+        /// <summary>
         /// The type of authentication subflow to create. Valid choices include `basic-flow`, `form-flow`
         /// and `client-flow`. Defaults to `basic-flow`.
         /// </summary>
@@ -208,6 +255,12 @@ namespace Pulumi.Keycloak.Authentication
         /// </summary>
         [Input("parentFlowAlias")]
         public Input<string>? ParentFlowAlias { get; set; }
+
+        /// <summary>
+        /// The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak &gt;= 25).
+        /// </summary>
+        [Input("priority")]
+        public Input<int>? Priority { get; set; }
 
         /// <summary>
         /// The type of authentication subflow to create. Valid choices include `basic-flow`, `form-flow`

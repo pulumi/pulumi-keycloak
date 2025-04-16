@@ -7,6 +7,7 @@ import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.keycloak.outputs.RealmUserProfileAttributePermissions;
 import com.pulumi.keycloak.outputs.RealmUserProfileAttributeValidator;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -32,6 +33,11 @@ public final class RealmUserProfileAttribute {
      * 
      */
     private @Nullable String group;
+    /**
+     * @return If the attribute supports multiple values. Defaults to `false`.
+     * 
+     */
+    private @Nullable Boolean multiValued;
     private String name;
     /**
      * @return The permissions configuration information.
@@ -79,6 +85,13 @@ public final class RealmUserProfileAttribute {
     public Optional<String> group() {
         return Optional.ofNullable(this.group);
     }
+    /**
+     * @return If the attribute supports multiple values. Defaults to `false`.
+     * 
+     */
+    public Optional<Boolean> multiValued() {
+        return Optional.ofNullable(this.multiValued);
+    }
     public String name() {
         return this.name;
     }
@@ -124,6 +137,7 @@ public final class RealmUserProfileAttribute {
         private @Nullable String displayName;
         private @Nullable List<String> enabledWhenScopes;
         private @Nullable String group;
+        private @Nullable Boolean multiValued;
         private String name;
         private @Nullable RealmUserProfileAttributePermissions permissions;
         private @Nullable List<String> requiredForRoles;
@@ -136,6 +150,7 @@ public final class RealmUserProfileAttribute {
     	      this.displayName = defaults.displayName;
     	      this.enabledWhenScopes = defaults.enabledWhenScopes;
     	      this.group = defaults.group;
+    	      this.multiValued = defaults.multiValued;
     	      this.name = defaults.name;
     	      this.permissions = defaults.permissions;
     	      this.requiredForRoles = defaults.requiredForRoles;
@@ -168,6 +183,12 @@ public final class RealmUserProfileAttribute {
         public Builder group(@Nullable String group) {
 
             this.group = group;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder multiValued(@Nullable Boolean multiValued) {
+
+            this.multiValued = multiValued;
             return this;
         }
         @CustomType.Setter
@@ -217,6 +238,7 @@ public final class RealmUserProfileAttribute {
             _resultValue.displayName = displayName;
             _resultValue.enabledWhenScopes = enabledWhenScopes;
             _resultValue.group = group;
+            _resultValue.multiValued = multiValued;
             _resultValue.name = name;
             _resultValue.permissions = permissions;
             _resultValue.requiredForRoles = requiredForRoles;

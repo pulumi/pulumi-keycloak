@@ -16,6 +16,45 @@ import (
 //
 // [Required actions](https://www.keycloak.org/docs/latest/server_admin/#con-required-actions_server_administration_guide) specify actions required before the first login of all new users.
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = keycloak.NewRequiredAction(ctx, "required_action", &keycloak.RequiredActionArgs{
+//				RealmId: realm.Realm,
+//				Alias:   pulumi.String("UPDATE_PASSWORD"),
+//				Enabled: pulumi.Bool(true),
+//				Name:    pulumi.String("Update Password"),
+//				Config: pulumi.StringMap{
+//					"max_auth_age": pulumi.String("600"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Authentication executions can be imported using the formats: `{{realm}}/{{alias}}`.
@@ -32,6 +71,8 @@ type RequiredAction struct {
 
 	// The alias of the action to attach as a required action.
 	Alias pulumi.StringOutput `pulumi:"alias"`
+	// The configuration. Keys are specific to each configurable required action and not checked when applying.
+	Config pulumi.StringMapOutput `pulumi:"config"`
 	// When `true`, the required action is set as the default action for new users. Defaults to `false`.
 	DefaultAction pulumi.BoolPtrOutput `pulumi:"defaultAction"`
 	// When `false`, the required action is not enabled for new users. Defaults to `false`.
@@ -82,6 +123,8 @@ func GetRequiredAction(ctx *pulumi.Context,
 type requiredActionState struct {
 	// The alias of the action to attach as a required action.
 	Alias *string `pulumi:"alias"`
+	// The configuration. Keys are specific to each configurable required action and not checked when applying.
+	Config map[string]string `pulumi:"config"`
 	// When `true`, the required action is set as the default action for new users. Defaults to `false`.
 	DefaultAction *bool `pulumi:"defaultAction"`
 	// When `false`, the required action is not enabled for new users. Defaults to `false`.
@@ -97,6 +140,8 @@ type requiredActionState struct {
 type RequiredActionState struct {
 	// The alias of the action to attach as a required action.
 	Alias pulumi.StringPtrInput
+	// The configuration. Keys are specific to each configurable required action and not checked when applying.
+	Config pulumi.StringMapInput
 	// When `true`, the required action is set as the default action for new users. Defaults to `false`.
 	DefaultAction pulumi.BoolPtrInput
 	// When `false`, the required action is not enabled for new users. Defaults to `false`.
@@ -116,6 +161,8 @@ func (RequiredActionState) ElementType() reflect.Type {
 type requiredActionArgs struct {
 	// The alias of the action to attach as a required action.
 	Alias string `pulumi:"alias"`
+	// The configuration. Keys are specific to each configurable required action and not checked when applying.
+	Config map[string]string `pulumi:"config"`
 	// When `true`, the required action is set as the default action for new users. Defaults to `false`.
 	DefaultAction *bool `pulumi:"defaultAction"`
 	// When `false`, the required action is not enabled for new users. Defaults to `false`.
@@ -132,6 +179,8 @@ type requiredActionArgs struct {
 type RequiredActionArgs struct {
 	// The alias of the action to attach as a required action.
 	Alias pulumi.StringInput
+	// The configuration. Keys are specific to each configurable required action and not checked when applying.
+	Config pulumi.StringMapInput
 	// When `true`, the required action is set as the default action for new users. Defaults to `false`.
 	DefaultAction pulumi.BoolPtrInput
 	// When `false`, the required action is not enabled for new users. Defaults to `false`.
@@ -234,6 +283,11 @@ func (o RequiredActionOutput) ToRequiredActionOutputWithContext(ctx context.Cont
 // The alias of the action to attach as a required action.
 func (o RequiredActionOutput) Alias() pulumi.StringOutput {
 	return o.ApplyT(func(v *RequiredAction) pulumi.StringOutput { return v.Alias }).(pulumi.StringOutput)
+}
+
+// The configuration. Keys are specific to each configurable required action and not checked when applying.
+func (o RequiredActionOutput) Config() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *RequiredAction) pulumi.StringMapOutput { return v.Config }).(pulumi.StringMapOutput)
 }
 
 // When `true`, the required action is set as the default action for new users. Defaults to `false`.

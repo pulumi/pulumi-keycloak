@@ -26,6 +26,7 @@ public final class GetRealmWebAuthnPolicy {
     private String authenticatorAttachment;
     private Boolean avoidSameAuthenticatorRegister;
     private Integer createTimeout;
+    private List<String> extraOrigins;
     private String relyingPartyEntityName;
     private String relyingPartyId;
     /**
@@ -67,6 +68,9 @@ public final class GetRealmWebAuthnPolicy {
     }
     public Integer createTimeout() {
         return this.createTimeout;
+    }
+    public List<String> extraOrigins() {
+        return this.extraOrigins;
     }
     public String relyingPartyEntityName() {
         return this.relyingPartyEntityName;
@@ -110,6 +114,7 @@ public final class GetRealmWebAuthnPolicy {
         private String authenticatorAttachment;
         private Boolean avoidSameAuthenticatorRegister;
         private Integer createTimeout;
+        private List<String> extraOrigins;
         private String relyingPartyEntityName;
         private String relyingPartyId;
         private String requireResidentKey;
@@ -123,6 +128,7 @@ public final class GetRealmWebAuthnPolicy {
     	      this.authenticatorAttachment = defaults.authenticatorAttachment;
     	      this.avoidSameAuthenticatorRegister = defaults.avoidSameAuthenticatorRegister;
     	      this.createTimeout = defaults.createTimeout;
+    	      this.extraOrigins = defaults.extraOrigins;
     	      this.relyingPartyEntityName = defaults.relyingPartyEntityName;
     	      this.relyingPartyId = defaults.relyingPartyId;
     	      this.requireResidentKey = defaults.requireResidentKey;
@@ -174,6 +180,17 @@ public final class GetRealmWebAuthnPolicy {
             return this;
         }
         @CustomType.Setter
+        public Builder extraOrigins(List<String> extraOrigins) {
+            if (extraOrigins == null) {
+              throw new MissingRequiredPropertyException("GetRealmWebAuthnPolicy", "extraOrigins");
+            }
+            this.extraOrigins = extraOrigins;
+            return this;
+        }
+        public Builder extraOrigins(String... extraOrigins) {
+            return extraOrigins(List.of(extraOrigins));
+        }
+        @CustomType.Setter
         public Builder relyingPartyEntityName(String relyingPartyEntityName) {
             if (relyingPartyEntityName == null) {
               throw new MissingRequiredPropertyException("GetRealmWebAuthnPolicy", "relyingPartyEntityName");
@@ -223,6 +240,7 @@ public final class GetRealmWebAuthnPolicy {
             _resultValue.authenticatorAttachment = authenticatorAttachment;
             _resultValue.avoidSameAuthenticatorRegister = avoidSameAuthenticatorRegister;
             _resultValue.createTimeout = createTimeout;
+            _resultValue.extraOrigins = extraOrigins;
             _resultValue.relyingPartyEntityName = relyingPartyEntityName;
             _resultValue.relyingPartyId = relyingPartyId;
             _resultValue.requireResidentKey = requireResidentKey;

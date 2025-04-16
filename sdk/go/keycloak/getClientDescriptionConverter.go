@@ -105,6 +105,7 @@ type GetClientDescriptionConverterArgs struct {
 type GetClientDescriptionConverterResult struct {
 	Access                             map[string]string `pulumi:"access"`
 	AdminUrl                           string            `pulumi:"adminUrl"`
+	AlwaysDisplayInConsole             bool              `pulumi:"alwaysDisplayInConsole"`
 	Attributes                         map[string]string `pulumi:"attributes"`
 	AuthenticationFlowBindingOverrides map[string]string `pulumi:"authenticationFlowBindingOverrides"`
 	AuthorizationServicesEnabled       bool              `pulumi:"authorizationServicesEnabled"`
@@ -186,6 +187,10 @@ func (o GetClientDescriptionConverterResultOutput) Access() pulumi.StringMapOutp
 
 func (o GetClientDescriptionConverterResultOutput) AdminUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClientDescriptionConverterResult) string { return v.AdminUrl }).(pulumi.StringOutput)
+}
+
+func (o GetClientDescriptionConverterResultOutput) AlwaysDisplayInConsole() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetClientDescriptionConverterResult) bool { return v.AlwaysDisplayInConsole }).(pulumi.BoolOutput)
 }
 
 func (o GetClientDescriptionConverterResultOutput) Attributes() pulumi.StringMapOutput {

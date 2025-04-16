@@ -363,6 +363,106 @@ func (o ClientAuthorizationPtrOutput) PolicyEnforcementMode() pulumi.StringPtrOu
 	}).(pulumi.StringPtrOutput)
 }
 
+type ClientAuthorizationClientScopePolicyScope struct {
+	Id       string `pulumi:"id"`
+	Required *bool  `pulumi:"required"`
+}
+
+// ClientAuthorizationClientScopePolicyScopeInput is an input type that accepts ClientAuthorizationClientScopePolicyScopeArgs and ClientAuthorizationClientScopePolicyScopeOutput values.
+// You can construct a concrete instance of `ClientAuthorizationClientScopePolicyScopeInput` via:
+//
+//	ClientAuthorizationClientScopePolicyScopeArgs{...}
+type ClientAuthorizationClientScopePolicyScopeInput interface {
+	pulumi.Input
+
+	ToClientAuthorizationClientScopePolicyScopeOutput() ClientAuthorizationClientScopePolicyScopeOutput
+	ToClientAuthorizationClientScopePolicyScopeOutputWithContext(context.Context) ClientAuthorizationClientScopePolicyScopeOutput
+}
+
+type ClientAuthorizationClientScopePolicyScopeArgs struct {
+	Id       pulumi.StringInput  `pulumi:"id"`
+	Required pulumi.BoolPtrInput `pulumi:"required"`
+}
+
+func (ClientAuthorizationClientScopePolicyScopeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClientAuthorizationClientScopePolicyScope)(nil)).Elem()
+}
+
+func (i ClientAuthorizationClientScopePolicyScopeArgs) ToClientAuthorizationClientScopePolicyScopeOutput() ClientAuthorizationClientScopePolicyScopeOutput {
+	return i.ToClientAuthorizationClientScopePolicyScopeOutputWithContext(context.Background())
+}
+
+func (i ClientAuthorizationClientScopePolicyScopeArgs) ToClientAuthorizationClientScopePolicyScopeOutputWithContext(ctx context.Context) ClientAuthorizationClientScopePolicyScopeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClientAuthorizationClientScopePolicyScopeOutput)
+}
+
+// ClientAuthorizationClientScopePolicyScopeArrayInput is an input type that accepts ClientAuthorizationClientScopePolicyScopeArray and ClientAuthorizationClientScopePolicyScopeArrayOutput values.
+// You can construct a concrete instance of `ClientAuthorizationClientScopePolicyScopeArrayInput` via:
+//
+//	ClientAuthorizationClientScopePolicyScopeArray{ ClientAuthorizationClientScopePolicyScopeArgs{...} }
+type ClientAuthorizationClientScopePolicyScopeArrayInput interface {
+	pulumi.Input
+
+	ToClientAuthorizationClientScopePolicyScopeArrayOutput() ClientAuthorizationClientScopePolicyScopeArrayOutput
+	ToClientAuthorizationClientScopePolicyScopeArrayOutputWithContext(context.Context) ClientAuthorizationClientScopePolicyScopeArrayOutput
+}
+
+type ClientAuthorizationClientScopePolicyScopeArray []ClientAuthorizationClientScopePolicyScopeInput
+
+func (ClientAuthorizationClientScopePolicyScopeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClientAuthorizationClientScopePolicyScope)(nil)).Elem()
+}
+
+func (i ClientAuthorizationClientScopePolicyScopeArray) ToClientAuthorizationClientScopePolicyScopeArrayOutput() ClientAuthorizationClientScopePolicyScopeArrayOutput {
+	return i.ToClientAuthorizationClientScopePolicyScopeArrayOutputWithContext(context.Background())
+}
+
+func (i ClientAuthorizationClientScopePolicyScopeArray) ToClientAuthorizationClientScopePolicyScopeArrayOutputWithContext(ctx context.Context) ClientAuthorizationClientScopePolicyScopeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClientAuthorizationClientScopePolicyScopeArrayOutput)
+}
+
+type ClientAuthorizationClientScopePolicyScopeOutput struct{ *pulumi.OutputState }
+
+func (ClientAuthorizationClientScopePolicyScopeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClientAuthorizationClientScopePolicyScope)(nil)).Elem()
+}
+
+func (o ClientAuthorizationClientScopePolicyScopeOutput) ToClientAuthorizationClientScopePolicyScopeOutput() ClientAuthorizationClientScopePolicyScopeOutput {
+	return o
+}
+
+func (o ClientAuthorizationClientScopePolicyScopeOutput) ToClientAuthorizationClientScopePolicyScopeOutputWithContext(ctx context.Context) ClientAuthorizationClientScopePolicyScopeOutput {
+	return o
+}
+
+func (o ClientAuthorizationClientScopePolicyScopeOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v ClientAuthorizationClientScopePolicyScope) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o ClientAuthorizationClientScopePolicyScopeOutput) Required() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ClientAuthorizationClientScopePolicyScope) *bool { return v.Required }).(pulumi.BoolPtrOutput)
+}
+
+type ClientAuthorizationClientScopePolicyScopeArrayOutput struct{ *pulumi.OutputState }
+
+func (ClientAuthorizationClientScopePolicyScopeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClientAuthorizationClientScopePolicyScope)(nil)).Elem()
+}
+
+func (o ClientAuthorizationClientScopePolicyScopeArrayOutput) ToClientAuthorizationClientScopePolicyScopeArrayOutput() ClientAuthorizationClientScopePolicyScopeArrayOutput {
+	return o
+}
+
+func (o ClientAuthorizationClientScopePolicyScopeArrayOutput) ToClientAuthorizationClientScopePolicyScopeArrayOutputWithContext(ctx context.Context) ClientAuthorizationClientScopePolicyScopeArrayOutput {
+	return o
+}
+
+func (o ClientAuthorizationClientScopePolicyScopeArrayOutput) Index(i pulumi.IntInput) ClientAuthorizationClientScopePolicyScopeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ClientAuthorizationClientScopePolicyScope {
+		return vs[0].([]ClientAuthorizationClientScopePolicyScope)[vs[1].(int)]
+	}).(ClientAuthorizationClientScopePolicyScopeOutput)
+}
+
 type ClientGroupPolicyGroup struct {
 	ExtendChildren bool   `pulumi:"extendChildren"`
 	Id             string `pulumi:"id"`
@@ -2033,6 +2133,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ClientAuthenticationFlowBindingOverridesPtrInput)(nil)).Elem(), ClientAuthenticationFlowBindingOverridesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClientAuthorizationInput)(nil)).Elem(), ClientAuthorizationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClientAuthorizationPtrInput)(nil)).Elem(), ClientAuthorizationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientAuthorizationClientScopePolicyScopeInput)(nil)).Elem(), ClientAuthorizationClientScopePolicyScopeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClientAuthorizationClientScopePolicyScopeArrayInput)(nil)).Elem(), ClientAuthorizationClientScopePolicyScopeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClientGroupPolicyGroupInput)(nil)).Elem(), ClientGroupPolicyGroupArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClientGroupPolicyGroupArrayInput)(nil)).Elem(), ClientGroupPolicyGroupArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClientPermissionsConfigureScopeInput)(nil)).Elem(), ClientPermissionsConfigureScopeArgs{})
@@ -2061,6 +2163,8 @@ func init() {
 	pulumi.RegisterOutputType(ClientAuthenticationFlowBindingOverridesPtrOutput{})
 	pulumi.RegisterOutputType(ClientAuthorizationOutput{})
 	pulumi.RegisterOutputType(ClientAuthorizationPtrOutput{})
+	pulumi.RegisterOutputType(ClientAuthorizationClientScopePolicyScopeOutput{})
+	pulumi.RegisterOutputType(ClientAuthorizationClientScopePolicyScopeArrayOutput{})
 	pulumi.RegisterOutputType(ClientGroupPolicyGroupOutput{})
 	pulumi.RegisterOutputType(ClientGroupPolicyGroupArrayOutput{})
 	pulumi.RegisterOutputType(ClientPermissionsConfigureScopeOutput{})

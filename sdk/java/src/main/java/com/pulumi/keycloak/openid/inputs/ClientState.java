@@ -76,6 +76,21 @@ public final class ClientState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Always list this client in the Account UI, even if the user does not have an active session.
+     * 
+     */
+    @Import(name="alwaysDisplayInConsole")
+    private @Nullable Output<Boolean> alwaysDisplayInConsole;
+
+    /**
+     * @return Always list this client in the Account UI, even if the user does not have an active session.
+     * 
+     */
+    public Optional<Output<Boolean>> alwaysDisplayInConsole() {
+        return Optional.ofNullable(this.alwaysDisplayInConsole);
+    }
+
+    /**
      * Override realm authentication flow bindings
      * 
      */
@@ -366,6 +381,21 @@ public final class ClientState extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<Boolean>> enabled() {
         return Optional.ofNullable(this.enabled);
+    }
+
+    /**
+     * When `true`, the parameter `iss` will not be included in OpenID Connect Authentication Response.
+     * 
+     */
+    @Import(name="excludeIssuerFromAuthResponse")
+    private @Nullable Output<Boolean> excludeIssuerFromAuthResponse;
+
+    /**
+     * @return When `true`, the parameter `iss` will not be included in OpenID Connect Authentication Response.
+     * 
+     */
+    public Optional<Output<Boolean>> excludeIssuerFromAuthResponse() {
+        return Optional.ofNullable(this.excludeIssuerFromAuthResponse);
     }
 
     /**
@@ -730,6 +760,7 @@ public final class ClientState extends com.pulumi.resources.ResourceArgs {
         this.accessTokenLifespan = $.accessTokenLifespan;
         this.accessType = $.accessType;
         this.adminUrl = $.adminUrl;
+        this.alwaysDisplayInConsole = $.alwaysDisplayInConsole;
         this.authenticationFlowBindingOverrides = $.authenticationFlowBindingOverrides;
         this.authorization = $.authorization;
         this.backchannelLogoutRevokeOfflineSessions = $.backchannelLogoutRevokeOfflineSessions;
@@ -749,6 +780,7 @@ public final class ClientState extends com.pulumi.resources.ResourceArgs {
         this.directAccessGrantsEnabled = $.directAccessGrantsEnabled;
         this.displayOnConsentScreen = $.displayOnConsentScreen;
         this.enabled = $.enabled;
+        this.excludeIssuerFromAuthResponse = $.excludeIssuerFromAuthResponse;
         this.excludeSessionStateFromAuthResponse = $.excludeSessionStateFromAuthResponse;
         this.extraConfig = $.extraConfig;
         this.frontchannelLogoutEnabled = $.frontchannelLogoutEnabled;
@@ -864,6 +896,27 @@ public final class ClientState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder adminUrl(String adminUrl) {
             return adminUrl(Output.of(adminUrl));
+        }
+
+        /**
+         * @param alwaysDisplayInConsole Always list this client in the Account UI, even if the user does not have an active session.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder alwaysDisplayInConsole(@Nullable Output<Boolean> alwaysDisplayInConsole) {
+            $.alwaysDisplayInConsole = alwaysDisplayInConsole;
+            return this;
+        }
+
+        /**
+         * @param alwaysDisplayInConsole Always list this client in the Account UI, even if the user does not have an active session.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder alwaysDisplayInConsole(Boolean alwaysDisplayInConsole) {
+            return alwaysDisplayInConsole(Output.of(alwaysDisplayInConsole));
         }
 
         /**
@@ -1271,6 +1324,27 @@ public final class ClientState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder enabled(Boolean enabled) {
             return enabled(Output.of(enabled));
+        }
+
+        /**
+         * @param excludeIssuerFromAuthResponse When `true`, the parameter `iss` will not be included in OpenID Connect Authentication Response.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder excludeIssuerFromAuthResponse(@Nullable Output<Boolean> excludeIssuerFromAuthResponse) {
+            $.excludeIssuerFromAuthResponse = excludeIssuerFromAuthResponse;
+            return this;
+        }
+
+        /**
+         * @param excludeIssuerFromAuthResponse When `true`, the parameter `iss` will not be included in OpenID Connect Authentication Response.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder excludeIssuerFromAuthResponse(Boolean excludeIssuerFromAuthResponse) {
+            return excludeIssuerFromAuthResponse(Output.of(excludeIssuerFromAuthResponse));
         }
 
         /**

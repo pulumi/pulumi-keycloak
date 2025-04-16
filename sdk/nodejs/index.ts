@@ -125,6 +125,16 @@ export type HardcodedAttributeIdentityProviderMapper = import("./hardcodedAttrib
 export const HardcodedAttributeIdentityProviderMapper: typeof import("./hardcodedAttributeIdentityProviderMapper").HardcodedAttributeIdentityProviderMapper = null as any;
 utilities.lazyLoad(exports, ["HardcodedAttributeIdentityProviderMapper"], () => require("./hardcodedAttributeIdentityProviderMapper"));
 
+export { HardcodedAttributeMapperArgs, HardcodedAttributeMapperState } from "./hardcodedAttributeMapper";
+export type HardcodedAttributeMapper = import("./hardcodedAttributeMapper").HardcodedAttributeMapper;
+export const HardcodedAttributeMapper: typeof import("./hardcodedAttributeMapper").HardcodedAttributeMapper = null as any;
+utilities.lazyLoad(exports, ["HardcodedAttributeMapper"], () => require("./hardcodedAttributeMapper"));
+
+export { HardcodedGroupIdentityProviderMapperArgs, HardcodedGroupIdentityProviderMapperState } from "./hardcodedGroupIdentityProviderMapper";
+export type HardcodedGroupIdentityProviderMapper = import("./hardcodedGroupIdentityProviderMapper").HardcodedGroupIdentityProviderMapper;
+export const HardcodedGroupIdentityProviderMapper: typeof import("./hardcodedGroupIdentityProviderMapper").HardcodedGroupIdentityProviderMapper = null as any;
+utilities.lazyLoad(exports, ["HardcodedGroupIdentityProviderMapper"], () => require("./hardcodedGroupIdentityProviderMapper"));
+
 export { HardcodedRoleIdentityMapperArgs, HardcodedRoleIdentityMapperState } from "./hardcodedRoleIdentityMapper";
 export type HardcodedRoleIdentityMapper = import("./hardcodedRoleIdentityMapper").HardcodedRoleIdentityMapper;
 export const HardcodedRoleIdentityMapper: typeof import("./hardcodedRoleIdentityMapper").HardcodedRoleIdentityMapper = null as any;
@@ -144,6 +154,11 @@ export { RealmArgs, RealmState } from "./realm";
 export type Realm = import("./realm").Realm;
 export const Realm: typeof import("./realm").Realm = null as any;
 utilities.lazyLoad(exports, ["Realm"], () => require("./realm"));
+
+export { RealmDefaultClientScopesArgs, RealmDefaultClientScopesState } from "./realmDefaultClientScopes";
+export type RealmDefaultClientScopes = import("./realmDefaultClientScopes").RealmDefaultClientScopes;
+export const RealmDefaultClientScopes: typeof import("./realmDefaultClientScopes").RealmDefaultClientScopes = null as any;
+utilities.lazyLoad(exports, ["RealmDefaultClientScopes"], () => require("./realmDefaultClientScopes"));
 
 export { RealmEventsArgs, RealmEventsState } from "./realmEvents";
 export type RealmEvents = import("./realmEvents").RealmEvents;
@@ -179,6 +194,16 @@ export { RealmKeystoreRsaGeneratedArgs, RealmKeystoreRsaGeneratedState } from ".
 export type RealmKeystoreRsaGenerated = import("./realmKeystoreRsaGenerated").RealmKeystoreRsaGenerated;
 export const RealmKeystoreRsaGenerated: typeof import("./realmKeystoreRsaGenerated").RealmKeystoreRsaGenerated = null as any;
 utilities.lazyLoad(exports, ["RealmKeystoreRsaGenerated"], () => require("./realmKeystoreRsaGenerated"));
+
+export { RealmLocalizationArgs, RealmLocalizationState } from "./realmLocalization";
+export type RealmLocalization = import("./realmLocalization").RealmLocalization;
+export const RealmLocalization: typeof import("./realmLocalization").RealmLocalization = null as any;
+utilities.lazyLoad(exports, ["RealmLocalization"], () => require("./realmLocalization"));
+
+export { RealmOptionalClientScopesArgs, RealmOptionalClientScopesState } from "./realmOptionalClientScopes";
+export type RealmOptionalClientScopes = import("./realmOptionalClientScopes").RealmOptionalClientScopes;
+export const RealmOptionalClientScopes: typeof import("./realmOptionalClientScopes").RealmOptionalClientScopes = null as any;
+utilities.lazyLoad(exports, ["RealmOptionalClientScopes"], () => require("./realmOptionalClientScopes"));
 
 export { RealmUserProfileArgs, RealmUserProfileState } from "./realmUserProfile";
 export type RealmUserProfile = import("./realmUserProfile").RealmUserProfile;
@@ -274,12 +299,18 @@ const _module = {
                 return new GroupRoles(name, <any>undefined, { urn })
             case "keycloak:index/hardcodedAttributeIdentityProviderMapper:HardcodedAttributeIdentityProviderMapper":
                 return new HardcodedAttributeIdentityProviderMapper(name, <any>undefined, { urn })
+            case "keycloak:index/hardcodedAttributeMapper:HardcodedAttributeMapper":
+                return new HardcodedAttributeMapper(name, <any>undefined, { urn })
+            case "keycloak:index/hardcodedGroupIdentityProviderMapper:HardcodedGroupIdentityProviderMapper":
+                return new HardcodedGroupIdentityProviderMapper(name, <any>undefined, { urn })
             case "keycloak:index/hardcodedRoleIdentityMapper:HardcodedRoleIdentityMapper":
                 return new HardcodedRoleIdentityMapper(name, <any>undefined, { urn })
             case "keycloak:index/identityProviderTokenExchangeScopePermission:IdentityProviderTokenExchangeScopePermission":
                 return new IdentityProviderTokenExchangeScopePermission(name, <any>undefined, { urn })
             case "keycloak:index/realm:Realm":
                 return new Realm(name, <any>undefined, { urn })
+            case "keycloak:index/realmDefaultClientScopes:RealmDefaultClientScopes":
+                return new RealmDefaultClientScopes(name, <any>undefined, { urn })
             case "keycloak:index/realmEvents:RealmEvents":
                 return new RealmEvents(name, <any>undefined, { urn })
             case "keycloak:index/realmKeystoreAesGenerated:RealmKeystoreAesGenerated":
@@ -294,6 +325,10 @@ const _module = {
                 return new RealmKeystoreRsa(name, <any>undefined, { urn })
             case "keycloak:index/realmKeystoreRsaGenerated:RealmKeystoreRsaGenerated":
                 return new RealmKeystoreRsaGenerated(name, <any>undefined, { urn })
+            case "keycloak:index/realmLocalization:RealmLocalization":
+                return new RealmLocalization(name, <any>undefined, { urn })
+            case "keycloak:index/realmOptionalClientScopes:RealmOptionalClientScopes":
+                return new RealmOptionalClientScopes(name, <any>undefined, { urn })
             case "keycloak:index/realmUserProfile:RealmUserProfile":
                 return new RealmUserProfile(name, <any>undefined, { urn })
             case "keycloak:index/requiredAction:RequiredAction":
@@ -330,9 +365,12 @@ pulumi.runtime.registerResourceModule("keycloak", "index/groupMemberships", _mod
 pulumi.runtime.registerResourceModule("keycloak", "index/groupPermissions", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/groupRoles", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/hardcodedAttributeIdentityProviderMapper", _module)
+pulumi.runtime.registerResourceModule("keycloak", "index/hardcodedAttributeMapper", _module)
+pulumi.runtime.registerResourceModule("keycloak", "index/hardcodedGroupIdentityProviderMapper", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/hardcodedRoleIdentityMapper", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/identityProviderTokenExchangeScopePermission", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/realm", _module)
+pulumi.runtime.registerResourceModule("keycloak", "index/realmDefaultClientScopes", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/realmEvents", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/realmKeystoreAesGenerated", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/realmKeystoreEcdsaGenerated", _module)
@@ -340,6 +378,8 @@ pulumi.runtime.registerResourceModule("keycloak", "index/realmKeystoreHmacGenera
 pulumi.runtime.registerResourceModule("keycloak", "index/realmKeystoreJavaGenerated", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/realmKeystoreRsa", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/realmKeystoreRsaGenerated", _module)
+pulumi.runtime.registerResourceModule("keycloak", "index/realmLocalization", _module)
+pulumi.runtime.registerResourceModule("keycloak", "index/realmOptionalClientScopes", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/realmUserProfile", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/requiredAction", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/role", _module)

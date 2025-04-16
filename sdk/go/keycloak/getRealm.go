@@ -100,6 +100,7 @@ type LookupRealmResult struct {
 	EditUsernameAllowed                 bool              `pulumi:"editUsernameAllowed"`
 	EmailTheme                          string            `pulumi:"emailTheme"`
 	Enabled                             bool              `pulumi:"enabled"`
+	FirstBrokerLoginFlow                string            `pulumi:"firstBrokerLoginFlow"`
 	// The provider-assigned unique ID for this managed resource.
 	Id                               string                             `pulumi:"id"`
 	InternalId                       string                             `pulumi:"internalId"`
@@ -111,6 +112,7 @@ type LookupRealmResult struct {
 	OfflineSessionIdleTimeout        string                             `pulumi:"offlineSessionIdleTimeout"`
 	OfflineSessionMaxLifespan        string                             `pulumi:"offlineSessionMaxLifespan"`
 	OfflineSessionMaxLifespanEnabled bool                               `pulumi:"offlineSessionMaxLifespanEnabled"`
+	OrganizationsEnabled             bool                               `pulumi:"organizationsEnabled"`
 	OtpPolicy                        GetRealmOtpPolicy                  `pulumi:"otpPolicy"`
 	PasswordPolicy                   string                             `pulumi:"passwordPolicy"`
 	Realm                            string                             `pulumi:"realm"`
@@ -279,6 +281,10 @@ func (o LookupRealmResultOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupRealmResult) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
 
+func (o LookupRealmResultOutput) FirstBrokerLoginFlow() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRealmResult) string { return v.FirstBrokerLoginFlow }).(pulumi.StringOutput)
+}
+
 // The provider-assigned unique ID for this managed resource.
 func (o LookupRealmResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRealmResult) string { return v.Id }).(pulumi.StringOutput)
@@ -318,6 +324,10 @@ func (o LookupRealmResultOutput) OfflineSessionMaxLifespan() pulumi.StringOutput
 
 func (o LookupRealmResultOutput) OfflineSessionMaxLifespanEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupRealmResult) bool { return v.OfflineSessionMaxLifespanEnabled }).(pulumi.BoolOutput)
+}
+
+func (o LookupRealmResultOutput) OrganizationsEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupRealmResult) bool { return v.OrganizationsEnabled }).(pulumi.BoolOutput)
 }
 
 func (o LookupRealmResultOutput) OtpPolicy() GetRealmOtpPolicyOutput {

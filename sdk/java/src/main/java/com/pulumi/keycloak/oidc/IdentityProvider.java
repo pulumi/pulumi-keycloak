@@ -230,14 +230,14 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="displayName", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> displayName;
+    private Output<String> displayName;
 
     /**
      * @return Display name for the identity provider in the GUI.
      * 
      */
-    public Output<Optional<String>> displayName() {
-        return Codegen.optional(this.displayName);
+    public Output<String> displayName() {
+        return this.displayName;
     }
     /**
      * When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.

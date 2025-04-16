@@ -22,6 +22,7 @@ class RequiredActionArgs:
     def __init__(__self__, *,
                  alias: pulumi.Input[builtins.str],
                  realm_id: pulumi.Input[builtins.str],
+                 config: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]] = None,
                  default_action: Optional[pulumi.Input[builtins.bool]] = None,
                  enabled: Optional[pulumi.Input[builtins.bool]] = None,
                  name: Optional[pulumi.Input[builtins.str]] = None,
@@ -30,6 +31,7 @@ class RequiredActionArgs:
         The set of arguments for constructing a RequiredAction resource.
         :param pulumi.Input[builtins.str] alias: The alias of the action to attach as a required action.
         :param pulumi.Input[builtins.str] realm_id: The realm the required action exists in.
+        :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] config: The configuration. Keys are specific to each configurable required action and not checked when applying.
         :param pulumi.Input[builtins.bool] default_action: When `true`, the required action is set as the default action for new users. Defaults to `false`.
         :param pulumi.Input[builtins.bool] enabled: When `false`, the required action is not enabled for new users. Defaults to `false`.
         :param pulumi.Input[builtins.str] name: The name of the required action.
@@ -37,6 +39,8 @@ class RequiredActionArgs:
         """
         pulumi.set(__self__, "alias", alias)
         pulumi.set(__self__, "realm_id", realm_id)
+        if config is not None:
+            pulumi.set(__self__, "config", config)
         if default_action is not None:
             pulumi.set(__self__, "default_action", default_action)
         if enabled is not None:
@@ -69,6 +73,18 @@ class RequiredActionArgs:
     @realm_id.setter
     def realm_id(self, value: pulumi.Input[builtins.str]):
         pulumi.set(self, "realm_id", value)
+
+    @property
+    @pulumi.getter
+    def config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]:
+        """
+        The configuration. Keys are specific to each configurable required action and not checked when applying.
+        """
+        return pulumi.get(self, "config")
+
+    @config.setter
+    def config(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]):
+        pulumi.set(self, "config", value)
 
     @property
     @pulumi.getter(name="defaultAction")
@@ -123,6 +139,7 @@ class RequiredActionArgs:
 class _RequiredActionState:
     def __init__(__self__, *,
                  alias: Optional[pulumi.Input[builtins.str]] = None,
+                 config: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]] = None,
                  default_action: Optional[pulumi.Input[builtins.bool]] = None,
                  enabled: Optional[pulumi.Input[builtins.bool]] = None,
                  name: Optional[pulumi.Input[builtins.str]] = None,
@@ -131,6 +148,7 @@ class _RequiredActionState:
         """
         Input properties used for looking up and filtering RequiredAction resources.
         :param pulumi.Input[builtins.str] alias: The alias of the action to attach as a required action.
+        :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] config: The configuration. Keys are specific to each configurable required action and not checked when applying.
         :param pulumi.Input[builtins.bool] default_action: When `true`, the required action is set as the default action for new users. Defaults to `false`.
         :param pulumi.Input[builtins.bool] enabled: When `false`, the required action is not enabled for new users. Defaults to `false`.
         :param pulumi.Input[builtins.str] name: The name of the required action.
@@ -139,6 +157,8 @@ class _RequiredActionState:
         """
         if alias is not None:
             pulumi.set(__self__, "alias", alias)
+        if config is not None:
+            pulumi.set(__self__, "config", config)
         if default_action is not None:
             pulumi.set(__self__, "default_action", default_action)
         if enabled is not None:
@@ -161,6 +181,18 @@ class _RequiredActionState:
     @alias.setter
     def alias(self, value: Optional[pulumi.Input[builtins.str]]):
         pulumi.set(self, "alias", value)
+
+    @property
+    @pulumi.getter
+    def config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]:
+        """
+        The configuration. Keys are specific to each configurable required action and not checked when applying.
+        """
+        return pulumi.get(self, "config")
+
+    @config.setter
+    def config(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]):
+        pulumi.set(self, "config", value)
 
     @property
     @pulumi.getter(name="defaultAction")
@@ -229,6 +261,7 @@ class RequiredAction(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  alias: Optional[pulumi.Input[builtins.str]] = None,
+                 config: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]] = None,
                  default_action: Optional[pulumi.Input[builtins.bool]] = None,
                  enabled: Optional[pulumi.Input[builtins.bool]] = None,
                  name: Optional[pulumi.Input[builtins.str]] = None,
@@ -239,6 +272,25 @@ class RequiredAction(pulumi.CustomResource):
         Allows for creating and managing required actions within Keycloak.
 
         [Required actions](https://www.keycloak.org/docs/latest/server_admin/#con-required-actions_server_administration_guide) specify actions required before the first login of all new users.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        required_action = keycloak.RequiredAction("required_action",
+            realm_id=realm.realm,
+            alias="UPDATE_PASSWORD",
+            enabled=True,
+            name="Update Password",
+            config={
+                "max_auth_age": "600",
+            })
+        ```
 
         ## Import
 
@@ -255,6 +307,7 @@ class RequiredAction(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[builtins.str] alias: The alias of the action to attach as a required action.
+        :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] config: The configuration. Keys are specific to each configurable required action and not checked when applying.
         :param pulumi.Input[builtins.bool] default_action: When `true`, the required action is set as the default action for new users. Defaults to `false`.
         :param pulumi.Input[builtins.bool] enabled: When `false`, the required action is not enabled for new users. Defaults to `false`.
         :param pulumi.Input[builtins.str] name: The name of the required action.
@@ -271,6 +324,25 @@ class RequiredAction(pulumi.CustomResource):
         Allows for creating and managing required actions within Keycloak.
 
         [Required actions](https://www.keycloak.org/docs/latest/server_admin/#con-required-actions_server_administration_guide) specify actions required before the first login of all new users.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        required_action = keycloak.RequiredAction("required_action",
+            realm_id=realm.realm,
+            alias="UPDATE_PASSWORD",
+            enabled=True,
+            name="Update Password",
+            config={
+                "max_auth_age": "600",
+            })
+        ```
 
         ## Import
 
@@ -300,6 +372,7 @@ class RequiredAction(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  alias: Optional[pulumi.Input[builtins.str]] = None,
+                 config: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]] = None,
                  default_action: Optional[pulumi.Input[builtins.bool]] = None,
                  enabled: Optional[pulumi.Input[builtins.bool]] = None,
                  name: Optional[pulumi.Input[builtins.str]] = None,
@@ -317,6 +390,7 @@ class RequiredAction(pulumi.CustomResource):
             if alias is None and not opts.urn:
                 raise TypeError("Missing required property 'alias'")
             __props__.__dict__["alias"] = alias
+            __props__.__dict__["config"] = config
             __props__.__dict__["default_action"] = default_action
             __props__.__dict__["enabled"] = enabled
             __props__.__dict__["name"] = name
@@ -335,6 +409,7 @@ class RequiredAction(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             alias: Optional[pulumi.Input[builtins.str]] = None,
+            config: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]] = None,
             default_action: Optional[pulumi.Input[builtins.bool]] = None,
             enabled: Optional[pulumi.Input[builtins.bool]] = None,
             name: Optional[pulumi.Input[builtins.str]] = None,
@@ -348,6 +423,7 @@ class RequiredAction(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[builtins.str] alias: The alias of the action to attach as a required action.
+        :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] config: The configuration. Keys are specific to each configurable required action and not checked when applying.
         :param pulumi.Input[builtins.bool] default_action: When `true`, the required action is set as the default action for new users. Defaults to `false`.
         :param pulumi.Input[builtins.bool] enabled: When `false`, the required action is not enabled for new users. Defaults to `false`.
         :param pulumi.Input[builtins.str] name: The name of the required action.
@@ -359,6 +435,7 @@ class RequiredAction(pulumi.CustomResource):
         __props__ = _RequiredActionState.__new__(_RequiredActionState)
 
         __props__.__dict__["alias"] = alias
+        __props__.__dict__["config"] = config
         __props__.__dict__["default_action"] = default_action
         __props__.__dict__["enabled"] = enabled
         __props__.__dict__["name"] = name
@@ -373,6 +450,14 @@ class RequiredAction(pulumi.CustomResource):
         The alias of the action to attach as a required action.
         """
         return pulumi.get(self, "alias")
+
+    @property
+    @pulumi.getter
+    def config(self) -> pulumi.Output[Optional[Mapping[str, builtins.str]]]:
+        """
+        The configuration. Keys are specific to each configurable required action and not checked when applying.
+        """
+        return pulumi.get(self, "config")
 
     @property
     @pulumi.getter(name="defaultAction")

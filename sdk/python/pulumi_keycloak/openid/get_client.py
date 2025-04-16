@@ -28,7 +28,7 @@ class GetClientResult:
     """
     A collection of values returned by getClient.
     """
-    def __init__(__self__, access_token_lifespan=None, access_type=None, admin_url=None, authentication_flow_binding_overrides=None, authorizations=None, backchannel_logout_revoke_offline_sessions=None, backchannel_logout_session_required=None, backchannel_logout_url=None, base_url=None, client_authenticator_type=None, client_id=None, client_offline_session_idle_timeout=None, client_offline_session_max_lifespan=None, client_secret=None, client_session_idle_timeout=None, client_session_max_lifespan=None, consent_required=None, consent_screen_text=None, description=None, direct_access_grants_enabled=None, display_on_consent_screen=None, enabled=None, exclude_session_state_from_auth_response=None, extra_config=None, frontchannel_logout_enabled=None, frontchannel_logout_url=None, full_scope_allowed=None, id=None, implicit_flow_enabled=None, login_theme=None, name=None, oauth2_device_authorization_grant_enabled=None, oauth2_device_code_lifespan=None, oauth2_device_polling_interval=None, pkce_code_challenge_method=None, realm_id=None, resource_server_id=None, root_url=None, service_account_user_id=None, service_accounts_enabled=None, standard_flow_enabled=None, use_refresh_tokens=None, use_refresh_tokens_client_credentials=None, valid_post_logout_redirect_uris=None, valid_redirect_uris=None, web_origins=None):
+    def __init__(__self__, access_token_lifespan=None, access_type=None, admin_url=None, always_display_in_console=None, authentication_flow_binding_overrides=None, authorizations=None, backchannel_logout_revoke_offline_sessions=None, backchannel_logout_session_required=None, backchannel_logout_url=None, base_url=None, client_authenticator_type=None, client_id=None, client_offline_session_idle_timeout=None, client_offline_session_max_lifespan=None, client_secret=None, client_session_idle_timeout=None, client_session_max_lifespan=None, consent_required=None, consent_screen_text=None, description=None, direct_access_grants_enabled=None, display_on_consent_screen=None, enabled=None, exclude_issuer_from_auth_response=None, exclude_session_state_from_auth_response=None, extra_config=None, frontchannel_logout_enabled=None, frontchannel_logout_url=None, full_scope_allowed=None, id=None, implicit_flow_enabled=None, login_theme=None, name=None, oauth2_device_authorization_grant_enabled=None, oauth2_device_code_lifespan=None, oauth2_device_polling_interval=None, pkce_code_challenge_method=None, realm_id=None, resource_server_id=None, root_url=None, service_account_user_id=None, service_accounts_enabled=None, standard_flow_enabled=None, use_refresh_tokens=None, use_refresh_tokens_client_credentials=None, valid_post_logout_redirect_uris=None, valid_redirect_uris=None, web_origins=None):
         if access_token_lifespan and not isinstance(access_token_lifespan, str):
             raise TypeError("Expected argument 'access_token_lifespan' to be a str")
         pulumi.set(__self__, "access_token_lifespan", access_token_lifespan)
@@ -38,6 +38,9 @@ class GetClientResult:
         if admin_url and not isinstance(admin_url, str):
             raise TypeError("Expected argument 'admin_url' to be a str")
         pulumi.set(__self__, "admin_url", admin_url)
+        if always_display_in_console and not isinstance(always_display_in_console, bool):
+            raise TypeError("Expected argument 'always_display_in_console' to be a bool")
+        pulumi.set(__self__, "always_display_in_console", always_display_in_console)
         if authentication_flow_binding_overrides and not isinstance(authentication_flow_binding_overrides, list):
             raise TypeError("Expected argument 'authentication_flow_binding_overrides' to be a list")
         pulumi.set(__self__, "authentication_flow_binding_overrides", authentication_flow_binding_overrides)
@@ -95,6 +98,9 @@ class GetClientResult:
         if enabled and not isinstance(enabled, bool):
             raise TypeError("Expected argument 'enabled' to be a bool")
         pulumi.set(__self__, "enabled", enabled)
+        if exclude_issuer_from_auth_response and not isinstance(exclude_issuer_from_auth_response, bool):
+            raise TypeError("Expected argument 'exclude_issuer_from_auth_response' to be a bool")
+        pulumi.set(__self__, "exclude_issuer_from_auth_response", exclude_issuer_from_auth_response)
         if exclude_session_state_from_auth_response and not isinstance(exclude_session_state_from_auth_response, bool):
             raise TypeError("Expected argument 'exclude_session_state_from_auth_response' to be a bool")
         pulumi.set(__self__, "exclude_session_state_from_auth_response", exclude_session_state_from_auth_response)
@@ -182,6 +188,11 @@ class GetClientResult:
     @pulumi.getter(name="adminUrl")
     def admin_url(self) -> builtins.str:
         return pulumi.get(self, "admin_url")
+
+    @property
+    @pulumi.getter(name="alwaysDisplayInConsole")
+    def always_display_in_console(self) -> Optional[builtins.bool]:
+        return pulumi.get(self, "always_display_in_console")
 
     @property
     @pulumi.getter(name="authenticationFlowBindingOverrides")
@@ -277,6 +288,11 @@ class GetClientResult:
     @pulumi.getter
     def enabled(self) -> builtins.bool:
         return pulumi.get(self, "enabled")
+
+    @property
+    @pulumi.getter(name="excludeIssuerFromAuthResponse")
+    def exclude_issuer_from_auth_response(self) -> builtins.bool:
+        return pulumi.get(self, "exclude_issuer_from_auth_response")
 
     @property
     @pulumi.getter(name="excludeSessionStateFromAuthResponse")
@@ -411,6 +427,7 @@ class AwaitableGetClientResult(GetClientResult):
             access_token_lifespan=self.access_token_lifespan,
             access_type=self.access_type,
             admin_url=self.admin_url,
+            always_display_in_console=self.always_display_in_console,
             authentication_flow_binding_overrides=self.authentication_flow_binding_overrides,
             authorizations=self.authorizations,
             backchannel_logout_revoke_offline_sessions=self.backchannel_logout_revoke_offline_sessions,
@@ -430,6 +447,7 @@ class AwaitableGetClientResult(GetClientResult):
             direct_access_grants_enabled=self.direct_access_grants_enabled,
             display_on_consent_screen=self.display_on_consent_screen,
             enabled=self.enabled,
+            exclude_issuer_from_auth_response=self.exclude_issuer_from_auth_response,
             exclude_session_state_from_auth_response=self.exclude_session_state_from_auth_response,
             extra_config=self.extra_config,
             frontchannel_logout_enabled=self.frontchannel_logout_enabled,
@@ -456,7 +474,8 @@ class AwaitableGetClientResult(GetClientResult):
             web_origins=self.web_origins)
 
 
-def get_client(client_id: Optional[builtins.str] = None,
+def get_client(always_display_in_console: Optional[builtins.bool] = None,
+               client_id: Optional[builtins.str] = None,
                consent_screen_text: Optional[builtins.str] = None,
                display_on_consent_screen: Optional[builtins.bool] = None,
                extra_config: Optional[Mapping[str, builtins.str]] = None,
@@ -487,6 +506,7 @@ def get_client(client_id: Optional[builtins.str] = None,
     :param builtins.str realm_id: The realm id.
     """
     __args__ = dict()
+    __args__['alwaysDisplayInConsole'] = always_display_in_console
     __args__['clientId'] = client_id
     __args__['consentScreenText'] = consent_screen_text
     __args__['displayOnConsentScreen'] = display_on_consent_screen
@@ -502,6 +522,7 @@ def get_client(client_id: Optional[builtins.str] = None,
         access_token_lifespan=pulumi.get(__ret__, 'access_token_lifespan'),
         access_type=pulumi.get(__ret__, 'access_type'),
         admin_url=pulumi.get(__ret__, 'admin_url'),
+        always_display_in_console=pulumi.get(__ret__, 'always_display_in_console'),
         authentication_flow_binding_overrides=pulumi.get(__ret__, 'authentication_flow_binding_overrides'),
         authorizations=pulumi.get(__ret__, 'authorizations'),
         backchannel_logout_revoke_offline_sessions=pulumi.get(__ret__, 'backchannel_logout_revoke_offline_sessions'),
@@ -521,6 +542,7 @@ def get_client(client_id: Optional[builtins.str] = None,
         direct_access_grants_enabled=pulumi.get(__ret__, 'direct_access_grants_enabled'),
         display_on_consent_screen=pulumi.get(__ret__, 'display_on_consent_screen'),
         enabled=pulumi.get(__ret__, 'enabled'),
+        exclude_issuer_from_auth_response=pulumi.get(__ret__, 'exclude_issuer_from_auth_response'),
         exclude_session_state_from_auth_response=pulumi.get(__ret__, 'exclude_session_state_from_auth_response'),
         extra_config=pulumi.get(__ret__, 'extra_config'),
         frontchannel_logout_enabled=pulumi.get(__ret__, 'frontchannel_logout_enabled'),
@@ -545,7 +567,8 @@ def get_client(client_id: Optional[builtins.str] = None,
         valid_post_logout_redirect_uris=pulumi.get(__ret__, 'valid_post_logout_redirect_uris'),
         valid_redirect_uris=pulumi.get(__ret__, 'valid_redirect_uris'),
         web_origins=pulumi.get(__ret__, 'web_origins'))
-def get_client_output(client_id: Optional[pulumi.Input[builtins.str]] = None,
+def get_client_output(always_display_in_console: Optional[pulumi.Input[Optional[builtins.bool]]] = None,
+                      client_id: Optional[pulumi.Input[builtins.str]] = None,
                       consent_screen_text: Optional[pulumi.Input[Optional[builtins.str]]] = None,
                       display_on_consent_screen: Optional[pulumi.Input[Optional[builtins.bool]]] = None,
                       extra_config: Optional[pulumi.Input[Optional[Mapping[str, builtins.str]]]] = None,
@@ -576,6 +599,7 @@ def get_client_output(client_id: Optional[pulumi.Input[builtins.str]] = None,
     :param builtins.str realm_id: The realm id.
     """
     __args__ = dict()
+    __args__['alwaysDisplayInConsole'] = always_display_in_console
     __args__['clientId'] = client_id
     __args__['consentScreenText'] = consent_screen_text
     __args__['displayOnConsentScreen'] = display_on_consent_screen
@@ -590,6 +614,7 @@ def get_client_output(client_id: Optional[pulumi.Input[builtins.str]] = None,
         access_token_lifespan=pulumi.get(__response__, 'access_token_lifespan'),
         access_type=pulumi.get(__response__, 'access_type'),
         admin_url=pulumi.get(__response__, 'admin_url'),
+        always_display_in_console=pulumi.get(__response__, 'always_display_in_console'),
         authentication_flow_binding_overrides=pulumi.get(__response__, 'authentication_flow_binding_overrides'),
         authorizations=pulumi.get(__response__, 'authorizations'),
         backchannel_logout_revoke_offline_sessions=pulumi.get(__response__, 'backchannel_logout_revoke_offline_sessions'),
@@ -609,6 +634,7 @@ def get_client_output(client_id: Optional[pulumi.Input[builtins.str]] = None,
         direct_access_grants_enabled=pulumi.get(__response__, 'direct_access_grants_enabled'),
         display_on_consent_screen=pulumi.get(__response__, 'display_on_consent_screen'),
         enabled=pulumi.get(__response__, 'enabled'),
+        exclude_issuer_from_auth_response=pulumi.get(__response__, 'exclude_issuer_from_auth_response'),
         exclude_session_state_from_auth_response=pulumi.get(__response__, 'exclude_session_state_from_auth_response'),
         extra_config=pulumi.get(__response__, 'extra_config'),
         frontchannel_logout_enabled=pulumi.get(__response__, 'frontchannel_logout_enabled'),

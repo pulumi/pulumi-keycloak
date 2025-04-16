@@ -103,6 +103,8 @@ type User struct {
 	FederatedIdentities UserFederatedIdentityArrayOutput `pulumi:"federatedIdentities"`
 	// The user's first name.
 	FirstName pulumi.StringPtrOutput `pulumi:"firstName"`
+	// When `true`, the user with the specified `username` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with users that Keycloak creates automatically during realm creation, such as `admin`. Note, that the user will not be removed during destruction if `import` is `true`.
+	Import pulumi.BoolPtrOutput `pulumi:"import"`
 	// When given, the user's initial password will be set. This attribute is only respected during initial user creation.
 	InitialPassword UserInitialPasswordPtrOutput `pulumi:"initialPassword"`
 	// The user's last name.
@@ -163,6 +165,8 @@ type userState struct {
 	FederatedIdentities []UserFederatedIdentity `pulumi:"federatedIdentities"`
 	// The user's first name.
 	FirstName *string `pulumi:"firstName"`
+	// When `true`, the user with the specified `username` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with users that Keycloak creates automatically during realm creation, such as `admin`. Note, that the user will not be removed during destruction if `import` is `true`.
+	Import *bool `pulumi:"import"`
 	// When given, the user's initial password will be set. This attribute is only respected during initial user creation.
 	InitialPassword *UserInitialPassword `pulumi:"initialPassword"`
 	// The user's last name.
@@ -188,6 +192,8 @@ type UserState struct {
 	FederatedIdentities UserFederatedIdentityArrayInput
 	// The user's first name.
 	FirstName pulumi.StringPtrInput
+	// When `true`, the user with the specified `username` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with users that Keycloak creates automatically during realm creation, such as `admin`. Note, that the user will not be removed during destruction if `import` is `true`.
+	Import pulumi.BoolPtrInput
 	// When given, the user's initial password will be set. This attribute is only respected during initial user creation.
 	InitialPassword UserInitialPasswordPtrInput
 	// The user's last name.
@@ -217,6 +223,8 @@ type userArgs struct {
 	FederatedIdentities []UserFederatedIdentity `pulumi:"federatedIdentities"`
 	// The user's first name.
 	FirstName *string `pulumi:"firstName"`
+	// When `true`, the user with the specified `username` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with users that Keycloak creates automatically during realm creation, such as `admin`. Note, that the user will not be removed during destruction if `import` is `true`.
+	Import *bool `pulumi:"import"`
 	// When given, the user's initial password will be set. This attribute is only respected during initial user creation.
 	InitialPassword *UserInitialPassword `pulumi:"initialPassword"`
 	// The user's last name.
@@ -243,6 +251,8 @@ type UserArgs struct {
 	FederatedIdentities UserFederatedIdentityArrayInput
 	// The user's first name.
 	FirstName pulumi.StringPtrInput
+	// When `true`, the user with the specified `username` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with users that Keycloak creates automatically during realm creation, such as `admin`. Note, that the user will not be removed during destruction if `import` is `true`.
+	Import pulumi.BoolPtrInput
 	// When given, the user's initial password will be set. This attribute is only respected during initial user creation.
 	InitialPassword UserInitialPasswordPtrInput
 	// The user's last name.
@@ -370,6 +380,11 @@ func (o UserOutput) FederatedIdentities() UserFederatedIdentityArrayOutput {
 // The user's first name.
 func (o UserOutput) FirstName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *User) pulumi.StringPtrOutput { return v.FirstName }).(pulumi.StringPtrOutput)
+}
+
+// When `true`, the user with the specified `username` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with users that Keycloak creates automatically during realm creation, such as `admin`. Note, that the user will not be removed during destruction if `import` is `true`.
+func (o UserOutput) Import() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *User) pulumi.BoolPtrOutput { return v.Import }).(pulumi.BoolPtrOutput)
 }
 
 // When given, the user's initial password will be set. This attribute is only respected during initial user creation.

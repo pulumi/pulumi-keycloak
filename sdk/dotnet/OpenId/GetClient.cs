@@ -114,6 +114,9 @@ namespace Pulumi.Keycloak.OpenId
 
     public sealed class GetClientArgs : global::Pulumi.InvokeArgs
     {
+        [Input("alwaysDisplayInConsole")]
+        public bool? AlwaysDisplayInConsole { get; set; }
+
         /// <summary>
         /// The client id (not its unique ID).
         /// </summary>
@@ -157,6 +160,9 @@ namespace Pulumi.Keycloak.OpenId
 
     public sealed class GetClientInvokeArgs : global::Pulumi.InvokeArgs
     {
+        [Input("alwaysDisplayInConsole")]
+        public Input<bool>? AlwaysDisplayInConsole { get; set; }
+
         /// <summary>
         /// The client id (not its unique ID).
         /// </summary>
@@ -205,6 +211,7 @@ namespace Pulumi.Keycloak.OpenId
         public readonly string AccessTokenLifespan;
         public readonly string AccessType;
         public readonly string AdminUrl;
+        public readonly bool? AlwaysDisplayInConsole;
         public readonly ImmutableArray<Outputs.GetClientAuthenticationFlowBindingOverrideResult> AuthenticationFlowBindingOverrides;
         public readonly ImmutableArray<Outputs.GetClientAuthorizationResult> Authorizations;
         public readonly bool BackchannelLogoutRevokeOfflineSessions;
@@ -224,6 +231,7 @@ namespace Pulumi.Keycloak.OpenId
         public readonly bool DirectAccessGrantsEnabled;
         public readonly bool? DisplayOnConsentScreen;
         public readonly bool Enabled;
+        public readonly bool ExcludeIssuerFromAuthResponse;
         public readonly bool ExcludeSessionStateFromAuthResponse;
         public readonly ImmutableDictionary<string, string> ExtraConfig;
         public readonly bool FrontchannelLogoutEnabled;
@@ -259,6 +267,8 @@ namespace Pulumi.Keycloak.OpenId
             string accessType,
 
             string adminUrl,
+
+            bool? alwaysDisplayInConsole,
 
             ImmutableArray<Outputs.GetClientAuthenticationFlowBindingOverrideResult> authenticationFlowBindingOverrides,
 
@@ -297,6 +307,8 @@ namespace Pulumi.Keycloak.OpenId
             bool? displayOnConsentScreen,
 
             bool enabled,
+
+            bool excludeIssuerFromAuthResponse,
 
             bool excludeSessionStateFromAuthResponse,
 
@@ -349,6 +361,7 @@ namespace Pulumi.Keycloak.OpenId
             AccessTokenLifespan = accessTokenLifespan;
             AccessType = accessType;
             AdminUrl = adminUrl;
+            AlwaysDisplayInConsole = alwaysDisplayInConsole;
             AuthenticationFlowBindingOverrides = authenticationFlowBindingOverrides;
             Authorizations = authorizations;
             BackchannelLogoutRevokeOfflineSessions = backchannelLogoutRevokeOfflineSessions;
@@ -368,6 +381,7 @@ namespace Pulumi.Keycloak.OpenId
             DirectAccessGrantsEnabled = directAccessGrantsEnabled;
             DisplayOnConsentScreen = displayOnConsentScreen;
             Enabled = enabled;
+            ExcludeIssuerFromAuthResponse = excludeIssuerFromAuthResponse;
             ExcludeSessionStateFromAuthResponse = excludeSessionStateFromAuthResponse;
             ExtraConfig = extraConfig;
             FrontchannelLogoutEnabled = frontchannelLogoutEnabled;

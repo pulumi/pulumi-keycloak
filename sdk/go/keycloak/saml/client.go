@@ -33,6 +33,8 @@ import (
 type Client struct {
 	pulumi.CustomResourceState
 
+	// Always list this client in the Account UI, even if the user does not have an active session.
+	AlwaysDisplayInConsole pulumi.BoolPtrOutput `pulumi:"alwaysDisplayInConsole"`
 	// SAML POST Binding URL for the client's assertion consumer service (login responses).
 	AssertionConsumerPostUrl pulumi.StringPtrOutput `pulumi:"assertionConsumerPostUrl"`
 	// SAML Redirect Binding URL for the client's assertion consumer service (login responses).
@@ -47,6 +49,8 @@ type Client struct {
 	ClientId pulumi.StringOutput `pulumi:"clientId"`
 	// When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signingCertificate` and `signingPrivateKey`. Defaults to `true`.
 	ClientSignatureRequired pulumi.BoolPtrOutput `pulumi:"clientSignatureRequired"`
+	// When `true`, users have to consent to client access. Defaults to `false`.
+	ConsentRequired pulumi.BoolOutput `pulumi:"consentRequired"`
 	// The description of this client in the GUI.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// When false, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
@@ -144,6 +148,8 @@ func GetClient(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Client resources.
 type clientState struct {
+	// Always list this client in the Account UI, even if the user does not have an active session.
+	AlwaysDisplayInConsole *bool `pulumi:"alwaysDisplayInConsole"`
 	// SAML POST Binding URL for the client's assertion consumer service (login responses).
 	AssertionConsumerPostUrl *string `pulumi:"assertionConsumerPostUrl"`
 	// SAML Redirect Binding URL for the client's assertion consumer service (login responses).
@@ -158,6 +164,8 @@ type clientState struct {
 	ClientId *string `pulumi:"clientId"`
 	// When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signingCertificate` and `signingPrivateKey`. Defaults to `true`.
 	ClientSignatureRequired *bool `pulumi:"clientSignatureRequired"`
+	// When `true`, users have to consent to client access. Defaults to `false`.
+	ConsentRequired *bool `pulumi:"consentRequired"`
 	// The description of this client in the GUI.
 	Description *string `pulumi:"description"`
 	// When false, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
@@ -220,6 +228,8 @@ type clientState struct {
 }
 
 type ClientState struct {
+	// Always list this client in the Account UI, even if the user does not have an active session.
+	AlwaysDisplayInConsole pulumi.BoolPtrInput
 	// SAML POST Binding URL for the client's assertion consumer service (login responses).
 	AssertionConsumerPostUrl pulumi.StringPtrInput
 	// SAML Redirect Binding URL for the client's assertion consumer service (login responses).
@@ -234,6 +244,8 @@ type ClientState struct {
 	ClientId pulumi.StringPtrInput
 	// When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signingCertificate` and `signingPrivateKey`. Defaults to `true`.
 	ClientSignatureRequired pulumi.BoolPtrInput
+	// When `true`, users have to consent to client access. Defaults to `false`.
+	ConsentRequired pulumi.BoolPtrInput
 	// The description of this client in the GUI.
 	Description pulumi.StringPtrInput
 	// When false, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
@@ -300,6 +312,8 @@ func (ClientState) ElementType() reflect.Type {
 }
 
 type clientArgs struct {
+	// Always list this client in the Account UI, even if the user does not have an active session.
+	AlwaysDisplayInConsole *bool `pulumi:"alwaysDisplayInConsole"`
 	// SAML POST Binding URL for the client's assertion consumer service (login responses).
 	AssertionConsumerPostUrl *string `pulumi:"assertionConsumerPostUrl"`
 	// SAML Redirect Binding URL for the client's assertion consumer service (login responses).
@@ -314,6 +328,8 @@ type clientArgs struct {
 	ClientId string `pulumi:"clientId"`
 	// When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signingCertificate` and `signingPrivateKey`. Defaults to `true`.
 	ClientSignatureRequired *bool `pulumi:"clientSignatureRequired"`
+	// When `true`, users have to consent to client access. Defaults to `false`.
+	ConsentRequired *bool `pulumi:"consentRequired"`
 	// The description of this client in the GUI.
 	Description *string `pulumi:"description"`
 	// When false, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
@@ -371,6 +387,8 @@ type clientArgs struct {
 
 // The set of arguments for constructing a Client resource.
 type ClientArgs struct {
+	// Always list this client in the Account UI, even if the user does not have an active session.
+	AlwaysDisplayInConsole pulumi.BoolPtrInput
 	// SAML POST Binding URL for the client's assertion consumer service (login responses).
 	AssertionConsumerPostUrl pulumi.StringPtrInput
 	// SAML Redirect Binding URL for the client's assertion consumer service (login responses).
@@ -385,6 +403,8 @@ type ClientArgs struct {
 	ClientId pulumi.StringInput
 	// When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signingCertificate` and `signingPrivateKey`. Defaults to `true`.
 	ClientSignatureRequired pulumi.BoolPtrInput
+	// When `true`, users have to consent to client access. Defaults to `false`.
+	ConsentRequired pulumi.BoolPtrInput
 	// The description of this client in the GUI.
 	Description pulumi.StringPtrInput
 	// When false, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
@@ -527,6 +547,11 @@ func (o ClientOutput) ToClientOutputWithContext(ctx context.Context) ClientOutpu
 	return o
 }
 
+// Always list this client in the Account UI, even if the user does not have an active session.
+func (o ClientOutput) AlwaysDisplayInConsole() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Client) pulumi.BoolPtrOutput { return v.AlwaysDisplayInConsole }).(pulumi.BoolPtrOutput)
+}
+
 // SAML POST Binding URL for the client's assertion consumer service (login responses).
 func (o ClientOutput) AssertionConsumerPostUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Client) pulumi.StringPtrOutput { return v.AssertionConsumerPostUrl }).(pulumi.StringPtrOutput)
@@ -562,6 +587,11 @@ func (o ClientOutput) ClientId() pulumi.StringOutput {
 // When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signingCertificate` and `signingPrivateKey`. Defaults to `true`.
 func (o ClientOutput) ClientSignatureRequired() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Client) pulumi.BoolPtrOutput { return v.ClientSignatureRequired }).(pulumi.BoolPtrOutput)
+}
+
+// When `true`, users have to consent to client access. Defaults to `false`.
+func (o ClientOutput) ConsentRequired() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Client) pulumi.BoolOutput { return v.ConsentRequired }).(pulumi.BoolOutput)
 }
 
 // The description of this client in the GUI.

@@ -2357,7 +2357,9 @@ type RealmUserProfileAttribute struct {
 	EnabledWhenScopes []string `pulumi:"enabledWhenScopes"`
 	// A list of groups.
 	Group *string `pulumi:"group"`
-	Name  string  `pulumi:"name"`
+	// If the attribute supports multiple values. Defaults to `false`.
+	MultiValued *bool  `pulumi:"multiValued"`
+	Name        string `pulumi:"name"`
 	// The permissions configuration information.
 	Permissions *RealmUserProfileAttributePermissions `pulumi:"permissions"`
 	// A list of roles for which the attribute will be required.
@@ -2387,7 +2389,9 @@ type RealmUserProfileAttributeArgs struct {
 	EnabledWhenScopes pulumi.StringArrayInput `pulumi:"enabledWhenScopes"`
 	// A list of groups.
 	Group pulumi.StringPtrInput `pulumi:"group"`
-	Name  pulumi.StringInput    `pulumi:"name"`
+	// If the attribute supports multiple values. Defaults to `false`.
+	MultiValued pulumi.BoolPtrInput `pulumi:"multiValued"`
+	Name        pulumi.StringInput  `pulumi:"name"`
 	// The permissions configuration information.
 	Permissions RealmUserProfileAttributePermissionsPtrInput `pulumi:"permissions"`
 	// A list of roles for which the attribute will be required.
@@ -2466,6 +2470,11 @@ func (o RealmUserProfileAttributeOutput) EnabledWhenScopes() pulumi.StringArrayO
 // A list of groups.
 func (o RealmUserProfileAttributeOutput) Group() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RealmUserProfileAttribute) *string { return v.Group }).(pulumi.StringPtrOutput)
+}
+
+// If the attribute supports multiple values. Defaults to `false`.
+func (o RealmUserProfileAttributeOutput) MultiValued() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v RealmUserProfileAttribute) *bool { return v.MultiValued }).(pulumi.BoolPtrOutput)
 }
 
 func (o RealmUserProfileAttributeOutput) Name() pulumi.StringOutput {
@@ -2900,6 +2909,8 @@ type RealmWebAuthnPasswordlessPolicy struct {
 	AvoidSameAuthenticatorRegister *bool `pulumi:"avoidSameAuthenticatorRegister"`
 	// The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
 	CreateTimeout *int `pulumi:"createTimeout"`
+	// A set of extra origins for non-web applications.
+	ExtraOrigins []string `pulumi:"extraOrigins"`
 	// A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
 	RelyingPartyEntityName *string `pulumi:"relyingPartyEntityName"`
 	// The WebAuthn relying party ID.
@@ -2934,6 +2945,8 @@ type RealmWebAuthnPasswordlessPolicyArgs struct {
 	AvoidSameAuthenticatorRegister pulumi.BoolPtrInput `pulumi:"avoidSameAuthenticatorRegister"`
 	// The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
 	CreateTimeout pulumi.IntPtrInput `pulumi:"createTimeout"`
+	// A set of extra origins for non-web applications.
+	ExtraOrigins pulumi.StringArrayInput `pulumi:"extraOrigins"`
 	// A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
 	RelyingPartyEntityName pulumi.StringPtrInput `pulumi:"relyingPartyEntityName"`
 	// The WebAuthn relying party ID.
@@ -3048,6 +3061,11 @@ func (o RealmWebAuthnPasswordlessPolicyOutput) CreateTimeout() pulumi.IntPtrOutp
 	return o.ApplyT(func(v RealmWebAuthnPasswordlessPolicy) *int { return v.CreateTimeout }).(pulumi.IntPtrOutput)
 }
 
+// A set of extra origins for non-web applications.
+func (o RealmWebAuthnPasswordlessPolicyOutput) ExtraOrigins() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v RealmWebAuthnPasswordlessPolicy) []string { return v.ExtraOrigins }).(pulumi.StringArrayOutput)
+}
+
 // A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
 func (o RealmWebAuthnPasswordlessPolicyOutput) RelyingPartyEntityName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RealmWebAuthnPasswordlessPolicy) *string { return v.RelyingPartyEntityName }).(pulumi.StringPtrOutput)
@@ -3147,6 +3165,16 @@ func (o RealmWebAuthnPasswordlessPolicyPtrOutput) CreateTimeout() pulumi.IntPtrO
 	}).(pulumi.IntPtrOutput)
 }
 
+// A set of extra origins for non-web applications.
+func (o RealmWebAuthnPasswordlessPolicyPtrOutput) ExtraOrigins() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *RealmWebAuthnPasswordlessPolicy) []string {
+		if v == nil {
+			return nil
+		}
+		return v.ExtraOrigins
+	}).(pulumi.StringArrayOutput)
+}
+
 // A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
 func (o RealmWebAuthnPasswordlessPolicyPtrOutput) RelyingPartyEntityName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RealmWebAuthnPasswordlessPolicy) *string {
@@ -3208,6 +3236,8 @@ type RealmWebAuthnPolicy struct {
 	AvoidSameAuthenticatorRegister *bool `pulumi:"avoidSameAuthenticatorRegister"`
 	// The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
 	CreateTimeout *int `pulumi:"createTimeout"`
+	// A set of extra origins for non-web applications.
+	ExtraOrigins []string `pulumi:"extraOrigins"`
 	// A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
 	RelyingPartyEntityName *string `pulumi:"relyingPartyEntityName"`
 	// The WebAuthn relying party ID.
@@ -3242,6 +3272,8 @@ type RealmWebAuthnPolicyArgs struct {
 	AvoidSameAuthenticatorRegister pulumi.BoolPtrInput `pulumi:"avoidSameAuthenticatorRegister"`
 	// The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
 	CreateTimeout pulumi.IntPtrInput `pulumi:"createTimeout"`
+	// A set of extra origins for non-web applications.
+	ExtraOrigins pulumi.StringArrayInput `pulumi:"extraOrigins"`
 	// A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
 	RelyingPartyEntityName pulumi.StringPtrInput `pulumi:"relyingPartyEntityName"`
 	// The WebAuthn relying party ID.
@@ -3356,6 +3388,11 @@ func (o RealmWebAuthnPolicyOutput) CreateTimeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v RealmWebAuthnPolicy) *int { return v.CreateTimeout }).(pulumi.IntPtrOutput)
 }
 
+// A set of extra origins for non-web applications.
+func (o RealmWebAuthnPolicyOutput) ExtraOrigins() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v RealmWebAuthnPolicy) []string { return v.ExtraOrigins }).(pulumi.StringArrayOutput)
+}
+
 // A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
 func (o RealmWebAuthnPolicyOutput) RelyingPartyEntityName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RealmWebAuthnPolicy) *string { return v.RelyingPartyEntityName }).(pulumi.StringPtrOutput)
@@ -3453,6 +3490,16 @@ func (o RealmWebAuthnPolicyPtrOutput) CreateTimeout() pulumi.IntPtrOutput {
 		}
 		return v.CreateTimeout
 	}).(pulumi.IntPtrOutput)
+}
+
+// A set of extra origins for non-web applications.
+func (o RealmWebAuthnPolicyPtrOutput) ExtraOrigins() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *RealmWebAuthnPolicy) []string {
+		if v == nil {
+			return nil
+		}
+		return v.ExtraOrigins
+	}).(pulumi.StringArrayOutput)
 }
 
 // A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
@@ -5961,11 +6008,12 @@ type GetRealmWebAuthnPasswordlessPolicy struct {
 	// Either none, indirect or direct
 	AttestationConveyancePreference string `pulumi:"attestationConveyancePreference"`
 	// Either platform or cross-platform
-	AuthenticatorAttachment        string `pulumi:"authenticatorAttachment"`
-	AvoidSameAuthenticatorRegister bool   `pulumi:"avoidSameAuthenticatorRegister"`
-	CreateTimeout                  int    `pulumi:"createTimeout"`
-	RelyingPartyEntityName         string `pulumi:"relyingPartyEntityName"`
-	RelyingPartyId                 string `pulumi:"relyingPartyId"`
+	AuthenticatorAttachment        string   `pulumi:"authenticatorAttachment"`
+	AvoidSameAuthenticatorRegister bool     `pulumi:"avoidSameAuthenticatorRegister"`
+	CreateTimeout                  int      `pulumi:"createTimeout"`
+	ExtraOrigins                   []string `pulumi:"extraOrigins"`
+	RelyingPartyEntityName         string   `pulumi:"relyingPartyEntityName"`
+	RelyingPartyId                 string   `pulumi:"relyingPartyId"`
 	// Either Yes or No
 	RequireResidentKey string `pulumi:"requireResidentKey"`
 	// Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
@@ -5990,11 +6038,12 @@ type GetRealmWebAuthnPasswordlessPolicyArgs struct {
 	// Either none, indirect or direct
 	AttestationConveyancePreference pulumi.StringInput `pulumi:"attestationConveyancePreference"`
 	// Either platform or cross-platform
-	AuthenticatorAttachment        pulumi.StringInput `pulumi:"authenticatorAttachment"`
-	AvoidSameAuthenticatorRegister pulumi.BoolInput   `pulumi:"avoidSameAuthenticatorRegister"`
-	CreateTimeout                  pulumi.IntInput    `pulumi:"createTimeout"`
-	RelyingPartyEntityName         pulumi.StringInput `pulumi:"relyingPartyEntityName"`
-	RelyingPartyId                 pulumi.StringInput `pulumi:"relyingPartyId"`
+	AuthenticatorAttachment        pulumi.StringInput      `pulumi:"authenticatorAttachment"`
+	AvoidSameAuthenticatorRegister pulumi.BoolInput        `pulumi:"avoidSameAuthenticatorRegister"`
+	CreateTimeout                  pulumi.IntInput         `pulumi:"createTimeout"`
+	ExtraOrigins                   pulumi.StringArrayInput `pulumi:"extraOrigins"`
+	RelyingPartyEntityName         pulumi.StringInput      `pulumi:"relyingPartyEntityName"`
+	RelyingPartyId                 pulumi.StringInput      `pulumi:"relyingPartyId"`
 	// Either Yes or No
 	RequireResidentKey pulumi.StringInput `pulumi:"requireResidentKey"`
 	// Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
@@ -6102,6 +6151,10 @@ func (o GetRealmWebAuthnPasswordlessPolicyOutput) CreateTimeout() pulumi.IntOutp
 	return o.ApplyT(func(v GetRealmWebAuthnPasswordlessPolicy) int { return v.CreateTimeout }).(pulumi.IntOutput)
 }
 
+func (o GetRealmWebAuthnPasswordlessPolicyOutput) ExtraOrigins() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetRealmWebAuthnPasswordlessPolicy) []string { return v.ExtraOrigins }).(pulumi.StringArrayOutput)
+}
+
 func (o GetRealmWebAuthnPasswordlessPolicyOutput) RelyingPartyEntityName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRealmWebAuthnPasswordlessPolicy) string { return v.RelyingPartyEntityName }).(pulumi.StringOutput)
 }
@@ -6196,6 +6249,15 @@ func (o GetRealmWebAuthnPasswordlessPolicyPtrOutput) CreateTimeout() pulumi.IntP
 	}).(pulumi.IntPtrOutput)
 }
 
+func (o GetRealmWebAuthnPasswordlessPolicyPtrOutput) ExtraOrigins() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *GetRealmWebAuthnPasswordlessPolicy) []string {
+		if v == nil {
+			return nil
+		}
+		return v.ExtraOrigins
+	}).(pulumi.StringArrayOutput)
+}
+
 func (o GetRealmWebAuthnPasswordlessPolicyPtrOutput) RelyingPartyEntityName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *GetRealmWebAuthnPasswordlessPolicy) *string {
 		if v == nil {
@@ -6249,11 +6311,12 @@ type GetRealmWebAuthnPolicy struct {
 	// Either none, indirect or direct
 	AttestationConveyancePreference string `pulumi:"attestationConveyancePreference"`
 	// Either platform or cross-platform
-	AuthenticatorAttachment        string `pulumi:"authenticatorAttachment"`
-	AvoidSameAuthenticatorRegister bool   `pulumi:"avoidSameAuthenticatorRegister"`
-	CreateTimeout                  int    `pulumi:"createTimeout"`
-	RelyingPartyEntityName         string `pulumi:"relyingPartyEntityName"`
-	RelyingPartyId                 string `pulumi:"relyingPartyId"`
+	AuthenticatorAttachment        string   `pulumi:"authenticatorAttachment"`
+	AvoidSameAuthenticatorRegister bool     `pulumi:"avoidSameAuthenticatorRegister"`
+	CreateTimeout                  int      `pulumi:"createTimeout"`
+	ExtraOrigins                   []string `pulumi:"extraOrigins"`
+	RelyingPartyEntityName         string   `pulumi:"relyingPartyEntityName"`
+	RelyingPartyId                 string   `pulumi:"relyingPartyId"`
 	// Either Yes or No
 	RequireResidentKey string `pulumi:"requireResidentKey"`
 	// Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
@@ -6278,11 +6341,12 @@ type GetRealmWebAuthnPolicyArgs struct {
 	// Either none, indirect or direct
 	AttestationConveyancePreference pulumi.StringInput `pulumi:"attestationConveyancePreference"`
 	// Either platform or cross-platform
-	AuthenticatorAttachment        pulumi.StringInput `pulumi:"authenticatorAttachment"`
-	AvoidSameAuthenticatorRegister pulumi.BoolInput   `pulumi:"avoidSameAuthenticatorRegister"`
-	CreateTimeout                  pulumi.IntInput    `pulumi:"createTimeout"`
-	RelyingPartyEntityName         pulumi.StringInput `pulumi:"relyingPartyEntityName"`
-	RelyingPartyId                 pulumi.StringInput `pulumi:"relyingPartyId"`
+	AuthenticatorAttachment        pulumi.StringInput      `pulumi:"authenticatorAttachment"`
+	AvoidSameAuthenticatorRegister pulumi.BoolInput        `pulumi:"avoidSameAuthenticatorRegister"`
+	CreateTimeout                  pulumi.IntInput         `pulumi:"createTimeout"`
+	ExtraOrigins                   pulumi.StringArrayInput `pulumi:"extraOrigins"`
+	RelyingPartyEntityName         pulumi.StringInput      `pulumi:"relyingPartyEntityName"`
+	RelyingPartyId                 pulumi.StringInput      `pulumi:"relyingPartyId"`
 	// Either Yes or No
 	RequireResidentKey pulumi.StringInput `pulumi:"requireResidentKey"`
 	// Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
@@ -6390,6 +6454,10 @@ func (o GetRealmWebAuthnPolicyOutput) CreateTimeout() pulumi.IntOutput {
 	return o.ApplyT(func(v GetRealmWebAuthnPolicy) int { return v.CreateTimeout }).(pulumi.IntOutput)
 }
 
+func (o GetRealmWebAuthnPolicyOutput) ExtraOrigins() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetRealmWebAuthnPolicy) []string { return v.ExtraOrigins }).(pulumi.StringArrayOutput)
+}
+
 func (o GetRealmWebAuthnPolicyOutput) RelyingPartyEntityName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRealmWebAuthnPolicy) string { return v.RelyingPartyEntityName }).(pulumi.StringOutput)
 }
@@ -6482,6 +6550,15 @@ func (o GetRealmWebAuthnPolicyPtrOutput) CreateTimeout() pulumi.IntPtrOutput {
 		}
 		return &v.CreateTimeout
 	}).(pulumi.IntPtrOutput)
+}
+
+func (o GetRealmWebAuthnPolicyPtrOutput) ExtraOrigins() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *GetRealmWebAuthnPolicy) []string {
+		if v == nil {
+			return nil
+		}
+		return v.ExtraOrigins
+	}).(pulumi.StringArrayOutput)
 }
 
 func (o GetRealmWebAuthnPolicyPtrOutput) RelyingPartyEntityName() pulumi.StringPtrOutput {

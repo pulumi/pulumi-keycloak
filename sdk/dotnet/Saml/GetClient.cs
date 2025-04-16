@@ -156,6 +156,7 @@ namespace Pulumi.Keycloak.Saml
     [OutputType]
     public sealed class GetClientResult
     {
+        public readonly bool AlwaysDisplayInConsole;
         public readonly string AssertionConsumerPostUrl;
         public readonly string AssertionConsumerRedirectUrl;
         public readonly ImmutableArray<Outputs.GetClientAuthenticationFlowBindingOverrideResult> AuthenticationFlowBindingOverrides;
@@ -163,6 +164,7 @@ namespace Pulumi.Keycloak.Saml
         public readonly string CanonicalizationMethod;
         public readonly string ClientId;
         public readonly bool ClientSignatureRequired;
+        public readonly bool ConsentRequired;
         public readonly string Description;
         public readonly bool Enabled;
         public readonly bool EncryptAssertions;
@@ -201,6 +203,8 @@ namespace Pulumi.Keycloak.Saml
 
         [OutputConstructor]
         private GetClientResult(
+            bool alwaysDisplayInConsole,
+
             string assertionConsumerPostUrl,
 
             string assertionConsumerRedirectUrl,
@@ -214,6 +218,8 @@ namespace Pulumi.Keycloak.Saml
             string clientId,
 
             bool clientSignatureRequired,
+
+            bool consentRequired,
 
             string description,
 
@@ -279,6 +285,7 @@ namespace Pulumi.Keycloak.Saml
 
             ImmutableArray<string> validRedirectUris)
         {
+            AlwaysDisplayInConsole = alwaysDisplayInConsole;
             AssertionConsumerPostUrl = assertionConsumerPostUrl;
             AssertionConsumerRedirectUrl = assertionConsumerRedirectUrl;
             AuthenticationFlowBindingOverrides = authenticationFlowBindingOverrides;
@@ -286,6 +293,7 @@ namespace Pulumi.Keycloak.Saml
             CanonicalizationMethod = canonicalizationMethod;
             ClientId = clientId;
             ClientSignatureRequired = clientSignatureRequired;
+            ConsentRequired = consentRequired;
             Description = description;
             Enabled = enabled;
             EncryptAssertions = encryptAssertions;

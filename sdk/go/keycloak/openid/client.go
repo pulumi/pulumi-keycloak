@@ -91,6 +91,8 @@ type Client struct {
 	AccessType pulumi.StringOutput `pulumi:"accessType"`
 	// URL to the admin interface of the client.
 	AdminUrl pulumi.StringOutput `pulumi:"adminUrl"`
+	// Always list this client in the Account UI, even if the user does not have an active session.
+	AlwaysDisplayInConsole pulumi.BoolPtrOutput `pulumi:"alwaysDisplayInConsole"`
 	// Override realm authentication flow bindings
 	AuthenticationFlowBindingOverrides ClientAuthenticationFlowBindingOverridesPtrOutput `pulumi:"authenticationFlowBindingOverrides"`
 	// When this block is present, fine-grained authorization will be enabled for this client. The client's `accessType` must be `CONFIDENTIAL`, and `serviceAccountsEnabled` must be `true`. This block has the following arguments:
@@ -133,6 +135,8 @@ type Client struct {
 	DisplayOnConsentScreen pulumi.BoolOutput `pulumi:"displayOnConsentScreen"`
 	// When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
 	Enabled pulumi.BoolPtrOutput `pulumi:"enabled"`
+	// When `true`, the parameter `iss` will not be included in OpenID Connect Authentication Response.
+	ExcludeIssuerFromAuthResponse pulumi.BoolOutput `pulumi:"excludeIssuerFromAuthResponse"`
 	// When `true`, the parameter `sessionState` will not be included in OpenID Connect Authentication Response.
 	ExcludeSessionStateFromAuthResponse pulumi.BoolOutput      `pulumi:"excludeSessionStateFromAuthResponse"`
 	ExtraConfig                         pulumi.StringMapOutput `pulumi:"extraConfig"`
@@ -241,6 +245,8 @@ type clientState struct {
 	AccessType *string `pulumi:"accessType"`
 	// URL to the admin interface of the client.
 	AdminUrl *string `pulumi:"adminUrl"`
+	// Always list this client in the Account UI, even if the user does not have an active session.
+	AlwaysDisplayInConsole *bool `pulumi:"alwaysDisplayInConsole"`
 	// Override realm authentication flow bindings
 	AuthenticationFlowBindingOverrides *ClientAuthenticationFlowBindingOverrides `pulumi:"authenticationFlowBindingOverrides"`
 	// When this block is present, fine-grained authorization will be enabled for this client. The client's `accessType` must be `CONFIDENTIAL`, and `serviceAccountsEnabled` must be `true`. This block has the following arguments:
@@ -283,6 +289,8 @@ type clientState struct {
 	DisplayOnConsentScreen *bool `pulumi:"displayOnConsentScreen"`
 	// When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
 	Enabled *bool `pulumi:"enabled"`
+	// When `true`, the parameter `iss` will not be included in OpenID Connect Authentication Response.
+	ExcludeIssuerFromAuthResponse *bool `pulumi:"excludeIssuerFromAuthResponse"`
 	// When `true`, the parameter `sessionState` will not be included in OpenID Connect Authentication Response.
 	ExcludeSessionStateFromAuthResponse *bool             `pulumi:"excludeSessionStateFromAuthResponse"`
 	ExtraConfig                         map[string]string `pulumi:"extraConfig"`
@@ -346,6 +354,8 @@ type ClientState struct {
 	AccessType pulumi.StringPtrInput
 	// URL to the admin interface of the client.
 	AdminUrl pulumi.StringPtrInput
+	// Always list this client in the Account UI, even if the user does not have an active session.
+	AlwaysDisplayInConsole pulumi.BoolPtrInput
 	// Override realm authentication flow bindings
 	AuthenticationFlowBindingOverrides ClientAuthenticationFlowBindingOverridesPtrInput
 	// When this block is present, fine-grained authorization will be enabled for this client. The client's `accessType` must be `CONFIDENTIAL`, and `serviceAccountsEnabled` must be `true`. This block has the following arguments:
@@ -388,6 +398,8 @@ type ClientState struct {
 	DisplayOnConsentScreen pulumi.BoolPtrInput
 	// When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
 	Enabled pulumi.BoolPtrInput
+	// When `true`, the parameter `iss` will not be included in OpenID Connect Authentication Response.
+	ExcludeIssuerFromAuthResponse pulumi.BoolPtrInput
 	// When `true`, the parameter `sessionState` will not be included in OpenID Connect Authentication Response.
 	ExcludeSessionStateFromAuthResponse pulumi.BoolPtrInput
 	ExtraConfig                         pulumi.StringMapInput
@@ -455,6 +467,8 @@ type clientArgs struct {
 	AccessType string `pulumi:"accessType"`
 	// URL to the admin interface of the client.
 	AdminUrl *string `pulumi:"adminUrl"`
+	// Always list this client in the Account UI, even if the user does not have an active session.
+	AlwaysDisplayInConsole *bool `pulumi:"alwaysDisplayInConsole"`
 	// Override realm authentication flow bindings
 	AuthenticationFlowBindingOverrides *ClientAuthenticationFlowBindingOverrides `pulumi:"authenticationFlowBindingOverrides"`
 	// When this block is present, fine-grained authorization will be enabled for this client. The client's `accessType` must be `CONFIDENTIAL`, and `serviceAccountsEnabled` must be `true`. This block has the following arguments:
@@ -497,6 +511,8 @@ type clientArgs struct {
 	DisplayOnConsentScreen *bool `pulumi:"displayOnConsentScreen"`
 	// When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
 	Enabled *bool `pulumi:"enabled"`
+	// When `true`, the parameter `iss` will not be included in OpenID Connect Authentication Response.
+	ExcludeIssuerFromAuthResponse *bool `pulumi:"excludeIssuerFromAuthResponse"`
 	// When `true`, the parameter `sessionState` will not be included in OpenID Connect Authentication Response.
 	ExcludeSessionStateFromAuthResponse *bool             `pulumi:"excludeSessionStateFromAuthResponse"`
 	ExtraConfig                         map[string]string `pulumi:"extraConfig"`
@@ -557,6 +573,8 @@ type ClientArgs struct {
 	AccessType pulumi.StringInput
 	// URL to the admin interface of the client.
 	AdminUrl pulumi.StringPtrInput
+	// Always list this client in the Account UI, even if the user does not have an active session.
+	AlwaysDisplayInConsole pulumi.BoolPtrInput
 	// Override realm authentication flow bindings
 	AuthenticationFlowBindingOverrides ClientAuthenticationFlowBindingOverridesPtrInput
 	// When this block is present, fine-grained authorization will be enabled for this client. The client's `accessType` must be `CONFIDENTIAL`, and `serviceAccountsEnabled` must be `true`. This block has the following arguments:
@@ -599,6 +617,8 @@ type ClientArgs struct {
 	DisplayOnConsentScreen pulumi.BoolPtrInput
 	// When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
 	Enabled pulumi.BoolPtrInput
+	// When `true`, the parameter `iss` will not be included in OpenID Connect Authentication Response.
+	ExcludeIssuerFromAuthResponse pulumi.BoolPtrInput
 	// When `true`, the parameter `sessionState` will not be included in OpenID Connect Authentication Response.
 	ExcludeSessionStateFromAuthResponse pulumi.BoolPtrInput
 	ExtraConfig                         pulumi.StringMapInput
@@ -753,6 +773,11 @@ func (o ClientOutput) AdminUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v *Client) pulumi.StringOutput { return v.AdminUrl }).(pulumi.StringOutput)
 }
 
+// Always list this client in the Account UI, even if the user does not have an active session.
+func (o ClientOutput) AlwaysDisplayInConsole() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Client) pulumi.BoolPtrOutput { return v.AlwaysDisplayInConsole }).(pulumi.BoolPtrOutput)
+}
+
 // Override realm authentication flow bindings
 func (o ClientOutput) AuthenticationFlowBindingOverrides() ClientAuthenticationFlowBindingOverridesPtrOutput {
 	return o.ApplyT(func(v *Client) ClientAuthenticationFlowBindingOverridesPtrOutput {
@@ -852,6 +877,11 @@ func (o ClientOutput) DisplayOnConsentScreen() pulumi.BoolOutput {
 // When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
 func (o ClientOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Client) pulumi.BoolPtrOutput { return v.Enabled }).(pulumi.BoolPtrOutput)
+}
+
+// When `true`, the parameter `iss` will not be included in OpenID Connect Authentication Response.
+func (o ClientOutput) ExcludeIssuerFromAuthResponse() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Client) pulumi.BoolOutput { return v.ExcludeIssuerFromAuthResponse }).(pulumi.BoolOutput)
 }
 
 // When `true`, the parameter `sessionState` will not be included in OpenID Connect Authentication Response.

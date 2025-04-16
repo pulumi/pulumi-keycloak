@@ -14,6 +14,37 @@ namespace Pulumi.Keycloak
     /// 
     /// [Required actions](https://www.keycloak.org/docs/latest/server_admin/#con-required-actions_server_administration_guide) specify actions required before the first login of all new users.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
+    /// 
+    ///     var requiredAction = new Keycloak.RequiredAction("required_action", new()
+    ///     {
+    ///         RealmId = realm.RealmName,
+    ///         Alias = "UPDATE_PASSWORD",
+    ///         Enabled = true,
+    ///         Name = "Update Password",
+    ///         Config = 
+    ///         {
+    ///             { "max_auth_age", "600" },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Authentication executions can be imported using the formats: `{{realm}}/{{alias}}`.
@@ -34,6 +65,12 @@ namespace Pulumi.Keycloak
         /// </summary>
         [Output("alias")]
         public Output<string> Alias { get; private set; } = null!;
+
+        /// <summary>
+        /// The configuration. Keys are specific to each configurable required action and not checked when applying.
+        /// </summary>
+        [Output("config")]
+        public Output<ImmutableDictionary<string, string>?> Config { get; private set; } = null!;
 
         /// <summary>
         /// When `true`, the required action is set as the default action for new users. Defaults to `false`.
@@ -117,6 +154,18 @@ namespace Pulumi.Keycloak
         [Input("alias", required: true)]
         public Input<string> Alias { get; set; } = null!;
 
+        [Input("config")]
+        private InputMap<string>? _config;
+
+        /// <summary>
+        /// The configuration. Keys are specific to each configurable required action and not checked when applying.
+        /// </summary>
+        public InputMap<string> Config
+        {
+            get => _config ?? (_config = new InputMap<string>());
+            set => _config = value;
+        }
+
         /// <summary>
         /// When `true`, the required action is set as the default action for new users. Defaults to `false`.
         /// </summary>
@@ -160,6 +209,18 @@ namespace Pulumi.Keycloak
         /// </summary>
         [Input("alias")]
         public Input<string>? Alias { get; set; }
+
+        [Input("config")]
+        private InputMap<string>? _config;
+
+        /// <summary>
+        /// The configuration. Keys are specific to each configurable required action and not checked when applying.
+        /// </summary>
+        public InputMap<string> Config
+        {
+            get => _config ?? (_config = new InputMap<string>());
+            set => _config = value;
+        }
 
         /// <summary>
         /// When `true`, the required action is set as the default action for new users. Defaults to `false`.

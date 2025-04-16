@@ -17,6 +17,51 @@ namespace Pulumi.Keycloak.Authentication
     /// 
     /// &gt; Following limitation affects Keycloak &lt; 25:  Due to limitations in the Keycloak API, the ordering of authentication executions within a flow must be specified using `depends_on`. Authentication executions that are created first will appear first within the flow.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
+    /// 
+    ///     var flow = new Keycloak.Authentication.Flow("flow", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Alias = "my-flow-alias",
+    ///     });
+    /// 
+    ///     // first execution
+    ///     var executionOne = new Keycloak.Authentication.Execution("execution_one", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ParentFlowAlias = flow.Alias,
+    ///         Authenticator = "auth-cookie",
+    ///         Requirement = "ALTERNATIVE",
+    ///         Priority = 10,
+    ///     });
+    /// 
+    ///     // second execution
+    ///     var executionTwo = new Keycloak.Authentication.Execution("execution_two", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ParentFlowAlias = flow.Alias,
+    ///         Authenticator = "identity-provider-redirector",
+    ///         Requirement = "ALTERNATIVE",
+    ///         Priority = 20,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Authentication executions can be imported using the formats: `{{realmId}}/{{parentFlowAlias}}/{{authenticationExecutionId}}`.
@@ -43,6 +88,12 @@ namespace Pulumi.Keycloak.Authentication
         /// </summary>
         [Output("parentFlowAlias")]
         public Output<string> ParentFlowAlias { get; private set; } = null!;
+
+        /// <summary>
+        /// The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak &gt;= 25).
+        /// </summary>
+        [Output("priority")]
+        public Output<int?> Priority { get; private set; } = null!;
 
         /// <summary>
         /// The realm the authentication execution exists in.
@@ -115,6 +166,12 @@ namespace Pulumi.Keycloak.Authentication
         public Input<string> ParentFlowAlias { get; set; } = null!;
 
         /// <summary>
+        /// The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak &gt;= 25).
+        /// </summary>
+        [Input("priority")]
+        public Input<int>? Priority { get; set; }
+
+        /// <summary>
         /// The realm the authentication execution exists in.
         /// </summary>
         [Input("realmId", required: true)]
@@ -145,6 +202,12 @@ namespace Pulumi.Keycloak.Authentication
         /// </summary>
         [Input("parentFlowAlias")]
         public Input<string>? ParentFlowAlias { get; set; }
+
+        /// <summary>
+        /// The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak &gt;= 25).
+        /// </summary>
+        [Input("priority")]
+        public Input<int>? Priority { get; set; }
 
         /// <summary>
         /// The realm the authentication execution exists in.

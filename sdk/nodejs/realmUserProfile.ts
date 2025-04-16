@@ -14,6 +14,89 @@ import * as utilities from "./utilities";
  * Information for Keycloak versions < 24:
  * The realm linked to the `keycloak.RealmUserProfile` resource must have the user profile feature enabled.
  * It can be done via the administration UI, or by setting the `userProfileEnabled` realm attribute to `true`.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {realm: "my-realm"});
+ * const userprofile = new keycloak.RealmUserProfile("userprofile", {
+ *     realmId: myRealm.id,
+ *     unmanagedAttributePolicy: "ENABLED",
+ *     attributes: [
+ *         {
+ *             name: "field1",
+ *             displayName: "Field 1",
+ *             group: "group1",
+ *             multiValued: false,
+ *             enabledWhenScopes: ["offline_access"],
+ *             requiredForRoles: ["user"],
+ *             requiredForScopes: ["offline_access"],
+ *             permissions: {
+ *                 views: [
+ *                     "admin",
+ *                     "user",
+ *                 ],
+ *                 edits: [
+ *                     "admin",
+ *                     "user",
+ *                 ],
+ *             },
+ *             validators: [
+ *                 {
+ *                     name: "person-name-prohibited-characters",
+ *                 },
+ *                 {
+ *                     name: "pattern",
+ *                     config: {
+ *                         pattern: "^[a-z]+$",
+ *                         "error-message": "Nope",
+ *                     },
+ *                 },
+ *             ],
+ *             annotations: {
+ *                 foo: "bar",
+ *             },
+ *         },
+ *         {
+ *             name: "field2",
+ *             validators: [{
+ *                 name: "options",
+ *                 config: {
+ *                     options: JSON.stringify(["opt1"]),
+ *                 },
+ *             }],
+ *             annotations: {
+ *                 foo: JSON.stringify({
+ *                     key: "val",
+ *                 }),
+ *             },
+ *         },
+ *     ],
+ *     groups: [
+ *         {
+ *             name: "group1",
+ *             displayHeader: "Group 1",
+ *             displayDescription: "A first group",
+ *             annotations: {
+ *                 foo: "bar",
+ *                 foo2: JSON.stringify({
+ *                     key: "val",
+ *                 }),
+ *             },
+ *         },
+ *         {
+ *             name: "group2",
+ *         },
+ *     ],
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * This resource currently does not support importing.
  */
 export class RealmUserProfile extends pulumi.CustomResource {
     /**
@@ -55,6 +138,10 @@ export class RealmUserProfile extends pulumi.CustomResource {
      * The ID of the realm the user profile applies to.
      */
     public readonly realmId!: pulumi.Output<string>;
+    /**
+     * Unmanaged attributes are user attributes not explicitly defined in the user profile configuration. By default, unmanaged attributes are not enabled. Value could be one of `DISABLED`, `ENABLED`, `ADMIN_EDIT` or `ADMIN_VIEW`. If value is not specified it means `DISABLED`
+     */
+    public readonly unmanagedAttributePolicy!: pulumi.Output<string | undefined>;
 
     /**
      * Create a RealmUserProfile resource with the given unique name, arguments, and options.
@@ -72,6 +159,7 @@ export class RealmUserProfile extends pulumi.CustomResource {
             resourceInputs["attributes"] = state ? state.attributes : undefined;
             resourceInputs["groups"] = state ? state.groups : undefined;
             resourceInputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["unmanagedAttributePolicy"] = state ? state.unmanagedAttributePolicy : undefined;
         } else {
             const args = argsOrState as RealmUserProfileArgs | undefined;
             if ((!args || args.realmId === undefined) && !opts.urn) {
@@ -80,6 +168,7 @@ export class RealmUserProfile extends pulumi.CustomResource {
             resourceInputs["attributes"] = args ? args.attributes : undefined;
             resourceInputs["groups"] = args ? args.groups : undefined;
             resourceInputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["unmanagedAttributePolicy"] = args ? args.unmanagedAttributePolicy : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(RealmUserProfile.__pulumiType, name, resourceInputs, opts);
@@ -102,6 +191,10 @@ export interface RealmUserProfileState {
      * The ID of the realm the user profile applies to.
      */
     realmId?: pulumi.Input<string>;
+    /**
+     * Unmanaged attributes are user attributes not explicitly defined in the user profile configuration. By default, unmanaged attributes are not enabled. Value could be one of `DISABLED`, `ENABLED`, `ADMIN_EDIT` or `ADMIN_VIEW`. If value is not specified it means `DISABLED`
+     */
+    unmanagedAttributePolicy?: pulumi.Input<string>;
 }
 
 /**
@@ -120,4 +213,8 @@ export interface RealmUserProfileArgs {
      * The ID of the realm the user profile applies to.
      */
     realmId: pulumi.Input<string>;
+    /**
+     * Unmanaged attributes are user attributes not explicitly defined in the user profile configuration. By default, unmanaged attributes are not enabled. Value could be one of `DISABLED`, `ENABLED`, `ADMIN_EDIT` or `ADMIN_VIEW`. If value is not specified it means `DISABLED`
+     */
+    unmanagedAttributePolicy?: pulumi.Input<string>;
 }

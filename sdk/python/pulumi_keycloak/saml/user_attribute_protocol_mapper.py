@@ -24,6 +24,7 @@ class UserAttributeProtocolMapperArgs:
                  saml_attribute_name: pulumi.Input[builtins.str],
                  saml_attribute_name_format: pulumi.Input[builtins.str],
                  user_attribute: pulumi.Input[builtins.str],
+                 aggregate_attributes: Optional[pulumi.Input[builtins.bool]] = None,
                  client_id: Optional[pulumi.Input[builtins.str]] = None,
                  client_scope_id: Optional[pulumi.Input[builtins.str]] = None,
                  friendly_name: Optional[pulumi.Input[builtins.str]] = None,
@@ -34,6 +35,7 @@ class UserAttributeProtocolMapperArgs:
         :param pulumi.Input[builtins.str] saml_attribute_name: The name of the SAML attribute.
         :param pulumi.Input[builtins.str] saml_attribute_name_format: The SAML attribute Name Format. Can be one of `Unspecified`, `Basic`, or `URI Reference`.
         :param pulumi.Input[builtins.str] user_attribute: The custom user attribute to map.
+        :param pulumi.Input[builtins.bool] aggregate_attributes: Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
         :param pulumi.Input[builtins.str] client_id: The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
         :param pulumi.Input[builtins.str] client_scope_id: The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
         :param pulumi.Input[builtins.str] friendly_name: An optional human-friendly name for this attribute.
@@ -43,6 +45,8 @@ class UserAttributeProtocolMapperArgs:
         pulumi.set(__self__, "saml_attribute_name", saml_attribute_name)
         pulumi.set(__self__, "saml_attribute_name_format", saml_attribute_name_format)
         pulumi.set(__self__, "user_attribute", user_attribute)
+        if aggregate_attributes is not None:
+            pulumi.set(__self__, "aggregate_attributes", aggregate_attributes)
         if client_id is not None:
             pulumi.set(__self__, "client_id", client_id)
         if client_scope_id is not None:
@@ -101,6 +105,18 @@ class UserAttributeProtocolMapperArgs:
         pulumi.set(self, "user_attribute", value)
 
     @property
+    @pulumi.getter(name="aggregateAttributes")
+    def aggregate_attributes(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
+        """
+        return pulumi.get(self, "aggregate_attributes")
+
+    @aggregate_attributes.setter
+    def aggregate_attributes(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "aggregate_attributes", value)
+
+    @property
     @pulumi.getter(name="clientId")
     def client_id(self) -> Optional[pulumi.Input[builtins.str]]:
         """
@@ -152,6 +168,7 @@ class UserAttributeProtocolMapperArgs:
 @pulumi.input_type
 class _UserAttributeProtocolMapperState:
     def __init__(__self__, *,
+                 aggregate_attributes: Optional[pulumi.Input[builtins.bool]] = None,
                  client_id: Optional[pulumi.Input[builtins.str]] = None,
                  client_scope_id: Optional[pulumi.Input[builtins.str]] = None,
                  friendly_name: Optional[pulumi.Input[builtins.str]] = None,
@@ -162,6 +179,7 @@ class _UserAttributeProtocolMapperState:
                  user_attribute: Optional[pulumi.Input[builtins.str]] = None):
         """
         Input properties used for looking up and filtering UserAttributeProtocolMapper resources.
+        :param pulumi.Input[builtins.bool] aggregate_attributes: Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
         :param pulumi.Input[builtins.str] client_id: The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
         :param pulumi.Input[builtins.str] client_scope_id: The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
         :param pulumi.Input[builtins.str] friendly_name: An optional human-friendly name for this attribute.
@@ -171,6 +189,8 @@ class _UserAttributeProtocolMapperState:
         :param pulumi.Input[builtins.str] saml_attribute_name_format: The SAML attribute Name Format. Can be one of `Unspecified`, `Basic`, or `URI Reference`.
         :param pulumi.Input[builtins.str] user_attribute: The custom user attribute to map.
         """
+        if aggregate_attributes is not None:
+            pulumi.set(__self__, "aggregate_attributes", aggregate_attributes)
         if client_id is not None:
             pulumi.set(__self__, "client_id", client_id)
         if client_scope_id is not None:
@@ -187,6 +207,18 @@ class _UserAttributeProtocolMapperState:
             pulumi.set(__self__, "saml_attribute_name_format", saml_attribute_name_format)
         if user_attribute is not None:
             pulumi.set(__self__, "user_attribute", user_attribute)
+
+    @property
+    @pulumi.getter(name="aggregateAttributes")
+    def aggregate_attributes(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
+        """
+        return pulumi.get(self, "aggregate_attributes")
+
+    @aggregate_attributes.setter
+    def aggregate_attributes(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "aggregate_attributes", value)
 
     @property
     @pulumi.getter(name="clientId")
@@ -290,6 +322,7 @@ class UserAttributeProtocolMapper(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 aggregate_attributes: Optional[pulumi.Input[builtins.bool]] = None,
                  client_id: Optional[pulumi.Input[builtins.str]] = None,
                  client_scope_id: Optional[pulumi.Input[builtins.str]] = None,
                  friendly_name: Optional[pulumi.Input[builtins.str]] = None,
@@ -352,6 +385,7 @@ class UserAttributeProtocolMapper(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[builtins.bool] aggregate_attributes: Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
         :param pulumi.Input[builtins.str] client_id: The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
         :param pulumi.Input[builtins.str] client_scope_id: The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
         :param pulumi.Input[builtins.str] friendly_name: An optional human-friendly name for this attribute.
@@ -433,6 +467,7 @@ class UserAttributeProtocolMapper(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 aggregate_attributes: Optional[pulumi.Input[builtins.bool]] = None,
                  client_id: Optional[pulumi.Input[builtins.str]] = None,
                  client_scope_id: Optional[pulumi.Input[builtins.str]] = None,
                  friendly_name: Optional[pulumi.Input[builtins.str]] = None,
@@ -450,6 +485,7 @@ class UserAttributeProtocolMapper(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = UserAttributeProtocolMapperArgs.__new__(UserAttributeProtocolMapperArgs)
 
+            __props__.__dict__["aggregate_attributes"] = aggregate_attributes
             __props__.__dict__["client_id"] = client_id
             __props__.__dict__["client_scope_id"] = client_scope_id
             __props__.__dict__["friendly_name"] = friendly_name
@@ -476,6 +512,7 @@ class UserAttributeProtocolMapper(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            aggregate_attributes: Optional[pulumi.Input[builtins.bool]] = None,
             client_id: Optional[pulumi.Input[builtins.str]] = None,
             client_scope_id: Optional[pulumi.Input[builtins.str]] = None,
             friendly_name: Optional[pulumi.Input[builtins.str]] = None,
@@ -491,6 +528,7 @@ class UserAttributeProtocolMapper(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[builtins.bool] aggregate_attributes: Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
         :param pulumi.Input[builtins.str] client_id: The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
         :param pulumi.Input[builtins.str] client_scope_id: The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
         :param pulumi.Input[builtins.str] friendly_name: An optional human-friendly name for this attribute.
@@ -504,6 +542,7 @@ class UserAttributeProtocolMapper(pulumi.CustomResource):
 
         __props__ = _UserAttributeProtocolMapperState.__new__(_UserAttributeProtocolMapperState)
 
+        __props__.__dict__["aggregate_attributes"] = aggregate_attributes
         __props__.__dict__["client_id"] = client_id
         __props__.__dict__["client_scope_id"] = client_scope_id
         __props__.__dict__["friendly_name"] = friendly_name
@@ -513,6 +552,14 @@ class UserAttributeProtocolMapper(pulumi.CustomResource):
         __props__.__dict__["saml_attribute_name_format"] = saml_attribute_name_format
         __props__.__dict__["user_attribute"] = user_attribute
         return UserAttributeProtocolMapper(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="aggregateAttributes")
+    def aggregate_attributes(self) -> pulumi.Output[Optional[builtins.bool]]:
+        """
+        Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
+        """
+        return pulumi.get(self, "aggregate_attributes")
 
     @property
     @pulumi.getter(name="clientId")

@@ -10,6 +10,7 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.keycloak.Utilities;
 import com.pulumi.keycloak.saml.UserAttributeProtocolMapperArgs;
 import com.pulumi.keycloak.saml.inputs.UserAttributeProtocolMapperState;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -101,6 +102,20 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="keycloak:saml/userAttributeProtocolMapper:UserAttributeProtocolMapper")
 public class UserAttributeProtocolMapper extends com.pulumi.resources.CustomResource {
+    /**
+     * Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
+     * 
+     */
+    @Export(name="aggregateAttributes", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> aggregateAttributes;
+
+    /**
+     * @return Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
+     * 
+     */
+    public Output<Optional<Boolean>> aggregateAttributes() {
+        return Codegen.optional(this.aggregateAttributes);
+    }
     /**
      * The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
      * 

@@ -25,9 +25,11 @@ class GoogleIdentityProviderArgs:
                  realm: pulumi.Input[builtins.str],
                  accepts_prompt_none_forward_from_client: Optional[pulumi.Input[builtins.bool]] = None,
                  add_read_token_role_on_create: Optional[pulumi.Input[builtins.bool]] = None,
+                 alias: Optional[pulumi.Input[builtins.str]] = None,
                  authenticate_by_default: Optional[pulumi.Input[builtins.bool]] = None,
                  default_scopes: Optional[pulumi.Input[builtins.str]] = None,
                  disable_user_info: Optional[pulumi.Input[builtins.bool]] = None,
+                 display_name: Optional[pulumi.Input[builtins.str]] = None,
                  enabled: Optional[pulumi.Input[builtins.bool]] = None,
                  extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]] = None,
                  first_broker_login_flow_alias: Optional[pulumi.Input[builtins.str]] = None,
@@ -49,9 +51,11 @@ class GoogleIdentityProviderArgs:
         :param pulumi.Input[builtins.str] realm: The name of the realm. This is unique across Keycloak.
         :param pulumi.Input[builtins.bool] accepts_prompt_none_forward_from_client: When `true`, unauthenticated requests with `prompt=none` will be forwarded to Google instead of returning an error. Defaults to `false`.
         :param pulumi.Input[builtins.bool] add_read_token_role_on_create: When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
+        :param pulumi.Input[builtins.str] alias: The alias for the Google identity provider.
         :param pulumi.Input[builtins.bool] authenticate_by_default: Enable/disable authenticate users by default.
         :param pulumi.Input[builtins.str] default_scopes: The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid profile email`.
         :param pulumi.Input[builtins.bool] disable_user_info: When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
+        :param pulumi.Input[builtins.str] display_name: Display name for the Google identity provider in the GUI.
         :param pulumi.Input[builtins.bool] enabled: When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
         :param pulumi.Input[builtins.str] first_broker_login_flow_alias: The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
         :param pulumi.Input[builtins.str] gui_order: A number defining the order of this identity provider in the GUI.
@@ -73,12 +77,16 @@ class GoogleIdentityProviderArgs:
             pulumi.set(__self__, "accepts_prompt_none_forward_from_client", accepts_prompt_none_forward_from_client)
         if add_read_token_role_on_create is not None:
             pulumi.set(__self__, "add_read_token_role_on_create", add_read_token_role_on_create)
+        if alias is not None:
+            pulumi.set(__self__, "alias", alias)
         if authenticate_by_default is not None:
             pulumi.set(__self__, "authenticate_by_default", authenticate_by_default)
         if default_scopes is not None:
             pulumi.set(__self__, "default_scopes", default_scopes)
         if disable_user_info is not None:
             pulumi.set(__self__, "disable_user_info", disable_user_info)
+        if display_name is not None:
+            pulumi.set(__self__, "display_name", display_name)
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
         if extra_config is not None:
@@ -169,6 +177,18 @@ class GoogleIdentityProviderArgs:
         pulumi.set(self, "add_read_token_role_on_create", value)
 
     @property
+    @pulumi.getter
+    def alias(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The alias for the Google identity provider.
+        """
+        return pulumi.get(self, "alias")
+
+    @alias.setter
+    def alias(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "alias", value)
+
+    @property
     @pulumi.getter(name="authenticateByDefault")
     def authenticate_by_default(self) -> Optional[pulumi.Input[builtins.bool]]:
         """
@@ -203,6 +223,18 @@ class GoogleIdentityProviderArgs:
     @disable_user_info.setter
     def disable_user_info(self, value: Optional[pulumi.Input[builtins.bool]]):
         pulumi.set(self, "disable_user_info", value)
+
+    @property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        Display name for the Google identity provider in the GUI.
+        """
+        return pulumi.get(self, "display_name")
+
+    @display_name.setter
+    def display_name(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "display_name", value)
 
     @property
     @pulumi.getter
@@ -781,11 +813,13 @@ class GoogleIdentityProvider(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  accepts_prompt_none_forward_from_client: Optional[pulumi.Input[builtins.bool]] = None,
                  add_read_token_role_on_create: Optional[pulumi.Input[builtins.bool]] = None,
+                 alias: Optional[pulumi.Input[builtins.str]] = None,
                  authenticate_by_default: Optional[pulumi.Input[builtins.bool]] = None,
                  client_id: Optional[pulumi.Input[builtins.str]] = None,
                  client_secret: Optional[pulumi.Input[builtins.str]] = None,
                  default_scopes: Optional[pulumi.Input[builtins.str]] = None,
                  disable_user_info: Optional[pulumi.Input[builtins.bool]] = None,
+                 display_name: Optional[pulumi.Input[builtins.str]] = None,
                  enabled: Optional[pulumi.Input[builtins.bool]] = None,
                  extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]] = None,
                  first_broker_login_flow_alias: Optional[pulumi.Input[builtins.str]] = None,
@@ -844,11 +878,13 @@ class GoogleIdentityProvider(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[builtins.bool] accepts_prompt_none_forward_from_client: When `true`, unauthenticated requests with `prompt=none` will be forwarded to Google instead of returning an error. Defaults to `false`.
         :param pulumi.Input[builtins.bool] add_read_token_role_on_create: When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
+        :param pulumi.Input[builtins.str] alias: The alias for the Google identity provider.
         :param pulumi.Input[builtins.bool] authenticate_by_default: Enable/disable authenticate users by default.
         :param pulumi.Input[builtins.str] client_id: The client or client identifier registered within the identity provider.
         :param pulumi.Input[builtins.str] client_secret: The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
         :param pulumi.Input[builtins.str] default_scopes: The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid profile email`.
         :param pulumi.Input[builtins.bool] disable_user_info: When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
+        :param pulumi.Input[builtins.str] display_name: Display name for the Google identity provider in the GUI.
         :param pulumi.Input[builtins.bool] enabled: When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
         :param pulumi.Input[builtins.str] first_broker_login_flow_alias: The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
         :param pulumi.Input[builtins.str] gui_order: A number defining the order of this identity provider in the GUI.
@@ -925,11 +961,13 @@ class GoogleIdentityProvider(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  accepts_prompt_none_forward_from_client: Optional[pulumi.Input[builtins.bool]] = None,
                  add_read_token_role_on_create: Optional[pulumi.Input[builtins.bool]] = None,
+                 alias: Optional[pulumi.Input[builtins.str]] = None,
                  authenticate_by_default: Optional[pulumi.Input[builtins.bool]] = None,
                  client_id: Optional[pulumi.Input[builtins.str]] = None,
                  client_secret: Optional[pulumi.Input[builtins.str]] = None,
                  default_scopes: Optional[pulumi.Input[builtins.str]] = None,
                  disable_user_info: Optional[pulumi.Input[builtins.bool]] = None,
+                 display_name: Optional[pulumi.Input[builtins.str]] = None,
                  enabled: Optional[pulumi.Input[builtins.bool]] = None,
                  extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]] = None,
                  first_broker_login_flow_alias: Optional[pulumi.Input[builtins.str]] = None,
@@ -956,6 +994,7 @@ class GoogleIdentityProvider(pulumi.CustomResource):
 
             __props__.__dict__["accepts_prompt_none_forward_from_client"] = accepts_prompt_none_forward_from_client
             __props__.__dict__["add_read_token_role_on_create"] = add_read_token_role_on_create
+            __props__.__dict__["alias"] = alias
             __props__.__dict__["authenticate_by_default"] = authenticate_by_default
             if client_id is None and not opts.urn:
                 raise TypeError("Missing required property 'client_id'")
@@ -965,6 +1004,7 @@ class GoogleIdentityProvider(pulumi.CustomResource):
             __props__.__dict__["client_secret"] = None if client_secret is None else pulumi.Output.secret(client_secret)
             __props__.__dict__["default_scopes"] = default_scopes
             __props__.__dict__["disable_user_info"] = disable_user_info
+            __props__.__dict__["display_name"] = display_name
             __props__.__dict__["enabled"] = enabled
             __props__.__dict__["extra_config"] = extra_config
             __props__.__dict__["first_broker_login_flow_alias"] = first_broker_login_flow_alias
@@ -982,8 +1022,6 @@ class GoogleIdentityProvider(pulumi.CustomResource):
             __props__.__dict__["sync_mode"] = sync_mode
             __props__.__dict__["trust_email"] = trust_email
             __props__.__dict__["use_user_ip_param"] = use_user_ip_param
-            __props__.__dict__["alias"] = None
-            __props__.__dict__["display_name"] = None
             __props__.__dict__["internal_id"] = None
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["clientSecret"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)

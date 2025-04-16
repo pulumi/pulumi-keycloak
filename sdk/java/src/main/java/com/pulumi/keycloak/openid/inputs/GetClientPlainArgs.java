@@ -17,6 +17,13 @@ public final class GetClientPlainArgs extends com.pulumi.resources.InvokeArgs {
 
     public static final GetClientPlainArgs Empty = new GetClientPlainArgs();
 
+    @Import(name="alwaysDisplayInConsole")
+    private @Nullable Boolean alwaysDisplayInConsole;
+
+    public Optional<Boolean> alwaysDisplayInConsole() {
+        return Optional.ofNullable(this.alwaysDisplayInConsole);
+    }
+
     /**
      * The client id (not its unique ID).
      * 
@@ -92,6 +99,7 @@ public final class GetClientPlainArgs extends com.pulumi.resources.InvokeArgs {
     private GetClientPlainArgs() {}
 
     private GetClientPlainArgs(GetClientPlainArgs $) {
+        this.alwaysDisplayInConsole = $.alwaysDisplayInConsole;
         this.clientId = $.clientId;
         this.consentScreenText = $.consentScreenText;
         this.displayOnConsentScreen = $.displayOnConsentScreen;
@@ -118,6 +126,11 @@ public final class GetClientPlainArgs extends com.pulumi.resources.InvokeArgs {
 
         public Builder(GetClientPlainArgs defaults) {
             $ = new GetClientPlainArgs(Objects.requireNonNull(defaults));
+        }
+
+        public Builder alwaysDisplayInConsole(@Nullable Boolean alwaysDisplayInConsole) {
+            $.alwaysDisplayInConsole = alwaysDisplayInConsole;
+            return this;
         }
 
         /**

@@ -30,10 +30,13 @@ from .group_memberships import *
 from .group_permissions import *
 from .group_roles import *
 from .hardcoded_attribute_identity_provider_mapper import *
+from .hardcoded_attribute_mapper import *
+from .hardcoded_group_identity_provider_mapper import *
 from .hardcoded_role_identity_mapper import *
 from .identity_provider_token_exchange_scope_permission import *
 from .provider import *
 from .realm import *
+from .realm_default_client_scopes import *
 from .realm_events import *
 from .realm_keystore_aes_generated import *
 from .realm_keystore_ecdsa_generated import *
@@ -41,6 +44,8 @@ from .realm_keystore_hmac_generated import *
 from .realm_keystore_java_generated import *
 from .realm_keystore_rsa import *
 from .realm_keystore_rsa_generated import *
+from .realm_localization import *
+from .realm_optional_client_scopes import *
 from .realm_user_profile import *
 from .required_action import *
 from .role import *
@@ -239,6 +244,22 @@ _utilities.register(
  },
  {
   "pkg": "keycloak",
+  "mod": "index/hardcodedAttributeMapper",
+  "fqn": "pulumi_keycloak",
+  "classes": {
+   "keycloak:index/hardcodedAttributeMapper:HardcodedAttributeMapper": "HardcodedAttributeMapper"
+  }
+ },
+ {
+  "pkg": "keycloak",
+  "mod": "index/hardcodedGroupIdentityProviderMapper",
+  "fqn": "pulumi_keycloak",
+  "classes": {
+   "keycloak:index/hardcodedGroupIdentityProviderMapper:HardcodedGroupIdentityProviderMapper": "HardcodedGroupIdentityProviderMapper"
+  }
+ },
+ {
+  "pkg": "keycloak",
   "mod": "index/hardcodedRoleIdentityMapper",
   "fqn": "pulumi_keycloak",
   "classes": {
@@ -259,6 +280,14 @@ _utilities.register(
   "fqn": "pulumi_keycloak",
   "classes": {
    "keycloak:index/realm:Realm": "Realm"
+  }
+ },
+ {
+  "pkg": "keycloak",
+  "mod": "index/realmDefaultClientScopes",
+  "fqn": "pulumi_keycloak",
+  "classes": {
+   "keycloak:index/realmDefaultClientScopes:RealmDefaultClientScopes": "RealmDefaultClientScopes"
   }
  },
  {
@@ -315,6 +344,22 @@ _utilities.register(
   "fqn": "pulumi_keycloak",
   "classes": {
    "keycloak:index/realmKeystoreRsaGenerated:RealmKeystoreRsaGenerated": "RealmKeystoreRsaGenerated"
+  }
+ },
+ {
+  "pkg": "keycloak",
+  "mod": "index/realmLocalization",
+  "fqn": "pulumi_keycloak",
+  "classes": {
+   "keycloak:index/realmLocalization:RealmLocalization": "RealmLocalization"
+  }
+ },
+ {
+  "pkg": "keycloak",
+  "mod": "index/realmOptionalClientScopes",
+  "fqn": "pulumi_keycloak",
+  "classes": {
+   "keycloak:index/realmOptionalClientScopes:RealmOptionalClientScopes": "RealmOptionalClientScopes"
   }
  },
  {
@@ -515,6 +560,14 @@ _utilities.register(
   "fqn": "pulumi_keycloak.openid",
   "classes": {
    "keycloak:openid/clientAggregatePolicy:ClientAggregatePolicy": "ClientAggregatePolicy"
+  }
+ },
+ {
+  "pkg": "keycloak",
+  "mod": "openid/clientAuthorizationClientScopePolicy",
+  "fqn": "pulumi_keycloak.openid",
+  "classes": {
+   "keycloak:openid/clientAuthorizationClientScopePolicy:ClientAuthorizationClientScopePolicy": "ClientAuthorizationClientScopePolicy"
   }
  },
  {

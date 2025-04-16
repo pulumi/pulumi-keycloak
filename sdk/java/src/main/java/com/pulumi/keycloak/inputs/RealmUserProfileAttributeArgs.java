@@ -8,6 +8,7 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.keycloak.inputs.RealmUserProfileAttributePermissionsArgs;
 import com.pulumi.keycloak.inputs.RealmUserProfileAttributeValidatorArgs;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -70,6 +71,21 @@ public final class RealmUserProfileAttributeArgs extends com.pulumi.resources.Re
      */
     public Optional<Output<String>> group() {
         return Optional.ofNullable(this.group);
+    }
+
+    /**
+     * If the attribute supports multiple values. Defaults to `false`.
+     * 
+     */
+    @Import(name="multiValued")
+    private @Nullable Output<Boolean> multiValued;
+
+    /**
+     * @return If the attribute supports multiple values. Defaults to `false`.
+     * 
+     */
+    public Optional<Output<Boolean>> multiValued() {
+        return Optional.ofNullable(this.multiValued);
     }
 
     @Import(name="name", required=true)
@@ -146,6 +162,7 @@ public final class RealmUserProfileAttributeArgs extends com.pulumi.resources.Re
         this.displayName = $.displayName;
         this.enabledWhenScopes = $.enabledWhenScopes;
         this.group = $.group;
+        this.multiValued = $.multiValued;
         this.name = $.name;
         this.permissions = $.permissions;
         this.requiredForRoles = $.requiredForRoles;
@@ -251,6 +268,27 @@ public final class RealmUserProfileAttributeArgs extends com.pulumi.resources.Re
          */
         public Builder group(String group) {
             return group(Output.of(group));
+        }
+
+        /**
+         * @param multiValued If the attribute supports multiple values. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder multiValued(@Nullable Output<Boolean> multiValued) {
+            $.multiValued = multiValued;
+            return this;
+        }
+
+        /**
+         * @param multiValued If the attribute supports multiple values. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder multiValued(Boolean multiValued) {
+            return multiValued(Output.of(multiValued));
         }
 
         public Builder name(Output<String> name) {

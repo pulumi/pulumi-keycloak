@@ -14,6 +14,7 @@ import java.util.Objects;
 
 @CustomType
 public final class GetClientResult {
+    private Boolean alwaysDisplayInConsole;
     private String assertionConsumerPostUrl;
     private String assertionConsumerRedirectUrl;
     private List<GetClientAuthenticationFlowBindingOverride> authenticationFlowBindingOverrides;
@@ -21,6 +22,7 @@ public final class GetClientResult {
     private String canonicalizationMethod;
     private String clientId;
     private Boolean clientSignatureRequired;
+    private Boolean consentRequired;
     private String description;
     private Boolean enabled;
     private Boolean encryptAssertions;
@@ -59,6 +61,9 @@ public final class GetClientResult {
     private List<String> validRedirectUris;
 
     private GetClientResult() {}
+    public Boolean alwaysDisplayInConsole() {
+        return this.alwaysDisplayInConsole;
+    }
     public String assertionConsumerPostUrl() {
         return this.assertionConsumerPostUrl;
     }
@@ -79,6 +84,9 @@ public final class GetClientResult {
     }
     public Boolean clientSignatureRequired() {
         return this.clientSignatureRequired;
+    }
+    public Boolean consentRequired() {
+        return this.consentRequired;
     }
     public String description() {
         return this.description;
@@ -190,6 +198,7 @@ public final class GetClientResult {
     }
     @CustomType.Builder
     public static final class Builder {
+        private Boolean alwaysDisplayInConsole;
         private String assertionConsumerPostUrl;
         private String assertionConsumerRedirectUrl;
         private List<GetClientAuthenticationFlowBindingOverride> authenticationFlowBindingOverrides;
@@ -197,6 +206,7 @@ public final class GetClientResult {
         private String canonicalizationMethod;
         private String clientId;
         private Boolean clientSignatureRequired;
+        private Boolean consentRequired;
         private String description;
         private Boolean enabled;
         private Boolean encryptAssertions;
@@ -232,6 +242,7 @@ public final class GetClientResult {
         public Builder() {}
         public Builder(GetClientResult defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.alwaysDisplayInConsole = defaults.alwaysDisplayInConsole;
     	      this.assertionConsumerPostUrl = defaults.assertionConsumerPostUrl;
     	      this.assertionConsumerRedirectUrl = defaults.assertionConsumerRedirectUrl;
     	      this.authenticationFlowBindingOverrides = defaults.authenticationFlowBindingOverrides;
@@ -239,6 +250,7 @@ public final class GetClientResult {
     	      this.canonicalizationMethod = defaults.canonicalizationMethod;
     	      this.clientId = defaults.clientId;
     	      this.clientSignatureRequired = defaults.clientSignatureRequired;
+    	      this.consentRequired = defaults.consentRequired;
     	      this.description = defaults.description;
     	      this.enabled = defaults.enabled;
     	      this.encryptAssertions = defaults.encryptAssertions;
@@ -273,6 +285,14 @@ public final class GetClientResult {
     	      this.validRedirectUris = defaults.validRedirectUris;
         }
 
+        @CustomType.Setter
+        public Builder alwaysDisplayInConsole(Boolean alwaysDisplayInConsole) {
+            if (alwaysDisplayInConsole == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "alwaysDisplayInConsole");
+            }
+            this.alwaysDisplayInConsole = alwaysDisplayInConsole;
+            return this;
+        }
         @CustomType.Setter
         public Builder assertionConsumerPostUrl(String assertionConsumerPostUrl) {
             if (assertionConsumerPostUrl == null) {
@@ -330,6 +350,14 @@ public final class GetClientResult {
               throw new MissingRequiredPropertyException("GetClientResult", "clientSignatureRequired");
             }
             this.clientSignatureRequired = clientSignatureRequired;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder consentRequired(Boolean consentRequired) {
+            if (consentRequired == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "consentRequired");
+            }
+            this.consentRequired = consentRequired;
             return this;
         }
         @CustomType.Setter
@@ -593,6 +621,7 @@ public final class GetClientResult {
         }
         public GetClientResult build() {
             final var _resultValue = new GetClientResult();
+            _resultValue.alwaysDisplayInConsole = alwaysDisplayInConsole;
             _resultValue.assertionConsumerPostUrl = assertionConsumerPostUrl;
             _resultValue.assertionConsumerRedirectUrl = assertionConsumerRedirectUrl;
             _resultValue.authenticationFlowBindingOverrides = authenticationFlowBindingOverrides;
@@ -600,6 +629,7 @@ public final class GetClientResult {
             _resultValue.canonicalizationMethod = canonicalizationMethod;
             _resultValue.clientId = clientId;
             _resultValue.clientSignatureRequired = clientSignatureRequired;
+            _resultValue.consentRequired = consentRequired;
             _resultValue.description = description;
             _resultValue.enabled = enabled;
             _resultValue.encryptAssertions = encryptAssertions;
