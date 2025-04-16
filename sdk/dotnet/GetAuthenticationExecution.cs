@@ -170,6 +170,10 @@ namespace Pulumi.Keycloak
         /// </summary>
         public readonly string Id;
         public readonly string ParentFlowAlias;
+        /// <summary>
+        /// (Computed) The authenticator priority.
+        /// </summary>
+        public readonly int Priority;
         public readonly string ProviderId;
         public readonly string RealmId;
 
@@ -179,12 +183,15 @@ namespace Pulumi.Keycloak
 
             string parentFlowAlias,
 
+            int priority,
+
             string providerId,
 
             string realmId)
         {
             Id = id;
             ParentFlowAlias = parentFlowAlias;
+            Priority = priority;
             ProviderId = providerId;
             RealmId = realmId;
         }

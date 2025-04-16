@@ -51,12 +51,18 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &GroupRoles{}
 	case "keycloak:index/hardcodedAttributeIdentityProviderMapper:HardcodedAttributeIdentityProviderMapper":
 		r = &HardcodedAttributeIdentityProviderMapper{}
+	case "keycloak:index/hardcodedAttributeMapper:HardcodedAttributeMapper":
+		r = &HardcodedAttributeMapper{}
+	case "keycloak:index/hardcodedGroupIdentityProviderMapper:HardcodedGroupIdentityProviderMapper":
+		r = &HardcodedGroupIdentityProviderMapper{}
 	case "keycloak:index/hardcodedRoleIdentityMapper:HardcodedRoleIdentityMapper":
 		r = &HardcodedRoleIdentityMapper{}
 	case "keycloak:index/identityProviderTokenExchangeScopePermission:IdentityProviderTokenExchangeScopePermission":
 		r = &IdentityProviderTokenExchangeScopePermission{}
 	case "keycloak:index/realm:Realm":
 		r = &Realm{}
+	case "keycloak:index/realmDefaultClientScopes:RealmDefaultClientScopes":
+		r = &RealmDefaultClientScopes{}
 	case "keycloak:index/realmEvents:RealmEvents":
 		r = &RealmEvents{}
 	case "keycloak:index/realmKeystoreAesGenerated:RealmKeystoreAesGenerated":
@@ -71,6 +77,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &RealmKeystoreRsa{}
 	case "keycloak:index/realmKeystoreRsaGenerated:RealmKeystoreRsaGenerated":
 		r = &RealmKeystoreRsaGenerated{}
+	case "keycloak:index/realmLocalization:RealmLocalization":
+		r = &RealmLocalization{}
+	case "keycloak:index/realmOptionalClientScopes:RealmOptionalClientScopes":
+		r = &RealmOptionalClientScopes{}
 	case "keycloak:index/realmUserProfile:RealmUserProfile":
 		r = &RealmUserProfile{}
 	case "keycloak:index/requiredAction:RequiredAction":
@@ -195,6 +205,16 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"keycloak",
+		"index/hardcodedAttributeMapper",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"keycloak",
+		"index/hardcodedGroupIdentityProviderMapper",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"keycloak",
 		"index/hardcodedRoleIdentityMapper",
 		&module{version},
 	)
@@ -206,6 +226,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"keycloak",
 		"index/realm",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"keycloak",
+		"index/realmDefaultClientScopes",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -241,6 +266,16 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"keycloak",
 		"index/realmKeystoreRsaGenerated",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"keycloak",
+		"index/realmLocalization",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"keycloak",
+		"index/realmOptionalClientScopes",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

@@ -42,6 +42,20 @@ import javax.annotation.Nullable;
 @ResourceType(type="keycloak:saml/client:Client")
 public class Client extends com.pulumi.resources.CustomResource {
     /**
+     * Always list this client in the Account UI, even if the user does not have an active session.
+     * 
+     */
+    @Export(name="alwaysDisplayInConsole", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> alwaysDisplayInConsole;
+
+    /**
+     * @return Always list this client in the Account UI, even if the user does not have an active session.
+     * 
+     */
+    public Output<Optional<Boolean>> alwaysDisplayInConsole() {
+        return Codegen.optional(this.alwaysDisplayInConsole);
+    }
+    /**
      * SAML POST Binding URL for the client&#39;s assertion consumer service (login responses).
      * 
      */
@@ -138,6 +152,20 @@ public class Client extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<Boolean>> clientSignatureRequired() {
         return Codegen.optional(this.clientSignatureRequired);
+    }
+    /**
+     * When `true`, users have to consent to client access. Defaults to `false`.
+     * 
+     */
+    @Export(name="consentRequired", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> consentRequired;
+
+    /**
+     * @return When `true`, users have to consent to client access. Defaults to `false`.
+     * 
+     */
+    public Output<Boolean> consentRequired() {
+        return this.consentRequired;
     }
     /**
      * The description of this client in the GUI.

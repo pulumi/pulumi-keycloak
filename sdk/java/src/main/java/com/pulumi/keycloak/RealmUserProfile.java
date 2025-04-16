@@ -29,6 +29,105 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.keycloak.Realm;
+ * import com.pulumi.keycloak.RealmArgs;
+ * import com.pulumi.keycloak.RealmUserProfile;
+ * import com.pulumi.keycloak.RealmUserProfileArgs;
+ * import com.pulumi.keycloak.inputs.RealmUserProfileAttributeArgs;
+ * import com.pulumi.keycloak.inputs.RealmUserProfileAttributePermissionsArgs;
+ * import com.pulumi.keycloak.inputs.RealmUserProfileGroupArgs;
+ * import static com.pulumi.codegen.internal.Serialization.*;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var realm = new Realm("realm", RealmArgs.builder()
+ *             .realm("my-realm")
+ *             .build());
+ * 
+ *         var userprofile = new RealmUserProfile("userprofile", RealmUserProfileArgs.builder()
+ *             .realmId(myRealm.id())
+ *             .unmanagedAttributePolicy("ENABLED")
+ *             .attributes(            
+ *                 RealmUserProfileAttributeArgs.builder()
+ *                     .name("field1")
+ *                     .displayName("Field 1")
+ *                     .group("group1")
+ *                     .multiValued(false)
+ *                     .enabledWhenScopes("offline_access")
+ *                     .requiredForRoles("user")
+ *                     .requiredForScopes("offline_access")
+ *                     .permissions(RealmUserProfileAttributePermissionsArgs.builder()
+ *                         .views(                        
+ *                             "admin",
+ *                             "user")
+ *                         .edits(                        
+ *                             "admin",
+ *                             "user")
+ *                         .build())
+ *                     .validators(                    
+ *                         RealmUserProfileAttributeValidatorArgs.builder()
+ *                             .name("person-name-prohibited-characters")
+ *                             .build(),
+ *                         RealmUserProfileAttributeValidatorArgs.builder()
+ *                             .name("pattern")
+ *                             .config(Map.ofEntries(
+ *                                 Map.entry("pattern", "^[a-z]+$"),
+ *                                 Map.entry("error-message", "Nope")
+ *                             ))
+ *                             .build())
+ *                     .annotations(Map.of("foo", "bar"))
+ *                     .build(),
+ *                 RealmUserProfileAttributeArgs.builder()
+ *                     .name("field2")
+ *                     .validators(RealmUserProfileAttributeValidatorArgs.builder()
+ *                         .name("options")
+ *                         .config(Map.of("options", serializeJson(
+ *                             jsonArray("opt1"))))
+ *                         .build())
+ *                     .annotations(Map.of("foo", serializeJson(
+ *                         jsonObject(
+ *                             jsonProperty("key", "val")
+ *                         ))))
+ *                     .build())
+ *             .groups(            
+ *                 RealmUserProfileGroupArgs.builder()
+ *                     .name("group1")
+ *                     .displayHeader("Group 1")
+ *                     .displayDescription("A first group")
+ *                     .annotations(Map.ofEntries(
+ *                         Map.entry("foo", "bar"),
+ *                         Map.entry("foo2", serializeJson(
+ *                             jsonObject(
+ *                                 jsonProperty("key", "val")
+ *                             )))
+ *                     ))
+ *                     .build(),
+ *                 RealmUserProfileGroupArgs.builder()
+ *                     .name("group2")
+ *                     .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
@@ -79,6 +178,20 @@ public class RealmUserProfile extends com.pulumi.resources.CustomResource {
      */
     public Output<String> realmId() {
         return this.realmId;
+    }
+    /**
+     * Unmanaged attributes are user attributes not explicitly defined in the user profile configuration. By default, unmanaged attributes are not enabled. Value could be one of `DISABLED`, `ENABLED`, `ADMIN_EDIT` or `ADMIN_VIEW`. If value is not specified it means `DISABLED`
+     * 
+     */
+    @Export(name="unmanagedAttributePolicy", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> unmanagedAttributePolicy;
+
+    /**
+     * @return Unmanaged attributes are user attributes not explicitly defined in the user profile configuration. By default, unmanaged attributes are not enabled. Value could be one of `DISABLED`, `ENABLED`, `ADMIN_EDIT` or `ADMIN_VIEW`. If value is not specified it means `DISABLED`
+     * 
+     */
+    public Output<Optional<String>> unmanagedAttributePolicy() {
+        return Codegen.optional(this.unmanagedAttributePolicy);
     }
 
     /**

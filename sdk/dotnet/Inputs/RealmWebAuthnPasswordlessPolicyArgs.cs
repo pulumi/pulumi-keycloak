@@ -48,6 +48,18 @@ namespace Pulumi.Keycloak.Inputs
         [Input("createTimeout")]
         public Input<int>? CreateTimeout { get; set; }
 
+        [Input("extraOrigins")]
+        private InputList<string>? _extraOrigins;
+
+        /// <summary>
+        /// A set of extra origins for non-web applications.
+        /// </summary>
+        public InputList<string> ExtraOrigins
+        {
+            get => _extraOrigins ?? (_extraOrigins = new InputList<string>());
+            set => _extraOrigins = value;
+        }
+
         /// <summary>
         /// A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
         /// </summary>

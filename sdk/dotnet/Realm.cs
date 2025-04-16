@@ -99,8 +99,8 @@ namespace Pulumi.Keycloak
     /// 
     /// ## Default Client Scopes
     /// 
-    /// - `default_default_client_scopes` - (Optional) A list of default `default client scopes` to be used for client definitions. Defaults to `[]` or keycloak's built-in default `default client-scopes`. For an alternative, please refer to the dedicated resource `keycloak_realm_default_client_scopes`.
-    /// - `default_optional_client_scopes` - (Optional) A list of default `optional client scopes` to be used for client definitions. Defaults to `[]` or keycloak's built-in default `optional client-scopes`. For an alternative, please refer to the dedicated resource `keycloak_realm_optional_client_scopes`.
+    /// - `default_default_client_scopes` - (Optional) A list of default `default client scopes` to be used for client definitions. Defaults to `[]` or keycloak's built-in default `default client-scopes`. For an alternative, please refer to the dedicated resource `keycloak.RealmDefaultClientScopes`.
+    /// - `default_optional_client_scopes` - (Optional) A list of default `optional client scopes` to be used for client definitions. Defaults to `[]` or keycloak's built-in default `optional client-scopes`. For an alternative, please refer to the dedicated resource `keycloak.RealmOptionalClientScopes`.
     /// 
     /// ## Import
     /// 
@@ -217,6 +217,12 @@ namespace Pulumi.Keycloak
         public Output<bool?> Enabled { get; private set; } = null!;
 
         /// <summary>
+        /// Which flow should be used for FirstBrokerLoginFlow
+        /// </summary>
+        [Output("firstBrokerLoginFlow")]
+        public Output<string> FirstBrokerLoginFlow { get; private set; } = null!;
+
+        /// <summary>
         /// When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
         /// </summary>
         [Output("internalId")]
@@ -245,6 +251,12 @@ namespace Pulumi.Keycloak
 
         [Output("offlineSessionMaxLifespanEnabled")]
         public Output<bool?> OfflineSessionMaxLifespanEnabled { get; private set; } = null!;
+
+        /// <summary>
+        /// When `true`, organization support is enabled. Defaults to `false`.
+        /// </summary>
+        [Output("organizationsEnabled")]
+        public Output<bool?> OrganizationsEnabled { get; private set; } = null!;
 
         [Output("otpPolicy")]
         public Output<Outputs.RealmOtpPolicy> OtpPolicy { get; private set; } = null!;
@@ -494,6 +506,12 @@ namespace Pulumi.Keycloak
         public Input<bool>? Enabled { get; set; }
 
         /// <summary>
+        /// Which flow should be used for FirstBrokerLoginFlow
+        /// </summary>
+        [Input("firstBrokerLoginFlow")]
+        public Input<string>? FirstBrokerLoginFlow { get; set; }
+
+        /// <summary>
         /// When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
         /// </summary>
         [Input("internalId")]
@@ -522,6 +540,12 @@ namespace Pulumi.Keycloak
 
         [Input("offlineSessionMaxLifespanEnabled")]
         public Input<bool>? OfflineSessionMaxLifespanEnabled { get; set; }
+
+        /// <summary>
+        /// When `true`, organization support is enabled. Defaults to `false`.
+        /// </summary>
+        [Input("organizationsEnabled")]
+        public Input<bool>? OrganizationsEnabled { get; set; }
 
         [Input("otpPolicy")]
         public Input<Inputs.RealmOtpPolicyArgs>? OtpPolicy { get; set; }
@@ -733,6 +757,12 @@ namespace Pulumi.Keycloak
         public Input<bool>? Enabled { get; set; }
 
         /// <summary>
+        /// Which flow should be used for FirstBrokerLoginFlow
+        /// </summary>
+        [Input("firstBrokerLoginFlow")]
+        public Input<string>? FirstBrokerLoginFlow { get; set; }
+
+        /// <summary>
         /// When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
         /// </summary>
         [Input("internalId")]
@@ -761,6 +791,12 @@ namespace Pulumi.Keycloak
 
         [Input("offlineSessionMaxLifespanEnabled")]
         public Input<bool>? OfflineSessionMaxLifespanEnabled { get; set; }
+
+        /// <summary>
+        /// When `true`, organization support is enabled. Defaults to `false`.
+        /// </summary>
+        [Input("organizationsEnabled")]
+        public Input<bool>? OrganizationsEnabled { get; set; }
 
         [Input("otpPolicy")]
         public Input<Inputs.RealmOtpPolicyGetArgs>? OtpPolicy { get; set; }

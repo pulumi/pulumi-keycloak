@@ -87,6 +87,10 @@ export class UserAttributeProtocolMapper extends pulumi.CustomResource {
     }
 
     /**
+     * Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
+     */
+    public readonly aggregateAttributes!: pulumi.Output<boolean | undefined>;
+    /**
      * The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
      */
     public readonly clientId!: pulumi.Output<string | undefined>;
@@ -132,6 +136,7 @@ export class UserAttributeProtocolMapper extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as UserAttributeProtocolMapperState | undefined;
+            resourceInputs["aggregateAttributes"] = state ? state.aggregateAttributes : undefined;
             resourceInputs["clientId"] = state ? state.clientId : undefined;
             resourceInputs["clientScopeId"] = state ? state.clientScopeId : undefined;
             resourceInputs["friendlyName"] = state ? state.friendlyName : undefined;
@@ -154,6 +159,7 @@ export class UserAttributeProtocolMapper extends pulumi.CustomResource {
             if ((!args || args.userAttribute === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'userAttribute'");
             }
+            resourceInputs["aggregateAttributes"] = args ? args.aggregateAttributes : undefined;
             resourceInputs["clientId"] = args ? args.clientId : undefined;
             resourceInputs["clientScopeId"] = args ? args.clientScopeId : undefined;
             resourceInputs["friendlyName"] = args ? args.friendlyName : undefined;
@@ -172,6 +178,10 @@ export class UserAttributeProtocolMapper extends pulumi.CustomResource {
  * Input properties used for looking up and filtering UserAttributeProtocolMapper resources.
  */
 export interface UserAttributeProtocolMapperState {
+    /**
+     * Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
+     */
+    aggregateAttributes?: pulumi.Input<boolean>;
     /**
      * The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
      */
@@ -210,6 +220,10 @@ export interface UserAttributeProtocolMapperState {
  * The set of arguments for constructing a UserAttributeProtocolMapper resource.
  */
 export interface UserAttributeProtocolMapperArgs {
+    /**
+     * Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
+     */
+    aggregateAttributes?: pulumi.Input<boolean>;
     /**
      * The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
      */

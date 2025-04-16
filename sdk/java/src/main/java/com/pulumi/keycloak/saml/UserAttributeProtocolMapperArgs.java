@@ -6,6 +6,7 @@ package com.pulumi.keycloak.saml;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -15,6 +16,21 @@ import javax.annotation.Nullable;
 public final class UserAttributeProtocolMapperArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final UserAttributeProtocolMapperArgs Empty = new UserAttributeProtocolMapperArgs();
+
+    /**
+     * Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
+     * 
+     */
+    @Import(name="aggregateAttributes")
+    private @Nullable Output<Boolean> aggregateAttributes;
+
+    /**
+     * @return Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
+     * 
+     */
+    public Optional<Output<Boolean>> aggregateAttributes() {
+        return Optional.ofNullable(this.aggregateAttributes);
+    }
 
     /**
      * The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
@@ -139,6 +155,7 @@ public final class UserAttributeProtocolMapperArgs extends com.pulumi.resources.
     private UserAttributeProtocolMapperArgs() {}
 
     private UserAttributeProtocolMapperArgs(UserAttributeProtocolMapperArgs $) {
+        this.aggregateAttributes = $.aggregateAttributes;
         this.clientId = $.clientId;
         this.clientScopeId = $.clientScopeId;
         this.friendlyName = $.friendlyName;
@@ -165,6 +182,27 @@ public final class UserAttributeProtocolMapperArgs extends com.pulumi.resources.
 
         public Builder(UserAttributeProtocolMapperArgs defaults) {
             $ = new UserAttributeProtocolMapperArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param aggregateAttributes Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder aggregateAttributes(@Nullable Output<Boolean> aggregateAttributes) {
+            $.aggregateAttributes = aggregateAttributes;
+            return this;
+        }
+
+        /**
+         * @param aggregateAttributes Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder aggregateAttributes(Boolean aggregateAttributes) {
+            return aggregateAttributes(Output.of(aggregateAttributes));
         }
 
         /**

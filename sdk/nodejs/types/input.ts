@@ -133,6 +133,7 @@ export interface GetRealmWebAuthnPasswordlessPolicy {
     authenticatorAttachment?: string;
     avoidSameAuthenticatorRegister?: boolean;
     createTimeout?: number;
+    extraOrigins?: string[];
     relyingPartyEntityName?: string;
     relyingPartyId?: string;
     /**
@@ -161,6 +162,7 @@ export interface GetRealmWebAuthnPasswordlessPolicyArgs {
     authenticatorAttachment?: pulumi.Input<string>;
     avoidSameAuthenticatorRegister?: pulumi.Input<boolean>;
     createTimeout?: pulumi.Input<number>;
+    extraOrigins?: pulumi.Input<pulumi.Input<string>[]>;
     relyingPartyEntityName?: pulumi.Input<string>;
     relyingPartyId?: pulumi.Input<string>;
     /**
@@ -189,6 +191,7 @@ export interface GetRealmWebAuthnPolicy {
     authenticatorAttachment?: string;
     avoidSameAuthenticatorRegister?: boolean;
     createTimeout?: number;
+    extraOrigins?: string[];
     relyingPartyEntityName?: string;
     relyingPartyId?: string;
     /**
@@ -217,6 +220,7 @@ export interface GetRealmWebAuthnPolicyArgs {
     authenticatorAttachment?: pulumi.Input<string>;
     avoidSameAuthenticatorRegister?: pulumi.Input<boolean>;
     createTimeout?: pulumi.Input<number>;
+    extraOrigins?: pulumi.Input<pulumi.Input<string>[]>;
     relyingPartyEntityName?: pulumi.Input<string>;
     relyingPartyId?: pulumi.Input<string>;
     /**
@@ -438,6 +442,10 @@ export interface RealmUserProfileAttribute {
      * A list of groups.
      */
     group?: pulumi.Input<string>;
+    /**
+     * If the attribute supports multiple values. Defaults to `false`.
+     */
+    multiValued?: pulumi.Input<boolean>;
     name: pulumi.Input<string>;
     /**
      * The permissions configuration information.
@@ -511,6 +519,10 @@ export interface RealmWebAuthnPasswordlessPolicy {
      */
     createTimeout?: pulumi.Input<number>;
     /**
+     * A set of extra origins for non-web applications.
+     */
+    extraOrigins?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
      */
     relyingPartyEntityName?: pulumi.Input<string>;
@@ -553,6 +565,10 @@ export interface RealmWebAuthnPolicy {
      * The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
      */
     createTimeout?: pulumi.Input<number>;
+    /**
+     * A set of extra origins for non-web applications.
+     */
+    extraOrigins?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
      */
@@ -709,6 +725,11 @@ export namespace openid {
          * Dictates how policies are enforced when evaluating authorization requests. Can be one of `ENFORCING`, `PERMISSIVE`, or `DISABLED`.
          */
         policyEnforcementMode: pulumi.Input<string>;
+    }
+
+    export interface ClientAuthorizationClientScopePolicyScope {
+        id: pulumi.Input<string>;
+        required?: pulumi.Input<boolean>;
     }
 
     export interface ClientGroupPolicyGroup {

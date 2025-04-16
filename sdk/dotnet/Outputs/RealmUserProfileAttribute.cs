@@ -26,6 +26,10 @@ namespace Pulumi.Keycloak.Outputs
         /// A list of groups.
         /// </summary>
         public readonly string? Group;
+        /// <summary>
+        /// If the attribute supports multiple values. Defaults to `false`.
+        /// </summary>
+        public readonly bool? MultiValued;
         public readonly string Name;
         /// <summary>
         /// The permissions configuration information.
@@ -54,6 +58,8 @@ namespace Pulumi.Keycloak.Outputs
 
             string? group,
 
+            bool? multiValued,
+
             string name,
 
             Outputs.RealmUserProfileAttributePermissions? permissions,
@@ -68,6 +74,7 @@ namespace Pulumi.Keycloak.Outputs
             DisplayName = displayName;
             EnabledWhenScopes = enabledWhenScopes;
             Group = group;
+            MultiValued = multiValued;
             Name = name;
             Permissions = permissions;
             RequiredForRoles = requiredForRoles;

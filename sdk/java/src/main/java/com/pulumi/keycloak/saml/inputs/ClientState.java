@@ -20,6 +20,21 @@ public final class ClientState extends com.pulumi.resources.ResourceArgs {
     public static final ClientState Empty = new ClientState();
 
     /**
+     * Always list this client in the Account UI, even if the user does not have an active session.
+     * 
+     */
+    @Import(name="alwaysDisplayInConsole")
+    private @Nullable Output<Boolean> alwaysDisplayInConsole;
+
+    /**
+     * @return Always list this client in the Account UI, even if the user does not have an active session.
+     * 
+     */
+    public Optional<Output<Boolean>> alwaysDisplayInConsole() {
+        return Optional.ofNullable(this.alwaysDisplayInConsole);
+    }
+
+    /**
      * SAML POST Binding URL for the client&#39;s assertion consumer service (login responses).
      * 
      */
@@ -122,6 +137,21 @@ public final class ClientState extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<Boolean>> clientSignatureRequired() {
         return Optional.ofNullable(this.clientSignatureRequired);
+    }
+
+    /**
+     * When `true`, users have to consent to client access. Defaults to `false`.
+     * 
+     */
+    @Import(name="consentRequired")
+    private @Nullable Output<Boolean> consentRequired;
+
+    /**
+     * @return When `true`, users have to consent to client access. Defaults to `false`.
+     * 
+     */
+    public Optional<Output<Boolean>> consentRequired() {
+        return Optional.ofNullable(this.consentRequired);
     }
 
     /**
@@ -569,6 +599,7 @@ public final class ClientState extends com.pulumi.resources.ResourceArgs {
     private ClientState() {}
 
     private ClientState(ClientState $) {
+        this.alwaysDisplayInConsole = $.alwaysDisplayInConsole;
         this.assertionConsumerPostUrl = $.assertionConsumerPostUrl;
         this.assertionConsumerRedirectUrl = $.assertionConsumerRedirectUrl;
         this.authenticationFlowBindingOverrides = $.authenticationFlowBindingOverrides;
@@ -576,6 +607,7 @@ public final class ClientState extends com.pulumi.resources.ResourceArgs {
         this.canonicalizationMethod = $.canonicalizationMethod;
         this.clientId = $.clientId;
         this.clientSignatureRequired = $.clientSignatureRequired;
+        this.consentRequired = $.consentRequired;
         this.description = $.description;
         this.enabled = $.enabled;
         this.encryptAssertions = $.encryptAssertions;
@@ -624,6 +656,27 @@ public final class ClientState extends com.pulumi.resources.ResourceArgs {
 
         public Builder(ClientState defaults) {
             $ = new ClientState(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param alwaysDisplayInConsole Always list this client in the Account UI, even if the user does not have an active session.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder alwaysDisplayInConsole(@Nullable Output<Boolean> alwaysDisplayInConsole) {
+            $.alwaysDisplayInConsole = alwaysDisplayInConsole;
+            return this;
+        }
+
+        /**
+         * @param alwaysDisplayInConsole Always list this client in the Account UI, even if the user does not have an active session.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder alwaysDisplayInConsole(Boolean alwaysDisplayInConsole) {
+            return alwaysDisplayInConsole(Output.of(alwaysDisplayInConsole));
         }
 
         /**
@@ -771,6 +824,27 @@ public final class ClientState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder clientSignatureRequired(Boolean clientSignatureRequired) {
             return clientSignatureRequired(Output.of(clientSignatureRequired));
+        }
+
+        /**
+         * @param consentRequired When `true`, users have to consent to client access. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder consentRequired(@Nullable Output<Boolean> consentRequired) {
+            $.consentRequired = consentRequired;
+            return this;
+        }
+
+        /**
+         * @param consentRequired When `true`, users have to consent to client access. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder consentRequired(Boolean consentRequired) {
+            return consentRequired(Output.of(consentRequired));
         }
 
         /**

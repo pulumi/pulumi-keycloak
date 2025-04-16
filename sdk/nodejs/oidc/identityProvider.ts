@@ -115,7 +115,7 @@ export class IdentityProvider extends pulumi.CustomResource {
     /**
      * Display name for the identity provider in the GUI.
      */
-    public readonly displayName!: pulumi.Output<string | undefined>;
+    public readonly displayName!: pulumi.Output<string>;
     /**
      * When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
      */

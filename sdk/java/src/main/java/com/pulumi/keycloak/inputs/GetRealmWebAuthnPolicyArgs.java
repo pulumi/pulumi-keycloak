@@ -68,6 +68,13 @@ public final class GetRealmWebAuthnPolicyArgs extends com.pulumi.resources.Resou
         return this.createTimeout;
     }
 
+    @Import(name="extraOrigins", required=true)
+    private Output<List<String>> extraOrigins;
+
+    public Output<List<String>> extraOrigins() {
+        return this.extraOrigins;
+    }
+
     @Import(name="relyingPartyEntityName", required=true)
     private Output<String> relyingPartyEntityName;
 
@@ -135,6 +142,7 @@ public final class GetRealmWebAuthnPolicyArgs extends com.pulumi.resources.Resou
         this.authenticatorAttachment = $.authenticatorAttachment;
         this.avoidSameAuthenticatorRegister = $.avoidSameAuthenticatorRegister;
         this.createTimeout = $.createTimeout;
+        this.extraOrigins = $.extraOrigins;
         this.relyingPartyEntityName = $.relyingPartyEntityName;
         this.relyingPartyId = $.relyingPartyId;
         this.requireResidentKey = $.requireResidentKey;
@@ -231,6 +239,19 @@ public final class GetRealmWebAuthnPolicyArgs extends com.pulumi.resources.Resou
 
         public Builder createTimeout(Integer createTimeout) {
             return createTimeout(Output.of(createTimeout));
+        }
+
+        public Builder extraOrigins(Output<List<String>> extraOrigins) {
+            $.extraOrigins = extraOrigins;
+            return this;
+        }
+
+        public Builder extraOrigins(List<String> extraOrigins) {
+            return extraOrigins(Output.of(extraOrigins));
+        }
+
+        public Builder extraOrigins(String... extraOrigins) {
+            return extraOrigins(List.of(extraOrigins));
         }
 
         public Builder relyingPartyEntityName(Output<String> relyingPartyEntityName) {
@@ -339,6 +360,9 @@ public final class GetRealmWebAuthnPolicyArgs extends com.pulumi.resources.Resou
             }
             if ($.createTimeout == null) {
                 throw new MissingRequiredPropertyException("GetRealmWebAuthnPolicyArgs", "createTimeout");
+            }
+            if ($.extraOrigins == null) {
+                throw new MissingRequiredPropertyException("GetRealmWebAuthnPolicyArgs", "extraOrigins");
             }
             if ($.relyingPartyEntityName == null) {
                 throw new MissingRequiredPropertyException("GetRealmWebAuthnPolicyArgs", "relyingPartyEntityName");

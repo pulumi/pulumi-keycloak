@@ -100,6 +100,10 @@ export class Bindings extends pulumi.CustomResource {
      */
     public readonly dockerAuthenticationFlow!: pulumi.Output<string>;
     /**
+     * The alias of the flow to assign to the realm FirstBrokerLoginFlow (since Keycloak 24).
+     */
+    public readonly firstBrokerLoginFlow!: pulumi.Output<string>;
+    /**
      * The realm the authentication flow binding exists in.
      */
     public readonly realmId!: pulumi.Output<string>;
@@ -129,6 +133,7 @@ export class Bindings extends pulumi.CustomResource {
             resourceInputs["clientAuthenticationFlow"] = state ? state.clientAuthenticationFlow : undefined;
             resourceInputs["directGrantFlow"] = state ? state.directGrantFlow : undefined;
             resourceInputs["dockerAuthenticationFlow"] = state ? state.dockerAuthenticationFlow : undefined;
+            resourceInputs["firstBrokerLoginFlow"] = state ? state.firstBrokerLoginFlow : undefined;
             resourceInputs["realmId"] = state ? state.realmId : undefined;
             resourceInputs["registrationFlow"] = state ? state.registrationFlow : undefined;
             resourceInputs["resetCredentialsFlow"] = state ? state.resetCredentialsFlow : undefined;
@@ -141,6 +146,7 @@ export class Bindings extends pulumi.CustomResource {
             resourceInputs["clientAuthenticationFlow"] = args ? args.clientAuthenticationFlow : undefined;
             resourceInputs["directGrantFlow"] = args ? args.directGrantFlow : undefined;
             resourceInputs["dockerAuthenticationFlow"] = args ? args.dockerAuthenticationFlow : undefined;
+            resourceInputs["firstBrokerLoginFlow"] = args ? args.firstBrokerLoginFlow : undefined;
             resourceInputs["realmId"] = args ? args.realmId : undefined;
             resourceInputs["registrationFlow"] = args ? args.registrationFlow : undefined;
             resourceInputs["resetCredentialsFlow"] = args ? args.resetCredentialsFlow : undefined;
@@ -170,6 +176,10 @@ export interface BindingsState {
      * The alias of the flow to assign to the realm DockerAuthenticationFlow.
      */
     dockerAuthenticationFlow?: pulumi.Input<string>;
+    /**
+     * The alias of the flow to assign to the realm FirstBrokerLoginFlow (since Keycloak 24).
+     */
+    firstBrokerLoginFlow?: pulumi.Input<string>;
     /**
      * The realm the authentication flow binding exists in.
      */
@@ -204,6 +214,10 @@ export interface BindingsArgs {
      * The alias of the flow to assign to the realm DockerAuthenticationFlow.
      */
     dockerAuthenticationFlow?: pulumi.Input<string>;
+    /**
+     * The alias of the flow to assign to the realm FirstBrokerLoginFlow (since Keycloak 24).
+     */
+    firstBrokerLoginFlow?: pulumi.Input<string>;
     /**
      * The realm the authentication flow binding exists in.
      */

@@ -25,6 +25,7 @@ class BindingsArgs:
                  client_authentication_flow: Optional[pulumi.Input[builtins.str]] = None,
                  direct_grant_flow: Optional[pulumi.Input[builtins.str]] = None,
                  docker_authentication_flow: Optional[pulumi.Input[builtins.str]] = None,
+                 first_broker_login_flow: Optional[pulumi.Input[builtins.str]] = None,
                  registration_flow: Optional[pulumi.Input[builtins.str]] = None,
                  reset_credentials_flow: Optional[pulumi.Input[builtins.str]] = None):
         """
@@ -34,6 +35,7 @@ class BindingsArgs:
         :param pulumi.Input[builtins.str] client_authentication_flow: The alias of the flow to assign to the realm ClientAuthenticationFlow.
         :param pulumi.Input[builtins.str] direct_grant_flow: The alias of the flow to assign to the realm DirectGrantFlow.
         :param pulumi.Input[builtins.str] docker_authentication_flow: The alias of the flow to assign to the realm DockerAuthenticationFlow.
+        :param pulumi.Input[builtins.str] first_broker_login_flow: The alias of the flow to assign to the realm FirstBrokerLoginFlow (since Keycloak 24).
         :param pulumi.Input[builtins.str] registration_flow: The alias of the flow to assign to the realm RegistrationFlow.
         :param pulumi.Input[builtins.str] reset_credentials_flow: The alias of the flow to assign to the realm ResetCredentialsFlow.
         """
@@ -46,6 +48,8 @@ class BindingsArgs:
             pulumi.set(__self__, "direct_grant_flow", direct_grant_flow)
         if docker_authentication_flow is not None:
             pulumi.set(__self__, "docker_authentication_flow", docker_authentication_flow)
+        if first_broker_login_flow is not None:
+            pulumi.set(__self__, "first_broker_login_flow", first_broker_login_flow)
         if registration_flow is not None:
             pulumi.set(__self__, "registration_flow", registration_flow)
         if reset_credentials_flow is not None:
@@ -112,6 +116,18 @@ class BindingsArgs:
         pulumi.set(self, "docker_authentication_flow", value)
 
     @property
+    @pulumi.getter(name="firstBrokerLoginFlow")
+    def first_broker_login_flow(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The alias of the flow to assign to the realm FirstBrokerLoginFlow (since Keycloak 24).
+        """
+        return pulumi.get(self, "first_broker_login_flow")
+
+    @first_broker_login_flow.setter
+    def first_broker_login_flow(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "first_broker_login_flow", value)
+
+    @property
     @pulumi.getter(name="registrationFlow")
     def registration_flow(self) -> Optional[pulumi.Input[builtins.str]]:
         """
@@ -143,6 +159,7 @@ class _BindingsState:
                  client_authentication_flow: Optional[pulumi.Input[builtins.str]] = None,
                  direct_grant_flow: Optional[pulumi.Input[builtins.str]] = None,
                  docker_authentication_flow: Optional[pulumi.Input[builtins.str]] = None,
+                 first_broker_login_flow: Optional[pulumi.Input[builtins.str]] = None,
                  realm_id: Optional[pulumi.Input[builtins.str]] = None,
                  registration_flow: Optional[pulumi.Input[builtins.str]] = None,
                  reset_credentials_flow: Optional[pulumi.Input[builtins.str]] = None):
@@ -152,6 +169,7 @@ class _BindingsState:
         :param pulumi.Input[builtins.str] client_authentication_flow: The alias of the flow to assign to the realm ClientAuthenticationFlow.
         :param pulumi.Input[builtins.str] direct_grant_flow: The alias of the flow to assign to the realm DirectGrantFlow.
         :param pulumi.Input[builtins.str] docker_authentication_flow: The alias of the flow to assign to the realm DockerAuthenticationFlow.
+        :param pulumi.Input[builtins.str] first_broker_login_flow: The alias of the flow to assign to the realm FirstBrokerLoginFlow (since Keycloak 24).
         :param pulumi.Input[builtins.str] realm_id: The realm the authentication flow binding exists in.
         :param pulumi.Input[builtins.str] registration_flow: The alias of the flow to assign to the realm RegistrationFlow.
         :param pulumi.Input[builtins.str] reset_credentials_flow: The alias of the flow to assign to the realm ResetCredentialsFlow.
@@ -164,6 +182,8 @@ class _BindingsState:
             pulumi.set(__self__, "direct_grant_flow", direct_grant_flow)
         if docker_authentication_flow is not None:
             pulumi.set(__self__, "docker_authentication_flow", docker_authentication_flow)
+        if first_broker_login_flow is not None:
+            pulumi.set(__self__, "first_broker_login_flow", first_broker_login_flow)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
         if registration_flow is not None:
@@ -220,6 +240,18 @@ class _BindingsState:
         pulumi.set(self, "docker_authentication_flow", value)
 
     @property
+    @pulumi.getter(name="firstBrokerLoginFlow")
+    def first_broker_login_flow(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The alias of the flow to assign to the realm FirstBrokerLoginFlow (since Keycloak 24).
+        """
+        return pulumi.get(self, "first_broker_login_flow")
+
+    @first_broker_login_flow.setter
+    def first_broker_login_flow(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "first_broker_login_flow", value)
+
+    @property
     @pulumi.getter(name="realmId")
     def realm_id(self) -> Optional[pulumi.Input[builtins.str]]:
         """
@@ -265,6 +297,7 @@ class Bindings(pulumi.CustomResource):
                  client_authentication_flow: Optional[pulumi.Input[builtins.str]] = None,
                  direct_grant_flow: Optional[pulumi.Input[builtins.str]] = None,
                  docker_authentication_flow: Optional[pulumi.Input[builtins.str]] = None,
+                 first_broker_login_flow: Optional[pulumi.Input[builtins.str]] = None,
                  realm_id: Optional[pulumi.Input[builtins.str]] = None,
                  registration_flow: Optional[pulumi.Input[builtins.str]] = None,
                  reset_credentials_flow: Optional[pulumi.Input[builtins.str]] = None,
@@ -320,6 +353,7 @@ class Bindings(pulumi.CustomResource):
         :param pulumi.Input[builtins.str] client_authentication_flow: The alias of the flow to assign to the realm ClientAuthenticationFlow.
         :param pulumi.Input[builtins.str] direct_grant_flow: The alias of the flow to assign to the realm DirectGrantFlow.
         :param pulumi.Input[builtins.str] docker_authentication_flow: The alias of the flow to assign to the realm DockerAuthenticationFlow.
+        :param pulumi.Input[builtins.str] first_broker_login_flow: The alias of the flow to assign to the realm FirstBrokerLoginFlow (since Keycloak 24).
         :param pulumi.Input[builtins.str] realm_id: The realm the authentication flow binding exists in.
         :param pulumi.Input[builtins.str] registration_flow: The alias of the flow to assign to the realm RegistrationFlow.
         :param pulumi.Input[builtins.str] reset_credentials_flow: The alias of the flow to assign to the realm ResetCredentialsFlow.
@@ -394,6 +428,7 @@ class Bindings(pulumi.CustomResource):
                  client_authentication_flow: Optional[pulumi.Input[builtins.str]] = None,
                  direct_grant_flow: Optional[pulumi.Input[builtins.str]] = None,
                  docker_authentication_flow: Optional[pulumi.Input[builtins.str]] = None,
+                 first_broker_login_flow: Optional[pulumi.Input[builtins.str]] = None,
                  realm_id: Optional[pulumi.Input[builtins.str]] = None,
                  registration_flow: Optional[pulumi.Input[builtins.str]] = None,
                  reset_credentials_flow: Optional[pulumi.Input[builtins.str]] = None,
@@ -410,6 +445,7 @@ class Bindings(pulumi.CustomResource):
             __props__.__dict__["client_authentication_flow"] = client_authentication_flow
             __props__.__dict__["direct_grant_flow"] = direct_grant_flow
             __props__.__dict__["docker_authentication_flow"] = docker_authentication_flow
+            __props__.__dict__["first_broker_login_flow"] = first_broker_login_flow
             if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
@@ -429,6 +465,7 @@ class Bindings(pulumi.CustomResource):
             client_authentication_flow: Optional[pulumi.Input[builtins.str]] = None,
             direct_grant_flow: Optional[pulumi.Input[builtins.str]] = None,
             docker_authentication_flow: Optional[pulumi.Input[builtins.str]] = None,
+            first_broker_login_flow: Optional[pulumi.Input[builtins.str]] = None,
             realm_id: Optional[pulumi.Input[builtins.str]] = None,
             registration_flow: Optional[pulumi.Input[builtins.str]] = None,
             reset_credentials_flow: Optional[pulumi.Input[builtins.str]] = None) -> 'Bindings':
@@ -443,6 +480,7 @@ class Bindings(pulumi.CustomResource):
         :param pulumi.Input[builtins.str] client_authentication_flow: The alias of the flow to assign to the realm ClientAuthenticationFlow.
         :param pulumi.Input[builtins.str] direct_grant_flow: The alias of the flow to assign to the realm DirectGrantFlow.
         :param pulumi.Input[builtins.str] docker_authentication_flow: The alias of the flow to assign to the realm DockerAuthenticationFlow.
+        :param pulumi.Input[builtins.str] first_broker_login_flow: The alias of the flow to assign to the realm FirstBrokerLoginFlow (since Keycloak 24).
         :param pulumi.Input[builtins.str] realm_id: The realm the authentication flow binding exists in.
         :param pulumi.Input[builtins.str] registration_flow: The alias of the flow to assign to the realm RegistrationFlow.
         :param pulumi.Input[builtins.str] reset_credentials_flow: The alias of the flow to assign to the realm ResetCredentialsFlow.
@@ -455,6 +493,7 @@ class Bindings(pulumi.CustomResource):
         __props__.__dict__["client_authentication_flow"] = client_authentication_flow
         __props__.__dict__["direct_grant_flow"] = direct_grant_flow
         __props__.__dict__["docker_authentication_flow"] = docker_authentication_flow
+        __props__.__dict__["first_broker_login_flow"] = first_broker_login_flow
         __props__.__dict__["realm_id"] = realm_id
         __props__.__dict__["registration_flow"] = registration_flow
         __props__.__dict__["reset_credentials_flow"] = reset_credentials_flow
@@ -491,6 +530,14 @@ class Bindings(pulumi.CustomResource):
         The alias of the flow to assign to the realm DockerAuthenticationFlow.
         """
         return pulumi.get(self, "docker_authentication_flow")
+
+    @property
+    @pulumi.getter(name="firstBrokerLoginFlow")
+    def first_broker_login_flow(self) -> pulumi.Output[builtins.str]:
+        """
+        The alias of the flow to assign to the realm FirstBrokerLoginFlow (since Keycloak 24).
+        """
+        return pulumi.get(self, "first_broker_login_flow")
 
     @property
     @pulumi.getter(name="realmId")

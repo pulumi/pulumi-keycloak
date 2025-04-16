@@ -1481,7 +1481,7 @@ class IdentityProvider(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="displayName")
-    def display_name(self) -> pulumi.Output[Optional[builtins.str]]:
+    def display_name(self) -> pulumi.Output[builtins.str]:
         """
         Display name for the identity provider in the GUI.
         """

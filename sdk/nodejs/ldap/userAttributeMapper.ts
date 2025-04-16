@@ -96,6 +96,10 @@ export class UserAttributeMapper extends pulumi.CustomResource {
      */
     public readonly attributeDefaultValue!: pulumi.Output<string | undefined>;
     /**
+     * When `true`, an empty default value is forced for mandatory attributes even when a default value is not specified. Defaults to `true`.
+     */
+    public readonly attributeForceDefault!: pulumi.Output<boolean | undefined>;
+    /**
      * Should be true for binary LDAP attributes.
      */
     public readonly isBinaryAttribute!: pulumi.Output<boolean | undefined>;
@@ -143,6 +147,7 @@ export class UserAttributeMapper extends pulumi.CustomResource {
             const state = argsOrState as UserAttributeMapperState | undefined;
             resourceInputs["alwaysReadValueFromLdap"] = state ? state.alwaysReadValueFromLdap : undefined;
             resourceInputs["attributeDefaultValue"] = state ? state.attributeDefaultValue : undefined;
+            resourceInputs["attributeForceDefault"] = state ? state.attributeForceDefault : undefined;
             resourceInputs["isBinaryAttribute"] = state ? state.isBinaryAttribute : undefined;
             resourceInputs["isMandatoryInLdap"] = state ? state.isMandatoryInLdap : undefined;
             resourceInputs["ldapAttribute"] = state ? state.ldapAttribute : undefined;
@@ -167,6 +172,7 @@ export class UserAttributeMapper extends pulumi.CustomResource {
             }
             resourceInputs["alwaysReadValueFromLdap"] = args ? args.alwaysReadValueFromLdap : undefined;
             resourceInputs["attributeDefaultValue"] = args ? args.attributeDefaultValue : undefined;
+            resourceInputs["attributeForceDefault"] = args ? args.attributeForceDefault : undefined;
             resourceInputs["isBinaryAttribute"] = args ? args.isBinaryAttribute : undefined;
             resourceInputs["isMandatoryInLdap"] = args ? args.isMandatoryInLdap : undefined;
             resourceInputs["ldapAttribute"] = args ? args.ldapAttribute : undefined;
@@ -193,6 +199,10 @@ export interface UserAttributeMapperState {
      * Default value to set in LDAP if `isMandatoryInLdap` is true and the value is empty.
      */
     attributeDefaultValue?: pulumi.Input<string>;
+    /**
+     * When `true`, an empty default value is forced for mandatory attributes even when a default value is not specified. Defaults to `true`.
+     */
+    attributeForceDefault?: pulumi.Input<boolean>;
     /**
      * Should be true for binary LDAP attributes.
      */
@@ -239,6 +249,10 @@ export interface UserAttributeMapperArgs {
      * Default value to set in LDAP if `isMandatoryInLdap` is true and the value is empty.
      */
     attributeDefaultValue?: pulumi.Input<string>;
+    /**
+     * When `true`, an empty default value is forced for mandatory attributes even when a default value is not specified. Defaults to `true`.
+     */
+    attributeForceDefault?: pulumi.Input<boolean>;
     /**
      * Should be true for binary LDAP attributes.
      */

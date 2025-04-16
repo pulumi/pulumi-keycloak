@@ -61,6 +61,7 @@ func LookupClient(ctx *pulumi.Context, args *LookupClientArgs, opts ...pulumi.In
 
 // A collection of arguments for invoking getClient.
 type LookupClientArgs struct {
+	AlwaysDisplayInConsole *bool `pulumi:"alwaysDisplayInConsole"`
 	// The client id (not its unique ID).
 	ClientId                              string            `pulumi:"clientId"`
 	ConsentScreenText                     *string           `pulumi:"consentScreenText"`
@@ -78,6 +79,7 @@ type LookupClientResult struct {
 	AccessTokenLifespan                    string                                       `pulumi:"accessTokenLifespan"`
 	AccessType                             string                                       `pulumi:"accessType"`
 	AdminUrl                               string                                       `pulumi:"adminUrl"`
+	AlwaysDisplayInConsole                 *bool                                        `pulumi:"alwaysDisplayInConsole"`
 	AuthenticationFlowBindingOverrides     []GetClientAuthenticationFlowBindingOverride `pulumi:"authenticationFlowBindingOverrides"`
 	Authorizations                         []GetClientAuthorization                     `pulumi:"authorizations"`
 	BackchannelLogoutRevokeOfflineSessions bool                                         `pulumi:"backchannelLogoutRevokeOfflineSessions"`
@@ -97,6 +99,7 @@ type LookupClientResult struct {
 	DirectAccessGrantsEnabled              bool                                         `pulumi:"directAccessGrantsEnabled"`
 	DisplayOnConsentScreen                 *bool                                        `pulumi:"displayOnConsentScreen"`
 	Enabled                                bool                                         `pulumi:"enabled"`
+	ExcludeIssuerFromAuthResponse          bool                                         `pulumi:"excludeIssuerFromAuthResponse"`
 	ExcludeSessionStateFromAuthResponse    bool                                         `pulumi:"excludeSessionStateFromAuthResponse"`
 	ExtraConfig                            map[string]string                            `pulumi:"extraConfig"`
 	FrontchannelLogoutEnabled              bool                                         `pulumi:"frontchannelLogoutEnabled"`
@@ -135,6 +138,7 @@ func LookupClientOutput(ctx *pulumi.Context, args LookupClientOutputArgs, opts .
 
 // A collection of arguments for invoking getClient.
 type LookupClientOutputArgs struct {
+	AlwaysDisplayInConsole pulumi.BoolPtrInput `pulumi:"alwaysDisplayInConsole"`
 	// The client id (not its unique ID).
 	ClientId                              pulumi.StringInput    `pulumi:"clientId"`
 	ConsentScreenText                     pulumi.StringPtrInput `pulumi:"consentScreenText"`
@@ -176,6 +180,10 @@ func (o LookupClientResultOutput) AccessType() pulumi.StringOutput {
 
 func (o LookupClientResultOutput) AdminUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClientResult) string { return v.AdminUrl }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) AlwaysDisplayInConsole() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LookupClientResult) *bool { return v.AlwaysDisplayInConsole }).(pulumi.BoolPtrOutput)
 }
 
 func (o LookupClientResultOutput) AuthenticationFlowBindingOverrides() GetClientAuthenticationFlowBindingOverrideArrayOutput {
@@ -254,6 +262,10 @@ func (o LookupClientResultOutput) DisplayOnConsentScreen() pulumi.BoolPtrOutput 
 
 func (o LookupClientResultOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupClientResult) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+func (o LookupClientResultOutput) ExcludeIssuerFromAuthResponse() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupClientResult) bool { return v.ExcludeIssuerFromAuthResponse }).(pulumi.BoolOutput)
 }
 
 func (o LookupClientResultOutput) ExcludeSessionStateFromAuthResponse() pulumi.BoolOutput {

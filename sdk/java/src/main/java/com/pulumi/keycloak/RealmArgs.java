@@ -266,6 +266,21 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Which flow should be used for FirstBrokerLoginFlow
+     * 
+     */
+    @Import(name="firstBrokerLoginFlow")
+    private @Nullable Output<String> firstBrokerLoginFlow;
+
+    /**
+     * @return Which flow should be used for FirstBrokerLoginFlow
+     * 
+     */
+    public Optional<Output<String>> firstBrokerLoginFlow() {
+        return Optional.ofNullable(this.firstBrokerLoginFlow);
+    }
+
+    /**
      * When specified, this will be used as the realm&#39;s internal ID within Keycloak. When not specified, the realm&#39;s internal ID will be set to the realm&#39;s name.
      * 
      */
@@ -334,6 +349,21 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
 
     public Optional<Output<Boolean>> offlineSessionMaxLifespanEnabled() {
         return Optional.ofNullable(this.offlineSessionMaxLifespanEnabled);
+    }
+
+    /**
+     * When `true`, organization support is enabled. Defaults to `false`.
+     * 
+     */
+    @Import(name="organizationsEnabled")
+    private @Nullable Output<Boolean> organizationsEnabled;
+
+    /**
+     * @return When `true`, organization support is enabled. Defaults to `false`.
+     * 
+     */
+    public Optional<Output<Boolean>> organizationsEnabled() {
+        return Optional.ofNullable(this.organizationsEnabled);
     }
 
     @Import(name="otpPolicy")
@@ -570,6 +600,7 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
         this.editUsernameAllowed = $.editUsernameAllowed;
         this.emailTheme = $.emailTheme;
         this.enabled = $.enabled;
+        this.firstBrokerLoginFlow = $.firstBrokerLoginFlow;
         this.internalId = $.internalId;
         this.internationalization = $.internationalization;
         this.loginTheme = $.loginTheme;
@@ -579,6 +610,7 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
         this.offlineSessionIdleTimeout = $.offlineSessionIdleTimeout;
         this.offlineSessionMaxLifespan = $.offlineSessionMaxLifespan;
         this.offlineSessionMaxLifespanEnabled = $.offlineSessionMaxLifespanEnabled;
+        this.organizationsEnabled = $.organizationsEnabled;
         this.otpPolicy = $.otpPolicy;
         this.passwordPolicy = $.passwordPolicy;
         this.realm = $.realm;
@@ -951,6 +983,27 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param firstBrokerLoginFlow Which flow should be used for FirstBrokerLoginFlow
+         * 
+         * @return builder
+         * 
+         */
+        public Builder firstBrokerLoginFlow(@Nullable Output<String> firstBrokerLoginFlow) {
+            $.firstBrokerLoginFlow = firstBrokerLoginFlow;
+            return this;
+        }
+
+        /**
+         * @param firstBrokerLoginFlow Which flow should be used for FirstBrokerLoginFlow
+         * 
+         * @return builder
+         * 
+         */
+        public Builder firstBrokerLoginFlow(String firstBrokerLoginFlow) {
+            return firstBrokerLoginFlow(Output.of(firstBrokerLoginFlow));
+        }
+
+        /**
          * @param internalId When specified, this will be used as the realm&#39;s internal ID within Keycloak. When not specified, the realm&#39;s internal ID will be set to the realm&#39;s name.
          * 
          * @return builder
@@ -1041,6 +1094,27 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
 
         public Builder offlineSessionMaxLifespanEnabled(Boolean offlineSessionMaxLifespanEnabled) {
             return offlineSessionMaxLifespanEnabled(Output.of(offlineSessionMaxLifespanEnabled));
+        }
+
+        /**
+         * @param organizationsEnabled When `true`, organization support is enabled. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder organizationsEnabled(@Nullable Output<Boolean> organizationsEnabled) {
+            $.organizationsEnabled = organizationsEnabled;
+            return this;
+        }
+
+        /**
+         * @param organizationsEnabled When `true`, organization support is enabled. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder organizationsEnabled(Boolean organizationsEnabled) {
+            return organizationsEnabled(Output.of(organizationsEnabled));
         }
 
         public Builder otpPolicy(@Nullable Output<RealmOtpPolicyArgs> otpPolicy) {

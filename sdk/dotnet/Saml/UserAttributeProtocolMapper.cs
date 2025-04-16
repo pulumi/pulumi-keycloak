@@ -78,6 +78,12 @@ namespace Pulumi.Keycloak.Saml
     public partial class UserAttributeProtocolMapper : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
+        /// </summary>
+        [Output("aggregateAttributes")]
+        public Output<bool?> AggregateAttributes { get; private set; } = null!;
+
+        /// <summary>
         /// The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
         /// </summary>
         [Output("clientId")]
@@ -172,6 +178,12 @@ namespace Pulumi.Keycloak.Saml
     public sealed class UserAttributeProtocolMapperArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
+        /// </summary>
+        [Input("aggregateAttributes")]
+        public Input<bool>? AggregateAttributes { get; set; }
+
+        /// <summary>
         /// The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
         /// </summary>
         [Input("clientId")]
@@ -227,6 +239,12 @@ namespace Pulumi.Keycloak.Saml
 
     public sealed class UserAttributeProtocolMapperState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
+        /// </summary>
+        [Input("aggregateAttributes")]
+        public Input<bool>? AggregateAttributes { get; set; }
+
         /// <summary>
         /// The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
         /// </summary>

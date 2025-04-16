@@ -98,6 +98,10 @@ export class Client extends pulumi.CustomResource {
      */
     public readonly adminUrl!: pulumi.Output<string>;
     /**
+     * Always list this client in the Account UI, even if the user does not have an active session.
+     */
+    public readonly alwaysDisplayInConsole!: pulumi.Output<boolean | undefined>;
+    /**
      * Override realm authentication flow bindings
      */
     public readonly authenticationFlowBindingOverrides!: pulumi.Output<outputs.openid.ClientAuthenticationFlowBindingOverrides | undefined>;
@@ -177,6 +181,10 @@ export class Client extends pulumi.CustomResource {
      * When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
      */
     public readonly enabled!: pulumi.Output<boolean | undefined>;
+    /**
+     * When `true`, the parameter `iss` will not be included in OpenID Connect Authentication Response.
+     */
+    public readonly excludeIssuerFromAuthResponse!: pulumi.Output<boolean>;
     /**
      * When `true`, the parameter `sessionState` will not be included in OpenID Connect Authentication Response.
      */
@@ -289,6 +297,7 @@ export class Client extends pulumi.CustomResource {
             resourceInputs["accessTokenLifespan"] = state ? state.accessTokenLifespan : undefined;
             resourceInputs["accessType"] = state ? state.accessType : undefined;
             resourceInputs["adminUrl"] = state ? state.adminUrl : undefined;
+            resourceInputs["alwaysDisplayInConsole"] = state ? state.alwaysDisplayInConsole : undefined;
             resourceInputs["authenticationFlowBindingOverrides"] = state ? state.authenticationFlowBindingOverrides : undefined;
             resourceInputs["authorization"] = state ? state.authorization : undefined;
             resourceInputs["backchannelLogoutRevokeOfflineSessions"] = state ? state.backchannelLogoutRevokeOfflineSessions : undefined;
@@ -308,6 +317,7 @@ export class Client extends pulumi.CustomResource {
             resourceInputs["directAccessGrantsEnabled"] = state ? state.directAccessGrantsEnabled : undefined;
             resourceInputs["displayOnConsentScreen"] = state ? state.displayOnConsentScreen : undefined;
             resourceInputs["enabled"] = state ? state.enabled : undefined;
+            resourceInputs["excludeIssuerFromAuthResponse"] = state ? state.excludeIssuerFromAuthResponse : undefined;
             resourceInputs["excludeSessionStateFromAuthResponse"] = state ? state.excludeSessionStateFromAuthResponse : undefined;
             resourceInputs["extraConfig"] = state ? state.extraConfig : undefined;
             resourceInputs["frontchannelLogoutEnabled"] = state ? state.frontchannelLogoutEnabled : undefined;
@@ -346,6 +356,7 @@ export class Client extends pulumi.CustomResource {
             resourceInputs["accessTokenLifespan"] = args ? args.accessTokenLifespan : undefined;
             resourceInputs["accessType"] = args ? args.accessType : undefined;
             resourceInputs["adminUrl"] = args ? args.adminUrl : undefined;
+            resourceInputs["alwaysDisplayInConsole"] = args ? args.alwaysDisplayInConsole : undefined;
             resourceInputs["authenticationFlowBindingOverrides"] = args ? args.authenticationFlowBindingOverrides : undefined;
             resourceInputs["authorization"] = args ? args.authorization : undefined;
             resourceInputs["backchannelLogoutRevokeOfflineSessions"] = args ? args.backchannelLogoutRevokeOfflineSessions : undefined;
@@ -365,6 +376,7 @@ export class Client extends pulumi.CustomResource {
             resourceInputs["directAccessGrantsEnabled"] = args ? args.directAccessGrantsEnabled : undefined;
             resourceInputs["displayOnConsentScreen"] = args ? args.displayOnConsentScreen : undefined;
             resourceInputs["enabled"] = args ? args.enabled : undefined;
+            resourceInputs["excludeIssuerFromAuthResponse"] = args ? args.excludeIssuerFromAuthResponse : undefined;
             resourceInputs["excludeSessionStateFromAuthResponse"] = args ? args.excludeSessionStateFromAuthResponse : undefined;
             resourceInputs["extraConfig"] = args ? args.extraConfig : undefined;
             resourceInputs["frontchannelLogoutEnabled"] = args ? args.frontchannelLogoutEnabled : undefined;
@@ -418,6 +430,10 @@ export interface ClientState {
      * URL to the admin interface of the client.
      */
     adminUrl?: pulumi.Input<string>;
+    /**
+     * Always list this client in the Account UI, even if the user does not have an active session.
+     */
+    alwaysDisplayInConsole?: pulumi.Input<boolean>;
     /**
      * Override realm authentication flow bindings
      */
@@ -498,6 +514,10 @@ export interface ClientState {
      * When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
      */
     enabled?: pulumi.Input<boolean>;
+    /**
+     * When `true`, the parameter `iss` will not be included in OpenID Connect Authentication Response.
+     */
+    excludeIssuerFromAuthResponse?: pulumi.Input<boolean>;
     /**
      * When `true`, the parameter `sessionState` will not be included in OpenID Connect Authentication Response.
      */
@@ -617,6 +637,10 @@ export interface ClientArgs {
      */
     adminUrl?: pulumi.Input<string>;
     /**
+     * Always list this client in the Account UI, even if the user does not have an active session.
+     */
+    alwaysDisplayInConsole?: pulumi.Input<boolean>;
+    /**
      * Override realm authentication flow bindings
      */
     authenticationFlowBindingOverrides?: pulumi.Input<inputs.openid.ClientAuthenticationFlowBindingOverrides>;
@@ -696,6 +720,10 @@ export interface ClientArgs {
      * When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
      */
     enabled?: pulumi.Input<boolean>;
+    /**
+     * When `true`, the parameter `iss` will not be included in OpenID Connect Authentication Response.
+     */
+    excludeIssuerFromAuthResponse?: pulumi.Input<boolean>;
     /**
      * When `true`, the parameter `sessionState` will not be included in OpenID Connect Authentication Response.
      */

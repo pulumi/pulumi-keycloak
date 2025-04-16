@@ -69,6 +69,7 @@ type LookupClientArgs struct {
 
 // A collection of values returned by getClient.
 type LookupClientResult struct {
+	AlwaysDisplayInConsole             bool                                         `pulumi:"alwaysDisplayInConsole"`
 	AssertionConsumerPostUrl           string                                       `pulumi:"assertionConsumerPostUrl"`
 	AssertionConsumerRedirectUrl       string                                       `pulumi:"assertionConsumerRedirectUrl"`
 	AuthenticationFlowBindingOverrides []GetClientAuthenticationFlowBindingOverride `pulumi:"authenticationFlowBindingOverrides"`
@@ -76,6 +77,7 @@ type LookupClientResult struct {
 	CanonicalizationMethod             string                                       `pulumi:"canonicalizationMethod"`
 	ClientId                           string                                       `pulumi:"clientId"`
 	ClientSignatureRequired            bool                                         `pulumi:"clientSignatureRequired"`
+	ConsentRequired                    bool                                         `pulumi:"consentRequired"`
 	Description                        string                                       `pulumi:"description"`
 	Enabled                            bool                                         `pulumi:"enabled"`
 	EncryptAssertions                  bool                                         `pulumi:"encryptAssertions"`
@@ -147,6 +149,10 @@ func (o LookupClientResultOutput) ToLookupClientResultOutputWithContext(ctx cont
 	return o
 }
 
+func (o LookupClientResultOutput) AlwaysDisplayInConsole() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupClientResult) bool { return v.AlwaysDisplayInConsole }).(pulumi.BoolOutput)
+}
+
 func (o LookupClientResultOutput) AssertionConsumerPostUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClientResult) string { return v.AssertionConsumerPostUrl }).(pulumi.StringOutput)
 }
@@ -175,6 +181,10 @@ func (o LookupClientResultOutput) ClientId() pulumi.StringOutput {
 
 func (o LookupClientResultOutput) ClientSignatureRequired() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupClientResult) bool { return v.ClientSignatureRequired }).(pulumi.BoolOutput)
+}
+
+func (o LookupClientResultOutput) ConsentRequired() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupClientResult) bool { return v.ConsentRequired }).(pulumi.BoolOutput)
 }
 
 func (o LookupClientResultOutput) Description() pulumi.StringOutput {

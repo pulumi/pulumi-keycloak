@@ -25,6 +25,11 @@ export type ClientAggregatePolicy = import("./clientAggregatePolicy").ClientAggr
 export const ClientAggregatePolicy: typeof import("./clientAggregatePolicy").ClientAggregatePolicy = null as any;
 utilities.lazyLoad(exports, ["ClientAggregatePolicy"], () => require("./clientAggregatePolicy"));
 
+export { ClientAuthorizationClientScopePolicyArgs, ClientAuthorizationClientScopePolicyState } from "./clientAuthorizationClientScopePolicy";
+export type ClientAuthorizationClientScopePolicy = import("./clientAuthorizationClientScopePolicy").ClientAuthorizationClientScopePolicy;
+export const ClientAuthorizationClientScopePolicy: typeof import("./clientAuthorizationClientScopePolicy").ClientAuthorizationClientScopePolicy = null as any;
+utilities.lazyLoad(exports, ["ClientAuthorizationClientScopePolicy"], () => require("./clientAuthorizationClientScopePolicy"));
+
 export { ClientAuthorizationPermissionArgs, ClientAuthorizationPermissionState } from "./clientAuthorizationPermission";
 export type ClientAuthorizationPermission = import("./clientAuthorizationPermission").ClientAuthorizationPermission;
 export const ClientAuthorizationPermission: typeof import("./clientAuthorizationPermission").ClientAuthorizationPermission = null as any;
@@ -183,6 +188,8 @@ const _module = {
                 return new Client(name, <any>undefined, { urn })
             case "keycloak:openid/clientAggregatePolicy:ClientAggregatePolicy":
                 return new ClientAggregatePolicy(name, <any>undefined, { urn })
+            case "keycloak:openid/clientAuthorizationClientScopePolicy:ClientAuthorizationClientScopePolicy":
+                return new ClientAuthorizationClientScopePolicy(name, <any>undefined, { urn })
             case "keycloak:openid/clientAuthorizationPermission:ClientAuthorizationPermission":
                 return new ClientAuthorizationPermission(name, <any>undefined, { urn })
             case "keycloak:openid/clientAuthorizationResource:ClientAuthorizationResource":
@@ -242,6 +249,7 @@ pulumi.runtime.registerResourceModule("keycloak", "openid/audienceProtocolMapper
 pulumi.runtime.registerResourceModule("keycloak", "openid/audienceResolveProtocolMapper", _module)
 pulumi.runtime.registerResourceModule("keycloak", "openid/client", _module)
 pulumi.runtime.registerResourceModule("keycloak", "openid/clientAggregatePolicy", _module)
+pulumi.runtime.registerResourceModule("keycloak", "openid/clientAuthorizationClientScopePolicy", _module)
 pulumi.runtime.registerResourceModule("keycloak", "openid/clientAuthorizationPermission", _module)
 pulumi.runtime.registerResourceModule("keycloak", "openid/clientAuthorizationResource", _module)
 pulumi.runtime.registerResourceModule("keycloak", "openid/clientAuthorizationScope", _module)

@@ -100,6 +100,8 @@ type Bindings struct {
 	DirectGrantFlow pulumi.StringOutput `pulumi:"directGrantFlow"`
 	// The alias of the flow to assign to the realm DockerAuthenticationFlow.
 	DockerAuthenticationFlow pulumi.StringOutput `pulumi:"dockerAuthenticationFlow"`
+	// The alias of the flow to assign to the realm FirstBrokerLoginFlow (since Keycloak 24).
+	FirstBrokerLoginFlow pulumi.StringOutput `pulumi:"firstBrokerLoginFlow"`
 	// The realm the authentication flow binding exists in.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
 	// The alias of the flow to assign to the realm RegistrationFlow.
@@ -149,6 +151,8 @@ type bindingsState struct {
 	DirectGrantFlow *string `pulumi:"directGrantFlow"`
 	// The alias of the flow to assign to the realm DockerAuthenticationFlow.
 	DockerAuthenticationFlow *string `pulumi:"dockerAuthenticationFlow"`
+	// The alias of the flow to assign to the realm FirstBrokerLoginFlow (since Keycloak 24).
+	FirstBrokerLoginFlow *string `pulumi:"firstBrokerLoginFlow"`
 	// The realm the authentication flow binding exists in.
 	RealmId *string `pulumi:"realmId"`
 	// The alias of the flow to assign to the realm RegistrationFlow.
@@ -166,6 +170,8 @@ type BindingsState struct {
 	DirectGrantFlow pulumi.StringPtrInput
 	// The alias of the flow to assign to the realm DockerAuthenticationFlow.
 	DockerAuthenticationFlow pulumi.StringPtrInput
+	// The alias of the flow to assign to the realm FirstBrokerLoginFlow (since Keycloak 24).
+	FirstBrokerLoginFlow pulumi.StringPtrInput
 	// The realm the authentication flow binding exists in.
 	RealmId pulumi.StringPtrInput
 	// The alias of the flow to assign to the realm RegistrationFlow.
@@ -187,6 +193,8 @@ type bindingsArgs struct {
 	DirectGrantFlow *string `pulumi:"directGrantFlow"`
 	// The alias of the flow to assign to the realm DockerAuthenticationFlow.
 	DockerAuthenticationFlow *string `pulumi:"dockerAuthenticationFlow"`
+	// The alias of the flow to assign to the realm FirstBrokerLoginFlow (since Keycloak 24).
+	FirstBrokerLoginFlow *string `pulumi:"firstBrokerLoginFlow"`
 	// The realm the authentication flow binding exists in.
 	RealmId string `pulumi:"realmId"`
 	// The alias of the flow to assign to the realm RegistrationFlow.
@@ -205,6 +213,8 @@ type BindingsArgs struct {
 	DirectGrantFlow pulumi.StringPtrInput
 	// The alias of the flow to assign to the realm DockerAuthenticationFlow.
 	DockerAuthenticationFlow pulumi.StringPtrInput
+	// The alias of the flow to assign to the realm FirstBrokerLoginFlow (since Keycloak 24).
+	FirstBrokerLoginFlow pulumi.StringPtrInput
 	// The realm the authentication flow binding exists in.
 	RealmId pulumi.StringInput
 	// The alias of the flow to assign to the realm RegistrationFlow.
@@ -318,6 +328,11 @@ func (o BindingsOutput) DirectGrantFlow() pulumi.StringOutput {
 // The alias of the flow to assign to the realm DockerAuthenticationFlow.
 func (o BindingsOutput) DockerAuthenticationFlow() pulumi.StringOutput {
 	return o.ApplyT(func(v *Bindings) pulumi.StringOutput { return v.DockerAuthenticationFlow }).(pulumi.StringOutput)
+}
+
+// The alias of the flow to assign to the realm FirstBrokerLoginFlow (since Keycloak 24).
+func (o BindingsOutput) FirstBrokerLoginFlow() pulumi.StringOutput {
+	return o.ApplyT(func(v *Bindings) pulumi.StringOutput { return v.FirstBrokerLoginFlow }).(pulumi.StringOutput)
 }
 
 // The realm the authentication flow binding exists in.

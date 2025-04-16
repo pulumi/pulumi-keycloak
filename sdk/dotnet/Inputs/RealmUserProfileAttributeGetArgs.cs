@@ -44,6 +44,12 @@ namespace Pulumi.Keycloak.Inputs
         [Input("group")]
         public Input<string>? Group { get; set; }
 
+        /// <summary>
+        /// If the attribute supports multiple values. Defaults to `false`.
+        /// </summary>
+        [Input("multiValued")]
+        public Input<bool>? MultiValued { get; set; }
+
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 

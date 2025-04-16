@@ -286,6 +286,7 @@ namespace Pulumi.Keycloak
         public readonly bool EditUsernameAllowed;
         public readonly string EmailTheme;
         public readonly bool Enabled;
+        public readonly string FirstBrokerLoginFlow;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
@@ -299,6 +300,7 @@ namespace Pulumi.Keycloak
         public readonly string OfflineSessionIdleTimeout;
         public readonly string OfflineSessionMaxLifespan;
         public readonly bool OfflineSessionMaxLifespanEnabled;
+        public readonly bool OrganizationsEnabled;
         public readonly Outputs.GetRealmOtpPolicyResult OtpPolicy;
         public readonly string PasswordPolicy;
         public readonly string Realm;
@@ -374,6 +376,8 @@ namespace Pulumi.Keycloak
 
             bool enabled,
 
+            string firstBrokerLoginFlow,
+
             string id,
 
             string internalId,
@@ -393,6 +397,8 @@ namespace Pulumi.Keycloak
             string offlineSessionMaxLifespan,
 
             bool offlineSessionMaxLifespanEnabled,
+
+            bool organizationsEnabled,
 
             Outputs.GetRealmOtpPolicyResult otpPolicy,
 
@@ -463,6 +469,7 @@ namespace Pulumi.Keycloak
             EditUsernameAllowed = editUsernameAllowed;
             EmailTheme = emailTheme;
             Enabled = enabled;
+            FirstBrokerLoginFlow = firstBrokerLoginFlow;
             Id = id;
             InternalId = internalId;
             Internationalizations = internationalizations;
@@ -473,6 +480,7 @@ namespace Pulumi.Keycloak
             OfflineSessionIdleTimeout = offlineSessionIdleTimeout;
             OfflineSessionMaxLifespan = offlineSessionMaxLifespan;
             OfflineSessionMaxLifespanEnabled = offlineSessionMaxLifespanEnabled;
+            OrganizationsEnabled = organizationsEnabled;
             OtpPolicy = otpPolicy;
             PasswordPolicy = passwordPolicy;
             Realm = realm;

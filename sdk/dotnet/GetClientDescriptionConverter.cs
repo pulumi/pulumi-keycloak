@@ -254,6 +254,7 @@ namespace Pulumi.Keycloak
     {
         public readonly ImmutableDictionary<string, string> Access;
         public readonly string AdminUrl;
+        public readonly bool AlwaysDisplayInConsole;
         public readonly ImmutableDictionary<string, string> Attributes;
         public readonly ImmutableDictionary<string, string> AuthenticationFlowBindingOverrides;
         public readonly bool AuthorizationServicesEnabled;
@@ -299,6 +300,8 @@ namespace Pulumi.Keycloak
             ImmutableDictionary<string, string> access,
 
             string adminUrl,
+
+            bool alwaysDisplayInConsole,
 
             ImmutableDictionary<string, string> attributes,
 
@@ -374,6 +377,7 @@ namespace Pulumi.Keycloak
         {
             Access = access;
             AdminUrl = adminUrl;
+            AlwaysDisplayInConsole = alwaysDisplayInConsole;
             Attributes = attributes;
             AuthenticationFlowBindingOverrides = authenticationFlowBindingOverrides;
             AuthorizationServicesEnabled = authorizationServicesEnabled;

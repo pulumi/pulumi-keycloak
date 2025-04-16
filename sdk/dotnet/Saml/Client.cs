@@ -33,6 +33,12 @@ namespace Pulumi.Keycloak.Saml
     public partial class Client : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// Always list this client in the Account UI, even if the user does not have an active session.
+        /// </summary>
+        [Output("alwaysDisplayInConsole")]
+        public Output<bool?> AlwaysDisplayInConsole { get; private set; } = null!;
+
+        /// <summary>
         /// SAML POST Binding URL for the client's assertion consumer service (login responses).
         /// </summary>
         [Output("assertionConsumerPostUrl")]
@@ -73,6 +79,12 @@ namespace Pulumi.Keycloak.Saml
         /// </summary>
         [Output("clientSignatureRequired")]
         public Output<bool?> ClientSignatureRequired { get; private set; } = null!;
+
+        /// <summary>
+        /// When `true`, users have to consent to client access. Defaults to `false`.
+        /// </summary>
+        [Output("consentRequired")]
+        public Output<bool> ConsentRequired { get; private set; } = null!;
 
         /// <summary>
         /// The description of this client in the GUI.
@@ -298,6 +310,12 @@ namespace Pulumi.Keycloak.Saml
     public sealed class ClientArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Always list this client in the Account UI, even if the user does not have an active session.
+        /// </summary>
+        [Input("alwaysDisplayInConsole")]
+        public Input<bool>? AlwaysDisplayInConsole { get; set; }
+
+        /// <summary>
         /// SAML POST Binding URL for the client's assertion consumer service (login responses).
         /// </summary>
         [Input("assertionConsumerPostUrl")]
@@ -338,6 +356,12 @@ namespace Pulumi.Keycloak.Saml
         /// </summary>
         [Input("clientSignatureRequired")]
         public Input<bool>? ClientSignatureRequired { get; set; }
+
+        /// <summary>
+        /// When `true`, users have to consent to client access. Defaults to `false`.
+        /// </summary>
+        [Input("consentRequired")]
+        public Input<bool>? ConsentRequired { get; set; }
 
         /// <summary>
         /// The description of this client in the GUI.
@@ -518,6 +542,12 @@ namespace Pulumi.Keycloak.Saml
     public sealed class ClientState : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Always list this client in the Account UI, even if the user does not have an active session.
+        /// </summary>
+        [Input("alwaysDisplayInConsole")]
+        public Input<bool>? AlwaysDisplayInConsole { get; set; }
+
+        /// <summary>
         /// SAML POST Binding URL for the client's assertion consumer service (login responses).
         /// </summary>
         [Input("assertionConsumerPostUrl")]
@@ -558,6 +588,12 @@ namespace Pulumi.Keycloak.Saml
         /// </summary>
         [Input("clientSignatureRequired")]
         public Input<bool>? ClientSignatureRequired { get; set; }
+
+        /// <summary>
+        /// When `true`, users have to consent to client access. Defaults to `false`.
+        /// </summary>
+        [Input("consentRequired")]
+        public Input<bool>? ConsentRequired { get; set; }
 
         /// <summary>
         /// The description of this client in the GUI.

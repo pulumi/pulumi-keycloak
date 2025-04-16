@@ -272,6 +272,12 @@ namespace Pulumi.Keycloak.Oidc
         public Input<bool>? AddReadTokenRoleOnCreate { get; set; }
 
         /// <summary>
+        /// The alias for the Google identity provider.
+        /// </summary>
+        [Input("alias")]
+        public Input<string>? Alias { get; set; }
+
+        /// <summary>
         /// Enable/disable authenticate users by default.
         /// </summary>
         [Input("authenticateByDefault")]
@@ -310,6 +316,12 @@ namespace Pulumi.Keycloak.Oidc
         /// </summary>
         [Input("disableUserInfo")]
         public Input<bool>? DisableUserInfo { get; set; }
+
+        /// <summary>
+        /// Display name for the Google identity provider in the GUI.
+        /// </summary>
+        [Input("displayName")]
+        public Input<string>? DisplayName { get; set; }
 
         /// <summary>
         /// When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.

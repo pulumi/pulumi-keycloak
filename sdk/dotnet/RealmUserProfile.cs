@@ -17,6 +17,136 @@ namespace Pulumi.Keycloak
     /// Information for Keycloak versions &lt; 24:
     /// The realm linked to the `keycloak.RealmUserProfile` resource must have the user profile feature enabled.
     /// It can be done via the administration UI, or by setting the `userProfileEnabled` realm attribute to `true`.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using System.Text.Json;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "my-realm",
+    ///     });
+    /// 
+    ///     var userprofile = new Keycloak.RealmUserProfile("userprofile", new()
+    ///     {
+    ///         RealmId = myRealm.Id,
+    ///         UnmanagedAttributePolicy = "ENABLED",
+    ///         Attributes = new[]
+    ///         {
+    ///             new Keycloak.Inputs.RealmUserProfileAttributeArgs
+    ///             {
+    ///                 Name = "field1",
+    ///                 DisplayName = "Field 1",
+    ///                 Group = "group1",
+    ///                 MultiValued = false,
+    ///                 EnabledWhenScopes = new[]
+    ///                 {
+    ///                     "offline_access",
+    ///                 },
+    ///                 RequiredForRoles = new[]
+    ///                 {
+    ///                     "user",
+    ///                 },
+    ///                 RequiredForScopes = new[]
+    ///                 {
+    ///                     "offline_access",
+    ///                 },
+    ///                 Permissions = new Keycloak.Inputs.RealmUserProfileAttributePermissionsArgs
+    ///                 {
+    ///                     Views = new[]
+    ///                     {
+    ///                         "admin",
+    ///                         "user",
+    ///                     },
+    ///                     Edits = new[]
+    ///                     {
+    ///                         "admin",
+    ///                         "user",
+    ///                     },
+    ///                 },
+    ///                 Validators = new[]
+    ///                 {
+    ///                     new Keycloak.Inputs.RealmUserProfileAttributeValidatorArgs
+    ///                     {
+    ///                         Name = "person-name-prohibited-characters",
+    ///                     },
+    ///                     new Keycloak.Inputs.RealmUserProfileAttributeValidatorArgs
+    ///                     {
+    ///                         Name = "pattern",
+    ///                         Config = 
+    ///                         {
+    ///                             { "pattern", "^[a-z]+$" },
+    ///                             { "error-message", "Nope" },
+    ///                         },
+    ///                     },
+    ///                 },
+    ///                 Annotations = 
+    ///                 {
+    ///                     { "foo", "bar" },
+    ///                 },
+    ///             },
+    ///             new Keycloak.Inputs.RealmUserProfileAttributeArgs
+    ///             {
+    ///                 Name = "field2",
+    ///                 Validators = new[]
+    ///                 {
+    ///                     new Keycloak.Inputs.RealmUserProfileAttributeValidatorArgs
+    ///                     {
+    ///                         Name = "options",
+    ///                         Config = 
+    ///                         {
+    ///                             { "options", JsonSerializer.Serialize(new[]
+    ///                             {
+    ///                                 "opt1",
+    ///                             }) },
+    ///                         },
+    ///                     },
+    ///                 },
+    ///                 Annotations = 
+    ///                 {
+    ///                     { "foo", JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///                     {
+    ///                         ["key"] = "val",
+    ///                     }) },
+    ///                 },
+    ///             },
+    ///         },
+    ///         Groups = new[]
+    ///         {
+    ///             new Keycloak.Inputs.RealmUserProfileGroupArgs
+    ///             {
+    ///                 Name = "group1",
+    ///                 DisplayHeader = "Group 1",
+    ///                 DisplayDescription = "A first group",
+    ///                 Annotations = 
+    ///                 {
+    ///                     { "foo", "bar" },
+    ///                     { "foo2", JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///                     {
+    ///                         ["key"] = "val",
+    ///                     }) },
+    ///                 },
+    ///             },
+    ///             new Keycloak.Inputs.RealmUserProfileGroupArgs
+    ///             {
+    ///                 Name = "group2",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// This resource currently does not support importing.
     /// </summary>
     [KeycloakResourceType("keycloak:index/realmUserProfile:RealmUserProfile")]
     public partial class RealmUserProfile : global::Pulumi.CustomResource
@@ -38,6 +168,12 @@ namespace Pulumi.Keycloak
         /// </summary>
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
+
+        /// <summary>
+        /// Unmanaged attributes are user attributes not explicitly defined in the user profile configuration. By default, unmanaged attributes are not enabled. Value could be one of `DISABLED`, `ENABLED`, `ADMIN_EDIT` or `ADMIN_VIEW`. If value is not specified it means `DISABLED`
+        /// </summary>
+        [Output("unmanagedAttributePolicy")]
+        public Output<string?> UnmanagedAttributePolicy { get; private set; } = null!;
 
 
         /// <summary>
@@ -115,6 +251,12 @@ namespace Pulumi.Keycloak
         [Input("realmId", required: true)]
         public Input<string> RealmId { get; set; } = null!;
 
+        /// <summary>
+        /// Unmanaged attributes are user attributes not explicitly defined in the user profile configuration. By default, unmanaged attributes are not enabled. Value could be one of `DISABLED`, `ENABLED`, `ADMIN_EDIT` or `ADMIN_VIEW`. If value is not specified it means `DISABLED`
+        /// </summary>
+        [Input("unmanagedAttributePolicy")]
+        public Input<string>? UnmanagedAttributePolicy { get; set; }
+
         public RealmUserProfileArgs()
         {
         }
@@ -152,6 +294,12 @@ namespace Pulumi.Keycloak
         /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
+
+        /// <summary>
+        /// Unmanaged attributes are user attributes not explicitly defined in the user profile configuration. By default, unmanaged attributes are not enabled. Value could be one of `DISABLED`, `ENABLED`, `ADMIN_EDIT` or `ADMIN_VIEW`. If value is not specified it means `DISABLED`
+        /// </summary>
+        [Input("unmanagedAttributePolicy")]
+        public Input<string>? UnmanagedAttributePolicy { get; set; }
 
         public RealmUserProfileState()
         {

@@ -92,6 +92,12 @@ namespace Pulumi.Keycloak.Ldap
         public Output<string?> AttributeDefaultValue { get; private set; } = null!;
 
         /// <summary>
+        /// When `true`, an empty default value is forced for mandatory attributes even when a default value is not specified. Defaults to `true`.
+        /// </summary>
+        [Output("attributeForceDefault")]
+        public Output<bool?> AttributeForceDefault { get; private set; } = null!;
+
+        /// <summary>
         /// Should be true for binary LDAP attributes.
         /// </summary>
         [Output("isBinaryAttribute")]
@@ -198,6 +204,12 @@ namespace Pulumi.Keycloak.Ldap
         public Input<string>? AttributeDefaultValue { get; set; }
 
         /// <summary>
+        /// When `true`, an empty default value is forced for mandatory attributes even when a default value is not specified. Defaults to `true`.
+        /// </summary>
+        [Input("attributeForceDefault")]
+        public Input<bool>? AttributeForceDefault { get; set; }
+
+        /// <summary>
         /// Should be true for binary LDAP attributes.
         /// </summary>
         [Input("isBinaryAttribute")]
@@ -264,6 +276,12 @@ namespace Pulumi.Keycloak.Ldap
         /// </summary>
         [Input("attributeDefaultValue")]
         public Input<string>? AttributeDefaultValue { get; set; }
+
+        /// <summary>
+        /// When `true`, an empty default value is forced for mandatory attributes even when a default value is not specified. Defaults to `true`.
+        /// </summary>
+        [Input("attributeForceDefault")]
+        public Input<bool>? AttributeForceDefault { get; set; }
 
         /// <summary>
         /// Should be true for binary LDAP attributes.

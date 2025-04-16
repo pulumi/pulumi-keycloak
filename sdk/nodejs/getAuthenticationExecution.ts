@@ -60,6 +60,10 @@ export interface GetAuthenticationExecutionResult {
      */
     readonly id: string;
     readonly parentFlowAlias: string;
+    /**
+     * (Computed) The authenticator priority.
+     */
+    readonly priority: number;
     readonly providerId: string;
     readonly realmId: string;
 }

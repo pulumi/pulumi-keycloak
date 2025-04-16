@@ -47,6 +47,7 @@ public final class GetRealmResult {
     private Boolean editUsernameAllowed;
     private String emailTheme;
     private Boolean enabled;
+    private String firstBrokerLoginFlow;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
@@ -61,6 +62,7 @@ public final class GetRealmResult {
     private String offlineSessionIdleTimeout;
     private String offlineSessionMaxLifespan;
     private Boolean offlineSessionMaxLifespanEnabled;
+    private Boolean organizationsEnabled;
     private GetRealmOtpPolicy otpPolicy;
     private String passwordPolicy;
     private String realm;
@@ -160,6 +162,9 @@ public final class GetRealmResult {
     public Boolean enabled() {
         return this.enabled;
     }
+    public String firstBrokerLoginFlow() {
+        return this.firstBrokerLoginFlow;
+    }
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
@@ -193,6 +198,9 @@ public final class GetRealmResult {
     }
     public Boolean offlineSessionMaxLifespanEnabled() {
         return this.offlineSessionMaxLifespanEnabled;
+    }
+    public Boolean organizationsEnabled() {
+        return this.organizationsEnabled;
     }
     public GetRealmOtpPolicy otpPolicy() {
         return this.otpPolicy;
@@ -295,6 +303,7 @@ public final class GetRealmResult {
         private Boolean editUsernameAllowed;
         private String emailTheme;
         private Boolean enabled;
+        private String firstBrokerLoginFlow;
         private String id;
         private String internalId;
         private List<GetRealmInternationalization> internationalizations;
@@ -305,6 +314,7 @@ public final class GetRealmResult {
         private String offlineSessionIdleTimeout;
         private String offlineSessionMaxLifespan;
         private Boolean offlineSessionMaxLifespanEnabled;
+        private Boolean organizationsEnabled;
         private GetRealmOtpPolicy otpPolicy;
         private String passwordPolicy;
         private String realm;
@@ -355,6 +365,7 @@ public final class GetRealmResult {
     	      this.editUsernameAllowed = defaults.editUsernameAllowed;
     	      this.emailTheme = defaults.emailTheme;
     	      this.enabled = defaults.enabled;
+    	      this.firstBrokerLoginFlow = defaults.firstBrokerLoginFlow;
     	      this.id = defaults.id;
     	      this.internalId = defaults.internalId;
     	      this.internationalizations = defaults.internationalizations;
@@ -365,6 +376,7 @@ public final class GetRealmResult {
     	      this.offlineSessionIdleTimeout = defaults.offlineSessionIdleTimeout;
     	      this.offlineSessionMaxLifespan = defaults.offlineSessionMaxLifespan;
     	      this.offlineSessionMaxLifespanEnabled = defaults.offlineSessionMaxLifespanEnabled;
+    	      this.organizationsEnabled = defaults.organizationsEnabled;
     	      this.otpPolicy = defaults.otpPolicy;
     	      this.passwordPolicy = defaults.passwordPolicy;
     	      this.realm = defaults.realm;
@@ -594,6 +606,14 @@ public final class GetRealmResult {
             return this;
         }
         @CustomType.Setter
+        public Builder firstBrokerLoginFlow(String firstBrokerLoginFlow) {
+            if (firstBrokerLoginFlow == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "firstBrokerLoginFlow");
+            }
+            this.firstBrokerLoginFlow = firstBrokerLoginFlow;
+            return this;
+        }
+        @CustomType.Setter
         public Builder id(String id) {
             if (id == null) {
               throw new MissingRequiredPropertyException("GetRealmResult", "id");
@@ -674,6 +694,14 @@ public final class GetRealmResult {
               throw new MissingRequiredPropertyException("GetRealmResult", "offlineSessionMaxLifespanEnabled");
             }
             this.offlineSessionMaxLifespanEnabled = offlineSessionMaxLifespanEnabled;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder organizationsEnabled(Boolean organizationsEnabled) {
+            if (organizationsEnabled == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "organizationsEnabled");
+            }
+            this.organizationsEnabled = organizationsEnabled;
             return this;
         }
         @CustomType.Setter
@@ -885,6 +913,7 @@ public final class GetRealmResult {
             _resultValue.editUsernameAllowed = editUsernameAllowed;
             _resultValue.emailTheme = emailTheme;
             _resultValue.enabled = enabled;
+            _resultValue.firstBrokerLoginFlow = firstBrokerLoginFlow;
             _resultValue.id = id;
             _resultValue.internalId = internalId;
             _resultValue.internationalizations = internationalizations;
@@ -895,6 +924,7 @@ public final class GetRealmResult {
             _resultValue.offlineSessionIdleTimeout = offlineSessionIdleTimeout;
             _resultValue.offlineSessionMaxLifespan = offlineSessionMaxLifespan;
             _resultValue.offlineSessionMaxLifespanEnabled = offlineSessionMaxLifespanEnabled;
+            _resultValue.organizationsEnabled = organizationsEnabled;
             _resultValue.otpPolicy = otpPolicy;
             _resultValue.passwordPolicy = passwordPolicy;
             _resultValue.realm = realm;

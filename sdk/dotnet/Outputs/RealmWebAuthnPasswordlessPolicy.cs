@@ -34,6 +34,10 @@ namespace Pulumi.Keycloak.Outputs
         /// </summary>
         public readonly int? CreateTimeout;
         /// <summary>
+        /// A set of extra origins for non-web applications.
+        /// </summary>
+        public readonly ImmutableArray<string> ExtraOrigins;
+        /// <summary>
         /// A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
         /// </summary>
         public readonly string? RelyingPartyEntityName;
@@ -66,6 +70,8 @@ namespace Pulumi.Keycloak.Outputs
 
             int? createTimeout,
 
+            ImmutableArray<string> extraOrigins,
+
             string? relyingPartyEntityName,
 
             string? relyingPartyId,
@@ -81,6 +87,7 @@ namespace Pulumi.Keycloak.Outputs
             AuthenticatorAttachment = authenticatorAttachment;
             AvoidSameAuthenticatorRegister = avoidSameAuthenticatorRegister;
             CreateTimeout = createTimeout;
+            ExtraOrigins = extraOrigins;
             RelyingPartyEntityName = relyingPartyEntityName;
             RelyingPartyId = relyingPartyId;
             RequireResidentKey = requireResidentKey;

@@ -25,6 +25,7 @@ class SubflowArgs:
                  realm_id: pulumi.Input[builtins.str],
                  authenticator: Optional[pulumi.Input[builtins.str]] = None,
                  description: Optional[pulumi.Input[builtins.str]] = None,
+                 priority: Optional[pulumi.Input[builtins.int]] = None,
                  provider_id: Optional[pulumi.Input[builtins.str]] = None,
                  requirement: Optional[pulumi.Input[builtins.str]] = None):
         """
@@ -35,6 +36,7 @@ class SubflowArgs:
         :param pulumi.Input[builtins.str] authenticator: The name of the authenticator. Might be needed to be set with certain custom subflows with specific
                authenticators. In general this will remain empty.
         :param pulumi.Input[builtins.str] description: A description for the authentication subflow.
+        :param pulumi.Input[builtins.int] priority: The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak >= 25).
         :param pulumi.Input[builtins.str] provider_id: The type of authentication subflow to create. Valid choices include `basic-flow`, `form-flow`
                and `client-flow`. Defaults to `basic-flow`.
         :param pulumi.Input[builtins.str] requirement: The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`,
@@ -47,6 +49,8 @@ class SubflowArgs:
             pulumi.set(__self__, "authenticator", authenticator)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if priority is not None:
+            pulumi.set(__self__, "priority", priority)
         if provider_id is not None:
             pulumi.set(__self__, "provider_id", provider_id)
         if requirement is not None:
@@ -114,6 +118,18 @@ class SubflowArgs:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter
+    def priority(self) -> Optional[pulumi.Input[builtins.int]]:
+        """
+        The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak >= 25).
+        """
+        return pulumi.get(self, "priority")
+
+    @priority.setter
+    def priority(self, value: Optional[pulumi.Input[builtins.int]]):
+        pulumi.set(self, "priority", value)
+
+    @property
     @pulumi.getter(name="providerId")
     def provider_id(self) -> Optional[pulumi.Input[builtins.str]]:
         """
@@ -147,6 +163,7 @@ class _SubflowState:
                  authenticator: Optional[pulumi.Input[builtins.str]] = None,
                  description: Optional[pulumi.Input[builtins.str]] = None,
                  parent_flow_alias: Optional[pulumi.Input[builtins.str]] = None,
+                 priority: Optional[pulumi.Input[builtins.int]] = None,
                  provider_id: Optional[pulumi.Input[builtins.str]] = None,
                  realm_id: Optional[pulumi.Input[builtins.str]] = None,
                  requirement: Optional[pulumi.Input[builtins.str]] = None):
@@ -157,6 +174,7 @@ class _SubflowState:
                authenticators. In general this will remain empty.
         :param pulumi.Input[builtins.str] description: A description for the authentication subflow.
         :param pulumi.Input[builtins.str] parent_flow_alias: The alias for the parent authentication flow.
+        :param pulumi.Input[builtins.int] priority: The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak >= 25).
         :param pulumi.Input[builtins.str] provider_id: The type of authentication subflow to create. Valid choices include `basic-flow`, `form-flow`
                and `client-flow`. Defaults to `basic-flow`.
         :param pulumi.Input[builtins.str] realm_id: The realm that the authentication subflow exists in.
@@ -171,6 +189,8 @@ class _SubflowState:
             pulumi.set(__self__, "description", description)
         if parent_flow_alias is not None:
             pulumi.set(__self__, "parent_flow_alias", parent_flow_alias)
+        if priority is not None:
+            pulumi.set(__self__, "priority", priority)
         if provider_id is not None:
             pulumi.set(__self__, "provider_id", provider_id)
         if realm_id is not None:
@@ -228,6 +248,18 @@ class _SubflowState:
         pulumi.set(self, "parent_flow_alias", value)
 
     @property
+    @pulumi.getter
+    def priority(self) -> Optional[pulumi.Input[builtins.int]]:
+        """
+        The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak >= 25).
+        """
+        return pulumi.get(self, "priority")
+
+    @priority.setter
+    def priority(self, value: Optional[pulumi.Input[builtins.int]]):
+        pulumi.set(self, "priority", value)
+
+    @property
     @pulumi.getter(name="providerId")
     def provider_id(self) -> Optional[pulumi.Input[builtins.str]]:
         """
@@ -275,6 +307,7 @@ class Subflow(pulumi.CustomResource):
                  authenticator: Optional[pulumi.Input[builtins.str]] = None,
                  description: Optional[pulumi.Input[builtins.str]] = None,
                  parent_flow_alias: Optional[pulumi.Input[builtins.str]] = None,
+                 priority: Optional[pulumi.Input[builtins.int]] = None,
                  provider_id: Optional[pulumi.Input[builtins.str]] = None,
                  realm_id: Optional[pulumi.Input[builtins.str]] = None,
                  requirement: Optional[pulumi.Input[builtins.str]] = None,
@@ -284,6 +317,27 @@ class Subflow(pulumi.CustomResource):
 
         Like authentication flows, authentication subflows are containers for authentication executions.
         As its name implies, an authentication subflow is contained in an authentication flow.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        flow = keycloak.authentication.Flow("flow",
+            realm_id=realm.id,
+            alias="my-flow-alias")
+        subflow = keycloak.authentication.Subflow("subflow",
+            realm_id=realm.id,
+            alias="my-subflow-alias",
+            parent_flow_alias=flow.alias,
+            provider_id="basic-flow",
+            requirement="ALTERNATIVE",
+            priority=10)
+        ```
 
         ## Import
 
@@ -314,6 +368,7 @@ class Subflow(pulumi.CustomResource):
                authenticators. In general this will remain empty.
         :param pulumi.Input[builtins.str] description: A description for the authentication subflow.
         :param pulumi.Input[builtins.str] parent_flow_alias: The alias for the parent authentication flow.
+        :param pulumi.Input[builtins.int] priority: The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak >= 25).
         :param pulumi.Input[builtins.str] provider_id: The type of authentication subflow to create. Valid choices include `basic-flow`, `form-flow`
                and `client-flow`. Defaults to `basic-flow`.
         :param pulumi.Input[builtins.str] realm_id: The realm that the authentication subflow exists in.
@@ -331,6 +386,27 @@ class Subflow(pulumi.CustomResource):
 
         Like authentication flows, authentication subflows are containers for authentication executions.
         As its name implies, an authentication subflow is contained in an authentication flow.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        flow = keycloak.authentication.Flow("flow",
+            realm_id=realm.id,
+            alias="my-flow-alias")
+        subflow = keycloak.authentication.Subflow("subflow",
+            realm_id=realm.id,
+            alias="my-subflow-alias",
+            parent_flow_alias=flow.alias,
+            provider_id="basic-flow",
+            requirement="ALTERNATIVE",
+            priority=10)
+        ```
 
         ## Import
 
@@ -373,6 +449,7 @@ class Subflow(pulumi.CustomResource):
                  authenticator: Optional[pulumi.Input[builtins.str]] = None,
                  description: Optional[pulumi.Input[builtins.str]] = None,
                  parent_flow_alias: Optional[pulumi.Input[builtins.str]] = None,
+                 priority: Optional[pulumi.Input[builtins.int]] = None,
                  provider_id: Optional[pulumi.Input[builtins.str]] = None,
                  realm_id: Optional[pulumi.Input[builtins.str]] = None,
                  requirement: Optional[pulumi.Input[builtins.str]] = None,
@@ -393,6 +470,7 @@ class Subflow(pulumi.CustomResource):
             if parent_flow_alias is None and not opts.urn:
                 raise TypeError("Missing required property 'parent_flow_alias'")
             __props__.__dict__["parent_flow_alias"] = parent_flow_alias
+            __props__.__dict__["priority"] = priority
             __props__.__dict__["provider_id"] = provider_id
             if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
@@ -412,6 +490,7 @@ class Subflow(pulumi.CustomResource):
             authenticator: Optional[pulumi.Input[builtins.str]] = None,
             description: Optional[pulumi.Input[builtins.str]] = None,
             parent_flow_alias: Optional[pulumi.Input[builtins.str]] = None,
+            priority: Optional[pulumi.Input[builtins.int]] = None,
             provider_id: Optional[pulumi.Input[builtins.str]] = None,
             realm_id: Optional[pulumi.Input[builtins.str]] = None,
             requirement: Optional[pulumi.Input[builtins.str]] = None) -> 'Subflow':
@@ -427,6 +506,7 @@ class Subflow(pulumi.CustomResource):
                authenticators. In general this will remain empty.
         :param pulumi.Input[builtins.str] description: A description for the authentication subflow.
         :param pulumi.Input[builtins.str] parent_flow_alias: The alias for the parent authentication flow.
+        :param pulumi.Input[builtins.int] priority: The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak >= 25).
         :param pulumi.Input[builtins.str] provider_id: The type of authentication subflow to create. Valid choices include `basic-flow`, `form-flow`
                and `client-flow`. Defaults to `basic-flow`.
         :param pulumi.Input[builtins.str] realm_id: The realm that the authentication subflow exists in.
@@ -441,6 +521,7 @@ class Subflow(pulumi.CustomResource):
         __props__.__dict__["authenticator"] = authenticator
         __props__.__dict__["description"] = description
         __props__.__dict__["parent_flow_alias"] = parent_flow_alias
+        __props__.__dict__["priority"] = priority
         __props__.__dict__["provider_id"] = provider_id
         __props__.__dict__["realm_id"] = realm_id
         __props__.__dict__["requirement"] = requirement
@@ -478,6 +559,14 @@ class Subflow(pulumi.CustomResource):
         The alias for the parent authentication flow.
         """
         return pulumi.get(self, "parent_flow_alias")
+
+    @property
+    @pulumi.getter
+    def priority(self) -> pulumi.Output[Optional[builtins.int]]:
+        """
+        The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak >= 25).
+        """
+        return pulumi.get(self, "priority")
 
     @property
     @pulumi.getter(name="providerId")

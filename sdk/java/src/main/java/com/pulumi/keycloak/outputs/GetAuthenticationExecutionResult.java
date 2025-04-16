@@ -5,6 +5,7 @@ package com.pulumi.keycloak.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 
@@ -16,6 +17,11 @@ public final class GetAuthenticationExecutionResult {
      */
     private String id;
     private String parentFlowAlias;
+    /**
+     * @return (Computed) The authenticator priority.
+     * 
+     */
+    private Integer priority;
     private String providerId;
     private String realmId;
 
@@ -29,6 +35,13 @@ public final class GetAuthenticationExecutionResult {
     }
     public String parentFlowAlias() {
         return this.parentFlowAlias;
+    }
+    /**
+     * @return (Computed) The authenticator priority.
+     * 
+     */
+    public Integer priority() {
+        return this.priority;
     }
     public String providerId() {
         return this.providerId;
@@ -48,6 +61,7 @@ public final class GetAuthenticationExecutionResult {
     public static final class Builder {
         private String id;
         private String parentFlowAlias;
+        private Integer priority;
         private String providerId;
         private String realmId;
         public Builder() {}
@@ -55,6 +69,7 @@ public final class GetAuthenticationExecutionResult {
     	      Objects.requireNonNull(defaults);
     	      this.id = defaults.id;
     	      this.parentFlowAlias = defaults.parentFlowAlias;
+    	      this.priority = defaults.priority;
     	      this.providerId = defaults.providerId;
     	      this.realmId = defaults.realmId;
         }
@@ -73,6 +88,14 @@ public final class GetAuthenticationExecutionResult {
               throw new MissingRequiredPropertyException("GetAuthenticationExecutionResult", "parentFlowAlias");
             }
             this.parentFlowAlias = parentFlowAlias;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder priority(Integer priority) {
+            if (priority == null) {
+              throw new MissingRequiredPropertyException("GetAuthenticationExecutionResult", "priority");
+            }
+            this.priority = priority;
             return this;
         }
         @CustomType.Setter
@@ -95,6 +118,7 @@ public final class GetAuthenticationExecutionResult {
             final var _resultValue = new GetAuthenticationExecutionResult();
             _resultValue.id = id;
             _resultValue.parentFlowAlias = parentFlowAlias;
+            _resultValue.priority = priority;
             _resultValue.providerId = providerId;
             _resultValue.realmId = realmId;
             return _resultValue;

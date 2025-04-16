@@ -148,6 +148,20 @@ public class Client extends com.pulumi.resources.CustomResource {
         return this.adminUrl;
     }
     /**
+     * Always list this client in the Account UI, even if the user does not have an active session.
+     * 
+     */
+    @Export(name="alwaysDisplayInConsole", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> alwaysDisplayInConsole;
+
+    /**
+     * @return Always list this client in the Account UI, even if the user does not have an active session.
+     * 
+     */
+    public Output<Optional<Boolean>> alwaysDisplayInConsole() {
+        return Codegen.optional(this.alwaysDisplayInConsole);
+    }
+    /**
      * Override realm authentication flow bindings
      * 
      */
@@ -420,6 +434,20 @@ public class Client extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<Boolean>> enabled() {
         return Codegen.optional(this.enabled);
+    }
+    /**
+     * When `true`, the parameter `iss` will not be included in OpenID Connect Authentication Response.
+     * 
+     */
+    @Export(name="excludeIssuerFromAuthResponse", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> excludeIssuerFromAuthResponse;
+
+    /**
+     * @return When `true`, the parameter `iss` will not be included in OpenID Connect Authentication Response.
+     * 
+     */
+    public Output<Boolean> excludeIssuerFromAuthResponse() {
+        return this.excludeIssuerFromAuthResponse;
     }
     /**
      * When `true`, the parameter `session_state` will not be included in OpenID Connect Authentication Response.

@@ -18,6 +18,7 @@ from .. import _utilities
 __all__ = [
     'ClientAuthenticationFlowBindingOverrides',
     'ClientAuthorization',
+    'ClientAuthorizationClientScopePolicyScope',
     'ClientGroupPolicyGroup',
     'ClientPermissionsConfigureScope',
     'ClientPermissionsManageScope',
@@ -157,6 +158,26 @@ class ClientAuthorization(dict):
         When `true`, defaults set by Keycloak will be respected. Defaults to `false`.
         """
         return pulumi.get(self, "keep_defaults")
+
+
+@pulumi.output_type
+class ClientAuthorizationClientScopePolicyScope(dict):
+    def __init__(__self__, *,
+                 id: builtins.str,
+                 required: Optional[builtins.bool] = None):
+        pulumi.set(__self__, "id", id)
+        if required is not None:
+            pulumi.set(__self__, "required", required)
+
+    @property
+    @pulumi.getter
+    def id(self) -> builtins.str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def required(self) -> Optional[builtins.bool]:
+        return pulumi.get(self, "required")
 
 
 @pulumi.output_type

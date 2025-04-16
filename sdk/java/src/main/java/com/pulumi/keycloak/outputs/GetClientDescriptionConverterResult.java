@@ -17,6 +17,7 @@ import java.util.Objects;
 public final class GetClientDescriptionConverterResult {
     private Map<String,String> access;
     private String adminUrl;
+    private Boolean alwaysDisplayInConsole;
     private Map<String,String> attributes;
     private Map<String,String> authenticationFlowBindingOverrides;
     private Boolean authorizationServicesEnabled;
@@ -64,6 +65,9 @@ public final class GetClientDescriptionConverterResult {
     }
     public String adminUrl() {
         return this.adminUrl;
+    }
+    public Boolean alwaysDisplayInConsole() {
+        return this.alwaysDisplayInConsole;
     }
     public Map<String,String> attributes() {
         return this.attributes;
@@ -189,6 +193,7 @@ public final class GetClientDescriptionConverterResult {
     public static final class Builder {
         private Map<String,String> access;
         private String adminUrl;
+        private Boolean alwaysDisplayInConsole;
         private Map<String,String> attributes;
         private Map<String,String> authenticationFlowBindingOverrides;
         private Boolean authorizationServicesEnabled;
@@ -230,6 +235,7 @@ public final class GetClientDescriptionConverterResult {
     	      Objects.requireNonNull(defaults);
     	      this.access = defaults.access;
     	      this.adminUrl = defaults.adminUrl;
+    	      this.alwaysDisplayInConsole = defaults.alwaysDisplayInConsole;
     	      this.attributes = defaults.attributes;
     	      this.authenticationFlowBindingOverrides = defaults.authenticationFlowBindingOverrides;
     	      this.authorizationServicesEnabled = defaults.authorizationServicesEnabled;
@@ -282,6 +288,14 @@ public final class GetClientDescriptionConverterResult {
               throw new MissingRequiredPropertyException("GetClientDescriptionConverterResult", "adminUrl");
             }
             this.adminUrl = adminUrl;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder alwaysDisplayInConsole(Boolean alwaysDisplayInConsole) {
+            if (alwaysDisplayInConsole == null) {
+              throw new MissingRequiredPropertyException("GetClientDescriptionConverterResult", "alwaysDisplayInConsole");
+            }
+            this.alwaysDisplayInConsole = alwaysDisplayInConsole;
             return this;
         }
         @CustomType.Setter
@@ -594,6 +608,7 @@ public final class GetClientDescriptionConverterResult {
             final var _resultValue = new GetClientDescriptionConverterResult();
             _resultValue.access = access;
             _resultValue.adminUrl = adminUrl;
+            _resultValue.alwaysDisplayInConsole = alwaysDisplayInConsole;
             _resultValue.attributes = attributes;
             _resultValue.authenticationFlowBindingOverrides = authenticationFlowBindingOverrides;
             _resultValue.authorizationServicesEnabled = authorizationServicesEnabled;

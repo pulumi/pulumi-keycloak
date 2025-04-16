@@ -38,6 +38,14 @@ namespace Pulumi.Keycloak.Inputs
         [Input("createTimeout", required: true)]
         public int CreateTimeout { get; set; }
 
+        [Input("extraOrigins", required: true)]
+        private List<string>? _extraOrigins;
+        public List<string> ExtraOrigins
+        {
+            get => _extraOrigins ?? (_extraOrigins = new List<string>());
+            set => _extraOrigins = value;
+        }
+
         [Input("relyingPartyEntityName", required: true)]
         public string RelyingPartyEntityName { get; set; } = null!;
 

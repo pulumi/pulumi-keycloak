@@ -28,13 +28,16 @@ class GetClientDescriptionConverterResult:
     """
     A collection of values returned by getClientDescriptionConverter.
     """
-    def __init__(__self__, access=None, admin_url=None, attributes=None, authentication_flow_binding_overrides=None, authorization_services_enabled=None, authorization_settings=None, base_url=None, bearer_only=None, body=None, client_authenticator_type=None, client_id=None, consent_required=None, default_client_scopes=None, default_roles=None, description=None, direct_access_grants_enabled=None, enabled=None, frontchannel_logout=None, full_scope_allowed=None, id=None, implicit_flow_enabled=None, name=None, not_before=None, optional_client_scopes=None, origin=None, protocol=None, protocol_mappers=None, public_client=None, realm_id=None, redirect_uris=None, registered_nodes=None, registration_access_token=None, root_url=None, secret=None, service_accounts_enabled=None, standard_flow_enabled=None, surrogate_auth_required=None, web_origins=None):
+    def __init__(__self__, access=None, admin_url=None, always_display_in_console=None, attributes=None, authentication_flow_binding_overrides=None, authorization_services_enabled=None, authorization_settings=None, base_url=None, bearer_only=None, body=None, client_authenticator_type=None, client_id=None, consent_required=None, default_client_scopes=None, default_roles=None, description=None, direct_access_grants_enabled=None, enabled=None, frontchannel_logout=None, full_scope_allowed=None, id=None, implicit_flow_enabled=None, name=None, not_before=None, optional_client_scopes=None, origin=None, protocol=None, protocol_mappers=None, public_client=None, realm_id=None, redirect_uris=None, registered_nodes=None, registration_access_token=None, root_url=None, secret=None, service_accounts_enabled=None, standard_flow_enabled=None, surrogate_auth_required=None, web_origins=None):
         if access and not isinstance(access, dict):
             raise TypeError("Expected argument 'access' to be a dict")
         pulumi.set(__self__, "access", access)
         if admin_url and not isinstance(admin_url, str):
             raise TypeError("Expected argument 'admin_url' to be a str")
         pulumi.set(__self__, "admin_url", admin_url)
+        if always_display_in_console and not isinstance(always_display_in_console, bool):
+            raise TypeError("Expected argument 'always_display_in_console' to be a bool")
+        pulumi.set(__self__, "always_display_in_console", always_display_in_console)
         if attributes and not isinstance(attributes, dict):
             raise TypeError("Expected argument 'attributes' to be a dict")
         pulumi.set(__self__, "attributes", attributes)
@@ -153,6 +156,11 @@ class GetClientDescriptionConverterResult:
     @pulumi.getter(name="adminUrl")
     def admin_url(self) -> builtins.str:
         return pulumi.get(self, "admin_url")
+
+    @property
+    @pulumi.getter(name="alwaysDisplayInConsole")
+    def always_display_in_console(self) -> builtins.bool:
+        return pulumi.get(self, "always_display_in_console")
 
     @property
     @pulumi.getter
@@ -346,6 +354,7 @@ class AwaitableGetClientDescriptionConverterResult(GetClientDescriptionConverter
         return GetClientDescriptionConverterResult(
             access=self.access,
             admin_url=self.admin_url,
+            always_display_in_console=self.always_display_in_console,
             attributes=self.attributes,
             authentication_flow_binding_overrides=self.authentication_flow_binding_overrides,
             authorization_services_enabled=self.authorization_services_enabled,
@@ -447,6 +456,7 @@ def get_client_description_converter(body: Optional[builtins.str] = None,
     return AwaitableGetClientDescriptionConverterResult(
         access=pulumi.get(__ret__, 'access'),
         admin_url=pulumi.get(__ret__, 'admin_url'),
+        always_display_in_console=pulumi.get(__ret__, 'always_display_in_console'),
         attributes=pulumi.get(__ret__, 'attributes'),
         authentication_flow_binding_overrides=pulumi.get(__ret__, 'authentication_flow_binding_overrides'),
         authorization_services_enabled=pulumi.get(__ret__, 'authorization_services_enabled'),
@@ -545,6 +555,7 @@ def get_client_description_converter_output(body: Optional[pulumi.Input[builtins
     return __ret__.apply(lambda __response__: GetClientDescriptionConverterResult(
         access=pulumi.get(__response__, 'access'),
         admin_url=pulumi.get(__response__, 'admin_url'),
+        always_display_in_console=pulumi.get(__response__, 'always_display_in_console'),
         attributes=pulumi.get(__response__, 'attributes'),
         authentication_flow_binding_overrides=pulumi.get(__response__, 'authentication_flow_binding_overrides'),
         authorization_services_enabled=pulumi.get(__response__, 'authorization_services_enabled'),

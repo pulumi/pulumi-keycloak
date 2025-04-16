@@ -27,13 +27,16 @@ class GetAuthenticationExecutionResult:
     """
     A collection of values returned by getAuthenticationExecution.
     """
-    def __init__(__self__, id=None, parent_flow_alias=None, provider_id=None, realm_id=None):
+    def __init__(__self__, id=None, parent_flow_alias=None, priority=None, provider_id=None, realm_id=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
         if parent_flow_alias and not isinstance(parent_flow_alias, str):
             raise TypeError("Expected argument 'parent_flow_alias' to be a str")
         pulumi.set(__self__, "parent_flow_alias", parent_flow_alias)
+        if priority and not isinstance(priority, int):
+            raise TypeError("Expected argument 'priority' to be a int")
+        pulumi.set(__self__, "priority", priority)
         if provider_id and not isinstance(provider_id, str):
             raise TypeError("Expected argument 'provider_id' to be a str")
         pulumi.set(__self__, "provider_id", provider_id)
@@ -55,6 +58,14 @@ class GetAuthenticationExecutionResult:
         return pulumi.get(self, "parent_flow_alias")
 
     @property
+    @pulumi.getter
+    def priority(self) -> builtins.int:
+        """
+        (Computed) The authenticator priority.
+        """
+        return pulumi.get(self, "priority")
+
+    @property
     @pulumi.getter(name="providerId")
     def provider_id(self) -> builtins.str:
         return pulumi.get(self, "provider_id")
@@ -73,6 +84,7 @@ class AwaitableGetAuthenticationExecutionResult(GetAuthenticationExecutionResult
         return GetAuthenticationExecutionResult(
             id=self.id,
             parent_flow_alias=self.parent_flow_alias,
+            priority=self.priority,
             provider_id=self.provider_id,
             realm_id=self.realm_id)
 
@@ -113,6 +125,7 @@ def get_authentication_execution(parent_flow_alias: Optional[builtins.str] = Non
     return AwaitableGetAuthenticationExecutionResult(
         id=pulumi.get(__ret__, 'id'),
         parent_flow_alias=pulumi.get(__ret__, 'parent_flow_alias'),
+        priority=pulumi.get(__ret__, 'priority'),
         provider_id=pulumi.get(__ret__, 'provider_id'),
         realm_id=pulumi.get(__ret__, 'realm_id'))
 def get_authentication_execution_output(parent_flow_alias: Optional[pulumi.Input[builtins.str]] = None,
@@ -150,5 +163,6 @@ def get_authentication_execution_output(parent_flow_alias: Optional[pulumi.Input
     return __ret__.apply(lambda __response__: GetAuthenticationExecutionResult(
         id=pulumi.get(__response__, 'id'),
         parent_flow_alias=pulumi.get(__response__, 'parent_flow_alias'),
+        priority=pulumi.get(__response__, 'priority'),
         provider_id=pulumi.get(__response__, 'provider_id'),
         realm_id=pulumi.get(__response__, 'realm_id')))

@@ -49,6 +49,21 @@ public final class GoogleIdentityProviderArgs extends com.pulumi.resources.Resou
     }
 
     /**
+     * The alias for the Google identity provider.
+     * 
+     */
+    @Import(name="alias")
+    private @Nullable Output<String> alias;
+
+    /**
+     * @return The alias for the Google identity provider.
+     * 
+     */
+    public Optional<Output<String>> alias() {
+        return Optional.ofNullable(this.alias);
+    }
+
+    /**
      * Enable/disable authenticate users by default.
      * 
      */
@@ -121,6 +136,21 @@ public final class GoogleIdentityProviderArgs extends com.pulumi.resources.Resou
      */
     public Optional<Output<Boolean>> disableUserInfo() {
         return Optional.ofNullable(this.disableUserInfo);
+    }
+
+    /**
+     * Display name for the Google identity provider in the GUI.
+     * 
+     */
+    @Import(name="displayName")
+    private @Nullable Output<String> displayName;
+
+    /**
+     * @return Display name for the Google identity provider in the GUI.
+     * 
+     */
+    public Optional<Output<String>> displayName() {
+        return Optional.ofNullable(this.displayName);
     }
 
     /**
@@ -345,11 +375,13 @@ public final class GoogleIdentityProviderArgs extends com.pulumi.resources.Resou
     private GoogleIdentityProviderArgs(GoogleIdentityProviderArgs $) {
         this.acceptsPromptNoneForwardFromClient = $.acceptsPromptNoneForwardFromClient;
         this.addReadTokenRoleOnCreate = $.addReadTokenRoleOnCreate;
+        this.alias = $.alias;
         this.authenticateByDefault = $.authenticateByDefault;
         this.clientId = $.clientId;
         this.clientSecret = $.clientSecret;
         this.defaultScopes = $.defaultScopes;
         this.disableUserInfo = $.disableUserInfo;
+        this.displayName = $.displayName;
         this.enabled = $.enabled;
         this.extraConfig = $.extraConfig;
         this.firstBrokerLoginFlowAlias = $.firstBrokerLoginFlowAlias;
@@ -425,6 +457,27 @@ public final class GoogleIdentityProviderArgs extends com.pulumi.resources.Resou
          */
         public Builder addReadTokenRoleOnCreate(Boolean addReadTokenRoleOnCreate) {
             return addReadTokenRoleOnCreate(Output.of(addReadTokenRoleOnCreate));
+        }
+
+        /**
+         * @param alias The alias for the Google identity provider.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder alias(@Nullable Output<String> alias) {
+            $.alias = alias;
+            return this;
+        }
+
+        /**
+         * @param alias The alias for the Google identity provider.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder alias(String alias) {
+            return alias(Output.of(alias));
         }
 
         /**
@@ -530,6 +583,27 @@ public final class GoogleIdentityProviderArgs extends com.pulumi.resources.Resou
          */
         public Builder disableUserInfo(Boolean disableUserInfo) {
             return disableUserInfo(Output.of(disableUserInfo));
+        }
+
+        /**
+         * @param displayName Display name for the Google identity provider in the GUI.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder displayName(@Nullable Output<String> displayName) {
+            $.displayName = displayName;
+            return this;
+        }
+
+        /**
+         * @param displayName Display name for the Google identity provider in the GUI.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder displayName(String displayName) {
+            return displayName(Output.of(displayName));
         }
 
         /**

@@ -118,6 +118,7 @@ export interface GetRealmWebAuthnPasswordlessPolicy {
     authenticatorAttachment: string;
     avoidSameAuthenticatorRegister: boolean;
     createTimeout: number;
+    extraOrigins: string[];
     relyingPartyEntityName: string;
     relyingPartyId: string;
     /**
@@ -146,6 +147,7 @@ export interface GetRealmWebAuthnPolicy {
     authenticatorAttachment: string;
     avoidSameAuthenticatorRegister: boolean;
     createTimeout: number;
+    extraOrigins: string[];
     relyingPartyEntityName: string;
     relyingPartyId: string;
     /**
@@ -367,6 +369,10 @@ export interface RealmUserProfileAttribute {
      * A list of groups.
      */
     group?: string;
+    /**
+     * If the attribute supports multiple values. Defaults to `false`.
+     */
+    multiValued?: boolean;
     name: string;
     /**
      * The permissions configuration information.
@@ -440,6 +446,10 @@ export interface RealmWebAuthnPasswordlessPolicy {
      */
     createTimeout?: number;
     /**
+     * A set of extra origins for non-web applications.
+     */
+    extraOrigins?: string[];
+    /**
      * A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
      */
     relyingPartyEntityName?: string;
@@ -482,6 +492,10 @@ export interface RealmWebAuthnPolicy {
      * The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
      */
     createTimeout?: number;
+    /**
+     * A set of extra origins for non-web applications.
+     */
+    extraOrigins?: string[];
     /**
      * A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
      */
@@ -640,6 +654,11 @@ export namespace openid {
          * Dictates how policies are enforced when evaluating authorization requests. Can be one of `ENFORCING`, `PERMISSIVE`, or `DISABLED`.
          */
         policyEnforcementMode: string;
+    }
+
+    export interface ClientAuthorizationClientScopePolicyScope {
+        id: string;
+        required?: boolean;
     }
 
     export interface ClientGroupPolicyGroup {

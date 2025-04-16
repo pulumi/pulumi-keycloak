@@ -131,6 +131,20 @@ public class UserAttributeMapper extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.attributeDefaultValue);
     }
     /**
+     * When `true`, an empty default value is forced for mandatory attributes even when a default value is not specified. Defaults to `true`.
+     * 
+     */
+    @Export(name="attributeForceDefault", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> attributeForceDefault;
+
+    /**
+     * @return When `true`, an empty default value is forced for mandatory attributes even when a default value is not specified. Defaults to `true`.
+     * 
+     */
+    public Output<Optional<Boolean>> attributeForceDefault() {
+        return Codegen.optional(this.attributeForceDefault);
+    }
+    /**
      * Should be true for binary LDAP attributes.
      * 
      */

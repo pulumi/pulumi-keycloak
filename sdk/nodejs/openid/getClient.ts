@@ -30,6 +30,7 @@ import * as utilities from "../utilities";
 export function getClient(args: GetClientArgs, opts?: pulumi.InvokeOptions): Promise<GetClientResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("keycloak:openid/getClient:getClient", {
+        "alwaysDisplayInConsole": args.alwaysDisplayInConsole,
         "clientId": args.clientId,
         "consentScreenText": args.consentScreenText,
         "displayOnConsentScreen": args.displayOnConsentScreen,
@@ -45,6 +46,7 @@ export function getClient(args: GetClientArgs, opts?: pulumi.InvokeOptions): Pro
  * A collection of arguments for invoking getClient.
  */
 export interface GetClientArgs {
+    alwaysDisplayInConsole?: boolean;
     /**
      * The client id (not its unique ID).
      */
@@ -68,6 +70,7 @@ export interface GetClientResult {
     readonly accessTokenLifespan: string;
     readonly accessType: string;
     readonly adminUrl: string;
+    readonly alwaysDisplayInConsole?: boolean;
     readonly authenticationFlowBindingOverrides: outputs.openid.GetClientAuthenticationFlowBindingOverride[];
     readonly authorizations: outputs.openid.GetClientAuthorization[];
     readonly backchannelLogoutRevokeOfflineSessions: boolean;
@@ -87,6 +90,7 @@ export interface GetClientResult {
     readonly directAccessGrantsEnabled: boolean;
     readonly displayOnConsentScreen?: boolean;
     readonly enabled: boolean;
+    readonly excludeIssuerFromAuthResponse: boolean;
     readonly excludeSessionStateFromAuthResponse: boolean;
     readonly extraConfig: {[key: string]: string};
     readonly frontchannelLogoutEnabled: boolean;
@@ -139,6 +143,7 @@ export interface GetClientResult {
 export function getClientOutput(args: GetClientOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetClientResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("keycloak:openid/getClient:getClient", {
+        "alwaysDisplayInConsole": args.alwaysDisplayInConsole,
         "clientId": args.clientId,
         "consentScreenText": args.consentScreenText,
         "displayOnConsentScreen": args.displayOnConsentScreen,
@@ -154,6 +159,7 @@ export function getClientOutput(args: GetClientOutputArgs, opts?: pulumi.InvokeO
  * A collection of arguments for invoking getClient.
  */
 export interface GetClientOutputArgs {
+    alwaysDisplayInConsole?: pulumi.Input<boolean>;
     /**
      * The client id (not its unique ID).
      */

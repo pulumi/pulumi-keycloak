@@ -89,6 +89,8 @@ import (
 type UserAttributeProtocolMapper struct {
 	pulumi.CustomResourceState
 
+	// Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
+	AggregateAttributes pulumi.BoolPtrOutput `pulumi:"aggregateAttributes"`
 	// The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
 	ClientId pulumi.StringPtrOutput `pulumi:"clientId"`
 	// The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
@@ -149,6 +151,8 @@ func GetUserAttributeProtocolMapper(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering UserAttributeProtocolMapper resources.
 type userAttributeProtocolMapperState struct {
+	// Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
+	AggregateAttributes *bool `pulumi:"aggregateAttributes"`
 	// The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
 	ClientId *string `pulumi:"clientId"`
 	// The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
@@ -168,6 +172,8 @@ type userAttributeProtocolMapperState struct {
 }
 
 type UserAttributeProtocolMapperState struct {
+	// Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
+	AggregateAttributes pulumi.BoolPtrInput
 	// The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
 	ClientId pulumi.StringPtrInput
 	// The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
@@ -191,6 +197,8 @@ func (UserAttributeProtocolMapperState) ElementType() reflect.Type {
 }
 
 type userAttributeProtocolMapperArgs struct {
+	// Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
+	AggregateAttributes *bool `pulumi:"aggregateAttributes"`
 	// The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
 	ClientId *string `pulumi:"clientId"`
 	// The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
@@ -211,6 +219,8 @@ type userAttributeProtocolMapperArgs struct {
 
 // The set of arguments for constructing a UserAttributeProtocolMapper resource.
 type UserAttributeProtocolMapperArgs struct {
+	// Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
+	AggregateAttributes pulumi.BoolPtrInput
 	// The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
 	ClientId pulumi.StringPtrInput
 	// The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
@@ -314,6 +324,11 @@ func (o UserAttributeProtocolMapperOutput) ToUserAttributeProtocolMapperOutput()
 
 func (o UserAttributeProtocolMapperOutput) ToUserAttributeProtocolMapperOutputWithContext(ctx context.Context) UserAttributeProtocolMapperOutput {
 	return o
+}
+
+// Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
+func (o UserAttributeProtocolMapperOutput) AggregateAttributes() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *UserAttributeProtocolMapper) pulumi.BoolPtrOutput { return v.AggregateAttributes }).(pulumi.BoolPtrOutput)
 }
 
 // The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
