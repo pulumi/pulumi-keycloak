@@ -26,8 +26,10 @@ import (
 
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	tks "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens/fallbackstrat"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
+	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
 
 	"github.com/pulumi/pulumi-keycloak/provider/v6/pkg/version"
 )
@@ -87,8 +89,7 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		Resources: map[string]*tfbridge.ResourceInfo{
 			"keycloak_attribute_to_role_identity_provider_mapper": {
-				Tok:  makeResource(mainMod, "AttributeToRoleIdentityMapper"),
-				Docs: &tfbridge.DocInfo{AllowMissing: true},
+				Tok: makeResource(mainMod, "AttributeToRoleIdentityMapper"),
 			},
 			"keycloak_custom_identity_provider_mapper": {
 				Tok: makeResource(mainMod, "CustomIdentityProviderMapping"),
@@ -100,62 +101,18 @@ func Provider() tfbridge.ProviderInfo {
 					},
 				},
 			},
-			"keycloak_hardcoded_attribute_identity_provider_mapper": {
-				Tok:  makeResource(mainMod, "HardcodedAttributeIdentityProviderMapper"),
-				Docs: &tfbridge.DocInfo{AllowMissing: true},
-			},
 			"keycloak_hardcoded_role_identity_provider_mapper": {
-				Tok:  makeResource(mainMod, "HardcodedRoleIdentityMapper"),
-				Docs: &tfbridge.DocInfo{AllowMissing: true},
+				Tok: makeResource(mainMod, "HardcodedRoleIdentityMapper"),
 			},
 			"keycloak_realm": {
 				Fields: map[string]*tfbridge.SchemaInfo{
 					"realm": {CSharpName: "RealmName"},
 				},
 			},
-			"keycloak_users_permissions": {
-				Docs: &tfbridge.DocInfo{AllowMissing: true},
-			},
 			"keycloak_realm_keystore_java_keystore": {
 				Tok: makeResource(mainMod, "RealmKeystoreJavaGenerated"),
 			},
-			"keycloak_ldap_hardcoded_group_mapper": {
-				Docs: &tfbridge.DocInfo{AllowMissing: true},
-			},
-			"keycloak_openid_client_authorization_scope": {
-				Docs: &tfbridge.DocInfo{AllowMissing: true},
-			},
-			"keycloak_openid_client_authorization_permission": {
-				Docs: &tfbridge.DocInfo{AllowMissing: true},
-			},
-			"keycloak_openid_client_authorization_resource": {
-				Docs: &tfbridge.DocInfo{AllowMissing: true},
-			},
-			"keycloak_openid_client_aggregate_policy": {
-				Docs: &tfbridge.DocInfo{AllowMissing: true},
-			},
 			"keycloak_openid_client_client_policy": {Tok: makeResource(openIDMod, "ClientPolicy")},
-			"keycloak_openid_client_group_policy": {
-				Docs: &tfbridge.DocInfo{AllowMissing: true},
-			},
-			"keycloak_openid_client_js_policy": {
-				Docs: &tfbridge.DocInfo{AllowMissing: true},
-			},
-			"keycloak_openid_client_role_policy": {
-				Docs: &tfbridge.DocInfo{AllowMissing: true},
-			},
-			"keycloak_openid_client_time_policy": {
-				Docs: &tfbridge.DocInfo{AllowMissing: true},
-			},
-			"keycloak_openid_client_user_policy": {
-				Docs: &tfbridge.DocInfo{AllowMissing: true},
-			},
-			"keycloak_openid_client_permissions": {
-				Docs: &tfbridge.DocInfo{AllowMissing: true},
-			},
-			"keycloak_openid_audience_resolve_protocol_mapper": {
-				Docs: &tfbridge.DocInfo{Source: "openid_audience_resolve_protocol_mapper.md"},
-			},
 
 			"keycloak_saml_client_default_scopes": {Tok: makeResource(samlMod, "ClientDefaultScope")},
 		},
@@ -205,16 +162,25 @@ func Provider() tfbridge.ProviderInfo {
 		},
 	}
 
-	prov.MustComputeTokens(tks.KnownModules("keycloak_", mainMod, []string{
+	modules := []string{
 		"ldap_",
 		"oidc_",
 		"openid_",
 		"saml_",
 		"authentication_",
-	}, tks.MakeStandard(mainPkg)))
+	}
+
+	strategy, err := fallbackstrat.KnownModulesWithInferredFallback(
+		&prov,
+		"keycloak_",
+		mainMod,
+		modules,
+		tks.MakeStandard(mainPkg),
+	)
+	contract.AssertNoErrorf(err, "failed to create fallback strategy")
+	prov.MustComputeTokens(strategy)
 
 	prov.MustApplyAutoAliases()
-
 	prov.SetAutonaming(255, "-")
 
 	return prov
