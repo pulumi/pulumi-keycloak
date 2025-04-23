@@ -1571,6 +1571,9 @@ class _RealmState:
 
 
 class Realm(pulumi.CustomResource):
+
+    pulumi_type = "keycloak:index/realm:Realm"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

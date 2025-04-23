@@ -318,6 +318,9 @@ class _UserAttributeProtocolMapperState:
 
 
 class UserAttributeProtocolMapper(pulumi.CustomResource):
+
+    pulumi_type = "keycloak:saml/userAttributeProtocolMapper:UserAttributeProtocolMapper"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

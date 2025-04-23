@@ -222,6 +222,9 @@ class _CustomMapperState:
 
 
 class CustomMapper(pulumi.CustomResource):
+
+    pulumi_type = "keycloak:ldap/customMapper:CustomMapper"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

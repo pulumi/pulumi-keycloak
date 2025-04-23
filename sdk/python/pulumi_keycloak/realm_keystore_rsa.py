@@ -319,6 +319,9 @@ class _RealmKeystoreRsaState:
 
 
 class RealmKeystoreRsa(pulumi.CustomResource):
+
+    pulumi_type = "keycloak:index/realmKeystoreRsa:RealmKeystoreRsa"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

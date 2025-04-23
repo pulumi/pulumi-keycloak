@@ -159,6 +159,9 @@ class _UserGroupsState:
 
 
 class UserGroups(pulumi.CustomResource):
+
+    pulumi_type = "keycloak:index/userGroups:UserGroups"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

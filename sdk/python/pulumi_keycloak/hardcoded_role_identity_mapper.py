@@ -184,6 +184,9 @@ class _HardcodedRoleIdentityMapperState:
 
 
 class HardcodedRoleIdentityMapper(pulumi.CustomResource):
+
+    pulumi_type = "keycloak:index/hardcodedRoleIdentityMapper:HardcodedRoleIdentityMapper"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

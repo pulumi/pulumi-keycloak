@@ -272,6 +272,9 @@ class _ClientAuthorizationResourceState:
 
 
 class ClientAuthorizationResource(pulumi.CustomResource):
+
+    pulumi_type = "keycloak:openid/clientAuthorizationResource:ClientAuthorizationResource"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -201,6 +201,9 @@ class _ClientAuthorizationClientScopePolicyState:
 
 
 class ClientAuthorizationClientScopePolicy(pulumi.CustomResource):
+
+    pulumi_type = "keycloak:openid/clientAuthorizationClientScopePolicy:ClientAuthorizationClientScopePolicy"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -191,6 +191,9 @@ class _CustomIdentityProviderMappingState:
 
 
 class CustomIdentityProviderMapping(pulumi.CustomResource):
+
+    pulumi_type = "keycloak:index/customIdentityProviderMapping:CustomIdentityProviderMapping"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

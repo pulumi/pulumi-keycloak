@@ -382,6 +382,9 @@ class _UserAttributeMapperState:
 
 
 class UserAttributeMapper(pulumi.CustomResource):
+
+    pulumi_type = "keycloak:ldap/userAttributeMapper:UserAttributeMapper"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

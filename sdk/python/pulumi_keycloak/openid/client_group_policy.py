@@ -224,6 +224,9 @@ class _ClientGroupPolicyState:
 
 
 class ClientGroupPolicy(pulumi.CustomResource):
+
+    pulumi_type = "keycloak:openid/clientGroupPolicy:ClientGroupPolicy"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

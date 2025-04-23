@@ -160,6 +160,9 @@ class _GenericRoleMapperState:
 
 
 class GenericRoleMapper(pulumi.CustomResource):
+
+    pulumi_type = "keycloak:index/genericRoleMapper:GenericRoleMapper"
+
     @overload
     def __init__(__self__,
                  resource_name: str,
