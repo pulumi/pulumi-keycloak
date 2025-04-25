@@ -225,6 +225,9 @@ class _ClientScopeState:
 
 
 class ClientScope(pulumi.CustomResource):
+
+    pulumi_type = "keycloak:openid/clientScope:ClientScope"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

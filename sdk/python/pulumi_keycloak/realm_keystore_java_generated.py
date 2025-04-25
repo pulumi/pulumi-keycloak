@@ -349,6 +349,9 @@ class _RealmKeystoreJavaGeneratedState:
 
 
 class RealmKeystoreJavaGenerated(pulumi.CustomResource):
+
+    pulumi_type = "keycloak:index/realmKeystoreJavaGenerated:RealmKeystoreJavaGenerated"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

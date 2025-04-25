@@ -254,6 +254,9 @@ class _GenericProtocolMapperState:
 
 
 class GenericProtocolMapper(pulumi.CustomResource):
+
+    pulumi_type = "keycloak:index/genericProtocolMapper:GenericProtocolMapper"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -223,6 +223,9 @@ class _IdentityProviderTokenExchangeScopePermissionState:
 
 
 class IdentityProviderTokenExchangeScopePermission(pulumi.CustomResource):
+
+    pulumi_type = "keycloak:index/identityProviderTokenExchangeScopePermission:IdentityProviderTokenExchangeScopePermission"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

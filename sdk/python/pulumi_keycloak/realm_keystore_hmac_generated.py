@@ -257,6 +257,9 @@ class _RealmKeystoreHmacGeneratedState:
 
 
 class RealmKeystoreHmacGenerated(pulumi.CustomResource):
+
+    pulumi_type = "keycloak:index/realmKeystoreHmacGenerated:RealmKeystoreHmacGenerated"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

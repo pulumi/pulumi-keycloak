@@ -190,6 +190,9 @@ class _HardcodedAttributeMapperState:
 
 
 class HardcodedAttributeMapper(pulumi.CustomResource):
+
+    pulumi_type = "keycloak:ldap/hardcodedAttributeMapper:HardcodedAttributeMapper"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

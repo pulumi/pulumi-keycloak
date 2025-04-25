@@ -96,6 +96,9 @@ class _RealmDefaultClientScopesState:
 
 
 class RealmDefaultClientScopes(pulumi.CustomResource):
+
+    pulumi_type = "keycloak:index/realmDefaultClientScopes:RealmDefaultClientScopes"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

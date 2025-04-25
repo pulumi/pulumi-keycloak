@@ -289,6 +289,9 @@ class _AudienceProtocolMapperState:
 
 
 class AudienceProtocolMapper(pulumi.CustomResource):
+
+    pulumi_type = "keycloak:openid/audienceProtocolMapper:AudienceProtocolMapper"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

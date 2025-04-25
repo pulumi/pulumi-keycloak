@@ -96,6 +96,9 @@ class _DefaultGroupsState:
 
 
 class DefaultGroups(pulumi.CustomResource):
+
+    pulumi_type = "keycloak:index/defaultGroups:DefaultGroups"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -163,6 +163,9 @@ class _RealmUserProfileState:
 
 
 class RealmUserProfile(pulumi.CustomResource):
+
+    pulumi_type = "keycloak:index/realmUserProfile:RealmUserProfile"
+
     @overload
     def __init__(__self__,
                  resource_name: str,
