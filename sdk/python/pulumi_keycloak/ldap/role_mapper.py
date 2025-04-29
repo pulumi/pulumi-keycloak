@@ -507,6 +507,9 @@ class _RoleMapperState:
 
 
 class RoleMapper(pulumi.CustomResource):
+
+    pulumi_type = "keycloak:ldap/roleMapper:RoleMapper"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

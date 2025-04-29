@@ -159,6 +159,9 @@ class _GroupRolesState:
 
 
 class GroupRoles(pulumi.CustomResource):
+
+    pulumi_type = "keycloak:index/groupRoles:GroupRoles"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

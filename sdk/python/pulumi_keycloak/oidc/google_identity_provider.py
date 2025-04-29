@@ -807,6 +807,9 @@ class _GoogleIdentityProviderState:
 
 
 class GoogleIdentityProvider(pulumi.CustomResource):
+
+    pulumi_type = "keycloak:oidc/googleIdentityProvider:GoogleIdentityProvider"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

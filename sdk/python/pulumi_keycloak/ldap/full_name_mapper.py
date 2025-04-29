@@ -223,6 +223,9 @@ class _FullNameMapperState:
 
 
 class FullNameMapper(pulumi.CustomResource):
+
+    pulumi_type = "keycloak:ldap/fullNameMapper:FullNameMapper"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

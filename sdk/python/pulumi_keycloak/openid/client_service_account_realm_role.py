@@ -127,6 +127,9 @@ class _ClientServiceAccountRealmRoleState:
 
 
 class ClientServiceAccountRealmRole(pulumi.CustomResource):
+
+    pulumi_type = "keycloak:openid/clientServiceAccountRealmRole:ClientServiceAccountRealmRole"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

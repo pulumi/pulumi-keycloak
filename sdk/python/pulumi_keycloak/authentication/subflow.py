@@ -299,6 +299,9 @@ class _SubflowState:
 
 
 class Subflow(pulumi.CustomResource):
+
+    pulumi_type = "keycloak:authentication/subflow:Subflow"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -287,6 +287,9 @@ class _AttributeImporterIdentityProviderMapperState:
 
 
 class AttributeImporterIdentityProviderMapper(pulumi.CustomResource):
+
+    pulumi_type = "keycloak:index/attributeImporterIdentityProviderMapper:AttributeImporterIdentityProviderMapper"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -225,6 +225,9 @@ class _RealmKeystoreAesGeneratedState:
 
 
 class RealmKeystoreAesGenerated(pulumi.CustomResource):
+
+    pulumi_type = "keycloak:index/realmKeystoreAesGenerated:RealmKeystoreAesGenerated"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

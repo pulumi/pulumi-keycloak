@@ -198,6 +198,9 @@ class _ClientUserPolicyState:
 
 
 class ClientUserPolicy(pulumi.CustomResource):
+
+    pulumi_type = "keycloak:openid/clientUserPolicy:ClientUserPolicy"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -230,6 +230,9 @@ class _GroupPermissionsState:
 
 
 class GroupPermissions(pulumi.CustomResource):
+
+    pulumi_type = "keycloak:index/groupPermissions:GroupPermissions"
+
     @overload
     def __init__(__self__,
                  resource_name: str,
