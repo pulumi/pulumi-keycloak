@@ -127,6 +127,9 @@ class _ClientDefaultScopesState:
 
 
 class ClientDefaultScopes(pulumi.CustomResource):
+
+    pulumi_type = "keycloak:openid/clientDefaultScopes:ClientDefaultScopes"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

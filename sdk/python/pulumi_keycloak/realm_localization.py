@@ -128,6 +128,9 @@ class _RealmLocalizationState:
 
 
 class RealmLocalization(pulumi.CustomResource):
+
+    pulumi_type = "keycloak:index/realmLocalization:RealmLocalization"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

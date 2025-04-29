@@ -225,6 +225,9 @@ class _RealmKeystoreEcdsaGeneratedState:
 
 
 class RealmKeystoreEcdsaGenerated(pulumi.CustomResource):
+
+    pulumi_type = "keycloak:index/realmKeystoreEcdsaGenerated:RealmKeystoreEcdsaGenerated"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

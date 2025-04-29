@@ -128,6 +128,9 @@ class _MsadLdsUserAccountControlMapperState:
 
 
 class MsadLdsUserAccountControlMapper(pulumi.CustomResource):
+
+    pulumi_type = "keycloak:ldap/msadLdsUserAccountControlMapper:MsadLdsUserAccountControlMapper"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

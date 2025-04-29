@@ -603,6 +603,9 @@ class _GroupMapperState:
 
 
 class GroupMapper(pulumi.CustomResource):
+
+    pulumi_type = "keycloak:ldap/groupMapper:GroupMapper"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

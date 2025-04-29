@@ -96,6 +96,9 @@ class _DefaultRolesState:
 
 
 class DefaultRoles(pulumi.CustomResource):
+
+    pulumi_type = "keycloak:index/defaultRoles:DefaultRoles"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

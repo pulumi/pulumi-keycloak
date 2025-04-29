@@ -416,6 +416,9 @@ class _UserClientRoleProtocolMapperState:
 
 
 class UserClientRoleProtocolMapper(pulumi.CustomResource):
+
+    pulumi_type = "keycloak:openid/userClientRoleProtocolMapper:UserClientRoleProtocolMapper"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

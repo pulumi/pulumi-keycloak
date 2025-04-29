@@ -159,6 +159,9 @@ class _HardcodedGroupMapperState:
 
 
 class HardcodedGroupMapper(pulumi.CustomResource):
+
+    pulumi_type = "keycloak:ldap/hardcodedGroupMapper:HardcodedGroupMapper"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -351,6 +351,9 @@ class _AttributeToRoleIdentityMapperState:
 
 
 class AttributeToRoleIdentityMapper(pulumi.CustomResource):
+
+    pulumi_type = "keycloak:index/attributeToRoleIdentityMapper:AttributeToRoleIdentityMapper"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

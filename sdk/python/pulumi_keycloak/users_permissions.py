@@ -231,6 +231,9 @@ class _UsersPermissionsState:
 
 
 class UsersPermissions(pulumi.CustomResource):
+
+    pulumi_type = "keycloak:index/usersPermissions:UsersPermissions"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

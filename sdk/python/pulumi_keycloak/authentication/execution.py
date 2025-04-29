@@ -191,6 +191,9 @@ class _ExecutionState:
 
 
 class Execution(pulumi.CustomResource):
+
+    pulumi_type = "keycloak:authentication/execution:Execution"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

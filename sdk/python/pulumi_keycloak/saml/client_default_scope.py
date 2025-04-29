@@ -127,6 +127,9 @@ class _ClientDefaultScopeState:
 
 
 class ClientDefaultScope(pulumi.CustomResource):
+
+    pulumi_type = "keycloak:saml/clientDefaultScope:ClientDefaultScope"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

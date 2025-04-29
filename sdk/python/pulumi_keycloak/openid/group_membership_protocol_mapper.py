@@ -320,6 +320,9 @@ class _GroupMembershipProtocolMapperState:
 
 
 class GroupMembershipProtocolMapper(pulumi.CustomResource):
+
+    pulumi_type = "keycloak:openid/groupMembershipProtocolMapper:GroupMembershipProtocolMapper"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

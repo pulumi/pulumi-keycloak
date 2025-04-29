@@ -159,6 +159,9 @@ class _UserRolesState:
 
 
 class UserRoles(pulumi.CustomResource):
+
+    pulumi_type = "keycloak:index/userRoles:UserRoles"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

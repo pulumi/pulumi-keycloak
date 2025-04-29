@@ -463,6 +463,9 @@ class _ClientTimePolicyState:
 
 
 class ClientTimePolicy(pulumi.CustomResource):
+
+    pulumi_type = "keycloak:openid/clientTimePolicy:ClientTimePolicy"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

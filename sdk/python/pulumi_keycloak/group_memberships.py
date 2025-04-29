@@ -128,6 +128,9 @@ class _GroupMembershipsState:
 
 
 class GroupMemberships(pulumi.CustomResource):
+
+    pulumi_type = "keycloak:index/groupMemberships:GroupMemberships"
+
     @overload
     def __init__(__self__,
                  resource_name: str,

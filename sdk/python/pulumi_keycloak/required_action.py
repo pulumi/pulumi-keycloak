@@ -256,6 +256,9 @@ class _RequiredActionState:
 
 
 class RequiredAction(pulumi.CustomResource):
+
+    pulumi_type = "keycloak:index/requiredAction:RequiredAction"
+
     @overload
     def __init__(__self__,
                  resource_name: str,
