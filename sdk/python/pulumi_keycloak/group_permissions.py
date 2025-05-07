@@ -229,10 +229,8 @@ class _GroupPermissionsState:
         pulumi.set(self, "view_scope", value)
 
 
+@pulumi.type_token("keycloak:index/groupPermissions:GroupPermissions")
 class GroupPermissions(pulumi.CustomResource):
-
-    pulumi_type = "keycloak:index/groupPermissions:GroupPermissions"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

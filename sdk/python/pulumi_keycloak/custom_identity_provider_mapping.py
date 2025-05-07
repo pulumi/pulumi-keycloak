@@ -190,10 +190,8 @@ class _CustomIdentityProviderMappingState:
         pulumi.set(self, "realm", value)
 
 
+@pulumi.type_token("keycloak:index/customIdentityProviderMapping:CustomIdentityProviderMapping")
 class CustomIdentityProviderMapping(pulumi.CustomResource):
-
-    pulumi_type = "keycloak:index/customIdentityProviderMapping:CustomIdentityProviderMapping"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -1225,10 +1225,8 @@ class _ClientState:
         pulumi.set(self, "valid_redirect_uris", value)
 
 
+@pulumi.type_token("keycloak:saml/client:Client")
 class Client(pulumi.CustomResource):
-
-    pulumi_type = "keycloak:saml/client:Client"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

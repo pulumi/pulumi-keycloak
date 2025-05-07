@@ -183,10 +183,8 @@ class _HardcodedGroupIdentityProviderMapperState:
         pulumi.set(self, "realm", value)
 
 
+@pulumi.type_token("keycloak:index/hardcodedGroupIdentityProviderMapper:HardcodedGroupIdentityProviderMapper")
 class HardcodedGroupIdentityProviderMapper(pulumi.CustomResource):
-
-    pulumi_type = "keycloak:index/hardcodedGroupIdentityProviderMapper:HardcodedGroupIdentityProviderMapper"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

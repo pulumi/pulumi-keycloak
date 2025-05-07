@@ -1072,10 +1072,8 @@ class _UserFederationState:
         pulumi.set(self, "vendor", value)
 
 
+@pulumi.type_token("keycloak:ldap/userFederation:UserFederation")
 class UserFederation(pulumi.CustomResource):
-
-    pulumi_type = "keycloak:ldap/userFederation:UserFederation"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

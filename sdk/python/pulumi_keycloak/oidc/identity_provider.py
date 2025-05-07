@@ -1027,10 +1027,8 @@ class _IdentityProviderState:
         pulumi.set(self, "validate_signature", value)
 
 
+@pulumi.type_token("keycloak:oidc/identityProvider:IdentityProvider")
 class IdentityProvider(pulumi.CustomResource):
-
-    pulumi_type = "keycloak:oidc/identityProvider:IdentityProvider"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

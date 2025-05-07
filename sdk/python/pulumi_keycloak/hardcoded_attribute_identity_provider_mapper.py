@@ -246,10 +246,8 @@ class _HardcodedAttributeIdentityProviderMapperState:
         pulumi.set(self, "user_session", value)
 
 
+@pulumi.type_token("keycloak:index/hardcodedAttributeIdentityProviderMapper:HardcodedAttributeIdentityProviderMapper")
 class HardcodedAttributeIdentityProviderMapper(pulumi.CustomResource):
-
-    pulumi_type = "keycloak:index/hardcodedAttributeIdentityProviderMapper:HardcodedAttributeIdentityProviderMapper"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

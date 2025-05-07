@@ -7,7 +7,6 @@ import (
 	"context"
 	"reflect"
 
-	"errors"
 	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
@@ -20,14 +19,14 @@ type Provider struct {
 	pulumi.ProviderResourceState
 
 	BasePath     pulumi.StringPtrOutput `pulumi:"basePath"`
-	ClientId     pulumi.StringOutput    `pulumi:"clientId"`
+	ClientId     pulumi.StringPtrOutput `pulumi:"clientId"`
 	ClientSecret pulumi.StringPtrOutput `pulumi:"clientSecret"`
 	Password     pulumi.StringPtrOutput `pulumi:"password"`
 	Realm        pulumi.StringPtrOutput `pulumi:"realm"`
 	// Allows x509 calls using an unknown CA certificate (for development purposes)
 	RootCaCertificate pulumi.StringPtrOutput `pulumi:"rootCaCertificate"`
 	// The base URL of the Keycloak instance, before `/auth`
-	Url      pulumi.StringOutput    `pulumi:"url"`
+	Url      pulumi.StringPtrOutput `pulumi:"url"`
 	Username pulumi.StringPtrOutput `pulumi:"username"`
 }
 
@@ -35,15 +34,9 @@ type Provider struct {
 func NewProvider(ctx *pulumi.Context,
 	name string, args *ProviderArgs, opts ...pulumi.ResourceOption) (*Provider, error) {
 	if args == nil {
-		return nil, errors.New("missing one or more required arguments")
+		args = &ProviderArgs{}
 	}
 
-	if args.ClientId == nil {
-		return nil, errors.New("invalid value for required argument 'ClientId'")
-	}
-	if args.Url == nil {
-		return nil, errors.New("invalid value for required argument 'Url'")
-	}
 	if args.ClientTimeout == nil {
 		if d := internal.GetEnvOrDefault(5, internal.ParseEnvInt, "KEYCLOAK_CLIENT_TIMEOUT"); d != nil {
 			args.ClientTimeout = pulumi.IntPtr(d.(int))
@@ -61,7 +54,7 @@ func NewProvider(ctx *pulumi.Context,
 type providerArgs struct {
 	AdditionalHeaders map[string]string `pulumi:"additionalHeaders"`
 	BasePath          *string           `pulumi:"basePath"`
-	ClientId          string            `pulumi:"clientId"`
+	ClientId          *string           `pulumi:"clientId"`
 	ClientSecret      *string           `pulumi:"clientSecret"`
 	// Timeout (in seconds) of the Keycloak client
 	ClientTimeout *int `pulumi:"clientTimeout"`
@@ -78,7 +71,7 @@ type providerArgs struct {
 	// should be avoided.
 	TlsInsecureSkipVerify *bool `pulumi:"tlsInsecureSkipVerify"`
 	// The base URL of the Keycloak instance, before `/auth`
-	Url      string  `pulumi:"url"`
+	Url      *string `pulumi:"url"`
 	Username *string `pulumi:"username"`
 }
 
@@ -86,7 +79,7 @@ type providerArgs struct {
 type ProviderArgs struct {
 	AdditionalHeaders pulumi.StringMapInput
 	BasePath          pulumi.StringPtrInput
-	ClientId          pulumi.StringInput
+	ClientId          pulumi.StringPtrInput
 	ClientSecret      pulumi.StringPtrInput
 	// Timeout (in seconds) of the Keycloak client
 	ClientTimeout pulumi.IntPtrInput
@@ -103,12 +96,35 @@ type ProviderArgs struct {
 	// should be avoided.
 	TlsInsecureSkipVerify pulumi.BoolPtrInput
 	// The base URL of the Keycloak instance, before `/auth`
-	Url      pulumi.StringInput
+	Url      pulumi.StringPtrInput
 	Username pulumi.StringPtrInput
 }
 
 func (ProviderArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*providerArgs)(nil)).Elem()
+}
+
+// This function returns a Terraform config object with terraform-namecased keys,to be used with the Terraform Module Provider.
+func (r *Provider) TerraformConfig(ctx *pulumi.Context) (ProviderTerraformConfigResultOutput, error) {
+	out, err := ctx.Call("pulumi:providers:keycloak/terraformConfig", nil, ProviderTerraformConfigResultOutput{}, r)
+	if err != nil {
+		return ProviderTerraformConfigResultOutput{}, err
+	}
+	return out.(ProviderTerraformConfigResultOutput), nil
+}
+
+type ProviderTerraformConfigResult struct {
+	Result map[string]interface{} `pulumi:"result"`
+}
+
+type ProviderTerraformConfigResultOutput struct{ *pulumi.OutputState }
+
+func (ProviderTerraformConfigResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProviderTerraformConfigResult)(nil)).Elem()
+}
+
+func (o ProviderTerraformConfigResultOutput) Result() pulumi.MapOutput {
+	return o.ApplyT(func(v ProviderTerraformConfigResult) map[string]interface{} { return v.Result }).(pulumi.MapOutput)
 }
 
 type ProviderInput interface {
@@ -148,8 +164,8 @@ func (o ProviderOutput) BasePath() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.BasePath }).(pulumi.StringPtrOutput)
 }
 
-func (o ProviderOutput) ClientId() pulumi.StringOutput {
-	return o.ApplyT(func(v *Provider) pulumi.StringOutput { return v.ClientId }).(pulumi.StringOutput)
+func (o ProviderOutput) ClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.ClientId }).(pulumi.StringPtrOutput)
 }
 
 func (o ProviderOutput) ClientSecret() pulumi.StringPtrOutput {
@@ -170,8 +186,8 @@ func (o ProviderOutput) RootCaCertificate() pulumi.StringPtrOutput {
 }
 
 // The base URL of the Keycloak instance, before `/auth`
-func (o ProviderOutput) Url() pulumi.StringOutput {
-	return o.ApplyT(func(v *Provider) pulumi.StringOutput { return v.Url }).(pulumi.StringOutput)
+func (o ProviderOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Url }).(pulumi.StringPtrOutput)
 }
 
 func (o ProviderOutput) Username() pulumi.StringPtrOutput {
@@ -181,4 +197,5 @@ func (o ProviderOutput) Username() pulumi.StringPtrOutput {
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ProviderInput)(nil)).Elem(), &Provider{})
 	pulumi.RegisterOutputType(ProviderOutput{})
+	pulumi.RegisterOutputType(ProviderTerraformConfigResultOutput{})
 }

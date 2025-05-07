@@ -602,10 +602,8 @@ class _GroupMapperState:
         pulumi.set(self, "user_roles_retrieve_strategy", value)
 
 
+@pulumi.type_token("keycloak:ldap/groupMapper:GroupMapper")
 class GroupMapper(pulumi.CustomResource):
-
-    pulumi_type = "keycloak:ldap/groupMapper:GroupMapper"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

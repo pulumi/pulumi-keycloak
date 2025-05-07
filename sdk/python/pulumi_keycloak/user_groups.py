@@ -158,10 +158,8 @@ class _UserGroupsState:
         pulumi.set(self, "user_id", value)
 
 
+@pulumi.type_token("keycloak:index/userGroups:UserGroups")
 class UserGroups(pulumi.CustomResource):
-
-    pulumi_type = "keycloak:index/userGroups:UserGroups"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

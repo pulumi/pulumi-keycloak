@@ -197,10 +197,8 @@ class _ClientAggregatePolicyState:
         pulumi.set(self, "resource_server_id", value)
 
 
+@pulumi.type_token("keycloak:openid/clientAggregatePolicy:ClientAggregatePolicy")
 class ClientAggregatePolicy(pulumi.CustomResource):
-
-    pulumi_type = "keycloak:openid/clientAggregatePolicy:ClientAggregatePolicy"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

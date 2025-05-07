@@ -414,10 +414,8 @@ class _UserAttributeProtocolMapperState:
         pulumi.set(self, "user_attribute", value)
 
 
+@pulumi.type_token("keycloak:openid/userAttributeProtocolMapper:UserAttributeProtocolMapper")
 class UserAttributeProtocolMapper(pulumi.CustomResource):
-
-    pulumi_type = "keycloak:openid/userAttributeProtocolMapper:UserAttributeProtocolMapper"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

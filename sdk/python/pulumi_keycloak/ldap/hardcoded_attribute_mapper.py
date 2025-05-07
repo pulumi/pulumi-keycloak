@@ -189,10 +189,8 @@ class _HardcodedAttributeMapperState:
         pulumi.set(self, "realm_id", value)
 
 
+@pulumi.type_token("keycloak:ldap/hardcodedAttributeMapper:HardcodedAttributeMapper")
 class HardcodedAttributeMapper(pulumi.CustomResource):
-
-    pulumi_type = "keycloak:ldap/hardcodedAttributeMapper:HardcodedAttributeMapper"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -381,10 +381,8 @@ class _UserAttributeMapperState:
         pulumi.set(self, "user_model_attribute", value)
 
 
+@pulumi.type_token("keycloak:ldap/userAttributeMapper:UserAttributeMapper")
 class UserAttributeMapper(pulumi.CustomResource):
-
-    pulumi_type = "keycloak:ldap/userAttributeMapper:UserAttributeMapper"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

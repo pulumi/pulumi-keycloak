@@ -191,10 +191,8 @@ class _UserTemplateImporterIdentityProviderMapperState:
         pulumi.set(self, "template", value)
 
 
+@pulumi.type_token("keycloak:index/userTemplateImporterIdentityProviderMapper:UserTemplateImporterIdentityProviderMapper")
 class UserTemplateImporterIdentityProviderMapper(pulumi.CustomResource):
-
-    pulumi_type = "keycloak:index/userTemplateImporterIdentityProviderMapper:UserTemplateImporterIdentityProviderMapper"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

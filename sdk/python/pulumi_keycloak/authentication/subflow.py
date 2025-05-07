@@ -298,10 +298,8 @@ class _SubflowState:
         pulumi.set(self, "requirement", value)
 
 
+@pulumi.type_token("keycloak:authentication/subflow:Subflow")
 class Subflow(pulumi.CustomResource):
-
-    pulumi_type = "keycloak:authentication/subflow:Subflow"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

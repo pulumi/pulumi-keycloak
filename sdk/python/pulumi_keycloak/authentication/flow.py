@@ -159,10 +159,8 @@ class _FlowState:
         pulumi.set(self, "realm_id", value)
 
 
+@pulumi.type_token("keycloak:authentication/flow:Flow")
 class Flow(pulumi.CustomResource):
-
-    pulumi_type = "keycloak:authentication/flow:Flow"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

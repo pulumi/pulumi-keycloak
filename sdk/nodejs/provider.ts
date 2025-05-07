@@ -26,7 +26,7 @@ export class Provider extends pulumi.ProviderResource {
     }
 
     public readonly basePath!: pulumi.Output<string | undefined>;
-    public readonly clientId!: pulumi.Output<string>;
+    public readonly clientId!: pulumi.Output<string | undefined>;
     public readonly clientSecret!: pulumi.Output<string | undefined>;
     public readonly password!: pulumi.Output<string | undefined>;
     public readonly realm!: pulumi.Output<string | undefined>;
@@ -37,7 +37,7 @@ export class Provider extends pulumi.ProviderResource {
     /**
      * The base URL of the Keycloak instance, before `/auth`
      */
-    public readonly url!: pulumi.Output<string>;
+    public readonly url!: pulumi.Output<string | undefined>;
     public readonly username!: pulumi.Output<string | undefined>;
 
     /**
@@ -47,16 +47,10 @@ export class Provider extends pulumi.ProviderResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: ProviderArgs, opts?: pulumi.ResourceOptions) {
+    constructor(name: string, args?: ProviderArgs, opts?: pulumi.ResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         {
-            if ((!args || args.clientId === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'clientId'");
-            }
-            if ((!args || args.url === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'url'");
-            }
             resourceInputs["additionalHeaders"] = pulumi.output(args ? args.additionalHeaders : undefined).apply(JSON.stringify);
             resourceInputs["basePath"] = args ? args.basePath : undefined;
             resourceInputs["clientId"] = args ? args.clientId : undefined;
@@ -74,6 +68,15 @@ export class Provider extends pulumi.ProviderResource {
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Provider.__pulumiType, name, resourceInputs, opts);
     }
+
+    /**
+     * This function returns a Terraform config object with terraform-namecased keys,to be used with the Terraform Module Provider.
+     */
+    terraformConfig(): pulumi.Output<Provider.TerraformConfigResult> {
+        return pulumi.runtime.call("pulumi:providers:keycloak/terraformConfig", {
+            "__self__": this,
+        }, this);
+    }
 }
 
 /**
@@ -82,7 +85,7 @@ export class Provider extends pulumi.ProviderResource {
 export interface ProviderArgs {
     additionalHeaders?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     basePath?: pulumi.Input<string>;
-    clientId: pulumi.Input<string>;
+    clientId?: pulumi.Input<string>;
     clientSecret?: pulumi.Input<string>;
     /**
      * Timeout (in seconds) of the Keycloak client
@@ -111,6 +114,16 @@ export interface ProviderArgs {
     /**
      * The base URL of the Keycloak instance, before `/auth`
      */
-    url: pulumi.Input<string>;
+    url?: pulumi.Input<string>;
     username?: pulumi.Input<string>;
+}
+
+export namespace Provider {
+    /**
+     * The results of the Provider.terraformConfig method.
+     */
+    export interface TerraformConfigResult {
+        readonly result: {[key: string]: any};
+    }
+
 }

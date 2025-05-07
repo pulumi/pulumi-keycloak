@@ -20,10 +20,9 @@ __all__ = ['ProviderArgs', 'Provider']
 @pulumi.input_type
 class ProviderArgs:
     def __init__(__self__, *,
-                 client_id: pulumi.Input[builtins.str],
-                 url: pulumi.Input[builtins.str],
                  additional_headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]] = None,
                  base_path: Optional[pulumi.Input[builtins.str]] = None,
+                 client_id: Optional[pulumi.Input[builtins.str]] = None,
                  client_secret: Optional[pulumi.Input[builtins.str]] = None,
                  client_timeout: Optional[pulumi.Input[builtins.int]] = None,
                  initial_login: Optional[pulumi.Input[builtins.bool]] = None,
@@ -32,10 +31,10 @@ class ProviderArgs:
                  red_hat_sso: Optional[pulumi.Input[builtins.bool]] = None,
                  root_ca_certificate: Optional[pulumi.Input[builtins.str]] = None,
                  tls_insecure_skip_verify: Optional[pulumi.Input[builtins.bool]] = None,
+                 url: Optional[pulumi.Input[builtins.str]] = None,
                  username: Optional[pulumi.Input[builtins.str]] = None):
         """
         The set of arguments for constructing a Provider resource.
-        :param pulumi.Input[builtins.str] url: The base URL of the Keycloak instance, before `/auth`
         :param pulumi.Input[builtins.int] client_timeout: Timeout (in seconds) of the Keycloak client
         :param pulumi.Input[builtins.bool] initial_login: Whether or not to login to Keycloak instance on provider initialization
         :param pulumi.Input[builtins.bool] red_hat_sso: When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version
@@ -43,13 +42,14 @@ class ProviderArgs:
         :param pulumi.Input[builtins.str] root_ca_certificate: Allows x509 calls using an unknown CA certificate (for development purposes)
         :param pulumi.Input[builtins.bool] tls_insecure_skip_verify: Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and
                should be avoided.
+        :param pulumi.Input[builtins.str] url: The base URL of the Keycloak instance, before `/auth`
         """
-        pulumi.set(__self__, "client_id", client_id)
-        pulumi.set(__self__, "url", url)
         if additional_headers is not None:
             pulumi.set(__self__, "additional_headers", additional_headers)
         if base_path is not None:
             pulumi.set(__self__, "base_path", base_path)
+        if client_id is not None:
+            pulumi.set(__self__, "client_id", client_id)
         if client_secret is not None:
             pulumi.set(__self__, "client_secret", client_secret)
         if client_timeout is None:
@@ -68,29 +68,10 @@ class ProviderArgs:
             pulumi.set(__self__, "root_ca_certificate", root_ca_certificate)
         if tls_insecure_skip_verify is not None:
             pulumi.set(__self__, "tls_insecure_skip_verify", tls_insecure_skip_verify)
+        if url is not None:
+            pulumi.set(__self__, "url", url)
         if username is not None:
             pulumi.set(__self__, "username", username)
-
-    @property
-    @pulumi.getter(name="clientId")
-    def client_id(self) -> pulumi.Input[builtins.str]:
-        return pulumi.get(self, "client_id")
-
-    @client_id.setter
-    def client_id(self, value: pulumi.Input[builtins.str]):
-        pulumi.set(self, "client_id", value)
-
-    @property
-    @pulumi.getter
-    def url(self) -> pulumi.Input[builtins.str]:
-        """
-        The base URL of the Keycloak instance, before `/auth`
-        """
-        return pulumi.get(self, "url")
-
-    @url.setter
-    def url(self, value: pulumi.Input[builtins.str]):
-        pulumi.set(self, "url", value)
 
     @property
     @pulumi.getter(name="additionalHeaders")
@@ -109,6 +90,15 @@ class ProviderArgs:
     @base_path.setter
     def base_path(self, value: Optional[pulumi.Input[builtins.str]]):
         pulumi.set(self, "base_path", value)
+
+    @property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> Optional[pulumi.Input[builtins.str]]:
+        return pulumi.get(self, "client_id")
+
+    @client_id.setter
+    def client_id(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "client_id", value)
 
     @property
     @pulumi.getter(name="clientSecret")
@@ -201,6 +191,18 @@ class ProviderArgs:
 
     @property
     @pulumi.getter
+    def url(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The base URL of the Keycloak instance, before `/auth`
+        """
+        return pulumi.get(self, "url")
+
+    @url.setter
+    def url(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "url", value)
+
+    @property
+    @pulumi.getter
     def username(self) -> Optional[pulumi.Input[builtins.str]]:
         return pulumi.get(self, "username")
 
@@ -209,10 +211,8 @@ class ProviderArgs:
         pulumi.set(self, "username", value)
 
 
+@pulumi.type_token("pulumi:providers:keycloak")
 class Provider(pulumi.ProviderResource):
-
-    pulumi_type = "pulumi:providers:keycloak"
-
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -252,7 +252,7 @@ class Provider(pulumi.ProviderResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: ProviderArgs,
+                 args: Optional[ProviderArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         The provider type for the keycloak package. By default, resources use package-wide configuration
@@ -299,8 +299,6 @@ class Provider(pulumi.ProviderResource):
 
             __props__.__dict__["additional_headers"] = pulumi.Output.from_input(additional_headers).apply(pulumi.runtime.to_json) if additional_headers is not None else None
             __props__.__dict__["base_path"] = base_path
-            if client_id is None and not opts.urn:
-                raise TypeError("Missing required property 'client_id'")
             __props__.__dict__["client_id"] = client_id
             __props__.__dict__["client_secret"] = client_secret
             if client_timeout is None:
@@ -312,8 +310,6 @@ class Provider(pulumi.ProviderResource):
             __props__.__dict__["red_hat_sso"] = pulumi.Output.from_input(red_hat_sso).apply(pulumi.runtime.to_json) if red_hat_sso is not None else None
             __props__.__dict__["root_ca_certificate"] = root_ca_certificate
             __props__.__dict__["tls_insecure_skip_verify"] = pulumi.Output.from_input(tls_insecure_skip_verify).apply(pulumi.runtime.to_json) if tls_insecure_skip_verify is not None else None
-            if url is None and not opts.urn:
-                raise TypeError("Missing required property 'url'")
             __props__.__dict__["url"] = url
             __props__.__dict__["username"] = username
         super(Provider, __self__).__init__(
@@ -329,7 +325,7 @@ class Provider(pulumi.ProviderResource):
 
     @property
     @pulumi.getter(name="clientId")
-    def client_id(self) -> pulumi.Output[builtins.str]:
+    def client_id(self) -> pulumi.Output[Optional[builtins.str]]:
         return pulumi.get(self, "client_id")
 
     @property
@@ -357,7 +353,7 @@ class Provider(pulumi.ProviderResource):
 
     @property
     @pulumi.getter
-    def url(self) -> pulumi.Output[builtins.str]:
+    def url(self) -> pulumi.Output[Optional[builtins.str]]:
         """
         The base URL of the Keycloak instance, before `/auth`
         """
@@ -367,4 +363,24 @@ class Provider(pulumi.ProviderResource):
     @pulumi.getter
     def username(self) -> pulumi.Output[Optional[builtins.str]]:
         return pulumi.get(self, "username")
+
+    @pulumi.output_type
+    class TerraformConfigResult:
+        def __init__(__self__, result=None):
+            if result and not isinstance(result, dict):
+                raise TypeError("Expected argument 'result' to be a dict")
+            pulumi.set(__self__, "result", result)
+
+        @property
+        @pulumi.getter
+        def result(self) -> Mapping[str, Any]:
+            return pulumi.get(self, "result")
+
+    def terraform_config(__self__) -> pulumi.Output['Provider.TerraformConfigResult']:
+        """
+        This function returns a Terraform config object with terraform-namecased keys,to be used with the Terraform Module Provider.
+        """
+        __args__ = dict()
+        __args__['__self__'] = __self__
+        return pulumi.runtime.call('pulumi:providers:keycloak/terraformConfig', __args__, res=__self__, typ=Provider.TerraformConfigResult)
 

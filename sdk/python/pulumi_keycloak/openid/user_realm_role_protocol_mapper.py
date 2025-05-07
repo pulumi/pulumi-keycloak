@@ -383,10 +383,8 @@ class _UserRealmRoleProtocolMapperState:
         pulumi.set(self, "realm_role_prefix", value)
 
 
+@pulumi.type_token("keycloak:openid/userRealmRoleProtocolMapper:UserRealmRoleProtocolMapper")
 class UserRealmRoleProtocolMapper(pulumi.CustomResource):
-
-    pulumi_type = "keycloak:openid/userRealmRoleProtocolMapper:UserRealmRoleProtocolMapper"
-
     @overload
     def __init__(__self__,
                  resource_name: str,
