@@ -382,10 +382,8 @@ class _ScriptProtocolMapperState:
         pulumi.set(self, "script", value)
 
 
+@pulumi.type_token("keycloak:openid/scriptProtocolMapper:ScriptProtocolMapper")
 class ScriptProtocolMapper(pulumi.CustomResource):
-
-    pulumi_type = "keycloak:openid/scriptProtocolMapper:ScriptProtocolMapper"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

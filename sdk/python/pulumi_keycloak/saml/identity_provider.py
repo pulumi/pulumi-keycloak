@@ -1221,10 +1221,8 @@ class _IdentityProviderState:
         pulumi.set(self, "xml_sign_key_info_key_name_transformer", value)
 
 
+@pulumi.type_token("keycloak:saml/identityProvider:IdentityProvider")
 class IdentityProvider(pulumi.CustomResource):
-
-    pulumi_type = "keycloak:saml/identityProvider:IdentityProvider"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

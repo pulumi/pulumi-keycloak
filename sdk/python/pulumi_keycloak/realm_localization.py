@@ -127,10 +127,8 @@ class _RealmLocalizationState:
         pulumi.set(self, "texts", value)
 
 
+@pulumi.type_token("keycloak:index/realmLocalization:RealmLocalization")
 class RealmLocalization(pulumi.CustomResource):
-
-    pulumi_type = "keycloak:index/realmLocalization:RealmLocalization"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

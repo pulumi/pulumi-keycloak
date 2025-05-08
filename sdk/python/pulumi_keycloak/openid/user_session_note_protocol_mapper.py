@@ -319,10 +319,8 @@ class _UserSessionNoteProtocolMapperState:
         pulumi.set(self, "session_note", value)
 
 
+@pulumi.type_token("keycloak:openid/userSessionNoteProtocolMapper:UserSessionNoteProtocolMapper")
 class UserSessionNoteProtocolMapper(pulumi.CustomResource):
-
-    pulumi_type = "keycloak:openid/userSessionNoteProtocolMapper:UserSessionNoteProtocolMapper"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

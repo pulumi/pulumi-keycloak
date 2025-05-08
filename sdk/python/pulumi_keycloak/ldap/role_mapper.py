@@ -506,10 +506,8 @@ class _RoleMapperState:
         pulumi.set(self, "user_roles_retrieve_strategy", value)
 
 
+@pulumi.type_token("keycloak:ldap/roleMapper:RoleMapper")
 class RoleMapper(pulumi.CustomResource):
-
-    pulumi_type = "keycloak:ldap/roleMapper:RoleMapper"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

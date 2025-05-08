@@ -224,10 +224,8 @@ class _RealmKeystoreEcdsaGeneratedState:
         pulumi.set(self, "realm_id", value)
 
 
+@pulumi.type_token("keycloak:index/realmKeystoreEcdsaGenerated:RealmKeystoreEcdsaGenerated")
 class RealmKeystoreEcdsaGenerated(pulumi.CustomResource):
-
-    pulumi_type = "keycloak:index/realmKeystoreEcdsaGenerated:RealmKeystoreEcdsaGenerated"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

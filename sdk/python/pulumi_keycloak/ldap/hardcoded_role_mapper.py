@@ -158,10 +158,8 @@ class _HardcodedRoleMapperState:
         pulumi.set(self, "role", value)
 
 
+@pulumi.type_token("keycloak:ldap/hardcodedRoleMapper:HardcodedRoleMapper")
 class HardcodedRoleMapper(pulumi.CustomResource):
-
-    pulumi_type = "keycloak:ldap/hardcodedRoleMapper:HardcodedRoleMapper"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

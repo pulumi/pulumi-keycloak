@@ -288,10 +288,8 @@ class _BindingsState:
         pulumi.set(self, "reset_credentials_flow", value)
 
 
+@pulumi.type_token("keycloak:authentication/bindings:Bindings")
 class Bindings(pulumi.CustomResource):
-
-    pulumi_type = "keycloak:authentication/bindings:Bindings"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

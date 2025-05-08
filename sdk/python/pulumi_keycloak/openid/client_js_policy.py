@@ -221,10 +221,8 @@ class _ClientJsPolicyState:
         pulumi.set(self, "type", value)
 
 
+@pulumi.type_token("keycloak:openid/clientJsPolicy:ClientJsPolicy")
 class ClientJsPolicy(pulumi.CustomResource):
-
-    pulumi_type = "keycloak:openid/clientJsPolicy:ClientJsPolicy"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

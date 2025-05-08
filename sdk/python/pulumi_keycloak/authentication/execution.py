@@ -190,10 +190,8 @@ class _ExecutionState:
         pulumi.set(self, "requirement", value)
 
 
+@pulumi.type_token("keycloak:authentication/execution:Execution")
 class Execution(pulumi.CustomResource):
-
-    pulumi_type = "keycloak:authentication/execution:Execution"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -256,10 +256,8 @@ class _RealmKeystoreHmacGeneratedState:
         pulumi.set(self, "secret_size", value)
 
 
+@pulumi.type_token("keycloak:index/realmKeystoreHmacGenerated:RealmKeystoreHmacGenerated")
 class RealmKeystoreHmacGenerated(pulumi.CustomResource):
-
-    pulumi_type = "keycloak:index/realmKeystoreHmacGenerated:RealmKeystoreHmacGenerated"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

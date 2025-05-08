@@ -350,10 +350,8 @@ class _HardcodedClaimProtocolMapperState:
         pulumi.set(self, "realm_id", value)
 
 
+@pulumi.type_token("keycloak:openid/hardcodedClaimProtocolMapper:HardcodedClaimProtocolMapper")
 class HardcodedClaimProtocolMapper(pulumi.CustomResource):
-
-    pulumi_type = "keycloak:openid/hardcodedClaimProtocolMapper:HardcodedClaimProtocolMapper"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

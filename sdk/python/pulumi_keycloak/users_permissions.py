@@ -230,10 +230,8 @@ class _UsersPermissionsState:
         pulumi.set(self, "view_scope", value)
 
 
+@pulumi.type_token("keycloak:index/usersPermissions:UsersPermissions")
 class UsersPermissions(pulumi.CustomResource):
-
-    pulumi_type = "keycloak:index/usersPermissions:UsersPermissions"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

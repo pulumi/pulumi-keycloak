@@ -95,10 +95,8 @@ class _DefaultRolesState:
         pulumi.set(self, "realm_id", value)
 
 
+@pulumi.type_token("keycloak:index/defaultRoles:DefaultRoles")
 class DefaultRoles(pulumi.CustomResource):
-
-    pulumi_type = "keycloak:index/defaultRoles:DefaultRoles"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

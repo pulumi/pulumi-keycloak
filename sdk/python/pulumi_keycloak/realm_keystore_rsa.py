@@ -318,10 +318,8 @@ class _RealmKeystoreRsaState:
         pulumi.set(self, "realm_id", value)
 
 
+@pulumi.type_token("keycloak:index/realmKeystoreRsa:RealmKeystoreRsa")
 class RealmKeystoreRsa(pulumi.CustomResource):
-
-    pulumi_type = "keycloak:index/realmKeystoreRsa:RealmKeystoreRsa"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

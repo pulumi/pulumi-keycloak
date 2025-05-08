@@ -1570,10 +1570,8 @@ class _RealmState:
         pulumi.set(self, "web_authn_policy", value)
 
 
+@pulumi.type_token("keycloak:index/realm:Realm")
 class Realm(pulumi.CustomResource):
-
-    pulumi_type = "keycloak:index/realm:Realm"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -151,10 +151,8 @@ class _ClientAuthorizationScopeState:
         pulumi.set(self, "resource_server_id", value)
 
 
+@pulumi.type_token("keycloak:openid/clientAuthorizationScope:ClientAuthorizationScope")
 class ClientAuthorizationScope(pulumi.CustomResource):
-
-    pulumi_type = "keycloak:openid/clientAuthorizationScope:ClientAuthorizationScope"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

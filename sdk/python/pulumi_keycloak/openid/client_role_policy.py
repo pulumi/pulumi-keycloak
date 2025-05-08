@@ -223,10 +223,8 @@ class _ClientRolePolicyState:
         pulumi.set(self, "type", value)
 
 
+@pulumi.type_token("keycloak:openid/clientRolePolicy:ClientRolePolicy")
 class ClientRolePolicy(pulumi.CustomResource):
-
-    pulumi_type = "keycloak:openid/clientRolePolicy:ClientRolePolicy"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

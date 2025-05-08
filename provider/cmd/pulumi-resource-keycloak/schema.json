@@ -1745,7 +1745,10 @@
         "requiredInputs": [
             "clientId",
             "url"
-        ]
+        ],
+        "methods": {
+            "terraformConfig": "pulumi:providers:keycloak/terraformConfig"
+        }
     },
     "resources": {
         "keycloak:authentication/bindings:Bindings": {
@@ -16595,6 +16598,35 @@
                     "realmId",
                     "value",
                     "id"
+                ],
+                "type": "object"
+            }
+        },
+        "pulumi:providers:keycloak/terraformConfig": {
+            "description": "This function returns a Terraform config object with terraform-namecased keys,to be used with the Terraform Module Provider.",
+            "inputs": {
+                "properties": {
+                    "__self__": {
+                        "type": "ref",
+                        "$ref": "#/resources/pulumi:providers:keycloak"
+                    }
+                },
+                "type": "pulumi:providers:keycloak/terraformConfig",
+                "required": [
+                    "__self__"
+                ]
+            },
+            "outputs": {
+                "properties": {
+                    "result": {
+                        "additionalProperties": {
+                            "$ref": "pulumi.json#/Any"
+                        },
+                        "type": "object"
+                    }
+                },
+                "required": [
+                    "result"
                 ],
                 "type": "object"
             }

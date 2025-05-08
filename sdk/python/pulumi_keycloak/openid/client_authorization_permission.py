@@ -271,10 +271,8 @@ class _ClientAuthorizationPermissionState:
         pulumi.set(self, "type", value)
 
 
+@pulumi.type_token("keycloak:openid/clientAuthorizationPermission:ClientAuthorizationPermission")
 class ClientAuthorizationPermission(pulumi.CustomResource):
-
-    pulumi_type = "keycloak:openid/clientAuthorizationPermission:ClientAuthorizationPermission"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

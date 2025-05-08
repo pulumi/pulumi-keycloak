@@ -256,10 +256,8 @@ class _RealmEventsState:
         pulumi.set(self, "realm_id", value)
 
 
+@pulumi.type_token("keycloak:index/realmEvents:RealmEvents")
 class RealmEvents(pulumi.CustomResource):
-
-    pulumi_type = "keycloak:index/realmEvents:RealmEvents"
-
     @overload
     def __init__(__self__,
                  resource_name: str,
