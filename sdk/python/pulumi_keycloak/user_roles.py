@@ -158,10 +158,8 @@ class _UserRolesState:
         pulumi.set(self, "user_id", value)
 
 
+@pulumi.type_token("keycloak:index/userRoles:UserRoles")
 class UserRoles(pulumi.CustomResource):
-
-    pulumi_type = "keycloak:index/userRoles:UserRoles"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

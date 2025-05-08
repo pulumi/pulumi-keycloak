@@ -806,10 +806,8 @@ class _GoogleIdentityProviderState:
         pulumi.set(self, "use_user_ip_param", value)
 
 
+@pulumi.type_token("keycloak:oidc/googleIdentityProvider:GoogleIdentityProvider")
 class GoogleIdentityProvider(pulumi.CustomResource):
-
-    pulumi_type = "keycloak:oidc/googleIdentityProvider:GoogleIdentityProvider"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

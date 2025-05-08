@@ -126,10 +126,8 @@ class _ClientServiceAccountRealmRoleState:
         pulumi.set(self, "service_account_user_id", value)
 
 
+@pulumi.type_token("keycloak:openid/clientServiceAccountRealmRole:ClientServiceAccountRealmRole")
 class ClientServiceAccountRealmRole(pulumi.CustomResource):
-
-    pulumi_type = "keycloak:openid/clientServiceAccountRealmRole:ClientServiceAccountRealmRole"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

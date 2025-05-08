@@ -288,10 +288,8 @@ class _AudienceProtocolMapperState:
         pulumi.set(self, "realm_id", value)
 
 
+@pulumi.type_token("keycloak:openid/audienceProtocolMapper:AudienceProtocolMapper")
 class AudienceProtocolMapper(pulumi.CustomResource):
-
-    pulumi_type = "keycloak:openid/audienceProtocolMapper:AudienceProtocolMapper"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

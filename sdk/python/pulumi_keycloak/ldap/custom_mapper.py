@@ -221,10 +221,8 @@ class _CustomMapperState:
         pulumi.set(self, "realm_id", value)
 
 
+@pulumi.type_token("keycloak:ldap/customMapper:CustomMapper")
 class CustomMapper(pulumi.CustomResource):
-
-    pulumi_type = "keycloak:ldap/customMapper:CustomMapper"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

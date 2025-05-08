@@ -162,10 +162,8 @@ class _RealmUserProfileState:
         pulumi.set(self, "unmanaged_attribute_policy", value)
 
 
+@pulumi.type_token("keycloak:index/realmUserProfile:RealmUserProfile")
 class RealmUserProfile(pulumi.CustomResource):
-
-    pulumi_type = "keycloak:index/realmUserProfile:RealmUserProfile"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

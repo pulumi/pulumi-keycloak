@@ -277,10 +277,8 @@ class _ClientPermissionsState:
         pulumi.set(self, "view_scope", value)
 
 
+@pulumi.type_token("keycloak:openid/clientPermissions:ClientPermissions")
 class ClientPermissions(pulumi.CustomResource):
-
-    pulumi_type = "keycloak:openid/clientPermissions:ClientPermissions"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

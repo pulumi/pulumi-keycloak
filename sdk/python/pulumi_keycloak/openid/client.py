@@ -1572,10 +1572,8 @@ class _ClientState:
         pulumi.set(self, "web_origins", value)
 
 
+@pulumi.type_token("keycloak:openid/client:Client")
 class Client(pulumi.CustomResource):
-
-    pulumi_type = "keycloak:openid/client:Client"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -145,10 +145,8 @@ export type IdentityProviderTokenExchangeScopePermission = import("./identityPro
 export const IdentityProviderTokenExchangeScopePermission: typeof import("./identityProviderTokenExchangeScopePermission").IdentityProviderTokenExchangeScopePermission = null as any;
 utilities.lazyLoad(exports, ["IdentityProviderTokenExchangeScopePermission"], () => require("./identityProviderTokenExchangeScopePermission"));
 
-export { ProviderArgs } from "./provider";
-export type Provider = import("./provider").Provider;
-export const Provider: typeof import("./provider").Provider = null as any;
-utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
+export * from "./provider";
+import { Provider } from "./provider";
 
 export { RealmArgs, RealmState } from "./realm";
 export type Realm = import("./realm").Realm;

@@ -191,10 +191,8 @@ class _HardcodedRoleProtocolMapperState:
         pulumi.set(self, "role_id", value)
 
 
+@pulumi.type_token("keycloak:openid/hardcodedRoleProtocolMapper:HardcodedRoleProtocolMapper")
 class HardcodedRoleProtocolMapper(pulumi.CustomResource):
-
-    pulumi_type = "keycloak:openid/hardcodedRoleProtocolMapper:HardcodedRoleProtocolMapper"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

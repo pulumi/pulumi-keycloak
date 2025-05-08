@@ -222,10 +222,8 @@ class _IdentityProviderTokenExchangeScopePermissionState:
         pulumi.set(self, "realm_id", value)
 
 
+@pulumi.type_token("keycloak:index/identityProviderTokenExchangeScopePermission:IdentityProviderTokenExchangeScopePermission")
 class IdentityProviderTokenExchangeScopePermission(pulumi.CustomResource):
-
-    pulumi_type = "keycloak:index/identityProviderTokenExchangeScopePermission:IdentityProviderTokenExchangeScopePermission"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

@@ -126,10 +126,8 @@ class _ClientDefaultScopesState:
         pulumi.set(self, "realm_id", value)
 
 
+@pulumi.type_token("keycloak:openid/clientDefaultScopes:ClientDefaultScopes")
 class ClientDefaultScopes(pulumi.CustomResource):
-
-    pulumi_type = "keycloak:openid/clientDefaultScopes:ClientDefaultScopes"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

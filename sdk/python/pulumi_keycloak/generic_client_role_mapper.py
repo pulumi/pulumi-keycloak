@@ -159,10 +159,8 @@ class _GenericClientRoleMapperState:
         pulumi.set(self, "role_id", value)
 
 
+@pulumi.type_token("keycloak:index/genericClientRoleMapper:GenericClientRoleMapper")
 class GenericClientRoleMapper(pulumi.CustomResource):
-
-    pulumi_type = "keycloak:index/genericClientRoleMapper:GenericClientRoleMapper"
-
     @overload
     def __init__(__self__,
                  resource_name: str,

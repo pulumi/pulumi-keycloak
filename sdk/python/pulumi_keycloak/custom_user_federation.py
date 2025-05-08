@@ -351,10 +351,8 @@ class _CustomUserFederationState:
         pulumi.set(self, "realm_id", value)
 
 
+@pulumi.type_token("keycloak:index/customUserFederation:CustomUserFederation")
 class CustomUserFederation(pulumi.CustomResource):
-
-    pulumi_type = "keycloak:index/customUserFederation:CustomUserFederation"
-
     @overload
     def __init__(__self__,
                  resource_name: str,
