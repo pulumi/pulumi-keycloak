@@ -495,8 +495,8 @@ namespace Pulumi.Keycloak.OpenId
         /// <summary>
         /// The Client ID for this client, referenced in the URI during authentication and in issued tokens.
         /// </summary>
-        [Input("clientId", required: true)]
-        public Input<string> ClientId { get; set; } = null!;
+        [Input("clientId")]
+        public Input<string>? ClientId { get; set; }
 
         /// <summary>
         /// Time a client session is allowed to be idle before it expires. Tokens are invalidated when a client session is expired. If not set it uses the standard SSO Session Idle value.

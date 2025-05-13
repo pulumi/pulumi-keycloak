@@ -101,9 +101,6 @@ func NewFlow(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.Alias == nil {
-		return nil, errors.New("invalid value for required argument 'Alias'")
-	}
 	if args.RealmId == nil {
 		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
@@ -157,7 +154,7 @@ func (FlowState) ElementType() reflect.Type {
 
 type flowArgs struct {
 	// The alias for this authentication flow.
-	Alias string `pulumi:"alias"`
+	Alias *string `pulumi:"alias"`
 	// A description for the authentication flow.
 	Description *string `pulumi:"description"`
 	// The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`.
@@ -169,7 +166,7 @@ type flowArgs struct {
 // The set of arguments for constructing a Flow resource.
 type FlowArgs struct {
 	// The alias for this authentication flow.
-	Alias pulumi.StringInput
+	Alias pulumi.StringPtrInput
 	// A description for the authentication flow.
 	Description pulumi.StringPtrInput
 	// The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`.

@@ -286,8 +286,8 @@ namespace Pulumi.Keycloak.Oidc
         /// <summary>
         /// The client or client identifier registered within the identity provider.
         /// </summary>
-        [Input("clientId", required: true)]
-        public Input<string> ClientId { get; set; } = null!;
+        [Input("clientId")]
+        public Input<string>? ClientId { get; set; }
 
         [Input("clientSecret", required: true)]
         private Input<string>? _clientSecret;

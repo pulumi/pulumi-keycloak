@@ -117,9 +117,6 @@ export class ExecutionConfig extends pulumi.CustomResource {
             resourceInputs["realmId"] = state ? state.realmId : undefined;
         } else {
             const args = argsOrState as ExecutionConfigArgs | undefined;
-            if ((!args || args.alias === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'alias'");
-            }
             if ((!args || args.config === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'config'");
             }
@@ -168,7 +165,7 @@ export interface ExecutionConfigArgs {
     /**
      * The name of the configuration.
      */
-    alias: pulumi.Input<string>;
+    alias?: pulumi.Input<string>;
     /**
      * The configuration. Keys are specific to each configurable authentication execution and not checked when applying.
      */

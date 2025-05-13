@@ -143,9 +143,6 @@ export class Subflow extends pulumi.CustomResource {
             resourceInputs["requirement"] = state ? state.requirement : undefined;
         } else {
             const args = argsOrState as SubflowArgs | undefined;
-            if ((!args || args.alias === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'alias'");
-            }
             if ((!args || args.parentFlowAlias === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'parentFlowAlias'");
             }
@@ -214,7 +211,7 @@ export interface SubflowArgs {
     /**
      * The alias for this authentication subflow.
      */
-    alias: pulumi.Input<string>;
+    alias?: pulumi.Input<string>;
     /**
      * The name of the authenticator. Might be needed to be set with certain custom subflows with specific
      * authenticators. In general this will remain empty.

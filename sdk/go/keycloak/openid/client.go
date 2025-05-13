@@ -198,9 +198,6 @@ func NewClient(ctx *pulumi.Context,
 	if args.AccessType == nil {
 		return nil, errors.New("invalid value for required argument 'AccessType'")
 	}
-	if args.ClientId == nil {
-		return nil, errors.New("invalid value for required argument 'ClientId'")
-	}
 	if args.RealmId == nil {
 		return nil, errors.New("invalid value for required argument 'RealmId'")
 	}
@@ -488,7 +485,7 @@ type clientArgs struct {
 	// - `client-secret-jwt` Use signed JWT with client secret to authenticate client. Set signing algorithm in `extraConfig` with `attributes.token.endpoint.auth.signing.alg = <alg>`
 	ClientAuthenticatorType *string `pulumi:"clientAuthenticatorType"`
 	// The Client ID for this client, referenced in the URI during authentication and in issued tokens.
-	ClientId string `pulumi:"clientId"`
+	ClientId *string `pulumi:"clientId"`
 	// Time a client session is allowed to be idle before it expires. Tokens are invalidated when a client session is expired. If not set it uses the standard SSO Session Idle value.
 	ClientOfflineSessionIdleTimeout *string `pulumi:"clientOfflineSessionIdleTimeout"`
 	// Max time before a client session is expired. Tokens are invalidated when a client session is expired. If not set, it uses the standard SSO Session Max value.
@@ -594,7 +591,7 @@ type ClientArgs struct {
 	// - `client-secret-jwt` Use signed JWT with client secret to authenticate client. Set signing algorithm in `extraConfig` with `attributes.token.endpoint.auth.signing.alg = <alg>`
 	ClientAuthenticatorType pulumi.StringPtrInput
 	// The Client ID for this client, referenced in the URI during authentication and in issued tokens.
-	ClientId pulumi.StringInput
+	ClientId pulumi.StringPtrInput
 	// Time a client session is allowed to be idle before it expires. Tokens are invalidated when a client session is expired. If not set it uses the standard SSO Session Idle value.
 	ClientOfflineSessionIdleTimeout pulumi.StringPtrInput
 	// Max time before a client session is expired. Tokens are invalidated when a client session is expired. If not set, it uses the standard SSO Session Max value.

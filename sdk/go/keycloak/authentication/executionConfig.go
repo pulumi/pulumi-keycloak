@@ -104,9 +104,6 @@ func NewExecutionConfig(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.Alias == nil {
-		return nil, errors.New("invalid value for required argument 'Alias'")
-	}
 	if args.Config == nil {
 		return nil, errors.New("invalid value for required argument 'Config'")
 	}
@@ -166,7 +163,7 @@ func (ExecutionConfigState) ElementType() reflect.Type {
 
 type executionConfigArgs struct {
 	// The name of the configuration.
-	Alias string `pulumi:"alias"`
+	Alias *string `pulumi:"alias"`
 	// The configuration. Keys are specific to each configurable authentication execution and not checked when applying.
 	Config map[string]string `pulumi:"config"`
 	// The authentication execution this configuration is attached to.
@@ -178,7 +175,7 @@ type executionConfigArgs struct {
 // The set of arguments for constructing a ExecutionConfig resource.
 type ExecutionConfigArgs struct {
 	// The name of the configuration.
-	Alias pulumi.StringInput
+	Alias pulumi.StringPtrInput
 	// The configuration. Keys are specific to each configurable authentication execution and not checked when applying.
 	Config pulumi.StringMapInput
 	// The authentication execution this configuration is attached to.

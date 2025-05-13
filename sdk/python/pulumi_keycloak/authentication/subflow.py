@@ -20,9 +20,9 @@ __all__ = ['SubflowArgs', 'Subflow']
 @pulumi.input_type
 class SubflowArgs:
     def __init__(__self__, *,
-                 alias: pulumi.Input[builtins.str],
                  parent_flow_alias: pulumi.Input[builtins.str],
                  realm_id: pulumi.Input[builtins.str],
+                 alias: Optional[pulumi.Input[builtins.str]] = None,
                  authenticator: Optional[pulumi.Input[builtins.str]] = None,
                  description: Optional[pulumi.Input[builtins.str]] = None,
                  priority: Optional[pulumi.Input[builtins.int]] = None,
@@ -30,9 +30,9 @@ class SubflowArgs:
                  requirement: Optional[pulumi.Input[builtins.str]] = None):
         """
         The set of arguments for constructing a Subflow resource.
-        :param pulumi.Input[builtins.str] alias: The alias for this authentication subflow.
         :param pulumi.Input[builtins.str] parent_flow_alias: The alias for the parent authentication flow.
         :param pulumi.Input[builtins.str] realm_id: The realm that the authentication subflow exists in.
+        :param pulumi.Input[builtins.str] alias: The alias for this authentication subflow.
         :param pulumi.Input[builtins.str] authenticator: The name of the authenticator. Might be needed to be set with certain custom subflows with specific
                authenticators. In general this will remain empty.
         :param pulumi.Input[builtins.str] description: A description for the authentication subflow.
@@ -42,9 +42,10 @@ class SubflowArgs:
         :param pulumi.Input[builtins.str] requirement: The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`,
                or `DISABLED`. Defaults to `DISABLED`.
         """
-        pulumi.set(__self__, "alias", alias)
         pulumi.set(__self__, "parent_flow_alias", parent_flow_alias)
         pulumi.set(__self__, "realm_id", realm_id)
+        if alias is not None:
+            pulumi.set(__self__, "alias", alias)
         if authenticator is not None:
             pulumi.set(__self__, "authenticator", authenticator)
         if description is not None:
@@ -55,18 +56,6 @@ class SubflowArgs:
             pulumi.set(__self__, "provider_id", provider_id)
         if requirement is not None:
             pulumi.set(__self__, "requirement", requirement)
-
-    @property
-    @pulumi.getter
-    def alias(self) -> pulumi.Input[builtins.str]:
-        """
-        The alias for this authentication subflow.
-        """
-        return pulumi.get(self, "alias")
-
-    @alias.setter
-    def alias(self, value: pulumi.Input[builtins.str]):
-        pulumi.set(self, "alias", value)
 
     @property
     @pulumi.getter(name="parentFlowAlias")
@@ -91,6 +80,18 @@ class SubflowArgs:
     @realm_id.setter
     def realm_id(self, value: pulumi.Input[builtins.str]):
         pulumi.set(self, "realm_id", value)
+
+    @property
+    @pulumi.getter
+    def alias(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The alias for this authentication subflow.
+        """
+        return pulumi.get(self, "alias")
+
+    @alias.setter
+    def alias(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "alias", value)
 
     @property
     @pulumi.getter
@@ -463,8 +464,6 @@ class Subflow(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = SubflowArgs.__new__(SubflowArgs)
 
-            if alias is None and not opts.urn:
-                raise TypeError("Missing required property 'alias'")
             __props__.__dict__["alias"] = alias
             __props__.__dict__["authenticator"] = authenticator
             __props__.__dict__["description"] = description

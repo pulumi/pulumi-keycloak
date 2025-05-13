@@ -117,9 +117,6 @@ export class Flow extends pulumi.CustomResource {
             resourceInputs["realmId"] = state ? state.realmId : undefined;
         } else {
             const args = argsOrState as FlowArgs | undefined;
-            if ((!args || args.alias === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'alias'");
-            }
             if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
@@ -162,7 +159,7 @@ export interface FlowArgs {
     /**
      * The alias for this authentication flow.
      */
-    alias: pulumi.Input<string>;
+    alias?: pulumi.Input<string>;
     /**
      * A description for the authentication flow.
      */

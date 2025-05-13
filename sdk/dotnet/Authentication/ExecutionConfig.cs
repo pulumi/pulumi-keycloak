@@ -148,8 +148,8 @@ namespace Pulumi.Keycloak.Authentication
         /// <summary>
         /// The name of the configuration.
         /// </summary>
-        [Input("alias", required: true)]
-        public Input<string> Alias { get; set; } = null!;
+        [Input("alias")]
+        public Input<string>? Alias { get; set; }
 
         [Input("config", required: true)]
         private InputMap<string>? _config;

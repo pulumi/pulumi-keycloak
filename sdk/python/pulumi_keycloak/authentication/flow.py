@@ -20,35 +20,24 @@ __all__ = ['FlowArgs', 'Flow']
 @pulumi.input_type
 class FlowArgs:
     def __init__(__self__, *,
-                 alias: pulumi.Input[builtins.str],
                  realm_id: pulumi.Input[builtins.str],
+                 alias: Optional[pulumi.Input[builtins.str]] = None,
                  description: Optional[pulumi.Input[builtins.str]] = None,
                  provider_id: Optional[pulumi.Input[builtins.str]] = None):
         """
         The set of arguments for constructing a Flow resource.
-        :param pulumi.Input[builtins.str] alias: The alias for this authentication flow.
         :param pulumi.Input[builtins.str] realm_id: The realm that the authentication flow exists in.
+        :param pulumi.Input[builtins.str] alias: The alias for this authentication flow.
         :param pulumi.Input[builtins.str] description: A description for the authentication flow.
         :param pulumi.Input[builtins.str] provider_id: The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`.
         """
-        pulumi.set(__self__, "alias", alias)
         pulumi.set(__self__, "realm_id", realm_id)
+        if alias is not None:
+            pulumi.set(__self__, "alias", alias)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if provider_id is not None:
             pulumi.set(__self__, "provider_id", provider_id)
-
-    @property
-    @pulumi.getter
-    def alias(self) -> pulumi.Input[builtins.str]:
-        """
-        The alias for this authentication flow.
-        """
-        return pulumi.get(self, "alias")
-
-    @alias.setter
-    def alias(self, value: pulumi.Input[builtins.str]):
-        pulumi.set(self, "alias", value)
 
     @property
     @pulumi.getter(name="realmId")
@@ -61,6 +50,18 @@ class FlowArgs:
     @realm_id.setter
     def realm_id(self, value: pulumi.Input[builtins.str]):
         pulumi.set(self, "realm_id", value)
+
+    @property
+    @pulumi.getter
+    def alias(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The alias for this authentication flow.
+        """
+        return pulumi.get(self, "alias")
+
+    @alias.setter
+    def alias(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "alias", value)
 
     @property
     @pulumi.getter
@@ -303,8 +304,6 @@ class Flow(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = FlowArgs.__new__(FlowArgs)
 
-            if alias is None and not opts.urn:
-                raise TypeError("Missing required property 'alias'")
             __props__.__dict__["alias"] = alias
             __props__.__dict__["description"] = description
             __props__.__dict__["provider_id"] = provider_id

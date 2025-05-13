@@ -643,7 +643,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public Realm(java.lang.String name, RealmArgs args) {
+    public Realm(java.lang.String name, @Nullable RealmArgs args) {
         this(name, args, null);
     }
     /**
@@ -652,7 +652,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public Realm(java.lang.String name, RealmArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public Realm(java.lang.String name, @Nullable RealmArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("keycloak:index/realm:Realm", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
@@ -660,7 +660,7 @@ public class Realm extends com.pulumi.resources.CustomResource {
         super("keycloak:index/realm:Realm", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static RealmArgs makeArgs(RealmArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    private static RealmArgs makeArgs(@Nullable RealmArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         if (options != null && options.getUrn().isPresent()) {
             return null;
         }

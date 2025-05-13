@@ -20,33 +20,22 @@ __all__ = ['ExecutionConfigArgs', 'ExecutionConfig']
 @pulumi.input_type
 class ExecutionConfigArgs:
     def __init__(__self__, *,
-                 alias: pulumi.Input[builtins.str],
                  config: pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]],
                  execution_id: pulumi.Input[builtins.str],
-                 realm_id: pulumi.Input[builtins.str]):
+                 realm_id: pulumi.Input[builtins.str],
+                 alias: Optional[pulumi.Input[builtins.str]] = None):
         """
         The set of arguments for constructing a ExecutionConfig resource.
-        :param pulumi.Input[builtins.str] alias: The name of the configuration.
         :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] config: The configuration. Keys are specific to each configurable authentication execution and not checked when applying.
         :param pulumi.Input[builtins.str] execution_id: The authentication execution this configuration is attached to.
         :param pulumi.Input[builtins.str] realm_id: The realm the authentication execution exists in.
+        :param pulumi.Input[builtins.str] alias: The name of the configuration.
         """
-        pulumi.set(__self__, "alias", alias)
         pulumi.set(__self__, "config", config)
         pulumi.set(__self__, "execution_id", execution_id)
         pulumi.set(__self__, "realm_id", realm_id)
-
-    @property
-    @pulumi.getter
-    def alias(self) -> pulumi.Input[builtins.str]:
-        """
-        The name of the configuration.
-        """
-        return pulumi.get(self, "alias")
-
-    @alias.setter
-    def alias(self, value: pulumi.Input[builtins.str]):
-        pulumi.set(self, "alias", value)
+        if alias is not None:
+            pulumi.set(__self__, "alias", alias)
 
     @property
     @pulumi.getter
@@ -83,6 +72,18 @@ class ExecutionConfigArgs:
     @realm_id.setter
     def realm_id(self, value: pulumi.Input[builtins.str]):
         pulumi.set(self, "realm_id", value)
+
+    @property
+    @pulumi.getter
+    def alias(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The name of the configuration.
+        """
+        return pulumi.get(self, "alias")
+
+    @alias.setter
+    def alias(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "alias", value)
 
 
 @pulumi.input_type
@@ -299,8 +300,6 @@ class ExecutionConfig(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ExecutionConfigArgs.__new__(ExecutionConfigArgs)
 
-            if alias is None and not opts.urn:
-                raise TypeError("Missing required property 'alias'")
             __props__.__dict__["alias"] = alias
             if config is None and not opts.urn:
                 raise TypeError("Missing required property 'config'")

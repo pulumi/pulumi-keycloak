@@ -9,6 +9,8 @@ import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class ExecutionConfigArgs extends com.pulumi.resources.ResourceArgs {
@@ -19,15 +21,15 @@ public final class ExecutionConfigArgs extends com.pulumi.resources.ResourceArgs
      * The name of the configuration.
      * 
      */
-    @Import(name="alias", required=true)
-    private Output<String> alias;
+    @Import(name="alias")
+    private @Nullable Output<String> alias;
 
     /**
      * @return The name of the configuration.
      * 
      */
-    public Output<String> alias() {
-        return this.alias;
+    public Optional<Output<String>> alias() {
+        return Optional.ofNullable(this.alias);
     }
 
     /**
@@ -108,7 +110,7 @@ public final class ExecutionConfigArgs extends com.pulumi.resources.ResourceArgs
          * @return builder
          * 
          */
-        public Builder alias(Output<String> alias) {
+        public Builder alias(@Nullable Output<String> alias) {
             $.alias = alias;
             return this;
         }
@@ -187,9 +189,6 @@ public final class ExecutionConfigArgs extends com.pulumi.resources.ResourceArgs
         }
 
         public ExecutionConfigArgs build() {
-            if ($.alias == null) {
-                throw new MissingRequiredPropertyException("ExecutionConfigArgs", "alias");
-            }
             if ($.config == null) {
                 throw new MissingRequiredPropertyException("ExecutionConfigArgs", "config");
             }

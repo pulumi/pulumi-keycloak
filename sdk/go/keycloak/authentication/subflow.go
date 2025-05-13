@@ -115,9 +115,6 @@ func NewSubflow(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.Alias == nil {
-		return nil, errors.New("invalid value for required argument 'Alias'")
-	}
 	if args.ParentFlowAlias == nil {
 		return nil, errors.New("invalid value for required argument 'ParentFlowAlias'")
 	}
@@ -196,7 +193,7 @@ func (SubflowState) ElementType() reflect.Type {
 
 type subflowArgs struct {
 	// The alias for this authentication subflow.
-	Alias string `pulumi:"alias"`
+	Alias *string `pulumi:"alias"`
 	// The name of the authenticator. Might be needed to be set with certain custom subflows with specific
 	// authenticators. In general this will remain empty.
 	Authenticator *string `pulumi:"authenticator"`
@@ -219,7 +216,7 @@ type subflowArgs struct {
 // The set of arguments for constructing a Subflow resource.
 type SubflowArgs struct {
 	// The alias for this authentication subflow.
-	Alias pulumi.StringInput
+	Alias pulumi.StringPtrInput
 	// The name of the authenticator. Might be needed to be set with certain custom subflows with specific
 	// authenticators. In general this will remain empty.
 	Authenticator pulumi.StringPtrInput

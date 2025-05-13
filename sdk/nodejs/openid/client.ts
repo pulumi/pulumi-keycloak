@@ -347,9 +347,6 @@ export class Client extends pulumi.CustomResource {
             if ((!args || args.accessType === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'accessType'");
             }
-            if ((!args || args.clientId === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'clientId'");
-            }
             if ((!args || args.realmId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
@@ -675,7 +672,7 @@ export interface ClientArgs {
     /**
      * The Client ID for this client, referenced in the URI during authentication and in issued tokens.
      */
-    clientId: pulumi.Input<string>;
+    clientId?: pulumi.Input<string>;
     /**
      * Time a client session is allowed to be idle before it expires. Tokens are invalidated when a client session is expired. If not set it uses the standard SSO Session Idle value.
      */

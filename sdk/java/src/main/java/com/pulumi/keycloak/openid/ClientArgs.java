@@ -208,15 +208,15 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
      * The Client ID for this client, referenced in the URI during authentication and in issued tokens.
      * 
      */
-    @Import(name="clientId", required=true)
-    private Output<String> clientId;
+    @Import(name="clientId")
+    private @Nullable Output<String> clientId;
 
     /**
      * @return The Client ID for this client, referenced in the URI during authentication and in issued tokens.
      * 
      */
-    public Output<String> clientId() {
-        return this.clientId;
+    public Optional<Output<String>> clientId() {
+        return Optional.ofNullable(this.clientId);
     }
 
     /**
@@ -1049,7 +1049,7 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder clientId(Output<String> clientId) {
+        public Builder clientId(@Nullable Output<String> clientId) {
             $.clientId = clientId;
             return this;
         }
@@ -1805,9 +1805,6 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
         public ClientArgs build() {
             if ($.accessType == null) {
                 throw new MissingRequiredPropertyException("ClientArgs", "accessType");
-            }
-            if ($.clientId == null) {
-                throw new MissingRequiredPropertyException("ClientArgs", "clientId");
             }
             if ($.realmId == null) {
                 throw new MissingRequiredPropertyException("ClientArgs", "realmId");

@@ -210,9 +210,6 @@ export class GoogleIdentityProvider extends pulumi.CustomResource {
             resourceInputs["useUserIpParam"] = state ? state.useUserIpParam : undefined;
         } else {
             const args = argsOrState as GoogleIdentityProviderArgs | undefined;
-            if ((!args || args.clientId === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'clientId'");
-            }
             if ((!args || args.clientSecret === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'clientSecret'");
             }
@@ -378,7 +375,7 @@ export interface GoogleIdentityProviderArgs {
     /**
      * The client or client identifier registered within the identity provider.
      */
-    clientId: pulumi.Input<string>;
+    clientId?: pulumi.Input<string>;
     /**
      * The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
      */

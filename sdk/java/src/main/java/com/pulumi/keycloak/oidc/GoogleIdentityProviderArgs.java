@@ -82,15 +82,15 @@ public final class GoogleIdentityProviderArgs extends com.pulumi.resources.Resou
      * The client or client identifier registered within the identity provider.
      * 
      */
-    @Import(name="clientId", required=true)
-    private Output<String> clientId;
+    @Import(name="clientId")
+    private @Nullable Output<String> clientId;
 
     /**
      * @return The client or client identifier registered within the identity provider.
      * 
      */
-    public Output<String> clientId() {
-        return this.clientId;
+    public Optional<Output<String>> clientId() {
+        return Optional.ofNullable(this.clientId);
     }
 
     /**
@@ -507,7 +507,7 @@ public final class GoogleIdentityProviderArgs extends com.pulumi.resources.Resou
          * @return builder
          * 
          */
-        public Builder clientId(Output<String> clientId) {
+        public Builder clientId(@Nullable Output<String> clientId) {
             $.clientId = clientId;
             return this;
         }
@@ -910,9 +910,6 @@ public final class GoogleIdentityProviderArgs extends com.pulumi.resources.Resou
         }
 
         public GoogleIdentityProviderArgs build() {
-            if ($.clientId == null) {
-                throw new MissingRequiredPropertyException("GoogleIdentityProviderArgs", "clientId");
-            }
             if ($.clientSecret == null) {
                 throw new MissingRequiredPropertyException("GoogleIdentityProviderArgs", "clientSecret");
             }

@@ -145,8 +145,8 @@ namespace Pulumi.Keycloak.Authentication
         /// <summary>
         /// The alias for this authentication flow.
         /// </summary>
-        [Input("alias", required: true)]
-        public Input<string> Alias { get; set; } = null!;
+        [Input("alias")]
+        public Input<string>? Alias { get; set; }
 
         /// <summary>
         /// A description for the authentication flow.
