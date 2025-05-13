@@ -22,7 +22,6 @@ __all__ = ['RealmArgs', 'Realm']
 @pulumi.input_type
 class RealmArgs:
     def __init__(__self__, *,
-                 realm: pulumi.Input[builtins.str],
                  access_code_lifespan: Optional[pulumi.Input[builtins.str]] = None,
                  access_code_lifespan_login: Optional[pulumi.Input[builtins.str]] = None,
                  access_code_lifespan_user_action: Optional[pulumi.Input[builtins.str]] = None,
@@ -61,6 +60,7 @@ class RealmArgs:
                  organizations_enabled: Optional[pulumi.Input[builtins.bool]] = None,
                  otp_policy: Optional[pulumi.Input['RealmOtpPolicyArgs']] = None,
                  password_policy: Optional[pulumi.Input[builtins.str]] = None,
+                 realm: Optional[pulumi.Input[builtins.str]] = None,
                  refresh_token_max_reuse: Optional[pulumi.Input[builtins.int]] = None,
                  registration_allowed: Optional[pulumi.Input[builtins.bool]] = None,
                  registration_email_as_username: Optional[pulumi.Input[builtins.bool]] = None,
@@ -82,7 +82,6 @@ class RealmArgs:
                  web_authn_policy: Optional[pulumi.Input['RealmWebAuthnPolicyArgs']] = None):
         """
         The set of arguments for constructing a Realm resource.
-        :param pulumi.Input[builtins.str] realm: The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
         :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] attributes: A map of custom attributes to add to the realm.
         :param pulumi.Input[builtins.str] browser_flow: Which flow should be used for BrowserFlow
         :param pulumi.Input[builtins.str] client_authentication_flow: Which flow should be used for ClientAuthenticationFlow
@@ -97,12 +96,12 @@ class RealmArgs:
         :param pulumi.Input[builtins.str] password_policy: String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
                can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365)
                and notUsername(undefined)"
+        :param pulumi.Input[builtins.str] realm: The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
         :param pulumi.Input[builtins.str] registration_flow: Which flow should be used for RegistrationFlow
         :param pulumi.Input[builtins.str] reset_credentials_flow: Which flow should be used for ResetCredentialsFlow
         :param pulumi.Input[builtins.str] ssl_required: SSL Required: Values can be 'none', 'external' or 'all'.
         :param pulumi.Input[builtins.bool] user_managed_access: When `true`, users are allowed to manage their own resources. Defaults to `false`.
         """
-        pulumi.set(__self__, "realm", realm)
         if access_code_lifespan is not None:
             pulumi.set(__self__, "access_code_lifespan", access_code_lifespan)
         if access_code_lifespan_login is not None:
@@ -179,6 +178,8 @@ class RealmArgs:
             pulumi.set(__self__, "otp_policy", otp_policy)
         if password_policy is not None:
             pulumi.set(__self__, "password_policy", password_policy)
+        if realm is not None:
+            pulumi.set(__self__, "realm", realm)
         if refresh_token_max_reuse is not None:
             pulumi.set(__self__, "refresh_token_max_reuse", refresh_token_max_reuse)
         if registration_allowed is not None:
@@ -217,18 +218,6 @@ class RealmArgs:
             pulumi.set(__self__, "web_authn_passwordless_policy", web_authn_passwordless_policy)
         if web_authn_policy is not None:
             pulumi.set(__self__, "web_authn_policy", web_authn_policy)
-
-    @property
-    @pulumi.getter
-    def realm(self) -> pulumi.Input[builtins.str]:
-        """
-        The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
-        """
-        return pulumi.get(self, "realm")
-
-    @realm.setter
-    def realm(self, value: pulumi.Input[builtins.str]):
-        pulumi.set(self, "realm", value)
 
     @property
     @pulumi.getter(name="accessCodeLifespan")
@@ -609,6 +598,18 @@ class RealmArgs:
     @password_policy.setter
     def password_policy(self, value: Optional[pulumi.Input[builtins.str]]):
         pulumi.set(self, "password_policy", value)
+
+    @property
+    @pulumi.getter
+    def realm(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
+        """
+        return pulumi.get(self, "realm")
+
+    @realm.setter
+    def realm(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "realm", value)
 
     @property
     @pulumi.getter(name="refreshTokenMaxReuse")
@@ -1748,7 +1749,7 @@ class Realm(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: RealmArgs,
+                 args: Optional[RealmArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Allows for creating and managing Realms within Keycloak.
@@ -1957,8 +1958,6 @@ class Realm(pulumi.CustomResource):
             __props__.__dict__["organizations_enabled"] = organizations_enabled
             __props__.__dict__["otp_policy"] = otp_policy
             __props__.__dict__["password_policy"] = password_policy
-            if realm is None and not opts.urn:
-                raise TypeError("Missing required property 'realm'")
             __props__.__dict__["realm"] = realm
             __props__.__dict__["refresh_token_max_reuse"] = refresh_token_max_reuse
             __props__.__dict__["registration_allowed"] = registration_allowed

@@ -175,8 +175,8 @@ namespace Pulumi.Keycloak.Authentication
         /// <summary>
         /// The alias for this authentication subflow.
         /// </summary>
-        [Input("alias", required: true)]
-        public Input<string> Alias { get; set; } = null!;
+        [Input("alias")]
+        public Input<string>? Alias { get; set; }
 
         /// <summary>
         /// The name of the authenticator. Might be needed to be set with certain custom subflows with specific

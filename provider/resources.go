@@ -106,15 +106,39 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"keycloak_realm": {
 				Fields: map[string]*tfbridge.SchemaInfo{
-					"realm": {CSharpName: "RealmName"},
+					"realm": tfbridge.AutoName("realm", 255, "-"),
 				},
 			},
 			"keycloak_realm_keystore_java_keystore": {
 				Tok: makeResource(mainMod, "RealmKeystoreJavaGenerated"),
 			},
 			"keycloak_openid_client_client_policy": {Tok: makeResource(openIDMod, "ClientPolicy")},
-
+			"keycloak_openid_client": {
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"client_id": tfbridge.AutoName("clientId", 255, "-"),
+				},
+			},
 			"keycloak_saml_client_default_scopes": {Tok: makeResource(samlMod, "ClientDefaultScope")},
+			"keycloak_authentication_execution_config": {
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"alias": tfbridge.AutoName("alias", 255, "-"),
+				},
+			},
+			"keycloak_authentication_flow": {
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"alias": tfbridge.AutoName("alias", 255, "-"),
+				},
+			},
+			"keycloak_authentication_subflow": {
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"alias": tfbridge.AutoName("alias", 255, "-"),
+				},
+			},
+			"keycloak_oidc_google_identity_provider": {
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"client_id": tfbridge.AutoName("clientId", 255, "-"),
+				},
+			},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"keycloak_authentication_execution": {Tok: makeDataSource(mainMod, "getAuthenticationExecution")},
@@ -161,6 +185,8 @@ func Provider() tfbridge.ProviderInfo {
 			},
 		},
 	}
+
+	prov.Resources["keycloak_realm"].Fields["realm"].CSharpName = "RealmName"
 
 	modules := []string{
 		"ldap_",

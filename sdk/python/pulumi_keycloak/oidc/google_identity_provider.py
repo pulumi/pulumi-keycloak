@@ -20,13 +20,13 @@ __all__ = ['GoogleIdentityProviderArgs', 'GoogleIdentityProvider']
 @pulumi.input_type
 class GoogleIdentityProviderArgs:
     def __init__(__self__, *,
-                 client_id: pulumi.Input[builtins.str],
                  client_secret: pulumi.Input[builtins.str],
                  realm: pulumi.Input[builtins.str],
                  accepts_prompt_none_forward_from_client: Optional[pulumi.Input[builtins.bool]] = None,
                  add_read_token_role_on_create: Optional[pulumi.Input[builtins.bool]] = None,
                  alias: Optional[pulumi.Input[builtins.str]] = None,
                  authenticate_by_default: Optional[pulumi.Input[builtins.bool]] = None,
+                 client_id: Optional[pulumi.Input[builtins.str]] = None,
                  default_scopes: Optional[pulumi.Input[builtins.str]] = None,
                  disable_user_info: Optional[pulumi.Input[builtins.bool]] = None,
                  display_name: Optional[pulumi.Input[builtins.str]] = None,
@@ -46,13 +46,13 @@ class GoogleIdentityProviderArgs:
                  use_user_ip_param: Optional[pulumi.Input[builtins.bool]] = None):
         """
         The set of arguments for constructing a GoogleIdentityProvider resource.
-        :param pulumi.Input[builtins.str] client_id: The client or client identifier registered within the identity provider.
         :param pulumi.Input[builtins.str] client_secret: The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
         :param pulumi.Input[builtins.str] realm: The name of the realm. This is unique across Keycloak.
         :param pulumi.Input[builtins.bool] accepts_prompt_none_forward_from_client: When `true`, unauthenticated requests with `prompt=none` will be forwarded to Google instead of returning an error. Defaults to `false`.
         :param pulumi.Input[builtins.bool] add_read_token_role_on_create: When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
         :param pulumi.Input[builtins.str] alias: The alias for the Google identity provider.
         :param pulumi.Input[builtins.bool] authenticate_by_default: Enable/disable authenticate users by default.
+        :param pulumi.Input[builtins.str] client_id: The client or client identifier registered within the identity provider.
         :param pulumi.Input[builtins.str] default_scopes: The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid profile email`.
         :param pulumi.Input[builtins.bool] disable_user_info: When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
         :param pulumi.Input[builtins.str] display_name: Display name for the Google identity provider in the GUI.
@@ -70,7 +70,6 @@ class GoogleIdentityProviderArgs:
         :param pulumi.Input[builtins.bool] trust_email: When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
         :param pulumi.Input[builtins.bool] use_user_ip_param: Sets the "userIp" query parameter when querying Google's User Info service. This will use the user's IP address. This is useful if Google is throttling Keycloak's access to the User Info service.
         """
-        pulumi.set(__self__, "client_id", client_id)
         pulumi.set(__self__, "client_secret", client_secret)
         pulumi.set(__self__, "realm", realm)
         if accepts_prompt_none_forward_from_client is not None:
@@ -81,6 +80,8 @@ class GoogleIdentityProviderArgs:
             pulumi.set(__self__, "alias", alias)
         if authenticate_by_default is not None:
             pulumi.set(__self__, "authenticate_by_default", authenticate_by_default)
+        if client_id is not None:
+            pulumi.set(__self__, "client_id", client_id)
         if default_scopes is not None:
             pulumi.set(__self__, "default_scopes", default_scopes)
         if disable_user_info is not None:
@@ -115,18 +116,6 @@ class GoogleIdentityProviderArgs:
             pulumi.set(__self__, "trust_email", trust_email)
         if use_user_ip_param is not None:
             pulumi.set(__self__, "use_user_ip_param", use_user_ip_param)
-
-    @property
-    @pulumi.getter(name="clientId")
-    def client_id(self) -> pulumi.Input[builtins.str]:
-        """
-        The client or client identifier registered within the identity provider.
-        """
-        return pulumi.get(self, "client_id")
-
-    @client_id.setter
-    def client_id(self, value: pulumi.Input[builtins.str]):
-        pulumi.set(self, "client_id", value)
 
     @property
     @pulumi.getter(name="clientSecret")
@@ -199,6 +188,18 @@ class GoogleIdentityProviderArgs:
     @authenticate_by_default.setter
     def authenticate_by_default(self, value: Optional[pulumi.Input[builtins.bool]]):
         pulumi.set(self, "authenticate_by_default", value)
+
+    @property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The client or client identifier registered within the identity provider.
+        """
+        return pulumi.get(self, "client_id")
+
+    @client_id.setter
+    def client_id(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "client_id", value)
 
     @property
     @pulumi.getter(name="defaultScopes")
@@ -997,8 +998,6 @@ class GoogleIdentityProvider(pulumi.CustomResource):
             __props__.__dict__["add_read_token_role_on_create"] = add_read_token_role_on_create
             __props__.__dict__["alias"] = alias
             __props__.__dict__["authenticate_by_default"] = authenticate_by_default
-            if client_id is None and not opts.urn:
-                raise TypeError("Missing required property 'client_id'")
             __props__.__dict__["client_id"] = client_id
             if client_secret is None and not opts.urn:
                 raise TypeError("Missing required property 'client_secret'")

@@ -352,7 +352,7 @@ namespace Pulumi.Keycloak
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public Realm(string name, RealmArgs args, CustomResourceOptions? options = null)
+        public Realm(string name, RealmArgs? args = null, CustomResourceOptions? options = null)
             : base("keycloak:index/realm:Realm", name, args ?? new RealmArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -561,8 +561,8 @@ namespace Pulumi.Keycloak
         /// <summary>
         /// The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
         /// </summary>
-        [Input("realm", required: true)]
-        public Input<string> RealmName { get; set; } = null!;
+        [Input("realm")]
+        public Input<string>? RealmName { get; set; }
 
         [Input("refreshTokenMaxReuse")]
         public Input<int>? RefreshTokenMaxReuse { get; set; }

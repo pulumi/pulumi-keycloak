@@ -7,7 +7,6 @@ import (
 	"context"
 	"reflect"
 
-	"errors"
 	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
@@ -199,12 +198,9 @@ type Realm struct {
 func NewRealm(ctx *pulumi.Context,
 	name string, args *RealmArgs, opts ...pulumi.ResourceOption) (*Realm, error) {
 	if args == nil {
-		return nil, errors.New("missing one or more required arguments")
+		args = &RealmArgs{}
 	}
 
-	if args.Realm == nil {
-		return nil, errors.New("invalid value for required argument 'Realm'")
-	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Realm
 	err := ctx.RegisterResource("keycloak:index/realm:Realm", name, args, &resource, opts...)
@@ -445,10 +441,10 @@ type realmArgs struct {
 	// and notUsername(undefined)"
 	PasswordPolicy *string `pulumi:"passwordPolicy"`
 	// The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
-	Realm                       string `pulumi:"realm"`
-	RefreshTokenMaxReuse        *int   `pulumi:"refreshTokenMaxReuse"`
-	RegistrationAllowed         *bool  `pulumi:"registrationAllowed"`
-	RegistrationEmailAsUsername *bool  `pulumi:"registrationEmailAsUsername"`
+	Realm                       *string `pulumi:"realm"`
+	RefreshTokenMaxReuse        *int    `pulumi:"refreshTokenMaxReuse"`
+	RegistrationAllowed         *bool   `pulumi:"registrationAllowed"`
+	RegistrationEmailAsUsername *bool   `pulumi:"registrationEmailAsUsername"`
 	// Which flow should be used for RegistrationFlow
 	RegistrationFlow *string `pulumi:"registrationFlow"`
 	RememberMe       *bool   `pulumi:"rememberMe"`
@@ -526,7 +522,7 @@ type RealmArgs struct {
 	// and notUsername(undefined)"
 	PasswordPolicy pulumi.StringPtrInput
 	// The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
-	Realm                       pulumi.StringInput
+	Realm                       pulumi.StringPtrInput
 	RefreshTokenMaxReuse        pulumi.IntPtrInput
 	RegistrationAllowed         pulumi.BoolPtrInput
 	RegistrationEmailAsUsername pulumi.BoolPtrInput

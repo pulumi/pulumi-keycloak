@@ -2018,7 +2018,6 @@
                 }
             },
             "requiredInputs": [
-                "alias",
                 "config",
                 "executionId",
                 "realmId"
@@ -2096,7 +2095,6 @@
                 }
             },
             "requiredInputs": [
-                "alias",
                 "realmId"
             ],
             "stateInputs": {
@@ -2202,7 +2200,6 @@
                 }
             },
             "requiredInputs": [
-                "alias",
                 "parentFlowAlias",
                 "realmId"
             ],
@@ -4671,9 +4668,6 @@
                     "$ref": "#/types/keycloak:index/RealmWebAuthnPolicy:RealmWebAuthnPolicy"
                 }
             },
-            "requiredInputs": [
-                "realm"
-            ],
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering Realm resources.\n",
                 "properties": {
@@ -8685,7 +8679,6 @@
                 }
             },
             "requiredInputs": [
-                "clientId",
                 "clientSecret",
                 "realm"
             ],
@@ -9871,7 +9864,6 @@
             },
             "requiredInputs": [
                 "accessType",
-                "clientId",
                 "realmId"
             ],
             "stateInputs": {

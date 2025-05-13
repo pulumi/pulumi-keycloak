@@ -5,7 +5,6 @@ package com.pulumi.keycloak;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
-import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.keycloak.inputs.RealmInternationalizationArgs;
 import com.pulumi.keycloak.inputs.RealmOtpPolicyArgs;
 import com.pulumi.keycloak.inputs.RealmSecurityDefensesArgs;
@@ -396,15 +395,15 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
      * The name of the realm. This is unique across Keycloak. This will also be used as the realm&#39;s internal ID within Keycloak.
      * 
      */
-    @Import(name="realm", required=true)
-    private Output<String> realm;
+    @Import(name="realm")
+    private @Nullable Output<String> realm;
 
     /**
      * @return The name of the realm. This is unique across Keycloak. This will also be used as the realm&#39;s internal ID within Keycloak.
      * 
      */
-    public Output<String> realm() {
-        return this.realm;
+    public Optional<Output<String>> realm() {
+        return Optional.ofNullable(this.realm);
     }
 
     @Import(name="refreshTokenMaxReuse")
@@ -1157,7 +1156,7 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder realm(Output<String> realm) {
+        public Builder realm(@Nullable Output<String> realm) {
             $.realm = realm;
             return this;
         }
@@ -1392,9 +1391,6 @@ public final class RealmArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public RealmArgs build() {
-            if ($.realm == null) {
-                throw new MissingRequiredPropertyException("RealmArgs", "realm");
-            }
             return $;
         }
     }

@@ -130,9 +130,6 @@ func NewGoogleIdentityProvider(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.ClientId == nil {
-		return nil, errors.New("invalid value for required argument 'ClientId'")
-	}
 	if args.ClientSecret == nil {
 		return nil, errors.New("invalid value for required argument 'ClientSecret'")
 	}
@@ -286,7 +283,7 @@ type googleIdentityProviderArgs struct {
 	// Enable/disable authenticate users by default.
 	AuthenticateByDefault *bool `pulumi:"authenticateByDefault"`
 	// The client or client identifier registered within the identity provider.
-	ClientId string `pulumi:"clientId"`
+	ClientId *string `pulumi:"clientId"`
 	// The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
 	ClientSecret string `pulumi:"clientSecret"`
 	// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid profile email`.
@@ -337,7 +334,7 @@ type GoogleIdentityProviderArgs struct {
 	// Enable/disable authenticate users by default.
 	AuthenticateByDefault pulumi.BoolPtrInput
 	// The client or client identifier registered within the identity provider.
-	ClientId pulumi.StringInput
+	ClientId pulumi.StringPtrInput
 	// The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
 	ClientSecret pulumi.StringInput
 	// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid profile email`.

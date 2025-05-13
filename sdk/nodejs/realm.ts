@@ -241,7 +241,7 @@ export class Realm extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: RealmArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, args?: RealmArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: RealmArgs | RealmState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
@@ -307,9 +307,6 @@ export class Realm extends pulumi.CustomResource {
             resourceInputs["webAuthnPolicy"] = state ? state.webAuthnPolicy : undefined;
         } else {
             const args = argsOrState as RealmArgs | undefined;
-            if ((!args || args.realm === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'realm'");
-            }
             resourceInputs["accessCodeLifespan"] = args ? args.accessCodeLifespan : undefined;
             resourceInputs["accessCodeLifespanLogin"] = args ? args.accessCodeLifespanLogin : undefined;
             resourceInputs["accessCodeLifespanUserAction"] = args ? args.accessCodeLifespanUserAction : undefined;
@@ -574,7 +571,7 @@ export interface RealmArgs {
     /**
      * The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
      */
-    realm: pulumi.Input<string>;
+    realm?: pulumi.Input<string>;
     refreshTokenMaxReuse?: pulumi.Input<number>;
     registrationAllowed?: pulumi.Input<boolean>;
     registrationEmailAsUsername?: pulumi.Input<boolean>;

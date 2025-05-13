@@ -20,15 +20,15 @@ public final class FlowArgs extends com.pulumi.resources.ResourceArgs {
      * The alias for this authentication flow.
      * 
      */
-    @Import(name="alias", required=true)
-    private Output<String> alias;
+    @Import(name="alias")
+    private @Nullable Output<String> alias;
 
     /**
      * @return The alias for this authentication flow.
      * 
      */
-    public Output<String> alias() {
-        return this.alias;
+    public Optional<Output<String>> alias() {
+        return Optional.ofNullable(this.alias);
     }
 
     /**
@@ -109,7 +109,7 @@ public final class FlowArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder alias(Output<String> alias) {
+        public Builder alias(@Nullable Output<String> alias) {
             $.alias = alias;
             return this;
         }
@@ -188,9 +188,6 @@ public final class FlowArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public FlowArgs build() {
-            if ($.alias == null) {
-                throw new MissingRequiredPropertyException("FlowArgs", "alias");
-            }
             if ($.realmId == null) {
                 throw new MissingRequiredPropertyException("FlowArgs", "realmId");
             }
