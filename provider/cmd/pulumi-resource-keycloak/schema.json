@@ -1682,10 +1682,6 @@
                 "type": "string"
             }
         },
-        "required": [
-            "clientId",
-            "url"
-        ],
         "inputProperties": {
             "additionalHeaders": {
                 "type": "object",
@@ -1742,10 +1738,6 @@
                 "type": "string"
             }
         },
-        "requiredInputs": [
-            "clientId",
-            "url"
-        ],
         "methods": {
             "terraformConfig": "pulumi:providers:keycloak/terraformConfig"
         }

@@ -6,7 +6,6 @@ package com.pulumi.keycloak;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.core.internal.Codegen;
-import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -34,11 +33,11 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.basePath);
     }
 
-    @Import(name="clientId", required=true)
-    private Output<String> clientId;
+    @Import(name="clientId")
+    private @Nullable Output<String> clientId;
 
-    public Output<String> clientId() {
-        return this.clientId;
+    public Optional<Output<String>> clientId() {
+        return Optional.ofNullable(this.clientId);
     }
 
     @Import(name="clientSecret")
@@ -145,15 +144,15 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
      * The base URL of the Keycloak instance, before `/auth`
      * 
      */
-    @Import(name="url", required=true)
-    private Output<String> url;
+    @Import(name="url")
+    private @Nullable Output<String> url;
 
     /**
      * @return The base URL of the Keycloak instance, before `/auth`
      * 
      */
-    public Output<String> url() {
-        return this.url;
+    public Optional<Output<String>> url() {
+        return Optional.ofNullable(this.url);
     }
 
     @Import(name="username")
@@ -217,7 +216,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
             return basePath(Output.of(basePath));
         }
 
-        public Builder clientId(Output<String> clientId) {
+        public Builder clientId(@Nullable Output<String> clientId) {
             $.clientId = clientId;
             return this;
         }
@@ -368,7 +367,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder url(Output<String> url) {
+        public Builder url(@Nullable Output<String> url) {
             $.url = url;
             return this;
         }
@@ -393,13 +392,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public ProviderArgs build() {
-            if ($.clientId == null) {
-                throw new MissingRequiredPropertyException("ProviderArgs", "clientId");
-            }
             $.clientTimeout = Codegen.integerProp("clientTimeout").output().arg($.clientTimeout).env("KEYCLOAK_CLIENT_TIMEOUT").def(5).getNullable();
-            if ($.url == null) {
-                throw new MissingRequiredPropertyException("ProviderArgs", "url");
-            }
             return $;
         }
     }
