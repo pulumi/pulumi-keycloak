@@ -525,6 +525,15 @@
                 "current": "keycloak:openid/userSessionNoteProtocolMapper:UserSessionNoteProtocolMapper",
                 "majorVersion": 6
             },
+            "keycloak_organization": {
+                "current": "keycloak:index/organization:Organization",
+                "majorVersion": 6,
+                "fields": {
+                    "domain": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "keycloak_realm": {
                 "current": "keycloak:index/realm:Realm",
                 "majorVersion": 6,
@@ -602,6 +611,27 @@
                                 }
                             }
                         }
+                    }
+                }
+            },
+            "keycloak_realm_client_policy_profile": {
+                "current": "keycloak:index/realmClientPolicyProfile:RealmClientPolicyProfile",
+                "majorVersion": 6,
+                "fields": {
+                    "executor": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "keycloak_realm_client_policy_profile_policy": {
+                "current": "keycloak:index/realmClientPolicyProfilePolicy:RealmClientPolicyProfilePolicy",
+                "majorVersion": 6,
+                "fields": {
+                    "condition": {
+                        "maxItemsOne": false
+                    },
+                    "profiles": {
+                        "maxItemsOne": false
                     }
                 }
             },
@@ -955,6 +985,15 @@
                         "maxItemsOne": false
                     },
                     "required_actions": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "keycloak_organization": {
+                "current": "keycloak:index/getOrganization:getOrganization",
+                "majorVersion": 6,
+                "fields": {
+                    "domain": {
                         "maxItemsOne": false
                     }
                 }

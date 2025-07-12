@@ -203,6 +203,56 @@
             },
             "type": "object"
         },
+        "keycloak:index/OrganizationDomain:OrganizationDomain": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "The name of the organization.\n"
+                },
+                "verified": {
+                    "type": "boolean",
+                    "description": "Whether domain is verified or not. Default is false.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name"
+            ]
+        },
+        "keycloak:index/RealmClientPolicyProfileExecutor:RealmClientPolicyProfileExecutor": {
+            "properties": {
+                "configuration": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name"
+            ]
+        },
+        "keycloak:index/RealmClientPolicyProfilePolicyCondition:RealmClientPolicyProfilePolicyCondition": {
+            "properties": {
+                "configuration": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name"
+            ]
+        },
         "keycloak:index/RealmInternationalization:RealmInternationalization": {
             "properties": {
                 "defaultLocale": {
@@ -825,6 +875,27 @@
                 "name",
                 "protocol",
                 "protocolMapper"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "keycloak:index/getOrganizationDomain:getOrganizationDomain": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "The organization name.\n"
+                },
+                "verified": {
+                    "type": "boolean"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "verified"
             ],
             "language": {
                 "nodejs": {
@@ -4203,6 +4274,148 @@
                 "type": "object"
             }
         },
+        "keycloak:index/organization:Organization": {
+            "description": "Allow for creating and managing Organizations within Keycloak.\n\nAttributes can also be defined on Groups.\n\nLinkage with identity providers is managed with the identity provider resources.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n});\nconst _this = new keycloak.Organization(\"this\", {\n    realm: realm.name,\n    name: \"org\",\n    alias: \"org\",\n    enabled: true,\n    domains: [{\n        name: \"example.com\",\n    }],\n});\nconst thisIdentityProvider = new keycloak.oidc.IdentityProvider(\"this\", {\n    realm: realm.name,\n    alias: \"my-idp\",\n    authorizationUrl: \"https://authorizationurl.com\",\n    clientId: \"clientID\",\n    clientSecret: \"clientSecret\",\n    tokenUrl: \"https://tokenurl.com\",\n    organizationId: _this.id,\n    orgDomain: \"example.com\",\n    orgRedirectModeEmailMatches: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True)\nthis = keycloak.Organization(\"this\",\n    realm=realm.name,\n    name=\"org\",\n    alias=\"org\",\n    enabled=True,\n    domains=[{\n        \"name\": \"example.com\",\n    }])\nthis_identity_provider = keycloak.oidc.IdentityProvider(\"this\",\n    realm=realm.name,\n    alias=\"my-idp\",\n    authorization_url=\"https://authorizationurl.com\",\n    client_id=\"clientID\",\n    client_secret=\"clientSecret\",\n    token_url=\"https://tokenurl.com\",\n    organization_id=this.id,\n    org_domain=\"example.com\",\n    org_redirect_mode_email_matches=True)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var realm = new Keycloak.Realm(\"realm\", new()\n    {\n        RealmName = \"my-realm\",\n        Enabled = true,\n    });\n\n    var @this = new Keycloak.Organization(\"this\", new()\n    {\n        Realm = realm.Name,\n        Name = \"org\",\n        Alias = \"org\",\n        Enabled = true,\n        Domains = new[]\n        {\n            new Keycloak.Inputs.OrganizationDomainArgs\n            {\n                Name = \"example.com\",\n            },\n        },\n    });\n\n    var thisIdentityProvider = new Keycloak.Oidc.IdentityProvider(\"this\", new()\n    {\n        Realm = realm.Name,\n        Alias = \"my-idp\",\n        AuthorizationUrl = \"https://authorizationurl.com\",\n        ClientId = \"clientID\",\n        ClientSecret = \"clientSecret\",\n        TokenUrl = \"https://tokenurl.com\",\n        OrganizationId = @this.Id,\n        OrgDomain = \"example.com\",\n        OrgRedirectModeEmailMatches = true,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak\"\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak/oidc\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:   pulumi.String(\"my-realm\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tthis, err := keycloak.NewOrganization(ctx, \"this\", \u0026keycloak.OrganizationArgs{\n\t\t\tRealm:   realm.Name,\n\t\t\tName:    pulumi.String(\"org\"),\n\t\t\tAlias:   pulumi.String(\"org\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t\tDomains: keycloak.OrganizationDomainArray{\n\t\t\t\t\u0026keycloak.OrganizationDomainArgs{\n\t\t\t\t\tName: pulumi.String(\"example.com\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = oidc.NewIdentityProvider(ctx, \"this\", \u0026oidc.IdentityProviderArgs{\n\t\t\tRealm:                       realm.Name,\n\t\t\tAlias:                       pulumi.String(\"my-idp\"),\n\t\t\tAuthorizationUrl:            pulumi.String(\"https://authorizationurl.com\"),\n\t\t\tClientId:                    pulumi.String(\"clientID\"),\n\t\t\tClientSecret:                pulumi.String(\"clientSecret\"),\n\t\t\tTokenUrl:                    pulumi.String(\"https://tokenurl.com\"),\n\t\t\tOrganizationId:              this.ID(),\n\t\t\tOrgDomain:                   pulumi.String(\"example.com\"),\n\t\t\tOrgRedirectModeEmailMatches: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.keycloak.Realm;\nimport com.pulumi.keycloak.RealmArgs;\nimport com.pulumi.keycloak.Organization;\nimport com.pulumi.keycloak.OrganizationArgs;\nimport com.pulumi.keycloak.inputs.OrganizationDomainArgs;\nimport com.pulumi.keycloak.oidc.IdentityProvider;\nimport com.pulumi.keycloak.oidc.IdentityProviderArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var realm = new Realm(\"realm\", RealmArgs.builder()\n            .realm(\"my-realm\")\n            .enabled(true)\n            .build());\n\n        var this_ = new Organization(\"this\", OrganizationArgs.builder()\n            .realm(realm.name())\n            .name(\"org\")\n            .alias(\"org\")\n            .enabled(true)\n            .domains(OrganizationDomainArgs.builder()\n                .name(\"example.com\")\n                .build())\n            .build());\n\n        var thisIdentityProvider = new IdentityProvider(\"thisIdentityProvider\", IdentityProviderArgs.builder()\n            .realm(realm.name())\n            .alias(\"my-idp\")\n            .authorizationUrl(\"https://authorizationurl.com\")\n            .clientId(\"clientID\")\n            .clientSecret(\"clientSecret\")\n            .tokenUrl(\"https://tokenurl.com\")\n            .organizationId(this_.id())\n            .orgDomain(\"example.com\")\n            .orgRedirectModeEmailMatches(true)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  realm:\n    type: keycloak:Realm\n    properties:\n      realm: my-realm\n      enabled: true\n  this:\n    type: keycloak:Organization\n    properties:\n      realm: ${realm.name}\n      name: org\n      alias: org\n      enabled: true\n      domains:\n        - name: example.com\n  thisIdentityProvider:\n    type: keycloak:oidc:IdentityProvider\n    name: this\n    properties:\n      realm: ${realm.name}\n      alias: my-idp\n      authorizationUrl: https://authorizationurl.com\n      clientId: clientID\n      clientSecret: clientSecret\n      tokenUrl: https://tokenurl.com\n      organizationId: ${this.id}\n      orgDomain: example.com\n      orgRedirectModeEmailMatches: true\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nOrganizations can be imported using the format `{{realm_id}}/{{organization_id}}`, where `organization_id` is the unique ID that Keycloak\n\nassigns to the organizations upon creation. This value can be found in the URI when editing this organization in the GUI, and is typically a GUID.\n\nExample:\n\nbash\n\n```sh\n$ pulumi import keycloak:index/organization:Organization this my-realm/cec54914-b702-4c7b-9431-b407817d059a\n```\n\n",
+            "properties": {
+                "alias": {
+                    "type": "string",
+                    "description": "The alias unique identifies the organization. Same as the name if not specified. The alias cannot be changed after the organization has been created.\n"
+                },
+                "attributes": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "The description of the organization.\n"
+                },
+                "domains": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/keycloak:index/OrganizationDomain:OrganizationDomain"
+                    },
+                    "description": "A list of domains. At least one domain is required.\n"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Enable/disable this organization.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the organization.\n"
+                },
+                "realm": {
+                    "type": "string",
+                    "description": "The realm this organization exists in.\n"
+                },
+                "redirectUrl": {
+                    "type": "string",
+                    "description": "The landing page after user completes registration or accepts an invitation to the organization. If left empty, the user will be redirected to the account console by default.\n"
+                }
+            },
+            "required": [
+                "alias",
+                "attributes",
+                "domains",
+                "name",
+                "realm"
+            ],
+            "inputProperties": {
+                "alias": {
+                    "type": "string",
+                    "description": "The alias unique identifies the organization. Same as the name if not specified. The alias cannot be changed after the organization has been created.\n"
+                },
+                "attributes": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "The description of the organization.\n"
+                },
+                "domains": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/keycloak:index/OrganizationDomain:OrganizationDomain"
+                    },
+                    "description": "A list of domains. At least one domain is required.\n"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Enable/disable this organization.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the organization.\n",
+                    "willReplaceOnChanges": true
+                },
+                "realm": {
+                    "type": "string",
+                    "description": "The realm this organization exists in.\n",
+                    "willReplaceOnChanges": true
+                },
+                "redirectUrl": {
+                    "type": "string",
+                    "description": "The landing page after user completes registration or accepts an invitation to the organization. If left empty, the user will be redirected to the account console by default.\n"
+                }
+            },
+            "requiredInputs": [
+                "domains",
+                "realm"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Organization resources.\n",
+                "properties": {
+                    "alias": {
+                        "type": "string",
+                        "description": "The alias unique identifies the organization. Same as the name if not specified. The alias cannot be changed after the organization has been created.\n"
+                    },
+                    "attributes": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars.\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "The description of the organization.\n"
+                    },
+                    "domains": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/keycloak:index/OrganizationDomain:OrganizationDomain"
+                        },
+                        "description": "A list of domains. At least one domain is required.\n"
+                    },
+                    "enabled": {
+                        "type": "boolean",
+                        "description": "Enable/disable this organization.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the organization.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "realm": {
+                        "type": "string",
+                        "description": "The realm this organization exists in.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "redirectUrl": {
+                        "type": "string",
+                        "description": "The landing page after user completes registration or accepts an invitation to the organization. If left empty, the user will be redirected to the account console by default.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "keycloak:index/realm:Realm": {
             "description": "Allows for creating and managing Realms within Keycloak.\n\nA realm manages a logical collection of users, credentials, roles, and groups. Users log in to realms and can be federated\nfrom multiple sources.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n    displayName: \"my realm\",\n    displayNameHtml: \"\u003cb\u003emy realm\u003c/b\u003e\",\n    loginTheme: \"base\",\n    accessCodeLifespan: \"1h\",\n    sslRequired: \"external\",\n    passwordPolicy: \"upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername\",\n    attributes: {\n        mycustomAttribute: \"myCustomValue\",\n    },\n    smtpServer: {\n        host: \"smtp.example.com\",\n        from: \"example@example.com\",\n        auth: {\n            username: \"tom\",\n            password: \"password\",\n        },\n    },\n    internationalization: {\n        supportedLocales: [\n            \"en\",\n            \"de\",\n            \"es\",\n        ],\n        defaultLocale: \"en\",\n    },\n    securityDefenses: {\n        headers: {\n            xFrameOptions: \"DENY\",\n            contentSecurityPolicy: \"frame-src 'self'; frame-ancestors 'self'; object-src 'none';\",\n            contentSecurityPolicyReportOnly: \"\",\n            xContentTypeOptions: \"nosniff\",\n            xRobotsTag: \"none\",\n            xXssProtection: \"1; mode=block\",\n            strictTransportSecurity: \"max-age=31536000; includeSubDomains\",\n        },\n        bruteForceDetection: {\n            permanentLockout: false,\n            maxLoginFailures: 30,\n            waitIncrementSeconds: 60,\n            quickLoginCheckMilliSeconds: 1000,\n            minimumQuickLoginWaitSeconds: 60,\n            maxFailureWaitSeconds: 900,\n            failureResetTimeSeconds: 43200,\n        },\n    },\n    webAuthnPolicy: {\n        relyingPartyEntityName: \"Example\",\n        relyingPartyId: \"keycloak.example.com\",\n        signatureAlgorithms: [\n            \"ES256\",\n            \"RS256\",\n        ],\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True,\n    display_name=\"my realm\",\n    display_name_html=\"\u003cb\u003emy realm\u003c/b\u003e\",\n    login_theme=\"base\",\n    access_code_lifespan=\"1h\",\n    ssl_required=\"external\",\n    password_policy=\"upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername\",\n    attributes={\n        \"mycustomAttribute\": \"myCustomValue\",\n    },\n    smtp_server={\n        \"host\": \"smtp.example.com\",\n        \"from_\": \"example@example.com\",\n        \"auth\": {\n            \"username\": \"tom\",\n            \"password\": \"password\",\n        },\n    },\n    internationalization={\n        \"supported_locales\": [\n            \"en\",\n            \"de\",\n            \"es\",\n        ],\n        \"default_locale\": \"en\",\n    },\n    security_defenses={\n        \"headers\": {\n            \"x_frame_options\": \"DENY\",\n            \"content_security_policy\": \"frame-src 'self'; frame-ancestors 'self'; object-src 'none';\",\n            \"content_security_policy_report_only\": \"\",\n            \"x_content_type_options\": \"nosniff\",\n            \"x_robots_tag\": \"none\",\n            \"x_xss_protection\": \"1; mode=block\",\n            \"strict_transport_security\": \"max-age=31536000; includeSubDomains\",\n        },\n        \"brute_force_detection\": {\n            \"permanent_lockout\": False,\n            \"max_login_failures\": 30,\n            \"wait_increment_seconds\": 60,\n            \"quick_login_check_milli_seconds\": 1000,\n            \"minimum_quick_login_wait_seconds\": 60,\n            \"max_failure_wait_seconds\": 900,\n            \"failure_reset_time_seconds\": 43200,\n        },\n    },\n    web_authn_policy={\n        \"relying_party_entity_name\": \"Example\",\n        \"relying_party_id\": \"keycloak.example.com\",\n        \"signature_algorithms\": [\n            \"ES256\",\n            \"RS256\",\n        ],\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var realm = new Keycloak.Realm(\"realm\", new()\n    {\n        RealmName = \"my-realm\",\n        Enabled = true,\n        DisplayName = \"my realm\",\n        DisplayNameHtml = \"\u003cb\u003emy realm\u003c/b\u003e\",\n        LoginTheme = \"base\",\n        AccessCodeLifespan = \"1h\",\n        SslRequired = \"external\",\n        PasswordPolicy = \"upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername\",\n        Attributes = \n        {\n            { \"mycustomAttribute\", \"myCustomValue\" },\n        },\n        SmtpServer = new Keycloak.Inputs.RealmSmtpServerArgs\n        {\n            Host = \"smtp.example.com\",\n            From = \"example@example.com\",\n            Auth = new Keycloak.Inputs.RealmSmtpServerAuthArgs\n            {\n                Username = \"tom\",\n                Password = \"password\",\n            },\n        },\n        Internationalization = new Keycloak.Inputs.RealmInternationalizationArgs\n        {\n            SupportedLocales = new[]\n            {\n                \"en\",\n                \"de\",\n                \"es\",\n            },\n            DefaultLocale = \"en\",\n        },\n        SecurityDefenses = new Keycloak.Inputs.RealmSecurityDefensesArgs\n        {\n            Headers = new Keycloak.Inputs.RealmSecurityDefensesHeadersArgs\n            {\n                XFrameOptions = \"DENY\",\n                ContentSecurityPolicy = \"frame-src 'self'; frame-ancestors 'self'; object-src 'none';\",\n                ContentSecurityPolicyReportOnly = \"\",\n                XContentTypeOptions = \"nosniff\",\n                XRobotsTag = \"none\",\n                XXssProtection = \"1; mode=block\",\n                StrictTransportSecurity = \"max-age=31536000; includeSubDomains\",\n            },\n            BruteForceDetection = new Keycloak.Inputs.RealmSecurityDefensesBruteForceDetectionArgs\n            {\n                PermanentLockout = false,\n                MaxLoginFailures = 30,\n                WaitIncrementSeconds = 60,\n                QuickLoginCheckMilliSeconds = 1000,\n                MinimumQuickLoginWaitSeconds = 60,\n                MaxFailureWaitSeconds = 900,\n                FailureResetTimeSeconds = 43200,\n            },\n        },\n        WebAuthnPolicy = new Keycloak.Inputs.RealmWebAuthnPolicyArgs\n        {\n            RelyingPartyEntityName = \"Example\",\n            RelyingPartyId = \"keycloak.example.com\",\n            SignatureAlgorithms = new[]\n            {\n                \"ES256\",\n                \"RS256\",\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:              pulumi.String(\"my-realm\"),\n\t\t\tEnabled:            pulumi.Bool(true),\n\t\t\tDisplayName:        pulumi.String(\"my realm\"),\n\t\t\tDisplayNameHtml:    pulumi.String(\"\u003cb\u003emy realm\u003c/b\u003e\"),\n\t\t\tLoginTheme:         pulumi.String(\"base\"),\n\t\t\tAccessCodeLifespan: pulumi.String(\"1h\"),\n\t\t\tSslRequired:        pulumi.String(\"external\"),\n\t\t\tPasswordPolicy:     pulumi.String(\"upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername\"),\n\t\t\tAttributes: pulumi.StringMap{\n\t\t\t\t\"mycustomAttribute\": pulumi.String(\"myCustomValue\"),\n\t\t\t},\n\t\t\tSmtpServer: \u0026keycloak.RealmSmtpServerArgs{\n\t\t\t\tHost: pulumi.String(\"smtp.example.com\"),\n\t\t\t\tFrom: pulumi.String(\"example@example.com\"),\n\t\t\t\tAuth: \u0026keycloak.RealmSmtpServerAuthArgs{\n\t\t\t\t\tUsername: pulumi.String(\"tom\"),\n\t\t\t\t\tPassword: pulumi.String(\"password\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tInternationalization: \u0026keycloak.RealmInternationalizationArgs{\n\t\t\t\tSupportedLocales: pulumi.StringArray{\n\t\t\t\t\tpulumi.String(\"en\"),\n\t\t\t\t\tpulumi.String(\"de\"),\n\t\t\t\t\tpulumi.String(\"es\"),\n\t\t\t\t},\n\t\t\t\tDefaultLocale: pulumi.String(\"en\"),\n\t\t\t},\n\t\t\tSecurityDefenses: \u0026keycloak.RealmSecurityDefensesArgs{\n\t\t\t\tHeaders: \u0026keycloak.RealmSecurityDefensesHeadersArgs{\n\t\t\t\t\tXFrameOptions:                   pulumi.String(\"DENY\"),\n\t\t\t\t\tContentSecurityPolicy:           pulumi.String(\"frame-src 'self'; frame-ancestors 'self'; object-src 'none';\"),\n\t\t\t\t\tContentSecurityPolicyReportOnly: pulumi.String(\"\"),\n\t\t\t\t\tXContentTypeOptions:             pulumi.String(\"nosniff\"),\n\t\t\t\t\tXRobotsTag:                      pulumi.String(\"none\"),\n\t\t\t\t\tXXssProtection:                  pulumi.String(\"1; mode=block\"),\n\t\t\t\t\tStrictTransportSecurity:         pulumi.String(\"max-age=31536000; includeSubDomains\"),\n\t\t\t\t},\n\t\t\t\tBruteForceDetection: \u0026keycloak.RealmSecurityDefensesBruteForceDetectionArgs{\n\t\t\t\t\tPermanentLockout:             pulumi.Bool(false),\n\t\t\t\t\tMaxLoginFailures:             pulumi.Int(30),\n\t\t\t\t\tWaitIncrementSeconds:         pulumi.Int(60),\n\t\t\t\t\tQuickLoginCheckMilliSeconds:  pulumi.Int(1000),\n\t\t\t\t\tMinimumQuickLoginWaitSeconds: pulumi.Int(60),\n\t\t\t\t\tMaxFailureWaitSeconds:        pulumi.Int(900),\n\t\t\t\t\tFailureResetTimeSeconds:      pulumi.Int(43200),\n\t\t\t\t},\n\t\t\t},\n\t\t\tWebAuthnPolicy: \u0026keycloak.RealmWebAuthnPolicyArgs{\n\t\t\t\tRelyingPartyEntityName: pulumi.String(\"Example\"),\n\t\t\t\tRelyingPartyId:         pulumi.String(\"keycloak.example.com\"),\n\t\t\t\tSignatureAlgorithms: pulumi.StringArray{\n\t\t\t\t\tpulumi.String(\"ES256\"),\n\t\t\t\t\tpulumi.String(\"RS256\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.keycloak.Realm;\nimport com.pulumi.keycloak.RealmArgs;\nimport com.pulumi.keycloak.inputs.RealmSmtpServerArgs;\nimport com.pulumi.keycloak.inputs.RealmSmtpServerAuthArgs;\nimport com.pulumi.keycloak.inputs.RealmInternationalizationArgs;\nimport com.pulumi.keycloak.inputs.RealmSecurityDefensesArgs;\nimport com.pulumi.keycloak.inputs.RealmSecurityDefensesHeadersArgs;\nimport com.pulumi.keycloak.inputs.RealmSecurityDefensesBruteForceDetectionArgs;\nimport com.pulumi.keycloak.inputs.RealmWebAuthnPolicyArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var realm = new Realm(\"realm\", RealmArgs.builder()\n            .realm(\"my-realm\")\n            .enabled(true)\n            .displayName(\"my realm\")\n            .displayNameHtml(\"\u003cb\u003emy realm\u003c/b\u003e\")\n            .loginTheme(\"base\")\n            .accessCodeLifespan(\"1h\")\n            .sslRequired(\"external\")\n            .passwordPolicy(\"upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername\")\n            .attributes(Map.of(\"mycustomAttribute\", \"myCustomValue\"))\n            .smtpServer(RealmSmtpServerArgs.builder()\n                .host(\"smtp.example.com\")\n                .from(\"example@example.com\")\n                .auth(RealmSmtpServerAuthArgs.builder()\n                    .username(\"tom\")\n                    .password(\"password\")\n                    .build())\n                .build())\n            .internationalization(RealmInternationalizationArgs.builder()\n                .supportedLocales(                \n                    \"en\",\n                    \"de\",\n                    \"es\")\n                .defaultLocale(\"en\")\n                .build())\n            .securityDefenses(RealmSecurityDefensesArgs.builder()\n                .headers(RealmSecurityDefensesHeadersArgs.builder()\n                    .xFrameOptions(\"DENY\")\n                    .contentSecurityPolicy(\"frame-src 'self'; frame-ancestors 'self'; object-src 'none';\")\n                    .contentSecurityPolicyReportOnly(\"\")\n                    .xContentTypeOptions(\"nosniff\")\n                    .xRobotsTag(\"none\")\n                    .xXssProtection(\"1; mode=block\")\n                    .strictTransportSecurity(\"max-age=31536000; includeSubDomains\")\n                    .build())\n                .bruteForceDetection(RealmSecurityDefensesBruteForceDetectionArgs.builder()\n                    .permanentLockout(false)\n                    .maxLoginFailures(30)\n                    .waitIncrementSeconds(60)\n                    .quickLoginCheckMilliSeconds(1000)\n                    .minimumQuickLoginWaitSeconds(60)\n                    .maxFailureWaitSeconds(900)\n                    .failureResetTimeSeconds(43200)\n                    .build())\n                .build())\n            .webAuthnPolicy(RealmWebAuthnPolicyArgs.builder()\n                .relyingPartyEntityName(\"Example\")\n                .relyingPartyId(\"keycloak.example.com\")\n                .signatureAlgorithms(                \n                    \"ES256\",\n                    \"RS256\")\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  realm:\n    type: keycloak:Realm\n    properties:\n      realm: my-realm\n      enabled: true\n      displayName: my realm\n      displayNameHtml: \u003cb\u003emy realm\u003c/b\u003e\n      loginTheme: base\n      accessCodeLifespan: 1h\n      sslRequired: external\n      passwordPolicy: upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername\n      attributes:\n        mycustomAttribute: myCustomValue\n      smtpServer:\n        host: smtp.example.com\n        from: example@example.com\n        auth:\n          username: tom\n          password: password\n      internationalization:\n        supportedLocales:\n          - en\n          - de\n          - es\n        defaultLocale: en\n      securityDefenses:\n        headers:\n          xFrameOptions: DENY\n          contentSecurityPolicy: frame-src 'self'; frame-ancestors 'self'; object-src 'none';\n          contentSecurityPolicyReportOnly: \"\"\n          xContentTypeOptions: nosniff\n          xRobotsTag: none\n          xXssProtection: 1; mode=block\n          strictTransportSecurity: max-age=31536000; includeSubDomains\n        bruteForceDetection:\n          permanentLockout: false\n          maxLoginFailures: 30\n          waitIncrementSeconds: 60\n          quickLoginCheckMilliSeconds: 1000\n          minimumQuickLoginWaitSeconds: 60\n          maxFailureWaitSeconds: 900\n          failureResetTimeSeconds: 43200\n      webAuthnPolicy:\n        relyingPartyEntityName: Example\n        relyingPartyId: keycloak.example.com\n        signatureAlgorithms:\n          - ES256\n          - RS256\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Default Client Scopes\n\n- `default_default_client_scopes` - (Optional) A list of default `default client scopes` to be used for client definitions. Defaults to `[]` or keycloak's built-in default `default client-scopes`. For an alternative, please refer to the dedicated resource `keycloak.RealmDefaultClientScopes`.\n- `default_optional_client_scopes` - (Optional) A list of default `optional client scopes` to be used for client definitions. Defaults to `[]` or keycloak's built-in default `optional client-scopes`. For an alternative, please refer to the dedicated resource `keycloak.RealmOptionalClientScopes`.\n\n## Import\n\nRealms can be imported using their name.\n\nExample:\n\nbash\n\n```sh\n$ pulumi import keycloak:index/realm:Realm realm my-realm\n```\n\n",
             "properties": {
@@ -4869,6 +5082,170 @@
                     },
                     "webAuthnPolicy": {
                         "$ref": "#/types/keycloak:index/RealmWebAuthnPolicy:RealmWebAuthnPolicy"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "keycloak:index/realmClientPolicyProfile:RealmClientPolicyProfile": {
+            "description": "Allows for managing Realm Client Policy Profiles.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {realm: \"my-realm\"});\nconst profile = new keycloak.RealmClientPolicyProfile(\"profile\", {\n    name: \"my-profile\",\n    realmId: realm.id,\n    executors: [\n        {\n            name: \"intent-client-bind-checker\",\n            configuration: {\n                \"auto-configure\": \"true\",\n            },\n        },\n        {\n            name: \"secure-session\",\n        },\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\", realm=\"my-realm\")\nprofile = keycloak.RealmClientPolicyProfile(\"profile\",\n    name=\"my-profile\",\n    realm_id=realm.id,\n    executors=[\n        {\n            \"name\": \"intent-client-bind-checker\",\n            \"configuration\": {\n                \"auto-configure\": \"true\",\n            },\n        },\n        {\n            \"name\": \"secure-session\",\n        },\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var realm = new Keycloak.Realm(\"realm\", new()\n    {\n        RealmName = \"my-realm\",\n    });\n\n    var profile = new Keycloak.RealmClientPolicyProfile(\"profile\", new()\n    {\n        Name = \"my-profile\",\n        RealmId = realm.Id,\n        Executors = new[]\n        {\n            new Keycloak.Inputs.RealmClientPolicyProfileExecutorArgs\n            {\n                Name = \"intent-client-bind-checker\",\n                Configuration = \n                {\n                    { \"auto-configure\", \"true\" },\n                },\n            },\n            new Keycloak.Inputs.RealmClientPolicyProfileExecutorArgs\n            {\n                Name = \"secure-session\",\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm: pulumi.String(\"my-realm\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = keycloak.NewRealmClientPolicyProfile(ctx, \"profile\", \u0026keycloak.RealmClientPolicyProfileArgs{\n\t\t\tName:    pulumi.String(\"my-profile\"),\n\t\t\tRealmId: realm.ID(),\n\t\t\tExecutors: keycloak.RealmClientPolicyProfileExecutorArray{\n\t\t\t\t\u0026keycloak.RealmClientPolicyProfileExecutorArgs{\n\t\t\t\t\tName: pulumi.String(\"intent-client-bind-checker\"),\n\t\t\t\t\tConfiguration: pulumi.StringMap{\n\t\t\t\t\t\t\"auto-configure\": pulumi.String(\"true\"),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t\t\u0026keycloak.RealmClientPolicyProfileExecutorArgs{\n\t\t\t\t\tName: pulumi.String(\"secure-session\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.keycloak.Realm;\nimport com.pulumi.keycloak.RealmArgs;\nimport com.pulumi.keycloak.RealmClientPolicyProfile;\nimport com.pulumi.keycloak.RealmClientPolicyProfileArgs;\nimport com.pulumi.keycloak.inputs.RealmClientPolicyProfileExecutorArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var realm = new Realm(\"realm\", RealmArgs.builder()\n            .realm(\"my-realm\")\n            .build());\n\n        var profile = new RealmClientPolicyProfile(\"profile\", RealmClientPolicyProfileArgs.builder()\n            .name(\"my-profile\")\n            .realmId(realm.id())\n            .executors(            \n                RealmClientPolicyProfileExecutorArgs.builder()\n                    .name(\"intent-client-bind-checker\")\n                    .configuration(Map.of(\"auto-configure\", \"true\"))\n                    .build(),\n                RealmClientPolicyProfileExecutorArgs.builder()\n                    .name(\"secure-session\")\n                    .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  realm:\n    type: keycloak:Realm\n    properties:\n      realm: my-realm\n  profile:\n    type: keycloak:RealmClientPolicyProfile\n    properties:\n      name: my-profile\n      realmId: ${realm.id}\n      executors:\n        - name: intent-client-bind-checker\n          configuration:\n            auto-configure: true\n        - name: secure-session\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### Attribute Arguments\n\n- `name` - (Required) The name of the attribute.\n- `realm_id` - (Required) The realm id.\n- `executor` - (Optional) An ordered list of executors\n\n#### Executor Arguments\n\n- `name` - (Required) The name of the executor. NOTE! The executor needs to exist\n- `configuration` - (Optional) - A map of configuration values\n\n## Import\n\nThis resource currently does not support importing.\n\n",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "executors": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/keycloak:index/RealmClientPolicyProfileExecutor:RealmClientPolicyProfileExecutor"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                },
+                "realmId": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name",
+                "realmId"
+            ],
+            "inputProperties": {
+                "description": {
+                    "type": "string"
+                },
+                "executors": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/keycloak:index/RealmClientPolicyProfileExecutor:RealmClientPolicyProfileExecutor"
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "willReplaceOnChanges": true
+                },
+                "realmId": {
+                    "type": "string"
+                }
+            },
+            "requiredInputs": [
+                "realmId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering RealmClientPolicyProfile resources.\n",
+                "properties": {
+                    "description": {
+                        "type": "string"
+                    },
+                    "executors": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/keycloak:index/RealmClientPolicyProfileExecutor:RealmClientPolicyProfileExecutor"
+                        }
+                    },
+                    "name": {
+                        "type": "string",
+                        "willReplaceOnChanges": true
+                    },
+                    "realmId": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "keycloak:index/realmClientPolicyProfilePolicy:RealmClientPolicyProfilePolicy": {
+            "properties": {
+                "conditions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/keycloak:index/RealmClientPolicyProfilePolicyCondition:RealmClientPolicyProfilePolicyCondition"
+                    }
+                },
+                "description": {
+                    "type": "string"
+                },
+                "enabled": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "profiles": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "realmId": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name",
+                "profiles",
+                "realmId"
+            ],
+            "inputProperties": {
+                "conditions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/keycloak:index/RealmClientPolicyProfilePolicyCondition:RealmClientPolicyProfilePolicyCondition"
+                    }
+                },
+                "description": {
+                    "type": "string"
+                },
+                "enabled": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string",
+                    "willReplaceOnChanges": true
+                },
+                "profiles": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "willReplaceOnChanges": true
+                },
+                "realmId": {
+                    "type": "string"
+                }
+            },
+            "requiredInputs": [
+                "profiles",
+                "realmId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering RealmClientPolicyProfilePolicy resources.\n",
+                "properties": {
+                    "conditions": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/keycloak:index/RealmClientPolicyProfilePolicyCondition:RealmClientPolicyProfilePolicyCondition"
+                        }
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "enabled": {
+                        "type": "boolean"
+                    },
+                    "name": {
+                        "type": "string",
+                        "willReplaceOnChanges": true
+                    },
+                    "profiles": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "willReplaceOnChanges": true
+                    },
+                    "realmId": {
+                        "type": "string"
                     }
                 },
                 "type": "object"
@@ -8526,6 +8903,16 @@
                     "type": "boolean",
                     "description": "When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.\n"
                 },
+                "orgDomain": {
+                    "type": "string"
+                },
+                "orgRedirectModeEmailMatches": {
+                    "type": "boolean"
+                },
+                "organizationId": {
+                    "type": "string",
+                    "description": "ID of organization with which this identity is linked.\n"
+                },
                 "postBrokerLoginFlowAlias": {
                     "type": "string",
                     "description": "The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.\n"
@@ -8635,6 +9022,16 @@
                 "linkOnly": {
                     "type": "boolean",
                     "description": "When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.\n"
+                },
+                "orgDomain": {
+                    "type": "string"
+                },
+                "orgRedirectModeEmailMatches": {
+                    "type": "boolean"
+                },
+                "organizationId": {
+                    "type": "string",
+                    "description": "ID of organization with which this identity is linked.\n"
                 },
                 "postBrokerLoginFlowAlias": {
                     "type": "string",
@@ -8749,6 +9146,16 @@
                         "type": "boolean",
                         "description": "When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.\n"
                     },
+                    "orgDomain": {
+                        "type": "string"
+                    },
+                    "orgRedirectModeEmailMatches": {
+                        "type": "boolean"
+                    },
+                    "organizationId": {
+                        "type": "string",
+                        "description": "ID of organization with which this identity is linked.\n"
+                    },
                     "postBrokerLoginFlowAlias": {
                         "type": "string",
                         "description": "The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.\n"
@@ -8787,7 +9194,7 @@
             }
         },
         "keycloak:oidc/identityProvider:IdentityProvider": {
-            "description": "Allows for creating and managing OIDC Identity Providers within Keycloak.\n\nOIDC (OpenID Connect) identity providers allows users to authenticate through a third party system using the OIDC standard.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n});\nconst realmIdentityProvider = new keycloak.oidc.IdentityProvider(\"realm_identity_provider\", {\n    realm: realm.id,\n    alias: \"my-idp\",\n    authorizationUrl: \"https://authorizationurl.com\",\n    clientId: \"clientID\",\n    clientSecret: \"clientSecret\",\n    tokenUrl: \"https://tokenurl.com\",\n    extraConfig: {\n        clientAuthMethod: \"client_secret_post\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True)\nrealm_identity_provider = keycloak.oidc.IdentityProvider(\"realm_identity_provider\",\n    realm=realm.id,\n    alias=\"my-idp\",\n    authorization_url=\"https://authorizationurl.com\",\n    client_id=\"clientID\",\n    client_secret=\"clientSecret\",\n    token_url=\"https://tokenurl.com\",\n    extra_config={\n        \"clientAuthMethod\": \"client_secret_post\",\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var realm = new Keycloak.Realm(\"realm\", new()\n    {\n        RealmName = \"my-realm\",\n        Enabled = true,\n    });\n\n    var realmIdentityProvider = new Keycloak.Oidc.IdentityProvider(\"realm_identity_provider\", new()\n    {\n        Realm = realm.Id,\n        Alias = \"my-idp\",\n        AuthorizationUrl = \"https://authorizationurl.com\",\n        ClientId = \"clientID\",\n        ClientSecret = \"clientSecret\",\n        TokenUrl = \"https://tokenurl.com\",\n        ExtraConfig = \n        {\n            { \"clientAuthMethod\", \"client_secret_post\" },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak\"\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak/oidc\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:   pulumi.String(\"my-realm\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = oidc.NewIdentityProvider(ctx, \"realm_identity_provider\", \u0026oidc.IdentityProviderArgs{\n\t\t\tRealm:            realm.ID(),\n\t\t\tAlias:            pulumi.String(\"my-idp\"),\n\t\t\tAuthorizationUrl: pulumi.String(\"https://authorizationurl.com\"),\n\t\t\tClientId:         pulumi.String(\"clientID\"),\n\t\t\tClientSecret:     pulumi.String(\"clientSecret\"),\n\t\t\tTokenUrl:         pulumi.String(\"https://tokenurl.com\"),\n\t\t\tExtraConfig: pulumi.StringMap{\n\t\t\t\t\"clientAuthMethod\": pulumi.String(\"client_secret_post\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.keycloak.Realm;\nimport com.pulumi.keycloak.RealmArgs;\nimport com.pulumi.keycloak.oidc.IdentityProvider;\nimport com.pulumi.keycloak.oidc.IdentityProviderArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var realm = new Realm(\"realm\", RealmArgs.builder()\n            .realm(\"my-realm\")\n            .enabled(true)\n            .build());\n\n        var realmIdentityProvider = new IdentityProvider(\"realmIdentityProvider\", IdentityProviderArgs.builder()\n            .realm(realm.id())\n            .alias(\"my-idp\")\n            .authorizationUrl(\"https://authorizationurl.com\")\n            .clientId(\"clientID\")\n            .clientSecret(\"clientSecret\")\n            .tokenUrl(\"https://tokenurl.com\")\n            .extraConfig(Map.of(\"clientAuthMethod\", \"client_secret_post\"))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  realm:\n    type: keycloak:Realm\n    properties:\n      realm: my-realm\n      enabled: true\n  realmIdentityProvider:\n    type: keycloak:oidc:IdentityProvider\n    name: realm_identity_provider\n    properties:\n      realm: ${realm.id}\n      alias: my-idp\n      authorizationUrl: https://authorizationurl.com\n      clientId: clientID\n      clientSecret: clientSecret\n      tokenUrl: https://tokenurl.com\n      extraConfig:\n        clientAuthMethod: client_secret_post\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nIdentity providers can be imported using the format `{{realm_id}}/{{idp_alias}}`, where `idp_alias` is the identity provider alias.\n\nExample:\n\nbash\n\n```sh\n$ pulumi import keycloak:oidc/identityProvider:IdentityProvider realm_identity_provider my-realm/my-idp\n```\n\n",
+            "description": "Allows for creating and managing OIDC Identity Providers within Keycloak.\n\nOIDC (OpenID Connect) identity providers allows users to authenticate through a third party system using the OIDC standard.\n\n\u003e **NOTICE:** This resource now supports write-only arguments\n\u003e for client secret via the new arguments `client_secret_wo` and `client_secret_wo_version`. Using write-only arguments\n\u003e prevents sensitive values from being stored in plan and state files. You cannot use `client_secret_wo` and\n\u003e `client_secret_wo_version` alongside `client_secret` as this will result in a validation error due to conflicts.\n\u003e\n\u003e For backward compatibility, the behavior of the original `client_secret` argument remains unchanged.\n\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n});\nconst realmIdentityProvider = new keycloak.oidc.IdentityProvider(\"realm_identity_provider\", {\n    realm: realm.id,\n    alias: \"my-idp\",\n    authorizationUrl: \"https://authorizationurl.com\",\n    clientId: \"clientID\",\n    clientSecret: \"clientSecret\",\n    tokenUrl: \"https://tokenurl.com\",\n    extraConfig: {\n        clientAuthMethod: \"client_secret_post\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True)\nrealm_identity_provider = keycloak.oidc.IdentityProvider(\"realm_identity_provider\",\n    realm=realm.id,\n    alias=\"my-idp\",\n    authorization_url=\"https://authorizationurl.com\",\n    client_id=\"clientID\",\n    client_secret=\"clientSecret\",\n    token_url=\"https://tokenurl.com\",\n    extra_config={\n        \"clientAuthMethod\": \"client_secret_post\",\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var realm = new Keycloak.Realm(\"realm\", new()\n    {\n        RealmName = \"my-realm\",\n        Enabled = true,\n    });\n\n    var realmIdentityProvider = new Keycloak.Oidc.IdentityProvider(\"realm_identity_provider\", new()\n    {\n        Realm = realm.Id,\n        Alias = \"my-idp\",\n        AuthorizationUrl = \"https://authorizationurl.com\",\n        ClientId = \"clientID\",\n        ClientSecret = \"clientSecret\",\n        TokenUrl = \"https://tokenurl.com\",\n        ExtraConfig = \n        {\n            { \"clientAuthMethod\", \"client_secret_post\" },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak\"\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak/oidc\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:   pulumi.String(\"my-realm\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = oidc.NewIdentityProvider(ctx, \"realm_identity_provider\", \u0026oidc.IdentityProviderArgs{\n\t\t\tRealm:            realm.ID(),\n\t\t\tAlias:            pulumi.String(\"my-idp\"),\n\t\t\tAuthorizationUrl: pulumi.String(\"https://authorizationurl.com\"),\n\t\t\tClientId:         pulumi.String(\"clientID\"),\n\t\t\tClientSecret:     pulumi.String(\"clientSecret\"),\n\t\t\tTokenUrl:         pulumi.String(\"https://tokenurl.com\"),\n\t\t\tExtraConfig: pulumi.StringMap{\n\t\t\t\t\"clientAuthMethod\": pulumi.String(\"client_secret_post\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.keycloak.Realm;\nimport com.pulumi.keycloak.RealmArgs;\nimport com.pulumi.keycloak.oidc.IdentityProvider;\nimport com.pulumi.keycloak.oidc.IdentityProviderArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var realm = new Realm(\"realm\", RealmArgs.builder()\n            .realm(\"my-realm\")\n            .enabled(true)\n            .build());\n\n        var realmIdentityProvider = new IdentityProvider(\"realmIdentityProvider\", IdentityProviderArgs.builder()\n            .realm(realm.id())\n            .alias(\"my-idp\")\n            .authorizationUrl(\"https://authorizationurl.com\")\n            .clientId(\"clientID\")\n            .clientSecret(\"clientSecret\")\n            .tokenUrl(\"https://tokenurl.com\")\n            .extraConfig(Map.of(\"clientAuthMethod\", \"client_secret_post\"))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  realm:\n    type: keycloak:Realm\n    properties:\n      realm: my-realm\n      enabled: true\n  realmIdentityProvider:\n    type: keycloak:oidc:IdentityProvider\n    name: realm_identity_provider\n    properties:\n      realm: ${realm.id}\n      alias: my-idp\n      authorizationUrl: https://authorizationurl.com\n      clientId: clientID\n      clientSecret: clientSecret\n      tokenUrl: https://tokenurl.com\n      extraConfig:\n        clientAuthMethod: client_secret_post\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n\n## Import\n\nIdentity providers can be imported using the format `{{realm_id}}/{{idp_alias}}`, where `idp_alias` is the identity provider alias.\n\nExample:\n\nbash\n\n```sh\n$ pulumi import keycloak:oidc/identityProvider:IdentityProvider realm_identity_provider my-realm/my-idp\n```\n\n",
             "properties": {
                 "acceptsPromptNoneForwardFromClient": {
                     "type": "boolean",
@@ -8819,12 +9226,20 @@
                 },
                 "clientSecret": {
                     "type": "string",
-                    "description": "The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.\n",
+                    "description": "The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `client_secret_wo` and `client_secret_wo_version`.\n",
                     "secret": true
+                },
+                "clientSecretWoVersion": {
+                    "type": "integer",
+                    "description": "Version of the Client secret write-only argument\n"
                 },
                 "defaultScopes": {
                     "type": "string",
                     "description": "The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.\n"
+                },
+                "disableTypeClaimCheck": {
+                    "type": "boolean",
+                    "description": "When `true`, disables the check for the `typ` claim of tokens received from the identity provider. Defaults to `false`.\n"
                 },
                 "disableUserInfo": {
                     "type": "boolean",
@@ -8880,6 +9295,18 @@
                     "type": "string",
                     "description": "The Logout URL is the end session endpoint to use to sign-out the user from external identity provider.\n"
                 },
+                "orgDomain": {
+                    "type": "string",
+                    "description": "The organization domain to associate this identity provider with. it is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.\n"
+                },
+                "orgRedirectModeEmailMatches": {
+                    "type": "boolean",
+                    "description": "Indicates whether to automatically redirect user to this identity provider when email domain matches domain.\n"
+                },
+                "organizationId": {
+                    "type": "string",
+                    "description": "The ID of the organization to link this identity provider to.\n"
+                },
                 "postBrokerLoginFlowAlias": {
                     "type": "string",
                     "description": "The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.\n"
@@ -8925,7 +9352,6 @@
                 "alias",
                 "authorizationUrl",
                 "clientId",
-                "clientSecret",
                 "displayName",
                 "internalId",
                 "realm",
@@ -8964,12 +9390,20 @@
                 },
                 "clientSecret": {
                     "type": "string",
-                    "description": "The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.\n",
+                    "description": "The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `client_secret_wo` and `client_secret_wo_version`.\n",
                     "secret": true
+                },
+                "clientSecretWoVersion": {
+                    "type": "integer",
+                    "description": "Version of the Client secret write-only argument\n"
                 },
                 "defaultScopes": {
                     "type": "string",
                     "description": "The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.\n"
+                },
+                "disableTypeClaimCheck": {
+                    "type": "boolean",
+                    "description": "When `true`, disables the check for the `typ` claim of tokens received from the identity provider. Defaults to `false`.\n"
                 },
                 "disableUserInfo": {
                     "type": "boolean",
@@ -9021,6 +9455,18 @@
                     "type": "string",
                     "description": "The Logout URL is the end session endpoint to use to sign-out the user from external identity provider.\n"
                 },
+                "orgDomain": {
+                    "type": "string",
+                    "description": "The organization domain to associate this identity provider with. it is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.\n"
+                },
+                "orgRedirectModeEmailMatches": {
+                    "type": "boolean",
+                    "description": "Indicates whether to automatically redirect user to this identity provider when email domain matches domain.\n"
+                },
+                "organizationId": {
+                    "type": "string",
+                    "description": "The ID of the organization to link this identity provider to.\n"
+                },
                 "postBrokerLoginFlowAlias": {
                     "type": "string",
                     "description": "The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.\n"
@@ -9067,7 +9513,6 @@
                 "alias",
                 "authorizationUrl",
                 "clientId",
-                "clientSecret",
                 "realm",
                 "tokenUrl"
             ],
@@ -9106,12 +9551,20 @@
                     },
                     "clientSecret": {
                         "type": "string",
-                        "description": "The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.\n",
+                        "description": "The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `client_secret_wo` and `client_secret_wo_version`.\n",
                         "secret": true
+                    },
+                    "clientSecretWoVersion": {
+                        "type": "integer",
+                        "description": "Version of the Client secret write-only argument\n"
                     },
                     "defaultScopes": {
                         "type": "string",
                         "description": "The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.\n"
+                    },
+                    "disableTypeClaimCheck": {
+                        "type": "boolean",
+                        "description": "When `true`, disables the check for the `typ` claim of tokens received from the identity provider. Defaults to `false`.\n"
                     },
                     "disableUserInfo": {
                         "type": "boolean",
@@ -9166,6 +9619,18 @@
                     "logoutUrl": {
                         "type": "string",
                         "description": "The Logout URL is the end session endpoint to use to sign-out the user from external identity provider.\n"
+                    },
+                    "orgDomain": {
+                        "type": "string",
+                        "description": "The organization domain to associate this identity provider with. it is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.\n"
+                    },
+                    "orgRedirectModeEmailMatches": {
+                        "type": "boolean",
+                        "description": "Indicates whether to automatically redirect user to this identity provider when email domain matches domain.\n"
+                    },
+                    "organizationId": {
+                        "type": "string",
+                        "description": "The ID of the organization to link this identity provider to.\n"
                     },
                     "postBrokerLoginFlowAlias": {
                         "type": "string",
@@ -9416,7 +9881,7 @@
             ]
         },
         "keycloak:openid/client:Client": {
-            "description": "Allows for creating and managing Keycloak clients that use the OpenID Connect protocol.\n\nClients are entities that can use Keycloak for user authentication. Typically,\nclients are applications that redirect users to Keycloak for authentication\nin order to take advantage of Keycloak's user sessions for SSO.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n});\nconst openidClient = new keycloak.openid.Client(\"openid_client\", {\n    realmId: realm.id,\n    clientId: \"test-client\",\n    name: \"test client\",\n    enabled: true,\n    accessType: \"CONFIDENTIAL\",\n    validRedirectUris: [\"http://localhost:8080/openid-callback\"],\n    loginTheme: \"keycloak\",\n    extraConfig: {\n        key1: \"value1\",\n        key2: \"value2\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True)\nopenid_client = keycloak.openid.Client(\"openid_client\",\n    realm_id=realm.id,\n    client_id=\"test-client\",\n    name=\"test client\",\n    enabled=True,\n    access_type=\"CONFIDENTIAL\",\n    valid_redirect_uris=[\"http://localhost:8080/openid-callback\"],\n    login_theme=\"keycloak\",\n    extra_config={\n        \"key1\": \"value1\",\n        \"key2\": \"value2\",\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var realm = new Keycloak.Realm(\"realm\", new()\n    {\n        RealmName = \"my-realm\",\n        Enabled = true,\n    });\n\n    var openidClient = new Keycloak.OpenId.Client(\"openid_client\", new()\n    {\n        RealmId = realm.Id,\n        ClientId = \"test-client\",\n        Name = \"test client\",\n        Enabled = true,\n        AccessType = \"CONFIDENTIAL\",\n        ValidRedirectUris = new[]\n        {\n            \"http://localhost:8080/openid-callback\",\n        },\n        LoginTheme = \"keycloak\",\n        ExtraConfig = \n        {\n            { \"key1\", \"value1\" },\n            { \"key2\", \"value2\" },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak\"\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak/openid\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:   pulumi.String(\"my-realm\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = openid.NewClient(ctx, \"openid_client\", \u0026openid.ClientArgs{\n\t\t\tRealmId:    realm.ID(),\n\t\t\tClientId:   pulumi.String(\"test-client\"),\n\t\t\tName:       pulumi.String(\"test client\"),\n\t\t\tEnabled:    pulumi.Bool(true),\n\t\t\tAccessType: pulumi.String(\"CONFIDENTIAL\"),\n\t\t\tValidRedirectUris: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"http://localhost:8080/openid-callback\"),\n\t\t\t},\n\t\t\tLoginTheme: pulumi.String(\"keycloak\"),\n\t\t\tExtraConfig: pulumi.StringMap{\n\t\t\t\t\"key1\": pulumi.String(\"value1\"),\n\t\t\t\t\"key2\": pulumi.String(\"value2\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.keycloak.Realm;\nimport com.pulumi.keycloak.RealmArgs;\nimport com.pulumi.keycloak.openid.Client;\nimport com.pulumi.keycloak.openid.ClientArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var realm = new Realm(\"realm\", RealmArgs.builder()\n            .realm(\"my-realm\")\n            .enabled(true)\n            .build());\n\n        var openidClient = new Client(\"openidClient\", ClientArgs.builder()\n            .realmId(realm.id())\n            .clientId(\"test-client\")\n            .name(\"test client\")\n            .enabled(true)\n            .accessType(\"CONFIDENTIAL\")\n            .validRedirectUris(\"http://localhost:8080/openid-callback\")\n            .loginTheme(\"keycloak\")\n            .extraConfig(Map.ofEntries(\n                Map.entry(\"key1\", \"value1\"),\n                Map.entry(\"key2\", \"value2\")\n            ))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  realm:\n    type: keycloak:Realm\n    properties:\n      realm: my-realm\n      enabled: true\n  openidClient:\n    type: keycloak:openid:Client\n    name: openid_client\n    properties:\n      realmId: ${realm.id}\n      clientId: test-client\n      name: test client\n      enabled: true\n      accessType: CONFIDENTIAL\n      validRedirectUris:\n        - http://localhost:8080/openid-callback\n      loginTheme: keycloak\n      extraConfig:\n        key1: value1\n        key2: value2\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nClients can be imported using the format `{{realm_id}}/{{client_keycloak_id}}`, where `client_keycloak_id` is the unique ID that Keycloak\n\nassigns to the client upon creation. This value can be found in the URI when editing this client in the GUI, and is typically a GUID.\n\nExample:\n\nbash\n\n```sh\n$ pulumi import keycloak:openid/client:Client openid_client my-realm/dcbc4c73-e478-4928-ae2e-d5e420223352\n```\n\n",
+            "description": "Allows for creating and managing Keycloak clients that use the OpenID Connect protocol.\n\nClients are entities that can use Keycloak for user authentication. Typically,\nclients are applications that redirect users to Keycloak for authentication\nin order to take advantage of Keycloak's user sessions for SSO.\n\n\u003e **NOTICE:** This resource now supports write-only arguments\n\u003e for client secret via the new arguments `client_secret_wo` and `client_secret_wo_version`. Using write-only arguments\n\u003e prevents sensitive values from being stored in plan and state files. You cannot use `client_secret_wo` and\n\u003e `client_secret_wo_version` alongside `client_secret` as this will result in a validation error due to conflicts.\n\u003e\n\u003e For backward compatibility, the behavior of the original `client_secret` argument remains unchanged.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n});\nconst openidClient = new keycloak.openid.Client(\"openid_client\", {\n    realmId: realm.id,\n    clientId: \"test-client\",\n    name: \"test client\",\n    enabled: true,\n    accessType: \"CONFIDENTIAL\",\n    validRedirectUris: [\"http://localhost:8080/openid-callback\"],\n    loginTheme: \"keycloak\",\n    extraConfig: {\n        key1: \"value1\",\n        key2: \"value2\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True)\nopenid_client = keycloak.openid.Client(\"openid_client\",\n    realm_id=realm.id,\n    client_id=\"test-client\",\n    name=\"test client\",\n    enabled=True,\n    access_type=\"CONFIDENTIAL\",\n    valid_redirect_uris=[\"http://localhost:8080/openid-callback\"],\n    login_theme=\"keycloak\",\n    extra_config={\n        \"key1\": \"value1\",\n        \"key2\": \"value2\",\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var realm = new Keycloak.Realm(\"realm\", new()\n    {\n        RealmName = \"my-realm\",\n        Enabled = true,\n    });\n\n    var openidClient = new Keycloak.OpenId.Client(\"openid_client\", new()\n    {\n        RealmId = realm.Id,\n        ClientId = \"test-client\",\n        Name = \"test client\",\n        Enabled = true,\n        AccessType = \"CONFIDENTIAL\",\n        ValidRedirectUris = new[]\n        {\n            \"http://localhost:8080/openid-callback\",\n        },\n        LoginTheme = \"keycloak\",\n        ExtraConfig = \n        {\n            { \"key1\", \"value1\" },\n            { \"key2\", \"value2\" },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak\"\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak/openid\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:   pulumi.String(\"my-realm\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = openid.NewClient(ctx, \"openid_client\", \u0026openid.ClientArgs{\n\t\t\tRealmId:    realm.ID(),\n\t\t\tClientId:   pulumi.String(\"test-client\"),\n\t\t\tName:       pulumi.String(\"test client\"),\n\t\t\tEnabled:    pulumi.Bool(true),\n\t\t\tAccessType: pulumi.String(\"CONFIDENTIAL\"),\n\t\t\tValidRedirectUris: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"http://localhost:8080/openid-callback\"),\n\t\t\t},\n\t\t\tLoginTheme: pulumi.String(\"keycloak\"),\n\t\t\tExtraConfig: pulumi.StringMap{\n\t\t\t\t\"key1\": pulumi.String(\"value1\"),\n\t\t\t\t\"key2\": pulumi.String(\"value2\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.keycloak.Realm;\nimport com.pulumi.keycloak.RealmArgs;\nimport com.pulumi.keycloak.openid.Client;\nimport com.pulumi.keycloak.openid.ClientArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var realm = new Realm(\"realm\", RealmArgs.builder()\n            .realm(\"my-realm\")\n            .enabled(true)\n            .build());\n\n        var openidClient = new Client(\"openidClient\", ClientArgs.builder()\n            .realmId(realm.id())\n            .clientId(\"test-client\")\n            .name(\"test client\")\n            .enabled(true)\n            .accessType(\"CONFIDENTIAL\")\n            .validRedirectUris(\"http://localhost:8080/openid-callback\")\n            .loginTheme(\"keycloak\")\n            .extraConfig(Map.ofEntries(\n                Map.entry(\"key1\", \"value1\"),\n                Map.entry(\"key2\", \"value2\")\n            ))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  realm:\n    type: keycloak:Realm\n    properties:\n      realm: my-realm\n      enabled: true\n  openidClient:\n    type: keycloak:openid:Client\n    name: openid_client\n    properties:\n      realmId: ${realm.id}\n      clientId: test-client\n      name: test client\n      enabled: true\n      accessType: CONFIDENTIAL\n      validRedirectUris:\n        - http://localhost:8080/openid-callback\n      loginTheme: keycloak\n      extraConfig:\n        key1: value1\n        key2: value2\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n\n### With Regenerating The Client Secret Using Time Provider\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\nimport * as time from \"@pulumi/time\";\n\nconst realm = new keycloak.Realm(\"realm\", {\n    realm: \"my-realm\",\n    enabled: true,\n});\nconst rotate = new time.index.Rotating(\"rotate\", {rotationDays: 10});\nconst openidClient = new keycloak.openid.Client(\"openid_client\", {\n    realmId: realm.id,\n    clientId: \"test-client\",\n    name: \"test client\",\n    enabled: true,\n    accessType: \"CONFIDENTIAL\",\n    clientSecretRegenerateWhenChanged: {\n        rotation: rotate.rotationRfc3339,\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\nimport pulumi_time as time\n\nrealm = keycloak.Realm(\"realm\",\n    realm=\"my-realm\",\n    enabled=True)\nrotate = time.index.Rotating(\"rotate\", rotation_days=10)\nopenid_client = keycloak.openid.Client(\"openid_client\",\n    realm_id=realm.id,\n    client_id=\"test-client\",\n    name=\"test client\",\n    enabled=True,\n    access_type=\"CONFIDENTIAL\",\n    client_secret_regenerate_when_changed={\n        \"rotation\": rotate[\"rotationRfc3339\"],\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\nusing Time = Pulumi.Time;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var realm = new Keycloak.Realm(\"realm\", new()\n    {\n        RealmName = \"my-realm\",\n        Enabled = true,\n    });\n\n    var rotate = new Time.Index.Rotating(\"rotate\", new()\n    {\n        RotationDays = 10,\n    });\n\n    var openidClient = new Keycloak.OpenId.Client(\"openid_client\", new()\n    {\n        RealmId = realm.Id,\n        ClientId = \"test-client\",\n        Name = \"test client\",\n        Enabled = true,\n        AccessType = \"CONFIDENTIAL\",\n        ClientSecretRegenerateWhenChanged = \n        {\n            { \"rotation\", rotate.RotationRfc3339 },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak\"\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak/openid\"\n\t\"github.com/pulumi/pulumi-time/sdk/go/time\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.NewRealm(ctx, \"realm\", \u0026keycloak.RealmArgs{\n\t\t\tRealm:   pulumi.String(\"my-realm\"),\n\t\t\tEnabled: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\trotate, err := time.NewRotating(ctx, \"rotate\", \u0026time.RotatingArgs{\n\t\t\tRotationDays: 10,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = openid.NewClient(ctx, \"openid_client\", \u0026openid.ClientArgs{\n\t\t\tRealmId:    realm.ID(),\n\t\t\tClientId:   pulumi.String(\"test-client\"),\n\t\t\tName:       pulumi.String(\"test client\"),\n\t\t\tEnabled:    pulumi.Bool(true),\n\t\t\tAccessType: pulumi.String(\"CONFIDENTIAL\"),\n\t\t\tClientSecretRegenerateWhenChanged: pulumi.StringMap{\n\t\t\t\t\"rotation\": rotate.RotationRfc3339,\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.keycloak.Realm;\nimport com.pulumi.keycloak.RealmArgs;\nimport com.pulumi.time.rotating;\nimport com.pulumi.time.rotatingArgs;\nimport com.pulumi.keycloak.openid.Client;\nimport com.pulumi.keycloak.openid.ClientArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var realm = new Realm(\"realm\", RealmArgs.builder()\n            .realm(\"my-realm\")\n            .enabled(true)\n            .build());\n\n        var rotate = new Rotating(\"rotate\", RotatingArgs.builder()\n            .rotationDays(10)\n            .build());\n\n        var openidClient = new Client(\"openidClient\", ClientArgs.builder()\n            .realmId(realm.id())\n            .clientId(\"test-client\")\n            .name(\"test client\")\n            .enabled(true)\n            .accessType(\"CONFIDENTIAL\")\n            .clientSecretRegenerateWhenChanged(Map.of(\"rotation\", rotate.rotationRfc3339()))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  realm:\n    type: keycloak:Realm\n    properties:\n      realm: my-realm\n      enabled: true\n  rotate:\n    type: time:rotating\n    properties:\n      rotationDays: 10\n  openidClient:\n    type: keycloak:openid:Client\n    name: openid_client\n    properties:\n      realmId: ${realm.id}\n      clientId: test-client\n      name: test client\n      enabled: true\n      accessType: CONFIDENTIAL\n      clientSecretRegenerateWhenChanged:\n        rotation: ${rotate.rotationRfc3339}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nClients can be imported using the format `{{realm_id}}/{{client_keycloak_id}}`, where `client_keycloak_id` is the unique ID that Keycloak\n\nassigns to the client upon creation. This value can be found in the URI when editing this client in the GUI, and is typically a GUID.\n\nExample:\n\nbash\n\n```sh\n$ pulumi import keycloak:openid/client:Client openid_client my-realm/dcbc4c73-e478-4928-ae2e-d5e420223352\n```\n\n",
             "properties": {
                 "accessTokenLifespan": {
                     "type": "string",
@@ -9429,6 +9894,9 @@
                 "adminUrl": {
                     "type": "string",
                     "description": "URL to the admin interface of the client.\n"
+                },
+                "allowRefreshTokenInStandardTokenExchange": {
+                    "type": "string"
                 },
                 "alwaysDisplayInConsole": {
                     "type": "boolean",
@@ -9478,6 +9946,17 @@
                     "type": "string",
                     "description": "The secret for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. This value is sensitive and should be treated with the same care as a password. If omitted, this will be generated by Keycloak.\n",
                     "secret": true
+                },
+                "clientSecretRegenerateWhenChanged": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Arbitrary map of values that, when changed, will trigger rotation of the secret. NOTE! Conflicts with `client_secret`, `client_secret_wo` and `client_secret_wo_version` attribute and can't be used together\n"
+                },
+                "clientSecretWoVersion": {
+                    "type": "integer",
+                    "description": "Version of the Client secret write-only argument\n"
                 },
                 "clientSessionIdleTimeout": {
                     "type": "string",
@@ -9593,6 +10072,9 @@
                     "type": "boolean",
                     "description": "When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.\n"
                 },
+                "standardTokenExchangeEnabled": {
+                    "type": "boolean"
+                },
                 "useRefreshTokens": {
                     "type": "boolean",
                     "description": "If this is `true`, a refresh_token will be created and added to the token response. If this is `false` then no refresh_token will be generated.  Defaults to `true`.\n"
@@ -9667,6 +10149,9 @@
                     "type": "string",
                     "description": "URL to the admin interface of the client.\n"
                 },
+                "allowRefreshTokenInStandardTokenExchange": {
+                    "type": "string"
+                },
                 "alwaysDisplayInConsole": {
                     "type": "boolean",
                     "description": "Always list this client in the Account UI, even if the user does not have an active session.\n"
@@ -9715,6 +10200,17 @@
                     "type": "string",
                     "description": "The secret for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. This value is sensitive and should be treated with the same care as a password. If omitted, this will be generated by Keycloak.\n",
                     "secret": true
+                },
+                "clientSecretRegenerateWhenChanged": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Arbitrary map of values that, when changed, will trigger rotation of the secret. NOTE! Conflicts with `client_secret`, `client_secret_wo` and `client_secret_wo_version` attribute and can't be used together\n"
+                },
+                "clientSecretWoVersion": {
+                    "type": "integer",
+                    "description": "Version of the Client secret write-only argument\n"
                 },
                 "clientSessionIdleTimeout": {
                     "type": "string",
@@ -9824,6 +10320,9 @@
                     "type": "boolean",
                     "description": "When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.\n"
                 },
+                "standardTokenExchangeEnabled": {
+                    "type": "boolean"
+                },
                 "useRefreshTokens": {
                     "type": "boolean",
                     "description": "If this is `true`, a refresh_token will be created and added to the token response. If this is `false` then no refresh_token will be generated.  Defaults to `true`.\n"
@@ -9873,6 +10372,9 @@
                         "type": "string",
                         "description": "URL to the admin interface of the client.\n"
                     },
+                    "allowRefreshTokenInStandardTokenExchange": {
+                        "type": "string"
+                    },
                     "alwaysDisplayInConsole": {
                         "type": "boolean",
                         "description": "Always list this client in the Account UI, even if the user does not have an active session.\n"
@@ -9921,6 +10423,17 @@
                         "type": "string",
                         "description": "The secret for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. This value is sensitive and should be treated with the same care as a password. If omitted, this will be generated by Keycloak.\n",
                         "secret": true
+                    },
+                    "clientSecretRegenerateWhenChanged": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "Arbitrary map of values that, when changed, will trigger rotation of the secret. NOTE! Conflicts with `client_secret`, `client_secret_wo` and `client_secret_wo_version` attribute and can't be used together\n"
+                    },
+                    "clientSecretWoVersion": {
+                        "type": "integer",
+                        "description": "Version of the Client secret write-only argument\n"
                     },
                     "clientSessionIdleTimeout": {
                         "type": "string",
@@ -10037,6 +10550,9 @@
                     "standardFlowEnabled": {
                         "type": "boolean",
                         "description": "When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.\n"
+                    },
+                    "standardTokenExchangeEnabled": {
+                        "type": "boolean"
                     },
                     "useRefreshTokens": {
                         "type": "boolean",
@@ -12992,6 +13508,10 @@
                     "type": "boolean",
                     "description": "Indicates if the property should be added as a claim to the id token. Defaults to `true`.\n"
                 },
+                "addToTokenIntrospection": {
+                    "type": "boolean",
+                    "description": "Indicates if the property should be added as a claim to the Token Introspection response body. Defaults to `true`.\n"
+                },
                 "addToUserinfo": {
                     "type": "boolean",
                     "description": "Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.\n"
@@ -13042,6 +13562,10 @@
                 "addToIdToken": {
                     "type": "boolean",
                     "description": "Indicates if the property should be added as a claim to the id token. Defaults to `true`.\n"
+                },
+                "addToTokenIntrospection": {
+                    "type": "boolean",
+                    "description": "Indicates if the property should be added as a claim to the Token Introspection response body. Defaults to `true`.\n"
                 },
                 "addToUserinfo": {
                     "type": "boolean",
@@ -13097,6 +13621,10 @@
                     "addToIdToken": {
                         "type": "boolean",
                         "description": "Indicates if the property should be added as a claim to the id token. Defaults to `true`.\n"
+                    },
+                    "addToTokenIntrospection": {
+                        "type": "boolean",
+                        "description": "Indicates if the property should be added as a claim to the Token Introspection response body. Defaults to `true`.\n"
                     },
                     "addToUserinfo": {
                         "type": "boolean",
@@ -14021,6 +14549,18 @@
                     "type": "string",
                     "description": "Specifies the URI reference corresponding to a name identifier format. Defaults to empty.\n"
                 },
+                "orgDomain": {
+                    "type": "string",
+                    "description": "The organization domain to associate this identity provider with. It is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.\n"
+                },
+                "orgRedirectModeEmailMatches": {
+                    "type": "boolean",
+                    "description": "Indicates whether to automatically redirect users to this identity provider when email domain matches domain.\n"
+                },
+                "organizationId": {
+                    "type": "string",
+                    "description": "The ID of the organization to link this identity provider to.\n"
+                },
                 "postBindingAuthnRequest": {
                     "type": "boolean",
                     "description": "Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.\n"
@@ -14187,6 +14727,18 @@
                 "nameIdPolicyFormat": {
                     "type": "string",
                     "description": "Specifies the URI reference corresponding to a name identifier format. Defaults to empty.\n"
+                },
+                "orgDomain": {
+                    "type": "string",
+                    "description": "The organization domain to associate this identity provider with. It is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.\n"
+                },
+                "orgRedirectModeEmailMatches": {
+                    "type": "boolean",
+                    "description": "Indicates whether to automatically redirect users to this identity provider when email domain matches domain.\n"
+                },
+                "organizationId": {
+                    "type": "string",
+                    "description": "The ID of the organization to link this identity provider to.\n"
                 },
                 "postBindingAuthnRequest": {
                     "type": "boolean",
@@ -14360,6 +14912,18 @@
                     "nameIdPolicyFormat": {
                         "type": "string",
                         "description": "Specifies the URI reference corresponding to a name identifier format. Defaults to empty.\n"
+                    },
+                    "orgDomain": {
+                        "type": "string",
+                        "description": "The organization domain to associate this identity provider with. It is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.\n"
+                    },
+                    "orgRedirectModeEmailMatches": {
+                        "type": "boolean",
+                        "description": "Indicates whether to automatically redirect users to this identity provider when email domain matches domain.\n"
+                    },
+                    "organizationId": {
+                        "type": "string",
+                        "description": "The ID of the organization to link this identity provider to.\n"
                     },
                     "postBindingAuthnRequest": {
                         "type": "boolean",
@@ -15226,6 +15790,78 @@
                 "type": "object"
             }
         },
+        "keycloak:index/getOrganization:getOrganization": {
+            "description": "This data source can be used to fetch properties of a Keycloak organization for\nusage with other resources.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = keycloak.getRealm({\n    realm: \"my-realm\",\n});\nconst organization = realm.then(realm =\u003e keycloak.getOrganization({\n    realm: realm.id,\n    name: \"my-org\",\n}));\n// use the data source\nconst realmIdentityProvider = new keycloak.oidc.IdentityProvider(\"realm_identity_provider\", {\n    realm: realm.then(realm =\u003e realm.id),\n    alias: \"my-idp\",\n    authorizationUrl: \"https://authorizationurl.com\",\n    clientId: \"clientID\",\n    clientSecret: \"clientSecret\",\n    tokenUrl: \"https://tokenurl.com\",\n    organizationId: organization.then(organization =\u003e organization.id),\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.get_realm(realm=\"my-realm\")\norganization = keycloak.get_organization(realm=realm.id,\n    name=\"my-org\")\n# use the data source\nrealm_identity_provider = keycloak.oidc.IdentityProvider(\"realm_identity_provider\",\n    realm=realm.id,\n    alias=\"my-idp\",\n    authorization_url=\"https://authorizationurl.com\",\n    client_id=\"clientID\",\n    client_secret=\"clientSecret\",\n    token_url=\"https://tokenurl.com\",\n    organization_id=organization.id)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var realm = Keycloak.GetRealm.Invoke(new()\n    {\n        Realm = \"my-realm\",\n    });\n\n    var organization = Keycloak.GetOrganization.Invoke(new()\n    {\n        Realm = realm.Apply(getRealmResult =\u003e getRealmResult.Id),\n        Name = \"my-org\",\n    });\n\n    // use the data source\n    var realmIdentityProvider = new Keycloak.Oidc.IdentityProvider(\"realm_identity_provider\", new()\n    {\n        Realm = realm.Apply(getRealmResult =\u003e getRealmResult.Id),\n        Alias = \"my-idp\",\n        AuthorizationUrl = \"https://authorizationurl.com\",\n        ClientId = \"clientID\",\n        ClientSecret = \"clientSecret\",\n        TokenUrl = \"https://tokenurl.com\",\n        OrganizationId = organization.Apply(getOrganizationResult =\u003e getOrganizationResult.Id),\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak\"\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak/oidc\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.LookupRealm(ctx, \u0026keycloak.LookupRealmArgs{\n\t\t\tRealm: \"my-realm\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\torganization, err := keycloak.LookupOrganization(ctx, \u0026keycloak.LookupOrganizationArgs{\n\t\t\tRealm: realm.Id,\n\t\t\tName:  \"my-org\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// use the data source\n\t\t_, err = oidc.NewIdentityProvider(ctx, \"realm_identity_provider\", \u0026oidc.IdentityProviderArgs{\n\t\t\tRealm:            pulumi.String(realm.Id),\n\t\t\tAlias:            pulumi.String(\"my-idp\"),\n\t\t\tAuthorizationUrl: pulumi.String(\"https://authorizationurl.com\"),\n\t\t\tClientId:         pulumi.String(\"clientID\"),\n\t\t\tClientSecret:     pulumi.String(\"clientSecret\"),\n\t\t\tTokenUrl:         pulumi.String(\"https://tokenurl.com\"),\n\t\t\tOrganizationId:   pulumi.String(organization.Id),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.keycloak.KeycloakFunctions;\nimport com.pulumi.keycloak.inputs.GetRealmArgs;\nimport com.pulumi.keycloak.inputs.GetOrganizationArgs;\nimport com.pulumi.keycloak.oidc.IdentityProvider;\nimport com.pulumi.keycloak.oidc.IdentityProviderArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var realm = KeycloakFunctions.getRealm(GetRealmArgs.builder()\n            .realm(\"my-realm\")\n            .build());\n\n        final var organization = KeycloakFunctions.getOrganization(GetOrganizationArgs.builder()\n            .realm(realm.id())\n            .name(\"my-org\")\n            .build());\n\n        // use the data source\n        var realmIdentityProvider = new IdentityProvider(\"realmIdentityProvider\", IdentityProviderArgs.builder()\n            .realm(realm.id())\n            .alias(\"my-idp\")\n            .authorizationUrl(\"https://authorizationurl.com\")\n            .clientId(\"clientID\")\n            .clientSecret(\"clientSecret\")\n            .tokenUrl(\"https://tokenurl.com\")\n            .organizationId(organization.id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # use the data source\n  realmIdentityProvider:\n    type: keycloak:oidc:IdentityProvider\n    name: realm_identity_provider\n    properties:\n      realm: ${realm.id}\n      alias: my-idp\n      authorizationUrl: https://authorizationurl.com\n      clientId: clientID\n      clientSecret: clientSecret\n      tokenUrl: https://tokenurl.com\n      organizationId: ${organization.id}\nvariables:\n  realm:\n    fn::invoke:\n      function: keycloak:getRealm\n      arguments:\n        realm: my-realm\n  organization:\n    fn::invoke:\n      function: keycloak:getOrganization\n      arguments:\n        realm: ${realm.id}\n        name: my-org\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getOrganization.\n",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "The organization name.\n"
+                    },
+                    "realm": {
+                        "type": "string",
+                        "description": "The name of the realm this organization exists within.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "name",
+                    "realm"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getOrganization.\n",
+                "properties": {
+                    "alias": {
+                        "type": "string"
+                    },
+                    "attributes": {
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "type": "object"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "domains": {
+                        "items": {
+                            "$ref": "#/types/keycloak:index/getOrganizationDomain:getOrganizationDomain"
+                        },
+                        "type": "array"
+                    },
+                    "enabled": {
+                        "type": "boolean"
+                    },
+                    "id": {
+                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "realm": {
+                        "type": "string"
+                    },
+                    "redirectUrl": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "alias",
+                    "attributes",
+                    "description",
+                    "domains",
+                    "enabled",
+                    "name",
+                    "realm",
+                    "redirectUrl",
+                    "id"
+                ],
+                "type": "object"
+            }
+        },
         "keycloak:index/getRealm:getRealm": {
             "description": "This data source can be used to fetch properties of a Keycloak realm for\nusage with other resources.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as keycloak from \"@pulumi/keycloak\";\n\nconst realm = keycloak.getRealm({\n    realm: \"my-realm\",\n});\n// use the data source\nconst group = new keycloak.Role(\"group\", {\n    realmId: realm.then(realm =\u003e realm.id),\n    name: \"group\",\n});\n```\n```python\nimport pulumi\nimport pulumi_keycloak as keycloak\n\nrealm = keycloak.get_realm(realm=\"my-realm\")\n# use the data source\ngroup = keycloak.Role(\"group\",\n    realm_id=realm.id,\n    name=\"group\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Keycloak = Pulumi.Keycloak;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var realm = Keycloak.GetRealm.Invoke(new()\n    {\n        Realm = \"my-realm\",\n    });\n\n    // use the data source\n    var @group = new Keycloak.Role(\"group\", new()\n    {\n        RealmId = realm.Apply(getRealmResult =\u003e getRealmResult.Id),\n        Name = \"group\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trealm, err := keycloak.LookupRealm(ctx, \u0026keycloak.LookupRealmArgs{\n\t\t\tRealm: \"my-realm\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// use the data source\n\t\t_, err = keycloak.NewRole(ctx, \"group\", \u0026keycloak.RoleArgs{\n\t\t\tRealmId: pulumi.String(realm.Id),\n\t\t\tName:    pulumi.String(\"group\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.keycloak.KeycloakFunctions;\nimport com.pulumi.keycloak.inputs.GetRealmArgs;\nimport com.pulumi.keycloak.Role;\nimport com.pulumi.keycloak.RoleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var realm = KeycloakFunctions.getRealm(GetRealmArgs.builder()\n            .realm(\"my-realm\")\n            .build());\n\n        // use the data source\n        var group = new Role(\"group\", RoleArgs.builder()\n            .realmId(realm.id())\n            .name(\"group\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # use the data source\n  group:\n    type: keycloak:Role\n    properties:\n      realmId: ${realm.id}\n      name: group\nvariables:\n  realm:\n    fn::invoke:\n      function: keycloak:getRealm\n      arguments:\n        realm: my-realm\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
@@ -15884,6 +16520,9 @@
                     "adminUrl": {
                         "type": "string"
                     },
+                    "allowRefreshTokenInStandardTokenExchange": {
+                        "type": "string"
+                    },
                     "alwaysDisplayInConsole": {
                         "type": "boolean"
                     },
@@ -16015,6 +16654,9 @@
                     "standardFlowEnabled": {
                         "type": "boolean"
                     },
+                    "standardTokenExchangeEnabled": {
+                        "type": "boolean"
+                    },
                     "useRefreshTokens": {
                         "type": "boolean"
                     },
@@ -16044,6 +16686,7 @@
                     "accessTokenLifespan",
                     "accessType",
                     "adminUrl",
+                    "allowRefreshTokenInStandardTokenExchange",
                     "authenticationFlowBindingOverrides",
                     "authorizations",
                     "backchannelLogoutRevokeOfflineSessions",
@@ -16077,6 +16720,7 @@
                     "serviceAccountUserId",
                     "serviceAccountsEnabled",
                     "standardFlowEnabled",
+                    "standardTokenExchangeEnabled",
                     "useRefreshTokens",
                     "useRefreshTokensClientCredentials",
                     "validPostLogoutRedirectUris",
@@ -16267,27 +16911,32 @@
                         "additionalProperties": {
                             "type": "string"
                         },
+                        "description": "(Computed) The service account user's attributes.\n",
                         "type": "object"
                     },
                     "clientId": {
                         "type": "string"
                     },
                     "email": {
+                        "description": "(Computed) The service account user's email.\n",
                         "type": "string"
                     },
                     "emailVerified": {
                         "type": "boolean"
                     },
                     "enabled": {
+                        "description": "(Computed) Whether the service account user is enabled.\n",
                         "type": "boolean"
                     },
                     "federatedIdentities": {
+                        "description": "(Computed) This attribute exists in order to adhere to the spec of a Keycloak user, but a service account user will never have a federated identity, so this will always be `null`.\n",
                         "items": {
                             "$ref": "#/types/keycloak:openid/getClientServiceAccountUserFederatedIdentity:getClientServiceAccountUserFederatedIdentity"
                         },
                         "type": "array"
                     },
                     "firstName": {
+                        "description": "(Computed) The service account user's first name.\n",
                         "type": "string"
                     },
                     "id": {
@@ -16295,6 +16944,7 @@
                         "type": "string"
                     },
                     "lastName": {
+                        "description": "(Computed) The service account user's last name.\n",
                         "type": "string"
                     },
                     "realmId": {
@@ -16307,6 +16957,7 @@
                         "type": "array"
                     },
                     "username": {
+                        "description": "(Computed) The service account user's username.\n",
                         "type": "string"
                     }
                 },
