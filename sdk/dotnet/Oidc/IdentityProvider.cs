@@ -14,6 +14,13 @@ namespace Pulumi.Keycloak.Oidc
     /// 
     /// OIDC (OpenID Connect) identity providers allows users to authenticate through a third party system using the OIDC standard.
     /// 
+    /// &gt; **NOTICE:** This resource now supports write-only arguments
+    /// for client secret via the new arguments `client_secret_wo` and `client_secret_wo_version`. Using write-only arguments
+    /// prevents sensitive values from being stored in plan and state files. You cannot use `client_secret_wo` and
+    /// `client_secret_wo_version` alongside `client_secret` as this will result in a validation error due to conflicts.
+    /// &gt; 
+    /// &gt; For backward compatibility, the behavior of the original `client_secret` argument remains unchanged.
+    /// 
     /// ## Example Usage
     /// 
     /// ```csharp
@@ -105,16 +112,28 @@ namespace Pulumi.Keycloak.Oidc
         public Output<string> ClientId { get; private set; } = null!;
 
         /// <summary>
-        /// The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
+        /// The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `client_secret_wo` and `client_secret_wo_version`.
         /// </summary>
         [Output("clientSecret")]
-        public Output<string> ClientSecret { get; private set; } = null!;
+        public Output<string?> ClientSecret { get; private set; } = null!;
+
+        /// <summary>
+        /// Version of the Client secret write-only argument
+        /// </summary>
+        [Output("clientSecretWoVersion")]
+        public Output<int?> ClientSecretWoVersion { get; private set; } = null!;
 
         /// <summary>
         /// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
         /// </summary>
         [Output("defaultScopes")]
         public Output<string?> DefaultScopes { get; private set; } = null!;
+
+        /// <summary>
+        /// When `true`, disables the check for the `typ` claim of tokens received from the identity provider. Defaults to `false`.
+        /// </summary>
+        [Output("disableTypeClaimCheck")]
+        public Output<bool?> DisableTypeClaimCheck { get; private set; } = null!;
 
         /// <summary>
         /// When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
@@ -190,6 +209,24 @@ namespace Pulumi.Keycloak.Oidc
         /// </summary>
         [Output("logoutUrl")]
         public Output<string?> LogoutUrl { get; private set; } = null!;
+
+        /// <summary>
+        /// The organization domain to associate this identity provider with. it is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
+        /// </summary>
+        [Output("orgDomain")]
+        public Output<string?> OrgDomain { get; private set; } = null!;
+
+        /// <summary>
+        /// Indicates whether to automatically redirect user to this identity provider when email domain matches domain.
+        /// </summary>
+        [Output("orgRedirectModeEmailMatches")]
+        public Output<bool?> OrgRedirectModeEmailMatches { get; private set; } = null!;
+
+        /// <summary>
+        /// The ID of the organization to link this identity provider to.
+        /// </summary>
+        [Output("organizationId")]
+        public Output<string?> OrganizationId { get; private set; } = null!;
 
         /// <summary>
         /// The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
@@ -343,11 +380,11 @@ namespace Pulumi.Keycloak.Oidc
         [Input("clientId", required: true)]
         public Input<string> ClientId { get; set; } = null!;
 
-        [Input("clientSecret", required: true)]
+        [Input("clientSecret")]
         private Input<string>? _clientSecret;
 
         /// <summary>
-        /// The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
+        /// The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `client_secret_wo` and `client_secret_wo_version`.
         /// </summary>
         public Input<string>? ClientSecret
         {
@@ -360,10 +397,22 @@ namespace Pulumi.Keycloak.Oidc
         }
 
         /// <summary>
+        /// Version of the Client secret write-only argument
+        /// </summary>
+        [Input("clientSecretWoVersion")]
+        public Input<int>? ClientSecretWoVersion { get; set; }
+
+        /// <summary>
         /// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
         /// </summary>
         [Input("defaultScopes")]
         public Input<string>? DefaultScopes { get; set; }
+
+        /// <summary>
+        /// When `true`, disables the check for the `typ` claim of tokens received from the identity provider. Defaults to `false`.
+        /// </summary>
+        [Input("disableTypeClaimCheck")]
+        public Input<bool>? DisableTypeClaimCheck { get; set; }
 
         /// <summary>
         /// When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
@@ -438,6 +487,24 @@ namespace Pulumi.Keycloak.Oidc
         /// </summary>
         [Input("logoutUrl")]
         public Input<string>? LogoutUrl { get; set; }
+
+        /// <summary>
+        /// The organization domain to associate this identity provider with. it is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
+        /// </summary>
+        [Input("orgDomain")]
+        public Input<string>? OrgDomain { get; set; }
+
+        /// <summary>
+        /// Indicates whether to automatically redirect user to this identity provider when email domain matches domain.
+        /// </summary>
+        [Input("orgRedirectModeEmailMatches")]
+        public Input<bool>? OrgRedirectModeEmailMatches { get; set; }
+
+        /// <summary>
+        /// The ID of the organization to link this identity provider to.
+        /// </summary>
+        [Input("organizationId")]
+        public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
         /// The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
@@ -553,7 +620,7 @@ namespace Pulumi.Keycloak.Oidc
         private Input<string>? _clientSecret;
 
         /// <summary>
-        /// The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
+        /// The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `client_secret_wo` and `client_secret_wo_version`.
         /// </summary>
         public Input<string>? ClientSecret
         {
@@ -566,10 +633,22 @@ namespace Pulumi.Keycloak.Oidc
         }
 
         /// <summary>
+        /// Version of the Client secret write-only argument
+        /// </summary>
+        [Input("clientSecretWoVersion")]
+        public Input<int>? ClientSecretWoVersion { get; set; }
+
+        /// <summary>
         /// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
         /// </summary>
         [Input("defaultScopes")]
         public Input<string>? DefaultScopes { get; set; }
+
+        /// <summary>
+        /// When `true`, disables the check for the `typ` claim of tokens received from the identity provider. Defaults to `false`.
+        /// </summary>
+        [Input("disableTypeClaimCheck")]
+        public Input<bool>? DisableTypeClaimCheck { get; set; }
 
         /// <summary>
         /// When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
@@ -650,6 +729,24 @@ namespace Pulumi.Keycloak.Oidc
         /// </summary>
         [Input("logoutUrl")]
         public Input<string>? LogoutUrl { get; set; }
+
+        /// <summary>
+        /// The organization domain to associate this identity provider with. it is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
+        /// </summary>
+        [Input("orgDomain")]
+        public Input<string>? OrgDomain { get; set; }
+
+        /// <summary>
+        /// Indicates whether to automatically redirect user to this identity provider when email domain matches domain.
+        /// </summary>
+        [Input("orgRedirectModeEmailMatches")]
+        public Input<bool>? OrgRedirectModeEmailMatches { get; set; }
+
+        /// <summary>
+        /// The ID of the organization to link this identity provider to.
+        /// </summary>
+        [Input("organizationId")]
+        public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
         /// The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.

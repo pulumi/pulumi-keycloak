@@ -13,6 +13,14 @@ export interface GetClientDescriptionConverterProtocolMapper {
     protocolMapper: string;
 }
 
+export interface GetOrganizationDomain {
+    /**
+     * The organization name.
+     */
+    name: string;
+    verified: boolean;
+}
+
 export interface GetRealmInternationalization {
     defaultLocale: string;
     supportedLocales: string[];
@@ -192,6 +200,27 @@ export interface GroupPermissionsViewScope {
     decisionStrategy?: string;
     description?: string;
     policies?: string[];
+}
+
+export interface OrganizationDomain {
+    /**
+     * The name of the organization.
+     */
+    name: string;
+    /**
+     * Whether domain is verified or not. Default is false.
+     */
+    verified?: boolean;
+}
+
+export interface RealmClientPolicyProfileExecutor {
+    configuration?: {[key: string]: string};
+    name: string;
+}
+
+export interface RealmClientPolicyProfilePolicyCondition {
+    configuration?: {[key: string]: string};
+    name: string;
 }
 
 export interface RealmInternationalization {

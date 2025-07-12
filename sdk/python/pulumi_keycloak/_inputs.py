@@ -26,6 +26,12 @@ __all__ = [
     'GroupPermissionsViewMembersScopeArgsDict',
     'GroupPermissionsViewScopeArgs',
     'GroupPermissionsViewScopeArgsDict',
+    'OrganizationDomainArgs',
+    'OrganizationDomainArgsDict',
+    'RealmClientPolicyProfileExecutorArgs',
+    'RealmClientPolicyProfileExecutorArgsDict',
+    'RealmClientPolicyProfilePolicyConditionArgs',
+    'RealmClientPolicyProfilePolicyConditionArgsDict',
     'RealmInternationalizationArgs',
     'RealmInternationalizationArgsDict',
     'RealmOtpPolicyArgs',
@@ -333,6 +339,127 @@ class GroupPermissionsViewScopeArgs:
     @policies.setter
     def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]]):
         pulumi.set(self, "policies", value)
+
+
+if not MYPY:
+    class OrganizationDomainArgsDict(TypedDict):
+        name: pulumi.Input[builtins.str]
+        """
+        The name of the organization.
+        """
+        verified: NotRequired[pulumi.Input[builtins.bool]]
+        """
+        Whether domain is verified or not. Default is false.
+        """
+elif False:
+    OrganizationDomainArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class OrganizationDomainArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[builtins.str],
+                 verified: Optional[pulumi.Input[builtins.bool]] = None):
+        """
+        :param pulumi.Input[builtins.str] name: The name of the organization.
+        :param pulumi.Input[builtins.bool] verified: Whether domain is verified or not. Default is false.
+        """
+        pulumi.set(__self__, "name", name)
+        if verified is not None:
+            pulumi.set(__self__, "verified", verified)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[builtins.str]:
+        """
+        The name of the organization.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def verified(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        Whether domain is verified or not. Default is false.
+        """
+        return pulumi.get(self, "verified")
+
+    @verified.setter
+    def verified(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "verified", value)
+
+
+if not MYPY:
+    class RealmClientPolicyProfileExecutorArgsDict(TypedDict):
+        name: pulumi.Input[builtins.str]
+        configuration: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]
+elif False:
+    RealmClientPolicyProfileExecutorArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class RealmClientPolicyProfileExecutorArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[builtins.str],
+                 configuration: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]] = None):
+        pulumi.set(__self__, "name", name)
+        if configuration is not None:
+            pulumi.set(__self__, "configuration", configuration)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[builtins.str]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def configuration(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]:
+        return pulumi.get(self, "configuration")
+
+    @configuration.setter
+    def configuration(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]):
+        pulumi.set(self, "configuration", value)
+
+
+if not MYPY:
+    class RealmClientPolicyProfilePolicyConditionArgsDict(TypedDict):
+        name: pulumi.Input[builtins.str]
+        configuration: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]
+elif False:
+    RealmClientPolicyProfilePolicyConditionArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class RealmClientPolicyProfilePolicyConditionArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[builtins.str],
+                 configuration: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]] = None):
+        pulumi.set(__self__, "name", name)
+        if configuration is not None:
+            pulumi.set(__self__, "configuration", configuration)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[builtins.str]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def configuration(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]:
+        return pulumi.get(self, "configuration")
+
+    @configuration.setter
+    def configuration(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]]):
+        pulumi.set(self, "configuration", value)
 
 
 if not MYPY:

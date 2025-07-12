@@ -104,7 +104,11 @@ type GoogleIdentityProvider struct {
 	// (Computed) The unique ID that Keycloak assigns to the identity provider upon creation.
 	InternalId pulumi.StringOutput `pulumi:"internalId"`
 	// When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
-	LinkOnly pulumi.BoolPtrOutput `pulumi:"linkOnly"`
+	LinkOnly                    pulumi.BoolPtrOutput   `pulumi:"linkOnly"`
+	OrgDomain                   pulumi.StringPtrOutput `pulumi:"orgDomain"`
+	OrgRedirectModeEmailMatches pulumi.BoolPtrOutput   `pulumi:"orgRedirectModeEmailMatches"`
+	// ID of organization with which this identity is linked.
+	OrganizationId pulumi.StringPtrOutput `pulumi:"organizationId"`
 	// The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
 	PostBrokerLoginFlowAlias pulumi.StringPtrOutput `pulumi:"postBrokerLoginFlowAlias"`
 	// The ID of the identity provider to use. Defaults to `google`, which should be used unless you have extended Keycloak and provided your own implementation.
@@ -198,7 +202,11 @@ type googleIdentityProviderState struct {
 	// (Computed) The unique ID that Keycloak assigns to the identity provider upon creation.
 	InternalId *string `pulumi:"internalId"`
 	// When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
-	LinkOnly *bool `pulumi:"linkOnly"`
+	LinkOnly                    *bool   `pulumi:"linkOnly"`
+	OrgDomain                   *string `pulumi:"orgDomain"`
+	OrgRedirectModeEmailMatches *bool   `pulumi:"orgRedirectModeEmailMatches"`
+	// ID of organization with which this identity is linked.
+	OrganizationId *string `pulumi:"organizationId"`
 	// The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
 	PostBrokerLoginFlowAlias *string `pulumi:"postBrokerLoginFlowAlias"`
 	// The ID of the identity provider to use. Defaults to `google`, which should be used unless you have extended Keycloak and provided your own implementation.
@@ -250,7 +258,11 @@ type GoogleIdentityProviderState struct {
 	// (Computed) The unique ID that Keycloak assigns to the identity provider upon creation.
 	InternalId pulumi.StringPtrInput
 	// When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
-	LinkOnly pulumi.BoolPtrInput
+	LinkOnly                    pulumi.BoolPtrInput
+	OrgDomain                   pulumi.StringPtrInput
+	OrgRedirectModeEmailMatches pulumi.BoolPtrInput
+	// ID of organization with which this identity is linked.
+	OrganizationId pulumi.StringPtrInput
 	// The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
 	PostBrokerLoginFlowAlias pulumi.StringPtrInput
 	// The ID of the identity provider to use. Defaults to `google`, which should be used unless you have extended Keycloak and provided your own implementation.
@@ -304,7 +316,11 @@ type googleIdentityProviderArgs struct {
 	// Sets the "hd" query parameter when logging in with Google. Google will only list accounts for this domain. Keycloak will validate that the returned identity token has a claim for this domain. When `*` is entered, an account from any domain can be used.
 	HostedDomain *string `pulumi:"hostedDomain"`
 	// When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
-	LinkOnly *bool `pulumi:"linkOnly"`
+	LinkOnly                    *bool   `pulumi:"linkOnly"`
+	OrgDomain                   *string `pulumi:"orgDomain"`
+	OrgRedirectModeEmailMatches *bool   `pulumi:"orgRedirectModeEmailMatches"`
+	// ID of organization with which this identity is linked.
+	OrganizationId *string `pulumi:"organizationId"`
 	// The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
 	PostBrokerLoginFlowAlias *string `pulumi:"postBrokerLoginFlowAlias"`
 	// The ID of the identity provider to use. Defaults to `google`, which should be used unless you have extended Keycloak and provided your own implementation.
@@ -355,7 +371,11 @@ type GoogleIdentityProviderArgs struct {
 	// Sets the "hd" query parameter when logging in with Google. Google will only list accounts for this domain. Keycloak will validate that the returned identity token has a claim for this domain. When `*` is entered, an account from any domain can be used.
 	HostedDomain pulumi.StringPtrInput
 	// When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
-	LinkOnly pulumi.BoolPtrInput
+	LinkOnly                    pulumi.BoolPtrInput
+	OrgDomain                   pulumi.StringPtrInput
+	OrgRedirectModeEmailMatches pulumi.BoolPtrInput
+	// ID of organization with which this identity is linked.
+	OrganizationId pulumi.StringPtrInput
 	// The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
 	PostBrokerLoginFlowAlias pulumi.StringPtrInput
 	// The ID of the identity provider to use. Defaults to `google`, which should be used unless you have extended Keycloak and provided your own implementation.
@@ -543,6 +563,19 @@ func (o GoogleIdentityProviderOutput) InternalId() pulumi.StringOutput {
 // When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
 func (o GoogleIdentityProviderOutput) LinkOnly() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *GoogleIdentityProvider) pulumi.BoolPtrOutput { return v.LinkOnly }).(pulumi.BoolPtrOutput)
+}
+
+func (o GoogleIdentityProviderOutput) OrgDomain() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GoogleIdentityProvider) pulumi.StringPtrOutput { return v.OrgDomain }).(pulumi.StringPtrOutput)
+}
+
+func (o GoogleIdentityProviderOutput) OrgRedirectModeEmailMatches() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *GoogleIdentityProvider) pulumi.BoolPtrOutput { return v.OrgRedirectModeEmailMatches }).(pulumi.BoolPtrOutput)
+}
+
+// ID of organization with which this identity is linked.
+func (o GoogleIdentityProviderOutput) OrganizationId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GoogleIdentityProvider) pulumi.StringPtrOutput { return v.OrganizationId }).(pulumi.StringPtrOutput)
 }
 
 // The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.

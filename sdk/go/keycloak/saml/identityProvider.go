@@ -112,6 +112,12 @@ type IdentityProvider struct {
 	LoginHint pulumi.StringPtrOutput `pulumi:"loginHint"`
 	// Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
 	NameIdPolicyFormat pulumi.StringPtrOutput `pulumi:"nameIdPolicyFormat"`
+	// The organization domain to associate this identity provider with. It is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
+	OrgDomain pulumi.StringPtrOutput `pulumi:"orgDomain"`
+	// Indicates whether to automatically redirect users to this identity provider when email domain matches domain.
+	OrgRedirectModeEmailMatches pulumi.BoolPtrOutput `pulumi:"orgRedirectModeEmailMatches"`
+	// The ID of the organization to link this identity provider to.
+	OrganizationId pulumi.StringPtrOutput `pulumi:"organizationId"`
 	// Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
 	PostBindingAuthnRequest pulumi.BoolPtrOutput `pulumi:"postBindingAuthnRequest"`
 	// Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
@@ -231,6 +237,12 @@ type identityProviderState struct {
 	LoginHint *string `pulumi:"loginHint"`
 	// Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
 	NameIdPolicyFormat *string `pulumi:"nameIdPolicyFormat"`
+	// The organization domain to associate this identity provider with. It is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
+	OrgDomain *string `pulumi:"orgDomain"`
+	// Indicates whether to automatically redirect users to this identity provider when email domain matches domain.
+	OrgRedirectModeEmailMatches *bool `pulumi:"orgRedirectModeEmailMatches"`
+	// The ID of the organization to link this identity provider to.
+	OrganizationId *string `pulumi:"organizationId"`
 	// Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
 	PostBindingAuthnRequest *bool `pulumi:"postBindingAuthnRequest"`
 	// Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
@@ -309,6 +321,12 @@ type IdentityProviderState struct {
 	LoginHint pulumi.StringPtrInput
 	// Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
 	NameIdPolicyFormat pulumi.StringPtrInput
+	// The organization domain to associate this identity provider with. It is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
+	OrgDomain pulumi.StringPtrInput
+	// Indicates whether to automatically redirect users to this identity provider when email domain matches domain.
+	OrgRedirectModeEmailMatches pulumi.BoolPtrInput
+	// The ID of the organization to link this identity provider to.
+	OrganizationId pulumi.StringPtrInput
 	// Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
 	PostBindingAuthnRequest pulumi.BoolPtrInput
 	// Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
@@ -389,6 +407,12 @@ type identityProviderArgs struct {
 	LoginHint *string `pulumi:"loginHint"`
 	// Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
 	NameIdPolicyFormat *string `pulumi:"nameIdPolicyFormat"`
+	// The organization domain to associate this identity provider with. It is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
+	OrgDomain *string `pulumi:"orgDomain"`
+	// Indicates whether to automatically redirect users to this identity provider when email domain matches domain.
+	OrgRedirectModeEmailMatches *bool `pulumi:"orgRedirectModeEmailMatches"`
+	// The ID of the organization to link this identity provider to.
+	OrganizationId *string `pulumi:"organizationId"`
 	// Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
 	PostBindingAuthnRequest *bool `pulumi:"postBindingAuthnRequest"`
 	// Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
@@ -466,6 +490,12 @@ type IdentityProviderArgs struct {
 	LoginHint pulumi.StringPtrInput
 	// Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
 	NameIdPolicyFormat pulumi.StringPtrInput
+	// The organization domain to associate this identity provider with. It is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
+	OrgDomain pulumi.StringPtrInput
+	// Indicates whether to automatically redirect users to this identity provider when email domain matches domain.
+	OrgRedirectModeEmailMatches pulumi.BoolPtrInput
+	// The ID of the organization to link this identity provider to.
+	OrganizationId pulumi.StringPtrInput
 	// Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
 	PostBindingAuthnRequest pulumi.BoolPtrInput
 	// Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
@@ -685,6 +715,21 @@ func (o IdentityProviderOutput) LoginHint() pulumi.StringPtrOutput {
 // Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
 func (o IdentityProviderOutput) NameIdPolicyFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.NameIdPolicyFormat }).(pulumi.StringPtrOutput)
+}
+
+// The organization domain to associate this identity provider with. It is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
+func (o IdentityProviderOutput) OrgDomain() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.OrgDomain }).(pulumi.StringPtrOutput)
+}
+
+// Indicates whether to automatically redirect users to this identity provider when email domain matches domain.
+func (o IdentityProviderOutput) OrgRedirectModeEmailMatches() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.OrgRedirectModeEmailMatches }).(pulumi.BoolPtrOutput)
+}
+
+// The ID of the organization to link this identity provider to.
+func (o IdentityProviderOutput) OrganizationId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.OrganizationId }).(pulumi.StringPtrOutput)
 }
 
 // Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.

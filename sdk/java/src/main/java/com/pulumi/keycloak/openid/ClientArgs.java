@@ -9,6 +9,7 @@ import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.keycloak.openid.inputs.ClientAuthenticationFlowBindingOverridesArgs;
 import com.pulumi.keycloak.openid.inputs.ClientAuthorizationArgs;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -74,6 +75,13 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<String>> adminUrl() {
         return Optional.ofNullable(this.adminUrl);
+    }
+
+    @Import(name="allowRefreshTokenInStandardTokenExchange")
+    private @Nullable Output<String> allowRefreshTokenInStandardTokenExchange;
+
+    public Optional<Output<String>> allowRefreshTokenInStandardTokenExchange() {
+        return Optional.ofNullable(this.allowRefreshTokenInStandardTokenExchange);
     }
 
     /**
@@ -262,6 +270,36 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<String>> clientSecret() {
         return Optional.ofNullable(this.clientSecret);
+    }
+
+    /**
+     * Arbitrary map of values that, when changed, will trigger rotation of the secret. NOTE! Conflicts with `client_secret`, `client_secret_wo` and `client_secret_wo_version` attribute and can&#39;t be used together
+     * 
+     */
+    @Import(name="clientSecretRegenerateWhenChanged")
+    private @Nullable Output<Map<String,String>> clientSecretRegenerateWhenChanged;
+
+    /**
+     * @return Arbitrary map of values that, when changed, will trigger rotation of the secret. NOTE! Conflicts with `client_secret`, `client_secret_wo` and `client_secret_wo_version` attribute and can&#39;t be used together
+     * 
+     */
+    public Optional<Output<Map<String,String>>> clientSecretRegenerateWhenChanged() {
+        return Optional.ofNullable(this.clientSecretRegenerateWhenChanged);
+    }
+
+    /**
+     * Version of the Client secret write-only argument
+     * 
+     */
+    @Import(name="clientSecretWoVersion")
+    private @Nullable Output<Integer> clientSecretWoVersion;
+
+    /**
+     * @return Version of the Client secret write-only argument
+     * 
+     */
+    public Optional<Output<Integer>> clientSecretWoVersion() {
+        return Optional.ofNullable(this.clientSecretWoVersion);
     }
 
     /**
@@ -646,6 +684,13 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.standardFlowEnabled);
     }
 
+    @Import(name="standardTokenExchangeEnabled")
+    private @Nullable Output<Boolean> standardTokenExchangeEnabled;
+
+    public Optional<Output<Boolean>> standardTokenExchangeEnabled() {
+        return Optional.ofNullable(this.standardTokenExchangeEnabled);
+    }
+
     /**
      * If this is `true`, a refresh_token will be created and added to the token response. If this is `false` then no refresh_token will be generated.  Defaults to `true`.
      * 
@@ -731,6 +776,7 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
         this.accessTokenLifespan = $.accessTokenLifespan;
         this.accessType = $.accessType;
         this.adminUrl = $.adminUrl;
+        this.allowRefreshTokenInStandardTokenExchange = $.allowRefreshTokenInStandardTokenExchange;
         this.alwaysDisplayInConsole = $.alwaysDisplayInConsole;
         this.authenticationFlowBindingOverrides = $.authenticationFlowBindingOverrides;
         this.authorization = $.authorization;
@@ -743,6 +789,8 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
         this.clientOfflineSessionIdleTimeout = $.clientOfflineSessionIdleTimeout;
         this.clientOfflineSessionMaxLifespan = $.clientOfflineSessionMaxLifespan;
         this.clientSecret = $.clientSecret;
+        this.clientSecretRegenerateWhenChanged = $.clientSecretRegenerateWhenChanged;
+        this.clientSecretWoVersion = $.clientSecretWoVersion;
         this.clientSessionIdleTimeout = $.clientSessionIdleTimeout;
         this.clientSessionMaxLifespan = $.clientSessionMaxLifespan;
         this.consentRequired = $.consentRequired;
@@ -769,6 +817,7 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
         this.rootUrl = $.rootUrl;
         this.serviceAccountsEnabled = $.serviceAccountsEnabled;
         this.standardFlowEnabled = $.standardFlowEnabled;
+        this.standardTokenExchangeEnabled = $.standardTokenExchangeEnabled;
         this.useRefreshTokens = $.useRefreshTokens;
         this.useRefreshTokensClientCredentials = $.useRefreshTokensClientCredentials;
         this.validPostLogoutRedirectUris = $.validPostLogoutRedirectUris;
@@ -865,6 +914,15 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder adminUrl(String adminUrl) {
             return adminUrl(Output.of(adminUrl));
+        }
+
+        public Builder allowRefreshTokenInStandardTokenExchange(@Nullable Output<String> allowRefreshTokenInStandardTokenExchange) {
+            $.allowRefreshTokenInStandardTokenExchange = allowRefreshTokenInStandardTokenExchange;
+            return this;
+        }
+
+        public Builder allowRefreshTokenInStandardTokenExchange(String allowRefreshTokenInStandardTokenExchange) {
+            return allowRefreshTokenInStandardTokenExchange(Output.of(allowRefreshTokenInStandardTokenExchange));
         }
 
         /**
@@ -1125,6 +1183,48 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder clientSecret(String clientSecret) {
             return clientSecret(Output.of(clientSecret));
+        }
+
+        /**
+         * @param clientSecretRegenerateWhenChanged Arbitrary map of values that, when changed, will trigger rotation of the secret. NOTE! Conflicts with `client_secret`, `client_secret_wo` and `client_secret_wo_version` attribute and can&#39;t be used together
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientSecretRegenerateWhenChanged(@Nullable Output<Map<String,String>> clientSecretRegenerateWhenChanged) {
+            $.clientSecretRegenerateWhenChanged = clientSecretRegenerateWhenChanged;
+            return this;
+        }
+
+        /**
+         * @param clientSecretRegenerateWhenChanged Arbitrary map of values that, when changed, will trigger rotation of the secret. NOTE! Conflicts with `client_secret`, `client_secret_wo` and `client_secret_wo_version` attribute and can&#39;t be used together
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientSecretRegenerateWhenChanged(Map<String,String> clientSecretRegenerateWhenChanged) {
+            return clientSecretRegenerateWhenChanged(Output.of(clientSecretRegenerateWhenChanged));
+        }
+
+        /**
+         * @param clientSecretWoVersion Version of the Client secret write-only argument
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientSecretWoVersion(@Nullable Output<Integer> clientSecretWoVersion) {
+            $.clientSecretWoVersion = clientSecretWoVersion;
+            return this;
+        }
+
+        /**
+         * @param clientSecretWoVersion Version of the Client secret write-only argument
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientSecretWoVersion(Integer clientSecretWoVersion) {
+            return clientSecretWoVersion(Output.of(clientSecretWoVersion));
         }
 
         /**
@@ -1659,6 +1759,15 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder standardFlowEnabled(Boolean standardFlowEnabled) {
             return standardFlowEnabled(Output.of(standardFlowEnabled));
+        }
+
+        public Builder standardTokenExchangeEnabled(@Nullable Output<Boolean> standardTokenExchangeEnabled) {
+            $.standardTokenExchangeEnabled = standardTokenExchangeEnabled;
+            return this;
+        }
+
+        public Builder standardTokenExchangeEnabled(Boolean standardTokenExchangeEnabled) {
+            return standardTokenExchangeEnabled(Output.of(standardTokenExchangeEnabled));
         }
 
         /**

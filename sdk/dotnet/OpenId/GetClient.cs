@@ -211,6 +211,7 @@ namespace Pulumi.Keycloak.OpenId
         public readonly string AccessTokenLifespan;
         public readonly string AccessType;
         public readonly string AdminUrl;
+        public readonly string AllowRefreshTokenInStandardTokenExchange;
         public readonly bool? AlwaysDisplayInConsole;
         public readonly ImmutableArray<Outputs.GetClientAuthenticationFlowBindingOverrideResult> AuthenticationFlowBindingOverrides;
         public readonly ImmutableArray<Outputs.GetClientAuthorizationResult> Authorizations;
@@ -254,6 +255,7 @@ namespace Pulumi.Keycloak.OpenId
         public readonly string ServiceAccountUserId;
         public readonly bool ServiceAccountsEnabled;
         public readonly bool StandardFlowEnabled;
+        public readonly bool StandardTokenExchangeEnabled;
         public readonly bool UseRefreshTokens;
         public readonly bool UseRefreshTokensClientCredentials;
         public readonly ImmutableArray<string> ValidPostLogoutRedirectUris;
@@ -267,6 +269,8 @@ namespace Pulumi.Keycloak.OpenId
             string accessType,
 
             string adminUrl,
+
+            string allowRefreshTokenInStandardTokenExchange,
 
             bool? alwaysDisplayInConsole,
 
@@ -348,6 +352,8 @@ namespace Pulumi.Keycloak.OpenId
 
             bool standardFlowEnabled,
 
+            bool standardTokenExchangeEnabled,
+
             bool useRefreshTokens,
 
             bool useRefreshTokensClientCredentials,
@@ -361,6 +367,7 @@ namespace Pulumi.Keycloak.OpenId
             AccessTokenLifespan = accessTokenLifespan;
             AccessType = accessType;
             AdminUrl = adminUrl;
+            AllowRefreshTokenInStandardTokenExchange = allowRefreshTokenInStandardTokenExchange;
             AlwaysDisplayInConsole = alwaysDisplayInConsole;
             AuthenticationFlowBindingOverrides = authenticationFlowBindingOverrides;
             Authorizations = authorizations;
@@ -401,6 +408,7 @@ namespace Pulumi.Keycloak.OpenId
             ServiceAccountUserId = serviceAccountUserId;
             ServiceAccountsEnabled = serviceAccountsEnabled;
             StandardFlowEnabled = standardFlowEnabled;
+            StandardTokenExchangeEnabled = standardTokenExchangeEnabled;
             UseRefreshTokens = useRefreshTokens;
             UseRefreshTokensClientCredentials = useRefreshTokensClientCredentials;
             ValidPostLogoutRedirectUris = validPostLogoutRedirectUris;

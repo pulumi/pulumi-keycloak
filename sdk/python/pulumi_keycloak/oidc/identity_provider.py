@@ -23,14 +23,16 @@ class IdentityProviderArgs:
                  alias: pulumi.Input[builtins.str],
                  authorization_url: pulumi.Input[builtins.str],
                  client_id: pulumi.Input[builtins.str],
-                 client_secret: pulumi.Input[builtins.str],
                  realm: pulumi.Input[builtins.str],
                  token_url: pulumi.Input[builtins.str],
                  accepts_prompt_none_forward_from_client: Optional[pulumi.Input[builtins.bool]] = None,
                  add_read_token_role_on_create: Optional[pulumi.Input[builtins.bool]] = None,
                  authenticate_by_default: Optional[pulumi.Input[builtins.bool]] = None,
                  backchannel_supported: Optional[pulumi.Input[builtins.bool]] = None,
+                 client_secret: Optional[pulumi.Input[builtins.str]] = None,
+                 client_secret_wo_version: Optional[pulumi.Input[builtins.int]] = None,
                  default_scopes: Optional[pulumi.Input[builtins.str]] = None,
+                 disable_type_claim_check: Optional[pulumi.Input[builtins.bool]] = None,
                  disable_user_info: Optional[pulumi.Input[builtins.bool]] = None,
                  display_name: Optional[pulumi.Input[builtins.str]] = None,
                  enabled: Optional[pulumi.Input[builtins.bool]] = None,
@@ -43,6 +45,9 @@ class IdentityProviderArgs:
                  link_only: Optional[pulumi.Input[builtins.bool]] = None,
                  login_hint: Optional[pulumi.Input[builtins.str]] = None,
                  logout_url: Optional[pulumi.Input[builtins.str]] = None,
+                 org_domain: Optional[pulumi.Input[builtins.str]] = None,
+                 org_redirect_mode_email_matches: Optional[pulumi.Input[builtins.bool]] = None,
+                 organization_id: Optional[pulumi.Input[builtins.str]] = None,
                  post_broker_login_flow_alias: Optional[pulumi.Input[builtins.str]] = None,
                  provider_id: Optional[pulumi.Input[builtins.str]] = None,
                  store_token: Optional[pulumi.Input[builtins.bool]] = None,
@@ -56,14 +61,16 @@ class IdentityProviderArgs:
         :param pulumi.Input[builtins.str] alias: The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
         :param pulumi.Input[builtins.str] authorization_url: The Authorization Url.
         :param pulumi.Input[builtins.str] client_id: The client or client identifier registered within the identity provider.
-        :param pulumi.Input[builtins.str] client_secret: The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
         :param pulumi.Input[builtins.str] realm: The name of the realm. This is unique across Keycloak.
         :param pulumi.Input[builtins.str] token_url: The Token URL.
         :param pulumi.Input[builtins.bool] accepts_prompt_none_forward_from_client: When `true`, the IDP will accept forwarded authentication requests that contain the `prompt=none` query parameter. Defaults to `false`.
         :param pulumi.Input[builtins.bool] add_read_token_role_on_create: When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
         :param pulumi.Input[builtins.bool] authenticate_by_default: Enable/disable authenticate users by default.
         :param pulumi.Input[builtins.bool] backchannel_supported: Does the external IDP support backchannel logout? Defaults to `true`.
+        :param pulumi.Input[builtins.str] client_secret: The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `client_secret_wo` and `client_secret_wo_version`.
+        :param pulumi.Input[builtins.int] client_secret_wo_version: Version of the Client secret write-only argument
         :param pulumi.Input[builtins.str] default_scopes: The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
+        :param pulumi.Input[builtins.bool] disable_type_claim_check: When `true`, disables the check for the `typ` claim of tokens received from the identity provider. Defaults to `false`.
         :param pulumi.Input[builtins.bool] disable_user_info: When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
         :param pulumi.Input[builtins.str] display_name: Display name for the identity provider in the GUI.
         :param pulumi.Input[builtins.bool] enabled: When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
@@ -75,6 +82,9 @@ class IdentityProviderArgs:
         :param pulumi.Input[builtins.bool] link_only: When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         :param pulumi.Input[builtins.str] login_hint: Pass login hint to identity provider.
         :param pulumi.Input[builtins.str] logout_url: The Logout URL is the end session endpoint to use to sign-out the user from external identity provider.
+        :param pulumi.Input[builtins.str] org_domain: The organization domain to associate this identity provider with. it is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
+        :param pulumi.Input[builtins.bool] org_redirect_mode_email_matches: Indicates whether to automatically redirect user to this identity provider when email domain matches domain.
+        :param pulumi.Input[builtins.str] organization_id: The ID of the organization to link this identity provider to.
         :param pulumi.Input[builtins.str] post_broker_login_flow_alias: The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
         :param pulumi.Input[builtins.str] provider_id: The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
         :param pulumi.Input[builtins.bool] store_token: When `true`, tokens will be stored after authenticating users. Defaults to `true`.
@@ -87,7 +97,6 @@ class IdentityProviderArgs:
         pulumi.set(__self__, "alias", alias)
         pulumi.set(__self__, "authorization_url", authorization_url)
         pulumi.set(__self__, "client_id", client_id)
-        pulumi.set(__self__, "client_secret", client_secret)
         pulumi.set(__self__, "realm", realm)
         pulumi.set(__self__, "token_url", token_url)
         if accepts_prompt_none_forward_from_client is not None:
@@ -98,8 +107,14 @@ class IdentityProviderArgs:
             pulumi.set(__self__, "authenticate_by_default", authenticate_by_default)
         if backchannel_supported is not None:
             pulumi.set(__self__, "backchannel_supported", backchannel_supported)
+        if client_secret is not None:
+            pulumi.set(__self__, "client_secret", client_secret)
+        if client_secret_wo_version is not None:
+            pulumi.set(__self__, "client_secret_wo_version", client_secret_wo_version)
         if default_scopes is not None:
             pulumi.set(__self__, "default_scopes", default_scopes)
+        if disable_type_claim_check is not None:
+            pulumi.set(__self__, "disable_type_claim_check", disable_type_claim_check)
         if disable_user_info is not None:
             pulumi.set(__self__, "disable_user_info", disable_user_info)
         if display_name is not None:
@@ -124,6 +139,12 @@ class IdentityProviderArgs:
             pulumi.set(__self__, "login_hint", login_hint)
         if logout_url is not None:
             pulumi.set(__self__, "logout_url", logout_url)
+        if org_domain is not None:
+            pulumi.set(__self__, "org_domain", org_domain)
+        if org_redirect_mode_email_matches is not None:
+            pulumi.set(__self__, "org_redirect_mode_email_matches", org_redirect_mode_email_matches)
+        if organization_id is not None:
+            pulumi.set(__self__, "organization_id", organization_id)
         if post_broker_login_flow_alias is not None:
             pulumi.set(__self__, "post_broker_login_flow_alias", post_broker_login_flow_alias)
         if provider_id is not None:
@@ -176,18 +197,6 @@ class IdentityProviderArgs:
     @client_id.setter
     def client_id(self, value: pulumi.Input[builtins.str]):
         pulumi.set(self, "client_id", value)
-
-    @property
-    @pulumi.getter(name="clientSecret")
-    def client_secret(self) -> pulumi.Input[builtins.str]:
-        """
-        The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
-        """
-        return pulumi.get(self, "client_secret")
-
-    @client_secret.setter
-    def client_secret(self, value: pulumi.Input[builtins.str]):
-        pulumi.set(self, "client_secret", value)
 
     @property
     @pulumi.getter
@@ -262,6 +271,30 @@ class IdentityProviderArgs:
         pulumi.set(self, "backchannel_supported", value)
 
     @property
+    @pulumi.getter(name="clientSecret")
+    def client_secret(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `client_secret_wo` and `client_secret_wo_version`.
+        """
+        return pulumi.get(self, "client_secret")
+
+    @client_secret.setter
+    def client_secret(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "client_secret", value)
+
+    @property
+    @pulumi.getter(name="clientSecretWoVersion")
+    def client_secret_wo_version(self) -> Optional[pulumi.Input[builtins.int]]:
+        """
+        Version of the Client secret write-only argument
+        """
+        return pulumi.get(self, "client_secret_wo_version")
+
+    @client_secret_wo_version.setter
+    def client_secret_wo_version(self, value: Optional[pulumi.Input[builtins.int]]):
+        pulumi.set(self, "client_secret_wo_version", value)
+
+    @property
     @pulumi.getter(name="defaultScopes")
     def default_scopes(self) -> Optional[pulumi.Input[builtins.str]]:
         """
@@ -272,6 +305,18 @@ class IdentityProviderArgs:
     @default_scopes.setter
     def default_scopes(self, value: Optional[pulumi.Input[builtins.str]]):
         pulumi.set(self, "default_scopes", value)
+
+    @property
+    @pulumi.getter(name="disableTypeClaimCheck")
+    def disable_type_claim_check(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        When `true`, disables the check for the `typ` claim of tokens received from the identity provider. Defaults to `false`.
+        """
+        return pulumi.get(self, "disable_type_claim_check")
+
+    @disable_type_claim_check.setter
+    def disable_type_claim_check(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "disable_type_claim_check", value)
 
     @property
     @pulumi.getter(name="disableUserInfo")
@@ -415,6 +460,42 @@ class IdentityProviderArgs:
         pulumi.set(self, "logout_url", value)
 
     @property
+    @pulumi.getter(name="orgDomain")
+    def org_domain(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The organization domain to associate this identity provider with. it is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
+        """
+        return pulumi.get(self, "org_domain")
+
+    @org_domain.setter
+    def org_domain(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "org_domain", value)
+
+    @property
+    @pulumi.getter(name="orgRedirectModeEmailMatches")
+    def org_redirect_mode_email_matches(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        Indicates whether to automatically redirect user to this identity provider when email domain matches domain.
+        """
+        return pulumi.get(self, "org_redirect_mode_email_matches")
+
+    @org_redirect_mode_email_matches.setter
+    def org_redirect_mode_email_matches(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "org_redirect_mode_email_matches", value)
+
+    @property
+    @pulumi.getter(name="organizationId")
+    def organization_id(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The ID of the organization to link this identity provider to.
+        """
+        return pulumi.get(self, "organization_id")
+
+    @organization_id.setter
+    def organization_id(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "organization_id", value)
+
+    @property
     @pulumi.getter(name="postBrokerLoginFlowAlias")
     def post_broker_login_flow_alias(self) -> Optional[pulumi.Input[builtins.str]]:
         """
@@ -522,7 +603,9 @@ class _IdentityProviderState:
                  backchannel_supported: Optional[pulumi.Input[builtins.bool]] = None,
                  client_id: Optional[pulumi.Input[builtins.str]] = None,
                  client_secret: Optional[pulumi.Input[builtins.str]] = None,
+                 client_secret_wo_version: Optional[pulumi.Input[builtins.int]] = None,
                  default_scopes: Optional[pulumi.Input[builtins.str]] = None,
+                 disable_type_claim_check: Optional[pulumi.Input[builtins.bool]] = None,
                  disable_user_info: Optional[pulumi.Input[builtins.bool]] = None,
                  display_name: Optional[pulumi.Input[builtins.str]] = None,
                  enabled: Optional[pulumi.Input[builtins.bool]] = None,
@@ -536,6 +619,9 @@ class _IdentityProviderState:
                  link_only: Optional[pulumi.Input[builtins.bool]] = None,
                  login_hint: Optional[pulumi.Input[builtins.str]] = None,
                  logout_url: Optional[pulumi.Input[builtins.str]] = None,
+                 org_domain: Optional[pulumi.Input[builtins.str]] = None,
+                 org_redirect_mode_email_matches: Optional[pulumi.Input[builtins.bool]] = None,
+                 organization_id: Optional[pulumi.Input[builtins.str]] = None,
                  post_broker_login_flow_alias: Optional[pulumi.Input[builtins.str]] = None,
                  provider_id: Optional[pulumi.Input[builtins.str]] = None,
                  realm: Optional[pulumi.Input[builtins.str]] = None,
@@ -555,8 +641,10 @@ class _IdentityProviderState:
         :param pulumi.Input[builtins.str] authorization_url: The Authorization Url.
         :param pulumi.Input[builtins.bool] backchannel_supported: Does the external IDP support backchannel logout? Defaults to `true`.
         :param pulumi.Input[builtins.str] client_id: The client or client identifier registered within the identity provider.
-        :param pulumi.Input[builtins.str] client_secret: The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
+        :param pulumi.Input[builtins.str] client_secret: The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `client_secret_wo` and `client_secret_wo_version`.
+        :param pulumi.Input[builtins.int] client_secret_wo_version: Version of the Client secret write-only argument
         :param pulumi.Input[builtins.str] default_scopes: The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
+        :param pulumi.Input[builtins.bool] disable_type_claim_check: When `true`, disables the check for the `typ` claim of tokens received from the identity provider. Defaults to `false`.
         :param pulumi.Input[builtins.bool] disable_user_info: When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
         :param pulumi.Input[builtins.str] display_name: Display name for the identity provider in the GUI.
         :param pulumi.Input[builtins.bool] enabled: When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
@@ -569,6 +657,9 @@ class _IdentityProviderState:
         :param pulumi.Input[builtins.bool] link_only: When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         :param pulumi.Input[builtins.str] login_hint: Pass login hint to identity provider.
         :param pulumi.Input[builtins.str] logout_url: The Logout URL is the end session endpoint to use to sign-out the user from external identity provider.
+        :param pulumi.Input[builtins.str] org_domain: The organization domain to associate this identity provider with. it is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
+        :param pulumi.Input[builtins.bool] org_redirect_mode_email_matches: Indicates whether to automatically redirect user to this identity provider when email domain matches domain.
+        :param pulumi.Input[builtins.str] organization_id: The ID of the organization to link this identity provider to.
         :param pulumi.Input[builtins.str] post_broker_login_flow_alias: The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
         :param pulumi.Input[builtins.str] provider_id: The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
         :param pulumi.Input[builtins.str] realm: The name of the realm. This is unique across Keycloak.
@@ -596,8 +687,12 @@ class _IdentityProviderState:
             pulumi.set(__self__, "client_id", client_id)
         if client_secret is not None:
             pulumi.set(__self__, "client_secret", client_secret)
+        if client_secret_wo_version is not None:
+            pulumi.set(__self__, "client_secret_wo_version", client_secret_wo_version)
         if default_scopes is not None:
             pulumi.set(__self__, "default_scopes", default_scopes)
+        if disable_type_claim_check is not None:
+            pulumi.set(__self__, "disable_type_claim_check", disable_type_claim_check)
         if disable_user_info is not None:
             pulumi.set(__self__, "disable_user_info", disable_user_info)
         if display_name is not None:
@@ -624,6 +719,12 @@ class _IdentityProviderState:
             pulumi.set(__self__, "login_hint", login_hint)
         if logout_url is not None:
             pulumi.set(__self__, "logout_url", logout_url)
+        if org_domain is not None:
+            pulumi.set(__self__, "org_domain", org_domain)
+        if org_redirect_mode_email_matches is not None:
+            pulumi.set(__self__, "org_redirect_mode_email_matches", org_redirect_mode_email_matches)
+        if organization_id is not None:
+            pulumi.set(__self__, "organization_id", organization_id)
         if post_broker_login_flow_alias is not None:
             pulumi.set(__self__, "post_broker_login_flow_alias", post_broker_login_flow_alias)
         if provider_id is not None:
@@ -733,13 +834,25 @@ class _IdentityProviderState:
     @pulumi.getter(name="clientSecret")
     def client_secret(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
+        The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `client_secret_wo` and `client_secret_wo_version`.
         """
         return pulumi.get(self, "client_secret")
 
     @client_secret.setter
     def client_secret(self, value: Optional[pulumi.Input[builtins.str]]):
         pulumi.set(self, "client_secret", value)
+
+    @property
+    @pulumi.getter(name="clientSecretWoVersion")
+    def client_secret_wo_version(self) -> Optional[pulumi.Input[builtins.int]]:
+        """
+        Version of the Client secret write-only argument
+        """
+        return pulumi.get(self, "client_secret_wo_version")
+
+    @client_secret_wo_version.setter
+    def client_secret_wo_version(self, value: Optional[pulumi.Input[builtins.int]]):
+        pulumi.set(self, "client_secret_wo_version", value)
 
     @property
     @pulumi.getter(name="defaultScopes")
@@ -752,6 +865,18 @@ class _IdentityProviderState:
     @default_scopes.setter
     def default_scopes(self, value: Optional[pulumi.Input[builtins.str]]):
         pulumi.set(self, "default_scopes", value)
+
+    @property
+    @pulumi.getter(name="disableTypeClaimCheck")
+    def disable_type_claim_check(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        When `true`, disables the check for the `typ` claim of tokens received from the identity provider. Defaults to `false`.
+        """
+        return pulumi.get(self, "disable_type_claim_check")
+
+    @disable_type_claim_check.setter
+    def disable_type_claim_check(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "disable_type_claim_check", value)
 
     @property
     @pulumi.getter(name="disableUserInfo")
@@ -907,6 +1032,42 @@ class _IdentityProviderState:
         pulumi.set(self, "logout_url", value)
 
     @property
+    @pulumi.getter(name="orgDomain")
+    def org_domain(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The organization domain to associate this identity provider with. it is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
+        """
+        return pulumi.get(self, "org_domain")
+
+    @org_domain.setter
+    def org_domain(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "org_domain", value)
+
+    @property
+    @pulumi.getter(name="orgRedirectModeEmailMatches")
+    def org_redirect_mode_email_matches(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        Indicates whether to automatically redirect user to this identity provider when email domain matches domain.
+        """
+        return pulumi.get(self, "org_redirect_mode_email_matches")
+
+    @org_redirect_mode_email_matches.setter
+    def org_redirect_mode_email_matches(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "org_redirect_mode_email_matches", value)
+
+    @property
+    @pulumi.getter(name="organizationId")
+    def organization_id(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The ID of the organization to link this identity provider to.
+        """
+        return pulumi.get(self, "organization_id")
+
+    @organization_id.setter
+    def organization_id(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "organization_id", value)
+
+    @property
     @pulumi.getter(name="postBrokerLoginFlowAlias")
     def post_broker_login_flow_alias(self) -> Optional[pulumi.Input[builtins.str]]:
         """
@@ -1041,7 +1202,9 @@ class IdentityProvider(pulumi.CustomResource):
                  backchannel_supported: Optional[pulumi.Input[builtins.bool]] = None,
                  client_id: Optional[pulumi.Input[builtins.str]] = None,
                  client_secret: Optional[pulumi.Input[builtins.str]] = None,
+                 client_secret_wo_version: Optional[pulumi.Input[builtins.int]] = None,
                  default_scopes: Optional[pulumi.Input[builtins.str]] = None,
+                 disable_type_claim_check: Optional[pulumi.Input[builtins.bool]] = None,
                  disable_user_info: Optional[pulumi.Input[builtins.bool]] = None,
                  display_name: Optional[pulumi.Input[builtins.str]] = None,
                  enabled: Optional[pulumi.Input[builtins.bool]] = None,
@@ -1054,6 +1217,9 @@ class IdentityProvider(pulumi.CustomResource):
                  link_only: Optional[pulumi.Input[builtins.bool]] = None,
                  login_hint: Optional[pulumi.Input[builtins.str]] = None,
                  logout_url: Optional[pulumi.Input[builtins.str]] = None,
+                 org_domain: Optional[pulumi.Input[builtins.str]] = None,
+                 org_redirect_mode_email_matches: Optional[pulumi.Input[builtins.bool]] = None,
+                 organization_id: Optional[pulumi.Input[builtins.str]] = None,
                  post_broker_login_flow_alias: Optional[pulumi.Input[builtins.str]] = None,
                  provider_id: Optional[pulumi.Input[builtins.str]] = None,
                  realm: Optional[pulumi.Input[builtins.str]] = None,
@@ -1069,6 +1235,13 @@ class IdentityProvider(pulumi.CustomResource):
         Allows for creating and managing OIDC Identity Providers within Keycloak.
 
         OIDC (OpenID Connect) identity providers allows users to authenticate through a third party system using the OIDC standard.
+
+        > **NOTICE:** This resource now supports write-only arguments
+        for client secret via the new arguments `client_secret_wo` and `client_secret_wo_version`. Using write-only arguments
+        prevents sensitive values from being stored in plan and state files. You cannot use `client_secret_wo` and
+        `client_secret_wo_version` alongside `client_secret` as this will result in a validation error due to conflicts.
+        > 
+        > For backward compatibility, the behavior of the original `client_secret` argument remains unchanged.
 
         ## Example Usage
 
@@ -1112,8 +1285,10 @@ class IdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[builtins.str] authorization_url: The Authorization Url.
         :param pulumi.Input[builtins.bool] backchannel_supported: Does the external IDP support backchannel logout? Defaults to `true`.
         :param pulumi.Input[builtins.str] client_id: The client or client identifier registered within the identity provider.
-        :param pulumi.Input[builtins.str] client_secret: The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
+        :param pulumi.Input[builtins.str] client_secret: The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `client_secret_wo` and `client_secret_wo_version`.
+        :param pulumi.Input[builtins.int] client_secret_wo_version: Version of the Client secret write-only argument
         :param pulumi.Input[builtins.str] default_scopes: The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
+        :param pulumi.Input[builtins.bool] disable_type_claim_check: When `true`, disables the check for the `typ` claim of tokens received from the identity provider. Defaults to `false`.
         :param pulumi.Input[builtins.bool] disable_user_info: When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
         :param pulumi.Input[builtins.str] display_name: Display name for the identity provider in the GUI.
         :param pulumi.Input[builtins.bool] enabled: When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
@@ -1125,6 +1300,9 @@ class IdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[builtins.bool] link_only: When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         :param pulumi.Input[builtins.str] login_hint: Pass login hint to identity provider.
         :param pulumi.Input[builtins.str] logout_url: The Logout URL is the end session endpoint to use to sign-out the user from external identity provider.
+        :param pulumi.Input[builtins.str] org_domain: The organization domain to associate this identity provider with. it is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
+        :param pulumi.Input[builtins.bool] org_redirect_mode_email_matches: Indicates whether to automatically redirect user to this identity provider when email domain matches domain.
+        :param pulumi.Input[builtins.str] organization_id: The ID of the organization to link this identity provider to.
         :param pulumi.Input[builtins.str] post_broker_login_flow_alias: The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
         :param pulumi.Input[builtins.str] provider_id: The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
         :param pulumi.Input[builtins.str] realm: The name of the realm. This is unique across Keycloak.
@@ -1146,6 +1324,13 @@ class IdentityProvider(pulumi.CustomResource):
         Allows for creating and managing OIDC Identity Providers within Keycloak.
 
         OIDC (OpenID Connect) identity providers allows users to authenticate through a third party system using the OIDC standard.
+
+        > **NOTICE:** This resource now supports write-only arguments
+        for client secret via the new arguments `client_secret_wo` and `client_secret_wo_version`. Using write-only arguments
+        prevents sensitive values from being stored in plan and state files. You cannot use `client_secret_wo` and
+        `client_secret_wo_version` alongside `client_secret` as this will result in a validation error due to conflicts.
+        > 
+        > For backward compatibility, the behavior of the original `client_secret` argument remains unchanged.
 
         ## Example Usage
 
@@ -1203,7 +1388,9 @@ class IdentityProvider(pulumi.CustomResource):
                  backchannel_supported: Optional[pulumi.Input[builtins.bool]] = None,
                  client_id: Optional[pulumi.Input[builtins.str]] = None,
                  client_secret: Optional[pulumi.Input[builtins.str]] = None,
+                 client_secret_wo_version: Optional[pulumi.Input[builtins.int]] = None,
                  default_scopes: Optional[pulumi.Input[builtins.str]] = None,
+                 disable_type_claim_check: Optional[pulumi.Input[builtins.bool]] = None,
                  disable_user_info: Optional[pulumi.Input[builtins.bool]] = None,
                  display_name: Optional[pulumi.Input[builtins.str]] = None,
                  enabled: Optional[pulumi.Input[builtins.bool]] = None,
@@ -1216,6 +1403,9 @@ class IdentityProvider(pulumi.CustomResource):
                  link_only: Optional[pulumi.Input[builtins.bool]] = None,
                  login_hint: Optional[pulumi.Input[builtins.str]] = None,
                  logout_url: Optional[pulumi.Input[builtins.str]] = None,
+                 org_domain: Optional[pulumi.Input[builtins.str]] = None,
+                 org_redirect_mode_email_matches: Optional[pulumi.Input[builtins.bool]] = None,
+                 organization_id: Optional[pulumi.Input[builtins.str]] = None,
                  post_broker_login_flow_alias: Optional[pulumi.Input[builtins.str]] = None,
                  provider_id: Optional[pulumi.Input[builtins.str]] = None,
                  realm: Optional[pulumi.Input[builtins.str]] = None,
@@ -1248,10 +1438,10 @@ class IdentityProvider(pulumi.CustomResource):
             if client_id is None and not opts.urn:
                 raise TypeError("Missing required property 'client_id'")
             __props__.__dict__["client_id"] = client_id
-            if client_secret is None and not opts.urn:
-                raise TypeError("Missing required property 'client_secret'")
             __props__.__dict__["client_secret"] = None if client_secret is None else pulumi.Output.secret(client_secret)
+            __props__.__dict__["client_secret_wo_version"] = client_secret_wo_version
             __props__.__dict__["default_scopes"] = default_scopes
+            __props__.__dict__["disable_type_claim_check"] = disable_type_claim_check
             __props__.__dict__["disable_user_info"] = disable_user_info
             __props__.__dict__["display_name"] = display_name
             __props__.__dict__["enabled"] = enabled
@@ -1264,6 +1454,9 @@ class IdentityProvider(pulumi.CustomResource):
             __props__.__dict__["link_only"] = link_only
             __props__.__dict__["login_hint"] = login_hint
             __props__.__dict__["logout_url"] = logout_url
+            __props__.__dict__["org_domain"] = org_domain
+            __props__.__dict__["org_redirect_mode_email_matches"] = org_redirect_mode_email_matches
+            __props__.__dict__["organization_id"] = organization_id
             __props__.__dict__["post_broker_login_flow_alias"] = post_broker_login_flow_alias
             __props__.__dict__["provider_id"] = provider_id
             if realm is None and not opts.urn:
@@ -1299,7 +1492,9 @@ class IdentityProvider(pulumi.CustomResource):
             backchannel_supported: Optional[pulumi.Input[builtins.bool]] = None,
             client_id: Optional[pulumi.Input[builtins.str]] = None,
             client_secret: Optional[pulumi.Input[builtins.str]] = None,
+            client_secret_wo_version: Optional[pulumi.Input[builtins.int]] = None,
             default_scopes: Optional[pulumi.Input[builtins.str]] = None,
+            disable_type_claim_check: Optional[pulumi.Input[builtins.bool]] = None,
             disable_user_info: Optional[pulumi.Input[builtins.bool]] = None,
             display_name: Optional[pulumi.Input[builtins.str]] = None,
             enabled: Optional[pulumi.Input[builtins.bool]] = None,
@@ -1313,6 +1508,9 @@ class IdentityProvider(pulumi.CustomResource):
             link_only: Optional[pulumi.Input[builtins.bool]] = None,
             login_hint: Optional[pulumi.Input[builtins.str]] = None,
             logout_url: Optional[pulumi.Input[builtins.str]] = None,
+            org_domain: Optional[pulumi.Input[builtins.str]] = None,
+            org_redirect_mode_email_matches: Optional[pulumi.Input[builtins.bool]] = None,
+            organization_id: Optional[pulumi.Input[builtins.str]] = None,
             post_broker_login_flow_alias: Optional[pulumi.Input[builtins.str]] = None,
             provider_id: Optional[pulumi.Input[builtins.str]] = None,
             realm: Optional[pulumi.Input[builtins.str]] = None,
@@ -1337,8 +1535,10 @@ class IdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[builtins.str] authorization_url: The Authorization Url.
         :param pulumi.Input[builtins.bool] backchannel_supported: Does the external IDP support backchannel logout? Defaults to `true`.
         :param pulumi.Input[builtins.str] client_id: The client or client identifier registered within the identity provider.
-        :param pulumi.Input[builtins.str] client_secret: The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
+        :param pulumi.Input[builtins.str] client_secret: The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `client_secret_wo` and `client_secret_wo_version`.
+        :param pulumi.Input[builtins.int] client_secret_wo_version: Version of the Client secret write-only argument
         :param pulumi.Input[builtins.str] default_scopes: The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
+        :param pulumi.Input[builtins.bool] disable_type_claim_check: When `true`, disables the check for the `typ` claim of tokens received from the identity provider. Defaults to `false`.
         :param pulumi.Input[builtins.bool] disable_user_info: When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
         :param pulumi.Input[builtins.str] display_name: Display name for the identity provider in the GUI.
         :param pulumi.Input[builtins.bool] enabled: When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
@@ -1351,6 +1551,9 @@ class IdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[builtins.bool] link_only: When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         :param pulumi.Input[builtins.str] login_hint: Pass login hint to identity provider.
         :param pulumi.Input[builtins.str] logout_url: The Logout URL is the end session endpoint to use to sign-out the user from external identity provider.
+        :param pulumi.Input[builtins.str] org_domain: The organization domain to associate this identity provider with. it is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
+        :param pulumi.Input[builtins.bool] org_redirect_mode_email_matches: Indicates whether to automatically redirect user to this identity provider when email domain matches domain.
+        :param pulumi.Input[builtins.str] organization_id: The ID of the organization to link this identity provider to.
         :param pulumi.Input[builtins.str] post_broker_login_flow_alias: The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
         :param pulumi.Input[builtins.str] provider_id: The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
         :param pulumi.Input[builtins.str] realm: The name of the realm. This is unique across Keycloak.
@@ -1374,7 +1577,9 @@ class IdentityProvider(pulumi.CustomResource):
         __props__.__dict__["backchannel_supported"] = backchannel_supported
         __props__.__dict__["client_id"] = client_id
         __props__.__dict__["client_secret"] = client_secret
+        __props__.__dict__["client_secret_wo_version"] = client_secret_wo_version
         __props__.__dict__["default_scopes"] = default_scopes
+        __props__.__dict__["disable_type_claim_check"] = disable_type_claim_check
         __props__.__dict__["disable_user_info"] = disable_user_info
         __props__.__dict__["display_name"] = display_name
         __props__.__dict__["enabled"] = enabled
@@ -1388,6 +1593,9 @@ class IdentityProvider(pulumi.CustomResource):
         __props__.__dict__["link_only"] = link_only
         __props__.__dict__["login_hint"] = login_hint
         __props__.__dict__["logout_url"] = logout_url
+        __props__.__dict__["org_domain"] = org_domain
+        __props__.__dict__["org_redirect_mode_email_matches"] = org_redirect_mode_email_matches
+        __props__.__dict__["organization_id"] = organization_id
         __props__.__dict__["post_broker_login_flow_alias"] = post_broker_login_flow_alias
         __props__.__dict__["provider_id"] = provider_id
         __props__.__dict__["realm"] = realm
@@ -1458,11 +1666,19 @@ class IdentityProvider(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="clientSecret")
-    def client_secret(self) -> pulumi.Output[builtins.str]:
+    def client_secret(self) -> pulumi.Output[Optional[builtins.str]]:
         """
-        The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
+        The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `client_secret_wo` and `client_secret_wo_version`.
         """
         return pulumi.get(self, "client_secret")
+
+    @property
+    @pulumi.getter(name="clientSecretWoVersion")
+    def client_secret_wo_version(self) -> pulumi.Output[Optional[builtins.int]]:
+        """
+        Version of the Client secret write-only argument
+        """
+        return pulumi.get(self, "client_secret_wo_version")
 
     @property
     @pulumi.getter(name="defaultScopes")
@@ -1471,6 +1687,14 @@ class IdentityProvider(pulumi.CustomResource):
         The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
         """
         return pulumi.get(self, "default_scopes")
+
+    @property
+    @pulumi.getter(name="disableTypeClaimCheck")
+    def disable_type_claim_check(self) -> pulumi.Output[Optional[builtins.bool]]:
+        """
+        When `true`, disables the check for the `typ` claim of tokens received from the identity provider. Defaults to `false`.
+        """
+        return pulumi.get(self, "disable_type_claim_check")
 
     @property
     @pulumi.getter(name="disableUserInfo")
@@ -1572,6 +1796,30 @@ class IdentityProvider(pulumi.CustomResource):
         The Logout URL is the end session endpoint to use to sign-out the user from external identity provider.
         """
         return pulumi.get(self, "logout_url")
+
+    @property
+    @pulumi.getter(name="orgDomain")
+    def org_domain(self) -> pulumi.Output[Optional[builtins.str]]:
+        """
+        The organization domain to associate this identity provider with. it is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
+        """
+        return pulumi.get(self, "org_domain")
+
+    @property
+    @pulumi.getter(name="orgRedirectModeEmailMatches")
+    def org_redirect_mode_email_matches(self) -> pulumi.Output[Optional[builtins.bool]]:
+        """
+        Indicates whether to automatically redirect user to this identity provider when email domain matches domain.
+        """
+        return pulumi.get(self, "org_redirect_mode_email_matches")
+
+    @property
+    @pulumi.getter(name="organizationId")
+    def organization_id(self) -> pulumi.Output[Optional[builtins.str]]:
+        """
+        The ID of the organization to link this identity provider to.
+        """
+        return pulumi.get(self, "organization_id")
 
     @property
     @pulumi.getter(name="postBrokerLoginFlowAlias")

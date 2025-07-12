@@ -137,6 +137,12 @@ export class GoogleIdentityProvider extends pulumi.CustomResource {
      * When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
      */
     public readonly linkOnly!: pulumi.Output<boolean | undefined>;
+    public readonly orgDomain!: pulumi.Output<string | undefined>;
+    public readonly orgRedirectModeEmailMatches!: pulumi.Output<boolean | undefined>;
+    /**
+     * ID of organization with which this identity is linked.
+     */
+    public readonly organizationId!: pulumi.Output<string | undefined>;
     /**
      * The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
      */
@@ -200,6 +206,9 @@ export class GoogleIdentityProvider extends pulumi.CustomResource {
             resourceInputs["hostedDomain"] = state ? state.hostedDomain : undefined;
             resourceInputs["internalId"] = state ? state.internalId : undefined;
             resourceInputs["linkOnly"] = state ? state.linkOnly : undefined;
+            resourceInputs["orgDomain"] = state ? state.orgDomain : undefined;
+            resourceInputs["orgRedirectModeEmailMatches"] = state ? state.orgRedirectModeEmailMatches : undefined;
+            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
             resourceInputs["postBrokerLoginFlowAlias"] = state ? state.postBrokerLoginFlowAlias : undefined;
             resourceInputs["providerId"] = state ? state.providerId : undefined;
             resourceInputs["realm"] = state ? state.realm : undefined;
@@ -232,6 +241,9 @@ export class GoogleIdentityProvider extends pulumi.CustomResource {
             resourceInputs["hideOnLoginPage"] = args ? args.hideOnLoginPage : undefined;
             resourceInputs["hostedDomain"] = args ? args.hostedDomain : undefined;
             resourceInputs["linkOnly"] = args ? args.linkOnly : undefined;
+            resourceInputs["orgDomain"] = args ? args.orgDomain : undefined;
+            resourceInputs["orgRedirectModeEmailMatches"] = args ? args.orgRedirectModeEmailMatches : undefined;
+            resourceInputs["organizationId"] = args ? args.organizationId : undefined;
             resourceInputs["postBrokerLoginFlowAlias"] = args ? args.postBrokerLoginFlowAlias : undefined;
             resourceInputs["providerId"] = args ? args.providerId : undefined;
             resourceInputs["realm"] = args ? args.realm : undefined;
@@ -318,6 +330,12 @@ export interface GoogleIdentityProviderState {
      * When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
      */
     linkOnly?: pulumi.Input<boolean>;
+    orgDomain?: pulumi.Input<string>;
+    orgRedirectModeEmailMatches?: pulumi.Input<boolean>;
+    /**
+     * ID of organization with which this identity is linked.
+     */
+    organizationId?: pulumi.Input<string>;
     /**
      * The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
      */
@@ -417,6 +435,12 @@ export interface GoogleIdentityProviderArgs {
      * When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
      */
     linkOnly?: pulumi.Input<boolean>;
+    orgDomain?: pulumi.Input<string>;
+    orgRedirectModeEmailMatches?: pulumi.Input<boolean>;
+    /**
+     * ID of organization with which this identity is linked.
+     */
+    organizationId?: pulumi.Input<string>;
     /**
      * The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
      */

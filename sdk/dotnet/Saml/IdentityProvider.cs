@@ -176,6 +176,24 @@ namespace Pulumi.Keycloak.Saml
         public Output<string?> NameIdPolicyFormat { get; private set; } = null!;
 
         /// <summary>
+        /// The organization domain to associate this identity provider with. It is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
+        /// </summary>
+        [Output("orgDomain")]
+        public Output<string?> OrgDomain { get; private set; } = null!;
+
+        /// <summary>
+        /// Indicates whether to automatically redirect users to this identity provider when email domain matches domain.
+        /// </summary>
+        [Output("orgRedirectModeEmailMatches")]
+        public Output<bool?> OrgRedirectModeEmailMatches { get; private set; } = null!;
+
+        /// <summary>
+        /// The ID of the organization to link this identity provider to.
+        /// </summary>
+        [Output("organizationId")]
+        public Output<string?> OrganizationId { get; private set; } = null!;
+
+        /// <summary>
         /// Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
         /// </summary>
         [Output("postBindingAuthnRequest")]
@@ -458,6 +476,24 @@ namespace Pulumi.Keycloak.Saml
         public Input<string>? NameIdPolicyFormat { get; set; }
 
         /// <summary>
+        /// The organization domain to associate this identity provider with. It is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
+        /// </summary>
+        [Input("orgDomain")]
+        public Input<string>? OrgDomain { get; set; }
+
+        /// <summary>
+        /// Indicates whether to automatically redirect users to this identity provider when email domain matches domain.
+        /// </summary>
+        [Input("orgRedirectModeEmailMatches")]
+        public Input<bool>? OrgRedirectModeEmailMatches { get; set; }
+
+        /// <summary>
+        /// The ID of the organization to link this identity provider to.
+        /// </summary>
+        [Input("organizationId")]
+        public Input<string>? OrganizationId { get; set; }
+
+        /// <summary>
         /// Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
         /// </summary>
         [Input("postBindingAuthnRequest")]
@@ -706,6 +742,24 @@ namespace Pulumi.Keycloak.Saml
         /// </summary>
         [Input("nameIdPolicyFormat")]
         public Input<string>? NameIdPolicyFormat { get; set; }
+
+        /// <summary>
+        /// The organization domain to associate this identity provider with. It is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
+        /// </summary>
+        [Input("orgDomain")]
+        public Input<string>? OrgDomain { get; set; }
+
+        /// <summary>
+        /// Indicates whether to automatically redirect users to this identity provider when email domain matches domain.
+        /// </summary>
+        [Input("orgRedirectModeEmailMatches")]
+        public Input<bool>? OrgRedirectModeEmailMatches { get; set; }
+
+        /// <summary>
+        /// The ID of the organization to link this identity provider to.
+        /// </summary>
+        [Input("organizationId")]
+        public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
         /// Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.

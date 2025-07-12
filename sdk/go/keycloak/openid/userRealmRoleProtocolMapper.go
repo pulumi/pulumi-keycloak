@@ -141,6 +141,8 @@ type UserRealmRoleProtocolMapper struct {
 	AddToAccessToken pulumi.BoolPtrOutput `pulumi:"addToAccessToken"`
 	// Indicates if the property should be added as a claim to the id token. Defaults to `true`.
 	AddToIdToken pulumi.BoolPtrOutput `pulumi:"addToIdToken"`
+	// Indicates if the property should be added as a claim to the Token Introspection response body. Defaults to `true`.
+	AddToTokenIntrospection pulumi.BoolPtrOutput `pulumi:"addToTokenIntrospection"`
 	// Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
 	AddToUserinfo pulumi.BoolPtrOutput `pulumi:"addToUserinfo"`
 	// The name of the claim to insert into a token.
@@ -201,6 +203,8 @@ type userRealmRoleProtocolMapperState struct {
 	AddToAccessToken *bool `pulumi:"addToAccessToken"`
 	// Indicates if the property should be added as a claim to the id token. Defaults to `true`.
 	AddToIdToken *bool `pulumi:"addToIdToken"`
+	// Indicates if the property should be added as a claim to the Token Introspection response body. Defaults to `true`.
+	AddToTokenIntrospection *bool `pulumi:"addToTokenIntrospection"`
 	// Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
 	AddToUserinfo *bool `pulumi:"addToUserinfo"`
 	// The name of the claim to insert into a token.
@@ -226,6 +230,8 @@ type UserRealmRoleProtocolMapperState struct {
 	AddToAccessToken pulumi.BoolPtrInput
 	// Indicates if the property should be added as a claim to the id token. Defaults to `true`.
 	AddToIdToken pulumi.BoolPtrInput
+	// Indicates if the property should be added as a claim to the Token Introspection response body. Defaults to `true`.
+	AddToTokenIntrospection pulumi.BoolPtrInput
 	// Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
 	AddToUserinfo pulumi.BoolPtrInput
 	// The name of the claim to insert into a token.
@@ -255,6 +261,8 @@ type userRealmRoleProtocolMapperArgs struct {
 	AddToAccessToken *bool `pulumi:"addToAccessToken"`
 	// Indicates if the property should be added as a claim to the id token. Defaults to `true`.
 	AddToIdToken *bool `pulumi:"addToIdToken"`
+	// Indicates if the property should be added as a claim to the Token Introspection response body. Defaults to `true`.
+	AddToTokenIntrospection *bool `pulumi:"addToTokenIntrospection"`
 	// Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
 	AddToUserinfo *bool `pulumi:"addToUserinfo"`
 	// The name of the claim to insert into a token.
@@ -281,6 +289,8 @@ type UserRealmRoleProtocolMapperArgs struct {
 	AddToAccessToken pulumi.BoolPtrInput
 	// Indicates if the property should be added as a claim to the id token. Defaults to `true`.
 	AddToIdToken pulumi.BoolPtrInput
+	// Indicates if the property should be added as a claim to the Token Introspection response body. Defaults to `true`.
+	AddToTokenIntrospection pulumi.BoolPtrInput
 	// Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
 	AddToUserinfo pulumi.BoolPtrInput
 	// The name of the claim to insert into a token.
@@ -396,6 +406,11 @@ func (o UserRealmRoleProtocolMapperOutput) AddToAccessToken() pulumi.BoolPtrOutp
 // Indicates if the property should be added as a claim to the id token. Defaults to `true`.
 func (o UserRealmRoleProtocolMapperOutput) AddToIdToken() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *UserRealmRoleProtocolMapper) pulumi.BoolPtrOutput { return v.AddToIdToken }).(pulumi.BoolPtrOutput)
+}
+
+// Indicates if the property should be added as a claim to the Token Introspection response body. Defaults to `true`.
+func (o UserRealmRoleProtocolMapperOutput) AddToTokenIntrospection() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *UserRealmRoleProtocolMapper) pulumi.BoolPtrOutput { return v.AddToTokenIntrospection }).(pulumi.BoolPtrOutput)
 }
 
 // Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.

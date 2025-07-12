@@ -70,6 +70,7 @@ export interface GetClientResult {
     readonly accessTokenLifespan: string;
     readonly accessType: string;
     readonly adminUrl: string;
+    readonly allowRefreshTokenInStandardTokenExchange: string;
     readonly alwaysDisplayInConsole?: boolean;
     readonly authenticationFlowBindingOverrides: outputs.openid.GetClientAuthenticationFlowBindingOverride[];
     readonly authorizations: outputs.openid.GetClientAuthorization[];
@@ -113,6 +114,7 @@ export interface GetClientResult {
     readonly serviceAccountUserId: string;
     readonly serviceAccountsEnabled: boolean;
     readonly standardFlowEnabled: boolean;
+    readonly standardTokenExchangeEnabled: boolean;
     readonly useRefreshTokens: boolean;
     readonly useRefreshTokensClientCredentials: boolean;
     readonly validPostLogoutRedirectUris: string[];

@@ -22,6 +22,9 @@ __all__ = [
     'GroupPermissionsManageScope',
     'GroupPermissionsViewMembersScope',
     'GroupPermissionsViewScope',
+    'OrganizationDomain',
+    'RealmClientPolicyProfileExecutor',
+    'RealmClientPolicyProfilePolicyCondition',
     'RealmInternationalization',
     'RealmOtpPolicy',
     'RealmSecurityDefenses',
@@ -44,6 +47,7 @@ __all__ = [
     'UsersPermissionsUserImpersonatedScope',
     'UsersPermissionsViewScope',
     'GetClientDescriptionConverterProtocolMapperResult',
+    'GetOrganizationDomainResult',
     'GetRealmInternationalizationResult',
     'GetRealmKeysKeyResult',
     'GetRealmOtpPolicyResult',
@@ -284,6 +288,76 @@ class GroupPermissionsViewScope(dict):
     @pulumi.getter
     def policies(self) -> Optional[Sequence[builtins.str]]:
         return pulumi.get(self, "policies")
+
+
+@pulumi.output_type
+class OrganizationDomain(dict):
+    def __init__(__self__, *,
+                 name: builtins.str,
+                 verified: Optional[builtins.bool] = None):
+        """
+        :param builtins.str name: The name of the organization.
+        :param builtins.bool verified: Whether domain is verified or not. Default is false.
+        """
+        pulumi.set(__self__, "name", name)
+        if verified is not None:
+            pulumi.set(__self__, "verified", verified)
+
+    @property
+    @pulumi.getter
+    def name(self) -> builtins.str:
+        """
+        The name of the organization.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def verified(self) -> Optional[builtins.bool]:
+        """
+        Whether domain is verified or not. Default is false.
+        """
+        return pulumi.get(self, "verified")
+
+
+@pulumi.output_type
+class RealmClientPolicyProfileExecutor(dict):
+    def __init__(__self__, *,
+                 name: builtins.str,
+                 configuration: Optional[Mapping[str, builtins.str]] = None):
+        pulumi.set(__self__, "name", name)
+        if configuration is not None:
+            pulumi.set(__self__, "configuration", configuration)
+
+    @property
+    @pulumi.getter
+    def name(self) -> builtins.str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def configuration(self) -> Optional[Mapping[str, builtins.str]]:
+        return pulumi.get(self, "configuration")
+
+
+@pulumi.output_type
+class RealmClientPolicyProfilePolicyCondition(dict):
+    def __init__(__self__, *,
+                 name: builtins.str,
+                 configuration: Optional[Mapping[str, builtins.str]] = None):
+        pulumi.set(__self__, "name", name)
+        if configuration is not None:
+            pulumi.set(__self__, "configuration", configuration)
+
+    @property
+    @pulumi.getter
+    def name(self) -> builtins.str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def configuration(self) -> Optional[Mapping[str, builtins.str]]:
+        return pulumi.get(self, "configuration")
 
 
 @pulumi.output_type
@@ -1921,6 +1995,31 @@ class GetClientDescriptionConverterProtocolMapperResult(dict):
     @pulumi.getter(name="protocolMapper")
     def protocol_mapper(self) -> builtins.str:
         return pulumi.get(self, "protocol_mapper")
+
+
+@pulumi.output_type
+class GetOrganizationDomainResult(dict):
+    def __init__(__self__, *,
+                 name: builtins.str,
+                 verified: builtins.bool):
+        """
+        :param builtins.str name: The organization name.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "verified", verified)
+
+    @property
+    @pulumi.getter
+    def name(self) -> builtins.str:
+        """
+        The organization name.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def verified(self) -> builtins.bool:
+        return pulumi.get(self, "verified")
 
 
 @pulumi.output_type

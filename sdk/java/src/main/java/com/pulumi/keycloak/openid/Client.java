@@ -13,6 +13,7 @@ import com.pulumi.keycloak.openid.inputs.ClientState;
 import com.pulumi.keycloak.openid.outputs.ClientAuthenticationFlowBindingOverrides;
 import com.pulumi.keycloak.openid.outputs.ClientAuthorization;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +26,13 @@ import javax.annotation.Nullable;
  * Clients are entities that can use Keycloak for user authentication. Typically,
  * clients are applications that redirect users to Keycloak for authentication
  * in order to take advantage of Keycloak&#39;s user sessions for SSO.
+ * 
+ * &gt; **NOTICE:** This resource now supports write-only arguments
+ * for client secret via the new arguments `client_secret_wo` and `client_secret_wo_version`. Using write-only arguments
+ * prevents sensitive values from being stored in plan and state files. You cannot use `client_secret_wo` and
+ * `client_secret_wo_version` alongside `client_secret` as this will result in a validation error due to conflicts.
+ * &gt; 
+ * &gt; For backward compatibility, the behavior of the original `client_secret` argument remains unchanged.
  * 
  * ## Example Usage
  * 
@@ -70,6 +78,59 @@ import javax.annotation.Nullable;
  *                 Map.entry("key1", "value1"),
  *                 Map.entry("key2", "value2")
  *             ))
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * ### With Regenerating The Client Secret Using Time Provider
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.keycloak.Realm;
+ * import com.pulumi.keycloak.RealmArgs;
+ * import com.pulumi.time.rotating;
+ * import com.pulumi.time.rotatingArgs;
+ * import com.pulumi.keycloak.openid.Client;
+ * import com.pulumi.keycloak.openid.ClientArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var realm = new Realm("realm", RealmArgs.builder()
+ *             .realm("my-realm")
+ *             .enabled(true)
+ *             .build());
+ * 
+ *         var rotate = new Rotating("rotate", RotatingArgs.builder()
+ *             .rotationDays(10)
+ *             .build());
+ * 
+ *         var openidClient = new Client("openidClient", ClientArgs.builder()
+ *             .realmId(realm.id())
+ *             .clientId("test-client")
+ *             .name("test client")
+ *             .enabled(true)
+ *             .accessType("CONFIDENTIAL")
+ *             .clientSecretRegenerateWhenChanged(Map.of("rotation", rotate.rotationRfc3339()))
  *             .build());
  * 
  *     }
@@ -146,6 +207,12 @@ public class Client extends com.pulumi.resources.CustomResource {
      */
     public Output<String> adminUrl() {
         return this.adminUrl;
+    }
+    @Export(name="allowRefreshTokenInStandardTokenExchange", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> allowRefreshTokenInStandardTokenExchange;
+
+    public Output<Optional<String>> allowRefreshTokenInStandardTokenExchange() {
+        return Codegen.optional(this.allowRefreshTokenInStandardTokenExchange);
     }
     /**
      * Always list this client in the Account UI, even if the user does not have an active session.
@@ -322,6 +389,34 @@ public class Client extends com.pulumi.resources.CustomResource {
      */
     public Output<String> clientSecret() {
         return this.clientSecret;
+    }
+    /**
+     * Arbitrary map of values that, when changed, will trigger rotation of the secret. NOTE! Conflicts with `client_secret`, `client_secret_wo` and `client_secret_wo_version` attribute and can&#39;t be used together
+     * 
+     */
+    @Export(name="clientSecretRegenerateWhenChanged", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output</* @Nullable */ Map<String,String>> clientSecretRegenerateWhenChanged;
+
+    /**
+     * @return Arbitrary map of values that, when changed, will trigger rotation of the secret. NOTE! Conflicts with `client_secret`, `client_secret_wo` and `client_secret_wo_version` attribute and can&#39;t be used together
+     * 
+     */
+    public Output<Optional<Map<String,String>>> clientSecretRegenerateWhenChanged() {
+        return Codegen.optional(this.clientSecretRegenerateWhenChanged);
+    }
+    /**
+     * Version of the Client secret write-only argument
+     * 
+     */
+    @Export(name="clientSecretWoVersion", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> clientSecretWoVersion;
+
+    /**
+     * @return Version of the Client secret write-only argument
+     * 
+     */
+    public Output<Optional<Integer>> clientSecretWoVersion() {
+        return Codegen.optional(this.clientSecretWoVersion);
     }
     /**
      * Time a client offline session is allowed to be idle before it expires. Offline tokens are invalidated when a client offline session is expired. If not set it uses the Offline Session Idle value.
@@ -706,6 +801,12 @@ public class Client extends com.pulumi.resources.CustomResource {
      */
     public Output<Boolean> standardFlowEnabled() {
         return this.standardFlowEnabled;
+    }
+    @Export(name="standardTokenExchangeEnabled", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> standardTokenExchangeEnabled;
+
+    public Output<Optional<Boolean>> standardTokenExchangeEnabled() {
+        return Codegen.optional(this.standardTokenExchangeEnabled);
     }
     /**
      * If this is `true`, a refresh_token will be created and added to the token response. If this is `false` then no refresh_token will be generated.  Defaults to `true`.

@@ -267,6 +267,27 @@ export interface GroupPermissionsViewScope {
     policies?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
+export interface OrganizationDomain {
+    /**
+     * The name of the organization.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Whether domain is verified or not. Default is false.
+     */
+    verified?: pulumi.Input<boolean>;
+}
+
+export interface RealmClientPolicyProfileExecutor {
+    configuration?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    name: pulumi.Input<string>;
+}
+
+export interface RealmClientPolicyProfilePolicyCondition {
+    configuration?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    name: pulumi.Input<string>;
+}
+
 export interface RealmInternationalization {
     /**
      * The locale to use by default. This locale code must be present within the `supportedLocales` list.

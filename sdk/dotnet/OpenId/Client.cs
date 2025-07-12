@@ -16,6 +16,13 @@ namespace Pulumi.Keycloak.OpenId
     /// clients are applications that redirect users to Keycloak for authentication
     /// in order to take advantage of Keycloak's user sessions for SSO.
     /// 
+    /// &gt; **NOTICE:** This resource now supports write-only arguments
+    /// for client secret via the new arguments `client_secret_wo` and `client_secret_wo_version`. Using write-only arguments
+    /// prevents sensitive values from being stored in plan and state files. You cannot use `client_secret_wo` and
+    /// `client_secret_wo_version` alongside `client_secret` as this will result in a validation error due to conflicts.
+    /// &gt; 
+    /// &gt; For backward compatibility, the behavior of the original `client_secret` argument remains unchanged.
+    /// 
     /// ## Example Usage
     /// 
     /// ```csharp
@@ -48,6 +55,44 @@ namespace Pulumi.Keycloak.OpenId
     ///         {
     ///             { "key1", "value1" },
     ///             { "key2", "value2" },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### With Regenerating The Client Secret Using Time Provider
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// using Time = Pulumi.Time;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
+    /// 
+    ///     var rotate = new Time.Index.Rotating("rotate", new()
+    ///     {
+    ///         RotationDays = 10,
+    ///     });
+    /// 
+    ///     var openidClient = new Keycloak.OpenId.Client("openid_client", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = "test-client",
+    ///         Name = "test client",
+    ///         Enabled = true,
+    ///         AccessType = "CONFIDENTIAL",
+    ///         ClientSecretRegenerateWhenChanged = 
+    ///         {
+    ///             { "rotation", rotate.RotationRfc3339 },
     ///         },
     ///     });
     /// 
@@ -93,6 +138,9 @@ namespace Pulumi.Keycloak.OpenId
         /// </summary>
         [Output("adminUrl")]
         public Output<string> AdminUrl { get; private set; } = null!;
+
+        [Output("allowRefreshTokenInStandardTokenExchange")]
+        public Output<string?> AllowRefreshTokenInStandardTokenExchange { get; private set; } = null!;
 
         /// <summary>
         /// Always list this client in the Account UI, even if the user does not have an active session.
@@ -169,6 +217,18 @@ namespace Pulumi.Keycloak.OpenId
         /// </summary>
         [Output("clientSecret")]
         public Output<string> ClientSecret { get; private set; } = null!;
+
+        /// <summary>
+        /// Arbitrary map of values that, when changed, will trigger rotation of the secret. NOTE! Conflicts with `client_secret`, `client_secret_wo` and `client_secret_wo_version` attribute and can't be used together
+        /// </summary>
+        [Output("clientSecretRegenerateWhenChanged")]
+        public Output<ImmutableDictionary<string, string>?> ClientSecretRegenerateWhenChanged { get; private set; } = null!;
+
+        /// <summary>
+        /// Version of the Client secret write-only argument
+        /// </summary>
+        [Output("clientSecretWoVersion")]
+        public Output<int?> ClientSecretWoVersion { get; private set; } = null!;
 
         /// <summary>
         /// Time a client offline session is allowed to be idle before it expires. Offline tokens are invalidated when a client offline session is expired. If not set it uses the Offline Session Idle value.
@@ -335,6 +395,9 @@ namespace Pulumi.Keycloak.OpenId
         [Output("standardFlowEnabled")]
         public Output<bool> StandardFlowEnabled { get; private set; } = null!;
 
+        [Output("standardTokenExchangeEnabled")]
+        public Output<bool?> StandardTokenExchangeEnabled { get; private set; } = null!;
+
         /// <summary>
         /// If this is `true`, a refresh_token will be created and added to the token response. If this is `false` then no refresh_token will be generated.  Defaults to `true`.
         /// </summary>
@@ -440,6 +503,9 @@ namespace Pulumi.Keycloak.OpenId
         [Input("adminUrl")]
         public Input<string>? AdminUrl { get; set; }
 
+        [Input("allowRefreshTokenInStandardTokenExchange")]
+        public Input<string>? AllowRefreshTokenInStandardTokenExchange { get; set; }
+
         /// <summary>
         /// Always list this client in the Account UI, even if the user does not have an active session.
         /// </summary>
@@ -525,6 +591,24 @@ namespace Pulumi.Keycloak.OpenId
                 _clientSecret = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("clientSecretRegenerateWhenChanged")]
+        private InputMap<string>? _clientSecretRegenerateWhenChanged;
+
+        /// <summary>
+        /// Arbitrary map of values that, when changed, will trigger rotation of the secret. NOTE! Conflicts with `client_secret`, `client_secret_wo` and `client_secret_wo_version` attribute and can't be used together
+        /// </summary>
+        public InputMap<string> ClientSecretRegenerateWhenChanged
+        {
+            get => _clientSecretRegenerateWhenChanged ?? (_clientSecretRegenerateWhenChanged = new InputMap<string>());
+            set => _clientSecretRegenerateWhenChanged = value;
+        }
+
+        /// <summary>
+        /// Version of the Client secret write-only argument
+        /// </summary>
+        [Input("clientSecretWoVersion")]
+        public Input<int>? ClientSecretWoVersion { get; set; }
 
         /// <summary>
         /// Time a client offline session is allowed to be idle before it expires. Offline tokens are invalidated when a client offline session is expired. If not set it uses the Offline Session Idle value.
@@ -684,6 +768,9 @@ namespace Pulumi.Keycloak.OpenId
         [Input("standardFlowEnabled")]
         public Input<bool>? StandardFlowEnabled { get; set; }
 
+        [Input("standardTokenExchangeEnabled")]
+        public Input<bool>? StandardTokenExchangeEnabled { get; set; }
+
         /// <summary>
         /// If this is `true`, a refresh_token will be created and added to the token response. If this is `false` then no refresh_token will be generated.  Defaults to `true`.
         /// </summary>
@@ -764,6 +851,9 @@ namespace Pulumi.Keycloak.OpenId
         /// </summary>
         [Input("adminUrl")]
         public Input<string>? AdminUrl { get; set; }
+
+        [Input("allowRefreshTokenInStandardTokenExchange")]
+        public Input<string>? AllowRefreshTokenInStandardTokenExchange { get; set; }
 
         /// <summary>
         /// Always list this client in the Account UI, even if the user does not have an active session.
@@ -850,6 +940,24 @@ namespace Pulumi.Keycloak.OpenId
                 _clientSecret = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("clientSecretRegenerateWhenChanged")]
+        private InputMap<string>? _clientSecretRegenerateWhenChanged;
+
+        /// <summary>
+        /// Arbitrary map of values that, when changed, will trigger rotation of the secret. NOTE! Conflicts with `client_secret`, `client_secret_wo` and `client_secret_wo_version` attribute and can't be used together
+        /// </summary>
+        public InputMap<string> ClientSecretRegenerateWhenChanged
+        {
+            get => _clientSecretRegenerateWhenChanged ?? (_clientSecretRegenerateWhenChanged = new InputMap<string>());
+            set => _clientSecretRegenerateWhenChanged = value;
+        }
+
+        /// <summary>
+        /// Version of the Client secret write-only argument
+        /// </summary>
+        [Input("clientSecretWoVersion")]
+        public Input<int>? ClientSecretWoVersion { get; set; }
 
         /// <summary>
         /// Time a client offline session is allowed to be idle before it expires. Offline tokens are invalidated when a client offline session is expired. If not set it uses the Offline Session Idle value.
@@ -1020,6 +1128,9 @@ namespace Pulumi.Keycloak.OpenId
         /// </summary>
         [Input("standardFlowEnabled")]
         public Input<bool>? StandardFlowEnabled { get; set; }
+
+        [Input("standardTokenExchangeEnabled")]
+        public Input<bool>? StandardTokenExchangeEnabled { get; set; }
 
         /// <summary>
         /// If this is `true`, a refresh_token will be created and added to the token response. If this is `false` then no refresh_token will be generated.  Defaults to `true`.

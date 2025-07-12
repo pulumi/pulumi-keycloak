@@ -14,42 +14,90 @@ import java.util.Objects;
 
 @CustomType
 public final class GetClientServiceAccountUserResult {
+    /**
+     * @return (Computed) The service account user&#39;s attributes.
+     * 
+     */
     private Map<String,String> attributes;
     private String clientId;
+    /**
+     * @return (Computed) The service account user&#39;s email.
+     * 
+     */
     private String email;
     private Boolean emailVerified;
+    /**
+     * @return (Computed) Whether the service account user is enabled.
+     * 
+     */
     private Boolean enabled;
+    /**
+     * @return (Computed) This attribute exists in order to adhere to the spec of a Keycloak user, but a service account user will never have a federated identity, so this will always be `null`.
+     * 
+     */
     private List<GetClientServiceAccountUserFederatedIdentity> federatedIdentities;
+    /**
+     * @return (Computed) The service account user&#39;s first name.
+     * 
+     */
     private String firstName;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
     private String id;
+    /**
+     * @return (Computed) The service account user&#39;s last name.
+     * 
+     */
     private String lastName;
     private String realmId;
     private List<String> requiredActions;
+    /**
+     * @return (Computed) The service account user&#39;s username.
+     * 
+     */
     private String username;
 
     private GetClientServiceAccountUserResult() {}
+    /**
+     * @return (Computed) The service account user&#39;s attributes.
+     * 
+     */
     public Map<String,String> attributes() {
         return this.attributes;
     }
     public String clientId() {
         return this.clientId;
     }
+    /**
+     * @return (Computed) The service account user&#39;s email.
+     * 
+     */
     public String email() {
         return this.email;
     }
     public Boolean emailVerified() {
         return this.emailVerified;
     }
+    /**
+     * @return (Computed) Whether the service account user is enabled.
+     * 
+     */
     public Boolean enabled() {
         return this.enabled;
     }
+    /**
+     * @return (Computed) This attribute exists in order to adhere to the spec of a Keycloak user, but a service account user will never have a federated identity, so this will always be `null`.
+     * 
+     */
     public List<GetClientServiceAccountUserFederatedIdentity> federatedIdentities() {
         return this.federatedIdentities;
     }
+    /**
+     * @return (Computed) The service account user&#39;s first name.
+     * 
+     */
     public String firstName() {
         return this.firstName;
     }
@@ -60,6 +108,10 @@ public final class GetClientServiceAccountUserResult {
     public String id() {
         return this.id;
     }
+    /**
+     * @return (Computed) The service account user&#39;s last name.
+     * 
+     */
     public String lastName() {
         return this.lastName;
     }
@@ -69,6 +121,10 @@ public final class GetClientServiceAccountUserResult {
     public List<String> requiredActions() {
         return this.requiredActions;
     }
+    /**
+     * @return (Computed) The service account user&#39;s username.
+     * 
+     */
     public String username() {
         return this.username;
     }

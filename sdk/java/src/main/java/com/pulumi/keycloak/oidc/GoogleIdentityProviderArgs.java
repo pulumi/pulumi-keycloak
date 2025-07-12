@@ -250,6 +250,35 @@ public final class GoogleIdentityProviderArgs extends com.pulumi.resources.Resou
         return Optional.ofNullable(this.linkOnly);
     }
 
+    @Import(name="orgDomain")
+    private @Nullable Output<String> orgDomain;
+
+    public Optional<Output<String>> orgDomain() {
+        return Optional.ofNullable(this.orgDomain);
+    }
+
+    @Import(name="orgRedirectModeEmailMatches")
+    private @Nullable Output<Boolean> orgRedirectModeEmailMatches;
+
+    public Optional<Output<Boolean>> orgRedirectModeEmailMatches() {
+        return Optional.ofNullable(this.orgRedirectModeEmailMatches);
+    }
+
+    /**
+     * ID of organization with which this identity is linked.
+     * 
+     */
+    @Import(name="organizationId")
+    private @Nullable Output<String> organizationId;
+
+    /**
+     * @return ID of organization with which this identity is linked.
+     * 
+     */
+    public Optional<Output<String>> organizationId() {
+        return Optional.ofNullable(this.organizationId);
+    }
+
     /**
      * The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
      * 
@@ -389,6 +418,9 @@ public final class GoogleIdentityProviderArgs extends com.pulumi.resources.Resou
         this.hideOnLoginPage = $.hideOnLoginPage;
         this.hostedDomain = $.hostedDomain;
         this.linkOnly = $.linkOnly;
+        this.orgDomain = $.orgDomain;
+        this.orgRedirectModeEmailMatches = $.orgRedirectModeEmailMatches;
+        this.organizationId = $.organizationId;
         this.postBrokerLoginFlowAlias = $.postBrokerLoginFlowAlias;
         this.providerId = $.providerId;
         this.realm = $.realm;
@@ -739,6 +771,45 @@ public final class GoogleIdentityProviderArgs extends com.pulumi.resources.Resou
          */
         public Builder linkOnly(Boolean linkOnly) {
             return linkOnly(Output.of(linkOnly));
+        }
+
+        public Builder orgDomain(@Nullable Output<String> orgDomain) {
+            $.orgDomain = orgDomain;
+            return this;
+        }
+
+        public Builder orgDomain(String orgDomain) {
+            return orgDomain(Output.of(orgDomain));
+        }
+
+        public Builder orgRedirectModeEmailMatches(@Nullable Output<Boolean> orgRedirectModeEmailMatches) {
+            $.orgRedirectModeEmailMatches = orgRedirectModeEmailMatches;
+            return this;
+        }
+
+        public Builder orgRedirectModeEmailMatches(Boolean orgRedirectModeEmailMatches) {
+            return orgRedirectModeEmailMatches(Output.of(orgRedirectModeEmailMatches));
+        }
+
+        /**
+         * @param organizationId ID of organization with which this identity is linked.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder organizationId(@Nullable Output<String> organizationId) {
+            $.organizationId = organizationId;
+            return this;
+        }
+
+        /**
+         * @param organizationId ID of organization with which this identity is linked.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder organizationId(String organizationId) {
+            return organizationId(Output.of(organizationId));
         }
 
         /**

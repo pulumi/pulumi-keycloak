@@ -75,6 +75,11 @@ export const getGroup: typeof import("./getGroup").getGroup = null as any;
 export const getGroupOutput: typeof import("./getGroup").getGroupOutput = null as any;
 utilities.lazyLoad(exports, ["getGroup","getGroupOutput"], () => require("./getGroup"));
 
+export { GetOrganizationArgs, GetOrganizationResult, GetOrganizationOutputArgs } from "./getOrganization";
+export const getOrganization: typeof import("./getOrganization").getOrganization = null as any;
+export const getOrganizationOutput: typeof import("./getOrganization").getOrganizationOutput = null as any;
+utilities.lazyLoad(exports, ["getOrganization","getOrganizationOutput"], () => require("./getOrganization"));
+
 export { GetRealmArgs, GetRealmResult, GetRealmOutputArgs } from "./getRealm";
 export const getRealm: typeof import("./getRealm").getRealm = null as any;
 export const getRealmOutput: typeof import("./getRealm").getRealmOutput = null as any;
@@ -145,6 +150,11 @@ export type IdentityProviderTokenExchangeScopePermission = import("./identityPro
 export const IdentityProviderTokenExchangeScopePermission: typeof import("./identityProviderTokenExchangeScopePermission").IdentityProviderTokenExchangeScopePermission = null as any;
 utilities.lazyLoad(exports, ["IdentityProviderTokenExchangeScopePermission"], () => require("./identityProviderTokenExchangeScopePermission"));
 
+export { OrganizationArgs, OrganizationState } from "./organization";
+export type Organization = import("./organization").Organization;
+export const Organization: typeof import("./organization").Organization = null as any;
+utilities.lazyLoad(exports, ["Organization"], () => require("./organization"));
+
 export * from "./provider";
 import { Provider } from "./provider";
 
@@ -152,6 +162,16 @@ export { RealmArgs, RealmState } from "./realm";
 export type Realm = import("./realm").Realm;
 export const Realm: typeof import("./realm").Realm = null as any;
 utilities.lazyLoad(exports, ["Realm"], () => require("./realm"));
+
+export { RealmClientPolicyProfileArgs, RealmClientPolicyProfileState } from "./realmClientPolicyProfile";
+export type RealmClientPolicyProfile = import("./realmClientPolicyProfile").RealmClientPolicyProfile;
+export const RealmClientPolicyProfile: typeof import("./realmClientPolicyProfile").RealmClientPolicyProfile = null as any;
+utilities.lazyLoad(exports, ["RealmClientPolicyProfile"], () => require("./realmClientPolicyProfile"));
+
+export { RealmClientPolicyProfilePolicyArgs, RealmClientPolicyProfilePolicyState } from "./realmClientPolicyProfilePolicy";
+export type RealmClientPolicyProfilePolicy = import("./realmClientPolicyProfilePolicy").RealmClientPolicyProfilePolicy;
+export const RealmClientPolicyProfilePolicy: typeof import("./realmClientPolicyProfilePolicy").RealmClientPolicyProfilePolicy = null as any;
+utilities.lazyLoad(exports, ["RealmClientPolicyProfilePolicy"], () => require("./realmClientPolicyProfilePolicy"));
 
 export { RealmDefaultClientScopesArgs, RealmDefaultClientScopesState } from "./realmDefaultClientScopes";
 export type RealmDefaultClientScopes = import("./realmDefaultClientScopes").RealmDefaultClientScopes;
@@ -305,8 +325,14 @@ const _module = {
                 return new HardcodedRoleIdentityMapper(name, <any>undefined, { urn })
             case "keycloak:index/identityProviderTokenExchangeScopePermission:IdentityProviderTokenExchangeScopePermission":
                 return new IdentityProviderTokenExchangeScopePermission(name, <any>undefined, { urn })
+            case "keycloak:index/organization:Organization":
+                return new Organization(name, <any>undefined, { urn })
             case "keycloak:index/realm:Realm":
                 return new Realm(name, <any>undefined, { urn })
+            case "keycloak:index/realmClientPolicyProfile:RealmClientPolicyProfile":
+                return new RealmClientPolicyProfile(name, <any>undefined, { urn })
+            case "keycloak:index/realmClientPolicyProfilePolicy:RealmClientPolicyProfilePolicy":
+                return new RealmClientPolicyProfilePolicy(name, <any>undefined, { urn })
             case "keycloak:index/realmDefaultClientScopes:RealmDefaultClientScopes":
                 return new RealmDefaultClientScopes(name, <any>undefined, { urn })
             case "keycloak:index/realmEvents:RealmEvents":
@@ -367,7 +393,10 @@ pulumi.runtime.registerResourceModule("keycloak", "index/hardcodedAttributeMappe
 pulumi.runtime.registerResourceModule("keycloak", "index/hardcodedGroupIdentityProviderMapper", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/hardcodedRoleIdentityMapper", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/identityProviderTokenExchangeScopePermission", _module)
+pulumi.runtime.registerResourceModule("keycloak", "index/organization", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/realm", _module)
+pulumi.runtime.registerResourceModule("keycloak", "index/realmClientPolicyProfile", _module)
+pulumi.runtime.registerResourceModule("keycloak", "index/realmClientPolicyProfilePolicy", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/realmDefaultClientScopes", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/realmEvents", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/realmKeystoreAesGenerated", _module)

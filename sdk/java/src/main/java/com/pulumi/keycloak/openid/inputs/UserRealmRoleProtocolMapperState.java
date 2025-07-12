@@ -47,6 +47,21 @@ public final class UserRealmRoleProtocolMapperState extends com.pulumi.resources
     }
 
     /**
+     * Indicates if the property should be added as a claim to the Token Introspection response body. Defaults to `true`.
+     * 
+     */
+    @Import(name="addToTokenIntrospection")
+    private @Nullable Output<Boolean> addToTokenIntrospection;
+
+    /**
+     * @return Indicates if the property should be added as a claim to the Token Introspection response body. Defaults to `true`.
+     * 
+     */
+    public Optional<Output<Boolean>> addToTokenIntrospection() {
+        return Optional.ofNullable(this.addToTokenIntrospection);
+    }
+
+    /**
      * Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
      * 
      */
@@ -186,6 +201,7 @@ public final class UserRealmRoleProtocolMapperState extends com.pulumi.resources
     private UserRealmRoleProtocolMapperState(UserRealmRoleProtocolMapperState $) {
         this.addToAccessToken = $.addToAccessToken;
         this.addToIdToken = $.addToIdToken;
+        this.addToTokenIntrospection = $.addToTokenIntrospection;
         this.addToUserinfo = $.addToUserinfo;
         this.claimName = $.claimName;
         this.claimValueType = $.claimValueType;
@@ -255,6 +271,27 @@ public final class UserRealmRoleProtocolMapperState extends com.pulumi.resources
          */
         public Builder addToIdToken(Boolean addToIdToken) {
             return addToIdToken(Output.of(addToIdToken));
+        }
+
+        /**
+         * @param addToTokenIntrospection Indicates if the property should be added as a claim to the Token Introspection response body. Defaults to `true`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder addToTokenIntrospection(@Nullable Output<Boolean> addToTokenIntrospection) {
+            $.addToTokenIntrospection = addToTokenIntrospection;
+            return this;
+        }
+
+        /**
+         * @param addToTokenIntrospection Indicates if the property should be added as a claim to the Token Introspection response body. Defaults to `true`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder addToTokenIntrospection(Boolean addToTokenIntrospection) {
+            return addToTokenIntrospection(Output.of(addToTokenIntrospection));
         }
 
         /**

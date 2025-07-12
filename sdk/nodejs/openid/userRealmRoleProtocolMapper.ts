@@ -119,6 +119,10 @@ export class UserRealmRoleProtocolMapper extends pulumi.CustomResource {
      */
     public readonly addToIdToken!: pulumi.Output<boolean | undefined>;
     /**
+     * Indicates if the property should be added as a claim to the Token Introspection response body. Defaults to `true`.
+     */
+    public readonly addToTokenIntrospection!: pulumi.Output<boolean | undefined>;
+    /**
      * Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
      */
     public readonly addToUserinfo!: pulumi.Output<boolean | undefined>;
@@ -170,6 +174,7 @@ export class UserRealmRoleProtocolMapper extends pulumi.CustomResource {
             const state = argsOrState as UserRealmRoleProtocolMapperState | undefined;
             resourceInputs["addToAccessToken"] = state ? state.addToAccessToken : undefined;
             resourceInputs["addToIdToken"] = state ? state.addToIdToken : undefined;
+            resourceInputs["addToTokenIntrospection"] = state ? state.addToTokenIntrospection : undefined;
             resourceInputs["addToUserinfo"] = state ? state.addToUserinfo : undefined;
             resourceInputs["claimName"] = state ? state.claimName : undefined;
             resourceInputs["claimValueType"] = state ? state.claimValueType : undefined;
@@ -189,6 +194,7 @@ export class UserRealmRoleProtocolMapper extends pulumi.CustomResource {
             }
             resourceInputs["addToAccessToken"] = args ? args.addToAccessToken : undefined;
             resourceInputs["addToIdToken"] = args ? args.addToIdToken : undefined;
+            resourceInputs["addToTokenIntrospection"] = args ? args.addToTokenIntrospection : undefined;
             resourceInputs["addToUserinfo"] = args ? args.addToUserinfo : undefined;
             resourceInputs["claimName"] = args ? args.claimName : undefined;
             resourceInputs["claimValueType"] = args ? args.claimValueType : undefined;
@@ -216,6 +222,10 @@ export interface UserRealmRoleProtocolMapperState {
      * Indicates if the property should be added as a claim to the id token. Defaults to `true`.
      */
     addToIdToken?: pulumi.Input<boolean>;
+    /**
+     * Indicates if the property should be added as a claim to the Token Introspection response body. Defaults to `true`.
+     */
+    addToTokenIntrospection?: pulumi.Input<boolean>;
     /**
      * Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
      */
@@ -266,6 +276,10 @@ export interface UserRealmRoleProtocolMapperArgs {
      * Indicates if the property should be added as a claim to the id token. Defaults to `true`.
      */
     addToIdToken?: pulumi.Input<boolean>;
+    /**
+     * Indicates if the property should be added as a claim to the Token Introspection response body. Defaults to `true`.
+     */
+    addToTokenIntrospection?: pulumi.Input<boolean>;
     /**
      * Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
      */

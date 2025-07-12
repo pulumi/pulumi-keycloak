@@ -240,20 +240,41 @@ namespace Pulumi.Keycloak.OpenId
     [OutputType]
     public sealed class GetClientServiceAccountUserResult
     {
+        /// <summary>
+        /// (Computed) The service account user's attributes.
+        /// </summary>
         public readonly ImmutableDictionary<string, string> Attributes;
         public readonly string ClientId;
+        /// <summary>
+        /// (Computed) The service account user's email.
+        /// </summary>
         public readonly string Email;
         public readonly bool EmailVerified;
+        /// <summary>
+        /// (Computed) Whether the service account user is enabled.
+        /// </summary>
         public readonly bool Enabled;
+        /// <summary>
+        /// (Computed) This attribute exists in order to adhere to the spec of a Keycloak user, but a service account user will never have a federated identity, so this will always be `null`.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetClientServiceAccountUserFederatedIdentityResult> FederatedIdentities;
+        /// <summary>
+        /// (Computed) The service account user's first name.
+        /// </summary>
         public readonly string FirstName;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// (Computed) The service account user's last name.
+        /// </summary>
         public readonly string LastName;
         public readonly string RealmId;
         public readonly ImmutableArray<string> RequiredActions;
+        /// <summary>
+        /// (Computed) The service account user's username.
+        /// </summary>
         public readonly string Username;
 
         [OutputConstructor]

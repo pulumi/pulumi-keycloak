@@ -76,35 +76,36 @@ type LookupClientArgs struct {
 
 // A collection of values returned by getClient.
 type LookupClientResult struct {
-	AccessTokenLifespan                    string                                       `pulumi:"accessTokenLifespan"`
-	AccessType                             string                                       `pulumi:"accessType"`
-	AdminUrl                               string                                       `pulumi:"adminUrl"`
-	AlwaysDisplayInConsole                 *bool                                        `pulumi:"alwaysDisplayInConsole"`
-	AuthenticationFlowBindingOverrides     []GetClientAuthenticationFlowBindingOverride `pulumi:"authenticationFlowBindingOverrides"`
-	Authorizations                         []GetClientAuthorization                     `pulumi:"authorizations"`
-	BackchannelLogoutRevokeOfflineSessions bool                                         `pulumi:"backchannelLogoutRevokeOfflineSessions"`
-	BackchannelLogoutSessionRequired       bool                                         `pulumi:"backchannelLogoutSessionRequired"`
-	BackchannelLogoutUrl                   string                                       `pulumi:"backchannelLogoutUrl"`
-	BaseUrl                                string                                       `pulumi:"baseUrl"`
-	ClientAuthenticatorType                string                                       `pulumi:"clientAuthenticatorType"`
-	ClientId                               string                                       `pulumi:"clientId"`
-	ClientOfflineSessionIdleTimeout        string                                       `pulumi:"clientOfflineSessionIdleTimeout"`
-	ClientOfflineSessionMaxLifespan        string                                       `pulumi:"clientOfflineSessionMaxLifespan"`
-	ClientSecret                           string                                       `pulumi:"clientSecret"`
-	ClientSessionIdleTimeout               string                                       `pulumi:"clientSessionIdleTimeout"`
-	ClientSessionMaxLifespan               string                                       `pulumi:"clientSessionMaxLifespan"`
-	ConsentRequired                        bool                                         `pulumi:"consentRequired"`
-	ConsentScreenText                      *string                                      `pulumi:"consentScreenText"`
-	Description                            string                                       `pulumi:"description"`
-	DirectAccessGrantsEnabled              bool                                         `pulumi:"directAccessGrantsEnabled"`
-	DisplayOnConsentScreen                 *bool                                        `pulumi:"displayOnConsentScreen"`
-	Enabled                                bool                                         `pulumi:"enabled"`
-	ExcludeIssuerFromAuthResponse          bool                                         `pulumi:"excludeIssuerFromAuthResponse"`
-	ExcludeSessionStateFromAuthResponse    bool                                         `pulumi:"excludeSessionStateFromAuthResponse"`
-	ExtraConfig                            map[string]string                            `pulumi:"extraConfig"`
-	FrontchannelLogoutEnabled              bool                                         `pulumi:"frontchannelLogoutEnabled"`
-	FrontchannelLogoutUrl                  string                                       `pulumi:"frontchannelLogoutUrl"`
-	FullScopeAllowed                       bool                                         `pulumi:"fullScopeAllowed"`
+	AccessTokenLifespan                      string                                       `pulumi:"accessTokenLifespan"`
+	AccessType                               string                                       `pulumi:"accessType"`
+	AdminUrl                                 string                                       `pulumi:"adminUrl"`
+	AllowRefreshTokenInStandardTokenExchange string                                       `pulumi:"allowRefreshTokenInStandardTokenExchange"`
+	AlwaysDisplayInConsole                   *bool                                        `pulumi:"alwaysDisplayInConsole"`
+	AuthenticationFlowBindingOverrides       []GetClientAuthenticationFlowBindingOverride `pulumi:"authenticationFlowBindingOverrides"`
+	Authorizations                           []GetClientAuthorization                     `pulumi:"authorizations"`
+	BackchannelLogoutRevokeOfflineSessions   bool                                         `pulumi:"backchannelLogoutRevokeOfflineSessions"`
+	BackchannelLogoutSessionRequired         bool                                         `pulumi:"backchannelLogoutSessionRequired"`
+	BackchannelLogoutUrl                     string                                       `pulumi:"backchannelLogoutUrl"`
+	BaseUrl                                  string                                       `pulumi:"baseUrl"`
+	ClientAuthenticatorType                  string                                       `pulumi:"clientAuthenticatorType"`
+	ClientId                                 string                                       `pulumi:"clientId"`
+	ClientOfflineSessionIdleTimeout          string                                       `pulumi:"clientOfflineSessionIdleTimeout"`
+	ClientOfflineSessionMaxLifespan          string                                       `pulumi:"clientOfflineSessionMaxLifespan"`
+	ClientSecret                             string                                       `pulumi:"clientSecret"`
+	ClientSessionIdleTimeout                 string                                       `pulumi:"clientSessionIdleTimeout"`
+	ClientSessionMaxLifespan                 string                                       `pulumi:"clientSessionMaxLifespan"`
+	ConsentRequired                          bool                                         `pulumi:"consentRequired"`
+	ConsentScreenText                        *string                                      `pulumi:"consentScreenText"`
+	Description                              string                                       `pulumi:"description"`
+	DirectAccessGrantsEnabled                bool                                         `pulumi:"directAccessGrantsEnabled"`
+	DisplayOnConsentScreen                   *bool                                        `pulumi:"displayOnConsentScreen"`
+	Enabled                                  bool                                         `pulumi:"enabled"`
+	ExcludeIssuerFromAuthResponse            bool                                         `pulumi:"excludeIssuerFromAuthResponse"`
+	ExcludeSessionStateFromAuthResponse      bool                                         `pulumi:"excludeSessionStateFromAuthResponse"`
+	ExtraConfig                              map[string]string                            `pulumi:"extraConfig"`
+	FrontchannelLogoutEnabled                bool                                         `pulumi:"frontchannelLogoutEnabled"`
+	FrontchannelLogoutUrl                    string                                       `pulumi:"frontchannelLogoutUrl"`
+	FullScopeAllowed                         bool                                         `pulumi:"fullScopeAllowed"`
 	// The provider-assigned unique ID for this managed resource.
 	Id                                    string   `pulumi:"id"`
 	ImplicitFlowEnabled                   bool     `pulumi:"implicitFlowEnabled"`
@@ -120,6 +121,7 @@ type LookupClientResult struct {
 	ServiceAccountUserId                  string   `pulumi:"serviceAccountUserId"`
 	ServiceAccountsEnabled                bool     `pulumi:"serviceAccountsEnabled"`
 	StandardFlowEnabled                   bool     `pulumi:"standardFlowEnabled"`
+	StandardTokenExchangeEnabled          bool     `pulumi:"standardTokenExchangeEnabled"`
 	UseRefreshTokens                      bool     `pulumi:"useRefreshTokens"`
 	UseRefreshTokensClientCredentials     bool     `pulumi:"useRefreshTokensClientCredentials"`
 	ValidPostLogoutRedirectUris           []string `pulumi:"validPostLogoutRedirectUris"`
@@ -180,6 +182,10 @@ func (o LookupClientResultOutput) AccessType() pulumi.StringOutput {
 
 func (o LookupClientResultOutput) AdminUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClientResult) string { return v.AdminUrl }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) AllowRefreshTokenInStandardTokenExchange() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.AllowRefreshTokenInStandardTokenExchange }).(pulumi.StringOutput)
 }
 
 func (o LookupClientResultOutput) AlwaysDisplayInConsole() pulumi.BoolPtrOutput {
@@ -343,6 +349,10 @@ func (o LookupClientResultOutput) ServiceAccountsEnabled() pulumi.BoolOutput {
 
 func (o LookupClientResultOutput) StandardFlowEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupClientResult) bool { return v.StandardFlowEnabled }).(pulumi.BoolOutput)
+}
+
+func (o LookupClientResultOutput) StandardTokenExchangeEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupClientResult) bool { return v.StandardTokenExchangeEnabled }).(pulumi.BoolOutput)
 }
 
 func (o LookupClientResultOutput) UseRefreshTokens() pulumi.BoolOutput {

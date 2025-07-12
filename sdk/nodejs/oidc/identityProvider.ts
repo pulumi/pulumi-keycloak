@@ -9,6 +9,13 @@ import * as utilities from "../utilities";
  *
  * OIDC (OpenID Connect) identity providers allows users to authenticate through a third party system using the OIDC standard.
  *
+ * > **NOTICE:** This resource now supports write-only arguments
+ * for client secret via the new arguments `clientSecretWo` and `clientSecretWoVersion`. Using write-only arguments
+ * prevents sensitive values from being stored in plan and state files. You cannot use `clientSecretWo` and
+ * `clientSecretWoVersion` alongside `clientSecret` as this will result in a validation error due to conflicts.
+ * > 
+ * > For backward compatibility, the behavior of the original `clientSecret` argument remains unchanged.
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -101,13 +108,21 @@ export class IdentityProvider extends pulumi.CustomResource {
      */
     public readonly clientId!: pulumi.Output<string>;
     /**
-     * The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
+     * The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `clientSecretWo` and `clientSecretWoVersion`.
      */
-    public readonly clientSecret!: pulumi.Output<string>;
+    public readonly clientSecret!: pulumi.Output<string | undefined>;
+    /**
+     * Version of the Client secret write-only argument
+     */
+    public readonly clientSecretWoVersion!: pulumi.Output<number | undefined>;
     /**
      * The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
      */
     public readonly defaultScopes!: pulumi.Output<string | undefined>;
+    /**
+     * When `true`, disables the check for the `typ` claim of tokens received from the identity provider. Defaults to `false`.
+     */
+    public readonly disableTypeClaimCheck!: pulumi.Output<boolean | undefined>;
     /**
      * When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
      */
@@ -157,6 +172,18 @@ export class IdentityProvider extends pulumi.CustomResource {
      * The Logout URL is the end session endpoint to use to sign-out the user from external identity provider.
      */
     public readonly logoutUrl!: pulumi.Output<string | undefined>;
+    /**
+     * The organization domain to associate this identity provider with. it is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
+     */
+    public readonly orgDomain!: pulumi.Output<string | undefined>;
+    /**
+     * Indicates whether to automatically redirect user to this identity provider when email domain matches domain.
+     */
+    public readonly orgRedirectModeEmailMatches!: pulumi.Output<boolean | undefined>;
+    /**
+     * The ID of the organization to link this identity provider to.
+     */
+    public readonly organizationId!: pulumi.Output<string | undefined>;
     /**
      * The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
      */
@@ -219,7 +246,9 @@ export class IdentityProvider extends pulumi.CustomResource {
             resourceInputs["backchannelSupported"] = state ? state.backchannelSupported : undefined;
             resourceInputs["clientId"] = state ? state.clientId : undefined;
             resourceInputs["clientSecret"] = state ? state.clientSecret : undefined;
+            resourceInputs["clientSecretWoVersion"] = state ? state.clientSecretWoVersion : undefined;
             resourceInputs["defaultScopes"] = state ? state.defaultScopes : undefined;
+            resourceInputs["disableTypeClaimCheck"] = state ? state.disableTypeClaimCheck : undefined;
             resourceInputs["disableUserInfo"] = state ? state.disableUserInfo : undefined;
             resourceInputs["displayName"] = state ? state.displayName : undefined;
             resourceInputs["enabled"] = state ? state.enabled : undefined;
@@ -233,6 +262,9 @@ export class IdentityProvider extends pulumi.CustomResource {
             resourceInputs["linkOnly"] = state ? state.linkOnly : undefined;
             resourceInputs["loginHint"] = state ? state.loginHint : undefined;
             resourceInputs["logoutUrl"] = state ? state.logoutUrl : undefined;
+            resourceInputs["orgDomain"] = state ? state.orgDomain : undefined;
+            resourceInputs["orgRedirectModeEmailMatches"] = state ? state.orgRedirectModeEmailMatches : undefined;
+            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
             resourceInputs["postBrokerLoginFlowAlias"] = state ? state.postBrokerLoginFlowAlias : undefined;
             resourceInputs["providerId"] = state ? state.providerId : undefined;
             resourceInputs["realm"] = state ? state.realm : undefined;
@@ -254,9 +286,6 @@ export class IdentityProvider extends pulumi.CustomResource {
             if ((!args || args.clientId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'clientId'");
             }
-            if ((!args || args.clientSecret === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'clientSecret'");
-            }
             if ((!args || args.realm === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'realm'");
             }
@@ -271,7 +300,9 @@ export class IdentityProvider extends pulumi.CustomResource {
             resourceInputs["backchannelSupported"] = args ? args.backchannelSupported : undefined;
             resourceInputs["clientId"] = args ? args.clientId : undefined;
             resourceInputs["clientSecret"] = args?.clientSecret ? pulumi.secret(args.clientSecret) : undefined;
+            resourceInputs["clientSecretWoVersion"] = args ? args.clientSecretWoVersion : undefined;
             resourceInputs["defaultScopes"] = args ? args.defaultScopes : undefined;
+            resourceInputs["disableTypeClaimCheck"] = args ? args.disableTypeClaimCheck : undefined;
             resourceInputs["disableUserInfo"] = args ? args.disableUserInfo : undefined;
             resourceInputs["displayName"] = args ? args.displayName : undefined;
             resourceInputs["enabled"] = args ? args.enabled : undefined;
@@ -284,6 +315,9 @@ export class IdentityProvider extends pulumi.CustomResource {
             resourceInputs["linkOnly"] = args ? args.linkOnly : undefined;
             resourceInputs["loginHint"] = args ? args.loginHint : undefined;
             resourceInputs["logoutUrl"] = args ? args.logoutUrl : undefined;
+            resourceInputs["orgDomain"] = args ? args.orgDomain : undefined;
+            resourceInputs["orgRedirectModeEmailMatches"] = args ? args.orgRedirectModeEmailMatches : undefined;
+            resourceInputs["organizationId"] = args ? args.organizationId : undefined;
             resourceInputs["postBrokerLoginFlowAlias"] = args ? args.postBrokerLoginFlowAlias : undefined;
             resourceInputs["providerId"] = args ? args.providerId : undefined;
             resourceInputs["realm"] = args ? args.realm : undefined;
@@ -336,13 +370,21 @@ export interface IdentityProviderState {
      */
     clientId?: pulumi.Input<string>;
     /**
-     * The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
+     * The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `clientSecretWo` and `clientSecretWoVersion`.
      */
     clientSecret?: pulumi.Input<string>;
+    /**
+     * Version of the Client secret write-only argument
+     */
+    clientSecretWoVersion?: pulumi.Input<number>;
     /**
      * The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
      */
     defaultScopes?: pulumi.Input<string>;
+    /**
+     * When `true`, disables the check for the `typ` claim of tokens received from the identity provider. Defaults to `false`.
+     */
+    disableTypeClaimCheck?: pulumi.Input<boolean>;
     /**
      * When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
      */
@@ -392,6 +434,18 @@ export interface IdentityProviderState {
      * The Logout URL is the end session endpoint to use to sign-out the user from external identity provider.
      */
     logoutUrl?: pulumi.Input<string>;
+    /**
+     * The organization domain to associate this identity provider with. it is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
+     */
+    orgDomain?: pulumi.Input<string>;
+    /**
+     * Indicates whether to automatically redirect user to this identity provider when email domain matches domain.
+     */
+    orgRedirectModeEmailMatches?: pulumi.Input<boolean>;
+    /**
+     * The ID of the organization to link this identity provider to.
+     */
+    organizationId?: pulumi.Input<string>;
     /**
      * The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
      */
@@ -467,13 +521,21 @@ export interface IdentityProviderArgs {
      */
     clientId: pulumi.Input<string>;
     /**
-     * The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
+     * The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `clientSecretWo` and `clientSecretWoVersion`.
      */
-    clientSecret: pulumi.Input<string>;
+    clientSecret?: pulumi.Input<string>;
+    /**
+     * Version of the Client secret write-only argument
+     */
+    clientSecretWoVersion?: pulumi.Input<number>;
     /**
      * The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
      */
     defaultScopes?: pulumi.Input<string>;
+    /**
+     * When `true`, disables the check for the `typ` claim of tokens received from the identity provider. Defaults to `false`.
+     */
+    disableTypeClaimCheck?: pulumi.Input<boolean>;
     /**
      * When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
      */
@@ -519,6 +581,18 @@ export interface IdentityProviderArgs {
      * The Logout URL is the end session endpoint to use to sign-out the user from external identity provider.
      */
     logoutUrl?: pulumi.Input<string>;
+    /**
+     * The organization domain to associate this identity provider with. it is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
+     */
+    orgDomain?: pulumi.Input<string>;
+    /**
+     * Indicates whether to automatically redirect user to this identity provider when email domain matches domain.
+     */
+    orgRedirectModeEmailMatches?: pulumi.Input<boolean>;
+    /**
+     * The ID of the organization to link this identity provider to.
+     */
+    organizationId?: pulumi.Input<string>;
     /**
      * The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
      */

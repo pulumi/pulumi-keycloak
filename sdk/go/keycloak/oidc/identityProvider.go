@@ -16,6 +16,13 @@ import (
 //
 // OIDC (OpenID Connect) identity providers allows users to authenticate through a third party system using the OIDC standard.
 //
+// > **NOTICE:** This resource now supports write-only arguments
+// for client secret via the new arguments `clientSecretWo` and `clientSecretWoVersion`. Using write-only arguments
+// prevents sensitive values from being stored in plan and state files. You cannot use `clientSecretWo` and
+// `clientSecretWoVersion` alongside `clientSecret` as this will result in a validation error due to conflicts.
+// >
+// > For backward compatibility, the behavior of the original `clientSecret` argument remains unchanged.
+//
 // ## Example Usage
 //
 // ```go
@@ -86,10 +93,14 @@ type IdentityProvider struct {
 	BackchannelSupported pulumi.BoolPtrOutput `pulumi:"backchannelSupported"`
 	// The client or client identifier registered within the identity provider.
 	ClientId pulumi.StringOutput `pulumi:"clientId"`
-	// The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
-	ClientSecret pulumi.StringOutput `pulumi:"clientSecret"`
+	// The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `clientSecretWo` and `clientSecretWoVersion`.
+	ClientSecret pulumi.StringPtrOutput `pulumi:"clientSecret"`
+	// Version of the Client secret write-only argument
+	ClientSecretWoVersion pulumi.IntPtrOutput `pulumi:"clientSecretWoVersion"`
 	// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
 	DefaultScopes pulumi.StringPtrOutput `pulumi:"defaultScopes"`
+	// When `true`, disables the check for the `typ` claim of tokens received from the identity provider. Defaults to `false`.
+	DisableTypeClaimCheck pulumi.BoolPtrOutput `pulumi:"disableTypeClaimCheck"`
 	// When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
 	DisableUserInfo pulumi.BoolPtrOutput `pulumi:"disableUserInfo"`
 	// Display name for the identity provider in the GUI.
@@ -115,6 +126,12 @@ type IdentityProvider struct {
 	LoginHint pulumi.StringPtrOutput `pulumi:"loginHint"`
 	// The Logout URL is the end session endpoint to use to sign-out the user from external identity provider.
 	LogoutUrl pulumi.StringPtrOutput `pulumi:"logoutUrl"`
+	// The organization domain to associate this identity provider with. it is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
+	OrgDomain pulumi.StringPtrOutput `pulumi:"orgDomain"`
+	// Indicates whether to automatically redirect user to this identity provider when email domain matches domain.
+	OrgRedirectModeEmailMatches pulumi.BoolPtrOutput `pulumi:"orgRedirectModeEmailMatches"`
+	// The ID of the organization to link this identity provider to.
+	OrganizationId pulumi.StringPtrOutput `pulumi:"organizationId"`
 	// The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
 	PostBrokerLoginFlowAlias pulumi.StringPtrOutput `pulumi:"postBrokerLoginFlowAlias"`
 	// The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
@@ -153,9 +170,6 @@ func NewIdentityProvider(ctx *pulumi.Context,
 	if args.ClientId == nil {
 		return nil, errors.New("invalid value for required argument 'ClientId'")
 	}
-	if args.ClientSecret == nil {
-		return nil, errors.New("invalid value for required argument 'ClientSecret'")
-	}
 	if args.Realm == nil {
 		return nil, errors.New("invalid value for required argument 'Realm'")
 	}
@@ -163,7 +177,7 @@ func NewIdentityProvider(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'TokenUrl'")
 	}
 	if args.ClientSecret != nil {
-		args.ClientSecret = pulumi.ToSecret(args.ClientSecret).(pulumi.StringInput)
+		args.ClientSecret = pulumi.ToSecret(args.ClientSecret).(pulumi.StringPtrInput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"clientSecret",
@@ -206,10 +220,14 @@ type identityProviderState struct {
 	BackchannelSupported *bool `pulumi:"backchannelSupported"`
 	// The client or client identifier registered within the identity provider.
 	ClientId *string `pulumi:"clientId"`
-	// The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
+	// The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `clientSecretWo` and `clientSecretWoVersion`.
 	ClientSecret *string `pulumi:"clientSecret"`
+	// Version of the Client secret write-only argument
+	ClientSecretWoVersion *int `pulumi:"clientSecretWoVersion"`
 	// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
 	DefaultScopes *string `pulumi:"defaultScopes"`
+	// When `true`, disables the check for the `typ` claim of tokens received from the identity provider. Defaults to `false`.
+	DisableTypeClaimCheck *bool `pulumi:"disableTypeClaimCheck"`
 	// When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
 	DisableUserInfo *bool `pulumi:"disableUserInfo"`
 	// Display name for the identity provider in the GUI.
@@ -235,6 +253,12 @@ type identityProviderState struct {
 	LoginHint *string `pulumi:"loginHint"`
 	// The Logout URL is the end session endpoint to use to sign-out the user from external identity provider.
 	LogoutUrl *string `pulumi:"logoutUrl"`
+	// The organization domain to associate this identity provider with. it is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
+	OrgDomain *string `pulumi:"orgDomain"`
+	// Indicates whether to automatically redirect user to this identity provider when email domain matches domain.
+	OrgRedirectModeEmailMatches *bool `pulumi:"orgRedirectModeEmailMatches"`
+	// The ID of the organization to link this identity provider to.
+	OrganizationId *string `pulumi:"organizationId"`
 	// The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
 	PostBrokerLoginFlowAlias *string `pulumi:"postBrokerLoginFlowAlias"`
 	// The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
@@ -272,10 +296,14 @@ type IdentityProviderState struct {
 	BackchannelSupported pulumi.BoolPtrInput
 	// The client or client identifier registered within the identity provider.
 	ClientId pulumi.StringPtrInput
-	// The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
+	// The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `clientSecretWo` and `clientSecretWoVersion`.
 	ClientSecret pulumi.StringPtrInput
+	// Version of the Client secret write-only argument
+	ClientSecretWoVersion pulumi.IntPtrInput
 	// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
 	DefaultScopes pulumi.StringPtrInput
+	// When `true`, disables the check for the `typ` claim of tokens received from the identity provider. Defaults to `false`.
+	DisableTypeClaimCheck pulumi.BoolPtrInput
 	// When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
 	DisableUserInfo pulumi.BoolPtrInput
 	// Display name for the identity provider in the GUI.
@@ -301,6 +329,12 @@ type IdentityProviderState struct {
 	LoginHint pulumi.StringPtrInput
 	// The Logout URL is the end session endpoint to use to sign-out the user from external identity provider.
 	LogoutUrl pulumi.StringPtrInput
+	// The organization domain to associate this identity provider with. it is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
+	OrgDomain pulumi.StringPtrInput
+	// Indicates whether to automatically redirect user to this identity provider when email domain matches domain.
+	OrgRedirectModeEmailMatches pulumi.BoolPtrInput
+	// The ID of the organization to link this identity provider to.
+	OrganizationId pulumi.StringPtrInput
 	// The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
 	PostBrokerLoginFlowAlias pulumi.StringPtrInput
 	// The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
@@ -342,10 +376,14 @@ type identityProviderArgs struct {
 	BackchannelSupported *bool `pulumi:"backchannelSupported"`
 	// The client or client identifier registered within the identity provider.
 	ClientId string `pulumi:"clientId"`
-	// The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
-	ClientSecret string `pulumi:"clientSecret"`
+	// The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `clientSecretWo` and `clientSecretWoVersion`.
+	ClientSecret *string `pulumi:"clientSecret"`
+	// Version of the Client secret write-only argument
+	ClientSecretWoVersion *int `pulumi:"clientSecretWoVersion"`
 	// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
 	DefaultScopes *string `pulumi:"defaultScopes"`
+	// When `true`, disables the check for the `typ` claim of tokens received from the identity provider. Defaults to `false`.
+	DisableTypeClaimCheck *bool `pulumi:"disableTypeClaimCheck"`
 	// When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
 	DisableUserInfo *bool `pulumi:"disableUserInfo"`
 	// Display name for the identity provider in the GUI.
@@ -369,6 +407,12 @@ type identityProviderArgs struct {
 	LoginHint *string `pulumi:"loginHint"`
 	// The Logout URL is the end session endpoint to use to sign-out the user from external identity provider.
 	LogoutUrl *string `pulumi:"logoutUrl"`
+	// The organization domain to associate this identity provider with. it is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
+	OrgDomain *string `pulumi:"orgDomain"`
+	// Indicates whether to automatically redirect user to this identity provider when email domain matches domain.
+	OrgRedirectModeEmailMatches *bool `pulumi:"orgRedirectModeEmailMatches"`
+	// The ID of the organization to link this identity provider to.
+	OrganizationId *string `pulumi:"organizationId"`
 	// The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
 	PostBrokerLoginFlowAlias *string `pulumi:"postBrokerLoginFlowAlias"`
 	// The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
@@ -407,10 +451,14 @@ type IdentityProviderArgs struct {
 	BackchannelSupported pulumi.BoolPtrInput
 	// The client or client identifier registered within the identity provider.
 	ClientId pulumi.StringInput
-	// The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
-	ClientSecret pulumi.StringInput
+	// The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `clientSecretWo` and `clientSecretWoVersion`.
+	ClientSecret pulumi.StringPtrInput
+	// Version of the Client secret write-only argument
+	ClientSecretWoVersion pulumi.IntPtrInput
 	// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
 	DefaultScopes pulumi.StringPtrInput
+	// When `true`, disables the check for the `typ` claim of tokens received from the identity provider. Defaults to `false`.
+	DisableTypeClaimCheck pulumi.BoolPtrInput
 	// When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
 	DisableUserInfo pulumi.BoolPtrInput
 	// Display name for the identity provider in the GUI.
@@ -434,6 +482,12 @@ type IdentityProviderArgs struct {
 	LoginHint pulumi.StringPtrInput
 	// The Logout URL is the end session endpoint to use to sign-out the user from external identity provider.
 	LogoutUrl pulumi.StringPtrInput
+	// The organization domain to associate this identity provider with. it is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
+	OrgDomain pulumi.StringPtrInput
+	// Indicates whether to automatically redirect user to this identity provider when email domain matches domain.
+	OrgRedirectModeEmailMatches pulumi.BoolPtrInput
+	// The ID of the organization to link this identity provider to.
+	OrganizationId pulumi.StringPtrInput
 	// The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
 	PostBrokerLoginFlowAlias pulumi.StringPtrInput
 	// The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
@@ -578,14 +632,24 @@ func (o IdentityProviderOutput) ClientId() pulumi.StringOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.StringOutput { return v.ClientId }).(pulumi.StringOutput)
 }
 
-// The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
-func (o IdentityProviderOutput) ClientSecret() pulumi.StringOutput {
-	return o.ApplyT(func(v *IdentityProvider) pulumi.StringOutput { return v.ClientSecret }).(pulumi.StringOutput)
+// The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `clientSecretWo` and `clientSecretWoVersion`.
+func (o IdentityProviderOutput) ClientSecret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.ClientSecret }).(pulumi.StringPtrOutput)
+}
+
+// Version of the Client secret write-only argument
+func (o IdentityProviderOutput) ClientSecretWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.IntPtrOutput { return v.ClientSecretWoVersion }).(pulumi.IntPtrOutput)
 }
 
 // The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
 func (o IdentityProviderOutput) DefaultScopes() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.DefaultScopes }).(pulumi.StringPtrOutput)
+}
+
+// When `true`, disables the check for the `typ` claim of tokens received from the identity provider. Defaults to `false`.
+func (o IdentityProviderOutput) DisableTypeClaimCheck() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.DisableTypeClaimCheck }).(pulumi.BoolPtrOutput)
 }
 
 // When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
@@ -650,6 +714,21 @@ func (o IdentityProviderOutput) LoginHint() pulumi.StringPtrOutput {
 // The Logout URL is the end session endpoint to use to sign-out the user from external identity provider.
 func (o IdentityProviderOutput) LogoutUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.LogoutUrl }).(pulumi.StringPtrOutput)
+}
+
+// The organization domain to associate this identity provider with. it is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
+func (o IdentityProviderOutput) OrgDomain() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.OrgDomain }).(pulumi.StringPtrOutput)
+}
+
+// Indicates whether to automatically redirect user to this identity provider when email domain matches domain.
+func (o IdentityProviderOutput) OrgRedirectModeEmailMatches() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.OrgRedirectModeEmailMatches }).(pulumi.BoolPtrOutput)
+}
+
+// The ID of the organization to link this identity provider to.
+func (o IdentityProviderOutput) OrganizationId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.OrganizationId }).(pulumi.StringPtrOutput)
 }
 
 // The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
