@@ -69,6 +69,9 @@ class GetClientServiceAccountUserResult:
     @property
     @pulumi.getter
     def attributes(self) -> Mapping[str, builtins.str]:
+        """
+        (Computed) The service account user's attributes.
+        """
         return pulumi.get(self, "attributes")
 
     @property
@@ -79,6 +82,9 @@ class GetClientServiceAccountUserResult:
     @property
     @pulumi.getter
     def email(self) -> builtins.str:
+        """
+        (Computed) The service account user's email.
+        """
         return pulumi.get(self, "email")
 
     @property
@@ -89,16 +95,25 @@ class GetClientServiceAccountUserResult:
     @property
     @pulumi.getter
     def enabled(self) -> builtins.bool:
+        """
+        (Computed) Whether the service account user is enabled.
+        """
         return pulumi.get(self, "enabled")
 
     @property
     @pulumi.getter(name="federatedIdentities")
     def federated_identities(self) -> Sequence['outputs.GetClientServiceAccountUserFederatedIdentityResult']:
+        """
+        (Computed) This attribute exists in order to adhere to the spec of a Keycloak user, but a service account user will never have a federated identity, so this will always be `null`.
+        """
         return pulumi.get(self, "federated_identities")
 
     @property
     @pulumi.getter(name="firstName")
     def first_name(self) -> builtins.str:
+        """
+        (Computed) The service account user's first name.
+        """
         return pulumi.get(self, "first_name")
 
     @property
@@ -112,6 +127,9 @@ class GetClientServiceAccountUserResult:
     @property
     @pulumi.getter(name="lastName")
     def last_name(self) -> builtins.str:
+        """
+        (Computed) The service account user's last name.
+        """
         return pulumi.get(self, "last_name")
 
     @property
@@ -127,6 +145,9 @@ class GetClientServiceAccountUserResult:
     @property
     @pulumi.getter
     def username(self) -> builtins.str:
+        """
+        (Computed) The service account user's username.
+        """
         return pulumi.get(self, "username")
 
 

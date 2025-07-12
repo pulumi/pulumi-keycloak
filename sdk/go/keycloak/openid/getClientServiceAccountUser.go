@@ -97,19 +97,26 @@ type GetClientServiceAccountUserArgs struct {
 
 // A collection of values returned by getClientServiceAccountUser.
 type GetClientServiceAccountUserResult struct {
-	Attributes          map[string]string                              `pulumi:"attributes"`
-	ClientId            string                                         `pulumi:"clientId"`
-	Email               string                                         `pulumi:"email"`
-	EmailVerified       bool                                           `pulumi:"emailVerified"`
-	Enabled             bool                                           `pulumi:"enabled"`
+	// (Computed) The service account user's attributes.
+	Attributes map[string]string `pulumi:"attributes"`
+	ClientId   string            `pulumi:"clientId"`
+	// (Computed) The service account user's email.
+	Email         string `pulumi:"email"`
+	EmailVerified bool   `pulumi:"emailVerified"`
+	// (Computed) Whether the service account user is enabled.
+	Enabled bool `pulumi:"enabled"`
+	// (Computed) This attribute exists in order to adhere to the spec of a Keycloak user, but a service account user will never have a federated identity, so this will always be `null`.
 	FederatedIdentities []GetClientServiceAccountUserFederatedIdentity `pulumi:"federatedIdentities"`
-	FirstName           string                                         `pulumi:"firstName"`
+	// (Computed) The service account user's first name.
+	FirstName string `pulumi:"firstName"`
 	// The provider-assigned unique ID for this managed resource.
-	Id              string   `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// (Computed) The service account user's last name.
 	LastName        string   `pulumi:"lastName"`
 	RealmId         string   `pulumi:"realmId"`
 	RequiredActions []string `pulumi:"requiredActions"`
-	Username        string   `pulumi:"username"`
+	// (Computed) The service account user's username.
+	Username string `pulumi:"username"`
 }
 
 func GetClientServiceAccountUserOutput(ctx *pulumi.Context, args GetClientServiceAccountUserOutputArgs, opts ...pulumi.InvokeOption) GetClientServiceAccountUserResultOutput {
@@ -148,6 +155,7 @@ func (o GetClientServiceAccountUserResultOutput) ToGetClientServiceAccountUserRe
 	return o
 }
 
+// (Computed) The service account user's attributes.
 func (o GetClientServiceAccountUserResultOutput) Attributes() pulumi.StringMapOutput {
 	return o.ApplyT(func(v GetClientServiceAccountUserResult) map[string]string { return v.Attributes }).(pulumi.StringMapOutput)
 }
@@ -156,6 +164,7 @@ func (o GetClientServiceAccountUserResultOutput) ClientId() pulumi.StringOutput 
 	return o.ApplyT(func(v GetClientServiceAccountUserResult) string { return v.ClientId }).(pulumi.StringOutput)
 }
 
+// (Computed) The service account user's email.
 func (o GetClientServiceAccountUserResultOutput) Email() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClientServiceAccountUserResult) string { return v.Email }).(pulumi.StringOutput)
 }
@@ -164,16 +173,19 @@ func (o GetClientServiceAccountUserResultOutput) EmailVerified() pulumi.BoolOutp
 	return o.ApplyT(func(v GetClientServiceAccountUserResult) bool { return v.EmailVerified }).(pulumi.BoolOutput)
 }
 
+// (Computed) Whether the service account user is enabled.
 func (o GetClientServiceAccountUserResultOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetClientServiceAccountUserResult) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
 
+// (Computed) This attribute exists in order to adhere to the spec of a Keycloak user, but a service account user will never have a federated identity, so this will always be `null`.
 func (o GetClientServiceAccountUserResultOutput) FederatedIdentities() GetClientServiceAccountUserFederatedIdentityArrayOutput {
 	return o.ApplyT(func(v GetClientServiceAccountUserResult) []GetClientServiceAccountUserFederatedIdentity {
 		return v.FederatedIdentities
 	}).(GetClientServiceAccountUserFederatedIdentityArrayOutput)
 }
 
+// (Computed) The service account user's first name.
 func (o GetClientServiceAccountUserResultOutput) FirstName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClientServiceAccountUserResult) string { return v.FirstName }).(pulumi.StringOutput)
 }
@@ -183,6 +195,7 @@ func (o GetClientServiceAccountUserResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClientServiceAccountUserResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// (Computed) The service account user's last name.
 func (o GetClientServiceAccountUserResultOutput) LastName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClientServiceAccountUserResult) string { return v.LastName }).(pulumi.StringOutput)
 }
@@ -195,6 +208,7 @@ func (o GetClientServiceAccountUserResultOutput) RequiredActions() pulumi.String
 	return o.ApplyT(func(v GetClientServiceAccountUserResult) []string { return v.RequiredActions }).(pulumi.StringArrayOutput)
 }
 
+// (Computed) The service account user's username.
 func (o GetClientServiceAccountUserResultOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClientServiceAccountUserResult) string { return v.Username }).(pulumi.StringOutput)
 }

@@ -20,6 +20,7 @@ from .get_authentication_execution import *
 from .get_authentication_flow import *
 from .get_client_description_converter import *
 from .get_group import *
+from .get_organization import *
 from .get_realm import *
 from .get_realm_keys import *
 from .get_role import *
@@ -34,8 +35,11 @@ from .hardcoded_attribute_mapper import *
 from .hardcoded_group_identity_provider_mapper import *
 from .hardcoded_role_identity_mapper import *
 from .identity_provider_token_exchange_scope_permission import *
+from .organization import *
 from .provider import *
 from .realm import *
+from .realm_client_policy_profile import *
+from .realm_client_policy_profile_policy import *
 from .realm_default_client_scopes import *
 from .realm_events import *
 from .realm_keystore_aes_generated import *
@@ -276,10 +280,34 @@ _utilities.register(
  },
  {
   "pkg": "keycloak",
+  "mod": "index/organization",
+  "fqn": "pulumi_keycloak",
+  "classes": {
+   "keycloak:index/organization:Organization": "Organization"
+  }
+ },
+ {
+  "pkg": "keycloak",
   "mod": "index/realm",
   "fqn": "pulumi_keycloak",
   "classes": {
    "keycloak:index/realm:Realm": "Realm"
+  }
+ },
+ {
+  "pkg": "keycloak",
+  "mod": "index/realmClientPolicyProfile",
+  "fqn": "pulumi_keycloak",
+  "classes": {
+   "keycloak:index/realmClientPolicyProfile:RealmClientPolicyProfile": "RealmClientPolicyProfile"
+  }
+ },
+ {
+  "pkg": "keycloak",
+  "mod": "index/realmClientPolicyProfilePolicy",
+  "fqn": "pulumi_keycloak",
+  "classes": {
+   "keycloak:index/realmClientPolicyProfilePolicy:RealmClientPolicyProfilePolicy": "RealmClientPolicyProfilePolicy"
   }
  },
  {

@@ -40,6 +40,9 @@ class IdentityProviderArgs:
                  link_only: Optional[pulumi.Input[builtins.bool]] = None,
                  login_hint: Optional[pulumi.Input[builtins.str]] = None,
                  name_id_policy_format: Optional[pulumi.Input[builtins.str]] = None,
+                 org_domain: Optional[pulumi.Input[builtins.str]] = None,
+                 org_redirect_mode_email_matches: Optional[pulumi.Input[builtins.bool]] = None,
+                 organization_id: Optional[pulumi.Input[builtins.str]] = None,
                  post_binding_authn_request: Optional[pulumi.Input[builtins.bool]] = None,
                  post_binding_logout: Optional[pulumi.Input[builtins.bool]] = None,
                  post_binding_response: Optional[pulumi.Input[builtins.bool]] = None,
@@ -78,6 +81,9 @@ class IdentityProviderArgs:
         :param pulumi.Input[builtins.bool] link_only: When `true`, users cannot log in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         :param pulumi.Input[builtins.str] login_hint: Login Hint.
         :param pulumi.Input[builtins.str] name_id_policy_format: Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
+        :param pulumi.Input[builtins.str] org_domain: The organization domain to associate this identity provider with. It is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
+        :param pulumi.Input[builtins.bool] org_redirect_mode_email_matches: Indicates whether to automatically redirect users to this identity provider when email domain matches domain.
+        :param pulumi.Input[builtins.str] organization_id: The ID of the organization to link this identity provider to.
         :param pulumi.Input[builtins.bool] post_binding_authn_request: Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
         :param pulumi.Input[builtins.bool] post_binding_logout: Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
         :param pulumi.Input[builtins.bool] post_binding_response: Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
@@ -132,6 +138,12 @@ class IdentityProviderArgs:
             pulumi.set(__self__, "login_hint", login_hint)
         if name_id_policy_format is not None:
             pulumi.set(__self__, "name_id_policy_format", name_id_policy_format)
+        if org_domain is not None:
+            pulumi.set(__self__, "org_domain", org_domain)
+        if org_redirect_mode_email_matches is not None:
+            pulumi.set(__self__, "org_redirect_mode_email_matches", org_redirect_mode_email_matches)
+        if organization_id is not None:
+            pulumi.set(__self__, "organization_id", organization_id)
         if post_binding_authn_request is not None:
             pulumi.set(__self__, "post_binding_authn_request", post_binding_authn_request)
         if post_binding_logout is not None:
@@ -405,6 +417,42 @@ class IdentityProviderArgs:
         pulumi.set(self, "name_id_policy_format", value)
 
     @property
+    @pulumi.getter(name="orgDomain")
+    def org_domain(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The organization domain to associate this identity provider with. It is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
+        """
+        return pulumi.get(self, "org_domain")
+
+    @org_domain.setter
+    def org_domain(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "org_domain", value)
+
+    @property
+    @pulumi.getter(name="orgRedirectModeEmailMatches")
+    def org_redirect_mode_email_matches(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        Indicates whether to automatically redirect users to this identity provider when email domain matches domain.
+        """
+        return pulumi.get(self, "org_redirect_mode_email_matches")
+
+    @org_redirect_mode_email_matches.setter
+    def org_redirect_mode_email_matches(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "org_redirect_mode_email_matches", value)
+
+    @property
+    @pulumi.getter(name="organizationId")
+    def organization_id(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The ID of the organization to link this identity provider to.
+        """
+        return pulumi.get(self, "organization_id")
+
+    @organization_id.setter
+    def organization_id(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "organization_id", value)
+
+    @property
     @pulumi.getter(name="postBindingAuthnRequest")
     def post_binding_authn_request(self) -> Optional[pulumi.Input[builtins.bool]]:
         """
@@ -631,6 +679,9 @@ class _IdentityProviderState:
                  link_only: Optional[pulumi.Input[builtins.bool]] = None,
                  login_hint: Optional[pulumi.Input[builtins.str]] = None,
                  name_id_policy_format: Optional[pulumi.Input[builtins.str]] = None,
+                 org_domain: Optional[pulumi.Input[builtins.str]] = None,
+                 org_redirect_mode_email_matches: Optional[pulumi.Input[builtins.bool]] = None,
+                 organization_id: Optional[pulumi.Input[builtins.str]] = None,
                  post_binding_authn_request: Optional[pulumi.Input[builtins.bool]] = None,
                  post_binding_logout: Optional[pulumi.Input[builtins.bool]] = None,
                  post_binding_response: Optional[pulumi.Input[builtins.bool]] = None,
@@ -670,6 +721,9 @@ class _IdentityProviderState:
         :param pulumi.Input[builtins.bool] link_only: When `true`, users cannot log in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         :param pulumi.Input[builtins.str] login_hint: Login Hint.
         :param pulumi.Input[builtins.str] name_id_policy_format: Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
+        :param pulumi.Input[builtins.str] org_domain: The organization domain to associate this identity provider with. It is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
+        :param pulumi.Input[builtins.bool] org_redirect_mode_email_matches: Indicates whether to automatically redirect users to this identity provider when email domain matches domain.
+        :param pulumi.Input[builtins.str] organization_id: The ID of the organization to link this identity provider to.
         :param pulumi.Input[builtins.bool] post_binding_authn_request: Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
         :param pulumi.Input[builtins.bool] post_binding_logout: Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
         :param pulumi.Input[builtins.bool] post_binding_response: Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
@@ -728,6 +782,12 @@ class _IdentityProviderState:
             pulumi.set(__self__, "login_hint", login_hint)
         if name_id_policy_format is not None:
             pulumi.set(__self__, "name_id_policy_format", name_id_policy_format)
+        if org_domain is not None:
+            pulumi.set(__self__, "org_domain", org_domain)
+        if org_redirect_mode_email_matches is not None:
+            pulumi.set(__self__, "org_redirect_mode_email_matches", org_redirect_mode_email_matches)
+        if organization_id is not None:
+            pulumi.set(__self__, "organization_id", organization_id)
         if post_binding_authn_request is not None:
             pulumi.set(__self__, "post_binding_authn_request", post_binding_authn_request)
         if post_binding_logout is not None:
@@ -993,6 +1053,42 @@ class _IdentityProviderState:
         pulumi.set(self, "name_id_policy_format", value)
 
     @property
+    @pulumi.getter(name="orgDomain")
+    def org_domain(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The organization domain to associate this identity provider with. It is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
+        """
+        return pulumi.get(self, "org_domain")
+
+    @org_domain.setter
+    def org_domain(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "org_domain", value)
+
+    @property
+    @pulumi.getter(name="orgRedirectModeEmailMatches")
+    def org_redirect_mode_email_matches(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        Indicates whether to automatically redirect users to this identity provider when email domain matches domain.
+        """
+        return pulumi.get(self, "org_redirect_mode_email_matches")
+
+    @org_redirect_mode_email_matches.setter
+    def org_redirect_mode_email_matches(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "org_redirect_mode_email_matches", value)
+
+    @property
+    @pulumi.getter(name="organizationId")
+    def organization_id(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The ID of the organization to link this identity provider to.
+        """
+        return pulumi.get(self, "organization_id")
+
+    @organization_id.setter
+    def organization_id(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "organization_id", value)
+
+    @property
     @pulumi.getter(name="postBindingAuthnRequest")
     def post_binding_authn_request(self) -> Optional[pulumi.Input[builtins.bool]]:
         """
@@ -1245,6 +1341,9 @@ class IdentityProvider(pulumi.CustomResource):
                  link_only: Optional[pulumi.Input[builtins.bool]] = None,
                  login_hint: Optional[pulumi.Input[builtins.str]] = None,
                  name_id_policy_format: Optional[pulumi.Input[builtins.str]] = None,
+                 org_domain: Optional[pulumi.Input[builtins.str]] = None,
+                 org_redirect_mode_email_matches: Optional[pulumi.Input[builtins.bool]] = None,
+                 organization_id: Optional[pulumi.Input[builtins.str]] = None,
                  post_binding_authn_request: Optional[pulumi.Input[builtins.bool]] = None,
                  post_binding_logout: Optional[pulumi.Input[builtins.bool]] = None,
                  post_binding_response: Optional[pulumi.Input[builtins.bool]] = None,
@@ -1325,6 +1424,9 @@ class IdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[builtins.bool] link_only: When `true`, users cannot log in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         :param pulumi.Input[builtins.str] login_hint: Login Hint.
         :param pulumi.Input[builtins.str] name_id_policy_format: Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
+        :param pulumi.Input[builtins.str] org_domain: The organization domain to associate this identity provider with. It is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
+        :param pulumi.Input[builtins.bool] org_redirect_mode_email_matches: Indicates whether to automatically redirect users to this identity provider when email domain matches domain.
+        :param pulumi.Input[builtins.str] organization_id: The ID of the organization to link this identity provider to.
         :param pulumi.Input[builtins.bool] post_binding_authn_request: Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
         :param pulumi.Input[builtins.bool] post_binding_logout: Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
         :param pulumi.Input[builtins.bool] post_binding_response: Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
@@ -1425,6 +1527,9 @@ class IdentityProvider(pulumi.CustomResource):
                  link_only: Optional[pulumi.Input[builtins.bool]] = None,
                  login_hint: Optional[pulumi.Input[builtins.str]] = None,
                  name_id_policy_format: Optional[pulumi.Input[builtins.str]] = None,
+                 org_domain: Optional[pulumi.Input[builtins.str]] = None,
+                 org_redirect_mode_email_matches: Optional[pulumi.Input[builtins.bool]] = None,
+                 organization_id: Optional[pulumi.Input[builtins.str]] = None,
                  post_binding_authn_request: Optional[pulumi.Input[builtins.bool]] = None,
                  post_binding_logout: Optional[pulumi.Input[builtins.bool]] = None,
                  post_binding_response: Optional[pulumi.Input[builtins.bool]] = None,
@@ -1475,6 +1580,9 @@ class IdentityProvider(pulumi.CustomResource):
             __props__.__dict__["link_only"] = link_only
             __props__.__dict__["login_hint"] = login_hint
             __props__.__dict__["name_id_policy_format"] = name_id_policy_format
+            __props__.__dict__["org_domain"] = org_domain
+            __props__.__dict__["org_redirect_mode_email_matches"] = org_redirect_mode_email_matches
+            __props__.__dict__["organization_id"] = organization_id
             __props__.__dict__["post_binding_authn_request"] = post_binding_authn_request
             __props__.__dict__["post_binding_logout"] = post_binding_logout
             __props__.__dict__["post_binding_response"] = post_binding_response
@@ -1528,6 +1636,9 @@ class IdentityProvider(pulumi.CustomResource):
             link_only: Optional[pulumi.Input[builtins.bool]] = None,
             login_hint: Optional[pulumi.Input[builtins.str]] = None,
             name_id_policy_format: Optional[pulumi.Input[builtins.str]] = None,
+            org_domain: Optional[pulumi.Input[builtins.str]] = None,
+            org_redirect_mode_email_matches: Optional[pulumi.Input[builtins.bool]] = None,
+            organization_id: Optional[pulumi.Input[builtins.str]] = None,
             post_binding_authn_request: Optional[pulumi.Input[builtins.bool]] = None,
             post_binding_logout: Optional[pulumi.Input[builtins.bool]] = None,
             post_binding_response: Optional[pulumi.Input[builtins.bool]] = None,
@@ -1572,6 +1683,9 @@ class IdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[builtins.bool] link_only: When `true`, users cannot log in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         :param pulumi.Input[builtins.str] login_hint: Login Hint.
         :param pulumi.Input[builtins.str] name_id_policy_format: Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
+        :param pulumi.Input[builtins.str] org_domain: The organization domain to associate this identity provider with. It is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
+        :param pulumi.Input[builtins.bool] org_redirect_mode_email_matches: Indicates whether to automatically redirect users to this identity provider when email domain matches domain.
+        :param pulumi.Input[builtins.str] organization_id: The ID of the organization to link this identity provider to.
         :param pulumi.Input[builtins.bool] post_binding_authn_request: Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
         :param pulumi.Input[builtins.bool] post_binding_logout: Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
         :param pulumi.Input[builtins.bool] post_binding_response: Indicates whether to respond to requests using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
@@ -1615,6 +1729,9 @@ class IdentityProvider(pulumi.CustomResource):
         __props__.__dict__["link_only"] = link_only
         __props__.__dict__["login_hint"] = login_hint
         __props__.__dict__["name_id_policy_format"] = name_id_policy_format
+        __props__.__dict__["org_domain"] = org_domain
+        __props__.__dict__["org_redirect_mode_email_matches"] = org_redirect_mode_email_matches
+        __props__.__dict__["organization_id"] = organization_id
         __props__.__dict__["post_binding_authn_request"] = post_binding_authn_request
         __props__.__dict__["post_binding_logout"] = post_binding_logout
         __props__.__dict__["post_binding_response"] = post_binding_response
@@ -1784,6 +1901,30 @@ class IdentityProvider(pulumi.CustomResource):
         Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
         """
         return pulumi.get(self, "name_id_policy_format")
+
+    @property
+    @pulumi.getter(name="orgDomain")
+    def org_domain(self) -> pulumi.Output[Optional[builtins.str]]:
+        """
+        The organization domain to associate this identity provider with. It is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
+        """
+        return pulumi.get(self, "org_domain")
+
+    @property
+    @pulumi.getter(name="orgRedirectModeEmailMatches")
+    def org_redirect_mode_email_matches(self) -> pulumi.Output[Optional[builtins.bool]]:
+        """
+        Indicates whether to automatically redirect users to this identity provider when email domain matches domain.
+        """
+        return pulumi.get(self, "org_redirect_mode_email_matches")
+
+    @property
+    @pulumi.getter(name="organizationId")
+    def organization_id(self) -> pulumi.Output[Optional[builtins.str]]:
+        """
+        The ID of the organization to link this identity provider to.
+        """
+        return pulumi.get(self, "organization_id")
 
     @property
     @pulumi.getter(name="postBindingAuthnRequest")

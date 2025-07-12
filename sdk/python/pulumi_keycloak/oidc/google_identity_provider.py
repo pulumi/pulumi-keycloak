@@ -37,6 +37,9 @@ class GoogleIdentityProviderArgs:
                  hide_on_login_page: Optional[pulumi.Input[builtins.bool]] = None,
                  hosted_domain: Optional[pulumi.Input[builtins.str]] = None,
                  link_only: Optional[pulumi.Input[builtins.bool]] = None,
+                 org_domain: Optional[pulumi.Input[builtins.str]] = None,
+                 org_redirect_mode_email_matches: Optional[pulumi.Input[builtins.bool]] = None,
+                 organization_id: Optional[pulumi.Input[builtins.str]] = None,
                  post_broker_login_flow_alias: Optional[pulumi.Input[builtins.str]] = None,
                  provider_id: Optional[pulumi.Input[builtins.str]] = None,
                  request_refresh_token: Optional[pulumi.Input[builtins.bool]] = None,
@@ -62,6 +65,7 @@ class GoogleIdentityProviderArgs:
         :param pulumi.Input[builtins.bool] hide_on_login_page: When `true`, this identity provider will be hidden on the login page. Defaults to `false`.
         :param pulumi.Input[builtins.str] hosted_domain: Sets the "hd" query parameter when logging in with Google. Google will only list accounts for this domain. Keycloak will validate that the returned identity token has a claim for this domain. When `*` is entered, an account from any domain can be used.
         :param pulumi.Input[builtins.bool] link_only: When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+        :param pulumi.Input[builtins.str] organization_id: ID of organization with which this identity is linked.
         :param pulumi.Input[builtins.str] post_broker_login_flow_alias: The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
         :param pulumi.Input[builtins.str] provider_id: The ID of the identity provider to use. Defaults to `google`, which should be used unless you have extended Keycloak and provided your own implementation.
         :param pulumi.Input[builtins.bool] request_refresh_token: Sets the "access_type" query parameter to "offline" when redirecting to google authorization endpoint,to get a refresh token back. This is useful for using Token Exchange to retrieve a Google token to access Google APIs when the user is offline.
@@ -102,6 +106,12 @@ class GoogleIdentityProviderArgs:
             pulumi.set(__self__, "hosted_domain", hosted_domain)
         if link_only is not None:
             pulumi.set(__self__, "link_only", link_only)
+        if org_domain is not None:
+            pulumi.set(__self__, "org_domain", org_domain)
+        if org_redirect_mode_email_matches is not None:
+            pulumi.set(__self__, "org_redirect_mode_email_matches", org_redirect_mode_email_matches)
+        if organization_id is not None:
+            pulumi.set(__self__, "organization_id", organization_id)
         if post_broker_login_flow_alias is not None:
             pulumi.set(__self__, "post_broker_login_flow_alias", post_broker_login_flow_alias)
         if provider_id is not None:
@@ -319,6 +329,36 @@ class GoogleIdentityProviderArgs:
         pulumi.set(self, "link_only", value)
 
     @property
+    @pulumi.getter(name="orgDomain")
+    def org_domain(self) -> Optional[pulumi.Input[builtins.str]]:
+        return pulumi.get(self, "org_domain")
+
+    @org_domain.setter
+    def org_domain(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "org_domain", value)
+
+    @property
+    @pulumi.getter(name="orgRedirectModeEmailMatches")
+    def org_redirect_mode_email_matches(self) -> Optional[pulumi.Input[builtins.bool]]:
+        return pulumi.get(self, "org_redirect_mode_email_matches")
+
+    @org_redirect_mode_email_matches.setter
+    def org_redirect_mode_email_matches(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "org_redirect_mode_email_matches", value)
+
+    @property
+    @pulumi.getter(name="organizationId")
+    def organization_id(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        ID of organization with which this identity is linked.
+        """
+        return pulumi.get(self, "organization_id")
+
+    @organization_id.setter
+    def organization_id(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "organization_id", value)
+
+    @property
     @pulumi.getter(name="postBrokerLoginFlowAlias")
     def post_broker_login_flow_alias(self) -> Optional[pulumi.Input[builtins.str]]:
         """
@@ -423,6 +463,9 @@ class _GoogleIdentityProviderState:
                  hosted_domain: Optional[pulumi.Input[builtins.str]] = None,
                  internal_id: Optional[pulumi.Input[builtins.str]] = None,
                  link_only: Optional[pulumi.Input[builtins.bool]] = None,
+                 org_domain: Optional[pulumi.Input[builtins.str]] = None,
+                 org_redirect_mode_email_matches: Optional[pulumi.Input[builtins.bool]] = None,
+                 organization_id: Optional[pulumi.Input[builtins.str]] = None,
                  post_broker_login_flow_alias: Optional[pulumi.Input[builtins.str]] = None,
                  provider_id: Optional[pulumi.Input[builtins.str]] = None,
                  realm: Optional[pulumi.Input[builtins.str]] = None,
@@ -449,6 +492,7 @@ class _GoogleIdentityProviderState:
         :param pulumi.Input[builtins.str] hosted_domain: Sets the "hd" query parameter when logging in with Google. Google will only list accounts for this domain. Keycloak will validate that the returned identity token has a claim for this domain. When `*` is entered, an account from any domain can be used.
         :param pulumi.Input[builtins.str] internal_id: (Computed) The unique ID that Keycloak assigns to the identity provider upon creation.
         :param pulumi.Input[builtins.bool] link_only: When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+        :param pulumi.Input[builtins.str] organization_id: ID of organization with which this identity is linked.
         :param pulumi.Input[builtins.str] post_broker_login_flow_alias: The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
         :param pulumi.Input[builtins.str] provider_id: The ID of the identity provider to use. Defaults to `google`, which should be used unless you have extended Keycloak and provided your own implementation.
         :param pulumi.Input[builtins.str] realm: The name of the realm. This is unique across Keycloak.
@@ -492,6 +536,12 @@ class _GoogleIdentityProviderState:
             pulumi.set(__self__, "internal_id", internal_id)
         if link_only is not None:
             pulumi.set(__self__, "link_only", link_only)
+        if org_domain is not None:
+            pulumi.set(__self__, "org_domain", org_domain)
+        if org_redirect_mode_email_matches is not None:
+            pulumi.set(__self__, "org_redirect_mode_email_matches", org_redirect_mode_email_matches)
+        if organization_id is not None:
+            pulumi.set(__self__, "organization_id", organization_id)
         if post_broker_login_flow_alias is not None:
             pulumi.set(__self__, "post_broker_login_flow_alias", post_broker_login_flow_alias)
         if provider_id is not None:
@@ -711,6 +761,36 @@ class _GoogleIdentityProviderState:
         pulumi.set(self, "link_only", value)
 
     @property
+    @pulumi.getter(name="orgDomain")
+    def org_domain(self) -> Optional[pulumi.Input[builtins.str]]:
+        return pulumi.get(self, "org_domain")
+
+    @org_domain.setter
+    def org_domain(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "org_domain", value)
+
+    @property
+    @pulumi.getter(name="orgRedirectModeEmailMatches")
+    def org_redirect_mode_email_matches(self) -> Optional[pulumi.Input[builtins.bool]]:
+        return pulumi.get(self, "org_redirect_mode_email_matches")
+
+    @org_redirect_mode_email_matches.setter
+    def org_redirect_mode_email_matches(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "org_redirect_mode_email_matches", value)
+
+    @property
+    @pulumi.getter(name="organizationId")
+    def organization_id(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        ID of organization with which this identity is linked.
+        """
+        return pulumi.get(self, "organization_id")
+
+    @organization_id.setter
+    def organization_id(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "organization_id", value)
+
+    @property
     @pulumi.getter(name="postBrokerLoginFlowAlias")
     def post_broker_login_flow_alias(self) -> Optional[pulumi.Input[builtins.str]]:
         """
@@ -829,6 +909,9 @@ class GoogleIdentityProvider(pulumi.CustomResource):
                  hide_on_login_page: Optional[pulumi.Input[builtins.bool]] = None,
                  hosted_domain: Optional[pulumi.Input[builtins.str]] = None,
                  link_only: Optional[pulumi.Input[builtins.bool]] = None,
+                 org_domain: Optional[pulumi.Input[builtins.str]] = None,
+                 org_redirect_mode_email_matches: Optional[pulumi.Input[builtins.bool]] = None,
+                 organization_id: Optional[pulumi.Input[builtins.str]] = None,
                  post_broker_login_flow_alias: Optional[pulumi.Input[builtins.str]] = None,
                  provider_id: Optional[pulumi.Input[builtins.str]] = None,
                  realm: Optional[pulumi.Input[builtins.str]] = None,
@@ -893,6 +976,7 @@ class GoogleIdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[builtins.bool] hide_on_login_page: When `true`, this identity provider will be hidden on the login page. Defaults to `false`.
         :param pulumi.Input[builtins.str] hosted_domain: Sets the "hd" query parameter when logging in with Google. Google will only list accounts for this domain. Keycloak will validate that the returned identity token has a claim for this domain. When `*` is entered, an account from any domain can be used.
         :param pulumi.Input[builtins.bool] link_only: When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+        :param pulumi.Input[builtins.str] organization_id: ID of organization with which this identity is linked.
         :param pulumi.Input[builtins.str] post_broker_login_flow_alias: The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
         :param pulumi.Input[builtins.str] provider_id: The ID of the identity provider to use. Defaults to `google`, which should be used unless you have extended Keycloak and provided your own implementation.
         :param pulumi.Input[builtins.str] realm: The name of the realm. This is unique across Keycloak.
@@ -977,6 +1061,9 @@ class GoogleIdentityProvider(pulumi.CustomResource):
                  hide_on_login_page: Optional[pulumi.Input[builtins.bool]] = None,
                  hosted_domain: Optional[pulumi.Input[builtins.str]] = None,
                  link_only: Optional[pulumi.Input[builtins.bool]] = None,
+                 org_domain: Optional[pulumi.Input[builtins.str]] = None,
+                 org_redirect_mode_email_matches: Optional[pulumi.Input[builtins.bool]] = None,
+                 organization_id: Optional[pulumi.Input[builtins.str]] = None,
                  post_broker_login_flow_alias: Optional[pulumi.Input[builtins.str]] = None,
                  provider_id: Optional[pulumi.Input[builtins.str]] = None,
                  realm: Optional[pulumi.Input[builtins.str]] = None,
@@ -1012,6 +1099,9 @@ class GoogleIdentityProvider(pulumi.CustomResource):
             __props__.__dict__["hide_on_login_page"] = hide_on_login_page
             __props__.__dict__["hosted_domain"] = hosted_domain
             __props__.__dict__["link_only"] = link_only
+            __props__.__dict__["org_domain"] = org_domain
+            __props__.__dict__["org_redirect_mode_email_matches"] = org_redirect_mode_email_matches
+            __props__.__dict__["organization_id"] = organization_id
             __props__.__dict__["post_broker_login_flow_alias"] = post_broker_login_flow_alias
             __props__.__dict__["provider_id"] = provider_id
             if realm is None and not opts.urn:
@@ -1052,6 +1142,9 @@ class GoogleIdentityProvider(pulumi.CustomResource):
             hosted_domain: Optional[pulumi.Input[builtins.str]] = None,
             internal_id: Optional[pulumi.Input[builtins.str]] = None,
             link_only: Optional[pulumi.Input[builtins.bool]] = None,
+            org_domain: Optional[pulumi.Input[builtins.str]] = None,
+            org_redirect_mode_email_matches: Optional[pulumi.Input[builtins.bool]] = None,
+            organization_id: Optional[pulumi.Input[builtins.str]] = None,
             post_broker_login_flow_alias: Optional[pulumi.Input[builtins.str]] = None,
             provider_id: Optional[pulumi.Input[builtins.str]] = None,
             realm: Optional[pulumi.Input[builtins.str]] = None,
@@ -1083,6 +1176,7 @@ class GoogleIdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[builtins.str] hosted_domain: Sets the "hd" query parameter when logging in with Google. Google will only list accounts for this domain. Keycloak will validate that the returned identity token has a claim for this domain. When `*` is entered, an account from any domain can be used.
         :param pulumi.Input[builtins.str] internal_id: (Computed) The unique ID that Keycloak assigns to the identity provider upon creation.
         :param pulumi.Input[builtins.bool] link_only: When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+        :param pulumi.Input[builtins.str] organization_id: ID of organization with which this identity is linked.
         :param pulumi.Input[builtins.str] post_broker_login_flow_alias: The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
         :param pulumi.Input[builtins.str] provider_id: The ID of the identity provider to use. Defaults to `google`, which should be used unless you have extended Keycloak and provided your own implementation.
         :param pulumi.Input[builtins.str] realm: The name of the realm. This is unique across Keycloak.
@@ -1113,6 +1207,9 @@ class GoogleIdentityProvider(pulumi.CustomResource):
         __props__.__dict__["hosted_domain"] = hosted_domain
         __props__.__dict__["internal_id"] = internal_id
         __props__.__dict__["link_only"] = link_only
+        __props__.__dict__["org_domain"] = org_domain
+        __props__.__dict__["org_redirect_mode_email_matches"] = org_redirect_mode_email_matches
+        __props__.__dict__["organization_id"] = organization_id
         __props__.__dict__["post_broker_login_flow_alias"] = post_broker_login_flow_alias
         __props__.__dict__["provider_id"] = provider_id
         __props__.__dict__["realm"] = realm
@@ -1255,6 +1352,24 @@ class GoogleIdentityProvider(pulumi.CustomResource):
         When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
         """
         return pulumi.get(self, "link_only")
+
+    @property
+    @pulumi.getter(name="orgDomain")
+    def org_domain(self) -> pulumi.Output[Optional[builtins.str]]:
+        return pulumi.get(self, "org_domain")
+
+    @property
+    @pulumi.getter(name="orgRedirectModeEmailMatches")
+    def org_redirect_mode_email_matches(self) -> pulumi.Output[Optional[builtins.bool]]:
+        return pulumi.get(self, "org_redirect_mode_email_matches")
+
+    @property
+    @pulumi.getter(name="organizationId")
+    def organization_id(self) -> pulumi.Output[Optional[builtins.str]]:
+        """
+        ID of organization with which this identity is linked.
+        """
+        return pulumi.get(self, "organization_id")
 
     @property
     @pulumi.getter(name="postBrokerLoginFlowAlias")

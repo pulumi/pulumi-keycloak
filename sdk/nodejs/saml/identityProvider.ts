@@ -149,6 +149,18 @@ export class IdentityProvider extends pulumi.CustomResource {
      */
     public readonly nameIdPolicyFormat!: pulumi.Output<string | undefined>;
     /**
+     * The organization domain to associate this identity provider with. It is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
+     */
+    public readonly orgDomain!: pulumi.Output<string | undefined>;
+    /**
+     * Indicates whether to automatically redirect users to this identity provider when email domain matches domain.
+     */
+    public readonly orgRedirectModeEmailMatches!: pulumi.Output<boolean | undefined>;
+    /**
+     * The ID of the organization to link this identity provider to.
+     */
+    public readonly organizationId!: pulumi.Output<string | undefined>;
+    /**
      * Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
      */
     public readonly postBindingAuthnRequest!: pulumi.Output<boolean | undefined>;
@@ -257,6 +269,9 @@ export class IdentityProvider extends pulumi.CustomResource {
             resourceInputs["linkOnly"] = state ? state.linkOnly : undefined;
             resourceInputs["loginHint"] = state ? state.loginHint : undefined;
             resourceInputs["nameIdPolicyFormat"] = state ? state.nameIdPolicyFormat : undefined;
+            resourceInputs["orgDomain"] = state ? state.orgDomain : undefined;
+            resourceInputs["orgRedirectModeEmailMatches"] = state ? state.orgRedirectModeEmailMatches : undefined;
+            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
             resourceInputs["postBindingAuthnRequest"] = state ? state.postBindingAuthnRequest : undefined;
             resourceInputs["postBindingLogout"] = state ? state.postBindingLogout : undefined;
             resourceInputs["postBindingResponse"] = state ? state.postBindingResponse : undefined;
@@ -308,6 +323,9 @@ export class IdentityProvider extends pulumi.CustomResource {
             resourceInputs["linkOnly"] = args ? args.linkOnly : undefined;
             resourceInputs["loginHint"] = args ? args.loginHint : undefined;
             resourceInputs["nameIdPolicyFormat"] = args ? args.nameIdPolicyFormat : undefined;
+            resourceInputs["orgDomain"] = args ? args.orgDomain : undefined;
+            resourceInputs["orgRedirectModeEmailMatches"] = args ? args.orgRedirectModeEmailMatches : undefined;
+            resourceInputs["organizationId"] = args ? args.organizationId : undefined;
             resourceInputs["postBindingAuthnRequest"] = args ? args.postBindingAuthnRequest : undefined;
             resourceInputs["postBindingLogout"] = args ? args.postBindingLogout : undefined;
             resourceInputs["postBindingResponse"] = args ? args.postBindingResponse : undefined;
@@ -411,6 +429,18 @@ export interface IdentityProviderState {
      * Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
      */
     nameIdPolicyFormat?: pulumi.Input<string>;
+    /**
+     * The organization domain to associate this identity provider with. It is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
+     */
+    orgDomain?: pulumi.Input<string>;
+    /**
+     * Indicates whether to automatically redirect users to this identity provider when email domain matches domain.
+     */
+    orgRedirectModeEmailMatches?: pulumi.Input<boolean>;
+    /**
+     * The ID of the organization to link this identity provider to.
+     */
+    organizationId?: pulumi.Input<string>;
     /**
      * Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
      */
@@ -562,6 +592,18 @@ export interface IdentityProviderArgs {
      * Specifies the URI reference corresponding to a name identifier format. Defaults to empty.
      */
     nameIdPolicyFormat?: pulumi.Input<string>;
+    /**
+     * The organization domain to associate this identity provider with. It is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
+     */
+    orgDomain?: pulumi.Input<string>;
+    /**
+     * Indicates whether to automatically redirect users to this identity provider when email domain matches domain.
+     */
+    orgRedirectModeEmailMatches?: pulumi.Input<boolean>;
+    /**
+     * The ID of the organization to link this identity provider to.
+     */
+    organizationId?: pulumi.Input<string>;
     /**
      * Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
      */

@@ -72,20 +72,41 @@ export interface GetClientServiceAccountUserArgs {
  * A collection of values returned by getClientServiceAccountUser.
  */
 export interface GetClientServiceAccountUserResult {
+    /**
+     * (Computed) The service account user's attributes.
+     */
     readonly attributes: {[key: string]: string};
     readonly clientId: string;
+    /**
+     * (Computed) The service account user's email.
+     */
     readonly email: string;
     readonly emailVerified: boolean;
+    /**
+     * (Computed) Whether the service account user is enabled.
+     */
     readonly enabled: boolean;
+    /**
+     * (Computed) This attribute exists in order to adhere to the spec of a Keycloak user, but a service account user will never have a federated identity, so this will always be `null`.
+     */
     readonly federatedIdentities: outputs.openid.GetClientServiceAccountUserFederatedIdentity[];
+    /**
+     * (Computed) The service account user's first name.
+     */
     readonly firstName: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * (Computed) The service account user's last name.
+     */
     readonly lastName: string;
     readonly realmId: string;
     readonly requiredActions: string[];
+    /**
+     * (Computed) The service account user's username.
+     */
     readonly username: string;
 }
 /**

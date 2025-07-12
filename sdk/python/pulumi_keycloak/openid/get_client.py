@@ -28,7 +28,7 @@ class GetClientResult:
     """
     A collection of values returned by getClient.
     """
-    def __init__(__self__, access_token_lifespan=None, access_type=None, admin_url=None, always_display_in_console=None, authentication_flow_binding_overrides=None, authorizations=None, backchannel_logout_revoke_offline_sessions=None, backchannel_logout_session_required=None, backchannel_logout_url=None, base_url=None, client_authenticator_type=None, client_id=None, client_offline_session_idle_timeout=None, client_offline_session_max_lifespan=None, client_secret=None, client_session_idle_timeout=None, client_session_max_lifespan=None, consent_required=None, consent_screen_text=None, description=None, direct_access_grants_enabled=None, display_on_consent_screen=None, enabled=None, exclude_issuer_from_auth_response=None, exclude_session_state_from_auth_response=None, extra_config=None, frontchannel_logout_enabled=None, frontchannel_logout_url=None, full_scope_allowed=None, id=None, implicit_flow_enabled=None, login_theme=None, name=None, oauth2_device_authorization_grant_enabled=None, oauth2_device_code_lifespan=None, oauth2_device_polling_interval=None, pkce_code_challenge_method=None, realm_id=None, resource_server_id=None, root_url=None, service_account_user_id=None, service_accounts_enabled=None, standard_flow_enabled=None, use_refresh_tokens=None, use_refresh_tokens_client_credentials=None, valid_post_logout_redirect_uris=None, valid_redirect_uris=None, web_origins=None):
+    def __init__(__self__, access_token_lifespan=None, access_type=None, admin_url=None, allow_refresh_token_in_standard_token_exchange=None, always_display_in_console=None, authentication_flow_binding_overrides=None, authorizations=None, backchannel_logout_revoke_offline_sessions=None, backchannel_logout_session_required=None, backchannel_logout_url=None, base_url=None, client_authenticator_type=None, client_id=None, client_offline_session_idle_timeout=None, client_offline_session_max_lifespan=None, client_secret=None, client_session_idle_timeout=None, client_session_max_lifespan=None, consent_required=None, consent_screen_text=None, description=None, direct_access_grants_enabled=None, display_on_consent_screen=None, enabled=None, exclude_issuer_from_auth_response=None, exclude_session_state_from_auth_response=None, extra_config=None, frontchannel_logout_enabled=None, frontchannel_logout_url=None, full_scope_allowed=None, id=None, implicit_flow_enabled=None, login_theme=None, name=None, oauth2_device_authorization_grant_enabled=None, oauth2_device_code_lifespan=None, oauth2_device_polling_interval=None, pkce_code_challenge_method=None, realm_id=None, resource_server_id=None, root_url=None, service_account_user_id=None, service_accounts_enabled=None, standard_flow_enabled=None, standard_token_exchange_enabled=None, use_refresh_tokens=None, use_refresh_tokens_client_credentials=None, valid_post_logout_redirect_uris=None, valid_redirect_uris=None, web_origins=None):
         if access_token_lifespan and not isinstance(access_token_lifespan, str):
             raise TypeError("Expected argument 'access_token_lifespan' to be a str")
         pulumi.set(__self__, "access_token_lifespan", access_token_lifespan)
@@ -38,6 +38,9 @@ class GetClientResult:
         if admin_url and not isinstance(admin_url, str):
             raise TypeError("Expected argument 'admin_url' to be a str")
         pulumi.set(__self__, "admin_url", admin_url)
+        if allow_refresh_token_in_standard_token_exchange and not isinstance(allow_refresh_token_in_standard_token_exchange, str):
+            raise TypeError("Expected argument 'allow_refresh_token_in_standard_token_exchange' to be a str")
+        pulumi.set(__self__, "allow_refresh_token_in_standard_token_exchange", allow_refresh_token_in_standard_token_exchange)
         if always_display_in_console and not isinstance(always_display_in_console, bool):
             raise TypeError("Expected argument 'always_display_in_console' to be a bool")
         pulumi.set(__self__, "always_display_in_console", always_display_in_console)
@@ -158,6 +161,9 @@ class GetClientResult:
         if standard_flow_enabled and not isinstance(standard_flow_enabled, bool):
             raise TypeError("Expected argument 'standard_flow_enabled' to be a bool")
         pulumi.set(__self__, "standard_flow_enabled", standard_flow_enabled)
+        if standard_token_exchange_enabled and not isinstance(standard_token_exchange_enabled, bool):
+            raise TypeError("Expected argument 'standard_token_exchange_enabled' to be a bool")
+        pulumi.set(__self__, "standard_token_exchange_enabled", standard_token_exchange_enabled)
         if use_refresh_tokens and not isinstance(use_refresh_tokens, bool):
             raise TypeError("Expected argument 'use_refresh_tokens' to be a bool")
         pulumi.set(__self__, "use_refresh_tokens", use_refresh_tokens)
@@ -188,6 +194,11 @@ class GetClientResult:
     @pulumi.getter(name="adminUrl")
     def admin_url(self) -> builtins.str:
         return pulumi.get(self, "admin_url")
+
+    @property
+    @pulumi.getter(name="allowRefreshTokenInStandardTokenExchange")
+    def allow_refresh_token_in_standard_token_exchange(self) -> builtins.str:
+        return pulumi.get(self, "allow_refresh_token_in_standard_token_exchange")
 
     @property
     @pulumi.getter(name="alwaysDisplayInConsole")
@@ -393,6 +404,11 @@ class GetClientResult:
         return pulumi.get(self, "standard_flow_enabled")
 
     @property
+    @pulumi.getter(name="standardTokenExchangeEnabled")
+    def standard_token_exchange_enabled(self) -> builtins.bool:
+        return pulumi.get(self, "standard_token_exchange_enabled")
+
+    @property
     @pulumi.getter(name="useRefreshTokens")
     def use_refresh_tokens(self) -> builtins.bool:
         return pulumi.get(self, "use_refresh_tokens")
@@ -427,6 +443,7 @@ class AwaitableGetClientResult(GetClientResult):
             access_token_lifespan=self.access_token_lifespan,
             access_type=self.access_type,
             admin_url=self.admin_url,
+            allow_refresh_token_in_standard_token_exchange=self.allow_refresh_token_in_standard_token_exchange,
             always_display_in_console=self.always_display_in_console,
             authentication_flow_binding_overrides=self.authentication_flow_binding_overrides,
             authorizations=self.authorizations,
@@ -467,6 +484,7 @@ class AwaitableGetClientResult(GetClientResult):
             service_account_user_id=self.service_account_user_id,
             service_accounts_enabled=self.service_accounts_enabled,
             standard_flow_enabled=self.standard_flow_enabled,
+            standard_token_exchange_enabled=self.standard_token_exchange_enabled,
             use_refresh_tokens=self.use_refresh_tokens,
             use_refresh_tokens_client_credentials=self.use_refresh_tokens_client_credentials,
             valid_post_logout_redirect_uris=self.valid_post_logout_redirect_uris,
@@ -522,6 +540,7 @@ def get_client(always_display_in_console: Optional[builtins.bool] = None,
         access_token_lifespan=pulumi.get(__ret__, 'access_token_lifespan'),
         access_type=pulumi.get(__ret__, 'access_type'),
         admin_url=pulumi.get(__ret__, 'admin_url'),
+        allow_refresh_token_in_standard_token_exchange=pulumi.get(__ret__, 'allow_refresh_token_in_standard_token_exchange'),
         always_display_in_console=pulumi.get(__ret__, 'always_display_in_console'),
         authentication_flow_binding_overrides=pulumi.get(__ret__, 'authentication_flow_binding_overrides'),
         authorizations=pulumi.get(__ret__, 'authorizations'),
@@ -562,6 +581,7 @@ def get_client(always_display_in_console: Optional[builtins.bool] = None,
         service_account_user_id=pulumi.get(__ret__, 'service_account_user_id'),
         service_accounts_enabled=pulumi.get(__ret__, 'service_accounts_enabled'),
         standard_flow_enabled=pulumi.get(__ret__, 'standard_flow_enabled'),
+        standard_token_exchange_enabled=pulumi.get(__ret__, 'standard_token_exchange_enabled'),
         use_refresh_tokens=pulumi.get(__ret__, 'use_refresh_tokens'),
         use_refresh_tokens_client_credentials=pulumi.get(__ret__, 'use_refresh_tokens_client_credentials'),
         valid_post_logout_redirect_uris=pulumi.get(__ret__, 'valid_post_logout_redirect_uris'),
@@ -614,6 +634,7 @@ def get_client_output(always_display_in_console: Optional[pulumi.Input[Optional[
         access_token_lifespan=pulumi.get(__response__, 'access_token_lifespan'),
         access_type=pulumi.get(__response__, 'access_type'),
         admin_url=pulumi.get(__response__, 'admin_url'),
+        allow_refresh_token_in_standard_token_exchange=pulumi.get(__response__, 'allow_refresh_token_in_standard_token_exchange'),
         always_display_in_console=pulumi.get(__response__, 'always_display_in_console'),
         authentication_flow_binding_overrides=pulumi.get(__response__, 'authentication_flow_binding_overrides'),
         authorizations=pulumi.get(__response__, 'authorizations'),
@@ -654,6 +675,7 @@ def get_client_output(always_display_in_console: Optional[pulumi.Input[Optional[
         service_account_user_id=pulumi.get(__response__, 'service_account_user_id'),
         service_accounts_enabled=pulumi.get(__response__, 'service_accounts_enabled'),
         standard_flow_enabled=pulumi.get(__response__, 'standard_flow_enabled'),
+        standard_token_exchange_enabled=pulumi.get(__response__, 'standard_token_exchange_enabled'),
         use_refresh_tokens=pulumi.get(__response__, 'use_refresh_tokens'),
         use_refresh_tokens_client_credentials=pulumi.get(__response__, 'use_refresh_tokens_client_credentials'),
         valid_post_logout_redirect_uris=pulumi.get(__response__, 'valid_post_logout_redirect_uris'),

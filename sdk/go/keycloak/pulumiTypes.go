@@ -828,6 +828,312 @@ func (o GroupPermissionsViewScopePtrOutput) Policies() pulumi.StringArrayOutput 
 	}).(pulumi.StringArrayOutput)
 }
 
+type OrganizationDomain struct {
+	// The name of the organization.
+	Name string `pulumi:"name"`
+	// Whether domain is verified or not. Default is false.
+	Verified *bool `pulumi:"verified"`
+}
+
+// OrganizationDomainInput is an input type that accepts OrganizationDomainArgs and OrganizationDomainOutput values.
+// You can construct a concrete instance of `OrganizationDomainInput` via:
+//
+//	OrganizationDomainArgs{...}
+type OrganizationDomainInput interface {
+	pulumi.Input
+
+	ToOrganizationDomainOutput() OrganizationDomainOutput
+	ToOrganizationDomainOutputWithContext(context.Context) OrganizationDomainOutput
+}
+
+type OrganizationDomainArgs struct {
+	// The name of the organization.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Whether domain is verified or not. Default is false.
+	Verified pulumi.BoolPtrInput `pulumi:"verified"`
+}
+
+func (OrganizationDomainArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*OrganizationDomain)(nil)).Elem()
+}
+
+func (i OrganizationDomainArgs) ToOrganizationDomainOutput() OrganizationDomainOutput {
+	return i.ToOrganizationDomainOutputWithContext(context.Background())
+}
+
+func (i OrganizationDomainArgs) ToOrganizationDomainOutputWithContext(ctx context.Context) OrganizationDomainOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationDomainOutput)
+}
+
+// OrganizationDomainArrayInput is an input type that accepts OrganizationDomainArray and OrganizationDomainArrayOutput values.
+// You can construct a concrete instance of `OrganizationDomainArrayInput` via:
+//
+//	OrganizationDomainArray{ OrganizationDomainArgs{...} }
+type OrganizationDomainArrayInput interface {
+	pulumi.Input
+
+	ToOrganizationDomainArrayOutput() OrganizationDomainArrayOutput
+	ToOrganizationDomainArrayOutputWithContext(context.Context) OrganizationDomainArrayOutput
+}
+
+type OrganizationDomainArray []OrganizationDomainInput
+
+func (OrganizationDomainArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]OrganizationDomain)(nil)).Elem()
+}
+
+func (i OrganizationDomainArray) ToOrganizationDomainArrayOutput() OrganizationDomainArrayOutput {
+	return i.ToOrganizationDomainArrayOutputWithContext(context.Background())
+}
+
+func (i OrganizationDomainArray) ToOrganizationDomainArrayOutputWithContext(ctx context.Context) OrganizationDomainArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationDomainArrayOutput)
+}
+
+type OrganizationDomainOutput struct{ *pulumi.OutputState }
+
+func (OrganizationDomainOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*OrganizationDomain)(nil)).Elem()
+}
+
+func (o OrganizationDomainOutput) ToOrganizationDomainOutput() OrganizationDomainOutput {
+	return o
+}
+
+func (o OrganizationDomainOutput) ToOrganizationDomainOutputWithContext(ctx context.Context) OrganizationDomainOutput {
+	return o
+}
+
+// The name of the organization.
+func (o OrganizationDomainOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v OrganizationDomain) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Whether domain is verified or not. Default is false.
+func (o OrganizationDomainOutput) Verified() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v OrganizationDomain) *bool { return v.Verified }).(pulumi.BoolPtrOutput)
+}
+
+type OrganizationDomainArrayOutput struct{ *pulumi.OutputState }
+
+func (OrganizationDomainArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]OrganizationDomain)(nil)).Elem()
+}
+
+func (o OrganizationDomainArrayOutput) ToOrganizationDomainArrayOutput() OrganizationDomainArrayOutput {
+	return o
+}
+
+func (o OrganizationDomainArrayOutput) ToOrganizationDomainArrayOutputWithContext(ctx context.Context) OrganizationDomainArrayOutput {
+	return o
+}
+
+func (o OrganizationDomainArrayOutput) Index(i pulumi.IntInput) OrganizationDomainOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) OrganizationDomain {
+		return vs[0].([]OrganizationDomain)[vs[1].(int)]
+	}).(OrganizationDomainOutput)
+}
+
+type RealmClientPolicyProfileExecutor struct {
+	Configuration map[string]string `pulumi:"configuration"`
+	Name          string            `pulumi:"name"`
+}
+
+// RealmClientPolicyProfileExecutorInput is an input type that accepts RealmClientPolicyProfileExecutorArgs and RealmClientPolicyProfileExecutorOutput values.
+// You can construct a concrete instance of `RealmClientPolicyProfileExecutorInput` via:
+//
+//	RealmClientPolicyProfileExecutorArgs{...}
+type RealmClientPolicyProfileExecutorInput interface {
+	pulumi.Input
+
+	ToRealmClientPolicyProfileExecutorOutput() RealmClientPolicyProfileExecutorOutput
+	ToRealmClientPolicyProfileExecutorOutputWithContext(context.Context) RealmClientPolicyProfileExecutorOutput
+}
+
+type RealmClientPolicyProfileExecutorArgs struct {
+	Configuration pulumi.StringMapInput `pulumi:"configuration"`
+	Name          pulumi.StringInput    `pulumi:"name"`
+}
+
+func (RealmClientPolicyProfileExecutorArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RealmClientPolicyProfileExecutor)(nil)).Elem()
+}
+
+func (i RealmClientPolicyProfileExecutorArgs) ToRealmClientPolicyProfileExecutorOutput() RealmClientPolicyProfileExecutorOutput {
+	return i.ToRealmClientPolicyProfileExecutorOutputWithContext(context.Background())
+}
+
+func (i RealmClientPolicyProfileExecutorArgs) ToRealmClientPolicyProfileExecutorOutputWithContext(ctx context.Context) RealmClientPolicyProfileExecutorOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RealmClientPolicyProfileExecutorOutput)
+}
+
+// RealmClientPolicyProfileExecutorArrayInput is an input type that accepts RealmClientPolicyProfileExecutorArray and RealmClientPolicyProfileExecutorArrayOutput values.
+// You can construct a concrete instance of `RealmClientPolicyProfileExecutorArrayInput` via:
+//
+//	RealmClientPolicyProfileExecutorArray{ RealmClientPolicyProfileExecutorArgs{...} }
+type RealmClientPolicyProfileExecutorArrayInput interface {
+	pulumi.Input
+
+	ToRealmClientPolicyProfileExecutorArrayOutput() RealmClientPolicyProfileExecutorArrayOutput
+	ToRealmClientPolicyProfileExecutorArrayOutputWithContext(context.Context) RealmClientPolicyProfileExecutorArrayOutput
+}
+
+type RealmClientPolicyProfileExecutorArray []RealmClientPolicyProfileExecutorInput
+
+func (RealmClientPolicyProfileExecutorArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RealmClientPolicyProfileExecutor)(nil)).Elem()
+}
+
+func (i RealmClientPolicyProfileExecutorArray) ToRealmClientPolicyProfileExecutorArrayOutput() RealmClientPolicyProfileExecutorArrayOutput {
+	return i.ToRealmClientPolicyProfileExecutorArrayOutputWithContext(context.Background())
+}
+
+func (i RealmClientPolicyProfileExecutorArray) ToRealmClientPolicyProfileExecutorArrayOutputWithContext(ctx context.Context) RealmClientPolicyProfileExecutorArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RealmClientPolicyProfileExecutorArrayOutput)
+}
+
+type RealmClientPolicyProfileExecutorOutput struct{ *pulumi.OutputState }
+
+func (RealmClientPolicyProfileExecutorOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RealmClientPolicyProfileExecutor)(nil)).Elem()
+}
+
+func (o RealmClientPolicyProfileExecutorOutput) ToRealmClientPolicyProfileExecutorOutput() RealmClientPolicyProfileExecutorOutput {
+	return o
+}
+
+func (o RealmClientPolicyProfileExecutorOutput) ToRealmClientPolicyProfileExecutorOutputWithContext(ctx context.Context) RealmClientPolicyProfileExecutorOutput {
+	return o
+}
+
+func (o RealmClientPolicyProfileExecutorOutput) Configuration() pulumi.StringMapOutput {
+	return o.ApplyT(func(v RealmClientPolicyProfileExecutor) map[string]string { return v.Configuration }).(pulumi.StringMapOutput)
+}
+
+func (o RealmClientPolicyProfileExecutorOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v RealmClientPolicyProfileExecutor) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type RealmClientPolicyProfileExecutorArrayOutput struct{ *pulumi.OutputState }
+
+func (RealmClientPolicyProfileExecutorArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RealmClientPolicyProfileExecutor)(nil)).Elem()
+}
+
+func (o RealmClientPolicyProfileExecutorArrayOutput) ToRealmClientPolicyProfileExecutorArrayOutput() RealmClientPolicyProfileExecutorArrayOutput {
+	return o
+}
+
+func (o RealmClientPolicyProfileExecutorArrayOutput) ToRealmClientPolicyProfileExecutorArrayOutputWithContext(ctx context.Context) RealmClientPolicyProfileExecutorArrayOutput {
+	return o
+}
+
+func (o RealmClientPolicyProfileExecutorArrayOutput) Index(i pulumi.IntInput) RealmClientPolicyProfileExecutorOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RealmClientPolicyProfileExecutor {
+		return vs[0].([]RealmClientPolicyProfileExecutor)[vs[1].(int)]
+	}).(RealmClientPolicyProfileExecutorOutput)
+}
+
+type RealmClientPolicyProfilePolicyCondition struct {
+	Configuration map[string]string `pulumi:"configuration"`
+	Name          string            `pulumi:"name"`
+}
+
+// RealmClientPolicyProfilePolicyConditionInput is an input type that accepts RealmClientPolicyProfilePolicyConditionArgs and RealmClientPolicyProfilePolicyConditionOutput values.
+// You can construct a concrete instance of `RealmClientPolicyProfilePolicyConditionInput` via:
+//
+//	RealmClientPolicyProfilePolicyConditionArgs{...}
+type RealmClientPolicyProfilePolicyConditionInput interface {
+	pulumi.Input
+
+	ToRealmClientPolicyProfilePolicyConditionOutput() RealmClientPolicyProfilePolicyConditionOutput
+	ToRealmClientPolicyProfilePolicyConditionOutputWithContext(context.Context) RealmClientPolicyProfilePolicyConditionOutput
+}
+
+type RealmClientPolicyProfilePolicyConditionArgs struct {
+	Configuration pulumi.StringMapInput `pulumi:"configuration"`
+	Name          pulumi.StringInput    `pulumi:"name"`
+}
+
+func (RealmClientPolicyProfilePolicyConditionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RealmClientPolicyProfilePolicyCondition)(nil)).Elem()
+}
+
+func (i RealmClientPolicyProfilePolicyConditionArgs) ToRealmClientPolicyProfilePolicyConditionOutput() RealmClientPolicyProfilePolicyConditionOutput {
+	return i.ToRealmClientPolicyProfilePolicyConditionOutputWithContext(context.Background())
+}
+
+func (i RealmClientPolicyProfilePolicyConditionArgs) ToRealmClientPolicyProfilePolicyConditionOutputWithContext(ctx context.Context) RealmClientPolicyProfilePolicyConditionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RealmClientPolicyProfilePolicyConditionOutput)
+}
+
+// RealmClientPolicyProfilePolicyConditionArrayInput is an input type that accepts RealmClientPolicyProfilePolicyConditionArray and RealmClientPolicyProfilePolicyConditionArrayOutput values.
+// You can construct a concrete instance of `RealmClientPolicyProfilePolicyConditionArrayInput` via:
+//
+//	RealmClientPolicyProfilePolicyConditionArray{ RealmClientPolicyProfilePolicyConditionArgs{...} }
+type RealmClientPolicyProfilePolicyConditionArrayInput interface {
+	pulumi.Input
+
+	ToRealmClientPolicyProfilePolicyConditionArrayOutput() RealmClientPolicyProfilePolicyConditionArrayOutput
+	ToRealmClientPolicyProfilePolicyConditionArrayOutputWithContext(context.Context) RealmClientPolicyProfilePolicyConditionArrayOutput
+}
+
+type RealmClientPolicyProfilePolicyConditionArray []RealmClientPolicyProfilePolicyConditionInput
+
+func (RealmClientPolicyProfilePolicyConditionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RealmClientPolicyProfilePolicyCondition)(nil)).Elem()
+}
+
+func (i RealmClientPolicyProfilePolicyConditionArray) ToRealmClientPolicyProfilePolicyConditionArrayOutput() RealmClientPolicyProfilePolicyConditionArrayOutput {
+	return i.ToRealmClientPolicyProfilePolicyConditionArrayOutputWithContext(context.Background())
+}
+
+func (i RealmClientPolicyProfilePolicyConditionArray) ToRealmClientPolicyProfilePolicyConditionArrayOutputWithContext(ctx context.Context) RealmClientPolicyProfilePolicyConditionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RealmClientPolicyProfilePolicyConditionArrayOutput)
+}
+
+type RealmClientPolicyProfilePolicyConditionOutput struct{ *pulumi.OutputState }
+
+func (RealmClientPolicyProfilePolicyConditionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RealmClientPolicyProfilePolicyCondition)(nil)).Elem()
+}
+
+func (o RealmClientPolicyProfilePolicyConditionOutput) ToRealmClientPolicyProfilePolicyConditionOutput() RealmClientPolicyProfilePolicyConditionOutput {
+	return o
+}
+
+func (o RealmClientPolicyProfilePolicyConditionOutput) ToRealmClientPolicyProfilePolicyConditionOutputWithContext(ctx context.Context) RealmClientPolicyProfilePolicyConditionOutput {
+	return o
+}
+
+func (o RealmClientPolicyProfilePolicyConditionOutput) Configuration() pulumi.StringMapOutput {
+	return o.ApplyT(func(v RealmClientPolicyProfilePolicyCondition) map[string]string { return v.Configuration }).(pulumi.StringMapOutput)
+}
+
+func (o RealmClientPolicyProfilePolicyConditionOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v RealmClientPolicyProfilePolicyCondition) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type RealmClientPolicyProfilePolicyConditionArrayOutput struct{ *pulumi.OutputState }
+
+func (RealmClientPolicyProfilePolicyConditionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RealmClientPolicyProfilePolicyCondition)(nil)).Elem()
+}
+
+func (o RealmClientPolicyProfilePolicyConditionArrayOutput) ToRealmClientPolicyProfilePolicyConditionArrayOutput() RealmClientPolicyProfilePolicyConditionArrayOutput {
+	return o
+}
+
+func (o RealmClientPolicyProfilePolicyConditionArrayOutput) ToRealmClientPolicyProfilePolicyConditionArrayOutputWithContext(ctx context.Context) RealmClientPolicyProfilePolicyConditionArrayOutput {
+	return o
+}
+
+func (o RealmClientPolicyProfilePolicyConditionArrayOutput) Index(i pulumi.IntInput) RealmClientPolicyProfilePolicyConditionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RealmClientPolicyProfilePolicyCondition {
+		return vs[0].([]RealmClientPolicyProfilePolicyCondition)[vs[1].(int)]
+	}).(RealmClientPolicyProfilePolicyConditionOutput)
+}
+
 type RealmInternationalization struct {
 	// The locale to use by default. This locale code must be present within the `supportedLocales` list.
 	DefaultLocale string `pulumi:"defaultLocale"`
@@ -4919,6 +5225,109 @@ func (o GetClientDescriptionConverterProtocolMapperArrayOutput) Index(i pulumi.I
 	}).(GetClientDescriptionConverterProtocolMapperOutput)
 }
 
+type GetOrganizationDomain struct {
+	// The organization name.
+	Name     string `pulumi:"name"`
+	Verified bool   `pulumi:"verified"`
+}
+
+// GetOrganizationDomainInput is an input type that accepts GetOrganizationDomainArgs and GetOrganizationDomainOutput values.
+// You can construct a concrete instance of `GetOrganizationDomainInput` via:
+//
+//	GetOrganizationDomainArgs{...}
+type GetOrganizationDomainInput interface {
+	pulumi.Input
+
+	ToGetOrganizationDomainOutput() GetOrganizationDomainOutput
+	ToGetOrganizationDomainOutputWithContext(context.Context) GetOrganizationDomainOutput
+}
+
+type GetOrganizationDomainArgs struct {
+	// The organization name.
+	Name     pulumi.StringInput `pulumi:"name"`
+	Verified pulumi.BoolInput   `pulumi:"verified"`
+}
+
+func (GetOrganizationDomainArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetOrganizationDomain)(nil)).Elem()
+}
+
+func (i GetOrganizationDomainArgs) ToGetOrganizationDomainOutput() GetOrganizationDomainOutput {
+	return i.ToGetOrganizationDomainOutputWithContext(context.Background())
+}
+
+func (i GetOrganizationDomainArgs) ToGetOrganizationDomainOutputWithContext(ctx context.Context) GetOrganizationDomainOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetOrganizationDomainOutput)
+}
+
+// GetOrganizationDomainArrayInput is an input type that accepts GetOrganizationDomainArray and GetOrganizationDomainArrayOutput values.
+// You can construct a concrete instance of `GetOrganizationDomainArrayInput` via:
+//
+//	GetOrganizationDomainArray{ GetOrganizationDomainArgs{...} }
+type GetOrganizationDomainArrayInput interface {
+	pulumi.Input
+
+	ToGetOrganizationDomainArrayOutput() GetOrganizationDomainArrayOutput
+	ToGetOrganizationDomainArrayOutputWithContext(context.Context) GetOrganizationDomainArrayOutput
+}
+
+type GetOrganizationDomainArray []GetOrganizationDomainInput
+
+func (GetOrganizationDomainArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetOrganizationDomain)(nil)).Elem()
+}
+
+func (i GetOrganizationDomainArray) ToGetOrganizationDomainArrayOutput() GetOrganizationDomainArrayOutput {
+	return i.ToGetOrganizationDomainArrayOutputWithContext(context.Background())
+}
+
+func (i GetOrganizationDomainArray) ToGetOrganizationDomainArrayOutputWithContext(ctx context.Context) GetOrganizationDomainArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetOrganizationDomainArrayOutput)
+}
+
+type GetOrganizationDomainOutput struct{ *pulumi.OutputState }
+
+func (GetOrganizationDomainOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetOrganizationDomain)(nil)).Elem()
+}
+
+func (o GetOrganizationDomainOutput) ToGetOrganizationDomainOutput() GetOrganizationDomainOutput {
+	return o
+}
+
+func (o GetOrganizationDomainOutput) ToGetOrganizationDomainOutputWithContext(ctx context.Context) GetOrganizationDomainOutput {
+	return o
+}
+
+// The organization name.
+func (o GetOrganizationDomainOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOrganizationDomain) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetOrganizationDomainOutput) Verified() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetOrganizationDomain) bool { return v.Verified }).(pulumi.BoolOutput)
+}
+
+type GetOrganizationDomainArrayOutput struct{ *pulumi.OutputState }
+
+func (GetOrganizationDomainArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetOrganizationDomain)(nil)).Elem()
+}
+
+func (o GetOrganizationDomainArrayOutput) ToGetOrganizationDomainArrayOutput() GetOrganizationDomainArrayOutput {
+	return o
+}
+
+func (o GetOrganizationDomainArrayOutput) ToGetOrganizationDomainArrayOutputWithContext(ctx context.Context) GetOrganizationDomainArrayOutput {
+	return o
+}
+
+func (o GetOrganizationDomainArrayOutput) Index(i pulumi.IntInput) GetOrganizationDomainOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetOrganizationDomain {
+		return vs[0].([]GetOrganizationDomain)[vs[1].(int)]
+	}).(GetOrganizationDomainOutput)
+}
+
 type GetRealmInternationalization struct {
 	DefaultLocale    string   `pulumi:"defaultLocale"`
 	SupportedLocales []string `pulumi:"supportedLocales"`
@@ -6620,6 +7029,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GroupPermissionsViewMembersScopePtrInput)(nil)).Elem(), GroupPermissionsViewMembersScopeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GroupPermissionsViewScopeInput)(nil)).Elem(), GroupPermissionsViewScopeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GroupPermissionsViewScopePtrInput)(nil)).Elem(), GroupPermissionsViewScopeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OrganizationDomainInput)(nil)).Elem(), OrganizationDomainArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OrganizationDomainArrayInput)(nil)).Elem(), OrganizationDomainArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RealmClientPolicyProfileExecutorInput)(nil)).Elem(), RealmClientPolicyProfileExecutorArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RealmClientPolicyProfileExecutorArrayInput)(nil)).Elem(), RealmClientPolicyProfileExecutorArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RealmClientPolicyProfilePolicyConditionInput)(nil)).Elem(), RealmClientPolicyProfilePolicyConditionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RealmClientPolicyProfilePolicyConditionArrayInput)(nil)).Elem(), RealmClientPolicyProfilePolicyConditionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RealmInternationalizationInput)(nil)).Elem(), RealmInternationalizationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RealmInternationalizationPtrInput)(nil)).Elem(), RealmInternationalizationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RealmOtpPolicyInput)(nil)).Elem(), RealmOtpPolicyArgs{})
@@ -6664,6 +7079,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*UsersPermissionsViewScopePtrInput)(nil)).Elem(), UsersPermissionsViewScopeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClientDescriptionConverterProtocolMapperInput)(nil)).Elem(), GetClientDescriptionConverterProtocolMapperArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClientDescriptionConverterProtocolMapperArrayInput)(nil)).Elem(), GetClientDescriptionConverterProtocolMapperArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetOrganizationDomainInput)(nil)).Elem(), GetOrganizationDomainArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetOrganizationDomainArrayInput)(nil)).Elem(), GetOrganizationDomainArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRealmInternationalizationInput)(nil)).Elem(), GetRealmInternationalizationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRealmInternationalizationArrayInput)(nil)).Elem(), GetRealmInternationalizationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRealmKeysKeyInput)(nil)).Elem(), GetRealmKeysKeyArgs{})
@@ -6694,6 +7111,12 @@ func init() {
 	pulumi.RegisterOutputType(GroupPermissionsViewMembersScopePtrOutput{})
 	pulumi.RegisterOutputType(GroupPermissionsViewScopeOutput{})
 	pulumi.RegisterOutputType(GroupPermissionsViewScopePtrOutput{})
+	pulumi.RegisterOutputType(OrganizationDomainOutput{})
+	pulumi.RegisterOutputType(OrganizationDomainArrayOutput{})
+	pulumi.RegisterOutputType(RealmClientPolicyProfileExecutorOutput{})
+	pulumi.RegisterOutputType(RealmClientPolicyProfileExecutorArrayOutput{})
+	pulumi.RegisterOutputType(RealmClientPolicyProfilePolicyConditionOutput{})
+	pulumi.RegisterOutputType(RealmClientPolicyProfilePolicyConditionArrayOutput{})
 	pulumi.RegisterOutputType(RealmInternationalizationOutput{})
 	pulumi.RegisterOutputType(RealmInternationalizationPtrOutput{})
 	pulumi.RegisterOutputType(RealmOtpPolicyOutput{})
@@ -6738,6 +7161,8 @@ func init() {
 	pulumi.RegisterOutputType(UsersPermissionsViewScopePtrOutput{})
 	pulumi.RegisterOutputType(GetClientDescriptionConverterProtocolMapperOutput{})
 	pulumi.RegisterOutputType(GetClientDescriptionConverterProtocolMapperArrayOutput{})
+	pulumi.RegisterOutputType(GetOrganizationDomainOutput{})
+	pulumi.RegisterOutputType(GetOrganizationDomainArrayOutput{})
 	pulumi.RegisterOutputType(GetRealmInternationalizationOutput{})
 	pulumi.RegisterOutputType(GetRealmInternationalizationArrayOutput{})
 	pulumi.RegisterOutputType(GetRealmKeysKeyOutput{})

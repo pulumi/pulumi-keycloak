@@ -161,6 +161,18 @@ namespace Pulumi.Keycloak.Oidc
         [Output("linkOnly")]
         public Output<bool?> LinkOnly { get; private set; } = null!;
 
+        [Output("orgDomain")]
+        public Output<string?> OrgDomain { get; private set; } = null!;
+
+        [Output("orgRedirectModeEmailMatches")]
+        public Output<bool?> OrgRedirectModeEmailMatches { get; private set; } = null!;
+
+        /// <summary>
+        /// ID of organization with which this identity is linked.
+        /// </summary>
+        [Output("organizationId")]
+        public Output<string?> OrganizationId { get; private set; } = null!;
+
         /// <summary>
         /// The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
         /// </summary>
@@ -367,6 +379,18 @@ namespace Pulumi.Keycloak.Oidc
         [Input("linkOnly")]
         public Input<bool>? LinkOnly { get; set; }
 
+        [Input("orgDomain")]
+        public Input<string>? OrgDomain { get; set; }
+
+        [Input("orgRedirectModeEmailMatches")]
+        public Input<bool>? OrgRedirectModeEmailMatches { get; set; }
+
+        /// <summary>
+        /// ID of organization with which this identity is linked.
+        /// </summary>
+        [Input("organizationId")]
+        public Input<string>? OrganizationId { get; set; }
+
         /// <summary>
         /// The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
         /// </summary>
@@ -536,6 +560,18 @@ namespace Pulumi.Keycloak.Oidc
         /// </summary>
         [Input("linkOnly")]
         public Input<bool>? LinkOnly { get; set; }
+
+        [Input("orgDomain")]
+        public Input<string>? OrgDomain { get; set; }
+
+        [Input("orgRedirectModeEmailMatches")]
+        public Input<bool>? OrgRedirectModeEmailMatches { get; set; }
+
+        /// <summary>
+        /// ID of organization with which this identity is linked.
+        /// </summary>
+        [Input("organizationId")]
+        public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
         /// The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.

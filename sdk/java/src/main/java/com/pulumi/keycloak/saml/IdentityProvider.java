@@ -349,6 +349,48 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.nameIdPolicyFormat);
     }
     /**
+     * The organization domain to associate this identity provider with. It is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
+     * 
+     */
+    @Export(name="orgDomain", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> orgDomain;
+
+    /**
+     * @return The organization domain to associate this identity provider with. It is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
+     * 
+     */
+    public Output<Optional<String>> orgDomain() {
+        return Codegen.optional(this.orgDomain);
+    }
+    /**
+     * Indicates whether to automatically redirect users to this identity provider when email domain matches domain.
+     * 
+     */
+    @Export(name="orgRedirectModeEmailMatches", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> orgRedirectModeEmailMatches;
+
+    /**
+     * @return Indicates whether to automatically redirect users to this identity provider when email domain matches domain.
+     * 
+     */
+    public Output<Optional<Boolean>> orgRedirectModeEmailMatches() {
+        return Codegen.optional(this.orgRedirectModeEmailMatches);
+    }
+    /**
+     * The ID of the organization to link this identity provider to.
+     * 
+     */
+    @Export(name="organizationId", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> organizationId;
+
+    /**
+     * @return The ID of the organization to link this identity provider to.
+     * 
+     */
+    public Output<Optional<String>> organizationId() {
+        return Codegen.optional(this.organizationId);
+    }
+    /**
      * Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
      * 
      */

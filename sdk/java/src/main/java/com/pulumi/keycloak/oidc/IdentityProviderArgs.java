@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -124,18 +125,33 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
+     * The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `client_secret_wo` and `client_secret_wo_version`.
      * 
      */
-    @Import(name="clientSecret", required=true)
-    private Output<String> clientSecret;
+    @Import(name="clientSecret")
+    private @Nullable Output<String> clientSecret;
 
     /**
-     * @return The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
+     * @return The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `client_secret_wo` and `client_secret_wo_version`.
      * 
      */
-    public Output<String> clientSecret() {
-        return this.clientSecret;
+    public Optional<Output<String>> clientSecret() {
+        return Optional.ofNullable(this.clientSecret);
+    }
+
+    /**
+     * Version of the Client secret write-only argument
+     * 
+     */
+    @Import(name="clientSecretWoVersion")
+    private @Nullable Output<Integer> clientSecretWoVersion;
+
+    /**
+     * @return Version of the Client secret write-only argument
+     * 
+     */
+    public Optional<Output<Integer>> clientSecretWoVersion() {
+        return Optional.ofNullable(this.clientSecretWoVersion);
     }
 
     /**
@@ -151,6 +167,21 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
      */
     public Optional<Output<String>> defaultScopes() {
         return Optional.ofNullable(this.defaultScopes);
+    }
+
+    /**
+     * When `true`, disables the check for the `typ` claim of tokens received from the identity provider. Defaults to `false`.
+     * 
+     */
+    @Import(name="disableTypeClaimCheck")
+    private @Nullable Output<Boolean> disableTypeClaimCheck;
+
+    /**
+     * @return When `true`, disables the check for the `typ` claim of tokens received from the identity provider. Defaults to `false`.
+     * 
+     */
+    public Optional<Output<Boolean>> disableTypeClaimCheck() {
+        return Optional.ofNullable(this.disableTypeClaimCheck);
     }
 
     /**
@@ -326,6 +357,51 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
+     * The organization domain to associate this identity provider with. it is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
+     * 
+     */
+    @Import(name="orgDomain")
+    private @Nullable Output<String> orgDomain;
+
+    /**
+     * @return The organization domain to associate this identity provider with. it is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
+     * 
+     */
+    public Optional<Output<String>> orgDomain() {
+        return Optional.ofNullable(this.orgDomain);
+    }
+
+    /**
+     * Indicates whether to automatically redirect user to this identity provider when email domain matches domain.
+     * 
+     */
+    @Import(name="orgRedirectModeEmailMatches")
+    private @Nullable Output<Boolean> orgRedirectModeEmailMatches;
+
+    /**
+     * @return Indicates whether to automatically redirect user to this identity provider when email domain matches domain.
+     * 
+     */
+    public Optional<Output<Boolean>> orgRedirectModeEmailMatches() {
+        return Optional.ofNullable(this.orgRedirectModeEmailMatches);
+    }
+
+    /**
+     * The ID of the organization to link this identity provider to.
+     * 
+     */
+    @Import(name="organizationId")
+    private @Nullable Output<String> organizationId;
+
+    /**
+     * @return The ID of the organization to link this identity provider to.
+     * 
+     */
+    public Optional<Output<String>> organizationId() {
+        return Optional.ofNullable(this.organizationId);
+    }
+
+    /**
      * The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
      * 
      */
@@ -486,7 +562,9 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         this.backchannelSupported = $.backchannelSupported;
         this.clientId = $.clientId;
         this.clientSecret = $.clientSecret;
+        this.clientSecretWoVersion = $.clientSecretWoVersion;
         this.defaultScopes = $.defaultScopes;
+        this.disableTypeClaimCheck = $.disableTypeClaimCheck;
         this.disableUserInfo = $.disableUserInfo;
         this.displayName = $.displayName;
         this.enabled = $.enabled;
@@ -499,6 +577,9 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         this.linkOnly = $.linkOnly;
         this.loginHint = $.loginHint;
         this.logoutUrl = $.logoutUrl;
+        this.orgDomain = $.orgDomain;
+        this.orgRedirectModeEmailMatches = $.orgRedirectModeEmailMatches;
+        this.organizationId = $.organizationId;
         this.postBrokerLoginFlowAlias = $.postBrokerLoginFlowAlias;
         this.providerId = $.providerId;
         this.realm = $.realm;
@@ -677,24 +758,45 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param clientSecret The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
+         * @param clientSecret The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `client_secret_wo` and `client_secret_wo_version`.
          * 
          * @return builder
          * 
          */
-        public Builder clientSecret(Output<String> clientSecret) {
+        public Builder clientSecret(@Nullable Output<String> clientSecret) {
             $.clientSecret = clientSecret;
             return this;
         }
 
         /**
-         * @param clientSecret The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
+         * @param clientSecret The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `client_secret_wo` and `client_secret_wo_version`.
          * 
          * @return builder
          * 
          */
         public Builder clientSecret(String clientSecret) {
             return clientSecret(Output.of(clientSecret));
+        }
+
+        /**
+         * @param clientSecretWoVersion Version of the Client secret write-only argument
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientSecretWoVersion(@Nullable Output<Integer> clientSecretWoVersion) {
+            $.clientSecretWoVersion = clientSecretWoVersion;
+            return this;
+        }
+
+        /**
+         * @param clientSecretWoVersion Version of the Client secret write-only argument
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientSecretWoVersion(Integer clientSecretWoVersion) {
+            return clientSecretWoVersion(Output.of(clientSecretWoVersion));
         }
 
         /**
@@ -716,6 +818,27 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
          */
         public Builder defaultScopes(String defaultScopes) {
             return defaultScopes(Output.of(defaultScopes));
+        }
+
+        /**
+         * @param disableTypeClaimCheck When `true`, disables the check for the `typ` claim of tokens received from the identity provider. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disableTypeClaimCheck(@Nullable Output<Boolean> disableTypeClaimCheck) {
+            $.disableTypeClaimCheck = disableTypeClaimCheck;
+            return this;
+        }
+
+        /**
+         * @param disableTypeClaimCheck When `true`, disables the check for the `typ` claim of tokens received from the identity provider. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disableTypeClaimCheck(Boolean disableTypeClaimCheck) {
+            return disableTypeClaimCheck(Output.of(disableTypeClaimCheck));
         }
 
         /**
@@ -959,6 +1082,69 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
+         * @param orgDomain The organization domain to associate this identity provider with. it is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder orgDomain(@Nullable Output<String> orgDomain) {
+            $.orgDomain = orgDomain;
+            return this;
+        }
+
+        /**
+         * @param orgDomain The organization domain to associate this identity provider with. it is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder orgDomain(String orgDomain) {
+            return orgDomain(Output.of(orgDomain));
+        }
+
+        /**
+         * @param orgRedirectModeEmailMatches Indicates whether to automatically redirect user to this identity provider when email domain matches domain.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder orgRedirectModeEmailMatches(@Nullable Output<Boolean> orgRedirectModeEmailMatches) {
+            $.orgRedirectModeEmailMatches = orgRedirectModeEmailMatches;
+            return this;
+        }
+
+        /**
+         * @param orgRedirectModeEmailMatches Indicates whether to automatically redirect user to this identity provider when email domain matches domain.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder orgRedirectModeEmailMatches(Boolean orgRedirectModeEmailMatches) {
+            return orgRedirectModeEmailMatches(Output.of(orgRedirectModeEmailMatches));
+        }
+
+        /**
+         * @param organizationId The ID of the organization to link this identity provider to.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder organizationId(@Nullable Output<String> organizationId) {
+            $.organizationId = organizationId;
+            return this;
+        }
+
+        /**
+         * @param organizationId The ID of the organization to link this identity provider to.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder organizationId(String organizationId) {
+            return organizationId(Output.of(organizationId));
+        }
+
+        /**
          * @param postBrokerLoginFlowAlias The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
          * 
          * @return builder
@@ -1177,9 +1363,6 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
             }
             if ($.clientId == null) {
                 throw new MissingRequiredPropertyException("IdentityProviderArgs", "clientId");
-            }
-            if ($.clientSecret == null) {
-                throw new MissingRequiredPropertyException("IdentityProviderArgs", "clientSecret");
             }
             if ($.realm == null) {
                 throw new MissingRequiredPropertyException("IdentityProviderArgs", "realm");

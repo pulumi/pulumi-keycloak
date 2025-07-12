@@ -11,6 +11,7 @@ import com.pulumi.keycloak.Utilities;
 import com.pulumi.keycloak.oidc.IdentityProviderArgs;
 import com.pulumi.keycloak.oidc.inputs.IdentityProviderState;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +22,13 @@ import javax.annotation.Nullable;
  * Allows for creating and managing OIDC Identity Providers within Keycloak.
  * 
  * OIDC (OpenID Connect) identity providers allows users to authenticate through a third party system using the OIDC standard.
+ * 
+ * &gt; **NOTICE:** This resource now supports write-only arguments
+ * for client secret via the new arguments `client_secret_wo` and `client_secret_wo_version`. Using write-only arguments
+ * prevents sensitive values from being stored in plan and state files. You cannot use `client_secret_wo` and
+ * `client_secret_wo_version` alongside `client_secret` as this will result in a validation error due to conflicts.
+ * &gt; 
+ * &gt; For backward compatibility, the behavior of the original `client_secret` argument remains unchanged.
  * 
  * ## Example Usage
  * 
@@ -184,18 +192,32 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
         return this.clientId;
     }
     /**
-     * The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
+     * The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `client_secret_wo` and `client_secret_wo_version`.
      * 
      */
     @Export(name="clientSecret", refs={String.class}, tree="[0]")
-    private Output<String> clientSecret;
+    private Output</* @Nullable */ String> clientSecret;
 
     /**
-     * @return The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
+     * @return The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `client_secret_wo` and `client_secret_wo_version`.
      * 
      */
-    public Output<String> clientSecret() {
-        return this.clientSecret;
+    public Output<Optional<String>> clientSecret() {
+        return Codegen.optional(this.clientSecret);
+    }
+    /**
+     * Version of the Client secret write-only argument
+     * 
+     */
+    @Export(name="clientSecretWoVersion", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> clientSecretWoVersion;
+
+    /**
+     * @return Version of the Client secret write-only argument
+     * 
+     */
+    public Output<Optional<Integer>> clientSecretWoVersion() {
+        return Codegen.optional(this.clientSecretWoVersion);
     }
     /**
      * The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
@@ -210,6 +232,20 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> defaultScopes() {
         return Codegen.optional(this.defaultScopes);
+    }
+    /**
+     * When `true`, disables the check for the `typ` claim of tokens received from the identity provider. Defaults to `false`.
+     * 
+     */
+    @Export(name="disableTypeClaimCheck", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> disableTypeClaimCheck;
+
+    /**
+     * @return When `true`, disables the check for the `typ` claim of tokens received from the identity provider. Defaults to `false`.
+     * 
+     */
+    public Output<Optional<Boolean>> disableTypeClaimCheck() {
+        return Codegen.optional(this.disableTypeClaimCheck);
     }
     /**
      * When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
@@ -384,6 +420,48 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> logoutUrl() {
         return Codegen.optional(this.logoutUrl);
+    }
+    /**
+     * The organization domain to associate this identity provider with. it is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
+     * 
+     */
+    @Export(name="orgDomain", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> orgDomain;
+
+    /**
+     * @return The organization domain to associate this identity provider with. it is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
+     * 
+     */
+    public Output<Optional<String>> orgDomain() {
+        return Codegen.optional(this.orgDomain);
+    }
+    /**
+     * Indicates whether to automatically redirect user to this identity provider when email domain matches domain.
+     * 
+     */
+    @Export(name="orgRedirectModeEmailMatches", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> orgRedirectModeEmailMatches;
+
+    /**
+     * @return Indicates whether to automatically redirect user to this identity provider when email domain matches domain.
+     * 
+     */
+    public Output<Optional<Boolean>> orgRedirectModeEmailMatches() {
+        return Codegen.optional(this.orgRedirectModeEmailMatches);
+    }
+    /**
+     * The ID of the organization to link this identity provider to.
+     * 
+     */
+    @Export(name="organizationId", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> organizationId;
+
+    /**
+     * @return The ID of the organization to link this identity provider to.
+     * 
+     */
+    public Output<Optional<String>> organizationId() {
+        return Codegen.optional(this.organizationId);
     }
     /**
      * The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.

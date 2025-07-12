@@ -315,6 +315,32 @@ public class GoogleIdentityProvider extends com.pulumi.resources.CustomResource 
     public Output<Optional<Boolean>> linkOnly() {
         return Codegen.optional(this.linkOnly);
     }
+    @Export(name="orgDomain", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> orgDomain;
+
+    public Output<Optional<String>> orgDomain() {
+        return Codegen.optional(this.orgDomain);
+    }
+    @Export(name="orgRedirectModeEmailMatches", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> orgRedirectModeEmailMatches;
+
+    public Output<Optional<Boolean>> orgRedirectModeEmailMatches() {
+        return Codegen.optional(this.orgRedirectModeEmailMatches);
+    }
+    /**
+     * ID of organization with which this identity is linked.
+     * 
+     */
+    @Export(name="organizationId", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> organizationId;
+
+    /**
+     * @return ID of organization with which this identity is linked.
+     * 
+     */
+    public Output<Optional<String>> organizationId() {
+        return Codegen.optional(this.organizationId);
+    }
     /**
      * The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
      * 

@@ -296,6 +296,51 @@ public final class IdentityProviderState extends com.pulumi.resources.ResourceAr
     }
 
     /**
+     * The organization domain to associate this identity provider with. It is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
+     * 
+     */
+    @Import(name="orgDomain")
+    private @Nullable Output<String> orgDomain;
+
+    /**
+     * @return The organization domain to associate this identity provider with. It is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
+     * 
+     */
+    public Optional<Output<String>> orgDomain() {
+        return Optional.ofNullable(this.orgDomain);
+    }
+
+    /**
+     * Indicates whether to automatically redirect users to this identity provider when email domain matches domain.
+     * 
+     */
+    @Import(name="orgRedirectModeEmailMatches")
+    private @Nullable Output<Boolean> orgRedirectModeEmailMatches;
+
+    /**
+     * @return Indicates whether to automatically redirect users to this identity provider when email domain matches domain.
+     * 
+     */
+    public Optional<Output<Boolean>> orgRedirectModeEmailMatches() {
+        return Optional.ofNullable(this.orgRedirectModeEmailMatches);
+    }
+
+    /**
+     * The ID of the organization to link this identity provider to.
+     * 
+     */
+    @Import(name="organizationId")
+    private @Nullable Output<String> organizationId;
+
+    /**
+     * @return The ID of the organization to link this identity provider to.
+     * 
+     */
+    public Optional<Output<String>> organizationId() {
+        return Optional.ofNullable(this.organizationId);
+    }
+
+    /**
      * Indicates whether the AuthnRequest must be sent using HTTP-POST binding. If false, HTTP-REDIRECT binding will be used.
      * 
      */
@@ -602,6 +647,9 @@ public final class IdentityProviderState extends com.pulumi.resources.ResourceAr
         this.linkOnly = $.linkOnly;
         this.loginHint = $.loginHint;
         this.nameIdPolicyFormat = $.nameIdPolicyFormat;
+        this.orgDomain = $.orgDomain;
+        this.orgRedirectModeEmailMatches = $.orgRedirectModeEmailMatches;
+        this.organizationId = $.organizationId;
         this.postBindingAuthnRequest = $.postBindingAuthnRequest;
         this.postBindingLogout = $.postBindingLogout;
         this.postBindingResponse = $.postBindingResponse;
@@ -1046,6 +1094,69 @@ public final class IdentityProviderState extends com.pulumi.resources.ResourceAr
          */
         public Builder nameIdPolicyFormat(String nameIdPolicyFormat) {
             return nameIdPolicyFormat(Output.of(nameIdPolicyFormat));
+        }
+
+        /**
+         * @param orgDomain The organization domain to associate this identity provider with. It is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder orgDomain(@Nullable Output<String> orgDomain) {
+            $.orgDomain = orgDomain;
+            return this;
+        }
+
+        /**
+         * @param orgDomain The organization domain to associate this identity provider with. It is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder orgDomain(String orgDomain) {
+            return orgDomain(Output.of(orgDomain));
+        }
+
+        /**
+         * @param orgRedirectModeEmailMatches Indicates whether to automatically redirect users to this identity provider when email domain matches domain.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder orgRedirectModeEmailMatches(@Nullable Output<Boolean> orgRedirectModeEmailMatches) {
+            $.orgRedirectModeEmailMatches = orgRedirectModeEmailMatches;
+            return this;
+        }
+
+        /**
+         * @param orgRedirectModeEmailMatches Indicates whether to automatically redirect users to this identity provider when email domain matches domain.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder orgRedirectModeEmailMatches(Boolean orgRedirectModeEmailMatches) {
+            return orgRedirectModeEmailMatches(Output.of(orgRedirectModeEmailMatches));
+        }
+
+        /**
+         * @param organizationId The ID of the organization to link this identity provider to.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder organizationId(@Nullable Output<String> organizationId) {
+            $.organizationId = organizationId;
+            return this;
+        }
+
+        /**
+         * @param organizationId The ID of the organization to link this identity provider to.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder organizationId(String organizationId) {
+            return organizationId(Output.of(organizationId));
         }
 
         /**

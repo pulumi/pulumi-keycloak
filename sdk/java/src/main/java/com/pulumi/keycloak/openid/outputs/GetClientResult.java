@@ -20,6 +20,7 @@ public final class GetClientResult {
     private String accessTokenLifespan;
     private String accessType;
     private String adminUrl;
+    private String allowRefreshTokenInStandardTokenExchange;
     private @Nullable Boolean alwaysDisplayInConsole;
     private List<GetClientAuthenticationFlowBindingOverride> authenticationFlowBindingOverrides;
     private List<GetClientAuthorization> authorizations;
@@ -64,6 +65,7 @@ public final class GetClientResult {
     private String serviceAccountUserId;
     private Boolean serviceAccountsEnabled;
     private Boolean standardFlowEnabled;
+    private Boolean standardTokenExchangeEnabled;
     private Boolean useRefreshTokens;
     private Boolean useRefreshTokensClientCredentials;
     private List<String> validPostLogoutRedirectUris;
@@ -79,6 +81,9 @@ public final class GetClientResult {
     }
     public String adminUrl() {
         return this.adminUrl;
+    }
+    public String allowRefreshTokenInStandardTokenExchange() {
+        return this.allowRefreshTokenInStandardTokenExchange;
     }
     public Optional<Boolean> alwaysDisplayInConsole() {
         return Optional.ofNullable(this.alwaysDisplayInConsole);
@@ -204,6 +209,9 @@ public final class GetClientResult {
     public Boolean standardFlowEnabled() {
         return this.standardFlowEnabled;
     }
+    public Boolean standardTokenExchangeEnabled() {
+        return this.standardTokenExchangeEnabled;
+    }
     public Boolean useRefreshTokens() {
         return this.useRefreshTokens;
     }
@@ -232,6 +240,7 @@ public final class GetClientResult {
         private String accessTokenLifespan;
         private String accessType;
         private String adminUrl;
+        private String allowRefreshTokenInStandardTokenExchange;
         private @Nullable Boolean alwaysDisplayInConsole;
         private List<GetClientAuthenticationFlowBindingOverride> authenticationFlowBindingOverrides;
         private List<GetClientAuthorization> authorizations;
@@ -272,6 +281,7 @@ public final class GetClientResult {
         private String serviceAccountUserId;
         private Boolean serviceAccountsEnabled;
         private Boolean standardFlowEnabled;
+        private Boolean standardTokenExchangeEnabled;
         private Boolean useRefreshTokens;
         private Boolean useRefreshTokensClientCredentials;
         private List<String> validPostLogoutRedirectUris;
@@ -283,6 +293,7 @@ public final class GetClientResult {
     	      this.accessTokenLifespan = defaults.accessTokenLifespan;
     	      this.accessType = defaults.accessType;
     	      this.adminUrl = defaults.adminUrl;
+    	      this.allowRefreshTokenInStandardTokenExchange = defaults.allowRefreshTokenInStandardTokenExchange;
     	      this.alwaysDisplayInConsole = defaults.alwaysDisplayInConsole;
     	      this.authenticationFlowBindingOverrides = defaults.authenticationFlowBindingOverrides;
     	      this.authorizations = defaults.authorizations;
@@ -323,6 +334,7 @@ public final class GetClientResult {
     	      this.serviceAccountUserId = defaults.serviceAccountUserId;
     	      this.serviceAccountsEnabled = defaults.serviceAccountsEnabled;
     	      this.standardFlowEnabled = defaults.standardFlowEnabled;
+    	      this.standardTokenExchangeEnabled = defaults.standardTokenExchangeEnabled;
     	      this.useRefreshTokens = defaults.useRefreshTokens;
     	      this.useRefreshTokensClientCredentials = defaults.useRefreshTokensClientCredentials;
     	      this.validPostLogoutRedirectUris = defaults.validPostLogoutRedirectUris;
@@ -352,6 +364,14 @@ public final class GetClientResult {
               throw new MissingRequiredPropertyException("GetClientResult", "adminUrl");
             }
             this.adminUrl = adminUrl;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder allowRefreshTokenInStandardTokenExchange(String allowRefreshTokenInStandardTokenExchange) {
+            if (allowRefreshTokenInStandardTokenExchange == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "allowRefreshTokenInStandardTokenExchange");
+            }
+            this.allowRefreshTokenInStandardTokenExchange = allowRefreshTokenInStandardTokenExchange;
             return this;
         }
         @CustomType.Setter
@@ -669,6 +689,14 @@ public final class GetClientResult {
             return this;
         }
         @CustomType.Setter
+        public Builder standardTokenExchangeEnabled(Boolean standardTokenExchangeEnabled) {
+            if (standardTokenExchangeEnabled == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "standardTokenExchangeEnabled");
+            }
+            this.standardTokenExchangeEnabled = standardTokenExchangeEnabled;
+            return this;
+        }
+        @CustomType.Setter
         public Builder useRefreshTokens(Boolean useRefreshTokens) {
             if (useRefreshTokens == null) {
               throw new MissingRequiredPropertyException("GetClientResult", "useRefreshTokens");
@@ -722,6 +750,7 @@ public final class GetClientResult {
             _resultValue.accessTokenLifespan = accessTokenLifespan;
             _resultValue.accessType = accessType;
             _resultValue.adminUrl = adminUrl;
+            _resultValue.allowRefreshTokenInStandardTokenExchange = allowRefreshTokenInStandardTokenExchange;
             _resultValue.alwaysDisplayInConsole = alwaysDisplayInConsole;
             _resultValue.authenticationFlowBindingOverrides = authenticationFlowBindingOverrides;
             _resultValue.authorizations = authorizations;
@@ -762,6 +791,7 @@ public final class GetClientResult {
             _resultValue.serviceAccountUserId = serviceAccountUserId;
             _resultValue.serviceAccountsEnabled = serviceAccountsEnabled;
             _resultValue.standardFlowEnabled = standardFlowEnabled;
+            _resultValue.standardTokenExchangeEnabled = standardTokenExchangeEnabled;
             _resultValue.useRefreshTokens = useRefreshTokens;
             _resultValue.useRefreshTokensClientCredentials = useRefreshTokensClientCredentials;
             _resultValue.validPostLogoutRedirectUris = validPostLogoutRedirectUris;

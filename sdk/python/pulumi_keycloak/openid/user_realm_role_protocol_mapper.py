@@ -24,6 +24,7 @@ class UserRealmRoleProtocolMapperArgs:
                  realm_id: pulumi.Input[builtins.str],
                  add_to_access_token: Optional[pulumi.Input[builtins.bool]] = None,
                  add_to_id_token: Optional[pulumi.Input[builtins.bool]] = None,
+                 add_to_token_introspection: Optional[pulumi.Input[builtins.bool]] = None,
                  add_to_userinfo: Optional[pulumi.Input[builtins.bool]] = None,
                  claim_value_type: Optional[pulumi.Input[builtins.str]] = None,
                  client_id: Optional[pulumi.Input[builtins.str]] = None,
@@ -37,6 +38,7 @@ class UserRealmRoleProtocolMapperArgs:
         :param pulumi.Input[builtins.str] realm_id: The realm this protocol mapper exists within.
         :param pulumi.Input[builtins.bool] add_to_access_token: Indicates if the property should be added as a claim to the access token. Defaults to `true`.
         :param pulumi.Input[builtins.bool] add_to_id_token: Indicates if the property should be added as a claim to the id token. Defaults to `true`.
+        :param pulumi.Input[builtins.bool] add_to_token_introspection: Indicates if the property should be added as a claim to the Token Introspection response body. Defaults to `true`.
         :param pulumi.Input[builtins.bool] add_to_userinfo: Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
         :param pulumi.Input[builtins.str] claim_value_type: The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
         :param pulumi.Input[builtins.str] client_id: The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
@@ -51,6 +53,8 @@ class UserRealmRoleProtocolMapperArgs:
             pulumi.set(__self__, "add_to_access_token", add_to_access_token)
         if add_to_id_token is not None:
             pulumi.set(__self__, "add_to_id_token", add_to_id_token)
+        if add_to_token_introspection is not None:
+            pulumi.set(__self__, "add_to_token_introspection", add_to_token_introspection)
         if add_to_userinfo is not None:
             pulumi.set(__self__, "add_to_userinfo", add_to_userinfo)
         if claim_value_type is not None:
@@ -113,6 +117,18 @@ class UserRealmRoleProtocolMapperArgs:
     @add_to_id_token.setter
     def add_to_id_token(self, value: Optional[pulumi.Input[builtins.bool]]):
         pulumi.set(self, "add_to_id_token", value)
+
+    @property
+    @pulumi.getter(name="addToTokenIntrospection")
+    def add_to_token_introspection(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        Indicates if the property should be added as a claim to the Token Introspection response body. Defaults to `true`.
+        """
+        return pulumi.get(self, "add_to_token_introspection")
+
+    @add_to_token_introspection.setter
+    def add_to_token_introspection(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "add_to_token_introspection", value)
 
     @property
     @pulumi.getter(name="addToUserinfo")
@@ -204,6 +220,7 @@ class _UserRealmRoleProtocolMapperState:
     def __init__(__self__, *,
                  add_to_access_token: Optional[pulumi.Input[builtins.bool]] = None,
                  add_to_id_token: Optional[pulumi.Input[builtins.bool]] = None,
+                 add_to_token_introspection: Optional[pulumi.Input[builtins.bool]] = None,
                  add_to_userinfo: Optional[pulumi.Input[builtins.bool]] = None,
                  claim_name: Optional[pulumi.Input[builtins.str]] = None,
                  claim_value_type: Optional[pulumi.Input[builtins.str]] = None,
@@ -217,6 +234,7 @@ class _UserRealmRoleProtocolMapperState:
         Input properties used for looking up and filtering UserRealmRoleProtocolMapper resources.
         :param pulumi.Input[builtins.bool] add_to_access_token: Indicates if the property should be added as a claim to the access token. Defaults to `true`.
         :param pulumi.Input[builtins.bool] add_to_id_token: Indicates if the property should be added as a claim to the id token. Defaults to `true`.
+        :param pulumi.Input[builtins.bool] add_to_token_introspection: Indicates if the property should be added as a claim to the Token Introspection response body. Defaults to `true`.
         :param pulumi.Input[builtins.bool] add_to_userinfo: Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
         :param pulumi.Input[builtins.str] claim_name: The name of the claim to insert into a token.
         :param pulumi.Input[builtins.str] claim_value_type: The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
@@ -231,6 +249,8 @@ class _UserRealmRoleProtocolMapperState:
             pulumi.set(__self__, "add_to_access_token", add_to_access_token)
         if add_to_id_token is not None:
             pulumi.set(__self__, "add_to_id_token", add_to_id_token)
+        if add_to_token_introspection is not None:
+            pulumi.set(__self__, "add_to_token_introspection", add_to_token_introspection)
         if add_to_userinfo is not None:
             pulumi.set(__self__, "add_to_userinfo", add_to_userinfo)
         if claim_name is not None:
@@ -273,6 +293,18 @@ class _UserRealmRoleProtocolMapperState:
     @add_to_id_token.setter
     def add_to_id_token(self, value: Optional[pulumi.Input[builtins.bool]]):
         pulumi.set(self, "add_to_id_token", value)
+
+    @property
+    @pulumi.getter(name="addToTokenIntrospection")
+    def add_to_token_introspection(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        Indicates if the property should be added as a claim to the Token Introspection response body. Defaults to `true`.
+        """
+        return pulumi.get(self, "add_to_token_introspection")
+
+    @add_to_token_introspection.setter
+    def add_to_token_introspection(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "add_to_token_introspection", value)
 
     @property
     @pulumi.getter(name="addToUserinfo")
@@ -391,6 +423,7 @@ class UserRealmRoleProtocolMapper(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  add_to_access_token: Optional[pulumi.Input[builtins.bool]] = None,
                  add_to_id_token: Optional[pulumi.Input[builtins.bool]] = None,
+                 add_to_token_introspection: Optional[pulumi.Input[builtins.bool]] = None,
                  add_to_userinfo: Optional[pulumi.Input[builtins.bool]] = None,
                  claim_name: Optional[pulumi.Input[builtins.str]] = None,
                  claim_value_type: Optional[pulumi.Input[builtins.str]] = None,
@@ -477,6 +510,7 @@ class UserRealmRoleProtocolMapper(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[builtins.bool] add_to_access_token: Indicates if the property should be added as a claim to the access token. Defaults to `true`.
         :param pulumi.Input[builtins.bool] add_to_id_token: Indicates if the property should be added as a claim to the id token. Defaults to `true`.
+        :param pulumi.Input[builtins.bool] add_to_token_introspection: Indicates if the property should be added as a claim to the Token Introspection response body. Defaults to `true`.
         :param pulumi.Input[builtins.bool] add_to_userinfo: Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
         :param pulumi.Input[builtins.str] claim_name: The name of the claim to insert into a token.
         :param pulumi.Input[builtins.str] claim_value_type: The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
@@ -582,6 +616,7 @@ class UserRealmRoleProtocolMapper(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  add_to_access_token: Optional[pulumi.Input[builtins.bool]] = None,
                  add_to_id_token: Optional[pulumi.Input[builtins.bool]] = None,
+                 add_to_token_introspection: Optional[pulumi.Input[builtins.bool]] = None,
                  add_to_userinfo: Optional[pulumi.Input[builtins.bool]] = None,
                  claim_name: Optional[pulumi.Input[builtins.str]] = None,
                  claim_value_type: Optional[pulumi.Input[builtins.str]] = None,
@@ -602,6 +637,7 @@ class UserRealmRoleProtocolMapper(pulumi.CustomResource):
 
             __props__.__dict__["add_to_access_token"] = add_to_access_token
             __props__.__dict__["add_to_id_token"] = add_to_id_token
+            __props__.__dict__["add_to_token_introspection"] = add_to_token_introspection
             __props__.__dict__["add_to_userinfo"] = add_to_userinfo
             if claim_name is None and not opts.urn:
                 raise TypeError("Missing required property 'claim_name'")
@@ -627,6 +663,7 @@ class UserRealmRoleProtocolMapper(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             add_to_access_token: Optional[pulumi.Input[builtins.bool]] = None,
             add_to_id_token: Optional[pulumi.Input[builtins.bool]] = None,
+            add_to_token_introspection: Optional[pulumi.Input[builtins.bool]] = None,
             add_to_userinfo: Optional[pulumi.Input[builtins.bool]] = None,
             claim_name: Optional[pulumi.Input[builtins.str]] = None,
             claim_value_type: Optional[pulumi.Input[builtins.str]] = None,
@@ -645,6 +682,7 @@ class UserRealmRoleProtocolMapper(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[builtins.bool] add_to_access_token: Indicates if the property should be added as a claim to the access token. Defaults to `true`.
         :param pulumi.Input[builtins.bool] add_to_id_token: Indicates if the property should be added as a claim to the id token. Defaults to `true`.
+        :param pulumi.Input[builtins.bool] add_to_token_introspection: Indicates if the property should be added as a claim to the Token Introspection response body. Defaults to `true`.
         :param pulumi.Input[builtins.bool] add_to_userinfo: Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
         :param pulumi.Input[builtins.str] claim_name: The name of the claim to insert into a token.
         :param pulumi.Input[builtins.str] claim_value_type: The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
@@ -661,6 +699,7 @@ class UserRealmRoleProtocolMapper(pulumi.CustomResource):
 
         __props__.__dict__["add_to_access_token"] = add_to_access_token
         __props__.__dict__["add_to_id_token"] = add_to_id_token
+        __props__.__dict__["add_to_token_introspection"] = add_to_token_introspection
         __props__.__dict__["add_to_userinfo"] = add_to_userinfo
         __props__.__dict__["claim_name"] = claim_name
         __props__.__dict__["claim_value_type"] = claim_value_type
@@ -687,6 +726,14 @@ class UserRealmRoleProtocolMapper(pulumi.CustomResource):
         Indicates if the property should be added as a claim to the id token. Defaults to `true`.
         """
         return pulumi.get(self, "add_to_id_token")
+
+    @property
+    @pulumi.getter(name="addToTokenIntrospection")
+    def add_to_token_introspection(self) -> pulumi.Output[Optional[builtins.bool]]:
+        """
+        Indicates if the property should be added as a claim to the Token Introspection response body. Defaults to `true`.
+        """
+        return pulumi.get(self, "add_to_token_introspection")
 
     @property
     @pulumi.getter(name="addToUserinfo")

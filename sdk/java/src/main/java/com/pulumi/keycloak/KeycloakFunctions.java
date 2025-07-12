@@ -17,6 +17,8 @@ import com.pulumi.keycloak.inputs.GetClientDescriptionConverterArgs;
 import com.pulumi.keycloak.inputs.GetClientDescriptionConverterPlainArgs;
 import com.pulumi.keycloak.inputs.GetGroupArgs;
 import com.pulumi.keycloak.inputs.GetGroupPlainArgs;
+import com.pulumi.keycloak.inputs.GetOrganizationArgs;
+import com.pulumi.keycloak.inputs.GetOrganizationPlainArgs;
 import com.pulumi.keycloak.inputs.GetRealmArgs;
 import com.pulumi.keycloak.inputs.GetRealmKeysArgs;
 import com.pulumi.keycloak.inputs.GetRealmKeysPlainArgs;
@@ -31,6 +33,7 @@ import com.pulumi.keycloak.outputs.GetAuthenticationExecutionResult;
 import com.pulumi.keycloak.outputs.GetAuthenticationFlowResult;
 import com.pulumi.keycloak.outputs.GetClientDescriptionConverterResult;
 import com.pulumi.keycloak.outputs.GetGroupResult;
+import com.pulumi.keycloak.outputs.GetOrganizationResult;
 import com.pulumi.keycloak.outputs.GetRealmKeysResult;
 import com.pulumi.keycloak.outputs.GetRealmResult;
 import com.pulumi.keycloak.outputs.GetRoleResult;
@@ -1298,6 +1301,316 @@ public final class KeycloakFunctions {
      */
     public static CompletableFuture<GetGroupResult> getGroupPlain(GetGroupPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("keycloak:index/getGroup:getGroup", TypeShape.of(GetGroupResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * This data source can be used to fetch properties of a Keycloak organization for
+     * usage with other resources.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.KeycloakFunctions;
+     * import com.pulumi.keycloak.inputs.GetRealmArgs;
+     * import com.pulumi.keycloak.inputs.GetOrganizationArgs;
+     * import com.pulumi.keycloak.oidc.IdentityProvider;
+     * import com.pulumi.keycloak.oidc.IdentityProviderArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var realm = KeycloakFunctions.getRealm(GetRealmArgs.builder()
+     *             .realm("my-realm")
+     *             .build());
+     * 
+     *         final var organization = KeycloakFunctions.getOrganization(GetOrganizationArgs.builder()
+     *             .realm(realm.id())
+     *             .name("my-org")
+     *             .build());
+     * 
+     *         // use the data source
+     *         var realmIdentityProvider = new IdentityProvider("realmIdentityProvider", IdentityProviderArgs.builder()
+     *             .realm(realm.id())
+     *             .alias("my-idp")
+     *             .authorizationUrl("https://authorizationurl.com")
+     *             .clientId("clientID")
+     *             .clientSecret("clientSecret")
+     *             .tokenUrl("https://tokenurl.com")
+     *             .organizationId(organization.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetOrganizationResult> getOrganization(GetOrganizationArgs args) {
+        return getOrganization(args, InvokeOptions.Empty);
+    }
+    /**
+     * This data source can be used to fetch properties of a Keycloak organization for
+     * usage with other resources.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.KeycloakFunctions;
+     * import com.pulumi.keycloak.inputs.GetRealmArgs;
+     * import com.pulumi.keycloak.inputs.GetOrganizationArgs;
+     * import com.pulumi.keycloak.oidc.IdentityProvider;
+     * import com.pulumi.keycloak.oidc.IdentityProviderArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var realm = KeycloakFunctions.getRealm(GetRealmArgs.builder()
+     *             .realm("my-realm")
+     *             .build());
+     * 
+     *         final var organization = KeycloakFunctions.getOrganization(GetOrganizationArgs.builder()
+     *             .realm(realm.id())
+     *             .name("my-org")
+     *             .build());
+     * 
+     *         // use the data source
+     *         var realmIdentityProvider = new IdentityProvider("realmIdentityProvider", IdentityProviderArgs.builder()
+     *             .realm(realm.id())
+     *             .alias("my-idp")
+     *             .authorizationUrl("https://authorizationurl.com")
+     *             .clientId("clientID")
+     *             .clientSecret("clientSecret")
+     *             .tokenUrl("https://tokenurl.com")
+     *             .organizationId(organization.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetOrganizationResult> getOrganizationPlain(GetOrganizationPlainArgs args) {
+        return getOrganizationPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * This data source can be used to fetch properties of a Keycloak organization for
+     * usage with other resources.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.KeycloakFunctions;
+     * import com.pulumi.keycloak.inputs.GetRealmArgs;
+     * import com.pulumi.keycloak.inputs.GetOrganizationArgs;
+     * import com.pulumi.keycloak.oidc.IdentityProvider;
+     * import com.pulumi.keycloak.oidc.IdentityProviderArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var realm = KeycloakFunctions.getRealm(GetRealmArgs.builder()
+     *             .realm("my-realm")
+     *             .build());
+     * 
+     *         final var organization = KeycloakFunctions.getOrganization(GetOrganizationArgs.builder()
+     *             .realm(realm.id())
+     *             .name("my-org")
+     *             .build());
+     * 
+     *         // use the data source
+     *         var realmIdentityProvider = new IdentityProvider("realmIdentityProvider", IdentityProviderArgs.builder()
+     *             .realm(realm.id())
+     *             .alias("my-idp")
+     *             .authorizationUrl("https://authorizationurl.com")
+     *             .clientId("clientID")
+     *             .clientSecret("clientSecret")
+     *             .tokenUrl("https://tokenurl.com")
+     *             .organizationId(organization.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetOrganizationResult> getOrganization(GetOrganizationArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("keycloak:index/getOrganization:getOrganization", TypeShape.of(GetOrganizationResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * This data source can be used to fetch properties of a Keycloak organization for
+     * usage with other resources.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.KeycloakFunctions;
+     * import com.pulumi.keycloak.inputs.GetRealmArgs;
+     * import com.pulumi.keycloak.inputs.GetOrganizationArgs;
+     * import com.pulumi.keycloak.oidc.IdentityProvider;
+     * import com.pulumi.keycloak.oidc.IdentityProviderArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var realm = KeycloakFunctions.getRealm(GetRealmArgs.builder()
+     *             .realm("my-realm")
+     *             .build());
+     * 
+     *         final var organization = KeycloakFunctions.getOrganization(GetOrganizationArgs.builder()
+     *             .realm(realm.id())
+     *             .name("my-org")
+     *             .build());
+     * 
+     *         // use the data source
+     *         var realmIdentityProvider = new IdentityProvider("realmIdentityProvider", IdentityProviderArgs.builder()
+     *             .realm(realm.id())
+     *             .alias("my-idp")
+     *             .authorizationUrl("https://authorizationurl.com")
+     *             .clientId("clientID")
+     *             .clientSecret("clientSecret")
+     *             .tokenUrl("https://tokenurl.com")
+     *             .organizationId(organization.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetOrganizationResult> getOrganization(GetOrganizationArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("keycloak:index/getOrganization:getOrganization", TypeShape.of(GetOrganizationResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * This data source can be used to fetch properties of a Keycloak organization for
+     * usage with other resources.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.KeycloakFunctions;
+     * import com.pulumi.keycloak.inputs.GetRealmArgs;
+     * import com.pulumi.keycloak.inputs.GetOrganizationArgs;
+     * import com.pulumi.keycloak.oidc.IdentityProvider;
+     * import com.pulumi.keycloak.oidc.IdentityProviderArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var realm = KeycloakFunctions.getRealm(GetRealmArgs.builder()
+     *             .realm("my-realm")
+     *             .build());
+     * 
+     *         final var organization = KeycloakFunctions.getOrganization(GetOrganizationArgs.builder()
+     *             .realm(realm.id())
+     *             .name("my-org")
+     *             .build());
+     * 
+     *         // use the data source
+     *         var realmIdentityProvider = new IdentityProvider("realmIdentityProvider", IdentityProviderArgs.builder()
+     *             .realm(realm.id())
+     *             .alias("my-idp")
+     *             .authorizationUrl("https://authorizationurl.com")
+     *             .clientId("clientID")
+     *             .clientSecret("clientSecret")
+     *             .tokenUrl("https://tokenurl.com")
+     *             .organizationId(organization.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static CompletableFuture<GetOrganizationResult> getOrganizationPlain(GetOrganizationPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("keycloak:index/getOrganization:getOrganization", TypeShape.of(GetOrganizationResult.class), args, Utilities.withVersion(options));
     }
     /**
      * This data source can be used to fetch properties of a Keycloak realm for
