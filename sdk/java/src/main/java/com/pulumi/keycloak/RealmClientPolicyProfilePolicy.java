@@ -17,6 +17,109 @@ import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * Allows for managing Realm Client Policy Profile Policies.
+ * 
+ * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.keycloak.Realm;
+ * import com.pulumi.keycloak.RealmArgs;
+ * import com.pulumi.keycloak.RealmClientPolicyProfile;
+ * import com.pulumi.keycloak.RealmClientPolicyProfileArgs;
+ * import com.pulumi.keycloak.inputs.RealmClientPolicyProfileExecutorArgs;
+ * import com.pulumi.keycloak.RealmClientPolicyProfilePolicy;
+ * import com.pulumi.keycloak.RealmClientPolicyProfilePolicyArgs;
+ * import com.pulumi.keycloak.inputs.RealmClientPolicyProfilePolicyConditionArgs;
+ * import static com.pulumi.codegen.internal.Serialization.*;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var realm = new Realm("realm", RealmArgs.builder()
+ *             .realm("my-realm")
+ *             .build());
+ * 
+ *         var profile = new RealmClientPolicyProfile("profile", RealmClientPolicyProfileArgs.builder()
+ *             .name("my-profile")
+ *             .realmId(realm.id())
+ *             .description("Some desc")
+ *             .executors(            
+ *                 RealmClientPolicyProfileExecutorArgs.builder()
+ *                     .name("intent-client-bind-checker")
+ *                     .configuration(Map.of("auto-configure", "true"))
+ *                     .build(),
+ *                 RealmClientPolicyProfileExecutorArgs.builder()
+ *                     .name("secret-rotation")
+ *                     .configuration(Map.ofEntries(
+ *                         Map.entry("expiration-period", "2505600"),
+ *                         Map.entry("rotated-expiration-period", "172800"),
+ *                         Map.entry("remaining-rotation-period", "864000")
+ *                     ))
+ *                     .build())
+ *             .build());
+ * 
+ *         var policy = new RealmClientPolicyProfilePolicy("policy", RealmClientPolicyProfilePolicyArgs.builder()
+ *             .name("my-profile")
+ *             .realmId(realm.id())
+ *             .description("Some desc")
+ *             .profiles(profile.name())
+ *             .conditions(            
+ *                 RealmClientPolicyProfilePolicyConditionArgs.builder()
+ *                     .name("client-type")
+ *                     .configuration(Map.of("protocol", "openid-connect"))
+ *                     .build(),
+ *                 RealmClientPolicyProfilePolicyConditionArgs.builder()
+ *                     .name("client-attributes")
+ *                     .configuration(Map.ofEntries(
+ *                         Map.entry("is-negative-logic", "false"),
+ *                         Map.entry("attributes", serializeJson(
+ *                             jsonArray(jsonObject(
+ *                                 jsonProperty("key", "test-key"),
+ *                                 jsonProperty("value", "test-value")
+ *                             ))))
+ *                     ))
+ *                     .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * ### Attribute Arguments
+ * 
+ * - `name` - (Required) The name of the attribute.
+ * - `realm_id` - (Required) The realm id.
+ * - `condition` - (Optional) An ordered list of condition
+ * 
+ * #### Condition Arguments
+ * 
+ * - `name` - (Required) The name of the executor. NOTE! The executor needs to exist
+ * - `configuration` - (Optional) - A map of configuration values
+ * 
+ * ## Import
+ * 
+ * This resource currently does not support importing.
+ * 
+ */
 @ResourceType(type="keycloak:index/realmClientPolicyProfilePolicy:RealmClientPolicyProfilePolicy")
 public class RealmClientPolicyProfilePolicy extends com.pulumi.resources.CustomResource {
     @Export(name="conditions", refs={List.class,RealmClientPolicyProfilePolicyCondition.class}, tree="[0,1]")

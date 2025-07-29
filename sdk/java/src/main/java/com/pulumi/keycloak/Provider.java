@@ -10,6 +10,7 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.keycloak.ProviderArgs;
 import com.pulumi.keycloak.Utilities;
 import java.lang.String;
+import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
@@ -39,6 +40,34 @@ public class Provider extends com.pulumi.resources.ProviderResource {
 
     public Output<Optional<String>> clientSecret() {
         return Codegen.optional(this.clientSecret);
+    }
+    /**
+     * The algorithm used to sign the JWT when client-jwt is used. Defaults to RS256.
+     * 
+     */
+    @Export(name="jwtSigningAlg", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> jwtSigningAlg;
+
+    /**
+     * @return The algorithm used to sign the JWT when client-jwt is used. Defaults to RS256.
+     * 
+     */
+    public Output<Optional<String>> jwtSigningAlg() {
+        return Codegen.optional(this.jwtSigningAlg);
+    }
+    /**
+     * The PEM-formatted private key used to sign the JWT when client-jwt is used.
+     * 
+     */
+    @Export(name="jwtSigningKey", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> jwtSigningKey;
+
+    /**
+     * @return The PEM-formatted private key used to sign the JWT when client-jwt is used.
+     * 
+     */
+    public Output<Optional<String>> jwtSigningKey() {
+        return Codegen.optional(this.jwtSigningKey);
     }
     @Export(name="password", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> password;
@@ -122,6 +151,9 @@ public class Provider extends com.pulumi.resources.ProviderResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .additionalSecretOutputs(List.of(
+                "jwtSigningKey"
+            ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

@@ -25,6 +25,8 @@ class ProviderArgs:
                  client_secret: Optional[pulumi.Input[_builtins.str]] = None,
                  client_timeout: Optional[pulumi.Input[_builtins.int]] = None,
                  initial_login: Optional[pulumi.Input[_builtins.bool]] = None,
+                 jwt_signing_alg: Optional[pulumi.Input[_builtins.str]] = None,
+                 jwt_signing_key: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
                  realm: Optional[pulumi.Input[_builtins.str]] = None,
                  red_hat_sso: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -36,6 +38,8 @@ class ProviderArgs:
         The set of arguments for constructing a Provider resource.
         :param pulumi.Input[_builtins.int] client_timeout: Timeout (in seconds) of the Keycloak client
         :param pulumi.Input[_builtins.bool] initial_login: Whether or not to login to Keycloak instance on provider initialization
+        :param pulumi.Input[_builtins.str] jwt_signing_alg: The algorithm used to sign the JWT when client-jwt is used. Defaults to RS256.
+        :param pulumi.Input[_builtins.str] jwt_signing_key: The PEM-formatted private key used to sign the JWT when client-jwt is used.
         :param pulumi.Input[_builtins.bool] red_hat_sso: When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version
                returned from the /serverinfo API endpoint.
         :param pulumi.Input[_builtins.str] root_ca_certificate: Allows x509 calls using an unknown CA certificate (for development purposes)
@@ -57,6 +61,10 @@ class ProviderArgs:
             pulumi.set(__self__, "client_timeout", client_timeout)
         if initial_login is not None:
             pulumi.set(__self__, "initial_login", initial_login)
+        if jwt_signing_alg is not None:
+            pulumi.set(__self__, "jwt_signing_alg", jwt_signing_alg)
+        if jwt_signing_key is not None:
+            pulumi.set(__self__, "jwt_signing_key", jwt_signing_key)
         if password is not None:
             pulumi.set(__self__, "password", password)
         if realm is not None:
@@ -131,6 +139,30 @@ class ProviderArgs:
     @initial_login.setter
     def initial_login(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "initial_login", value)
+
+    @_builtins.property
+    @pulumi.getter(name="jwtSigningAlg")
+    def jwt_signing_alg(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The algorithm used to sign the JWT when client-jwt is used. Defaults to RS256.
+        """
+        return pulumi.get(self, "jwt_signing_alg")
+
+    @jwt_signing_alg.setter
+    def jwt_signing_alg(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "jwt_signing_alg", value)
+
+    @_builtins.property
+    @pulumi.getter(name="jwtSigningKey")
+    def jwt_signing_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The PEM-formatted private key used to sign the JWT when client-jwt is used.
+        """
+        return pulumi.get(self, "jwt_signing_key")
+
+    @jwt_signing_key.setter
+    def jwt_signing_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "jwt_signing_key", value)
 
     @_builtins.property
     @pulumi.getter
@@ -222,6 +254,8 @@ class Provider(pulumi.ProviderResource):
                  client_secret: Optional[pulumi.Input[_builtins.str]] = None,
                  client_timeout: Optional[pulumi.Input[_builtins.int]] = None,
                  initial_login: Optional[pulumi.Input[_builtins.bool]] = None,
+                 jwt_signing_alg: Optional[pulumi.Input[_builtins.str]] = None,
+                 jwt_signing_key: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
                  realm: Optional[pulumi.Input[_builtins.str]] = None,
                  red_hat_sso: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -240,6 +274,8 @@ class Provider(pulumi.ProviderResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] client_timeout: Timeout (in seconds) of the Keycloak client
         :param pulumi.Input[_builtins.bool] initial_login: Whether or not to login to Keycloak instance on provider initialization
+        :param pulumi.Input[_builtins.str] jwt_signing_alg: The algorithm used to sign the JWT when client-jwt is used. Defaults to RS256.
+        :param pulumi.Input[_builtins.str] jwt_signing_key: The PEM-formatted private key used to sign the JWT when client-jwt is used.
         :param pulumi.Input[_builtins.bool] red_hat_sso: When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version
                returned from the /serverinfo API endpoint.
         :param pulumi.Input[_builtins.str] root_ca_certificate: Allows x509 calls using an unknown CA certificate (for development purposes)
@@ -280,6 +316,8 @@ class Provider(pulumi.ProviderResource):
                  client_secret: Optional[pulumi.Input[_builtins.str]] = None,
                  client_timeout: Optional[pulumi.Input[_builtins.int]] = None,
                  initial_login: Optional[pulumi.Input[_builtins.bool]] = None,
+                 jwt_signing_alg: Optional[pulumi.Input[_builtins.str]] = None,
+                 jwt_signing_key: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
                  realm: Optional[pulumi.Input[_builtins.str]] = None,
                  red_hat_sso: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -304,6 +342,8 @@ class Provider(pulumi.ProviderResource):
                 client_timeout = (_utilities.get_env_int('KEYCLOAK_CLIENT_TIMEOUT') or 5)
             __props__.__dict__["client_timeout"] = pulumi.Output.from_input(client_timeout).apply(pulumi.runtime.to_json) if client_timeout is not None else None
             __props__.__dict__["initial_login"] = pulumi.Output.from_input(initial_login).apply(pulumi.runtime.to_json) if initial_login is not None else None
+            __props__.__dict__["jwt_signing_alg"] = jwt_signing_alg
+            __props__.__dict__["jwt_signing_key"] = None if jwt_signing_key is None else pulumi.Output.secret(jwt_signing_key)
             __props__.__dict__["password"] = password
             __props__.__dict__["realm"] = realm
             __props__.__dict__["red_hat_sso"] = pulumi.Output.from_input(red_hat_sso).apply(pulumi.runtime.to_json) if red_hat_sso is not None else None
@@ -311,6 +351,8 @@ class Provider(pulumi.ProviderResource):
             __props__.__dict__["tls_insecure_skip_verify"] = pulumi.Output.from_input(tls_insecure_skip_verify).apply(pulumi.runtime.to_json) if tls_insecure_skip_verify is not None else None
             __props__.__dict__["url"] = url
             __props__.__dict__["username"] = username
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["jwtSigningKey"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Provider, __self__).__init__(
             'keycloak',
             resource_name,
@@ -331,6 +373,22 @@ class Provider(pulumi.ProviderResource):
     @pulumi.getter(name="clientSecret")
     def client_secret(self) -> pulumi.Output[Optional[_builtins.str]]:
         return pulumi.get(self, "client_secret")
+
+    @_builtins.property
+    @pulumi.getter(name="jwtSigningAlg")
+    def jwt_signing_alg(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The algorithm used to sign the JWT when client-jwt is used. Defaults to RS256.
+        """
+        return pulumi.get(self, "jwt_signing_alg")
+
+    @_builtins.property
+    @pulumi.getter(name="jwtSigningKey")
+    def jwt_signing_key(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The PEM-formatted private key used to sign the JWT when client-jwt is used.
+        """
+        return pulumi.get(self, "jwt_signing_key")
 
     @_builtins.property
     @pulumi.getter

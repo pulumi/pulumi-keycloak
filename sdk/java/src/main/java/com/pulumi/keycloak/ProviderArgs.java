@@ -77,6 +77,36 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.initialLogin);
     }
 
+    /**
+     * The algorithm used to sign the JWT when client-jwt is used. Defaults to RS256.
+     * 
+     */
+    @Import(name="jwtSigningAlg")
+    private @Nullable Output<String> jwtSigningAlg;
+
+    /**
+     * @return The algorithm used to sign the JWT when client-jwt is used. Defaults to RS256.
+     * 
+     */
+    public Optional<Output<String>> jwtSigningAlg() {
+        return Optional.ofNullable(this.jwtSigningAlg);
+    }
+
+    /**
+     * The PEM-formatted private key used to sign the JWT when client-jwt is used.
+     * 
+     */
+    @Import(name="jwtSigningKey")
+    private @Nullable Output<String> jwtSigningKey;
+
+    /**
+     * @return The PEM-formatted private key used to sign the JWT when client-jwt is used.
+     * 
+     */
+    public Optional<Output<String>> jwtSigningKey() {
+        return Optional.ofNullable(this.jwtSigningKey);
+    }
+
     @Import(name="password")
     private @Nullable Output<String> password;
 
@@ -171,6 +201,8 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         this.clientSecret = $.clientSecret;
         this.clientTimeout = $.clientTimeout;
         this.initialLogin = $.initialLogin;
+        this.jwtSigningAlg = $.jwtSigningAlg;
+        this.jwtSigningKey = $.jwtSigningKey;
         this.password = $.password;
         this.realm = $.realm;
         this.redHatSso = $.redHatSso;
@@ -274,6 +306,48 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder initialLogin(Boolean initialLogin) {
             return initialLogin(Output.of(initialLogin));
+        }
+
+        /**
+         * @param jwtSigningAlg The algorithm used to sign the JWT when client-jwt is used. Defaults to RS256.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder jwtSigningAlg(@Nullable Output<String> jwtSigningAlg) {
+            $.jwtSigningAlg = jwtSigningAlg;
+            return this;
+        }
+
+        /**
+         * @param jwtSigningAlg The algorithm used to sign the JWT when client-jwt is used. Defaults to RS256.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder jwtSigningAlg(String jwtSigningAlg) {
+            return jwtSigningAlg(Output.of(jwtSigningAlg));
+        }
+
+        /**
+         * @param jwtSigningKey The PEM-formatted private key used to sign the JWT when client-jwt is used.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder jwtSigningKey(@Nullable Output<String> jwtSigningKey) {
+            $.jwtSigningKey = jwtSigningKey;
+            return this;
+        }
+
+        /**
+         * @param jwtSigningKey The PEM-formatted private key used to sign the JWT when client-jwt is used.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder jwtSigningKey(String jwtSigningKey) {
+            return jwtSigningKey(Output.of(jwtSigningKey));
         }
 
         public Builder password(@Nullable Output<String> password) {

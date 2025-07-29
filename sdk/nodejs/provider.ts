@@ -28,6 +28,14 @@ export class Provider extends pulumi.ProviderResource {
     public readonly basePath!: pulumi.Output<string | undefined>;
     public readonly clientId!: pulumi.Output<string | undefined>;
     public readonly clientSecret!: pulumi.Output<string | undefined>;
+    /**
+     * The algorithm used to sign the JWT when client-jwt is used. Defaults to RS256.
+     */
+    public readonly jwtSigningAlg!: pulumi.Output<string | undefined>;
+    /**
+     * The PEM-formatted private key used to sign the JWT when client-jwt is used.
+     */
+    public readonly jwtSigningKey!: pulumi.Output<string | undefined>;
     public readonly password!: pulumi.Output<string | undefined>;
     public readonly realm!: pulumi.Output<string | undefined>;
     /**
@@ -57,6 +65,8 @@ export class Provider extends pulumi.ProviderResource {
             resourceInputs["clientSecret"] = args ? args.clientSecret : undefined;
             resourceInputs["clientTimeout"] = pulumi.output((args ? args.clientTimeout : undefined) ?? (utilities.getEnvNumber("KEYCLOAK_CLIENT_TIMEOUT") || 5)).apply(JSON.stringify);
             resourceInputs["initialLogin"] = pulumi.output(args ? args.initialLogin : undefined).apply(JSON.stringify);
+            resourceInputs["jwtSigningAlg"] = args ? args.jwtSigningAlg : undefined;
+            resourceInputs["jwtSigningKey"] = args?.jwtSigningKey ? pulumi.secret(args.jwtSigningKey) : undefined;
             resourceInputs["password"] = args ? args.password : undefined;
             resourceInputs["realm"] = args ? args.realm : undefined;
             resourceInputs["redHatSso"] = pulumi.output(args ? args.redHatSso : undefined).apply(JSON.stringify);
@@ -66,6 +76,8 @@ export class Provider extends pulumi.ProviderResource {
             resourceInputs["username"] = args ? args.username : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["jwtSigningKey"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(Provider.__pulumiType, name, resourceInputs, opts);
     }
 
@@ -95,6 +107,14 @@ export interface ProviderArgs {
      * Whether or not to login to Keycloak instance on provider initialization
      */
     initialLogin?: pulumi.Input<boolean>;
+    /**
+     * The algorithm used to sign the JWT when client-jwt is used. Defaults to RS256.
+     */
+    jwtSigningAlg?: pulumi.Input<string>;
+    /**
+     * The PEM-formatted private key used to sign the JWT when client-jwt is used.
+     */
+    jwtSigningKey?: pulumi.Input<string>;
     password?: pulumi.Input<string>;
     realm?: pulumi.Input<string>;
     /**

@@ -27,6 +27,18 @@ namespace Pulumi.Keycloak
         [Output("clientSecret")]
         public Output<string?> ClientSecret { get; private set; } = null!;
 
+        /// <summary>
+        /// The algorithm used to sign the JWT when client-jwt is used. Defaults to RS256.
+        /// </summary>
+        [Output("jwtSigningAlg")]
+        public Output<string?> JwtSigningAlg { get; private set; } = null!;
+
+        /// <summary>
+        /// The PEM-formatted private key used to sign the JWT when client-jwt is used.
+        /// </summary>
+        [Output("jwtSigningKey")]
+        public Output<string?> JwtSigningKey { get; private set; } = null!;
+
         [Output("password")]
         public Output<string?> Password { get; private set; } = null!;
 
@@ -66,6 +78,10 @@ namespace Pulumi.Keycloak
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "jwtSigningKey",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -110,6 +126,28 @@ namespace Pulumi.Keycloak
         /// </summary>
         [Input("initialLogin", json: true)]
         public Input<bool>? InitialLogin { get; set; }
+
+        /// <summary>
+        /// The algorithm used to sign the JWT when client-jwt is used. Defaults to RS256.
+        /// </summary>
+        [Input("jwtSigningAlg")]
+        public Input<string>? JwtSigningAlg { get; set; }
+
+        [Input("jwtSigningKey")]
+        private Input<string>? _jwtSigningKey;
+
+        /// <summary>
+        /// The PEM-formatted private key used to sign the JWT when client-jwt is used.
+        /// </summary>
+        public Input<string>? JwtSigningKey
+        {
+            get => _jwtSigningKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _jwtSigningKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         [Input("password")]
         public Input<string>? Password { get; set; }

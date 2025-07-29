@@ -80,6 +80,26 @@ namespace Pulumi.Keycloak
             set => _initialLogin.Set(value);
         }
 
+        private static readonly __Value<string?> _jwtSigningAlg = new __Value<string?>(() => __config.Get("jwtSigningAlg"));
+        /// <summary>
+        /// The algorithm used to sign the JWT when client-jwt is used. Defaults to RS256.
+        /// </summary>
+        public static string? JwtSigningAlg
+        {
+            get => _jwtSigningAlg.Get();
+            set => _jwtSigningAlg.Set(value);
+        }
+
+        private static readonly __Value<string?> _jwtSigningKey = new __Value<string?>(() => __config.Get("jwtSigningKey"));
+        /// <summary>
+        /// The PEM-formatted private key used to sign the JWT when client-jwt is used.
+        /// </summary>
+        public static string? JwtSigningKey
+        {
+            get => _jwtSigningKey.Get();
+            set => _jwtSigningKey.Set(value);
+        }
+
         private static readonly __Value<string?> _password = new __Value<string?>(() => __config.Get("password"));
         public static string? Password
         {

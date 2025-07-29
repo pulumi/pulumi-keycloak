@@ -32,6 +32,16 @@ initialLogin: Optional[bool]
 Whether or not to login to Keycloak instance on provider initialization
 """
 
+jwtSigningAlg: Optional[str]
+"""
+The algorithm used to sign the JWT when client-jwt is used. Defaults to RS256.
+"""
+
+jwtSigningKey: Optional[str]
+"""
+The PEM-formatted private key used to sign the JWT when client-jwt is used.
+"""
+
 password: Optional[str]
 
 realm: Optional[str]

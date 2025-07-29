@@ -9,6 +9,109 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak
 {
+    /// <summary>
+    /// Allows for managing Realm Client Policy Profile Policies.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using System.Text.Json;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "my-realm",
+    ///     });
+    /// 
+    ///     var profile = new Keycloak.RealmClientPolicyProfile("profile", new()
+    ///     {
+    ///         Name = "my-profile",
+    ///         RealmId = realm.Id,
+    ///         Description = "Some desc",
+    ///         Executors = new[]
+    ///         {
+    ///             new Keycloak.Inputs.RealmClientPolicyProfileExecutorArgs
+    ///             {
+    ///                 Name = "intent-client-bind-checker",
+    ///                 Configuration = 
+    ///                 {
+    ///                     { "auto-configure", "true" },
+    ///                 },
+    ///             },
+    ///             new Keycloak.Inputs.RealmClientPolicyProfileExecutorArgs
+    ///             {
+    ///                 Name = "secret-rotation",
+    ///                 Configuration = 
+    ///                 {
+    ///                     { "expiration-period", "2505600" },
+    ///                     { "rotated-expiration-period", "172800" },
+    ///                     { "remaining-rotation-period", "864000" },
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var policy = new Keycloak.RealmClientPolicyProfilePolicy("policy", new()
+    ///     {
+    ///         Name = "my-profile",
+    ///         RealmId = realm.Id,
+    ///         Description = "Some desc",
+    ///         Profiles = new[]
+    ///         {
+    ///             profile.Name,
+    ///         },
+    ///         Conditions = new[]
+    ///         {
+    ///             new Keycloak.Inputs.RealmClientPolicyProfilePolicyConditionArgs
+    ///             {
+    ///                 Name = "client-type",
+    ///                 Configuration = 
+    ///                 {
+    ///                     { "protocol", "openid-connect" },
+    ///                 },
+    ///             },
+    ///             new Keycloak.Inputs.RealmClientPolicyProfilePolicyConditionArgs
+    ///             {
+    ///                 Name = "client-attributes",
+    ///                 Configuration = 
+    ///                 {
+    ///                     { "is-negative-logic", "false" },
+    ///                     { "attributes", JsonSerializer.Serialize(new[]
+    ///                     {
+    ///                         new Dictionary&lt;string, object?&gt;
+    ///                         {
+    ///                             ["key"] = "test-key",
+    ///                             ["value"] = "test-value",
+    ///                         },
+    ///                     }) },
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Attribute Arguments
+    /// 
+    /// - `name` - (Required) The name of the attribute.
+    /// - `realm_id` - (Required) The realm id.
+    /// - `condition` - (Optional) An ordered list of condition
+    /// 
+    /// #### Condition Arguments
+    /// 
+    /// - `name` - (Required) The name of the executor. NOTE! The executor needs to exist
+    /// - `configuration` - (Optional) - A map of configuration values
+    /// 
+    /// ## Import
+    /// 
+    /// This resource currently does not support importing.
+    /// </summary>
     [KeycloakResourceType("keycloak:index/realmClientPolicyProfilePolicy:RealmClientPolicyProfilePolicy")]
     public partial class RealmClientPolicyProfilePolicy : global::Pulumi.CustomResource
     {

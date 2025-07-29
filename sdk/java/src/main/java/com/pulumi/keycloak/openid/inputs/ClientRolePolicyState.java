@@ -6,6 +6,7 @@ package com.pulumi.keycloak.openid.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.keycloak.openid.inputs.ClientRolePolicyRoleArgs;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -29,6 +30,13 @@ public final class ClientRolePolicyState extends com.pulumi.resources.ResourceAr
 
     public Optional<Output<String>> description() {
         return Optional.ofNullable(this.description);
+    }
+
+    @Import(name="fetchRoles")
+    private @Nullable Output<Boolean> fetchRoles;
+
+    public Optional<Output<Boolean>> fetchRoles() {
+        return Optional.ofNullable(this.fetchRoles);
     }
 
     @Import(name="logic")
@@ -78,6 +86,7 @@ public final class ClientRolePolicyState extends com.pulumi.resources.ResourceAr
     private ClientRolePolicyState(ClientRolePolicyState $) {
         this.decisionStrategy = $.decisionStrategy;
         this.description = $.description;
+        this.fetchRoles = $.fetchRoles;
         this.logic = $.logic;
         this.name = $.name;
         this.realmId = $.realmId;
@@ -120,6 +129,15 @@ public final class ClientRolePolicyState extends com.pulumi.resources.ResourceAr
 
         public Builder description(String description) {
             return description(Output.of(description));
+        }
+
+        public Builder fetchRoles(@Nullable Output<Boolean> fetchRoles) {
+            $.fetchRoles = fetchRoles;
+            return this;
+        }
+
+        public Builder fetchRoles(Boolean fetchRoles) {
+            return fetchRoles(Output.of(fetchRoles));
         }
 
         public Builder logic(@Nullable Output<String> logic) {

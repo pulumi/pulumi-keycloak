@@ -21,8 +21,12 @@ type Provider struct {
 	BasePath     pulumi.StringPtrOutput `pulumi:"basePath"`
 	ClientId     pulumi.StringPtrOutput `pulumi:"clientId"`
 	ClientSecret pulumi.StringPtrOutput `pulumi:"clientSecret"`
-	Password     pulumi.StringPtrOutput `pulumi:"password"`
-	Realm        pulumi.StringPtrOutput `pulumi:"realm"`
+	// The algorithm used to sign the JWT when client-jwt is used. Defaults to RS256.
+	JwtSigningAlg pulumi.StringPtrOutput `pulumi:"jwtSigningAlg"`
+	// The PEM-formatted private key used to sign the JWT when client-jwt is used.
+	JwtSigningKey pulumi.StringPtrOutput `pulumi:"jwtSigningKey"`
+	Password      pulumi.StringPtrOutput `pulumi:"password"`
+	Realm         pulumi.StringPtrOutput `pulumi:"realm"`
 	// Allows x509 calls using an unknown CA certificate (for development purposes)
 	RootCaCertificate pulumi.StringPtrOutput `pulumi:"rootCaCertificate"`
 	// The base URL of the Keycloak instance, before `/auth`
@@ -42,6 +46,13 @@ func NewProvider(ctx *pulumi.Context,
 			args.ClientTimeout = pulumi.IntPtr(d.(int))
 		}
 	}
+	if args.JwtSigningKey != nil {
+		args.JwtSigningKey = pulumi.ToSecret(args.JwtSigningKey).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"jwtSigningKey",
+	})
+	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Provider
 	err := ctx.RegisterResource("pulumi:providers:keycloak", name, args, &resource, opts...)
@@ -59,9 +70,13 @@ type providerArgs struct {
 	// Timeout (in seconds) of the Keycloak client
 	ClientTimeout *int `pulumi:"clientTimeout"`
 	// Whether or not to login to Keycloak instance on provider initialization
-	InitialLogin *bool   `pulumi:"initialLogin"`
-	Password     *string `pulumi:"password"`
-	Realm        *string `pulumi:"realm"`
+	InitialLogin *bool `pulumi:"initialLogin"`
+	// The algorithm used to sign the JWT when client-jwt is used. Defaults to RS256.
+	JwtSigningAlg *string `pulumi:"jwtSigningAlg"`
+	// The PEM-formatted private key used to sign the JWT when client-jwt is used.
+	JwtSigningKey *string `pulumi:"jwtSigningKey"`
+	Password      *string `pulumi:"password"`
+	Realm         *string `pulumi:"realm"`
 	// When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version
 	// returned from the /serverinfo API endpoint.
 	RedHatSso *bool `pulumi:"redHatSso"`
@@ -85,8 +100,12 @@ type ProviderArgs struct {
 	ClientTimeout pulumi.IntPtrInput
 	// Whether or not to login to Keycloak instance on provider initialization
 	InitialLogin pulumi.BoolPtrInput
-	Password     pulumi.StringPtrInput
-	Realm        pulumi.StringPtrInput
+	// The algorithm used to sign the JWT when client-jwt is used. Defaults to RS256.
+	JwtSigningAlg pulumi.StringPtrInput
+	// The PEM-formatted private key used to sign the JWT when client-jwt is used.
+	JwtSigningKey pulumi.StringPtrInput
+	Password      pulumi.StringPtrInput
+	Realm         pulumi.StringPtrInput
 	// When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version
 	// returned from the /serverinfo API endpoint.
 	RedHatSso pulumi.BoolPtrInput
@@ -170,6 +189,16 @@ func (o ProviderOutput) ClientId() pulumi.StringPtrOutput {
 
 func (o ProviderOutput) ClientSecret() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.ClientSecret }).(pulumi.StringPtrOutput)
+}
+
+// The algorithm used to sign the JWT when client-jwt is used. Defaults to RS256.
+func (o ProviderOutput) JwtSigningAlg() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.JwtSigningAlg }).(pulumi.StringPtrOutput)
+}
+
+// The PEM-formatted private key used to sign the JWT when client-jwt is used.
+func (o ProviderOutput) JwtSigningKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.JwtSigningKey }).(pulumi.StringPtrOutput)
 }
 
 func (o ProviderOutput) Password() pulumi.StringPtrOutput {

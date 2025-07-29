@@ -27,6 +27,7 @@ class ClientRolePolicyArgs:
                  type: pulumi.Input[_builtins.str],
                  decision_strategy: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
+                 fetch_roles: Optional[pulumi.Input[_builtins.bool]] = None,
                  logic: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
@@ -40,6 +41,8 @@ class ClientRolePolicyArgs:
             pulumi.set(__self__, "decision_strategy", decision_strategy)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if fetch_roles is not None:
+            pulumi.set(__self__, "fetch_roles", fetch_roles)
         if logic is not None:
             pulumi.set(__self__, "logic", logic)
         if name is not None:
@@ -100,6 +103,15 @@ class ClientRolePolicyArgs:
         pulumi.set(self, "description", value)
 
     @_builtins.property
+    @pulumi.getter(name="fetchRoles")
+    def fetch_roles(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        return pulumi.get(self, "fetch_roles")
+
+    @fetch_roles.setter
+    def fetch_roles(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "fetch_roles", value)
+
+    @_builtins.property
     @pulumi.getter
     def logic(self) -> Optional[pulumi.Input[_builtins.str]]:
         return pulumi.get(self, "logic")
@@ -123,6 +135,7 @@ class _ClientRolePolicyState:
     def __init__(__self__, *,
                  decision_strategy: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
+                 fetch_roles: Optional[pulumi.Input[_builtins.bool]] = None,
                  logic: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  realm_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -136,6 +149,8 @@ class _ClientRolePolicyState:
             pulumi.set(__self__, "decision_strategy", decision_strategy)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if fetch_roles is not None:
+            pulumi.set(__self__, "fetch_roles", fetch_roles)
         if logic is not None:
             pulumi.set(__self__, "logic", logic)
         if name is not None:
@@ -166,6 +181,15 @@ class _ClientRolePolicyState:
     @description.setter
     def description(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "description", value)
+
+    @_builtins.property
+    @pulumi.getter(name="fetchRoles")
+    def fetch_roles(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        return pulumi.get(self, "fetch_roles")
+
+    @fetch_roles.setter
+    def fetch_roles(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "fetch_roles", value)
 
     @_builtins.property
     @pulumi.getter
@@ -230,6 +254,7 @@ class ClientRolePolicy(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  decision_strategy: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
+                 fetch_roles: Optional[pulumi.Input[_builtins.bool]] = None,
                  logic: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  realm_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -267,6 +292,7 @@ class ClientRolePolicy(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  decision_strategy: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
+                 fetch_roles: Optional[pulumi.Input[_builtins.bool]] = None,
                  logic: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  realm_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -284,6 +310,7 @@ class ClientRolePolicy(pulumi.CustomResource):
 
             __props__.__dict__["decision_strategy"] = decision_strategy
             __props__.__dict__["description"] = description
+            __props__.__dict__["fetch_roles"] = fetch_roles
             __props__.__dict__["logic"] = logic
             __props__.__dict__["name"] = name
             if realm_id is None and not opts.urn:
@@ -310,6 +337,7 @@ class ClientRolePolicy(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             decision_strategy: Optional[pulumi.Input[_builtins.str]] = None,
             description: Optional[pulumi.Input[_builtins.str]] = None,
+            fetch_roles: Optional[pulumi.Input[_builtins.bool]] = None,
             logic: Optional[pulumi.Input[_builtins.str]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             realm_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -330,6 +358,7 @@ class ClientRolePolicy(pulumi.CustomResource):
 
         __props__.__dict__["decision_strategy"] = decision_strategy
         __props__.__dict__["description"] = description
+        __props__.__dict__["fetch_roles"] = fetch_roles
         __props__.__dict__["logic"] = logic
         __props__.__dict__["name"] = name
         __props__.__dict__["realm_id"] = realm_id
@@ -347,6 +376,11 @@ class ClientRolePolicy(pulumi.CustomResource):
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[_builtins.str]]:
         return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="fetchRoles")
+    def fetch_roles(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        return pulumi.get(self, "fetch_roles")
 
     @_builtins.property
     @pulumi.getter

@@ -11,6 +11,7 @@ import com.pulumi.keycloak.Utilities;
 import com.pulumi.keycloak.openid.ClientRolePolicyArgs;
 import com.pulumi.keycloak.openid.inputs.ClientRolePolicyState;
 import com.pulumi.keycloak.openid.outputs.ClientRolePolicyRole;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
@@ -29,6 +30,12 @@ public class ClientRolePolicy extends com.pulumi.resources.CustomResource {
 
     public Output<Optional<String>> description() {
         return Codegen.optional(this.description);
+    }
+    @Export(name="fetchRoles", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> fetchRoles;
+
+    public Output<Optional<Boolean>> fetchRoles() {
+        return Codegen.optional(this.fetchRoles);
     }
     @Export(name="logic", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> logic;

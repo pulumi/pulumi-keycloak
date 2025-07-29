@@ -41,6 +41,16 @@ func GetClientTimeout(ctx *pulumi.Context) int {
 func GetInitialLogin(ctx *pulumi.Context) bool {
 	return config.GetBool(ctx, "keycloak:initialLogin")
 }
+
+// The algorithm used to sign the JWT when client-jwt is used. Defaults to RS256.
+func GetJwtSigningAlg(ctx *pulumi.Context) string {
+	return config.Get(ctx, "keycloak:jwtSigningAlg")
+}
+
+// The PEM-formatted private key used to sign the JWT when client-jwt is used.
+func GetJwtSigningKey(ctx *pulumi.Context) string {
+	return config.Get(ctx, "keycloak:jwtSigningKey")
+}
 func GetPassword(ctx *pulumi.Context) string {
 	return config.Get(ctx, "keycloak:password")
 }
