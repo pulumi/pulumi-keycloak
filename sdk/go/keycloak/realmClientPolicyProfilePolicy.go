@@ -12,6 +12,110 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Allows for managing Realm Client Policy Profile Policies.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"encoding/json"
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm: pulumi.String("my-realm"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			profile, err := keycloak.NewRealmClientPolicyProfile(ctx, "profile", &keycloak.RealmClientPolicyProfileArgs{
+//				Name:        pulumi.String("my-profile"),
+//				RealmId:     realm.ID(),
+//				Description: pulumi.String("Some desc"),
+//				Executors: keycloak.RealmClientPolicyProfileExecutorArray{
+//					&keycloak.RealmClientPolicyProfileExecutorArgs{
+//						Name: pulumi.String("intent-client-bind-checker"),
+//						Configuration: pulumi.StringMap{
+//							"auto-configure": pulumi.String("true"),
+//						},
+//					},
+//					&keycloak.RealmClientPolicyProfileExecutorArgs{
+//						Name: pulumi.String("secret-rotation"),
+//						Configuration: pulumi.StringMap{
+//							"expiration-period":         pulumi.String("2505600"),
+//							"rotated-expiration-period": pulumi.String("172800"),
+//							"remaining-rotation-period": pulumi.String("864000"),
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			tmpJSON0, err := json.Marshal([]map[string]interface{}{
+//				map[string]interface{}{
+//					"key":   "test-key",
+//					"value": "test-value",
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json0 := string(tmpJSON0)
+//			_, err = keycloak.NewRealmClientPolicyProfilePolicy(ctx, "policy", &keycloak.RealmClientPolicyProfilePolicyArgs{
+//				Name:        pulumi.String("my-profile"),
+//				RealmId:     realm.ID(),
+//				Description: pulumi.String("Some desc"),
+//				Profiles: pulumi.StringArray{
+//					profile.Name,
+//				},
+//				Conditions: keycloak.RealmClientPolicyProfilePolicyConditionArray{
+//					&keycloak.RealmClientPolicyProfilePolicyConditionArgs{
+//						Name: pulumi.String("client-type"),
+//						Configuration: pulumi.StringMap{
+//							"protocol": pulumi.String("openid-connect"),
+//						},
+//					},
+//					&keycloak.RealmClientPolicyProfilePolicyConditionArgs{
+//						Name: pulumi.String("client-attributes"),
+//						Configuration: pulumi.StringMap{
+//							"is-negative-logic": pulumi.String("false"),
+//							"attributes":        pulumi.String(json0),
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Attribute Arguments
+//
+// - `name` - (Required) The name of the attribute.
+// - `realmId` - (Required) The realm id.
+// - `condition` - (Optional) An ordered list of condition
+//
+// #### Condition Arguments
+//
+// - `name` - (Required) The name of the executor. NOTE! The executor needs to exist
+// - `configuration` - (Optional) - A map of configuration values
+//
+// ## Import
+//
+// This resource currently does not support importing.
 type RealmClientPolicyProfilePolicy struct {
 	pulumi.CustomResourceState
 

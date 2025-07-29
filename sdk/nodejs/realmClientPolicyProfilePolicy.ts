@@ -6,6 +6,78 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * Allows for managing Realm Client Policy Profile Policies.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {realm: "my-realm"});
+ * const profile = new keycloak.RealmClientPolicyProfile("profile", {
+ *     name: "my-profile",
+ *     realmId: realm.id,
+ *     description: "Some desc",
+ *     executors: [
+ *         {
+ *             name: "intent-client-bind-checker",
+ *             configuration: {
+ *                 "auto-configure": "true",
+ *             },
+ *         },
+ *         {
+ *             name: "secret-rotation",
+ *             configuration: {
+ *                 "expiration-period": "2505600",
+ *                 "rotated-expiration-period": "172800",
+ *                 "remaining-rotation-period": "864000",
+ *             },
+ *         },
+ *     ],
+ * });
+ * const policy = new keycloak.RealmClientPolicyProfilePolicy("policy", {
+ *     name: "my-profile",
+ *     realmId: realm.id,
+ *     description: "Some desc",
+ *     profiles: [profile.name],
+ *     conditions: [
+ *         {
+ *             name: "client-type",
+ *             configuration: {
+ *                 protocol: "openid-connect",
+ *             },
+ *         },
+ *         {
+ *             name: "client-attributes",
+ *             configuration: {
+ *                 "is-negative-logic": "false",
+ *                 attributes: JSON.stringify([{
+ *                     key: "test-key",
+ *                     value: "test-value",
+ *                 }]),
+ *             },
+ *         },
+ *     ],
+ * });
+ * ```
+ *
+ * ### Attribute Arguments
+ *
+ * - `name` - (Required) The name of the attribute.
+ * - `realmId` - (Required) The realm id.
+ * - `condition` - (Optional) An ordered list of condition
+ *
+ * #### Condition Arguments
+ *
+ * - `name` - (Required) The name of the executor. NOTE! The executor needs to exist
+ * - `configuration` - (Optional) - A map of configuration values
+ *
+ * ## Import
+ *
+ * This resource currently does not support importing.
+ */
 export class RealmClientPolicyProfilePolicy extends pulumi.CustomResource {
     /**
      * Get an existing RealmClientPolicyProfilePolicy resource's state with the given name, ID, and optional extra

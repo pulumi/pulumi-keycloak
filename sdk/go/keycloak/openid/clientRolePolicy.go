@@ -17,6 +17,7 @@ type ClientRolePolicy struct {
 
 	DecisionStrategy pulumi.StringPtrOutput          `pulumi:"decisionStrategy"`
 	Description      pulumi.StringPtrOutput          `pulumi:"description"`
+	FetchRoles       pulumi.BoolPtrOutput            `pulumi:"fetchRoles"`
 	Logic            pulumi.StringPtrOutput          `pulumi:"logic"`
 	Name             pulumi.StringOutput             `pulumi:"name"`
 	RealmId          pulumi.StringOutput             `pulumi:"realmId"`
@@ -69,6 +70,7 @@ func GetClientRolePolicy(ctx *pulumi.Context,
 type clientRolePolicyState struct {
 	DecisionStrategy *string                `pulumi:"decisionStrategy"`
 	Description      *string                `pulumi:"description"`
+	FetchRoles       *bool                  `pulumi:"fetchRoles"`
 	Logic            *string                `pulumi:"logic"`
 	Name             *string                `pulumi:"name"`
 	RealmId          *string                `pulumi:"realmId"`
@@ -80,6 +82,7 @@ type clientRolePolicyState struct {
 type ClientRolePolicyState struct {
 	DecisionStrategy pulumi.StringPtrInput
 	Description      pulumi.StringPtrInput
+	FetchRoles       pulumi.BoolPtrInput
 	Logic            pulumi.StringPtrInput
 	Name             pulumi.StringPtrInput
 	RealmId          pulumi.StringPtrInput
@@ -95,6 +98,7 @@ func (ClientRolePolicyState) ElementType() reflect.Type {
 type clientRolePolicyArgs struct {
 	DecisionStrategy *string                `pulumi:"decisionStrategy"`
 	Description      *string                `pulumi:"description"`
+	FetchRoles       *bool                  `pulumi:"fetchRoles"`
 	Logic            *string                `pulumi:"logic"`
 	Name             *string                `pulumi:"name"`
 	RealmId          string                 `pulumi:"realmId"`
@@ -107,6 +111,7 @@ type clientRolePolicyArgs struct {
 type ClientRolePolicyArgs struct {
 	DecisionStrategy pulumi.StringPtrInput
 	Description      pulumi.StringPtrInput
+	FetchRoles       pulumi.BoolPtrInput
 	Logic            pulumi.StringPtrInput
 	Name             pulumi.StringPtrInput
 	RealmId          pulumi.StringInput
@@ -208,6 +213,10 @@ func (o ClientRolePolicyOutput) DecisionStrategy() pulumi.StringPtrOutput {
 
 func (o ClientRolePolicyOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ClientRolePolicy) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+func (o ClientRolePolicyOutput) FetchRoles() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ClientRolePolicy) pulumi.BoolPtrOutput { return v.FetchRoles }).(pulumi.BoolPtrOutput)
 }
 
 func (o ClientRolePolicyOutput) Logic() pulumi.StringPtrOutput {

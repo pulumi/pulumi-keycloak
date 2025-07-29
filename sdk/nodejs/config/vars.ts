@@ -61,6 +61,28 @@ Object.defineProperty(exports, "initialLogin", {
     enumerable: true,
 });
 
+/**
+ * The algorithm used to sign the JWT when client-jwt is used. Defaults to RS256.
+ */
+export declare const jwtSigningAlg: string | undefined;
+Object.defineProperty(exports, "jwtSigningAlg", {
+    get() {
+        return __config.get("jwtSigningAlg");
+    },
+    enumerable: true,
+});
+
+/**
+ * The PEM-formatted private key used to sign the JWT when client-jwt is used.
+ */
+export declare const jwtSigningKey: string | undefined;
+Object.defineProperty(exports, "jwtSigningKey", {
+    get() {
+        return __config.get("jwtSigningKey");
+    },
+    enumerable: true,
+});
+
 export declare const password: string | undefined;
 Object.defineProperty(exports, "password", {
     get() {

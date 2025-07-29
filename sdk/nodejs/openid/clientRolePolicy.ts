@@ -36,6 +36,7 @@ export class ClientRolePolicy extends pulumi.CustomResource {
 
     public readonly decisionStrategy!: pulumi.Output<string | undefined>;
     public readonly description!: pulumi.Output<string | undefined>;
+    public readonly fetchRoles!: pulumi.Output<boolean | undefined>;
     public readonly logic!: pulumi.Output<string | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly realmId!: pulumi.Output<string>;
@@ -58,6 +59,7 @@ export class ClientRolePolicy extends pulumi.CustomResource {
             const state = argsOrState as ClientRolePolicyState | undefined;
             resourceInputs["decisionStrategy"] = state ? state.decisionStrategy : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["fetchRoles"] = state ? state.fetchRoles : undefined;
             resourceInputs["logic"] = state ? state.logic : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["realmId"] = state ? state.realmId : undefined;
@@ -80,6 +82,7 @@ export class ClientRolePolicy extends pulumi.CustomResource {
             }
             resourceInputs["decisionStrategy"] = args ? args.decisionStrategy : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["fetchRoles"] = args ? args.fetchRoles : undefined;
             resourceInputs["logic"] = args ? args.logic : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["realmId"] = args ? args.realmId : undefined;
@@ -98,6 +101,7 @@ export class ClientRolePolicy extends pulumi.CustomResource {
 export interface ClientRolePolicyState {
     decisionStrategy?: pulumi.Input<string>;
     description?: pulumi.Input<string>;
+    fetchRoles?: pulumi.Input<boolean>;
     logic?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     realmId?: pulumi.Input<string>;
@@ -112,6 +116,7 @@ export interface ClientRolePolicyState {
 export interface ClientRolePolicyArgs {
     decisionStrategy?: pulumi.Input<string>;
     description?: pulumi.Input<string>;
+    fetchRoles?: pulumi.Input<boolean>;
     logic?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     realmId: pulumi.Input<string>;

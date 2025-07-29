@@ -190,7 +190,76 @@ class RealmClientPolicyProfilePolicy(pulumi.CustomResource):
                  realm_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        Create a RealmClientPolicyProfilePolicy resource with the given unique name, props, and options.
+        Allows for managing Realm Client Policy Profile Policies.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import json
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm", realm="my-realm")
+        profile = keycloak.RealmClientPolicyProfile("profile",
+            name="my-profile",
+            realm_id=realm.id,
+            description="Some desc",
+            executors=[
+                {
+                    "name": "intent-client-bind-checker",
+                    "configuration": {
+                        "auto-configure": "true",
+                    },
+                },
+                {
+                    "name": "secret-rotation",
+                    "configuration": {
+                        "expiration-period": "2505600",
+                        "rotated-expiration-period": "172800",
+                        "remaining-rotation-period": "864000",
+                    },
+                },
+            ])
+        policy = keycloak.RealmClientPolicyProfilePolicy("policy",
+            name="my-profile",
+            realm_id=realm.id,
+            description="Some desc",
+            profiles=[profile.name],
+            conditions=[
+                {
+                    "name": "client-type",
+                    "configuration": {
+                        "protocol": "openid-connect",
+                    },
+                },
+                {
+                    "name": "client-attributes",
+                    "configuration": {
+                        "is-negative-logic": "false",
+                        "attributes": json.dumps([{
+                            "key": "test-key",
+                            "value": "test-value",
+                        }]),
+                    },
+                },
+            ])
+        ```
+
+        ### Attribute Arguments
+
+        - `name` - (Required) The name of the attribute.
+        - `realm_id` - (Required) The realm id.
+        - `condition` - (Optional) An ordered list of condition
+
+        #### Condition Arguments
+
+        - `name` - (Required) The name of the executor. NOTE! The executor needs to exist
+        - `configuration` - (Optional) - A map of configuration values
+
+        ## Import
+
+        This resource currently does not support importing.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
@@ -201,7 +270,76 @@ class RealmClientPolicyProfilePolicy(pulumi.CustomResource):
                  args: RealmClientPolicyProfilePolicyArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a RealmClientPolicyProfilePolicy resource with the given unique name, props, and options.
+        Allows for managing Realm Client Policy Profile Policies.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import json
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm", realm="my-realm")
+        profile = keycloak.RealmClientPolicyProfile("profile",
+            name="my-profile",
+            realm_id=realm.id,
+            description="Some desc",
+            executors=[
+                {
+                    "name": "intent-client-bind-checker",
+                    "configuration": {
+                        "auto-configure": "true",
+                    },
+                },
+                {
+                    "name": "secret-rotation",
+                    "configuration": {
+                        "expiration-period": "2505600",
+                        "rotated-expiration-period": "172800",
+                        "remaining-rotation-period": "864000",
+                    },
+                },
+            ])
+        policy = keycloak.RealmClientPolicyProfilePolicy("policy",
+            name="my-profile",
+            realm_id=realm.id,
+            description="Some desc",
+            profiles=[profile.name],
+            conditions=[
+                {
+                    "name": "client-type",
+                    "configuration": {
+                        "protocol": "openid-connect",
+                    },
+                },
+                {
+                    "name": "client-attributes",
+                    "configuration": {
+                        "is-negative-logic": "false",
+                        "attributes": json.dumps([{
+                            "key": "test-key",
+                            "value": "test-value",
+                        }]),
+                    },
+                },
+            ])
+        ```
+
+        ### Attribute Arguments
+
+        - `name` - (Required) The name of the attribute.
+        - `realm_id` - (Required) The realm id.
+        - `condition` - (Optional) An ordered list of condition
+
+        #### Condition Arguments
+
+        - `name` - (Required) The name of the executor. NOTE! The executor needs to exist
+        - `configuration` - (Optional) - A map of configuration values
+
+        ## Import
+
+        This resource currently does not support importing.
+
         :param str resource_name: The name of the resource.
         :param RealmClientPolicyProfilePolicyArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

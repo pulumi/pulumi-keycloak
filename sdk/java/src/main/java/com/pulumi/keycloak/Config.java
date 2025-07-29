@@ -40,6 +40,20 @@ public final class Config {
     public Optional<Boolean> initialLogin() {
         return Codegen.booleanProp("initialLogin").config(config).get();
     }
+/**
+ * The algorithm used to sign the JWT when client-jwt is used. Defaults to RS256.
+ * 
+ */
+    public Optional<String> jwtSigningAlg() {
+        return Codegen.stringProp("jwtSigningAlg").config(config).get();
+    }
+/**
+ * The PEM-formatted private key used to sign the JWT when client-jwt is used.
+ * 
+ */
+    public Optional<String> jwtSigningKey() {
+        return Codegen.stringProp("jwtSigningKey").config(config).get();
+    }
     public Optional<String> password() {
         return Codegen.stringProp("password").config(config).get();
     }

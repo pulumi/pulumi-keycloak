@@ -18,6 +18,9 @@ namespace Pulumi.Keycloak.OpenId
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
+        [Output("fetchRoles")]
+        public Output<bool?> FetchRoles { get; private set; } = null!;
+
         [Output("logic")]
         public Output<string?> Logic { get; private set; } = null!;
 
@@ -88,6 +91,9 @@ namespace Pulumi.Keycloak.OpenId
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        [Input("fetchRoles")]
+        public Input<bool>? FetchRoles { get; set; }
+
         [Input("logic")]
         public Input<string>? Logic { get; set; }
 
@@ -124,6 +130,9 @@ namespace Pulumi.Keycloak.OpenId
 
         [Input("description")]
         public Input<string>? Description { get; set; }
+
+        [Input("fetchRoles")]
+        public Input<bool>? FetchRoles { get; set; }
 
         [Input("logic")]
         public Input<string>? Logic { get; set; }

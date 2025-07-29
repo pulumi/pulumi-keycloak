@@ -51,6 +51,20 @@ class _ExportableConfig(types.ModuleType):
         return __config__.get_bool('initialLogin')
 
     @_builtins.property
+    def jwt_signing_alg(self) -> Optional[str]:
+        """
+        The algorithm used to sign the JWT when client-jwt is used. Defaults to RS256.
+        """
+        return __config__.get('jwtSigningAlg')
+
+    @_builtins.property
+    def jwt_signing_key(self) -> Optional[str]:
+        """
+        The PEM-formatted private key used to sign the JWT when client-jwt is used.
+        """
+        return __config__.get('jwtSigningKey')
+
+    @_builtins.property
     def password(self) -> Optional[str]:
         return __config__.get('password')
 
