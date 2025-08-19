@@ -17280,7 +17280,7 @@
                 "properties": {
                     "__self__": {
                         "type": "ref",
-                        "$ref": "#/resources/pulumi:providers:keycloak"
+                        "$ref": "#/provider"
                     }
                 },
                 "type": "pulumi:providers:keycloak/terraformConfig",
