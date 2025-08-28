@@ -163,9 +163,7 @@ type Realm struct {
 	// When `true`, organization support is enabled. Defaults to `false`.
 	OrganizationsEnabled pulumi.BoolPtrOutput `pulumi:"organizationsEnabled"`
 	OtpPolicy            RealmOtpPolicyOutput `pulumi:"otpPolicy"`
-	// String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
-	// can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365)
-	// and notUsername(undefined)"
+	// String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername(undefined)"
 	PasswordPolicy pulumi.StringPtrOutput `pulumi:"passwordPolicy"`
 	// The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
 	Realm                       pulumi.StringOutput `pulumi:"realm"`
@@ -272,9 +270,7 @@ type realmState struct {
 	// When `true`, organization support is enabled. Defaults to `false`.
 	OrganizationsEnabled *bool           `pulumi:"organizationsEnabled"`
 	OtpPolicy            *RealmOtpPolicy `pulumi:"otpPolicy"`
-	// String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
-	// can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365)
-	// and notUsername(undefined)"
+	// String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername(undefined)"
 	PasswordPolicy *string `pulumi:"passwordPolicy"`
 	// The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
 	Realm                       *string `pulumi:"realm"`
@@ -352,9 +348,7 @@ type RealmState struct {
 	// When `true`, organization support is enabled. Defaults to `false`.
 	OrganizationsEnabled pulumi.BoolPtrInput
 	OtpPolicy            RealmOtpPolicyPtrInput
-	// String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
-	// can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365)
-	// and notUsername(undefined)"
+	// String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername(undefined)"
 	PasswordPolicy pulumi.StringPtrInput
 	// The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
 	Realm                       pulumi.StringPtrInput
@@ -436,9 +430,7 @@ type realmArgs struct {
 	// When `true`, organization support is enabled. Defaults to `false`.
 	OrganizationsEnabled *bool           `pulumi:"organizationsEnabled"`
 	OtpPolicy            *RealmOtpPolicy `pulumi:"otpPolicy"`
-	// String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
-	// can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365)
-	// and notUsername(undefined)"
+	// String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername(undefined)"
 	PasswordPolicy *string `pulumi:"passwordPolicy"`
 	// The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
 	Realm                       *string `pulumi:"realm"`
@@ -517,9 +509,7 @@ type RealmArgs struct {
 	// When `true`, organization support is enabled. Defaults to `false`.
 	OrganizationsEnabled pulumi.BoolPtrInput
 	OtpPolicy            RealmOtpPolicyPtrInput
-	// String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
-	// can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365)
-	// and notUsername(undefined)"
+	// String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername(undefined)"
 	PasswordPolicy pulumi.StringPtrInput
 	// The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
 	Realm                       pulumi.StringPtrInput
@@ -794,9 +784,7 @@ func (o RealmOutput) OtpPolicy() RealmOtpPolicyOutput {
 	return o.ApplyT(func(v *Realm) RealmOtpPolicyOutput { return v.OtpPolicy }).(RealmOtpPolicyOutput)
 }
 
-// String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
-// can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365)
-// and notUsername(undefined)"
+// String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername(undefined)"
 func (o RealmOutput) PasswordPolicy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Realm) pulumi.StringPtrOutput { return v.PasswordPolicy }).(pulumi.StringPtrOutput)
 }

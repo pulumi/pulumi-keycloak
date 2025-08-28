@@ -85,15 +85,15 @@ export class GroupMemberships extends pulumi.CustomResource {
     /**
      * The ID of the group this resource should manage memberships for.
      */
-    public readonly groupId!: pulumi.Output<string | undefined>;
+    declare public readonly groupId: pulumi.Output<string | undefined>;
     /**
      * A list of usernames that belong to this group.
      */
-    public readonly members!: pulumi.Output<string[]>;
+    declare public readonly members: pulumi.Output<string[]>;
     /**
      * The realm this group exists in.
      */
-    public readonly realmId!: pulumi.Output<string>;
+    declare public readonly realmId: pulumi.Output<string>;
 
     /**
      * Create a GroupMemberships resource with the given unique name, arguments, and options.
@@ -108,20 +108,20 @@ export class GroupMemberships extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as GroupMembershipsState | undefined;
-            resourceInputs["groupId"] = state ? state.groupId : undefined;
-            resourceInputs["members"] = state ? state.members : undefined;
-            resourceInputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["groupId"] = state?.groupId;
+            resourceInputs["members"] = state?.members;
+            resourceInputs["realmId"] = state?.realmId;
         } else {
             const args = argsOrState as GroupMembershipsArgs | undefined;
-            if ((!args || args.members === undefined) && !opts.urn) {
+            if (args?.members === undefined && !opts.urn) {
                 throw new Error("Missing required property 'members'");
             }
-            if ((!args || args.realmId === undefined) && !opts.urn) {
+            if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            resourceInputs["groupId"] = args ? args.groupId : undefined;
-            resourceInputs["members"] = args ? args.members : undefined;
-            resourceInputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["groupId"] = args?.groupId;
+            resourceInputs["members"] = args?.members;
+            resourceInputs["realmId"] = args?.realmId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(GroupMemberships.__pulumiType, name, resourceInputs, opts);

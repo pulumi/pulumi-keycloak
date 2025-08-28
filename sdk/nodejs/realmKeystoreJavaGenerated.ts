@@ -73,43 +73,43 @@ export class RealmKeystoreJavaGenerated extends pulumi.CustomResource {
     /**
      * When `false`, key in not used for signing. Defaults to `true`.
      */
-    public readonly active!: pulumi.Output<boolean | undefined>;
+    declare public readonly active: pulumi.Output<boolean | undefined>;
     /**
      * Intended algorithm for the key. Defaults to `RS256`
      */
-    public readonly algorithm!: pulumi.Output<string | undefined>;
+    declare public readonly algorithm: pulumi.Output<string | undefined>;
     /**
      * When `false`, key is not accessible in this realm. Defaults to `true`.
      */
-    public readonly enabled!: pulumi.Output<boolean | undefined>;
+    declare public readonly enabled: pulumi.Output<boolean | undefined>;
     /**
      * Alias for the private key.
      */
-    public readonly keyAlias!: pulumi.Output<string>;
+    declare public readonly keyAlias: pulumi.Output<string>;
     /**
      * Password for the private key.
      */
-    public readonly keyPassword!: pulumi.Output<string>;
+    declare public readonly keyPassword: pulumi.Output<string>;
     /**
      * Path to keys file on keycloak instance.
      */
-    public readonly keystore!: pulumi.Output<string>;
+    declare public readonly keystore: pulumi.Output<string>;
     /**
      * Password for the keys.
      */
-    public readonly keystorePassword!: pulumi.Output<string>;
+    declare public readonly keystorePassword: pulumi.Output<string>;
     /**
      * Display name of provider when linked in admin console.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * Priority for the provider. Defaults to `0`
      */
-    public readonly priority!: pulumi.Output<number | undefined>;
+    declare public readonly priority: pulumi.Output<number | undefined>;
     /**
      * The realm this keystore exists in.
      */
-    public readonly realmId!: pulumi.Output<string>;
+    declare public readonly realmId: pulumi.Output<string>;
 
     /**
      * Create a RealmKeystoreJavaGenerated resource with the given unique name, arguments, and options.
@@ -124,43 +124,43 @@ export class RealmKeystoreJavaGenerated extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RealmKeystoreJavaGeneratedState | undefined;
-            resourceInputs["active"] = state ? state.active : undefined;
-            resourceInputs["algorithm"] = state ? state.algorithm : undefined;
-            resourceInputs["enabled"] = state ? state.enabled : undefined;
-            resourceInputs["keyAlias"] = state ? state.keyAlias : undefined;
-            resourceInputs["keyPassword"] = state ? state.keyPassword : undefined;
-            resourceInputs["keystore"] = state ? state.keystore : undefined;
-            resourceInputs["keystorePassword"] = state ? state.keystorePassword : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["priority"] = state ? state.priority : undefined;
-            resourceInputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["active"] = state?.active;
+            resourceInputs["algorithm"] = state?.algorithm;
+            resourceInputs["enabled"] = state?.enabled;
+            resourceInputs["keyAlias"] = state?.keyAlias;
+            resourceInputs["keyPassword"] = state?.keyPassword;
+            resourceInputs["keystore"] = state?.keystore;
+            resourceInputs["keystorePassword"] = state?.keystorePassword;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["priority"] = state?.priority;
+            resourceInputs["realmId"] = state?.realmId;
         } else {
             const args = argsOrState as RealmKeystoreJavaGeneratedArgs | undefined;
-            if ((!args || args.keyAlias === undefined) && !opts.urn) {
+            if (args?.keyAlias === undefined && !opts.urn) {
                 throw new Error("Missing required property 'keyAlias'");
             }
-            if ((!args || args.keyPassword === undefined) && !opts.urn) {
+            if (args?.keyPassword === undefined && !opts.urn) {
                 throw new Error("Missing required property 'keyPassword'");
             }
-            if ((!args || args.keystore === undefined) && !opts.urn) {
+            if (args?.keystore === undefined && !opts.urn) {
                 throw new Error("Missing required property 'keystore'");
             }
-            if ((!args || args.keystorePassword === undefined) && !opts.urn) {
+            if (args?.keystorePassword === undefined && !opts.urn) {
                 throw new Error("Missing required property 'keystorePassword'");
             }
-            if ((!args || args.realmId === undefined) && !opts.urn) {
+            if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            resourceInputs["active"] = args ? args.active : undefined;
-            resourceInputs["algorithm"] = args ? args.algorithm : undefined;
-            resourceInputs["enabled"] = args ? args.enabled : undefined;
-            resourceInputs["keyAlias"] = args ? args.keyAlias : undefined;
-            resourceInputs["keyPassword"] = args ? args.keyPassword : undefined;
-            resourceInputs["keystore"] = args ? args.keystore : undefined;
-            resourceInputs["keystorePassword"] = args ? args.keystorePassword : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["priority"] = args ? args.priority : undefined;
-            resourceInputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["active"] = args?.active;
+            resourceInputs["algorithm"] = args?.algorithm;
+            resourceInputs["enabled"] = args?.enabled;
+            resourceInputs["keyAlias"] = args?.keyAlias;
+            resourceInputs["keyPassword"] = args?.keyPassword;
+            resourceInputs["keystore"] = args?.keystore;
+            resourceInputs["keystorePassword"] = args?.keystorePassword;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["priority"] = args?.priority;
+            resourceInputs["realmId"] = args?.realmId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(RealmKeystoreJavaGenerated.__pulumiType, name, resourceInputs, opts);

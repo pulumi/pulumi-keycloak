@@ -90,35 +90,35 @@ export class AttributeImporterIdentityProviderMapper extends pulumi.CustomResour
     /**
      * For SAML based providers, this is the friendly name of the attribute to search for in the assertion. Conflicts with `attributeName`.
      */
-    public readonly attributeFriendlyName!: pulumi.Output<string | undefined>;
+    declare public readonly attributeFriendlyName: pulumi.Output<string | undefined>;
     /**
      * For SAML based providers, this is the name of the attribute to search for in the assertion. Conflicts with `attributeFriendlyName`.
      */
-    public readonly attributeName!: pulumi.Output<string | undefined>;
+    declare public readonly attributeName: pulumi.Output<string | undefined>;
     /**
      * For OIDC based providers, this is the name of the claim to use.
      */
-    public readonly claimName!: pulumi.Output<string | undefined>;
+    declare public readonly claimName: pulumi.Output<string | undefined>;
     /**
      * Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
      */
-    public readonly extraConfig!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly extraConfig: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The alias of the associated identity provider.
      */
-    public readonly identityProviderAlias!: pulumi.Output<string>;
+    declare public readonly identityProviderAlias: pulumi.Output<string>;
     /**
      * The name of the mapper.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The name of the realm.
      */
-    public readonly realm!: pulumi.Output<string>;
+    declare public readonly realm: pulumi.Output<string>;
     /**
      * The user attribute or property name to store the mapped result.
      */
-    public readonly userAttribute!: pulumi.Output<string>;
+    declare public readonly userAttribute: pulumi.Output<string>;
 
     /**
      * Create a AttributeImporterIdentityProviderMapper resource with the given unique name, arguments, and options.
@@ -133,33 +133,33 @@ export class AttributeImporterIdentityProviderMapper extends pulumi.CustomResour
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AttributeImporterIdentityProviderMapperState | undefined;
-            resourceInputs["attributeFriendlyName"] = state ? state.attributeFriendlyName : undefined;
-            resourceInputs["attributeName"] = state ? state.attributeName : undefined;
-            resourceInputs["claimName"] = state ? state.claimName : undefined;
-            resourceInputs["extraConfig"] = state ? state.extraConfig : undefined;
-            resourceInputs["identityProviderAlias"] = state ? state.identityProviderAlias : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["realm"] = state ? state.realm : undefined;
-            resourceInputs["userAttribute"] = state ? state.userAttribute : undefined;
+            resourceInputs["attributeFriendlyName"] = state?.attributeFriendlyName;
+            resourceInputs["attributeName"] = state?.attributeName;
+            resourceInputs["claimName"] = state?.claimName;
+            resourceInputs["extraConfig"] = state?.extraConfig;
+            resourceInputs["identityProviderAlias"] = state?.identityProviderAlias;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["realm"] = state?.realm;
+            resourceInputs["userAttribute"] = state?.userAttribute;
         } else {
             const args = argsOrState as AttributeImporterIdentityProviderMapperArgs | undefined;
-            if ((!args || args.identityProviderAlias === undefined) && !opts.urn) {
+            if (args?.identityProviderAlias === undefined && !opts.urn) {
                 throw new Error("Missing required property 'identityProviderAlias'");
             }
-            if ((!args || args.realm === undefined) && !opts.urn) {
+            if (args?.realm === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realm'");
             }
-            if ((!args || args.userAttribute === undefined) && !opts.urn) {
+            if (args?.userAttribute === undefined && !opts.urn) {
                 throw new Error("Missing required property 'userAttribute'");
             }
-            resourceInputs["attributeFriendlyName"] = args ? args.attributeFriendlyName : undefined;
-            resourceInputs["attributeName"] = args ? args.attributeName : undefined;
-            resourceInputs["claimName"] = args ? args.claimName : undefined;
-            resourceInputs["extraConfig"] = args ? args.extraConfig : undefined;
-            resourceInputs["identityProviderAlias"] = args ? args.identityProviderAlias : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["realm"] = args ? args.realm : undefined;
-            resourceInputs["userAttribute"] = args ? args.userAttribute : undefined;
+            resourceInputs["attributeFriendlyName"] = args?.attributeFriendlyName;
+            resourceInputs["attributeName"] = args?.attributeName;
+            resourceInputs["claimName"] = args?.claimName;
+            resourceInputs["extraConfig"] = args?.extraConfig;
+            resourceInputs["identityProviderAlias"] = args?.identityProviderAlias;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["realm"] = args?.realm;
+            resourceInputs["userAttribute"] = args?.userAttribute;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(AttributeImporterIdentityProviderMapper.__pulumiType, name, resourceInputs, opts);

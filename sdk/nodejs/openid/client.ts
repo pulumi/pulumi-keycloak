@@ -114,7 +114,7 @@ export class Client extends pulumi.CustomResource {
     /**
      * The amount of time in seconds before an access token expires. This will override the default for the realm.
      */
-    public readonly accessTokenLifespan!: pulumi.Output<string>;
+    declare public readonly accessTokenLifespan: pulumi.Output<string>;
     /**
      * Specifies the type of client, which can be one of the following:
      * - `CONFIDENTIAL` - Used for server-side clients that require both client ID and secret when authenticating.
@@ -123,40 +123,40 @@ export class Client extends pulumi.CustomResource {
      * URIs for security. This client should be used for applications using the Implicit grant flow.
      * - `BEARER-ONLY` - Used for services that never initiate a login. This client will only allow bearer token requests.
      */
-    public readonly accessType!: pulumi.Output<string>;
+    declare public readonly accessType: pulumi.Output<string>;
     /**
      * URL to the admin interface of the client.
      */
-    public readonly adminUrl!: pulumi.Output<string>;
-    public readonly allowRefreshTokenInStandardTokenExchange!: pulumi.Output<string | undefined>;
+    declare public readonly adminUrl: pulumi.Output<string>;
+    declare public readonly allowRefreshTokenInStandardTokenExchange: pulumi.Output<string | undefined>;
     /**
      * Always list this client in the Account UI, even if the user does not have an active session.
      */
-    public readonly alwaysDisplayInConsole!: pulumi.Output<boolean | undefined>;
+    declare public readonly alwaysDisplayInConsole: pulumi.Output<boolean | undefined>;
     /**
      * Override realm authentication flow bindings
      */
-    public readonly authenticationFlowBindingOverrides!: pulumi.Output<outputs.openid.ClientAuthenticationFlowBindingOverrides | undefined>;
+    declare public readonly authenticationFlowBindingOverrides: pulumi.Output<outputs.openid.ClientAuthenticationFlowBindingOverrides | undefined>;
     /**
      * When this block is present, fine-grained authorization will be enabled for this client. The client's `accessType` must be `CONFIDENTIAL`, and `serviceAccountsEnabled` must be `true`. This block has the following arguments:
      */
-    public readonly authorization!: pulumi.Output<outputs.openid.ClientAuthorization | undefined>;
+    declare public readonly authorization: pulumi.Output<outputs.openid.ClientAuthorization | undefined>;
     /**
      * Specifying whether a "revokeOfflineAccess" event is included in the Logout Token when the Backchannel Logout URL is used. Keycloak will revoke offline sessions when receiving a Logout Token with this event.
      */
-    public readonly backchannelLogoutRevokeOfflineSessions!: pulumi.Output<boolean | undefined>;
+    declare public readonly backchannelLogoutRevokeOfflineSessions: pulumi.Output<boolean | undefined>;
     /**
      * When `true`, a sid (session ID) claim will be included in the logout token when the backchannel logout URL is used. Defaults to `true`.
      */
-    public readonly backchannelLogoutSessionRequired!: pulumi.Output<boolean | undefined>;
+    declare public readonly backchannelLogoutSessionRequired: pulumi.Output<boolean | undefined>;
     /**
      * The URL that will cause the client to log itself out when a logout request is sent to this realm. If omitted, no logout request will be sent to the client is this case.
      */
-    public readonly backchannelLogoutUrl!: pulumi.Output<string | undefined>;
+    declare public readonly backchannelLogoutUrl: pulumi.Output<string | undefined>;
     /**
      * Default URL to use when the auth server needs to redirect or link back to the client.
      */
-    public readonly baseUrl!: pulumi.Output<string>;
+    declare public readonly baseUrl: pulumi.Output<string>;
     /**
      * Defaults to `client-secret`. The authenticator type for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. A default Keycloak installation will have the following available types:
      * - `client-secret` (Default) Use client id and client secret to authenticate client.
@@ -164,163 +164,163 @@ export class Client extends pulumi.CustomResource {
      * - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extraConfig` with `attributes.x509.subjectdn = <subjectDn>`
      * - `client-secret-jwt` Use signed JWT with client secret to authenticate client. Set signing algorithm in `extraConfig` with `attributes.token.endpoint.auth.signing.alg = <alg>`
      */
-    public readonly clientAuthenticatorType!: pulumi.Output<string | undefined>;
+    declare public readonly clientAuthenticatorType: pulumi.Output<string | undefined>;
     /**
      * The Client ID for this client, referenced in the URI during authentication and in issued tokens.
      */
-    public readonly clientId!: pulumi.Output<string>;
+    declare public readonly clientId: pulumi.Output<string>;
     /**
      * Time a client session is allowed to be idle before it expires. Tokens are invalidated when a client session is expired. If not set it uses the standard SSO Session Idle value.
      */
-    public readonly clientOfflineSessionIdleTimeout!: pulumi.Output<string>;
+    declare public readonly clientOfflineSessionIdleTimeout: pulumi.Output<string>;
     /**
      * Max time before a client session is expired. Tokens are invalidated when a client session is expired. If not set, it uses the standard SSO Session Max value.
      */
-    public readonly clientOfflineSessionMaxLifespan!: pulumi.Output<string>;
+    declare public readonly clientOfflineSessionMaxLifespan: pulumi.Output<string>;
     /**
      * The secret for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This value is sensitive and should be treated with the same care as a password. If omitted, this will be generated by Keycloak.
      */
-    public readonly clientSecret!: pulumi.Output<string>;
+    declare public readonly clientSecret: pulumi.Output<string>;
     /**
      * Arbitrary map of values that, when changed, will trigger rotation of the secret. NOTE! Conflicts with `clientSecret`, `clientSecretWo` and `clientSecretWoVersion` attribute and can't be used together
      */
-    public readonly clientSecretRegenerateWhenChanged!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly clientSecretRegenerateWhenChanged: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * Version of the Client secret write-only argument
      */
-    public readonly clientSecretWoVersion!: pulumi.Output<number | undefined>;
+    declare public readonly clientSecretWoVersion: pulumi.Output<number | undefined>;
     /**
      * Time a client offline session is allowed to be idle before it expires. Offline tokens are invalidated when a client offline session is expired. If not set it uses the Offline Session Idle value.
      */
-    public readonly clientSessionIdleTimeout!: pulumi.Output<string>;
+    declare public readonly clientSessionIdleTimeout: pulumi.Output<string>;
     /**
      * Max time before a client offline session is expired. Offline tokens are invalidated when a client offline session is expired. If not set, it uses the Offline Session Max value.
      */
-    public readonly clientSessionMaxLifespan!: pulumi.Output<string>;
+    declare public readonly clientSessionMaxLifespan: pulumi.Output<string>;
     /**
      * When `true`, users have to consent to client access. Defaults to `false`.
      */
-    public readonly consentRequired!: pulumi.Output<boolean>;
+    declare public readonly consentRequired: pulumi.Output<boolean>;
     /**
      * The text to display on the consent screen about permissions specific to this client. This is applicable only when `displayOnConsentScreen` is `true`.
      */
-    public readonly consentScreenText!: pulumi.Output<string>;
+    declare public readonly consentScreenText: pulumi.Output<string>;
     /**
      * The description of this client in the GUI.
      */
-    public readonly description!: pulumi.Output<string>;
+    declare public readonly description: pulumi.Output<string>;
     /**
      * When `true`, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to `false`.
      */
-    public readonly directAccessGrantsEnabled!: pulumi.Output<boolean>;
+    declare public readonly directAccessGrantsEnabled: pulumi.Output<boolean>;
     /**
      * When `true`, the consent screen will display information about the client itself. Defaults to `false`. This is applicable only when `consentRequired` is `true`.
      */
-    public readonly displayOnConsentScreen!: pulumi.Output<boolean>;
+    declare public readonly displayOnConsentScreen: pulumi.Output<boolean>;
     /**
      * When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
      */
-    public readonly enabled!: pulumi.Output<boolean | undefined>;
+    declare public readonly enabled: pulumi.Output<boolean | undefined>;
     /**
      * When `true`, the parameter `iss` will not be included in OpenID Connect Authentication Response.
      */
-    public readonly excludeIssuerFromAuthResponse!: pulumi.Output<boolean>;
+    declare public readonly excludeIssuerFromAuthResponse: pulumi.Output<boolean>;
     /**
      * When `true`, the parameter `sessionState` will not be included in OpenID Connect Authentication Response.
      */
-    public readonly excludeSessionStateFromAuthResponse!: pulumi.Output<boolean>;
-    public readonly extraConfig!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly excludeSessionStateFromAuthResponse: pulumi.Output<boolean>;
+    declare public readonly extraConfig: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * When `true`, frontchannel logout will be enabled for this client. Specify the url with `frontchannelLogoutUrl`. Defaults to `false`.
      */
-    public readonly frontchannelLogoutEnabled!: pulumi.Output<boolean>;
+    declare public readonly frontchannelLogoutEnabled: pulumi.Output<boolean>;
     /**
      * The frontchannel logout url. This is applicable only when `frontchannelLogoutEnabled` is `true`.
      */
-    public readonly frontchannelLogoutUrl!: pulumi.Output<string | undefined>;
+    declare public readonly frontchannelLogoutUrl: pulumi.Output<string | undefined>;
     /**
      * Allow to include all roles mappings in the access token.
      */
-    public readonly fullScopeAllowed!: pulumi.Output<boolean | undefined>;
+    declare public readonly fullScopeAllowed: pulumi.Output<boolean | undefined>;
     /**
      * When `true`, the OAuth2 Implicit Grant will be enabled for this client. Defaults to `false`.
      */
-    public readonly implicitFlowEnabled!: pulumi.Output<boolean>;
+    declare public readonly implicitFlowEnabled: pulumi.Output<boolean>;
     /**
      * When `true`, the client with the specified `clientId` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with clients that Keycloak creates automatically during realm creation, such as `account` and `admin-cli`. Note, that the client will not be removed during destruction if `import` is `true`.
      */
-    public readonly import!: pulumi.Output<boolean | undefined>;
+    declare public readonly import: pulumi.Output<boolean | undefined>;
     /**
      * The client login theme. This will override the default theme for the realm.
      */
-    public readonly loginTheme!: pulumi.Output<string | undefined>;
+    declare public readonly loginTheme: pulumi.Output<string | undefined>;
     /**
      * The display name of this client in the GUI.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * Enables support for OAuth 2.0 Device Authorization Grant, which means that client is an application on device that has limited input capabilities or lack a suitable browser.
      */
-    public readonly oauth2DeviceAuthorizationGrantEnabled!: pulumi.Output<boolean | undefined>;
+    declare public readonly oauth2DeviceAuthorizationGrantEnabled: pulumi.Output<boolean | undefined>;
     /**
      * The maximum amount of time a client has to finish the device code flow before it expires.
      */
-    public readonly oauth2DeviceCodeLifespan!: pulumi.Output<string | undefined>;
+    declare public readonly oauth2DeviceCodeLifespan: pulumi.Output<string | undefined>;
     /**
      * The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
      */
-    public readonly oauth2DevicePollingInterval!: pulumi.Output<string | undefined>;
+    declare public readonly oauth2DevicePollingInterval: pulumi.Output<string | undefined>;
     /**
      * The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
      */
-    public readonly pkceCodeChallengeMethod!: pulumi.Output<string | undefined>;
+    declare public readonly pkceCodeChallengeMethod: pulumi.Output<string | undefined>;
     /**
      * The realm this client is attached to.
      */
-    public readonly realmId!: pulumi.Output<string>;
+    declare public readonly realmId: pulumi.Output<string>;
     /**
      * (Computed) When authorization is enabled for this client, this attribute is the unique ID for the client (the same value as the `.id` attribute).
      */
-    public /*out*/ readonly resourceServerId!: pulumi.Output<string>;
+    declare public /*out*/ readonly resourceServerId: pulumi.Output<string>;
     /**
      * When specified, this URL is prepended to any relative URLs found within `validRedirectUris`, `webOrigins`, and `adminUrl`. NOTE: Due to limitations in the Keycloak API, when the `rootUrl` attribute is used, the `validRedirectUris`, `webOrigins`, and `adminUrl` attributes will be required.
      */
-    public readonly rootUrl!: pulumi.Output<string>;
+    declare public readonly rootUrl: pulumi.Output<string>;
     /**
      * (Computed) When service accounts are enabled for this client, this attribute is the unique ID for the Keycloak user that represents this service account.
      */
-    public /*out*/ readonly serviceAccountUserId!: pulumi.Output<string>;
+    declare public /*out*/ readonly serviceAccountUserId: pulumi.Output<string>;
     /**
      * When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
      */
-    public readonly serviceAccountsEnabled!: pulumi.Output<boolean>;
+    declare public readonly serviceAccountsEnabled: pulumi.Output<boolean>;
     /**
      * When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
      */
-    public readonly standardFlowEnabled!: pulumi.Output<boolean>;
-    public readonly standardTokenExchangeEnabled!: pulumi.Output<boolean | undefined>;
+    declare public readonly standardFlowEnabled: pulumi.Output<boolean>;
+    declare public readonly standardTokenExchangeEnabled: pulumi.Output<boolean | undefined>;
     /**
      * If this is `true`, a refreshToken will be created and added to the token response. If this is `false` then no refreshToken will be generated.  Defaults to `true`.
      */
-    public readonly useRefreshTokens!: pulumi.Output<boolean | undefined>;
+    declare public readonly useRefreshTokens: pulumi.Output<boolean | undefined>;
     /**
      * If this is `true`, a refreshToken will be created and added to the token response if the clientCredentials grant is used and a user session will be created. If this is `false` then no refreshToken will be generated and the associated user session will be removed, in accordance with OAuth 2.0 RFC6749 Section 4.4.3. Defaults to `false`.
      */
-    public readonly useRefreshTokensClientCredentials!: pulumi.Output<boolean | undefined>;
+    declare public readonly useRefreshTokensClientCredentials: pulumi.Output<boolean | undefined>;
     /**
      * A list of valid URIs a browser is permitted to redirect to after a successful logout.
      */
-    public readonly validPostLogoutRedirectUris!: pulumi.Output<string[]>;
+    declare public readonly validPostLogoutRedirectUris: pulumi.Output<string[]>;
     /**
      * A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
      * wildcards in the form of an asterisk can be used here. This attribute must be set if either `standardFlowEnabled` or `implicitFlowEnabled`
      * is set to `true`.
      */
-    public readonly validRedirectUris!: pulumi.Output<string[]>;
+    declare public readonly validRedirectUris: pulumi.Output<string[]>;
     /**
      * A list of allowed CORS origins. To permit all valid redirect URIs, add `+`. Note that this will not include the `*` wildcard. To permit all origins, explicitly add `*`.
      */
-    public readonly webOrigins!: pulumi.Output<string[]>;
+    declare public readonly webOrigins: pulumi.Output<string[]>;
 
     /**
      * Create a Client resource with the given unique name, arguments, and options.
@@ -335,116 +335,116 @@ export class Client extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ClientState | undefined;
-            resourceInputs["accessTokenLifespan"] = state ? state.accessTokenLifespan : undefined;
-            resourceInputs["accessType"] = state ? state.accessType : undefined;
-            resourceInputs["adminUrl"] = state ? state.adminUrl : undefined;
-            resourceInputs["allowRefreshTokenInStandardTokenExchange"] = state ? state.allowRefreshTokenInStandardTokenExchange : undefined;
-            resourceInputs["alwaysDisplayInConsole"] = state ? state.alwaysDisplayInConsole : undefined;
-            resourceInputs["authenticationFlowBindingOverrides"] = state ? state.authenticationFlowBindingOverrides : undefined;
-            resourceInputs["authorization"] = state ? state.authorization : undefined;
-            resourceInputs["backchannelLogoutRevokeOfflineSessions"] = state ? state.backchannelLogoutRevokeOfflineSessions : undefined;
-            resourceInputs["backchannelLogoutSessionRequired"] = state ? state.backchannelLogoutSessionRequired : undefined;
-            resourceInputs["backchannelLogoutUrl"] = state ? state.backchannelLogoutUrl : undefined;
-            resourceInputs["baseUrl"] = state ? state.baseUrl : undefined;
-            resourceInputs["clientAuthenticatorType"] = state ? state.clientAuthenticatorType : undefined;
-            resourceInputs["clientId"] = state ? state.clientId : undefined;
-            resourceInputs["clientOfflineSessionIdleTimeout"] = state ? state.clientOfflineSessionIdleTimeout : undefined;
-            resourceInputs["clientOfflineSessionMaxLifespan"] = state ? state.clientOfflineSessionMaxLifespan : undefined;
-            resourceInputs["clientSecret"] = state ? state.clientSecret : undefined;
-            resourceInputs["clientSecretRegenerateWhenChanged"] = state ? state.clientSecretRegenerateWhenChanged : undefined;
-            resourceInputs["clientSecretWoVersion"] = state ? state.clientSecretWoVersion : undefined;
-            resourceInputs["clientSessionIdleTimeout"] = state ? state.clientSessionIdleTimeout : undefined;
-            resourceInputs["clientSessionMaxLifespan"] = state ? state.clientSessionMaxLifespan : undefined;
-            resourceInputs["consentRequired"] = state ? state.consentRequired : undefined;
-            resourceInputs["consentScreenText"] = state ? state.consentScreenText : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["directAccessGrantsEnabled"] = state ? state.directAccessGrantsEnabled : undefined;
-            resourceInputs["displayOnConsentScreen"] = state ? state.displayOnConsentScreen : undefined;
-            resourceInputs["enabled"] = state ? state.enabled : undefined;
-            resourceInputs["excludeIssuerFromAuthResponse"] = state ? state.excludeIssuerFromAuthResponse : undefined;
-            resourceInputs["excludeSessionStateFromAuthResponse"] = state ? state.excludeSessionStateFromAuthResponse : undefined;
-            resourceInputs["extraConfig"] = state ? state.extraConfig : undefined;
-            resourceInputs["frontchannelLogoutEnabled"] = state ? state.frontchannelLogoutEnabled : undefined;
-            resourceInputs["frontchannelLogoutUrl"] = state ? state.frontchannelLogoutUrl : undefined;
-            resourceInputs["fullScopeAllowed"] = state ? state.fullScopeAllowed : undefined;
-            resourceInputs["implicitFlowEnabled"] = state ? state.implicitFlowEnabled : undefined;
-            resourceInputs["import"] = state ? state.import : undefined;
-            resourceInputs["loginTheme"] = state ? state.loginTheme : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["oauth2DeviceAuthorizationGrantEnabled"] = state ? state.oauth2DeviceAuthorizationGrantEnabled : undefined;
-            resourceInputs["oauth2DeviceCodeLifespan"] = state ? state.oauth2DeviceCodeLifespan : undefined;
-            resourceInputs["oauth2DevicePollingInterval"] = state ? state.oauth2DevicePollingInterval : undefined;
-            resourceInputs["pkceCodeChallengeMethod"] = state ? state.pkceCodeChallengeMethod : undefined;
-            resourceInputs["realmId"] = state ? state.realmId : undefined;
-            resourceInputs["resourceServerId"] = state ? state.resourceServerId : undefined;
-            resourceInputs["rootUrl"] = state ? state.rootUrl : undefined;
-            resourceInputs["serviceAccountUserId"] = state ? state.serviceAccountUserId : undefined;
-            resourceInputs["serviceAccountsEnabled"] = state ? state.serviceAccountsEnabled : undefined;
-            resourceInputs["standardFlowEnabled"] = state ? state.standardFlowEnabled : undefined;
-            resourceInputs["standardTokenExchangeEnabled"] = state ? state.standardTokenExchangeEnabled : undefined;
-            resourceInputs["useRefreshTokens"] = state ? state.useRefreshTokens : undefined;
-            resourceInputs["useRefreshTokensClientCredentials"] = state ? state.useRefreshTokensClientCredentials : undefined;
-            resourceInputs["validPostLogoutRedirectUris"] = state ? state.validPostLogoutRedirectUris : undefined;
-            resourceInputs["validRedirectUris"] = state ? state.validRedirectUris : undefined;
-            resourceInputs["webOrigins"] = state ? state.webOrigins : undefined;
+            resourceInputs["accessTokenLifespan"] = state?.accessTokenLifespan;
+            resourceInputs["accessType"] = state?.accessType;
+            resourceInputs["adminUrl"] = state?.adminUrl;
+            resourceInputs["allowRefreshTokenInStandardTokenExchange"] = state?.allowRefreshTokenInStandardTokenExchange;
+            resourceInputs["alwaysDisplayInConsole"] = state?.alwaysDisplayInConsole;
+            resourceInputs["authenticationFlowBindingOverrides"] = state?.authenticationFlowBindingOverrides;
+            resourceInputs["authorization"] = state?.authorization;
+            resourceInputs["backchannelLogoutRevokeOfflineSessions"] = state?.backchannelLogoutRevokeOfflineSessions;
+            resourceInputs["backchannelLogoutSessionRequired"] = state?.backchannelLogoutSessionRequired;
+            resourceInputs["backchannelLogoutUrl"] = state?.backchannelLogoutUrl;
+            resourceInputs["baseUrl"] = state?.baseUrl;
+            resourceInputs["clientAuthenticatorType"] = state?.clientAuthenticatorType;
+            resourceInputs["clientId"] = state?.clientId;
+            resourceInputs["clientOfflineSessionIdleTimeout"] = state?.clientOfflineSessionIdleTimeout;
+            resourceInputs["clientOfflineSessionMaxLifespan"] = state?.clientOfflineSessionMaxLifespan;
+            resourceInputs["clientSecret"] = state?.clientSecret;
+            resourceInputs["clientSecretRegenerateWhenChanged"] = state?.clientSecretRegenerateWhenChanged;
+            resourceInputs["clientSecretWoVersion"] = state?.clientSecretWoVersion;
+            resourceInputs["clientSessionIdleTimeout"] = state?.clientSessionIdleTimeout;
+            resourceInputs["clientSessionMaxLifespan"] = state?.clientSessionMaxLifespan;
+            resourceInputs["consentRequired"] = state?.consentRequired;
+            resourceInputs["consentScreenText"] = state?.consentScreenText;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["directAccessGrantsEnabled"] = state?.directAccessGrantsEnabled;
+            resourceInputs["displayOnConsentScreen"] = state?.displayOnConsentScreen;
+            resourceInputs["enabled"] = state?.enabled;
+            resourceInputs["excludeIssuerFromAuthResponse"] = state?.excludeIssuerFromAuthResponse;
+            resourceInputs["excludeSessionStateFromAuthResponse"] = state?.excludeSessionStateFromAuthResponse;
+            resourceInputs["extraConfig"] = state?.extraConfig;
+            resourceInputs["frontchannelLogoutEnabled"] = state?.frontchannelLogoutEnabled;
+            resourceInputs["frontchannelLogoutUrl"] = state?.frontchannelLogoutUrl;
+            resourceInputs["fullScopeAllowed"] = state?.fullScopeAllowed;
+            resourceInputs["implicitFlowEnabled"] = state?.implicitFlowEnabled;
+            resourceInputs["import"] = state?.import;
+            resourceInputs["loginTheme"] = state?.loginTheme;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["oauth2DeviceAuthorizationGrantEnabled"] = state?.oauth2DeviceAuthorizationGrantEnabled;
+            resourceInputs["oauth2DeviceCodeLifespan"] = state?.oauth2DeviceCodeLifespan;
+            resourceInputs["oauth2DevicePollingInterval"] = state?.oauth2DevicePollingInterval;
+            resourceInputs["pkceCodeChallengeMethod"] = state?.pkceCodeChallengeMethod;
+            resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["resourceServerId"] = state?.resourceServerId;
+            resourceInputs["rootUrl"] = state?.rootUrl;
+            resourceInputs["serviceAccountUserId"] = state?.serviceAccountUserId;
+            resourceInputs["serviceAccountsEnabled"] = state?.serviceAccountsEnabled;
+            resourceInputs["standardFlowEnabled"] = state?.standardFlowEnabled;
+            resourceInputs["standardTokenExchangeEnabled"] = state?.standardTokenExchangeEnabled;
+            resourceInputs["useRefreshTokens"] = state?.useRefreshTokens;
+            resourceInputs["useRefreshTokensClientCredentials"] = state?.useRefreshTokensClientCredentials;
+            resourceInputs["validPostLogoutRedirectUris"] = state?.validPostLogoutRedirectUris;
+            resourceInputs["validRedirectUris"] = state?.validRedirectUris;
+            resourceInputs["webOrigins"] = state?.webOrigins;
         } else {
             const args = argsOrState as ClientArgs | undefined;
-            if ((!args || args.accessType === undefined) && !opts.urn) {
+            if (args?.accessType === undefined && !opts.urn) {
                 throw new Error("Missing required property 'accessType'");
             }
-            if ((!args || args.realmId === undefined) && !opts.urn) {
+            if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            resourceInputs["accessTokenLifespan"] = args ? args.accessTokenLifespan : undefined;
-            resourceInputs["accessType"] = args ? args.accessType : undefined;
-            resourceInputs["adminUrl"] = args ? args.adminUrl : undefined;
-            resourceInputs["allowRefreshTokenInStandardTokenExchange"] = args ? args.allowRefreshTokenInStandardTokenExchange : undefined;
-            resourceInputs["alwaysDisplayInConsole"] = args ? args.alwaysDisplayInConsole : undefined;
-            resourceInputs["authenticationFlowBindingOverrides"] = args ? args.authenticationFlowBindingOverrides : undefined;
-            resourceInputs["authorization"] = args ? args.authorization : undefined;
-            resourceInputs["backchannelLogoutRevokeOfflineSessions"] = args ? args.backchannelLogoutRevokeOfflineSessions : undefined;
-            resourceInputs["backchannelLogoutSessionRequired"] = args ? args.backchannelLogoutSessionRequired : undefined;
-            resourceInputs["backchannelLogoutUrl"] = args ? args.backchannelLogoutUrl : undefined;
-            resourceInputs["baseUrl"] = args ? args.baseUrl : undefined;
-            resourceInputs["clientAuthenticatorType"] = args ? args.clientAuthenticatorType : undefined;
-            resourceInputs["clientId"] = args ? args.clientId : undefined;
-            resourceInputs["clientOfflineSessionIdleTimeout"] = args ? args.clientOfflineSessionIdleTimeout : undefined;
-            resourceInputs["clientOfflineSessionMaxLifespan"] = args ? args.clientOfflineSessionMaxLifespan : undefined;
+            resourceInputs["accessTokenLifespan"] = args?.accessTokenLifespan;
+            resourceInputs["accessType"] = args?.accessType;
+            resourceInputs["adminUrl"] = args?.adminUrl;
+            resourceInputs["allowRefreshTokenInStandardTokenExchange"] = args?.allowRefreshTokenInStandardTokenExchange;
+            resourceInputs["alwaysDisplayInConsole"] = args?.alwaysDisplayInConsole;
+            resourceInputs["authenticationFlowBindingOverrides"] = args?.authenticationFlowBindingOverrides;
+            resourceInputs["authorization"] = args?.authorization;
+            resourceInputs["backchannelLogoutRevokeOfflineSessions"] = args?.backchannelLogoutRevokeOfflineSessions;
+            resourceInputs["backchannelLogoutSessionRequired"] = args?.backchannelLogoutSessionRequired;
+            resourceInputs["backchannelLogoutUrl"] = args?.backchannelLogoutUrl;
+            resourceInputs["baseUrl"] = args?.baseUrl;
+            resourceInputs["clientAuthenticatorType"] = args?.clientAuthenticatorType;
+            resourceInputs["clientId"] = args?.clientId;
+            resourceInputs["clientOfflineSessionIdleTimeout"] = args?.clientOfflineSessionIdleTimeout;
+            resourceInputs["clientOfflineSessionMaxLifespan"] = args?.clientOfflineSessionMaxLifespan;
             resourceInputs["clientSecret"] = args?.clientSecret ? pulumi.secret(args.clientSecret) : undefined;
-            resourceInputs["clientSecretRegenerateWhenChanged"] = args ? args.clientSecretRegenerateWhenChanged : undefined;
-            resourceInputs["clientSecretWoVersion"] = args ? args.clientSecretWoVersion : undefined;
-            resourceInputs["clientSessionIdleTimeout"] = args ? args.clientSessionIdleTimeout : undefined;
-            resourceInputs["clientSessionMaxLifespan"] = args ? args.clientSessionMaxLifespan : undefined;
-            resourceInputs["consentRequired"] = args ? args.consentRequired : undefined;
-            resourceInputs["consentScreenText"] = args ? args.consentScreenText : undefined;
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["directAccessGrantsEnabled"] = args ? args.directAccessGrantsEnabled : undefined;
-            resourceInputs["displayOnConsentScreen"] = args ? args.displayOnConsentScreen : undefined;
-            resourceInputs["enabled"] = args ? args.enabled : undefined;
-            resourceInputs["excludeIssuerFromAuthResponse"] = args ? args.excludeIssuerFromAuthResponse : undefined;
-            resourceInputs["excludeSessionStateFromAuthResponse"] = args ? args.excludeSessionStateFromAuthResponse : undefined;
-            resourceInputs["extraConfig"] = args ? args.extraConfig : undefined;
-            resourceInputs["frontchannelLogoutEnabled"] = args ? args.frontchannelLogoutEnabled : undefined;
-            resourceInputs["frontchannelLogoutUrl"] = args ? args.frontchannelLogoutUrl : undefined;
-            resourceInputs["fullScopeAllowed"] = args ? args.fullScopeAllowed : undefined;
-            resourceInputs["implicitFlowEnabled"] = args ? args.implicitFlowEnabled : undefined;
-            resourceInputs["import"] = args ? args.import : undefined;
-            resourceInputs["loginTheme"] = args ? args.loginTheme : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["oauth2DeviceAuthorizationGrantEnabled"] = args ? args.oauth2DeviceAuthorizationGrantEnabled : undefined;
-            resourceInputs["oauth2DeviceCodeLifespan"] = args ? args.oauth2DeviceCodeLifespan : undefined;
-            resourceInputs["oauth2DevicePollingInterval"] = args ? args.oauth2DevicePollingInterval : undefined;
-            resourceInputs["pkceCodeChallengeMethod"] = args ? args.pkceCodeChallengeMethod : undefined;
-            resourceInputs["realmId"] = args ? args.realmId : undefined;
-            resourceInputs["rootUrl"] = args ? args.rootUrl : undefined;
-            resourceInputs["serviceAccountsEnabled"] = args ? args.serviceAccountsEnabled : undefined;
-            resourceInputs["standardFlowEnabled"] = args ? args.standardFlowEnabled : undefined;
-            resourceInputs["standardTokenExchangeEnabled"] = args ? args.standardTokenExchangeEnabled : undefined;
-            resourceInputs["useRefreshTokens"] = args ? args.useRefreshTokens : undefined;
-            resourceInputs["useRefreshTokensClientCredentials"] = args ? args.useRefreshTokensClientCredentials : undefined;
-            resourceInputs["validPostLogoutRedirectUris"] = args ? args.validPostLogoutRedirectUris : undefined;
-            resourceInputs["validRedirectUris"] = args ? args.validRedirectUris : undefined;
-            resourceInputs["webOrigins"] = args ? args.webOrigins : undefined;
+            resourceInputs["clientSecretRegenerateWhenChanged"] = args?.clientSecretRegenerateWhenChanged;
+            resourceInputs["clientSecretWoVersion"] = args?.clientSecretWoVersion;
+            resourceInputs["clientSessionIdleTimeout"] = args?.clientSessionIdleTimeout;
+            resourceInputs["clientSessionMaxLifespan"] = args?.clientSessionMaxLifespan;
+            resourceInputs["consentRequired"] = args?.consentRequired;
+            resourceInputs["consentScreenText"] = args?.consentScreenText;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["directAccessGrantsEnabled"] = args?.directAccessGrantsEnabled;
+            resourceInputs["displayOnConsentScreen"] = args?.displayOnConsentScreen;
+            resourceInputs["enabled"] = args?.enabled;
+            resourceInputs["excludeIssuerFromAuthResponse"] = args?.excludeIssuerFromAuthResponse;
+            resourceInputs["excludeSessionStateFromAuthResponse"] = args?.excludeSessionStateFromAuthResponse;
+            resourceInputs["extraConfig"] = args?.extraConfig;
+            resourceInputs["frontchannelLogoutEnabled"] = args?.frontchannelLogoutEnabled;
+            resourceInputs["frontchannelLogoutUrl"] = args?.frontchannelLogoutUrl;
+            resourceInputs["fullScopeAllowed"] = args?.fullScopeAllowed;
+            resourceInputs["implicitFlowEnabled"] = args?.implicitFlowEnabled;
+            resourceInputs["import"] = args?.import;
+            resourceInputs["loginTheme"] = args?.loginTheme;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["oauth2DeviceAuthorizationGrantEnabled"] = args?.oauth2DeviceAuthorizationGrantEnabled;
+            resourceInputs["oauth2DeviceCodeLifespan"] = args?.oauth2DeviceCodeLifespan;
+            resourceInputs["oauth2DevicePollingInterval"] = args?.oauth2DevicePollingInterval;
+            resourceInputs["pkceCodeChallengeMethod"] = args?.pkceCodeChallengeMethod;
+            resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["rootUrl"] = args?.rootUrl;
+            resourceInputs["serviceAccountsEnabled"] = args?.serviceAccountsEnabled;
+            resourceInputs["standardFlowEnabled"] = args?.standardFlowEnabled;
+            resourceInputs["standardTokenExchangeEnabled"] = args?.standardTokenExchangeEnabled;
+            resourceInputs["useRefreshTokens"] = args?.useRefreshTokens;
+            resourceInputs["useRefreshTokensClientCredentials"] = args?.useRefreshTokensClientCredentials;
+            resourceInputs["validPostLogoutRedirectUris"] = args?.validPostLogoutRedirectUris;
+            resourceInputs["validRedirectUris"] = args?.validRedirectUris;
+            resourceInputs["webOrigins"] = args?.webOrigins;
             resourceInputs["resourceServerId"] = undefined /*out*/;
             resourceInputs["serviceAccountUserId"] = undefined /*out*/;
         }

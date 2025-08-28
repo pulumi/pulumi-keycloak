@@ -156,8 +156,7 @@ namespace Pulumi.Keycloak
         public Input<string>? Realm { get; set; }
 
         /// <summary>
-        /// When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version
-        /// returned from the /serverinfo API endpoint.
+        /// When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version returned from the /serverinfo API endpoint.
         /// </summary>
         [Input("redHatSso", json: true)]
         public Input<bool>? RedHatSso { get; set; }
@@ -169,8 +168,7 @@ namespace Pulumi.Keycloak
         public Input<string>? RootCaCertificate { get; set; }
 
         /// <summary>
-        /// Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and
-        /// should be avoided.
+        /// Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and should be avoided.
         /// </summary>
         [Input("tlsInsecureSkipVerify", json: true)]
         public Input<bool>? TlsInsecureSkipVerify { get; set; }

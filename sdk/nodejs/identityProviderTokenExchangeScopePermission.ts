@@ -88,35 +88,35 @@ export class IdentityProviderTokenExchangeScopePermission extends pulumi.CustomR
     /**
      * (Computed) Resource ID representing the identity provider, this automatically created by keycloak.
      */
-    public /*out*/ readonly authorizationIdpResourceId!: pulumi.Output<string>;
+    declare public /*out*/ readonly authorizationIdpResourceId: pulumi.Output<string>;
     /**
      * (Computed) Resource server ID representing the realm management client on which this permission is managed.
      */
-    public /*out*/ readonly authorizationResourceServerId!: pulumi.Output<string>;
+    declare public /*out*/ readonly authorizationResourceServerId: pulumi.Output<string>;
     /**
      * (Computed) Permission ID representing the Permission with scope 'Token Exchange' and the resource 'authorization_idp_resource_id', this automatically created by keycloak, the policy ID will be set on this permission.
      */
-    public /*out*/ readonly authorizationTokenExchangeScopePermissionId!: pulumi.Output<string>;
+    declare public /*out*/ readonly authorizationTokenExchangeScopePermissionId: pulumi.Output<string>;
     /**
      * A list of IDs of the clients for which a policy will be created and set on scope based token exchange permission.
      */
-    public readonly clients!: pulumi.Output<string[]>;
+    declare public readonly clients: pulumi.Output<string[]>;
     /**
      * (Computed) Policy ID that will be set on the scope based token exchange permission automatically created by enabling permissions on the reference identity provider.
      */
-    public /*out*/ readonly policyId!: pulumi.Output<string>;
+    declare public /*out*/ readonly policyId: pulumi.Output<string>;
     /**
      * Defaults to "client" This is also the only value policy type supported by this provider.
      */
-    public readonly policyType!: pulumi.Output<string | undefined>;
+    declare public readonly policyType: pulumi.Output<string | undefined>;
     /**
      * Alias of the identity provider.
      */
-    public readonly providerAlias!: pulumi.Output<string>;
+    declare public readonly providerAlias: pulumi.Output<string>;
     /**
      * The realm that the identity provider exists in.
      */
-    public readonly realmId!: pulumi.Output<string>;
+    declare public readonly realmId: pulumi.Output<string>;
 
     /**
      * Create a IdentityProviderTokenExchangeScopePermission resource with the given unique name, arguments, and options.
@@ -131,29 +131,29 @@ export class IdentityProviderTokenExchangeScopePermission extends pulumi.CustomR
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as IdentityProviderTokenExchangeScopePermissionState | undefined;
-            resourceInputs["authorizationIdpResourceId"] = state ? state.authorizationIdpResourceId : undefined;
-            resourceInputs["authorizationResourceServerId"] = state ? state.authorizationResourceServerId : undefined;
-            resourceInputs["authorizationTokenExchangeScopePermissionId"] = state ? state.authorizationTokenExchangeScopePermissionId : undefined;
-            resourceInputs["clients"] = state ? state.clients : undefined;
-            resourceInputs["policyId"] = state ? state.policyId : undefined;
-            resourceInputs["policyType"] = state ? state.policyType : undefined;
-            resourceInputs["providerAlias"] = state ? state.providerAlias : undefined;
-            resourceInputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["authorizationIdpResourceId"] = state?.authorizationIdpResourceId;
+            resourceInputs["authorizationResourceServerId"] = state?.authorizationResourceServerId;
+            resourceInputs["authorizationTokenExchangeScopePermissionId"] = state?.authorizationTokenExchangeScopePermissionId;
+            resourceInputs["clients"] = state?.clients;
+            resourceInputs["policyId"] = state?.policyId;
+            resourceInputs["policyType"] = state?.policyType;
+            resourceInputs["providerAlias"] = state?.providerAlias;
+            resourceInputs["realmId"] = state?.realmId;
         } else {
             const args = argsOrState as IdentityProviderTokenExchangeScopePermissionArgs | undefined;
-            if ((!args || args.clients === undefined) && !opts.urn) {
+            if (args?.clients === undefined && !opts.urn) {
                 throw new Error("Missing required property 'clients'");
             }
-            if ((!args || args.providerAlias === undefined) && !opts.urn) {
+            if (args?.providerAlias === undefined && !opts.urn) {
                 throw new Error("Missing required property 'providerAlias'");
             }
-            if ((!args || args.realmId === undefined) && !opts.urn) {
+            if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            resourceInputs["clients"] = args ? args.clients : undefined;
-            resourceInputs["policyType"] = args ? args.policyType : undefined;
-            resourceInputs["providerAlias"] = args ? args.providerAlias : undefined;
-            resourceInputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["clients"] = args?.clients;
+            resourceInputs["policyType"] = args?.policyType;
+            resourceInputs["providerAlias"] = args?.providerAlias;
+            resourceInputs["realmId"] = args?.realmId;
             resourceInputs["authorizationIdpResourceId"] = undefined /*out*/;
             resourceInputs["authorizationResourceServerId"] = undefined /*out*/;
             resourceInputs["authorizationTokenExchangeScopePermissionId"] = undefined /*out*/;

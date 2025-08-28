@@ -113,51 +113,51 @@ export class UserRealmRoleProtocolMapper extends pulumi.CustomResource {
     /**
      * Indicates if the property should be added as a claim to the access token. Defaults to `true`.
      */
-    public readonly addToAccessToken!: pulumi.Output<boolean | undefined>;
+    declare public readonly addToAccessToken: pulumi.Output<boolean | undefined>;
     /**
      * Indicates if the property should be added as a claim to the id token. Defaults to `true`.
      */
-    public readonly addToIdToken!: pulumi.Output<boolean | undefined>;
+    declare public readonly addToIdToken: pulumi.Output<boolean | undefined>;
     /**
      * Indicates if the property should be added as a claim to the Token Introspection response body. Defaults to `true`.
      */
-    public readonly addToTokenIntrospection!: pulumi.Output<boolean | undefined>;
+    declare public readonly addToTokenIntrospection: pulumi.Output<boolean | undefined>;
     /**
      * Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
      */
-    public readonly addToUserinfo!: pulumi.Output<boolean | undefined>;
+    declare public readonly addToUserinfo: pulumi.Output<boolean | undefined>;
     /**
      * The name of the claim to insert into a token.
      */
-    public readonly claimName!: pulumi.Output<string>;
+    declare public readonly claimName: pulumi.Output<string>;
     /**
      * The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
      */
-    public readonly claimValueType!: pulumi.Output<string | undefined>;
+    declare public readonly claimValueType: pulumi.Output<string | undefined>;
     /**
      * The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
      */
-    public readonly clientId!: pulumi.Output<string | undefined>;
+    declare public readonly clientId: pulumi.Output<string | undefined>;
     /**
      * The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
      */
-    public readonly clientScopeId!: pulumi.Output<string | undefined>;
+    declare public readonly clientScopeId: pulumi.Output<string | undefined>;
     /**
      * Indicates if attribute supports multiple values. If true, then the list of all values of this attribute will be set as claim. If false, then just first value will be set as claim. Defaults to `false`.
      */
-    public readonly multivalued!: pulumi.Output<boolean | undefined>;
+    declare public readonly multivalued: pulumi.Output<boolean | undefined>;
     /**
      * The display name of this protocol mapper in the GUI.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The realm this protocol mapper exists within.
      */
-    public readonly realmId!: pulumi.Output<string>;
+    declare public readonly realmId: pulumi.Output<string>;
     /**
      * A prefix for each Realm Role.
      */
-    public readonly realmRolePrefix!: pulumi.Output<string | undefined>;
+    declare public readonly realmRolePrefix: pulumi.Output<string | undefined>;
 
     /**
      * Create a UserRealmRoleProtocolMapper resource with the given unique name, arguments, and options.
@@ -172,38 +172,38 @@ export class UserRealmRoleProtocolMapper extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as UserRealmRoleProtocolMapperState | undefined;
-            resourceInputs["addToAccessToken"] = state ? state.addToAccessToken : undefined;
-            resourceInputs["addToIdToken"] = state ? state.addToIdToken : undefined;
-            resourceInputs["addToTokenIntrospection"] = state ? state.addToTokenIntrospection : undefined;
-            resourceInputs["addToUserinfo"] = state ? state.addToUserinfo : undefined;
-            resourceInputs["claimName"] = state ? state.claimName : undefined;
-            resourceInputs["claimValueType"] = state ? state.claimValueType : undefined;
-            resourceInputs["clientId"] = state ? state.clientId : undefined;
-            resourceInputs["clientScopeId"] = state ? state.clientScopeId : undefined;
-            resourceInputs["multivalued"] = state ? state.multivalued : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["realmId"] = state ? state.realmId : undefined;
-            resourceInputs["realmRolePrefix"] = state ? state.realmRolePrefix : undefined;
+            resourceInputs["addToAccessToken"] = state?.addToAccessToken;
+            resourceInputs["addToIdToken"] = state?.addToIdToken;
+            resourceInputs["addToTokenIntrospection"] = state?.addToTokenIntrospection;
+            resourceInputs["addToUserinfo"] = state?.addToUserinfo;
+            resourceInputs["claimName"] = state?.claimName;
+            resourceInputs["claimValueType"] = state?.claimValueType;
+            resourceInputs["clientId"] = state?.clientId;
+            resourceInputs["clientScopeId"] = state?.clientScopeId;
+            resourceInputs["multivalued"] = state?.multivalued;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["realmRolePrefix"] = state?.realmRolePrefix;
         } else {
             const args = argsOrState as UserRealmRoleProtocolMapperArgs | undefined;
-            if ((!args || args.claimName === undefined) && !opts.urn) {
+            if (args?.claimName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'claimName'");
             }
-            if ((!args || args.realmId === undefined) && !opts.urn) {
+            if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            resourceInputs["addToAccessToken"] = args ? args.addToAccessToken : undefined;
-            resourceInputs["addToIdToken"] = args ? args.addToIdToken : undefined;
-            resourceInputs["addToTokenIntrospection"] = args ? args.addToTokenIntrospection : undefined;
-            resourceInputs["addToUserinfo"] = args ? args.addToUserinfo : undefined;
-            resourceInputs["claimName"] = args ? args.claimName : undefined;
-            resourceInputs["claimValueType"] = args ? args.claimValueType : undefined;
-            resourceInputs["clientId"] = args ? args.clientId : undefined;
-            resourceInputs["clientScopeId"] = args ? args.clientScopeId : undefined;
-            resourceInputs["multivalued"] = args ? args.multivalued : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["realmId"] = args ? args.realmId : undefined;
-            resourceInputs["realmRolePrefix"] = args ? args.realmRolePrefix : undefined;
+            resourceInputs["addToAccessToken"] = args?.addToAccessToken;
+            resourceInputs["addToIdToken"] = args?.addToIdToken;
+            resourceInputs["addToTokenIntrospection"] = args?.addToTokenIntrospection;
+            resourceInputs["addToUserinfo"] = args?.addToUserinfo;
+            resourceInputs["claimName"] = args?.claimName;
+            resourceInputs["claimValueType"] = args?.claimValueType;
+            resourceInputs["clientId"] = args?.clientId;
+            resourceInputs["clientScopeId"] = args?.clientScopeId;
+            resourceInputs["multivalued"] = args?.multivalued;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["realmRolePrefix"] = args?.realmRolePrefix;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(UserRealmRoleProtocolMapper.__pulumiType, name, resourceInputs, opts);

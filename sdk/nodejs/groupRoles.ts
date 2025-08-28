@@ -151,19 +151,19 @@ export class GroupRoles extends pulumi.CustomResource {
     /**
      * Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `true`.
      */
-    public readonly exhaustive!: pulumi.Output<boolean | undefined>;
+    declare public readonly exhaustive: pulumi.Output<boolean | undefined>;
     /**
      * The ID of the group this resource should manage roles for.
      */
-    public readonly groupId!: pulumi.Output<string>;
+    declare public readonly groupId: pulumi.Output<string>;
     /**
      * The realm this group exists in.
      */
-    public readonly realmId!: pulumi.Output<string>;
+    declare public readonly realmId: pulumi.Output<string>;
     /**
      * A list of role IDs to map to the group.
      */
-    public readonly roleIds!: pulumi.Output<string[]>;
+    declare public readonly roleIds: pulumi.Output<string[]>;
 
     /**
      * Create a GroupRoles resource with the given unique name, arguments, and options.
@@ -178,25 +178,25 @@ export class GroupRoles extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as GroupRolesState | undefined;
-            resourceInputs["exhaustive"] = state ? state.exhaustive : undefined;
-            resourceInputs["groupId"] = state ? state.groupId : undefined;
-            resourceInputs["realmId"] = state ? state.realmId : undefined;
-            resourceInputs["roleIds"] = state ? state.roleIds : undefined;
+            resourceInputs["exhaustive"] = state?.exhaustive;
+            resourceInputs["groupId"] = state?.groupId;
+            resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["roleIds"] = state?.roleIds;
         } else {
             const args = argsOrState as GroupRolesArgs | undefined;
-            if ((!args || args.groupId === undefined) && !opts.urn) {
+            if (args?.groupId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'groupId'");
             }
-            if ((!args || args.realmId === undefined) && !opts.urn) {
+            if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            if ((!args || args.roleIds === undefined) && !opts.urn) {
+            if (args?.roleIds === undefined && !opts.urn) {
                 throw new Error("Missing required property 'roleIds'");
             }
-            resourceInputs["exhaustive"] = args ? args.exhaustive : undefined;
-            resourceInputs["groupId"] = args ? args.groupId : undefined;
-            resourceInputs["realmId"] = args ? args.realmId : undefined;
-            resourceInputs["roleIds"] = args ? args.roleIds : undefined;
+            resourceInputs["exhaustive"] = args?.exhaustive;
+            resourceInputs["groupId"] = args?.groupId;
+            resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["roleIds"] = args?.roleIds;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(GroupRoles.__pulumiType, name, resourceInputs, opts);

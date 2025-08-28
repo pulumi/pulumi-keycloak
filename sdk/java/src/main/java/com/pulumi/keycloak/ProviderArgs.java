@@ -122,16 +122,14 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version
-     * returned from the /serverinfo API endpoint.
+     * When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version returned from the /serverinfo API endpoint.
      * 
      */
     @Import(name="redHatSso", json=true)
     private @Nullable Output<Boolean> redHatSso;
 
     /**
-     * @return When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version
-     * returned from the /serverinfo API endpoint.
+     * @return When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version returned from the /serverinfo API endpoint.
      * 
      */
     public Optional<Output<Boolean>> redHatSso() {
@@ -154,16 +152,14 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and
-     * should be avoided.
+     * Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and should be avoided.
      * 
      */
     @Import(name="tlsInsecureSkipVerify", json=true)
     private @Nullable Output<Boolean> tlsInsecureSkipVerify;
 
     /**
-     * @return Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and
-     * should be avoided.
+     * @return Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and should be avoided.
      * 
      */
     public Optional<Output<Boolean>> tlsInsecureSkipVerify() {
@@ -369,8 +365,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param redHatSso When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version
-         * returned from the /serverinfo API endpoint.
+         * @param redHatSso When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version returned from the /serverinfo API endpoint.
          * 
          * @return builder
          * 
@@ -381,8 +376,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param redHatSso When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version
-         * returned from the /serverinfo API endpoint.
+         * @param redHatSso When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version returned from the /serverinfo API endpoint.
          * 
          * @return builder
          * 
@@ -413,8 +407,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param tlsInsecureSkipVerify Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and
-         * should be avoided.
+         * @param tlsInsecureSkipVerify Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and should be avoided.
          * 
          * @return builder
          * 
@@ -425,8 +418,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param tlsInsecureSkipVerify Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and
-         * should be avoided.
+         * @param tlsInsecureSkipVerify Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and should be avoided.
          * 
          * @return builder
          * 

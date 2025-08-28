@@ -74,11 +74,11 @@ export class DefaultRoles extends pulumi.CustomResource {
     /**
      * Realm level roles assigned to new users by default.
      */
-    public readonly defaultRoles!: pulumi.Output<string[]>;
+    declare public readonly defaultRoles: pulumi.Output<string[]>;
     /**
      * The realm this role exists within.
      */
-    public readonly realmId!: pulumi.Output<string>;
+    declare public readonly realmId: pulumi.Output<string>;
 
     /**
      * Create a DefaultRoles resource with the given unique name, arguments, and options.
@@ -93,18 +93,18 @@ export class DefaultRoles extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DefaultRolesState | undefined;
-            resourceInputs["defaultRoles"] = state ? state.defaultRoles : undefined;
-            resourceInputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["defaultRoles"] = state?.defaultRoles;
+            resourceInputs["realmId"] = state?.realmId;
         } else {
             const args = argsOrState as DefaultRolesArgs | undefined;
-            if ((!args || args.defaultRoles === undefined) && !opts.urn) {
+            if (args?.defaultRoles === undefined && !opts.urn) {
                 throw new Error("Missing required property 'defaultRoles'");
             }
-            if ((!args || args.realmId === undefined) && !opts.urn) {
+            if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            resourceInputs["defaultRoles"] = args ? args.defaultRoles : undefined;
-            resourceInputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["defaultRoles"] = args?.defaultRoles;
+            resourceInputs["realmId"] = args?.realmId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(DefaultRoles.__pulumiType, name, resourceInputs, opts);

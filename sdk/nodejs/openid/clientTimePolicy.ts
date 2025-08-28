@@ -32,24 +32,24 @@ export class ClientTimePolicy extends pulumi.CustomResource {
         return obj['__pulumiType'] === ClientTimePolicy.__pulumiType;
     }
 
-    public readonly dayMonth!: pulumi.Output<string | undefined>;
-    public readonly dayMonthEnd!: pulumi.Output<string | undefined>;
-    public readonly decisionStrategy!: pulumi.Output<string>;
-    public readonly description!: pulumi.Output<string | undefined>;
-    public readonly hour!: pulumi.Output<string | undefined>;
-    public readonly hourEnd!: pulumi.Output<string | undefined>;
-    public readonly logic!: pulumi.Output<string | undefined>;
-    public readonly minute!: pulumi.Output<string | undefined>;
-    public readonly minuteEnd!: pulumi.Output<string | undefined>;
-    public readonly month!: pulumi.Output<string | undefined>;
-    public readonly monthEnd!: pulumi.Output<string | undefined>;
-    public readonly name!: pulumi.Output<string>;
-    public readonly notBefore!: pulumi.Output<string | undefined>;
-    public readonly notOnOrAfter!: pulumi.Output<string | undefined>;
-    public readonly realmId!: pulumi.Output<string>;
-    public readonly resourceServerId!: pulumi.Output<string>;
-    public readonly year!: pulumi.Output<string | undefined>;
-    public readonly yearEnd!: pulumi.Output<string | undefined>;
+    declare public readonly dayMonth: pulumi.Output<string | undefined>;
+    declare public readonly dayMonthEnd: pulumi.Output<string | undefined>;
+    declare public readonly decisionStrategy: pulumi.Output<string>;
+    declare public readonly description: pulumi.Output<string | undefined>;
+    declare public readonly hour: pulumi.Output<string | undefined>;
+    declare public readonly hourEnd: pulumi.Output<string | undefined>;
+    declare public readonly logic: pulumi.Output<string | undefined>;
+    declare public readonly minute: pulumi.Output<string | undefined>;
+    declare public readonly minuteEnd: pulumi.Output<string | undefined>;
+    declare public readonly month: pulumi.Output<string | undefined>;
+    declare public readonly monthEnd: pulumi.Output<string | undefined>;
+    declare public readonly name: pulumi.Output<string>;
+    declare public readonly notBefore: pulumi.Output<string | undefined>;
+    declare public readonly notOnOrAfter: pulumi.Output<string | undefined>;
+    declare public readonly realmId: pulumi.Output<string>;
+    declare public readonly resourceServerId: pulumi.Output<string>;
+    declare public readonly year: pulumi.Output<string | undefined>;
+    declare public readonly yearEnd: pulumi.Output<string | undefined>;
 
     /**
      * Create a ClientTimePolicy resource with the given unique name, arguments, and options.
@@ -64,53 +64,53 @@ export class ClientTimePolicy extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ClientTimePolicyState | undefined;
-            resourceInputs["dayMonth"] = state ? state.dayMonth : undefined;
-            resourceInputs["dayMonthEnd"] = state ? state.dayMonthEnd : undefined;
-            resourceInputs["decisionStrategy"] = state ? state.decisionStrategy : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["hour"] = state ? state.hour : undefined;
-            resourceInputs["hourEnd"] = state ? state.hourEnd : undefined;
-            resourceInputs["logic"] = state ? state.logic : undefined;
-            resourceInputs["minute"] = state ? state.minute : undefined;
-            resourceInputs["minuteEnd"] = state ? state.minuteEnd : undefined;
-            resourceInputs["month"] = state ? state.month : undefined;
-            resourceInputs["monthEnd"] = state ? state.monthEnd : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["notBefore"] = state ? state.notBefore : undefined;
-            resourceInputs["notOnOrAfter"] = state ? state.notOnOrAfter : undefined;
-            resourceInputs["realmId"] = state ? state.realmId : undefined;
-            resourceInputs["resourceServerId"] = state ? state.resourceServerId : undefined;
-            resourceInputs["year"] = state ? state.year : undefined;
-            resourceInputs["yearEnd"] = state ? state.yearEnd : undefined;
+            resourceInputs["dayMonth"] = state?.dayMonth;
+            resourceInputs["dayMonthEnd"] = state?.dayMonthEnd;
+            resourceInputs["decisionStrategy"] = state?.decisionStrategy;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["hour"] = state?.hour;
+            resourceInputs["hourEnd"] = state?.hourEnd;
+            resourceInputs["logic"] = state?.logic;
+            resourceInputs["minute"] = state?.minute;
+            resourceInputs["minuteEnd"] = state?.minuteEnd;
+            resourceInputs["month"] = state?.month;
+            resourceInputs["monthEnd"] = state?.monthEnd;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["notBefore"] = state?.notBefore;
+            resourceInputs["notOnOrAfter"] = state?.notOnOrAfter;
+            resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["resourceServerId"] = state?.resourceServerId;
+            resourceInputs["year"] = state?.year;
+            resourceInputs["yearEnd"] = state?.yearEnd;
         } else {
             const args = argsOrState as ClientTimePolicyArgs | undefined;
-            if ((!args || args.decisionStrategy === undefined) && !opts.urn) {
+            if (args?.decisionStrategy === undefined && !opts.urn) {
                 throw new Error("Missing required property 'decisionStrategy'");
             }
-            if ((!args || args.realmId === undefined) && !opts.urn) {
+            if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            if ((!args || args.resourceServerId === undefined) && !opts.urn) {
+            if (args?.resourceServerId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'resourceServerId'");
             }
-            resourceInputs["dayMonth"] = args ? args.dayMonth : undefined;
-            resourceInputs["dayMonthEnd"] = args ? args.dayMonthEnd : undefined;
-            resourceInputs["decisionStrategy"] = args ? args.decisionStrategy : undefined;
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["hour"] = args ? args.hour : undefined;
-            resourceInputs["hourEnd"] = args ? args.hourEnd : undefined;
-            resourceInputs["logic"] = args ? args.logic : undefined;
-            resourceInputs["minute"] = args ? args.minute : undefined;
-            resourceInputs["minuteEnd"] = args ? args.minuteEnd : undefined;
-            resourceInputs["month"] = args ? args.month : undefined;
-            resourceInputs["monthEnd"] = args ? args.monthEnd : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["notBefore"] = args ? args.notBefore : undefined;
-            resourceInputs["notOnOrAfter"] = args ? args.notOnOrAfter : undefined;
-            resourceInputs["realmId"] = args ? args.realmId : undefined;
-            resourceInputs["resourceServerId"] = args ? args.resourceServerId : undefined;
-            resourceInputs["year"] = args ? args.year : undefined;
-            resourceInputs["yearEnd"] = args ? args.yearEnd : undefined;
+            resourceInputs["dayMonth"] = args?.dayMonth;
+            resourceInputs["dayMonthEnd"] = args?.dayMonthEnd;
+            resourceInputs["decisionStrategy"] = args?.decisionStrategy;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["hour"] = args?.hour;
+            resourceInputs["hourEnd"] = args?.hourEnd;
+            resourceInputs["logic"] = args?.logic;
+            resourceInputs["minute"] = args?.minute;
+            resourceInputs["minuteEnd"] = args?.minuteEnd;
+            resourceInputs["month"] = args?.month;
+            resourceInputs["monthEnd"] = args?.monthEnd;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["notBefore"] = args?.notBefore;
+            resourceInputs["notOnOrAfter"] = args?.notOnOrAfter;
+            resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["resourceServerId"] = args?.resourceServerId;
+            resourceInputs["year"] = args?.year;
+            resourceInputs["yearEnd"] = args?.yearEnd;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(ClientTimePolicy.__pulumiType, name, resourceInputs, opts);

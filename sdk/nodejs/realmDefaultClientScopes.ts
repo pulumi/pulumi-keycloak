@@ -73,11 +73,11 @@ export class RealmDefaultClientScopes extends pulumi.CustomResource {
     /**
      * An array of default client scope names that should be used when creating new Keycloak clients.
      */
-    public readonly defaultScopes!: pulumi.Output<string[]>;
+    declare public readonly defaultScopes: pulumi.Output<string[]>;
     /**
      * The realm this client and scopes exists in.
      */
-    public readonly realmId!: pulumi.Output<string>;
+    declare public readonly realmId: pulumi.Output<string>;
 
     /**
      * Create a RealmDefaultClientScopes resource with the given unique name, arguments, and options.
@@ -92,18 +92,18 @@ export class RealmDefaultClientScopes extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RealmDefaultClientScopesState | undefined;
-            resourceInputs["defaultScopes"] = state ? state.defaultScopes : undefined;
-            resourceInputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["defaultScopes"] = state?.defaultScopes;
+            resourceInputs["realmId"] = state?.realmId;
         } else {
             const args = argsOrState as RealmDefaultClientScopesArgs | undefined;
-            if ((!args || args.defaultScopes === undefined) && !opts.urn) {
+            if (args?.defaultScopes === undefined && !opts.urn) {
                 throw new Error("Missing required property 'defaultScopes'");
             }
-            if ((!args || args.realmId === undefined) && !opts.urn) {
+            if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            resourceInputs["defaultScopes"] = args ? args.defaultScopes : undefined;
-            resourceInputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["defaultScopes"] = args?.defaultScopes;
+            resourceInputs["realmId"] = args?.realmId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(RealmDefaultClientScopes.__pulumiType, name, resourceInputs, opts);

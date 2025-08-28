@@ -90,23 +90,23 @@ export class Group extends pulumi.CustomResource {
     /**
      * A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars
      */
-    public readonly attributes!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly attributes: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The name of the group.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The ID of this group's parent. If omitted, this group will be defined at the root level.
      */
-    public readonly parentId!: pulumi.Output<string | undefined>;
+    declare public readonly parentId: pulumi.Output<string | undefined>;
     /**
      * (Computed) The complete path of the group. For example, the child group's path in the example configuration would be `/parent-group/child-group`.
      */
-    public /*out*/ readonly path!: pulumi.Output<string>;
+    declare public /*out*/ readonly path: pulumi.Output<string>;
     /**
      * The realm this group exists in.
      */
-    public readonly realmId!: pulumi.Output<string>;
+    declare public readonly realmId: pulumi.Output<string>;
 
     /**
      * Create a Group resource with the given unique name, arguments, and options.
@@ -121,20 +121,20 @@ export class Group extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as GroupState | undefined;
-            resourceInputs["attributes"] = state ? state.attributes : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["parentId"] = state ? state.parentId : undefined;
-            resourceInputs["path"] = state ? state.path : undefined;
-            resourceInputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["attributes"] = state?.attributes;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["parentId"] = state?.parentId;
+            resourceInputs["path"] = state?.path;
+            resourceInputs["realmId"] = state?.realmId;
         } else {
             const args = argsOrState as GroupArgs | undefined;
-            if ((!args || args.realmId === undefined) && !opts.urn) {
+            if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            resourceInputs["attributes"] = args ? args.attributes : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["parentId"] = args ? args.parentId : undefined;
-            resourceInputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["attributes"] = args?.attributes;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["parentId"] = args?.parentId;
+            resourceInputs["realmId"] = args?.realmId;
             resourceInputs["path"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

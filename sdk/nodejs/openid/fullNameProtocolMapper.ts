@@ -111,31 +111,31 @@ export class FullNameProtocolMapper extends pulumi.CustomResource {
     /**
      * Indicates if the user's full name should be added as a claim to the access token. Defaults to `true`.
      */
-    public readonly addToAccessToken!: pulumi.Output<boolean | undefined>;
+    declare public readonly addToAccessToken: pulumi.Output<boolean | undefined>;
     /**
      * Indicates if the user's full name should be added as a claim to the id token. Defaults to `true`.
      */
-    public readonly addToIdToken!: pulumi.Output<boolean | undefined>;
+    declare public readonly addToIdToken: pulumi.Output<boolean | undefined>;
     /**
      * Indicates if the user's full name should be added as a claim to the UserInfo response body. Defaults to `true`.
      */
-    public readonly addToUserinfo!: pulumi.Output<boolean | undefined>;
+    declare public readonly addToUserinfo: pulumi.Output<boolean | undefined>;
     /**
      * The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
      */
-    public readonly clientId!: pulumi.Output<string | undefined>;
+    declare public readonly clientId: pulumi.Output<string | undefined>;
     /**
      * The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
      */
-    public readonly clientScopeId!: pulumi.Output<string | undefined>;
+    declare public readonly clientScopeId: pulumi.Output<string | undefined>;
     /**
      * The display name of this protocol mapper in the GUI.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The realm this protocol mapper exists within.
      */
-    public readonly realmId!: pulumi.Output<string>;
+    declare public readonly realmId: pulumi.Output<string>;
 
     /**
      * Create a FullNameProtocolMapper resource with the given unique name, arguments, and options.
@@ -150,25 +150,25 @@ export class FullNameProtocolMapper extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FullNameProtocolMapperState | undefined;
-            resourceInputs["addToAccessToken"] = state ? state.addToAccessToken : undefined;
-            resourceInputs["addToIdToken"] = state ? state.addToIdToken : undefined;
-            resourceInputs["addToUserinfo"] = state ? state.addToUserinfo : undefined;
-            resourceInputs["clientId"] = state ? state.clientId : undefined;
-            resourceInputs["clientScopeId"] = state ? state.clientScopeId : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["addToAccessToken"] = state?.addToAccessToken;
+            resourceInputs["addToIdToken"] = state?.addToIdToken;
+            resourceInputs["addToUserinfo"] = state?.addToUserinfo;
+            resourceInputs["clientId"] = state?.clientId;
+            resourceInputs["clientScopeId"] = state?.clientScopeId;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["realmId"] = state?.realmId;
         } else {
             const args = argsOrState as FullNameProtocolMapperArgs | undefined;
-            if ((!args || args.realmId === undefined) && !opts.urn) {
+            if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            resourceInputs["addToAccessToken"] = args ? args.addToAccessToken : undefined;
-            resourceInputs["addToIdToken"] = args ? args.addToIdToken : undefined;
-            resourceInputs["addToUserinfo"] = args ? args.addToUserinfo : undefined;
-            resourceInputs["clientId"] = args ? args.clientId : undefined;
-            resourceInputs["clientScopeId"] = args ? args.clientScopeId : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["addToAccessToken"] = args?.addToAccessToken;
+            resourceInputs["addToIdToken"] = args?.addToIdToken;
+            resourceInputs["addToUserinfo"] = args?.addToUserinfo;
+            resourceInputs["clientId"] = args?.clientId;
+            resourceInputs["clientScopeId"] = args?.clientScopeId;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["realmId"] = args?.realmId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(FullNameProtocolMapper.__pulumiType, name, resourceInputs, opts);

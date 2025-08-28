@@ -84,19 +84,19 @@ export class Flow extends pulumi.CustomResource {
     /**
      * The alias for this authentication flow.
      */
-    public readonly alias!: pulumi.Output<string>;
+    declare public readonly alias: pulumi.Output<string>;
     /**
      * A description for the authentication flow.
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`.
      */
-    public readonly providerId!: pulumi.Output<string | undefined>;
+    declare public readonly providerId: pulumi.Output<string | undefined>;
     /**
      * The realm that the authentication flow exists in.
      */
-    public readonly realmId!: pulumi.Output<string>;
+    declare public readonly realmId: pulumi.Output<string>;
 
     /**
      * Create a Flow resource with the given unique name, arguments, and options.
@@ -111,19 +111,19 @@ export class Flow extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FlowState | undefined;
-            resourceInputs["alias"] = state ? state.alias : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["providerId"] = state ? state.providerId : undefined;
-            resourceInputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["alias"] = state?.alias;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["providerId"] = state?.providerId;
+            resourceInputs["realmId"] = state?.realmId;
         } else {
             const args = argsOrState as FlowArgs | undefined;
-            if ((!args || args.realmId === undefined) && !opts.urn) {
+            if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            resourceInputs["alias"] = args ? args.alias : undefined;
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["providerId"] = args ? args.providerId : undefined;
-            resourceInputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["alias"] = args?.alias;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["providerId"] = args?.providerId;
+            resourceInputs["realmId"] = args?.realmId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Flow.__pulumiType, name, resourceInputs, opts);

@@ -87,38 +87,38 @@ export class Subflow extends pulumi.CustomResource {
     /**
      * The alias for this authentication subflow.
      */
-    public readonly alias!: pulumi.Output<string>;
+    declare public readonly alias: pulumi.Output<string>;
     /**
      * The name of the authenticator. Might be needed to be set with certain custom subflows with specific
      * authenticators. In general this will remain empty.
      */
-    public readonly authenticator!: pulumi.Output<string | undefined>;
+    declare public readonly authenticator: pulumi.Output<string | undefined>;
     /**
      * A description for the authentication subflow.
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * The alias for the parent authentication flow.
      */
-    public readonly parentFlowAlias!: pulumi.Output<string>;
+    declare public readonly parentFlowAlias: pulumi.Output<string>;
     /**
      * The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak >= 25).
      */
-    public readonly priority!: pulumi.Output<number | undefined>;
+    declare public readonly priority: pulumi.Output<number | undefined>;
     /**
      * The type of authentication subflow to create. Valid choices include `basic-flow`, `form-flow`
      * and `client-flow`. Defaults to `basic-flow`.
      */
-    public readonly providerId!: pulumi.Output<string | undefined>;
+    declare public readonly providerId: pulumi.Output<string | undefined>;
     /**
      * The realm that the authentication subflow exists in.
      */
-    public readonly realmId!: pulumi.Output<string>;
+    declare public readonly realmId: pulumi.Output<string>;
     /**
      * The requirement setting, which can be one of `REQUIRED`, `ALTERNATIVE`, `OPTIONAL`, `CONDITIONAL`,
      * or `DISABLED`. Defaults to `DISABLED`.
      */
-    public readonly requirement!: pulumi.Output<string | undefined>;
+    declare public readonly requirement: pulumi.Output<string | undefined>;
 
     /**
      * Create a Subflow resource with the given unique name, arguments, and options.
@@ -133,30 +133,30 @@ export class Subflow extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SubflowState | undefined;
-            resourceInputs["alias"] = state ? state.alias : undefined;
-            resourceInputs["authenticator"] = state ? state.authenticator : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["parentFlowAlias"] = state ? state.parentFlowAlias : undefined;
-            resourceInputs["priority"] = state ? state.priority : undefined;
-            resourceInputs["providerId"] = state ? state.providerId : undefined;
-            resourceInputs["realmId"] = state ? state.realmId : undefined;
-            resourceInputs["requirement"] = state ? state.requirement : undefined;
+            resourceInputs["alias"] = state?.alias;
+            resourceInputs["authenticator"] = state?.authenticator;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["parentFlowAlias"] = state?.parentFlowAlias;
+            resourceInputs["priority"] = state?.priority;
+            resourceInputs["providerId"] = state?.providerId;
+            resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["requirement"] = state?.requirement;
         } else {
             const args = argsOrState as SubflowArgs | undefined;
-            if ((!args || args.parentFlowAlias === undefined) && !opts.urn) {
+            if (args?.parentFlowAlias === undefined && !opts.urn) {
                 throw new Error("Missing required property 'parentFlowAlias'");
             }
-            if ((!args || args.realmId === undefined) && !opts.urn) {
+            if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            resourceInputs["alias"] = args ? args.alias : undefined;
-            resourceInputs["authenticator"] = args ? args.authenticator : undefined;
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["parentFlowAlias"] = args ? args.parentFlowAlias : undefined;
-            resourceInputs["priority"] = args ? args.priority : undefined;
-            resourceInputs["providerId"] = args ? args.providerId : undefined;
-            resourceInputs["realmId"] = args ? args.realmId : undefined;
-            resourceInputs["requirement"] = args ? args.requirement : undefined;
+            resourceInputs["alias"] = args?.alias;
+            resourceInputs["authenticator"] = args?.authenticator;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["parentFlowAlias"] = args?.parentFlowAlias;
+            resourceInputs["priority"] = args?.priority;
+            resourceInputs["providerId"] = args?.providerId;
+            resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["requirement"] = args?.requirement;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Subflow.__pulumiType, name, resourceInputs, opts);

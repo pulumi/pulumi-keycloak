@@ -48,8 +48,7 @@ realm: Optional[str]
 
 redHatSso: Optional[bool]
 """
-When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version
-returned from the /serverinfo API endpoint.
+When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version returned from the /serverinfo API endpoint.
 """
 
 rootCaCertificate: Optional[str]
@@ -59,8 +58,7 @@ Allows x509 calls using an unknown CA certificate (for development purposes)
 
 tlsInsecureSkipVerify: Optional[bool]
 """
-Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and
-should be avoided.
+Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and should be avoided.
 """
 
 url: Optional[str]

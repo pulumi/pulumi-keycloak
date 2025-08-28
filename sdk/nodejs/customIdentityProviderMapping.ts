@@ -82,23 +82,23 @@ export class CustomIdentityProviderMapping extends pulumi.CustomResource {
     /**
      * Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
      */
-    public readonly extraConfig!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly extraConfig: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The alias of the associated identity provider.
      */
-    public readonly identityProviderAlias!: pulumi.Output<string>;
+    declare public readonly identityProviderAlias: pulumi.Output<string>;
     /**
      * The type of the identity provider mapper. This can be a format string that includes a `%s` - this will be replaced by the provider id.
      */
-    public readonly identityProviderMapper!: pulumi.Output<string>;
+    declare public readonly identityProviderMapper: pulumi.Output<string>;
     /**
      * The name of the mapper.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The name of the realm.
      */
-    public readonly realm!: pulumi.Output<string>;
+    declare public readonly realm: pulumi.Output<string>;
 
     /**
      * Create a CustomIdentityProviderMapping resource with the given unique name, arguments, and options.
@@ -113,27 +113,27 @@ export class CustomIdentityProviderMapping extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as CustomIdentityProviderMappingState | undefined;
-            resourceInputs["extraConfig"] = state ? state.extraConfig : undefined;
-            resourceInputs["identityProviderAlias"] = state ? state.identityProviderAlias : undefined;
-            resourceInputs["identityProviderMapper"] = state ? state.identityProviderMapper : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["realm"] = state ? state.realm : undefined;
+            resourceInputs["extraConfig"] = state?.extraConfig;
+            resourceInputs["identityProviderAlias"] = state?.identityProviderAlias;
+            resourceInputs["identityProviderMapper"] = state?.identityProviderMapper;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["realm"] = state?.realm;
         } else {
             const args = argsOrState as CustomIdentityProviderMappingArgs | undefined;
-            if ((!args || args.identityProviderAlias === undefined) && !opts.urn) {
+            if (args?.identityProviderAlias === undefined && !opts.urn) {
                 throw new Error("Missing required property 'identityProviderAlias'");
             }
-            if ((!args || args.identityProviderMapper === undefined) && !opts.urn) {
+            if (args?.identityProviderMapper === undefined && !opts.urn) {
                 throw new Error("Missing required property 'identityProviderMapper'");
             }
-            if ((!args || args.realm === undefined) && !opts.urn) {
+            if (args?.realm === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realm'");
             }
-            resourceInputs["extraConfig"] = args ? args.extraConfig : undefined;
-            resourceInputs["identityProviderAlias"] = args ? args.identityProviderAlias : undefined;
-            resourceInputs["identityProviderMapper"] = args ? args.identityProviderMapper : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["realm"] = args ? args.realm : undefined;
+            resourceInputs["extraConfig"] = args?.extraConfig;
+            resourceInputs["identityProviderAlias"] = args?.identityProviderAlias;
+            resourceInputs["identityProviderMapper"] = args?.identityProviderMapper;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["realm"] = args?.realm;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(CustomIdentityProviderMapping.__pulumiType, name, resourceInputs, opts);

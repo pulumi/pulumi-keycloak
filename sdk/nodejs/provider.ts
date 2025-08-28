@@ -25,28 +25,28 @@ export class Provider extends pulumi.ProviderResource {
         return obj['__pulumiType'] === "pulumi:providers:" + Provider.__pulumiType;
     }
 
-    public readonly basePath!: pulumi.Output<string | undefined>;
-    public readonly clientId!: pulumi.Output<string | undefined>;
-    public readonly clientSecret!: pulumi.Output<string | undefined>;
+    declare public readonly basePath: pulumi.Output<string | undefined>;
+    declare public readonly clientId: pulumi.Output<string | undefined>;
+    declare public readonly clientSecret: pulumi.Output<string | undefined>;
     /**
      * The algorithm used to sign the JWT when client-jwt is used. Defaults to RS256.
      */
-    public readonly jwtSigningAlg!: pulumi.Output<string | undefined>;
+    declare public readonly jwtSigningAlg: pulumi.Output<string | undefined>;
     /**
      * The PEM-formatted private key used to sign the JWT when client-jwt is used.
      */
-    public readonly jwtSigningKey!: pulumi.Output<string | undefined>;
-    public readonly password!: pulumi.Output<string | undefined>;
-    public readonly realm!: pulumi.Output<string | undefined>;
+    declare public readonly jwtSigningKey: pulumi.Output<string | undefined>;
+    declare public readonly password: pulumi.Output<string | undefined>;
+    declare public readonly realm: pulumi.Output<string | undefined>;
     /**
      * Allows x509 calls using an unknown CA certificate (for development purposes)
      */
-    public readonly rootCaCertificate!: pulumi.Output<string | undefined>;
+    declare public readonly rootCaCertificate: pulumi.Output<string | undefined>;
     /**
      * The base URL of the Keycloak instance, before `/auth`
      */
-    public readonly url!: pulumi.Output<string | undefined>;
-    public readonly username!: pulumi.Output<string | undefined>;
+    declare public readonly url: pulumi.Output<string | undefined>;
+    declare public readonly username: pulumi.Output<string | undefined>;
 
     /**
      * Create a Provider resource with the given unique name, arguments, and options.
@@ -59,21 +59,21 @@ export class Provider extends pulumi.ProviderResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         {
-            resourceInputs["additionalHeaders"] = pulumi.output(args ? args.additionalHeaders : undefined).apply(JSON.stringify);
-            resourceInputs["basePath"] = args ? args.basePath : undefined;
-            resourceInputs["clientId"] = args ? args.clientId : undefined;
-            resourceInputs["clientSecret"] = args ? args.clientSecret : undefined;
-            resourceInputs["clientTimeout"] = pulumi.output((args ? args.clientTimeout : undefined) ?? (utilities.getEnvNumber("KEYCLOAK_CLIENT_TIMEOUT") || 5)).apply(JSON.stringify);
-            resourceInputs["initialLogin"] = pulumi.output(args ? args.initialLogin : undefined).apply(JSON.stringify);
-            resourceInputs["jwtSigningAlg"] = args ? args.jwtSigningAlg : undefined;
+            resourceInputs["additionalHeaders"] = pulumi.output(args?.additionalHeaders).apply(JSON.stringify);
+            resourceInputs["basePath"] = args?.basePath;
+            resourceInputs["clientId"] = args?.clientId;
+            resourceInputs["clientSecret"] = args?.clientSecret;
+            resourceInputs["clientTimeout"] = pulumi.output((args?.clientTimeout) ?? (utilities.getEnvNumber("KEYCLOAK_CLIENT_TIMEOUT") || 5)).apply(JSON.stringify);
+            resourceInputs["initialLogin"] = pulumi.output(args?.initialLogin).apply(JSON.stringify);
+            resourceInputs["jwtSigningAlg"] = args?.jwtSigningAlg;
             resourceInputs["jwtSigningKey"] = args?.jwtSigningKey ? pulumi.secret(args.jwtSigningKey) : undefined;
-            resourceInputs["password"] = args ? args.password : undefined;
-            resourceInputs["realm"] = args ? args.realm : undefined;
-            resourceInputs["redHatSso"] = pulumi.output(args ? args.redHatSso : undefined).apply(JSON.stringify);
-            resourceInputs["rootCaCertificate"] = args ? args.rootCaCertificate : undefined;
-            resourceInputs["tlsInsecureSkipVerify"] = pulumi.output(args ? args.tlsInsecureSkipVerify : undefined).apply(JSON.stringify);
-            resourceInputs["url"] = args ? args.url : undefined;
-            resourceInputs["username"] = args ? args.username : undefined;
+            resourceInputs["password"] = args?.password;
+            resourceInputs["realm"] = args?.realm;
+            resourceInputs["redHatSso"] = pulumi.output(args?.redHatSso).apply(JSON.stringify);
+            resourceInputs["rootCaCertificate"] = args?.rootCaCertificate;
+            resourceInputs["tlsInsecureSkipVerify"] = pulumi.output(args?.tlsInsecureSkipVerify).apply(JSON.stringify);
+            resourceInputs["url"] = args?.url;
+            resourceInputs["username"] = args?.username;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["jwtSigningKey"] };
@@ -118,8 +118,7 @@ export interface ProviderArgs {
     password?: pulumi.Input<string>;
     realm?: pulumi.Input<string>;
     /**
-     * When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version
-     * returned from the /serverinfo API endpoint.
+     * When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version returned from the /serverinfo API endpoint.
      */
     redHatSso?: pulumi.Input<boolean>;
     /**
@@ -127,8 +126,7 @@ export interface ProviderArgs {
      */
     rootCaCertificate?: pulumi.Input<string>;
     /**
-     * Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and
-     * should be avoided.
+     * Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and should be avoided.
      */
     tlsInsecureSkipVerify?: pulumi.Input<boolean>;
     /**

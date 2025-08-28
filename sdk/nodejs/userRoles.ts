@@ -107,19 +107,19 @@ export class UserRoles extends pulumi.CustomResource {
     /**
      * Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the user will be removed. Defaults to `true`.
      */
-    public readonly exhaustive!: pulumi.Output<boolean | undefined>;
+    declare public readonly exhaustive: pulumi.Output<boolean | undefined>;
     /**
      * The realm this user exists in.
      */
-    public readonly realmId!: pulumi.Output<string>;
+    declare public readonly realmId: pulumi.Output<string>;
     /**
      * A list of role IDs to map to the user
      */
-    public readonly roleIds!: pulumi.Output<string[]>;
+    declare public readonly roleIds: pulumi.Output<string[]>;
     /**
      * The ID of the user this resource should manage roles for.
      */
-    public readonly userId!: pulumi.Output<string>;
+    declare public readonly userId: pulumi.Output<string>;
 
     /**
      * Create a UserRoles resource with the given unique name, arguments, and options.
@@ -134,25 +134,25 @@ export class UserRoles extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as UserRolesState | undefined;
-            resourceInputs["exhaustive"] = state ? state.exhaustive : undefined;
-            resourceInputs["realmId"] = state ? state.realmId : undefined;
-            resourceInputs["roleIds"] = state ? state.roleIds : undefined;
-            resourceInputs["userId"] = state ? state.userId : undefined;
+            resourceInputs["exhaustive"] = state?.exhaustive;
+            resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["roleIds"] = state?.roleIds;
+            resourceInputs["userId"] = state?.userId;
         } else {
             const args = argsOrState as UserRolesArgs | undefined;
-            if ((!args || args.realmId === undefined) && !opts.urn) {
+            if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            if ((!args || args.roleIds === undefined) && !opts.urn) {
+            if (args?.roleIds === undefined && !opts.urn) {
                 throw new Error("Missing required property 'roleIds'");
             }
-            if ((!args || args.userId === undefined) && !opts.urn) {
+            if (args?.userId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'userId'");
             }
-            resourceInputs["exhaustive"] = args ? args.exhaustive : undefined;
-            resourceInputs["realmId"] = args ? args.realmId : undefined;
-            resourceInputs["roleIds"] = args ? args.roleIds : undefined;
-            resourceInputs["userId"] = args ? args.userId : undefined;
+            resourceInputs["exhaustive"] = args?.exhaustive;
+            resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["roleIds"] = args?.roleIds;
+            resourceInputs["userId"] = args?.userId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(UserRoles.__pulumiType, name, resourceInputs, opts);

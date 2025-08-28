@@ -113,39 +113,39 @@ export class GroupMembershipProtocolMapper extends pulumi.CustomResource {
     /**
      * Indicates if the property should be added as a claim to the access token. Defaults to `true`.
      */
-    public readonly addToAccessToken!: pulumi.Output<boolean | undefined>;
+    declare public readonly addToAccessToken: pulumi.Output<boolean | undefined>;
     /**
      * Indicates if the property should be added as a claim to the id token. Defaults to `true`.
      */
-    public readonly addToIdToken!: pulumi.Output<boolean | undefined>;
+    declare public readonly addToIdToken: pulumi.Output<boolean | undefined>;
     /**
      * Indicates if the property should be added as a claim to the UserInfo response body. Defaults to `true`.
      */
-    public readonly addToUserinfo!: pulumi.Output<boolean | undefined>;
+    declare public readonly addToUserinfo: pulumi.Output<boolean | undefined>;
     /**
      * The name of the claim to insert into a token.
      */
-    public readonly claimName!: pulumi.Output<string>;
+    declare public readonly claimName: pulumi.Output<string>;
     /**
      * The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
      */
-    public readonly clientId!: pulumi.Output<string | undefined>;
+    declare public readonly clientId: pulumi.Output<string | undefined>;
     /**
      * The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
      */
-    public readonly clientScopeId!: pulumi.Output<string | undefined>;
+    declare public readonly clientScopeId: pulumi.Output<string | undefined>;
     /**
      * Indicates whether the full path of the group including its parents will be used. Defaults to `true`.
      */
-    public readonly fullPath!: pulumi.Output<boolean | undefined>;
+    declare public readonly fullPath: pulumi.Output<boolean | undefined>;
     /**
      * The display name of this protocol mapper in the GUI.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The realm this protocol mapper exists within.
      */
-    public readonly realmId!: pulumi.Output<string>;
+    declare public readonly realmId: pulumi.Output<string>;
 
     /**
      * Create a GroupMembershipProtocolMapper resource with the given unique name, arguments, and options.
@@ -160,32 +160,32 @@ export class GroupMembershipProtocolMapper extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as GroupMembershipProtocolMapperState | undefined;
-            resourceInputs["addToAccessToken"] = state ? state.addToAccessToken : undefined;
-            resourceInputs["addToIdToken"] = state ? state.addToIdToken : undefined;
-            resourceInputs["addToUserinfo"] = state ? state.addToUserinfo : undefined;
-            resourceInputs["claimName"] = state ? state.claimName : undefined;
-            resourceInputs["clientId"] = state ? state.clientId : undefined;
-            resourceInputs["clientScopeId"] = state ? state.clientScopeId : undefined;
-            resourceInputs["fullPath"] = state ? state.fullPath : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["addToAccessToken"] = state?.addToAccessToken;
+            resourceInputs["addToIdToken"] = state?.addToIdToken;
+            resourceInputs["addToUserinfo"] = state?.addToUserinfo;
+            resourceInputs["claimName"] = state?.claimName;
+            resourceInputs["clientId"] = state?.clientId;
+            resourceInputs["clientScopeId"] = state?.clientScopeId;
+            resourceInputs["fullPath"] = state?.fullPath;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["realmId"] = state?.realmId;
         } else {
             const args = argsOrState as GroupMembershipProtocolMapperArgs | undefined;
-            if ((!args || args.claimName === undefined) && !opts.urn) {
+            if (args?.claimName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'claimName'");
             }
-            if ((!args || args.realmId === undefined) && !opts.urn) {
+            if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            resourceInputs["addToAccessToken"] = args ? args.addToAccessToken : undefined;
-            resourceInputs["addToIdToken"] = args ? args.addToIdToken : undefined;
-            resourceInputs["addToUserinfo"] = args ? args.addToUserinfo : undefined;
-            resourceInputs["claimName"] = args ? args.claimName : undefined;
-            resourceInputs["clientId"] = args ? args.clientId : undefined;
-            resourceInputs["clientScopeId"] = args ? args.clientScopeId : undefined;
-            resourceInputs["fullPath"] = args ? args.fullPath : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["addToAccessToken"] = args?.addToAccessToken;
+            resourceInputs["addToIdToken"] = args?.addToIdToken;
+            resourceInputs["addToUserinfo"] = args?.addToUserinfo;
+            resourceInputs["claimName"] = args?.claimName;
+            resourceInputs["clientId"] = args?.clientId;
+            resourceInputs["clientScopeId"] = args?.clientScopeId;
+            resourceInputs["fullPath"] = args?.fullPath;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["realmId"] = args?.realmId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(GroupMembershipProtocolMapper.__pulumiType, name, resourceInputs, opts);

@@ -76,10 +76,10 @@ export class RealmClientPolicyProfile extends pulumi.CustomResource {
         return obj['__pulumiType'] === RealmClientPolicyProfile.__pulumiType;
     }
 
-    public readonly description!: pulumi.Output<string | undefined>;
-    public readonly executors!: pulumi.Output<outputs.RealmClientPolicyProfileExecutor[] | undefined>;
-    public readonly name!: pulumi.Output<string>;
-    public readonly realmId!: pulumi.Output<string>;
+    declare public readonly description: pulumi.Output<string | undefined>;
+    declare public readonly executors: pulumi.Output<outputs.RealmClientPolicyProfileExecutor[] | undefined>;
+    declare public readonly name: pulumi.Output<string>;
+    declare public readonly realmId: pulumi.Output<string>;
 
     /**
      * Create a RealmClientPolicyProfile resource with the given unique name, arguments, and options.
@@ -94,19 +94,19 @@ export class RealmClientPolicyProfile extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RealmClientPolicyProfileState | undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["executors"] = state ? state.executors : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["executors"] = state?.executors;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["realmId"] = state?.realmId;
         } else {
             const args = argsOrState as RealmClientPolicyProfileArgs | undefined;
-            if ((!args || args.realmId === undefined) && !opts.urn) {
+            if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["executors"] = args ? args.executors : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["executors"] = args?.executors;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["realmId"] = args?.realmId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(RealmClientPolicyProfile.__pulumiType, name, resourceInputs, opts);

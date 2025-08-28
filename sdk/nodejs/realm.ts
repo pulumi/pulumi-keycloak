@@ -122,117 +122,115 @@ export class Realm extends pulumi.CustomResource {
         return obj['__pulumiType'] === Realm.__pulumiType;
     }
 
-    public readonly accessCodeLifespan!: pulumi.Output<string>;
-    public readonly accessCodeLifespanLogin!: pulumi.Output<string>;
-    public readonly accessCodeLifespanUserAction!: pulumi.Output<string>;
-    public readonly accessTokenLifespan!: pulumi.Output<string>;
-    public readonly accessTokenLifespanForImplicitFlow!: pulumi.Output<string>;
-    public readonly accountTheme!: pulumi.Output<string | undefined>;
-    public readonly actionTokenGeneratedByAdminLifespan!: pulumi.Output<string>;
-    public readonly actionTokenGeneratedByUserLifespan!: pulumi.Output<string>;
-    public readonly adminTheme!: pulumi.Output<string | undefined>;
+    declare public readonly accessCodeLifespan: pulumi.Output<string>;
+    declare public readonly accessCodeLifespanLogin: pulumi.Output<string>;
+    declare public readonly accessCodeLifespanUserAction: pulumi.Output<string>;
+    declare public readonly accessTokenLifespan: pulumi.Output<string>;
+    declare public readonly accessTokenLifespanForImplicitFlow: pulumi.Output<string>;
+    declare public readonly accountTheme: pulumi.Output<string | undefined>;
+    declare public readonly actionTokenGeneratedByAdminLifespan: pulumi.Output<string>;
+    declare public readonly actionTokenGeneratedByUserLifespan: pulumi.Output<string>;
+    declare public readonly adminTheme: pulumi.Output<string | undefined>;
     /**
      * A map of custom attributes to add to the realm.
      */
-    public readonly attributes!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly attributes: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * Which flow should be used for BrowserFlow
      */
-    public readonly browserFlow!: pulumi.Output<string>;
+    declare public readonly browserFlow: pulumi.Output<string>;
     /**
      * Which flow should be used for ClientAuthenticationFlow
      */
-    public readonly clientAuthenticationFlow!: pulumi.Output<string>;
-    public readonly clientSessionIdleTimeout!: pulumi.Output<string>;
-    public readonly clientSessionMaxLifespan!: pulumi.Output<string>;
-    public readonly defaultDefaultClientScopes!: pulumi.Output<string[] | undefined>;
-    public readonly defaultOptionalClientScopes!: pulumi.Output<string[] | undefined>;
-    public readonly defaultSignatureAlgorithm!: pulumi.Output<string | undefined>;
+    declare public readonly clientAuthenticationFlow: pulumi.Output<string>;
+    declare public readonly clientSessionIdleTimeout: pulumi.Output<string>;
+    declare public readonly clientSessionMaxLifespan: pulumi.Output<string>;
+    declare public readonly defaultDefaultClientScopes: pulumi.Output<string[] | undefined>;
+    declare public readonly defaultOptionalClientScopes: pulumi.Output<string[] | undefined>;
+    declare public readonly defaultSignatureAlgorithm: pulumi.Output<string | undefined>;
     /**
      * Which flow should be used for DirectGrantFlow
      */
-    public readonly directGrantFlow!: pulumi.Output<string>;
+    declare public readonly directGrantFlow: pulumi.Output<string>;
     /**
      * The display name for the realm that is shown when logging in to the admin console.
      */
-    public readonly displayName!: pulumi.Output<string | undefined>;
+    declare public readonly displayName: pulumi.Output<string | undefined>;
     /**
      * The display name for the realm that is rendered as HTML on the screen when logging in to the admin console.
      */
-    public readonly displayNameHtml!: pulumi.Output<string | undefined>;
+    declare public readonly displayNameHtml: pulumi.Output<string | undefined>;
     /**
      * Which flow should be used for DockerAuthenticationFlow
      */
-    public readonly dockerAuthenticationFlow!: pulumi.Output<string>;
-    public readonly duplicateEmailsAllowed!: pulumi.Output<boolean>;
-    public readonly editUsernameAllowed!: pulumi.Output<boolean>;
-    public readonly emailTheme!: pulumi.Output<string | undefined>;
+    declare public readonly dockerAuthenticationFlow: pulumi.Output<string>;
+    declare public readonly duplicateEmailsAllowed: pulumi.Output<boolean>;
+    declare public readonly editUsernameAllowed: pulumi.Output<boolean>;
+    declare public readonly emailTheme: pulumi.Output<string | undefined>;
     /**
      * When `false`, users and clients will not be able to access this realm. Defaults to `true`.
      */
-    public readonly enabled!: pulumi.Output<boolean | undefined>;
+    declare public readonly enabled: pulumi.Output<boolean | undefined>;
     /**
      * Which flow should be used for FirstBrokerLoginFlow
      */
-    public readonly firstBrokerLoginFlow!: pulumi.Output<string>;
+    declare public readonly firstBrokerLoginFlow: pulumi.Output<string>;
     /**
      * When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
      */
-    public readonly internalId!: pulumi.Output<string>;
-    public readonly internationalization!: pulumi.Output<outputs.RealmInternationalization | undefined>;
-    public readonly loginTheme!: pulumi.Output<string | undefined>;
-    public readonly loginWithEmailAllowed!: pulumi.Output<boolean>;
-    public readonly oauth2DeviceCodeLifespan!: pulumi.Output<string>;
-    public readonly oauth2DevicePollingInterval!: pulumi.Output<number>;
-    public readonly offlineSessionIdleTimeout!: pulumi.Output<string>;
-    public readonly offlineSessionMaxLifespan!: pulumi.Output<string>;
-    public readonly offlineSessionMaxLifespanEnabled!: pulumi.Output<boolean | undefined>;
+    declare public readonly internalId: pulumi.Output<string>;
+    declare public readonly internationalization: pulumi.Output<outputs.RealmInternationalization | undefined>;
+    declare public readonly loginTheme: pulumi.Output<string | undefined>;
+    declare public readonly loginWithEmailAllowed: pulumi.Output<boolean>;
+    declare public readonly oauth2DeviceCodeLifespan: pulumi.Output<string>;
+    declare public readonly oauth2DevicePollingInterval: pulumi.Output<number>;
+    declare public readonly offlineSessionIdleTimeout: pulumi.Output<string>;
+    declare public readonly offlineSessionMaxLifespan: pulumi.Output<string>;
+    declare public readonly offlineSessionMaxLifespanEnabled: pulumi.Output<boolean | undefined>;
     /**
      * When `true`, organization support is enabled. Defaults to `false`.
      */
-    public readonly organizationsEnabled!: pulumi.Output<boolean | undefined>;
-    public readonly otpPolicy!: pulumi.Output<outputs.RealmOtpPolicy>;
+    declare public readonly organizationsEnabled: pulumi.Output<boolean | undefined>;
+    declare public readonly otpPolicy: pulumi.Output<outputs.RealmOtpPolicy>;
     /**
-     * String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
-     * can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365)
-     * and notUsername(undefined)"
+     * String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername(undefined)"
      */
-    public readonly passwordPolicy!: pulumi.Output<string | undefined>;
+    declare public readonly passwordPolicy: pulumi.Output<string | undefined>;
     /**
      * The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
      */
-    public readonly realm!: pulumi.Output<string>;
-    public readonly refreshTokenMaxReuse!: pulumi.Output<number | undefined>;
-    public readonly registrationAllowed!: pulumi.Output<boolean>;
-    public readonly registrationEmailAsUsername!: pulumi.Output<boolean>;
+    declare public readonly realm: pulumi.Output<string>;
+    declare public readonly refreshTokenMaxReuse: pulumi.Output<number | undefined>;
+    declare public readonly registrationAllowed: pulumi.Output<boolean>;
+    declare public readonly registrationEmailAsUsername: pulumi.Output<boolean>;
     /**
      * Which flow should be used for RegistrationFlow
      */
-    public readonly registrationFlow!: pulumi.Output<string>;
-    public readonly rememberMe!: pulumi.Output<boolean>;
+    declare public readonly registrationFlow: pulumi.Output<string>;
+    declare public readonly rememberMe: pulumi.Output<boolean>;
     /**
      * Which flow should be used for ResetCredentialsFlow
      */
-    public readonly resetCredentialsFlow!: pulumi.Output<string>;
-    public readonly resetPasswordAllowed!: pulumi.Output<boolean>;
-    public readonly revokeRefreshToken!: pulumi.Output<boolean | undefined>;
-    public readonly securityDefenses!: pulumi.Output<outputs.RealmSecurityDefenses | undefined>;
-    public readonly smtpServer!: pulumi.Output<outputs.RealmSmtpServer | undefined>;
+    declare public readonly resetCredentialsFlow: pulumi.Output<string>;
+    declare public readonly resetPasswordAllowed: pulumi.Output<boolean>;
+    declare public readonly revokeRefreshToken: pulumi.Output<boolean | undefined>;
+    declare public readonly securityDefenses: pulumi.Output<outputs.RealmSecurityDefenses | undefined>;
+    declare public readonly smtpServer: pulumi.Output<outputs.RealmSmtpServer | undefined>;
     /**
      * SSL Required: Values can be 'none', 'external' or 'all'.
      */
-    public readonly sslRequired!: pulumi.Output<string | undefined>;
-    public readonly ssoSessionIdleTimeout!: pulumi.Output<string>;
-    public readonly ssoSessionIdleTimeoutRememberMe!: pulumi.Output<string>;
-    public readonly ssoSessionMaxLifespan!: pulumi.Output<string>;
-    public readonly ssoSessionMaxLifespanRememberMe!: pulumi.Output<string>;
+    declare public readonly sslRequired: pulumi.Output<string | undefined>;
+    declare public readonly ssoSessionIdleTimeout: pulumi.Output<string>;
+    declare public readonly ssoSessionIdleTimeoutRememberMe: pulumi.Output<string>;
+    declare public readonly ssoSessionMaxLifespan: pulumi.Output<string>;
+    declare public readonly ssoSessionMaxLifespanRememberMe: pulumi.Output<string>;
     /**
      * When `true`, users are allowed to manage their own resources. Defaults to `false`.
      */
-    public readonly userManagedAccess!: pulumi.Output<boolean | undefined>;
-    public readonly verifyEmail!: pulumi.Output<boolean>;
-    public readonly webAuthnPasswordlessPolicy!: pulumi.Output<outputs.RealmWebAuthnPasswordlessPolicy>;
-    public readonly webAuthnPolicy!: pulumi.Output<outputs.RealmWebAuthnPolicy>;
+    declare public readonly userManagedAccess: pulumi.Output<boolean | undefined>;
+    declare public readonly verifyEmail: pulumi.Output<boolean>;
+    declare public readonly webAuthnPasswordlessPolicy: pulumi.Output<outputs.RealmWebAuthnPasswordlessPolicy>;
+    declare public readonly webAuthnPolicy: pulumi.Output<outputs.RealmWebAuthnPolicy>;
 
     /**
      * Create a Realm resource with the given unique name, arguments, and options.
@@ -247,124 +245,124 @@ export class Realm extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RealmState | undefined;
-            resourceInputs["accessCodeLifespan"] = state ? state.accessCodeLifespan : undefined;
-            resourceInputs["accessCodeLifespanLogin"] = state ? state.accessCodeLifespanLogin : undefined;
-            resourceInputs["accessCodeLifespanUserAction"] = state ? state.accessCodeLifespanUserAction : undefined;
-            resourceInputs["accessTokenLifespan"] = state ? state.accessTokenLifespan : undefined;
-            resourceInputs["accessTokenLifespanForImplicitFlow"] = state ? state.accessTokenLifespanForImplicitFlow : undefined;
-            resourceInputs["accountTheme"] = state ? state.accountTheme : undefined;
-            resourceInputs["actionTokenGeneratedByAdminLifespan"] = state ? state.actionTokenGeneratedByAdminLifespan : undefined;
-            resourceInputs["actionTokenGeneratedByUserLifespan"] = state ? state.actionTokenGeneratedByUserLifespan : undefined;
-            resourceInputs["adminTheme"] = state ? state.adminTheme : undefined;
-            resourceInputs["attributes"] = state ? state.attributes : undefined;
-            resourceInputs["browserFlow"] = state ? state.browserFlow : undefined;
-            resourceInputs["clientAuthenticationFlow"] = state ? state.clientAuthenticationFlow : undefined;
-            resourceInputs["clientSessionIdleTimeout"] = state ? state.clientSessionIdleTimeout : undefined;
-            resourceInputs["clientSessionMaxLifespan"] = state ? state.clientSessionMaxLifespan : undefined;
-            resourceInputs["defaultDefaultClientScopes"] = state ? state.defaultDefaultClientScopes : undefined;
-            resourceInputs["defaultOptionalClientScopes"] = state ? state.defaultOptionalClientScopes : undefined;
-            resourceInputs["defaultSignatureAlgorithm"] = state ? state.defaultSignatureAlgorithm : undefined;
-            resourceInputs["directGrantFlow"] = state ? state.directGrantFlow : undefined;
-            resourceInputs["displayName"] = state ? state.displayName : undefined;
-            resourceInputs["displayNameHtml"] = state ? state.displayNameHtml : undefined;
-            resourceInputs["dockerAuthenticationFlow"] = state ? state.dockerAuthenticationFlow : undefined;
-            resourceInputs["duplicateEmailsAllowed"] = state ? state.duplicateEmailsAllowed : undefined;
-            resourceInputs["editUsernameAllowed"] = state ? state.editUsernameAllowed : undefined;
-            resourceInputs["emailTheme"] = state ? state.emailTheme : undefined;
-            resourceInputs["enabled"] = state ? state.enabled : undefined;
-            resourceInputs["firstBrokerLoginFlow"] = state ? state.firstBrokerLoginFlow : undefined;
-            resourceInputs["internalId"] = state ? state.internalId : undefined;
-            resourceInputs["internationalization"] = state ? state.internationalization : undefined;
-            resourceInputs["loginTheme"] = state ? state.loginTheme : undefined;
-            resourceInputs["loginWithEmailAllowed"] = state ? state.loginWithEmailAllowed : undefined;
-            resourceInputs["oauth2DeviceCodeLifespan"] = state ? state.oauth2DeviceCodeLifespan : undefined;
-            resourceInputs["oauth2DevicePollingInterval"] = state ? state.oauth2DevicePollingInterval : undefined;
-            resourceInputs["offlineSessionIdleTimeout"] = state ? state.offlineSessionIdleTimeout : undefined;
-            resourceInputs["offlineSessionMaxLifespan"] = state ? state.offlineSessionMaxLifespan : undefined;
-            resourceInputs["offlineSessionMaxLifespanEnabled"] = state ? state.offlineSessionMaxLifespanEnabled : undefined;
-            resourceInputs["organizationsEnabled"] = state ? state.organizationsEnabled : undefined;
-            resourceInputs["otpPolicy"] = state ? state.otpPolicy : undefined;
-            resourceInputs["passwordPolicy"] = state ? state.passwordPolicy : undefined;
-            resourceInputs["realm"] = state ? state.realm : undefined;
-            resourceInputs["refreshTokenMaxReuse"] = state ? state.refreshTokenMaxReuse : undefined;
-            resourceInputs["registrationAllowed"] = state ? state.registrationAllowed : undefined;
-            resourceInputs["registrationEmailAsUsername"] = state ? state.registrationEmailAsUsername : undefined;
-            resourceInputs["registrationFlow"] = state ? state.registrationFlow : undefined;
-            resourceInputs["rememberMe"] = state ? state.rememberMe : undefined;
-            resourceInputs["resetCredentialsFlow"] = state ? state.resetCredentialsFlow : undefined;
-            resourceInputs["resetPasswordAllowed"] = state ? state.resetPasswordAllowed : undefined;
-            resourceInputs["revokeRefreshToken"] = state ? state.revokeRefreshToken : undefined;
-            resourceInputs["securityDefenses"] = state ? state.securityDefenses : undefined;
-            resourceInputs["smtpServer"] = state ? state.smtpServer : undefined;
-            resourceInputs["sslRequired"] = state ? state.sslRequired : undefined;
-            resourceInputs["ssoSessionIdleTimeout"] = state ? state.ssoSessionIdleTimeout : undefined;
-            resourceInputs["ssoSessionIdleTimeoutRememberMe"] = state ? state.ssoSessionIdleTimeoutRememberMe : undefined;
-            resourceInputs["ssoSessionMaxLifespan"] = state ? state.ssoSessionMaxLifespan : undefined;
-            resourceInputs["ssoSessionMaxLifespanRememberMe"] = state ? state.ssoSessionMaxLifespanRememberMe : undefined;
-            resourceInputs["userManagedAccess"] = state ? state.userManagedAccess : undefined;
-            resourceInputs["verifyEmail"] = state ? state.verifyEmail : undefined;
-            resourceInputs["webAuthnPasswordlessPolicy"] = state ? state.webAuthnPasswordlessPolicy : undefined;
-            resourceInputs["webAuthnPolicy"] = state ? state.webAuthnPolicy : undefined;
+            resourceInputs["accessCodeLifespan"] = state?.accessCodeLifespan;
+            resourceInputs["accessCodeLifespanLogin"] = state?.accessCodeLifespanLogin;
+            resourceInputs["accessCodeLifespanUserAction"] = state?.accessCodeLifespanUserAction;
+            resourceInputs["accessTokenLifespan"] = state?.accessTokenLifespan;
+            resourceInputs["accessTokenLifespanForImplicitFlow"] = state?.accessTokenLifespanForImplicitFlow;
+            resourceInputs["accountTheme"] = state?.accountTheme;
+            resourceInputs["actionTokenGeneratedByAdminLifespan"] = state?.actionTokenGeneratedByAdminLifespan;
+            resourceInputs["actionTokenGeneratedByUserLifespan"] = state?.actionTokenGeneratedByUserLifespan;
+            resourceInputs["adminTheme"] = state?.adminTheme;
+            resourceInputs["attributes"] = state?.attributes;
+            resourceInputs["browserFlow"] = state?.browserFlow;
+            resourceInputs["clientAuthenticationFlow"] = state?.clientAuthenticationFlow;
+            resourceInputs["clientSessionIdleTimeout"] = state?.clientSessionIdleTimeout;
+            resourceInputs["clientSessionMaxLifespan"] = state?.clientSessionMaxLifespan;
+            resourceInputs["defaultDefaultClientScopes"] = state?.defaultDefaultClientScopes;
+            resourceInputs["defaultOptionalClientScopes"] = state?.defaultOptionalClientScopes;
+            resourceInputs["defaultSignatureAlgorithm"] = state?.defaultSignatureAlgorithm;
+            resourceInputs["directGrantFlow"] = state?.directGrantFlow;
+            resourceInputs["displayName"] = state?.displayName;
+            resourceInputs["displayNameHtml"] = state?.displayNameHtml;
+            resourceInputs["dockerAuthenticationFlow"] = state?.dockerAuthenticationFlow;
+            resourceInputs["duplicateEmailsAllowed"] = state?.duplicateEmailsAllowed;
+            resourceInputs["editUsernameAllowed"] = state?.editUsernameAllowed;
+            resourceInputs["emailTheme"] = state?.emailTheme;
+            resourceInputs["enabled"] = state?.enabled;
+            resourceInputs["firstBrokerLoginFlow"] = state?.firstBrokerLoginFlow;
+            resourceInputs["internalId"] = state?.internalId;
+            resourceInputs["internationalization"] = state?.internationalization;
+            resourceInputs["loginTheme"] = state?.loginTheme;
+            resourceInputs["loginWithEmailAllowed"] = state?.loginWithEmailAllowed;
+            resourceInputs["oauth2DeviceCodeLifespan"] = state?.oauth2DeviceCodeLifespan;
+            resourceInputs["oauth2DevicePollingInterval"] = state?.oauth2DevicePollingInterval;
+            resourceInputs["offlineSessionIdleTimeout"] = state?.offlineSessionIdleTimeout;
+            resourceInputs["offlineSessionMaxLifespan"] = state?.offlineSessionMaxLifespan;
+            resourceInputs["offlineSessionMaxLifespanEnabled"] = state?.offlineSessionMaxLifespanEnabled;
+            resourceInputs["organizationsEnabled"] = state?.organizationsEnabled;
+            resourceInputs["otpPolicy"] = state?.otpPolicy;
+            resourceInputs["passwordPolicy"] = state?.passwordPolicy;
+            resourceInputs["realm"] = state?.realm;
+            resourceInputs["refreshTokenMaxReuse"] = state?.refreshTokenMaxReuse;
+            resourceInputs["registrationAllowed"] = state?.registrationAllowed;
+            resourceInputs["registrationEmailAsUsername"] = state?.registrationEmailAsUsername;
+            resourceInputs["registrationFlow"] = state?.registrationFlow;
+            resourceInputs["rememberMe"] = state?.rememberMe;
+            resourceInputs["resetCredentialsFlow"] = state?.resetCredentialsFlow;
+            resourceInputs["resetPasswordAllowed"] = state?.resetPasswordAllowed;
+            resourceInputs["revokeRefreshToken"] = state?.revokeRefreshToken;
+            resourceInputs["securityDefenses"] = state?.securityDefenses;
+            resourceInputs["smtpServer"] = state?.smtpServer;
+            resourceInputs["sslRequired"] = state?.sslRequired;
+            resourceInputs["ssoSessionIdleTimeout"] = state?.ssoSessionIdleTimeout;
+            resourceInputs["ssoSessionIdleTimeoutRememberMe"] = state?.ssoSessionIdleTimeoutRememberMe;
+            resourceInputs["ssoSessionMaxLifespan"] = state?.ssoSessionMaxLifespan;
+            resourceInputs["ssoSessionMaxLifespanRememberMe"] = state?.ssoSessionMaxLifespanRememberMe;
+            resourceInputs["userManagedAccess"] = state?.userManagedAccess;
+            resourceInputs["verifyEmail"] = state?.verifyEmail;
+            resourceInputs["webAuthnPasswordlessPolicy"] = state?.webAuthnPasswordlessPolicy;
+            resourceInputs["webAuthnPolicy"] = state?.webAuthnPolicy;
         } else {
             const args = argsOrState as RealmArgs | undefined;
-            resourceInputs["accessCodeLifespan"] = args ? args.accessCodeLifespan : undefined;
-            resourceInputs["accessCodeLifespanLogin"] = args ? args.accessCodeLifespanLogin : undefined;
-            resourceInputs["accessCodeLifespanUserAction"] = args ? args.accessCodeLifespanUserAction : undefined;
-            resourceInputs["accessTokenLifespan"] = args ? args.accessTokenLifespan : undefined;
-            resourceInputs["accessTokenLifespanForImplicitFlow"] = args ? args.accessTokenLifespanForImplicitFlow : undefined;
-            resourceInputs["accountTheme"] = args ? args.accountTheme : undefined;
-            resourceInputs["actionTokenGeneratedByAdminLifespan"] = args ? args.actionTokenGeneratedByAdminLifespan : undefined;
-            resourceInputs["actionTokenGeneratedByUserLifespan"] = args ? args.actionTokenGeneratedByUserLifespan : undefined;
-            resourceInputs["adminTheme"] = args ? args.adminTheme : undefined;
-            resourceInputs["attributes"] = args ? args.attributes : undefined;
-            resourceInputs["browserFlow"] = args ? args.browserFlow : undefined;
-            resourceInputs["clientAuthenticationFlow"] = args ? args.clientAuthenticationFlow : undefined;
-            resourceInputs["clientSessionIdleTimeout"] = args ? args.clientSessionIdleTimeout : undefined;
-            resourceInputs["clientSessionMaxLifespan"] = args ? args.clientSessionMaxLifespan : undefined;
-            resourceInputs["defaultDefaultClientScopes"] = args ? args.defaultDefaultClientScopes : undefined;
-            resourceInputs["defaultOptionalClientScopes"] = args ? args.defaultOptionalClientScopes : undefined;
-            resourceInputs["defaultSignatureAlgorithm"] = args ? args.defaultSignatureAlgorithm : undefined;
-            resourceInputs["directGrantFlow"] = args ? args.directGrantFlow : undefined;
-            resourceInputs["displayName"] = args ? args.displayName : undefined;
-            resourceInputs["displayNameHtml"] = args ? args.displayNameHtml : undefined;
-            resourceInputs["dockerAuthenticationFlow"] = args ? args.dockerAuthenticationFlow : undefined;
-            resourceInputs["duplicateEmailsAllowed"] = args ? args.duplicateEmailsAllowed : undefined;
-            resourceInputs["editUsernameAllowed"] = args ? args.editUsernameAllowed : undefined;
-            resourceInputs["emailTheme"] = args ? args.emailTheme : undefined;
-            resourceInputs["enabled"] = args ? args.enabled : undefined;
-            resourceInputs["firstBrokerLoginFlow"] = args ? args.firstBrokerLoginFlow : undefined;
-            resourceInputs["internalId"] = args ? args.internalId : undefined;
-            resourceInputs["internationalization"] = args ? args.internationalization : undefined;
-            resourceInputs["loginTheme"] = args ? args.loginTheme : undefined;
-            resourceInputs["loginWithEmailAllowed"] = args ? args.loginWithEmailAllowed : undefined;
-            resourceInputs["oauth2DeviceCodeLifespan"] = args ? args.oauth2DeviceCodeLifespan : undefined;
-            resourceInputs["oauth2DevicePollingInterval"] = args ? args.oauth2DevicePollingInterval : undefined;
-            resourceInputs["offlineSessionIdleTimeout"] = args ? args.offlineSessionIdleTimeout : undefined;
-            resourceInputs["offlineSessionMaxLifespan"] = args ? args.offlineSessionMaxLifespan : undefined;
-            resourceInputs["offlineSessionMaxLifespanEnabled"] = args ? args.offlineSessionMaxLifespanEnabled : undefined;
-            resourceInputs["organizationsEnabled"] = args ? args.organizationsEnabled : undefined;
-            resourceInputs["otpPolicy"] = args ? args.otpPolicy : undefined;
-            resourceInputs["passwordPolicy"] = args ? args.passwordPolicy : undefined;
-            resourceInputs["realm"] = args ? args.realm : undefined;
-            resourceInputs["refreshTokenMaxReuse"] = args ? args.refreshTokenMaxReuse : undefined;
-            resourceInputs["registrationAllowed"] = args ? args.registrationAllowed : undefined;
-            resourceInputs["registrationEmailAsUsername"] = args ? args.registrationEmailAsUsername : undefined;
-            resourceInputs["registrationFlow"] = args ? args.registrationFlow : undefined;
-            resourceInputs["rememberMe"] = args ? args.rememberMe : undefined;
-            resourceInputs["resetCredentialsFlow"] = args ? args.resetCredentialsFlow : undefined;
-            resourceInputs["resetPasswordAllowed"] = args ? args.resetPasswordAllowed : undefined;
-            resourceInputs["revokeRefreshToken"] = args ? args.revokeRefreshToken : undefined;
-            resourceInputs["securityDefenses"] = args ? args.securityDefenses : undefined;
-            resourceInputs["smtpServer"] = args ? args.smtpServer : undefined;
-            resourceInputs["sslRequired"] = args ? args.sslRequired : undefined;
-            resourceInputs["ssoSessionIdleTimeout"] = args ? args.ssoSessionIdleTimeout : undefined;
-            resourceInputs["ssoSessionIdleTimeoutRememberMe"] = args ? args.ssoSessionIdleTimeoutRememberMe : undefined;
-            resourceInputs["ssoSessionMaxLifespan"] = args ? args.ssoSessionMaxLifespan : undefined;
-            resourceInputs["ssoSessionMaxLifespanRememberMe"] = args ? args.ssoSessionMaxLifespanRememberMe : undefined;
-            resourceInputs["userManagedAccess"] = args ? args.userManagedAccess : undefined;
-            resourceInputs["verifyEmail"] = args ? args.verifyEmail : undefined;
-            resourceInputs["webAuthnPasswordlessPolicy"] = args ? args.webAuthnPasswordlessPolicy : undefined;
-            resourceInputs["webAuthnPolicy"] = args ? args.webAuthnPolicy : undefined;
+            resourceInputs["accessCodeLifespan"] = args?.accessCodeLifespan;
+            resourceInputs["accessCodeLifespanLogin"] = args?.accessCodeLifespanLogin;
+            resourceInputs["accessCodeLifespanUserAction"] = args?.accessCodeLifespanUserAction;
+            resourceInputs["accessTokenLifespan"] = args?.accessTokenLifespan;
+            resourceInputs["accessTokenLifespanForImplicitFlow"] = args?.accessTokenLifespanForImplicitFlow;
+            resourceInputs["accountTheme"] = args?.accountTheme;
+            resourceInputs["actionTokenGeneratedByAdminLifespan"] = args?.actionTokenGeneratedByAdminLifespan;
+            resourceInputs["actionTokenGeneratedByUserLifespan"] = args?.actionTokenGeneratedByUserLifespan;
+            resourceInputs["adminTheme"] = args?.adminTheme;
+            resourceInputs["attributes"] = args?.attributes;
+            resourceInputs["browserFlow"] = args?.browserFlow;
+            resourceInputs["clientAuthenticationFlow"] = args?.clientAuthenticationFlow;
+            resourceInputs["clientSessionIdleTimeout"] = args?.clientSessionIdleTimeout;
+            resourceInputs["clientSessionMaxLifespan"] = args?.clientSessionMaxLifespan;
+            resourceInputs["defaultDefaultClientScopes"] = args?.defaultDefaultClientScopes;
+            resourceInputs["defaultOptionalClientScopes"] = args?.defaultOptionalClientScopes;
+            resourceInputs["defaultSignatureAlgorithm"] = args?.defaultSignatureAlgorithm;
+            resourceInputs["directGrantFlow"] = args?.directGrantFlow;
+            resourceInputs["displayName"] = args?.displayName;
+            resourceInputs["displayNameHtml"] = args?.displayNameHtml;
+            resourceInputs["dockerAuthenticationFlow"] = args?.dockerAuthenticationFlow;
+            resourceInputs["duplicateEmailsAllowed"] = args?.duplicateEmailsAllowed;
+            resourceInputs["editUsernameAllowed"] = args?.editUsernameAllowed;
+            resourceInputs["emailTheme"] = args?.emailTheme;
+            resourceInputs["enabled"] = args?.enabled;
+            resourceInputs["firstBrokerLoginFlow"] = args?.firstBrokerLoginFlow;
+            resourceInputs["internalId"] = args?.internalId;
+            resourceInputs["internationalization"] = args?.internationalization;
+            resourceInputs["loginTheme"] = args?.loginTheme;
+            resourceInputs["loginWithEmailAllowed"] = args?.loginWithEmailAllowed;
+            resourceInputs["oauth2DeviceCodeLifespan"] = args?.oauth2DeviceCodeLifespan;
+            resourceInputs["oauth2DevicePollingInterval"] = args?.oauth2DevicePollingInterval;
+            resourceInputs["offlineSessionIdleTimeout"] = args?.offlineSessionIdleTimeout;
+            resourceInputs["offlineSessionMaxLifespan"] = args?.offlineSessionMaxLifespan;
+            resourceInputs["offlineSessionMaxLifespanEnabled"] = args?.offlineSessionMaxLifespanEnabled;
+            resourceInputs["organizationsEnabled"] = args?.organizationsEnabled;
+            resourceInputs["otpPolicy"] = args?.otpPolicy;
+            resourceInputs["passwordPolicy"] = args?.passwordPolicy;
+            resourceInputs["realm"] = args?.realm;
+            resourceInputs["refreshTokenMaxReuse"] = args?.refreshTokenMaxReuse;
+            resourceInputs["registrationAllowed"] = args?.registrationAllowed;
+            resourceInputs["registrationEmailAsUsername"] = args?.registrationEmailAsUsername;
+            resourceInputs["registrationFlow"] = args?.registrationFlow;
+            resourceInputs["rememberMe"] = args?.rememberMe;
+            resourceInputs["resetCredentialsFlow"] = args?.resetCredentialsFlow;
+            resourceInputs["resetPasswordAllowed"] = args?.resetPasswordAllowed;
+            resourceInputs["revokeRefreshToken"] = args?.revokeRefreshToken;
+            resourceInputs["securityDefenses"] = args?.securityDefenses;
+            resourceInputs["smtpServer"] = args?.smtpServer;
+            resourceInputs["sslRequired"] = args?.sslRequired;
+            resourceInputs["ssoSessionIdleTimeout"] = args?.ssoSessionIdleTimeout;
+            resourceInputs["ssoSessionIdleTimeoutRememberMe"] = args?.ssoSessionIdleTimeoutRememberMe;
+            resourceInputs["ssoSessionMaxLifespan"] = args?.ssoSessionMaxLifespan;
+            resourceInputs["ssoSessionMaxLifespanRememberMe"] = args?.ssoSessionMaxLifespanRememberMe;
+            resourceInputs["userManagedAccess"] = args?.userManagedAccess;
+            resourceInputs["verifyEmail"] = args?.verifyEmail;
+            resourceInputs["webAuthnPasswordlessPolicy"] = args?.webAuthnPasswordlessPolicy;
+            resourceInputs["webAuthnPolicy"] = args?.webAuthnPolicy;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Realm.__pulumiType, name, resourceInputs, opts);
@@ -446,9 +444,7 @@ export interface RealmState {
     organizationsEnabled?: pulumi.Input<boolean>;
     otpPolicy?: pulumi.Input<inputs.RealmOtpPolicy>;
     /**
-     * String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
-     * can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365)
-     * and notUsername(undefined)"
+     * String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername(undefined)"
      */
     passwordPolicy?: pulumi.Input<string>;
     /**
@@ -563,9 +559,7 @@ export interface RealmArgs {
     organizationsEnabled?: pulumi.Input<boolean>;
     otpPolicy?: pulumi.Input<inputs.RealmOtpPolicy>;
     /**
-     * String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
-     * can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365)
-     * and notUsername(undefined)"
+     * String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername(undefined)"
      */
     passwordPolicy?: pulumi.Input<string>;
     /**

@@ -88,27 +88,27 @@ export class FullNameMapper extends pulumi.CustomResource {
     /**
      * The name of the LDAP attribute containing the user's full name.
      */
-    public readonly ldapFullNameAttribute!: pulumi.Output<string>;
+    declare public readonly ldapFullNameAttribute: pulumi.Output<string>;
     /**
      * The ID of the LDAP user federation provider to attach this mapper to.
      */
-    public readonly ldapUserFederationId!: pulumi.Output<string>;
+    declare public readonly ldapUserFederationId: pulumi.Output<string>;
     /**
      * Display name of this mapper when displayed in the console.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * When `true`, updates to a user within Keycloak will not be written back to LDAP. Defaults to `false`.
      */
-    public readonly readOnly!: pulumi.Output<boolean | undefined>;
+    declare public readonly readOnly: pulumi.Output<boolean | undefined>;
     /**
      * The realm that this LDAP mapper will exist in.
      */
-    public readonly realmId!: pulumi.Output<string>;
+    declare public readonly realmId: pulumi.Output<string>;
     /**
      * When `true`, this mapper will only be used to write updates to LDAP. Defaults to `false`.
      */
-    public readonly writeOnly!: pulumi.Output<boolean | undefined>;
+    declare public readonly writeOnly: pulumi.Output<boolean | undefined>;
 
     /**
      * Create a FullNameMapper resource with the given unique name, arguments, and options.
@@ -123,29 +123,29 @@ export class FullNameMapper extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FullNameMapperState | undefined;
-            resourceInputs["ldapFullNameAttribute"] = state ? state.ldapFullNameAttribute : undefined;
-            resourceInputs["ldapUserFederationId"] = state ? state.ldapUserFederationId : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["readOnly"] = state ? state.readOnly : undefined;
-            resourceInputs["realmId"] = state ? state.realmId : undefined;
-            resourceInputs["writeOnly"] = state ? state.writeOnly : undefined;
+            resourceInputs["ldapFullNameAttribute"] = state?.ldapFullNameAttribute;
+            resourceInputs["ldapUserFederationId"] = state?.ldapUserFederationId;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["readOnly"] = state?.readOnly;
+            resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["writeOnly"] = state?.writeOnly;
         } else {
             const args = argsOrState as FullNameMapperArgs | undefined;
-            if ((!args || args.ldapFullNameAttribute === undefined) && !opts.urn) {
+            if (args?.ldapFullNameAttribute === undefined && !opts.urn) {
                 throw new Error("Missing required property 'ldapFullNameAttribute'");
             }
-            if ((!args || args.ldapUserFederationId === undefined) && !opts.urn) {
+            if (args?.ldapUserFederationId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'ldapUserFederationId'");
             }
-            if ((!args || args.realmId === undefined) && !opts.urn) {
+            if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            resourceInputs["ldapFullNameAttribute"] = args ? args.ldapFullNameAttribute : undefined;
-            resourceInputs["ldapUserFederationId"] = args ? args.ldapUserFederationId : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["readOnly"] = args ? args.readOnly : undefined;
-            resourceInputs["realmId"] = args ? args.realmId : undefined;
-            resourceInputs["writeOnly"] = args ? args.writeOnly : undefined;
+            resourceInputs["ldapFullNameAttribute"] = args?.ldapFullNameAttribute;
+            resourceInputs["ldapUserFederationId"] = args?.ldapUserFederationId;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["readOnly"] = args?.readOnly;
+            resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["writeOnly"] = args?.writeOnly;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(FullNameMapper.__pulumiType, name, resourceInputs, opts);
