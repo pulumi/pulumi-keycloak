@@ -74,7 +74,7 @@
             },
             "clientTimeout": {
                 "type": "integer",
-                "description": "Timeout (in seconds) of the Keycloak client\n",
+                "description": "Timeout (in seconds) of the Keycloak client",
                 "default": 5,
                 "defaultInfo": {
                     "environment": [
@@ -84,15 +84,15 @@
             },
             "initialLogin": {
                 "type": "boolean",
-                "description": "Whether or not to login to Keycloak instance on provider initialization\n"
+                "description": "Whether or not to login to Keycloak instance on provider initialization"
             },
             "jwtSigningAlg": {
                 "type": "string",
-                "description": "The algorithm used to sign the JWT when client-jwt is used. Defaults to RS256.\n"
+                "description": "The algorithm used to sign the JWT when client-jwt is used. Defaults to RS256."
             },
             "jwtSigningKey": {
                 "type": "string",
-                "description": "The PEM-formatted private key used to sign the JWT when client-jwt is used.\n",
+                "description": "The PEM-formatted private key used to sign the JWT when client-jwt is used.",
                 "secret": true
             },
             "password": {
@@ -103,19 +103,19 @@
             },
             "redHatSso": {
                 "type": "boolean",
-                "description": "When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version\nreturned from the /serverinfo API endpoint.\n"
+                "description": "When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version returned from the /serverinfo API endpoint."
             },
             "rootCaCertificate": {
                 "type": "string",
-                "description": "Allows x509 calls using an unknown CA certificate (for development purposes)\n"
+                "description": "Allows x509 calls using an unknown CA certificate (for development purposes)"
             },
             "tlsInsecureSkipVerify": {
                 "type": "boolean",
-                "description": "Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and\nshould be avoided.\n"
+                "description": "Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and should be avoided."
             },
             "url": {
                 "type": "string",
-                "description": "The base URL of the Keycloak instance, before `/auth`\n"
+                "description": "The base URL of the Keycloak instance, before `/auth`"
             },
             "username": {
                 "type": "string"
@@ -1730,19 +1730,19 @@
             },
             "clientTimeout": {
                 "type": "integer",
-                "description": "Timeout (in seconds) of the Keycloak client\n"
+                "description": "Timeout (in seconds) of the Keycloak client"
             },
             "initialLogin": {
                 "type": "boolean",
-                "description": "Whether or not to login to Keycloak instance on provider initialization\n"
+                "description": "Whether or not to login to Keycloak instance on provider initialization"
             },
             "jwtSigningAlg": {
                 "type": "string",
-                "description": "The algorithm used to sign the JWT when client-jwt is used. Defaults to RS256.\n"
+                "description": "The algorithm used to sign the JWT when client-jwt is used. Defaults to RS256."
             },
             "jwtSigningKey": {
                 "type": "string",
-                "description": "The PEM-formatted private key used to sign the JWT when client-jwt is used.\n",
+                "description": "The PEM-formatted private key used to sign the JWT when client-jwt is used.",
                 "secret": true
             },
             "password": {
@@ -1753,19 +1753,19 @@
             },
             "redHatSso": {
                 "type": "boolean",
-                "description": "When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version\nreturned from the /serverinfo API endpoint.\n"
+                "description": "When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version returned from the /serverinfo API endpoint."
             },
             "rootCaCertificate": {
                 "type": "string",
-                "description": "Allows x509 calls using an unknown CA certificate (for development purposes)\n"
+                "description": "Allows x509 calls using an unknown CA certificate (for development purposes)"
             },
             "tlsInsecureSkipVerify": {
                 "type": "boolean",
-                "description": "Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and\nshould be avoided.\n"
+                "description": "Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and should be avoided."
             },
             "url": {
                 "type": "string",
-                "description": "The base URL of the Keycloak instance, before `/auth`\n"
+                "description": "The base URL of the Keycloak instance, before `/auth`"
             },
             "username": {
                 "type": "string"
@@ -1789,7 +1789,7 @@
             },
             "clientTimeout": {
                 "type": "integer",
-                "description": "Timeout (in seconds) of the Keycloak client\n",
+                "description": "Timeout (in seconds) of the Keycloak client",
                 "default": 5,
                 "defaultInfo": {
                     "environment": [
@@ -1799,15 +1799,15 @@
             },
             "initialLogin": {
                 "type": "boolean",
-                "description": "Whether or not to login to Keycloak instance on provider initialization\n"
+                "description": "Whether or not to login to Keycloak instance on provider initialization"
             },
             "jwtSigningAlg": {
                 "type": "string",
-                "description": "The algorithm used to sign the JWT when client-jwt is used. Defaults to RS256.\n"
+                "description": "The algorithm used to sign the JWT when client-jwt is used. Defaults to RS256."
             },
             "jwtSigningKey": {
                 "type": "string",
-                "description": "The PEM-formatted private key used to sign the JWT when client-jwt is used.\n",
+                "description": "The PEM-formatted private key used to sign the JWT when client-jwt is used.",
                 "secret": true
             },
             "password": {
@@ -1818,19 +1818,19 @@
             },
             "redHatSso": {
                 "type": "boolean",
-                "description": "When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version\nreturned from the /serverinfo API endpoint.\n"
+                "description": "When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version returned from the /serverinfo API endpoint."
             },
             "rootCaCertificate": {
                 "type": "string",
-                "description": "Allows x509 calls using an unknown CA certificate (for development purposes)\n"
+                "description": "Allows x509 calls using an unknown CA certificate (for development purposes)"
             },
             "tlsInsecureSkipVerify": {
                 "type": "boolean",
-                "description": "Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and\nshould be avoided.\n"
+                "description": "Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and should be avoided."
             },
             "url": {
                 "type": "string",
-                "description": "The base URL of the Keycloak instance, before `/auth`\n"
+                "description": "The base URL of the Keycloak instance, before `/auth`"
             },
             "username": {
                 "type": "string"
@@ -3022,7 +3022,7 @@
                 },
                 "clientScopeId": {
                     "type": "string",
-                    "description": "The mapper's associated client scope. Cannot be used at the same time as client_id.\n"
+                    "description": "The mapper's associated client scope. Cannot be used at the same time as client_id."
                 },
                 "config": {
                     "type": "object",
@@ -3063,7 +3063,7 @@
                 },
                 "clientScopeId": {
                     "type": "string",
-                    "description": "The mapper's associated client scope. Cannot be used at the same time as client_id.\n",
+                    "description": "The mapper's associated client scope. Cannot be used at the same time as client_id.",
                     "willReplaceOnChanges": true
                 },
                 "config": {
@@ -3110,7 +3110,7 @@
                     },
                     "clientScopeId": {
                         "type": "string",
-                        "description": "The mapper's associated client scope. Cannot be used at the same time as client_id.\n",
+                        "description": "The mapper's associated client scope. Cannot be used at the same time as client_id.",
                         "willReplaceOnChanges": true
                     },
                     "config": {
@@ -3594,7 +3594,7 @@
             "properties": {
                 "authorizationResourceServerId": {
                     "type": "string",
-                    "description": "Resource server id representing the realm management client on which this permission is managed\n"
+                    "description": "Resource server id representing the realm management client on which this permission is managed"
                 },
                 "enabled": {
                     "type": "boolean"
@@ -3661,7 +3661,7 @@
                 "properties": {
                     "authorizationResourceServerId": {
                         "type": "string",
-                        "description": "Resource server id representing the realm management client on which this permission is managed\n"
+                        "description": "Resource server id representing the realm management client on which this permission is managed"
                     },
                     "enabled": {
                         "type": "boolean"
@@ -4328,7 +4328,7 @@
                 },
                 "enabled": {
                     "type": "boolean",
-                    "description": "Enable/disable this organization.\n"
+                    "description": "Enable/disable this organization."
                 },
                 "name": {
                     "type": "string",
@@ -4375,7 +4375,7 @@
                 },
                 "enabled": {
                     "type": "boolean",
-                    "description": "Enable/disable this organization.\n"
+                    "description": "Enable/disable this organization."
                 },
                 "name": {
                     "type": "string",
@@ -4423,7 +4423,7 @@
                     },
                     "enabled": {
                         "type": "boolean",
-                        "description": "Enable/disable this organization.\n"
+                        "description": "Enable/disable this organization."
                     },
                     "name": {
                         "type": "string",
@@ -4482,11 +4482,11 @@
                 },
                 "browserFlow": {
                     "type": "string",
-                    "description": "Which flow should be used for BrowserFlow\n"
+                    "description": "Which flow should be used for BrowserFlow"
                 },
                 "clientAuthenticationFlow": {
                     "type": "string",
-                    "description": "Which flow should be used for ClientAuthenticationFlow\n"
+                    "description": "Which flow should be used for ClientAuthenticationFlow"
                 },
                 "clientSessionIdleTimeout": {
                     "type": "string"
@@ -4511,7 +4511,7 @@
                 },
                 "directGrantFlow": {
                     "type": "string",
-                    "description": "Which flow should be used for DirectGrantFlow\n"
+                    "description": "Which flow should be used for DirectGrantFlow"
                 },
                 "displayName": {
                     "type": "string",
@@ -4523,7 +4523,7 @@
                 },
                 "dockerAuthenticationFlow": {
                     "type": "string",
-                    "description": "Which flow should be used for DockerAuthenticationFlow\n"
+                    "description": "Which flow should be used for DockerAuthenticationFlow"
                 },
                 "duplicateEmailsAllowed": {
                     "type": "boolean"
@@ -4540,7 +4540,7 @@
                 },
                 "firstBrokerLoginFlow": {
                     "type": "string",
-                    "description": "Which flow should be used for FirstBrokerLoginFlow\n"
+                    "description": "Which flow should be used for FirstBrokerLoginFlow"
                 },
                 "internalId": {
                     "type": "string",
@@ -4579,7 +4579,7 @@
                 },
                 "passwordPolicy": {
                     "type": "string",
-                    "description": "String that represents the passwordPolicies that are in place. Each policy is separated with \" and \". Supported policies\ncan be found in the server-info providers page. example: \"upperCase(1) and length(8) and forceExpiredPasswordChange(365)\nand notUsername(undefined)\"\n"
+                    "description": "String that represents the passwordPolicies that are in place. Each policy is separated with \" and \". Supported policies can be found in the server-info providers page. example: \"upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername(undefined)\""
                 },
                 "realm": {
                     "type": "string",
@@ -4601,14 +4601,14 @@
                 },
                 "registrationFlow": {
                     "type": "string",
-                    "description": "Which flow should be used for RegistrationFlow\n"
+                    "description": "Which flow should be used for RegistrationFlow"
                 },
                 "rememberMe": {
                     "type": "boolean"
                 },
                 "resetCredentialsFlow": {
                     "type": "string",
-                    "description": "Which flow should be used for ResetCredentialsFlow\n"
+                    "description": "Which flow should be used for ResetCredentialsFlow"
                 },
                 "resetPasswordAllowed": {
                     "type": "boolean"
@@ -4624,7 +4624,7 @@
                 },
                 "sslRequired": {
                     "type": "string",
-                    "description": "SSL Required: Values can be 'none', 'external' or 'all'.\n"
+                    "description": "SSL Required: Values can be 'none', 'external' or 'all'."
                 },
                 "ssoSessionIdleTimeout": {
                     "type": "string"
@@ -4728,11 +4728,11 @@
                 },
                 "browserFlow": {
                     "type": "string",
-                    "description": "Which flow should be used for BrowserFlow\n"
+                    "description": "Which flow should be used for BrowserFlow"
                 },
                 "clientAuthenticationFlow": {
                     "type": "string",
-                    "description": "Which flow should be used for ClientAuthenticationFlow\n"
+                    "description": "Which flow should be used for ClientAuthenticationFlow"
                 },
                 "clientSessionIdleTimeout": {
                     "type": "string"
@@ -4757,7 +4757,7 @@
                 },
                 "directGrantFlow": {
                     "type": "string",
-                    "description": "Which flow should be used for DirectGrantFlow\n"
+                    "description": "Which flow should be used for DirectGrantFlow"
                 },
                 "displayName": {
                     "type": "string",
@@ -4769,7 +4769,7 @@
                 },
                 "dockerAuthenticationFlow": {
                     "type": "string",
-                    "description": "Which flow should be used for DockerAuthenticationFlow\n"
+                    "description": "Which flow should be used for DockerAuthenticationFlow"
                 },
                 "duplicateEmailsAllowed": {
                     "type": "boolean"
@@ -4786,7 +4786,7 @@
                 },
                 "firstBrokerLoginFlow": {
                     "type": "string",
-                    "description": "Which flow should be used for FirstBrokerLoginFlow\n"
+                    "description": "Which flow should be used for FirstBrokerLoginFlow"
                 },
                 "internalId": {
                     "type": "string",
@@ -4826,7 +4826,7 @@
                 },
                 "passwordPolicy": {
                     "type": "string",
-                    "description": "String that represents the passwordPolicies that are in place. Each policy is separated with \" and \". Supported policies\ncan be found in the server-info providers page. example: \"upperCase(1) and length(8) and forceExpiredPasswordChange(365)\nand notUsername(undefined)\"\n"
+                    "description": "String that represents the passwordPolicies that are in place. Each policy is separated with \" and \". Supported policies can be found in the server-info providers page. example: \"upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername(undefined)\""
                 },
                 "realm": {
                     "type": "string",
@@ -4849,14 +4849,14 @@
                 },
                 "registrationFlow": {
                     "type": "string",
-                    "description": "Which flow should be used for RegistrationFlow\n"
+                    "description": "Which flow should be used for RegistrationFlow"
                 },
                 "rememberMe": {
                     "type": "boolean"
                 },
                 "resetCredentialsFlow": {
                     "type": "string",
-                    "description": "Which flow should be used for ResetCredentialsFlow\n"
+                    "description": "Which flow should be used for ResetCredentialsFlow"
                 },
                 "resetPasswordAllowed": {
                     "type": "boolean"
@@ -4872,7 +4872,7 @@
                 },
                 "sslRequired": {
                     "type": "string",
-                    "description": "SSL Required: Values can be 'none', 'external' or 'all'.\n"
+                    "description": "SSL Required: Values can be 'none', 'external' or 'all'."
                 },
                 "ssoSessionIdleTimeout": {
                     "type": "string"
@@ -4939,11 +4939,11 @@
                     },
                     "browserFlow": {
                         "type": "string",
-                        "description": "Which flow should be used for BrowserFlow\n"
+                        "description": "Which flow should be used for BrowserFlow"
                     },
                     "clientAuthenticationFlow": {
                         "type": "string",
-                        "description": "Which flow should be used for ClientAuthenticationFlow\n"
+                        "description": "Which flow should be used for ClientAuthenticationFlow"
                     },
                     "clientSessionIdleTimeout": {
                         "type": "string"
@@ -4968,7 +4968,7 @@
                     },
                     "directGrantFlow": {
                         "type": "string",
-                        "description": "Which flow should be used for DirectGrantFlow\n"
+                        "description": "Which flow should be used for DirectGrantFlow"
                     },
                     "displayName": {
                         "type": "string",
@@ -4980,7 +4980,7 @@
                     },
                     "dockerAuthenticationFlow": {
                         "type": "string",
-                        "description": "Which flow should be used for DockerAuthenticationFlow\n"
+                        "description": "Which flow should be used for DockerAuthenticationFlow"
                     },
                     "duplicateEmailsAllowed": {
                         "type": "boolean"
@@ -4997,7 +4997,7 @@
                     },
                     "firstBrokerLoginFlow": {
                         "type": "string",
-                        "description": "Which flow should be used for FirstBrokerLoginFlow\n"
+                        "description": "Which flow should be used for FirstBrokerLoginFlow"
                     },
                     "internalId": {
                         "type": "string",
@@ -5037,7 +5037,7 @@
                     },
                     "passwordPolicy": {
                         "type": "string",
-                        "description": "String that represents the passwordPolicies that are in place. Each policy is separated with \" and \". Supported policies\ncan be found in the server-info providers page. example: \"upperCase(1) and length(8) and forceExpiredPasswordChange(365)\nand notUsername(undefined)\"\n"
+                        "description": "String that represents the passwordPolicies that are in place. Each policy is separated with \" and \". Supported policies can be found in the server-info providers page. example: \"upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername(undefined)\""
                     },
                     "realm": {
                         "type": "string",
@@ -5060,14 +5060,14 @@
                     },
                     "registrationFlow": {
                         "type": "string",
-                        "description": "Which flow should be used for RegistrationFlow\n"
+                        "description": "Which flow should be used for RegistrationFlow"
                     },
                     "rememberMe": {
                         "type": "boolean"
                     },
                     "resetCredentialsFlow": {
                         "type": "string",
-                        "description": "Which flow should be used for ResetCredentialsFlow\n"
+                        "description": "Which flow should be used for ResetCredentialsFlow"
                     },
                     "resetPasswordAllowed": {
                         "type": "boolean"
@@ -5083,7 +5083,7 @@
                     },
                     "sslRequired": {
                         "type": "string",
-                        "description": "SSL Required: Values can be 'none', 'external' or 'all'.\n"
+                        "description": "SSL Required: Values can be 'none', 'external' or 'all'."
                     },
                     "ssoSessionIdleTimeout": {
                         "type": "string"
@@ -6148,18 +6148,18 @@
             "properties": {
                 "locale": {
                     "type": "string",
-                    "description": "The locale for the localization texts.\n"
+                    "description": "The locale for the localization texts."
                 },
                 "realmId": {
                     "type": "string",
-                    "description": "The realm in which the texts exists.\n"
+                    "description": "The realm in which the texts exists."
                 },
                 "texts": {
                     "type": "object",
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "The mapping of localization texts keys to values.\n"
+                    "description": "The mapping of localization texts keys to values."
                 }
             },
             "required": [
@@ -6169,12 +6169,12 @@
             "inputProperties": {
                 "locale": {
                     "type": "string",
-                    "description": "The locale for the localization texts.\n",
+                    "description": "The locale for the localization texts.",
                     "willReplaceOnChanges": true
                 },
                 "realmId": {
                     "type": "string",
-                    "description": "The realm in which the texts exists.\n",
+                    "description": "The realm in which the texts exists.",
                     "willReplaceOnChanges": true
                 },
                 "texts": {
@@ -6182,7 +6182,7 @@
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "The mapping of localization texts keys to values.\n"
+                    "description": "The mapping of localization texts keys to values."
                 }
             },
             "requiredInputs": [
@@ -6194,12 +6194,12 @@
                 "properties": {
                     "locale": {
                         "type": "string",
-                        "description": "The locale for the localization texts.\n",
+                        "description": "The locale for the localization texts.",
                         "willReplaceOnChanges": true
                     },
                     "realmId": {
                         "type": "string",
-                        "description": "The realm in which the texts exists.\n",
+                        "description": "The realm in which the texts exists.",
                         "willReplaceOnChanges": true
                     },
                     "texts": {
@@ -6207,7 +6207,7 @@
                         "additionalProperties": {
                             "type": "string"
                         },
-                        "description": "The mapping of localization texts keys to values.\n"
+                        "description": "The mapping of localization texts keys to values."
                     }
                 },
                 "type": "object"
@@ -7071,7 +7071,7 @@
             "properties": {
                 "authorizationResourceServerId": {
                     "type": "string",
-                    "description": "Resource server id representing the realm management client on which this permission is managed\n"
+                    "description": "Resource server id representing the realm management client on which this permission is managed"
                 },
                 "enabled": {
                     "type": "boolean"
@@ -7135,7 +7135,7 @@
                 "properties": {
                     "authorizationResourceServerId": {
                         "type": "string",
-                        "description": "Resource server id representing the realm management client on which this permission is managed\n"
+                        "description": "Resource server id representing the realm management client on which this permission is managed"
                     },
                     "enabled": {
                         "type": "boolean"
@@ -8874,7 +8874,7 @@
                 },
                 "authenticateByDefault": {
                     "type": "boolean",
-                    "description": "Enable/disable authenticate users by default.\n"
+                    "description": "Enable/disable authenticate users by default."
                 },
                 "clientId": {
                     "type": "string",
@@ -8939,7 +8939,7 @@
                 },
                 "organizationId": {
                     "type": "string",
-                    "description": "ID of organization with which this identity is linked.\n"
+                    "description": "ID of organization with which this identity is linked."
                 },
                 "postBrokerLoginFlowAlias": {
                     "type": "string",
@@ -8998,7 +8998,7 @@
                 },
                 "authenticateByDefault": {
                     "type": "boolean",
-                    "description": "Enable/disable authenticate users by default.\n"
+                    "description": "Enable/disable authenticate users by default."
                 },
                 "clientId": {
                     "type": "string",
@@ -9059,7 +9059,7 @@
                 },
                 "organizationId": {
                     "type": "string",
-                    "description": "ID of organization with which this identity is linked.\n"
+                    "description": "ID of organization with which this identity is linked."
                 },
                 "postBrokerLoginFlowAlias": {
                     "type": "string",
@@ -9117,7 +9117,7 @@
                     },
                     "authenticateByDefault": {
                         "type": "boolean",
-                        "description": "Enable/disable authenticate users by default.\n"
+                        "description": "Enable/disable authenticate users by default."
                     },
                     "clientId": {
                         "type": "string",
@@ -9182,7 +9182,7 @@
                     },
                     "organizationId": {
                         "type": "string",
-                        "description": "ID of organization with which this identity is linked.\n"
+                        "description": "ID of organization with which this identity is linked."
                     },
                     "postBrokerLoginFlowAlias": {
                         "type": "string",
@@ -9238,7 +9238,7 @@
                 },
                 "authenticateByDefault": {
                     "type": "boolean",
-                    "description": "Enable/disable authenticate users by default.\n"
+                    "description": "Enable/disable authenticate users by default."
                 },
                 "authorizationUrl": {
                     "type": "string",
@@ -9259,7 +9259,7 @@
                 },
                 "clientSecretWoVersion": {
                     "type": "integer",
-                    "description": "Version of the Client secret write-only argument\n"
+                    "description": "Version of the Client secret write-only argument"
                 },
                 "defaultScopes": {
                     "type": "string",
@@ -9402,7 +9402,7 @@
                 },
                 "authenticateByDefault": {
                     "type": "boolean",
-                    "description": "Enable/disable authenticate users by default.\n"
+                    "description": "Enable/disable authenticate users by default."
                 },
                 "authorizationUrl": {
                     "type": "string",
@@ -9423,7 +9423,7 @@
                 },
                 "clientSecretWoVersion": {
                     "type": "integer",
-                    "description": "Version of the Client secret write-only argument\n"
+                    "description": "Version of the Client secret write-only argument"
                 },
                 "defaultScopes": {
                     "type": "string",
@@ -9563,7 +9563,7 @@
                     },
                     "authenticateByDefault": {
                         "type": "boolean",
-                        "description": "Enable/disable authenticate users by default.\n"
+                        "description": "Enable/disable authenticate users by default."
                     },
                     "authorizationUrl": {
                         "type": "string",
@@ -9584,7 +9584,7 @@
                     },
                     "clientSecretWoVersion": {
                         "type": "integer",
-                        "description": "Version of the Client secret write-only argument\n"
+                        "description": "Version of the Client secret write-only argument"
                     },
                     "defaultScopes": {
                         "type": "string",
@@ -9984,7 +9984,7 @@
                 },
                 "clientSecretWoVersion": {
                     "type": "integer",
-                    "description": "Version of the Client secret write-only argument\n"
+                    "description": "Version of the Client secret write-only argument"
                 },
                 "clientSessionIdleTimeout": {
                     "type": "string",
@@ -10238,7 +10238,7 @@
                 },
                 "clientSecretWoVersion": {
                     "type": "integer",
-                    "description": "Version of the Client secret write-only argument\n"
+                    "description": "Version of the Client secret write-only argument"
                 },
                 "clientSessionIdleTimeout": {
                     "type": "string",
@@ -10461,7 +10461,7 @@
                     },
                     "clientSecretWoVersion": {
                         "type": "integer",
-                        "description": "Version of the Client secret write-only argument\n"
+                        "description": "Version of the Client secret write-only argument"
                     },
                     "clientSessionIdleTimeout": {
                         "type": "string",
@@ -11515,7 +11515,7 @@
             "properties": {
                 "authorizationResourceServerId": {
                     "type": "string",
-                    "description": "Resource server id representing the realm management client on which this permission is managed\n"
+                    "description": "Resource server id representing the realm management client on which this permission is managed"
                 },
                 "clientId": {
                     "type": "string"
@@ -11594,7 +11594,7 @@
                 "properties": {
                     "authorizationResourceServerId": {
                         "type": "string",
-                        "description": "Resource server id representing the realm management client on which this permission is managed\n"
+                        "description": "Resource server id representing the realm management client on which this permission is managed"
                     },
                     "clientId": {
                         "type": "string",
@@ -14572,7 +14572,7 @@
                 },
                 "internalId": {
                     "type": "string",
-                    "description": "Internal Identity Provider Id\n"
+                    "description": "Internal Identity Provider Id"
                 },
                 "linkOnly": {
                     "type": "boolean",
@@ -14580,7 +14580,7 @@
                 },
                 "loginHint": {
                     "type": "string",
-                    "description": "Login Hint.\n"
+                    "description": "Login Hint."
                 },
                 "nameIdPolicyFormat": {
                     "type": "string",
@@ -14759,7 +14759,7 @@
                 },
                 "loginHint": {
                     "type": "string",
-                    "description": "Login Hint.\n"
+                    "description": "Login Hint."
                 },
                 "nameIdPolicyFormat": {
                     "type": "string",
@@ -14936,7 +14936,7 @@
                     },
                     "internalId": {
                         "type": "string",
-                        "description": "Internal Identity Provider Id\n"
+                        "description": "Internal Identity Provider Id"
                     },
                     "linkOnly": {
                         "type": "boolean",
@@ -14944,7 +14944,7 @@
                     },
                     "loginHint": {
                         "type": "string",
-                        "description": "Login Hint.\n"
+                        "description": "Login Hint."
                     },
                     "nameIdPolicyFormat": {
                         "type": "string",
@@ -15482,7 +15482,7 @@
                 "description": "A collection of values returned by getAuthenticationExecution.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "parentFlowAlias": {
@@ -15536,7 +15536,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "realmId": {
@@ -15653,7 +15653,7 @@
                         "type": "boolean"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "implicitFlowEnabled": {
@@ -15800,7 +15800,7 @@
                         "type": "object"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "name": {
@@ -15872,7 +15872,7 @@
                         "type": "boolean"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "name": {
@@ -16053,7 +16053,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "internalId": {
@@ -16264,7 +16264,7 @@
                         "type": "array"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "keys": {
@@ -16340,7 +16340,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "name": {
@@ -16415,7 +16415,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "lastName": {
@@ -16475,7 +16475,7 @@
                 "description": "A collection of values returned by getUserRealmRoles.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "realmId": {
@@ -16649,7 +16649,7 @@
                         "type": "boolean"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "implicitFlowEnabled": {
@@ -16801,7 +16801,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "logic": {
@@ -16896,7 +16896,7 @@
                         "type": "integer"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "includeInTokenScope": {
@@ -16977,7 +16977,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "lastName": {
@@ -17102,7 +17102,7 @@
                         "type": "boolean"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "idpInitiatedSsoRelayState": {
@@ -17250,7 +17250,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.\n",
+                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "providerId": {
