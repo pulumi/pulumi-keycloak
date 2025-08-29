@@ -193,19 +193,19 @@ export class GenericRoleMapper extends pulumi.CustomResource {
     /**
      * The ID of the client this role mapper should be added to. Conflicts with `clientScopeId`. This argument is required if `clientScopeId` is not set.
      */
-    public readonly clientId!: pulumi.Output<string | undefined>;
+    declare public readonly clientId: pulumi.Output<string | undefined>;
     /**
      * The ID of the client scope this role mapper should be added to. Conflicts with `clientId`. This argument is required if `clientId` is not set.
      */
-    public readonly clientScopeId!: pulumi.Output<string | undefined>;
+    declare public readonly clientScopeId: pulumi.Output<string | undefined>;
     /**
      * The realm this role mapper exists within.
      */
-    public readonly realmId!: pulumi.Output<string>;
+    declare public readonly realmId: pulumi.Output<string>;
     /**
      * The ID of the role to be added to this role mapper.
      */
-    public readonly roleId!: pulumi.Output<string>;
+    declare public readonly roleId: pulumi.Output<string>;
 
     /**
      * Create a GenericRoleMapper resource with the given unique name, arguments, and options.
@@ -220,22 +220,22 @@ export class GenericRoleMapper extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as GenericRoleMapperState | undefined;
-            resourceInputs["clientId"] = state ? state.clientId : undefined;
-            resourceInputs["clientScopeId"] = state ? state.clientScopeId : undefined;
-            resourceInputs["realmId"] = state ? state.realmId : undefined;
-            resourceInputs["roleId"] = state ? state.roleId : undefined;
+            resourceInputs["clientId"] = state?.clientId;
+            resourceInputs["clientScopeId"] = state?.clientScopeId;
+            resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["roleId"] = state?.roleId;
         } else {
             const args = argsOrState as GenericRoleMapperArgs | undefined;
-            if ((!args || args.realmId === undefined) && !opts.urn) {
+            if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            if ((!args || args.roleId === undefined) && !opts.urn) {
+            if (args?.roleId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'roleId'");
             }
-            resourceInputs["clientId"] = args ? args.clientId : undefined;
-            resourceInputs["clientScopeId"] = args ? args.clientScopeId : undefined;
-            resourceInputs["realmId"] = args ? args.realmId : undefined;
-            resourceInputs["roleId"] = args ? args.roleId : undefined;
+            resourceInputs["clientId"] = args?.clientId;
+            resourceInputs["clientScopeId"] = args?.clientScopeId;
+            resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["roleId"] = args?.roleId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(GenericRoleMapper.__pulumiType, name, resourceInputs, opts);

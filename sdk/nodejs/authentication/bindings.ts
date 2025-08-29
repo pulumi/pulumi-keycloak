@@ -86,35 +86,35 @@ export class Bindings extends pulumi.CustomResource {
     /**
      * The alias of the flow to assign to the realm BrowserFlow.
      */
-    public readonly browserFlow!: pulumi.Output<string>;
+    declare public readonly browserFlow: pulumi.Output<string>;
     /**
      * The alias of the flow to assign to the realm ClientAuthenticationFlow.
      */
-    public readonly clientAuthenticationFlow!: pulumi.Output<string>;
+    declare public readonly clientAuthenticationFlow: pulumi.Output<string>;
     /**
      * The alias of the flow to assign to the realm DirectGrantFlow.
      */
-    public readonly directGrantFlow!: pulumi.Output<string>;
+    declare public readonly directGrantFlow: pulumi.Output<string>;
     /**
      * The alias of the flow to assign to the realm DockerAuthenticationFlow.
      */
-    public readonly dockerAuthenticationFlow!: pulumi.Output<string>;
+    declare public readonly dockerAuthenticationFlow: pulumi.Output<string>;
     /**
      * The alias of the flow to assign to the realm FirstBrokerLoginFlow (since Keycloak 24).
      */
-    public readonly firstBrokerLoginFlow!: pulumi.Output<string>;
+    declare public readonly firstBrokerLoginFlow: pulumi.Output<string>;
     /**
      * The realm the authentication flow binding exists in.
      */
-    public readonly realmId!: pulumi.Output<string>;
+    declare public readonly realmId: pulumi.Output<string>;
     /**
      * The alias of the flow to assign to the realm RegistrationFlow.
      */
-    public readonly registrationFlow!: pulumi.Output<string>;
+    declare public readonly registrationFlow: pulumi.Output<string>;
     /**
      * The alias of the flow to assign to the realm ResetCredentialsFlow.
      */
-    public readonly resetCredentialsFlow!: pulumi.Output<string>;
+    declare public readonly resetCredentialsFlow: pulumi.Output<string>;
 
     /**
      * Create a Bindings resource with the given unique name, arguments, and options.
@@ -129,27 +129,27 @@ export class Bindings extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as BindingsState | undefined;
-            resourceInputs["browserFlow"] = state ? state.browserFlow : undefined;
-            resourceInputs["clientAuthenticationFlow"] = state ? state.clientAuthenticationFlow : undefined;
-            resourceInputs["directGrantFlow"] = state ? state.directGrantFlow : undefined;
-            resourceInputs["dockerAuthenticationFlow"] = state ? state.dockerAuthenticationFlow : undefined;
-            resourceInputs["firstBrokerLoginFlow"] = state ? state.firstBrokerLoginFlow : undefined;
-            resourceInputs["realmId"] = state ? state.realmId : undefined;
-            resourceInputs["registrationFlow"] = state ? state.registrationFlow : undefined;
-            resourceInputs["resetCredentialsFlow"] = state ? state.resetCredentialsFlow : undefined;
+            resourceInputs["browserFlow"] = state?.browserFlow;
+            resourceInputs["clientAuthenticationFlow"] = state?.clientAuthenticationFlow;
+            resourceInputs["directGrantFlow"] = state?.directGrantFlow;
+            resourceInputs["dockerAuthenticationFlow"] = state?.dockerAuthenticationFlow;
+            resourceInputs["firstBrokerLoginFlow"] = state?.firstBrokerLoginFlow;
+            resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["registrationFlow"] = state?.registrationFlow;
+            resourceInputs["resetCredentialsFlow"] = state?.resetCredentialsFlow;
         } else {
             const args = argsOrState as BindingsArgs | undefined;
-            if ((!args || args.realmId === undefined) && !opts.urn) {
+            if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            resourceInputs["browserFlow"] = args ? args.browserFlow : undefined;
-            resourceInputs["clientAuthenticationFlow"] = args ? args.clientAuthenticationFlow : undefined;
-            resourceInputs["directGrantFlow"] = args ? args.directGrantFlow : undefined;
-            resourceInputs["dockerAuthenticationFlow"] = args ? args.dockerAuthenticationFlow : undefined;
-            resourceInputs["firstBrokerLoginFlow"] = args ? args.firstBrokerLoginFlow : undefined;
-            resourceInputs["realmId"] = args ? args.realmId : undefined;
-            resourceInputs["registrationFlow"] = args ? args.registrationFlow : undefined;
-            resourceInputs["resetCredentialsFlow"] = args ? args.resetCredentialsFlow : undefined;
+            resourceInputs["browserFlow"] = args?.browserFlow;
+            resourceInputs["clientAuthenticationFlow"] = args?.clientAuthenticationFlow;
+            resourceInputs["directGrantFlow"] = args?.directGrantFlow;
+            resourceInputs["dockerAuthenticationFlow"] = args?.dockerAuthenticationFlow;
+            resourceInputs["firstBrokerLoginFlow"] = args?.firstBrokerLoginFlow;
+            resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["registrationFlow"] = args?.registrationFlow;
+            resourceInputs["resetCredentialsFlow"] = args?.resetCredentialsFlow;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Bindings.__pulumiType, name, resourceInputs, opts);

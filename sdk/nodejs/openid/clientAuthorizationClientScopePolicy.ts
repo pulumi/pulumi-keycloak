@@ -133,13 +133,13 @@ export class ClientAuthorizationClientScopePolicy extends pulumi.CustomResource 
         return obj['__pulumiType'] === ClientAuthorizationClientScopePolicy.__pulumiType;
     }
 
-    public readonly decisionStrategy!: pulumi.Output<string | undefined>;
-    public readonly description!: pulumi.Output<string | undefined>;
-    public readonly logic!: pulumi.Output<string | undefined>;
-    public readonly name!: pulumi.Output<string>;
-    public readonly realmId!: pulumi.Output<string>;
-    public readonly resourceServerId!: pulumi.Output<string>;
-    public readonly scopes!: pulumi.Output<outputs.openid.ClientAuthorizationClientScopePolicyScope[]>;
+    declare public readonly decisionStrategy: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
+    declare public readonly logic: pulumi.Output<string | undefined>;
+    declare public readonly name: pulumi.Output<string>;
+    declare public readonly realmId: pulumi.Output<string>;
+    declare public readonly resourceServerId: pulumi.Output<string>;
+    declare public readonly scopes: pulumi.Output<outputs.openid.ClientAuthorizationClientScopePolicyScope[]>;
 
     /**
      * Create a ClientAuthorizationClientScopePolicy resource with the given unique name, arguments, and options.
@@ -154,31 +154,31 @@ export class ClientAuthorizationClientScopePolicy extends pulumi.CustomResource 
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ClientAuthorizationClientScopePolicyState | undefined;
-            resourceInputs["decisionStrategy"] = state ? state.decisionStrategy : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["logic"] = state ? state.logic : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["realmId"] = state ? state.realmId : undefined;
-            resourceInputs["resourceServerId"] = state ? state.resourceServerId : undefined;
-            resourceInputs["scopes"] = state ? state.scopes : undefined;
+            resourceInputs["decisionStrategy"] = state?.decisionStrategy;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["logic"] = state?.logic;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["resourceServerId"] = state?.resourceServerId;
+            resourceInputs["scopes"] = state?.scopes;
         } else {
             const args = argsOrState as ClientAuthorizationClientScopePolicyArgs | undefined;
-            if ((!args || args.realmId === undefined) && !opts.urn) {
+            if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            if ((!args || args.resourceServerId === undefined) && !opts.urn) {
+            if (args?.resourceServerId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'resourceServerId'");
             }
-            if ((!args || args.scopes === undefined) && !opts.urn) {
+            if (args?.scopes === undefined && !opts.urn) {
                 throw new Error("Missing required property 'scopes'");
             }
-            resourceInputs["decisionStrategy"] = args ? args.decisionStrategy : undefined;
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["logic"] = args ? args.logic : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["realmId"] = args ? args.realmId : undefined;
-            resourceInputs["resourceServerId"] = args ? args.resourceServerId : undefined;
-            resourceInputs["scopes"] = args ? args.scopes : undefined;
+            resourceInputs["decisionStrategy"] = args?.decisionStrategy;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["logic"] = args?.logic;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["resourceServerId"] = args?.resourceServerId;
+            resourceInputs["scopes"] = args?.scopes;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(ClientAuthorizationClientScopePolicy.__pulumiType, name, resourceInputs, opts);

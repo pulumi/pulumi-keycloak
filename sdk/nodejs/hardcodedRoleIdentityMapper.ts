@@ -71,23 +71,23 @@ export class HardcodedRoleIdentityMapper extends pulumi.CustomResource {
         return obj['__pulumiType'] === HardcodedRoleIdentityMapper.__pulumiType;
     }
 
-    public readonly extraConfig!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly extraConfig: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The IDP alias of the attribute to set.
      */
-    public readonly identityProviderAlias!: pulumi.Output<string>;
+    declare public readonly identityProviderAlias: pulumi.Output<string>;
     /**
      * Display name of this mapper when displayed in the console.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The realm ID that this mapper will exist in.
      */
-    public readonly realm!: pulumi.Output<string>;
+    declare public readonly realm: pulumi.Output<string>;
     /**
      * The name of the role which should be assigned to the users.
      */
-    public readonly role!: pulumi.Output<string | undefined>;
+    declare public readonly role: pulumi.Output<string | undefined>;
 
     /**
      * Create a HardcodedRoleIdentityMapper resource with the given unique name, arguments, and options.
@@ -102,24 +102,24 @@ export class HardcodedRoleIdentityMapper extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as HardcodedRoleIdentityMapperState | undefined;
-            resourceInputs["extraConfig"] = state ? state.extraConfig : undefined;
-            resourceInputs["identityProviderAlias"] = state ? state.identityProviderAlias : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["realm"] = state ? state.realm : undefined;
-            resourceInputs["role"] = state ? state.role : undefined;
+            resourceInputs["extraConfig"] = state?.extraConfig;
+            resourceInputs["identityProviderAlias"] = state?.identityProviderAlias;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["realm"] = state?.realm;
+            resourceInputs["role"] = state?.role;
         } else {
             const args = argsOrState as HardcodedRoleIdentityMapperArgs | undefined;
-            if ((!args || args.identityProviderAlias === undefined) && !opts.urn) {
+            if (args?.identityProviderAlias === undefined && !opts.urn) {
                 throw new Error("Missing required property 'identityProviderAlias'");
             }
-            if ((!args || args.realm === undefined) && !opts.urn) {
+            if (args?.realm === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realm'");
             }
-            resourceInputs["extraConfig"] = args ? args.extraConfig : undefined;
-            resourceInputs["identityProviderAlias"] = args ? args.identityProviderAlias : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["realm"] = args ? args.realm : undefined;
-            resourceInputs["role"] = args ? args.role : undefined;
+            resourceInputs["extraConfig"] = args?.extraConfig;
+            resourceInputs["identityProviderAlias"] = args?.identityProviderAlias;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["realm"] = args?.realm;
+            resourceInputs["role"] = args?.role;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(HardcodedRoleIdentityMapper.__pulumiType, name, resourceInputs, opts);

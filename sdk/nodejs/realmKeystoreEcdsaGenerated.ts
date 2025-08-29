@@ -69,27 +69,27 @@ export class RealmKeystoreEcdsaGenerated extends pulumi.CustomResource {
     /**
      * When `false`, key in not used for signing. Defaults to `true`.
      */
-    public readonly active!: pulumi.Output<boolean | undefined>;
+    declare public readonly active: pulumi.Output<boolean | undefined>;
     /**
      * Elliptic Curve used in ECDSA. Defaults to `P-256`.
      */
-    public readonly ellipticCurveKey!: pulumi.Output<string | undefined>;
+    declare public readonly ellipticCurveKey: pulumi.Output<string | undefined>;
     /**
      * When `false`, key is not accessible in this realm. Defaults to `true`.
      */
-    public readonly enabled!: pulumi.Output<boolean | undefined>;
+    declare public readonly enabled: pulumi.Output<boolean | undefined>;
     /**
      * Display name of provider when linked in admin console.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * Priority for the provider. Defaults to `0`
      */
-    public readonly priority!: pulumi.Output<number | undefined>;
+    declare public readonly priority: pulumi.Output<number | undefined>;
     /**
      * The realm this keystore exists in.
      */
-    public readonly realmId!: pulumi.Output<string>;
+    declare public readonly realmId: pulumi.Output<string>;
 
     /**
      * Create a RealmKeystoreEcdsaGenerated resource with the given unique name, arguments, and options.
@@ -104,23 +104,23 @@ export class RealmKeystoreEcdsaGenerated extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RealmKeystoreEcdsaGeneratedState | undefined;
-            resourceInputs["active"] = state ? state.active : undefined;
-            resourceInputs["ellipticCurveKey"] = state ? state.ellipticCurveKey : undefined;
-            resourceInputs["enabled"] = state ? state.enabled : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["priority"] = state ? state.priority : undefined;
-            resourceInputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["active"] = state?.active;
+            resourceInputs["ellipticCurveKey"] = state?.ellipticCurveKey;
+            resourceInputs["enabled"] = state?.enabled;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["priority"] = state?.priority;
+            resourceInputs["realmId"] = state?.realmId;
         } else {
             const args = argsOrState as RealmKeystoreEcdsaGeneratedArgs | undefined;
-            if ((!args || args.realmId === undefined) && !opts.urn) {
+            if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            resourceInputs["active"] = args ? args.active : undefined;
-            resourceInputs["ellipticCurveKey"] = args ? args.ellipticCurveKey : undefined;
-            resourceInputs["enabled"] = args ? args.enabled : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["priority"] = args ? args.priority : undefined;
-            resourceInputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["active"] = args?.active;
+            resourceInputs["ellipticCurveKey"] = args?.ellipticCurveKey;
+            resourceInputs["enabled"] = args?.enabled;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["priority"] = args?.priority;
+            resourceInputs["realmId"] = args?.realmId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(RealmKeystoreEcdsaGenerated.__pulumiType, name, resourceInputs, opts);

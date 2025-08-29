@@ -40,11 +40,9 @@ class ProviderArgs:
         :param pulumi.Input[_builtins.bool] initial_login: Whether or not to login to Keycloak instance on provider initialization
         :param pulumi.Input[_builtins.str] jwt_signing_alg: The algorithm used to sign the JWT when client-jwt is used. Defaults to RS256.
         :param pulumi.Input[_builtins.str] jwt_signing_key: The PEM-formatted private key used to sign the JWT when client-jwt is used.
-        :param pulumi.Input[_builtins.bool] red_hat_sso: When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version
-               returned from the /serverinfo API endpoint.
+        :param pulumi.Input[_builtins.bool] red_hat_sso: When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version returned from the /serverinfo API endpoint.
         :param pulumi.Input[_builtins.str] root_ca_certificate: Allows x509 calls using an unknown CA certificate (for development purposes)
-        :param pulumi.Input[_builtins.bool] tls_insecure_skip_verify: Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and
-               should be avoided.
+        :param pulumi.Input[_builtins.bool] tls_insecure_skip_verify: Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and should be avoided.
         :param pulumi.Input[_builtins.str] url: The base URL of the Keycloak instance, before `/auth`
         """
         if additional_headers is not None:
@@ -186,8 +184,7 @@ class ProviderArgs:
     @pulumi.getter(name="redHatSso")
     def red_hat_sso(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version
-        returned from the /serverinfo API endpoint.
+        When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version returned from the /serverinfo API endpoint.
         """
         return pulumi.get(self, "red_hat_sso")
 
@@ -211,8 +208,7 @@ class ProviderArgs:
     @pulumi.getter(name="tlsInsecureSkipVerify")
     def tls_insecure_skip_verify(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and
-        should be avoided.
+        Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and should be avoided.
         """
         return pulumi.get(self, "tls_insecure_skip_verify")
 
@@ -276,11 +272,9 @@ class Provider(pulumi.ProviderResource):
         :param pulumi.Input[_builtins.bool] initial_login: Whether or not to login to Keycloak instance on provider initialization
         :param pulumi.Input[_builtins.str] jwt_signing_alg: The algorithm used to sign the JWT when client-jwt is used. Defaults to RS256.
         :param pulumi.Input[_builtins.str] jwt_signing_key: The PEM-formatted private key used to sign the JWT when client-jwt is used.
-        :param pulumi.Input[_builtins.bool] red_hat_sso: When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version
-               returned from the /serverinfo API endpoint.
+        :param pulumi.Input[_builtins.bool] red_hat_sso: When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version returned from the /serverinfo API endpoint.
         :param pulumi.Input[_builtins.str] root_ca_certificate: Allows x509 calls using an unknown CA certificate (for development purposes)
-        :param pulumi.Input[_builtins.bool] tls_insecure_skip_verify: Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and
-               should be avoided.
+        :param pulumi.Input[_builtins.bool] tls_insecure_skip_verify: Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and should be avoided.
         :param pulumi.Input[_builtins.str] url: The base URL of the Keycloak instance, before `/auth`
         """
         ...

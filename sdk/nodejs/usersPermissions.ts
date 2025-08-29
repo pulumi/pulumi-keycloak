@@ -52,15 +52,15 @@ export class UsersPermissions extends pulumi.CustomResource {
     /**
      * Resource server id representing the realm management client on which this permission is managed
      */
-    public /*out*/ readonly authorizationResourceServerId!: pulumi.Output<string>;
-    public /*out*/ readonly enabled!: pulumi.Output<boolean>;
-    public readonly impersonateScope!: pulumi.Output<outputs.UsersPermissionsImpersonateScope | undefined>;
-    public readonly manageGroupMembershipScope!: pulumi.Output<outputs.UsersPermissionsManageGroupMembershipScope | undefined>;
-    public readonly manageScope!: pulumi.Output<outputs.UsersPermissionsManageScope | undefined>;
-    public readonly mapRolesScope!: pulumi.Output<outputs.UsersPermissionsMapRolesScope | undefined>;
-    public readonly realmId!: pulumi.Output<string>;
-    public readonly userImpersonatedScope!: pulumi.Output<outputs.UsersPermissionsUserImpersonatedScope | undefined>;
-    public readonly viewScope!: pulumi.Output<outputs.UsersPermissionsViewScope | undefined>;
+    declare public /*out*/ readonly authorizationResourceServerId: pulumi.Output<string>;
+    declare public /*out*/ readonly enabled: pulumi.Output<boolean>;
+    declare public readonly impersonateScope: pulumi.Output<outputs.UsersPermissionsImpersonateScope | undefined>;
+    declare public readonly manageGroupMembershipScope: pulumi.Output<outputs.UsersPermissionsManageGroupMembershipScope | undefined>;
+    declare public readonly manageScope: pulumi.Output<outputs.UsersPermissionsManageScope | undefined>;
+    declare public readonly mapRolesScope: pulumi.Output<outputs.UsersPermissionsMapRolesScope | undefined>;
+    declare public readonly realmId: pulumi.Output<string>;
+    declare public readonly userImpersonatedScope: pulumi.Output<outputs.UsersPermissionsUserImpersonatedScope | undefined>;
+    declare public readonly viewScope: pulumi.Output<outputs.UsersPermissionsViewScope | undefined>;
 
     /**
      * Create a UsersPermissions resource with the given unique name, arguments, and options.
@@ -75,27 +75,27 @@ export class UsersPermissions extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as UsersPermissionsState | undefined;
-            resourceInputs["authorizationResourceServerId"] = state ? state.authorizationResourceServerId : undefined;
-            resourceInputs["enabled"] = state ? state.enabled : undefined;
-            resourceInputs["impersonateScope"] = state ? state.impersonateScope : undefined;
-            resourceInputs["manageGroupMembershipScope"] = state ? state.manageGroupMembershipScope : undefined;
-            resourceInputs["manageScope"] = state ? state.manageScope : undefined;
-            resourceInputs["mapRolesScope"] = state ? state.mapRolesScope : undefined;
-            resourceInputs["realmId"] = state ? state.realmId : undefined;
-            resourceInputs["userImpersonatedScope"] = state ? state.userImpersonatedScope : undefined;
-            resourceInputs["viewScope"] = state ? state.viewScope : undefined;
+            resourceInputs["authorizationResourceServerId"] = state?.authorizationResourceServerId;
+            resourceInputs["enabled"] = state?.enabled;
+            resourceInputs["impersonateScope"] = state?.impersonateScope;
+            resourceInputs["manageGroupMembershipScope"] = state?.manageGroupMembershipScope;
+            resourceInputs["manageScope"] = state?.manageScope;
+            resourceInputs["mapRolesScope"] = state?.mapRolesScope;
+            resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["userImpersonatedScope"] = state?.userImpersonatedScope;
+            resourceInputs["viewScope"] = state?.viewScope;
         } else {
             const args = argsOrState as UsersPermissionsArgs | undefined;
-            if ((!args || args.realmId === undefined) && !opts.urn) {
+            if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            resourceInputs["impersonateScope"] = args ? args.impersonateScope : undefined;
-            resourceInputs["manageGroupMembershipScope"] = args ? args.manageGroupMembershipScope : undefined;
-            resourceInputs["manageScope"] = args ? args.manageScope : undefined;
-            resourceInputs["mapRolesScope"] = args ? args.mapRolesScope : undefined;
-            resourceInputs["realmId"] = args ? args.realmId : undefined;
-            resourceInputs["userImpersonatedScope"] = args ? args.userImpersonatedScope : undefined;
-            resourceInputs["viewScope"] = args ? args.viewScope : undefined;
+            resourceInputs["impersonateScope"] = args?.impersonateScope;
+            resourceInputs["manageGroupMembershipScope"] = args?.manageGroupMembershipScope;
+            resourceInputs["manageScope"] = args?.manageScope;
+            resourceInputs["mapRolesScope"] = args?.mapRolesScope;
+            resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["userImpersonatedScope"] = args?.userImpersonatedScope;
+            resourceInputs["viewScope"] = args?.viewScope;
             resourceInputs["authorizationResourceServerId"] = undefined /*out*/;
             resourceInputs["enabled"] = undefined /*out*/;
         }

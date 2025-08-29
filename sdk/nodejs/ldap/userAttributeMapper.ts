@@ -90,47 +90,47 @@ export class UserAttributeMapper extends pulumi.CustomResource {
     /**
      * When `true`, the value fetched from LDAP will override the value stored in Keycloak. Defaults to `false`.
      */
-    public readonly alwaysReadValueFromLdap!: pulumi.Output<boolean | undefined>;
+    declare public readonly alwaysReadValueFromLdap: pulumi.Output<boolean | undefined>;
     /**
      * Default value to set in LDAP if `isMandatoryInLdap` is true and the value is empty.
      */
-    public readonly attributeDefaultValue!: pulumi.Output<string | undefined>;
+    declare public readonly attributeDefaultValue: pulumi.Output<string | undefined>;
     /**
      * When `true`, an empty default value is forced for mandatory attributes even when a default value is not specified. Defaults to `true`.
      */
-    public readonly attributeForceDefault!: pulumi.Output<boolean | undefined>;
+    declare public readonly attributeForceDefault: pulumi.Output<boolean | undefined>;
     /**
      * Should be true for binary LDAP attributes.
      */
-    public readonly isBinaryAttribute!: pulumi.Output<boolean | undefined>;
+    declare public readonly isBinaryAttribute: pulumi.Output<boolean | undefined>;
     /**
      * When `true`, this attribute must exist in LDAP. Defaults to `false`.
      */
-    public readonly isMandatoryInLdap!: pulumi.Output<boolean | undefined>;
+    declare public readonly isMandatoryInLdap: pulumi.Output<boolean | undefined>;
     /**
      * Name of the mapped attribute on the LDAP object.
      */
-    public readonly ldapAttribute!: pulumi.Output<string>;
+    declare public readonly ldapAttribute: pulumi.Output<string>;
     /**
      * The ID of the LDAP user federation provider to attach this mapper to.
      */
-    public readonly ldapUserFederationId!: pulumi.Output<string>;
+    declare public readonly ldapUserFederationId: pulumi.Output<string>;
     /**
      * Display name of this mapper when displayed in the console.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * When `true`, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak. Defaults to `false`.
      */
-    public readonly readOnly!: pulumi.Output<boolean | undefined>;
+    declare public readonly readOnly: pulumi.Output<boolean | undefined>;
     /**
      * The realm that this LDAP mapper will exist in.
      */
-    public readonly realmId!: pulumi.Output<string>;
+    declare public readonly realmId: pulumi.Output<string>;
     /**
      * Name of the user property or attribute you want to map the LDAP attribute into.
      */
-    public readonly userModelAttribute!: pulumi.Output<string>;
+    declare public readonly userModelAttribute: pulumi.Output<string>;
 
     /**
      * Create a UserAttributeMapper resource with the given unique name, arguments, and options.
@@ -145,42 +145,42 @@ export class UserAttributeMapper extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as UserAttributeMapperState | undefined;
-            resourceInputs["alwaysReadValueFromLdap"] = state ? state.alwaysReadValueFromLdap : undefined;
-            resourceInputs["attributeDefaultValue"] = state ? state.attributeDefaultValue : undefined;
-            resourceInputs["attributeForceDefault"] = state ? state.attributeForceDefault : undefined;
-            resourceInputs["isBinaryAttribute"] = state ? state.isBinaryAttribute : undefined;
-            resourceInputs["isMandatoryInLdap"] = state ? state.isMandatoryInLdap : undefined;
-            resourceInputs["ldapAttribute"] = state ? state.ldapAttribute : undefined;
-            resourceInputs["ldapUserFederationId"] = state ? state.ldapUserFederationId : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["readOnly"] = state ? state.readOnly : undefined;
-            resourceInputs["realmId"] = state ? state.realmId : undefined;
-            resourceInputs["userModelAttribute"] = state ? state.userModelAttribute : undefined;
+            resourceInputs["alwaysReadValueFromLdap"] = state?.alwaysReadValueFromLdap;
+            resourceInputs["attributeDefaultValue"] = state?.attributeDefaultValue;
+            resourceInputs["attributeForceDefault"] = state?.attributeForceDefault;
+            resourceInputs["isBinaryAttribute"] = state?.isBinaryAttribute;
+            resourceInputs["isMandatoryInLdap"] = state?.isMandatoryInLdap;
+            resourceInputs["ldapAttribute"] = state?.ldapAttribute;
+            resourceInputs["ldapUserFederationId"] = state?.ldapUserFederationId;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["readOnly"] = state?.readOnly;
+            resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["userModelAttribute"] = state?.userModelAttribute;
         } else {
             const args = argsOrState as UserAttributeMapperArgs | undefined;
-            if ((!args || args.ldapAttribute === undefined) && !opts.urn) {
+            if (args?.ldapAttribute === undefined && !opts.urn) {
                 throw new Error("Missing required property 'ldapAttribute'");
             }
-            if ((!args || args.ldapUserFederationId === undefined) && !opts.urn) {
+            if (args?.ldapUserFederationId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'ldapUserFederationId'");
             }
-            if ((!args || args.realmId === undefined) && !opts.urn) {
+            if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            if ((!args || args.userModelAttribute === undefined) && !opts.urn) {
+            if (args?.userModelAttribute === undefined && !opts.urn) {
                 throw new Error("Missing required property 'userModelAttribute'");
             }
-            resourceInputs["alwaysReadValueFromLdap"] = args ? args.alwaysReadValueFromLdap : undefined;
-            resourceInputs["attributeDefaultValue"] = args ? args.attributeDefaultValue : undefined;
-            resourceInputs["attributeForceDefault"] = args ? args.attributeForceDefault : undefined;
-            resourceInputs["isBinaryAttribute"] = args ? args.isBinaryAttribute : undefined;
-            resourceInputs["isMandatoryInLdap"] = args ? args.isMandatoryInLdap : undefined;
-            resourceInputs["ldapAttribute"] = args ? args.ldapAttribute : undefined;
-            resourceInputs["ldapUserFederationId"] = args ? args.ldapUserFederationId : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["readOnly"] = args ? args.readOnly : undefined;
-            resourceInputs["realmId"] = args ? args.realmId : undefined;
-            resourceInputs["userModelAttribute"] = args ? args.userModelAttribute : undefined;
+            resourceInputs["alwaysReadValueFromLdap"] = args?.alwaysReadValueFromLdap;
+            resourceInputs["attributeDefaultValue"] = args?.attributeDefaultValue;
+            resourceInputs["attributeForceDefault"] = args?.attributeForceDefault;
+            resourceInputs["isBinaryAttribute"] = args?.isBinaryAttribute;
+            resourceInputs["isMandatoryInLdap"] = args?.isMandatoryInLdap;
+            resourceInputs["ldapAttribute"] = args?.ldapAttribute;
+            resourceInputs["ldapUserFederationId"] = args?.ldapUserFederationId;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["readOnly"] = args?.readOnly;
+            resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["userModelAttribute"] = args?.userModelAttribute;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(UserAttributeMapper.__pulumiType, name, resourceInputs, opts);

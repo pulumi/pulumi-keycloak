@@ -32,13 +32,13 @@ export class ClientUserPolicy extends pulumi.CustomResource {
         return obj['__pulumiType'] === ClientUserPolicy.__pulumiType;
     }
 
-    public readonly decisionStrategy!: pulumi.Output<string>;
-    public readonly description!: pulumi.Output<string | undefined>;
-    public readonly logic!: pulumi.Output<string | undefined>;
-    public readonly name!: pulumi.Output<string>;
-    public readonly realmId!: pulumi.Output<string>;
-    public readonly resourceServerId!: pulumi.Output<string>;
-    public readonly users!: pulumi.Output<string[]>;
+    declare public readonly decisionStrategy: pulumi.Output<string>;
+    declare public readonly description: pulumi.Output<string | undefined>;
+    declare public readonly logic: pulumi.Output<string | undefined>;
+    declare public readonly name: pulumi.Output<string>;
+    declare public readonly realmId: pulumi.Output<string>;
+    declare public readonly resourceServerId: pulumi.Output<string>;
+    declare public readonly users: pulumi.Output<string[]>;
 
     /**
      * Create a ClientUserPolicy resource with the given unique name, arguments, and options.
@@ -53,34 +53,34 @@ export class ClientUserPolicy extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ClientUserPolicyState | undefined;
-            resourceInputs["decisionStrategy"] = state ? state.decisionStrategy : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["logic"] = state ? state.logic : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["realmId"] = state ? state.realmId : undefined;
-            resourceInputs["resourceServerId"] = state ? state.resourceServerId : undefined;
-            resourceInputs["users"] = state ? state.users : undefined;
+            resourceInputs["decisionStrategy"] = state?.decisionStrategy;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["logic"] = state?.logic;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["resourceServerId"] = state?.resourceServerId;
+            resourceInputs["users"] = state?.users;
         } else {
             const args = argsOrState as ClientUserPolicyArgs | undefined;
-            if ((!args || args.decisionStrategy === undefined) && !opts.urn) {
+            if (args?.decisionStrategy === undefined && !opts.urn) {
                 throw new Error("Missing required property 'decisionStrategy'");
             }
-            if ((!args || args.realmId === undefined) && !opts.urn) {
+            if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            if ((!args || args.resourceServerId === undefined) && !opts.urn) {
+            if (args?.resourceServerId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'resourceServerId'");
             }
-            if ((!args || args.users === undefined) && !opts.urn) {
+            if (args?.users === undefined && !opts.urn) {
                 throw new Error("Missing required property 'users'");
             }
-            resourceInputs["decisionStrategy"] = args ? args.decisionStrategy : undefined;
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["logic"] = args ? args.logic : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["realmId"] = args ? args.realmId : undefined;
-            resourceInputs["resourceServerId"] = args ? args.resourceServerId : undefined;
-            resourceInputs["users"] = args ? args.users : undefined;
+            resourceInputs["decisionStrategy"] = args?.decisionStrategy;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["logic"] = args?.logic;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["resourceServerId"] = args?.resourceServerId;
+            resourceInputs["users"] = args?.users;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(ClientUserPolicy.__pulumiType, name, resourceInputs, opts);

@@ -74,27 +74,27 @@ export class ClientScope extends pulumi.CustomResource {
     /**
      * When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
      */
-    public readonly consentScreenText!: pulumi.Output<string | undefined>;
+    declare public readonly consentScreenText: pulumi.Output<string | undefined>;
     /**
      * The description of this client scope in the GUI.
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * Specify order of the client scope in GUI (such as in Consent page) as integer.
      */
-    public readonly guiOrder!: pulumi.Output<number | undefined>;
+    declare public readonly guiOrder: pulumi.Output<number | undefined>;
     /**
      * When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response.
      */
-    public readonly includeInTokenScope!: pulumi.Output<boolean | undefined>;
+    declare public readonly includeInTokenScope: pulumi.Output<boolean | undefined>;
     /**
      * The display name of this client scope in the GUI.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The realm this client scope belongs to.
      */
-    public readonly realmId!: pulumi.Output<string>;
+    declare public readonly realmId: pulumi.Output<string>;
 
     /**
      * Create a ClientScope resource with the given unique name, arguments, and options.
@@ -109,23 +109,23 @@ export class ClientScope extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ClientScopeState | undefined;
-            resourceInputs["consentScreenText"] = state ? state.consentScreenText : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["guiOrder"] = state ? state.guiOrder : undefined;
-            resourceInputs["includeInTokenScope"] = state ? state.includeInTokenScope : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["consentScreenText"] = state?.consentScreenText;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["guiOrder"] = state?.guiOrder;
+            resourceInputs["includeInTokenScope"] = state?.includeInTokenScope;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["realmId"] = state?.realmId;
         } else {
             const args = argsOrState as ClientScopeArgs | undefined;
-            if ((!args || args.realmId === undefined) && !opts.urn) {
+            if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            resourceInputs["consentScreenText"] = args ? args.consentScreenText : undefined;
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["guiOrder"] = args ? args.guiOrder : undefined;
-            resourceInputs["includeInTokenScope"] = args ? args.includeInTokenScope : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["consentScreenText"] = args?.consentScreenText;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["guiOrder"] = args?.guiOrder;
+            resourceInputs["includeInTokenScope"] = args?.includeInTokenScope;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["realmId"] = args?.realmId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(ClientScope.__pulumiType, name, resourceInputs, opts);

@@ -35,15 +35,15 @@ export class RealmLocalization extends pulumi.CustomResource {
     /**
      * The locale for the localization texts.
      */
-    public readonly locale!: pulumi.Output<string>;
+    declare public readonly locale: pulumi.Output<string>;
     /**
      * The realm in which the texts exists.
      */
-    public readonly realmId!: pulumi.Output<string>;
+    declare public readonly realmId: pulumi.Output<string>;
     /**
      * The mapping of localization texts keys to values.
      */
-    public readonly texts!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly texts: pulumi.Output<{[key: string]: string} | undefined>;
 
     /**
      * Create a RealmLocalization resource with the given unique name, arguments, and options.
@@ -58,20 +58,20 @@ export class RealmLocalization extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RealmLocalizationState | undefined;
-            resourceInputs["locale"] = state ? state.locale : undefined;
-            resourceInputs["realmId"] = state ? state.realmId : undefined;
-            resourceInputs["texts"] = state ? state.texts : undefined;
+            resourceInputs["locale"] = state?.locale;
+            resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["texts"] = state?.texts;
         } else {
             const args = argsOrState as RealmLocalizationArgs | undefined;
-            if ((!args || args.locale === undefined) && !opts.urn) {
+            if (args?.locale === undefined && !opts.urn) {
                 throw new Error("Missing required property 'locale'");
             }
-            if ((!args || args.realmId === undefined) && !opts.urn) {
+            if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            resourceInputs["locale"] = args ? args.locale : undefined;
-            resourceInputs["realmId"] = args ? args.realmId : undefined;
-            resourceInputs["texts"] = args ? args.texts : undefined;
+            resourceInputs["locale"] = args?.locale;
+            resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["texts"] = args?.texts;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(RealmLocalization.__pulumiType, name, resourceInputs, opts);

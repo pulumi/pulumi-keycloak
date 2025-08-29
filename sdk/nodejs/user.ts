@@ -94,51 +94,51 @@ export class User extends pulumi.CustomResource {
     /**
      * A map representing attributes for the user. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
      */
-    public readonly attributes!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly attributes: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The user's email.
      */
-    public readonly email!: pulumi.Output<string | undefined>;
+    declare public readonly email: pulumi.Output<string | undefined>;
     /**
      * Whether the email address was validated or not. Default to `false`.
      */
-    public readonly emailVerified!: pulumi.Output<boolean | undefined>;
+    declare public readonly emailVerified: pulumi.Output<boolean | undefined>;
     /**
      * When false, this user cannot log in. Defaults to `true`.
      */
-    public readonly enabled!: pulumi.Output<boolean | undefined>;
+    declare public readonly enabled: pulumi.Output<boolean | undefined>;
     /**
      * When specified, the user will be linked to a federated identity provider. Refer to the federated user example for more details.
      */
-    public readonly federatedIdentities!: pulumi.Output<outputs.UserFederatedIdentity[] | undefined>;
+    declare public readonly federatedIdentities: pulumi.Output<outputs.UserFederatedIdentity[] | undefined>;
     /**
      * The user's first name.
      */
-    public readonly firstName!: pulumi.Output<string | undefined>;
+    declare public readonly firstName: pulumi.Output<string | undefined>;
     /**
      * When `true`, the user with the specified `username` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with users that Keycloak creates automatically during realm creation, such as `admin`. Note, that the user will not be removed during destruction if `import` is `true`.
      */
-    public readonly import!: pulumi.Output<boolean | undefined>;
+    declare public readonly import: pulumi.Output<boolean | undefined>;
     /**
      * When given, the user's initial password will be set. This attribute is only respected during initial user creation.
      */
-    public readonly initialPassword!: pulumi.Output<outputs.UserInitialPassword | undefined>;
+    declare public readonly initialPassword: pulumi.Output<outputs.UserInitialPassword | undefined>;
     /**
      * The user's last name.
      */
-    public readonly lastName!: pulumi.Output<string | undefined>;
+    declare public readonly lastName: pulumi.Output<string | undefined>;
     /**
      * The realm this user belongs to.
      */
-    public readonly realmId!: pulumi.Output<string>;
+    declare public readonly realmId: pulumi.Output<string>;
     /**
      * A list of required user actions.
      */
-    public readonly requiredActions!: pulumi.Output<string[] | undefined>;
+    declare public readonly requiredActions: pulumi.Output<string[] | undefined>;
     /**
      * The unique username of this user.
      */
-    public readonly username!: pulumi.Output<string>;
+    declare public readonly username: pulumi.Output<string>;
 
     /**
      * Create a User resource with the given unique name, arguments, and options.
@@ -153,38 +153,38 @@ export class User extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as UserState | undefined;
-            resourceInputs["attributes"] = state ? state.attributes : undefined;
-            resourceInputs["email"] = state ? state.email : undefined;
-            resourceInputs["emailVerified"] = state ? state.emailVerified : undefined;
-            resourceInputs["enabled"] = state ? state.enabled : undefined;
-            resourceInputs["federatedIdentities"] = state ? state.federatedIdentities : undefined;
-            resourceInputs["firstName"] = state ? state.firstName : undefined;
-            resourceInputs["import"] = state ? state.import : undefined;
-            resourceInputs["initialPassword"] = state ? state.initialPassword : undefined;
-            resourceInputs["lastName"] = state ? state.lastName : undefined;
-            resourceInputs["realmId"] = state ? state.realmId : undefined;
-            resourceInputs["requiredActions"] = state ? state.requiredActions : undefined;
-            resourceInputs["username"] = state ? state.username : undefined;
+            resourceInputs["attributes"] = state?.attributes;
+            resourceInputs["email"] = state?.email;
+            resourceInputs["emailVerified"] = state?.emailVerified;
+            resourceInputs["enabled"] = state?.enabled;
+            resourceInputs["federatedIdentities"] = state?.federatedIdentities;
+            resourceInputs["firstName"] = state?.firstName;
+            resourceInputs["import"] = state?.import;
+            resourceInputs["initialPassword"] = state?.initialPassword;
+            resourceInputs["lastName"] = state?.lastName;
+            resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["requiredActions"] = state?.requiredActions;
+            resourceInputs["username"] = state?.username;
         } else {
             const args = argsOrState as UserArgs | undefined;
-            if ((!args || args.realmId === undefined) && !opts.urn) {
+            if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            if ((!args || args.username === undefined) && !opts.urn) {
+            if (args?.username === undefined && !opts.urn) {
                 throw new Error("Missing required property 'username'");
             }
-            resourceInputs["attributes"] = args ? args.attributes : undefined;
-            resourceInputs["email"] = args ? args.email : undefined;
-            resourceInputs["emailVerified"] = args ? args.emailVerified : undefined;
-            resourceInputs["enabled"] = args ? args.enabled : undefined;
-            resourceInputs["federatedIdentities"] = args ? args.federatedIdentities : undefined;
-            resourceInputs["firstName"] = args ? args.firstName : undefined;
-            resourceInputs["import"] = args ? args.import : undefined;
-            resourceInputs["initialPassword"] = args ? args.initialPassword : undefined;
-            resourceInputs["lastName"] = args ? args.lastName : undefined;
-            resourceInputs["realmId"] = args ? args.realmId : undefined;
-            resourceInputs["requiredActions"] = args ? args.requiredActions : undefined;
-            resourceInputs["username"] = args ? args.username : undefined;
+            resourceInputs["attributes"] = args?.attributes;
+            resourceInputs["email"] = args?.email;
+            resourceInputs["emailVerified"] = args?.emailVerified;
+            resourceInputs["enabled"] = args?.enabled;
+            resourceInputs["federatedIdentities"] = args?.federatedIdentities;
+            resourceInputs["firstName"] = args?.firstName;
+            resourceInputs["import"] = args?.import;
+            resourceInputs["initialPassword"] = args?.initialPassword;
+            resourceInputs["lastName"] = args?.lastName;
+            resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["requiredActions"] = args?.requiredActions;
+            resourceInputs["username"] = args?.username;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(User.__pulumiType, name, resourceInputs, opts);

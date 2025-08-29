@@ -91,23 +91,23 @@ export class HardcodedAttributeMapper extends pulumi.CustomResource {
     /**
      * The name of the LDAP attribute to set.
      */
-    public readonly attributeName!: pulumi.Output<string>;
+    declare public readonly attributeName: pulumi.Output<string>;
     /**
      * The value to set to the LDAP attribute. You can hardcode any value like 'foo'.
      */
-    public readonly attributeValue!: pulumi.Output<string>;
+    declare public readonly attributeValue: pulumi.Output<string>;
     /**
      * The ID of the LDAP user federation provider to attach this mapper to.
      */
-    public readonly ldapUserFederationId!: pulumi.Output<string>;
+    declare public readonly ldapUserFederationId: pulumi.Output<string>;
     /**
      * Display name of this mapper when displayed in the console.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The realm that this LDAP mapper will exist in.
      */
-    public readonly realmId!: pulumi.Output<string>;
+    declare public readonly realmId: pulumi.Output<string>;
 
     /**
      * Create a HardcodedAttributeMapper resource with the given unique name, arguments, and options.
@@ -122,30 +122,30 @@ export class HardcodedAttributeMapper extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as HardcodedAttributeMapperState | undefined;
-            resourceInputs["attributeName"] = state ? state.attributeName : undefined;
-            resourceInputs["attributeValue"] = state ? state.attributeValue : undefined;
-            resourceInputs["ldapUserFederationId"] = state ? state.ldapUserFederationId : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["attributeName"] = state?.attributeName;
+            resourceInputs["attributeValue"] = state?.attributeValue;
+            resourceInputs["ldapUserFederationId"] = state?.ldapUserFederationId;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["realmId"] = state?.realmId;
         } else {
             const args = argsOrState as HardcodedAttributeMapperArgs | undefined;
-            if ((!args || args.attributeName === undefined) && !opts.urn) {
+            if (args?.attributeName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'attributeName'");
             }
-            if ((!args || args.attributeValue === undefined) && !opts.urn) {
+            if (args?.attributeValue === undefined && !opts.urn) {
                 throw new Error("Missing required property 'attributeValue'");
             }
-            if ((!args || args.ldapUserFederationId === undefined) && !opts.urn) {
+            if (args?.ldapUserFederationId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'ldapUserFederationId'");
             }
-            if ((!args || args.realmId === undefined) && !opts.urn) {
+            if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            resourceInputs["attributeName"] = args ? args.attributeName : undefined;
-            resourceInputs["attributeValue"] = args ? args.attributeValue : undefined;
-            resourceInputs["ldapUserFederationId"] = args ? args.ldapUserFederationId : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["attributeName"] = args?.attributeName;
+            resourceInputs["attributeValue"] = args?.attributeValue;
+            resourceInputs["ldapUserFederationId"] = args?.ldapUserFederationId;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["realmId"] = args?.realmId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(HardcodedAttributeMapper.__pulumiType, name, resourceInputs, opts);

@@ -32,16 +32,16 @@ export class ClientAuthorizationResource extends pulumi.CustomResource {
         return obj['__pulumiType'] === ClientAuthorizationResource.__pulumiType;
     }
 
-    public readonly attributes!: pulumi.Output<{[key: string]: string} | undefined>;
-    public readonly displayName!: pulumi.Output<string | undefined>;
-    public readonly iconUri!: pulumi.Output<string | undefined>;
-    public readonly name!: pulumi.Output<string>;
-    public readonly ownerManagedAccess!: pulumi.Output<boolean | undefined>;
-    public readonly realmId!: pulumi.Output<string>;
-    public readonly resourceServerId!: pulumi.Output<string>;
-    public readonly scopes!: pulumi.Output<string[] | undefined>;
-    public readonly type!: pulumi.Output<string | undefined>;
-    public readonly uris!: pulumi.Output<string[] | undefined>;
+    declare public readonly attributes: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly displayName: pulumi.Output<string | undefined>;
+    declare public readonly iconUri: pulumi.Output<string | undefined>;
+    declare public readonly name: pulumi.Output<string>;
+    declare public readonly ownerManagedAccess: pulumi.Output<boolean | undefined>;
+    declare public readonly realmId: pulumi.Output<string>;
+    declare public readonly resourceServerId: pulumi.Output<string>;
+    declare public readonly scopes: pulumi.Output<string[] | undefined>;
+    declare public readonly type: pulumi.Output<string | undefined>;
+    declare public readonly uris: pulumi.Output<string[] | undefined>;
 
     /**
      * Create a ClientAuthorizationResource resource with the given unique name, arguments, and options.
@@ -56,34 +56,34 @@ export class ClientAuthorizationResource extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ClientAuthorizationResourceState | undefined;
-            resourceInputs["attributes"] = state ? state.attributes : undefined;
-            resourceInputs["displayName"] = state ? state.displayName : undefined;
-            resourceInputs["iconUri"] = state ? state.iconUri : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["ownerManagedAccess"] = state ? state.ownerManagedAccess : undefined;
-            resourceInputs["realmId"] = state ? state.realmId : undefined;
-            resourceInputs["resourceServerId"] = state ? state.resourceServerId : undefined;
-            resourceInputs["scopes"] = state ? state.scopes : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
-            resourceInputs["uris"] = state ? state.uris : undefined;
+            resourceInputs["attributes"] = state?.attributes;
+            resourceInputs["displayName"] = state?.displayName;
+            resourceInputs["iconUri"] = state?.iconUri;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["ownerManagedAccess"] = state?.ownerManagedAccess;
+            resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["resourceServerId"] = state?.resourceServerId;
+            resourceInputs["scopes"] = state?.scopes;
+            resourceInputs["type"] = state?.type;
+            resourceInputs["uris"] = state?.uris;
         } else {
             const args = argsOrState as ClientAuthorizationResourceArgs | undefined;
-            if ((!args || args.realmId === undefined) && !opts.urn) {
+            if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            if ((!args || args.resourceServerId === undefined) && !opts.urn) {
+            if (args?.resourceServerId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'resourceServerId'");
             }
-            resourceInputs["attributes"] = args ? args.attributes : undefined;
-            resourceInputs["displayName"] = args ? args.displayName : undefined;
-            resourceInputs["iconUri"] = args ? args.iconUri : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["ownerManagedAccess"] = args ? args.ownerManagedAccess : undefined;
-            resourceInputs["realmId"] = args ? args.realmId : undefined;
-            resourceInputs["resourceServerId"] = args ? args.resourceServerId : undefined;
-            resourceInputs["scopes"] = args ? args.scopes : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
-            resourceInputs["uris"] = args ? args.uris : undefined;
+            resourceInputs["attributes"] = args?.attributes;
+            resourceInputs["displayName"] = args?.displayName;
+            resourceInputs["iconUri"] = args?.iconUri;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["ownerManagedAccess"] = args?.ownerManagedAccess;
+            resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["resourceServerId"] = args?.resourceServerId;
+            resourceInputs["scopes"] = args?.scopes;
+            resourceInputs["type"] = args?.type;
+            resourceInputs["uris"] = args?.uris;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(ClientAuthorizationResource.__pulumiType, name, resourceInputs, opts);

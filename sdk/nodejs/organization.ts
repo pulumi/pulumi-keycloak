@@ -90,35 +90,35 @@ export class Organization extends pulumi.CustomResource {
     /**
      * The alias unique identifies the organization. Same as the name if not specified. The alias cannot be changed after the organization has been created.
      */
-    public readonly alias!: pulumi.Output<string>;
+    declare public readonly alias: pulumi.Output<string>;
     /**
      * A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars.
      */
-    public readonly attributes!: pulumi.Output<{[key: string]: string}>;
+    declare public readonly attributes: pulumi.Output<{[key: string]: string}>;
     /**
      * The description of the organization.
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * A list of domains. At least one domain is required.
      */
-    public readonly domains!: pulumi.Output<outputs.OrganizationDomain[]>;
+    declare public readonly domains: pulumi.Output<outputs.OrganizationDomain[]>;
     /**
      * Enable/disable this organization.
      */
-    public readonly enabled!: pulumi.Output<boolean | undefined>;
+    declare public readonly enabled: pulumi.Output<boolean | undefined>;
     /**
      * The name of the organization.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The realm this organization exists in.
      */
-    public readonly realm!: pulumi.Output<string>;
+    declare public readonly realm: pulumi.Output<string>;
     /**
      * The landing page after user completes registration or accepts an invitation to the organization. If left empty, the user will be redirected to the account console by default.
      */
-    public readonly redirectUrl!: pulumi.Output<string | undefined>;
+    declare public readonly redirectUrl: pulumi.Output<string | undefined>;
 
     /**
      * Create a Organization resource with the given unique name, arguments, and options.
@@ -133,30 +133,30 @@ export class Organization extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as OrganizationState | undefined;
-            resourceInputs["alias"] = state ? state.alias : undefined;
-            resourceInputs["attributes"] = state ? state.attributes : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["domains"] = state ? state.domains : undefined;
-            resourceInputs["enabled"] = state ? state.enabled : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["realm"] = state ? state.realm : undefined;
-            resourceInputs["redirectUrl"] = state ? state.redirectUrl : undefined;
+            resourceInputs["alias"] = state?.alias;
+            resourceInputs["attributes"] = state?.attributes;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["domains"] = state?.domains;
+            resourceInputs["enabled"] = state?.enabled;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["realm"] = state?.realm;
+            resourceInputs["redirectUrl"] = state?.redirectUrl;
         } else {
             const args = argsOrState as OrganizationArgs | undefined;
-            if ((!args || args.domains === undefined) && !opts.urn) {
+            if (args?.domains === undefined && !opts.urn) {
                 throw new Error("Missing required property 'domains'");
             }
-            if ((!args || args.realm === undefined) && !opts.urn) {
+            if (args?.realm === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realm'");
             }
-            resourceInputs["alias"] = args ? args.alias : undefined;
-            resourceInputs["attributes"] = args ? args.attributes : undefined;
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["domains"] = args ? args.domains : undefined;
-            resourceInputs["enabled"] = args ? args.enabled : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["realm"] = args ? args.realm : undefined;
-            resourceInputs["redirectUrl"] = args ? args.redirectUrl : undefined;
+            resourceInputs["alias"] = args?.alias;
+            resourceInputs["attributes"] = args?.attributes;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["domains"] = args?.domains;
+            resourceInputs["enabled"] = args?.enabled;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["realm"] = args?.realm;
+            resourceInputs["redirectUrl"] = args?.redirectUrl;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Organization.__pulumiType, name, resourceInputs, opts);

@@ -94,63 +94,63 @@ export class RoleMapper extends pulumi.CustomResource {
     /**
      * When specified, LDAP role mappings will be mapped to client role mappings tied to this client ID. Can only be set if `useRealmRolesMapping` is `false`.
      */
-    public readonly clientId!: pulumi.Output<string | undefined>;
+    declare public readonly clientId: pulumi.Output<string | undefined>;
     /**
      * The LDAP DN where roles can be found.
      */
-    public readonly ldapRolesDn!: pulumi.Output<string>;
+    declare public readonly ldapRolesDn: pulumi.Output<string>;
     /**
      * The ID of the LDAP user federation provider to attach this mapper to.
      */
-    public readonly ldapUserFederationId!: pulumi.Output<string>;
+    declare public readonly ldapUserFederationId: pulumi.Output<string>;
     /**
      * Specifies the name of the LDAP attribute on the LDAP user that contains the roles the user has. Defaults to `memberOf`. This is only used when
      */
-    public readonly memberofLdapAttribute!: pulumi.Output<string | undefined>;
+    declare public readonly memberofLdapAttribute: pulumi.Output<string | undefined>;
     /**
      * Can be one of `DN` or `UID`. Defaults to `DN`.
      */
-    public readonly membershipAttributeType!: pulumi.Output<string | undefined>;
+    declare public readonly membershipAttributeType: pulumi.Output<string | undefined>;
     /**
      * The name of the LDAP attribute that is used for membership mappings.
      */
-    public readonly membershipLdapAttribute!: pulumi.Output<string>;
+    declare public readonly membershipLdapAttribute: pulumi.Output<string>;
     /**
      * The name of the LDAP attribute on a user that is used for membership mappings.
      */
-    public readonly membershipUserLdapAttribute!: pulumi.Output<string>;
+    declare public readonly membershipUserLdapAttribute: pulumi.Output<string>;
     /**
      * Can be one of `READ_ONLY`, `LDAP_ONLY` or `IMPORT`. Defaults to `READ_ONLY`.
      */
-    public readonly mode!: pulumi.Output<string | undefined>;
+    declare public readonly mode: pulumi.Output<string | undefined>;
     /**
      * Display name of this mapper when displayed in the console.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The realm that this LDAP mapper will exist in.
      */
-    public readonly realmId!: pulumi.Output<string>;
+    declare public readonly realmId: pulumi.Output<string>;
     /**
      * The name of the LDAP attribute that is used in role objects for the name and RDN of the role. Typically `cn`.
      */
-    public readonly roleNameLdapAttribute!: pulumi.Output<string>;
+    declare public readonly roleNameLdapAttribute: pulumi.Output<string>;
     /**
      * List of strings representing the object classes for the role. Must contain at least one.
      */
-    public readonly roleObjectClasses!: pulumi.Output<string[]>;
+    declare public readonly roleObjectClasses: pulumi.Output<string[]>;
     /**
      * When specified, adds a custom filter to be used when querying for roles. Must start with `(` and end with `)`.
      */
-    public readonly rolesLdapFilter!: pulumi.Output<string | undefined>;
+    declare public readonly rolesLdapFilter: pulumi.Output<string | undefined>;
     /**
      * When `true`, LDAP role mappings will be mapped to realm roles within Keycloak. Defaults to `true`.
      */
-    public readonly useRealmRolesMapping!: pulumi.Output<boolean | undefined>;
+    declare public readonly useRealmRolesMapping: pulumi.Output<boolean | undefined>;
     /**
      * Can be one of `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`, `GET_ROLES_FROM_USER_MEMBEROF_ATTRIBUTE`, or `LOAD_ROLES_BY_MEMBER_ATTRIBUTE_RECURSIVELY`. Defaults to `LOAD_ROLES_BY_MEMBER_ATTRIBUTE`.
      */
-    public readonly userRolesRetrieveStrategy!: pulumi.Output<string | undefined>;
+    declare public readonly userRolesRetrieveStrategy: pulumi.Output<string | undefined>;
 
     /**
      * Create a RoleMapper resource with the given unique name, arguments, and options.
@@ -165,59 +165,59 @@ export class RoleMapper extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RoleMapperState | undefined;
-            resourceInputs["clientId"] = state ? state.clientId : undefined;
-            resourceInputs["ldapRolesDn"] = state ? state.ldapRolesDn : undefined;
-            resourceInputs["ldapUserFederationId"] = state ? state.ldapUserFederationId : undefined;
-            resourceInputs["memberofLdapAttribute"] = state ? state.memberofLdapAttribute : undefined;
-            resourceInputs["membershipAttributeType"] = state ? state.membershipAttributeType : undefined;
-            resourceInputs["membershipLdapAttribute"] = state ? state.membershipLdapAttribute : undefined;
-            resourceInputs["membershipUserLdapAttribute"] = state ? state.membershipUserLdapAttribute : undefined;
-            resourceInputs["mode"] = state ? state.mode : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["realmId"] = state ? state.realmId : undefined;
-            resourceInputs["roleNameLdapAttribute"] = state ? state.roleNameLdapAttribute : undefined;
-            resourceInputs["roleObjectClasses"] = state ? state.roleObjectClasses : undefined;
-            resourceInputs["rolesLdapFilter"] = state ? state.rolesLdapFilter : undefined;
-            resourceInputs["useRealmRolesMapping"] = state ? state.useRealmRolesMapping : undefined;
-            resourceInputs["userRolesRetrieveStrategy"] = state ? state.userRolesRetrieveStrategy : undefined;
+            resourceInputs["clientId"] = state?.clientId;
+            resourceInputs["ldapRolesDn"] = state?.ldapRolesDn;
+            resourceInputs["ldapUserFederationId"] = state?.ldapUserFederationId;
+            resourceInputs["memberofLdapAttribute"] = state?.memberofLdapAttribute;
+            resourceInputs["membershipAttributeType"] = state?.membershipAttributeType;
+            resourceInputs["membershipLdapAttribute"] = state?.membershipLdapAttribute;
+            resourceInputs["membershipUserLdapAttribute"] = state?.membershipUserLdapAttribute;
+            resourceInputs["mode"] = state?.mode;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["roleNameLdapAttribute"] = state?.roleNameLdapAttribute;
+            resourceInputs["roleObjectClasses"] = state?.roleObjectClasses;
+            resourceInputs["rolesLdapFilter"] = state?.rolesLdapFilter;
+            resourceInputs["useRealmRolesMapping"] = state?.useRealmRolesMapping;
+            resourceInputs["userRolesRetrieveStrategy"] = state?.userRolesRetrieveStrategy;
         } else {
             const args = argsOrState as RoleMapperArgs | undefined;
-            if ((!args || args.ldapRolesDn === undefined) && !opts.urn) {
+            if (args?.ldapRolesDn === undefined && !opts.urn) {
                 throw new Error("Missing required property 'ldapRolesDn'");
             }
-            if ((!args || args.ldapUserFederationId === undefined) && !opts.urn) {
+            if (args?.ldapUserFederationId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'ldapUserFederationId'");
             }
-            if ((!args || args.membershipLdapAttribute === undefined) && !opts.urn) {
+            if (args?.membershipLdapAttribute === undefined && !opts.urn) {
                 throw new Error("Missing required property 'membershipLdapAttribute'");
             }
-            if ((!args || args.membershipUserLdapAttribute === undefined) && !opts.urn) {
+            if (args?.membershipUserLdapAttribute === undefined && !opts.urn) {
                 throw new Error("Missing required property 'membershipUserLdapAttribute'");
             }
-            if ((!args || args.realmId === undefined) && !opts.urn) {
+            if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            if ((!args || args.roleNameLdapAttribute === undefined) && !opts.urn) {
+            if (args?.roleNameLdapAttribute === undefined && !opts.urn) {
                 throw new Error("Missing required property 'roleNameLdapAttribute'");
             }
-            if ((!args || args.roleObjectClasses === undefined) && !opts.urn) {
+            if (args?.roleObjectClasses === undefined && !opts.urn) {
                 throw new Error("Missing required property 'roleObjectClasses'");
             }
-            resourceInputs["clientId"] = args ? args.clientId : undefined;
-            resourceInputs["ldapRolesDn"] = args ? args.ldapRolesDn : undefined;
-            resourceInputs["ldapUserFederationId"] = args ? args.ldapUserFederationId : undefined;
-            resourceInputs["memberofLdapAttribute"] = args ? args.memberofLdapAttribute : undefined;
-            resourceInputs["membershipAttributeType"] = args ? args.membershipAttributeType : undefined;
-            resourceInputs["membershipLdapAttribute"] = args ? args.membershipLdapAttribute : undefined;
-            resourceInputs["membershipUserLdapAttribute"] = args ? args.membershipUserLdapAttribute : undefined;
-            resourceInputs["mode"] = args ? args.mode : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["realmId"] = args ? args.realmId : undefined;
-            resourceInputs["roleNameLdapAttribute"] = args ? args.roleNameLdapAttribute : undefined;
-            resourceInputs["roleObjectClasses"] = args ? args.roleObjectClasses : undefined;
-            resourceInputs["rolesLdapFilter"] = args ? args.rolesLdapFilter : undefined;
-            resourceInputs["useRealmRolesMapping"] = args ? args.useRealmRolesMapping : undefined;
-            resourceInputs["userRolesRetrieveStrategy"] = args ? args.userRolesRetrieveStrategy : undefined;
+            resourceInputs["clientId"] = args?.clientId;
+            resourceInputs["ldapRolesDn"] = args?.ldapRolesDn;
+            resourceInputs["ldapUserFederationId"] = args?.ldapUserFederationId;
+            resourceInputs["memberofLdapAttribute"] = args?.memberofLdapAttribute;
+            resourceInputs["membershipAttributeType"] = args?.membershipAttributeType;
+            resourceInputs["membershipLdapAttribute"] = args?.membershipLdapAttribute;
+            resourceInputs["membershipUserLdapAttribute"] = args?.membershipUserLdapAttribute;
+            resourceInputs["mode"] = args?.mode;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["roleNameLdapAttribute"] = args?.roleNameLdapAttribute;
+            resourceInputs["roleObjectClasses"] = args?.roleObjectClasses;
+            resourceInputs["rolesLdapFilter"] = args?.rolesLdapFilter;
+            resourceInputs["useRealmRolesMapping"] = args?.useRealmRolesMapping;
+            resourceInputs["userRolesRetrieveStrategy"] = args?.userRolesRetrieveStrategy;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(RoleMapper.__pulumiType, name, resourceInputs, opts);

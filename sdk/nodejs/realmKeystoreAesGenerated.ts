@@ -69,27 +69,27 @@ export class RealmKeystoreAesGenerated extends pulumi.CustomResource {
     /**
      * When `false`, key in not used for signing. Defaults to `true`.
      */
-    public readonly active!: pulumi.Output<boolean | undefined>;
+    declare public readonly active: pulumi.Output<boolean | undefined>;
     /**
      * When `false`, key is not accessible in this realm. Defaults to `true`.
      */
-    public readonly enabled!: pulumi.Output<boolean | undefined>;
+    declare public readonly enabled: pulumi.Output<boolean | undefined>;
     /**
      * Display name of provider when linked in admin console.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * Priority for the provider. Defaults to `0`
      */
-    public readonly priority!: pulumi.Output<number | undefined>;
+    declare public readonly priority: pulumi.Output<number | undefined>;
     /**
      * The realm this keystore exists in.
      */
-    public readonly realmId!: pulumi.Output<string>;
+    declare public readonly realmId: pulumi.Output<string>;
     /**
      * Size in bytes for the generated AES Key. Size 16 is for AES-128, Size 24 for AES-192 and Size 32 for AES-256. WARN: Bigger keys then 128 bits are not allowed on some JDK implementations. Defaults to `16`.
      */
-    public readonly secretSize!: pulumi.Output<number | undefined>;
+    declare public readonly secretSize: pulumi.Output<number | undefined>;
 
     /**
      * Create a RealmKeystoreAesGenerated resource with the given unique name, arguments, and options.
@@ -104,23 +104,23 @@ export class RealmKeystoreAesGenerated extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RealmKeystoreAesGeneratedState | undefined;
-            resourceInputs["active"] = state ? state.active : undefined;
-            resourceInputs["enabled"] = state ? state.enabled : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["priority"] = state ? state.priority : undefined;
-            resourceInputs["realmId"] = state ? state.realmId : undefined;
-            resourceInputs["secretSize"] = state ? state.secretSize : undefined;
+            resourceInputs["active"] = state?.active;
+            resourceInputs["enabled"] = state?.enabled;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["priority"] = state?.priority;
+            resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["secretSize"] = state?.secretSize;
         } else {
             const args = argsOrState as RealmKeystoreAesGeneratedArgs | undefined;
-            if ((!args || args.realmId === undefined) && !opts.urn) {
+            if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            resourceInputs["active"] = args ? args.active : undefined;
-            resourceInputs["enabled"] = args ? args.enabled : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["priority"] = args ? args.priority : undefined;
-            resourceInputs["realmId"] = args ? args.realmId : undefined;
-            resourceInputs["secretSize"] = args ? args.secretSize : undefined;
+            resourceInputs["active"] = args?.active;
+            resourceInputs["enabled"] = args?.enabled;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["priority"] = args?.priority;
+            resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["secretSize"] = args?.secretSize;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(RealmKeystoreAesGenerated.__pulumiType, name, resourceInputs, opts);

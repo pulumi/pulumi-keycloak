@@ -88,39 +88,39 @@ export class ScriptProtocolMapper extends pulumi.CustomResource {
     /**
      * The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
      */
-    public readonly clientId!: pulumi.Output<string | undefined>;
+    declare public readonly clientId: pulumi.Output<string | undefined>;
     /**
      * The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
      */
-    public readonly clientScopeId!: pulumi.Output<string | undefined>;
+    declare public readonly clientScopeId: pulumi.Output<string | undefined>;
     /**
      * An optional human-friendly name for this attribute.
      */
-    public readonly friendlyName!: pulumi.Output<string | undefined>;
+    declare public readonly friendlyName: pulumi.Output<string | undefined>;
     /**
      * The display name of this protocol mapper in the GUI.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The realm this protocol mapper exists within.
      */
-    public readonly realmId!: pulumi.Output<string>;
+    declare public readonly realmId: pulumi.Output<string>;
     /**
      * The name of the SAML attribute.
      */
-    public readonly samlAttributeName!: pulumi.Output<string>;
+    declare public readonly samlAttributeName: pulumi.Output<string>;
     /**
      * The SAML attribute Name Format. Can be one of `Unspecified`, `Basic`, or `URI Reference`.
      */
-    public readonly samlAttributeNameFormat!: pulumi.Output<string>;
+    declare public readonly samlAttributeNameFormat: pulumi.Output<string>;
     /**
      * JavaScript code to compute the attribute value.
      */
-    public readonly script!: pulumi.Output<string>;
+    declare public readonly script: pulumi.Output<string>;
     /**
      * When `true`, all values will be stored under one attribute with multiple attribute values. Defaults to `true`.
      */
-    public readonly singleValueAttribute!: pulumi.Output<boolean | undefined>;
+    declare public readonly singleValueAttribute: pulumi.Output<boolean | undefined>;
 
     /**
      * Create a ScriptProtocolMapper resource with the given unique name, arguments, and options.
@@ -135,38 +135,38 @@ export class ScriptProtocolMapper extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ScriptProtocolMapperState | undefined;
-            resourceInputs["clientId"] = state ? state.clientId : undefined;
-            resourceInputs["clientScopeId"] = state ? state.clientScopeId : undefined;
-            resourceInputs["friendlyName"] = state ? state.friendlyName : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["realmId"] = state ? state.realmId : undefined;
-            resourceInputs["samlAttributeName"] = state ? state.samlAttributeName : undefined;
-            resourceInputs["samlAttributeNameFormat"] = state ? state.samlAttributeNameFormat : undefined;
-            resourceInputs["script"] = state ? state.script : undefined;
-            resourceInputs["singleValueAttribute"] = state ? state.singleValueAttribute : undefined;
+            resourceInputs["clientId"] = state?.clientId;
+            resourceInputs["clientScopeId"] = state?.clientScopeId;
+            resourceInputs["friendlyName"] = state?.friendlyName;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["samlAttributeName"] = state?.samlAttributeName;
+            resourceInputs["samlAttributeNameFormat"] = state?.samlAttributeNameFormat;
+            resourceInputs["script"] = state?.script;
+            resourceInputs["singleValueAttribute"] = state?.singleValueAttribute;
         } else {
             const args = argsOrState as ScriptProtocolMapperArgs | undefined;
-            if ((!args || args.realmId === undefined) && !opts.urn) {
+            if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            if ((!args || args.samlAttributeName === undefined) && !opts.urn) {
+            if (args?.samlAttributeName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'samlAttributeName'");
             }
-            if ((!args || args.samlAttributeNameFormat === undefined) && !opts.urn) {
+            if (args?.samlAttributeNameFormat === undefined && !opts.urn) {
                 throw new Error("Missing required property 'samlAttributeNameFormat'");
             }
-            if ((!args || args.script === undefined) && !opts.urn) {
+            if (args?.script === undefined && !opts.urn) {
                 throw new Error("Missing required property 'script'");
             }
-            resourceInputs["clientId"] = args ? args.clientId : undefined;
-            resourceInputs["clientScopeId"] = args ? args.clientScopeId : undefined;
-            resourceInputs["friendlyName"] = args ? args.friendlyName : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["realmId"] = args ? args.realmId : undefined;
-            resourceInputs["samlAttributeName"] = args ? args.samlAttributeName : undefined;
-            resourceInputs["samlAttributeNameFormat"] = args ? args.samlAttributeNameFormat : undefined;
-            resourceInputs["script"] = args ? args.script : undefined;
-            resourceInputs["singleValueAttribute"] = args ? args.singleValueAttribute : undefined;
+            resourceInputs["clientId"] = args?.clientId;
+            resourceInputs["clientScopeId"] = args?.clientScopeId;
+            resourceInputs["friendlyName"] = args?.friendlyName;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["samlAttributeName"] = args?.samlAttributeName;
+            resourceInputs["samlAttributeNameFormat"] = args?.samlAttributeNameFormat;
+            resourceInputs["script"] = args?.script;
+            resourceInputs["singleValueAttribute"] = args?.singleValueAttribute;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(ScriptProtocolMapper.__pulumiType, name, resourceInputs, opts);

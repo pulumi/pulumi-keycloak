@@ -94,75 +94,75 @@ export class GroupMapper extends pulumi.CustomResource {
     /**
      * When `true`, groups that no longer exist within LDAP will be dropped in Keycloak during sync. Defaults to `false`.
      */
-    public readonly dropNonExistingGroupsDuringSync!: pulumi.Output<boolean | undefined>;
+    declare public readonly dropNonExistingGroupsDuringSync: pulumi.Output<boolean | undefined>;
     /**
      * The name of the LDAP attribute that is used in group objects for the name and RDN of the group. Typically `cn`.
      */
-    public readonly groupNameLdapAttribute!: pulumi.Output<string>;
+    declare public readonly groupNameLdapAttribute: pulumi.Output<string>;
     /**
      * List of strings representing the object classes for the group. Must contain at least one.
      */
-    public readonly groupObjectClasses!: pulumi.Output<string[]>;
+    declare public readonly groupObjectClasses: pulumi.Output<string[]>;
     /**
      * When specified, adds a custom filter to be used when querying for groups. Must start with `(` and end with `)`.
      */
-    public readonly groupsLdapFilter!: pulumi.Output<string | undefined>;
+    declare public readonly groupsLdapFilter: pulumi.Output<string | undefined>;
     /**
      * Keycloak group path the LDAP groups are added to. For example if value `/Applications/App1` is used, then LDAP groups will be available in Keycloak under group `App1`, which is the child of top level group `Applications`. The configured group path must already exist in Keycloak when creating this mapper.
      */
-    public readonly groupsPath!: pulumi.Output<string>;
+    declare public readonly groupsPath: pulumi.Output<string>;
     /**
      * When `true`, missing groups in the hierarchy will be ignored.
      */
-    public readonly ignoreMissingGroups!: pulumi.Output<boolean | undefined>;
+    declare public readonly ignoreMissingGroups: pulumi.Output<boolean | undefined>;
     /**
      * The LDAP DN where groups can be found.
      */
-    public readonly ldapGroupsDn!: pulumi.Output<string>;
+    declare public readonly ldapGroupsDn: pulumi.Output<string>;
     /**
      * The ID of the LDAP user federation provider to attach this mapper to.
      */
-    public readonly ldapUserFederationId!: pulumi.Output<string>;
+    declare public readonly ldapUserFederationId: pulumi.Output<string>;
     /**
      * Array of strings representing attributes on the LDAP group which will be mapped to attributes on the Keycloak group.
      */
-    public readonly mappedGroupAttributes!: pulumi.Output<string[] | undefined>;
+    declare public readonly mappedGroupAttributes: pulumi.Output<string[] | undefined>;
     /**
      * Specifies the name of the LDAP attribute on the LDAP user that contains the groups the user is a member of. Defaults to `memberOf`.
      */
-    public readonly memberofLdapAttribute!: pulumi.Output<string | undefined>;
+    declare public readonly memberofLdapAttribute: pulumi.Output<string | undefined>;
     /**
      * Can be one of `DN` or `UID`. Defaults to `DN`.
      */
-    public readonly membershipAttributeType!: pulumi.Output<string | undefined>;
+    declare public readonly membershipAttributeType: pulumi.Output<string | undefined>;
     /**
      * The name of the LDAP attribute that is used for membership mappings.
      */
-    public readonly membershipLdapAttribute!: pulumi.Output<string>;
+    declare public readonly membershipLdapAttribute: pulumi.Output<string>;
     /**
      * The name of the LDAP attribute on a user that is used for membership mappings.
      */
-    public readonly membershipUserLdapAttribute!: pulumi.Output<string>;
+    declare public readonly membershipUserLdapAttribute: pulumi.Output<string>;
     /**
      * Can be one of `READ_ONLY`, `LDAP_ONLY` or `IMPORT`. Defaults to `READ_ONLY`.
      */
-    public readonly mode!: pulumi.Output<string | undefined>;
+    declare public readonly mode: pulumi.Output<string | undefined>;
     /**
      * Display name of this mapper when displayed in the console.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * When `true`, group inheritance will be propagated from LDAP to Keycloak. When `false`, all LDAP groups will be propagated as top level groups within Keycloak.
      */
-    public readonly preserveGroupInheritance!: pulumi.Output<boolean | undefined>;
+    declare public readonly preserveGroupInheritance: pulumi.Output<boolean | undefined>;
     /**
      * The realm that this LDAP mapper will exist in.
      */
-    public readonly realmId!: pulumi.Output<string>;
+    declare public readonly realmId: pulumi.Output<string>;
     /**
      * Can be one of `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE`, `GET_GROUPS_FROM_USER_MEMBEROF_ATTRIBUTE`, or `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE_RECURSIVELY`. Defaults to `LOAD_GROUPS_BY_MEMBER_ATTRIBUTE`.
      */
-    public readonly userRolesRetrieveStrategy!: pulumi.Output<string | undefined>;
+    declare public readonly userRolesRetrieveStrategy: pulumi.Output<string | undefined>;
 
     /**
      * Create a GroupMapper resource with the given unique name, arguments, and options.
@@ -177,65 +177,65 @@ export class GroupMapper extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as GroupMapperState | undefined;
-            resourceInputs["dropNonExistingGroupsDuringSync"] = state ? state.dropNonExistingGroupsDuringSync : undefined;
-            resourceInputs["groupNameLdapAttribute"] = state ? state.groupNameLdapAttribute : undefined;
-            resourceInputs["groupObjectClasses"] = state ? state.groupObjectClasses : undefined;
-            resourceInputs["groupsLdapFilter"] = state ? state.groupsLdapFilter : undefined;
-            resourceInputs["groupsPath"] = state ? state.groupsPath : undefined;
-            resourceInputs["ignoreMissingGroups"] = state ? state.ignoreMissingGroups : undefined;
-            resourceInputs["ldapGroupsDn"] = state ? state.ldapGroupsDn : undefined;
-            resourceInputs["ldapUserFederationId"] = state ? state.ldapUserFederationId : undefined;
-            resourceInputs["mappedGroupAttributes"] = state ? state.mappedGroupAttributes : undefined;
-            resourceInputs["memberofLdapAttribute"] = state ? state.memberofLdapAttribute : undefined;
-            resourceInputs["membershipAttributeType"] = state ? state.membershipAttributeType : undefined;
-            resourceInputs["membershipLdapAttribute"] = state ? state.membershipLdapAttribute : undefined;
-            resourceInputs["membershipUserLdapAttribute"] = state ? state.membershipUserLdapAttribute : undefined;
-            resourceInputs["mode"] = state ? state.mode : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["preserveGroupInheritance"] = state ? state.preserveGroupInheritance : undefined;
-            resourceInputs["realmId"] = state ? state.realmId : undefined;
-            resourceInputs["userRolesRetrieveStrategy"] = state ? state.userRolesRetrieveStrategy : undefined;
+            resourceInputs["dropNonExistingGroupsDuringSync"] = state?.dropNonExistingGroupsDuringSync;
+            resourceInputs["groupNameLdapAttribute"] = state?.groupNameLdapAttribute;
+            resourceInputs["groupObjectClasses"] = state?.groupObjectClasses;
+            resourceInputs["groupsLdapFilter"] = state?.groupsLdapFilter;
+            resourceInputs["groupsPath"] = state?.groupsPath;
+            resourceInputs["ignoreMissingGroups"] = state?.ignoreMissingGroups;
+            resourceInputs["ldapGroupsDn"] = state?.ldapGroupsDn;
+            resourceInputs["ldapUserFederationId"] = state?.ldapUserFederationId;
+            resourceInputs["mappedGroupAttributes"] = state?.mappedGroupAttributes;
+            resourceInputs["memberofLdapAttribute"] = state?.memberofLdapAttribute;
+            resourceInputs["membershipAttributeType"] = state?.membershipAttributeType;
+            resourceInputs["membershipLdapAttribute"] = state?.membershipLdapAttribute;
+            resourceInputs["membershipUserLdapAttribute"] = state?.membershipUserLdapAttribute;
+            resourceInputs["mode"] = state?.mode;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["preserveGroupInheritance"] = state?.preserveGroupInheritance;
+            resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["userRolesRetrieveStrategy"] = state?.userRolesRetrieveStrategy;
         } else {
             const args = argsOrState as GroupMapperArgs | undefined;
-            if ((!args || args.groupNameLdapAttribute === undefined) && !opts.urn) {
+            if (args?.groupNameLdapAttribute === undefined && !opts.urn) {
                 throw new Error("Missing required property 'groupNameLdapAttribute'");
             }
-            if ((!args || args.groupObjectClasses === undefined) && !opts.urn) {
+            if (args?.groupObjectClasses === undefined && !opts.urn) {
                 throw new Error("Missing required property 'groupObjectClasses'");
             }
-            if ((!args || args.ldapGroupsDn === undefined) && !opts.urn) {
+            if (args?.ldapGroupsDn === undefined && !opts.urn) {
                 throw new Error("Missing required property 'ldapGroupsDn'");
             }
-            if ((!args || args.ldapUserFederationId === undefined) && !opts.urn) {
+            if (args?.ldapUserFederationId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'ldapUserFederationId'");
             }
-            if ((!args || args.membershipLdapAttribute === undefined) && !opts.urn) {
+            if (args?.membershipLdapAttribute === undefined && !opts.urn) {
                 throw new Error("Missing required property 'membershipLdapAttribute'");
             }
-            if ((!args || args.membershipUserLdapAttribute === undefined) && !opts.urn) {
+            if (args?.membershipUserLdapAttribute === undefined && !opts.urn) {
                 throw new Error("Missing required property 'membershipUserLdapAttribute'");
             }
-            if ((!args || args.realmId === undefined) && !opts.urn) {
+            if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            resourceInputs["dropNonExistingGroupsDuringSync"] = args ? args.dropNonExistingGroupsDuringSync : undefined;
-            resourceInputs["groupNameLdapAttribute"] = args ? args.groupNameLdapAttribute : undefined;
-            resourceInputs["groupObjectClasses"] = args ? args.groupObjectClasses : undefined;
-            resourceInputs["groupsLdapFilter"] = args ? args.groupsLdapFilter : undefined;
-            resourceInputs["groupsPath"] = args ? args.groupsPath : undefined;
-            resourceInputs["ignoreMissingGroups"] = args ? args.ignoreMissingGroups : undefined;
-            resourceInputs["ldapGroupsDn"] = args ? args.ldapGroupsDn : undefined;
-            resourceInputs["ldapUserFederationId"] = args ? args.ldapUserFederationId : undefined;
-            resourceInputs["mappedGroupAttributes"] = args ? args.mappedGroupAttributes : undefined;
-            resourceInputs["memberofLdapAttribute"] = args ? args.memberofLdapAttribute : undefined;
-            resourceInputs["membershipAttributeType"] = args ? args.membershipAttributeType : undefined;
-            resourceInputs["membershipLdapAttribute"] = args ? args.membershipLdapAttribute : undefined;
-            resourceInputs["membershipUserLdapAttribute"] = args ? args.membershipUserLdapAttribute : undefined;
-            resourceInputs["mode"] = args ? args.mode : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["preserveGroupInheritance"] = args ? args.preserveGroupInheritance : undefined;
-            resourceInputs["realmId"] = args ? args.realmId : undefined;
-            resourceInputs["userRolesRetrieveStrategy"] = args ? args.userRolesRetrieveStrategy : undefined;
+            resourceInputs["dropNonExistingGroupsDuringSync"] = args?.dropNonExistingGroupsDuringSync;
+            resourceInputs["groupNameLdapAttribute"] = args?.groupNameLdapAttribute;
+            resourceInputs["groupObjectClasses"] = args?.groupObjectClasses;
+            resourceInputs["groupsLdapFilter"] = args?.groupsLdapFilter;
+            resourceInputs["groupsPath"] = args?.groupsPath;
+            resourceInputs["ignoreMissingGroups"] = args?.ignoreMissingGroups;
+            resourceInputs["ldapGroupsDn"] = args?.ldapGroupsDn;
+            resourceInputs["ldapUserFederationId"] = args?.ldapUserFederationId;
+            resourceInputs["mappedGroupAttributes"] = args?.mappedGroupAttributes;
+            resourceInputs["memberofLdapAttribute"] = args?.memberofLdapAttribute;
+            resourceInputs["membershipAttributeType"] = args?.membershipAttributeType;
+            resourceInputs["membershipLdapAttribute"] = args?.membershipLdapAttribute;
+            resourceInputs["membershipUserLdapAttribute"] = args?.membershipUserLdapAttribute;
+            resourceInputs["mode"] = args?.mode;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["preserveGroupInheritance"] = args?.preserveGroupInheritance;
+            resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["userRolesRetrieveStrategy"] = args?.userRolesRetrieveStrategy;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(GroupMapper.__pulumiType, name, resourceInputs, opts);

@@ -453,18 +453,14 @@ public class Realm extends com.pulumi.resources.CustomResource {
         return this.otpPolicy;
     }
     /**
-     * String that represents the passwordPolicies that are in place. Each policy is separated with &#34; and &#34;. Supported policies
-     * can be found in the server-info providers page. example: &#34;upperCase(1) and length(8) and forceExpiredPasswordChange(365)
-     * and notUsername(undefined)&#34;
+     * String that represents the passwordPolicies that are in place. Each policy is separated with &#34; and &#34;. Supported policies can be found in the server-info providers page. example: &#34;upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername(undefined)&#34;
      * 
      */
     @Export(name="passwordPolicy", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> passwordPolicy;
 
     /**
-     * @return String that represents the passwordPolicies that are in place. Each policy is separated with &#34; and &#34;. Supported policies
-     * can be found in the server-info providers page. example: &#34;upperCase(1) and length(8) and forceExpiredPasswordChange(365)
-     * and notUsername(undefined)&#34;
+     * @return String that represents the passwordPolicies that are in place. Each policy is separated with &#34; and &#34;. Supported policies can be found in the server-info providers page. example: &#34;upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername(undefined)&#34;
      * 
      */
     public Output<Optional<String>> passwordPolicy() {

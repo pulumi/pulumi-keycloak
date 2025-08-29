@@ -50,15 +50,15 @@ export class GroupPermissions extends pulumi.CustomResource {
     /**
      * Resource server id representing the realm management client on which this permission is managed
      */
-    public /*out*/ readonly authorizationResourceServerId!: pulumi.Output<string>;
-    public /*out*/ readonly enabled!: pulumi.Output<boolean>;
-    public readonly groupId!: pulumi.Output<string>;
-    public readonly manageMembersScope!: pulumi.Output<outputs.GroupPermissionsManageMembersScope | undefined>;
-    public readonly manageMembershipScope!: pulumi.Output<outputs.GroupPermissionsManageMembershipScope | undefined>;
-    public readonly manageScope!: pulumi.Output<outputs.GroupPermissionsManageScope | undefined>;
-    public readonly realmId!: pulumi.Output<string>;
-    public readonly viewMembersScope!: pulumi.Output<outputs.GroupPermissionsViewMembersScope | undefined>;
-    public readonly viewScope!: pulumi.Output<outputs.GroupPermissionsViewScope | undefined>;
+    declare public /*out*/ readonly authorizationResourceServerId: pulumi.Output<string>;
+    declare public /*out*/ readonly enabled: pulumi.Output<boolean>;
+    declare public readonly groupId: pulumi.Output<string>;
+    declare public readonly manageMembersScope: pulumi.Output<outputs.GroupPermissionsManageMembersScope | undefined>;
+    declare public readonly manageMembershipScope: pulumi.Output<outputs.GroupPermissionsManageMembershipScope | undefined>;
+    declare public readonly manageScope: pulumi.Output<outputs.GroupPermissionsManageScope | undefined>;
+    declare public readonly realmId: pulumi.Output<string>;
+    declare public readonly viewMembersScope: pulumi.Output<outputs.GroupPermissionsViewMembersScope | undefined>;
+    declare public readonly viewScope: pulumi.Output<outputs.GroupPermissionsViewScope | undefined>;
 
     /**
      * Create a GroupPermissions resource with the given unique name, arguments, and options.
@@ -73,30 +73,30 @@ export class GroupPermissions extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as GroupPermissionsState | undefined;
-            resourceInputs["authorizationResourceServerId"] = state ? state.authorizationResourceServerId : undefined;
-            resourceInputs["enabled"] = state ? state.enabled : undefined;
-            resourceInputs["groupId"] = state ? state.groupId : undefined;
-            resourceInputs["manageMembersScope"] = state ? state.manageMembersScope : undefined;
-            resourceInputs["manageMembershipScope"] = state ? state.manageMembershipScope : undefined;
-            resourceInputs["manageScope"] = state ? state.manageScope : undefined;
-            resourceInputs["realmId"] = state ? state.realmId : undefined;
-            resourceInputs["viewMembersScope"] = state ? state.viewMembersScope : undefined;
-            resourceInputs["viewScope"] = state ? state.viewScope : undefined;
+            resourceInputs["authorizationResourceServerId"] = state?.authorizationResourceServerId;
+            resourceInputs["enabled"] = state?.enabled;
+            resourceInputs["groupId"] = state?.groupId;
+            resourceInputs["manageMembersScope"] = state?.manageMembersScope;
+            resourceInputs["manageMembershipScope"] = state?.manageMembershipScope;
+            resourceInputs["manageScope"] = state?.manageScope;
+            resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["viewMembersScope"] = state?.viewMembersScope;
+            resourceInputs["viewScope"] = state?.viewScope;
         } else {
             const args = argsOrState as GroupPermissionsArgs | undefined;
-            if ((!args || args.groupId === undefined) && !opts.urn) {
+            if (args?.groupId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'groupId'");
             }
-            if ((!args || args.realmId === undefined) && !opts.urn) {
+            if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            resourceInputs["groupId"] = args ? args.groupId : undefined;
-            resourceInputs["manageMembersScope"] = args ? args.manageMembersScope : undefined;
-            resourceInputs["manageMembershipScope"] = args ? args.manageMembershipScope : undefined;
-            resourceInputs["manageScope"] = args ? args.manageScope : undefined;
-            resourceInputs["realmId"] = args ? args.realmId : undefined;
-            resourceInputs["viewMembersScope"] = args ? args.viewMembersScope : undefined;
-            resourceInputs["viewScope"] = args ? args.viewScope : undefined;
+            resourceInputs["groupId"] = args?.groupId;
+            resourceInputs["manageMembersScope"] = args?.manageMembersScope;
+            resourceInputs["manageMembershipScope"] = args?.manageMembershipScope;
+            resourceInputs["manageScope"] = args?.manageScope;
+            resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["viewMembersScope"] = args?.viewMembersScope;
+            resourceInputs["viewScope"] = args?.viewScope;
             resourceInputs["authorizationResourceServerId"] = undefined /*out*/;
             resourceInputs["enabled"] = undefined /*out*/;
         }

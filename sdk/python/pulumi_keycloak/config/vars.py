@@ -75,8 +75,7 @@ class _ExportableConfig(types.ModuleType):
     @_builtins.property
     def red_hat_sso(self) -> Optional[bool]:
         """
-        When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version
-        returned from the /serverinfo API endpoint.
+        When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version returned from the /serverinfo API endpoint.
         """
         return __config__.get_bool('redHatSso')
 
@@ -90,8 +89,7 @@ class _ExportableConfig(types.ModuleType):
     @_builtins.property
     def tls_insecure_skip_verify(self) -> Optional[bool]:
         """
-        Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and
-        should be avoided.
+        Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and should be avoided.
         """
         return __config__.get_bool('tlsInsecureSkipVerify')
 

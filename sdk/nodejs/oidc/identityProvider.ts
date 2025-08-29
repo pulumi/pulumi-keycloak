@@ -82,148 +82,148 @@ export class IdentityProvider extends pulumi.CustomResource {
     /**
      * When `true`, the IDP will accept forwarded authentication requests that contain the `prompt=none` query parameter. Defaults to `false`.
      */
-    public readonly acceptsPromptNoneForwardFromClient!: pulumi.Output<boolean | undefined>;
+    declare public readonly acceptsPromptNoneForwardFromClient: pulumi.Output<boolean | undefined>;
     /**
      * When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
      */
-    public readonly addReadTokenRoleOnCreate!: pulumi.Output<boolean | undefined>;
+    declare public readonly addReadTokenRoleOnCreate: pulumi.Output<boolean | undefined>;
     /**
      * The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
      */
-    public readonly alias!: pulumi.Output<string>;
+    declare public readonly alias: pulumi.Output<string>;
     /**
      * Enable/disable authenticate users by default.
      */
-    public readonly authenticateByDefault!: pulumi.Output<boolean | undefined>;
+    declare public readonly authenticateByDefault: pulumi.Output<boolean | undefined>;
     /**
      * The Authorization Url.
      */
-    public readonly authorizationUrl!: pulumi.Output<string>;
+    declare public readonly authorizationUrl: pulumi.Output<string>;
     /**
      * Does the external IDP support backchannel logout? Defaults to `true`.
      */
-    public readonly backchannelSupported!: pulumi.Output<boolean | undefined>;
+    declare public readonly backchannelSupported: pulumi.Output<boolean | undefined>;
     /**
      * The client or client identifier registered within the identity provider.
      */
-    public readonly clientId!: pulumi.Output<string>;
+    declare public readonly clientId: pulumi.Output<string>;
     /**
      * The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `clientSecretWo` and `clientSecretWoVersion`.
      */
-    public readonly clientSecret!: pulumi.Output<string | undefined>;
+    declare public readonly clientSecret: pulumi.Output<string | undefined>;
     /**
      * Version of the Client secret write-only argument
      */
-    public readonly clientSecretWoVersion!: pulumi.Output<number | undefined>;
+    declare public readonly clientSecretWoVersion: pulumi.Output<number | undefined>;
     /**
      * The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
      */
-    public readonly defaultScopes!: pulumi.Output<string | undefined>;
+    declare public readonly defaultScopes: pulumi.Output<string | undefined>;
     /**
      * When `true`, disables the check for the `typ` claim of tokens received from the identity provider. Defaults to `false`.
      */
-    public readonly disableTypeClaimCheck!: pulumi.Output<boolean | undefined>;
+    declare public readonly disableTypeClaimCheck: pulumi.Output<boolean | undefined>;
     /**
      * When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
      */
-    public readonly disableUserInfo!: pulumi.Output<boolean | undefined>;
+    declare public readonly disableUserInfo: pulumi.Output<boolean | undefined>;
     /**
      * Display name for the identity provider in the GUI.
      */
-    public readonly displayName!: pulumi.Output<string>;
+    declare public readonly displayName: pulumi.Output<string>;
     /**
      * When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
      */
-    public readonly enabled!: pulumi.Output<boolean | undefined>;
-    public readonly extraConfig!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly enabled: pulumi.Output<boolean | undefined>;
+    declare public readonly extraConfig: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
      */
-    public readonly firstBrokerLoginFlowAlias!: pulumi.Output<string | undefined>;
+    declare public readonly firstBrokerLoginFlowAlias: pulumi.Output<string | undefined>;
     /**
      * A number defining the order of this identity provider in the GUI.
      */
-    public readonly guiOrder!: pulumi.Output<string | undefined>;
+    declare public readonly guiOrder: pulumi.Output<string | undefined>;
     /**
      * When `true`, this provider will be hidden on the login page, and is only accessible when requested explicitly. Defaults to `false`.
      */
-    public readonly hideOnLoginPage!: pulumi.Output<boolean | undefined>;
+    declare public readonly hideOnLoginPage: pulumi.Output<boolean | undefined>;
     /**
      * (Computed) The unique ID that Keycloak assigns to the identity provider upon creation.
      */
-    public /*out*/ readonly internalId!: pulumi.Output<string>;
+    declare public /*out*/ readonly internalId: pulumi.Output<string>;
     /**
      * The issuer identifier for the issuer of the response. If not provided, no validation will be performed.
      */
-    public readonly issuer!: pulumi.Output<string | undefined>;
+    declare public readonly issuer: pulumi.Output<string | undefined>;
     /**
      * JSON Web Key Set URL.
      */
-    public readonly jwksUrl!: pulumi.Output<string | undefined>;
+    declare public readonly jwksUrl: pulumi.Output<string | undefined>;
     /**
      * When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
      */
-    public readonly linkOnly!: pulumi.Output<boolean | undefined>;
+    declare public readonly linkOnly: pulumi.Output<boolean | undefined>;
     /**
      * Pass login hint to identity provider.
      */
-    public readonly loginHint!: pulumi.Output<string | undefined>;
+    declare public readonly loginHint: pulumi.Output<string | undefined>;
     /**
      * The Logout URL is the end session endpoint to use to sign-out the user from external identity provider.
      */
-    public readonly logoutUrl!: pulumi.Output<string | undefined>;
+    declare public readonly logoutUrl: pulumi.Output<string | undefined>;
     /**
      * The organization domain to associate this identity provider with. it is used to map users to an organization based on their email domain and to authenticate them accordingly in the scope of the organization.
      */
-    public readonly orgDomain!: pulumi.Output<string | undefined>;
+    declare public readonly orgDomain: pulumi.Output<string | undefined>;
     /**
      * Indicates whether to automatically redirect user to this identity provider when email domain matches domain.
      */
-    public readonly orgRedirectModeEmailMatches!: pulumi.Output<boolean | undefined>;
+    declare public readonly orgRedirectModeEmailMatches: pulumi.Output<boolean | undefined>;
     /**
      * The ID of the organization to link this identity provider to.
      */
-    public readonly organizationId!: pulumi.Output<string | undefined>;
+    declare public readonly organizationId: pulumi.Output<string | undefined>;
     /**
      * The authentication flow to use after users have successfully logged in, which can be used to perform additional user verification (such as OTP checking). Defaults to an empty string, which means no post login flow will be used.
      */
-    public readonly postBrokerLoginFlowAlias!: pulumi.Output<string | undefined>;
+    declare public readonly postBrokerLoginFlowAlias: pulumi.Output<string | undefined>;
     /**
      * The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
      */
-    public readonly providerId!: pulumi.Output<string | undefined>;
+    declare public readonly providerId: pulumi.Output<string | undefined>;
     /**
      * The name of the realm. This is unique across Keycloak.
      */
-    public readonly realm!: pulumi.Output<string>;
+    declare public readonly realm: pulumi.Output<string>;
     /**
      * When `true`, tokens will be stored after authenticating users. Defaults to `true`.
      */
-    public readonly storeToken!: pulumi.Output<boolean | undefined>;
+    declare public readonly storeToken: pulumi.Output<boolean | undefined>;
     /**
      * The default sync mode to use for all mappers attached to this identity provider. Can be once of `IMPORT`, `FORCE`, or `LEGACY`.
      */
-    public readonly syncMode!: pulumi.Output<string | undefined>;
+    declare public readonly syncMode: pulumi.Output<string | undefined>;
     /**
      * The Token URL.
      */
-    public readonly tokenUrl!: pulumi.Output<string>;
+    declare public readonly tokenUrl: pulumi.Output<string>;
     /**
      * When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
      */
-    public readonly trustEmail!: pulumi.Output<boolean | undefined>;
+    declare public readonly trustEmail: pulumi.Output<boolean | undefined>;
     /**
      * Pass current locale to identity provider. Defaults to `false`.
      */
-    public readonly uiLocales!: pulumi.Output<boolean | undefined>;
+    declare public readonly uiLocales: pulumi.Output<boolean | undefined>;
     /**
      * User Info URL.
      */
-    public readonly userInfoUrl!: pulumi.Output<string | undefined>;
+    declare public readonly userInfoUrl: pulumi.Output<string | undefined>;
     /**
      * Enable/disable signature validation of external IDP signatures. Defaults to `false`.
      */
-    public readonly validateSignature!: pulumi.Output<boolean | undefined>;
+    declare public readonly validateSignature: pulumi.Output<boolean | undefined>;
 
     /**
      * Create a IdentityProvider resource with the given unique name, arguments, and options.
@@ -238,96 +238,96 @@ export class IdentityProvider extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as IdentityProviderState | undefined;
-            resourceInputs["acceptsPromptNoneForwardFromClient"] = state ? state.acceptsPromptNoneForwardFromClient : undefined;
-            resourceInputs["addReadTokenRoleOnCreate"] = state ? state.addReadTokenRoleOnCreate : undefined;
-            resourceInputs["alias"] = state ? state.alias : undefined;
-            resourceInputs["authenticateByDefault"] = state ? state.authenticateByDefault : undefined;
-            resourceInputs["authorizationUrl"] = state ? state.authorizationUrl : undefined;
-            resourceInputs["backchannelSupported"] = state ? state.backchannelSupported : undefined;
-            resourceInputs["clientId"] = state ? state.clientId : undefined;
-            resourceInputs["clientSecret"] = state ? state.clientSecret : undefined;
-            resourceInputs["clientSecretWoVersion"] = state ? state.clientSecretWoVersion : undefined;
-            resourceInputs["defaultScopes"] = state ? state.defaultScopes : undefined;
-            resourceInputs["disableTypeClaimCheck"] = state ? state.disableTypeClaimCheck : undefined;
-            resourceInputs["disableUserInfo"] = state ? state.disableUserInfo : undefined;
-            resourceInputs["displayName"] = state ? state.displayName : undefined;
-            resourceInputs["enabled"] = state ? state.enabled : undefined;
-            resourceInputs["extraConfig"] = state ? state.extraConfig : undefined;
-            resourceInputs["firstBrokerLoginFlowAlias"] = state ? state.firstBrokerLoginFlowAlias : undefined;
-            resourceInputs["guiOrder"] = state ? state.guiOrder : undefined;
-            resourceInputs["hideOnLoginPage"] = state ? state.hideOnLoginPage : undefined;
-            resourceInputs["internalId"] = state ? state.internalId : undefined;
-            resourceInputs["issuer"] = state ? state.issuer : undefined;
-            resourceInputs["jwksUrl"] = state ? state.jwksUrl : undefined;
-            resourceInputs["linkOnly"] = state ? state.linkOnly : undefined;
-            resourceInputs["loginHint"] = state ? state.loginHint : undefined;
-            resourceInputs["logoutUrl"] = state ? state.logoutUrl : undefined;
-            resourceInputs["orgDomain"] = state ? state.orgDomain : undefined;
-            resourceInputs["orgRedirectModeEmailMatches"] = state ? state.orgRedirectModeEmailMatches : undefined;
-            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
-            resourceInputs["postBrokerLoginFlowAlias"] = state ? state.postBrokerLoginFlowAlias : undefined;
-            resourceInputs["providerId"] = state ? state.providerId : undefined;
-            resourceInputs["realm"] = state ? state.realm : undefined;
-            resourceInputs["storeToken"] = state ? state.storeToken : undefined;
-            resourceInputs["syncMode"] = state ? state.syncMode : undefined;
-            resourceInputs["tokenUrl"] = state ? state.tokenUrl : undefined;
-            resourceInputs["trustEmail"] = state ? state.trustEmail : undefined;
-            resourceInputs["uiLocales"] = state ? state.uiLocales : undefined;
-            resourceInputs["userInfoUrl"] = state ? state.userInfoUrl : undefined;
-            resourceInputs["validateSignature"] = state ? state.validateSignature : undefined;
+            resourceInputs["acceptsPromptNoneForwardFromClient"] = state?.acceptsPromptNoneForwardFromClient;
+            resourceInputs["addReadTokenRoleOnCreate"] = state?.addReadTokenRoleOnCreate;
+            resourceInputs["alias"] = state?.alias;
+            resourceInputs["authenticateByDefault"] = state?.authenticateByDefault;
+            resourceInputs["authorizationUrl"] = state?.authorizationUrl;
+            resourceInputs["backchannelSupported"] = state?.backchannelSupported;
+            resourceInputs["clientId"] = state?.clientId;
+            resourceInputs["clientSecret"] = state?.clientSecret;
+            resourceInputs["clientSecretWoVersion"] = state?.clientSecretWoVersion;
+            resourceInputs["defaultScopes"] = state?.defaultScopes;
+            resourceInputs["disableTypeClaimCheck"] = state?.disableTypeClaimCheck;
+            resourceInputs["disableUserInfo"] = state?.disableUserInfo;
+            resourceInputs["displayName"] = state?.displayName;
+            resourceInputs["enabled"] = state?.enabled;
+            resourceInputs["extraConfig"] = state?.extraConfig;
+            resourceInputs["firstBrokerLoginFlowAlias"] = state?.firstBrokerLoginFlowAlias;
+            resourceInputs["guiOrder"] = state?.guiOrder;
+            resourceInputs["hideOnLoginPage"] = state?.hideOnLoginPage;
+            resourceInputs["internalId"] = state?.internalId;
+            resourceInputs["issuer"] = state?.issuer;
+            resourceInputs["jwksUrl"] = state?.jwksUrl;
+            resourceInputs["linkOnly"] = state?.linkOnly;
+            resourceInputs["loginHint"] = state?.loginHint;
+            resourceInputs["logoutUrl"] = state?.logoutUrl;
+            resourceInputs["orgDomain"] = state?.orgDomain;
+            resourceInputs["orgRedirectModeEmailMatches"] = state?.orgRedirectModeEmailMatches;
+            resourceInputs["organizationId"] = state?.organizationId;
+            resourceInputs["postBrokerLoginFlowAlias"] = state?.postBrokerLoginFlowAlias;
+            resourceInputs["providerId"] = state?.providerId;
+            resourceInputs["realm"] = state?.realm;
+            resourceInputs["storeToken"] = state?.storeToken;
+            resourceInputs["syncMode"] = state?.syncMode;
+            resourceInputs["tokenUrl"] = state?.tokenUrl;
+            resourceInputs["trustEmail"] = state?.trustEmail;
+            resourceInputs["uiLocales"] = state?.uiLocales;
+            resourceInputs["userInfoUrl"] = state?.userInfoUrl;
+            resourceInputs["validateSignature"] = state?.validateSignature;
         } else {
             const args = argsOrState as IdentityProviderArgs | undefined;
-            if ((!args || args.alias === undefined) && !opts.urn) {
+            if (args?.alias === undefined && !opts.urn) {
                 throw new Error("Missing required property 'alias'");
             }
-            if ((!args || args.authorizationUrl === undefined) && !opts.urn) {
+            if (args?.authorizationUrl === undefined && !opts.urn) {
                 throw new Error("Missing required property 'authorizationUrl'");
             }
-            if ((!args || args.clientId === undefined) && !opts.urn) {
+            if (args?.clientId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'clientId'");
             }
-            if ((!args || args.realm === undefined) && !opts.urn) {
+            if (args?.realm === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realm'");
             }
-            if ((!args || args.tokenUrl === undefined) && !opts.urn) {
+            if (args?.tokenUrl === undefined && !opts.urn) {
                 throw new Error("Missing required property 'tokenUrl'");
             }
-            resourceInputs["acceptsPromptNoneForwardFromClient"] = args ? args.acceptsPromptNoneForwardFromClient : undefined;
-            resourceInputs["addReadTokenRoleOnCreate"] = args ? args.addReadTokenRoleOnCreate : undefined;
-            resourceInputs["alias"] = args ? args.alias : undefined;
-            resourceInputs["authenticateByDefault"] = args ? args.authenticateByDefault : undefined;
-            resourceInputs["authorizationUrl"] = args ? args.authorizationUrl : undefined;
-            resourceInputs["backchannelSupported"] = args ? args.backchannelSupported : undefined;
-            resourceInputs["clientId"] = args ? args.clientId : undefined;
+            resourceInputs["acceptsPromptNoneForwardFromClient"] = args?.acceptsPromptNoneForwardFromClient;
+            resourceInputs["addReadTokenRoleOnCreate"] = args?.addReadTokenRoleOnCreate;
+            resourceInputs["alias"] = args?.alias;
+            resourceInputs["authenticateByDefault"] = args?.authenticateByDefault;
+            resourceInputs["authorizationUrl"] = args?.authorizationUrl;
+            resourceInputs["backchannelSupported"] = args?.backchannelSupported;
+            resourceInputs["clientId"] = args?.clientId;
             resourceInputs["clientSecret"] = args?.clientSecret ? pulumi.secret(args.clientSecret) : undefined;
-            resourceInputs["clientSecretWoVersion"] = args ? args.clientSecretWoVersion : undefined;
-            resourceInputs["defaultScopes"] = args ? args.defaultScopes : undefined;
-            resourceInputs["disableTypeClaimCheck"] = args ? args.disableTypeClaimCheck : undefined;
-            resourceInputs["disableUserInfo"] = args ? args.disableUserInfo : undefined;
-            resourceInputs["displayName"] = args ? args.displayName : undefined;
-            resourceInputs["enabled"] = args ? args.enabled : undefined;
-            resourceInputs["extraConfig"] = args ? args.extraConfig : undefined;
-            resourceInputs["firstBrokerLoginFlowAlias"] = args ? args.firstBrokerLoginFlowAlias : undefined;
-            resourceInputs["guiOrder"] = args ? args.guiOrder : undefined;
-            resourceInputs["hideOnLoginPage"] = args ? args.hideOnLoginPage : undefined;
-            resourceInputs["issuer"] = args ? args.issuer : undefined;
-            resourceInputs["jwksUrl"] = args ? args.jwksUrl : undefined;
-            resourceInputs["linkOnly"] = args ? args.linkOnly : undefined;
-            resourceInputs["loginHint"] = args ? args.loginHint : undefined;
-            resourceInputs["logoutUrl"] = args ? args.logoutUrl : undefined;
-            resourceInputs["orgDomain"] = args ? args.orgDomain : undefined;
-            resourceInputs["orgRedirectModeEmailMatches"] = args ? args.orgRedirectModeEmailMatches : undefined;
-            resourceInputs["organizationId"] = args ? args.organizationId : undefined;
-            resourceInputs["postBrokerLoginFlowAlias"] = args ? args.postBrokerLoginFlowAlias : undefined;
-            resourceInputs["providerId"] = args ? args.providerId : undefined;
-            resourceInputs["realm"] = args ? args.realm : undefined;
-            resourceInputs["storeToken"] = args ? args.storeToken : undefined;
-            resourceInputs["syncMode"] = args ? args.syncMode : undefined;
-            resourceInputs["tokenUrl"] = args ? args.tokenUrl : undefined;
-            resourceInputs["trustEmail"] = args ? args.trustEmail : undefined;
-            resourceInputs["uiLocales"] = args ? args.uiLocales : undefined;
-            resourceInputs["userInfoUrl"] = args ? args.userInfoUrl : undefined;
-            resourceInputs["validateSignature"] = args ? args.validateSignature : undefined;
+            resourceInputs["clientSecretWoVersion"] = args?.clientSecretWoVersion;
+            resourceInputs["defaultScopes"] = args?.defaultScopes;
+            resourceInputs["disableTypeClaimCheck"] = args?.disableTypeClaimCheck;
+            resourceInputs["disableUserInfo"] = args?.disableUserInfo;
+            resourceInputs["displayName"] = args?.displayName;
+            resourceInputs["enabled"] = args?.enabled;
+            resourceInputs["extraConfig"] = args?.extraConfig;
+            resourceInputs["firstBrokerLoginFlowAlias"] = args?.firstBrokerLoginFlowAlias;
+            resourceInputs["guiOrder"] = args?.guiOrder;
+            resourceInputs["hideOnLoginPage"] = args?.hideOnLoginPage;
+            resourceInputs["issuer"] = args?.issuer;
+            resourceInputs["jwksUrl"] = args?.jwksUrl;
+            resourceInputs["linkOnly"] = args?.linkOnly;
+            resourceInputs["loginHint"] = args?.loginHint;
+            resourceInputs["logoutUrl"] = args?.logoutUrl;
+            resourceInputs["orgDomain"] = args?.orgDomain;
+            resourceInputs["orgRedirectModeEmailMatches"] = args?.orgRedirectModeEmailMatches;
+            resourceInputs["organizationId"] = args?.organizationId;
+            resourceInputs["postBrokerLoginFlowAlias"] = args?.postBrokerLoginFlowAlias;
+            resourceInputs["providerId"] = args?.providerId;
+            resourceInputs["realm"] = args?.realm;
+            resourceInputs["storeToken"] = args?.storeToken;
+            resourceInputs["syncMode"] = args?.syncMode;
+            resourceInputs["tokenUrl"] = args?.tokenUrl;
+            resourceInputs["trustEmail"] = args?.trustEmail;
+            resourceInputs["uiLocales"] = args?.uiLocales;
+            resourceInputs["userInfoUrl"] = args?.userInfoUrl;
+            resourceInputs["validateSignature"] = args?.validateSignature;
             resourceInputs["internalId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
