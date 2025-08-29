@@ -73,31 +73,31 @@ export class RequiredAction extends pulumi.CustomResource {
     /**
      * The alias of the action to attach as a required action.
      */
-    public readonly alias!: pulumi.Output<string>;
+    declare public readonly alias: pulumi.Output<string>;
     /**
      * The configuration. Keys are specific to each configurable required action and not checked when applying.
      */
-    public readonly config!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly config: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * When `true`, the required action is set as the default action for new users. Defaults to `false`.
      */
-    public readonly defaultAction!: pulumi.Output<boolean | undefined>;
+    declare public readonly defaultAction: pulumi.Output<boolean | undefined>;
     /**
      * When `false`, the required action is not enabled for new users. Defaults to `false`.
      */
-    public readonly enabled!: pulumi.Output<boolean | undefined>;
+    declare public readonly enabled: pulumi.Output<boolean | undefined>;
     /**
      * The name of the required action.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The priority of the required action.
      */
-    public readonly priority!: pulumi.Output<number>;
+    declare public readonly priority: pulumi.Output<number>;
     /**
      * The realm the required action exists in.
      */
-    public readonly realmId!: pulumi.Output<string>;
+    declare public readonly realmId: pulumi.Output<string>;
 
     /**
      * Create a RequiredAction resource with the given unique name, arguments, and options.
@@ -112,28 +112,28 @@ export class RequiredAction extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RequiredActionState | undefined;
-            resourceInputs["alias"] = state ? state.alias : undefined;
-            resourceInputs["config"] = state ? state.config : undefined;
-            resourceInputs["defaultAction"] = state ? state.defaultAction : undefined;
-            resourceInputs["enabled"] = state ? state.enabled : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["priority"] = state ? state.priority : undefined;
-            resourceInputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["alias"] = state?.alias;
+            resourceInputs["config"] = state?.config;
+            resourceInputs["defaultAction"] = state?.defaultAction;
+            resourceInputs["enabled"] = state?.enabled;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["priority"] = state?.priority;
+            resourceInputs["realmId"] = state?.realmId;
         } else {
             const args = argsOrState as RequiredActionArgs | undefined;
-            if ((!args || args.alias === undefined) && !opts.urn) {
+            if (args?.alias === undefined && !opts.urn) {
                 throw new Error("Missing required property 'alias'");
             }
-            if ((!args || args.realmId === undefined) && !opts.urn) {
+            if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            resourceInputs["alias"] = args ? args.alias : undefined;
-            resourceInputs["config"] = args ? args.config : undefined;
-            resourceInputs["defaultAction"] = args ? args.defaultAction : undefined;
-            resourceInputs["enabled"] = args ? args.enabled : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["priority"] = args ? args.priority : undefined;
-            resourceInputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["alias"] = args?.alias;
+            resourceInputs["config"] = args?.config;
+            resourceInputs["defaultAction"] = args?.defaultAction;
+            resourceInputs["enabled"] = args?.enabled;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["priority"] = args?.priority;
+            resourceInputs["realmId"] = args?.realmId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(RequiredAction.__pulumiType, name, resourceInputs, opts);

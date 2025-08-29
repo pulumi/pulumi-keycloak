@@ -117,39 +117,39 @@ export class UserSessionNoteProtocolMapper extends pulumi.CustomResource {
     /**
      * Indicates if the property should be added as a claim to the access token. Defaults to `true`.
      */
-    public readonly addToAccessToken!: pulumi.Output<boolean | undefined>;
+    declare public readonly addToAccessToken: pulumi.Output<boolean | undefined>;
     /**
      * Indicates if the property should be added as a claim to the id token. Defaults to `true`.
      */
-    public readonly addToIdToken!: pulumi.Output<boolean | undefined>;
+    declare public readonly addToIdToken: pulumi.Output<boolean | undefined>;
     /**
      * The name of the claim to insert into a token.
      */
-    public readonly claimName!: pulumi.Output<string>;
+    declare public readonly claimName: pulumi.Output<string>;
     /**
      * The claim type used when serializing JSON tokens. Can be one of `String`, `JSON`, `long`, `int`, or `boolean`. Defaults to `String`.
      */
-    public readonly claimValueType!: pulumi.Output<string | undefined>;
+    declare public readonly claimValueType: pulumi.Output<string | undefined>;
     /**
      * The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
      */
-    public readonly clientId!: pulumi.Output<string | undefined>;
+    declare public readonly clientId: pulumi.Output<string | undefined>;
     /**
      * The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
      */
-    public readonly clientScopeId!: pulumi.Output<string | undefined>;
+    declare public readonly clientScopeId: pulumi.Output<string | undefined>;
     /**
      * The display name of this protocol mapper in the GUI.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The realm this protocol mapper exists within.
      */
-    public readonly realmId!: pulumi.Output<string>;
+    declare public readonly realmId: pulumi.Output<string>;
     /**
      * String value being the name of stored user session note within the `UserSessionModel.note` map.
      */
-    public readonly sessionNote!: pulumi.Output<string | undefined>;
+    declare public readonly sessionNote: pulumi.Output<string | undefined>;
 
     /**
      * Create a UserSessionNoteProtocolMapper resource with the given unique name, arguments, and options.
@@ -164,32 +164,32 @@ export class UserSessionNoteProtocolMapper extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as UserSessionNoteProtocolMapperState | undefined;
-            resourceInputs["addToAccessToken"] = state ? state.addToAccessToken : undefined;
-            resourceInputs["addToIdToken"] = state ? state.addToIdToken : undefined;
-            resourceInputs["claimName"] = state ? state.claimName : undefined;
-            resourceInputs["claimValueType"] = state ? state.claimValueType : undefined;
-            resourceInputs["clientId"] = state ? state.clientId : undefined;
-            resourceInputs["clientScopeId"] = state ? state.clientScopeId : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["realmId"] = state ? state.realmId : undefined;
-            resourceInputs["sessionNote"] = state ? state.sessionNote : undefined;
+            resourceInputs["addToAccessToken"] = state?.addToAccessToken;
+            resourceInputs["addToIdToken"] = state?.addToIdToken;
+            resourceInputs["claimName"] = state?.claimName;
+            resourceInputs["claimValueType"] = state?.claimValueType;
+            resourceInputs["clientId"] = state?.clientId;
+            resourceInputs["clientScopeId"] = state?.clientScopeId;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["sessionNote"] = state?.sessionNote;
         } else {
             const args = argsOrState as UserSessionNoteProtocolMapperArgs | undefined;
-            if ((!args || args.claimName === undefined) && !opts.urn) {
+            if (args?.claimName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'claimName'");
             }
-            if ((!args || args.realmId === undefined) && !opts.urn) {
+            if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            resourceInputs["addToAccessToken"] = args ? args.addToAccessToken : undefined;
-            resourceInputs["addToIdToken"] = args ? args.addToIdToken : undefined;
-            resourceInputs["claimName"] = args ? args.claimName : undefined;
-            resourceInputs["claimValueType"] = args ? args.claimValueType : undefined;
-            resourceInputs["clientId"] = args ? args.clientId : undefined;
-            resourceInputs["clientScopeId"] = args ? args.clientScopeId : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["realmId"] = args ? args.realmId : undefined;
-            resourceInputs["sessionNote"] = args ? args.sessionNote : undefined;
+            resourceInputs["addToAccessToken"] = args?.addToAccessToken;
+            resourceInputs["addToIdToken"] = args?.addToIdToken;
+            resourceInputs["claimName"] = args?.claimName;
+            resourceInputs["claimValueType"] = args?.claimValueType;
+            resourceInputs["clientId"] = args?.clientId;
+            resourceInputs["clientScopeId"] = args?.clientScopeId;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["sessionNote"] = args?.sessionNote;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(UserSessionNoteProtocolMapper.__pulumiType, name, resourceInputs, opts);

@@ -80,15 +80,15 @@ export class ClientServiceAccountRealmRole extends pulumi.CustomResource {
     /**
      * The realm that the client and role belong to.
      */
-    public readonly realmId!: pulumi.Output<string>;
+    declare public readonly realmId: pulumi.Output<string>;
     /**
      * The name of the role that is assigned.
      */
-    public readonly role!: pulumi.Output<string>;
+    declare public readonly role: pulumi.Output<string>;
     /**
      * The id of the service account that is assigned the role (the service account of the client that "consumes" the role).
      */
-    public readonly serviceAccountUserId!: pulumi.Output<string>;
+    declare public readonly serviceAccountUserId: pulumi.Output<string>;
 
     /**
      * Create a ClientServiceAccountRealmRole resource with the given unique name, arguments, and options.
@@ -103,23 +103,23 @@ export class ClientServiceAccountRealmRole extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ClientServiceAccountRealmRoleState | undefined;
-            resourceInputs["realmId"] = state ? state.realmId : undefined;
-            resourceInputs["role"] = state ? state.role : undefined;
-            resourceInputs["serviceAccountUserId"] = state ? state.serviceAccountUserId : undefined;
+            resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["role"] = state?.role;
+            resourceInputs["serviceAccountUserId"] = state?.serviceAccountUserId;
         } else {
             const args = argsOrState as ClientServiceAccountRealmRoleArgs | undefined;
-            if ((!args || args.realmId === undefined) && !opts.urn) {
+            if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            if ((!args || args.role === undefined) && !opts.urn) {
+            if (args?.role === undefined && !opts.urn) {
                 throw new Error("Missing required property 'role'");
             }
-            if ((!args || args.serviceAccountUserId === undefined) && !opts.urn) {
+            if (args?.serviceAccountUserId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'serviceAccountUserId'");
             }
-            resourceInputs["realmId"] = args ? args.realmId : undefined;
-            resourceInputs["role"] = args ? args.role : undefined;
-            resourceInputs["serviceAccountUserId"] = args ? args.serviceAccountUserId : undefined;
+            resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["role"] = args?.role;
+            resourceInputs["serviceAccountUserId"] = args?.serviceAccountUserId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(ClientServiceAccountRealmRole.__pulumiType, name, resourceInputs, opts);

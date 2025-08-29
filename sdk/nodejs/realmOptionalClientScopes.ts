@@ -73,11 +73,11 @@ export class RealmOptionalClientScopes extends pulumi.CustomResource {
     /**
      * An array of optional client scope names that should be used when creating new Keycloak clients.
      */
-    public readonly optionalScopes!: pulumi.Output<string[]>;
+    declare public readonly optionalScopes: pulumi.Output<string[]>;
     /**
      * The realm this client and scopes exists in.
      */
-    public readonly realmId!: pulumi.Output<string>;
+    declare public readonly realmId: pulumi.Output<string>;
 
     /**
      * Create a RealmOptionalClientScopes resource with the given unique name, arguments, and options.
@@ -92,18 +92,18 @@ export class RealmOptionalClientScopes extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RealmOptionalClientScopesState | undefined;
-            resourceInputs["optionalScopes"] = state ? state.optionalScopes : undefined;
-            resourceInputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["optionalScopes"] = state?.optionalScopes;
+            resourceInputs["realmId"] = state?.realmId;
         } else {
             const args = argsOrState as RealmOptionalClientScopesArgs | undefined;
-            if ((!args || args.optionalScopes === undefined) && !opts.urn) {
+            if (args?.optionalScopes === undefined && !opts.urn) {
                 throw new Error("Missing required property 'optionalScopes'");
             }
-            if ((!args || args.realmId === undefined) && !opts.urn) {
+            if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            resourceInputs["optionalScopes"] = args ? args.optionalScopes : undefined;
-            resourceInputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["optionalScopes"] = args?.optionalScopes;
+            resourceInputs["realmId"] = args?.realmId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(RealmOptionalClientScopes.__pulumiType, name, resourceInputs, opts);

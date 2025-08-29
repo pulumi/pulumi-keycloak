@@ -84,19 +84,19 @@ export class ExecutionConfig extends pulumi.CustomResource {
     /**
      * The name of the configuration.
      */
-    public readonly alias!: pulumi.Output<string>;
+    declare public readonly alias: pulumi.Output<string>;
     /**
      * The configuration. Keys are specific to each configurable authentication execution and not checked when applying.
      */
-    public readonly config!: pulumi.Output<{[key: string]: string}>;
+    declare public readonly config: pulumi.Output<{[key: string]: string}>;
     /**
      * The authentication execution this configuration is attached to.
      */
-    public readonly executionId!: pulumi.Output<string>;
+    declare public readonly executionId: pulumi.Output<string>;
     /**
      * The realm the authentication execution exists in.
      */
-    public readonly realmId!: pulumi.Output<string>;
+    declare public readonly realmId: pulumi.Output<string>;
 
     /**
      * Create a ExecutionConfig resource with the given unique name, arguments, and options.
@@ -111,25 +111,25 @@ export class ExecutionConfig extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ExecutionConfigState | undefined;
-            resourceInputs["alias"] = state ? state.alias : undefined;
-            resourceInputs["config"] = state ? state.config : undefined;
-            resourceInputs["executionId"] = state ? state.executionId : undefined;
-            resourceInputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["alias"] = state?.alias;
+            resourceInputs["config"] = state?.config;
+            resourceInputs["executionId"] = state?.executionId;
+            resourceInputs["realmId"] = state?.realmId;
         } else {
             const args = argsOrState as ExecutionConfigArgs | undefined;
-            if ((!args || args.config === undefined) && !opts.urn) {
+            if (args?.config === undefined && !opts.urn) {
                 throw new Error("Missing required property 'config'");
             }
-            if ((!args || args.executionId === undefined) && !opts.urn) {
+            if (args?.executionId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'executionId'");
             }
-            if ((!args || args.realmId === undefined) && !opts.urn) {
+            if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            resourceInputs["alias"] = args ? args.alias : undefined;
-            resourceInputs["config"] = args ? args.config : undefined;
-            resourceInputs["executionId"] = args ? args.executionId : undefined;
-            resourceInputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["alias"] = args?.alias;
+            resourceInputs["config"] = args?.config;
+            resourceInputs["executionId"] = args?.executionId;
+            resourceInputs["realmId"] = args?.realmId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(ExecutionConfig.__pulumiType, name, resourceInputs, opts);

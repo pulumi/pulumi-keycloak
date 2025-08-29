@@ -66,31 +66,31 @@ export class RealmEvents extends pulumi.CustomResource {
     /**
      * When `true`, saved admin events will included detailed information for create/update requests. Defaults to `false`.
      */
-    public readonly adminEventsDetailsEnabled!: pulumi.Output<boolean | undefined>;
+    declare public readonly adminEventsDetailsEnabled: pulumi.Output<boolean | undefined>;
     /**
      * When `true`, admin events are saved to the database, making them available through the admin console. Defaults to `false`.
      */
-    public readonly adminEventsEnabled!: pulumi.Output<boolean | undefined>;
+    declare public readonly adminEventsEnabled: pulumi.Output<boolean | undefined>;
     /**
      * The event types that will be saved to the database. Omitting this field enables all event types. Defaults to `[]` or all event types.
      */
-    public readonly enabledEventTypes!: pulumi.Output<string[] | undefined>;
+    declare public readonly enabledEventTypes: pulumi.Output<string[] | undefined>;
     /**
      * When `true`, events from `enabledEventTypes` are saved to the database, making them available through the admin console. Defaults to `false`.
      */
-    public readonly eventsEnabled!: pulumi.Output<boolean | undefined>;
+    declare public readonly eventsEnabled: pulumi.Output<boolean | undefined>;
     /**
      * The amount of time in seconds events will be saved in the database. Defaults to `0` or never.
      */
-    public readonly eventsExpiration!: pulumi.Output<number | undefined>;
+    declare public readonly eventsExpiration: pulumi.Output<number | undefined>;
     /**
      * The event listeners that events should be sent to. Defaults to `[]` or none. Note that new realms enable the `jboss-logging` listener by default, and this resource will remove that unless it is specified.
      */
-    public readonly eventsListeners!: pulumi.Output<string[] | undefined>;
+    declare public readonly eventsListeners: pulumi.Output<string[] | undefined>;
     /**
      * The name of the realm the event settings apply to.
      */
-    public readonly realmId!: pulumi.Output<string>;
+    declare public readonly realmId: pulumi.Output<string>;
 
     /**
      * Create a RealmEvents resource with the given unique name, arguments, and options.
@@ -105,25 +105,25 @@ export class RealmEvents extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RealmEventsState | undefined;
-            resourceInputs["adminEventsDetailsEnabled"] = state ? state.adminEventsDetailsEnabled : undefined;
-            resourceInputs["adminEventsEnabled"] = state ? state.adminEventsEnabled : undefined;
-            resourceInputs["enabledEventTypes"] = state ? state.enabledEventTypes : undefined;
-            resourceInputs["eventsEnabled"] = state ? state.eventsEnabled : undefined;
-            resourceInputs["eventsExpiration"] = state ? state.eventsExpiration : undefined;
-            resourceInputs["eventsListeners"] = state ? state.eventsListeners : undefined;
-            resourceInputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["adminEventsDetailsEnabled"] = state?.adminEventsDetailsEnabled;
+            resourceInputs["adminEventsEnabled"] = state?.adminEventsEnabled;
+            resourceInputs["enabledEventTypes"] = state?.enabledEventTypes;
+            resourceInputs["eventsEnabled"] = state?.eventsEnabled;
+            resourceInputs["eventsExpiration"] = state?.eventsExpiration;
+            resourceInputs["eventsListeners"] = state?.eventsListeners;
+            resourceInputs["realmId"] = state?.realmId;
         } else {
             const args = argsOrState as RealmEventsArgs | undefined;
-            if ((!args || args.realmId === undefined) && !opts.urn) {
+            if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            resourceInputs["adminEventsDetailsEnabled"] = args ? args.adminEventsDetailsEnabled : undefined;
-            resourceInputs["adminEventsEnabled"] = args ? args.adminEventsEnabled : undefined;
-            resourceInputs["enabledEventTypes"] = args ? args.enabledEventTypes : undefined;
-            resourceInputs["eventsEnabled"] = args ? args.eventsEnabled : undefined;
-            resourceInputs["eventsExpiration"] = args ? args.eventsExpiration : undefined;
-            resourceInputs["eventsListeners"] = args ? args.eventsListeners : undefined;
-            resourceInputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["adminEventsDetailsEnabled"] = args?.adminEventsDetailsEnabled;
+            resourceInputs["adminEventsEnabled"] = args?.adminEventsEnabled;
+            resourceInputs["enabledEventTypes"] = args?.enabledEventTypes;
+            resourceInputs["eventsEnabled"] = args?.eventsEnabled;
+            resourceInputs["eventsExpiration"] = args?.eventsExpiration;
+            resourceInputs["eventsListeners"] = args?.eventsListeners;
+            resourceInputs["realmId"] = args?.realmId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(RealmEvents.__pulumiType, name, resourceInputs, opts);

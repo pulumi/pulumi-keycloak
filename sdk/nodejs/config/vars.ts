@@ -100,8 +100,7 @@ Object.defineProperty(exports, "realm", {
 });
 
 /**
- * When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version
- * returned from the /serverinfo API endpoint.
+ * When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version returned from the /serverinfo API endpoint.
  */
 export declare const redHatSso: boolean | undefined;
 Object.defineProperty(exports, "redHatSso", {
@@ -123,8 +122,7 @@ Object.defineProperty(exports, "rootCaCertificate", {
 });
 
 /**
- * Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and
- * should be avoided.
+ * Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and should be avoided.
  */
 export declare const tlsInsecureSkipVerify: boolean | undefined;
 Object.defineProperty(exports, "tlsInsecureSkipVerify", {

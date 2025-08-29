@@ -55,17 +55,17 @@ export class ClientPermissions extends pulumi.CustomResource {
     /**
      * Resource server id representing the realm management client on which this permission is managed
      */
-    public /*out*/ readonly authorizationResourceServerId!: pulumi.Output<string>;
-    public readonly clientId!: pulumi.Output<string>;
-    public readonly configureScope!: pulumi.Output<outputs.openid.ClientPermissionsConfigureScope | undefined>;
-    public /*out*/ readonly enabled!: pulumi.Output<boolean>;
-    public readonly manageScope!: pulumi.Output<outputs.openid.ClientPermissionsManageScope | undefined>;
-    public readonly mapRolesClientScopeScope!: pulumi.Output<outputs.openid.ClientPermissionsMapRolesClientScopeScope | undefined>;
-    public readonly mapRolesCompositeScope!: pulumi.Output<outputs.openid.ClientPermissionsMapRolesCompositeScope | undefined>;
-    public readonly mapRolesScope!: pulumi.Output<outputs.openid.ClientPermissionsMapRolesScope | undefined>;
-    public readonly realmId!: pulumi.Output<string>;
-    public readonly tokenExchangeScope!: pulumi.Output<outputs.openid.ClientPermissionsTokenExchangeScope | undefined>;
-    public readonly viewScope!: pulumi.Output<outputs.openid.ClientPermissionsViewScope | undefined>;
+    declare public /*out*/ readonly authorizationResourceServerId: pulumi.Output<string>;
+    declare public readonly clientId: pulumi.Output<string>;
+    declare public readonly configureScope: pulumi.Output<outputs.openid.ClientPermissionsConfigureScope | undefined>;
+    declare public /*out*/ readonly enabled: pulumi.Output<boolean>;
+    declare public readonly manageScope: pulumi.Output<outputs.openid.ClientPermissionsManageScope | undefined>;
+    declare public readonly mapRolesClientScopeScope: pulumi.Output<outputs.openid.ClientPermissionsMapRolesClientScopeScope | undefined>;
+    declare public readonly mapRolesCompositeScope: pulumi.Output<outputs.openid.ClientPermissionsMapRolesCompositeScope | undefined>;
+    declare public readonly mapRolesScope: pulumi.Output<outputs.openid.ClientPermissionsMapRolesScope | undefined>;
+    declare public readonly realmId: pulumi.Output<string>;
+    declare public readonly tokenExchangeScope: pulumi.Output<outputs.openid.ClientPermissionsTokenExchangeScope | undefined>;
+    declare public readonly viewScope: pulumi.Output<outputs.openid.ClientPermissionsViewScope | undefined>;
 
     /**
      * Create a ClientPermissions resource with the given unique name, arguments, and options.
@@ -80,34 +80,34 @@ export class ClientPermissions extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ClientPermissionsState | undefined;
-            resourceInputs["authorizationResourceServerId"] = state ? state.authorizationResourceServerId : undefined;
-            resourceInputs["clientId"] = state ? state.clientId : undefined;
-            resourceInputs["configureScope"] = state ? state.configureScope : undefined;
-            resourceInputs["enabled"] = state ? state.enabled : undefined;
-            resourceInputs["manageScope"] = state ? state.manageScope : undefined;
-            resourceInputs["mapRolesClientScopeScope"] = state ? state.mapRolesClientScopeScope : undefined;
-            resourceInputs["mapRolesCompositeScope"] = state ? state.mapRolesCompositeScope : undefined;
-            resourceInputs["mapRolesScope"] = state ? state.mapRolesScope : undefined;
-            resourceInputs["realmId"] = state ? state.realmId : undefined;
-            resourceInputs["tokenExchangeScope"] = state ? state.tokenExchangeScope : undefined;
-            resourceInputs["viewScope"] = state ? state.viewScope : undefined;
+            resourceInputs["authorizationResourceServerId"] = state?.authorizationResourceServerId;
+            resourceInputs["clientId"] = state?.clientId;
+            resourceInputs["configureScope"] = state?.configureScope;
+            resourceInputs["enabled"] = state?.enabled;
+            resourceInputs["manageScope"] = state?.manageScope;
+            resourceInputs["mapRolesClientScopeScope"] = state?.mapRolesClientScopeScope;
+            resourceInputs["mapRolesCompositeScope"] = state?.mapRolesCompositeScope;
+            resourceInputs["mapRolesScope"] = state?.mapRolesScope;
+            resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["tokenExchangeScope"] = state?.tokenExchangeScope;
+            resourceInputs["viewScope"] = state?.viewScope;
         } else {
             const args = argsOrState as ClientPermissionsArgs | undefined;
-            if ((!args || args.clientId === undefined) && !opts.urn) {
+            if (args?.clientId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'clientId'");
             }
-            if ((!args || args.realmId === undefined) && !opts.urn) {
+            if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            resourceInputs["clientId"] = args ? args.clientId : undefined;
-            resourceInputs["configureScope"] = args ? args.configureScope : undefined;
-            resourceInputs["manageScope"] = args ? args.manageScope : undefined;
-            resourceInputs["mapRolesClientScopeScope"] = args ? args.mapRolesClientScopeScope : undefined;
-            resourceInputs["mapRolesCompositeScope"] = args ? args.mapRolesCompositeScope : undefined;
-            resourceInputs["mapRolesScope"] = args ? args.mapRolesScope : undefined;
-            resourceInputs["realmId"] = args ? args.realmId : undefined;
-            resourceInputs["tokenExchangeScope"] = args ? args.tokenExchangeScope : undefined;
-            resourceInputs["viewScope"] = args ? args.viewScope : undefined;
+            resourceInputs["clientId"] = args?.clientId;
+            resourceInputs["configureScope"] = args?.configureScope;
+            resourceInputs["manageScope"] = args?.manageScope;
+            resourceInputs["mapRolesClientScopeScope"] = args?.mapRolesClientScopeScope;
+            resourceInputs["mapRolesCompositeScope"] = args?.mapRolesCompositeScope;
+            resourceInputs["mapRolesScope"] = args?.mapRolesScope;
+            resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["tokenExchangeScope"] = args?.tokenExchangeScope;
+            resourceInputs["viewScope"] = args?.viewScope;
             resourceInputs["authorizationResourceServerId"] = undefined /*out*/;
             resourceInputs["enabled"] = undefined /*out*/;
         }

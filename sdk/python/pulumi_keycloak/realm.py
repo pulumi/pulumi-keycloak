@@ -92,9 +92,7 @@ class RealmArgs:
         :param pulumi.Input[_builtins.str] first_broker_login_flow: Which flow should be used for FirstBrokerLoginFlow
         :param pulumi.Input[_builtins.str] internal_id: When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
         :param pulumi.Input[_builtins.bool] organizations_enabled: When `true`, organization support is enabled. Defaults to `false`.
-        :param pulumi.Input[_builtins.str] password_policy: String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
-               can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365)
-               and notUsername(undefined)"
+        :param pulumi.Input[_builtins.str] password_policy: String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername(undefined)"
         :param pulumi.Input[_builtins.str] realm: The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
         :param pulumi.Input[_builtins.str] registration_flow: Which flow should be used for RegistrationFlow
         :param pulumi.Input[_builtins.str] reset_credentials_flow: Which flow should be used for ResetCredentialsFlow
@@ -588,9 +586,7 @@ class RealmArgs:
     @pulumi.getter(name="passwordPolicy")
     def password_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
-        can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365)
-        and notUsername(undefined)"
+        String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername(undefined)"
         """
         return pulumi.get(self, "password_policy")
 
@@ -868,9 +864,7 @@ class _RealmState:
         :param pulumi.Input[_builtins.str] first_broker_login_flow: Which flow should be used for FirstBrokerLoginFlow
         :param pulumi.Input[_builtins.str] internal_id: When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
         :param pulumi.Input[_builtins.bool] organizations_enabled: When `true`, organization support is enabled. Defaults to `false`.
-        :param pulumi.Input[_builtins.str] password_policy: String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
-               can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365)
-               and notUsername(undefined)"
+        :param pulumi.Input[_builtins.str] password_policy: String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername(undefined)"
         :param pulumi.Input[_builtins.str] realm: The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
         :param pulumi.Input[_builtins.str] registration_flow: Which flow should be used for RegistrationFlow
         :param pulumi.Input[_builtins.str] reset_credentials_flow: Which flow should be used for ResetCredentialsFlow
@@ -1364,9 +1358,7 @@ class _RealmState:
     @pulumi.getter(name="passwordPolicy")
     def password_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
-        can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365)
-        and notUsername(undefined)"
+        String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername(undefined)"
         """
         return pulumi.get(self, "password_policy")
 
@@ -1735,9 +1727,7 @@ class Realm(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] first_broker_login_flow: Which flow should be used for FirstBrokerLoginFlow
         :param pulumi.Input[_builtins.str] internal_id: When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
         :param pulumi.Input[_builtins.bool] organizations_enabled: When `true`, organization support is enabled. Defaults to `false`.
-        :param pulumi.Input[_builtins.str] password_policy: String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
-               can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365)
-               and notUsername(undefined)"
+        :param pulumi.Input[_builtins.str] password_policy: String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername(undefined)"
         :param pulumi.Input[_builtins.str] realm: The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
         :param pulumi.Input[_builtins.str] registration_flow: Which flow should be used for RegistrationFlow
         :param pulumi.Input[_builtins.str] reset_credentials_flow: Which flow should be used for ResetCredentialsFlow
@@ -2063,9 +2053,7 @@ class Realm(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] first_broker_login_flow: Which flow should be used for FirstBrokerLoginFlow
         :param pulumi.Input[_builtins.str] internal_id: When specified, this will be used as the realm's internal ID within Keycloak. When not specified, the realm's internal ID will be set to the realm's name.
         :param pulumi.Input[_builtins.bool] organizations_enabled: When `true`, organization support is enabled. Defaults to `false`.
-        :param pulumi.Input[_builtins.str] password_policy: String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
-               can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365)
-               and notUsername(undefined)"
+        :param pulumi.Input[_builtins.str] password_policy: String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername(undefined)"
         :param pulumi.Input[_builtins.str] realm: The name of the realm. This is unique across Keycloak. This will also be used as the realm's internal ID within Keycloak.
         :param pulumi.Input[_builtins.str] registration_flow: Which flow should be used for RegistrationFlow
         :param pulumi.Input[_builtins.str] reset_credentials_flow: Which flow should be used for ResetCredentialsFlow
@@ -2358,9 +2346,7 @@ class Realm(pulumi.CustomResource):
     @pulumi.getter(name="passwordPolicy")
     def password_policy(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
-        can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365)
-        and notUsername(undefined)"
+        String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername(undefined)"
         """
         return pulumi.get(self, "password_policy")
 

@@ -94,31 +94,31 @@ export class GenericProtocolMapper extends pulumi.CustomResource {
     /**
      * The ID of the client this protocol mapper should be added to. Conflicts with `clientScopeId`. This argument is required if `clientScopeId` is not set.
      */
-    public readonly clientId!: pulumi.Output<string | undefined>;
+    declare public readonly clientId: pulumi.Output<string | undefined>;
     /**
      * The ID of the client scope this protocol mapper should be added to. Conflicts with `clientId`. This argument is required if `clientId` is not set.
      */
-    public readonly clientScopeId!: pulumi.Output<string | undefined>;
+    declare public readonly clientScopeId: pulumi.Output<string | undefined>;
     /**
      * A map with key / value pairs for configuring the protocol mapper. The supported keys depends on the protocol mapper.
      */
-    public readonly config!: pulumi.Output<{[key: string]: string}>;
+    declare public readonly config: pulumi.Output<{[key: string]: string}>;
     /**
      * The display name of this protocol mapper in the GUI.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
      */
-    public readonly protocol!: pulumi.Output<string>;
+    declare public readonly protocol: pulumi.Output<string>;
     /**
      * The name of the protocol mapper. The protocol mapper must be compatible with the specified client.
      */
-    public readonly protocolMapper!: pulumi.Output<string>;
+    declare public readonly protocolMapper: pulumi.Output<string>;
     /**
      * The realm this protocol mapper exists within.
      */
-    public readonly realmId!: pulumi.Output<string>;
+    declare public readonly realmId: pulumi.Output<string>;
 
     /**
      * Create a GenericProtocolMapper resource with the given unique name, arguments, and options.
@@ -133,34 +133,34 @@ export class GenericProtocolMapper extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as GenericProtocolMapperState | undefined;
-            resourceInputs["clientId"] = state ? state.clientId : undefined;
-            resourceInputs["clientScopeId"] = state ? state.clientScopeId : undefined;
-            resourceInputs["config"] = state ? state.config : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["protocol"] = state ? state.protocol : undefined;
-            resourceInputs["protocolMapper"] = state ? state.protocolMapper : undefined;
-            resourceInputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["clientId"] = state?.clientId;
+            resourceInputs["clientScopeId"] = state?.clientScopeId;
+            resourceInputs["config"] = state?.config;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["protocol"] = state?.protocol;
+            resourceInputs["protocolMapper"] = state?.protocolMapper;
+            resourceInputs["realmId"] = state?.realmId;
         } else {
             const args = argsOrState as GenericProtocolMapperArgs | undefined;
-            if ((!args || args.config === undefined) && !opts.urn) {
+            if (args?.config === undefined && !opts.urn) {
                 throw new Error("Missing required property 'config'");
             }
-            if ((!args || args.protocol === undefined) && !opts.urn) {
+            if (args?.protocol === undefined && !opts.urn) {
                 throw new Error("Missing required property 'protocol'");
             }
-            if ((!args || args.protocolMapper === undefined) && !opts.urn) {
+            if (args?.protocolMapper === undefined && !opts.urn) {
                 throw new Error("Missing required property 'protocolMapper'");
             }
-            if ((!args || args.realmId === undefined) && !opts.urn) {
+            if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            resourceInputs["clientId"] = args ? args.clientId : undefined;
-            resourceInputs["clientScopeId"] = args ? args.clientScopeId : undefined;
-            resourceInputs["config"] = args ? args.config : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["protocol"] = args ? args.protocol : undefined;
-            resourceInputs["protocolMapper"] = args ? args.protocolMapper : undefined;
-            resourceInputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["clientId"] = args?.clientId;
+            resourceInputs["clientScopeId"] = args?.clientScopeId;
+            resourceInputs["config"] = args?.config;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["protocol"] = args?.protocol;
+            resourceInputs["protocolMapper"] = args?.protocolMapper;
+            resourceInputs["realmId"] = args?.realmId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(GenericProtocolMapper.__pulumiType, name, resourceInputs, opts);

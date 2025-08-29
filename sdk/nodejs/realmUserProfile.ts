@@ -129,19 +129,19 @@ export class RealmUserProfile extends pulumi.CustomResource {
     /**
      * An ordered list of attributes.
      */
-    public readonly attributes!: pulumi.Output<outputs.RealmUserProfileAttribute[] | undefined>;
+    declare public readonly attributes: pulumi.Output<outputs.RealmUserProfileAttribute[] | undefined>;
     /**
      * A list of groups.
      */
-    public readonly groups!: pulumi.Output<outputs.RealmUserProfileGroup[] | undefined>;
+    declare public readonly groups: pulumi.Output<outputs.RealmUserProfileGroup[] | undefined>;
     /**
      * The ID of the realm the user profile applies to.
      */
-    public readonly realmId!: pulumi.Output<string>;
+    declare public readonly realmId: pulumi.Output<string>;
     /**
      * Unmanaged attributes are user attributes not explicitly defined in the user profile configuration. By default, unmanaged attributes are not enabled. Value could be one of `DISABLED`, `ENABLED`, `ADMIN_EDIT` or `ADMIN_VIEW`. If value is not specified it means `DISABLED`
      */
-    public readonly unmanagedAttributePolicy!: pulumi.Output<string | undefined>;
+    declare public readonly unmanagedAttributePolicy: pulumi.Output<string | undefined>;
 
     /**
      * Create a RealmUserProfile resource with the given unique name, arguments, and options.
@@ -156,19 +156,19 @@ export class RealmUserProfile extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RealmUserProfileState | undefined;
-            resourceInputs["attributes"] = state ? state.attributes : undefined;
-            resourceInputs["groups"] = state ? state.groups : undefined;
-            resourceInputs["realmId"] = state ? state.realmId : undefined;
-            resourceInputs["unmanagedAttributePolicy"] = state ? state.unmanagedAttributePolicy : undefined;
+            resourceInputs["attributes"] = state?.attributes;
+            resourceInputs["groups"] = state?.groups;
+            resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["unmanagedAttributePolicy"] = state?.unmanagedAttributePolicy;
         } else {
             const args = argsOrState as RealmUserProfileArgs | undefined;
-            if ((!args || args.realmId === undefined) && !opts.urn) {
+            if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            resourceInputs["attributes"] = args ? args.attributes : undefined;
-            resourceInputs["groups"] = args ? args.groups : undefined;
-            resourceInputs["realmId"] = args ? args.realmId : undefined;
-            resourceInputs["unmanagedAttributePolicy"] = args ? args.unmanagedAttributePolicy : undefined;
+            resourceInputs["attributes"] = args?.attributes;
+            resourceInputs["groups"] = args?.groups;
+            resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["unmanagedAttributePolicy"] = args?.unmanagedAttributePolicy;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(RealmUserProfile.__pulumiType, name, resourceInputs, opts);

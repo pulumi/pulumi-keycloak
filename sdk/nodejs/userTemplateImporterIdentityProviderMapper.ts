@@ -88,23 +88,23 @@ export class UserTemplateImporterIdentityProviderMapper extends pulumi.CustomRes
     /**
      * Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
      */
-    public readonly extraConfig!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly extraConfig: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The alias of the associated identity provider.
      */
-    public readonly identityProviderAlias!: pulumi.Output<string>;
+    declare public readonly identityProviderAlias: pulumi.Output<string>;
     /**
      * The name of the mapper.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The name of the realm.
      */
-    public readonly realm!: pulumi.Output<string>;
+    declare public readonly realm: pulumi.Output<string>;
     /**
      * Template to use to format the username to import. Substitutions are enclosed in \${}. For example: '\$\${ALIAS}.\$\${CLAIM.sub}'. ALIAS is the provider alias. CLAIM.\<NAME\> references an ID or Access token claim.
      */
-    public readonly template!: pulumi.Output<string | undefined>;
+    declare public readonly template: pulumi.Output<string | undefined>;
 
     /**
      * Create a UserTemplateImporterIdentityProviderMapper resource with the given unique name, arguments, and options.
@@ -119,24 +119,24 @@ export class UserTemplateImporterIdentityProviderMapper extends pulumi.CustomRes
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as UserTemplateImporterIdentityProviderMapperState | undefined;
-            resourceInputs["extraConfig"] = state ? state.extraConfig : undefined;
-            resourceInputs["identityProviderAlias"] = state ? state.identityProviderAlias : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["realm"] = state ? state.realm : undefined;
-            resourceInputs["template"] = state ? state.template : undefined;
+            resourceInputs["extraConfig"] = state?.extraConfig;
+            resourceInputs["identityProviderAlias"] = state?.identityProviderAlias;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["realm"] = state?.realm;
+            resourceInputs["template"] = state?.template;
         } else {
             const args = argsOrState as UserTemplateImporterIdentityProviderMapperArgs | undefined;
-            if ((!args || args.identityProviderAlias === undefined) && !opts.urn) {
+            if (args?.identityProviderAlias === undefined && !opts.urn) {
                 throw new Error("Missing required property 'identityProviderAlias'");
             }
-            if ((!args || args.realm === undefined) && !opts.urn) {
+            if (args?.realm === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realm'");
             }
-            resourceInputs["extraConfig"] = args ? args.extraConfig : undefined;
-            resourceInputs["identityProviderAlias"] = args ? args.identityProviderAlias : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["realm"] = args ? args.realm : undefined;
-            resourceInputs["template"] = args ? args.template : undefined;
+            resourceInputs["extraConfig"] = args?.extraConfig;
+            resourceInputs["identityProviderAlias"] = args?.identityProviderAlias;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["realm"] = args?.realm;
+            resourceInputs["template"] = args?.template;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(UserTemplateImporterIdentityProviderMapper.__pulumiType, name, resourceInputs, opts);

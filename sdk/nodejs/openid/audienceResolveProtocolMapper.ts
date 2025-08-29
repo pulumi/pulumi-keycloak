@@ -109,19 +109,19 @@ export class AudienceResolveProtocolMapper extends pulumi.CustomResource {
     /**
      * The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
      */
-    public readonly clientId!: pulumi.Output<string | undefined>;
+    declare public readonly clientId: pulumi.Output<string | undefined>;
     /**
      * The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
      */
-    public readonly clientScopeId!: pulumi.Output<string | undefined>;
+    declare public readonly clientScopeId: pulumi.Output<string | undefined>;
     /**
      * The display name of this protocol mapper in the GUI. Defaults to "audience resolve".
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The realm this protocol mapper exists within.
      */
-    public readonly realmId!: pulumi.Output<string>;
+    declare public readonly realmId: pulumi.Output<string>;
 
     /**
      * Create a AudienceResolveProtocolMapper resource with the given unique name, arguments, and options.
@@ -136,19 +136,19 @@ export class AudienceResolveProtocolMapper extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AudienceResolveProtocolMapperState | undefined;
-            resourceInputs["clientId"] = state ? state.clientId : undefined;
-            resourceInputs["clientScopeId"] = state ? state.clientScopeId : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["clientId"] = state?.clientId;
+            resourceInputs["clientScopeId"] = state?.clientScopeId;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["realmId"] = state?.realmId;
         } else {
             const args = argsOrState as AudienceResolveProtocolMapperArgs | undefined;
-            if ((!args || args.realmId === undefined) && !opts.urn) {
+            if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            resourceInputs["clientId"] = args ? args.clientId : undefined;
-            resourceInputs["clientScopeId"] = args ? args.clientScopeId : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["clientId"] = args?.clientId;
+            resourceInputs["clientScopeId"] = args?.clientScopeId;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["realmId"] = args?.realmId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const aliasOpts = { aliases: [{ type: "keycloak:openid/audienceResolveProtocolMappter:AudienceResolveProtocolMappter" }] };

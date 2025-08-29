@@ -77,13 +77,11 @@ type providerArgs struct {
 	JwtSigningKey *string `pulumi:"jwtSigningKey"`
 	Password      *string `pulumi:"password"`
 	Realm         *string `pulumi:"realm"`
-	// When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version
-	// returned from the /serverinfo API endpoint.
+	// When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version returned from the /serverinfo API endpoint.
 	RedHatSso *bool `pulumi:"redHatSso"`
 	// Allows x509 calls using an unknown CA certificate (for development purposes)
 	RootCaCertificate *string `pulumi:"rootCaCertificate"`
-	// Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and
-	// should be avoided.
+	// Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and should be avoided.
 	TlsInsecureSkipVerify *bool `pulumi:"tlsInsecureSkipVerify"`
 	// The base URL of the Keycloak instance, before `/auth`
 	Url      *string `pulumi:"url"`
@@ -106,13 +104,11 @@ type ProviderArgs struct {
 	JwtSigningKey pulumi.StringPtrInput
 	Password      pulumi.StringPtrInput
 	Realm         pulumi.StringPtrInput
-	// When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version
-	// returned from the /serverinfo API endpoint.
+	// When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version returned from the /serverinfo API endpoint.
 	RedHatSso pulumi.BoolPtrInput
 	// Allows x509 calls using an unknown CA certificate (for development purposes)
 	RootCaCertificate pulumi.StringPtrInput
-	// Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and
-	// should be avoided.
+	// Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and should be avoided.
 	TlsInsecureSkipVerify pulumi.BoolPtrInput
 	// The base URL of the Keycloak instance, before `/auth`
 	Url      pulumi.StringPtrInput

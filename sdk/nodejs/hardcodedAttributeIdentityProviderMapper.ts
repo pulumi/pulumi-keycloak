@@ -71,28 +71,28 @@ export class HardcodedAttributeIdentityProviderMapper extends pulumi.CustomResou
     /**
      * The name of the IDP attribute to set.
      */
-    public readonly attributeName!: pulumi.Output<string | undefined>;
+    declare public readonly attributeName: pulumi.Output<string | undefined>;
     /**
      * The value to set to the attribute. You can hardcode any value like 'foo'.
      */
-    public readonly attributeValue!: pulumi.Output<string | undefined>;
-    public readonly extraConfig!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly attributeValue: pulumi.Output<string | undefined>;
+    declare public readonly extraConfig: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The IDP alias of the attribute to set.
      */
-    public readonly identityProviderAlias!: pulumi.Output<string>;
+    declare public readonly identityProviderAlias: pulumi.Output<string>;
     /**
      * Display name of this mapper when displayed in the console.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The realm ID that this mapper will exist in.
      */
-    public readonly realm!: pulumi.Output<string>;
+    declare public readonly realm: pulumi.Output<string>;
     /**
      * Is Attribute related to a User Session.
      */
-    public readonly userSession!: pulumi.Output<boolean>;
+    declare public readonly userSession: pulumi.Output<boolean>;
 
     /**
      * Create a HardcodedAttributeIdentityProviderMapper resource with the given unique name, arguments, and options.
@@ -107,31 +107,31 @@ export class HardcodedAttributeIdentityProviderMapper extends pulumi.CustomResou
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as HardcodedAttributeIdentityProviderMapperState | undefined;
-            resourceInputs["attributeName"] = state ? state.attributeName : undefined;
-            resourceInputs["attributeValue"] = state ? state.attributeValue : undefined;
-            resourceInputs["extraConfig"] = state ? state.extraConfig : undefined;
-            resourceInputs["identityProviderAlias"] = state ? state.identityProviderAlias : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["realm"] = state ? state.realm : undefined;
-            resourceInputs["userSession"] = state ? state.userSession : undefined;
+            resourceInputs["attributeName"] = state?.attributeName;
+            resourceInputs["attributeValue"] = state?.attributeValue;
+            resourceInputs["extraConfig"] = state?.extraConfig;
+            resourceInputs["identityProviderAlias"] = state?.identityProviderAlias;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["realm"] = state?.realm;
+            resourceInputs["userSession"] = state?.userSession;
         } else {
             const args = argsOrState as HardcodedAttributeIdentityProviderMapperArgs | undefined;
-            if ((!args || args.identityProviderAlias === undefined) && !opts.urn) {
+            if (args?.identityProviderAlias === undefined && !opts.urn) {
                 throw new Error("Missing required property 'identityProviderAlias'");
             }
-            if ((!args || args.realm === undefined) && !opts.urn) {
+            if (args?.realm === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realm'");
             }
-            if ((!args || args.userSession === undefined) && !opts.urn) {
+            if (args?.userSession === undefined && !opts.urn) {
                 throw new Error("Missing required property 'userSession'");
             }
-            resourceInputs["attributeName"] = args ? args.attributeName : undefined;
-            resourceInputs["attributeValue"] = args ? args.attributeValue : undefined;
-            resourceInputs["extraConfig"] = args ? args.extraConfig : undefined;
-            resourceInputs["identityProviderAlias"] = args ? args.identityProviderAlias : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["realm"] = args ? args.realm : undefined;
-            resourceInputs["userSession"] = args ? args.userSession : undefined;
+            resourceInputs["attributeName"] = args?.attributeName;
+            resourceInputs["attributeValue"] = args?.attributeValue;
+            resourceInputs["extraConfig"] = args?.extraConfig;
+            resourceInputs["identityProviderAlias"] = args?.identityProviderAlias;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["realm"] = args?.realm;
+            resourceInputs["userSession"] = args?.userSession;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(HardcodedAttributeIdentityProviderMapper.__pulumiType, name, resourceInputs, opts);

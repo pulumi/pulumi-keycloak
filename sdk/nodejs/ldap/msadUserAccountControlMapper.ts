@@ -91,19 +91,19 @@ export class MsadUserAccountControlMapper extends pulumi.CustomResource {
     /**
      * When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
      */
-    public readonly ldapPasswordPolicyHintsEnabled!: pulumi.Output<boolean | undefined>;
+    declare public readonly ldapPasswordPolicyHintsEnabled: pulumi.Output<boolean | undefined>;
     /**
      * The ID of the LDAP user federation provider to attach this mapper to.
      */
-    public readonly ldapUserFederationId!: pulumi.Output<string>;
+    declare public readonly ldapUserFederationId: pulumi.Output<string>;
     /**
      * Display name of this mapper when displayed in the console.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The realm that this LDAP mapper will exist in.
      */
-    public readonly realmId!: pulumi.Output<string>;
+    declare public readonly realmId: pulumi.Output<string>;
 
     /**
      * Create a MsadUserAccountControlMapper resource with the given unique name, arguments, and options.
@@ -118,22 +118,22 @@ export class MsadUserAccountControlMapper extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as MsadUserAccountControlMapperState | undefined;
-            resourceInputs["ldapPasswordPolicyHintsEnabled"] = state ? state.ldapPasswordPolicyHintsEnabled : undefined;
-            resourceInputs["ldapUserFederationId"] = state ? state.ldapUserFederationId : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["ldapPasswordPolicyHintsEnabled"] = state?.ldapPasswordPolicyHintsEnabled;
+            resourceInputs["ldapUserFederationId"] = state?.ldapUserFederationId;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["realmId"] = state?.realmId;
         } else {
             const args = argsOrState as MsadUserAccountControlMapperArgs | undefined;
-            if ((!args || args.ldapUserFederationId === undefined) && !opts.urn) {
+            if (args?.ldapUserFederationId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'ldapUserFederationId'");
             }
-            if ((!args || args.realmId === undefined) && !opts.urn) {
+            if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            resourceInputs["ldapPasswordPolicyHintsEnabled"] = args ? args.ldapPasswordPolicyHintsEnabled : undefined;
-            resourceInputs["ldapUserFederationId"] = args ? args.ldapUserFederationId : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["ldapPasswordPolicyHintsEnabled"] = args?.ldapPasswordPolicyHintsEnabled;
+            resourceInputs["ldapUserFederationId"] = args?.ldapUserFederationId;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["realmId"] = args?.realmId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(MsadUserAccountControlMapper.__pulumiType, name, resourceInputs, opts);

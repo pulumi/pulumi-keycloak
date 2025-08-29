@@ -91,15 +91,15 @@ export class MsadLdsUserAccountControlMapper extends pulumi.CustomResource {
     /**
      * The ID of the LDAP user federation provider to attach this mapper to.
      */
-    public readonly ldapUserFederationId!: pulumi.Output<string>;
+    declare public readonly ldapUserFederationId: pulumi.Output<string>;
     /**
      * Display name of this mapper when displayed in the console.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The realm that this LDAP mapper will exist in.
      */
-    public readonly realmId!: pulumi.Output<string>;
+    declare public readonly realmId: pulumi.Output<string>;
 
     /**
      * Create a MsadLdsUserAccountControlMapper resource with the given unique name, arguments, and options.
@@ -114,20 +114,20 @@ export class MsadLdsUserAccountControlMapper extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as MsadLdsUserAccountControlMapperState | undefined;
-            resourceInputs["ldapUserFederationId"] = state ? state.ldapUserFederationId : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["ldapUserFederationId"] = state?.ldapUserFederationId;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["realmId"] = state?.realmId;
         } else {
             const args = argsOrState as MsadLdsUserAccountControlMapperArgs | undefined;
-            if ((!args || args.ldapUserFederationId === undefined) && !opts.urn) {
+            if (args?.ldapUserFederationId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'ldapUserFederationId'");
             }
-            if ((!args || args.realmId === undefined) && !opts.urn) {
+            if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            resourceInputs["ldapUserFederationId"] = args ? args.ldapUserFederationId : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["ldapUserFederationId"] = args?.ldapUserFederationId;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["realmId"] = args?.realmId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(MsadLdsUserAccountControlMapper.__pulumiType, name, resourceInputs, opts);

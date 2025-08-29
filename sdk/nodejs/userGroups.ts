@@ -67,19 +67,19 @@ export class UserGroups extends pulumi.CustomResource {
     /**
      * Indicates if the list of the user's groups is exhaustive. In this case, groups that are manually added to the user will be removed. Defaults to `true`.
      */
-    public readonly exhaustive!: pulumi.Output<boolean | undefined>;
+    declare public readonly exhaustive: pulumi.Output<boolean | undefined>;
     /**
      * A list of group IDs that the user is member of.
      */
-    public readonly groupIds!: pulumi.Output<string[]>;
+    declare public readonly groupIds: pulumi.Output<string[]>;
     /**
      * The realm this group exists in.
      */
-    public readonly realmId!: pulumi.Output<string>;
+    declare public readonly realmId: pulumi.Output<string>;
     /**
      * The ID of the user this resource should manage groups for.
      */
-    public readonly userId!: pulumi.Output<string>;
+    declare public readonly userId: pulumi.Output<string>;
 
     /**
      * Create a UserGroups resource with the given unique name, arguments, and options.
@@ -94,25 +94,25 @@ export class UserGroups extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as UserGroupsState | undefined;
-            resourceInputs["exhaustive"] = state ? state.exhaustive : undefined;
-            resourceInputs["groupIds"] = state ? state.groupIds : undefined;
-            resourceInputs["realmId"] = state ? state.realmId : undefined;
-            resourceInputs["userId"] = state ? state.userId : undefined;
+            resourceInputs["exhaustive"] = state?.exhaustive;
+            resourceInputs["groupIds"] = state?.groupIds;
+            resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["userId"] = state?.userId;
         } else {
             const args = argsOrState as UserGroupsArgs | undefined;
-            if ((!args || args.groupIds === undefined) && !opts.urn) {
+            if (args?.groupIds === undefined && !opts.urn) {
                 throw new Error("Missing required property 'groupIds'");
             }
-            if ((!args || args.realmId === undefined) && !opts.urn) {
+            if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            if ((!args || args.userId === undefined) && !opts.urn) {
+            if (args?.userId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'userId'");
             }
-            resourceInputs["exhaustive"] = args ? args.exhaustive : undefined;
-            resourceInputs["groupIds"] = args ? args.groupIds : undefined;
-            resourceInputs["realmId"] = args ? args.realmId : undefined;
-            resourceInputs["userId"] = args ? args.userId : undefined;
+            resourceInputs["exhaustive"] = args?.exhaustive;
+            resourceInputs["groupIds"] = args?.groupIds;
+            resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["userId"] = args?.userId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(UserGroups.__pulumiType, name, resourceInputs, opts);

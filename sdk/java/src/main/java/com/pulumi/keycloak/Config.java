@@ -61,8 +61,7 @@ public final class Config {
         return Codegen.stringProp("realm").config(config).get();
     }
 /**
- * When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version
- * returned from the /serverinfo API endpoint.
+ * When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version returned from the /serverinfo API endpoint.
  * 
  */
     public Optional<Boolean> redHatSso() {
@@ -76,8 +75,7 @@ public final class Config {
         return Codegen.stringProp("rootCaCertificate").config(config).get();
     }
 /**
- * Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and
- * should be avoided.
+ * Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and should be avoided.
  * 
  */
     public Optional<Boolean> tlsInsecureSkipVerify() {

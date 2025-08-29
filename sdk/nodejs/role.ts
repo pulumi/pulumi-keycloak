@@ -179,31 +179,31 @@ export class Role extends pulumi.CustomResource {
     /**
      * A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
      */
-    public readonly attributes!: pulumi.Output<{[key: string]: string}>;
+    declare public readonly attributes: pulumi.Output<{[key: string]: string}>;
     /**
      * When specified, this role will be created as a client role attached to the client with the provided ID
      */
-    public readonly clientId!: pulumi.Output<string | undefined>;
+    declare public readonly clientId: pulumi.Output<string | undefined>;
     /**
      * When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
      */
-    public readonly compositeRoles!: pulumi.Output<string[]>;
+    declare public readonly compositeRoles: pulumi.Output<string[]>;
     /**
      * The description of the role
      */
-    public readonly description!: pulumi.Output<string>;
+    declare public readonly description: pulumi.Output<string>;
     /**
      * When `true`, the role with the specified `name` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with roles that Keycloak creates automatically during realm creation, such as the client roles `create-client`, `view-realm`, ... for the client `realm-management` created per realm. Note, that the role will not be removed during destruction if `import` is `true`.
      */
-    public readonly import!: pulumi.Output<boolean | undefined>;
+    declare public readonly import: pulumi.Output<boolean | undefined>;
     /**
      * The name of the role
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The realm this role exists within.
      */
-    public readonly realmId!: pulumi.Output<string>;
+    declare public readonly realmId: pulumi.Output<string>;
 
     /**
      * Create a Role resource with the given unique name, arguments, and options.
@@ -218,25 +218,25 @@ export class Role extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RoleState | undefined;
-            resourceInputs["attributes"] = state ? state.attributes : undefined;
-            resourceInputs["clientId"] = state ? state.clientId : undefined;
-            resourceInputs["compositeRoles"] = state ? state.compositeRoles : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["import"] = state ? state.import : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["attributes"] = state?.attributes;
+            resourceInputs["clientId"] = state?.clientId;
+            resourceInputs["compositeRoles"] = state?.compositeRoles;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["import"] = state?.import;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["realmId"] = state?.realmId;
         } else {
             const args = argsOrState as RoleArgs | undefined;
-            if ((!args || args.realmId === undefined) && !opts.urn) {
+            if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            resourceInputs["attributes"] = args ? args.attributes : undefined;
-            resourceInputs["clientId"] = args ? args.clientId : undefined;
-            resourceInputs["compositeRoles"] = args ? args.compositeRoles : undefined;
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["import"] = args ? args.import : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["attributes"] = args?.attributes;
+            resourceInputs["clientId"] = args?.clientId;
+            resourceInputs["compositeRoles"] = args?.compositeRoles;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["import"] = args?.import;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["realmId"] = args?.realmId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Role.__pulumiType, name, resourceInputs, opts);

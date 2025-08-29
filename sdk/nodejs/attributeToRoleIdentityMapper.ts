@@ -91,43 +91,43 @@ export class AttributeToRoleIdentityMapper extends pulumi.CustomResource {
     /**
      * Attribute Friendly Name. Conflicts with `attributeName`.
      */
-    public readonly attributeFriendlyName!: pulumi.Output<string | undefined>;
+    declare public readonly attributeFriendlyName: pulumi.Output<string | undefined>;
     /**
      * Attribute Name.
      */
-    public readonly attributeName!: pulumi.Output<string | undefined>;
+    declare public readonly attributeName: pulumi.Output<string | undefined>;
     /**
      * Attribute Value.
      */
-    public readonly attributeValue!: pulumi.Output<string | undefined>;
+    declare public readonly attributeValue: pulumi.Output<string | undefined>;
     /**
      * OIDC Claim Name
      */
-    public readonly claimName!: pulumi.Output<string | undefined>;
+    declare public readonly claimName: pulumi.Output<string | undefined>;
     /**
      * OIDC Claim Value
      */
-    public readonly claimValue!: pulumi.Output<string | undefined>;
+    declare public readonly claimValue: pulumi.Output<string | undefined>;
     /**
      * Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
      */
-    public readonly extraConfig!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly extraConfig: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The alias of the associated identity provider.
      */
-    public readonly identityProviderAlias!: pulumi.Output<string>;
+    declare public readonly identityProviderAlias: pulumi.Output<string>;
     /**
      * The name of the mapper.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The name of the realm.
      */
-    public readonly realm!: pulumi.Output<string>;
+    declare public readonly realm: pulumi.Output<string>;
     /**
      * Role Name.
      */
-    public readonly role!: pulumi.Output<string>;
+    declare public readonly role: pulumi.Output<string>;
 
     /**
      * Create a AttributeToRoleIdentityMapper resource with the given unique name, arguments, and options.
@@ -142,37 +142,37 @@ export class AttributeToRoleIdentityMapper extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AttributeToRoleIdentityMapperState | undefined;
-            resourceInputs["attributeFriendlyName"] = state ? state.attributeFriendlyName : undefined;
-            resourceInputs["attributeName"] = state ? state.attributeName : undefined;
-            resourceInputs["attributeValue"] = state ? state.attributeValue : undefined;
-            resourceInputs["claimName"] = state ? state.claimName : undefined;
-            resourceInputs["claimValue"] = state ? state.claimValue : undefined;
-            resourceInputs["extraConfig"] = state ? state.extraConfig : undefined;
-            resourceInputs["identityProviderAlias"] = state ? state.identityProviderAlias : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["realm"] = state ? state.realm : undefined;
-            resourceInputs["role"] = state ? state.role : undefined;
+            resourceInputs["attributeFriendlyName"] = state?.attributeFriendlyName;
+            resourceInputs["attributeName"] = state?.attributeName;
+            resourceInputs["attributeValue"] = state?.attributeValue;
+            resourceInputs["claimName"] = state?.claimName;
+            resourceInputs["claimValue"] = state?.claimValue;
+            resourceInputs["extraConfig"] = state?.extraConfig;
+            resourceInputs["identityProviderAlias"] = state?.identityProviderAlias;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["realm"] = state?.realm;
+            resourceInputs["role"] = state?.role;
         } else {
             const args = argsOrState as AttributeToRoleIdentityMapperArgs | undefined;
-            if ((!args || args.identityProviderAlias === undefined) && !opts.urn) {
+            if (args?.identityProviderAlias === undefined && !opts.urn) {
                 throw new Error("Missing required property 'identityProviderAlias'");
             }
-            if ((!args || args.realm === undefined) && !opts.urn) {
+            if (args?.realm === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realm'");
             }
-            if ((!args || args.role === undefined) && !opts.urn) {
+            if (args?.role === undefined && !opts.urn) {
                 throw new Error("Missing required property 'role'");
             }
-            resourceInputs["attributeFriendlyName"] = args ? args.attributeFriendlyName : undefined;
-            resourceInputs["attributeName"] = args ? args.attributeName : undefined;
-            resourceInputs["attributeValue"] = args ? args.attributeValue : undefined;
-            resourceInputs["claimName"] = args ? args.claimName : undefined;
-            resourceInputs["claimValue"] = args ? args.claimValue : undefined;
-            resourceInputs["extraConfig"] = args ? args.extraConfig : undefined;
-            resourceInputs["identityProviderAlias"] = args ? args.identityProviderAlias : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["realm"] = args ? args.realm : undefined;
-            resourceInputs["role"] = args ? args.role : undefined;
+            resourceInputs["attributeFriendlyName"] = args?.attributeFriendlyName;
+            resourceInputs["attributeName"] = args?.attributeName;
+            resourceInputs["attributeValue"] = args?.attributeValue;
+            resourceInputs["claimName"] = args?.claimName;
+            resourceInputs["claimValue"] = args?.claimValue;
+            resourceInputs["extraConfig"] = args?.extraConfig;
+            resourceInputs["identityProviderAlias"] = args?.identityProviderAlias;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["realm"] = args?.realm;
+            resourceInputs["role"] = args?.role;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(AttributeToRoleIdentityMapper.__pulumiType, name, resourceInputs, opts);

@@ -37,23 +37,23 @@ export class HardcodedGroupIdentityProviderMapper extends pulumi.CustomResource 
         return obj['__pulumiType'] === HardcodedGroupIdentityProviderMapper.__pulumiType;
     }
 
-    public readonly extraConfig!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly extraConfig: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The name of the group which should be assigned to the users.
      */
-    public readonly group!: pulumi.Output<string | undefined>;
+    declare public readonly group: pulumi.Output<string | undefined>;
     /**
      * The IDP alias of the attribute to set.
      */
-    public readonly identityProviderAlias!: pulumi.Output<string>;
+    declare public readonly identityProviderAlias: pulumi.Output<string>;
     /**
      * Display name of this mapper when displayed in the console.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The realm ID that this mapper will exist in.
      */
-    public readonly realm!: pulumi.Output<string>;
+    declare public readonly realm: pulumi.Output<string>;
 
     /**
      * Create a HardcodedGroupIdentityProviderMapper resource with the given unique name, arguments, and options.
@@ -68,24 +68,24 @@ export class HardcodedGroupIdentityProviderMapper extends pulumi.CustomResource 
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as HardcodedGroupIdentityProviderMapperState | undefined;
-            resourceInputs["extraConfig"] = state ? state.extraConfig : undefined;
-            resourceInputs["group"] = state ? state.group : undefined;
-            resourceInputs["identityProviderAlias"] = state ? state.identityProviderAlias : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["realm"] = state ? state.realm : undefined;
+            resourceInputs["extraConfig"] = state?.extraConfig;
+            resourceInputs["group"] = state?.group;
+            resourceInputs["identityProviderAlias"] = state?.identityProviderAlias;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["realm"] = state?.realm;
         } else {
             const args = argsOrState as HardcodedGroupIdentityProviderMapperArgs | undefined;
-            if ((!args || args.identityProviderAlias === undefined) && !opts.urn) {
+            if (args?.identityProviderAlias === undefined && !opts.urn) {
                 throw new Error("Missing required property 'identityProviderAlias'");
             }
-            if ((!args || args.realm === undefined) && !opts.urn) {
+            if (args?.realm === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realm'");
             }
-            resourceInputs["extraConfig"] = args ? args.extraConfig : undefined;
-            resourceInputs["group"] = args ? args.group : undefined;
-            resourceInputs["identityProviderAlias"] = args ? args.identityProviderAlias : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["realm"] = args ? args.realm : undefined;
+            resourceInputs["extraConfig"] = args?.extraConfig;
+            resourceInputs["group"] = args?.group;
+            resourceInputs["identityProviderAlias"] = args?.identityProviderAlias;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["realm"] = args?.realm;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(HardcodedGroupIdentityProviderMapper.__pulumiType, name, resourceInputs, opts);

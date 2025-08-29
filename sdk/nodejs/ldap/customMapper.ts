@@ -96,27 +96,27 @@ export class CustomMapper extends pulumi.CustomResource {
     /**
      * A map with key / value pairs for configuring the LDAP mapper. The supported keys depend on the protocol mapper.
      */
-    public readonly config!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly config: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The ID of the LDAP user federation provider to attach this mapper to.
      */
-    public readonly ldapUserFederationId!: pulumi.Output<string>;
+    declare public readonly ldapUserFederationId: pulumi.Output<string>;
     /**
      * Display name of this mapper when displayed in the console.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The id of the LDAP mapper implemented in MapperFactory.
      */
-    public readonly providerId!: pulumi.Output<string>;
+    declare public readonly providerId: pulumi.Output<string>;
     /**
      * The fully-qualified Java class name of the custom LDAP mapper.
      */
-    public readonly providerType!: pulumi.Output<string>;
+    declare public readonly providerType: pulumi.Output<string>;
     /**
      * The realm that this LDAP mapper will exist in.
      */
-    public readonly realmId!: pulumi.Output<string>;
+    declare public readonly realmId: pulumi.Output<string>;
 
     /**
      * Create a CustomMapper resource with the given unique name, arguments, and options.
@@ -131,32 +131,32 @@ export class CustomMapper extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as CustomMapperState | undefined;
-            resourceInputs["config"] = state ? state.config : undefined;
-            resourceInputs["ldapUserFederationId"] = state ? state.ldapUserFederationId : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["providerId"] = state ? state.providerId : undefined;
-            resourceInputs["providerType"] = state ? state.providerType : undefined;
-            resourceInputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["config"] = state?.config;
+            resourceInputs["ldapUserFederationId"] = state?.ldapUserFederationId;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["providerId"] = state?.providerId;
+            resourceInputs["providerType"] = state?.providerType;
+            resourceInputs["realmId"] = state?.realmId;
         } else {
             const args = argsOrState as CustomMapperArgs | undefined;
-            if ((!args || args.ldapUserFederationId === undefined) && !opts.urn) {
+            if (args?.ldapUserFederationId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'ldapUserFederationId'");
             }
-            if ((!args || args.providerId === undefined) && !opts.urn) {
+            if (args?.providerId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'providerId'");
             }
-            if ((!args || args.providerType === undefined) && !opts.urn) {
+            if (args?.providerType === undefined && !opts.urn) {
                 throw new Error("Missing required property 'providerType'");
             }
-            if ((!args || args.realmId === undefined) && !opts.urn) {
+            if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            resourceInputs["config"] = args ? args.config : undefined;
-            resourceInputs["ldapUserFederationId"] = args ? args.ldapUserFederationId : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["providerId"] = args ? args.providerId : undefined;
-            resourceInputs["providerType"] = args ? args.providerType : undefined;
-            resourceInputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["config"] = args?.config;
+            resourceInputs["ldapUserFederationId"] = args?.ldapUserFederationId;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["providerId"] = args?.providerId;
+            resourceInputs["providerType"] = args?.providerType;
+            resourceInputs["realmId"] = args?.realmId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(CustomMapper.__pulumiType, name, resourceInputs, opts);

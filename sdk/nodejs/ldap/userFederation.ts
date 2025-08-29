@@ -92,136 +92,136 @@ export class UserFederation extends pulumi.CustomResource {
     /**
      * The number of users to sync within a single transaction. Defaults to `1000`.
      */
-    public readonly batchSizeForSync!: pulumi.Output<number | undefined>;
+    declare public readonly batchSizeForSync: pulumi.Output<number | undefined>;
     /**
      * Password of LDAP admin. This attribute must be set if `bindDn` is set.
      */
-    public readonly bindCredential!: pulumi.Output<string | undefined>;
+    declare public readonly bindCredential: pulumi.Output<string | undefined>;
     /**
      * DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bindCredential` is set.
      */
-    public readonly bindDn!: pulumi.Output<string | undefined>;
+    declare public readonly bindDn: pulumi.Output<string | undefined>;
     /**
      * A block containing the cache settings.
      */
-    public readonly cache!: pulumi.Output<outputs.ldap.UserFederationCache | undefined>;
+    declare public readonly cache: pulumi.Output<outputs.ldap.UserFederationCache | undefined>;
     /**
      * How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
      */
-    public readonly changedSyncPeriod!: pulumi.Output<number | undefined>;
+    declare public readonly changedSyncPeriod: pulumi.Output<number | undefined>;
     /**
      * LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
      */
-    public readonly connectionTimeout!: pulumi.Output<string | undefined>;
+    declare public readonly connectionTimeout: pulumi.Output<string | undefined>;
     /**
      * Connection URL to the LDAP server.
      */
-    public readonly connectionUrl!: pulumi.Output<string>;
+    declare public readonly connectionUrl: pulumi.Output<string>;
     /**
      * Additional LDAP filter for filtering searched users. Must begin with `(` and end with `)`.
      */
-    public readonly customUserSearchFilter!: pulumi.Output<string | undefined>;
+    declare public readonly customUserSearchFilter: pulumi.Output<string | undefined>;
     /**
      * When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `false`.
      */
-    public readonly deleteDefaultMappers!: pulumi.Output<boolean | undefined>;
+    declare public readonly deleteDefaultMappers: pulumi.Output<boolean | undefined>;
     /**
      * Can be one of `READ_ONLY`, `WRITABLE`, or `UNSYNCED`. `UNSYNCED` allows user data to be imported but not synced back to LDAP. Defaults to `READ_ONLY`.
      */
-    public readonly editMode!: pulumi.Output<string | undefined>;
+    declare public readonly editMode: pulumi.Output<string | undefined>;
     /**
      * When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
      */
-    public readonly enabled!: pulumi.Output<boolean | undefined>;
+    declare public readonly enabled: pulumi.Output<boolean | undefined>;
     /**
      * How frequently Keycloak should sync all LDAP users, in seconds. Omit this property to disable periodic full sync.
      */
-    public readonly fullSyncPeriod!: pulumi.Output<number | undefined>;
+    declare public readonly fullSyncPeriod: pulumi.Output<number | undefined>;
     /**
      * When `true`, LDAP users will be imported into the Keycloak database. Defaults to `true`.
      */
-    public readonly importEnabled!: pulumi.Output<boolean | undefined>;
+    declare public readonly importEnabled: pulumi.Output<boolean | undefined>;
     /**
      * A block containing the kerberos settings.
      */
-    public readonly kerberos!: pulumi.Output<outputs.ldap.UserFederationKerberos | undefined>;
+    declare public readonly kerberos: pulumi.Output<outputs.ldap.UserFederationKerberos | undefined>;
     /**
      * Display name of the provider when displayed in the console.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * When true, Keycloak assumes the LDAP server supports pagination. Defaults to `true`.
      */
-    public readonly pagination!: pulumi.Output<boolean | undefined>;
+    declare public readonly pagination: pulumi.Output<boolean | undefined>;
     /**
      * Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
      */
-    public readonly priority!: pulumi.Output<number | undefined>;
+    declare public readonly priority: pulumi.Output<number | undefined>;
     /**
      * Name of the LDAP attribute to use as the relative distinguished name.
      */
-    public readonly rdnLdapAttribute!: pulumi.Output<string>;
+    declare public readonly rdnLdapAttribute: pulumi.Output<string>;
     /**
      * LDAP read timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
      */
-    public readonly readTimeout!: pulumi.Output<string | undefined>;
+    declare public readonly readTimeout: pulumi.Output<string | undefined>;
     /**
      * The realm that this provider will provide user federation for.
      */
-    public readonly realmId!: pulumi.Output<string>;
+    declare public readonly realmId: pulumi.Output<string>;
     /**
      * Can be one of `ONE_LEVEL` or `SUBTREE`:
      * - `ONE_LEVEL`: Only search for users in the DN specified by `userDn`.
      * - `SUBTREE`: Search entire LDAP subtree.
      */
-    public readonly searchScope!: pulumi.Output<string | undefined>;
+    declare public readonly searchScope: pulumi.Output<string | undefined>;
     /**
      * When `true`, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
      */
-    public readonly startTls!: pulumi.Output<boolean | undefined>;
+    declare public readonly startTls: pulumi.Output<boolean | undefined>;
     /**
      * When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
      */
-    public readonly syncRegistrations!: pulumi.Output<boolean | undefined>;
+    declare public readonly syncRegistrations: pulumi.Output<boolean | undefined>;
     /**
      * If enabled, email provided by this provider is not verified even if verification is enabled for the realm.
      */
-    public readonly trustEmail!: pulumi.Output<boolean | undefined>;
+    declare public readonly trustEmail: pulumi.Output<boolean | undefined>;
     /**
      * When `true`, use the LDAPv3 Password Modify Extended Operation (RFC-3062).
      */
-    public readonly usePasswordModifyExtendedOp!: pulumi.Output<boolean | undefined>;
+    declare public readonly usePasswordModifyExtendedOp: pulumi.Output<boolean | undefined>;
     /**
      * Can be one of `ALWAYS`, `ONLY_FOR_LDAPS`, or `NEVER`:
      * - `ALWAYS` - Always use the truststore SPI for LDAP connections.
      * - `NEVER` - Never use the truststore SPI for LDAP connections.
      * - `ONLY_FOR_LDAPS` - Only use the truststore SPI if your LDAP connection uses the ldaps protocol.
      */
-    public readonly useTruststoreSpi!: pulumi.Output<string | undefined>;
+    declare public readonly useTruststoreSpi: pulumi.Output<string | undefined>;
     /**
      * Array of all values of LDAP objectClass attribute for users in LDAP. Must contain at least one.
      */
-    public readonly userObjectClasses!: pulumi.Output<string[]>;
+    declare public readonly userObjectClasses: pulumi.Output<string[]>;
     /**
      * Name of the LDAP attribute to use as the Keycloak username.
      */
-    public readonly usernameLdapAttribute!: pulumi.Output<string>;
+    declare public readonly usernameLdapAttribute: pulumi.Output<string>;
     /**
      * Full DN of LDAP tree where your users are.
      */
-    public readonly usersDn!: pulumi.Output<string>;
+    declare public readonly usersDn: pulumi.Output<string>;
     /**
      * Name of the LDAP attribute to use as a unique object identifier for objects in LDAP.
      */
-    public readonly uuidLdapAttribute!: pulumi.Output<string>;
+    declare public readonly uuidLdapAttribute: pulumi.Output<string>;
     /**
      * When `true`, Keycloak will validate passwords using the realm policy before updating it.
      */
-    public readonly validatePasswordPolicy!: pulumi.Output<boolean | undefined>;
+    declare public readonly validatePasswordPolicy: pulumi.Output<boolean | undefined>;
     /**
      * Can be one of `OTHER`, `EDIRECTORY`, `AD`, `RHDS`, or `TIVOLI`. When this is selected in the GUI, it provides reasonable defaults for other fields. When used with the Keycloak API, this attribute does nothing, but is still required. Defaults to `OTHER`.
      */
-    public readonly vendor!: pulumi.Output<string | undefined>;
+    declare public readonly vendor: pulumi.Output<string | undefined>;
 
     /**
      * Create a UserFederation resource with the given unique name, arguments, and options.
@@ -236,93 +236,93 @@ export class UserFederation extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as UserFederationState | undefined;
-            resourceInputs["batchSizeForSync"] = state ? state.batchSizeForSync : undefined;
-            resourceInputs["bindCredential"] = state ? state.bindCredential : undefined;
-            resourceInputs["bindDn"] = state ? state.bindDn : undefined;
-            resourceInputs["cache"] = state ? state.cache : undefined;
-            resourceInputs["changedSyncPeriod"] = state ? state.changedSyncPeriod : undefined;
-            resourceInputs["connectionTimeout"] = state ? state.connectionTimeout : undefined;
-            resourceInputs["connectionUrl"] = state ? state.connectionUrl : undefined;
-            resourceInputs["customUserSearchFilter"] = state ? state.customUserSearchFilter : undefined;
-            resourceInputs["deleteDefaultMappers"] = state ? state.deleteDefaultMappers : undefined;
-            resourceInputs["editMode"] = state ? state.editMode : undefined;
-            resourceInputs["enabled"] = state ? state.enabled : undefined;
-            resourceInputs["fullSyncPeriod"] = state ? state.fullSyncPeriod : undefined;
-            resourceInputs["importEnabled"] = state ? state.importEnabled : undefined;
-            resourceInputs["kerberos"] = state ? state.kerberos : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["pagination"] = state ? state.pagination : undefined;
-            resourceInputs["priority"] = state ? state.priority : undefined;
-            resourceInputs["rdnLdapAttribute"] = state ? state.rdnLdapAttribute : undefined;
-            resourceInputs["readTimeout"] = state ? state.readTimeout : undefined;
-            resourceInputs["realmId"] = state ? state.realmId : undefined;
-            resourceInputs["searchScope"] = state ? state.searchScope : undefined;
-            resourceInputs["startTls"] = state ? state.startTls : undefined;
-            resourceInputs["syncRegistrations"] = state ? state.syncRegistrations : undefined;
-            resourceInputs["trustEmail"] = state ? state.trustEmail : undefined;
-            resourceInputs["usePasswordModifyExtendedOp"] = state ? state.usePasswordModifyExtendedOp : undefined;
-            resourceInputs["useTruststoreSpi"] = state ? state.useTruststoreSpi : undefined;
-            resourceInputs["userObjectClasses"] = state ? state.userObjectClasses : undefined;
-            resourceInputs["usernameLdapAttribute"] = state ? state.usernameLdapAttribute : undefined;
-            resourceInputs["usersDn"] = state ? state.usersDn : undefined;
-            resourceInputs["uuidLdapAttribute"] = state ? state.uuidLdapAttribute : undefined;
-            resourceInputs["validatePasswordPolicy"] = state ? state.validatePasswordPolicy : undefined;
-            resourceInputs["vendor"] = state ? state.vendor : undefined;
+            resourceInputs["batchSizeForSync"] = state?.batchSizeForSync;
+            resourceInputs["bindCredential"] = state?.bindCredential;
+            resourceInputs["bindDn"] = state?.bindDn;
+            resourceInputs["cache"] = state?.cache;
+            resourceInputs["changedSyncPeriod"] = state?.changedSyncPeriod;
+            resourceInputs["connectionTimeout"] = state?.connectionTimeout;
+            resourceInputs["connectionUrl"] = state?.connectionUrl;
+            resourceInputs["customUserSearchFilter"] = state?.customUserSearchFilter;
+            resourceInputs["deleteDefaultMappers"] = state?.deleteDefaultMappers;
+            resourceInputs["editMode"] = state?.editMode;
+            resourceInputs["enabled"] = state?.enabled;
+            resourceInputs["fullSyncPeriod"] = state?.fullSyncPeriod;
+            resourceInputs["importEnabled"] = state?.importEnabled;
+            resourceInputs["kerberos"] = state?.kerberos;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["pagination"] = state?.pagination;
+            resourceInputs["priority"] = state?.priority;
+            resourceInputs["rdnLdapAttribute"] = state?.rdnLdapAttribute;
+            resourceInputs["readTimeout"] = state?.readTimeout;
+            resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["searchScope"] = state?.searchScope;
+            resourceInputs["startTls"] = state?.startTls;
+            resourceInputs["syncRegistrations"] = state?.syncRegistrations;
+            resourceInputs["trustEmail"] = state?.trustEmail;
+            resourceInputs["usePasswordModifyExtendedOp"] = state?.usePasswordModifyExtendedOp;
+            resourceInputs["useTruststoreSpi"] = state?.useTruststoreSpi;
+            resourceInputs["userObjectClasses"] = state?.userObjectClasses;
+            resourceInputs["usernameLdapAttribute"] = state?.usernameLdapAttribute;
+            resourceInputs["usersDn"] = state?.usersDn;
+            resourceInputs["uuidLdapAttribute"] = state?.uuidLdapAttribute;
+            resourceInputs["validatePasswordPolicy"] = state?.validatePasswordPolicy;
+            resourceInputs["vendor"] = state?.vendor;
         } else {
             const args = argsOrState as UserFederationArgs | undefined;
-            if ((!args || args.connectionUrl === undefined) && !opts.urn) {
+            if (args?.connectionUrl === undefined && !opts.urn) {
                 throw new Error("Missing required property 'connectionUrl'");
             }
-            if ((!args || args.rdnLdapAttribute === undefined) && !opts.urn) {
+            if (args?.rdnLdapAttribute === undefined && !opts.urn) {
                 throw new Error("Missing required property 'rdnLdapAttribute'");
             }
-            if ((!args || args.realmId === undefined) && !opts.urn) {
+            if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            if ((!args || args.userObjectClasses === undefined) && !opts.urn) {
+            if (args?.userObjectClasses === undefined && !opts.urn) {
                 throw new Error("Missing required property 'userObjectClasses'");
             }
-            if ((!args || args.usernameLdapAttribute === undefined) && !opts.urn) {
+            if (args?.usernameLdapAttribute === undefined && !opts.urn) {
                 throw new Error("Missing required property 'usernameLdapAttribute'");
             }
-            if ((!args || args.usersDn === undefined) && !opts.urn) {
+            if (args?.usersDn === undefined && !opts.urn) {
                 throw new Error("Missing required property 'usersDn'");
             }
-            if ((!args || args.uuidLdapAttribute === undefined) && !opts.urn) {
+            if (args?.uuidLdapAttribute === undefined && !opts.urn) {
                 throw new Error("Missing required property 'uuidLdapAttribute'");
             }
-            resourceInputs["batchSizeForSync"] = args ? args.batchSizeForSync : undefined;
+            resourceInputs["batchSizeForSync"] = args?.batchSizeForSync;
             resourceInputs["bindCredential"] = args?.bindCredential ? pulumi.secret(args.bindCredential) : undefined;
-            resourceInputs["bindDn"] = args ? args.bindDn : undefined;
-            resourceInputs["cache"] = args ? args.cache : undefined;
-            resourceInputs["changedSyncPeriod"] = args ? args.changedSyncPeriod : undefined;
-            resourceInputs["connectionTimeout"] = args ? args.connectionTimeout : undefined;
-            resourceInputs["connectionUrl"] = args ? args.connectionUrl : undefined;
-            resourceInputs["customUserSearchFilter"] = args ? args.customUserSearchFilter : undefined;
-            resourceInputs["deleteDefaultMappers"] = args ? args.deleteDefaultMappers : undefined;
-            resourceInputs["editMode"] = args ? args.editMode : undefined;
-            resourceInputs["enabled"] = args ? args.enabled : undefined;
-            resourceInputs["fullSyncPeriod"] = args ? args.fullSyncPeriod : undefined;
-            resourceInputs["importEnabled"] = args ? args.importEnabled : undefined;
-            resourceInputs["kerberos"] = args ? args.kerberos : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["pagination"] = args ? args.pagination : undefined;
-            resourceInputs["priority"] = args ? args.priority : undefined;
-            resourceInputs["rdnLdapAttribute"] = args ? args.rdnLdapAttribute : undefined;
-            resourceInputs["readTimeout"] = args ? args.readTimeout : undefined;
-            resourceInputs["realmId"] = args ? args.realmId : undefined;
-            resourceInputs["searchScope"] = args ? args.searchScope : undefined;
-            resourceInputs["startTls"] = args ? args.startTls : undefined;
-            resourceInputs["syncRegistrations"] = args ? args.syncRegistrations : undefined;
-            resourceInputs["trustEmail"] = args ? args.trustEmail : undefined;
-            resourceInputs["usePasswordModifyExtendedOp"] = args ? args.usePasswordModifyExtendedOp : undefined;
-            resourceInputs["useTruststoreSpi"] = args ? args.useTruststoreSpi : undefined;
-            resourceInputs["userObjectClasses"] = args ? args.userObjectClasses : undefined;
-            resourceInputs["usernameLdapAttribute"] = args ? args.usernameLdapAttribute : undefined;
-            resourceInputs["usersDn"] = args ? args.usersDn : undefined;
-            resourceInputs["uuidLdapAttribute"] = args ? args.uuidLdapAttribute : undefined;
-            resourceInputs["validatePasswordPolicy"] = args ? args.validatePasswordPolicy : undefined;
-            resourceInputs["vendor"] = args ? args.vendor : undefined;
+            resourceInputs["bindDn"] = args?.bindDn;
+            resourceInputs["cache"] = args?.cache;
+            resourceInputs["changedSyncPeriod"] = args?.changedSyncPeriod;
+            resourceInputs["connectionTimeout"] = args?.connectionTimeout;
+            resourceInputs["connectionUrl"] = args?.connectionUrl;
+            resourceInputs["customUserSearchFilter"] = args?.customUserSearchFilter;
+            resourceInputs["deleteDefaultMappers"] = args?.deleteDefaultMappers;
+            resourceInputs["editMode"] = args?.editMode;
+            resourceInputs["enabled"] = args?.enabled;
+            resourceInputs["fullSyncPeriod"] = args?.fullSyncPeriod;
+            resourceInputs["importEnabled"] = args?.importEnabled;
+            resourceInputs["kerberos"] = args?.kerberos;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["pagination"] = args?.pagination;
+            resourceInputs["priority"] = args?.priority;
+            resourceInputs["rdnLdapAttribute"] = args?.rdnLdapAttribute;
+            resourceInputs["readTimeout"] = args?.readTimeout;
+            resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["searchScope"] = args?.searchScope;
+            resourceInputs["startTls"] = args?.startTls;
+            resourceInputs["syncRegistrations"] = args?.syncRegistrations;
+            resourceInputs["trustEmail"] = args?.trustEmail;
+            resourceInputs["usePasswordModifyExtendedOp"] = args?.usePasswordModifyExtendedOp;
+            resourceInputs["useTruststoreSpi"] = args?.useTruststoreSpi;
+            resourceInputs["userObjectClasses"] = args?.userObjectClasses;
+            resourceInputs["usernameLdapAttribute"] = args?.usernameLdapAttribute;
+            resourceInputs["usersDn"] = args?.usersDn;
+            resourceInputs["uuidLdapAttribute"] = args?.uuidLdapAttribute;
+            resourceInputs["validatePasswordPolicy"] = args?.validatePasswordPolicy;
+            resourceInputs["vendor"] = args?.vendor;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["bindCredential"] };

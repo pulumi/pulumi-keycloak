@@ -262,9 +262,7 @@ namespace Pulumi.Keycloak
         public Output<Outputs.RealmOtpPolicy> OtpPolicy { get; private set; } = null!;
 
         /// <summary>
-        /// String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
-        /// can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365)
-        /// and notUsername(undefined)"
+        /// String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername(undefined)"
         /// </summary>
         [Output("passwordPolicy")]
         public Output<string?> PasswordPolicy { get; private set; } = null!;
@@ -551,9 +549,7 @@ namespace Pulumi.Keycloak
         public Input<Inputs.RealmOtpPolicyArgs>? OtpPolicy { get; set; }
 
         /// <summary>
-        /// String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
-        /// can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365)
-        /// and notUsername(undefined)"
+        /// String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername(undefined)"
         /// </summary>
         [Input("passwordPolicy")]
         public Input<string>? PasswordPolicy { get; set; }
@@ -802,9 +798,7 @@ namespace Pulumi.Keycloak
         public Input<Inputs.RealmOtpPolicyGetArgs>? OtpPolicy { get; set; }
 
         /// <summary>
-        /// String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies
-        /// can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365)
-        /// and notUsername(undefined)"
+        /// String that represents the passwordPolicies that are in place. Each policy is separated with " and ". Supported policies can be found in the server-info providers page. example: "upperCase(1) and length(8) and forceExpiredPasswordChange(365) and notUsername(undefined)"
         /// </summary>
         [Input("passwordPolicy")]
         public Input<string>? PasswordPolicy { get; set; }

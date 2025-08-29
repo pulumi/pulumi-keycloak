@@ -72,11 +72,11 @@ export class DefaultGroups extends pulumi.CustomResource {
     /**
      * A set of group ids that should be default groups on the realm referenced by `realmId`.
      */
-    public readonly groupIds!: pulumi.Output<string[]>;
+    declare public readonly groupIds: pulumi.Output<string[]>;
     /**
      * The realm this group exists in.
      */
-    public readonly realmId!: pulumi.Output<string>;
+    declare public readonly realmId: pulumi.Output<string>;
 
     /**
      * Create a DefaultGroups resource with the given unique name, arguments, and options.
@@ -91,18 +91,18 @@ export class DefaultGroups extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DefaultGroupsState | undefined;
-            resourceInputs["groupIds"] = state ? state.groupIds : undefined;
-            resourceInputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["groupIds"] = state?.groupIds;
+            resourceInputs["realmId"] = state?.realmId;
         } else {
             const args = argsOrState as DefaultGroupsArgs | undefined;
-            if ((!args || args.groupIds === undefined) && !opts.urn) {
+            if (args?.groupIds === undefined && !opts.urn) {
                 throw new Error("Missing required property 'groupIds'");
             }
-            if ((!args || args.realmId === undefined) && !opts.urn) {
+            if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            resourceInputs["groupIds"] = args ? args.groupIds : undefined;
-            resourceInputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["groupIds"] = args?.groupIds;
+            resourceInputs["realmId"] = args?.realmId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(DefaultGroups.__pulumiType, name, resourceInputs, opts);

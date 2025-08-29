@@ -58,8 +58,7 @@ func GetRealm(ctx *pulumi.Context) string {
 	return config.Get(ctx, "keycloak:realm")
 }
 
-// When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version
-// returned from the /serverinfo API endpoint.
+// When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version returned from the /serverinfo API endpoint.
 func GetRedHatSso(ctx *pulumi.Context) bool {
 	return config.GetBool(ctx, "keycloak:redHatSso")
 }
@@ -69,8 +68,7 @@ func GetRootCaCertificate(ctx *pulumi.Context) string {
 	return config.Get(ctx, "keycloak:rootCaCertificate")
 }
 
-// Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and
-// should be avoided.
+// Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and should be avoided.
 func GetTlsInsecureSkipVerify(ctx *pulumi.Context) bool {
 	return config.GetBool(ctx, "keycloak:tlsInsecureSkipVerify")
 }

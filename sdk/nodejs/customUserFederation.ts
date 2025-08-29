@@ -76,43 +76,43 @@ export class CustomUserFederation extends pulumi.CustomResource {
     /**
      * Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
      */
-    public readonly cachePolicy!: pulumi.Output<string | undefined>;
+    declare public readonly cachePolicy: pulumi.Output<string | undefined>;
     /**
      * How frequently Keycloak should sync changed users, in seconds. Omit this property to disable periodic changed users sync.
      */
-    public readonly changedSyncPeriod!: pulumi.Output<number | undefined>;
+    declare public readonly changedSyncPeriod: pulumi.Output<number | undefined>;
     /**
      * The provider configuration handed over to your custom user federation provider. In order to add multivalued settings, use `##` to separate the values.
      */
-    public readonly config!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly config: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
      */
-    public readonly enabled!: pulumi.Output<boolean | undefined>;
+    declare public readonly enabled: pulumi.Output<boolean | undefined>;
     /**
      * How frequently Keycloak should sync all users, in seconds. Omit this property to disable periodic full sync.
      */
-    public readonly fullSyncPeriod!: pulumi.Output<number | undefined>;
+    declare public readonly fullSyncPeriod: pulumi.Output<number | undefined>;
     /**
      * Display name of the provider when displayed in the console.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * Must be set to the realms' `internalId`  when it differs from the realm. This can happen when existing resources are imported into the state.
      */
-    public readonly parentId!: pulumi.Output<string>;
+    declare public readonly parentId: pulumi.Output<string>;
     /**
      * Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
      */
-    public readonly priority!: pulumi.Output<number | undefined>;
+    declare public readonly priority: pulumi.Output<number | undefined>;
     /**
      * The unique ID of the custom provider, specified in the `getId` implementation for the `UserStorageProviderFactory` interface.
      */
-    public readonly providerId!: pulumi.Output<string>;
+    declare public readonly providerId: pulumi.Output<string>;
     /**
      * The realm that this provider will provide user federation for.
      */
-    public readonly realmId!: pulumi.Output<string>;
+    declare public readonly realmId: pulumi.Output<string>;
 
     /**
      * Create a CustomUserFederation resource with the given unique name, arguments, and options.
@@ -127,34 +127,34 @@ export class CustomUserFederation extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as CustomUserFederationState | undefined;
-            resourceInputs["cachePolicy"] = state ? state.cachePolicy : undefined;
-            resourceInputs["changedSyncPeriod"] = state ? state.changedSyncPeriod : undefined;
-            resourceInputs["config"] = state ? state.config : undefined;
-            resourceInputs["enabled"] = state ? state.enabled : undefined;
-            resourceInputs["fullSyncPeriod"] = state ? state.fullSyncPeriod : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["parentId"] = state ? state.parentId : undefined;
-            resourceInputs["priority"] = state ? state.priority : undefined;
-            resourceInputs["providerId"] = state ? state.providerId : undefined;
-            resourceInputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["cachePolicy"] = state?.cachePolicy;
+            resourceInputs["changedSyncPeriod"] = state?.changedSyncPeriod;
+            resourceInputs["config"] = state?.config;
+            resourceInputs["enabled"] = state?.enabled;
+            resourceInputs["fullSyncPeriod"] = state?.fullSyncPeriod;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["parentId"] = state?.parentId;
+            resourceInputs["priority"] = state?.priority;
+            resourceInputs["providerId"] = state?.providerId;
+            resourceInputs["realmId"] = state?.realmId;
         } else {
             const args = argsOrState as CustomUserFederationArgs | undefined;
-            if ((!args || args.providerId === undefined) && !opts.urn) {
+            if (args?.providerId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'providerId'");
             }
-            if ((!args || args.realmId === undefined) && !opts.urn) {
+            if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            resourceInputs["cachePolicy"] = args ? args.cachePolicy : undefined;
-            resourceInputs["changedSyncPeriod"] = args ? args.changedSyncPeriod : undefined;
-            resourceInputs["config"] = args ? args.config : undefined;
-            resourceInputs["enabled"] = args ? args.enabled : undefined;
-            resourceInputs["fullSyncPeriod"] = args ? args.fullSyncPeriod : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["parentId"] = args ? args.parentId : undefined;
-            resourceInputs["priority"] = args ? args.priority : undefined;
-            resourceInputs["providerId"] = args ? args.providerId : undefined;
-            resourceInputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["cachePolicy"] = args?.cachePolicy;
+            resourceInputs["changedSyncPeriod"] = args?.changedSyncPeriod;
+            resourceInputs["config"] = args?.config;
+            resourceInputs["enabled"] = args?.enabled;
+            resourceInputs["fullSyncPeriod"] = args?.fullSyncPeriod;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["parentId"] = args?.parentId;
+            resourceInputs["priority"] = args?.priority;
+            resourceInputs["providerId"] = args?.providerId;
+            resourceInputs["realmId"] = args?.realmId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(CustomUserFederation.__pulumiType, name, resourceInputs, opts);

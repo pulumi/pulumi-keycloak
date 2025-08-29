@@ -89,39 +89,39 @@ export class UserAttributeProtocolMapper extends pulumi.CustomResource {
     /**
      * Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
      */
-    public readonly aggregateAttributes!: pulumi.Output<boolean | undefined>;
+    declare public readonly aggregateAttributes: pulumi.Output<boolean | undefined>;
     /**
      * The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
      */
-    public readonly clientId!: pulumi.Output<string | undefined>;
+    declare public readonly clientId: pulumi.Output<string | undefined>;
     /**
      * The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
      */
-    public readonly clientScopeId!: pulumi.Output<string | undefined>;
+    declare public readonly clientScopeId: pulumi.Output<string | undefined>;
     /**
      * An optional human-friendly name for this attribute.
      */
-    public readonly friendlyName!: pulumi.Output<string | undefined>;
+    declare public readonly friendlyName: pulumi.Output<string | undefined>;
     /**
      * The display name of this protocol mapper in the GUI.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The realm this protocol mapper exists within.
      */
-    public readonly realmId!: pulumi.Output<string>;
+    declare public readonly realmId: pulumi.Output<string>;
     /**
      * The name of the SAML attribute.
      */
-    public readonly samlAttributeName!: pulumi.Output<string>;
+    declare public readonly samlAttributeName: pulumi.Output<string>;
     /**
      * The SAML attribute Name Format. Can be one of `Unspecified`, `Basic`, or `URI Reference`.
      */
-    public readonly samlAttributeNameFormat!: pulumi.Output<string>;
+    declare public readonly samlAttributeNameFormat: pulumi.Output<string>;
     /**
      * The custom user attribute to map.
      */
-    public readonly userAttribute!: pulumi.Output<string>;
+    declare public readonly userAttribute: pulumi.Output<string>;
 
     /**
      * Create a UserAttributeProtocolMapper resource with the given unique name, arguments, and options.
@@ -136,38 +136,38 @@ export class UserAttributeProtocolMapper extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as UserAttributeProtocolMapperState | undefined;
-            resourceInputs["aggregateAttributes"] = state ? state.aggregateAttributes : undefined;
-            resourceInputs["clientId"] = state ? state.clientId : undefined;
-            resourceInputs["clientScopeId"] = state ? state.clientScopeId : undefined;
-            resourceInputs["friendlyName"] = state ? state.friendlyName : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["realmId"] = state ? state.realmId : undefined;
-            resourceInputs["samlAttributeName"] = state ? state.samlAttributeName : undefined;
-            resourceInputs["samlAttributeNameFormat"] = state ? state.samlAttributeNameFormat : undefined;
-            resourceInputs["userAttribute"] = state ? state.userAttribute : undefined;
+            resourceInputs["aggregateAttributes"] = state?.aggregateAttributes;
+            resourceInputs["clientId"] = state?.clientId;
+            resourceInputs["clientScopeId"] = state?.clientScopeId;
+            resourceInputs["friendlyName"] = state?.friendlyName;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["samlAttributeName"] = state?.samlAttributeName;
+            resourceInputs["samlAttributeNameFormat"] = state?.samlAttributeNameFormat;
+            resourceInputs["userAttribute"] = state?.userAttribute;
         } else {
             const args = argsOrState as UserAttributeProtocolMapperArgs | undefined;
-            if ((!args || args.realmId === undefined) && !opts.urn) {
+            if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            if ((!args || args.samlAttributeName === undefined) && !opts.urn) {
+            if (args?.samlAttributeName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'samlAttributeName'");
             }
-            if ((!args || args.samlAttributeNameFormat === undefined) && !opts.urn) {
+            if (args?.samlAttributeNameFormat === undefined && !opts.urn) {
                 throw new Error("Missing required property 'samlAttributeNameFormat'");
             }
-            if ((!args || args.userAttribute === undefined) && !opts.urn) {
+            if (args?.userAttribute === undefined && !opts.urn) {
                 throw new Error("Missing required property 'userAttribute'");
             }
-            resourceInputs["aggregateAttributes"] = args ? args.aggregateAttributes : undefined;
-            resourceInputs["clientId"] = args ? args.clientId : undefined;
-            resourceInputs["clientScopeId"] = args ? args.clientScopeId : undefined;
-            resourceInputs["friendlyName"] = args ? args.friendlyName : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["realmId"] = args ? args.realmId : undefined;
-            resourceInputs["samlAttributeName"] = args ? args.samlAttributeName : undefined;
-            resourceInputs["samlAttributeNameFormat"] = args ? args.samlAttributeNameFormat : undefined;
-            resourceInputs["userAttribute"] = args ? args.userAttribute : undefined;
+            resourceInputs["aggregateAttributes"] = args?.aggregateAttributes;
+            resourceInputs["clientId"] = args?.clientId;
+            resourceInputs["clientScopeId"] = args?.clientScopeId;
+            resourceInputs["friendlyName"] = args?.friendlyName;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["samlAttributeName"] = args?.samlAttributeName;
+            resourceInputs["samlAttributeNameFormat"] = args?.samlAttributeNameFormat;
+            resourceInputs["userAttribute"] = args?.userAttribute;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(UserAttributeProtocolMapper.__pulumiType, name, resourceInputs, opts);

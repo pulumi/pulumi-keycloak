@@ -116,8 +116,7 @@ namespace Pulumi.Keycloak
 
         private static readonly __Value<bool?> _redHatSso = new __Value<bool?>(() => __config.GetBoolean("redHatSso"));
         /// <summary>
-        /// When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version
-        /// returned from the /serverinfo API endpoint.
+        /// When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version returned from the /serverinfo API endpoint.
         /// </summary>
         public static bool? RedHatSso
         {
@@ -137,8 +136,7 @@ namespace Pulumi.Keycloak
 
         private static readonly __Value<bool?> _tlsInsecureSkipVerify = new __Value<bool?>(() => __config.GetBoolean("tlsInsecureSkipVerify"));
         /// <summary>
-        /// Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and
-        /// should be avoided.
+        /// Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and should be avoided.
         /// </summary>
         public static bool? TlsInsecureSkipVerify
         {

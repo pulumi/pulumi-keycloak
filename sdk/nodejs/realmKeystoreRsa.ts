@@ -52,39 +52,39 @@ export class RealmKeystoreRsa extends pulumi.CustomResource {
     /**
      * When `false`, key in not used for signing. Defaults to `true`.
      */
-    public readonly active!: pulumi.Output<boolean | undefined>;
+    declare public readonly active: pulumi.Output<boolean | undefined>;
     /**
      * Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
      */
-    public readonly algorithm!: pulumi.Output<string | undefined>;
+    declare public readonly algorithm: pulumi.Output<string | undefined>;
     /**
      * X509 Certificate encoded in PEM format.
      */
-    public readonly certificate!: pulumi.Output<string>;
+    declare public readonly certificate: pulumi.Output<string>;
     /**
      * When `false`, key is not accessible in this realm. Defaults to `true`.
      */
-    public readonly enabled!: pulumi.Output<boolean | undefined>;
+    declare public readonly enabled: pulumi.Output<boolean | undefined>;
     /**
      * Display name of provider when linked in admin console.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * Priority for the provider. Defaults to `0`
      */
-    public readonly priority!: pulumi.Output<number | undefined>;
+    declare public readonly priority: pulumi.Output<number | undefined>;
     /**
      * Private RSA Key encoded in PEM format.
      */
-    public readonly privateKey!: pulumi.Output<string>;
+    declare public readonly privateKey: pulumi.Output<string>;
     /**
      * Use `rsa` for signing keys, `rsa-enc` for encryption keys
      */
-    public readonly providerId!: pulumi.Output<string | undefined>;
+    declare public readonly providerId: pulumi.Output<string | undefined>;
     /**
      * The realm this keystore exists in.
      */
-    public readonly realmId!: pulumi.Output<string>;
+    declare public readonly realmId: pulumi.Output<string>;
 
     /**
      * Create a RealmKeystoreRsa resource with the given unique name, arguments, and options.
@@ -99,35 +99,35 @@ export class RealmKeystoreRsa extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RealmKeystoreRsaState | undefined;
-            resourceInputs["active"] = state ? state.active : undefined;
-            resourceInputs["algorithm"] = state ? state.algorithm : undefined;
-            resourceInputs["certificate"] = state ? state.certificate : undefined;
-            resourceInputs["enabled"] = state ? state.enabled : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["priority"] = state ? state.priority : undefined;
-            resourceInputs["privateKey"] = state ? state.privateKey : undefined;
-            resourceInputs["providerId"] = state ? state.providerId : undefined;
-            resourceInputs["realmId"] = state ? state.realmId : undefined;
+            resourceInputs["active"] = state?.active;
+            resourceInputs["algorithm"] = state?.algorithm;
+            resourceInputs["certificate"] = state?.certificate;
+            resourceInputs["enabled"] = state?.enabled;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["priority"] = state?.priority;
+            resourceInputs["privateKey"] = state?.privateKey;
+            resourceInputs["providerId"] = state?.providerId;
+            resourceInputs["realmId"] = state?.realmId;
         } else {
             const args = argsOrState as RealmKeystoreRsaArgs | undefined;
-            if ((!args || args.certificate === undefined) && !opts.urn) {
+            if (args?.certificate === undefined && !opts.urn) {
                 throw new Error("Missing required property 'certificate'");
             }
-            if ((!args || args.privateKey === undefined) && !opts.urn) {
+            if (args?.privateKey === undefined && !opts.urn) {
                 throw new Error("Missing required property 'privateKey'");
             }
-            if ((!args || args.realmId === undefined) && !opts.urn) {
+            if (args?.realmId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realmId'");
             }
-            resourceInputs["active"] = args ? args.active : undefined;
-            resourceInputs["algorithm"] = args ? args.algorithm : undefined;
-            resourceInputs["certificate"] = args ? args.certificate : undefined;
-            resourceInputs["enabled"] = args ? args.enabled : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["priority"] = args ? args.priority : undefined;
-            resourceInputs["privateKey"] = args ? args.privateKey : undefined;
-            resourceInputs["providerId"] = args ? args.providerId : undefined;
-            resourceInputs["realmId"] = args ? args.realmId : undefined;
+            resourceInputs["active"] = args?.active;
+            resourceInputs["algorithm"] = args?.algorithm;
+            resourceInputs["certificate"] = args?.certificate;
+            resourceInputs["enabled"] = args?.enabled;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["priority"] = args?.priority;
+            resourceInputs["privateKey"] = args?.privateKey;
+            resourceInputs["providerId"] = args?.providerId;
+            resourceInputs["realmId"] = args?.realmId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(RealmKeystoreRsa.__pulumiType, name, resourceInputs, opts);
