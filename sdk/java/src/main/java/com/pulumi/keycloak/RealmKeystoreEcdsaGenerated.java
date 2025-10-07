@@ -17,7 +17,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Allows for creating and managing `acdsa_generated` Realm keystores within Keycloak.
+ * Allows for creating and managing `acdsaGenerated` Realm keystores within Keycloak.
  * 
  * A realm keystore manages generated key pairs that are used by Keycloak to perform cryptographic signatures and encryption.
  * 

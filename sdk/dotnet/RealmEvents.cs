@@ -57,13 +57,13 @@ namespace Pulumi.Keycloak
     public partial class RealmEvents : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// When `true`, saved admin events will included detailed information for create/update requests. Defaults to `false`.
+        /// When `True`, saved admin events will included detailed information for create/update requests. Defaults to `False`.
         /// </summary>
         [Output("adminEventsDetailsEnabled")]
         public Output<bool?> AdminEventsDetailsEnabled { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, admin events are saved to the database, making them available through the admin console. Defaults to `false`.
+        /// When `True`, admin events are saved to the database, making them available through the admin console. Defaults to `False`.
         /// </summary>
         [Output("adminEventsEnabled")]
         public Output<bool?> AdminEventsEnabled { get; private set; } = null!;
@@ -75,7 +75,7 @@ namespace Pulumi.Keycloak
         public Output<ImmutableArray<string>> EnabledEventTypes { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, events from `enabled_event_types` are saved to the database, making them available through the admin console. Defaults to `false`.
+        /// When `True`, events from `EnabledEventTypes` are saved to the database, making them available through the admin console. Defaults to `False`.
         /// </summary>
         [Output("eventsEnabled")]
         public Output<bool?> EventsEnabled { get; private set; } = null!;
@@ -145,13 +145,13 @@ namespace Pulumi.Keycloak
     public sealed class RealmEventsArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// When `true`, saved admin events will included detailed information for create/update requests. Defaults to `false`.
+        /// When `True`, saved admin events will included detailed information for create/update requests. Defaults to `False`.
         /// </summary>
         [Input("adminEventsDetailsEnabled")]
         public Input<bool>? AdminEventsDetailsEnabled { get; set; }
 
         /// <summary>
-        /// When `true`, admin events are saved to the database, making them available through the admin console. Defaults to `false`.
+        /// When `True`, admin events are saved to the database, making them available through the admin console. Defaults to `False`.
         /// </summary>
         [Input("adminEventsEnabled")]
         public Input<bool>? AdminEventsEnabled { get; set; }
@@ -169,7 +169,7 @@ namespace Pulumi.Keycloak
         }
 
         /// <summary>
-        /// When `true`, events from `enabled_event_types` are saved to the database, making them available through the admin console. Defaults to `false`.
+        /// When `True`, events from `EnabledEventTypes` are saved to the database, making them available through the admin console. Defaults to `False`.
         /// </summary>
         [Input("eventsEnabled")]
         public Input<bool>? EventsEnabled { get; set; }
@@ -207,13 +207,13 @@ namespace Pulumi.Keycloak
     public sealed class RealmEventsState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// When `true`, saved admin events will included detailed information for create/update requests. Defaults to `false`.
+        /// When `True`, saved admin events will included detailed information for create/update requests. Defaults to `False`.
         /// </summary>
         [Input("adminEventsDetailsEnabled")]
         public Input<bool>? AdminEventsDetailsEnabled { get; set; }
 
         /// <summary>
-        /// When `true`, admin events are saved to the database, making them available through the admin console. Defaults to `false`.
+        /// When `True`, admin events are saved to the database, making them available through the admin console. Defaults to `False`.
         /// </summary>
         [Input("adminEventsEnabled")]
         public Input<bool>? AdminEventsEnabled { get; set; }
@@ -231,7 +231,7 @@ namespace Pulumi.Keycloak
         }
 
         /// <summary>
-        /// When `true`, events from `enabled_event_types` are saved to the database, making them available through the admin console. Defaults to `false`.
+        /// When `True`, events from `EnabledEventTypes` are saved to the database, making them available through the admin console. Defaults to `False`.
         /// </summary>
         [Input("eventsEnabled")]
         public Input<bool>? EventsEnabled { get; set; }

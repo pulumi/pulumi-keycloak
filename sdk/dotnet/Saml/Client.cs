@@ -15,6 +15,44 @@ namespace Pulumi.Keycloak.Saml
     /// Clients are entities that can use Keycloak for user authentication. Typically, clients are applications that redirect users
     /// to Keycloak for authentication in order to take advantage of Keycloak's user sessions for SSO.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// using Std = Pulumi.Std;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
+    /// 
+    ///     var samlClient = new Keycloak.Saml.Client("saml_client", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = "saml-client",
+    ///         Name = "saml-client",
+    ///         SignDocuments = false,
+    ///         SignAssertions = true,
+    ///         IncludeAuthnStatement = true,
+    ///         SigningCertificate = Std.Index.File.Invoke(new()
+    ///         {
+    ///             Input = "saml-cert.pem",
+    ///         }).Result,
+    ///         SigningPrivateKey = Std.Index.File.Invoke(new()
+    ///         {
+    ///             Input = "saml-key.pem",
+    ///         }).Result,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Clients can be imported using the format `{{realm_id}}/{{client_keycloak_id}}`, where `client_keycloak_id` is the unique ID that Keycloak
@@ -75,13 +113,13 @@ namespace Pulumi.Keycloak.Saml
         public Output<string> ClientId { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signing_certificate` and `signing_private_key`. Defaults to `true`.
+        /// When `True`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `SigningCertificate` and `SigningPrivateKey`. Defaults to `True`.
         /// </summary>
         [Output("clientSignatureRequired")]
         public Output<bool?> ClientSignatureRequired { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, users have to consent to client access. Defaults to `false`.
+        /// When `True`, users have to consent to client access. Defaults to `False`.
         /// </summary>
         [Output("consentRequired")]
         public Output<bool> ConsentRequired { get; private set; } = null!;
@@ -93,13 +131,13 @@ namespace Pulumi.Keycloak.Saml
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// When false, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
+        /// When false, this client will not be able to initiate a login or obtain access tokens. Defaults to `True`.
         /// </summary>
         [Output("enabled")]
         public Output<bool?> Enabled { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key. Defaults to `false`.
+        /// When `True`, the SAML assertions will be encrypted by Keycloak using the client's public key. Defaults to `False`.
         /// </summary>
         [Output("encryptAssertions")]
         public Output<bool?> EncryptAssertions { get; private set; } = null!;
@@ -120,19 +158,19 @@ namespace Pulumi.Keycloak.Saml
         public Output<ImmutableDictionary<string, string>?> ExtraConfig { get; private set; } = null!;
 
         /// <summary>
-        /// Ignore requested NameID subject format and use the one defined in `name_id_format` instead. Defaults to `false`.
+        /// Ignore requested NameID subject format and use the one defined in `NameIdFormat` instead. Defaults to `False`.
         /// </summary>
         [Output("forceNameIdFormat")]
         public Output<bool?> ForceNameIdFormat { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding. Defaults to `true`.
+        /// When `True`, Keycloak will always respond to an authentication request via the SAML POST Binding. Defaults to `True`.
         /// </summary>
         [Output("forcePostBinding")]
         public Output<bool?> ForcePostBinding { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, this client will require a browser redirect in order to perform a logout. Defaults to `true`.
+        /// When `True`, this client will require a browser redirect in order to perform a logout. Defaults to `True`.
         /// </summary>
         [Output("frontChannelLogout")]
         public Output<bool?> FrontChannelLogout { get; private set; } = null!;
@@ -156,7 +194,7 @@ namespace Pulumi.Keycloak.Saml
         public Output<string?> IdpInitiatedSsoUrlName { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, an `AuthnStatement` will be included in the SAML response. Defaults to `true`.
+        /// When `True`, an `AuthnStatement` will be included in the SAML response. Defaults to `True`.
         /// </summary>
         [Output("includeAuthnStatement")]
         public Output<bool?> IncludeAuthnStatement { get; private set; } = null!;
@@ -210,13 +248,13 @@ namespace Pulumi.Keycloak.Saml
         public Output<string?> RootUrl { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response. Defaults to `false`.
+        /// When `True`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response. Defaults to `False`.
         /// </summary>
         [Output("signAssertions")]
         public Output<bool?> SignAssertions { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, the SAML document will be signed by Keycloak using the realm's private key. Defaults to `true`.
+        /// When `True`, the SAML document will be signed by Keycloak using the realm's private key. Defaults to `True`.
         /// </summary>
         [Output("signDocuments")]
         public Output<bool?> SignDocuments { get; private set; } = null!;
@@ -352,13 +390,13 @@ namespace Pulumi.Keycloak.Saml
         public Input<string> ClientId { get; set; } = null!;
 
         /// <summary>
-        /// When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signing_certificate` and `signing_private_key`. Defaults to `true`.
+        /// When `True`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `SigningCertificate` and `SigningPrivateKey`. Defaults to `True`.
         /// </summary>
         [Input("clientSignatureRequired")]
         public Input<bool>? ClientSignatureRequired { get; set; }
 
         /// <summary>
-        /// When `true`, users have to consent to client access. Defaults to `false`.
+        /// When `True`, users have to consent to client access. Defaults to `False`.
         /// </summary>
         [Input("consentRequired")]
         public Input<bool>? ConsentRequired { get; set; }
@@ -370,13 +408,13 @@ namespace Pulumi.Keycloak.Saml
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// When false, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
+        /// When false, this client will not be able to initiate a login or obtain access tokens. Defaults to `True`.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
         /// <summary>
-        /// When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key. Defaults to `false`.
+        /// When `True`, the SAML assertions will be encrypted by Keycloak using the client's public key. Defaults to `False`.
         /// </summary>
         [Input("encryptAssertions")]
         public Input<bool>? EncryptAssertions { get; set; }
@@ -396,19 +434,19 @@ namespace Pulumi.Keycloak.Saml
         }
 
         /// <summary>
-        /// Ignore requested NameID subject format and use the one defined in `name_id_format` instead. Defaults to `false`.
+        /// Ignore requested NameID subject format and use the one defined in `NameIdFormat` instead. Defaults to `False`.
         /// </summary>
         [Input("forceNameIdFormat")]
         public Input<bool>? ForceNameIdFormat { get; set; }
 
         /// <summary>
-        /// When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding. Defaults to `true`.
+        /// When `True`, Keycloak will always respond to an authentication request via the SAML POST Binding. Defaults to `True`.
         /// </summary>
         [Input("forcePostBinding")]
         public Input<bool>? ForcePostBinding { get; set; }
 
         /// <summary>
-        /// When `true`, this client will require a browser redirect in order to perform a logout. Defaults to `true`.
+        /// When `True`, this client will require a browser redirect in order to perform a logout. Defaults to `True`.
         /// </summary>
         [Input("frontChannelLogout")]
         public Input<bool>? FrontChannelLogout { get; set; }
@@ -432,7 +470,7 @@ namespace Pulumi.Keycloak.Saml
         public Input<string>? IdpInitiatedSsoUrlName { get; set; }
 
         /// <summary>
-        /// When `true`, an `AuthnStatement` will be included in the SAML response. Defaults to `true`.
+        /// When `True`, an `AuthnStatement` will be included in the SAML response. Defaults to `True`.
         /// </summary>
         [Input("includeAuthnStatement")]
         public Input<bool>? IncludeAuthnStatement { get; set; }
@@ -486,13 +524,13 @@ namespace Pulumi.Keycloak.Saml
         public Input<string>? RootUrl { get; set; }
 
         /// <summary>
-        /// When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response. Defaults to `false`.
+        /// When `True`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response. Defaults to `False`.
         /// </summary>
         [Input("signAssertions")]
         public Input<bool>? SignAssertions { get; set; }
 
         /// <summary>
-        /// When `true`, the SAML document will be signed by Keycloak using the realm's private key. Defaults to `true`.
+        /// When `True`, the SAML document will be signed by Keycloak using the realm's private key. Defaults to `True`.
         /// </summary>
         [Input("signDocuments")]
         public Input<bool>? SignDocuments { get; set; }
@@ -584,13 +622,13 @@ namespace Pulumi.Keycloak.Saml
         public Input<string>? ClientId { get; set; }
 
         /// <summary>
-        /// When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signing_certificate` and `signing_private_key`. Defaults to `true`.
+        /// When `True`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `SigningCertificate` and `SigningPrivateKey`. Defaults to `True`.
         /// </summary>
         [Input("clientSignatureRequired")]
         public Input<bool>? ClientSignatureRequired { get; set; }
 
         /// <summary>
-        /// When `true`, users have to consent to client access. Defaults to `false`.
+        /// When `True`, users have to consent to client access. Defaults to `False`.
         /// </summary>
         [Input("consentRequired")]
         public Input<bool>? ConsentRequired { get; set; }
@@ -602,13 +640,13 @@ namespace Pulumi.Keycloak.Saml
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// When false, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
+        /// When false, this client will not be able to initiate a login or obtain access tokens. Defaults to `True`.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
         /// <summary>
-        /// When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key. Defaults to `false`.
+        /// When `True`, the SAML assertions will be encrypted by Keycloak using the client's public key. Defaults to `False`.
         /// </summary>
         [Input("encryptAssertions")]
         public Input<bool>? EncryptAssertions { get; set; }
@@ -634,19 +672,19 @@ namespace Pulumi.Keycloak.Saml
         }
 
         /// <summary>
-        /// Ignore requested NameID subject format and use the one defined in `name_id_format` instead. Defaults to `false`.
+        /// Ignore requested NameID subject format and use the one defined in `NameIdFormat` instead. Defaults to `False`.
         /// </summary>
         [Input("forceNameIdFormat")]
         public Input<bool>? ForceNameIdFormat { get; set; }
 
         /// <summary>
-        /// When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding. Defaults to `true`.
+        /// When `True`, Keycloak will always respond to an authentication request via the SAML POST Binding. Defaults to `True`.
         /// </summary>
         [Input("forcePostBinding")]
         public Input<bool>? ForcePostBinding { get; set; }
 
         /// <summary>
-        /// When `true`, this client will require a browser redirect in order to perform a logout. Defaults to `true`.
+        /// When `True`, this client will require a browser redirect in order to perform a logout. Defaults to `True`.
         /// </summary>
         [Input("frontChannelLogout")]
         public Input<bool>? FrontChannelLogout { get; set; }
@@ -670,7 +708,7 @@ namespace Pulumi.Keycloak.Saml
         public Input<string>? IdpInitiatedSsoUrlName { get; set; }
 
         /// <summary>
-        /// When `true`, an `AuthnStatement` will be included in the SAML response. Defaults to `true`.
+        /// When `True`, an `AuthnStatement` will be included in the SAML response. Defaults to `True`.
         /// </summary>
         [Input("includeAuthnStatement")]
         public Input<bool>? IncludeAuthnStatement { get; set; }
@@ -724,13 +762,13 @@ namespace Pulumi.Keycloak.Saml
         public Input<string>? RootUrl { get; set; }
 
         /// <summary>
-        /// When `true`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response. Defaults to `false`.
+        /// When `True`, the SAML assertions will be signed by Keycloak using the realm's private key, and embedded within the SAML XML Auth response. Defaults to `False`.
         /// </summary>
         [Input("signAssertions")]
         public Input<bool>? SignAssertions { get; set; }
 
         /// <summary>
-        /// When `true`, the SAML document will be signed by Keycloak using the realm's private key. Defaults to `true`.
+        /// When `True`, the SAML document will be signed by Keycloak using the realm's private key. Defaults to `True`.
         /// </summary>
         [Input("signDocuments")]
         public Input<bool>? SignDocuments { get; set; }

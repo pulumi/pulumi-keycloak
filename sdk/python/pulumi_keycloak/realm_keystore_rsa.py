@@ -338,6 +338,26 @@ class RealmKeystoreRsa(pulumi.CustomResource):
 
         A realm keystore manages generated key pairs that are used by Keycloak to perform cryptographic signatures and encryption.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm", realm="my-realm")
+        keystore_rsa = keycloak.RealmKeystoreRsa("keystore_rsa",
+            name="my-rsa-key",
+            realm_id=realm.id,
+            enabled=True,
+            active=True,
+            private_key="<your rsa private key>",
+            certificate="<your certificate>",
+            priority=100,
+            algorithm="RS256",
+            keystore_size=2048,
+            provider_id="rsa")
+        ```
+
         ## Import
 
         Realm keys can be imported using realm name and keystore id, you can find it in web UI.
@@ -372,6 +392,26 @@ class RealmKeystoreRsa(pulumi.CustomResource):
         Allows for creating and managing `rsa` Realm keystores within Keycloak.
 
         A realm keystore manages generated key pairs that are used by Keycloak to perform cryptographic signatures and encryption.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm", realm="my-realm")
+        keystore_rsa = keycloak.RealmKeystoreRsa("keystore_rsa",
+            name="my-rsa-key",
+            realm_id=realm.id,
+            enabled=True,
+            active=True,
+            private_key="<your rsa private key>",
+            certificate="<your certificate>",
+            priority=100,
+            algorithm="RS256",
+            keystore_size=2048,
+            provider_id="rsa")
+        ```
 
         ## Import
 

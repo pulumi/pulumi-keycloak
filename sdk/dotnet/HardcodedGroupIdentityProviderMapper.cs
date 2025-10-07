@@ -13,6 +13,54 @@ namespace Pulumi.Keycloak
     /// Allows for creating and managing hardcoded group mappers for Keycloak identity provider.
     /// 
     /// The identity provider hardcoded group mapper grants a specified Keycloak group to each Keycloak user from the identity provider.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
+    /// 
+    ///     var oidc = new Keycloak.Oidc.IdentityProvider("oidc", new()
+    ///     {
+    ///         Realm = realm.Id,
+    ///         Alias = "my-idp",
+    ///         AuthorizationUrl = "https://authorizationurl.com",
+    ///         ClientId = "clientID",
+    ///         ClientSecret = "clientSecret",
+    ///         TokenUrl = "https://tokenurl.com",
+    ///     });
+    /// 
+    ///     var realmGroup = new Keycloak.Group("realm_group", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Name = "my-realm-group",
+    ///         Description = "My Realm Group",
+    ///     });
+    /// 
+    ///     var oidcHardcodedGroupIdentityProviderMapper = new Keycloak.HardcodedGroupIdentityProviderMapper("oidc", new()
+    ///     {
+    ///         Realm = realm.Id,
+    ///         Name = "hardcodedGroup",
+    ///         IdentityProviderAlias = oidc.Alias,
+    ///         Group = "my-realm-group",
+    ///         ExtraConfig = 
+    ///         {
+    ///             { "syncMode", "INHERIT" },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:index/hardcodedGroupIdentityProviderMapper:HardcodedGroupIdentityProviderMapper")]
     public partial class HardcodedGroupIdentityProviderMapper : global::Pulumi.CustomResource

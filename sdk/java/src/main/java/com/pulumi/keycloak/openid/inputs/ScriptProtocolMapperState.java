@@ -92,14 +92,14 @@ public final class ScriptProtocolMapperState extends com.pulumi.resources.Resour
     }
 
     /**
-     * The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+     * The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
      * 
      */
     @Import(name="clientId")
     private @Nullable Output<String> clientId;
 
     /**
-     * @return The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+     * @return The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
      * 
      */
     public Optional<Output<String>> clientId() {
@@ -107,14 +107,14 @@ public final class ScriptProtocolMapperState extends com.pulumi.resources.Resour
     }
 
     /**
-     * The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+     * The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
      * 
      */
     @Import(name="clientScopeId")
     private @Nullable Output<String> clientScopeId;
 
     /**
-     * @return The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+     * @return The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
      * 
      */
     public Optional<Output<String>> clientScopeId() {
@@ -321,7 +321,7 @@ public final class ScriptProtocolMapperState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param clientId The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+         * @param clientId The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
          * 
          * @return builder
          * 
@@ -332,7 +332,7 @@ public final class ScriptProtocolMapperState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param clientId The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+         * @param clientId The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
          * 
          * @return builder
          * 
@@ -342,7 +342,7 @@ public final class ScriptProtocolMapperState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param clientScopeId The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+         * @param clientScopeId The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
          * 
          * @return builder
          * 
@@ -353,7 +353,7 @@ public final class ScriptProtocolMapperState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param clientScopeId The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+         * @param clientScopeId The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
          * 
          * @return builder
          * 

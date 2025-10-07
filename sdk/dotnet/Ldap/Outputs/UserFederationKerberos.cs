@@ -26,7 +26,7 @@ namespace Pulumi.Keycloak.Ldap.Outputs
         /// </summary>
         public readonly string ServerPrincipal;
         /// <summary>
-        /// Use kerberos login module instead of ldap service api. Defaults to `false`.
+        /// Use kerberos login module instead of ldap service api. Defaults to `False`.
         /// </summary>
         public readonly bool? UseKerberosForPasswordAuthentication;
 

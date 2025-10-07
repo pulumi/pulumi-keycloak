@@ -24,6 +24,54 @@ import javax.annotation.Nullable;
  * Clients are entities that can use Keycloak for user authentication. Typically, clients are applications that redirect users
  * to Keycloak for authentication in order to take advantage of Keycloak&#39;s user sessions for SSO.
  * 
+ * ## Example Usage
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.keycloak.Realm;
+ * import com.pulumi.keycloak.RealmArgs;
+ * import com.pulumi.keycloak.saml.Client;
+ * import com.pulumi.keycloak.saml.ClientArgs;
+ * import com.pulumi.std.StdFunctions;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var realm = new Realm("realm", RealmArgs.builder()
+ *             .realm("my-realm")
+ *             .enabled(true)
+ *             .build());
+ * 
+ *         var samlClient = new Client("samlClient", ClientArgs.builder()
+ *             .realmId(realm.id())
+ *             .clientId("saml-client")
+ *             .name("saml-client")
+ *             .signDocuments(false)
+ *             .signAssertions(true)
+ *             .includeAuthnStatement(true)
+ *             .signingCertificate(StdFunctions.file(Map.of("input", "saml-cert.pem")).result())
+ *             .signingPrivateKey(StdFunctions.file(Map.of("input", "saml-key.pem")).result())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ## Import
  * 
  * Clients can be imported using the format `{{realm_id}}/{{client_keycloak_id}}`, where `client_keycloak_id` is the unique ID that Keycloak
@@ -140,14 +188,14 @@ public class Client extends com.pulumi.resources.CustomResource {
         return this.clientId;
     }
     /**
-     * When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signing_certificate` and `signing_private_key`. Defaults to `true`.
+     * When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signingCertificate` and `signingPrivateKey`. Defaults to `true`.
      * 
      */
     @Export(name="clientSignatureRequired", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> clientSignatureRequired;
 
     /**
-     * @return When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signing_certificate` and `signing_private_key`. Defaults to `true`.
+     * @return When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signingCertificate` and `signingPrivateKey`. Defaults to `true`.
      * 
      */
     public Output<Optional<Boolean>> clientSignatureRequired() {
@@ -244,14 +292,14 @@ public class Client extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.extraConfig);
     }
     /**
-     * Ignore requested NameID subject format and use the one defined in `name_id_format` instead. Defaults to `false`.
+     * Ignore requested NameID subject format and use the one defined in `nameIdFormat` instead. Defaults to `false`.
      * 
      */
     @Export(name="forceNameIdFormat", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> forceNameIdFormat;
 
     /**
-     * @return Ignore requested NameID subject format and use the one defined in `name_id_format` instead. Defaults to `false`.
+     * @return Ignore requested NameID subject format and use the one defined in `nameIdFormat` instead. Defaults to `false`.
      * 
      */
     public Output<Optional<Boolean>> forceNameIdFormat() {

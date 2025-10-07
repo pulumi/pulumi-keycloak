@@ -237,7 +237,7 @@ namespace Pulumi.Keycloak
         public Output<string> Description { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, the role with the specified `name` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with roles that Keycloak creates automatically during realm creation, such as the client roles `create-client`, `view-realm`, ... for the client `realm-management` created per realm. Note, that the role will not be removed during destruction if `import` is `true`.
+        /// When `True`, the role with the specified `Name` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with roles that Keycloak creates automatically during realm creation, such as the client roles `create-client`, `view-realm`, ... for the client `realm-management` created per realm. Note, that the role will not be removed during destruction if `Import` is `True`.
         /// </summary>
         [Output("import")]
         public Output<bool?> Import { get; private set; } = null!;
@@ -337,7 +337,7 @@ namespace Pulumi.Keycloak
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// When `true`, the role with the specified `name` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with roles that Keycloak creates automatically during realm creation, such as the client roles `create-client`, `view-realm`, ... for the client `realm-management` created per realm. Note, that the role will not be removed during destruction if `import` is `true`.
+        /// When `True`, the role with the specified `Name` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with roles that Keycloak creates automatically during realm creation, such as the client roles `create-client`, `view-realm`, ... for the client `realm-management` created per realm. Note, that the role will not be removed during destruction if `Import` is `True`.
         /// </summary>
         [Input("import")]
         public Input<bool>? Import { get; set; }
@@ -399,7 +399,7 @@ namespace Pulumi.Keycloak
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// When `true`, the role with the specified `name` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with roles that Keycloak creates automatically during realm creation, such as the client roles `create-client`, `view-realm`, ... for the client `realm-management` created per realm. Note, that the role will not be removed during destruction if `import` is `true`.
+        /// When `True`, the role with the specified `Name` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with roles that Keycloak creates automatically during realm creation, such as the client roles `create-client`, `view-realm`, ... for the client `realm-management` created per realm. Note, that the role will not be removed during destruction if `Import` is `True`.
         /// </summary>
         [Input("import")]
         public Input<bool>? Import { get; set; }

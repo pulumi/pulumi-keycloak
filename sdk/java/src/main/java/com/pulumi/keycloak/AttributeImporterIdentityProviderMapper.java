@@ -23,7 +23,7 @@ import javax.annotation.Nullable;
  * - For the SAML identity provider, this will map a SAML attribute found within the assertion to an attribute for the imported Keycloak user.
  * - For social identity providers, this will map a JSON field from the user profile to an attribute for the imported Keycloak user.
  * 
- * &gt; If you are using Keycloak 10 or higher, you will need to specify the `extra_config` argument in order to define a `syncMode` for the mapper.
+ * &gt; If you are using Keycloak 10 or higher, you will need to specify the `extraConfig` argument in order to define a `syncMode` for the mapper.
  * 
  * ## Example Usage
  * 
@@ -100,28 +100,28 @@ import javax.annotation.Nullable;
 @ResourceType(type="keycloak:index/attributeImporterIdentityProviderMapper:AttributeImporterIdentityProviderMapper")
 public class AttributeImporterIdentityProviderMapper extends com.pulumi.resources.CustomResource {
     /**
-     * For SAML based providers, this is the friendly name of the attribute to search for in the assertion. Conflicts with `attribute_name`.
+     * For SAML based providers, this is the friendly name of the attribute to search for in the assertion. Conflicts with `attributeName`.
      * 
      */
     @Export(name="attributeFriendlyName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> attributeFriendlyName;
 
     /**
-     * @return For SAML based providers, this is the friendly name of the attribute to search for in the assertion. Conflicts with `attribute_name`.
+     * @return For SAML based providers, this is the friendly name of the attribute to search for in the assertion. Conflicts with `attributeName`.
      * 
      */
     public Output<Optional<String>> attributeFriendlyName() {
         return Codegen.optional(this.attributeFriendlyName);
     }
     /**
-     * For SAML based providers, this is the name of the attribute to search for in the assertion. Conflicts with `attribute_friendly_name`.
+     * For SAML based providers, this is the name of the attribute to search for in the assertion. Conflicts with `attributeFriendlyName`.
      * 
      */
     @Export(name="attributeName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> attributeName;
 
     /**
-     * @return For SAML based providers, this is the name of the attribute to search for in the assertion. Conflicts with `attribute_friendly_name`.
+     * @return For SAML based providers, this is the name of the attribute to search for in the assertion. Conflicts with `attributeFriendlyName`.
      * 
      */
     public Output<Optional<String>> attributeName() {

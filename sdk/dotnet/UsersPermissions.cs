@@ -12,17 +12,165 @@ namespace Pulumi.Keycloak
     /// <summary>
     /// Allows you to manage fine-grained permissions for all users in a realm: https://www.keycloak.org/docs/latest/server_admin/#_users-permissions
     /// 
-    /// This is part of a preview Keycloak feature: `admin_fine_grained_authz` (see https://www.keycloak.org/docs/latest/server_admin/#_fine_grain_permissions).
+    /// This is part of a preview Keycloak feature: `AdminFineGrainedAuthz` (see https://www.keycloak.org/docs/latest/server_admin/#_fine_grain_permissions).
     /// This feature can be enabled with the Keycloak option `-Dkeycloak.profile.feature.admin_fine_grained_authz=enabled`. See the
     /// example `docker-compose.yml` file for an example.
     /// 
     /// When enabling fine-grained permissions for users, Keycloak does several things automatically:
     /// 1. Enable Authorization on built-in `realm-management` client (if not already enabled).
     /// 2. Create a resource representing the users permissions.
-    /// 3. Create scopes `view`, `manage`, `map-roles`, `manage-group-membership`, `impersonate`, and `user-impersonated`.
+    /// 3. Create scopes `View`, `Manage`, `map-roles`, `manage-group-membership`, `Impersonate`, and `user-impersonated`.
     /// 4. Create all scope based permission for the scopes and users resources.
     /// 
     /// &gt; This resource should only be created once per realm.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "my-realm",
+    ///     });
+    /// 
+    ///     var realmManagement = Keycloak.OpenId.GetClient.Invoke(new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = "realm-management",
+    ///     });
+    /// 
+    ///     // enable permissions for realm-management client
+    ///     var realmManagementPermission = new Keycloak.OpenId.ClientPermissions("realm_management_permission", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = realmManagement.Apply(getClientResult =&gt; getClientResult.Id),
+    ///         Enabled = true,
+    ///     });
+    /// 
+    ///     // creating a user to use with the keycloak_openid_client_user_policy resource
+    ///     var test = new Keycloak.User("test", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Username = "test-user",
+    ///         Email = "test-user@fakedomain.com",
+    ///         FirstName = "Testy",
+    ///         LastName = "Tester",
+    ///     });
+    /// 
+    ///     var testClientUserPolicy = new Keycloak.OpenId.ClientUserPolicy("test", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ResourceServerId = realmManagement.Apply(getClientResult =&gt; getClientResult.Id),
+    ///         Name = "client_user_policy_test",
+    ///         Users = new[]
+    ///         {
+    ///             test.Id,
+    ///         },
+    ///         Logic = "POSITIVE",
+    ///         DecisionStrategy = "UNANIMOUS",
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn =
+    ///         {
+    ///             realmManagementPermission,
+    ///         },
+    ///     });
+    /// 
+    ///     var usersPermissions = new Keycloak.UsersPermissions("users_permissions", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ViewScope = new Keycloak.Inputs.UsersPermissionsViewScopeArgs
+    ///         {
+    ///             Policies = new[]
+    ///             {
+    ///                 testClientUserPolicy.Id,
+    ///             },
+    ///             Description = "description",
+    ///             DecisionStrategy = "UNANIMOUS",
+    ///         },
+    ///         ManageScope = new Keycloak.Inputs.UsersPermissionsManageScopeArgs
+    ///         {
+    ///             Policies = new[]
+    ///             {
+    ///                 testClientUserPolicy.Id,
+    ///             },
+    ///             Description = "description",
+    ///             DecisionStrategy = "UNANIMOUS",
+    ///         },
+    ///         MapRolesScope = new Keycloak.Inputs.UsersPermissionsMapRolesScopeArgs
+    ///         {
+    ///             Policies = new[]
+    ///             {
+    ///                 testClientUserPolicy.Id,
+    ///             },
+    ///             Description = "description",
+    ///             DecisionStrategy = "UNANIMOUS",
+    ///         },
+    ///         ManageGroupMembershipScope = new Keycloak.Inputs.UsersPermissionsManageGroupMembershipScopeArgs
+    ///         {
+    ///             Policies = new[]
+    ///             {
+    ///                 testClientUserPolicy.Id,
+    ///             },
+    ///             Description = "description",
+    ///             DecisionStrategy = "UNANIMOUS",
+    ///         },
+    ///         ImpersonateScope = new Keycloak.Inputs.UsersPermissionsImpersonateScopeArgs
+    ///         {
+    ///             Policies = new[]
+    ///             {
+    ///                 testClientUserPolicy.Id,
+    ///             },
+    ///             Description = "description",
+    ///             DecisionStrategy = "UNANIMOUS",
+    ///         },
+    ///         UserImpersonatedScope = new Keycloak.Inputs.UsersPermissionsUserImpersonatedScopeArgs
+    ///         {
+    ///             Policies = new[]
+    ///             {
+    ///                 testClientUserPolicy.Id,
+    ///             },
+    ///             Description = "description",
+    ///             DecisionStrategy = "UNANIMOUS",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Argument Reference
+    /// 
+    /// The following arguments are supported:
+    /// 
+    /// - `RealmId` - (Required) The realm in which to manage fine-grained user permissions.
+    /// 
+    /// Each of the scopes that can be managed are defined below:
+    /// 
+    /// - `ViewScope` - (Optional) When specified, set the scope based view permission.
+    /// - `ManageScope` - (Optional) When specified, set the scope based manage permission.
+    /// - `MapRolesScope` - (Optional) When specified, set the scope based MapRoles permission.
+    /// - `ManageGroupMembershipScope` - (Optional) When specified, set the scope based ManageGroupMembership permission.
+    /// - `ImpersonateScope` - (Optional) When specified, set the scope based impersonate permission.
+    /// - `UserImpersonatedScope` - (Optional) When specified, set the scope based UserImpersonated permission.
+    /// 
+    /// The configuration block for each of these scopes supports the following arguments:
+    /// 
+    /// - `Policies` - (Optional) Assigned policies to the permission. Each element within this list should be a policy ID.
+    /// - `Description` - (Optional) Description of the permission.
+    /// - `DecisionStrategy` - (Optional) Decision strategy of the permission.
+    /// 
+    /// ### Attributes Reference
+    /// 
+    /// In addition to the arguments listed above, the following computed attributes are exported:
+    /// 
+    /// - `Enabled` - When true, this indicates that fine-grained user permissions are enabled. This will always be `True`.
+    /// - `AuthorizationResourceServerId` - Resource server id representing the realm management client on which these permissions are managed.
     /// </summary>
     [KeycloakResourceType("keycloak:index/usersPermissions:UsersPermissions")]
     public partial class UsersPermissions : global::Pulumi.CustomResource

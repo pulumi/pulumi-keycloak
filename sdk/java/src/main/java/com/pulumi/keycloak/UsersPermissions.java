@@ -24,7 +24,7 @@ import javax.annotation.Nullable;
 /**
  * Allows you to manage fine-grained permissions for all users in a realm: https://www.keycloak.org/docs/latest/server_admin/#_users-permissions
  * 
- * This is part of a preview Keycloak feature: `admin_fine_grained_authz` (see https://www.keycloak.org/docs/latest/server_admin/#_fine_grain_permissions).
+ * This is part of a preview Keycloak feature: `adminFineGrainedAuthz` (see https://www.keycloak.org/docs/latest/server_admin/#_fine_grain_permissions).
  * This feature can be enabled with the Keycloak option `-Dkeycloak.profile.feature.admin_fine_grained_authz=enabled`. See the
  * example `docker-compose.yml` file for an example.
  * 
@@ -35,6 +35,150 @@ import javax.annotation.Nullable;
  * 4. Create all scope based permission for the scopes and users resources.
  * 
  * &gt; This resource should only be created once per realm.
+ * 
+ * ## Example Usage
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.keycloak.Realm;
+ * import com.pulumi.keycloak.RealmArgs;
+ * import com.pulumi.keycloak.openid.OpenidFunctions;
+ * import com.pulumi.keycloak.openid.inputs.GetClientArgs;
+ * import com.pulumi.keycloak.openid.ClientPermissions;
+ * import com.pulumi.keycloak.openid.ClientPermissionsArgs;
+ * import com.pulumi.keycloak.User;
+ * import com.pulumi.keycloak.UserArgs;
+ * import com.pulumi.keycloak.openid.ClientUserPolicy;
+ * import com.pulumi.keycloak.openid.ClientUserPolicyArgs;
+ * import com.pulumi.keycloak.UsersPermissions;
+ * import com.pulumi.keycloak.UsersPermissionsArgs;
+ * import com.pulumi.keycloak.inputs.UsersPermissionsViewScopeArgs;
+ * import com.pulumi.keycloak.inputs.UsersPermissionsManageScopeArgs;
+ * import com.pulumi.keycloak.inputs.UsersPermissionsMapRolesScopeArgs;
+ * import com.pulumi.keycloak.inputs.UsersPermissionsManageGroupMembershipScopeArgs;
+ * import com.pulumi.keycloak.inputs.UsersPermissionsImpersonateScopeArgs;
+ * import com.pulumi.keycloak.inputs.UsersPermissionsUserImpersonatedScopeArgs;
+ * import com.pulumi.resources.CustomResourceOptions;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App }{{@code
+ *     public static void main(String[] args) }{{@code
+ *         Pulumi.run(App::stack);
+ *     }}{@code
+ * 
+ *     public static void stack(Context ctx) }{{@code
+ *         var realm = new Realm("realm", RealmArgs.builder()
+ *             .realm("my-realm")
+ *             .build());
+ * 
+ *         final var realmManagement = OpenidFunctions.getClient(GetClientArgs.builder()
+ *             .realmId(realm.id())
+ *             .clientId("realm-management")
+ *             .build());
+ * 
+ *         // enable permissions for realm-management client
+ *         var realmManagementPermission = new ClientPermissions("realmManagementPermission", ClientPermissionsArgs.builder()
+ *             .realmId(realm.id())
+ *             .clientId(realmManagement.applyValue(_realmManagement -> _realmManagement.id()))
+ *             .enabled(true)
+ *             .build());
+ * 
+ *         // creating a user to use with the keycloak_openid_client_user_policy resource
+ *         var test = new User("test", UserArgs.builder()
+ *             .realmId(realm.id())
+ *             .username("test-user")
+ *             .email("test-user}{@literal @}{@code fakedomain.com")
+ *             .firstName("Testy")
+ *             .lastName("Tester")
+ *             .build());
+ * 
+ *         var testClientUserPolicy = new ClientUserPolicy("testClientUserPolicy", ClientUserPolicyArgs.builder()
+ *             .realmId(realm.id())
+ *             .resourceServerId(realmManagement.applyValue(_realmManagement -> _realmManagement.id()))
+ *             .name("client_user_policy_test")
+ *             .users(test.id())
+ *             .logic("POSITIVE")
+ *             .decisionStrategy("UNANIMOUS")
+ *             .build(), CustomResourceOptions.builder()
+ *                 .dependsOn(realmManagementPermission)
+ *                 .build());
+ * 
+ *         var usersPermissions = new UsersPermissions("usersPermissions", UsersPermissionsArgs.builder()
+ *             .realmId(realm.id())
+ *             .viewScope(UsersPermissionsViewScopeArgs.builder()
+ *                 .policies(testClientUserPolicy.id())
+ *                 .description("description")
+ *                 .decisionStrategy("UNANIMOUS")
+ *                 .build())
+ *             .manageScope(UsersPermissionsManageScopeArgs.builder()
+ *                 .policies(testClientUserPolicy.id())
+ *                 .description("description")
+ *                 .decisionStrategy("UNANIMOUS")
+ *                 .build())
+ *             .mapRolesScope(UsersPermissionsMapRolesScopeArgs.builder()
+ *                 .policies(testClientUserPolicy.id())
+ *                 .description("description")
+ *                 .decisionStrategy("UNANIMOUS")
+ *                 .build())
+ *             .manageGroupMembershipScope(UsersPermissionsManageGroupMembershipScopeArgs.builder()
+ *                 .policies(testClientUserPolicy.id())
+ *                 .description("description")
+ *                 .decisionStrategy("UNANIMOUS")
+ *                 .build())
+ *             .impersonateScope(UsersPermissionsImpersonateScopeArgs.builder()
+ *                 .policies(testClientUserPolicy.id())
+ *                 .description("description")
+ *                 .decisionStrategy("UNANIMOUS")
+ *                 .build())
+ *             .userImpersonatedScope(UsersPermissionsUserImpersonatedScopeArgs.builder()
+ *                 .policies(testClientUserPolicy.id())
+ *                 .description("description")
+ *                 .decisionStrategy("UNANIMOUS")
+ *                 .build())
+ *             .build());
+ * 
+ *     }}{@code
+ * }}{@code
+ * }
+ * </pre>
+ * 
+ * ### Argument Reference
+ * 
+ * The following arguments are supported:
+ * 
+ * - `realmId` - (Required) The realm in which to manage fine-grained user permissions.
+ * 
+ * Each of the scopes that can be managed are defined below:
+ * 
+ * - `viewScope` - (Optional) When specified, set the scope based view permission.
+ * - `manageScope` - (Optional) When specified, set the scope based manage permission.
+ * - `mapRolesScope` - (Optional) When specified, set the scope based mapRoles permission.
+ * - `manageGroupMembershipScope` - (Optional) When specified, set the scope based manageGroupMembership permission.
+ * - `impersonateScope` - (Optional) When specified, set the scope based impersonate permission.
+ * - `userImpersonatedScope` - (Optional) When specified, set the scope based userImpersonated permission.
+ * 
+ * The configuration block for each of these scopes supports the following arguments:
+ * 
+ * - `policies` - (Optional) Assigned policies to the permission. Each element within this list should be a policy ID.
+ * - `description` - (Optional) Description of the permission.
+ * - `decisionStrategy` - (Optional) Decision strategy of the permission.
+ * 
+ * ### Attributes Reference
+ * 
+ * In addition to the arguments listed above, the following computed attributes are exported:
+ * 
+ * - `enabled` - When true, this indicates that fine-grained user permissions are enabled. This will always be `true`.
+ * - `authorizationResourceServerId` - Resource server id representing the realm management client on which these permissions are managed.
  * 
  */
 @ResourceType(type="keycloak:index/usersPermissions:UsersPermissions")

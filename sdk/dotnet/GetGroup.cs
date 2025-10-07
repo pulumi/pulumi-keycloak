@@ -160,7 +160,7 @@ namespace Pulumi.Keycloak
     public sealed class GetGroupArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The name of the group. If there are multiple groups match `name`, the first result will be returned.
+        /// The name of the group. If there are multiple groups match `Name`, the first result will be returned.
         /// </summary>
         [Input("name", required: true)]
         public string Name { get; set; } = null!;
@@ -180,7 +180,7 @@ namespace Pulumi.Keycloak
     public sealed class GetGroupInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The name of the group. If there are multiple groups match `name`, the first result will be returned.
+        /// The name of the group. If there are multiple groups match `Name`, the first result will be returned.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;

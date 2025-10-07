@@ -12,8 +12,8 @@ namespace Pulumi.Keycloak
     /// <summary>
     /// Allows for managing a Keycloak user's groups.
     /// 
-    /// If `exhaustive` is true, this resource attempts to be an **authoritative** source over user groups: groups that are manually added to the user will be removed, and groups that are manually removed from the user group will be added upon the next run of `pulumi up`.
-    /// If `exhaustive` is false, this resource is a partial assignation of groups to a user. As a result, you can get multiple `keycloak.UserGroups` for the same `user_id`.
+    /// If `Exhaustive` is true, this resource attempts to be an **authoritative** source over user groups: groups that are manually added to the user will be removed, and groups that are manually removed from the user group will be added upon the next run of `pulumi up`.
+    /// If `Exhaustive` is false, this resource is a partial assignation of groups to a user. As a result, you can get multiple `keycloak.UserGroups` for the same `UserId`.
     /// 
     /// ## Example Usage
     /// 
@@ -61,7 +61,7 @@ namespace Pulumi.Keycloak
     public partial class UserGroups : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Indicates if the list of the user's groups is exhaustive. In this case, groups that are manually added to the user will be removed. Defaults to `true`.
+        /// Indicates if the list of the user's groups is exhaustive. In this case, groups that are manually added to the user will be removed. Defaults to `True`.
         /// </summary>
         [Output("exhaustive")]
         public Output<bool?> Exhaustive { get; private set; } = null!;
@@ -131,7 +131,7 @@ namespace Pulumi.Keycloak
     public sealed class UserGroupsArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Indicates if the list of the user's groups is exhaustive. In this case, groups that are manually added to the user will be removed. Defaults to `true`.
+        /// Indicates if the list of the user's groups is exhaustive. In this case, groups that are manually added to the user will be removed. Defaults to `True`.
         /// </summary>
         [Input("exhaustive")]
         public Input<bool>? Exhaustive { get; set; }
@@ -169,7 +169,7 @@ namespace Pulumi.Keycloak
     public sealed class UserGroupsState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Indicates if the list of the user's groups is exhaustive. In this case, groups that are manually added to the user will be removed. Defaults to `true`.
+        /// Indicates if the list of the user's groups is exhaustive. In this case, groups that are manually added to the user will be removed. Defaults to `True`.
         /// </summary>
         [Input("exhaustive")]
         public Input<bool>? Exhaustive { get; set; }
