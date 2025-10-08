@@ -126,14 +126,14 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signing_certificate` and `signing_private_key`. Defaults to `true`.
+     * When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signingCertificate` and `signingPrivateKey`. Defaults to `true`.
      * 
      */
     @Import(name="clientSignatureRequired")
     private @Nullable Output<Boolean> clientSignatureRequired;
 
     /**
-     * @return When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signing_certificate` and `signing_private_key`. Defaults to `true`.
+     * @return When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signingCertificate` and `signingPrivateKey`. Defaults to `true`.
      * 
      */
     public Optional<Output<Boolean>> clientSignatureRequired() {
@@ -223,14 +223,14 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Ignore requested NameID subject format and use the one defined in `name_id_format` instead. Defaults to `false`.
+     * Ignore requested NameID subject format and use the one defined in `nameIdFormat` instead. Defaults to `false`.
      * 
      */
     @Import(name="forceNameIdFormat")
     private @Nullable Output<Boolean> forceNameIdFormat;
 
     /**
-     * @return Ignore requested NameID subject format and use the one defined in `name_id_format` instead. Defaults to `false`.
+     * @return Ignore requested NameID subject format and use the one defined in `nameIdFormat` instead. Defaults to `false`.
      * 
      */
     public Optional<Output<Boolean>> forceNameIdFormat() {
@@ -759,7 +759,7 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param clientSignatureRequired When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signing_certificate` and `signing_private_key`. Defaults to `true`.
+         * @param clientSignatureRequired When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signingCertificate` and `signingPrivateKey`. Defaults to `true`.
          * 
          * @return builder
          * 
@@ -770,7 +770,7 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param clientSignatureRequired When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signing_certificate` and `signing_private_key`. Defaults to `true`.
+         * @param clientSignatureRequired When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signingCertificate` and `signingPrivateKey`. Defaults to `true`.
          * 
          * @return builder
          * 
@@ -894,7 +894,7 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param forceNameIdFormat Ignore requested NameID subject format and use the one defined in `name_id_format` instead. Defaults to `false`.
+         * @param forceNameIdFormat Ignore requested NameID subject format and use the one defined in `nameIdFormat` instead. Defaults to `false`.
          * 
          * @return builder
          * 
@@ -905,7 +905,7 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param forceNameIdFormat Ignore requested NameID subject format and use the one defined in `name_id_format` instead. Defaults to `false`.
+         * @param forceNameIdFormat Ignore requested NameID subject format and use the one defined in `nameIdFormat` instead. Defaults to `false`.
          * 
          * @return builder
          * 

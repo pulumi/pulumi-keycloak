@@ -10,9 +10,41 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak
 {
     /// <summary>
-    /// Allows for creating and managing `rsa` Realm keystores within Keycloak.
+    /// Allows for creating and managing `Rsa` Realm keystores within Keycloak.
     /// 
     /// A realm keystore manages generated key pairs that are used by Keycloak to perform cryptographic signatures and encryption.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "my-realm",
+    ///     });
+    /// 
+    ///     var keystoreRsa = new Keycloak.RealmKeystoreRsa("keystore_rsa", new()
+    ///     {
+    ///         Name = "my-rsa-key",
+    ///         RealmId = realm.Id,
+    ///         Enabled = true,
+    ///         Active = true,
+    ///         PrivateKey = "&lt;your rsa private key&gt;",
+    ///         Certificate = "&lt;your certificate&gt;",
+    ///         Priority = 100,
+    ///         Algorithm = "RS256",
+    ///         KeystoreSize = 2048,
+    ///         ProviderId = "rsa",
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// 
     /// ## Import
     /// 
@@ -30,7 +62,7 @@ namespace Pulumi.Keycloak
     public partial class RealmKeystoreRsa : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// When `false`, key in not used for signing. Defaults to `true`.
+        /// When `False`, key in not used for signing. Defaults to `True`.
         /// </summary>
         [Output("active")]
         public Output<bool?> Active { get; private set; } = null!;
@@ -48,7 +80,7 @@ namespace Pulumi.Keycloak
         public Output<string> Certificate { get; private set; } = null!;
 
         /// <summary>
-        /// When `false`, key is not accessible in this realm. Defaults to `true`.
+        /// When `False`, key is not accessible in this realm. Defaults to `True`.
         /// </summary>
         [Output("enabled")]
         public Output<bool?> Enabled { get; private set; } = null!;
@@ -72,7 +104,7 @@ namespace Pulumi.Keycloak
         public Output<string> PrivateKey { get; private set; } = null!;
 
         /// <summary>
-        /// Use `rsa` for signing keys, `rsa-enc` for encryption keys
+        /// Use `Rsa` for signing keys, `rsa-enc` for encryption keys
         /// </summary>
         [Output("providerId")]
         public Output<string?> ProviderId { get; private set; } = null!;
@@ -130,7 +162,7 @@ namespace Pulumi.Keycloak
     public sealed class RealmKeystoreRsaArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// When `false`, key in not used for signing. Defaults to `true`.
+        /// When `False`, key in not used for signing. Defaults to `True`.
         /// </summary>
         [Input("active")]
         public Input<bool>? Active { get; set; }
@@ -148,7 +180,7 @@ namespace Pulumi.Keycloak
         public Input<string> Certificate { get; set; } = null!;
 
         /// <summary>
-        /// When `false`, key is not accessible in this realm. Defaults to `true`.
+        /// When `False`, key is not accessible in this realm. Defaults to `True`.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
@@ -172,7 +204,7 @@ namespace Pulumi.Keycloak
         public Input<string> PrivateKey { get; set; } = null!;
 
         /// <summary>
-        /// Use `rsa` for signing keys, `rsa-enc` for encryption keys
+        /// Use `Rsa` for signing keys, `rsa-enc` for encryption keys
         /// </summary>
         [Input("providerId")]
         public Input<string>? ProviderId { get; set; }
@@ -192,7 +224,7 @@ namespace Pulumi.Keycloak
     public sealed class RealmKeystoreRsaState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// When `false`, key in not used for signing. Defaults to `true`.
+        /// When `False`, key in not used for signing. Defaults to `True`.
         /// </summary>
         [Input("active")]
         public Input<bool>? Active { get; set; }
@@ -210,7 +242,7 @@ namespace Pulumi.Keycloak
         public Input<string>? Certificate { get; set; }
 
         /// <summary>
-        /// When `false`, key is not accessible in this realm. Defaults to `true`.
+        /// When `False`, key is not accessible in this realm. Defaults to `True`.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
@@ -234,7 +266,7 @@ namespace Pulumi.Keycloak
         public Input<string>? PrivateKey { get; set; }
 
         /// <summary>
-        /// Use `rsa` for signing keys, `rsa-enc` for encryption keys
+        /// Use `Rsa` for signing keys, `rsa-enc` for encryption keys
         /// </summary>
         [Input("providerId")]
         public Input<string>? ProviderId { get; set; }

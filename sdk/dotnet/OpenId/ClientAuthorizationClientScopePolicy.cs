@@ -102,24 +102,24 @@ namespace Pulumi.Keycloak.OpenId
     /// 
     /// The following arguments are supported:
     /// 
-    /// - `realm_id` - (Required) The realm this group exists in.
-    /// - `resource_server_id` - (Required) The ID of the resource server.
-    /// - `name` - (Required) The name of the policy.
-    /// - `description` - (Optional) A description for the authorization policy.
-    /// - `decision_strategy` - (Optional) The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`. Defaults to `UNANIMOUS`.
-    /// - `logic` - (Optional) The logic, can be one of `POSITIVE` or `NEGATIVE`. Defaults to `POSITIVE`.
-    /// - `scope` - An client scope to add client scope. At least one should be defined.
+    /// - `RealmId` - (Required) The realm this group exists in.
+    /// - `ResourceServerId` - (Required) The ID of the resource server.
+    /// - `Name` - (Required) The name of the policy.
+    /// - `Description` - (Optional) A description for the authorization policy.
+    /// - `DecisionStrategy` - (Optional) The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`. Defaults to `UNANIMOUS`.
+    /// - `Logic` - (Optional) The logic, can be one of `POSITIVE` or `NEGATIVE`. Defaults to `POSITIVE`.
+    /// - `Scope` - An client scope to add client scope. At least one should be defined.
     /// 
     /// ### Scope Arguments
     /// 
-    /// - `id` - (Required) Id of client scope.
-    /// - `required` - (Optional) When `true`, then this client scope will be set as required. Defaults to `false`.
+    /// - `Id` - (Required) Id of client scope.
+    /// - `Required` - (Optional) When `True`, then this client scope will be set as required. Defaults to `False`.
     /// 
     /// ### Attributes Reference
     /// 
     /// In addition to the arguments listed above, the following computed attributes are exported:
     /// 
-    /// - `id` - Policy ID representing the policy.
+    /// - `Id` - Policy ID representing the policy.
     /// 
     /// ## Import
     /// 

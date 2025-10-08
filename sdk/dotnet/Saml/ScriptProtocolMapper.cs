@@ -77,13 +77,13 @@ namespace Pulumi.Keycloak.Saml
     public partial class ScriptProtocolMapper : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+        /// The client this protocol mapper should be attached to. Conflicts with `ClientScopeId`. One of `ClientId` or `ClientScopeId` must be specified.
         /// </summary>
         [Output("clientId")]
         public Output<string?> ClientId { get; private set; } = null!;
 
         /// <summary>
-        /// The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+        /// The client scope this protocol mapper should be attached to. Conflicts with `ClientId`. One of `ClientId` or `ClientScopeId` must be specified.
         /// </summary>
         [Output("clientScopeId")]
         public Output<string?> ClientScopeId { get; private set; } = null!;
@@ -125,7 +125,7 @@ namespace Pulumi.Keycloak.Saml
         public Output<string> Script { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, all values will be stored under one attribute with multiple attribute values. Defaults to `true`.
+        /// When `True`, all values will be stored under one attribute with multiple attribute values. Defaults to `True`.
         /// </summary>
         [Output("singleValueAttribute")]
         public Output<bool?> SingleValueAttribute { get; private set; } = null!;
@@ -177,13 +177,13 @@ namespace Pulumi.Keycloak.Saml
     public sealed class ScriptProtocolMapperArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+        /// The client this protocol mapper should be attached to. Conflicts with `ClientScopeId`. One of `ClientId` or `ClientScopeId` must be specified.
         /// </summary>
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
 
         /// <summary>
-        /// The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+        /// The client scope this protocol mapper should be attached to. Conflicts with `ClientId`. One of `ClientId` or `ClientScopeId` must be specified.
         /// </summary>
         [Input("clientScopeId")]
         public Input<string>? ClientScopeId { get; set; }
@@ -225,7 +225,7 @@ namespace Pulumi.Keycloak.Saml
         public Input<string> Script { get; set; } = null!;
 
         /// <summary>
-        /// When `true`, all values will be stored under one attribute with multiple attribute values. Defaults to `true`.
+        /// When `True`, all values will be stored under one attribute with multiple attribute values. Defaults to `True`.
         /// </summary>
         [Input("singleValueAttribute")]
         public Input<bool>? SingleValueAttribute { get; set; }
@@ -239,13 +239,13 @@ namespace Pulumi.Keycloak.Saml
     public sealed class ScriptProtocolMapperState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+        /// The client this protocol mapper should be attached to. Conflicts with `ClientScopeId`. One of `ClientId` or `ClientScopeId` must be specified.
         /// </summary>
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
 
         /// <summary>
-        /// The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+        /// The client scope this protocol mapper should be attached to. Conflicts with `ClientId`. One of `ClientId` or `ClientScopeId` must be specified.
         /// </summary>
         [Input("clientScopeId")]
         public Input<string>? ClientScopeId { get; set; }
@@ -287,7 +287,7 @@ namespace Pulumi.Keycloak.Saml
         public Input<string>? Script { get; set; }
 
         /// <summary>
-        /// When `true`, all values will be stored under one attribute with multiple attribute values. Defaults to `true`.
+        /// When `True`, all values will be stored under one attribute with multiple attribute values. Defaults to `True`.
         /// </summary>
         [Input("singleValueAttribute")]
         public Input<bool>? SingleValueAttribute { get; set; }

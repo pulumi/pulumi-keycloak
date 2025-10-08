@@ -20,6 +20,104 @@ import * as utilities from "./utilities";
  * 4. Create all scope based permission for the scopes and users resources.
  *
  * > This resource should only be created once per realm.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {realm: "my-realm"});
+ * const realmManagement = keycloak.openid.getClientOutput({
+ *     realmId: realm.id,
+ *     clientId: "realm-management",
+ * });
+ * // enable permissions for realm-management client
+ * const realmManagementPermission = new keycloak.openid.ClientPermissions("realm_management_permission", {
+ *     realmId: realm.id,
+ *     clientId: realmManagement.apply(realmManagement => realmManagement.id),
+ *     enabled: true,
+ * });
+ * // creating a user to use with the keycloak_openid_client_user_policy resource
+ * const test = new keycloak.User("test", {
+ *     realmId: realm.id,
+ *     username: "test-user",
+ *     email: "test-user@fakedomain.com",
+ *     firstName: "Testy",
+ *     lastName: "Tester",
+ * });
+ * const testClientUserPolicy = new keycloak.openid.ClientUserPolicy("test", {
+ *     realmId: realm.id,
+ *     resourceServerId: realmManagement.apply(realmManagement => realmManagement.id),
+ *     name: "client_user_policy_test",
+ *     users: [test.id],
+ *     logic: "POSITIVE",
+ *     decisionStrategy: "UNANIMOUS",
+ * }, {
+ *     dependsOn: [realmManagementPermission],
+ * });
+ * const usersPermissions = new keycloak.UsersPermissions("users_permissions", {
+ *     realmId: realm.id,
+ *     viewScope: {
+ *         policies: [testClientUserPolicy.id],
+ *         description: "description",
+ *         decisionStrategy: "UNANIMOUS",
+ *     },
+ *     manageScope: {
+ *         policies: [testClientUserPolicy.id],
+ *         description: "description",
+ *         decisionStrategy: "UNANIMOUS",
+ *     },
+ *     mapRolesScope: {
+ *         policies: [testClientUserPolicy.id],
+ *         description: "description",
+ *         decisionStrategy: "UNANIMOUS",
+ *     },
+ *     manageGroupMembershipScope: {
+ *         policies: [testClientUserPolicy.id],
+ *         description: "description",
+ *         decisionStrategy: "UNANIMOUS",
+ *     },
+ *     impersonateScope: {
+ *         policies: [testClientUserPolicy.id],
+ *         description: "description",
+ *         decisionStrategy: "UNANIMOUS",
+ *     },
+ *     userImpersonatedScope: {
+ *         policies: [testClientUserPolicy.id],
+ *         description: "description",
+ *         decisionStrategy: "UNANIMOUS",
+ *     },
+ * });
+ * ```
+ *
+ * ### Argument Reference
+ *
+ * The following arguments are supported:
+ *
+ * - `realmId` - (Required) The realm in which to manage fine-grained user permissions.
+ *
+ * Each of the scopes that can be managed are defined below:
+ *
+ * - `viewScope` - (Optional) When specified, set the scope based view permission.
+ * - `manageScope` - (Optional) When specified, set the scope based manage permission.
+ * - `mapRolesScope` - (Optional) When specified, set the scope based mapRoles permission.
+ * - `manageGroupMembershipScope` - (Optional) When specified, set the scope based manageGroupMembership permission.
+ * - `impersonateScope` - (Optional) When specified, set the scope based impersonate permission.
+ * - `userImpersonatedScope` - (Optional) When specified, set the scope based userImpersonated permission.
+ *
+ * The configuration block for each of these scopes supports the following arguments:
+ *
+ * - `policies` - (Optional) Assigned policies to the permission. Each element within this list should be a policy ID.
+ * - `description` - (Optional) Description of the permission.
+ * - `decisionStrategy` - (Optional) Decision strategy of the permission.
+ *
+ * ### Attributes Reference
+ *
+ * In addition to the arguments listed above, the following computed attributes are exported:
+ *
+ * - `enabled` - When true, this indicates that fine-grained user permissions are enabled. This will always be `true`.
+ * - `authorizationResourceServerId` - Resource server id representing the realm management client on which these permissions are managed.
  */
 export class UsersPermissions extends pulumi.CustomResource {
     /**

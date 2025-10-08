@@ -20,6 +20,69 @@ import javax.annotation.Nullable;
  * 
  * The identity provider hardcoded group mapper grants a specified Keycloak group to each Keycloak user from the identity provider.
  * 
+ * ## Example Usage
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.keycloak.Realm;
+ * import com.pulumi.keycloak.RealmArgs;
+ * import com.pulumi.keycloak.oidc.IdentityProvider;
+ * import com.pulumi.keycloak.oidc.IdentityProviderArgs;
+ * import com.pulumi.keycloak.Group;
+ * import com.pulumi.keycloak.GroupArgs;
+ * import com.pulumi.keycloak.HardcodedGroupIdentityProviderMapper;
+ * import com.pulumi.keycloak.HardcodedGroupIdentityProviderMapperArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var realm = new Realm("realm", RealmArgs.builder()
+ *             .realm("my-realm")
+ *             .enabled(true)
+ *             .build());
+ * 
+ *         var oidc = new IdentityProvider("oidc", IdentityProviderArgs.builder()
+ *             .realm(realm.id())
+ *             .alias("my-idp")
+ *             .authorizationUrl("https://authorizationurl.com")
+ *             .clientId("clientID")
+ *             .clientSecret("clientSecret")
+ *             .tokenUrl("https://tokenurl.com")
+ *             .build());
+ * 
+ *         var realmGroup = new Group("realmGroup", GroupArgs.builder()
+ *             .realmId(realm.id())
+ *             .name("my-realm-group")
+ *             .description("My Realm Group")
+ *             .build());
+ * 
+ *         var oidcHardcodedGroupIdentityProviderMapper = new HardcodedGroupIdentityProviderMapper("oidcHardcodedGroupIdentityProviderMapper", HardcodedGroupIdentityProviderMapperArgs.builder()
+ *             .realm(realm.id())
+ *             .name("hardcodedGroup")
+ *             .identityProviderAlias(oidc.alias())
+ *             .group("my-realm-group")
+ *             .extraConfig(Map.of("syncMode", "INHERIT"))
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  */
 @ResourceType(type="keycloak:index/hardcodedGroupIdentityProviderMapper:HardcodedGroupIdentityProviderMapper")
 public class HardcodedGroupIdentityProviderMapper extends com.pulumi.resources.CustomResource {

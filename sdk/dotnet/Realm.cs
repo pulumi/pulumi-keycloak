@@ -99,8 +99,8 @@ namespace Pulumi.Keycloak
     /// 
     /// ## Default Client Scopes
     /// 
-    /// - `default_default_client_scopes` - (Optional) A list of default `default client scopes` to be used for client definitions. Defaults to `[]` or keycloak's built-in default `default client-scopes`. For an alternative, please refer to the dedicated resource `keycloak.RealmDefaultClientScopes`.
-    /// - `default_optional_client_scopes` - (Optional) A list of default `optional client scopes` to be used for client definitions. Defaults to `[]` or keycloak's built-in default `optional client-scopes`. For an alternative, please refer to the dedicated resource `keycloak.RealmOptionalClientScopes`.
+    /// - `DefaultDefaultClientScopes` - (Optional) A list of default `default client scopes` to be used for client definitions. Defaults to `[]` or keycloak's built-in default `default client-scopes`. For an alternative, please refer to the dedicated resource `keycloak.RealmDefaultClientScopes`.
+    /// - `DefaultOptionalClientScopes` - (Optional) A list of default `optional client scopes` to be used for client definitions. Defaults to `[]` or keycloak's built-in default `optional client-scopes`. For an alternative, please refer to the dedicated resource `keycloak.RealmOptionalClientScopes`.
     /// 
     /// ## Import
     /// 
@@ -211,7 +211,7 @@ namespace Pulumi.Keycloak
         public Output<string?> EmailTheme { get; private set; } = null!;
 
         /// <summary>
-        /// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
+        /// When `False`, users and clients will not be able to access this realm. Defaults to `True`.
         /// </summary>
         [Output("enabled")]
         public Output<bool?> Enabled { get; private set; } = null!;
@@ -253,7 +253,7 @@ namespace Pulumi.Keycloak
         public Output<bool?> OfflineSessionMaxLifespanEnabled { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, organization support is enabled. Defaults to `false`.
+        /// When `True`, organization support is enabled. Defaults to `False`.
         /// </summary>
         [Output("organizationsEnabled")]
         public Output<bool?> OrganizationsEnabled { get; private set; } = null!;
@@ -328,7 +328,7 @@ namespace Pulumi.Keycloak
         public Output<string> SsoSessionMaxLifespanRememberMe { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, users are allowed to manage their own resources. Defaults to `false`.
+        /// When `True`, users are allowed to manage their own resources. Defaults to `False`.
         /// </summary>
         [Output("userManagedAccess")]
         public Output<bool?> UserManagedAccess { get; private set; } = null!;
@@ -498,7 +498,7 @@ namespace Pulumi.Keycloak
         public Input<string>? EmailTheme { get; set; }
 
         /// <summary>
-        /// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
+        /// When `False`, users and clients will not be able to access this realm. Defaults to `True`.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
@@ -540,7 +540,7 @@ namespace Pulumi.Keycloak
         public Input<bool>? OfflineSessionMaxLifespanEnabled { get; set; }
 
         /// <summary>
-        /// When `true`, organization support is enabled. Defaults to `false`.
+        /// When `True`, organization support is enabled. Defaults to `False`.
         /// </summary>
         [Input("organizationsEnabled")]
         public Input<bool>? OrganizationsEnabled { get; set; }
@@ -615,7 +615,7 @@ namespace Pulumi.Keycloak
         public Input<string>? SsoSessionMaxLifespanRememberMe { get; set; }
 
         /// <summary>
-        /// When `true`, users are allowed to manage their own resources. Defaults to `false`.
+        /// When `True`, users are allowed to manage their own resources. Defaults to `False`.
         /// </summary>
         [Input("userManagedAccess")]
         public Input<bool>? UserManagedAccess { get; set; }
@@ -747,7 +747,7 @@ namespace Pulumi.Keycloak
         public Input<string>? EmailTheme { get; set; }
 
         /// <summary>
-        /// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
+        /// When `False`, users and clients will not be able to access this realm. Defaults to `True`.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
@@ -789,7 +789,7 @@ namespace Pulumi.Keycloak
         public Input<bool>? OfflineSessionMaxLifespanEnabled { get; set; }
 
         /// <summary>
-        /// When `true`, organization support is enabled. Defaults to `false`.
+        /// When `True`, organization support is enabled. Defaults to `False`.
         /// </summary>
         [Input("organizationsEnabled")]
         public Input<bool>? OrganizationsEnabled { get; set; }
@@ -864,7 +864,7 @@ namespace Pulumi.Keycloak
         public Input<string>? SsoSessionMaxLifespanRememberMe { get; set; }
 
         /// <summary>
-        /// When `true`, users are allowed to manage their own resources. Defaults to `false`.
+        /// When `True`, users are allowed to manage their own resources. Defaults to `False`.
         /// </summary>
         [Input("userManagedAccess")]
         public Input<bool>? UserManagedAccess { get; set; }

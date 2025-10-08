@@ -37,7 +37,7 @@ namespace Pulumi.Keycloak.Inputs
         public Input<string>? AuthenticatorAttachment { get; set; }
 
         /// <summary>
-        /// When `true`, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to `false`.
+        /// When `True`, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to `False`.
         /// </summary>
         [Input("avoidSameAuthenticatorRegister")]
         public Input<bool>? AvoidSameAuthenticatorRegister { get; set; }
@@ -61,7 +61,7 @@ namespace Pulumi.Keycloak.Inputs
         }
 
         /// <summary>
-        /// A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
+        /// A human-readable server name for the WebAuthn Relying Party. Defaults to `Keycloak`.
         /// </summary>
         [Input("relyingPartyEntityName")]
         public Input<string>? RelyingPartyEntityName { get; set; }

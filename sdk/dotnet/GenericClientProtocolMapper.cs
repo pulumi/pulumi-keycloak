@@ -102,7 +102,7 @@ namespace Pulumi.Keycloak
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
+        /// The type of client (either `openid-connect` or `Saml`). The type must match the type of the client.
         /// </summary>
         [Output("protocol")]
         public Output<string> Protocol { get; private set; } = null!;
@@ -196,7 +196,7 @@ namespace Pulumi.Keycloak
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
+        /// The type of client (either `openid-connect` or `Saml`). The type must match the type of the client.
         /// </summary>
         [Input("protocol", required: true)]
         public Input<string> Protocol { get; set; } = null!;
@@ -252,7 +252,7 @@ namespace Pulumi.Keycloak
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
+        /// The type of client (either `openid-connect` or `Saml`). The type must match the type of the client.
         /// </summary>
         [Input("protocol")]
         public Input<string>? Protocol { get; set; }

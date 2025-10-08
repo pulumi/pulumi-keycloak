@@ -258,6 +258,97 @@ class UsersPermissions(pulumi.CustomResource):
 
         > This resource should only be created once per realm.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm", realm="my-realm")
+        realm_management = keycloak.openid.get_client_output(realm_id=realm.id,
+            client_id="realm-management")
+        # enable permissions for realm-management client
+        realm_management_permission = keycloak.openid.ClientPermissions("realm_management_permission",
+            realm_id=realm.id,
+            client_id=realm_management.id,
+            enabled=True)
+        # creating a user to use with the keycloak_openid_client_user_policy resource
+        test = keycloak.User("test",
+            realm_id=realm.id,
+            username="test-user",
+            email="test-user@fakedomain.com",
+            first_name="Testy",
+            last_name="Tester")
+        test_client_user_policy = keycloak.openid.ClientUserPolicy("test",
+            realm_id=realm.id,
+            resource_server_id=realm_management.id,
+            name="client_user_policy_test",
+            users=[test.id],
+            logic="POSITIVE",
+            decision_strategy="UNANIMOUS",
+            opts = pulumi.ResourceOptions(depends_on=[realm_management_permission]))
+        users_permissions = keycloak.UsersPermissions("users_permissions",
+            realm_id=realm.id,
+            view_scope={
+                "policies": [test_client_user_policy.id],
+                "description": "description",
+                "decision_strategy": "UNANIMOUS",
+            },
+            manage_scope={
+                "policies": [test_client_user_policy.id],
+                "description": "description",
+                "decision_strategy": "UNANIMOUS",
+            },
+            map_roles_scope={
+                "policies": [test_client_user_policy.id],
+                "description": "description",
+                "decision_strategy": "UNANIMOUS",
+            },
+            manage_group_membership_scope={
+                "policies": [test_client_user_policy.id],
+                "description": "description",
+                "decision_strategy": "UNANIMOUS",
+            },
+            impersonate_scope={
+                "policies": [test_client_user_policy.id],
+                "description": "description",
+                "decision_strategy": "UNANIMOUS",
+            },
+            user_impersonated_scope={
+                "policies": [test_client_user_policy.id],
+                "description": "description",
+                "decision_strategy": "UNANIMOUS",
+            })
+        ```
+
+        ### Argument Reference
+
+        The following arguments are supported:
+
+        - `realm_id` - (Required) The realm in which to manage fine-grained user permissions.
+
+        Each of the scopes that can be managed are defined below:
+
+        - `view_scope` - (Optional) When specified, set the scope based view permission.
+        - `manage_scope` - (Optional) When specified, set the scope based manage permission.
+        - `map_roles_scope` - (Optional) When specified, set the scope based map_roles permission.
+        - `manage_group_membership_scope` - (Optional) When specified, set the scope based manage_group_membership permission.
+        - `impersonate_scope` - (Optional) When specified, set the scope based impersonate permission.
+        - `user_impersonated_scope` - (Optional) When specified, set the scope based user_impersonated permission.
+
+        The configuration block for each of these scopes supports the following arguments:
+
+        - `policies` - (Optional) Assigned policies to the permission. Each element within this list should be a policy ID.
+        - `description` - (Optional) Description of the permission.
+        - `decision_strategy` - (Optional) Decision strategy of the permission.
+
+        ### Attributes Reference
+
+        In addition to the arguments listed above, the following computed attributes are exported:
+
+        - `enabled` - When true, this indicates that fine-grained user permissions are enabled. This will always be `true`.
+        - `authorization_resource_server_id` - Resource server id representing the realm management client on which these permissions are managed.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
@@ -281,6 +372,97 @@ class UsersPermissions(pulumi.CustomResource):
         4. Create all scope based permission for the scopes and users resources.
 
         > This resource should only be created once per realm.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm", realm="my-realm")
+        realm_management = keycloak.openid.get_client_output(realm_id=realm.id,
+            client_id="realm-management")
+        # enable permissions for realm-management client
+        realm_management_permission = keycloak.openid.ClientPermissions("realm_management_permission",
+            realm_id=realm.id,
+            client_id=realm_management.id,
+            enabled=True)
+        # creating a user to use with the keycloak_openid_client_user_policy resource
+        test = keycloak.User("test",
+            realm_id=realm.id,
+            username="test-user",
+            email="test-user@fakedomain.com",
+            first_name="Testy",
+            last_name="Tester")
+        test_client_user_policy = keycloak.openid.ClientUserPolicy("test",
+            realm_id=realm.id,
+            resource_server_id=realm_management.id,
+            name="client_user_policy_test",
+            users=[test.id],
+            logic="POSITIVE",
+            decision_strategy="UNANIMOUS",
+            opts = pulumi.ResourceOptions(depends_on=[realm_management_permission]))
+        users_permissions = keycloak.UsersPermissions("users_permissions",
+            realm_id=realm.id,
+            view_scope={
+                "policies": [test_client_user_policy.id],
+                "description": "description",
+                "decision_strategy": "UNANIMOUS",
+            },
+            manage_scope={
+                "policies": [test_client_user_policy.id],
+                "description": "description",
+                "decision_strategy": "UNANIMOUS",
+            },
+            map_roles_scope={
+                "policies": [test_client_user_policy.id],
+                "description": "description",
+                "decision_strategy": "UNANIMOUS",
+            },
+            manage_group_membership_scope={
+                "policies": [test_client_user_policy.id],
+                "description": "description",
+                "decision_strategy": "UNANIMOUS",
+            },
+            impersonate_scope={
+                "policies": [test_client_user_policy.id],
+                "description": "description",
+                "decision_strategy": "UNANIMOUS",
+            },
+            user_impersonated_scope={
+                "policies": [test_client_user_policy.id],
+                "description": "description",
+                "decision_strategy": "UNANIMOUS",
+            })
+        ```
+
+        ### Argument Reference
+
+        The following arguments are supported:
+
+        - `realm_id` - (Required) The realm in which to manage fine-grained user permissions.
+
+        Each of the scopes that can be managed are defined below:
+
+        - `view_scope` - (Optional) When specified, set the scope based view permission.
+        - `manage_scope` - (Optional) When specified, set the scope based manage permission.
+        - `map_roles_scope` - (Optional) When specified, set the scope based map_roles permission.
+        - `manage_group_membership_scope` - (Optional) When specified, set the scope based manage_group_membership permission.
+        - `impersonate_scope` - (Optional) When specified, set the scope based impersonate permission.
+        - `user_impersonated_scope` - (Optional) When specified, set the scope based user_impersonated permission.
+
+        The configuration block for each of these scopes supports the following arguments:
+
+        - `policies` - (Optional) Assigned policies to the permission. Each element within this list should be a policy ID.
+        - `description` - (Optional) Description of the permission.
+        - `decision_strategy` - (Optional) Decision strategy of the permission.
+
+        ### Attributes Reference
+
+        In addition to the arguments listed above, the following computed attributes are exported:
+
+        - `enabled` - When true, this indicates that fine-grained user permissions are enabled. This will always be `true`.
+        - `authorization_resource_server_id` - Resource server id representing the realm management client on which these permissions are managed.
 
         :param str resource_name: The name of the resource.
         :param UsersPermissionsArgs args: The arguments to use to populate this resource's properties.

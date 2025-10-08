@@ -255,7 +255,7 @@ namespace Pulumi.Keycloak.OpenId
         /// </summary>
         public readonly bool Enabled;
         /// <summary>
-        /// (Computed) This attribute exists in order to adhere to the spec of a Keycloak user, but a service account user will never have a federated identity, so this will always be `null`.
+        /// (Computed) This attribute exists in order to adhere to the spec of a Keycloak user, but a service account user will never have a federated identity, so this will always be `Null`.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetClientServiceAccountUserFederatedIdentityResult> FederatedIdentities;
         /// <summary>
