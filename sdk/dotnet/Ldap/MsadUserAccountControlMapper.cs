@@ -81,7 +81,7 @@ namespace Pulumi.Keycloak.Ldap
     public partial class MsadUserAccountControlMapper : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
+        /// When `True`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `False`.
         /// </summary>
         [Output("ldapPasswordPolicyHintsEnabled")]
         public Output<bool?> LdapPasswordPolicyHintsEnabled { get; private set; } = null!;
@@ -151,7 +151,7 @@ namespace Pulumi.Keycloak.Ldap
     public sealed class MsadUserAccountControlMapperArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
+        /// When `True`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `False`.
         /// </summary>
         [Input("ldapPasswordPolicyHintsEnabled")]
         public Input<bool>? LdapPasswordPolicyHintsEnabled { get; set; }
@@ -183,7 +183,7 @@ namespace Pulumi.Keycloak.Ldap
     public sealed class MsadUserAccountControlMapperState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
+        /// When `True`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `False`.
         /// </summary>
         [Input("ldapPasswordPolicyHintsEnabled")]
         public Input<bool>? LdapPasswordPolicyHintsEnabled { get; set; }

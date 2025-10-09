@@ -73,13 +73,13 @@ namespace Pulumi.Keycloak
         public Output<ImmutableDictionary<string, string>?> Config { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, the required action is set as the default action for new users. Defaults to `false`.
+        /// When `True`, the required action is set as the default action for new users. Defaults to `False`.
         /// </summary>
         [Output("defaultAction")]
         public Output<bool?> DefaultAction { get; private set; } = null!;
 
         /// <summary>
-        /// When `false`, the required action is not enabled for new users. Defaults to `false`.
+        /// When `False`, the required action is not enabled for new users. Defaults to `False`.
         /// </summary>
         [Output("enabled")]
         public Output<bool?> Enabled { get; private set; } = null!;
@@ -167,13 +167,13 @@ namespace Pulumi.Keycloak
         }
 
         /// <summary>
-        /// When `true`, the required action is set as the default action for new users. Defaults to `false`.
+        /// When `True`, the required action is set as the default action for new users. Defaults to `False`.
         /// </summary>
         [Input("defaultAction")]
         public Input<bool>? DefaultAction { get; set; }
 
         /// <summary>
-        /// When `false`, the required action is not enabled for new users. Defaults to `false`.
+        /// When `False`, the required action is not enabled for new users. Defaults to `False`.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
@@ -223,13 +223,13 @@ namespace Pulumi.Keycloak
         }
 
         /// <summary>
-        /// When `true`, the required action is set as the default action for new users. Defaults to `false`.
+        /// When `True`, the required action is set as the default action for new users. Defaults to `False`.
         /// </summary>
         [Input("defaultAction")]
         public Input<bool>? DefaultAction { get; set; }
 
         /// <summary>
-        /// When `false`, the required action is not enabled for new users. Defaults to `false`.
+        /// When `False`, the required action is not enabled for new users. Defaults to `False`.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }

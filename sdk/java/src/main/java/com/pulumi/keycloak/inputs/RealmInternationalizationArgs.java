@@ -16,14 +16,14 @@ public final class RealmInternationalizationArgs extends com.pulumi.resources.Re
     public static final RealmInternationalizationArgs Empty = new RealmInternationalizationArgs();
 
     /**
-     * The locale to use by default. This locale code must be present within the `supported_locales` list.
+     * The locale to use by default. This locale code must be present within the `supportedLocales` list.
      * 
      */
     @Import(name="defaultLocale", required=true)
     private Output<String> defaultLocale;
 
     /**
-     * @return The locale to use by default. This locale code must be present within the `supported_locales` list.
+     * @return The locale to use by default. This locale code must be present within the `supportedLocales` list.
      * 
      */
     public Output<String> defaultLocale() {
@@ -71,7 +71,7 @@ public final class RealmInternationalizationArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param defaultLocale The locale to use by default. This locale code must be present within the `supported_locales` list.
+         * @param defaultLocale The locale to use by default. This locale code must be present within the `supportedLocales` list.
          * 
          * @return builder
          * 
@@ -82,7 +82,7 @@ public final class RealmInternationalizationArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param defaultLocale The locale to use by default. This locale code must be present within the `supported_locales` list.
+         * @param defaultLocale The locale to use by default. This locale code must be present within the `supportedLocales` list.
          * 
          * @return builder
          * 

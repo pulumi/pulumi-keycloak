@@ -105,7 +105,7 @@ import javax.annotation.Nullable;
  * ### Attribute Arguments
  * 
  * - `name` - (Required) The name of the attribute.
- * - `realm_id` - (Required) The realm id.
+ * - `realmId` - (Required) The realm id.
  * - `condition` - (Optional) An ordered list of condition
  * 
  * #### Condition Arguments

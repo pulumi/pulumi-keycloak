@@ -16,7 +16,7 @@ namespace Pulumi.Keycloak
     /// 
     /// Information for Keycloak versions &lt; 24:
     /// The realm linked to the `keycloak.RealmUserProfile` resource must have the user profile feature enabled.
-    /// It can be done via the administration UI, or by setting the `userProfileEnabled` realm attribute to `true`.
+    /// It can be done via the administration UI, or by setting the `userProfileEnabled` realm attribute to `True`.
     /// 
     /// ## Example Usage
     /// 

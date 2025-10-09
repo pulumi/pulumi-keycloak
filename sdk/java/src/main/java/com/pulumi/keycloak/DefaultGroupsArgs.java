@@ -16,14 +16,14 @@ public final class DefaultGroupsArgs extends com.pulumi.resources.ResourceArgs {
     public static final DefaultGroupsArgs Empty = new DefaultGroupsArgs();
 
     /**
-     * A set of group ids that should be default groups on the realm referenced by `realm_id`.
+     * A set of group ids that should be default groups on the realm referenced by `realmId`.
      * 
      */
     @Import(name="groupIds", required=true)
     private Output<List<String>> groupIds;
 
     /**
-     * @return A set of group ids that should be default groups on the realm referenced by `realm_id`.
+     * @return A set of group ids that should be default groups on the realm referenced by `realmId`.
      * 
      */
     public Output<List<String>> groupIds() {
@@ -71,7 +71,7 @@ public final class DefaultGroupsArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param groupIds A set of group ids that should be default groups on the realm referenced by `realm_id`.
+         * @param groupIds A set of group ids that should be default groups on the realm referenced by `realmId`.
          * 
          * @return builder
          * 
@@ -82,7 +82,7 @@ public final class DefaultGroupsArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param groupIds A set of group ids that should be default groups on the realm referenced by `realm_id`.
+         * @param groupIds A set of group ids that should be default groups on the realm referenced by `realmId`.
          * 
          * @return builder
          * 
@@ -92,7 +92,7 @@ public final class DefaultGroupsArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param groupIds A set of group ids that should be default groups on the realm referenced by `realm_id`.
+         * @param groupIds A set of group ids that should be default groups on the realm referenced by `realmId`.
          * 
          * @return builder
          * 

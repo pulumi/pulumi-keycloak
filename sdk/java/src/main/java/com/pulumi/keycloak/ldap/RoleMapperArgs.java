@@ -19,14 +19,14 @@ public final class RoleMapperArgs extends com.pulumi.resources.ResourceArgs {
     public static final RoleMapperArgs Empty = new RoleMapperArgs();
 
     /**
-     * When specified, LDAP role mappings will be mapped to client role mappings tied to this client ID. Can only be set if `use_realm_roles_mapping` is `false`.
+     * When specified, LDAP role mappings will be mapped to client role mappings tied to this client ID. Can only be set if `useRealmRolesMapping` is `false`.
      * 
      */
     @Import(name="clientId")
     private @Nullable Output<String> clientId;
 
     /**
-     * @return When specified, LDAP role mappings will be mapped to client role mappings tied to this client ID. Can only be set if `use_realm_roles_mapping` is `false`.
+     * @return When specified, LDAP role mappings will be mapped to client role mappings tied to this client ID. Can only be set if `useRealmRolesMapping` is `false`.
      * 
      */
     public Optional<Output<String>> clientId() {
@@ -282,7 +282,7 @@ public final class RoleMapperArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param clientId When specified, LDAP role mappings will be mapped to client role mappings tied to this client ID. Can only be set if `use_realm_roles_mapping` is `false`.
+         * @param clientId When specified, LDAP role mappings will be mapped to client role mappings tied to this client ID. Can only be set if `useRealmRolesMapping` is `false`.
          * 
          * @return builder
          * 
@@ -293,7 +293,7 @@ public final class RoleMapperArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param clientId When specified, LDAP role mappings will be mapped to client role mappings tied to this client ID. Can only be set if `use_realm_roles_mapping` is `false`.
+         * @param clientId When specified, LDAP role mappings will be mapped to client role mappings tied to this client ID. Can only be set if `useRealmRolesMapping` is `false`.
          * 
          * @return builder
          * 

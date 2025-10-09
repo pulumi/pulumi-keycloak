@@ -84,13 +84,13 @@ namespace Pulumi.Keycloak
     public partial class GenericProtocolMapper : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The ID of the client this protocol mapper should be added to. Conflicts with `client_scope_id`. This argument is required if `client_scope_id` is not set.
+        /// The ID of the client this protocol mapper should be added to. Conflicts with `ClientScopeId`. This argument is required if `ClientScopeId` is not set.
         /// </summary>
         [Output("clientId")]
         public Output<string?> ClientId { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the client scope this protocol mapper should be added to. Conflicts with `client_id`. This argument is required if `client_id` is not set.
+        /// The ID of the client scope this protocol mapper should be added to. Conflicts with `ClientId`. This argument is required if `ClientId` is not set.
         /// </summary>
         [Output("clientScopeId")]
         public Output<string?> ClientScopeId { get; private set; } = null!;
@@ -108,7 +108,7 @@ namespace Pulumi.Keycloak
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
+        /// The type of client (either `openid-connect` or `Saml`). The type must match the type of the client.
         /// </summary>
         [Output("protocol")]
         public Output<string> Protocol { get; private set; } = null!;
@@ -172,13 +172,13 @@ namespace Pulumi.Keycloak
     public sealed class GenericProtocolMapperArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The ID of the client this protocol mapper should be added to. Conflicts with `client_scope_id`. This argument is required if `client_scope_id` is not set.
+        /// The ID of the client this protocol mapper should be added to. Conflicts with `ClientScopeId`. This argument is required if `ClientScopeId` is not set.
         /// </summary>
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
 
         /// <summary>
-        /// The ID of the client scope this protocol mapper should be added to. Conflicts with `client_id`. This argument is required if `client_id` is not set.
+        /// The ID of the client scope this protocol mapper should be added to. Conflicts with `ClientId`. This argument is required if `ClientId` is not set.
         /// </summary>
         [Input("clientScopeId")]
         public Input<string>? ClientScopeId { get; set; }
@@ -202,7 +202,7 @@ namespace Pulumi.Keycloak
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
+        /// The type of client (either `openid-connect` or `Saml`). The type must match the type of the client.
         /// </summary>
         [Input("protocol", required: true)]
         public Input<string> Protocol { get; set; } = null!;
@@ -228,13 +228,13 @@ namespace Pulumi.Keycloak
     public sealed class GenericProtocolMapperState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The ID of the client this protocol mapper should be added to. Conflicts with `client_scope_id`. This argument is required if `client_scope_id` is not set.
+        /// The ID of the client this protocol mapper should be added to. Conflicts with `ClientScopeId`. This argument is required if `ClientScopeId` is not set.
         /// </summary>
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
 
         /// <summary>
-        /// The ID of the client scope this protocol mapper should be added to. Conflicts with `client_id`. This argument is required if `client_id` is not set.
+        /// The ID of the client scope this protocol mapper should be added to. Conflicts with `ClientId`. This argument is required if `ClientId` is not set.
         /// </summary>
         [Input("clientScopeId")]
         public Input<string>? ClientScopeId { get; set; }
@@ -258,7 +258,7 @@ namespace Pulumi.Keycloak
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The type of client (either `openid-connect` or `saml`). The type must match the type of the client.
+        /// The type of client (either `openid-connect` or `Saml`). The type must match the type of the client.
         /// </summary>
         [Input("protocol")]
         public Input<string>? Protocol { get; set; }

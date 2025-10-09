@@ -118,11 +118,11 @@ import javax.annotation.Nullable;
  * 
  * The following arguments are supported:
  * 
- * - `realm_id` - (Required) The realm this group exists in.
- * - `resource_server_id` - (Required) The ID of the resource server.
+ * - `realmId` - (Required) The realm this group exists in.
+ * - `resourceServerId` - (Required) The ID of the resource server.
  * - `name` - (Required) The name of the policy.
  * - `description` - (Optional) A description for the authorization policy.
- * - `decision_strategy` - (Optional) The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`. Defaults to `UNANIMOUS`.
+ * - `decisionStrategy` - (Optional) The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`. Defaults to `UNANIMOUS`.
  * - `logic` - (Optional) The logic, can be one of `POSITIVE` or `NEGATIVE`. Defaults to `POSITIVE`.
  * - `scope` - An client scope to add client scope. At least one should be defined.
  * 
