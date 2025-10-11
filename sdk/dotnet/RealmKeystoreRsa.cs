@@ -10,9 +10,11 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak
 {
     /// <summary>
-    /// Allows for creating and managing `rsa` Realm keystores within Keycloak.
+    /// Allows for creating and managing `Rsa` Realm keystores within Keycloak.
     /// 
     /// A realm keystore manages generated key pairs that are used by Keycloak to perform cryptographic signatures and encryption.
+    /// 
+    /// ## Example Usage
     /// 
     /// ## Import
     /// 
@@ -30,7 +32,7 @@ namespace Pulumi.Keycloak
     public partial class RealmKeystoreRsa : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// When `false`, key in not used for signing. Defaults to `true`.
+        /// When `False`, key in not used for signing. Defaults to `True`.
         /// </summary>
         [Output("active")]
         public Output<bool?> Active { get; private set; } = null!;
@@ -48,7 +50,7 @@ namespace Pulumi.Keycloak
         public Output<string> Certificate { get; private set; } = null!;
 
         /// <summary>
-        /// When `false`, key is not accessible in this realm. Defaults to `true`.
+        /// When `False`, key is not accessible in this realm. Defaults to `True`.
         /// </summary>
         [Output("enabled")]
         public Output<bool?> Enabled { get; private set; } = null!;
@@ -72,7 +74,7 @@ namespace Pulumi.Keycloak
         public Output<string> PrivateKey { get; private set; } = null!;
 
         /// <summary>
-        /// Use `rsa` for signing keys, `rsa-enc` for encryption keys
+        /// Use `Rsa` for signing keys, `rsa-enc` for encryption keys
         /// </summary>
         [Output("providerId")]
         public Output<string?> ProviderId { get; private set; } = null!;
@@ -130,7 +132,7 @@ namespace Pulumi.Keycloak
     public sealed class RealmKeystoreRsaArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// When `false`, key in not used for signing. Defaults to `true`.
+        /// When `False`, key in not used for signing. Defaults to `True`.
         /// </summary>
         [Input("active")]
         public Input<bool>? Active { get; set; }
@@ -148,7 +150,7 @@ namespace Pulumi.Keycloak
         public Input<string> Certificate { get; set; } = null!;
 
         /// <summary>
-        /// When `false`, key is not accessible in this realm. Defaults to `true`.
+        /// When `False`, key is not accessible in this realm. Defaults to `True`.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
@@ -172,7 +174,7 @@ namespace Pulumi.Keycloak
         public Input<string> PrivateKey { get; set; } = null!;
 
         /// <summary>
-        /// Use `rsa` for signing keys, `rsa-enc` for encryption keys
+        /// Use `Rsa` for signing keys, `rsa-enc` for encryption keys
         /// </summary>
         [Input("providerId")]
         public Input<string>? ProviderId { get; set; }
@@ -192,7 +194,7 @@ namespace Pulumi.Keycloak
     public sealed class RealmKeystoreRsaState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// When `false`, key in not used for signing. Defaults to `true`.
+        /// When `False`, key in not used for signing. Defaults to `True`.
         /// </summary>
         [Input("active")]
         public Input<bool>? Active { get; set; }
@@ -210,7 +212,7 @@ namespace Pulumi.Keycloak
         public Input<string>? Certificate { get; set; }
 
         /// <summary>
-        /// When `false`, key is not accessible in this realm. Defaults to `true`.
+        /// When `False`, key is not accessible in this realm. Defaults to `True`.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
@@ -234,7 +236,7 @@ namespace Pulumi.Keycloak
         public Input<string>? PrivateKey { get; set; }
 
         /// <summary>
-        /// Use `rsa` for signing keys, `rsa-enc` for encryption keys
+        /// Use `Rsa` for signing keys, `rsa-enc` for encryption keys
         /// </summary>
         [Input("providerId")]
         public Input<string>? ProviderId { get; set; }

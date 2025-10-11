@@ -20,6 +20,8 @@ import javax.annotation.Nullable;
  * 
  * The identity provider hardcoded group mapper grants a specified Keycloak group to each Keycloak user from the identity provider.
  * 
+ * ## Example Usage
+ * 
  */
 @ResourceType(type="keycloak:index/hardcodedGroupIdentityProviderMapper:HardcodedGroupIdentityProviderMapper")
 public class HardcodedGroupIdentityProviderMapper extends com.pulumi.resources.CustomResource {

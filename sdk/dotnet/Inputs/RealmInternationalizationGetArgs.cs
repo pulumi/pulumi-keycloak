@@ -13,7 +13,7 @@ namespace Pulumi.Keycloak.Inputs
     public sealed class RealmInternationalizationGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The locale to use by default. This locale code must be present within the `supported_locales` list.
+        /// The locale to use by default. This locale code must be present within the `SupportedLocales` list.
         /// </summary>
         [Input("defaultLocale", required: true)]
         public Input<string> DefaultLocale { get; set; } = null!;

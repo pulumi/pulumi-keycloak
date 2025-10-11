@@ -18,7 +18,7 @@ import javax.annotation.Nullable;
  * Allow for creating and managing a client&#39;s or client scope&#39;s role mappings within Keycloak.
  * 
  * By default, all the user role mappings of the user are added as claims within the token (OIDC) or assertion (SAML). When
- * `full_scope_allowed` is set to `false` for a client, role scope mapping allows you to limit the roles that get declared
+ * `fullScopeAllowed` is set to `false` for a client, role scope mapping allows you to limit the roles that get declared
  * inside an access token for a client.
  * 
  * ## Example Usage
@@ -305,28 +305,28 @@ import javax.annotation.Nullable;
 @ResourceType(type="keycloak:index/genericRoleMapper:GenericRoleMapper")
 public class GenericRoleMapper extends com.pulumi.resources.CustomResource {
     /**
-     * The ID of the client this role mapper should be added to. Conflicts with `client_scope_id`. This argument is required if `client_scope_id` is not set.
+     * The ID of the client this role mapper should be added to. Conflicts with `clientScopeId`. This argument is required if `clientScopeId` is not set.
      * 
      */
     @Export(name="clientId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientId;
 
     /**
-     * @return The ID of the client this role mapper should be added to. Conflicts with `client_scope_id`. This argument is required if `client_scope_id` is not set.
+     * @return The ID of the client this role mapper should be added to. Conflicts with `clientScopeId`. This argument is required if `clientScopeId` is not set.
      * 
      */
     public Output<Optional<String>> clientId() {
         return Codegen.optional(this.clientId);
     }
     /**
-     * The ID of the client scope this role mapper should be added to. Conflicts with `client_id`. This argument is required if `client_id` is not set.
+     * The ID of the client scope this role mapper should be added to. Conflicts with `clientId`. This argument is required if `clientId` is not set.
      * 
      */
     @Export(name="clientScopeId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientScopeId;
 
     /**
-     * @return The ID of the client scope this role mapper should be added to. Conflicts with `client_id`. This argument is required if `client_id` is not set.
+     * @return The ID of the client scope this role mapper should be added to. Conflicts with `clientId`. This argument is required if `clientId` is not set.
      * 
      */
     public Output<Optional<String>> clientScopeId() {

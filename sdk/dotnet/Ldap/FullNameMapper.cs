@@ -96,7 +96,7 @@ namespace Pulumi.Keycloak.Ldap
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, updates to a user within Keycloak will not be written back to LDAP. Defaults to `false`.
+        /// When `True`, updates to a user within Keycloak will not be written back to LDAP. Defaults to `False`.
         /// </summary>
         [Output("readOnly")]
         public Output<bool?> ReadOnly { get; private set; } = null!;
@@ -108,7 +108,7 @@ namespace Pulumi.Keycloak.Ldap
         public Output<string> RealmId { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, this mapper will only be used to write updates to LDAP. Defaults to `false`.
+        /// When `True`, this mapper will only be used to write updates to LDAP. Defaults to `False`.
         /// </summary>
         [Output("writeOnly")]
         public Output<bool?> WriteOnly { get; private set; } = null!;
@@ -178,7 +178,7 @@ namespace Pulumi.Keycloak.Ldap
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// When `true`, updates to a user within Keycloak will not be written back to LDAP. Defaults to `false`.
+        /// When `True`, updates to a user within Keycloak will not be written back to LDAP. Defaults to `False`.
         /// </summary>
         [Input("readOnly")]
         public Input<bool>? ReadOnly { get; set; }
@@ -190,7 +190,7 @@ namespace Pulumi.Keycloak.Ldap
         public Input<string> RealmId { get; set; } = null!;
 
         /// <summary>
-        /// When `true`, this mapper will only be used to write updates to LDAP. Defaults to `false`.
+        /// When `True`, this mapper will only be used to write updates to LDAP. Defaults to `False`.
         /// </summary>
         [Input("writeOnly")]
         public Input<bool>? WriteOnly { get; set; }
@@ -222,7 +222,7 @@ namespace Pulumi.Keycloak.Ldap
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// When `true`, updates to a user within Keycloak will not be written back to LDAP. Defaults to `false`.
+        /// When `True`, updates to a user within Keycloak will not be written back to LDAP. Defaults to `False`.
         /// </summary>
         [Input("readOnly")]
         public Input<bool>? ReadOnly { get; set; }
@@ -234,7 +234,7 @@ namespace Pulumi.Keycloak.Ldap
         public Input<string>? RealmId { get; set; }
 
         /// <summary>
-        /// When `true`, this mapper will only be used to write updates to LDAP. Defaults to `false`.
+        /// When `True`, this mapper will only be used to write updates to LDAP. Defaults to `False`.
         /// </summary>
         [Input("writeOnly")]
         public Input<bool>? WriteOnly { get; set; }

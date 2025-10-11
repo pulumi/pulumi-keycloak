@@ -80,19 +80,19 @@ namespace Pulumi.Keycloak.Ldap
     public partial class UserAttributeMapper : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// When `true`, the value fetched from LDAP will override the value stored in Keycloak. Defaults to `false`.
+        /// When `True`, the value fetched from LDAP will override the value stored in Keycloak. Defaults to `False`.
         /// </summary>
         [Output("alwaysReadValueFromLdap")]
         public Output<bool?> AlwaysReadValueFromLdap { get; private set; } = null!;
 
         /// <summary>
-        /// Default value to set in LDAP if `is_mandatory_in_ldap` is true and the value is empty.
+        /// Default value to set in LDAP if `IsMandatoryInLdap` is true and the value is empty.
         /// </summary>
         [Output("attributeDefaultValue")]
         public Output<string?> AttributeDefaultValue { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, an empty default value is forced for mandatory attributes even when a default value is not specified. Defaults to `true`.
+        /// When `True`, an empty default value is forced for mandatory attributes even when a default value is not specified. Defaults to `True`.
         /// </summary>
         [Output("attributeForceDefault")]
         public Output<bool?> AttributeForceDefault { get; private set; } = null!;
@@ -104,7 +104,7 @@ namespace Pulumi.Keycloak.Ldap
         public Output<bool?> IsBinaryAttribute { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, this attribute must exist in LDAP. Defaults to `false`.
+        /// When `True`, this attribute must exist in LDAP. Defaults to `False`.
         /// </summary>
         [Output("isMandatoryInLdap")]
         public Output<bool?> IsMandatoryInLdap { get; private set; } = null!;
@@ -128,7 +128,7 @@ namespace Pulumi.Keycloak.Ldap
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak. Defaults to `false`.
+        /// When `True`, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak. Defaults to `False`.
         /// </summary>
         [Output("readOnly")]
         public Output<bool?> ReadOnly { get; private set; } = null!;
@@ -192,19 +192,19 @@ namespace Pulumi.Keycloak.Ldap
     public sealed class UserAttributeMapperArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// When `true`, the value fetched from LDAP will override the value stored in Keycloak. Defaults to `false`.
+        /// When `True`, the value fetched from LDAP will override the value stored in Keycloak. Defaults to `False`.
         /// </summary>
         [Input("alwaysReadValueFromLdap")]
         public Input<bool>? AlwaysReadValueFromLdap { get; set; }
 
         /// <summary>
-        /// Default value to set in LDAP if `is_mandatory_in_ldap` is true and the value is empty.
+        /// Default value to set in LDAP if `IsMandatoryInLdap` is true and the value is empty.
         /// </summary>
         [Input("attributeDefaultValue")]
         public Input<string>? AttributeDefaultValue { get; set; }
 
         /// <summary>
-        /// When `true`, an empty default value is forced for mandatory attributes even when a default value is not specified. Defaults to `true`.
+        /// When `True`, an empty default value is forced for mandatory attributes even when a default value is not specified. Defaults to `True`.
         /// </summary>
         [Input("attributeForceDefault")]
         public Input<bool>? AttributeForceDefault { get; set; }
@@ -216,7 +216,7 @@ namespace Pulumi.Keycloak.Ldap
         public Input<bool>? IsBinaryAttribute { get; set; }
 
         /// <summary>
-        /// When `true`, this attribute must exist in LDAP. Defaults to `false`.
+        /// When `True`, this attribute must exist in LDAP. Defaults to `False`.
         /// </summary>
         [Input("isMandatoryInLdap")]
         public Input<bool>? IsMandatoryInLdap { get; set; }
@@ -240,7 +240,7 @@ namespace Pulumi.Keycloak.Ldap
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// When `true`, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak. Defaults to `false`.
+        /// When `True`, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak. Defaults to `False`.
         /// </summary>
         [Input("readOnly")]
         public Input<bool>? ReadOnly { get; set; }
@@ -266,19 +266,19 @@ namespace Pulumi.Keycloak.Ldap
     public sealed class UserAttributeMapperState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// When `true`, the value fetched from LDAP will override the value stored in Keycloak. Defaults to `false`.
+        /// When `True`, the value fetched from LDAP will override the value stored in Keycloak. Defaults to `False`.
         /// </summary>
         [Input("alwaysReadValueFromLdap")]
         public Input<bool>? AlwaysReadValueFromLdap { get; set; }
 
         /// <summary>
-        /// Default value to set in LDAP if `is_mandatory_in_ldap` is true and the value is empty.
+        /// Default value to set in LDAP if `IsMandatoryInLdap` is true and the value is empty.
         /// </summary>
         [Input("attributeDefaultValue")]
         public Input<string>? AttributeDefaultValue { get; set; }
 
         /// <summary>
-        /// When `true`, an empty default value is forced for mandatory attributes even when a default value is not specified. Defaults to `true`.
+        /// When `True`, an empty default value is forced for mandatory attributes even when a default value is not specified. Defaults to `True`.
         /// </summary>
         [Input("attributeForceDefault")]
         public Input<bool>? AttributeForceDefault { get; set; }
@@ -290,7 +290,7 @@ namespace Pulumi.Keycloak.Ldap
         public Input<bool>? IsBinaryAttribute { get; set; }
 
         /// <summary>
-        /// When `true`, this attribute must exist in LDAP. Defaults to `false`.
+        /// When `True`, this attribute must exist in LDAP. Defaults to `False`.
         /// </summary>
         [Input("isMandatoryInLdap")]
         public Input<bool>? IsMandatoryInLdap { get; set; }
@@ -314,7 +314,7 @@ namespace Pulumi.Keycloak.Ldap
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// When `true`, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak. Defaults to `false`.
+        /// When `True`, this attribute is not saved back to LDAP when the user attribute is updated in Keycloak. Defaults to `False`.
         /// </summary>
         [Input("readOnly")]
         public Input<bool>? ReadOnly { get; set; }

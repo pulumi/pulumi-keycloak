@@ -12,17 +12,47 @@ namespace Pulumi.Keycloak
     /// <summary>
     /// Allows you to manage fine-grained permissions for all users in a realm: https://www.keycloak.org/docs/latest/server_admin/#_users-permissions
     /// 
-    /// This is part of a preview Keycloak feature: `admin_fine_grained_authz` (see https://www.keycloak.org/docs/latest/server_admin/#_fine_grain_permissions).
+    /// This is part of a preview Keycloak feature: `AdminFineGrainedAuthz` (see https://www.keycloak.org/docs/latest/server_admin/#_fine_grain_permissions).
     /// This feature can be enabled with the Keycloak option `-Dkeycloak.profile.feature.admin_fine_grained_authz=enabled`. See the
     /// example `docker-compose.yml` file for an example.
     /// 
     /// When enabling fine-grained permissions for users, Keycloak does several things automatically:
     /// 1. Enable Authorization on built-in `realm-management` client (if not already enabled).
     /// 2. Create a resource representing the users permissions.
-    /// 3. Create scopes `view`, `manage`, `map-roles`, `manage-group-membership`, `impersonate`, and `user-impersonated`.
+    /// 3. Create scopes `View`, `Manage`, `map-roles`, `manage-group-membership`, `Impersonate`, and `user-impersonated`.
     /// 4. Create all scope based permission for the scopes and users resources.
     /// 
     /// &gt; This resource should only be created once per realm.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ### Argument Reference
+    /// 
+    /// The following arguments are supported:
+    /// 
+    /// - `RealmId` - (Required) The realm in which to manage fine-grained user permissions.
+    /// 
+    /// Each of the scopes that can be managed are defined below:
+    /// 
+    /// - `ViewScope` - (Optional) When specified, set the scope based view permission.
+    /// - `ManageScope` - (Optional) When specified, set the scope based manage permission.
+    /// - `MapRolesScope` - (Optional) When specified, set the scope based MapRoles permission.
+    /// - `ManageGroupMembershipScope` - (Optional) When specified, set the scope based ManageGroupMembership permission.
+    /// - `ImpersonateScope` - (Optional) When specified, set the scope based impersonate permission.
+    /// - `UserImpersonatedScope` - (Optional) When specified, set the scope based UserImpersonated permission.
+    /// 
+    /// The configuration block for each of these scopes supports the following arguments:
+    /// 
+    /// - `Policies` - (Optional) Assigned policies to the permission. Each element within this list should be a policy ID.
+    /// - `Description` - (Optional) Description of the permission.
+    /// - `DecisionStrategy` - (Optional) Decision strategy of the permission.
+    /// 
+    /// ### Attributes Reference
+    /// 
+    /// In addition to the arguments listed above, the following computed attributes are exported:
+    /// 
+    /// - `Enabled` - When true, this indicates that fine-grained user permissions are enabled. This will always be `True`.
+    /// - `AuthorizationResourceServerId` - Resource server id representing the realm management client on which these permissions are managed.
     /// </summary>
     [KeycloakResourceType("keycloak:index/usersPermissions:UsersPermissions")]
     public partial class UsersPermissions : global::Pulumi.CustomResource

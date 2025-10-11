@@ -34,7 +34,7 @@ namespace Pulumi.Keycloak.Saml
     public sealed class GetClientInstallationProviderArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The ID of the SAML client. The `id` attribute of a `keycloak_client` resource should be used here.
+        /// The ID of the SAML client. The `Id` attribute of a `KeycloakClient` resource should be used here.
         /// </summary>
         [Input("clientId", required: true)]
         public string ClientId { get; set; } = null!;
@@ -60,7 +60,7 @@ namespace Pulumi.Keycloak.Saml
     public sealed class GetClientInstallationProviderInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The ID of the SAML client. The `id` attribute of a `keycloak_client` resource should be used here.
+        /// The ID of the SAML client. The `Id` attribute of a `KeycloakClient` resource should be used here.
         /// </summary>
         [Input("clientId", required: true)]
         public Input<string> ClientId { get; set; } = null!;

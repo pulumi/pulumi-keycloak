@@ -17,14 +17,14 @@ public final class GenericProtocolMapperState extends com.pulumi.resources.Resou
     public static final GenericProtocolMapperState Empty = new GenericProtocolMapperState();
 
     /**
-     * The ID of the client this protocol mapper should be added to. Conflicts with `client_scope_id`. This argument is required if `client_scope_id` is not set.
+     * The ID of the client this protocol mapper should be added to. Conflicts with `clientScopeId`. This argument is required if `clientScopeId` is not set.
      * 
      */
     @Import(name="clientId")
     private @Nullable Output<String> clientId;
 
     /**
-     * @return The ID of the client this protocol mapper should be added to. Conflicts with `client_scope_id`. This argument is required if `client_scope_id` is not set.
+     * @return The ID of the client this protocol mapper should be added to. Conflicts with `clientScopeId`. This argument is required if `clientScopeId` is not set.
      * 
      */
     public Optional<Output<String>> clientId() {
@@ -32,14 +32,14 @@ public final class GenericProtocolMapperState extends com.pulumi.resources.Resou
     }
 
     /**
-     * The ID of the client scope this protocol mapper should be added to. Conflicts with `client_id`. This argument is required if `client_id` is not set.
+     * The ID of the client scope this protocol mapper should be added to. Conflicts with `clientId`. This argument is required if `clientId` is not set.
      * 
      */
     @Import(name="clientScopeId")
     private @Nullable Output<String> clientScopeId;
 
     /**
-     * @return The ID of the client scope this protocol mapper should be added to. Conflicts with `client_id`. This argument is required if `client_id` is not set.
+     * @return The ID of the client scope this protocol mapper should be added to. Conflicts with `clientId`. This argument is required if `clientId` is not set.
      * 
      */
     public Optional<Output<String>> clientScopeId() {
@@ -152,7 +152,7 @@ public final class GenericProtocolMapperState extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param clientId The ID of the client this protocol mapper should be added to. Conflicts with `client_scope_id`. This argument is required if `client_scope_id` is not set.
+         * @param clientId The ID of the client this protocol mapper should be added to. Conflicts with `clientScopeId`. This argument is required if `clientScopeId` is not set.
          * 
          * @return builder
          * 
@@ -163,7 +163,7 @@ public final class GenericProtocolMapperState extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param clientId The ID of the client this protocol mapper should be added to. Conflicts with `client_scope_id`. This argument is required if `client_scope_id` is not set.
+         * @param clientId The ID of the client this protocol mapper should be added to. Conflicts with `clientScopeId`. This argument is required if `clientScopeId` is not set.
          * 
          * @return builder
          * 
@@ -173,7 +173,7 @@ public final class GenericProtocolMapperState extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param clientScopeId The ID of the client scope this protocol mapper should be added to. Conflicts with `client_id`. This argument is required if `client_id` is not set.
+         * @param clientScopeId The ID of the client scope this protocol mapper should be added to. Conflicts with `clientId`. This argument is required if `clientId` is not set.
          * 
          * @return builder
          * 
@@ -184,7 +184,7 @@ public final class GenericProtocolMapperState extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param clientScopeId The ID of the client scope this protocol mapper should be added to. Conflicts with `client_id`. This argument is required if `client_id` is not set.
+         * @param clientScopeId The ID of the client scope this protocol mapper should be added to. Conflicts with `clientId`. This argument is required if `clientId` is not set.
          * 
          * @return builder
          * 

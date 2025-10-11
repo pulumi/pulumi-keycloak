@@ -12,7 +12,7 @@ namespace Pulumi.Keycloak
     /// <summary>
     /// Allows for creating and managing an attribute to role identity provider mapper within Keycloak.
     /// 
-    /// &gt; If you are using Keycloak 10 or higher, you will need to specify the `extra_config` argument in order to define a `syncMode` for the mapper.
+    /// &gt; If you are using Keycloak 10 or higher, you will need to specify the `ExtraConfig` argument in order to define a `syncMode` for the mapper.
     /// 
     /// ## Example Usage
     /// 
@@ -83,7 +83,7 @@ namespace Pulumi.Keycloak
     public partial class AttributeToRoleIdentityMapper : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Attribute Friendly Name. Conflicts with `attribute_name`.
+        /// Attribute Friendly Name. Conflicts with `AttributeName`.
         /// </summary>
         [Output("attributeFriendlyName")]
         public Output<string?> AttributeFriendlyName { get; private set; } = null!;
@@ -189,7 +189,7 @@ namespace Pulumi.Keycloak
     public sealed class AttributeToRoleIdentityMapperArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Attribute Friendly Name. Conflicts with `attribute_name`.
+        /// Attribute Friendly Name. Conflicts with `AttributeName`.
         /// </summary>
         [Input("attributeFriendlyName")]
         public Input<string>? AttributeFriendlyName { get; set; }
@@ -263,7 +263,7 @@ namespace Pulumi.Keycloak
     public sealed class AttributeToRoleIdentityMapperState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Attribute Friendly Name. Conflicts with `attribute_name`.
+        /// Attribute Friendly Name. Conflicts with `AttributeName`.
         /// </summary>
         [Input("attributeFriendlyName")]
         public Input<string>? AttributeFriendlyName { get; set; }
