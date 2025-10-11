@@ -171,14 +171,14 @@ public class CustomUserFederation extends com.pulumi.resources.CustomResource {
         return this.name;
     }
     /**
-     * Must be set to the realms&#39; `internal_id`  when it differs from the realm. This can happen when existing resources are imported into the state.
+     * Must be set to the realms&#39; `internalId`  when it differs from the realm. This can happen when existing resources are imported into the state.
      * 
      */
     @Export(name="parentId", refs={String.class}, tree="[0]")
     private Output<String> parentId;
 
     /**
-     * @return Must be set to the realms&#39; `internal_id`  when it differs from the realm. This can happen when existing resources are imported into the state.
+     * @return Must be set to the realms&#39; `internalId`  when it differs from the realm. This can happen when existing resources are imported into the state.
      * 
      */
     public Output<String> parentId() {

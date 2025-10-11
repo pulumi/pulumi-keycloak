@@ -17,14 +17,14 @@ public final class AttributeToRoleIdentityMapperState extends com.pulumi.resourc
     public static final AttributeToRoleIdentityMapperState Empty = new AttributeToRoleIdentityMapperState();
 
     /**
-     * Attribute Friendly Name. Conflicts with `attribute_name`.
+     * Attribute Friendly Name. Conflicts with `attributeName`.
      * 
      */
     @Import(name="attributeFriendlyName")
     private @Nullable Output<String> attributeFriendlyName;
 
     /**
-     * @return Attribute Friendly Name. Conflicts with `attribute_name`.
+     * @return Attribute Friendly Name. Conflicts with `attributeName`.
      * 
      */
     public Optional<Output<String>> attributeFriendlyName() {
@@ -200,7 +200,7 @@ public final class AttributeToRoleIdentityMapperState extends com.pulumi.resourc
         }
 
         /**
-         * @param attributeFriendlyName Attribute Friendly Name. Conflicts with `attribute_name`.
+         * @param attributeFriendlyName Attribute Friendly Name. Conflicts with `attributeName`.
          * 
          * @return builder
          * 
@@ -211,7 +211,7 @@ public final class AttributeToRoleIdentityMapperState extends com.pulumi.resourc
         }
 
         /**
-         * @param attributeFriendlyName Attribute Friendly Name. Conflicts with `attribute_name`.
+         * @param attributeFriendlyName Attribute Friendly Name. Conflicts with `attributeName`.
          * 
          * @return builder
          * 

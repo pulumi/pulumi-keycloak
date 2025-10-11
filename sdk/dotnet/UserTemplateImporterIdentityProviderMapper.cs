@@ -16,7 +16,7 @@ namespace Pulumi.Keycloak
     /// 
     /// - Substitutions are enclosed in \${}. For example: '\${ALIAS}.\${CLAIM.sub}'. ALIAS is the provider alias. CLAIM.\&lt;NAME\&gt; references an ID or Access token claim.
     /// 
-    /// &gt; If you are using Keycloak 10 or higher, you will need to specify the `extra_config` argument in order to define a `syncMode` for the mapper.
+    /// &gt; If you are using Keycloak 10 or higher, you will need to specify the `ExtraConfig` argument in order to define a `syncMode` for the mapper.
     /// 
     /// ## Example Usage
     /// 

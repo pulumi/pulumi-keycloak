@@ -95,13 +95,13 @@ namespace Pulumi.Keycloak
         public Output<string?> Email { get; private set; } = null!;
 
         /// <summary>
-        /// Whether the email address was validated or not. Default to `false`.
+        /// Whether the email address was validated or not. Default to `False`.
         /// </summary>
         [Output("emailVerified")]
         public Output<bool?> EmailVerified { get; private set; } = null!;
 
         /// <summary>
-        /// When false, this user cannot log in. Defaults to `true`.
+        /// When false, this user cannot log in. Defaults to `True`.
         /// </summary>
         [Output("enabled")]
         public Output<bool?> Enabled { get; private set; } = null!;
@@ -119,7 +119,7 @@ namespace Pulumi.Keycloak
         public Output<string?> FirstName { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, the user with the specified `username` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with users that Keycloak creates automatically during realm creation, such as `admin`. Note, that the user will not be removed during destruction if `import` is `true`.
+        /// When `True`, the user with the specified `Username` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with users that Keycloak creates automatically during realm creation, such as `Admin`. Note, that the user will not be removed during destruction if `Import` is `True`.
         /// </summary>
         [Output("import")]
         public Output<bool?> Import { get; private set; } = null!;
@@ -219,13 +219,13 @@ namespace Pulumi.Keycloak
         public Input<string>? Email { get; set; }
 
         /// <summary>
-        /// Whether the email address was validated or not. Default to `false`.
+        /// Whether the email address was validated or not. Default to `False`.
         /// </summary>
         [Input("emailVerified")]
         public Input<bool>? EmailVerified { get; set; }
 
         /// <summary>
-        /// When false, this user cannot log in. Defaults to `true`.
+        /// When false, this user cannot log in. Defaults to `True`.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
@@ -249,7 +249,7 @@ namespace Pulumi.Keycloak
         public Input<string>? FirstName { get; set; }
 
         /// <summary>
-        /// When `true`, the user with the specified `username` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with users that Keycloak creates automatically during realm creation, such as `admin`. Note, that the user will not be removed during destruction if `import` is `true`.
+        /// When `True`, the user with the specified `Username` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with users that Keycloak creates automatically during realm creation, such as `Admin`. Note, that the user will not be removed during destruction if `Import` is `True`.
         /// </summary>
         [Input("import")]
         public Input<bool>? Import { get; set; }
@@ -317,13 +317,13 @@ namespace Pulumi.Keycloak
         public Input<string>? Email { get; set; }
 
         /// <summary>
-        /// Whether the email address was validated or not. Default to `false`.
+        /// Whether the email address was validated or not. Default to `False`.
         /// </summary>
         [Input("emailVerified")]
         public Input<bool>? EmailVerified { get; set; }
 
         /// <summary>
-        /// When false, this user cannot log in. Defaults to `true`.
+        /// When false, this user cannot log in. Defaults to `True`.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
@@ -347,7 +347,7 @@ namespace Pulumi.Keycloak
         public Input<string>? FirstName { get; set; }
 
         /// <summary>
-        /// When `true`, the user with the specified `username` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with users that Keycloak creates automatically during realm creation, such as `admin`. Note, that the user will not be removed during destruction if `import` is `true`.
+        /// When `True`, the user with the specified `Username` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with users that Keycloak creates automatically during realm creation, such as `Admin`. Note, that the user will not be removed during destruction if `Import` is `True`.
         /// </summary>
         [Input("import")]
         public Input<bool>? Import { get; set; }

@@ -382,14 +382,14 @@ public class GoogleIdentityProvider extends com.pulumi.resources.CustomResource 
         return this.realm;
     }
     /**
-     * Sets the &#34;access_type&#34; query parameter to &#34;offline&#34; when redirecting to google authorization endpoint,to get a refresh token back. This is useful for using Token Exchange to retrieve a Google token to access Google APIs when the user is offline.
+     * Sets the &#34;accessType&#34; query parameter to &#34;offline&#34; when redirecting to google authorization endpoint,to get a refresh token back. This is useful for using Token Exchange to retrieve a Google token to access Google APIs when the user is offline.
      * 
      */
     @Export(name="requestRefreshToken", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> requestRefreshToken;
 
     /**
-     * @return Sets the &#34;access_type&#34; query parameter to &#34;offline&#34; when redirecting to google authorization endpoint,to get a refresh token back. This is useful for using Token Exchange to retrieve a Google token to access Google APIs when the user is offline.
+     * @return Sets the &#34;accessType&#34; query parameter to &#34;offline&#34; when redirecting to google authorization endpoint,to get a refresh token back. This is useful for using Token Exchange to retrieve a Google token to access Google APIs when the user is offline.
      * 
      */
     public Output<Optional<Boolean>> requestRefreshToken() {

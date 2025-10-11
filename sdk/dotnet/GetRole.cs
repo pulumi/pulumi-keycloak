@@ -163,7 +163,7 @@ namespace Pulumi.Keycloak
     public sealed class GetRoleArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// When specified, this role is assumed to be a client role belonging to the client with the provided ID. The `id` attribute of a `keycloak_client` resource should be used here.
+        /// When specified, this role is assumed to be a client role belonging to the client with the provided ID. The `Id` attribute of a `KeycloakClient` resource should be used here.
         /// </summary>
         [Input("clientId")]
         public string? ClientId { get; set; }
@@ -189,7 +189,7 @@ namespace Pulumi.Keycloak
     public sealed class GetRoleInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// When specified, this role is assumed to be a client role belonging to the client with the provided ID. The `id` attribute of a `keycloak_client` resource should be used here.
+        /// When specified, this role is assumed to be a client role belonging to the client with the provided ID. The `Id` attribute of a `KeycloakClient` resource should be used here.
         /// </summary>
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }

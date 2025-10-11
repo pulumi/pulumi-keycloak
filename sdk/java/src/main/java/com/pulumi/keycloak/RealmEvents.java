@@ -118,14 +118,14 @@ public class RealmEvents extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.enabledEventTypes);
     }
     /**
-     * When `true`, events from `enabled_event_types` are saved to the database, making them available through the admin console. Defaults to `false`.
+     * When `true`, events from `enabledEventTypes` are saved to the database, making them available through the admin console. Defaults to `false`.
      * 
      */
     @Export(name="eventsEnabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> eventsEnabled;
 
     /**
-     * @return When `true`, events from `enabled_event_types` are saved to the database, making them available through the admin console. Defaults to `false`.
+     * @return When `true`, events from `enabledEventTypes` are saved to the database, making them available through the admin console. Defaults to `false`.
      * 
      */
     public Output<Optional<Boolean>> eventsEnabled() {

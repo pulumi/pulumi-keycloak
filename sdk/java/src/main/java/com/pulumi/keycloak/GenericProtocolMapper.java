@@ -106,28 +106,28 @@ import javax.annotation.Nullable;
 @ResourceType(type="keycloak:index/genericProtocolMapper:GenericProtocolMapper")
 public class GenericProtocolMapper extends com.pulumi.resources.CustomResource {
     /**
-     * The ID of the client this protocol mapper should be added to. Conflicts with `client_scope_id`. This argument is required if `client_scope_id` is not set.
+     * The ID of the client this protocol mapper should be added to. Conflicts with `clientScopeId`. This argument is required if `clientScopeId` is not set.
      * 
      */
     @Export(name="clientId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientId;
 
     /**
-     * @return The ID of the client this protocol mapper should be added to. Conflicts with `client_scope_id`. This argument is required if `client_scope_id` is not set.
+     * @return The ID of the client this protocol mapper should be added to. Conflicts with `clientScopeId`. This argument is required if `clientScopeId` is not set.
      * 
      */
     public Output<Optional<String>> clientId() {
         return Codegen.optional(this.clientId);
     }
     /**
-     * The ID of the client scope this protocol mapper should be added to. Conflicts with `client_id`. This argument is required if `client_id` is not set.
+     * The ID of the client scope this protocol mapper should be added to. Conflicts with `clientId`. This argument is required if `clientId` is not set.
      * 
      */
     @Export(name="clientScopeId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientScopeId;
 
     /**
-     * @return The ID of the client scope this protocol mapper should be added to. Conflicts with `client_id`. This argument is required if `client_id` is not set.
+     * @return The ID of the client scope this protocol mapper should be added to. Conflicts with `clientId`. This argument is required if `clientId` is not set.
      * 
      */
     public Output<Optional<String>> clientScopeId() {

@@ -338,7 +338,7 @@ namespace Pulumi.Keycloak.OpenId
         /// </summary>
         public readonly ImmutableArray<string> Scopes;
         /// <summary>
-        /// (Computed) The type of this policy / permission. For permissions, this could be `resource` or `scope`. For policies, this could be any type of authorization policy, such as `js`.
+        /// (Computed) The type of this policy / permission. For permissions, this could be `Resource` or `Scope`. For policies, this could be any type of authorization policy, such as `Js`.
         /// </summary>
         public readonly string Type;
 

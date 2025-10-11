@@ -46,11 +46,11 @@ namespace Pulumi.Keycloak.Outputs
         /// </summary>
         public readonly string? ReplyToDisplayName;
         /// <summary>
-        /// When `true`, enables SSL. Defaults to `false`.
+        /// When `True`, enables SSL. Defaults to `False`.
         /// </summary>
         public readonly bool? Ssl;
         /// <summary>
-        /// When `true`, enables StartTLS. Defaults to `false`.
+        /// When `True`, enables StartTLS. Defaults to `False`.
         /// </summary>
         public readonly bool? Starttls;
 

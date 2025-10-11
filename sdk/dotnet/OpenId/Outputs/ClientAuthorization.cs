@@ -14,7 +14,7 @@ namespace Pulumi.Keycloak.OpenId.Outputs
     public sealed class ClientAuthorization
     {
         /// <summary>
-        /// When `true`, resources can be managed remotely by the resource server. Defaults to `false`.
+        /// When `True`, resources can be managed remotely by the resource server. Defaults to `False`.
         /// </summary>
         public readonly bool? AllowRemoteResourceManagement;
         /// <summary>
@@ -22,7 +22,7 @@ namespace Pulumi.Keycloak.OpenId.Outputs
         /// </summary>
         public readonly string? DecisionStrategy;
         /// <summary>
-        /// When `true`, defaults set by Keycloak will be respected. Defaults to `false`.
+        /// When `True`, defaults set by Keycloak will be respected. Defaults to `False`.
         /// </summary>
         public readonly bool? KeepDefaults;
         /// <summary>

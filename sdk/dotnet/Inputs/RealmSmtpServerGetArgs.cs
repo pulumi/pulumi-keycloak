@@ -61,13 +61,13 @@ namespace Pulumi.Keycloak.Inputs
         public Input<string>? ReplyToDisplayName { get; set; }
 
         /// <summary>
-        /// When `true`, enables SSL. Defaults to `false`.
+        /// When `True`, enables SSL. Defaults to `False`.
         /// </summary>
         [Input("ssl")]
         public Input<bool>? Ssl { get; set; }
 
         /// <summary>
-        /// When `true`, enables StartTLS. Defaults to `false`.
+        /// When `True`, enables StartTLS. Defaults to `False`.
         /// </summary>
         [Input("starttls")]
         public Input<bool>? Starttls { get; set; }

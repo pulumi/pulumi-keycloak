@@ -87,13 +87,13 @@ namespace Pulumi.Keycloak.Ldap
     public partial class GroupMapper : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// When `true`, groups that no longer exist within LDAP will be dropped in Keycloak during sync. Defaults to `false`.
+        /// When `True`, groups that no longer exist within LDAP will be dropped in Keycloak during sync. Defaults to `False`.
         /// </summary>
         [Output("dropNonExistingGroupsDuringSync")]
         public Output<bool?> DropNonExistingGroupsDuringSync { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the LDAP attribute that is used in group objects for the name and RDN of the group. Typically `cn`.
+        /// The name of the LDAP attribute that is used in group objects for the name and RDN of the group. Typically `Cn`.
         /// </summary>
         [Output("groupNameLdapAttribute")]
         public Output<string> GroupNameLdapAttribute { get; private set; } = null!;
@@ -117,7 +117,7 @@ namespace Pulumi.Keycloak.Ldap
         public Output<string> GroupsPath { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, missing groups in the hierarchy will be ignored.
+        /// When `True`, missing groups in the hierarchy will be ignored.
         /// </summary>
         [Output("ignoreMissingGroups")]
         public Output<bool?> IgnoreMissingGroups { get; private set; } = null!;
@@ -177,7 +177,7 @@ namespace Pulumi.Keycloak.Ldap
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, group inheritance will be propagated from LDAP to Keycloak. When `false`, all LDAP groups will be propagated as top level groups within Keycloak.
+        /// When `True`, group inheritance will be propagated from LDAP to Keycloak. When `False`, all LDAP groups will be propagated as top level groups within Keycloak.
         /// </summary>
         [Output("preserveGroupInheritance")]
         public Output<bool?> PreserveGroupInheritance { get; private set; } = null!;
@@ -241,13 +241,13 @@ namespace Pulumi.Keycloak.Ldap
     public sealed class GroupMapperArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// When `true`, groups that no longer exist within LDAP will be dropped in Keycloak during sync. Defaults to `false`.
+        /// When `True`, groups that no longer exist within LDAP will be dropped in Keycloak during sync. Defaults to `False`.
         /// </summary>
         [Input("dropNonExistingGroupsDuringSync")]
         public Input<bool>? DropNonExistingGroupsDuringSync { get; set; }
 
         /// <summary>
-        /// The name of the LDAP attribute that is used in group objects for the name and RDN of the group. Typically `cn`.
+        /// The name of the LDAP attribute that is used in group objects for the name and RDN of the group. Typically `Cn`.
         /// </summary>
         [Input("groupNameLdapAttribute", required: true)]
         public Input<string> GroupNameLdapAttribute { get; set; } = null!;
@@ -277,7 +277,7 @@ namespace Pulumi.Keycloak.Ldap
         public Input<string>? GroupsPath { get; set; }
 
         /// <summary>
-        /// When `true`, missing groups in the hierarchy will be ignored.
+        /// When `True`, missing groups in the hierarchy will be ignored.
         /// </summary>
         [Input("ignoreMissingGroups")]
         public Input<bool>? IgnoreMissingGroups { get; set; }
@@ -343,7 +343,7 @@ namespace Pulumi.Keycloak.Ldap
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// When `true`, group inheritance will be propagated from LDAP to Keycloak. When `false`, all LDAP groups will be propagated as top level groups within Keycloak.
+        /// When `True`, group inheritance will be propagated from LDAP to Keycloak. When `False`, all LDAP groups will be propagated as top level groups within Keycloak.
         /// </summary>
         [Input("preserveGroupInheritance")]
         public Input<bool>? PreserveGroupInheritance { get; set; }
@@ -369,13 +369,13 @@ namespace Pulumi.Keycloak.Ldap
     public sealed class GroupMapperState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// When `true`, groups that no longer exist within LDAP will be dropped in Keycloak during sync. Defaults to `false`.
+        /// When `True`, groups that no longer exist within LDAP will be dropped in Keycloak during sync. Defaults to `False`.
         /// </summary>
         [Input("dropNonExistingGroupsDuringSync")]
         public Input<bool>? DropNonExistingGroupsDuringSync { get; set; }
 
         /// <summary>
-        /// The name of the LDAP attribute that is used in group objects for the name and RDN of the group. Typically `cn`.
+        /// The name of the LDAP attribute that is used in group objects for the name and RDN of the group. Typically `Cn`.
         /// </summary>
         [Input("groupNameLdapAttribute")]
         public Input<string>? GroupNameLdapAttribute { get; set; }
@@ -405,7 +405,7 @@ namespace Pulumi.Keycloak.Ldap
         public Input<string>? GroupsPath { get; set; }
 
         /// <summary>
-        /// When `true`, missing groups in the hierarchy will be ignored.
+        /// When `True`, missing groups in the hierarchy will be ignored.
         /// </summary>
         [Input("ignoreMissingGroups")]
         public Input<bool>? IgnoreMissingGroups { get; set; }
@@ -471,7 +471,7 @@ namespace Pulumi.Keycloak.Ldap
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// When `true`, group inheritance will be propagated from LDAP to Keycloak. When `false`, all LDAP groups will be propagated as top level groups within Keycloak.
+        /// When `True`, group inheritance will be propagated from LDAP to Keycloak. When `False`, all LDAP groups will be propagated as top level groups within Keycloak.
         /// </summary>
         [Input("preserveGroupInheritance")]
         public Input<bool>? PreserveGroupInheritance { get; set; }

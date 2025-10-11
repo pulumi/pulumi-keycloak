@@ -14,14 +14,14 @@ public final class GetClientInstallationProviderPlainArgs extends com.pulumi.res
     public static final GetClientInstallationProviderPlainArgs Empty = new GetClientInstallationProviderPlainArgs();
 
     /**
-     * The ID of the SAML client. The `id` attribute of a `keycloak_client` resource should be used here.
+     * The ID of the SAML client. The `id` attribute of a `keycloakClient` resource should be used here.
      * 
      */
     @Import(name="clientId", required=true)
     private String clientId;
 
     /**
-     * @return The ID of the SAML client. The `id` attribute of a `keycloak_client` resource should be used here.
+     * @return The ID of the SAML client. The `id` attribute of a `keycloakClient` resource should be used here.
      * 
      */
     public String clientId() {
@@ -85,7 +85,7 @@ public final class GetClientInstallationProviderPlainArgs extends com.pulumi.res
         }
 
         /**
-         * @param clientId The ID of the SAML client. The `id` attribute of a `keycloak_client` resource should be used here.
+         * @param clientId The ID of the SAML client. The `id` attribute of a `keycloakClient` resource should be used here.
          * 
          * @return builder
          * 

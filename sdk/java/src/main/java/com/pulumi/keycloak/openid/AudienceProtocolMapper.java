@@ -179,56 +179,56 @@ public class AudienceProtocolMapper extends com.pulumi.resources.CustomResource 
         return Codegen.optional(this.addToIdToken);
     }
     /**
-     * The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+     * The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
      * 
      */
     @Export(name="clientId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientId;
 
     /**
-     * @return The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+     * @return The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
      * 
      */
     public Output<Optional<String>> clientId() {
         return Codegen.optional(this.clientId);
     }
     /**
-     * The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+     * The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
      * 
      */
     @Export(name="clientScopeId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientScopeId;
 
     /**
-     * @return The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+     * @return The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
      * 
      */
     public Output<Optional<String>> clientScopeId() {
         return Codegen.optional(this.clientScopeId);
     }
     /**
-     * A client ID to include within the token&#39;s `aud` claim. Conflicts with `included_custom_audience`. One of `included_client_audience` or `included_custom_audience` must be specified.
+     * A client ID to include within the token&#39;s `aud` claim. Conflicts with `includedCustomAudience`. One of `includedClientAudience` or `includedCustomAudience` must be specified.
      * 
      */
     @Export(name="includedClientAudience", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> includedClientAudience;
 
     /**
-     * @return A client ID to include within the token&#39;s `aud` claim. Conflicts with `included_custom_audience`. One of `included_client_audience` or `included_custom_audience` must be specified.
+     * @return A client ID to include within the token&#39;s `aud` claim. Conflicts with `includedCustomAudience`. One of `includedClientAudience` or `includedCustomAudience` must be specified.
      * 
      */
     public Output<Optional<String>> includedClientAudience() {
         return Codegen.optional(this.includedClientAudience);
     }
     /**
-     * A custom audience to include within the token&#39;s `aud` claim. Conflicts with `included_client_audience`. One of `included_client_audience` or `included_custom_audience` must be specified.
+     * A custom audience to include within the token&#39;s `aud` claim. Conflicts with `includedClientAudience`. One of `includedClientAudience` or `includedCustomAudience` must be specified.
      * 
      */
     @Export(name="includedCustomAudience", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> includedCustomAudience;
 
     /**
-     * @return A custom audience to include within the token&#39;s `aud` claim. Conflicts with `included_client_audience`. One of `included_client_audience` or `included_custom_audience` must be specified.
+     * @return A custom audience to include within the token&#39;s `aud` claim. Conflicts with `includedClientAudience`. One of `includedClientAudience` or `includedCustomAudience` must be specified.
      * 
      */
     public Output<Optional<String>> includedCustomAudience() {

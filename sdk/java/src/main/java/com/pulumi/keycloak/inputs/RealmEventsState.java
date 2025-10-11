@@ -64,14 +64,14 @@ public final class RealmEventsState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * When `true`, events from `enabled_event_types` are saved to the database, making them available through the admin console. Defaults to `false`.
+     * When `true`, events from `enabledEventTypes` are saved to the database, making them available through the admin console. Defaults to `false`.
      * 
      */
     @Import(name="eventsEnabled")
     private @Nullable Output<Boolean> eventsEnabled;
 
     /**
-     * @return When `true`, events from `enabled_event_types` are saved to the database, making them available through the admin console. Defaults to `false`.
+     * @return When `true`, events from `enabledEventTypes` are saved to the database, making them available through the admin console. Defaults to `false`.
      * 
      */
     public Optional<Output<Boolean>> eventsEnabled() {
@@ -227,7 +227,7 @@ public final class RealmEventsState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param eventsEnabled When `true`, events from `enabled_event_types` are saved to the database, making them available through the admin console. Defaults to `false`.
+         * @param eventsEnabled When `true`, events from `enabledEventTypes` are saved to the database, making them available through the admin console. Defaults to `false`.
          * 
          * @return builder
          * 
@@ -238,7 +238,7 @@ public final class RealmEventsState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param eventsEnabled When `true`, events from `enabled_event_types` are saved to the database, making them available through the admin console. Defaults to `false`.
+         * @param eventsEnabled When `true`, events from `enabledEventTypes` are saved to the database, making them available through the admin console. Defaults to `false`.
          * 
          * @return builder
          * 

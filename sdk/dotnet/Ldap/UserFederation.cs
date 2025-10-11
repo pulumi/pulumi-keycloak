@@ -85,13 +85,13 @@ namespace Pulumi.Keycloak.Ldap
         public Output<int?> BatchSizeForSync { get; private set; } = null!;
 
         /// <summary>
-        /// Password of LDAP admin. This attribute must be set if `bind_dn` is set.
+        /// Password of LDAP admin. This attribute must be set if `BindDn` is set.
         /// </summary>
         [Output("bindCredential")]
         public Output<string?> BindCredential { get; private set; } = null!;
 
         /// <summary>
-        /// DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` is set.
+        /// DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `BindCredential` is set.
         /// </summary>
         [Output("bindDn")]
         public Output<string?> BindDn { get; private set; } = null!;
@@ -127,7 +127,7 @@ namespace Pulumi.Keycloak.Ldap
         public Output<string?> CustomUserSearchFilter { get; private set; } = null!;
 
         /// <summary>
-        /// When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `false`.
+        /// When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `False`.
         /// </summary>
         [Output("deleteDefaultMappers")]
         public Output<bool?> DeleteDefaultMappers { get; private set; } = null!;
@@ -139,7 +139,7 @@ namespace Pulumi.Keycloak.Ldap
         public Output<string?> EditMode { get; private set; } = null!;
 
         /// <summary>
-        /// When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
+        /// When `False`, this provider will not be used when performing queries for users. Defaults to `True`.
         /// </summary>
         [Output("enabled")]
         public Output<bool?> Enabled { get; private set; } = null!;
@@ -151,7 +151,7 @@ namespace Pulumi.Keycloak.Ldap
         public Output<int?> FullSyncPeriod { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, LDAP users will be imported into the Keycloak database. Defaults to `true`.
+        /// When `True`, LDAP users will be imported into the Keycloak database. Defaults to `True`.
         /// </summary>
         [Output("importEnabled")]
         public Output<bool?> ImportEnabled { get; private set; } = null!;
@@ -169,7 +169,7 @@ namespace Pulumi.Keycloak.Ldap
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// When true, Keycloak assumes the LDAP server supports pagination. Defaults to `true`.
+        /// When true, Keycloak assumes the LDAP server supports pagination. Defaults to `True`.
         /// </summary>
         [Output("pagination")]
         public Output<bool?> Pagination { get; private set; } = null!;
@@ -200,20 +200,20 @@ namespace Pulumi.Keycloak.Ldap
 
         /// <summary>
         /// Can be one of `ONE_LEVEL` or `SUBTREE`:
-        /// - `ONE_LEVEL`: Only search for users in the DN specified by `user_dn`.
+        /// - `ONE_LEVEL`: Only search for users in the DN specified by `UserDn`.
         /// - `SUBTREE`: Search entire LDAP subtree.
         /// </summary>
         [Output("searchScope")]
         public Output<string?> SearchScope { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
+        /// When `True`, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
         /// </summary>
         [Output("startTls")]
         public Output<bool?> StartTls { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
+        /// When `True`, newly created users will be synced back to LDAP. Defaults to `False`.
         /// </summary>
         [Output("syncRegistrations")]
         public Output<bool?> SyncRegistrations { get; private set; } = null!;
@@ -225,7 +225,7 @@ namespace Pulumi.Keycloak.Ldap
         public Output<bool?> TrustEmail { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, use the LDAPv3 Password Modify Extended Operation (RFC-3062).
+        /// When `True`, use the LDAPv3 Password Modify Extended Operation (RFC-3062).
         /// </summary>
         [Output("usePasswordModifyExtendedOp")]
         public Output<bool?> UsePasswordModifyExtendedOp { get; private set; } = null!;
@@ -264,7 +264,7 @@ namespace Pulumi.Keycloak.Ldap
         public Output<string> UuidLdapAttribute { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, Keycloak will validate passwords using the realm policy before updating it.
+        /// When `True`, Keycloak will validate passwords using the realm policy before updating it.
         /// </summary>
         [Output("validatePasswordPolicy")]
         public Output<bool?> ValidatePasswordPolicy { get; private set; } = null!;
@@ -335,7 +335,7 @@ namespace Pulumi.Keycloak.Ldap
         private Input<string>? _bindCredential;
 
         /// <summary>
-        /// Password of LDAP admin. This attribute must be set if `bind_dn` is set.
+        /// Password of LDAP admin. This attribute must be set if `BindDn` is set.
         /// </summary>
         public Input<string>? BindCredential
         {
@@ -348,7 +348,7 @@ namespace Pulumi.Keycloak.Ldap
         }
 
         /// <summary>
-        /// DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` is set.
+        /// DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `BindCredential` is set.
         /// </summary>
         [Input("bindDn")]
         public Input<string>? BindDn { get; set; }
@@ -384,7 +384,7 @@ namespace Pulumi.Keycloak.Ldap
         public Input<string>? CustomUserSearchFilter { get; set; }
 
         /// <summary>
-        /// When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `false`.
+        /// When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `False`.
         /// </summary>
         [Input("deleteDefaultMappers")]
         public Input<bool>? DeleteDefaultMappers { get; set; }
@@ -396,7 +396,7 @@ namespace Pulumi.Keycloak.Ldap
         public Input<string>? EditMode { get; set; }
 
         /// <summary>
-        /// When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
+        /// When `False`, this provider will not be used when performing queries for users. Defaults to `True`.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
@@ -408,7 +408,7 @@ namespace Pulumi.Keycloak.Ldap
         public Input<int>? FullSyncPeriod { get; set; }
 
         /// <summary>
-        /// When `true`, LDAP users will be imported into the Keycloak database. Defaults to `true`.
+        /// When `True`, LDAP users will be imported into the Keycloak database. Defaults to `True`.
         /// </summary>
         [Input("importEnabled")]
         public Input<bool>? ImportEnabled { get; set; }
@@ -426,7 +426,7 @@ namespace Pulumi.Keycloak.Ldap
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// When true, Keycloak assumes the LDAP server supports pagination. Defaults to `true`.
+        /// When true, Keycloak assumes the LDAP server supports pagination. Defaults to `True`.
         /// </summary>
         [Input("pagination")]
         public Input<bool>? Pagination { get; set; }
@@ -457,20 +457,20 @@ namespace Pulumi.Keycloak.Ldap
 
         /// <summary>
         /// Can be one of `ONE_LEVEL` or `SUBTREE`:
-        /// - `ONE_LEVEL`: Only search for users in the DN specified by `user_dn`.
+        /// - `ONE_LEVEL`: Only search for users in the DN specified by `UserDn`.
         /// - `SUBTREE`: Search entire LDAP subtree.
         /// </summary>
         [Input("searchScope")]
         public Input<string>? SearchScope { get; set; }
 
         /// <summary>
-        /// When `true`, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
+        /// When `True`, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
         /// </summary>
         [Input("startTls")]
         public Input<bool>? StartTls { get; set; }
 
         /// <summary>
-        /// When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
+        /// When `True`, newly created users will be synced back to LDAP. Defaults to `False`.
         /// </summary>
         [Input("syncRegistrations")]
         public Input<bool>? SyncRegistrations { get; set; }
@@ -482,7 +482,7 @@ namespace Pulumi.Keycloak.Ldap
         public Input<bool>? TrustEmail { get; set; }
 
         /// <summary>
-        /// When `true`, use the LDAPv3 Password Modify Extended Operation (RFC-3062).
+        /// When `True`, use the LDAPv3 Password Modify Extended Operation (RFC-3062).
         /// </summary>
         [Input("usePasswordModifyExtendedOp")]
         public Input<bool>? UsePasswordModifyExtendedOp { get; set; }
@@ -527,7 +527,7 @@ namespace Pulumi.Keycloak.Ldap
         public Input<string> UuidLdapAttribute { get; set; } = null!;
 
         /// <summary>
-        /// When `true`, Keycloak will validate passwords using the realm policy before updating it.
+        /// When `True`, Keycloak will validate passwords using the realm policy before updating it.
         /// </summary>
         [Input("validatePasswordPolicy")]
         public Input<bool>? ValidatePasswordPolicy { get; set; }
@@ -556,7 +556,7 @@ namespace Pulumi.Keycloak.Ldap
         private Input<string>? _bindCredential;
 
         /// <summary>
-        /// Password of LDAP admin. This attribute must be set if `bind_dn` is set.
+        /// Password of LDAP admin. This attribute must be set if `BindDn` is set.
         /// </summary>
         public Input<string>? BindCredential
         {
@@ -569,7 +569,7 @@ namespace Pulumi.Keycloak.Ldap
         }
 
         /// <summary>
-        /// DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` is set.
+        /// DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `BindCredential` is set.
         /// </summary>
         [Input("bindDn")]
         public Input<string>? BindDn { get; set; }
@@ -605,7 +605,7 @@ namespace Pulumi.Keycloak.Ldap
         public Input<string>? CustomUserSearchFilter { get; set; }
 
         /// <summary>
-        /// When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `false`.
+        /// When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `False`.
         /// </summary>
         [Input("deleteDefaultMappers")]
         public Input<bool>? DeleteDefaultMappers { get; set; }
@@ -617,7 +617,7 @@ namespace Pulumi.Keycloak.Ldap
         public Input<string>? EditMode { get; set; }
 
         /// <summary>
-        /// When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
+        /// When `False`, this provider will not be used when performing queries for users. Defaults to `True`.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
@@ -629,7 +629,7 @@ namespace Pulumi.Keycloak.Ldap
         public Input<int>? FullSyncPeriod { get; set; }
 
         /// <summary>
-        /// When `true`, LDAP users will be imported into the Keycloak database. Defaults to `true`.
+        /// When `True`, LDAP users will be imported into the Keycloak database. Defaults to `True`.
         /// </summary>
         [Input("importEnabled")]
         public Input<bool>? ImportEnabled { get; set; }
@@ -647,7 +647,7 @@ namespace Pulumi.Keycloak.Ldap
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// When true, Keycloak assumes the LDAP server supports pagination. Defaults to `true`.
+        /// When true, Keycloak assumes the LDAP server supports pagination. Defaults to `True`.
         /// </summary>
         [Input("pagination")]
         public Input<bool>? Pagination { get; set; }
@@ -678,20 +678,20 @@ namespace Pulumi.Keycloak.Ldap
 
         /// <summary>
         /// Can be one of `ONE_LEVEL` or `SUBTREE`:
-        /// - `ONE_LEVEL`: Only search for users in the DN specified by `user_dn`.
+        /// - `ONE_LEVEL`: Only search for users in the DN specified by `UserDn`.
         /// - `SUBTREE`: Search entire LDAP subtree.
         /// </summary>
         [Input("searchScope")]
         public Input<string>? SearchScope { get; set; }
 
         /// <summary>
-        /// When `true`, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
+        /// When `True`, Keycloak will encrypt the connection to LDAP using STARTTLS, which will disable connection pooling.
         /// </summary>
         [Input("startTls")]
         public Input<bool>? StartTls { get; set; }
 
         /// <summary>
-        /// When `true`, newly created users will be synced back to LDAP. Defaults to `false`.
+        /// When `True`, newly created users will be synced back to LDAP. Defaults to `False`.
         /// </summary>
         [Input("syncRegistrations")]
         public Input<bool>? SyncRegistrations { get; set; }
@@ -703,7 +703,7 @@ namespace Pulumi.Keycloak.Ldap
         public Input<bool>? TrustEmail { get; set; }
 
         /// <summary>
-        /// When `true`, use the LDAPv3 Password Modify Extended Operation (RFC-3062).
+        /// When `True`, use the LDAPv3 Password Modify Extended Operation (RFC-3062).
         /// </summary>
         [Input("usePasswordModifyExtendedOp")]
         public Input<bool>? UsePasswordModifyExtendedOp { get; set; }
@@ -748,7 +748,7 @@ namespace Pulumi.Keycloak.Ldap
         public Input<string>? UuidLdapAttribute { get; set; }
 
         /// <summary>
-        /// When `true`, Keycloak will validate passwords using the realm policy before updating it.
+        /// When `True`, Keycloak will validate passwords using the realm policy before updating it.
         /// </summary>
         [Input("validatePasswordPolicy")]
         public Input<bool>? ValidatePasswordPolicy { get; set; }

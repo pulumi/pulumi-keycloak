@@ -24,7 +24,7 @@ namespace Pulumi.Keycloak.OpenId
     /// 3. Create a resource representing the openid client
     /// 4. Create all scope based permission for the scopes and openid client resource
     /// 
-    /// If the realm-management Authorization is not enable, you have to ceate a dependency (`depends_on`) with the policy and
+    /// If the realm-management Authorization is not enable, you have to ceate a dependency (`DependsOn`) with the policy and
     /// the openid client.
     /// </summary>
     [KeycloakResourceType("keycloak:openid/clientPermissions:ClientPermissions")]

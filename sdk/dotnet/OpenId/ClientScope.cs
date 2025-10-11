@@ -13,7 +13,7 @@ namespace Pulumi.Keycloak.OpenId
     /// Allows for creating and managing Keycloak client scopes that can be attached to clients that use the OpenID Connect protocol.
     /// 
     /// Client Scopes can be used to share common protocol and role mappings between multiple clients within a realm. They can also
-    /// be used by clients to conditionally request claims or roles for a user based on the OAuth 2.0 `scope` parameter.
+    /// be used by clients to conditionally request claims or roles for a user based on the OAuth 2.0 `Scope` parameter.
     /// 
     /// ## Example Usage
     /// 
@@ -79,7 +79,7 @@ namespace Pulumi.Keycloak.OpenId
         public Output<int?> GuiOrder { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response.
+        /// When `True`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response.
         /// </summary>
         [Output("includeInTokenScope")]
         public Output<bool?> IncludeInTokenScope { get; private set; } = null!;
@@ -161,7 +161,7 @@ namespace Pulumi.Keycloak.OpenId
         public Input<int>? GuiOrder { get; set; }
 
         /// <summary>
-        /// When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response.
+        /// When `True`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response.
         /// </summary>
         [Input("includeInTokenScope")]
         public Input<bool>? IncludeInTokenScope { get; set; }
@@ -205,7 +205,7 @@ namespace Pulumi.Keycloak.OpenId
         public Input<int>? GuiOrder { get; set; }
 
         /// <summary>
-        /// When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response.
+        /// When `True`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response.
         /// </summary>
         [Input("includeInTokenScope")]
         public Input<bool>? IncludeInTokenScope { get; set; }

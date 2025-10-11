@@ -43,7 +43,7 @@ namespace Pulumi.Keycloak.Inputs
         public Input<int>? Period { get; set; }
 
         /// <summary>
-        /// One Time Password Type, supported Values are `totp` for Time-Based One Time Password and `hotp` for Counter Based. Defaults to `totp`.
+        /// One Time Password Type, supported Values are `Totp` for Time-Based One Time Password and `Hotp` for Counter Based. Defaults to `Totp`.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

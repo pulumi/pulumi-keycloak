@@ -171,11 +171,11 @@ namespace Pulumi.Keycloak
         /// </summary>
         public readonly string Email;
         /// <summary>
-        /// (Computed) Whether the email address was validated or not. Default to `false`.
+        /// (Computed) Whether the email address was validated or not. Default to `False`.
         /// </summary>
         public readonly bool EmailVerified;
         /// <summary>
-        /// (Computed) When false, this user cannot log in. Defaults to `true`.
+        /// (Computed) When false, this user cannot log in. Defaults to `True`.
         /// </summary>
         public readonly bool Enabled;
         /// <summary>

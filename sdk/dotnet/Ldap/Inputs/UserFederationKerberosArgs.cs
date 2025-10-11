@@ -31,7 +31,7 @@ namespace Pulumi.Keycloak.Ldap.Inputs
         public Input<string> ServerPrincipal { get; set; } = null!;
 
         /// <summary>
-        /// Use kerberos login module instead of ldap service api. Defaults to `false`.
+        /// Use kerberos login module instead of ldap service api. Defaults to `False`.
         /// </summary>
         [Input("useKerberosForPasswordAuthentication")]
         public Input<bool>? UseKerberosForPasswordAuthentication { get; set; }

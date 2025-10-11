@@ -78,19 +78,19 @@ namespace Pulumi.Keycloak.Saml
     public partial class UserAttributeProtocolMapper : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
+        /// Indicates whether this attribute is a single value or an array of values. Defaults to `False`.
         /// </summary>
         [Output("aggregateAttributes")]
         public Output<bool?> AggregateAttributes { get; private set; } = null!;
 
         /// <summary>
-        /// The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+        /// The client this protocol mapper should be attached to. Conflicts with `ClientScopeId`. One of `ClientId` or `ClientScopeId` must be specified.
         /// </summary>
         [Output("clientId")]
         public Output<string?> ClientId { get; private set; } = null!;
 
         /// <summary>
-        /// The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+        /// The client scope this protocol mapper should be attached to. Conflicts with `ClientId`. One of `ClientId` or `ClientScopeId` must be specified.
         /// </summary>
         [Output("clientScopeId")]
         public Output<string?> ClientScopeId { get; private set; } = null!;
@@ -178,19 +178,19 @@ namespace Pulumi.Keycloak.Saml
     public sealed class UserAttributeProtocolMapperArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
+        /// Indicates whether this attribute is a single value or an array of values. Defaults to `False`.
         /// </summary>
         [Input("aggregateAttributes")]
         public Input<bool>? AggregateAttributes { get; set; }
 
         /// <summary>
-        /// The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+        /// The client this protocol mapper should be attached to. Conflicts with `ClientScopeId`. One of `ClientId` or `ClientScopeId` must be specified.
         /// </summary>
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
 
         /// <summary>
-        /// The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+        /// The client scope this protocol mapper should be attached to. Conflicts with `ClientId`. One of `ClientId` or `ClientScopeId` must be specified.
         /// </summary>
         [Input("clientScopeId")]
         public Input<string>? ClientScopeId { get; set; }
@@ -240,19 +240,19 @@ namespace Pulumi.Keycloak.Saml
     public sealed class UserAttributeProtocolMapperState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
+        /// Indicates whether this attribute is a single value or an array of values. Defaults to `False`.
         /// </summary>
         [Input("aggregateAttributes")]
         public Input<bool>? AggregateAttributes { get; set; }
 
         /// <summary>
-        /// The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+        /// The client this protocol mapper should be attached to. Conflicts with `ClientScopeId`. One of `ClientId` or `ClientScopeId` must be specified.
         /// </summary>
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
 
         /// <summary>
-        /// The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+        /// The client scope this protocol mapper should be attached to. Conflicts with `ClientId`. One of `ClientId` or `ClientScopeId` must be specified.
         /// </summary>
         [Input("clientScopeId")]
         public Input<string>? ClientScopeId { get; set; }

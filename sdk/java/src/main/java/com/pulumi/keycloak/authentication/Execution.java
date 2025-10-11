@@ -21,7 +21,7 @@ import javax.annotation.Nullable;
  * An authentication execution is an action that the user or service may or may not take when authenticating through an authentication
  * flow.
  * 
- * &gt; Following limitation affects Keycloak &lt; 25:  Due to limitations in the Keycloak API, the ordering of authentication executions within a flow must be specified using `depends_on`. Authentication executions that are created first will appear first within the flow.
+ * &gt; Following limitation affects Keycloak &lt; 25:  Due to limitations in the Keycloak API, the ordering of authentication executions within a flow must be specified using `dependsOn`. Authentication executions that are created first will appear first within the flow.
  * 
  * ## Example Usage
  * 

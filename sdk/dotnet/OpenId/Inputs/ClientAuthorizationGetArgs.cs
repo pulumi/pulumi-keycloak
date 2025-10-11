@@ -13,7 +13,7 @@ namespace Pulumi.Keycloak.OpenId.Inputs
     public sealed class ClientAuthorizationGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// When `true`, resources can be managed remotely by the resource server. Defaults to `false`.
+        /// When `True`, resources can be managed remotely by the resource server. Defaults to `False`.
         /// </summary>
         [Input("allowRemoteResourceManagement")]
         public Input<bool>? AllowRemoteResourceManagement { get; set; }
@@ -25,7 +25,7 @@ namespace Pulumi.Keycloak.OpenId.Inputs
         public Input<string>? DecisionStrategy { get; set; }
 
         /// <summary>
-        /// When `true`, defaults set by Keycloak will be respected. Defaults to `false`.
+        /// When `True`, defaults set by Keycloak will be respected. Defaults to `False`.
         /// </summary>
         [Input("keepDefaults")]
         public Input<bool>? KeepDefaults { get; set; }

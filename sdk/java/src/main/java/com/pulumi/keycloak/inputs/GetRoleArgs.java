@@ -17,14 +17,14 @@ public final class GetRoleArgs extends com.pulumi.resources.InvokeArgs {
     public static final GetRoleArgs Empty = new GetRoleArgs();
 
     /**
-     * When specified, this role is assumed to be a client role belonging to the client with the provided ID. The `id` attribute of a `keycloak_client` resource should be used here.
+     * When specified, this role is assumed to be a client role belonging to the client with the provided ID. The `id` attribute of a `keycloakClient` resource should be used here.
      * 
      */
     @Import(name="clientId")
     private @Nullable Output<String> clientId;
 
     /**
-     * @return When specified, this role is assumed to be a client role belonging to the client with the provided ID. The `id` attribute of a `keycloak_client` resource should be used here.
+     * @return When specified, this role is assumed to be a client role belonging to the client with the provided ID. The `id` attribute of a `keycloakClient` resource should be used here.
      * 
      */
     public Optional<Output<String>> clientId() {
@@ -88,7 +88,7 @@ public final class GetRoleArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param clientId When specified, this role is assumed to be a client role belonging to the client with the provided ID. The `id` attribute of a `keycloak_client` resource should be used here.
+         * @param clientId When specified, this role is assumed to be a client role belonging to the client with the provided ID. The `id` attribute of a `keycloakClient` resource should be used here.
          * 
          * @return builder
          * 
@@ -99,7 +99,7 @@ public final class GetRoleArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param clientId When specified, this role is assumed to be a client role belonging to the client with the provided ID. The `id` attribute of a `keycloak_client` resource should be used here.
+         * @param clientId When specified, this role is assumed to be a client role belonging to the client with the provided ID. The `id` attribute of a `keycloakClient` resource should be used here.
          * 
          * @return builder
          * 

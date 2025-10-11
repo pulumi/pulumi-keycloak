@@ -12,9 +12,9 @@ namespace Pulumi.Keycloak
     /// <summary>
     /// Allows you to manage roles assigned to a Keycloak group.
     /// 
-    /// If `exhaustive` is true, this resource attempts to be an **authoritative** source over group roles: roles that are manually added to the group will be removed, and roles that are manually removed from the
+    /// If `Exhaustive` is true, this resource attempts to be an **authoritative** source over group roles: roles that are manually added to the group will be removed, and roles that are manually removed from the
     /// group will be added upon the next run of `pulumi up`.
-    /// If `exhaustive` is false, this resource is a partial assignation of roles to a group. As a result, you can get multiple `keycloak.GroupRoles` for the same `group_id`.
+    /// If `Exhaustive` is false, this resource is a partial assignation of roles to a group. As a result, you can get multiple `keycloak.GroupRoles` for the same `GroupId`.
     /// 
     /// Note that when assigning composite roles to a group, you may see a non-empty plan following a `pulumi up` if you
     /// assign a role and a composite that includes that role to the same group.
@@ -172,7 +172,7 @@ namespace Pulumi.Keycloak
     public partial class GroupRoles : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `true`.
+        /// Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `True`.
         /// </summary>
         [Output("exhaustive")]
         public Output<bool?> Exhaustive { get; private set; } = null!;
@@ -242,7 +242,7 @@ namespace Pulumi.Keycloak
     public sealed class GroupRolesArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `true`.
+        /// Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `True`.
         /// </summary>
         [Input("exhaustive")]
         public Input<bool>? Exhaustive { get; set; }
@@ -280,7 +280,7 @@ namespace Pulumi.Keycloak
     public sealed class GroupRolesState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `true`.
+        /// Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `True`.
         /// </summary>
         [Input("exhaustive")]
         public Input<bool>? Exhaustive { get; set; }

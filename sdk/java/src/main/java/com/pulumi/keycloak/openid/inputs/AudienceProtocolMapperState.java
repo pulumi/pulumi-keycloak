@@ -47,14 +47,14 @@ public final class AudienceProtocolMapperState extends com.pulumi.resources.Reso
     }
 
     /**
-     * The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+     * The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
      * 
      */
     @Import(name="clientId")
     private @Nullable Output<String> clientId;
 
     /**
-     * @return The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+     * @return The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
      * 
      */
     public Optional<Output<String>> clientId() {
@@ -62,14 +62,14 @@ public final class AudienceProtocolMapperState extends com.pulumi.resources.Reso
     }
 
     /**
-     * The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+     * The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
      * 
      */
     @Import(name="clientScopeId")
     private @Nullable Output<String> clientScopeId;
 
     /**
-     * @return The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+     * @return The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
      * 
      */
     public Optional<Output<String>> clientScopeId() {
@@ -77,14 +77,14 @@ public final class AudienceProtocolMapperState extends com.pulumi.resources.Reso
     }
 
     /**
-     * A client ID to include within the token&#39;s `aud` claim. Conflicts with `included_custom_audience`. One of `included_client_audience` or `included_custom_audience` must be specified.
+     * A client ID to include within the token&#39;s `aud` claim. Conflicts with `includedCustomAudience`. One of `includedClientAudience` or `includedCustomAudience` must be specified.
      * 
      */
     @Import(name="includedClientAudience")
     private @Nullable Output<String> includedClientAudience;
 
     /**
-     * @return A client ID to include within the token&#39;s `aud` claim. Conflicts with `included_custom_audience`. One of `included_client_audience` or `included_custom_audience` must be specified.
+     * @return A client ID to include within the token&#39;s `aud` claim. Conflicts with `includedCustomAudience`. One of `includedClientAudience` or `includedCustomAudience` must be specified.
      * 
      */
     public Optional<Output<String>> includedClientAudience() {
@@ -92,14 +92,14 @@ public final class AudienceProtocolMapperState extends com.pulumi.resources.Reso
     }
 
     /**
-     * A custom audience to include within the token&#39;s `aud` claim. Conflicts with `included_client_audience`. One of `included_client_audience` or `included_custom_audience` must be specified.
+     * A custom audience to include within the token&#39;s `aud` claim. Conflicts with `includedClientAudience`. One of `includedClientAudience` or `includedCustomAudience` must be specified.
      * 
      */
     @Import(name="includedCustomAudience")
     private @Nullable Output<String> includedCustomAudience;
 
     /**
-     * @return A custom audience to include within the token&#39;s `aud` claim. Conflicts with `included_client_audience`. One of `included_client_audience` or `included_custom_audience` must be specified.
+     * @return A custom audience to include within the token&#39;s `aud` claim. Conflicts with `includedClientAudience`. One of `includedClientAudience` or `includedCustomAudience` must be specified.
      * 
      */
     public Optional<Output<String>> includedCustomAudience() {
@@ -210,7 +210,7 @@ public final class AudienceProtocolMapperState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param clientId The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+         * @param clientId The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
          * 
          * @return builder
          * 
@@ -221,7 +221,7 @@ public final class AudienceProtocolMapperState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param clientId The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
+         * @param clientId The client this protocol mapper should be attached to. Conflicts with `clientScopeId`. One of `clientId` or `clientScopeId` must be specified.
          * 
          * @return builder
          * 
@@ -231,7 +231,7 @@ public final class AudienceProtocolMapperState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param clientScopeId The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+         * @param clientScopeId The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
          * 
          * @return builder
          * 
@@ -242,7 +242,7 @@ public final class AudienceProtocolMapperState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param clientScopeId The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
+         * @param clientScopeId The client scope this protocol mapper should be attached to. Conflicts with `clientId`. One of `clientId` or `clientScopeId` must be specified.
          * 
          * @return builder
          * 
@@ -252,7 +252,7 @@ public final class AudienceProtocolMapperState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param includedClientAudience A client ID to include within the token&#39;s `aud` claim. Conflicts with `included_custom_audience`. One of `included_client_audience` or `included_custom_audience` must be specified.
+         * @param includedClientAudience A client ID to include within the token&#39;s `aud` claim. Conflicts with `includedCustomAudience`. One of `includedClientAudience` or `includedCustomAudience` must be specified.
          * 
          * @return builder
          * 
@@ -263,7 +263,7 @@ public final class AudienceProtocolMapperState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param includedClientAudience A client ID to include within the token&#39;s `aud` claim. Conflicts with `included_custom_audience`. One of `included_client_audience` or `included_custom_audience` must be specified.
+         * @param includedClientAudience A client ID to include within the token&#39;s `aud` claim. Conflicts with `includedCustomAudience`. One of `includedClientAudience` or `includedCustomAudience` must be specified.
          * 
          * @return builder
          * 
@@ -273,7 +273,7 @@ public final class AudienceProtocolMapperState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param includedCustomAudience A custom audience to include within the token&#39;s `aud` claim. Conflicts with `included_client_audience`. One of `included_client_audience` or `included_custom_audience` must be specified.
+         * @param includedCustomAudience A custom audience to include within the token&#39;s `aud` claim. Conflicts with `includedClientAudience`. One of `includedClientAudience` or `includedCustomAudience` must be specified.
          * 
          * @return builder
          * 
@@ -284,7 +284,7 @@ public final class AudienceProtocolMapperState extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param includedCustomAudience A custom audience to include within the token&#39;s `aud` claim. Conflicts with `included_client_audience`. One of `included_client_audience` or `included_custom_audience` must be specified.
+         * @param includedCustomAudience A custom audience to include within the token&#39;s `aud` claim. Conflicts with `includedClientAudience`. One of `includedClientAudience` or `includedCustomAudience` must be specified.
          * 
          * @return builder
          * 

@@ -87,7 +87,7 @@ namespace Pulumi.Keycloak.Ldap
     public partial class RoleMapper : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// When specified, LDAP role mappings will be mapped to client role mappings tied to this client ID. Can only be set if `use_realm_roles_mapping` is `false`.
+        /// When specified, LDAP role mappings will be mapped to client role mappings tied to this client ID. Can only be set if `UseRealmRolesMapping` is `False`.
         /// </summary>
         [Output("clientId")]
         public Output<string?> ClientId { get; private set; } = null!;
@@ -147,7 +147,7 @@ namespace Pulumi.Keycloak.Ldap
         public Output<string> RealmId { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the LDAP attribute that is used in role objects for the name and RDN of the role. Typically `cn`.
+        /// The name of the LDAP attribute that is used in role objects for the name and RDN of the role. Typically `Cn`.
         /// </summary>
         [Output("roleNameLdapAttribute")]
         public Output<string> RoleNameLdapAttribute { get; private set; } = null!;
@@ -165,7 +165,7 @@ namespace Pulumi.Keycloak.Ldap
         public Output<string?> RolesLdapFilter { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, LDAP role mappings will be mapped to realm roles within Keycloak. Defaults to `true`.
+        /// When `True`, LDAP role mappings will be mapped to realm roles within Keycloak. Defaults to `True`.
         /// </summary>
         [Output("useRealmRolesMapping")]
         public Output<bool?> UseRealmRolesMapping { get; private set; } = null!;
@@ -223,7 +223,7 @@ namespace Pulumi.Keycloak.Ldap
     public sealed class RoleMapperArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// When specified, LDAP role mappings will be mapped to client role mappings tied to this client ID. Can only be set if `use_realm_roles_mapping` is `false`.
+        /// When specified, LDAP role mappings will be mapped to client role mappings tied to this client ID. Can only be set if `UseRealmRolesMapping` is `False`.
         /// </summary>
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
@@ -283,7 +283,7 @@ namespace Pulumi.Keycloak.Ldap
         public Input<string> RealmId { get; set; } = null!;
 
         /// <summary>
-        /// The name of the LDAP attribute that is used in role objects for the name and RDN of the role. Typically `cn`.
+        /// The name of the LDAP attribute that is used in role objects for the name and RDN of the role. Typically `Cn`.
         /// </summary>
         [Input("roleNameLdapAttribute", required: true)]
         public Input<string> RoleNameLdapAttribute { get; set; } = null!;
@@ -307,7 +307,7 @@ namespace Pulumi.Keycloak.Ldap
         public Input<string>? RolesLdapFilter { get; set; }
 
         /// <summary>
-        /// When `true`, LDAP role mappings will be mapped to realm roles within Keycloak. Defaults to `true`.
+        /// When `True`, LDAP role mappings will be mapped to realm roles within Keycloak. Defaults to `True`.
         /// </summary>
         [Input("useRealmRolesMapping")]
         public Input<bool>? UseRealmRolesMapping { get; set; }
@@ -327,7 +327,7 @@ namespace Pulumi.Keycloak.Ldap
     public sealed class RoleMapperState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// When specified, LDAP role mappings will be mapped to client role mappings tied to this client ID. Can only be set if `use_realm_roles_mapping` is `false`.
+        /// When specified, LDAP role mappings will be mapped to client role mappings tied to this client ID. Can only be set if `UseRealmRolesMapping` is `False`.
         /// </summary>
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
@@ -387,7 +387,7 @@ namespace Pulumi.Keycloak.Ldap
         public Input<string>? RealmId { get; set; }
 
         /// <summary>
-        /// The name of the LDAP attribute that is used in role objects for the name and RDN of the role. Typically `cn`.
+        /// The name of the LDAP attribute that is used in role objects for the name and RDN of the role. Typically `Cn`.
         /// </summary>
         [Input("roleNameLdapAttribute")]
         public Input<string>? RoleNameLdapAttribute { get; set; }
@@ -411,7 +411,7 @@ namespace Pulumi.Keycloak.Ldap
         public Input<string>? RolesLdapFilter { get; set; }
 
         /// <summary>
-        /// When `true`, LDAP role mappings will be mapped to realm roles within Keycloak. Defaults to `true`.
+        /// When `True`, LDAP role mappings will be mapped to realm roles within Keycloak. Defaults to `True`.
         /// </summary>
         [Input("useRealmRolesMapping")]
         public Input<bool>? UseRealmRolesMapping { get; set; }

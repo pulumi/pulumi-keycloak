@@ -83,14 +83,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="keycloak:index/defaultGroups:DefaultGroups")
 public class DefaultGroups extends com.pulumi.resources.CustomResource {
     /**
-     * A set of group ids that should be default groups on the realm referenced by `realm_id`.
+     * A set of group ids that should be default groups on the realm referenced by `realmId`.
      * 
      */
     @Export(name="groupIds", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> groupIds;
 
     /**
-     * @return A set of group ids that should be default groups on the realm referenced by `realm_id`.
+     * @return A set of group ids that should be default groups on the realm referenced by `realmId`.
      * 
      */
     public Output<List<String>> groupIds() {

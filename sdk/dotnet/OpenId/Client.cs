@@ -17,11 +17,11 @@ namespace Pulumi.Keycloak.OpenId
     /// in order to take advantage of Keycloak's user sessions for SSO.
     /// 
     /// &gt; **NOTICE:** This resource now supports write-only arguments
-    /// for client secret via the new arguments `client_secret_wo` and `client_secret_wo_version`. Using write-only arguments
-    /// prevents sensitive values from being stored in plan and state files. You cannot use `client_secret_wo` and
-    /// `client_secret_wo_version` alongside `client_secret` as this will result in a validation error due to conflicts.
+    /// for client secret via the new arguments `ClientSecretWo` and `ClientSecretWoVersion`. Using write-only arguments
+    /// prevents sensitive values from being stored in plan and state files. You cannot use `ClientSecretWo` and
+    /// `ClientSecretWoVersion` alongside `ClientSecret` as this will result in a validation error due to conflicts.
     /// &gt; 
-    /// &gt; For backward compatibility, the behavior of the original `client_secret` argument remains unchanged.
+    /// &gt; For backward compatibility, the behavior of the original `ClientSecret` argument remains unchanged.
     /// 
     /// ## Example Usage
     /// 
@@ -155,19 +155,19 @@ namespace Pulumi.Keycloak.OpenId
         public Output<Outputs.ClientAuthenticationFlowBindingOverrides?> AuthenticationFlowBindingOverrides { get; private set; } = null!;
 
         /// <summary>
-        /// When this block is present, fine-grained authorization will be enabled for this client. The client's `access_type` must be `CONFIDENTIAL`, and `service_accounts_enabled` must be `true`. This block has the following arguments:
+        /// When this block is present, fine-grained authorization will be enabled for this client. The client's `AccessType` must be `CONFIDENTIAL`, and `ServiceAccountsEnabled` must be `True`. This block has the following arguments:
         /// </summary>
         [Output("authorization")]
         public Output<Outputs.ClientAuthorization?> Authorization { get; private set; } = null!;
 
         /// <summary>
-        /// Specifying whether a "revoke_offline_access" event is included in the Logout Token when the Backchannel Logout URL is used. Keycloak will revoke offline sessions when receiving a Logout Token with this event.
+        /// Specifying whether a "RevokeOfflineAccess" event is included in the Logout Token when the Backchannel Logout URL is used. Keycloak will revoke offline sessions when receiving a Logout Token with this event.
         /// </summary>
         [Output("backchannelLogoutRevokeOfflineSessions")]
         public Output<bool?> BackchannelLogoutRevokeOfflineSessions { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, a sid (session ID) claim will be included in the logout token when the backchannel logout URL is used. Defaults to `true`.
+        /// When `True`, a sid (session ID) claim will be included in the logout token when the backchannel logout URL is used. Defaults to `True`.
         /// </summary>
         [Output("backchannelLogoutSessionRequired")]
         public Output<bool?> BackchannelLogoutSessionRequired { get; private set; } = null!;
@@ -185,11 +185,11 @@ namespace Pulumi.Keycloak.OpenId
         public Output<string> BaseUrl { get; private set; } = null!;
 
         /// <summary>
-        /// Defaults to `client-secret`. The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. A default Keycloak installation will have the following available types:
+        /// Defaults to `client-secret`. The authenticator type for clients with an `AccessType` of `CONFIDENTIAL` or `BEARER-ONLY`. A default Keycloak installation will have the following available types:
         /// - `client-secret` (Default) Use client id and client secret to authenticate client.
-        /// - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
-        /// - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extra_config` with `attributes.x509.subjectdn = &lt;subjectDn&gt;`
-        /// - `client-secret-jwt` Use signed JWT with client secret to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
+        /// - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `ExtraConfig` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
+        /// - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `ExtraConfig` with `attributes.x509.subjectdn = &lt;subjectDn&gt;`
+        /// - `client-secret-jwt` Use signed JWT with client secret to authenticate client. Set signing algorithm in `ExtraConfig` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
         /// </summary>
         [Output("clientAuthenticatorType")]
         public Output<string?> ClientAuthenticatorType { get; private set; } = null!;
@@ -213,13 +213,13 @@ namespace Pulumi.Keycloak.OpenId
         public Output<string> ClientOfflineSessionMaxLifespan { get; private set; } = null!;
 
         /// <summary>
-        /// The secret for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. This value is sensitive and should be treated with the same care as a password. If omitted, this will be generated by Keycloak.
+        /// The secret for clients with an `AccessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This value is sensitive and should be treated with the same care as a password. If omitted, this will be generated by Keycloak.
         /// </summary>
         [Output("clientSecret")]
         public Output<string> ClientSecret { get; private set; } = null!;
 
         /// <summary>
-        /// Arbitrary map of values that, when changed, will trigger rotation of the secret. NOTE! Conflicts with `client_secret`, `client_secret_wo` and `client_secret_wo_version` attribute and can't be used together
+        /// Arbitrary map of values that, when changed, will trigger rotation of the secret. NOTE! Conflicts with `ClientSecret`, `ClientSecretWo` and `ClientSecretWoVersion` attribute and can't be used together
         /// </summary>
         [Output("clientSecretRegenerateWhenChanged")]
         public Output<ImmutableDictionary<string, string>?> ClientSecretRegenerateWhenChanged { get; private set; } = null!;
@@ -243,13 +243,13 @@ namespace Pulumi.Keycloak.OpenId
         public Output<string> ClientSessionMaxLifespan { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, users have to consent to client access. Defaults to `false`.
+        /// When `True`, users have to consent to client access. Defaults to `False`.
         /// </summary>
         [Output("consentRequired")]
         public Output<bool> ConsentRequired { get; private set; } = null!;
 
         /// <summary>
-        /// The text to display on the consent screen about permissions specific to this client. This is applicable only when `display_on_consent_screen` is `true`.
+        /// The text to display on the consent screen about permissions specific to this client. This is applicable only when `DisplayOnConsentScreen` is `True`.
         /// </summary>
         [Output("consentScreenText")]
         public Output<string> ConsentScreenText { get; private set; } = null!;
@@ -261,31 +261,31 @@ namespace Pulumi.Keycloak.OpenId
         public Output<string> Description { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to `false`.
+        /// When `True`, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to `False`.
         /// </summary>
         [Output("directAccessGrantsEnabled")]
         public Output<bool> DirectAccessGrantsEnabled { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, the consent screen will display information about the client itself. Defaults to `false`. This is applicable only when `consent_required` is `true`.
+        /// When `True`, the consent screen will display information about the client itself. Defaults to `False`. This is applicable only when `ConsentRequired` is `True`.
         /// </summary>
         [Output("displayOnConsentScreen")]
         public Output<bool> DisplayOnConsentScreen { get; private set; } = null!;
 
         /// <summary>
-        /// When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
+        /// When `False`, this client will not be able to initiate a login or obtain access tokens. Defaults to `True`.
         /// </summary>
         [Output("enabled")]
         public Output<bool?> Enabled { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, the parameter `iss` will not be included in OpenID Connect Authentication Response.
+        /// When `True`, the parameter `Iss` will not be included in OpenID Connect Authentication Response.
         /// </summary>
         [Output("excludeIssuerFromAuthResponse")]
         public Output<bool> ExcludeIssuerFromAuthResponse { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, the parameter `session_state` will not be included in OpenID Connect Authentication Response.
+        /// When `True`, the parameter `SessionState` will not be included in OpenID Connect Authentication Response.
         /// </summary>
         [Output("excludeSessionStateFromAuthResponse")]
         public Output<bool> ExcludeSessionStateFromAuthResponse { get; private set; } = null!;
@@ -294,13 +294,13 @@ namespace Pulumi.Keycloak.OpenId
         public Output<ImmutableDictionary<string, string>?> ExtraConfig { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, frontchannel logout will be enabled for this client. Specify the url with `frontchannel_logout_url`. Defaults to `false`.
+        /// When `True`, frontchannel logout will be enabled for this client. Specify the url with `FrontchannelLogoutUrl`. Defaults to `False`.
         /// </summary>
         [Output("frontchannelLogoutEnabled")]
         public Output<bool> FrontchannelLogoutEnabled { get; private set; } = null!;
 
         /// <summary>
-        /// The frontchannel logout url. This is applicable only when `frontchannel_logout_enabled` is `true`.
+        /// The frontchannel logout url. This is applicable only when `FrontchannelLogoutEnabled` is `True`.
         /// </summary>
         [Output("frontchannelLogoutUrl")]
         public Output<string?> FrontchannelLogoutUrl { get; private set; } = null!;
@@ -312,13 +312,13 @@ namespace Pulumi.Keycloak.OpenId
         public Output<bool?> FullScopeAllowed { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, the OAuth2 Implicit Grant will be enabled for this client. Defaults to `false`.
+        /// When `True`, the OAuth2 Implicit Grant will be enabled for this client. Defaults to `False`.
         /// </summary>
         [Output("implicitFlowEnabled")]
         public Output<bool> ImplicitFlowEnabled { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, the client with the specified `client_id` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with clients that Keycloak creates automatically during realm creation, such as `account` and `admin-cli`. Note, that the client will not be removed during destruction if `import` is `true`.
+        /// When `True`, the client with the specified `ClientId` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with clients that Keycloak creates automatically during realm creation, such as `Account` and `admin-cli`. Note, that the client will not be removed during destruction if `Import` is `True`.
         /// </summary>
         [Output("import")]
         public Output<bool?> Import { get; private set; } = null!;
@@ -354,7 +354,7 @@ namespace Pulumi.Keycloak.OpenId
         public Output<string?> Oauth2DevicePollingInterval { get; private set; } = null!;
 
         /// <summary>
-        /// The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
+        /// The challenge method to use for Proof Key for Code Exchange. Can be either `Plain` or `S256` or set to empty value ``.
         /// </summary>
         [Output("pkceCodeChallengeMethod")]
         public Output<string?> PkceCodeChallengeMethod { get; private set; } = null!;
@@ -372,7 +372,7 @@ namespace Pulumi.Keycloak.OpenId
         public Output<string> ResourceServerId { get; private set; } = null!;
 
         /// <summary>
-        /// When specified, this URL is prepended to any relative URLs found within `valid_redirect_uris`, `web_origins`, and `admin_url`. NOTE: Due to limitations in the Keycloak API, when the `root_url` attribute is used, the `valid_redirect_uris`, `web_origins`, and `admin_url` attributes will be required.
+        /// When specified, this URL is prepended to any relative URLs found within `ValidRedirectUris`, `WebOrigins`, and `AdminUrl`. NOTE: Due to limitations in the Keycloak API, when the `RootUrl` attribute is used, the `ValidRedirectUris`, `WebOrigins`, and `AdminUrl` attributes will be required.
         /// </summary>
         [Output("rootUrl")]
         public Output<string> RootUrl { get; private set; } = null!;
@@ -384,13 +384,13 @@ namespace Pulumi.Keycloak.OpenId
         public Output<string> ServiceAccountUserId { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
+        /// When `True`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `False`.
         /// </summary>
         [Output("serviceAccountsEnabled")]
         public Output<bool> ServiceAccountsEnabled { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
+        /// When `True`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `False`.
         /// </summary>
         [Output("standardFlowEnabled")]
         public Output<bool> StandardFlowEnabled { get; private set; } = null!;
@@ -399,13 +399,13 @@ namespace Pulumi.Keycloak.OpenId
         public Output<bool?> StandardTokenExchangeEnabled { get; private set; } = null!;
 
         /// <summary>
-        /// If this is `true`, a refresh_token will be created and added to the token response. If this is `false` then no refresh_token will be generated.  Defaults to `true`.
+        /// If this is `True`, a RefreshToken will be created and added to the token response. If this is `False` then no RefreshToken will be generated.  Defaults to `True`.
         /// </summary>
         [Output("useRefreshTokens")]
         public Output<bool?> UseRefreshTokens { get; private set; } = null!;
 
         /// <summary>
-        /// If this is `true`, a refresh_token will be created and added to the token response if the client_credentials grant is used and a user session will be created. If this is `false` then no refresh_token will be generated and the associated user session will be removed, in accordance with OAuth 2.0 RFC6749 Section 4.4.3. Defaults to `false`.
+        /// If this is `True`, a RefreshToken will be created and added to the token response if the ClientCredentials grant is used and a user session will be created. If this is `False` then no RefreshToken will be generated and the associated user session will be removed, in accordance with OAuth 2.0 RFC6749 Section 4.4.3. Defaults to `False`.
         /// </summary>
         [Output("useRefreshTokensClientCredentials")]
         public Output<bool?> UseRefreshTokensClientCredentials { get; private set; } = null!;
@@ -418,8 +418,8 @@ namespace Pulumi.Keycloak.OpenId
 
         /// <summary>
         /// A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
-        /// wildcards in the form of an asterisk can be used here. This attribute must be set if either `standard_flow_enabled` or `implicit_flow_enabled`
-        /// is set to `true`.
+        /// wildcards in the form of an asterisk can be used here. This attribute must be set if either `StandardFlowEnabled` or `ImplicitFlowEnabled`
+        /// is set to `True`.
         /// </summary>
         [Output("validRedirectUris")]
         public Output<ImmutableArray<string>> ValidRedirectUris { get; private set; } = null!;
@@ -519,19 +519,19 @@ namespace Pulumi.Keycloak.OpenId
         public Input<Inputs.ClientAuthenticationFlowBindingOverridesArgs>? AuthenticationFlowBindingOverrides { get; set; }
 
         /// <summary>
-        /// When this block is present, fine-grained authorization will be enabled for this client. The client's `access_type` must be `CONFIDENTIAL`, and `service_accounts_enabled` must be `true`. This block has the following arguments:
+        /// When this block is present, fine-grained authorization will be enabled for this client. The client's `AccessType` must be `CONFIDENTIAL`, and `ServiceAccountsEnabled` must be `True`. This block has the following arguments:
         /// </summary>
         [Input("authorization")]
         public Input<Inputs.ClientAuthorizationArgs>? Authorization { get; set; }
 
         /// <summary>
-        /// Specifying whether a "revoke_offline_access" event is included in the Logout Token when the Backchannel Logout URL is used. Keycloak will revoke offline sessions when receiving a Logout Token with this event.
+        /// Specifying whether a "RevokeOfflineAccess" event is included in the Logout Token when the Backchannel Logout URL is used. Keycloak will revoke offline sessions when receiving a Logout Token with this event.
         /// </summary>
         [Input("backchannelLogoutRevokeOfflineSessions")]
         public Input<bool>? BackchannelLogoutRevokeOfflineSessions { get; set; }
 
         /// <summary>
-        /// When `true`, a sid (session ID) claim will be included in the logout token when the backchannel logout URL is used. Defaults to `true`.
+        /// When `True`, a sid (session ID) claim will be included in the logout token when the backchannel logout URL is used. Defaults to `True`.
         /// </summary>
         [Input("backchannelLogoutSessionRequired")]
         public Input<bool>? BackchannelLogoutSessionRequired { get; set; }
@@ -549,11 +549,11 @@ namespace Pulumi.Keycloak.OpenId
         public Input<string>? BaseUrl { get; set; }
 
         /// <summary>
-        /// Defaults to `client-secret`. The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. A default Keycloak installation will have the following available types:
+        /// Defaults to `client-secret`. The authenticator type for clients with an `AccessType` of `CONFIDENTIAL` or `BEARER-ONLY`. A default Keycloak installation will have the following available types:
         /// - `client-secret` (Default) Use client id and client secret to authenticate client.
-        /// - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
-        /// - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extra_config` with `attributes.x509.subjectdn = &lt;subjectDn&gt;`
-        /// - `client-secret-jwt` Use signed JWT with client secret to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
+        /// - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `ExtraConfig` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
+        /// - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `ExtraConfig` with `attributes.x509.subjectdn = &lt;subjectDn&gt;`
+        /// - `client-secret-jwt` Use signed JWT with client secret to authenticate client. Set signing algorithm in `ExtraConfig` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
         /// </summary>
         [Input("clientAuthenticatorType")]
         public Input<string>? ClientAuthenticatorType { get; set; }
@@ -580,7 +580,7 @@ namespace Pulumi.Keycloak.OpenId
         private Input<string>? _clientSecret;
 
         /// <summary>
-        /// The secret for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. This value is sensitive and should be treated with the same care as a password. If omitted, this will be generated by Keycloak.
+        /// The secret for clients with an `AccessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This value is sensitive and should be treated with the same care as a password. If omitted, this will be generated by Keycloak.
         /// </summary>
         public Input<string>? ClientSecret
         {
@@ -596,7 +596,7 @@ namespace Pulumi.Keycloak.OpenId
         private InputMap<string>? _clientSecretRegenerateWhenChanged;
 
         /// <summary>
-        /// Arbitrary map of values that, when changed, will trigger rotation of the secret. NOTE! Conflicts with `client_secret`, `client_secret_wo` and `client_secret_wo_version` attribute and can't be used together
+        /// Arbitrary map of values that, when changed, will trigger rotation of the secret. NOTE! Conflicts with `ClientSecret`, `ClientSecretWo` and `ClientSecretWoVersion` attribute and can't be used together
         /// </summary>
         public InputMap<string> ClientSecretRegenerateWhenChanged
         {
@@ -623,13 +623,13 @@ namespace Pulumi.Keycloak.OpenId
         public Input<string>? ClientSessionMaxLifespan { get; set; }
 
         /// <summary>
-        /// When `true`, users have to consent to client access. Defaults to `false`.
+        /// When `True`, users have to consent to client access. Defaults to `False`.
         /// </summary>
         [Input("consentRequired")]
         public Input<bool>? ConsentRequired { get; set; }
 
         /// <summary>
-        /// The text to display on the consent screen about permissions specific to this client. This is applicable only when `display_on_consent_screen` is `true`.
+        /// The text to display on the consent screen about permissions specific to this client. This is applicable only when `DisplayOnConsentScreen` is `True`.
         /// </summary>
         [Input("consentScreenText")]
         public Input<string>? ConsentScreenText { get; set; }
@@ -641,31 +641,31 @@ namespace Pulumi.Keycloak.OpenId
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// When `true`, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to `false`.
+        /// When `True`, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to `False`.
         /// </summary>
         [Input("directAccessGrantsEnabled")]
         public Input<bool>? DirectAccessGrantsEnabled { get; set; }
 
         /// <summary>
-        /// When `true`, the consent screen will display information about the client itself. Defaults to `false`. This is applicable only when `consent_required` is `true`.
+        /// When `True`, the consent screen will display information about the client itself. Defaults to `False`. This is applicable only when `ConsentRequired` is `True`.
         /// </summary>
         [Input("displayOnConsentScreen")]
         public Input<bool>? DisplayOnConsentScreen { get; set; }
 
         /// <summary>
-        /// When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
+        /// When `False`, this client will not be able to initiate a login or obtain access tokens. Defaults to `True`.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
         /// <summary>
-        /// When `true`, the parameter `iss` will not be included in OpenID Connect Authentication Response.
+        /// When `True`, the parameter `Iss` will not be included in OpenID Connect Authentication Response.
         /// </summary>
         [Input("excludeIssuerFromAuthResponse")]
         public Input<bool>? ExcludeIssuerFromAuthResponse { get; set; }
 
         /// <summary>
-        /// When `true`, the parameter `session_state` will not be included in OpenID Connect Authentication Response.
+        /// When `True`, the parameter `SessionState` will not be included in OpenID Connect Authentication Response.
         /// </summary>
         [Input("excludeSessionStateFromAuthResponse")]
         public Input<bool>? ExcludeSessionStateFromAuthResponse { get; set; }
@@ -679,13 +679,13 @@ namespace Pulumi.Keycloak.OpenId
         }
 
         /// <summary>
-        /// When `true`, frontchannel logout will be enabled for this client. Specify the url with `frontchannel_logout_url`. Defaults to `false`.
+        /// When `True`, frontchannel logout will be enabled for this client. Specify the url with `FrontchannelLogoutUrl`. Defaults to `False`.
         /// </summary>
         [Input("frontchannelLogoutEnabled")]
         public Input<bool>? FrontchannelLogoutEnabled { get; set; }
 
         /// <summary>
-        /// The frontchannel logout url. This is applicable only when `frontchannel_logout_enabled` is `true`.
+        /// The frontchannel logout url. This is applicable only when `FrontchannelLogoutEnabled` is `True`.
         /// </summary>
         [Input("frontchannelLogoutUrl")]
         public Input<string>? FrontchannelLogoutUrl { get; set; }
@@ -697,13 +697,13 @@ namespace Pulumi.Keycloak.OpenId
         public Input<bool>? FullScopeAllowed { get; set; }
 
         /// <summary>
-        /// When `true`, the OAuth2 Implicit Grant will be enabled for this client. Defaults to `false`.
+        /// When `True`, the OAuth2 Implicit Grant will be enabled for this client. Defaults to `False`.
         /// </summary>
         [Input("implicitFlowEnabled")]
         public Input<bool>? ImplicitFlowEnabled { get; set; }
 
         /// <summary>
-        /// When `true`, the client with the specified `client_id` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with clients that Keycloak creates automatically during realm creation, such as `account` and `admin-cli`. Note, that the client will not be removed during destruction if `import` is `true`.
+        /// When `True`, the client with the specified `ClientId` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with clients that Keycloak creates automatically during realm creation, such as `Account` and `admin-cli`. Note, that the client will not be removed during destruction if `Import` is `True`.
         /// </summary>
         [Input("import")]
         public Input<bool>? Import { get; set; }
@@ -739,7 +739,7 @@ namespace Pulumi.Keycloak.OpenId
         public Input<string>? Oauth2DevicePollingInterval { get; set; }
 
         /// <summary>
-        /// The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
+        /// The challenge method to use for Proof Key for Code Exchange. Can be either `Plain` or `S256` or set to empty value ``.
         /// </summary>
         [Input("pkceCodeChallengeMethod")]
         public Input<string>? PkceCodeChallengeMethod { get; set; }
@@ -751,19 +751,19 @@ namespace Pulumi.Keycloak.OpenId
         public Input<string> RealmId { get; set; } = null!;
 
         /// <summary>
-        /// When specified, this URL is prepended to any relative URLs found within `valid_redirect_uris`, `web_origins`, and `admin_url`. NOTE: Due to limitations in the Keycloak API, when the `root_url` attribute is used, the `valid_redirect_uris`, `web_origins`, and `admin_url` attributes will be required.
+        /// When specified, this URL is prepended to any relative URLs found within `ValidRedirectUris`, `WebOrigins`, and `AdminUrl`. NOTE: Due to limitations in the Keycloak API, when the `RootUrl` attribute is used, the `ValidRedirectUris`, `WebOrigins`, and `AdminUrl` attributes will be required.
         /// </summary>
         [Input("rootUrl")]
         public Input<string>? RootUrl { get; set; }
 
         /// <summary>
-        /// When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
+        /// When `True`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `False`.
         /// </summary>
         [Input("serviceAccountsEnabled")]
         public Input<bool>? ServiceAccountsEnabled { get; set; }
 
         /// <summary>
-        /// When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
+        /// When `True`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `False`.
         /// </summary>
         [Input("standardFlowEnabled")]
         public Input<bool>? StandardFlowEnabled { get; set; }
@@ -772,13 +772,13 @@ namespace Pulumi.Keycloak.OpenId
         public Input<bool>? StandardTokenExchangeEnabled { get; set; }
 
         /// <summary>
-        /// If this is `true`, a refresh_token will be created and added to the token response. If this is `false` then no refresh_token will be generated.  Defaults to `true`.
+        /// If this is `True`, a RefreshToken will be created and added to the token response. If this is `False` then no RefreshToken will be generated.  Defaults to `True`.
         /// </summary>
         [Input("useRefreshTokens")]
         public Input<bool>? UseRefreshTokens { get; set; }
 
         /// <summary>
-        /// If this is `true`, a refresh_token will be created and added to the token response if the client_credentials grant is used and a user session will be created. If this is `false` then no refresh_token will be generated and the associated user session will be removed, in accordance with OAuth 2.0 RFC6749 Section 4.4.3. Defaults to `false`.
+        /// If this is `True`, a RefreshToken will be created and added to the token response if the ClientCredentials grant is used and a user session will be created. If this is `False` then no RefreshToken will be generated and the associated user session will be removed, in accordance with OAuth 2.0 RFC6749 Section 4.4.3. Defaults to `False`.
         /// </summary>
         [Input("useRefreshTokensClientCredentials")]
         public Input<bool>? UseRefreshTokensClientCredentials { get; set; }
@@ -800,8 +800,8 @@ namespace Pulumi.Keycloak.OpenId
 
         /// <summary>
         /// A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
-        /// wildcards in the form of an asterisk can be used here. This attribute must be set if either `standard_flow_enabled` or `implicit_flow_enabled`
-        /// is set to `true`.
+        /// wildcards in the form of an asterisk can be used here. This attribute must be set if either `StandardFlowEnabled` or `ImplicitFlowEnabled`
+        /// is set to `True`.
         /// </summary>
         public InputList<string> ValidRedirectUris
         {
@@ -868,19 +868,19 @@ namespace Pulumi.Keycloak.OpenId
         public Input<Inputs.ClientAuthenticationFlowBindingOverridesGetArgs>? AuthenticationFlowBindingOverrides { get; set; }
 
         /// <summary>
-        /// When this block is present, fine-grained authorization will be enabled for this client. The client's `access_type` must be `CONFIDENTIAL`, and `service_accounts_enabled` must be `true`. This block has the following arguments:
+        /// When this block is present, fine-grained authorization will be enabled for this client. The client's `AccessType` must be `CONFIDENTIAL`, and `ServiceAccountsEnabled` must be `True`. This block has the following arguments:
         /// </summary>
         [Input("authorization")]
         public Input<Inputs.ClientAuthorizationGetArgs>? Authorization { get; set; }
 
         /// <summary>
-        /// Specifying whether a "revoke_offline_access" event is included in the Logout Token when the Backchannel Logout URL is used. Keycloak will revoke offline sessions when receiving a Logout Token with this event.
+        /// Specifying whether a "RevokeOfflineAccess" event is included in the Logout Token when the Backchannel Logout URL is used. Keycloak will revoke offline sessions when receiving a Logout Token with this event.
         /// </summary>
         [Input("backchannelLogoutRevokeOfflineSessions")]
         public Input<bool>? BackchannelLogoutRevokeOfflineSessions { get; set; }
 
         /// <summary>
-        /// When `true`, a sid (session ID) claim will be included in the logout token when the backchannel logout URL is used. Defaults to `true`.
+        /// When `True`, a sid (session ID) claim will be included in the logout token when the backchannel logout URL is used. Defaults to `True`.
         /// </summary>
         [Input("backchannelLogoutSessionRequired")]
         public Input<bool>? BackchannelLogoutSessionRequired { get; set; }
@@ -898,11 +898,11 @@ namespace Pulumi.Keycloak.OpenId
         public Input<string>? BaseUrl { get; set; }
 
         /// <summary>
-        /// Defaults to `client-secret`. The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. A default Keycloak installation will have the following available types:
+        /// Defaults to `client-secret`. The authenticator type for clients with an `AccessType` of `CONFIDENTIAL` or `BEARER-ONLY`. A default Keycloak installation will have the following available types:
         /// - `client-secret` (Default) Use client id and client secret to authenticate client.
-        /// - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
-        /// - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extra_config` with `attributes.x509.subjectdn = &lt;subjectDn&gt;`
-        /// - `client-secret-jwt` Use signed JWT with client secret to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
+        /// - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `ExtraConfig` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
+        /// - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `ExtraConfig` with `attributes.x509.subjectdn = &lt;subjectDn&gt;`
+        /// - `client-secret-jwt` Use signed JWT with client secret to authenticate client. Set signing algorithm in `ExtraConfig` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
         /// </summary>
         [Input("clientAuthenticatorType")]
         public Input<string>? ClientAuthenticatorType { get; set; }
@@ -929,7 +929,7 @@ namespace Pulumi.Keycloak.OpenId
         private Input<string>? _clientSecret;
 
         /// <summary>
-        /// The secret for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. This value is sensitive and should be treated with the same care as a password. If omitted, this will be generated by Keycloak.
+        /// The secret for clients with an `AccessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This value is sensitive and should be treated with the same care as a password. If omitted, this will be generated by Keycloak.
         /// </summary>
         public Input<string>? ClientSecret
         {
@@ -945,7 +945,7 @@ namespace Pulumi.Keycloak.OpenId
         private InputMap<string>? _clientSecretRegenerateWhenChanged;
 
         /// <summary>
-        /// Arbitrary map of values that, when changed, will trigger rotation of the secret. NOTE! Conflicts with `client_secret`, `client_secret_wo` and `client_secret_wo_version` attribute and can't be used together
+        /// Arbitrary map of values that, when changed, will trigger rotation of the secret. NOTE! Conflicts with `ClientSecret`, `ClientSecretWo` and `ClientSecretWoVersion` attribute and can't be used together
         /// </summary>
         public InputMap<string> ClientSecretRegenerateWhenChanged
         {
@@ -972,13 +972,13 @@ namespace Pulumi.Keycloak.OpenId
         public Input<string>? ClientSessionMaxLifespan { get; set; }
 
         /// <summary>
-        /// When `true`, users have to consent to client access. Defaults to `false`.
+        /// When `True`, users have to consent to client access. Defaults to `False`.
         /// </summary>
         [Input("consentRequired")]
         public Input<bool>? ConsentRequired { get; set; }
 
         /// <summary>
-        /// The text to display on the consent screen about permissions specific to this client. This is applicable only when `display_on_consent_screen` is `true`.
+        /// The text to display on the consent screen about permissions specific to this client. This is applicable only when `DisplayOnConsentScreen` is `True`.
         /// </summary>
         [Input("consentScreenText")]
         public Input<string>? ConsentScreenText { get; set; }
@@ -990,31 +990,31 @@ namespace Pulumi.Keycloak.OpenId
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// When `true`, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to `false`.
+        /// When `True`, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to `False`.
         /// </summary>
         [Input("directAccessGrantsEnabled")]
         public Input<bool>? DirectAccessGrantsEnabled { get; set; }
 
         /// <summary>
-        /// When `true`, the consent screen will display information about the client itself. Defaults to `false`. This is applicable only when `consent_required` is `true`.
+        /// When `True`, the consent screen will display information about the client itself. Defaults to `False`. This is applicable only when `ConsentRequired` is `True`.
         /// </summary>
         [Input("displayOnConsentScreen")]
         public Input<bool>? DisplayOnConsentScreen { get; set; }
 
         /// <summary>
-        /// When `false`, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
+        /// When `False`, this client will not be able to initiate a login or obtain access tokens. Defaults to `True`.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
         /// <summary>
-        /// When `true`, the parameter `iss` will not be included in OpenID Connect Authentication Response.
+        /// When `True`, the parameter `Iss` will not be included in OpenID Connect Authentication Response.
         /// </summary>
         [Input("excludeIssuerFromAuthResponse")]
         public Input<bool>? ExcludeIssuerFromAuthResponse { get; set; }
 
         /// <summary>
-        /// When `true`, the parameter `session_state` will not be included in OpenID Connect Authentication Response.
+        /// When `True`, the parameter `SessionState` will not be included in OpenID Connect Authentication Response.
         /// </summary>
         [Input("excludeSessionStateFromAuthResponse")]
         public Input<bool>? ExcludeSessionStateFromAuthResponse { get; set; }
@@ -1028,13 +1028,13 @@ namespace Pulumi.Keycloak.OpenId
         }
 
         /// <summary>
-        /// When `true`, frontchannel logout will be enabled for this client. Specify the url with `frontchannel_logout_url`. Defaults to `false`.
+        /// When `True`, frontchannel logout will be enabled for this client. Specify the url with `FrontchannelLogoutUrl`. Defaults to `False`.
         /// </summary>
         [Input("frontchannelLogoutEnabled")]
         public Input<bool>? FrontchannelLogoutEnabled { get; set; }
 
         /// <summary>
-        /// The frontchannel logout url. This is applicable only when `frontchannel_logout_enabled` is `true`.
+        /// The frontchannel logout url. This is applicable only when `FrontchannelLogoutEnabled` is `True`.
         /// </summary>
         [Input("frontchannelLogoutUrl")]
         public Input<string>? FrontchannelLogoutUrl { get; set; }
@@ -1046,13 +1046,13 @@ namespace Pulumi.Keycloak.OpenId
         public Input<bool>? FullScopeAllowed { get; set; }
 
         /// <summary>
-        /// When `true`, the OAuth2 Implicit Grant will be enabled for this client. Defaults to `false`.
+        /// When `True`, the OAuth2 Implicit Grant will be enabled for this client. Defaults to `False`.
         /// </summary>
         [Input("implicitFlowEnabled")]
         public Input<bool>? ImplicitFlowEnabled { get; set; }
 
         /// <summary>
-        /// When `true`, the client with the specified `client_id` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with clients that Keycloak creates automatically during realm creation, such as `account` and `admin-cli`. Note, that the client will not be removed during destruction if `import` is `true`.
+        /// When `True`, the client with the specified `ClientId` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with clients that Keycloak creates automatically during realm creation, such as `Account` and `admin-cli`. Note, that the client will not be removed during destruction if `Import` is `True`.
         /// </summary>
         [Input("import")]
         public Input<bool>? Import { get; set; }
@@ -1088,7 +1088,7 @@ namespace Pulumi.Keycloak.OpenId
         public Input<string>? Oauth2DevicePollingInterval { get; set; }
 
         /// <summary>
-        /// The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
+        /// The challenge method to use for Proof Key for Code Exchange. Can be either `Plain` or `S256` or set to empty value ``.
         /// </summary>
         [Input("pkceCodeChallengeMethod")]
         public Input<string>? PkceCodeChallengeMethod { get; set; }
@@ -1106,7 +1106,7 @@ namespace Pulumi.Keycloak.OpenId
         public Input<string>? ResourceServerId { get; set; }
 
         /// <summary>
-        /// When specified, this URL is prepended to any relative URLs found within `valid_redirect_uris`, `web_origins`, and `admin_url`. NOTE: Due to limitations in the Keycloak API, when the `root_url` attribute is used, the `valid_redirect_uris`, `web_origins`, and `admin_url` attributes will be required.
+        /// When specified, this URL is prepended to any relative URLs found within `ValidRedirectUris`, `WebOrigins`, and `AdminUrl`. NOTE: Due to limitations in the Keycloak API, when the `RootUrl` attribute is used, the `ValidRedirectUris`, `WebOrigins`, and `AdminUrl` attributes will be required.
         /// </summary>
         [Input("rootUrl")]
         public Input<string>? RootUrl { get; set; }
@@ -1118,13 +1118,13 @@ namespace Pulumi.Keycloak.OpenId
         public Input<string>? ServiceAccountUserId { get; set; }
 
         /// <summary>
-        /// When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
+        /// When `True`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `False`.
         /// </summary>
         [Input("serviceAccountsEnabled")]
         public Input<bool>? ServiceAccountsEnabled { get; set; }
 
         /// <summary>
-        /// When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
+        /// When `True`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `False`.
         /// </summary>
         [Input("standardFlowEnabled")]
         public Input<bool>? StandardFlowEnabled { get; set; }
@@ -1133,13 +1133,13 @@ namespace Pulumi.Keycloak.OpenId
         public Input<bool>? StandardTokenExchangeEnabled { get; set; }
 
         /// <summary>
-        /// If this is `true`, a refresh_token will be created and added to the token response. If this is `false` then no refresh_token will be generated.  Defaults to `true`.
+        /// If this is `True`, a RefreshToken will be created and added to the token response. If this is `False` then no RefreshToken will be generated.  Defaults to `True`.
         /// </summary>
         [Input("useRefreshTokens")]
         public Input<bool>? UseRefreshTokens { get; set; }
 
         /// <summary>
-        /// If this is `true`, a refresh_token will be created and added to the token response if the client_credentials grant is used and a user session will be created. If this is `false` then no refresh_token will be generated and the associated user session will be removed, in accordance with OAuth 2.0 RFC6749 Section 4.4.3. Defaults to `false`.
+        /// If this is `True`, a RefreshToken will be created and added to the token response if the ClientCredentials grant is used and a user session will be created. If this is `False` then no RefreshToken will be generated and the associated user session will be removed, in accordance with OAuth 2.0 RFC6749 Section 4.4.3. Defaults to `False`.
         /// </summary>
         [Input("useRefreshTokensClientCredentials")]
         public Input<bool>? UseRefreshTokensClientCredentials { get; set; }
@@ -1161,8 +1161,8 @@ namespace Pulumi.Keycloak.OpenId
 
         /// <summary>
         /// A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
-        /// wildcards in the form of an asterisk can be used here. This attribute must be set if either `standard_flow_enabled` or `implicit_flow_enabled`
-        /// is set to `true`.
+        /// wildcards in the form of an asterisk can be used here. This attribute must be set if either `StandardFlowEnabled` or `ImplicitFlowEnabled`
+        /// is set to `True`.
         /// </summary>
         public InputList<string> ValidRedirectUris
         {

@@ -63,13 +63,13 @@ namespace Pulumi.Keycloak.Oidc
     public partial class GoogleIdentityProvider : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// When `true`, unauthenticated requests with `prompt=none` will be forwarded to Google instead of returning an error. Defaults to `false`.
+        /// When `True`, unauthenticated requests with `prompt=none` will be forwarded to Google instead of returning an error. Defaults to `False`.
         /// </summary>
         [Output("acceptsPromptNoneForwardFromClient")]
         public Output<bool?> AcceptsPromptNoneForwardFromClient { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
+        /// When `True`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `False`.
         /// </summary>
         [Output("addReadTokenRoleOnCreate")]
         public Output<bool?> AddReadTokenRoleOnCreate { get; private set; } = null!;
@@ -105,7 +105,7 @@ namespace Pulumi.Keycloak.Oidc
         public Output<string?> DefaultScopes { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
+        /// When `True`, disables the usage of the user info service to obtain additional user information. Defaults to `False`.
         /// </summary>
         [Output("disableUserInfo")]
         public Output<bool?> DisableUserInfo { get; private set; } = null!;
@@ -117,7 +117,7 @@ namespace Pulumi.Keycloak.Oidc
         public Output<string> DisplayName { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
+        /// When `True`, users will be able to log in to this realm using this identity provider. Defaults to `True`.
         /// </summary>
         [Output("enabled")]
         public Output<bool?> Enabled { get; private set; } = null!;
@@ -138,7 +138,7 @@ namespace Pulumi.Keycloak.Oidc
         public Output<string?> GuiOrder { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, this identity provider will be hidden on the login page. Defaults to `false`.
+        /// When `True`, this identity provider will be hidden on the login page. Defaults to `False`.
         /// </summary>
         [Output("hideOnLoginPage")]
         public Output<bool?> HideOnLoginPage { get; private set; } = null!;
@@ -156,7 +156,7 @@ namespace Pulumi.Keycloak.Oidc
         public Output<string> InternalId { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+        /// When `True`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `False`.
         /// </summary>
         [Output("linkOnly")]
         public Output<bool?> LinkOnly { get; private set; } = null!;
@@ -180,7 +180,7 @@ namespace Pulumi.Keycloak.Oidc
         public Output<string?> PostBrokerLoginFlowAlias { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the identity provider to use. Defaults to `google`, which should be used unless you have extended Keycloak and provided your own implementation.
+        /// The ID of the identity provider to use. Defaults to `Google`, which should be used unless you have extended Keycloak and provided your own implementation.
         /// </summary>
         [Output("providerId")]
         public Output<string?> ProviderId { get; private set; } = null!;
@@ -192,13 +192,13 @@ namespace Pulumi.Keycloak.Oidc
         public Output<string> Realm { get; private set; } = null!;
 
         /// <summary>
-        /// Sets the "access_type" query parameter to "offline" when redirecting to google authorization endpoint,to get a refresh token back. This is useful for using Token Exchange to retrieve a Google token to access Google APIs when the user is offline.
+        /// Sets the "AccessType" query parameter to "offline" when redirecting to google authorization endpoint,to get a refresh token back. This is useful for using Token Exchange to retrieve a Google token to access Google APIs when the user is offline.
         /// </summary>
         [Output("requestRefreshToken")]
         public Output<bool?> RequestRefreshToken { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, tokens will be stored after authenticating users. Defaults to `true`.
+        /// When `True`, tokens will be stored after authenticating users. Defaults to `True`.
         /// </summary>
         [Output("storeToken")]
         public Output<bool?> StoreToken { get; private set; } = null!;
@@ -210,7 +210,7 @@ namespace Pulumi.Keycloak.Oidc
         public Output<string?> SyncMode { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
+        /// When `True`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `False`.
         /// </summary>
         [Output("trustEmail")]
         public Output<bool?> TrustEmail { get; private set; } = null!;
@@ -272,13 +272,13 @@ namespace Pulumi.Keycloak.Oidc
     public sealed class GoogleIdentityProviderArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// When `true`, unauthenticated requests with `prompt=none` will be forwarded to Google instead of returning an error. Defaults to `false`.
+        /// When `True`, unauthenticated requests with `prompt=none` will be forwarded to Google instead of returning an error. Defaults to `False`.
         /// </summary>
         [Input("acceptsPromptNoneForwardFromClient")]
         public Input<bool>? AcceptsPromptNoneForwardFromClient { get; set; }
 
         /// <summary>
-        /// When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
+        /// When `True`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `False`.
         /// </summary>
         [Input("addReadTokenRoleOnCreate")]
         public Input<bool>? AddReadTokenRoleOnCreate { get; set; }
@@ -324,7 +324,7 @@ namespace Pulumi.Keycloak.Oidc
         public Input<string>? DefaultScopes { get; set; }
 
         /// <summary>
-        /// When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
+        /// When `True`, disables the usage of the user info service to obtain additional user information. Defaults to `False`.
         /// </summary>
         [Input("disableUserInfo")]
         public Input<bool>? DisableUserInfo { get; set; }
@@ -336,7 +336,7 @@ namespace Pulumi.Keycloak.Oidc
         public Input<string>? DisplayName { get; set; }
 
         /// <summary>
-        /// When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
+        /// When `True`, users will be able to log in to this realm using this identity provider. Defaults to `True`.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
@@ -362,7 +362,7 @@ namespace Pulumi.Keycloak.Oidc
         public Input<string>? GuiOrder { get; set; }
 
         /// <summary>
-        /// When `true`, this identity provider will be hidden on the login page. Defaults to `false`.
+        /// When `True`, this identity provider will be hidden on the login page. Defaults to `False`.
         /// </summary>
         [Input("hideOnLoginPage")]
         public Input<bool>? HideOnLoginPage { get; set; }
@@ -374,7 +374,7 @@ namespace Pulumi.Keycloak.Oidc
         public Input<string>? HostedDomain { get; set; }
 
         /// <summary>
-        /// When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+        /// When `True`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `False`.
         /// </summary>
         [Input("linkOnly")]
         public Input<bool>? LinkOnly { get; set; }
@@ -398,7 +398,7 @@ namespace Pulumi.Keycloak.Oidc
         public Input<string>? PostBrokerLoginFlowAlias { get; set; }
 
         /// <summary>
-        /// The ID of the identity provider to use. Defaults to `google`, which should be used unless you have extended Keycloak and provided your own implementation.
+        /// The ID of the identity provider to use. Defaults to `Google`, which should be used unless you have extended Keycloak and provided your own implementation.
         /// </summary>
         [Input("providerId")]
         public Input<string>? ProviderId { get; set; }
@@ -410,13 +410,13 @@ namespace Pulumi.Keycloak.Oidc
         public Input<string> Realm { get; set; } = null!;
 
         /// <summary>
-        /// Sets the "access_type" query parameter to "offline" when redirecting to google authorization endpoint,to get a refresh token back. This is useful for using Token Exchange to retrieve a Google token to access Google APIs when the user is offline.
+        /// Sets the "AccessType" query parameter to "offline" when redirecting to google authorization endpoint,to get a refresh token back. This is useful for using Token Exchange to retrieve a Google token to access Google APIs when the user is offline.
         /// </summary>
         [Input("requestRefreshToken")]
         public Input<bool>? RequestRefreshToken { get; set; }
 
         /// <summary>
-        /// When `true`, tokens will be stored after authenticating users. Defaults to `true`.
+        /// When `True`, tokens will be stored after authenticating users. Defaults to `True`.
         /// </summary>
         [Input("storeToken")]
         public Input<bool>? StoreToken { get; set; }
@@ -428,7 +428,7 @@ namespace Pulumi.Keycloak.Oidc
         public Input<string>? SyncMode { get; set; }
 
         /// <summary>
-        /// When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
+        /// When `True`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `False`.
         /// </summary>
         [Input("trustEmail")]
         public Input<bool>? TrustEmail { get; set; }
@@ -448,13 +448,13 @@ namespace Pulumi.Keycloak.Oidc
     public sealed class GoogleIdentityProviderState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// When `true`, unauthenticated requests with `prompt=none` will be forwarded to Google instead of returning an error. Defaults to `false`.
+        /// When `True`, unauthenticated requests with `prompt=none` will be forwarded to Google instead of returning an error. Defaults to `False`.
         /// </summary>
         [Input("acceptsPromptNoneForwardFromClient")]
         public Input<bool>? AcceptsPromptNoneForwardFromClient { get; set; }
 
         /// <summary>
-        /// When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
+        /// When `True`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `False`.
         /// </summary>
         [Input("addReadTokenRoleOnCreate")]
         public Input<bool>? AddReadTokenRoleOnCreate { get; set; }
@@ -500,7 +500,7 @@ namespace Pulumi.Keycloak.Oidc
         public Input<string>? DefaultScopes { get; set; }
 
         /// <summary>
-        /// When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
+        /// When `True`, disables the usage of the user info service to obtain additional user information. Defaults to `False`.
         /// </summary>
         [Input("disableUserInfo")]
         public Input<bool>? DisableUserInfo { get; set; }
@@ -512,7 +512,7 @@ namespace Pulumi.Keycloak.Oidc
         public Input<string>? DisplayName { get; set; }
 
         /// <summary>
-        /// When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
+        /// When `True`, users will be able to log in to this realm using this identity provider. Defaults to `True`.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
@@ -538,7 +538,7 @@ namespace Pulumi.Keycloak.Oidc
         public Input<string>? GuiOrder { get; set; }
 
         /// <summary>
-        /// When `true`, this identity provider will be hidden on the login page. Defaults to `false`.
+        /// When `True`, this identity provider will be hidden on the login page. Defaults to `False`.
         /// </summary>
         [Input("hideOnLoginPage")]
         public Input<bool>? HideOnLoginPage { get; set; }
@@ -556,7 +556,7 @@ namespace Pulumi.Keycloak.Oidc
         public Input<string>? InternalId { get; set; }
 
         /// <summary>
-        /// When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+        /// When `True`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `False`.
         /// </summary>
         [Input("linkOnly")]
         public Input<bool>? LinkOnly { get; set; }
@@ -580,7 +580,7 @@ namespace Pulumi.Keycloak.Oidc
         public Input<string>? PostBrokerLoginFlowAlias { get; set; }
 
         /// <summary>
-        /// The ID of the identity provider to use. Defaults to `google`, which should be used unless you have extended Keycloak and provided your own implementation.
+        /// The ID of the identity provider to use. Defaults to `Google`, which should be used unless you have extended Keycloak and provided your own implementation.
         /// </summary>
         [Input("providerId")]
         public Input<string>? ProviderId { get; set; }
@@ -592,13 +592,13 @@ namespace Pulumi.Keycloak.Oidc
         public Input<string>? Realm { get; set; }
 
         /// <summary>
-        /// Sets the "access_type" query parameter to "offline" when redirecting to google authorization endpoint,to get a refresh token back. This is useful for using Token Exchange to retrieve a Google token to access Google APIs when the user is offline.
+        /// Sets the "AccessType" query parameter to "offline" when redirecting to google authorization endpoint,to get a refresh token back. This is useful for using Token Exchange to retrieve a Google token to access Google APIs when the user is offline.
         /// </summary>
         [Input("requestRefreshToken")]
         public Input<bool>? RequestRefreshToken { get; set; }
 
         /// <summary>
-        /// When `true`, tokens will be stored after authenticating users. Defaults to `true`.
+        /// When `True`, tokens will be stored after authenticating users. Defaults to `True`.
         /// </summary>
         [Input("storeToken")]
         public Input<bool>? StoreToken { get; set; }
@@ -610,7 +610,7 @@ namespace Pulumi.Keycloak.Oidc
         public Input<string>? SyncMode { get; set; }
 
         /// <summary>
-        /// When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
+        /// When `True`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `False`.
         /// </summary>
         [Input("trustEmail")]
         public Input<bool>? TrustEmail { get; set; }

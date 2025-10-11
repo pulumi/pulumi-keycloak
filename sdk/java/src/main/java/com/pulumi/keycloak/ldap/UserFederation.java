@@ -117,28 +117,28 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.batchSizeForSync);
     }
     /**
-     * Password of LDAP admin. This attribute must be set if `bind_dn` is set.
+     * Password of LDAP admin. This attribute must be set if `bindDn` is set.
      * 
      */
     @Export(name="bindCredential", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> bindCredential;
 
     /**
-     * @return Password of LDAP admin. This attribute must be set if `bind_dn` is set.
+     * @return Password of LDAP admin. This attribute must be set if `bindDn` is set.
      * 
      */
     public Output<Optional<String>> bindCredential() {
         return Codegen.optional(this.bindCredential);
     }
     /**
-     * DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` is set.
+     * DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bindCredential` is set.
      * 
      */
     @Export(name="bindDn", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> bindDn;
 
     /**
-     * @return DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` is set.
+     * @return DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bindCredential` is set.
      * 
      */
     public Output<Optional<String>> bindDn() {
@@ -384,7 +384,7 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
     }
     /**
      * Can be one of `ONE_LEVEL` or `SUBTREE`:
-     * - `ONE_LEVEL`: Only search for users in the DN specified by `user_dn`.
+     * - `ONE_LEVEL`: Only search for users in the DN specified by `userDn`.
      * - `SUBTREE`: Search entire LDAP subtree.
      * 
      */
@@ -393,7 +393,7 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Can be one of `ONE_LEVEL` or `SUBTREE`:
-     * - `ONE_LEVEL`: Only search for users in the DN specified by `user_dn`.
+     * - `ONE_LEVEL`: Only search for users in the DN specified by `userDn`.
      * - `SUBTREE`: Search entire LDAP subtree.
      * 
      */

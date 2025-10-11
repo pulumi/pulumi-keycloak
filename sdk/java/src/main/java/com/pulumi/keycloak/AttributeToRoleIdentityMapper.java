@@ -18,7 +18,7 @@ import javax.annotation.Nullable;
 /**
  * Allows for creating and managing an attribute to role identity provider mapper within Keycloak.
  * 
- * &gt; If you are using Keycloak 10 or higher, you will need to specify the `extra_config` argument in order to define a `syncMode` for the mapper.
+ * &gt; If you are using Keycloak 10 or higher, you will need to specify the `extraConfig` argument in order to define a `syncMode` for the mapper.
  * 
  * ## Example Usage
  * 
@@ -104,14 +104,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="keycloak:index/attributeToRoleIdentityMapper:AttributeToRoleIdentityMapper")
 public class AttributeToRoleIdentityMapper extends com.pulumi.resources.CustomResource {
     /**
-     * Attribute Friendly Name. Conflicts with `attribute_name`.
+     * Attribute Friendly Name. Conflicts with `attributeName`.
      * 
      */
     @Export(name="attributeFriendlyName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> attributeFriendlyName;
 
     /**
-     * @return Attribute Friendly Name. Conflicts with `attribute_name`.
+     * @return Attribute Friendly Name. Conflicts with `attributeName`.
      * 
      */
     public Output<Optional<String>> attributeFriendlyName() {

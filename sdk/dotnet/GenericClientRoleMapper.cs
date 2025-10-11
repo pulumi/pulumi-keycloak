@@ -15,7 +15,7 @@ namespace Pulumi.Keycloak
     /// Allow for creating and managing a client's scope mappings within Keycloak.
     /// 
     /// By default, all the user role mappings of the user are added as claims within the token (OIDC) or assertion (SAML). When
-    /// `full_scope_allowed` is set to `false` for a client, role scope mapping allows you to limit the roles that get declared
+    /// `FullScopeAllowed` is set to `False` for a client, role scope mapping allows you to limit the roles that get declared
     /// inside an access token for a client.
     /// 
     /// ## Example Usage
@@ -231,13 +231,13 @@ namespace Pulumi.Keycloak
     public partial class GenericClientRoleMapper : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The ID of the client this role mapper should be added to. Conflicts with `client_scope_id`. This argument is required if `client_scope_id` is not set.
+        /// The ID of the client this role mapper should be added to. Conflicts with `ClientScopeId`. This argument is required if `ClientScopeId` is not set.
         /// </summary>
         [Output("clientId")]
         public Output<string?> ClientId { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the client scope this role mapper should be added to. Conflicts with `client_id`. This argument is required if `client_id` is not set.
+        /// The ID of the client scope this role mapper should be added to. Conflicts with `ClientId`. This argument is required if `ClientId` is not set.
         /// </summary>
         [Output("clientScopeId")]
         public Output<string?> ClientScopeId { get; private set; } = null!;
@@ -301,13 +301,13 @@ namespace Pulumi.Keycloak
     public sealed class GenericClientRoleMapperArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The ID of the client this role mapper should be added to. Conflicts with `client_scope_id`. This argument is required if `client_scope_id` is not set.
+        /// The ID of the client this role mapper should be added to. Conflicts with `ClientScopeId`. This argument is required if `ClientScopeId` is not set.
         /// </summary>
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
 
         /// <summary>
-        /// The ID of the client scope this role mapper should be added to. Conflicts with `client_id`. This argument is required if `client_id` is not set.
+        /// The ID of the client scope this role mapper should be added to. Conflicts with `ClientId`. This argument is required if `ClientId` is not set.
         /// </summary>
         [Input("clientScopeId")]
         public Input<string>? ClientScopeId { get; set; }
@@ -333,13 +333,13 @@ namespace Pulumi.Keycloak
     public sealed class GenericClientRoleMapperState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The ID of the client this role mapper should be added to. Conflicts with `client_scope_id`. This argument is required if `client_scope_id` is not set.
+        /// The ID of the client this role mapper should be added to. Conflicts with `ClientScopeId`. This argument is required if `ClientScopeId` is not set.
         /// </summary>
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
 
         /// <summary>
-        /// The ID of the client scope this role mapper should be added to. Conflicts with `client_id`. This argument is required if `client_id` is not set.
+        /// The ID of the client scope this role mapper should be added to. Conflicts with `ClientId`. This argument is required if `ClientId` is not set.
         /// </summary>
         [Input("clientScopeId")]
         public Input<string>? ClientScopeId { get; set; }

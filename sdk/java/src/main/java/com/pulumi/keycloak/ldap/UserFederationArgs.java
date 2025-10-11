@@ -37,14 +37,14 @@ public final class UserFederationArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * Password of LDAP admin. This attribute must be set if `bind_dn` is set.
+     * Password of LDAP admin. This attribute must be set if `bindDn` is set.
      * 
      */
     @Import(name="bindCredential")
     private @Nullable Output<String> bindCredential;
 
     /**
-     * @return Password of LDAP admin. This attribute must be set if `bind_dn` is set.
+     * @return Password of LDAP admin. This attribute must be set if `bindDn` is set.
      * 
      */
     public Optional<Output<String>> bindCredential() {
@@ -52,14 +52,14 @@ public final class UserFederationArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` is set.
+     * DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bindCredential` is set.
      * 
      */
     @Import(name="bindDn")
     private @Nullable Output<String> bindDn;
 
     /**
-     * @return DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` is set.
+     * @return DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bindCredential` is set.
      * 
      */
     public Optional<Output<String>> bindDn() {
@@ -323,7 +323,7 @@ public final class UserFederationArgs extends com.pulumi.resources.ResourceArgs 
 
     /**
      * Can be one of `ONE_LEVEL` or `SUBTREE`:
-     * - `ONE_LEVEL`: Only search for users in the DN specified by `user_dn`.
+     * - `ONE_LEVEL`: Only search for users in the DN specified by `userDn`.
      * - `SUBTREE`: Search entire LDAP subtree.
      * 
      */
@@ -332,7 +332,7 @@ public final class UserFederationArgs extends com.pulumi.resources.ResourceArgs 
 
     /**
      * @return Can be one of `ONE_LEVEL` or `SUBTREE`:
-     * - `ONE_LEVEL`: Only search for users in the DN specified by `user_dn`.
+     * - `ONE_LEVEL`: Only search for users in the DN specified by `userDn`.
      * - `SUBTREE`: Search entire LDAP subtree.
      * 
      */
@@ -588,7 +588,7 @@ public final class UserFederationArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param bindCredential Password of LDAP admin. This attribute must be set if `bind_dn` is set.
+         * @param bindCredential Password of LDAP admin. This attribute must be set if `bindDn` is set.
          * 
          * @return builder
          * 
@@ -599,7 +599,7 @@ public final class UserFederationArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param bindCredential Password of LDAP admin. This attribute must be set if `bind_dn` is set.
+         * @param bindCredential Password of LDAP admin. This attribute must be set if `bindDn` is set.
          * 
          * @return builder
          * 
@@ -609,7 +609,7 @@ public final class UserFederationArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param bindDn DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` is set.
+         * @param bindDn DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bindCredential` is set.
          * 
          * @return builder
          * 
@@ -620,7 +620,7 @@ public final class UserFederationArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param bindDn DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` is set.
+         * @param bindDn DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bindCredential` is set.
          * 
          * @return builder
          * 
@@ -988,7 +988,7 @@ public final class UserFederationArgs extends com.pulumi.resources.ResourceArgs 
 
         /**
          * @param searchScope Can be one of `ONE_LEVEL` or `SUBTREE`:
-         * - `ONE_LEVEL`: Only search for users in the DN specified by `user_dn`.
+         * - `ONE_LEVEL`: Only search for users in the DN specified by `userDn`.
          * - `SUBTREE`: Search entire LDAP subtree.
          * 
          * @return builder
@@ -1001,7 +1001,7 @@ public final class UserFederationArgs extends com.pulumi.resources.ResourceArgs 
 
         /**
          * @param searchScope Can be one of `ONE_LEVEL` or `SUBTREE`:
-         * - `ONE_LEVEL`: Only search for users in the DN specified by `user_dn`.
+         * - `ONE_LEVEL`: Only search for users in the DN specified by `userDn`.
          * - `SUBTREE`: Search entire LDAP subtree.
          * 
          * @return builder

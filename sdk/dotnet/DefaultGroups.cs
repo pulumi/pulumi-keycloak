@@ -64,7 +64,7 @@ namespace Pulumi.Keycloak
     public partial class DefaultGroups : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// A set of group ids that should be default groups on the realm referenced by `realm_id`.
+        /// A set of group ids that should be default groups on the realm referenced by `RealmId`.
         /// </summary>
         [Output("groupIds")]
         public Output<ImmutableArray<string>> GroupIds { get; private set; } = null!;
@@ -125,7 +125,7 @@ namespace Pulumi.Keycloak
         private InputList<string>? _groupIds;
 
         /// <summary>
-        /// A set of group ids that should be default groups on the realm referenced by `realm_id`.
+        /// A set of group ids that should be default groups on the realm referenced by `RealmId`.
         /// </summary>
         public InputList<string> GroupIds
         {
@@ -151,7 +151,7 @@ namespace Pulumi.Keycloak
         private InputList<string>? _groupIds;
 
         /// <summary>
-        /// A set of group ids that should be default groups on the realm referenced by `realm_id`.
+        /// A set of group ids that should be default groups on the realm referenced by `RealmId`.
         /// </summary>
         public InputList<string> GroupIds
         {

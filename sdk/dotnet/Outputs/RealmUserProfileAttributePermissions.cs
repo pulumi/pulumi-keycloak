@@ -14,11 +14,11 @@ namespace Pulumi.Keycloak.Outputs
     public sealed class RealmUserProfileAttributePermissions
     {
         /// <summary>
-        /// A list of profiles that will be able to edit the attribute. One of `admin`, `user`.
+        /// A list of profiles that will be able to edit the attribute. One of `Admin`, `User`.
         /// </summary>
         public readonly ImmutableArray<string> Edits;
         /// <summary>
-        /// A list of profiles that will be able to view the attribute. One of `admin`, `user`.
+        /// A list of profiles that will be able to view the attribute. One of `Admin`, `User`.
         /// </summary>
         public readonly ImmutableArray<string> Views;
 

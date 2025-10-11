@@ -14,7 +14,7 @@ namespace Pulumi.Keycloak.Ldap
     /// 
     /// The LDAP hardcoded attribute mapper will set the specified value to the LDAP attribute.
     /// 
-    /// **NOTE**: This mapper only works when the `sync_registrations` attribute on the `keycloak.ldap.UserFederation` resource is set to `true`.
+    /// **NOTE**: This mapper only works when the `SyncRegistrations` attribute on the `keycloak.ldap.UserFederation` resource is set to `True`.
     /// 
     /// ## Example Usage
     /// 

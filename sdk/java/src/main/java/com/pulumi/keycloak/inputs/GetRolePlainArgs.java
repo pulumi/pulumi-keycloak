@@ -16,14 +16,14 @@ public final class GetRolePlainArgs extends com.pulumi.resources.InvokeArgs {
     public static final GetRolePlainArgs Empty = new GetRolePlainArgs();
 
     /**
-     * When specified, this role is assumed to be a client role belonging to the client with the provided ID. The `id` attribute of a `keycloak_client` resource should be used here.
+     * When specified, this role is assumed to be a client role belonging to the client with the provided ID. The `id` attribute of a `keycloakClient` resource should be used here.
      * 
      */
     @Import(name="clientId")
     private @Nullable String clientId;
 
     /**
-     * @return When specified, this role is assumed to be a client role belonging to the client with the provided ID. The `id` attribute of a `keycloak_client` resource should be used here.
+     * @return When specified, this role is assumed to be a client role belonging to the client with the provided ID. The `id` attribute of a `keycloakClient` resource should be used here.
      * 
      */
     public Optional<String> clientId() {
@@ -87,7 +87,7 @@ public final class GetRolePlainArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param clientId When specified, this role is assumed to be a client role belonging to the client with the provided ID. The `id` attribute of a `keycloak_client` resource should be used here.
+         * @param clientId When specified, this role is assumed to be a client role belonging to the client with the provided ID. The `id` attribute of a `keycloakClient` resource should be used here.
          * 
          * @return builder
          * 

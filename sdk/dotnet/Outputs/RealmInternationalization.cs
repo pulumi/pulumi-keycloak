@@ -14,7 +14,7 @@ namespace Pulumi.Keycloak.Outputs
     public sealed class RealmInternationalization
     {
         /// <summary>
-        /// The locale to use by default. This locale code must be present within the `supported_locales` list.
+        /// The locale to use by default. This locale code must be present within the `SupportedLocales` list.
         /// </summary>
         public readonly string DefaultLocale;
         /// <summary>

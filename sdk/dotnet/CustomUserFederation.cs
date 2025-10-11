@@ -82,7 +82,7 @@ namespace Pulumi.Keycloak
         public Output<ImmutableDictionary<string, string>?> Config { get; private set; } = null!;
 
         /// <summary>
-        /// When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
+        /// When `False`, this provider will not be used when performing queries for users. Defaults to `True`.
         /// </summary>
         [Output("enabled")]
         public Output<bool?> Enabled { get; private set; } = null!;
@@ -100,7 +100,7 @@ namespace Pulumi.Keycloak
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Must be set to the realms' `internal_id`  when it differs from the realm. This can happen when existing resources are imported into the state.
+        /// Must be set to the realms' `InternalId`  when it differs from the realm. This can happen when existing resources are imported into the state.
         /// </summary>
         [Output("parentId")]
         public Output<string> ParentId { get; private set; } = null!;
@@ -194,7 +194,7 @@ namespace Pulumi.Keycloak
         }
 
         /// <summary>
-        /// When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
+        /// When `False`, this provider will not be used when performing queries for users. Defaults to `True`.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
@@ -212,7 +212,7 @@ namespace Pulumi.Keycloak
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Must be set to the realms' `internal_id`  when it differs from the realm. This can happen when existing resources are imported into the state.
+        /// Must be set to the realms' `InternalId`  when it differs from the realm. This can happen when existing resources are imported into the state.
         /// </summary>
         [Input("parentId")]
         public Input<string>? ParentId { get; set; }
@@ -268,7 +268,7 @@ namespace Pulumi.Keycloak
         }
 
         /// <summary>
-        /// When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
+        /// When `False`, this provider will not be used when performing queries for users. Defaults to `True`.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
@@ -286,7 +286,7 @@ namespace Pulumi.Keycloak
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Must be set to the realms' `internal_id`  when it differs from the realm. This can happen when existing resources are imported into the state.
+        /// Must be set to the realms' `InternalId`  when it differs from the realm. This can happen when existing resources are imported into the state.
         /// </summary>
         [Input("parentId")]
         public Input<string>? ParentId { get; set; }

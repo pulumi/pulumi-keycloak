@@ -18,7 +18,7 @@ import javax.annotation.Nullable;
  * 
  * The LDAP hardcoded attribute mapper will set the specified value to the LDAP attribute.
  * 
- * **NOTE**: This mapper only works when the `sync_registrations` attribute on the `keycloak.ldap.UserFederation` resource is set to `true`.
+ * **NOTE**: This mapper only works when the `syncRegistrations` attribute on the `keycloak.ldap.UserFederation` resource is set to `true`.
  * 
  * ## Example Usage
  * 

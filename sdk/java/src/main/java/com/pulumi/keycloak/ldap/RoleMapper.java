@@ -106,14 +106,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="keycloak:ldap/roleMapper:RoleMapper")
 public class RoleMapper extends com.pulumi.resources.CustomResource {
     /**
-     * When specified, LDAP role mappings will be mapped to client role mappings tied to this client ID. Can only be set if `use_realm_roles_mapping` is `false`.
+     * When specified, LDAP role mappings will be mapped to client role mappings tied to this client ID. Can only be set if `useRealmRolesMapping` is `false`.
      * 
      */
     @Export(name="clientId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientId;
 
     /**
-     * @return When specified, LDAP role mappings will be mapped to client role mappings tied to this client ID. Can only be set if `use_realm_roles_mapping` is `false`.
+     * @return When specified, LDAP role mappings will be mapped to client role mappings tied to this client ID. Can only be set if `useRealmRolesMapping` is `false`.
      * 
      */
     public Output<Optional<String>> clientId() {

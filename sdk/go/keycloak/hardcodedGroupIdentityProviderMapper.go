@@ -15,6 +15,8 @@ import (
 // Allows for creating and managing hardcoded group mappers for Keycloak identity provider.
 //
 // The identity provider hardcoded group mapper grants a specified Keycloak group to each Keycloak user from the identity provider.
+//
+// ## Example Usage
 type HardcodedGroupIdentityProviderMapper struct {
 	pulumi.CustomResourceState
 

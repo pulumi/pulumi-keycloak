@@ -338,6 +338,8 @@ class RealmKeystoreRsa(pulumi.CustomResource):
 
         A realm keystore manages generated key pairs that are used by Keycloak to perform cryptographic signatures and encryption.
 
+        ## Example Usage
+
         ## Import
 
         Realm keys can be imported using realm name and keystore id, you can find it in web UI.
@@ -372,6 +374,8 @@ class RealmKeystoreRsa(pulumi.CustomResource):
         Allows for creating and managing `rsa` Realm keystores within Keycloak.
 
         A realm keystore manages generated key pairs that are used by Keycloak to perform cryptographic signatures and encryption.
+
+        ## Example Usage
 
         ## Import
 

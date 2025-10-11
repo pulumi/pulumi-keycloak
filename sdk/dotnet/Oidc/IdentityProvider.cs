@@ -15,11 +15,11 @@ namespace Pulumi.Keycloak.Oidc
     /// OIDC (OpenID Connect) identity providers allows users to authenticate through a third party system using the OIDC standard.
     /// 
     /// &gt; **NOTICE:** This resource now supports write-only arguments
-    /// for client secret via the new arguments `client_secret_wo` and `client_secret_wo_version`. Using write-only arguments
-    /// prevents sensitive values from being stored in plan and state files. You cannot use `client_secret_wo` and
-    /// `client_secret_wo_version` alongside `client_secret` as this will result in a validation error due to conflicts.
+    /// for client secret via the new arguments `ClientSecretWo` and `ClientSecretWoVersion`. Using write-only arguments
+    /// prevents sensitive values from being stored in plan and state files. You cannot use `ClientSecretWo` and
+    /// `ClientSecretWoVersion` alongside `ClientSecret` as this will result in a validation error due to conflicts.
     /// &gt; 
-    /// &gt; For backward compatibility, the behavior of the original `client_secret` argument remains unchanged.
+    /// &gt; For backward compatibility, the behavior of the original `ClientSecret` argument remains unchanged.
     /// 
     /// ## Example Usage
     /// 
@@ -70,13 +70,13 @@ namespace Pulumi.Keycloak.Oidc
     public partial class IdentityProvider : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// When `true`, the IDP will accept forwarded authentication requests that contain the `prompt=none` query parameter. Defaults to `false`.
+        /// When `True`, the IDP will accept forwarded authentication requests that contain the `prompt=none` query parameter. Defaults to `False`.
         /// </summary>
         [Output("acceptsPromptNoneForwardFromClient")]
         public Output<bool?> AcceptsPromptNoneForwardFromClient { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
+        /// When `True`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `False`.
         /// </summary>
         [Output("addReadTokenRoleOnCreate")]
         public Output<bool?> AddReadTokenRoleOnCreate { get; private set; } = null!;
@@ -100,7 +100,7 @@ namespace Pulumi.Keycloak.Oidc
         public Output<string> AuthorizationUrl { get; private set; } = null!;
 
         /// <summary>
-        /// Does the external IDP support backchannel logout? Defaults to `true`.
+        /// Does the external IDP support backchannel logout? Defaults to `True`.
         /// </summary>
         [Output("backchannelSupported")]
         public Output<bool?> BackchannelSupported { get; private set; } = null!;
@@ -112,7 +112,7 @@ namespace Pulumi.Keycloak.Oidc
         public Output<string> ClientId { get; private set; } = null!;
 
         /// <summary>
-        /// The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `client_secret_wo` and `client_secret_wo_version`.
+        /// The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `ClientSecretWo` and `ClientSecretWoVersion`.
         /// </summary>
         [Output("clientSecret")]
         public Output<string?> ClientSecret { get; private set; } = null!;
@@ -124,19 +124,19 @@ namespace Pulumi.Keycloak.Oidc
         public Output<int?> ClientSecretWoVersion { get; private set; } = null!;
 
         /// <summary>
-        /// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
+        /// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `Openid`.
         /// </summary>
         [Output("defaultScopes")]
         public Output<string?> DefaultScopes { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, disables the check for the `typ` claim of tokens received from the identity provider. Defaults to `false`.
+        /// When `True`, disables the check for the `Typ` claim of tokens received from the identity provider. Defaults to `False`.
         /// </summary>
         [Output("disableTypeClaimCheck")]
         public Output<bool?> DisableTypeClaimCheck { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
+        /// When `True`, disables the usage of the user info service to obtain additional user information. Defaults to `False`.
         /// </summary>
         [Output("disableUserInfo")]
         public Output<bool?> DisableUserInfo { get; private set; } = null!;
@@ -148,7 +148,7 @@ namespace Pulumi.Keycloak.Oidc
         public Output<string> DisplayName { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
+        /// When `True`, users will be able to log in to this realm using this identity provider. Defaults to `True`.
         /// </summary>
         [Output("enabled")]
         public Output<bool?> Enabled { get; private set; } = null!;
@@ -169,7 +169,7 @@ namespace Pulumi.Keycloak.Oidc
         public Output<string?> GuiOrder { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, this provider will be hidden on the login page, and is only accessible when requested explicitly. Defaults to `false`.
+        /// When `True`, this provider will be hidden on the login page, and is only accessible when requested explicitly. Defaults to `False`.
         /// </summary>
         [Output("hideOnLoginPage")]
         public Output<bool?> HideOnLoginPage { get; private set; } = null!;
@@ -193,7 +193,7 @@ namespace Pulumi.Keycloak.Oidc
         public Output<string?> JwksUrl { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+        /// When `True`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `False`.
         /// </summary>
         [Output("linkOnly")]
         public Output<bool?> LinkOnly { get; private set; } = null!;
@@ -235,7 +235,7 @@ namespace Pulumi.Keycloak.Oidc
         public Output<string?> PostBrokerLoginFlowAlias { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
+        /// The ID of the identity provider to use. Defaults to `Oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
         /// </summary>
         [Output("providerId")]
         public Output<string?> ProviderId { get; private set; } = null!;
@@ -247,7 +247,7 @@ namespace Pulumi.Keycloak.Oidc
         public Output<string> Realm { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, tokens will be stored after authenticating users. Defaults to `true`.
+        /// When `True`, tokens will be stored after authenticating users. Defaults to `True`.
         /// </summary>
         [Output("storeToken")]
         public Output<bool?> StoreToken { get; private set; } = null!;
@@ -265,13 +265,13 @@ namespace Pulumi.Keycloak.Oidc
         public Output<string> TokenUrl { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
+        /// When `True`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `False`.
         /// </summary>
         [Output("trustEmail")]
         public Output<bool?> TrustEmail { get; private set; } = null!;
 
         /// <summary>
-        /// Pass current locale to identity provider. Defaults to `false`.
+        /// Pass current locale to identity provider. Defaults to `False`.
         /// </summary>
         [Output("uiLocales")]
         public Output<bool?> UiLocales { get; private set; } = null!;
@@ -283,7 +283,7 @@ namespace Pulumi.Keycloak.Oidc
         public Output<string?> UserInfoUrl { get; private set; } = null!;
 
         /// <summary>
-        /// Enable/disable signature validation of external IDP signatures. Defaults to `false`.
+        /// Enable/disable signature validation of external IDP signatures. Defaults to `False`.
         /// </summary>
         [Output("validateSignature")]
         public Output<bool?> ValidateSignature { get; private set; } = null!;
@@ -339,13 +339,13 @@ namespace Pulumi.Keycloak.Oidc
     public sealed class IdentityProviderArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// When `true`, the IDP will accept forwarded authentication requests that contain the `prompt=none` query parameter. Defaults to `false`.
+        /// When `True`, the IDP will accept forwarded authentication requests that contain the `prompt=none` query parameter. Defaults to `False`.
         /// </summary>
         [Input("acceptsPromptNoneForwardFromClient")]
         public Input<bool>? AcceptsPromptNoneForwardFromClient { get; set; }
 
         /// <summary>
-        /// When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
+        /// When `True`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `False`.
         /// </summary>
         [Input("addReadTokenRoleOnCreate")]
         public Input<bool>? AddReadTokenRoleOnCreate { get; set; }
@@ -369,7 +369,7 @@ namespace Pulumi.Keycloak.Oidc
         public Input<string> AuthorizationUrl { get; set; } = null!;
 
         /// <summary>
-        /// Does the external IDP support backchannel logout? Defaults to `true`.
+        /// Does the external IDP support backchannel logout? Defaults to `True`.
         /// </summary>
         [Input("backchannelSupported")]
         public Input<bool>? BackchannelSupported { get; set; }
@@ -384,7 +384,7 @@ namespace Pulumi.Keycloak.Oidc
         private Input<string>? _clientSecret;
 
         /// <summary>
-        /// The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `client_secret_wo` and `client_secret_wo_version`.
+        /// The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `ClientSecretWo` and `ClientSecretWoVersion`.
         /// </summary>
         public Input<string>? ClientSecret
         {
@@ -403,19 +403,19 @@ namespace Pulumi.Keycloak.Oidc
         public Input<int>? ClientSecretWoVersion { get; set; }
 
         /// <summary>
-        /// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
+        /// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `Openid`.
         /// </summary>
         [Input("defaultScopes")]
         public Input<string>? DefaultScopes { get; set; }
 
         /// <summary>
-        /// When `true`, disables the check for the `typ` claim of tokens received from the identity provider. Defaults to `false`.
+        /// When `True`, disables the check for the `Typ` claim of tokens received from the identity provider. Defaults to `False`.
         /// </summary>
         [Input("disableTypeClaimCheck")]
         public Input<bool>? DisableTypeClaimCheck { get; set; }
 
         /// <summary>
-        /// When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
+        /// When `True`, disables the usage of the user info service to obtain additional user information. Defaults to `False`.
         /// </summary>
         [Input("disableUserInfo")]
         public Input<bool>? DisableUserInfo { get; set; }
@@ -427,7 +427,7 @@ namespace Pulumi.Keycloak.Oidc
         public Input<string>? DisplayName { get; set; }
 
         /// <summary>
-        /// When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
+        /// When `True`, users will be able to log in to this realm using this identity provider. Defaults to `True`.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
@@ -453,7 +453,7 @@ namespace Pulumi.Keycloak.Oidc
         public Input<string>? GuiOrder { get; set; }
 
         /// <summary>
-        /// When `true`, this provider will be hidden on the login page, and is only accessible when requested explicitly. Defaults to `false`.
+        /// When `True`, this provider will be hidden on the login page, and is only accessible when requested explicitly. Defaults to `False`.
         /// </summary>
         [Input("hideOnLoginPage")]
         public Input<bool>? HideOnLoginPage { get; set; }
@@ -471,7 +471,7 @@ namespace Pulumi.Keycloak.Oidc
         public Input<string>? JwksUrl { get; set; }
 
         /// <summary>
-        /// When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+        /// When `True`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `False`.
         /// </summary>
         [Input("linkOnly")]
         public Input<bool>? LinkOnly { get; set; }
@@ -513,7 +513,7 @@ namespace Pulumi.Keycloak.Oidc
         public Input<string>? PostBrokerLoginFlowAlias { get; set; }
 
         /// <summary>
-        /// The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
+        /// The ID of the identity provider to use. Defaults to `Oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
         /// </summary>
         [Input("providerId")]
         public Input<string>? ProviderId { get; set; }
@@ -525,7 +525,7 @@ namespace Pulumi.Keycloak.Oidc
         public Input<string> Realm { get; set; } = null!;
 
         /// <summary>
-        /// When `true`, tokens will be stored after authenticating users. Defaults to `true`.
+        /// When `True`, tokens will be stored after authenticating users. Defaults to `True`.
         /// </summary>
         [Input("storeToken")]
         public Input<bool>? StoreToken { get; set; }
@@ -543,13 +543,13 @@ namespace Pulumi.Keycloak.Oidc
         public Input<string> TokenUrl { get; set; } = null!;
 
         /// <summary>
-        /// When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
+        /// When `True`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `False`.
         /// </summary>
         [Input("trustEmail")]
         public Input<bool>? TrustEmail { get; set; }
 
         /// <summary>
-        /// Pass current locale to identity provider. Defaults to `false`.
+        /// Pass current locale to identity provider. Defaults to `False`.
         /// </summary>
         [Input("uiLocales")]
         public Input<bool>? UiLocales { get; set; }
@@ -561,7 +561,7 @@ namespace Pulumi.Keycloak.Oidc
         public Input<string>? UserInfoUrl { get; set; }
 
         /// <summary>
-        /// Enable/disable signature validation of external IDP signatures. Defaults to `false`.
+        /// Enable/disable signature validation of external IDP signatures. Defaults to `False`.
         /// </summary>
         [Input("validateSignature")]
         public Input<bool>? ValidateSignature { get; set; }
@@ -575,13 +575,13 @@ namespace Pulumi.Keycloak.Oidc
     public sealed class IdentityProviderState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// When `true`, the IDP will accept forwarded authentication requests that contain the `prompt=none` query parameter. Defaults to `false`.
+        /// When `True`, the IDP will accept forwarded authentication requests that contain the `prompt=none` query parameter. Defaults to `False`.
         /// </summary>
         [Input("acceptsPromptNoneForwardFromClient")]
         public Input<bool>? AcceptsPromptNoneForwardFromClient { get; set; }
 
         /// <summary>
-        /// When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
+        /// When `True`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `False`.
         /// </summary>
         [Input("addReadTokenRoleOnCreate")]
         public Input<bool>? AddReadTokenRoleOnCreate { get; set; }
@@ -605,7 +605,7 @@ namespace Pulumi.Keycloak.Oidc
         public Input<string>? AuthorizationUrl { get; set; }
 
         /// <summary>
-        /// Does the external IDP support backchannel logout? Defaults to `true`.
+        /// Does the external IDP support backchannel logout? Defaults to `True`.
         /// </summary>
         [Input("backchannelSupported")]
         public Input<bool>? BackchannelSupported { get; set; }
@@ -620,7 +620,7 @@ namespace Pulumi.Keycloak.Oidc
         private Input<string>? _clientSecret;
 
         /// <summary>
-        /// The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `client_secret_wo` and `client_secret_wo_version`.
+        /// The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `ClientSecretWo` and `ClientSecretWoVersion`.
         /// </summary>
         public Input<string>? ClientSecret
         {
@@ -639,19 +639,19 @@ namespace Pulumi.Keycloak.Oidc
         public Input<int>? ClientSecretWoVersion { get; set; }
 
         /// <summary>
-        /// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
+        /// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `Openid`.
         /// </summary>
         [Input("defaultScopes")]
         public Input<string>? DefaultScopes { get; set; }
 
         /// <summary>
-        /// When `true`, disables the check for the `typ` claim of tokens received from the identity provider. Defaults to `false`.
+        /// When `True`, disables the check for the `Typ` claim of tokens received from the identity provider. Defaults to `False`.
         /// </summary>
         [Input("disableTypeClaimCheck")]
         public Input<bool>? DisableTypeClaimCheck { get; set; }
 
         /// <summary>
-        /// When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
+        /// When `True`, disables the usage of the user info service to obtain additional user information. Defaults to `False`.
         /// </summary>
         [Input("disableUserInfo")]
         public Input<bool>? DisableUserInfo { get; set; }
@@ -663,7 +663,7 @@ namespace Pulumi.Keycloak.Oidc
         public Input<string>? DisplayName { get; set; }
 
         /// <summary>
-        /// When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
+        /// When `True`, users will be able to log in to this realm using this identity provider. Defaults to `True`.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
@@ -689,7 +689,7 @@ namespace Pulumi.Keycloak.Oidc
         public Input<string>? GuiOrder { get; set; }
 
         /// <summary>
-        /// When `true`, this provider will be hidden on the login page, and is only accessible when requested explicitly. Defaults to `false`.
+        /// When `True`, this provider will be hidden on the login page, and is only accessible when requested explicitly. Defaults to `False`.
         /// </summary>
         [Input("hideOnLoginPage")]
         public Input<bool>? HideOnLoginPage { get; set; }
@@ -713,7 +713,7 @@ namespace Pulumi.Keycloak.Oidc
         public Input<string>? JwksUrl { get; set; }
 
         /// <summary>
-        /// When `true`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+        /// When `True`, users cannot sign-in using this provider, but their existing accounts will be linked when possible. Defaults to `False`.
         /// </summary>
         [Input("linkOnly")]
         public Input<bool>? LinkOnly { get; set; }
@@ -755,7 +755,7 @@ namespace Pulumi.Keycloak.Oidc
         public Input<string>? PostBrokerLoginFlowAlias { get; set; }
 
         /// <summary>
-        /// The ID of the identity provider to use. Defaults to `oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
+        /// The ID of the identity provider to use. Defaults to `Oidc`, which should be used unless you have extended Keycloak and provided your own implementation.
         /// </summary>
         [Input("providerId")]
         public Input<string>? ProviderId { get; set; }
@@ -767,7 +767,7 @@ namespace Pulumi.Keycloak.Oidc
         public Input<string>? Realm { get; set; }
 
         /// <summary>
-        /// When `true`, tokens will be stored after authenticating users. Defaults to `true`.
+        /// When `True`, tokens will be stored after authenticating users. Defaults to `True`.
         /// </summary>
         [Input("storeToken")]
         public Input<bool>? StoreToken { get; set; }
@@ -785,13 +785,13 @@ namespace Pulumi.Keycloak.Oidc
         public Input<string>? TokenUrl { get; set; }
 
         /// <summary>
-        /// When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
+        /// When `True`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `False`.
         /// </summary>
         [Input("trustEmail")]
         public Input<bool>? TrustEmail { get; set; }
 
         /// <summary>
-        /// Pass current locale to identity provider. Defaults to `false`.
+        /// Pass current locale to identity provider. Defaults to `False`.
         /// </summary>
         [Input("uiLocales")]
         public Input<bool>? UiLocales { get; set; }
@@ -803,7 +803,7 @@ namespace Pulumi.Keycloak.Oidc
         public Input<string>? UserInfoUrl { get; set; }
 
         /// <summary>
-        /// Enable/disable signature validation of external IDP signatures. Defaults to `false`.
+        /// Enable/disable signature validation of external IDP signatures. Defaults to `False`.
         /// </summary>
         [Input("validateSignature")]
         public Input<bool>? ValidateSignature { get; set; }

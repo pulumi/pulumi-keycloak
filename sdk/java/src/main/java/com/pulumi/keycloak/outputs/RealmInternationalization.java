@@ -12,7 +12,7 @@ import java.util.Objects;
 @CustomType
 public final class RealmInternationalization {
     /**
-     * @return The locale to use by default. This locale code must be present within the `supported_locales` list.
+     * @return The locale to use by default. This locale code must be present within the `supportedLocales` list.
      * 
      */
     private String defaultLocale;
@@ -24,7 +24,7 @@ public final class RealmInternationalization {
 
     private RealmInternationalization() {}
     /**
-     * @return The locale to use by default. This locale code must be present within the `supported_locales` list.
+     * @return The locale to use by default. This locale code must be present within the `supportedLocales` list.
      * 
      */
     public String defaultLocale() {
