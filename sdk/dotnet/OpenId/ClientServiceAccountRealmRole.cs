@@ -11,7 +11,7 @@ namespace Pulumi.Keycloak.OpenId
 {
     /// <summary>
     /// Allows for assigning realm roles to the service account of an openid client.
-    /// You need to set `service_accounts_enabled` to `true` for the openid client that should be assigned the role.
+    /// You need to set `ServiceAccountsEnabled` to `True` for the openid client that should be assigned the role.
     /// 
     /// If you'd like to attach client roles to a service account, please use the `keycloak.openid.ClientServiceAccountRole`
     /// resource.

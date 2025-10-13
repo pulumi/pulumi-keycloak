@@ -24,11 +24,11 @@ import javax.annotation.Nullable;
  * OIDC (OpenID Connect) identity providers allows users to authenticate through a third party system using the OIDC standard.
  * 
  * &gt; **NOTICE:** This resource now supports write-only arguments
- * for client secret via the new arguments `client_secret_wo` and `client_secret_wo_version`. Using write-only arguments
- * prevents sensitive values from being stored in plan and state files. You cannot use `client_secret_wo` and
- * `client_secret_wo_version` alongside `client_secret` as this will result in a validation error due to conflicts.
+ * for client secret via the new arguments `clientSecretWo` and `clientSecretWoVersion`. Using write-only arguments
+ * prevents sensitive values from being stored in plan and state files. You cannot use `clientSecretWo` and
+ * `clientSecretWoVersion` alongside `clientSecret` as this will result in a validation error due to conflicts.
  * &gt; 
- * &gt; For backward compatibility, the behavior of the original `client_secret` argument remains unchanged.
+ * &gt; For backward compatibility, the behavior of the original `clientSecret` argument remains unchanged.
  * 
  * ## Example Usage
  * 
@@ -190,14 +190,14 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
         return this.clientId;
     }
     /**
-     * The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `client_secret_wo` and `client_secret_wo_version`.
+     * The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `clientSecretWo` and `clientSecretWoVersion`.
      * 
      */
     @Export(name="clientSecret", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientSecret;
 
     /**
-     * @return The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `client_secret_wo` and `client_secret_wo_version`.
+     * @return The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `clientSecretWo` and `clientSecretWoVersion`.
      * 
      */
     public Output<Optional<String>> clientSecret() {

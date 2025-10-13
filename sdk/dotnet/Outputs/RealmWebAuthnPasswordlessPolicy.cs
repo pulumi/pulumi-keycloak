@@ -26,7 +26,7 @@ namespace Pulumi.Keycloak.Outputs
         /// </summary>
         public readonly string? AuthenticatorAttachment;
         /// <summary>
-        /// When `true`, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to `false`.
+        /// When `True`, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to `False`.
         /// </summary>
         public readonly bool? AvoidSameAuthenticatorRegister;
         /// <summary>
@@ -38,7 +38,7 @@ namespace Pulumi.Keycloak.Outputs
         /// </summary>
         public readonly ImmutableArray<string> ExtraOrigins;
         /// <summary>
-        /// A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
+        /// A human-readable server name for the WebAuthn Relying Party. Defaults to `Keycloak`.
         /// </summary>
         public readonly string? RelyingPartyEntityName;
         /// <summary>

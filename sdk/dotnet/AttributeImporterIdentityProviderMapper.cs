@@ -17,7 +17,7 @@ namespace Pulumi.Keycloak
     /// - For the SAML identity provider, this will map a SAML attribute found within the assertion to an attribute for the imported Keycloak user.
     /// - For social identity providers, this will map a JSON field from the user profile to an attribute for the imported Keycloak user.
     /// 
-    /// &gt; If you are using Keycloak 10 or higher, you will need to specify the `extra_config` argument in order to define a `syncMode` for the mapper.
+    /// &gt; If you are using Keycloak 10 or higher, you will need to specify the `ExtraConfig` argument in order to define a `syncMode` for the mapper.
     /// 
     /// ## Example Usage
     /// 
@@ -80,13 +80,13 @@ namespace Pulumi.Keycloak
     public partial class AttributeImporterIdentityProviderMapper : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// For SAML based providers, this is the friendly name of the attribute to search for in the assertion. Conflicts with `attribute_name`.
+        /// For SAML based providers, this is the friendly name of the attribute to search for in the assertion. Conflicts with `AttributeName`.
         /// </summary>
         [Output("attributeFriendlyName")]
         public Output<string?> AttributeFriendlyName { get; private set; } = null!;
 
         /// <summary>
-        /// For SAML based providers, this is the name of the attribute to search for in the assertion. Conflicts with `attribute_friendly_name`.
+        /// For SAML based providers, this is the name of the attribute to search for in the assertion. Conflicts with `AttributeFriendlyName`.
         /// </summary>
         [Output("attributeName")]
         public Output<string?> AttributeName { get; private set; } = null!;
@@ -174,13 +174,13 @@ namespace Pulumi.Keycloak
     public sealed class AttributeImporterIdentityProviderMapperArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// For SAML based providers, this is the friendly name of the attribute to search for in the assertion. Conflicts with `attribute_name`.
+        /// For SAML based providers, this is the friendly name of the attribute to search for in the assertion. Conflicts with `AttributeName`.
         /// </summary>
         [Input("attributeFriendlyName")]
         public Input<string>? AttributeFriendlyName { get; set; }
 
         /// <summary>
-        /// For SAML based providers, this is the name of the attribute to search for in the assertion. Conflicts with `attribute_friendly_name`.
+        /// For SAML based providers, this is the name of the attribute to search for in the assertion. Conflicts with `AttributeFriendlyName`.
         /// </summary>
         [Input("attributeName")]
         public Input<string>? AttributeName { get; set; }
@@ -236,13 +236,13 @@ namespace Pulumi.Keycloak
     public sealed class AttributeImporterIdentityProviderMapperState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// For SAML based providers, this is the friendly name of the attribute to search for in the assertion. Conflicts with `attribute_name`.
+        /// For SAML based providers, this is the friendly name of the attribute to search for in the assertion. Conflicts with `AttributeName`.
         /// </summary>
         [Input("attributeFriendlyName")]
         public Input<string>? AttributeFriendlyName { get; set; }
 
         /// <summary>
-        /// For SAML based providers, this is the name of the attribute to search for in the assertion. Conflicts with `attribute_friendly_name`.
+        /// For SAML based providers, this is the name of the attribute to search for in the assertion. Conflicts with `AttributeFriendlyName`.
         /// </summary>
         [Input("attributeName")]
         public Input<string>? AttributeName { get; set; }

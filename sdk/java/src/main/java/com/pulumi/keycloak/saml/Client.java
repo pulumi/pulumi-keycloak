@@ -140,14 +140,14 @@ public class Client extends com.pulumi.resources.CustomResource {
         return this.clientId;
     }
     /**
-     * When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signing_certificate` and `signing_private_key`. Defaults to `true`.
+     * When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signingCertificate` and `signingPrivateKey`. Defaults to `true`.
      * 
      */
     @Export(name="clientSignatureRequired", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> clientSignatureRequired;
 
     /**
-     * @return When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signing_certificate` and `signing_private_key`. Defaults to `true`.
+     * @return When `true`, Keycloak will expect that documents originating from a client will be signed using the certificate and/or key configured via `signingCertificate` and `signingPrivateKey`. Defaults to `true`.
      * 
      */
     public Output<Optional<Boolean>> clientSignatureRequired() {
@@ -244,14 +244,14 @@ public class Client extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.extraConfig);
     }
     /**
-     * Ignore requested NameID subject format and use the one defined in `name_id_format` instead. Defaults to `false`.
+     * Ignore requested NameID subject format and use the one defined in `nameIdFormat` instead. Defaults to `false`.
      * 
      */
     @Export(name="forceNameIdFormat", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> forceNameIdFormat;
 
     /**
-     * @return Ignore requested NameID subject format and use the one defined in `name_id_format` instead. Defaults to `false`.
+     * @return Ignore requested NameID subject format and use the one defined in `nameIdFormat` instead. Defaults to `false`.
      * 
      */
     public Output<Optional<Boolean>> forceNameIdFormat() {

@@ -32,14 +32,14 @@ public final class UserAttributeMapperState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Default value to set in LDAP if `is_mandatory_in_ldap` is true and the value is empty.
+     * Default value to set in LDAP if `isMandatoryInLdap` is true and the value is empty.
      * 
      */
     @Import(name="attributeDefaultValue")
     private @Nullable Output<String> attributeDefaultValue;
 
     /**
-     * @return Default value to set in LDAP if `is_mandatory_in_ldap` is true and the value is empty.
+     * @return Default value to set in LDAP if `isMandatoryInLdap` is true and the value is empty.
      * 
      */
     public Optional<Output<String>> attributeDefaultValue() {
@@ -237,7 +237,7 @@ public final class UserAttributeMapperState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param attributeDefaultValue Default value to set in LDAP if `is_mandatory_in_ldap` is true and the value is empty.
+         * @param attributeDefaultValue Default value to set in LDAP if `isMandatoryInLdap` is true and the value is empty.
          * 
          * @return builder
          * 
@@ -248,7 +248,7 @@ public final class UserAttributeMapperState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param attributeDefaultValue Default value to set in LDAP if `is_mandatory_in_ldap` is true and the value is empty.
+         * @param attributeDefaultValue Default value to set in LDAP if `isMandatoryInLdap` is true and the value is empty.
          * 
          * @return builder
          * 

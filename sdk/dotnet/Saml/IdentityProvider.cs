@@ -65,7 +65,7 @@ namespace Pulumi.Keycloak.Saml
     public partial class IdentityProvider : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
+        /// When `True`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `False`.
         /// </summary>
         [Output("addReadTokenRoleOnCreate")]
         public Output<bool?> AddReadTokenRoleOnCreate { get; private set; } = null!;
@@ -77,7 +77,7 @@ namespace Pulumi.Keycloak.Saml
         public Output<string> Alias { get; private set; } = null!;
 
         /// <summary>
-        /// Authenticate users by default. Defaults to `false`.
+        /// Authenticate users by default. Defaults to `False`.
         /// </summary>
         [Output("authenticateByDefault")]
         public Output<bool?> AuthenticateByDefault { get; private set; } = null!;
@@ -101,7 +101,7 @@ namespace Pulumi.Keycloak.Saml
         public Output<ImmutableArray<string>> AuthnContextDeclRefs { get; private set; } = null!;
 
         /// <summary>
-        /// Does the external IDP support backchannel logout?. Defaults to `false`.
+        /// Does the external IDP support backchannel logout?. Defaults to `False`.
         /// </summary>
         [Output("backchannelSupported")]
         public Output<bool?> BackchannelSupported { get; private set; } = null!;
@@ -113,7 +113,7 @@ namespace Pulumi.Keycloak.Saml
         public Output<string?> DisplayName { get; private set; } = null!;
 
         /// <summary>
-        /// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
+        /// When `False`, users and clients will not be able to access this realm. Defaults to `True`.
         /// </summary>
         [Output("enabled")]
         public Output<bool?> Enabled { get; private set; } = null!;
@@ -158,7 +158,7 @@ namespace Pulumi.Keycloak.Saml
         public Output<string> InternalId { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, users cannot log in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+        /// When `True`, users cannot log in using this provider, but their existing accounts will be linked when possible. Defaults to `False`.
         /// </summary>
         [Output("linkOnly")]
         public Output<bool?> LinkOnly { get; private set; } = null!;
@@ -230,7 +230,7 @@ namespace Pulumi.Keycloak.Saml
         public Output<string?> PrincipalType { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the identity provider to use. Defaults to `saml`, which should be used unless you have extended Keycloak and provided your own implementation.
+        /// The ID of the identity provider to use. Defaults to `Saml`, which should be used unless you have extended Keycloak and provided your own implementation.
         /// </summary>
         [Output("providerId")]
         public Output<string?> ProviderId { get; private set; } = null!;
@@ -266,7 +266,7 @@ namespace Pulumi.Keycloak.Saml
         public Output<string> SingleSignOnServiceUrl { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, tokens will be stored after authenticating users. Defaults to `true`.
+        /// When `True`, tokens will be stored after authenticating users. Defaults to `True`.
         /// </summary>
         [Output("storeToken")]
         public Output<bool?> StoreToken { get; private set; } = null!;
@@ -278,7 +278,7 @@ namespace Pulumi.Keycloak.Saml
         public Output<string?> SyncMode { get; private set; } = null!;
 
         /// <summary>
-        /// When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
+        /// When `True`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `False`.
         /// </summary>
         [Output("trustEmail")]
         public Output<bool?> TrustEmail { get; private set; } = null!;
@@ -354,7 +354,7 @@ namespace Pulumi.Keycloak.Saml
     public sealed class IdentityProviderArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
+        /// When `True`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `False`.
         /// </summary>
         [Input("addReadTokenRoleOnCreate")]
         public Input<bool>? AddReadTokenRoleOnCreate { get; set; }
@@ -366,7 +366,7 @@ namespace Pulumi.Keycloak.Saml
         public Input<string> Alias { get; set; } = null!;
 
         /// <summary>
-        /// Authenticate users by default. Defaults to `false`.
+        /// Authenticate users by default. Defaults to `False`.
         /// </summary>
         [Input("authenticateByDefault")]
         public Input<bool>? AuthenticateByDefault { get; set; }
@@ -402,7 +402,7 @@ namespace Pulumi.Keycloak.Saml
         }
 
         /// <summary>
-        /// Does the external IDP support backchannel logout?. Defaults to `false`.
+        /// Does the external IDP support backchannel logout?. Defaults to `False`.
         /// </summary>
         [Input("backchannelSupported")]
         public Input<bool>? BackchannelSupported { get; set; }
@@ -414,7 +414,7 @@ namespace Pulumi.Keycloak.Saml
         public Input<string>? DisplayName { get; set; }
 
         /// <summary>
-        /// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
+        /// When `False`, users and clients will not be able to access this realm. Defaults to `True`.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
@@ -458,7 +458,7 @@ namespace Pulumi.Keycloak.Saml
         public Input<bool>? HideOnLoginPage { get; set; }
 
         /// <summary>
-        /// When `true`, users cannot log in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+        /// When `True`, users cannot log in using this provider, but their existing accounts will be linked when possible. Defaults to `False`.
         /// </summary>
         [Input("linkOnly")]
         public Input<bool>? LinkOnly { get; set; }
@@ -530,7 +530,7 @@ namespace Pulumi.Keycloak.Saml
         public Input<string>? PrincipalType { get; set; }
 
         /// <summary>
-        /// The ID of the identity provider to use. Defaults to `saml`, which should be used unless you have extended Keycloak and provided your own implementation.
+        /// The ID of the identity provider to use. Defaults to `Saml`, which should be used unless you have extended Keycloak and provided your own implementation.
         /// </summary>
         [Input("providerId")]
         public Input<string>? ProviderId { get; set; }
@@ -566,7 +566,7 @@ namespace Pulumi.Keycloak.Saml
         public Input<string> SingleSignOnServiceUrl { get; set; } = null!;
 
         /// <summary>
-        /// When `true`, tokens will be stored after authenticating users. Defaults to `true`.
+        /// When `True`, tokens will be stored after authenticating users. Defaults to `True`.
         /// </summary>
         [Input("storeToken")]
         public Input<bool>? StoreToken { get; set; }
@@ -578,7 +578,7 @@ namespace Pulumi.Keycloak.Saml
         public Input<string>? SyncMode { get; set; }
 
         /// <summary>
-        /// When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
+        /// When `True`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `False`.
         /// </summary>
         [Input("trustEmail")]
         public Input<bool>? TrustEmail { get; set; }
@@ -616,7 +616,7 @@ namespace Pulumi.Keycloak.Saml
     public sealed class IdentityProviderState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
+        /// When `True`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `False`.
         /// </summary>
         [Input("addReadTokenRoleOnCreate")]
         public Input<bool>? AddReadTokenRoleOnCreate { get; set; }
@@ -628,7 +628,7 @@ namespace Pulumi.Keycloak.Saml
         public Input<string>? Alias { get; set; }
 
         /// <summary>
-        /// Authenticate users by default. Defaults to `false`.
+        /// Authenticate users by default. Defaults to `False`.
         /// </summary>
         [Input("authenticateByDefault")]
         public Input<bool>? AuthenticateByDefault { get; set; }
@@ -664,7 +664,7 @@ namespace Pulumi.Keycloak.Saml
         }
 
         /// <summary>
-        /// Does the external IDP support backchannel logout?. Defaults to `false`.
+        /// Does the external IDP support backchannel logout?. Defaults to `False`.
         /// </summary>
         [Input("backchannelSupported")]
         public Input<bool>? BackchannelSupported { get; set; }
@@ -676,7 +676,7 @@ namespace Pulumi.Keycloak.Saml
         public Input<string>? DisplayName { get; set; }
 
         /// <summary>
-        /// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
+        /// When `False`, users and clients will not be able to access this realm. Defaults to `True`.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
@@ -726,7 +726,7 @@ namespace Pulumi.Keycloak.Saml
         public Input<string>? InternalId { get; set; }
 
         /// <summary>
-        /// When `true`, users cannot log in using this provider, but their existing accounts will be linked when possible. Defaults to `false`.
+        /// When `True`, users cannot log in using this provider, but their existing accounts will be linked when possible. Defaults to `False`.
         /// </summary>
         [Input("linkOnly")]
         public Input<bool>? LinkOnly { get; set; }
@@ -798,7 +798,7 @@ namespace Pulumi.Keycloak.Saml
         public Input<string>? PrincipalType { get; set; }
 
         /// <summary>
-        /// The ID of the identity provider to use. Defaults to `saml`, which should be used unless you have extended Keycloak and provided your own implementation.
+        /// The ID of the identity provider to use. Defaults to `Saml`, which should be used unless you have extended Keycloak and provided your own implementation.
         /// </summary>
         [Input("providerId")]
         public Input<string>? ProviderId { get; set; }
@@ -834,7 +834,7 @@ namespace Pulumi.Keycloak.Saml
         public Input<string>? SingleSignOnServiceUrl { get; set; }
 
         /// <summary>
-        /// When `true`, tokens will be stored after authenticating users. Defaults to `true`.
+        /// When `True`, tokens will be stored after authenticating users. Defaults to `True`.
         /// </summary>
         [Input("storeToken")]
         public Input<bool>? StoreToken { get; set; }
@@ -846,7 +846,7 @@ namespace Pulumi.Keycloak.Saml
         public Input<string>? SyncMode { get; set; }
 
         /// <summary>
-        /// When `true`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `false`.
+        /// When `True`, email addresses for users in this provider will automatically be verified regardless of the realm's email verification policy. Defaults to `False`.
         /// </summary>
         [Input("trustEmail")]
         public Input<bool>? TrustEmail { get; set; }

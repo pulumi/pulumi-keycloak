@@ -62,7 +62,7 @@ namespace Pulumi.Keycloak
     public partial class RealmKeystoreJavaGenerated : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// When `false`, key in not used for signing. Defaults to `true`.
+        /// When `False`, key in not used for signing. Defaults to `True`.
         /// </summary>
         [Output("active")]
         public Output<bool?> Active { get; private set; } = null!;
@@ -74,7 +74,7 @@ namespace Pulumi.Keycloak
         public Output<string?> Algorithm { get; private set; } = null!;
 
         /// <summary>
-        /// When `false`, key is not accessible in this realm. Defaults to `true`.
+        /// When `False`, key is not accessible in this realm. Defaults to `True`.
         /// </summary>
         [Output("enabled")]
         public Output<bool?> Enabled { get; private set; } = null!;
@@ -168,7 +168,7 @@ namespace Pulumi.Keycloak
     public sealed class RealmKeystoreJavaGeneratedArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// When `false`, key in not used for signing. Defaults to `true`.
+        /// When `False`, key in not used for signing. Defaults to `True`.
         /// </summary>
         [Input("active")]
         public Input<bool>? Active { get; set; }
@@ -180,7 +180,7 @@ namespace Pulumi.Keycloak
         public Input<string>? Algorithm { get; set; }
 
         /// <summary>
-        /// When `false`, key is not accessible in this realm. Defaults to `true`.
+        /// When `False`, key is not accessible in this realm. Defaults to `True`.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
@@ -236,7 +236,7 @@ namespace Pulumi.Keycloak
     public sealed class RealmKeystoreJavaGeneratedState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// When `false`, key in not used for signing. Defaults to `true`.
+        /// When `False`, key in not used for signing. Defaults to `True`.
         /// </summary>
         [Input("active")]
         public Input<bool>? Active { get; set; }
@@ -248,7 +248,7 @@ namespace Pulumi.Keycloak
         public Input<string>? Algorithm { get; set; }
 
         /// <summary>
-        /// When `false`, key is not accessible in this realm. Defaults to `true`.
+        /// When `False`, key is not accessible in this realm. Defaults to `True`.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }

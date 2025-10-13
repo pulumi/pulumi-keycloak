@@ -16,7 +16,7 @@ namespace Pulumi.Keycloak.Authentication
     /// of actions that a user or service must perform in order to be authenticated to Keycloak. The authentication flow itself
     /// is a container for these actions, which are otherwise known as executions.
     /// 
-    /// Realms assign authentication flows to supported user flows such as `registration` and `browser`. This resource allows the
+    /// Realms assign authentication flows to supported user flows such as `Registration` and `Browser`. This resource allows the
     /// updating of realm authentication flow bindings to custom authentication flows created by `keycloak.authentication.Flow`.
     /// 
     /// Note that you can also use the `keycloak.Realm` resource to assign authentication flow bindings at the realm level. This

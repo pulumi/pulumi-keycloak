@@ -99,14 +99,14 @@ namespace Pulumi.Keycloak
     /// 
     /// ### Attribute Arguments
     /// 
-    /// - `name` - (Required) The name of the attribute.
-    /// - `realm_id` - (Required) The realm id.
-    /// - `condition` - (Optional) An ordered list of condition
+    /// - `Name` - (Required) The name of the attribute.
+    /// - `RealmId` - (Required) The realm id.
+    /// - `Condition` - (Optional) An ordered list of condition
     /// 
     /// #### Condition Arguments
     /// 
-    /// - `name` - (Required) The name of the executor. NOTE! The executor needs to exist
-    /// - `configuration` - (Optional) - A map of configuration values
+    /// - `Name` - (Required) The name of the executor. NOTE! The executor needs to exist
+    /// - `Configuration` - (Optional) - A map of configuration values
     /// 
     /// ## Import
     /// 
