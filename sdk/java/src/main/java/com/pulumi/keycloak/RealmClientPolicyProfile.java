@@ -71,7 +71,7 @@ import javax.annotation.Nullable;
  * ### Attribute Arguments
  * 
  * - `name` - (Required) The name of the attribute.
- * - `realm_id` - (Required) The realm id.
+ * - `realmId` - (Required) The realm id.
  * - `executor` - (Optional) An ordered list of executors
  * 
  * #### Executor Arguments

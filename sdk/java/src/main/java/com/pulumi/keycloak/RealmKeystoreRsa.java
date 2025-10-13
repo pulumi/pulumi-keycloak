@@ -21,6 +21,8 @@ import javax.annotation.Nullable;
  * 
  * A realm keystore manages generated key pairs that are used by Keycloak to perform cryptographic signatures and encryption.
  * 
+ * ## Example Usage
+ * 
  * ## Import
  * 
  * Realm keys can be imported using realm name and keystore id, you can find it in web UI.

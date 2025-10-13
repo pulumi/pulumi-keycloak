@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak
 {
     /// <summary>
-    /// Allows for creating and managing `acdsa_generated` Realm keystores within Keycloak.
+    /// Allows for creating and managing `AcdsaGenerated` Realm keystores within Keycloak.
     /// 
     /// A realm keystore manages generated key pairs that are used by Keycloak to perform cryptographic signatures and encryption.
     /// 
@@ -58,7 +58,7 @@ namespace Pulumi.Keycloak
     public partial class RealmKeystoreEcdsaGenerated : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// When `false`, key in not used for signing. Defaults to `true`.
+        /// When `False`, key in not used for signing. Defaults to `True`.
         /// </summary>
         [Output("active")]
         public Output<bool?> Active { get; private set; } = null!;
@@ -70,7 +70,7 @@ namespace Pulumi.Keycloak
         public Output<string?> EllipticCurveKey { get; private set; } = null!;
 
         /// <summary>
-        /// When `false`, key is not accessible in this realm. Defaults to `true`.
+        /// When `False`, key is not accessible in this realm. Defaults to `True`.
         /// </summary>
         [Output("enabled")]
         public Output<bool?> Enabled { get; private set; } = null!;
@@ -140,7 +140,7 @@ namespace Pulumi.Keycloak
     public sealed class RealmKeystoreEcdsaGeneratedArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// When `false`, key in not used for signing. Defaults to `true`.
+        /// When `False`, key in not used for signing. Defaults to `True`.
         /// </summary>
         [Input("active")]
         public Input<bool>? Active { get; set; }
@@ -152,7 +152,7 @@ namespace Pulumi.Keycloak
         public Input<string>? EllipticCurveKey { get; set; }
 
         /// <summary>
-        /// When `false`, key is not accessible in this realm. Defaults to `true`.
+        /// When `False`, key is not accessible in this realm. Defaults to `True`.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
@@ -184,7 +184,7 @@ namespace Pulumi.Keycloak
     public sealed class RealmKeystoreEcdsaGeneratedState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// When `false`, key in not used for signing. Defaults to `true`.
+        /// When `False`, key in not used for signing. Defaults to `True`.
         /// </summary>
         [Input("active")]
         public Input<bool>? Active { get; set; }
@@ -196,7 +196,7 @@ namespace Pulumi.Keycloak
         public Input<string>? EllipticCurveKey { get; set; }
 
         /// <summary>
-        /// When `false`, key is not accessible in this realm. Defaults to `true`.
+        /// When `False`, key is not accessible in this realm. Defaults to `True`.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }

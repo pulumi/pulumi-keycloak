@@ -28,11 +28,11 @@ import javax.annotation.Nullable;
  * in order to take advantage of Keycloak&#39;s user sessions for SSO.
  * 
  * &gt; **NOTICE:** This resource now supports write-only arguments
- * for client secret via the new arguments `client_secret_wo` and `client_secret_wo_version`. Using write-only arguments
- * prevents sensitive values from being stored in plan and state files. You cannot use `client_secret_wo` and
- * `client_secret_wo_version` alongside `client_secret` as this will result in a validation error due to conflicts.
+ * for client secret via the new arguments `clientSecretWo` and `clientSecretWoVersion`. Using write-only arguments
+ * prevents sensitive values from being stored in plan and state files. You cannot use `clientSecretWo` and
+ * `clientSecretWoVersion` alongside `clientSecret` as this will result in a validation error due to conflicts.
  * &gt; 
- * &gt; For backward compatibility, the behavior of the original `client_secret` argument remains unchanged.
+ * &gt; For backward compatibility, the behavior of the original `clientSecret` argument remains unchanged.
  * 
  * ## Example Usage
  * 
@@ -239,28 +239,28 @@ public class Client extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.authenticationFlowBindingOverrides);
     }
     /**
-     * When this block is present, fine-grained authorization will be enabled for this client. The client&#39;s `access_type` must be `CONFIDENTIAL`, and `service_accounts_enabled` must be `true`. This block has the following arguments:
+     * When this block is present, fine-grained authorization will be enabled for this client. The client&#39;s `accessType` must be `CONFIDENTIAL`, and `serviceAccountsEnabled` must be `true`. This block has the following arguments:
      * 
      */
     @Export(name="authorization", refs={ClientAuthorization.class}, tree="[0]")
     private Output</* @Nullable */ ClientAuthorization> authorization;
 
     /**
-     * @return When this block is present, fine-grained authorization will be enabled for this client. The client&#39;s `access_type` must be `CONFIDENTIAL`, and `service_accounts_enabled` must be `true`. This block has the following arguments:
+     * @return When this block is present, fine-grained authorization will be enabled for this client. The client&#39;s `accessType` must be `CONFIDENTIAL`, and `serviceAccountsEnabled` must be `true`. This block has the following arguments:
      * 
      */
     public Output<Optional<ClientAuthorization>> authorization() {
         return Codegen.optional(this.authorization);
     }
     /**
-     * Specifying whether a &#34;revoke_offline_access&#34; event is included in the Logout Token when the Backchannel Logout URL is used. Keycloak will revoke offline sessions when receiving a Logout Token with this event.
+     * Specifying whether a &#34;revokeOfflineAccess&#34; event is included in the Logout Token when the Backchannel Logout URL is used. Keycloak will revoke offline sessions when receiving a Logout Token with this event.
      * 
      */
     @Export(name="backchannelLogoutRevokeOfflineSessions", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> backchannelLogoutRevokeOfflineSessions;
 
     /**
-     * @return Specifying whether a &#34;revoke_offline_access&#34; event is included in the Logout Token when the Backchannel Logout URL is used. Keycloak will revoke offline sessions when receiving a Logout Token with this event.
+     * @return Specifying whether a &#34;revokeOfflineAccess&#34; event is included in the Logout Token when the Backchannel Logout URL is used. Keycloak will revoke offline sessions when receiving a Logout Token with this event.
      * 
      */
     public Output<Optional<Boolean>> backchannelLogoutRevokeOfflineSessions() {
@@ -309,22 +309,22 @@ public class Client extends com.pulumi.resources.CustomResource {
         return this.baseUrl;
     }
     /**
-     * Defaults to `client-secret`. The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. A default Keycloak installation will have the following available types:
+     * Defaults to `client-secret`. The authenticator type for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. A default Keycloak installation will have the following available types:
      * - `client-secret` (Default) Use client id and client secret to authenticate client.
-     * - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
-     * - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extra_config` with `attributes.x509.subjectdn = &lt;subjectDn&gt;`
-     * - `client-secret-jwt` Use signed JWT with client secret to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
+     * - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extraConfig` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
+     * - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extraConfig` with `attributes.x509.subjectdn = &lt;subjectDn&gt;`
+     * - `client-secret-jwt` Use signed JWT with client secret to authenticate client. Set signing algorithm in `extraConfig` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
      * 
      */
     @Export(name="clientAuthenticatorType", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> clientAuthenticatorType;
 
     /**
-     * @return Defaults to `client-secret`. The authenticator type for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. A default Keycloak installation will have the following available types:
+     * @return Defaults to `client-secret`. The authenticator type for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. A default Keycloak installation will have the following available types:
      * - `client-secret` (Default) Use client id and client secret to authenticate client.
-     * - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
-     * - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extra_config` with `attributes.x509.subjectdn = &lt;subjectDn&gt;`
-     * - `client-secret-jwt` Use signed JWT with client secret to authenticate client. Set signing algorithm in `extra_config` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
+     * - `client-jwt` Use signed JWT to authenticate client. Set signing algorithm in `extraConfig` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
+     * - `client-x509` Use x509 certificate to authenticate client. Set Subject DN in `extraConfig` with `attributes.x509.subjectdn = &lt;subjectDn&gt;`
+     * - `client-secret-jwt` Use signed JWT with client secret to authenticate client. Set signing algorithm in `extraConfig` with `attributes.token.endpoint.auth.signing.alg = &lt;alg&gt;`
      * 
      */
     public Output<Optional<String>> clientAuthenticatorType() {
@@ -373,28 +373,28 @@ public class Client extends com.pulumi.resources.CustomResource {
         return this.clientOfflineSessionMaxLifespan;
     }
     /**
-     * The secret for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. This value is sensitive and should be treated with the same care as a password. If omitted, this will be generated by Keycloak.
+     * The secret for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This value is sensitive and should be treated with the same care as a password. If omitted, this will be generated by Keycloak.
      * 
      */
     @Export(name="clientSecret", refs={String.class}, tree="[0]")
     private Output<String> clientSecret;
 
     /**
-     * @return The secret for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. This value is sensitive and should be treated with the same care as a password. If omitted, this will be generated by Keycloak.
+     * @return The secret for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This value is sensitive and should be treated with the same care as a password. If omitted, this will be generated by Keycloak.
      * 
      */
     public Output<String> clientSecret() {
         return this.clientSecret;
     }
     /**
-     * Arbitrary map of values that, when changed, will trigger rotation of the secret. NOTE! Conflicts with `client_secret`, `client_secret_wo` and `client_secret_wo_version` attribute and can&#39;t be used together
+     * Arbitrary map of values that, when changed, will trigger rotation of the secret. NOTE! Conflicts with `clientSecret`, `clientSecretWo` and `clientSecretWoVersion` attribute and can&#39;t be used together
      * 
      */
     @Export(name="clientSecretRegenerateWhenChanged", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> clientSecretRegenerateWhenChanged;
 
     /**
-     * @return Arbitrary map of values that, when changed, will trigger rotation of the secret. NOTE! Conflicts with `client_secret`, `client_secret_wo` and `client_secret_wo_version` attribute and can&#39;t be used together
+     * @return Arbitrary map of values that, when changed, will trigger rotation of the secret. NOTE! Conflicts with `clientSecret`, `clientSecretWo` and `clientSecretWoVersion` attribute and can&#39;t be used together
      * 
      */
     public Output<Optional<Map<String,String>>> clientSecretRegenerateWhenChanged() {
@@ -457,14 +457,14 @@ public class Client extends com.pulumi.resources.CustomResource {
         return this.consentRequired;
     }
     /**
-     * The text to display on the consent screen about permissions specific to this client. This is applicable only when `display_on_consent_screen` is `true`.
+     * The text to display on the consent screen about permissions specific to this client. This is applicable only when `displayOnConsentScreen` is `true`.
      * 
      */
     @Export(name="consentScreenText", refs={String.class}, tree="[0]")
     private Output<String> consentScreenText;
 
     /**
-     * @return The text to display on the consent screen about permissions specific to this client. This is applicable only when `display_on_consent_screen` is `true`.
+     * @return The text to display on the consent screen about permissions specific to this client. This is applicable only when `displayOnConsentScreen` is `true`.
      * 
      */
     public Output<String> consentScreenText() {
@@ -499,14 +499,14 @@ public class Client extends com.pulumi.resources.CustomResource {
         return this.directAccessGrantsEnabled;
     }
     /**
-     * When `true`, the consent screen will display information about the client itself. Defaults to `false`. This is applicable only when `consent_required` is `true`.
+     * When `true`, the consent screen will display information about the client itself. Defaults to `false`. This is applicable only when `consentRequired` is `true`.
      * 
      */
     @Export(name="displayOnConsentScreen", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> displayOnConsentScreen;
 
     /**
-     * @return When `true`, the consent screen will display information about the client itself. Defaults to `false`. This is applicable only when `consent_required` is `true`.
+     * @return When `true`, the consent screen will display information about the client itself. Defaults to `false`. This is applicable only when `consentRequired` is `true`.
      * 
      */
     public Output<Boolean> displayOnConsentScreen() {
@@ -541,14 +541,14 @@ public class Client extends com.pulumi.resources.CustomResource {
         return this.excludeIssuerFromAuthResponse;
     }
     /**
-     * When `true`, the parameter `session_state` will not be included in OpenID Connect Authentication Response.
+     * When `true`, the parameter `sessionState` will not be included in OpenID Connect Authentication Response.
      * 
      */
     @Export(name="excludeSessionStateFromAuthResponse", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> excludeSessionStateFromAuthResponse;
 
     /**
-     * @return When `true`, the parameter `session_state` will not be included in OpenID Connect Authentication Response.
+     * @return When `true`, the parameter `sessionState` will not be included in OpenID Connect Authentication Response.
      * 
      */
     public Output<Boolean> excludeSessionStateFromAuthResponse() {
@@ -561,28 +561,28 @@ public class Client extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.extraConfig);
     }
     /**
-     * When `true`, frontchannel logout will be enabled for this client. Specify the url with `frontchannel_logout_url`. Defaults to `false`.
+     * When `true`, frontchannel logout will be enabled for this client. Specify the url with `frontchannelLogoutUrl`. Defaults to `false`.
      * 
      */
     @Export(name="frontchannelLogoutEnabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> frontchannelLogoutEnabled;
 
     /**
-     * @return When `true`, frontchannel logout will be enabled for this client. Specify the url with `frontchannel_logout_url`. Defaults to `false`.
+     * @return When `true`, frontchannel logout will be enabled for this client. Specify the url with `frontchannelLogoutUrl`. Defaults to `false`.
      * 
      */
     public Output<Boolean> frontchannelLogoutEnabled() {
         return this.frontchannelLogoutEnabled;
     }
     /**
-     * The frontchannel logout url. This is applicable only when `frontchannel_logout_enabled` is `true`.
+     * The frontchannel logout url. This is applicable only when `frontchannelLogoutEnabled` is `true`.
      * 
      */
     @Export(name="frontchannelLogoutUrl", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> frontchannelLogoutUrl;
 
     /**
-     * @return The frontchannel logout url. This is applicable only when `frontchannel_logout_enabled` is `true`.
+     * @return The frontchannel logout url. This is applicable only when `frontchannelLogoutEnabled` is `true`.
      * 
      */
     public Output<Optional<String>> frontchannelLogoutUrl() {
@@ -617,14 +617,14 @@ public class Client extends com.pulumi.resources.CustomResource {
         return this.implicitFlowEnabled;
     }
     /**
-     * When `true`, the client with the specified `client_id` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with clients that Keycloak creates automatically during realm creation, such as `account` and `admin-cli`. Note, that the client will not be removed during destruction if `import` is `true`.
+     * When `true`, the client with the specified `clientId` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with clients that Keycloak creates automatically during realm creation, such as `account` and `admin-cli`. Note, that the client will not be removed during destruction if `import` is `true`.
      * 
      */
     @Export(name="import", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> import_;
 
     /**
-     * @return When `true`, the client with the specified `client_id` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with clients that Keycloak creates automatically during realm creation, such as `account` and `admin-cli`. Note, that the client will not be removed during destruction if `import` is `true`.
+     * @return When `true`, the client with the specified `clientId` is assumed to already exist, and it will be imported into state instead of being created. This attribute is useful when dealing with clients that Keycloak creates automatically during realm creation, such as `account` and `admin-cli`. Note, that the client will not be removed during destruction if `import` is `true`.
      * 
      */
     public Output<Optional<Boolean>> import_() {
@@ -743,14 +743,14 @@ public class Client extends com.pulumi.resources.CustomResource {
         return this.resourceServerId;
     }
     /**
-     * When specified, this URL is prepended to any relative URLs found within `valid_redirect_uris`, `web_origins`, and `admin_url`. NOTE: Due to limitations in the Keycloak API, when the `root_url` attribute is used, the `valid_redirect_uris`, `web_origins`, and `admin_url` attributes will be required.
+     * When specified, this URL is prepended to any relative URLs found within `validRedirectUris`, `webOrigins`, and `adminUrl`. NOTE: Due to limitations in the Keycloak API, when the `rootUrl` attribute is used, the `validRedirectUris`, `webOrigins`, and `adminUrl` attributes will be required.
      * 
      */
     @Export(name="rootUrl", refs={String.class}, tree="[0]")
     private Output<String> rootUrl;
 
     /**
-     * @return When specified, this URL is prepended to any relative URLs found within `valid_redirect_uris`, `web_origins`, and `admin_url`. NOTE: Due to limitations in the Keycloak API, when the `root_url` attribute is used, the `valid_redirect_uris`, `web_origins`, and `admin_url` attributes will be required.
+     * @return When specified, this URL is prepended to any relative URLs found within `validRedirectUris`, `webOrigins`, and `adminUrl`. NOTE: Due to limitations in the Keycloak API, when the `rootUrl` attribute is used, the `validRedirectUris`, `webOrigins`, and `adminUrl` attributes will be required.
      * 
      */
     public Output<String> rootUrl() {
@@ -805,28 +805,28 @@ public class Client extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.standardTokenExchangeEnabled);
     }
     /**
-     * If this is `true`, a refresh_token will be created and added to the token response. If this is `false` then no refresh_token will be generated.  Defaults to `true`.
+     * If this is `true`, a refreshToken will be created and added to the token response. If this is `false` then no refreshToken will be generated.  Defaults to `true`.
      * 
      */
     @Export(name="useRefreshTokens", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> useRefreshTokens;
 
     /**
-     * @return If this is `true`, a refresh_token will be created and added to the token response. If this is `false` then no refresh_token will be generated.  Defaults to `true`.
+     * @return If this is `true`, a refreshToken will be created and added to the token response. If this is `false` then no refreshToken will be generated.  Defaults to `true`.
      * 
      */
     public Output<Optional<Boolean>> useRefreshTokens() {
         return Codegen.optional(this.useRefreshTokens);
     }
     /**
-     * If this is `true`, a refresh_token will be created and added to the token response if the client_credentials grant is used and a user session will be created. If this is `false` then no refresh_token will be generated and the associated user session will be removed, in accordance with OAuth 2.0 RFC6749 Section 4.4.3. Defaults to `false`.
+     * If this is `true`, a refreshToken will be created and added to the token response if the clientCredentials grant is used and a user session will be created. If this is `false` then no refreshToken will be generated and the associated user session will be removed, in accordance with OAuth 2.0 RFC6749 Section 4.4.3. Defaults to `false`.
      * 
      */
     @Export(name="useRefreshTokensClientCredentials", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> useRefreshTokensClientCredentials;
 
     /**
-     * @return If this is `true`, a refresh_token will be created and added to the token response if the client_credentials grant is used and a user session will be created. If this is `false` then no refresh_token will be generated and the associated user session will be removed, in accordance with OAuth 2.0 RFC6749 Section 4.4.3. Defaults to `false`.
+     * @return If this is `true`, a refreshToken will be created and added to the token response if the clientCredentials grant is used and a user session will be created. If this is `false` then no refreshToken will be generated and the associated user session will be removed, in accordance with OAuth 2.0 RFC6749 Section 4.4.3. Defaults to `false`.
      * 
      */
     public Output<Optional<Boolean>> useRefreshTokensClientCredentials() {
@@ -848,7 +848,7 @@ public class Client extends com.pulumi.resources.CustomResource {
     }
     /**
      * A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
-     * wildcards in the form of an asterisk can be used here. This attribute must be set if either `standard_flow_enabled` or `implicit_flow_enabled`
+     * wildcards in the form of an asterisk can be used here. This attribute must be set if either `standardFlowEnabled` or `implicitFlowEnabled`
      * is set to `true`.
      * 
      */
@@ -857,7 +857,7 @@ public class Client extends com.pulumi.resources.CustomResource {
 
     /**
      * @return A list of valid URIs a browser is permitted to redirect to after a successful login or logout. Simple
-     * wildcards in the form of an asterisk can be used here. This attribute must be set if either `standard_flow_enabled` or `implicit_flow_enabled`
+     * wildcards in the form of an asterisk can be used here. This attribute must be set if either `standardFlowEnabled` or `implicitFlowEnabled`
      * is set to `true`.
      * 
      */

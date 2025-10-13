@@ -17,14 +17,14 @@ public final class AttributeImporterIdentityProviderMapperState extends com.pulu
     public static final AttributeImporterIdentityProviderMapperState Empty = new AttributeImporterIdentityProviderMapperState();
 
     /**
-     * For SAML based providers, this is the friendly name of the attribute to search for in the assertion. Conflicts with `attribute_name`.
+     * For SAML based providers, this is the friendly name of the attribute to search for in the assertion. Conflicts with `attributeName`.
      * 
      */
     @Import(name="attributeFriendlyName")
     private @Nullable Output<String> attributeFriendlyName;
 
     /**
-     * @return For SAML based providers, this is the friendly name of the attribute to search for in the assertion. Conflicts with `attribute_name`.
+     * @return For SAML based providers, this is the friendly name of the attribute to search for in the assertion. Conflicts with `attributeName`.
      * 
      */
     public Optional<Output<String>> attributeFriendlyName() {
@@ -32,14 +32,14 @@ public final class AttributeImporterIdentityProviderMapperState extends com.pulu
     }
 
     /**
-     * For SAML based providers, this is the name of the attribute to search for in the assertion. Conflicts with `attribute_friendly_name`.
+     * For SAML based providers, this is the name of the attribute to search for in the assertion. Conflicts with `attributeFriendlyName`.
      * 
      */
     @Import(name="attributeName")
     private @Nullable Output<String> attributeName;
 
     /**
-     * @return For SAML based providers, this is the name of the attribute to search for in the assertion. Conflicts with `attribute_friendly_name`.
+     * @return For SAML based providers, this is the name of the attribute to search for in the assertion. Conflicts with `attributeFriendlyName`.
      * 
      */
     public Optional<Output<String>> attributeName() {
@@ -168,7 +168,7 @@ public final class AttributeImporterIdentityProviderMapperState extends com.pulu
         }
 
         /**
-         * @param attributeFriendlyName For SAML based providers, this is the friendly name of the attribute to search for in the assertion. Conflicts with `attribute_name`.
+         * @param attributeFriendlyName For SAML based providers, this is the friendly name of the attribute to search for in the assertion. Conflicts with `attributeName`.
          * 
          * @return builder
          * 
@@ -179,7 +179,7 @@ public final class AttributeImporterIdentityProviderMapperState extends com.pulu
         }
 
         /**
-         * @param attributeFriendlyName For SAML based providers, this is the friendly name of the attribute to search for in the assertion. Conflicts with `attribute_name`.
+         * @param attributeFriendlyName For SAML based providers, this is the friendly name of the attribute to search for in the assertion. Conflicts with `attributeName`.
          * 
          * @return builder
          * 
@@ -189,7 +189,7 @@ public final class AttributeImporterIdentityProviderMapperState extends com.pulu
         }
 
         /**
-         * @param attributeName For SAML based providers, this is the name of the attribute to search for in the assertion. Conflicts with `attribute_friendly_name`.
+         * @param attributeName For SAML based providers, this is the name of the attribute to search for in the assertion. Conflicts with `attributeFriendlyName`.
          * 
          * @return builder
          * 
@@ -200,7 +200,7 @@ public final class AttributeImporterIdentityProviderMapperState extends com.pulu
         }
 
         /**
-         * @param attributeName For SAML based providers, this is the name of the attribute to search for in the assertion. Conflicts with `attribute_friendly_name`.
+         * @param attributeName For SAML based providers, this is the name of the attribute to search for in the assertion. Conflicts with `attributeFriendlyName`.
          * 
          * @return builder
          * 

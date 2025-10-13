@@ -27,7 +27,7 @@ namespace Pulumi.Keycloak.Outputs
         /// </summary>
         public readonly string? Group;
         /// <summary>
-        /// If the attribute supports multiple values. Defaults to `false`.
+        /// If the attribute supports multiple values. Defaults to `False`.
         /// </summary>
         public readonly bool? MultiValued;
         public readonly string Name;

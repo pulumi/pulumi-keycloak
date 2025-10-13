@@ -109,14 +109,14 @@ public final class CustomUserFederationState extends com.pulumi.resources.Resour
     }
 
     /**
-     * Must be set to the realms&#39; `internal_id`  when it differs from the realm. This can happen when existing resources are imported into the state.
+     * Must be set to the realms&#39; `internalId`  when it differs from the realm. This can happen when existing resources are imported into the state.
      * 
      */
     @Import(name="parentId")
     private @Nullable Output<String> parentId;
 
     /**
-     * @return Must be set to the realms&#39; `internal_id`  when it differs from the realm. This can happen when existing resources are imported into the state.
+     * @return Must be set to the realms&#39; `internalId`  when it differs from the realm. This can happen when existing resources are imported into the state.
      * 
      */
     public Optional<Output<String>> parentId() {
@@ -328,7 +328,7 @@ public final class CustomUserFederationState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param parentId Must be set to the realms&#39; `internal_id`  when it differs from the realm. This can happen when existing resources are imported into the state.
+         * @param parentId Must be set to the realms&#39; `internalId`  when it differs from the realm. This can happen when existing resources are imported into the state.
          * 
          * @return builder
          * 
@@ -339,7 +339,7 @@ public final class CustomUserFederationState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param parentId Must be set to the realms&#39; `internal_id`  when it differs from the realm. This can happen when existing resources are imported into the state.
+         * @param parentId Must be set to the realms&#39; `internalId`  when it differs from the realm. This can happen when existing resources are imported into the state.
          * 
          * @return builder
          * 
