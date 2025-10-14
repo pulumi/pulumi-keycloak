@@ -14,7 +14,14 @@ else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 
+accessToken: Optional[str]
+
 additionalHeaders: Optional[str]
+
+adminUrl: Optional[str]
+"""
+The admin URL of the Keycloak instance if different from the main URL, before `/auth`
+"""
 
 basePath: Optional[str]
 
@@ -54,6 +61,16 @@ When true, the provider will treat the Keycloak instance as a Red Hat SSO server
 rootCaCertificate: Optional[str]
 """
 Allows x509 calls using an unknown CA certificate (for development purposes)
+"""
+
+tlsClientCertificate: Optional[str]
+"""
+TLS client certificate as PEM string for mutual authentication
+"""
+
+tlsClientPrivateKey: Optional[str]
+"""
+TLS client private key as PEM string for mutual authentication
 """
 
 tlsInsecureSkipVerify: Optional[bool]

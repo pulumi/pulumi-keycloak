@@ -6,6 +6,7 @@ package com.pulumi.keycloak.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.keycloak.outputs.GetRealmSmtpServerAuth;
+import com.pulumi.keycloak.outputs.GetRealmSmtpServerTokenAuth;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -23,6 +24,7 @@ public final class GetRealmSmtpServer {
     private String replyToDisplayName;
     private Boolean ssl;
     private Boolean starttls;
+    private List<GetRealmSmtpServerTokenAuth> tokenAuths;
 
     private GetRealmSmtpServer() {}
     public List<GetRealmSmtpServerAuth> auths() {
@@ -55,6 +57,9 @@ public final class GetRealmSmtpServer {
     public Boolean starttls() {
         return this.starttls;
     }
+    public List<GetRealmSmtpServerTokenAuth> tokenAuths() {
+        return this.tokenAuths;
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -75,6 +80,7 @@ public final class GetRealmSmtpServer {
         private String replyToDisplayName;
         private Boolean ssl;
         private Boolean starttls;
+        private List<GetRealmSmtpServerTokenAuth> tokenAuths;
         public Builder() {}
         public Builder(GetRealmSmtpServer defaults) {
     	      Objects.requireNonNull(defaults);
@@ -88,6 +94,7 @@ public final class GetRealmSmtpServer {
     	      this.replyToDisplayName = defaults.replyToDisplayName;
     	      this.ssl = defaults.ssl;
     	      this.starttls = defaults.starttls;
+    	      this.tokenAuths = defaults.tokenAuths;
         }
 
         @CustomType.Setter
@@ -173,6 +180,17 @@ public final class GetRealmSmtpServer {
             this.starttls = starttls;
             return this;
         }
+        @CustomType.Setter
+        public Builder tokenAuths(List<GetRealmSmtpServerTokenAuth> tokenAuths) {
+            if (tokenAuths == null) {
+              throw new MissingRequiredPropertyException("GetRealmSmtpServer", "tokenAuths");
+            }
+            this.tokenAuths = tokenAuths;
+            return this;
+        }
+        public Builder tokenAuths(GetRealmSmtpServerTokenAuth... tokenAuths) {
+            return tokenAuths(List.of(tokenAuths));
+        }
         public GetRealmSmtpServer build() {
             final var _resultValue = new GetRealmSmtpServer();
             _resultValue.auths = auths;
@@ -185,6 +203,7 @@ public final class GetRealmSmtpServer {
             _resultValue.replyToDisplayName = replyToDisplayName;
             _resultValue.ssl = ssl;
             _resultValue.starttls = starttls;
+            _resultValue.tokenAuths = tokenAuths;
             return _resultValue;
         }
     }

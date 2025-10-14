@@ -14,8 +14,18 @@ import java.util.Optional;
 public final class Config {
 
     private static final com.pulumi.Config config = com.pulumi.Config.of("keycloak");
+    public Optional<String> accessToken() {
+        return Codegen.stringProp("accessToken").config(config).get();
+    }
     public Optional<Map<String,String>> additionalHeaders() {
         return Codegen.objectProp("additionalHeaders", TypeShape.<Map<String,String>>builder(Map.class).addParameter(String.class).addParameter(String.class).build()).config(config).get();
+    }
+/**
+ * The admin URL of the Keycloak instance if different from the main URL, before `/auth`
+ * 
+ */
+    public Optional<String> adminUrl() {
+        return Codegen.stringProp("adminUrl").config(config).get();
     }
     public Optional<String> basePath() {
         return Codegen.stringProp("basePath").config(config).get();
@@ -73,6 +83,20 @@ public final class Config {
  */
     public Optional<String> rootCaCertificate() {
         return Codegen.stringProp("rootCaCertificate").config(config).get();
+    }
+/**
+ * TLS client certificate as PEM string for mutual authentication
+ * 
+ */
+    public Optional<String> tlsClientCertificate() {
+        return Codegen.stringProp("tlsClientCertificate").config(config).get();
+    }
+/**
+ * TLS client private key as PEM string for mutual authentication
+ * 
+ */
+    public Optional<String> tlsClientPrivateKey() {
+        return Codegen.stringProp("tlsClientPrivateKey").config(config).get();
     }
 /**
  * Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and should be avoided.

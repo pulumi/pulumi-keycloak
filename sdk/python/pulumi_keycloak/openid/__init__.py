@@ -35,6 +35,7 @@ from .group_membership_protocol_mapper import *
 from .hardcoded_claim_protocol_mapper import *
 from .hardcoded_role_protocol_mapper import *
 from .script_protocol_mapper import *
+from .sub_protocol_mapper import *
 from .user_attribute_protocol_mapper import *
 from .user_client_role_protocol_mapper import *
 from .user_property_protocol_mapper import *

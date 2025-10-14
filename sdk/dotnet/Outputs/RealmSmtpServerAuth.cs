@@ -17,9 +17,6 @@ namespace Pulumi.Keycloak.Outputs
         /// The SMTP server password.
         /// </summary>
         public readonly string Password;
-        /// <summary>
-        /// The SMTP server username.
-        /// </summary>
         public readonly string Username;
 
         [OutputConstructor]

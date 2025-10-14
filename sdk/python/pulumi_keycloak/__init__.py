@@ -544,6 +544,14 @@ _utilities.register(
  },
  {
   "pkg": "keycloak",
+  "mod": "oidc/githubIdentityProvider",
+  "fqn": "pulumi_keycloak.oidc",
+  "classes": {
+   "keycloak:oidc/githubIdentityProvider:GithubIdentityProvider": "GithubIdentityProvider"
+  }
+ },
+ {
+  "pkg": "keycloak",
   "mod": "oidc/googleIdentityProvider",
   "fqn": "pulumi_keycloak.oidc",
   "classes": {
@@ -756,6 +764,14 @@ _utilities.register(
   "fqn": "pulumi_keycloak.openid",
   "classes": {
    "keycloak:openid/scriptProtocolMapper:ScriptProtocolMapper": "ScriptProtocolMapper"
+  }
+ },
+ {
+  "pkg": "keycloak",
+  "mod": "openid/subProtocolMapper",
+  "fqn": "pulumi_keycloak.openid",
+  "classes": {
+   "keycloak:openid/subProtocolMapper:SubProtocolMapper": "SubProtocolMapper"
   }
  },
  {

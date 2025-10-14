@@ -242,6 +242,10 @@
                     }
                 }
             },
+            "keycloak_oidc_github_identity_provider": {
+                "current": "keycloak:oidc/githubIdentityProvider:GithubIdentityProvider",
+                "majorVersion": 6
+            },
             "keycloak_oidc_google_identity_provider": {
                 "current": "keycloak:oidc/googleIdentityProvider:GoogleIdentityProvider",
                 "majorVersion": 6
@@ -505,6 +509,10 @@
                 "current": "keycloak:openid/scriptProtocolMapper:ScriptProtocolMapper",
                 "majorVersion": 6
             },
+            "keycloak_openid_sub_protocol_mapper": {
+                "current": "keycloak:openid/subProtocolMapper:SubProtocolMapper",
+                "majorVersion": 6
+            },
             "keycloak_openid_user_attribute_protocol_mapper": {
                 "current": "keycloak:openid/userAttributeProtocolMapper:UserAttributeProtocolMapper",
                 "majorVersion": 6
@@ -575,6 +583,9 @@
                         "elem": {
                             "fields": {
                                 "auth": {
+                                    "maxItemsOne": true
+                                },
+                                "token_auth": {
                                     "maxItemsOne": true
                                 }
                             }
@@ -1039,6 +1050,9 @@
                         "elem": {
                             "fields": {
                                 "auth": {
+                                    "maxItemsOne": false
+                                },
+                                "token_auth": {
                                     "maxItemsOne": false
                                 }
                             }

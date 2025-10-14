@@ -17,14 +17,14 @@ public final class RealmLocalizationState extends com.pulumi.resources.ResourceA
     public static final RealmLocalizationState Empty = new RealmLocalizationState();
 
     /**
-     * The locale for the localization texts.
+     * The locale (language code) the texts apply to.
      * 
      */
     @Import(name="locale")
     private @Nullable Output<String> locale;
 
     /**
-     * @return The locale for the localization texts.
+     * @return The locale (language code) the texts apply to.
      * 
      */
     public Optional<Output<String>> locale() {
@@ -32,14 +32,14 @@ public final class RealmLocalizationState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * The realm in which the texts exists.
+     * The ID of the realm the user profile applies to.
      * 
      */
     @Import(name="realmId")
     private @Nullable Output<String> realmId;
 
     /**
-     * @return The realm in which the texts exists.
+     * @return The ID of the realm the user profile applies to.
      * 
      */
     public Optional<Output<String>> realmId() {
@@ -47,14 +47,14 @@ public final class RealmLocalizationState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * The mapping of localization texts keys to values.
+     * A map of translation keys to values.
      * 
      */
     @Import(name="texts")
     private @Nullable Output<Map<String,String>> texts;
 
     /**
-     * @return The mapping of localization texts keys to values.
+     * @return A map of translation keys to values.
      * 
      */
     public Optional<Output<Map<String,String>>> texts() {
@@ -88,7 +88,7 @@ public final class RealmLocalizationState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param locale The locale for the localization texts.
+         * @param locale The locale (language code) the texts apply to.
          * 
          * @return builder
          * 
@@ -99,7 +99,7 @@ public final class RealmLocalizationState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param locale The locale for the localization texts.
+         * @param locale The locale (language code) the texts apply to.
          * 
          * @return builder
          * 
@@ -109,7 +109,7 @@ public final class RealmLocalizationState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param realmId The realm in which the texts exists.
+         * @param realmId The ID of the realm the user profile applies to.
          * 
          * @return builder
          * 
@@ -120,7 +120,7 @@ public final class RealmLocalizationState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param realmId The realm in which the texts exists.
+         * @param realmId The ID of the realm the user profile applies to.
          * 
          * @return builder
          * 
@@ -130,7 +130,7 @@ public final class RealmLocalizationState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param texts The mapping of localization texts keys to values.
+         * @param texts A map of translation keys to values.
          * 
          * @return builder
          * 
@@ -141,7 +141,7 @@ public final class RealmLocalizationState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param texts The mapping of localization texts keys to values.
+         * @param texts A map of translation keys to values.
          * 
          * @return builder
          * 

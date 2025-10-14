@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.keycloak.inputs.GetRealmSmtpServerAuthArgs;
+import com.pulumi.keycloak.inputs.GetRealmSmtpServerTokenAuthArgs;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -87,6 +88,13 @@ public final class GetRealmSmtpServerArgs extends com.pulumi.resources.ResourceA
         return this.starttls;
     }
 
+    @Import(name="tokenAuths", required=true)
+    private Output<List<GetRealmSmtpServerTokenAuthArgs>> tokenAuths;
+
+    public Output<List<GetRealmSmtpServerTokenAuthArgs>> tokenAuths() {
+        return this.tokenAuths;
+    }
+
     private GetRealmSmtpServerArgs() {}
 
     private GetRealmSmtpServerArgs(GetRealmSmtpServerArgs $) {
@@ -100,6 +108,7 @@ public final class GetRealmSmtpServerArgs extends com.pulumi.resources.ResourceA
         this.replyToDisplayName = $.replyToDisplayName;
         this.ssl = $.ssl;
         this.starttls = $.starttls;
+        this.tokenAuths = $.tokenAuths;
     }
 
     public static Builder builder() {
@@ -214,6 +223,19 @@ public final class GetRealmSmtpServerArgs extends com.pulumi.resources.ResourceA
             return starttls(Output.of(starttls));
         }
 
+        public Builder tokenAuths(Output<List<GetRealmSmtpServerTokenAuthArgs>> tokenAuths) {
+            $.tokenAuths = tokenAuths;
+            return this;
+        }
+
+        public Builder tokenAuths(List<GetRealmSmtpServerTokenAuthArgs> tokenAuths) {
+            return tokenAuths(Output.of(tokenAuths));
+        }
+
+        public Builder tokenAuths(GetRealmSmtpServerTokenAuthArgs... tokenAuths) {
+            return tokenAuths(List.of(tokenAuths));
+        }
+
         public GetRealmSmtpServerArgs build() {
             if ($.auths == null) {
                 throw new MissingRequiredPropertyException("GetRealmSmtpServerArgs", "auths");
@@ -244,6 +266,9 @@ public final class GetRealmSmtpServerArgs extends com.pulumi.resources.ResourceA
             }
             if ($.starttls == null) {
                 throw new MissingRequiredPropertyException("GetRealmSmtpServerArgs", "starttls");
+            }
+            if ($.tokenAuths == null) {
+                throw new MissingRequiredPropertyException("GetRealmSmtpServerArgs", "tokenAuths");
             }
             return $;
         }

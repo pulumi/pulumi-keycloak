@@ -82,6 +82,7 @@ class ClientArgs:
         :param pulumi.Input[_builtins.str] realm_id: The realm this client is attached to.
         :param pulumi.Input[_builtins.str] access_token_lifespan: The amount of time in seconds before an access token expires. This will override the default for the realm.
         :param pulumi.Input[_builtins.str] admin_url: URL to the admin interface of the client.
+        :param pulumi.Input[_builtins.str] allow_refresh_token_in_standard_token_exchange: Defines whether to allow refresh token in Standard Token Exchange. Possible values are `NO` (default) and `SAME_SESSION`.
         :param pulumi.Input[_builtins.bool] always_display_in_console: Always list this client in the Account UI, even if the user does not have an active session.
         :param pulumi.Input['ClientAuthenticationFlowBindingOverridesArgs'] authentication_flow_binding_overrides: Override realm authentication flow bindings
         :param pulumi.Input['ClientAuthorizationArgs'] authorization: When this block is present, fine-grained authorization will be enabled for this client. The client's `access_type` must be `CONFIDENTIAL`, and `service_accounts_enabled` must be `true`. This block has the following arguments:
@@ -124,6 +125,7 @@ class ClientArgs:
         :param pulumi.Input[_builtins.str] root_url: When specified, this URL is prepended to any relative URLs found within `valid_redirect_uris`, `web_origins`, and `admin_url`. NOTE: Due to limitations in the Keycloak API, when the `root_url` attribute is used, the `valid_redirect_uris`, `web_origins`, and `admin_url` attributes will be required.
         :param pulumi.Input[_builtins.bool] service_accounts_enabled: When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] standard_flow_enabled: When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
+        :param pulumi.Input[_builtins.bool] standard_token_exchange_enabled: Enables support for Standard Token Exchange
         :param pulumi.Input[_builtins.bool] use_refresh_tokens: If this is `true`, a refresh_token will be created and added to the token response. If this is `false` then no refresh_token will be generated.  Defaults to `true`.
         :param pulumi.Input[_builtins.bool] use_refresh_tokens_client_credentials: If this is `true`, a refresh_token will be created and added to the token response if the client_credentials grant is used and a user session will be created. If this is `false` then no refresh_token will be generated and the associated user session will be removed, in accordance with OAuth 2.0 RFC6749 Section 4.4.3. Defaults to `false`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] valid_post_logout_redirect_uris: A list of valid URIs a browser is permitted to redirect to after a successful logout.
@@ -287,6 +289,9 @@ class ClientArgs:
     @_builtins.property
     @pulumi.getter(name="allowRefreshTokenInStandardTokenExchange")
     def allow_refresh_token_in_standard_token_exchange(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Defines whether to allow refresh token in Standard Token Exchange. Possible values are `NO` (default) and `SAME_SESSION`.
+        """
         return pulumi.get(self, "allow_refresh_token_in_standard_token_exchange")
 
     @allow_refresh_token_in_standard_token_exchange.setter
@@ -765,6 +770,9 @@ class ClientArgs:
     @_builtins.property
     @pulumi.getter(name="standardTokenExchangeEnabled")
     def standard_token_exchange_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Enables support for Standard Token Exchange
+        """
         return pulumi.get(self, "standard_token_exchange_enabled")
 
     @standard_token_exchange_enabled.setter
@@ -899,6 +907,7 @@ class _ClientState:
                URIs for security. This client should be used for applications using the Implicit grant flow.
                - `BEARER-ONLY` - Used for services that never initiate a login. This client will only allow bearer token requests.
         :param pulumi.Input[_builtins.str] admin_url: URL to the admin interface of the client.
+        :param pulumi.Input[_builtins.str] allow_refresh_token_in_standard_token_exchange: Defines whether to allow refresh token in Standard Token Exchange. Possible values are `NO` (default) and `SAME_SESSION`.
         :param pulumi.Input[_builtins.bool] always_display_in_console: Always list this client in the Account UI, even if the user does not have an active session.
         :param pulumi.Input['ClientAuthenticationFlowBindingOverridesArgs'] authentication_flow_binding_overrides: Override realm authentication flow bindings
         :param pulumi.Input['ClientAuthorizationArgs'] authorization: When this block is present, fine-grained authorization will be enabled for this client. The client's `access_type` must be `CONFIDENTIAL`, and `service_accounts_enabled` must be `true`. This block has the following arguments:
@@ -944,6 +953,7 @@ class _ClientState:
         :param pulumi.Input[_builtins.str] service_account_user_id: (Computed) When service accounts are enabled for this client, this attribute is the unique ID for the Keycloak user that represents this service account.
         :param pulumi.Input[_builtins.bool] service_accounts_enabled: When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] standard_flow_enabled: When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
+        :param pulumi.Input[_builtins.bool] standard_token_exchange_enabled: Enables support for Standard Token Exchange
         :param pulumi.Input[_builtins.bool] use_refresh_tokens: If this is `true`, a refresh_token will be created and added to the token response. If this is `false` then no refresh_token will be generated.  Defaults to `true`.
         :param pulumi.Input[_builtins.bool] use_refresh_tokens_client_credentials: If this is `true`, a refresh_token will be created and added to the token response if the client_credentials grant is used and a user session will be created. If this is `false` then no refresh_token will be generated and the associated user session will be removed, in accordance with OAuth 2.0 RFC6749 Section 4.4.3. Defaults to `false`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] valid_post_logout_redirect_uris: A list of valid URIs a browser is permitted to redirect to after a successful logout.
@@ -1101,6 +1111,9 @@ class _ClientState:
     @_builtins.property
     @pulumi.getter(name="allowRefreshTokenInStandardTokenExchange")
     def allow_refresh_token_in_standard_token_exchange(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Defines whether to allow refresh token in Standard Token Exchange. Possible values are `NO` (default) and `SAME_SESSION`.
+        """
         return pulumi.get(self, "allow_refresh_token_in_standard_token_exchange")
 
     @allow_refresh_token_in_standard_token_exchange.setter
@@ -1615,6 +1628,9 @@ class _ClientState:
     @_builtins.property
     @pulumi.getter(name="standardTokenExchangeEnabled")
     def standard_token_exchange_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Enables support for Standard Token Exchange
+        """
         return pulumi.get(self, "standard_token_exchange_enabled")
 
     @standard_token_exchange_enabled.setter
@@ -1770,6 +1786,7 @@ class Client(pulumi.CustomResource):
             name="test client",
             enabled=True,
             access_type="CONFIDENTIAL",
+            standard_flow_enabled=True,
             valid_redirect_uris=["http://localhost:8080/openid-callback"],
             login_theme="keycloak",
             extra_config={
@@ -1824,6 +1841,7 @@ class Client(pulumi.CustomResource):
                URIs for security. This client should be used for applications using the Implicit grant flow.
                - `BEARER-ONLY` - Used for services that never initiate a login. This client will only allow bearer token requests.
         :param pulumi.Input[_builtins.str] admin_url: URL to the admin interface of the client.
+        :param pulumi.Input[_builtins.str] allow_refresh_token_in_standard_token_exchange: Defines whether to allow refresh token in Standard Token Exchange. Possible values are `NO` (default) and `SAME_SESSION`.
         :param pulumi.Input[_builtins.bool] always_display_in_console: Always list this client in the Account UI, even if the user does not have an active session.
         :param pulumi.Input[Union['ClientAuthenticationFlowBindingOverridesArgs', 'ClientAuthenticationFlowBindingOverridesArgsDict']] authentication_flow_binding_overrides: Override realm authentication flow bindings
         :param pulumi.Input[Union['ClientAuthorizationArgs', 'ClientAuthorizationArgsDict']] authorization: When this block is present, fine-grained authorization will be enabled for this client. The client's `access_type` must be `CONFIDENTIAL`, and `service_accounts_enabled` must be `true`. This block has the following arguments:
@@ -1867,6 +1885,7 @@ class Client(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] root_url: When specified, this URL is prepended to any relative URLs found within `valid_redirect_uris`, `web_origins`, and `admin_url`. NOTE: Due to limitations in the Keycloak API, when the `root_url` attribute is used, the `valid_redirect_uris`, `web_origins`, and `admin_url` attributes will be required.
         :param pulumi.Input[_builtins.bool] service_accounts_enabled: When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] standard_flow_enabled: When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
+        :param pulumi.Input[_builtins.bool] standard_token_exchange_enabled: Enables support for Standard Token Exchange
         :param pulumi.Input[_builtins.bool] use_refresh_tokens: If this is `true`, a refresh_token will be created and added to the token response. If this is `false` then no refresh_token will be generated.  Defaults to `true`.
         :param pulumi.Input[_builtins.bool] use_refresh_tokens_client_credentials: If this is `true`, a refresh_token will be created and added to the token response if the client_credentials grant is used and a user session will be created. If this is `false` then no refresh_token will be generated and the associated user session will be removed, in accordance with OAuth 2.0 RFC6749 Section 4.4.3. Defaults to `false`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] valid_post_logout_redirect_uris: A list of valid URIs a browser is permitted to redirect to after a successful logout.
@@ -1910,6 +1929,7 @@ class Client(pulumi.CustomResource):
             name="test client",
             enabled=True,
             access_type="CONFIDENTIAL",
+            standard_flow_enabled=True,
             valid_redirect_uris=["http://localhost:8080/openid-callback"],
             login_theme="keycloak",
             extra_config={
@@ -2163,6 +2183,7 @@ class Client(pulumi.CustomResource):
                URIs for security. This client should be used for applications using the Implicit grant flow.
                - `BEARER-ONLY` - Used for services that never initiate a login. This client will only allow bearer token requests.
         :param pulumi.Input[_builtins.str] admin_url: URL to the admin interface of the client.
+        :param pulumi.Input[_builtins.str] allow_refresh_token_in_standard_token_exchange: Defines whether to allow refresh token in Standard Token Exchange. Possible values are `NO` (default) and `SAME_SESSION`.
         :param pulumi.Input[_builtins.bool] always_display_in_console: Always list this client in the Account UI, even if the user does not have an active session.
         :param pulumi.Input[Union['ClientAuthenticationFlowBindingOverridesArgs', 'ClientAuthenticationFlowBindingOverridesArgsDict']] authentication_flow_binding_overrides: Override realm authentication flow bindings
         :param pulumi.Input[Union['ClientAuthorizationArgs', 'ClientAuthorizationArgsDict']] authorization: When this block is present, fine-grained authorization will be enabled for this client. The client's `access_type` must be `CONFIDENTIAL`, and `service_accounts_enabled` must be `true`. This block has the following arguments:
@@ -2208,6 +2229,7 @@ class Client(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] service_account_user_id: (Computed) When service accounts are enabled for this client, this attribute is the unique ID for the Keycloak user that represents this service account.
         :param pulumi.Input[_builtins.bool] service_accounts_enabled: When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] standard_flow_enabled: When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
+        :param pulumi.Input[_builtins.bool] standard_token_exchange_enabled: Enables support for Standard Token Exchange
         :param pulumi.Input[_builtins.bool] use_refresh_tokens: If this is `true`, a refresh_token will be created and added to the token response. If this is `false` then no refresh_token will be generated.  Defaults to `true`.
         :param pulumi.Input[_builtins.bool] use_refresh_tokens_client_credentials: If this is `true`, a refresh_token will be created and added to the token response if the client_credentials grant is used and a user session will be created. If this is `false` then no refresh_token will be generated and the associated user session will be removed, in accordance with OAuth 2.0 RFC6749 Section 4.4.3. Defaults to `false`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] valid_post_logout_redirect_uris: A list of valid URIs a browser is permitted to redirect to after a successful logout.
@@ -2306,6 +2328,9 @@ class Client(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="allowRefreshTokenInStandardTokenExchange")
     def allow_refresh_token_in_standard_token_exchange(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Defines whether to allow refresh token in Standard Token Exchange. Possible values are `NO` (default) and `SAME_SESSION`.
+        """
         return pulumi.get(self, "allow_refresh_token_in_standard_token_exchange")
 
     @_builtins.property
@@ -2648,6 +2673,9 @@ class Client(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="standardTokenExchangeEnabled")
     def standard_token_exchange_enabled(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        Enables support for Standard Token Exchange
+        """
         return pulumi.get(self, "standard_token_exchange_enabled")
 
     @_builtins.property

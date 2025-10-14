@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Allows managing default realm roles within Keycloak.
+// Allows managing default roles within Keycloak.
 //
 // Note: This feature was added in Keycloak v13, so this resource will not work on older versions of Keycloak.
 //
@@ -54,6 +54,43 @@ import (
 //
 // ```
 //
+// ### Client Roles)
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = keycloak.NewDefaultRoles(ctx, "default_roles", &keycloak.DefaultRolesArgs{
+//				RealmId: realm.ID(),
+//				DefaultRoles: pulumi.StringArray{
+//					pulumi.String("account/manage-account"),
+//					pulumi.String("account/view-groups"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Default roles can be imported using the format `{{realm_id}}/{{default_role_id}}`, where `default_role_id` is the unique ID of the composite
@@ -72,7 +109,7 @@ import (
 type DefaultRoles struct {
 	pulumi.CustomResourceState
 
-	// Realm level roles assigned to new users by default.
+	// Roles assigned to new users by default.
 	DefaultRoles pulumi.StringArrayOutput `pulumi:"defaultRoles"`
 	// The realm this role exists within.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
@@ -114,14 +151,14 @@ func GetDefaultRoles(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DefaultRoles resources.
 type defaultRolesState struct {
-	// Realm level roles assigned to new users by default.
+	// Roles assigned to new users by default.
 	DefaultRoles []string `pulumi:"defaultRoles"`
 	// The realm this role exists within.
 	RealmId *string `pulumi:"realmId"`
 }
 
 type DefaultRolesState struct {
-	// Realm level roles assigned to new users by default.
+	// Roles assigned to new users by default.
 	DefaultRoles pulumi.StringArrayInput
 	// The realm this role exists within.
 	RealmId pulumi.StringPtrInput
@@ -132,7 +169,7 @@ func (DefaultRolesState) ElementType() reflect.Type {
 }
 
 type defaultRolesArgs struct {
-	// Realm level roles assigned to new users by default.
+	// Roles assigned to new users by default.
 	DefaultRoles []string `pulumi:"defaultRoles"`
 	// The realm this role exists within.
 	RealmId string `pulumi:"realmId"`
@@ -140,7 +177,7 @@ type defaultRolesArgs struct {
 
 // The set of arguments for constructing a DefaultRoles resource.
 type DefaultRolesArgs struct {
-	// Realm level roles assigned to new users by default.
+	// Roles assigned to new users by default.
 	DefaultRoles pulumi.StringArrayInput
 	// The realm this role exists within.
 	RealmId pulumi.StringInput
@@ -233,7 +270,7 @@ func (o DefaultRolesOutput) ToDefaultRolesOutputWithContext(ctx context.Context)
 	return o
 }
 
-// Realm level roles assigned to new users by default.
+// Roles assigned to new users by default.
 func (o DefaultRolesOutput) DefaultRoles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *DefaultRoles) pulumi.StringArrayOutput { return v.DefaultRoles }).(pulumi.StringArrayOutput)
 }

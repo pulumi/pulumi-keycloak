@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Allows managing default realm roles within Keycloak.
+ * Allows managing default roles within Keycloak.
  *
  * Note: This feature was added in Keycloak v13, so this resource will not work on older versions of Keycloak.
  *
@@ -24,6 +24,25 @@ import * as utilities from "./utilities";
  * const defaultRoles = new keycloak.DefaultRoles("default_roles", {
  *     realmId: realm.id,
  *     defaultRoles: ["uma_authorization"],
+ * });
+ * ```
+ *
+ * ### Client Roles)
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * const defaultRoles = new keycloak.DefaultRoles("default_roles", {
+ *     realmId: realm.id,
+ *     defaultRoles: [
+ *         "account/manage-account",
+ *         "account/view-groups",
+ *     ],
  * });
  * ```
  *
@@ -72,7 +91,7 @@ export class DefaultRoles extends pulumi.CustomResource {
     }
 
     /**
-     * Realm level roles assigned to new users by default.
+     * Roles assigned to new users by default.
      */
     declare public readonly defaultRoles: pulumi.Output<string[]>;
     /**
@@ -116,7 +135,7 @@ export class DefaultRoles extends pulumi.CustomResource {
  */
 export interface DefaultRolesState {
     /**
-     * Realm level roles assigned to new users by default.
+     * Roles assigned to new users by default.
      */
     defaultRoles?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -130,7 +149,7 @@ export interface DefaultRolesState {
  */
 export interface DefaultRolesArgs {
     /**
-     * Realm level roles assigned to new users by default.
+     * Roles assigned to new users by default.
      */
     defaultRoles: pulumi.Input<pulumi.Input<string>[]>;
     /**

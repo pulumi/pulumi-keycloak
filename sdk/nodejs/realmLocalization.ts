@@ -4,6 +4,33 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Allows for managing Realm Localization Text overrides within Keycloak.
+ *
+ * A localization resource defines a schema for representing a locale with a map of key/value pairs and how they are managed within a realm.
+ *
+ * Note: whilst you can provide localization texts for unsupported locales, they will not take effect until they are defined within the realm resource.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {realm: "my-realm"});
+ * const germanTexts = new keycloak.RealmLocalization("german_texts", {
+ *     realmId: myRealm.id,
+ *     locale: "de",
+ *     texts: {
+ *         Hello: "Hallo",
+ *     },
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * This resource does not currently support importing.
+ */
 export class RealmLocalization extends pulumi.CustomResource {
     /**
      * Get an existing RealmLocalization resource's state with the given name, ID, and optional extra
@@ -33,15 +60,15 @@ export class RealmLocalization extends pulumi.CustomResource {
     }
 
     /**
-     * The locale for the localization texts.
+     * The locale (language code) the texts apply to.
      */
     declare public readonly locale: pulumi.Output<string>;
     /**
-     * The realm in which the texts exists.
+     * The ID of the realm the user profile applies to.
      */
     declare public readonly realmId: pulumi.Output<string>;
     /**
-     * The mapping of localization texts keys to values.
+     * A map of translation keys to values.
      */
     declare public readonly texts: pulumi.Output<{[key: string]: string} | undefined>;
 
@@ -83,15 +110,15 @@ export class RealmLocalization extends pulumi.CustomResource {
  */
 export interface RealmLocalizationState {
     /**
-     * The locale for the localization texts.
+     * The locale (language code) the texts apply to.
      */
     locale?: pulumi.Input<string>;
     /**
-     * The realm in which the texts exists.
+     * The ID of the realm the user profile applies to.
      */
     realmId?: pulumi.Input<string>;
     /**
-     * The mapping of localization texts keys to values.
+     * A map of translation keys to values.
      */
     texts?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }
@@ -101,15 +128,15 @@ export interface RealmLocalizationState {
  */
 export interface RealmLocalizationArgs {
     /**
-     * The locale for the localization texts.
+     * The locale (language code) the texts apply to.
      */
     locale: pulumi.Input<string>;
     /**
-     * The realm in which the texts exists.
+     * The ID of the realm the user profile applies to.
      */
     realmId: pulumi.Input<string>;
     /**
-     * The mapping of localization texts keys to values.
+     * A map of translation keys to values.
      */
     texts?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }

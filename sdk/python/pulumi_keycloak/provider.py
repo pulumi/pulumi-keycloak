@@ -19,7 +19,9 @@ __all__ = ['ProviderArgs', 'Provider']
 @pulumi.input_type
 class ProviderArgs:
     def __init__(__self__, *,
+                 access_token: Optional[pulumi.Input[_builtins.str]] = None,
                  additional_headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 admin_url: Optional[pulumi.Input[_builtins.str]] = None,
                  base_path: Optional[pulumi.Input[_builtins.str]] = None,
                  client_id: Optional[pulumi.Input[_builtins.str]] = None,
                  client_secret: Optional[pulumi.Input[_builtins.str]] = None,
@@ -31,22 +33,31 @@ class ProviderArgs:
                  realm: Optional[pulumi.Input[_builtins.str]] = None,
                  red_hat_sso: Optional[pulumi.Input[_builtins.bool]] = None,
                  root_ca_certificate: Optional[pulumi.Input[_builtins.str]] = None,
+                 tls_client_certificate: Optional[pulumi.Input[_builtins.str]] = None,
+                 tls_client_private_key: Optional[pulumi.Input[_builtins.str]] = None,
                  tls_insecure_skip_verify: Optional[pulumi.Input[_builtins.bool]] = None,
                  url: Optional[pulumi.Input[_builtins.str]] = None,
                  username: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Provider resource.
+        :param pulumi.Input[_builtins.str] admin_url: The admin URL of the Keycloak instance if different from the main URL, before `/auth`
         :param pulumi.Input[_builtins.int] client_timeout: Timeout (in seconds) of the Keycloak client
         :param pulumi.Input[_builtins.bool] initial_login: Whether or not to login to Keycloak instance on provider initialization
         :param pulumi.Input[_builtins.str] jwt_signing_alg: The algorithm used to sign the JWT when client-jwt is used. Defaults to RS256.
         :param pulumi.Input[_builtins.str] jwt_signing_key: The PEM-formatted private key used to sign the JWT when client-jwt is used.
         :param pulumi.Input[_builtins.bool] red_hat_sso: When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version returned from the /serverinfo API endpoint.
         :param pulumi.Input[_builtins.str] root_ca_certificate: Allows x509 calls using an unknown CA certificate (for development purposes)
+        :param pulumi.Input[_builtins.str] tls_client_certificate: TLS client certificate as PEM string for mutual authentication
+        :param pulumi.Input[_builtins.str] tls_client_private_key: TLS client private key as PEM string for mutual authentication
         :param pulumi.Input[_builtins.bool] tls_insecure_skip_verify: Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and should be avoided.
         :param pulumi.Input[_builtins.str] url: The base URL of the Keycloak instance, before `/auth`
         """
+        if access_token is not None:
+            pulumi.set(__self__, "access_token", access_token)
         if additional_headers is not None:
             pulumi.set(__self__, "additional_headers", additional_headers)
+        if admin_url is not None:
+            pulumi.set(__self__, "admin_url", admin_url)
         if base_path is not None:
             pulumi.set(__self__, "base_path", base_path)
         if client_id is not None:
@@ -71,12 +82,25 @@ class ProviderArgs:
             pulumi.set(__self__, "red_hat_sso", red_hat_sso)
         if root_ca_certificate is not None:
             pulumi.set(__self__, "root_ca_certificate", root_ca_certificate)
+        if tls_client_certificate is not None:
+            pulumi.set(__self__, "tls_client_certificate", tls_client_certificate)
+        if tls_client_private_key is not None:
+            pulumi.set(__self__, "tls_client_private_key", tls_client_private_key)
         if tls_insecure_skip_verify is not None:
             pulumi.set(__self__, "tls_insecure_skip_verify", tls_insecure_skip_verify)
         if url is not None:
             pulumi.set(__self__, "url", url)
         if username is not None:
             pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter(name="accessToken")
+    def access_token(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "access_token")
+
+    @access_token.setter
+    def access_token(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "access_token", value)
 
     @_builtins.property
     @pulumi.getter(name="additionalHeaders")
@@ -86,6 +110,18 @@ class ProviderArgs:
     @additional_headers.setter
     def additional_headers(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "additional_headers", value)
+
+    @_builtins.property
+    @pulumi.getter(name="adminUrl")
+    def admin_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The admin URL of the Keycloak instance if different from the main URL, before `/auth`
+        """
+        return pulumi.get(self, "admin_url")
+
+    @admin_url.setter
+    def admin_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "admin_url", value)
 
     @_builtins.property
     @pulumi.getter(name="basePath")
@@ -205,6 +241,30 @@ class ProviderArgs:
         pulumi.set(self, "root_ca_certificate", value)
 
     @_builtins.property
+    @pulumi.getter(name="tlsClientCertificate")
+    def tls_client_certificate(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        TLS client certificate as PEM string for mutual authentication
+        """
+        return pulumi.get(self, "tls_client_certificate")
+
+    @tls_client_certificate.setter
+    def tls_client_certificate(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "tls_client_certificate", value)
+
+    @_builtins.property
+    @pulumi.getter(name="tlsClientPrivateKey")
+    def tls_client_private_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        TLS client private key as PEM string for mutual authentication
+        """
+        return pulumi.get(self, "tls_client_private_key")
+
+    @tls_client_private_key.setter
+    def tls_client_private_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "tls_client_private_key", value)
+
+    @_builtins.property
     @pulumi.getter(name="tlsInsecureSkipVerify")
     def tls_insecure_skip_verify(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
@@ -244,7 +304,9 @@ class Provider(pulumi.ProviderResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 access_token: Optional[pulumi.Input[_builtins.str]] = None,
                  additional_headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 admin_url: Optional[pulumi.Input[_builtins.str]] = None,
                  base_path: Optional[pulumi.Input[_builtins.str]] = None,
                  client_id: Optional[pulumi.Input[_builtins.str]] = None,
                  client_secret: Optional[pulumi.Input[_builtins.str]] = None,
@@ -256,6 +318,8 @@ class Provider(pulumi.ProviderResource):
                  realm: Optional[pulumi.Input[_builtins.str]] = None,
                  red_hat_sso: Optional[pulumi.Input[_builtins.bool]] = None,
                  root_ca_certificate: Optional[pulumi.Input[_builtins.str]] = None,
+                 tls_client_certificate: Optional[pulumi.Input[_builtins.str]] = None,
+                 tls_client_private_key: Optional[pulumi.Input[_builtins.str]] = None,
                  tls_insecure_skip_verify: Optional[pulumi.Input[_builtins.bool]] = None,
                  url: Optional[pulumi.Input[_builtins.str]] = None,
                  username: Optional[pulumi.Input[_builtins.str]] = None,
@@ -268,12 +332,15 @@ class Provider(pulumi.ProviderResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] admin_url: The admin URL of the Keycloak instance if different from the main URL, before `/auth`
         :param pulumi.Input[_builtins.int] client_timeout: Timeout (in seconds) of the Keycloak client
         :param pulumi.Input[_builtins.bool] initial_login: Whether or not to login to Keycloak instance on provider initialization
         :param pulumi.Input[_builtins.str] jwt_signing_alg: The algorithm used to sign the JWT when client-jwt is used. Defaults to RS256.
         :param pulumi.Input[_builtins.str] jwt_signing_key: The PEM-formatted private key used to sign the JWT when client-jwt is used.
         :param pulumi.Input[_builtins.bool] red_hat_sso: When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version returned from the /serverinfo API endpoint.
         :param pulumi.Input[_builtins.str] root_ca_certificate: Allows x509 calls using an unknown CA certificate (for development purposes)
+        :param pulumi.Input[_builtins.str] tls_client_certificate: TLS client certificate as PEM string for mutual authentication
+        :param pulumi.Input[_builtins.str] tls_client_private_key: TLS client private key as PEM string for mutual authentication
         :param pulumi.Input[_builtins.bool] tls_insecure_skip_verify: Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and should be avoided.
         :param pulumi.Input[_builtins.str] url: The base URL of the Keycloak instance, before `/auth`
         """
@@ -304,7 +371,9 @@ class Provider(pulumi.ProviderResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 access_token: Optional[pulumi.Input[_builtins.str]] = None,
                  additional_headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 admin_url: Optional[pulumi.Input[_builtins.str]] = None,
                  base_path: Optional[pulumi.Input[_builtins.str]] = None,
                  client_id: Optional[pulumi.Input[_builtins.str]] = None,
                  client_secret: Optional[pulumi.Input[_builtins.str]] = None,
@@ -316,6 +385,8 @@ class Provider(pulumi.ProviderResource):
                  realm: Optional[pulumi.Input[_builtins.str]] = None,
                  red_hat_sso: Optional[pulumi.Input[_builtins.bool]] = None,
                  root_ca_certificate: Optional[pulumi.Input[_builtins.str]] = None,
+                 tls_client_certificate: Optional[pulumi.Input[_builtins.str]] = None,
+                 tls_client_private_key: Optional[pulumi.Input[_builtins.str]] = None,
                  tls_insecure_skip_verify: Optional[pulumi.Input[_builtins.bool]] = None,
                  url: Optional[pulumi.Input[_builtins.str]] = None,
                  username: Optional[pulumi.Input[_builtins.str]] = None,
@@ -328,7 +399,9 @@ class Provider(pulumi.ProviderResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ProviderArgs.__new__(ProviderArgs)
 
+            __props__.__dict__["access_token"] = access_token
             __props__.__dict__["additional_headers"] = pulumi.Output.from_input(additional_headers).apply(pulumi.runtime.to_json) if additional_headers is not None else None
+            __props__.__dict__["admin_url"] = admin_url
             __props__.__dict__["base_path"] = base_path
             __props__.__dict__["client_id"] = client_id
             __props__.__dict__["client_secret"] = client_secret
@@ -342,6 +415,8 @@ class Provider(pulumi.ProviderResource):
             __props__.__dict__["realm"] = realm
             __props__.__dict__["red_hat_sso"] = pulumi.Output.from_input(red_hat_sso).apply(pulumi.runtime.to_json) if red_hat_sso is not None else None
             __props__.__dict__["root_ca_certificate"] = root_ca_certificate
+            __props__.__dict__["tls_client_certificate"] = tls_client_certificate
+            __props__.__dict__["tls_client_private_key"] = tls_client_private_key
             __props__.__dict__["tls_insecure_skip_verify"] = pulumi.Output.from_input(tls_insecure_skip_verify).apply(pulumi.runtime.to_json) if tls_insecure_skip_verify is not None else None
             __props__.__dict__["url"] = url
             __props__.__dict__["username"] = username
@@ -352,6 +427,19 @@ class Provider(pulumi.ProviderResource):
             resource_name,
             __props__,
             opts)
+
+    @_builtins.property
+    @pulumi.getter(name="accessToken")
+    def access_token(self) -> pulumi.Output[Optional[_builtins.str]]:
+        return pulumi.get(self, "access_token")
+
+    @_builtins.property
+    @pulumi.getter(name="adminUrl")
+    def admin_url(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The admin URL of the Keycloak instance if different from the main URL, before `/auth`
+        """
+        return pulumi.get(self, "admin_url")
 
     @_builtins.property
     @pulumi.getter(name="basePath")
@@ -401,6 +489,22 @@ class Provider(pulumi.ProviderResource):
         Allows x509 calls using an unknown CA certificate (for development purposes)
         """
         return pulumi.get(self, "root_ca_certificate")
+
+    @_builtins.property
+    @pulumi.getter(name="tlsClientCertificate")
+    def tls_client_certificate(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        TLS client certificate as PEM string for mutual authentication
+        """
+        return pulumi.get(self, "tls_client_certificate")
+
+    @_builtins.property
+    @pulumi.getter(name="tlsClientPrivateKey")
+    def tls_client_private_key(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        TLS client private key as PEM string for mutual authentication
+        """
+        return pulumi.get(self, "tls_client_private_key")
 
     @_builtins.property
     @pulumi.getter

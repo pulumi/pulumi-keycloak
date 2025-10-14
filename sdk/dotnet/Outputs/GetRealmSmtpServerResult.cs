@@ -23,6 +23,7 @@ namespace Pulumi.Keycloak.Outputs
         public readonly string ReplyToDisplayName;
         public readonly bool Ssl;
         public readonly bool Starttls;
+        public readonly ImmutableArray<Outputs.GetRealmSmtpServerTokenAuthResult> TokenAuths;
 
         [OutputConstructor]
         private GetRealmSmtpServerResult(
@@ -44,7 +45,9 @@ namespace Pulumi.Keycloak.Outputs
 
             bool ssl,
 
-            bool starttls)
+            bool starttls,
+
+            ImmutableArray<Outputs.GetRealmSmtpServerTokenAuthResult> tokenAuths)
         {
             Auths = auths;
             EnvelopeFrom = envelopeFrom;
@@ -56,6 +59,7 @@ namespace Pulumi.Keycloak.Outputs
             ReplyToDisplayName = replyToDisplayName;
             Ssl = ssl;
             Starttls = starttls;
+            TokenAuths = tokenAuths;
         }
     }
 }

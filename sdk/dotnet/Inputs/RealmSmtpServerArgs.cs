@@ -13,7 +13,7 @@ namespace Pulumi.Keycloak.Inputs
     public sealed class RealmSmtpServerArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Enables authentication to the SMTP server.  This block supports the following arguments:
+        /// Enables authentication to the SMTP server. Cannot be set alongside `TokenAuth`. This block supports the following arguments:
         /// </summary>
         [Input("auth")]
         public Input<Inputs.RealmSmtpServerAuthArgs>? Auth { get; set; }
@@ -71,6 +71,12 @@ namespace Pulumi.Keycloak.Inputs
         /// </summary>
         [Input("starttls")]
         public Input<bool>? Starttls { get; set; }
+
+        /// <summary>
+        /// Enables authentication to the SMTP server through OAUTH2. Cannot be set alongside `Auth`. This block supports the following arguments:
+        /// </summary>
+        [Input("tokenAuth")]
+        public Input<Inputs.RealmSmtpServerTokenAuthArgs>? TokenAuth { get; set; }
 
         public RealmSmtpServerArgs()
         {

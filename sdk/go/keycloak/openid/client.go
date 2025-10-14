@@ -48,11 +48,12 @@ import (
 //				return err
 //			}
 //			_, err = openid.NewClient(ctx, "openid_client", &openid.ClientArgs{
-//				RealmId:    realm.ID(),
-//				ClientId:   pulumi.String("test-client"),
-//				Name:       pulumi.String("test client"),
-//				Enabled:    pulumi.Bool(true),
-//				AccessType: pulumi.String("CONFIDENTIAL"),
+//				RealmId:             realm.ID(),
+//				ClientId:            pulumi.String("test-client"),
+//				Name:                pulumi.String("test client"),
+//				Enabled:             pulumi.Bool(true),
+//				AccessType:          pulumi.String("CONFIDENTIAL"),
+//				StandardFlowEnabled: pulumi.Bool(true),
 //				ValidRedirectUris: pulumi.StringArray{
 //					pulumi.String("http://localhost:8080/openid-callback"),
 //				},
@@ -145,7 +146,8 @@ type Client struct {
 	// - `BEARER-ONLY` - Used for services that never initiate a login. This client will only allow bearer token requests.
 	AccessType pulumi.StringOutput `pulumi:"accessType"`
 	// URL to the admin interface of the client.
-	AdminUrl                                 pulumi.StringOutput    `pulumi:"adminUrl"`
+	AdminUrl pulumi.StringOutput `pulumi:"adminUrl"`
+	// Defines whether to allow refresh token in Standard Token Exchange. Possible values are `NO` (default) and `SAME_SESSION`.
 	AllowRefreshTokenInStandardTokenExchange pulumi.StringPtrOutput `pulumi:"allowRefreshTokenInStandardTokenExchange"`
 	// Always list this client in the Account UI, even if the user does not have an active session.
 	AlwaysDisplayInConsole pulumi.BoolPtrOutput `pulumi:"alwaysDisplayInConsole"`
@@ -233,7 +235,8 @@ type Client struct {
 	// When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
 	ServiceAccountsEnabled pulumi.BoolOutput `pulumi:"serviceAccountsEnabled"`
 	// When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
-	StandardFlowEnabled          pulumi.BoolOutput    `pulumi:"standardFlowEnabled"`
+	StandardFlowEnabled pulumi.BoolOutput `pulumi:"standardFlowEnabled"`
+	// Enables support for Standard Token Exchange
 	StandardTokenExchangeEnabled pulumi.BoolPtrOutput `pulumi:"standardTokenExchangeEnabled"`
 	// If this is `true`, a refreshToken will be created and added to the token response. If this is `false` then no refreshToken will be generated.  Defaults to `true`.
 	UseRefreshTokens pulumi.BoolPtrOutput `pulumi:"useRefreshTokens"`
@@ -302,7 +305,8 @@ type clientState struct {
 	// - `BEARER-ONLY` - Used for services that never initiate a login. This client will only allow bearer token requests.
 	AccessType *string `pulumi:"accessType"`
 	// URL to the admin interface of the client.
-	AdminUrl                                 *string `pulumi:"adminUrl"`
+	AdminUrl *string `pulumi:"adminUrl"`
+	// Defines whether to allow refresh token in Standard Token Exchange. Possible values are `NO` (default) and `SAME_SESSION`.
 	AllowRefreshTokenInStandardTokenExchange *string `pulumi:"allowRefreshTokenInStandardTokenExchange"`
 	// Always list this client in the Account UI, even if the user does not have an active session.
 	AlwaysDisplayInConsole *bool `pulumi:"alwaysDisplayInConsole"`
@@ -390,7 +394,8 @@ type clientState struct {
 	// When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
 	ServiceAccountsEnabled *bool `pulumi:"serviceAccountsEnabled"`
 	// When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
-	StandardFlowEnabled          *bool `pulumi:"standardFlowEnabled"`
+	StandardFlowEnabled *bool `pulumi:"standardFlowEnabled"`
+	// Enables support for Standard Token Exchange
 	StandardTokenExchangeEnabled *bool `pulumi:"standardTokenExchangeEnabled"`
 	// If this is `true`, a refreshToken will be created and added to the token response. If this is `false` then no refreshToken will be generated.  Defaults to `true`.
 	UseRefreshTokens *bool `pulumi:"useRefreshTokens"`
@@ -417,7 +422,8 @@ type ClientState struct {
 	// - `BEARER-ONLY` - Used for services that never initiate a login. This client will only allow bearer token requests.
 	AccessType pulumi.StringPtrInput
 	// URL to the admin interface of the client.
-	AdminUrl                                 pulumi.StringPtrInput
+	AdminUrl pulumi.StringPtrInput
+	// Defines whether to allow refresh token in Standard Token Exchange. Possible values are `NO` (default) and `SAME_SESSION`.
 	AllowRefreshTokenInStandardTokenExchange pulumi.StringPtrInput
 	// Always list this client in the Account UI, even if the user does not have an active session.
 	AlwaysDisplayInConsole pulumi.BoolPtrInput
@@ -505,7 +511,8 @@ type ClientState struct {
 	// When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
 	ServiceAccountsEnabled pulumi.BoolPtrInput
 	// When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
-	StandardFlowEnabled          pulumi.BoolPtrInput
+	StandardFlowEnabled pulumi.BoolPtrInput
+	// Enables support for Standard Token Exchange
 	StandardTokenExchangeEnabled pulumi.BoolPtrInput
 	// If this is `true`, a refreshToken will be created and added to the token response. If this is `false` then no refreshToken will be generated.  Defaults to `true`.
 	UseRefreshTokens pulumi.BoolPtrInput
@@ -536,7 +543,8 @@ type clientArgs struct {
 	// - `BEARER-ONLY` - Used for services that never initiate a login. This client will only allow bearer token requests.
 	AccessType string `pulumi:"accessType"`
 	// URL to the admin interface of the client.
-	AdminUrl                                 *string `pulumi:"adminUrl"`
+	AdminUrl *string `pulumi:"adminUrl"`
+	// Defines whether to allow refresh token in Standard Token Exchange. Possible values are `NO` (default) and `SAME_SESSION`.
 	AllowRefreshTokenInStandardTokenExchange *string `pulumi:"allowRefreshTokenInStandardTokenExchange"`
 	// Always list this client in the Account UI, even if the user does not have an active session.
 	AlwaysDisplayInConsole *bool `pulumi:"alwaysDisplayInConsole"`
@@ -620,7 +628,8 @@ type clientArgs struct {
 	// When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
 	ServiceAccountsEnabled *bool `pulumi:"serviceAccountsEnabled"`
 	// When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
-	StandardFlowEnabled          *bool `pulumi:"standardFlowEnabled"`
+	StandardFlowEnabled *bool `pulumi:"standardFlowEnabled"`
+	// Enables support for Standard Token Exchange
 	StandardTokenExchangeEnabled *bool `pulumi:"standardTokenExchangeEnabled"`
 	// If this is `true`, a refreshToken will be created and added to the token response. If this is `false` then no refreshToken will be generated.  Defaults to `true`.
 	UseRefreshTokens *bool `pulumi:"useRefreshTokens"`
@@ -648,7 +657,8 @@ type ClientArgs struct {
 	// - `BEARER-ONLY` - Used for services that never initiate a login. This client will only allow bearer token requests.
 	AccessType pulumi.StringInput
 	// URL to the admin interface of the client.
-	AdminUrl                                 pulumi.StringPtrInput
+	AdminUrl pulumi.StringPtrInput
+	// Defines whether to allow refresh token in Standard Token Exchange. Possible values are `NO` (default) and `SAME_SESSION`.
 	AllowRefreshTokenInStandardTokenExchange pulumi.StringPtrInput
 	// Always list this client in the Account UI, even if the user does not have an active session.
 	AlwaysDisplayInConsole pulumi.BoolPtrInput
@@ -732,7 +742,8 @@ type ClientArgs struct {
 	// When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
 	ServiceAccountsEnabled pulumi.BoolPtrInput
 	// When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
-	StandardFlowEnabled          pulumi.BoolPtrInput
+	StandardFlowEnabled pulumi.BoolPtrInput
+	// Enables support for Standard Token Exchange
 	StandardTokenExchangeEnabled pulumi.BoolPtrInput
 	// If this is `true`, a refreshToken will be created and added to the token response. If this is `false` then no refreshToken will be generated.  Defaults to `true`.
 	UseRefreshTokens pulumi.BoolPtrInput
@@ -855,6 +866,7 @@ func (o ClientOutput) AdminUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v *Client) pulumi.StringOutput { return v.AdminUrl }).(pulumi.StringOutput)
 }
 
+// Defines whether to allow refresh token in Standard Token Exchange. Possible values are `NO` (default) and `SAME_SESSION`.
 func (o ClientOutput) AllowRefreshTokenInStandardTokenExchange() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Client) pulumi.StringPtrOutput { return v.AllowRefreshTokenInStandardTokenExchange }).(pulumi.StringPtrOutput)
 }
@@ -1074,6 +1086,7 @@ func (o ClientOutput) StandardFlowEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Client) pulumi.BoolOutput { return v.StandardFlowEnabled }).(pulumi.BoolOutput)
 }
 
+// Enables support for Standard Token Exchange
 func (o ClientOutput) StandardTokenExchangeEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Client) pulumi.BoolPtrOutput { return v.StandardTokenExchangeEnabled }).(pulumi.BoolPtrOutput)
 }

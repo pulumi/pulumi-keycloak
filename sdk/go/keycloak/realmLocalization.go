@@ -12,14 +12,59 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Allows for managing Realm Localization Text overrides within Keycloak.
+//
+// A localization resource defines a schema for representing a locale with a map of key/value pairs and how they are managed within a realm.
+//
+// Note: whilst you can provide localization texts for unsupported locales, they will not take effect until they are defined within the realm resource.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm: pulumi.String("my-realm"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = keycloak.NewRealmLocalization(ctx, "german_texts", &keycloak.RealmLocalizationArgs{
+//				RealmId: pulumi.Any(myRealm.Id),
+//				Locale:  pulumi.String("de"),
+//				Texts: pulumi.StringMap{
+//					"Hello": pulumi.String("Hallo"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// This resource does not currently support importing.
 type RealmLocalization struct {
 	pulumi.CustomResourceState
 
-	// The locale for the localization texts.
+	// The locale (language code) the texts apply to.
 	Locale pulumi.StringOutput `pulumi:"locale"`
-	// The realm in which the texts exists.
+	// The ID of the realm the user profile applies to.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
-	// The mapping of localization texts keys to values.
+	// A map of translation keys to values.
 	Texts pulumi.StringMapOutput `pulumi:"texts"`
 }
 
@@ -59,20 +104,20 @@ func GetRealmLocalization(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RealmLocalization resources.
 type realmLocalizationState struct {
-	// The locale for the localization texts.
+	// The locale (language code) the texts apply to.
 	Locale *string `pulumi:"locale"`
-	// The realm in which the texts exists.
+	// The ID of the realm the user profile applies to.
 	RealmId *string `pulumi:"realmId"`
-	// The mapping of localization texts keys to values.
+	// A map of translation keys to values.
 	Texts map[string]string `pulumi:"texts"`
 }
 
 type RealmLocalizationState struct {
-	// The locale for the localization texts.
+	// The locale (language code) the texts apply to.
 	Locale pulumi.StringPtrInput
-	// The realm in which the texts exists.
+	// The ID of the realm the user profile applies to.
 	RealmId pulumi.StringPtrInput
-	// The mapping of localization texts keys to values.
+	// A map of translation keys to values.
 	Texts pulumi.StringMapInput
 }
 
@@ -81,21 +126,21 @@ func (RealmLocalizationState) ElementType() reflect.Type {
 }
 
 type realmLocalizationArgs struct {
-	// The locale for the localization texts.
+	// The locale (language code) the texts apply to.
 	Locale string `pulumi:"locale"`
-	// The realm in which the texts exists.
+	// The ID of the realm the user profile applies to.
 	RealmId string `pulumi:"realmId"`
-	// The mapping of localization texts keys to values.
+	// A map of translation keys to values.
 	Texts map[string]string `pulumi:"texts"`
 }
 
 // The set of arguments for constructing a RealmLocalization resource.
 type RealmLocalizationArgs struct {
-	// The locale for the localization texts.
+	// The locale (language code) the texts apply to.
 	Locale pulumi.StringInput
-	// The realm in which the texts exists.
+	// The ID of the realm the user profile applies to.
 	RealmId pulumi.StringInput
-	// The mapping of localization texts keys to values.
+	// A map of translation keys to values.
 	Texts pulumi.StringMapInput
 }
 
@@ -186,17 +231,17 @@ func (o RealmLocalizationOutput) ToRealmLocalizationOutputWithContext(ctx contex
 	return o
 }
 
-// The locale for the localization texts.
+// The locale (language code) the texts apply to.
 func (o RealmLocalizationOutput) Locale() pulumi.StringOutput {
 	return o.ApplyT(func(v *RealmLocalization) pulumi.StringOutput { return v.Locale }).(pulumi.StringOutput)
 }
 
-// The realm in which the texts exists.
+// The ID of the realm the user profile applies to.
 func (o RealmLocalizationOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *RealmLocalization) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
 }
 
-// The mapping of localization texts keys to values.
+// A map of translation keys to values.
 func (o RealmLocalizationOutput) Texts() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *RealmLocalization) pulumi.StringMapOutput { return v.Texts }).(pulumi.StringMapOutput)
 }

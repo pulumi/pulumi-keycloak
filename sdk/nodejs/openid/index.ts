@@ -150,6 +150,11 @@ export type ScriptProtocolMapper = import("./scriptProtocolMapper").ScriptProtoc
 export const ScriptProtocolMapper: typeof import("./scriptProtocolMapper").ScriptProtocolMapper = null as any;
 utilities.lazyLoad(exports, ["ScriptProtocolMapper"], () => require("./scriptProtocolMapper"));
 
+export { SubProtocolMapperArgs, SubProtocolMapperState } from "./subProtocolMapper";
+export type SubProtocolMapper = import("./subProtocolMapper").SubProtocolMapper;
+export const SubProtocolMapper: typeof import("./subProtocolMapper").SubProtocolMapper = null as any;
+utilities.lazyLoad(exports, ["SubProtocolMapper"], () => require("./subProtocolMapper"));
+
 export { UserAttributeProtocolMapperArgs, UserAttributeProtocolMapperState } from "./userAttributeProtocolMapper";
 export type UserAttributeProtocolMapper = import("./userAttributeProtocolMapper").UserAttributeProtocolMapper;
 export const UserAttributeProtocolMapper: typeof import("./userAttributeProtocolMapper").UserAttributeProtocolMapper = null as any;
@@ -230,6 +235,8 @@ const _module = {
                 return new HardcodedRoleProtocolMapper(name, <any>undefined, { urn })
             case "keycloak:openid/scriptProtocolMapper:ScriptProtocolMapper":
                 return new ScriptProtocolMapper(name, <any>undefined, { urn })
+            case "keycloak:openid/subProtocolMapper:SubProtocolMapper":
+                return new SubProtocolMapper(name, <any>undefined, { urn })
             case "keycloak:openid/userAttributeProtocolMapper:UserAttributeProtocolMapper":
                 return new UserAttributeProtocolMapper(name, <any>undefined, { urn })
             case "keycloak:openid/userClientRoleProtocolMapper:UserClientRoleProtocolMapper":
@@ -270,6 +277,7 @@ pulumi.runtime.registerResourceModule("keycloak", "openid/groupMembershipProtoco
 pulumi.runtime.registerResourceModule("keycloak", "openid/hardcodedClaimProtocolMapper", _module)
 pulumi.runtime.registerResourceModule("keycloak", "openid/hardcodedRoleProtocolMapper", _module)
 pulumi.runtime.registerResourceModule("keycloak", "openid/scriptProtocolMapper", _module)
+pulumi.runtime.registerResourceModule("keycloak", "openid/subProtocolMapper", _module)
 pulumi.runtime.registerResourceModule("keycloak", "openid/userAttributeProtocolMapper", _module)
 pulumi.runtime.registerResourceModule("keycloak", "openid/userClientRoleProtocolMapper", _module)
 pulumi.runtime.registerResourceModule("keycloak", "openid/userPropertyProtocolMapper", _module)

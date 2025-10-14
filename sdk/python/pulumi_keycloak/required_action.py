@@ -28,13 +28,13 @@ class RequiredActionArgs:
                  priority: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a RequiredAction resource.
-        :param pulumi.Input[_builtins.str] alias: The alias of the action to attach as a required action.
+        :param pulumi.Input[_builtins.str] alias: The alias of the action to attach as a required action. Case sensitive.
         :param pulumi.Input[_builtins.str] realm_id: The realm the required action exists in.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] config: The configuration. Keys are specific to each configurable required action and not checked when applying.
         :param pulumi.Input[_builtins.bool] default_action: When `true`, the required action is set as the default action for new users. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] enabled: When `false`, the required action is not enabled for new users. Defaults to `false`.
-        :param pulumi.Input[_builtins.str] name: The name of the required action.
-        :param pulumi.Input[_builtins.int] priority: The priority of the required action.
+        :param pulumi.Input[_builtins.str] name: The name of the required action to use in the UI.
+        :param pulumi.Input[_builtins.int] priority: An integer to specify the running order of required actions with lower numbers meaning higher precedence.
         """
         pulumi.set(__self__, "alias", alias)
         pulumi.set(__self__, "realm_id", realm_id)
@@ -53,7 +53,7 @@ class RequiredActionArgs:
     @pulumi.getter
     def alias(self) -> pulumi.Input[_builtins.str]:
         """
-        The alias of the action to attach as a required action.
+        The alias of the action to attach as a required action. Case sensitive.
         """
         return pulumi.get(self, "alias")
 
@@ -113,7 +113,7 @@ class RequiredActionArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The name of the required action.
+        The name of the required action to use in the UI.
         """
         return pulumi.get(self, "name")
 
@@ -125,7 +125,7 @@ class RequiredActionArgs:
     @pulumi.getter
     def priority(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        The priority of the required action.
+        An integer to specify the running order of required actions with lower numbers meaning higher precedence.
         """
         return pulumi.get(self, "priority")
 
@@ -146,12 +146,12 @@ class _RequiredActionState:
                  realm_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RequiredAction resources.
-        :param pulumi.Input[_builtins.str] alias: The alias of the action to attach as a required action.
+        :param pulumi.Input[_builtins.str] alias: The alias of the action to attach as a required action. Case sensitive.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] config: The configuration. Keys are specific to each configurable required action and not checked when applying.
         :param pulumi.Input[_builtins.bool] default_action: When `true`, the required action is set as the default action for new users. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] enabled: When `false`, the required action is not enabled for new users. Defaults to `false`.
-        :param pulumi.Input[_builtins.str] name: The name of the required action.
-        :param pulumi.Input[_builtins.int] priority: The priority of the required action.
+        :param pulumi.Input[_builtins.str] name: The name of the required action to use in the UI.
+        :param pulumi.Input[_builtins.int] priority: An integer to specify the running order of required actions with lower numbers meaning higher precedence.
         :param pulumi.Input[_builtins.str] realm_id: The realm the required action exists in.
         """
         if alias is not None:
@@ -173,7 +173,7 @@ class _RequiredActionState:
     @pulumi.getter
     def alias(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The alias of the action to attach as a required action.
+        The alias of the action to attach as a required action. Case sensitive.
         """
         return pulumi.get(self, "alias")
 
@@ -221,7 +221,7 @@ class _RequiredActionState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The name of the required action.
+        The name of the required action to use in the UI.
         """
         return pulumi.get(self, "name")
 
@@ -233,7 +233,7 @@ class _RequiredActionState:
     @pulumi.getter
     def priority(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        The priority of the required action.
+        An integer to specify the running order of required actions with lower numbers meaning higher precedence.
         """
         return pulumi.get(self, "priority")
 
@@ -292,6 +292,22 @@ class RequiredAction(pulumi.CustomResource):
             })
         ```
 
+        ## Keycloak built-in required actions
+
+        | Alias                             | Description                                 | Class
+        |-----------------------------------|---------------------------------------------|-----------------------------
+        | `CONFIGURE_RECOVERY_AUTHN_CODES`  | Configure recovery authentication codes     | [RecoveryAuthnCodesAction](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/authentication/requiredactions/RecoveryAuthnCodesAction.html)
+        | `CONFIGURE_TOTP`                  | Require user to configure 2FA (TOTP)        | [UpdateTotp](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/authentication/requiredactions/UpdateTotp.html)
+        | `delete_account`                  | Allow user to delete their account          | [DeleteAccount](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/authentication/requiredactions/DeleteAccount.html)
+        | `delete_credential`               | Allow user to delete a credential           |
+        | `idp_link`                        | Link account with identity provider         |
+        | `TERMS_AND_CONDITIONS`            | Require user to accept terms and conditions | [TermsAndConditions](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/authentication/requiredactions/TermsAndConditions.html)
+        | `UPDATE_PASSWORD`                 | Prompt user to update their password        | [UpdatePassword](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/authentication/requiredactions/UpdatePassword.html)
+        | `UPDATE_PROFILE`                  | Prompt user to update their profile         | [UpdateProfile](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/authentication/requiredactions/UpdateProfile.html)
+        | `update_user_locale`              | Prompt user to set or update their locale   | [UpdateUserLocaleAction](https://www.keycloak.org/docs-api/21.0.2/javadocs/org/keycloak/authentication/requiredactions/UpdateUserLocaleAction.html)
+        | `VERIFY_EMAIL`                    | Require user to verify their email address  | [VerifyEmail](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/authentication/requiredactions/VerifyEmail.html)
+        | `VERIFY_PROFILE`                  | Verify user profile information             | [VerifyUserProfile](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/authentication/requiredactions/VerifyUserProfile.html)
+
         ## Import
 
         Authentication executions can be imported using the formats: `{{realm}}/{{alias}}`.
@@ -306,12 +322,12 @@ class RequiredAction(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] alias: The alias of the action to attach as a required action.
+        :param pulumi.Input[_builtins.str] alias: The alias of the action to attach as a required action. Case sensitive.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] config: The configuration. Keys are specific to each configurable required action and not checked when applying.
         :param pulumi.Input[_builtins.bool] default_action: When `true`, the required action is set as the default action for new users. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] enabled: When `false`, the required action is not enabled for new users. Defaults to `false`.
-        :param pulumi.Input[_builtins.str] name: The name of the required action.
-        :param pulumi.Input[_builtins.int] priority: The priority of the required action.
+        :param pulumi.Input[_builtins.str] name: The name of the required action to use in the UI.
+        :param pulumi.Input[_builtins.int] priority: An integer to specify the running order of required actions with lower numbers meaning higher precedence.
         :param pulumi.Input[_builtins.str] realm_id: The realm the required action exists in.
         """
         ...
@@ -343,6 +359,22 @@ class RequiredAction(pulumi.CustomResource):
                 "max_auth_age": "600",
             })
         ```
+
+        ## Keycloak built-in required actions
+
+        | Alias                             | Description                                 | Class
+        |-----------------------------------|---------------------------------------------|-----------------------------
+        | `CONFIGURE_RECOVERY_AUTHN_CODES`  | Configure recovery authentication codes     | [RecoveryAuthnCodesAction](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/authentication/requiredactions/RecoveryAuthnCodesAction.html)
+        | `CONFIGURE_TOTP`                  | Require user to configure 2FA (TOTP)        | [UpdateTotp](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/authentication/requiredactions/UpdateTotp.html)
+        | `delete_account`                  | Allow user to delete their account          | [DeleteAccount](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/authentication/requiredactions/DeleteAccount.html)
+        | `delete_credential`               | Allow user to delete a credential           |
+        | `idp_link`                        | Link account with identity provider         |
+        | `TERMS_AND_CONDITIONS`            | Require user to accept terms and conditions | [TermsAndConditions](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/authentication/requiredactions/TermsAndConditions.html)
+        | `UPDATE_PASSWORD`                 | Prompt user to update their password        | [UpdatePassword](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/authentication/requiredactions/UpdatePassword.html)
+        | `UPDATE_PROFILE`                  | Prompt user to update their profile         | [UpdateProfile](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/authentication/requiredactions/UpdateProfile.html)
+        | `update_user_locale`              | Prompt user to set or update their locale   | [UpdateUserLocaleAction](https://www.keycloak.org/docs-api/21.0.2/javadocs/org/keycloak/authentication/requiredactions/UpdateUserLocaleAction.html)
+        | `VERIFY_EMAIL`                    | Require user to verify their email address  | [VerifyEmail](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/authentication/requiredactions/VerifyEmail.html)
+        | `VERIFY_PROFILE`                  | Verify user profile information             | [VerifyUserProfile](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/authentication/requiredactions/VerifyUserProfile.html)
 
         ## Import
 
@@ -422,12 +454,12 @@ class RequiredAction(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] alias: The alias of the action to attach as a required action.
+        :param pulumi.Input[_builtins.str] alias: The alias of the action to attach as a required action. Case sensitive.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] config: The configuration. Keys are specific to each configurable required action and not checked when applying.
         :param pulumi.Input[_builtins.bool] default_action: When `true`, the required action is set as the default action for new users. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] enabled: When `false`, the required action is not enabled for new users. Defaults to `false`.
-        :param pulumi.Input[_builtins.str] name: The name of the required action.
-        :param pulumi.Input[_builtins.int] priority: The priority of the required action.
+        :param pulumi.Input[_builtins.str] name: The name of the required action to use in the UI.
+        :param pulumi.Input[_builtins.int] priority: An integer to specify the running order of required actions with lower numbers meaning higher precedence.
         :param pulumi.Input[_builtins.str] realm_id: The realm the required action exists in.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -447,7 +479,7 @@ class RequiredAction(pulumi.CustomResource):
     @pulumi.getter
     def alias(self) -> pulumi.Output[_builtins.str]:
         """
-        The alias of the action to attach as a required action.
+        The alias of the action to attach as a required action. Case sensitive.
         """
         return pulumi.get(self, "alias")
 
@@ -479,7 +511,7 @@ class RequiredAction(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[_builtins.str]:
         """
-        The name of the required action.
+        The name of the required action to use in the UI.
         """
         return pulumi.get(self, "name")
 
@@ -487,7 +519,7 @@ class RequiredAction(pulumi.CustomResource):
     @pulumi.getter
     def priority(self) -> pulumi.Output[_builtins.int]:
         """
-        The priority of the required action.
+        An integer to specify the running order of required actions with lower numbers meaning higher precedence.
         """
         return pulumi.get(self, "priority")
 

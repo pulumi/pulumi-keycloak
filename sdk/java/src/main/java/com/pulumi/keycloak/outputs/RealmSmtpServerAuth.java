@@ -15,10 +15,6 @@ public final class RealmSmtpServerAuth {
      * 
      */
     private String password;
-    /**
-     * @return The SMTP server username.
-     * 
-     */
     private String username;
 
     private RealmSmtpServerAuth() {}
@@ -29,10 +25,6 @@ public final class RealmSmtpServerAuth {
     public String password() {
         return this.password;
     }
-    /**
-     * @return The SMTP server username.
-     * 
-     */
     public String username() {
         return this.username;
     }

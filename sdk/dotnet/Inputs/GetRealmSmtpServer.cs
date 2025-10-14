@@ -47,6 +47,14 @@ namespace Pulumi.Keycloak.Inputs
         [Input("starttls", required: true)]
         public bool Starttls { get; set; }
 
+        [Input("tokenAuths", required: true)]
+        private List<Inputs.GetRealmSmtpServerTokenAuthArgs>? _tokenAuths;
+        public List<Inputs.GetRealmSmtpServerTokenAuthArgs> TokenAuths
+        {
+            get => _tokenAuths ?? (_tokenAuths = new List<Inputs.GetRealmSmtpServerTokenAuthArgs>());
+            set => _tokenAuths = value;
+        }
+
         public GetRealmSmtpServerArgs()
         {
         }

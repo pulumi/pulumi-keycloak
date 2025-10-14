@@ -45,6 +45,22 @@ namespace Pulumi.Keycloak
     /// });
     /// ```
     /// 
+    /// ## Keycloak built-in required actions
+    /// 
+    /// | Alias                             | Description                                 | Class
+    /// |-----------------------------------|---------------------------------------------|-----------------------------
+    /// | `CONFIGURE_RECOVERY_AUTHN_CODES`  | Configure recovery authentication codes     | [RecoveryAuthnCodesAction](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/authentication/requiredactions/RecoveryAuthnCodesAction.html)
+    /// | `CONFIGURE_TOTP`                  | Require user to configure 2FA (TOTP)        | [UpdateTotp](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/authentication/requiredactions/UpdateTotp.html)
+    /// | `DeleteAccount`                  | Allow user to delete their account          | [DeleteAccount](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/authentication/requiredactions/DeleteAccount.html)
+    /// | `DeleteCredential`               | Allow user to delete a credential           |
+    /// | `IdpLink`                        | Link account with identity provider         |
+    /// | `TERMS_AND_CONDITIONS`            | Require user to accept terms and conditions | [TermsAndConditions](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/authentication/requiredactions/TermsAndConditions.html)
+    /// | `UPDATE_PASSWORD`                 | Prompt user to update their password        | [UpdatePassword](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/authentication/requiredactions/UpdatePassword.html)
+    /// | `UPDATE_PROFILE`                  | Prompt user to update their profile         | [UpdateProfile](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/authentication/requiredactions/UpdateProfile.html)
+    /// | `UpdateUserLocale`              | Prompt user to set or update their locale   | [UpdateUserLocaleAction](https://www.keycloak.org/docs-api/21.0.2/javadocs/org/keycloak/authentication/requiredactions/UpdateUserLocaleAction.html)
+    /// | `VERIFY_EMAIL`                    | Require user to verify their email address  | [VerifyEmail](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/authentication/requiredactions/VerifyEmail.html)
+    /// | `VERIFY_PROFILE`                  | Verify user profile information             | [VerifyUserProfile](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/authentication/requiredactions/VerifyUserProfile.html)
+    /// 
     /// ## Import
     /// 
     /// Authentication executions can be imported using the formats: `{{realm}}/{{alias}}`.
@@ -61,7 +77,7 @@ namespace Pulumi.Keycloak
     public partial class RequiredAction : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The alias of the action to attach as a required action.
+        /// The alias of the action to attach as a required action. Case sensitive.
         /// </summary>
         [Output("alias")]
         public Output<string> Alias { get; private set; } = null!;
@@ -85,13 +101,13 @@ namespace Pulumi.Keycloak
         public Output<bool?> Enabled { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the required action.
+        /// The name of the required action to use in the UI.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The priority of the required action.
+        /// An integer to specify the running order of required actions with lower numbers meaning higher precedence.
         /// </summary>
         [Output("priority")]
         public Output<int> Priority { get; private set; } = null!;
@@ -149,7 +165,7 @@ namespace Pulumi.Keycloak
     public sealed class RequiredActionArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The alias of the action to attach as a required action.
+        /// The alias of the action to attach as a required action. Case sensitive.
         /// </summary>
         [Input("alias", required: true)]
         public Input<string> Alias { get; set; } = null!;
@@ -179,13 +195,13 @@ namespace Pulumi.Keycloak
         public Input<bool>? Enabled { get; set; }
 
         /// <summary>
-        /// The name of the required action.
+        /// The name of the required action to use in the UI.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The priority of the required action.
+        /// An integer to specify the running order of required actions with lower numbers meaning higher precedence.
         /// </summary>
         [Input("priority")]
         public Input<int>? Priority { get; set; }
@@ -205,7 +221,7 @@ namespace Pulumi.Keycloak
     public sealed class RequiredActionState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The alias of the action to attach as a required action.
+        /// The alias of the action to attach as a required action. Case sensitive.
         /// </summary>
         [Input("alias")]
         public Input<string>? Alias { get; set; }
@@ -235,13 +251,13 @@ namespace Pulumi.Keycloak
         public Input<bool>? Enabled { get; set; }
 
         /// <summary>
-        /// The name of the required action.
+        /// The name of the required action to use in the UI.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The priority of the required action.
+        /// An integer to specify the running order of required actions with lower numbers meaning higher precedence.
         /// </summary>
         [Input("priority")]
         public Input<int>? Priority { get; set; }

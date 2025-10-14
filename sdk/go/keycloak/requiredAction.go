@@ -55,6 +55,22 @@ import (
 //
 // ```
 //
+// ## Keycloak built-in required actions
+//
+// | Alias                             | Description                                 | Class
+// |-----------------------------------|---------------------------------------------|-----------------------------
+// | `CONFIGURE_RECOVERY_AUTHN_CODES`  | Configure recovery authentication codes     | [RecoveryAuthnCodesAction](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/authentication/requiredactions/RecoveryAuthnCodesAction.html)
+// | `CONFIGURE_TOTP`                  | Require user to configure 2FA (TOTP)        | [UpdateTotp](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/authentication/requiredactions/UpdateTotp.html)
+// | `deleteAccount`                  | Allow user to delete their account          | [DeleteAccount](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/authentication/requiredactions/DeleteAccount.html)
+// | `deleteCredential`               | Allow user to delete a credential           |
+// | `idpLink`                        | Link account with identity provider         |
+// | `TERMS_AND_CONDITIONS`            | Require user to accept terms and conditions | [TermsAndConditions](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/authentication/requiredactions/TermsAndConditions.html)
+// | `UPDATE_PASSWORD`                 | Prompt user to update their password        | [UpdatePassword](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/authentication/requiredactions/UpdatePassword.html)
+// | `UPDATE_PROFILE`                  | Prompt user to update their profile         | [UpdateProfile](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/authentication/requiredactions/UpdateProfile.html)
+// | `updateUserLocale`              | Prompt user to set or update their locale   | [UpdateUserLocaleAction](https://www.keycloak.org/docs-api/21.0.2/javadocs/org/keycloak/authentication/requiredactions/UpdateUserLocaleAction.html)
+// | `VERIFY_EMAIL`                    | Require user to verify their email address  | [VerifyEmail](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/authentication/requiredactions/VerifyEmail.html)
+// | `VERIFY_PROFILE`                  | Verify user profile information             | [VerifyUserProfile](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/authentication/requiredactions/VerifyUserProfile.html)
+//
 // ## Import
 //
 // Authentication executions can be imported using the formats: `{{realm}}/{{alias}}`.
@@ -69,7 +85,7 @@ import (
 type RequiredAction struct {
 	pulumi.CustomResourceState
 
-	// The alias of the action to attach as a required action.
+	// The alias of the action to attach as a required action. Case sensitive.
 	Alias pulumi.StringOutput `pulumi:"alias"`
 	// The configuration. Keys are specific to each configurable required action and not checked when applying.
 	Config pulumi.StringMapOutput `pulumi:"config"`
@@ -77,9 +93,9 @@ type RequiredAction struct {
 	DefaultAction pulumi.BoolPtrOutput `pulumi:"defaultAction"`
 	// When `false`, the required action is not enabled for new users. Defaults to `false`.
 	Enabled pulumi.BoolPtrOutput `pulumi:"enabled"`
-	// The name of the required action.
+	// The name of the required action to use in the UI.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The priority of the required action.
+	// An integer to specify the running order of required actions with lower numbers meaning higher precedence.
 	Priority pulumi.IntOutput `pulumi:"priority"`
 	// The realm the required action exists in.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
@@ -121,7 +137,7 @@ func GetRequiredAction(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RequiredAction resources.
 type requiredActionState struct {
-	// The alias of the action to attach as a required action.
+	// The alias of the action to attach as a required action. Case sensitive.
 	Alias *string `pulumi:"alias"`
 	// The configuration. Keys are specific to each configurable required action and not checked when applying.
 	Config map[string]string `pulumi:"config"`
@@ -129,16 +145,16 @@ type requiredActionState struct {
 	DefaultAction *bool `pulumi:"defaultAction"`
 	// When `false`, the required action is not enabled for new users. Defaults to `false`.
 	Enabled *bool `pulumi:"enabled"`
-	// The name of the required action.
+	// The name of the required action to use in the UI.
 	Name *string `pulumi:"name"`
-	// The priority of the required action.
+	// An integer to specify the running order of required actions with lower numbers meaning higher precedence.
 	Priority *int `pulumi:"priority"`
 	// The realm the required action exists in.
 	RealmId *string `pulumi:"realmId"`
 }
 
 type RequiredActionState struct {
-	// The alias of the action to attach as a required action.
+	// The alias of the action to attach as a required action. Case sensitive.
 	Alias pulumi.StringPtrInput
 	// The configuration. Keys are specific to each configurable required action and not checked when applying.
 	Config pulumi.StringMapInput
@@ -146,9 +162,9 @@ type RequiredActionState struct {
 	DefaultAction pulumi.BoolPtrInput
 	// When `false`, the required action is not enabled for new users. Defaults to `false`.
 	Enabled pulumi.BoolPtrInput
-	// The name of the required action.
+	// The name of the required action to use in the UI.
 	Name pulumi.StringPtrInput
-	// The priority of the required action.
+	// An integer to specify the running order of required actions with lower numbers meaning higher precedence.
 	Priority pulumi.IntPtrInput
 	// The realm the required action exists in.
 	RealmId pulumi.StringPtrInput
@@ -159,7 +175,7 @@ func (RequiredActionState) ElementType() reflect.Type {
 }
 
 type requiredActionArgs struct {
-	// The alias of the action to attach as a required action.
+	// The alias of the action to attach as a required action. Case sensitive.
 	Alias string `pulumi:"alias"`
 	// The configuration. Keys are specific to each configurable required action and not checked when applying.
 	Config map[string]string `pulumi:"config"`
@@ -167,9 +183,9 @@ type requiredActionArgs struct {
 	DefaultAction *bool `pulumi:"defaultAction"`
 	// When `false`, the required action is not enabled for new users. Defaults to `false`.
 	Enabled *bool `pulumi:"enabled"`
-	// The name of the required action.
+	// The name of the required action to use in the UI.
 	Name *string `pulumi:"name"`
-	// The priority of the required action.
+	// An integer to specify the running order of required actions with lower numbers meaning higher precedence.
 	Priority *int `pulumi:"priority"`
 	// The realm the required action exists in.
 	RealmId string `pulumi:"realmId"`
@@ -177,7 +193,7 @@ type requiredActionArgs struct {
 
 // The set of arguments for constructing a RequiredAction resource.
 type RequiredActionArgs struct {
-	// The alias of the action to attach as a required action.
+	// The alias of the action to attach as a required action. Case sensitive.
 	Alias pulumi.StringInput
 	// The configuration. Keys are specific to each configurable required action and not checked when applying.
 	Config pulumi.StringMapInput
@@ -185,9 +201,9 @@ type RequiredActionArgs struct {
 	DefaultAction pulumi.BoolPtrInput
 	// When `false`, the required action is not enabled for new users. Defaults to `false`.
 	Enabled pulumi.BoolPtrInput
-	// The name of the required action.
+	// The name of the required action to use in the UI.
 	Name pulumi.StringPtrInput
-	// The priority of the required action.
+	// An integer to specify the running order of required actions with lower numbers meaning higher precedence.
 	Priority pulumi.IntPtrInput
 	// The realm the required action exists in.
 	RealmId pulumi.StringInput
@@ -280,7 +296,7 @@ func (o RequiredActionOutput) ToRequiredActionOutputWithContext(ctx context.Cont
 	return o
 }
 
-// The alias of the action to attach as a required action.
+// The alias of the action to attach as a required action. Case sensitive.
 func (o RequiredActionOutput) Alias() pulumi.StringOutput {
 	return o.ApplyT(func(v *RequiredAction) pulumi.StringOutput { return v.Alias }).(pulumi.StringOutput)
 }
@@ -300,12 +316,12 @@ func (o RequiredActionOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *RequiredAction) pulumi.BoolPtrOutput { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
 
-// The name of the required action.
+// The name of the required action to use in the UI.
 func (o RequiredActionOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *RequiredAction) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The priority of the required action.
+// An integer to specify the running order of required actions with lower numbers meaning higher precedence.
 func (o RequiredActionOutput) Priority() pulumi.IntOutput {
 	return o.ApplyT(func(v *RequiredAction) pulumi.IntOutput { return v.Priority }).(pulumi.IntOutput)
 }

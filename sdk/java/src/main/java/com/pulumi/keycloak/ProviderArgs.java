@@ -19,11 +19,33 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final ProviderArgs Empty = new ProviderArgs();
 
+    @Import(name="accessToken")
+    private @Nullable Output<String> accessToken;
+
+    public Optional<Output<String>> accessToken() {
+        return Optional.ofNullable(this.accessToken);
+    }
+
     @Import(name="additionalHeaders", json=true)
     private @Nullable Output<Map<String,String>> additionalHeaders;
 
     public Optional<Output<Map<String,String>>> additionalHeaders() {
         return Optional.ofNullable(this.additionalHeaders);
+    }
+
+    /**
+     * The admin URL of the Keycloak instance if different from the main URL, before `/auth`
+     * 
+     */
+    @Import(name="adminUrl")
+    private @Nullable Output<String> adminUrl;
+
+    /**
+     * @return The admin URL of the Keycloak instance if different from the main URL, before `/auth`
+     * 
+     */
+    public Optional<Output<String>> adminUrl() {
+        return Optional.ofNullable(this.adminUrl);
     }
 
     @Import(name="basePath")
@@ -152,6 +174,36 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * TLS client certificate as PEM string for mutual authentication
+     * 
+     */
+    @Import(name="tlsClientCertificate")
+    private @Nullable Output<String> tlsClientCertificate;
+
+    /**
+     * @return TLS client certificate as PEM string for mutual authentication
+     * 
+     */
+    public Optional<Output<String>> tlsClientCertificate() {
+        return Optional.ofNullable(this.tlsClientCertificate);
+    }
+
+    /**
+     * TLS client private key as PEM string for mutual authentication
+     * 
+     */
+    @Import(name="tlsClientPrivateKey")
+    private @Nullable Output<String> tlsClientPrivateKey;
+
+    /**
+     * @return TLS client private key as PEM string for mutual authentication
+     * 
+     */
+    public Optional<Output<String>> tlsClientPrivateKey() {
+        return Optional.ofNullable(this.tlsClientPrivateKey);
+    }
+
+    /**
      * Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and should be avoided.
      * 
      */
@@ -191,7 +243,9 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     private ProviderArgs() {}
 
     private ProviderArgs(ProviderArgs $) {
+        this.accessToken = $.accessToken;
         this.additionalHeaders = $.additionalHeaders;
+        this.adminUrl = $.adminUrl;
         this.basePath = $.basePath;
         this.clientId = $.clientId;
         this.clientSecret = $.clientSecret;
@@ -203,6 +257,8 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         this.realm = $.realm;
         this.redHatSso = $.redHatSso;
         this.rootCaCertificate = $.rootCaCertificate;
+        this.tlsClientCertificate = $.tlsClientCertificate;
+        this.tlsClientPrivateKey = $.tlsClientPrivateKey;
         this.tlsInsecureSkipVerify = $.tlsInsecureSkipVerify;
         this.url = $.url;
         this.username = $.username;
@@ -226,6 +282,15 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
             $ = new ProviderArgs(Objects.requireNonNull(defaults));
         }
 
+        public Builder accessToken(@Nullable Output<String> accessToken) {
+            $.accessToken = accessToken;
+            return this;
+        }
+
+        public Builder accessToken(String accessToken) {
+            return accessToken(Output.of(accessToken));
+        }
+
         public Builder additionalHeaders(@Nullable Output<Map<String,String>> additionalHeaders) {
             $.additionalHeaders = additionalHeaders;
             return this;
@@ -233,6 +298,27 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
 
         public Builder additionalHeaders(Map<String,String> additionalHeaders) {
             return additionalHeaders(Output.of(additionalHeaders));
+        }
+
+        /**
+         * @param adminUrl The admin URL of the Keycloak instance if different from the main URL, before `/auth`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder adminUrl(@Nullable Output<String> adminUrl) {
+            $.adminUrl = adminUrl;
+            return this;
+        }
+
+        /**
+         * @param adminUrl The admin URL of the Keycloak instance if different from the main URL, before `/auth`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder adminUrl(String adminUrl) {
+            return adminUrl(Output.of(adminUrl));
         }
 
         public Builder basePath(@Nullable Output<String> basePath) {
@@ -404,6 +490,48 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder rootCaCertificate(String rootCaCertificate) {
             return rootCaCertificate(Output.of(rootCaCertificate));
+        }
+
+        /**
+         * @param tlsClientCertificate TLS client certificate as PEM string for mutual authentication
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tlsClientCertificate(@Nullable Output<String> tlsClientCertificate) {
+            $.tlsClientCertificate = tlsClientCertificate;
+            return this;
+        }
+
+        /**
+         * @param tlsClientCertificate TLS client certificate as PEM string for mutual authentication
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tlsClientCertificate(String tlsClientCertificate) {
+            return tlsClientCertificate(Output.of(tlsClientCertificate));
+        }
+
+        /**
+         * @param tlsClientPrivateKey TLS client private key as PEM string for mutual authentication
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tlsClientPrivateKey(@Nullable Output<String> tlsClientPrivateKey) {
+            $.tlsClientPrivateKey = tlsClientPrivateKey;
+            return this;
+        }
+
+        /**
+         * @param tlsClientPrivateKey TLS client private key as PEM string for mutual authentication
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tlsClientPrivateKey(String tlsClientPrivateKey) {
+            return tlsClientPrivateKey(Output.of(tlsClientPrivateKey));
         }
 
         /**

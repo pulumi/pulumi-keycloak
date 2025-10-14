@@ -71,6 +71,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &HardcodedRoleProtocolMapper{}
 	case "keycloak:openid/scriptProtocolMapper:ScriptProtocolMapper":
 		r = &ScriptProtocolMapper{}
+	case "keycloak:openid/subProtocolMapper:SubProtocolMapper":
+		r = &SubProtocolMapper{}
 	case "keycloak:openid/userAttributeProtocolMapper:UserAttributeProtocolMapper":
 		r = &UserAttributeProtocolMapper{}
 	case "keycloak:openid/userClientRoleProtocolMapper:UserClientRoleProtocolMapper":
@@ -217,6 +219,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"keycloak",
 		"openid/scriptProtocolMapper",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"keycloak",
+		"openid/subProtocolMapper",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

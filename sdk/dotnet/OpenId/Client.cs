@@ -46,6 +46,7 @@ namespace Pulumi.Keycloak.OpenId
     ///         Name = "test client",
     ///         Enabled = true,
     ///         AccessType = "CONFIDENTIAL",
+    ///         StandardFlowEnabled = true,
     ///         ValidRedirectUris = new[]
     ///         {
     ///             "http://localhost:8080/openid-callback",
@@ -139,6 +140,9 @@ namespace Pulumi.Keycloak.OpenId
         [Output("adminUrl")]
         public Output<string> AdminUrl { get; private set; } = null!;
 
+        /// <summary>
+        /// Defines whether to allow refresh token in Standard Token Exchange. Possible values are `NO` (default) and `SAME_SESSION`.
+        /// </summary>
         [Output("allowRefreshTokenInStandardTokenExchange")]
         public Output<string?> AllowRefreshTokenInStandardTokenExchange { get; private set; } = null!;
 
@@ -395,6 +399,9 @@ namespace Pulumi.Keycloak.OpenId
         [Output("standardFlowEnabled")]
         public Output<bool> StandardFlowEnabled { get; private set; } = null!;
 
+        /// <summary>
+        /// Enables support for Standard Token Exchange
+        /// </summary>
         [Output("standardTokenExchangeEnabled")]
         public Output<bool?> StandardTokenExchangeEnabled { get; private set; } = null!;
 
@@ -503,6 +510,9 @@ namespace Pulumi.Keycloak.OpenId
         [Input("adminUrl")]
         public Input<string>? AdminUrl { get; set; }
 
+        /// <summary>
+        /// Defines whether to allow refresh token in Standard Token Exchange. Possible values are `NO` (default) and `SAME_SESSION`.
+        /// </summary>
         [Input("allowRefreshTokenInStandardTokenExchange")]
         public Input<string>? AllowRefreshTokenInStandardTokenExchange { get; set; }
 
@@ -768,6 +778,9 @@ namespace Pulumi.Keycloak.OpenId
         [Input("standardFlowEnabled")]
         public Input<bool>? StandardFlowEnabled { get; set; }
 
+        /// <summary>
+        /// Enables support for Standard Token Exchange
+        /// </summary>
         [Input("standardTokenExchangeEnabled")]
         public Input<bool>? StandardTokenExchangeEnabled { get; set; }
 
@@ -852,6 +865,9 @@ namespace Pulumi.Keycloak.OpenId
         [Input("adminUrl")]
         public Input<string>? AdminUrl { get; set; }
 
+        /// <summary>
+        /// Defines whether to allow refresh token in Standard Token Exchange. Possible values are `NO` (default) and `SAME_SESSION`.
+        /// </summary>
         [Input("allowRefreshTokenInStandardTokenExchange")]
         public Input<string>? AllowRefreshTokenInStandardTokenExchange { get; set; }
 
@@ -1129,6 +1145,9 @@ namespace Pulumi.Keycloak.OpenId
         [Input("standardFlowEnabled")]
         public Input<bool>? StandardFlowEnabled { get; set; }
 
+        /// <summary>
+        /// Enables support for Standard Token Exchange
+        /// </summary>
         [Input("standardTokenExchangeEnabled")]
         public Input<bool>? StandardTokenExchangeEnabled { get; set; }
 

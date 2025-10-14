@@ -19,14 +19,14 @@ public final class RequiredActionState extends com.pulumi.resources.ResourceArgs
     public static final RequiredActionState Empty = new RequiredActionState();
 
     /**
-     * The alias of the action to attach as a required action.
+     * The alias of the action to attach as a required action. Case sensitive.
      * 
      */
     @Import(name="alias")
     private @Nullable Output<String> alias;
 
     /**
-     * @return The alias of the action to attach as a required action.
+     * @return The alias of the action to attach as a required action. Case sensitive.
      * 
      */
     public Optional<Output<String>> alias() {
@@ -79,14 +79,14 @@ public final class RequiredActionState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * The name of the required action.
+     * The name of the required action to use in the UI.
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return The name of the required action.
+     * @return The name of the required action to use in the UI.
      * 
      */
     public Optional<Output<String>> name() {
@@ -94,14 +94,14 @@ public final class RequiredActionState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * The priority of the required action.
+     * An integer to specify the running order of required actions with lower numbers meaning higher precedence.
      * 
      */
     @Import(name="priority")
     private @Nullable Output<Integer> priority;
 
     /**
-     * @return The priority of the required action.
+     * @return An integer to specify the running order of required actions with lower numbers meaning higher precedence.
      * 
      */
     public Optional<Output<Integer>> priority() {
@@ -154,7 +154,7 @@ public final class RequiredActionState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param alias The alias of the action to attach as a required action.
+         * @param alias The alias of the action to attach as a required action. Case sensitive.
          * 
          * @return builder
          * 
@@ -165,7 +165,7 @@ public final class RequiredActionState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param alias The alias of the action to attach as a required action.
+         * @param alias The alias of the action to attach as a required action. Case sensitive.
          * 
          * @return builder
          * 
@@ -238,7 +238,7 @@ public final class RequiredActionState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param name The name of the required action.
+         * @param name The name of the required action to use in the UI.
          * 
          * @return builder
          * 
@@ -249,7 +249,7 @@ public final class RequiredActionState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param name The name of the required action.
+         * @param name The name of the required action to use in the UI.
          * 
          * @return builder
          * 
@@ -259,7 +259,7 @@ public final class RequiredActionState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param priority The priority of the required action.
+         * @param priority An integer to specify the running order of required actions with lower numbers meaning higher precedence.
          * 
          * @return builder
          * 
@@ -270,7 +270,7 @@ public final class RequiredActionState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param priority The priority of the required action.
+         * @param priority An integer to specify the running order of required actions with lower numbers meaning higher precedence.
          * 
          * @return builder
          * 

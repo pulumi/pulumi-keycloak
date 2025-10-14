@@ -21,8 +21,19 @@ __config__ = pulumi.Config('keycloak')
 
 class _ExportableConfig(types.ModuleType):
     @_builtins.property
+    def access_token(self) -> Optional[str]:
+        return __config__.get('accessToken')
+
+    @_builtins.property
     def additional_headers(self) -> Optional[str]:
         return __config__.get('additionalHeaders')
+
+    @_builtins.property
+    def admin_url(self) -> Optional[str]:
+        """
+        The admin URL of the Keycloak instance if different from the main URL, before `/auth`
+        """
+        return __config__.get('adminUrl')
 
     @_builtins.property
     def base_path(self) -> Optional[str]:
@@ -85,6 +96,20 @@ class _ExportableConfig(types.ModuleType):
         Allows x509 calls using an unknown CA certificate (for development purposes)
         """
         return __config__.get('rootCaCertificate')
+
+    @_builtins.property
+    def tls_client_certificate(self) -> Optional[str]:
+        """
+        TLS client certificate as PEM string for mutual authentication
+        """
+        return __config__.get('tlsClientCertificate')
+
+    @_builtins.property
+    def tls_client_private_key(self) -> Optional[str]:
+        """
+        TLS client private key as PEM string for mutual authentication
+        """
+        return __config__.get('tlsClientPrivateKey')
 
     @_builtins.property
     def tls_insecure_skip_verify(self) -> Optional[bool]:

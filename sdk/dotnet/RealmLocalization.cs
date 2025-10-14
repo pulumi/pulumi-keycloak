@@ -9,23 +9,62 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak
 {
+    /// <summary>
+    /// Allows for managing Realm Localization Text overrides within Keycloak.
+    /// 
+    /// A localization resource defines a schema for representing a locale with a map of key/value pairs and how they are managed within a realm.
+    /// 
+    /// Note: whilst you can provide localization texts for unsupported locales, they will not take effect until they are defined within the realm resource.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "my-realm",
+    ///     });
+    /// 
+    ///     var germanTexts = new Keycloak.RealmLocalization("german_texts", new()
+    ///     {
+    ///         RealmId = myRealm.Id,
+    ///         Locale = "de",
+    ///         Texts = 
+    ///         {
+    ///             { "Hello", "Hallo" },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// This resource does not currently support importing.
+    /// </summary>
     [KeycloakResourceType("keycloak:index/realmLocalization:RealmLocalization")]
     public partial class RealmLocalization : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The locale for the localization texts.
+        /// The locale (language code) the texts apply to.
         /// </summary>
         [Output("locale")]
         public Output<string> Locale { get; private set; } = null!;
 
         /// <summary>
-        /// The realm in which the texts exists.
+        /// The ID of the realm the user profile applies to.
         /// </summary>
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
 
         /// <summary>
-        /// The mapping of localization texts keys to values.
+        /// A map of translation keys to values.
         /// </summary>
         [Output("texts")]
         public Output<ImmutableDictionary<string, string>?> Texts { get; private set; } = null!;
@@ -77,13 +116,13 @@ namespace Pulumi.Keycloak
     public sealed class RealmLocalizationArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The locale for the localization texts.
+        /// The locale (language code) the texts apply to.
         /// </summary>
         [Input("locale", required: true)]
         public Input<string> Locale { get; set; } = null!;
 
         /// <summary>
-        /// The realm in which the texts exists.
+        /// The ID of the realm the user profile applies to.
         /// </summary>
         [Input("realmId", required: true)]
         public Input<string> RealmId { get; set; } = null!;
@@ -92,7 +131,7 @@ namespace Pulumi.Keycloak
         private InputMap<string>? _texts;
 
         /// <summary>
-        /// The mapping of localization texts keys to values.
+        /// A map of translation keys to values.
         /// </summary>
         public InputMap<string> Texts
         {
@@ -109,13 +148,13 @@ namespace Pulumi.Keycloak
     public sealed class RealmLocalizationState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The locale for the localization texts.
+        /// The locale (language code) the texts apply to.
         /// </summary>
         [Input("locale")]
         public Input<string>? Locale { get; set; }
 
         /// <summary>
-        /// The realm in which the texts exists.
+        /// The ID of the realm the user profile applies to.
         /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
@@ -124,7 +163,7 @@ namespace Pulumi.Keycloak
         private InputMap<string>? _texts;
 
         /// <summary>
-        /// The mapping of localization texts keys to values.
+        /// A map of translation keys to values.
         /// </summary>
         public InputMap<string> Texts
         {

@@ -107,10 +107,19 @@ export interface GetRealmSmtpServer {
     replyToDisplayName: string;
     ssl: boolean;
     starttls: boolean;
+    tokenAuths: outputs.GetRealmSmtpServerTokenAuth[];
 }
 
 export interface GetRealmSmtpServerAuth {
     password: string;
+    username: string;
+}
+
+export interface GetRealmSmtpServerTokenAuth {
+    clientId: string;
+    clientSecret: string;
+    scope: string;
+    url: string;
     username: string;
 }
 
@@ -332,7 +341,7 @@ export interface RealmSecurityDefensesHeaders {
 
 export interface RealmSmtpServer {
     /**
-     * Enables authentication to the SMTP server.  This block supports the following arguments:
+     * Enables authentication to the SMTP server. Cannot be set alongside `tokenAuth`. This block supports the following arguments:
      */
     auth?: outputs.RealmSmtpServerAuth;
     /**
@@ -371,6 +380,10 @@ export interface RealmSmtpServer {
      * When `true`, enables StartTLS. Defaults to `false`.
      */
     starttls?: boolean;
+    /**
+     * Enables authentication to the SMTP server through OAUTH2. Cannot be set alongside `auth`. This block supports the following arguments:
+     */
+    tokenAuth?: outputs.RealmSmtpServerTokenAuth;
 }
 
 export interface RealmSmtpServerAuth {
@@ -378,9 +391,26 @@ export interface RealmSmtpServerAuth {
      * The SMTP server password.
      */
     password: string;
+    username: string;
+}
+
+export interface RealmSmtpServerTokenAuth {
     /**
-     * The SMTP server username.
+     * The auth token client ID.
      */
+    clientId: string;
+    /**
+     * The auth token client secret.
+     */
+    clientSecret: string;
+    /**
+     * The auth token scope.
+     */
+    scope: string;
+    /**
+     * The auth token URL.
+     */
+    url: string;
     username: string;
 }
 

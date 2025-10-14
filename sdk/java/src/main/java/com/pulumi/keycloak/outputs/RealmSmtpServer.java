@@ -6,6 +6,7 @@ package com.pulumi.keycloak.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.keycloak.outputs.RealmSmtpServerAuth;
+import com.pulumi.keycloak.outputs.RealmSmtpServerTokenAuth;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -15,7 +16,7 @@ import javax.annotation.Nullable;
 @CustomType
 public final class RealmSmtpServer {
     /**
-     * @return Enables authentication to the SMTP server.  This block supports the following arguments:
+     * @return Enables authentication to the SMTP server. Cannot be set alongside `tokenAuth`. This block supports the following arguments:
      * 
      */
     private @Nullable RealmSmtpServerAuth auth;
@@ -64,10 +65,15 @@ public final class RealmSmtpServer {
      * 
      */
     private @Nullable Boolean starttls;
+    /**
+     * @return Enables authentication to the SMTP server through OAUTH2. Cannot be set alongside `auth`. This block supports the following arguments:
+     * 
+     */
+    private @Nullable RealmSmtpServerTokenAuth tokenAuth;
 
     private RealmSmtpServer() {}
     /**
-     * @return Enables authentication to the SMTP server.  This block supports the following arguments:
+     * @return Enables authentication to the SMTP server. Cannot be set alongside `tokenAuth`. This block supports the following arguments:
      * 
      */
     public Optional<RealmSmtpServerAuth> auth() {
@@ -136,6 +142,13 @@ public final class RealmSmtpServer {
     public Optional<Boolean> starttls() {
         return Optional.ofNullable(this.starttls);
     }
+    /**
+     * @return Enables authentication to the SMTP server through OAUTH2. Cannot be set alongside `auth`. This block supports the following arguments:
+     * 
+     */
+    public Optional<RealmSmtpServerTokenAuth> tokenAuth() {
+        return Optional.ofNullable(this.tokenAuth);
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -156,6 +169,7 @@ public final class RealmSmtpServer {
         private @Nullable String replyToDisplayName;
         private @Nullable Boolean ssl;
         private @Nullable Boolean starttls;
+        private @Nullable RealmSmtpServerTokenAuth tokenAuth;
         public Builder() {}
         public Builder(RealmSmtpServer defaults) {
     	      Objects.requireNonNull(defaults);
@@ -169,6 +183,7 @@ public final class RealmSmtpServer {
     	      this.replyToDisplayName = defaults.replyToDisplayName;
     	      this.ssl = defaults.ssl;
     	      this.starttls = defaults.starttls;
+    	      this.tokenAuth = defaults.tokenAuth;
         }
 
         @CustomType.Setter
@@ -235,6 +250,12 @@ public final class RealmSmtpServer {
             this.starttls = starttls;
             return this;
         }
+        @CustomType.Setter
+        public Builder tokenAuth(@Nullable RealmSmtpServerTokenAuth tokenAuth) {
+
+            this.tokenAuth = tokenAuth;
+            return this;
+        }
         public RealmSmtpServer build() {
             final var _resultValue = new RealmSmtpServer();
             _resultValue.auth = auth;
@@ -247,6 +268,7 @@ public final class RealmSmtpServer {
             _resultValue.replyToDisplayName = replyToDisplayName;
             _resultValue.ssl = ssl;
             _resultValue.starttls = starttls;
+            _resultValue.tokenAuth = tokenAuth;
             return _resultValue;
         }
     }

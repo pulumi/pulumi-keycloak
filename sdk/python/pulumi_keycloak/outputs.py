@@ -31,6 +31,7 @@ __all__ = [
     'RealmSecurityDefensesHeaders',
     'RealmSmtpServer',
     'RealmSmtpServerAuth',
+    'RealmSmtpServerTokenAuth',
     'RealmUserProfileAttribute',
     'RealmUserProfileAttributePermissions',
     'RealmUserProfileAttributeValidator',
@@ -55,6 +56,7 @@ __all__ = [
     'GetRealmSecurityDefenseHeaderResult',
     'GetRealmSmtpServerResult',
     'GetRealmSmtpServerAuthResult',
+    'GetRealmSmtpServerTokenAuthResult',
     'GetRealmWebAuthnPasswordlessPolicyResult',
     'GetRealmWebAuthnPolicyResult',
 ]
@@ -810,6 +812,8 @@ class RealmSmtpServer(dict):
             suggest = "reply_to"
         elif key == "replyToDisplayName":
             suggest = "reply_to_display_name"
+        elif key == "tokenAuth":
+            suggest = "token_auth"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in RealmSmtpServer. Access the value via the '{suggest}' property getter instead.")
@@ -832,11 +836,12 @@ class RealmSmtpServer(dict):
                  reply_to: Optional[_builtins.str] = None,
                  reply_to_display_name: Optional[_builtins.str] = None,
                  ssl: Optional[_builtins.bool] = None,
-                 starttls: Optional[_builtins.bool] = None):
+                 starttls: Optional[_builtins.bool] = None,
+                 token_auth: Optional['outputs.RealmSmtpServerTokenAuth'] = None):
         """
         :param _builtins.str from_: The email address for the sender.
         :param _builtins.str host: The host of the SMTP server.
-        :param 'RealmSmtpServerAuthArgs' auth: Enables authentication to the SMTP server.  This block supports the following arguments:
+        :param 'RealmSmtpServerAuthArgs' auth: Enables authentication to the SMTP server. Cannot be set alongside `token_auth`. This block supports the following arguments:
         :param _builtins.str envelope_from: The email address uses for bounces.
         :param _builtins.str from_display_name: The display name of the sender email address.
         :param _builtins.str port: The port of the SMTP server (defaults to 25).
@@ -844,6 +849,7 @@ class RealmSmtpServer(dict):
         :param _builtins.str reply_to_display_name: The display name of the "reply to" email address.
         :param _builtins.bool ssl: When `true`, enables SSL. Defaults to `false`.
         :param _builtins.bool starttls: When `true`, enables StartTLS. Defaults to `false`.
+        :param 'RealmSmtpServerTokenAuthArgs' token_auth: Enables authentication to the SMTP server through OAUTH2. Cannot be set alongside `auth`. This block supports the following arguments:
         """
         pulumi.set(__self__, "from_", from_)
         pulumi.set(__self__, "host", host)
@@ -863,6 +869,8 @@ class RealmSmtpServer(dict):
             pulumi.set(__self__, "ssl", ssl)
         if starttls is not None:
             pulumi.set(__self__, "starttls", starttls)
+        if token_auth is not None:
+            pulumi.set(__self__, "token_auth", token_auth)
 
     @_builtins.property
     @pulumi.getter(name="from")
@@ -884,7 +892,7 @@ class RealmSmtpServer(dict):
     @pulumi.getter
     def auth(self) -> Optional['outputs.RealmSmtpServerAuth']:
         """
-        Enables authentication to the SMTP server.  This block supports the following arguments:
+        Enables authentication to the SMTP server. Cannot be set alongside `token_auth`. This block supports the following arguments:
         """
         return pulumi.get(self, "auth")
 
@@ -944,6 +952,14 @@ class RealmSmtpServer(dict):
         """
         return pulumi.get(self, "starttls")
 
+    @_builtins.property
+    @pulumi.getter(name="tokenAuth")
+    def token_auth(self) -> Optional['outputs.RealmSmtpServerTokenAuth']:
+        """
+        Enables authentication to the SMTP server through OAUTH2. Cannot be set alongside `auth`. This block supports the following arguments:
+        """
+        return pulumi.get(self, "token_auth")
+
 
 @pulumi.output_type
 class RealmSmtpServerAuth(dict):
@@ -952,7 +968,6 @@ class RealmSmtpServerAuth(dict):
                  username: _builtins.str):
         """
         :param _builtins.str password: The SMTP server password.
-        :param _builtins.str username: The SMTP server username.
         """
         pulumi.set(__self__, "password", password)
         pulumi.set(__self__, "username", username)
@@ -968,9 +983,83 @@ class RealmSmtpServerAuth(dict):
     @_builtins.property
     @pulumi.getter
     def username(self) -> _builtins.str:
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class RealmSmtpServerTokenAuth(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "clientId":
+            suggest = "client_id"
+        elif key == "clientSecret":
+            suggest = "client_secret"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in RealmSmtpServerTokenAuth. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        RealmSmtpServerTokenAuth.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        RealmSmtpServerTokenAuth.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 client_id: _builtins.str,
+                 client_secret: _builtins.str,
+                 scope: _builtins.str,
+                 url: _builtins.str,
+                 username: _builtins.str):
         """
-        The SMTP server username.
+        :param _builtins.str client_id: The auth token client ID.
+        :param _builtins.str client_secret: The auth token client secret.
+        :param _builtins.str scope: The auth token scope.
+        :param _builtins.str url: The auth token URL.
         """
+        pulumi.set(__self__, "client_id", client_id)
+        pulumi.set(__self__, "client_secret", client_secret)
+        pulumi.set(__self__, "scope", scope)
+        pulumi.set(__self__, "url", url)
+        pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> _builtins.str:
+        """
+        The auth token client ID.
+        """
+        return pulumi.get(self, "client_id")
+
+    @_builtins.property
+    @pulumi.getter(name="clientSecret")
+    def client_secret(self) -> _builtins.str:
+        """
+        The auth token client secret.
+        """
+        return pulumi.get(self, "client_secret")
+
+    @_builtins.property
+    @pulumi.getter
+    def scope(self) -> _builtins.str:
+        """
+        The auth token scope.
+        """
+        return pulumi.get(self, "scope")
+
+    @_builtins.property
+    @pulumi.getter
+    def url(self) -> _builtins.str:
+        """
+        The auth token URL.
+        """
+        return pulumi.get(self, "url")
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> _builtins.str:
         return pulumi.get(self, "username")
 
 
@@ -2328,7 +2417,8 @@ class GetRealmSmtpServerResult(dict):
                  reply_to: _builtins.str,
                  reply_to_display_name: _builtins.str,
                  ssl: _builtins.bool,
-                 starttls: _builtins.bool):
+                 starttls: _builtins.bool,
+                 token_auths: Sequence['outputs.GetRealmSmtpServerTokenAuthResult']):
         pulumi.set(__self__, "auths", auths)
         pulumi.set(__self__, "envelope_from", envelope_from)
         pulumi.set(__self__, "from_", from_)
@@ -2339,6 +2429,7 @@ class GetRealmSmtpServerResult(dict):
         pulumi.set(__self__, "reply_to_display_name", reply_to_display_name)
         pulumi.set(__self__, "ssl", ssl)
         pulumi.set(__self__, "starttls", starttls)
+        pulumi.set(__self__, "token_auths", token_auths)
 
     @_builtins.property
     @pulumi.getter
@@ -2390,6 +2481,11 @@ class GetRealmSmtpServerResult(dict):
     def starttls(self) -> _builtins.bool:
         return pulumi.get(self, "starttls")
 
+    @_builtins.property
+    @pulumi.getter(name="tokenAuths")
+    def token_auths(self) -> Sequence['outputs.GetRealmSmtpServerTokenAuthResult']:
+        return pulumi.get(self, "token_auths")
+
 
 @pulumi.output_type
 class GetRealmSmtpServerAuthResult(dict):
@@ -2403,6 +2499,46 @@ class GetRealmSmtpServerAuthResult(dict):
     @pulumi.getter
     def password(self) -> _builtins.str:
         return pulumi.get(self, "password")
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> _builtins.str:
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class GetRealmSmtpServerTokenAuthResult(dict):
+    def __init__(__self__, *,
+                 client_id: _builtins.str,
+                 client_secret: _builtins.str,
+                 scope: _builtins.str,
+                 url: _builtins.str,
+                 username: _builtins.str):
+        pulumi.set(__self__, "client_id", client_id)
+        pulumi.set(__self__, "client_secret", client_secret)
+        pulumi.set(__self__, "scope", scope)
+        pulumi.set(__self__, "url", url)
+        pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> _builtins.str:
+        return pulumi.get(self, "client_id")
+
+    @_builtins.property
+    @pulumi.getter(name="clientSecret")
+    def client_secret(self) -> _builtins.str:
+        return pulumi.get(self, "client_secret")
+
+    @_builtins.property
+    @pulumi.getter
+    def scope(self) -> _builtins.str:
+        return pulumi.get(self, "scope")
+
+    @_builtins.property
+    @pulumi.getter
+    def url(self) -> _builtins.str:
+        return pulumi.get(self, "url")
 
     @_builtins.property
     @pulumi.getter
