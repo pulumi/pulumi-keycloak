@@ -29,17 +29,9 @@ public final class RealmSmtpServerAuthArgs extends com.pulumi.resources.Resource
         return this.password;
     }
 
-    /**
-     * The SMTP server username.
-     * 
-     */
     @Import(name="username", required=true)
     private Output<String> username;
 
-    /**
-     * @return The SMTP server username.
-     * 
-     */
     public Output<String> username() {
         return this.username;
     }
@@ -90,23 +82,11 @@ public final class RealmSmtpServerAuthArgs extends com.pulumi.resources.Resource
             return password(Output.of(password));
         }
 
-        /**
-         * @param username The SMTP server username.
-         * 
-         * @return builder
-         * 
-         */
         public Builder username(Output<String> username) {
             $.username = username;
             return this;
         }
 
-        /**
-         * @param username The SMTP server username.
-         * 
-         * @return builder
-         * 
-         */
         public Builder username(String username) {
             return username(Output.of(username));
         }

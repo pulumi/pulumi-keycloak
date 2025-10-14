@@ -71,6 +71,7 @@ import javax.annotation.Nullable;
  *             .name("test client")
  *             .enabled(true)
  *             .accessType("CONFIDENTIAL")
+ *             .standardFlowEnabled(true)
  *             .validRedirectUris("http://localhost:8080/openid-callback")
  *             .loginTheme("keycloak")
  *             .extraConfig(Map.ofEntries(
@@ -204,9 +205,17 @@ public class Client extends com.pulumi.resources.CustomResource {
     public Output<String> adminUrl() {
         return this.adminUrl;
     }
+    /**
+     * Defines whether to allow refresh token in Standard Token Exchange. Possible values are `NO` (default) and `SAME_SESSION`.
+     * 
+     */
     @Export(name="allowRefreshTokenInStandardTokenExchange", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> allowRefreshTokenInStandardTokenExchange;
 
+    /**
+     * @return Defines whether to allow refresh token in Standard Token Exchange. Possible values are `NO` (default) and `SAME_SESSION`.
+     * 
+     */
     public Output<Optional<String>> allowRefreshTokenInStandardTokenExchange() {
         return Codegen.optional(this.allowRefreshTokenInStandardTokenExchange);
     }
@@ -798,9 +807,17 @@ public class Client extends com.pulumi.resources.CustomResource {
     public Output<Boolean> standardFlowEnabled() {
         return this.standardFlowEnabled;
     }
+    /**
+     * Enables support for Standard Token Exchange
+     * 
+     */
     @Export(name="standardTokenExchangeEnabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> standardTokenExchangeEnabled;
 
+    /**
+     * @return Enables support for Standard Token Exchange
+     * 
+     */
     public Output<Optional<Boolean>> standardTokenExchangeEnabled() {
         return Codegen.optional(this.standardTokenExchangeEnabled);
     }

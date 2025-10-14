@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak
 {
     /// <summary>
-    /// Allows managing default realm roles within Keycloak.
+    /// Allows managing default roles within Keycloak.
     /// 
     /// Note: This feature was added in Keycloak v13, so this resource will not work on older versions of Keycloak.
     /// 
@@ -44,6 +44,35 @@ namespace Pulumi.Keycloak
     /// });
     /// ```
     /// 
+    /// ### Client Roles)
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
+    /// 
+    ///     var defaultRoles = new Keycloak.DefaultRoles("default_roles", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         RoleNames = new[]
+    ///         {
+    ///             "account/manage-account",
+    ///             "account/view-groups",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Default roles can be imported using the format `{{realm_id}}/{{default_role_id}}`, where `default_role_id` is the unique ID of the composite
@@ -64,7 +93,7 @@ namespace Pulumi.Keycloak
     public partial class DefaultRoles : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Realm level roles assigned to new users by default.
+        /// Roles assigned to new users by default.
         /// </summary>
         [Output("defaultRoles")]
         public Output<ImmutableArray<string>> RoleNames { get; private set; } = null!;
@@ -125,7 +154,7 @@ namespace Pulumi.Keycloak
         private InputList<string>? _defaultRoles;
 
         /// <summary>
-        /// Realm level roles assigned to new users by default.
+        /// Roles assigned to new users by default.
         /// </summary>
         public InputList<string> RoleNames
         {
@@ -151,7 +180,7 @@ namespace Pulumi.Keycloak
         private InputList<string>? _defaultRoles;
 
         /// <summary>
-        /// Realm level roles assigned to new users by default.
+        /// Roles assigned to new users by default.
         /// </summary>
         public InputList<string> RoleNames
         {

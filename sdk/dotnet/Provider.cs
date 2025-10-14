@@ -18,6 +18,15 @@ namespace Pulumi.Keycloak
     [KeycloakResourceType("pulumi:providers:keycloak")]
     public partial class Provider : global::Pulumi.ProviderResource
     {
+        [Output("accessToken")]
+        public Output<string?> AccessToken { get; private set; } = null!;
+
+        /// <summary>
+        /// The admin URL of the Keycloak instance if different from the main URL, before `/auth`
+        /// </summary>
+        [Output("adminUrl")]
+        public Output<string?> AdminUrl { get; private set; } = null!;
+
         [Output("basePath")]
         public Output<string?> BasePath { get; private set; } = null!;
 
@@ -50,6 +59,18 @@ namespace Pulumi.Keycloak
         /// </summary>
         [Output("rootCaCertificate")]
         public Output<string?> RootCaCertificate { get; private set; } = null!;
+
+        /// <summary>
+        /// TLS client certificate as PEM string for mutual authentication
+        /// </summary>
+        [Output("tlsClientCertificate")]
+        public Output<string?> TlsClientCertificate { get; private set; } = null!;
+
+        /// <summary>
+        /// TLS client private key as PEM string for mutual authentication
+        /// </summary>
+        [Output("tlsClientPrivateKey")]
+        public Output<string?> TlsClientPrivateKey { get; private set; } = null!;
 
         /// <summary>
         /// The base URL of the Keycloak instance, before `/auth`
@@ -98,6 +119,9 @@ namespace Pulumi.Keycloak
 
     public sealed class ProviderArgs : global::Pulumi.ResourceArgs
     {
+        [Input("accessToken")]
+        public Input<string>? AccessToken { get; set; }
+
         [Input("additionalHeaders", json: true)]
         private InputMap<string>? _additionalHeaders;
         public InputMap<string> AdditionalHeaders
@@ -105,6 +129,12 @@ namespace Pulumi.Keycloak
             get => _additionalHeaders ?? (_additionalHeaders = new InputMap<string>());
             set => _additionalHeaders = value;
         }
+
+        /// <summary>
+        /// The admin URL of the Keycloak instance if different from the main URL, before `/auth`
+        /// </summary>
+        [Input("adminUrl")]
+        public Input<string>? AdminUrl { get; set; }
 
         [Input("basePath")]
         public Input<string>? BasePath { get; set; }
@@ -166,6 +196,18 @@ namespace Pulumi.Keycloak
         /// </summary>
         [Input("rootCaCertificate")]
         public Input<string>? RootCaCertificate { get; set; }
+
+        /// <summary>
+        /// TLS client certificate as PEM string for mutual authentication
+        /// </summary>
+        [Input("tlsClientCertificate")]
+        public Input<string>? TlsClientCertificate { get; set; }
+
+        /// <summary>
+        /// TLS client private key as PEM string for mutual authentication
+        /// </summary>
+        [Input("tlsClientPrivateKey")]
+        public Input<string>? TlsClientPrivateKey { get; set; }
 
         /// <summary>
         /// Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and should be avoided.

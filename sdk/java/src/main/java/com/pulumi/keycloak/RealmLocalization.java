@@ -15,45 +15,98 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * Allows for managing Realm Localization Text overrides within Keycloak.
+ * 
+ * A localization resource defines a schema for representing a locale with a map of key/value pairs and how they are managed within a realm.
+ * 
+ * Note: whilst you can provide localization texts for unsupported locales, they will not take effect until they are defined within the realm resource.
+ * 
+ * ## Example Usage
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.keycloak.Realm;
+ * import com.pulumi.keycloak.RealmArgs;
+ * import com.pulumi.keycloak.RealmLocalization;
+ * import com.pulumi.keycloak.RealmLocalizationArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var realm = new Realm("realm", RealmArgs.builder()
+ *             .realm("my-realm")
+ *             .build());
+ * 
+ *         var germanTexts = new RealmLocalization("germanTexts", RealmLocalizationArgs.builder()
+ *             .realmId(myRealm.id())
+ *             .locale("de")
+ *             .texts(Map.of("Hello", "Hallo"))
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ## Import
+ * 
+ * This resource does not currently support importing.
+ * 
+ */
 @ResourceType(type="keycloak:index/realmLocalization:RealmLocalization")
 public class RealmLocalization extends com.pulumi.resources.CustomResource {
     /**
-     * The locale for the localization texts.
+     * The locale (language code) the texts apply to.
      * 
      */
     @Export(name="locale", refs={String.class}, tree="[0]")
     private Output<String> locale;
 
     /**
-     * @return The locale for the localization texts.
+     * @return The locale (language code) the texts apply to.
      * 
      */
     public Output<String> locale() {
         return this.locale;
     }
     /**
-     * The realm in which the texts exists.
+     * The ID of the realm the user profile applies to.
      * 
      */
     @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
     /**
-     * @return The realm in which the texts exists.
+     * @return The ID of the realm the user profile applies to.
      * 
      */
     public Output<String> realmId() {
         return this.realmId;
     }
     /**
-     * The mapping of localization texts keys to values.
+     * A map of translation keys to values.
      * 
      */
     @Export(name="texts", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> texts;
 
     /**
-     * @return The mapping of localization texts keys to values.
+     * @return A map of translation keys to values.
      * 
      */
     public Output<Optional<Map<String,String>>> texts() {

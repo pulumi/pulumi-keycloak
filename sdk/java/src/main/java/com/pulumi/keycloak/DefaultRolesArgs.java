@@ -16,14 +16,14 @@ public final class DefaultRolesArgs extends com.pulumi.resources.ResourceArgs {
     public static final DefaultRolesArgs Empty = new DefaultRolesArgs();
 
     /**
-     * Realm level roles assigned to new users by default.
+     * Roles assigned to new users by default.
      * 
      */
     @Import(name="defaultRoles", required=true)
     private Output<List<String>> defaultRoles;
 
     /**
-     * @return Realm level roles assigned to new users by default.
+     * @return Roles assigned to new users by default.
      * 
      */
     public Output<List<String>> defaultRoles() {
@@ -71,7 +71,7 @@ public final class DefaultRolesArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param defaultRoles Realm level roles assigned to new users by default.
+         * @param defaultRoles Roles assigned to new users by default.
          * 
          * @return builder
          * 
@@ -82,7 +82,7 @@ public final class DefaultRolesArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param defaultRoles Realm level roles assigned to new users by default.
+         * @param defaultRoles Roles assigned to new users by default.
          * 
          * @return builder
          * 
@@ -92,7 +92,7 @@ public final class DefaultRolesArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param defaultRoles Realm level roles assigned to new users by default.
+         * @param defaultRoles Roles assigned to new users by default.
          * 
          * @return builder
          * 

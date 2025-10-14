@@ -11,8 +11,16 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+func GetAccessToken(ctx *pulumi.Context) string {
+	return config.Get(ctx, "keycloak:accessToken")
+}
 func GetAdditionalHeaders(ctx *pulumi.Context) string {
 	return config.Get(ctx, "keycloak:additionalHeaders")
+}
+
+// The admin URL of the Keycloak instance if different from the main URL, before `/auth`
+func GetAdminUrl(ctx *pulumi.Context) string {
+	return config.Get(ctx, "keycloak:adminUrl")
 }
 func GetBasePath(ctx *pulumi.Context) string {
 	return config.Get(ctx, "keycloak:basePath")
@@ -66,6 +74,16 @@ func GetRedHatSso(ctx *pulumi.Context) bool {
 // Allows x509 calls using an unknown CA certificate (for development purposes)
 func GetRootCaCertificate(ctx *pulumi.Context) string {
 	return config.Get(ctx, "keycloak:rootCaCertificate")
+}
+
+// TLS client certificate as PEM string for mutual authentication
+func GetTlsClientCertificate(ctx *pulumi.Context) string {
+	return config.Get(ctx, "keycloak:tlsClientCertificate")
+}
+
+// TLS client private key as PEM string for mutual authentication
+func GetTlsClientPrivateKey(ctx *pulumi.Context) string {
+	return config.Get(ctx, "keycloak:tlsClientPrivateKey")
 }
 
 // Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and should be avoided.

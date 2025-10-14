@@ -30,6 +30,22 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ## Keycloak built-in required actions
+ *
+ * | Alias                             | Description                                 | Class
+ * |-----------------------------------|---------------------------------------------|-----------------------------
+ * | `CONFIGURE_RECOVERY_AUTHN_CODES`  | Configure recovery authentication codes     | [RecoveryAuthnCodesAction](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/authentication/requiredactions/RecoveryAuthnCodesAction.html)
+ * | `CONFIGURE_TOTP`                  | Require user to configure 2FA (TOTP)        | [UpdateTotp](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/authentication/requiredactions/UpdateTotp.html)
+ * | `deleteAccount`                  | Allow user to delete their account          | [DeleteAccount](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/authentication/requiredactions/DeleteAccount.html)
+ * | `deleteCredential`               | Allow user to delete a credential           |
+ * | `idpLink`                        | Link account with identity provider         |
+ * | `TERMS_AND_CONDITIONS`            | Require user to accept terms and conditions | [TermsAndConditions](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/authentication/requiredactions/TermsAndConditions.html)
+ * | `UPDATE_PASSWORD`                 | Prompt user to update their password        | [UpdatePassword](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/authentication/requiredactions/UpdatePassword.html)
+ * | `UPDATE_PROFILE`                  | Prompt user to update their profile         | [UpdateProfile](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/authentication/requiredactions/UpdateProfile.html)
+ * | `updateUserLocale`              | Prompt user to set or update their locale   | [UpdateUserLocaleAction](https://www.keycloak.org/docs-api/21.0.2/javadocs/org/keycloak/authentication/requiredactions/UpdateUserLocaleAction.html)
+ * | `VERIFY_EMAIL`                    | Require user to verify their email address  | [VerifyEmail](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/authentication/requiredactions/VerifyEmail.html)
+ * | `VERIFY_PROFILE`                  | Verify user profile information             | [VerifyUserProfile](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/authentication/requiredactions/VerifyUserProfile.html)
+ *
  * ## Import
  *
  * Authentication executions can be imported using the formats: `{{realm}}/{{alias}}`.
@@ -71,7 +87,7 @@ export class RequiredAction extends pulumi.CustomResource {
     }
 
     /**
-     * The alias of the action to attach as a required action.
+     * The alias of the action to attach as a required action. Case sensitive.
      */
     declare public readonly alias: pulumi.Output<string>;
     /**
@@ -87,11 +103,11 @@ export class RequiredAction extends pulumi.CustomResource {
      */
     declare public readonly enabled: pulumi.Output<boolean | undefined>;
     /**
-     * The name of the required action.
+     * The name of the required action to use in the UI.
      */
     declare public readonly name: pulumi.Output<string>;
     /**
-     * The priority of the required action.
+     * An integer to specify the running order of required actions with lower numbers meaning higher precedence.
      */
     declare public readonly priority: pulumi.Output<number>;
     /**
@@ -145,7 +161,7 @@ export class RequiredAction extends pulumi.CustomResource {
  */
 export interface RequiredActionState {
     /**
-     * The alias of the action to attach as a required action.
+     * The alias of the action to attach as a required action. Case sensitive.
      */
     alias?: pulumi.Input<string>;
     /**
@@ -161,11 +177,11 @@ export interface RequiredActionState {
      */
     enabled?: pulumi.Input<boolean>;
     /**
-     * The name of the required action.
+     * The name of the required action to use in the UI.
      */
     name?: pulumi.Input<string>;
     /**
-     * The priority of the required action.
+     * An integer to specify the running order of required actions with lower numbers meaning higher precedence.
      */
     priority?: pulumi.Input<number>;
     /**
@@ -179,7 +195,7 @@ export interface RequiredActionState {
  */
 export interface RequiredActionArgs {
     /**
-     * The alias of the action to attach as a required action.
+     * The alias of the action to attach as a required action. Case sensitive.
      */
     alias: pulumi.Input<string>;
     /**
@@ -195,11 +211,11 @@ export interface RequiredActionArgs {
      */
     enabled?: pulumi.Input<boolean>;
     /**
-     * The name of the required action.
+     * The name of the required action to use in the UI.
      */
     name?: pulumi.Input<string>;
     /**
-     * The priority of the required action.
+     * An integer to specify the running order of required actions with lower numbers meaning higher precedence.
      */
     priority?: pulumi.Input<number>;
     /**

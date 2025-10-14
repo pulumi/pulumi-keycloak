@@ -6,6 +6,7 @@ package com.pulumi.keycloak.inputs;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.keycloak.inputs.GetRealmSmtpServerAuth;
+import com.pulumi.keycloak.inputs.GetRealmSmtpServerTokenAuth;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -86,6 +87,13 @@ public final class GetRealmSmtpServer extends com.pulumi.resources.InvokeArgs {
         return this.starttls;
     }
 
+    @Import(name="tokenAuths", required=true)
+    private List<GetRealmSmtpServerTokenAuth> tokenAuths;
+
+    public List<GetRealmSmtpServerTokenAuth> tokenAuths() {
+        return this.tokenAuths;
+    }
+
     private GetRealmSmtpServer() {}
 
     private GetRealmSmtpServer(GetRealmSmtpServer $) {
@@ -99,6 +107,7 @@ public final class GetRealmSmtpServer extends com.pulumi.resources.InvokeArgs {
         this.replyToDisplayName = $.replyToDisplayName;
         this.ssl = $.ssl;
         this.starttls = $.starttls;
+        this.tokenAuths = $.tokenAuths;
     }
 
     public static Builder builder() {
@@ -173,6 +182,15 @@ public final class GetRealmSmtpServer extends com.pulumi.resources.InvokeArgs {
             return this;
         }
 
+        public Builder tokenAuths(List<GetRealmSmtpServerTokenAuth> tokenAuths) {
+            $.tokenAuths = tokenAuths;
+            return this;
+        }
+
+        public Builder tokenAuths(GetRealmSmtpServerTokenAuth... tokenAuths) {
+            return tokenAuths(List.of(tokenAuths));
+        }
+
         public GetRealmSmtpServer build() {
             if ($.auths == null) {
                 throw new MissingRequiredPropertyException("GetRealmSmtpServer", "auths");
@@ -203,6 +221,9 @@ public final class GetRealmSmtpServer extends com.pulumi.resources.InvokeArgs {
             }
             if ($.starttls == null) {
                 throw new MissingRequiredPropertyException("GetRealmSmtpServer", "starttls");
+            }
+            if ($.tokenAuths == null) {
+                throw new MissingRequiredPropertyException("GetRealmSmtpServer", "tokenAuths");
             }
             return $;
         }

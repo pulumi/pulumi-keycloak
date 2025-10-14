@@ -28,9 +28,6 @@ namespace Pulumi.Keycloak.Inputs
             }
         }
 
-        /// <summary>
-        /// The SMTP server username.
-        /// </summary>
         [Input("username", required: true)]
         public Input<string> Username { get; set; } = null!;
 

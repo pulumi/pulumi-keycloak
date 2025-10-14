@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.keycloak.inputs.RealmSmtpServerAuthArgs;
+import com.pulumi.keycloak.inputs.RealmSmtpServerTokenAuthArgs;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -19,14 +20,14 @@ public final class RealmSmtpServerArgs extends com.pulumi.resources.ResourceArgs
     public static final RealmSmtpServerArgs Empty = new RealmSmtpServerArgs();
 
     /**
-     * Enables authentication to the SMTP server.  This block supports the following arguments:
+     * Enables authentication to the SMTP server. Cannot be set alongside `tokenAuth`. This block supports the following arguments:
      * 
      */
     @Import(name="auth")
     private @Nullable Output<RealmSmtpServerAuthArgs> auth;
 
     /**
-     * @return Enables authentication to the SMTP server.  This block supports the following arguments:
+     * @return Enables authentication to the SMTP server. Cannot be set alongside `tokenAuth`. This block supports the following arguments:
      * 
      */
     public Optional<Output<RealmSmtpServerAuthArgs>> auth() {
@@ -168,6 +169,21 @@ public final class RealmSmtpServerArgs extends com.pulumi.resources.ResourceArgs
         return Optional.ofNullable(this.starttls);
     }
 
+    /**
+     * Enables authentication to the SMTP server through OAUTH2. Cannot be set alongside `auth`. This block supports the following arguments:
+     * 
+     */
+    @Import(name="tokenAuth")
+    private @Nullable Output<RealmSmtpServerTokenAuthArgs> tokenAuth;
+
+    /**
+     * @return Enables authentication to the SMTP server through OAUTH2. Cannot be set alongside `auth`. This block supports the following arguments:
+     * 
+     */
+    public Optional<Output<RealmSmtpServerTokenAuthArgs>> tokenAuth() {
+        return Optional.ofNullable(this.tokenAuth);
+    }
+
     private RealmSmtpServerArgs() {}
 
     private RealmSmtpServerArgs(RealmSmtpServerArgs $) {
@@ -181,6 +197,7 @@ public final class RealmSmtpServerArgs extends com.pulumi.resources.ResourceArgs
         this.replyToDisplayName = $.replyToDisplayName;
         this.ssl = $.ssl;
         this.starttls = $.starttls;
+        this.tokenAuth = $.tokenAuth;
     }
 
     public static Builder builder() {
@@ -202,7 +219,7 @@ public final class RealmSmtpServerArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param auth Enables authentication to the SMTP server.  This block supports the following arguments:
+         * @param auth Enables authentication to the SMTP server. Cannot be set alongside `tokenAuth`. This block supports the following arguments:
          * 
          * @return builder
          * 
@@ -213,7 +230,7 @@ public final class RealmSmtpServerArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param auth Enables authentication to the SMTP server.  This block supports the following arguments:
+         * @param auth Enables authentication to the SMTP server. Cannot be set alongside `tokenAuth`. This block supports the following arguments:
          * 
          * @return builder
          * 
@@ -409,6 +426,27 @@ public final class RealmSmtpServerArgs extends com.pulumi.resources.ResourceArgs
          */
         public Builder starttls(Boolean starttls) {
             return starttls(Output.of(starttls));
+        }
+
+        /**
+         * @param tokenAuth Enables authentication to the SMTP server through OAUTH2. Cannot be set alongside `auth`. This block supports the following arguments:
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tokenAuth(@Nullable Output<RealmSmtpServerTokenAuthArgs> tokenAuth) {
+            $.tokenAuth = tokenAuth;
+            return this;
+        }
+
+        /**
+         * @param tokenAuth Enables authentication to the SMTP server through OAUTH2. Cannot be set alongside `auth`. This block supports the following arguments:
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tokenAuth(RealmSmtpServerTokenAuthArgs tokenAuth) {
+            return tokenAuth(Output.of(tokenAuth));
         }
 
         public RealmSmtpServerArgs build() {

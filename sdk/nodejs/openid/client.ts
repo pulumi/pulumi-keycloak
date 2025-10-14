@@ -36,6 +36,7 @@ import * as utilities from "../utilities";
  *     name: "test client",
  *     enabled: true,
  *     accessType: "CONFIDENTIAL",
+ *     standardFlowEnabled: true,
  *     validRedirectUris: ["http://localhost:8080/openid-callback"],
  *     loginTheme: "keycloak",
  *     extraConfig: {
@@ -128,6 +129,9 @@ export class Client extends pulumi.CustomResource {
      * URL to the admin interface of the client.
      */
     declare public readonly adminUrl: pulumi.Output<string>;
+    /**
+     * Defines whether to allow refresh token in Standard Token Exchange. Possible values are `NO` (default) and `SAME_SESSION`.
+     */
     declare public readonly allowRefreshTokenInStandardTokenExchange: pulumi.Output<string | undefined>;
     /**
      * Always list this client in the Account UI, even if the user does not have an active session.
@@ -298,6 +302,9 @@ export class Client extends pulumi.CustomResource {
      * When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
      */
     declare public readonly standardFlowEnabled: pulumi.Output<boolean>;
+    /**
+     * Enables support for Standard Token Exchange
+     */
     declare public readonly standardTokenExchangeEnabled: pulumi.Output<boolean | undefined>;
     /**
      * If this is `true`, a refreshToken will be created and added to the token response. If this is `false` then no refreshToken will be generated.  Defaults to `true`.
@@ -476,6 +483,9 @@ export interface ClientState {
      * URL to the admin interface of the client.
      */
     adminUrl?: pulumi.Input<string>;
+    /**
+     * Defines whether to allow refresh token in Standard Token Exchange. Possible values are `NO` (default) and `SAME_SESSION`.
+     */
     allowRefreshTokenInStandardTokenExchange?: pulumi.Input<string>;
     /**
      * Always list this client in the Account UI, even if the user does not have an active session.
@@ -646,6 +656,9 @@ export interface ClientState {
      * When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
      */
     standardFlowEnabled?: pulumi.Input<boolean>;
+    /**
+     * Enables support for Standard Token Exchange
+     */
     standardTokenExchangeEnabled?: pulumi.Input<boolean>;
     /**
      * If this is `true`, a refreshToken will be created and added to the token response. If this is `false` then no refreshToken will be generated.  Defaults to `true`.
@@ -692,6 +705,9 @@ export interface ClientArgs {
      * URL to the admin interface of the client.
      */
     adminUrl?: pulumi.Input<string>;
+    /**
+     * Defines whether to allow refresh token in Standard Token Exchange. Possible values are `NO` (default) and `SAME_SESSION`.
+     */
     allowRefreshTokenInStandardTokenExchange?: pulumi.Input<string>;
     /**
      * Always list this client in the Account UI, even if the user does not have an active session.
@@ -854,6 +870,9 @@ export interface ClientArgs {
      * When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
      */
     standardFlowEnabled?: pulumi.Input<boolean>;
+    /**
+     * Enables support for Standard Token Exchange
+     */
     standardTokenExchangeEnabled?: pulumi.Input<boolean>;
     /**
      * If this is `true`, a refreshToken will be created and added to the token response. If this is `false` then no refreshToken will be generated.  Defaults to `true`.

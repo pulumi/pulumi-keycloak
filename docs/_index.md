@@ -68,7 +68,16 @@ of permissions.
 - Managing clients for all realms within the entire Keycloak instance: Assign the `create-client` client role from each of
   the realm clients to a user or service account within the `master` realm. For example, given a Keycloak instance with realms
   `master`, `foo`, and `bar`, assign the `create-client` client role from the clients `master-realm`, `foo-realm`, and `bar-realm`.
-## Example Usage (client credentials grant - client secret)
+## Authentication
+
+The Pulumi Provider currently supports the following authentication methods:
+- Client-Credentials Grant (client_id + client_secret)
+- Password Grant (client_id (+client_secret), username, password)
+- Signed JWT (Private Key JWT)
+- Provided Access Token (pre-provisioned Keycloak Access Token)
+
+Additionally, the Pulumi Provider also supports using an mTLS client certificate to access Keycloak.
+### Example Usage (client credentials grant - client secret)
 
 ```yaml
 # Pulumi.yaml provider configuration file
@@ -83,7 +92,7 @@ config:
         value: http://localhost:8080
 
 ```
-## Example Usage (client credentials grant - private key signed JWT)
+### Example Usage (client credentials grant - private key signed JWT)
 
 ```yaml
 # Pulumi.yaml provider configuration file
@@ -98,7 +107,7 @@ config:
         value: http://localhost:8080
 
 ```
-## Example Usage (password grant)
+### Example Usage (password grant)
 
 ```yaml
 # Pulumi.yaml provider configuration file
@@ -115,15 +124,54 @@ config:
         value: keycloak
 
 ```
+### Example Usage (provided Token)
+
+```yaml
+# Pulumi.yaml provider configuration file
+name: configuration-example
+runtime:
+config:
+    keycloak:accessToken:
+        value: <encoded-access-token-here>
+    keycloak:clientId:
+        value: admin-cli
+    keycloak:url:
+        value: http://localhost:8080
+
+```
+### Example Usage (mTLS Certificate)
+```yaml
+# Pulumi.yaml provider configuration file
+name: configuration-example
+runtime:
+config:
+    keycloak:clientId:
+        value: pulumi
+    keycloak:clientSecret:
+        value: 884e0f95-0f42-4a63-9b1f-94274655669e
+    keycloak:jwtSigningKey:
+        value: <pem-formatted-private-key>
+    keycloak:rootCaCertificate:
+        value: <pem-formatted-server-certificate>
+    keycloak:tlsClientCertificate:
+        value: <pem-formatted-client-certificate>
+    keycloak:tlsClientPrivateKey:
+        value: <pem-formatted-client-key>
+    keycloak:url:
+        value: https://localhost:8443
+
+```
 ## Configuration Reference
 
 The following configuration inputs are supported:
 
 - `clientId` - (Required) The `clientId` for the client that was created in the "Keycloak Setup" section. Use the `admin-cli` client if you are using the password grant. Defaults to the environment variable `KEYCLOAK_CLIENT_ID`.
 - `url` - (Required) The URL of the Keycloak instance, before `/auth/admin`. Defaults to the environment variable `KEYCLOAK_URL`.
+- `adminUrl` - (Optional) The admin URL of the Keycloak instance if different from the base URL, before `/auth/admin`. Defaults to the environment variable `KEYCLOAK_ADMIN_URL`.
 - `clientSecret` - (Optional) The secret for the client used by the provider for authentication via the client credentials grant. This can be found or changed using the "Credentials" tab in the client settings. Defaults to the environment variable `KEYCLOAK_CLIENT_SECRET`. This attribute is required when using the client credentials grant, and cannot be set when using the password grant.
 - `username` - (Optional) The username of the user used by the provider for authentication via the password grant. Defaults to the environment variable `KEYCLOAK_USER`. This attribute is required when using the password grant, and cannot be set when using the client credentials grant.
 - `password` - (Optional) The password of the user used by the provider for authentication via the password grant. Defaults to the environment variable `KEYCLOAK_PASSWORD`. This attribute is required when using the password grant, and cannot be set when using the client credentials grant.
+- `accessToken` - (Optional) The access token that should be used by the provider for authentication via token. Defaults to the environment variable `KEYCLOAK_ACCESS_TOKEN`.
 - `jwtSigningKey` - (Optional) The PEM-formatted private key used by provider to generate a signed JWT for authentication.
 - `jwtSigningAlg` - (Optional) The signing algorithm used by provider to generate a signed JWT for authentication. Defaults to `RS256`.
 - `realm` - (Optional) The realm used by the provider for authentication. Defaults to the environment variable `KEYCLOAK_REALM`, or `master` if the environment variable is not specified.
@@ -131,5 +179,7 @@ The following configuration inputs are supported:
 - `clientTimeout` - (Optional) Sets the timeout of the client when addressing Keycloak, in seconds. Defaults to the environment variable `KEYCLOAK_CLIENT_TIMEOUT`, or `15` if the environment variable is not specified.
 - `tlsInsecureSkipVerify` - (Optional) Allows ignoring insecure certificates when set to `true`. Defaults to `false`. Disabling this security check is dangerous and should only be done in local or test environments.
 - `rootCaCertificate` - (Optional) Allows x509 calls using an unknown CA certificate (for development purposes)
+- `tlsClientCertificate` - (Optional) The TLS client certificate in PEM format when the keycloak server is configured with TLS mutual authentication.
+- `tlsClientPrivateKey` - (Optional) The TLS client pkcs1 private key in PEM format when the keycloak server is configured with TLS mutual authentication.
 - `basePath` - (Optional) The base path used for accessing the Keycloak REST API.  Defaults to the environment variable `KEYCLOAK_BASE_PATH`, or an empty string if the environment variable is not specified. Note that users of the legacy distribution of Keycloak will need to set this attribute to `/auth`.
 - `additionalHeaders` - (Optional) A map of custom HTTP headers to add to each request to the Keycloak API.

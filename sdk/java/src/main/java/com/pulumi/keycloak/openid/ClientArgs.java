@@ -77,9 +77,17 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.adminUrl);
     }
 
+    /**
+     * Defines whether to allow refresh token in Standard Token Exchange. Possible values are `NO` (default) and `SAME_SESSION`.
+     * 
+     */
     @Import(name="allowRefreshTokenInStandardTokenExchange")
     private @Nullable Output<String> allowRefreshTokenInStandardTokenExchange;
 
+    /**
+     * @return Defines whether to allow refresh token in Standard Token Exchange. Possible values are `NO` (default) and `SAME_SESSION`.
+     * 
+     */
     public Optional<Output<String>> allowRefreshTokenInStandardTokenExchange() {
         return Optional.ofNullable(this.allowRefreshTokenInStandardTokenExchange);
     }
@@ -684,9 +692,17 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.standardFlowEnabled);
     }
 
+    /**
+     * Enables support for Standard Token Exchange
+     * 
+     */
     @Import(name="standardTokenExchangeEnabled")
     private @Nullable Output<Boolean> standardTokenExchangeEnabled;
 
+    /**
+     * @return Enables support for Standard Token Exchange
+     * 
+     */
     public Optional<Output<Boolean>> standardTokenExchangeEnabled() {
         return Optional.ofNullable(this.standardTokenExchangeEnabled);
     }
@@ -916,11 +932,23 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
             return adminUrl(Output.of(adminUrl));
         }
 
+        /**
+         * @param allowRefreshTokenInStandardTokenExchange Defines whether to allow refresh token in Standard Token Exchange. Possible values are `NO` (default) and `SAME_SESSION`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder allowRefreshTokenInStandardTokenExchange(@Nullable Output<String> allowRefreshTokenInStandardTokenExchange) {
             $.allowRefreshTokenInStandardTokenExchange = allowRefreshTokenInStandardTokenExchange;
             return this;
         }
 
+        /**
+         * @param allowRefreshTokenInStandardTokenExchange Defines whether to allow refresh token in Standard Token Exchange. Possible values are `NO` (default) and `SAME_SESSION`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder allowRefreshTokenInStandardTokenExchange(String allowRefreshTokenInStandardTokenExchange) {
             return allowRefreshTokenInStandardTokenExchange(Output.of(allowRefreshTokenInStandardTokenExchange));
         }
@@ -1761,11 +1789,23 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
             return standardFlowEnabled(Output.of(standardFlowEnabled));
         }
 
+        /**
+         * @param standardTokenExchangeEnabled Enables support for Standard Token Exchange
+         * 
+         * @return builder
+         * 
+         */
         public Builder standardTokenExchangeEnabled(@Nullable Output<Boolean> standardTokenExchangeEnabled) {
             $.standardTokenExchangeEnabled = standardTokenExchangeEnabled;
             return this;
         }
 
+        /**
+         * @param standardTokenExchangeEnabled Enables support for Standard Token Exchange
+         * 
+         * @return builder
+         * 
+         */
         public Builder standardTokenExchangeEnabled(Boolean standardTokenExchangeEnabled) {
             return standardTokenExchangeEnabled(Output.of(standardTokenExchangeEnabled));
         }

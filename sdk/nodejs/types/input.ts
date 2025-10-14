@@ -96,6 +96,7 @@ export interface GetRealmSmtpServer {
     replyToDisplayName?: string;
     ssl?: boolean;
     starttls?: boolean;
+    tokenAuths?: inputs.GetRealmSmtpServerTokenAuth[];
 }
 
 export interface GetRealmSmtpServerArgs {
@@ -109,6 +110,7 @@ export interface GetRealmSmtpServerArgs {
     replyToDisplayName?: pulumi.Input<string>;
     ssl?: pulumi.Input<boolean>;
     starttls?: pulumi.Input<boolean>;
+    tokenAuths?: pulumi.Input<pulumi.Input<inputs.GetRealmSmtpServerTokenAuthArgs>[]>;
 }
 
 export interface GetRealmSmtpServerAuth {
@@ -118,6 +120,22 @@ export interface GetRealmSmtpServerAuth {
 
 export interface GetRealmSmtpServerAuthArgs {
     password?: pulumi.Input<string>;
+    username?: pulumi.Input<string>;
+}
+
+export interface GetRealmSmtpServerTokenAuth {
+    clientId?: string;
+    clientSecret?: string;
+    scope?: string;
+    url?: string;
+    username?: string;
+}
+
+export interface GetRealmSmtpServerTokenAuthArgs {
+    clientId?: pulumi.Input<string>;
+    clientSecret?: pulumi.Input<string>;
+    scope?: pulumi.Input<string>;
+    url?: pulumi.Input<string>;
     username?: pulumi.Input<string>;
 }
 
@@ -397,7 +415,7 @@ export interface RealmSecurityDefensesHeaders {
 
 export interface RealmSmtpServer {
     /**
-     * Enables authentication to the SMTP server.  This block supports the following arguments:
+     * Enables authentication to the SMTP server. Cannot be set alongside `tokenAuth`. This block supports the following arguments:
      */
     auth?: pulumi.Input<inputs.RealmSmtpServerAuth>;
     /**
@@ -436,6 +454,10 @@ export interface RealmSmtpServer {
      * When `true`, enables StartTLS. Defaults to `false`.
      */
     starttls?: pulumi.Input<boolean>;
+    /**
+     * Enables authentication to the SMTP server through OAUTH2. Cannot be set alongside `auth`. This block supports the following arguments:
+     */
+    tokenAuth?: pulumi.Input<inputs.RealmSmtpServerTokenAuth>;
 }
 
 export interface RealmSmtpServerAuth {
@@ -443,9 +465,26 @@ export interface RealmSmtpServerAuth {
      * The SMTP server password.
      */
     password: pulumi.Input<string>;
+    username: pulumi.Input<string>;
+}
+
+export interface RealmSmtpServerTokenAuth {
     /**
-     * The SMTP server username.
+     * The auth token client ID.
      */
+    clientId: pulumi.Input<string>;
+    /**
+     * The auth token client secret.
+     */
+    clientSecret: pulumi.Input<string>;
+    /**
+     * The auth token scope.
+     */
+    scope: pulumi.Input<string>;
+    /**
+     * The auth token URL.
+     */
+    url: pulumi.Input<string>;
     username: pulumi.Input<string>;
 }
 

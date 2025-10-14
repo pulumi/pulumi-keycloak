@@ -23,6 +23,26 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="pulumi:providers:keycloak")
 public class Provider extends com.pulumi.resources.ProviderResource {
+    @Export(name="accessToken", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> accessToken;
+
+    public Output<Optional<String>> accessToken() {
+        return Codegen.optional(this.accessToken);
+    }
+    /**
+     * The admin URL of the Keycloak instance if different from the main URL, before `/auth`
+     * 
+     */
+    @Export(name="adminUrl", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> adminUrl;
+
+    /**
+     * @return The admin URL of the Keycloak instance if different from the main URL, before `/auth`
+     * 
+     */
+    public Output<Optional<String>> adminUrl() {
+        return Codegen.optional(this.adminUrl);
+    }
     @Export(name="basePath", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> basePath;
 
@@ -94,6 +114,34 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      */
     public Output<Optional<String>> rootCaCertificate() {
         return Codegen.optional(this.rootCaCertificate);
+    }
+    /**
+     * TLS client certificate as PEM string for mutual authentication
+     * 
+     */
+    @Export(name="tlsClientCertificate", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> tlsClientCertificate;
+
+    /**
+     * @return TLS client certificate as PEM string for mutual authentication
+     * 
+     */
+    public Output<Optional<String>> tlsClientCertificate() {
+        return Codegen.optional(this.tlsClientCertificate);
+    }
+    /**
+     * TLS client private key as PEM string for mutual authentication
+     * 
+     */
+    @Export(name="tlsClientPrivateKey", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> tlsClientPrivateKey;
+
+    /**
+     * @return TLS client private key as PEM string for mutual authentication
+     * 
+     */
+    public Output<Optional<String>> tlsClientPrivateKey() {
+        return Codegen.optional(this.tlsClientPrivateKey);
     }
     /**
      * The base URL of the Keycloak instance, before `/auth`

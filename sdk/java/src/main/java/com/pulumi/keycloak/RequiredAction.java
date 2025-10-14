@@ -66,6 +66,22 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * ## Keycloak built-in required actions
+ * 
+ * | Alias                             | Description                                 | Class
+ * |-----------------------------------|---------------------------------------------|-----------------------------
+ * | `CONFIGURE_RECOVERY_AUTHN_CODES`  | Configure recovery authentication codes     | [RecoveryAuthnCodesAction](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/authentication/requiredactions/RecoveryAuthnCodesAction.html)
+ * | `CONFIGURE_TOTP`                  | Require user to configure 2FA (TOTP)        | [UpdateTotp](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/authentication/requiredactions/UpdateTotp.html)
+ * | `deleteAccount`                  | Allow user to delete their account          | [DeleteAccount](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/authentication/requiredactions/DeleteAccount.html)
+ * | `deleteCredential`               | Allow user to delete a credential           |
+ * | `idpLink`                        | Link account with identity provider         |
+ * | `TERMS_AND_CONDITIONS`            | Require user to accept terms and conditions | [TermsAndConditions](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/authentication/requiredactions/TermsAndConditions.html)
+ * | `UPDATE_PASSWORD`                 | Prompt user to update their password        | [UpdatePassword](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/authentication/requiredactions/UpdatePassword.html)
+ * | `UPDATE_PROFILE`                  | Prompt user to update their profile         | [UpdateProfile](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/authentication/requiredactions/UpdateProfile.html)
+ * | `updateUserLocale`              | Prompt user to set or update their locale   | [UpdateUserLocaleAction](https://www.keycloak.org/docs-api/21.0.2/javadocs/org/keycloak/authentication/requiredactions/UpdateUserLocaleAction.html)
+ * | `VERIFY_EMAIL`                    | Require user to verify their email address  | [VerifyEmail](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/authentication/requiredactions/VerifyEmail.html)
+ * | `VERIFY_PROFILE`                  | Verify user profile information             | [VerifyUserProfile](https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/authentication/requiredactions/VerifyUserProfile.html)
+ * 
  * ## Import
  * 
  * Authentication executions can be imported using the formats: `{{realm}}/{{alias}}`.
@@ -82,14 +98,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="keycloak:index/requiredAction:RequiredAction")
 public class RequiredAction extends com.pulumi.resources.CustomResource {
     /**
-     * The alias of the action to attach as a required action.
+     * The alias of the action to attach as a required action. Case sensitive.
      * 
      */
     @Export(name="alias", refs={String.class}, tree="[0]")
     private Output<String> alias;
 
     /**
-     * @return The alias of the action to attach as a required action.
+     * @return The alias of the action to attach as a required action. Case sensitive.
      * 
      */
     public Output<String> alias() {
@@ -138,28 +154,28 @@ public class RequiredAction extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.enabled);
     }
     /**
-     * The name of the required action.
+     * The name of the required action to use in the UI.
      * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
-     * @return The name of the required action.
+     * @return The name of the required action to use in the UI.
      * 
      */
     public Output<String> name() {
         return this.name;
     }
     /**
-     * The priority of the required action.
+     * An integer to specify the running order of required actions with lower numbers meaning higher precedence.
      * 
      */
     @Export(name="priority", refs={Integer.class}, tree="[0]")
     private Output<Integer> priority;
 
     /**
-     * @return The priority of the required action.
+     * @return An integer to specify the running order of required actions with lower numbers meaning higher precedence.
      * 
      */
     public Output<Integer> priority() {

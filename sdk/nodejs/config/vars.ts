@@ -7,10 +7,29 @@ import * as utilities from "../utilities";
 declare var exports: any;
 const __config = new pulumi.Config("keycloak");
 
+export declare const accessToken: string | undefined;
+Object.defineProperty(exports, "accessToken", {
+    get() {
+        return __config.get("accessToken");
+    },
+    enumerable: true,
+});
+
 export declare const additionalHeaders: {[key: string]: string} | undefined;
 Object.defineProperty(exports, "additionalHeaders", {
     get() {
         return __config.getObject<{[key: string]: string}>("additionalHeaders");
+    },
+    enumerable: true,
+});
+
+/**
+ * The admin URL of the Keycloak instance if different from the main URL, before `/auth`
+ */
+export declare const adminUrl: string | undefined;
+Object.defineProperty(exports, "adminUrl", {
+    get() {
+        return __config.get("adminUrl");
     },
     enumerable: true,
 });
@@ -117,6 +136,28 @@ export declare const rootCaCertificate: string | undefined;
 Object.defineProperty(exports, "rootCaCertificate", {
     get() {
         return __config.get("rootCaCertificate");
+    },
+    enumerable: true,
+});
+
+/**
+ * TLS client certificate as PEM string for mutual authentication
+ */
+export declare const tlsClientCertificate: string | undefined;
+Object.defineProperty(exports, "tlsClientCertificate", {
+    get() {
+        return __config.get("tlsClientCertificate");
+    },
+    enumerable: true,
+});
+
+/**
+ * TLS client private key as PEM string for mutual authentication
+ */
+export declare const tlsClientPrivateKey: string | undefined;
+Object.defineProperty(exports, "tlsClientPrivateKey", {
+    get() {
+        return __config.get("tlsClientPrivateKey");
     },
     enumerable: true,
 });

@@ -32,11 +32,28 @@ namespace Pulumi.Keycloak
 
         private static readonly global::Pulumi.Config __config = new global::Pulumi.Config("keycloak");
 
+        private static readonly __Value<string?> _accessToken = new __Value<string?>(() => __config.Get("accessToken"));
+        public static string? AccessToken
+        {
+            get => _accessToken.Get();
+            set => _accessToken.Set(value);
+        }
+
         private static readonly __Value<ImmutableDictionary<string, string>?> _additionalHeaders = new __Value<ImmutableDictionary<string, string>?>(() => __config.GetObject<ImmutableDictionary<string, string>>("additionalHeaders"));
         public static ImmutableDictionary<string, string>? AdditionalHeaders
         {
             get => _additionalHeaders.Get();
             set => _additionalHeaders.Set(value);
+        }
+
+        private static readonly __Value<string?> _adminUrl = new __Value<string?>(() => __config.Get("adminUrl"));
+        /// <summary>
+        /// The admin URL of the Keycloak instance if different from the main URL, before `/auth`
+        /// </summary>
+        public static string? AdminUrl
+        {
+            get => _adminUrl.Get();
+            set => _adminUrl.Set(value);
         }
 
         private static readonly __Value<string?> _basePath = new __Value<string?>(() => __config.Get("basePath"));
@@ -132,6 +149,26 @@ namespace Pulumi.Keycloak
         {
             get => _rootCaCertificate.Get();
             set => _rootCaCertificate.Set(value);
+        }
+
+        private static readonly __Value<string?> _tlsClientCertificate = new __Value<string?>(() => __config.Get("tlsClientCertificate"));
+        /// <summary>
+        /// TLS client certificate as PEM string for mutual authentication
+        /// </summary>
+        public static string? TlsClientCertificate
+        {
+            get => _tlsClientCertificate.Get();
+            set => _tlsClientCertificate.Set(value);
+        }
+
+        private static readonly __Value<string?> _tlsClientPrivateKey = new __Value<string?>(() => __config.Get("tlsClientPrivateKey"));
+        /// <summary>
+        /// TLS client private key as PEM string for mutual authentication
+        /// </summary>
+        public static string? TlsClientPrivateKey
+        {
+            get => _tlsClientPrivateKey.Get();
+            set => _tlsClientPrivateKey.Set(value);
         }
 
         private static readonly __Value<bool?> _tlsInsecureSkipVerify = new __Value<bool?>(() => __config.GetBoolean("tlsInsecureSkipVerify"));

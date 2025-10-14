@@ -23,7 +23,7 @@ class DefaultRolesArgs:
                  realm_id: pulumi.Input[_builtins.str]):
         """
         The set of arguments for constructing a DefaultRoles resource.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] default_roles: Realm level roles assigned to new users by default.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] default_roles: Roles assigned to new users by default.
         :param pulumi.Input[_builtins.str] realm_id: The realm this role exists within.
         """
         pulumi.set(__self__, "default_roles", default_roles)
@@ -33,7 +33,7 @@ class DefaultRolesArgs:
     @pulumi.getter(name="defaultRoles")
     def default_roles(self) -> pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]:
         """
-        Realm level roles assigned to new users by default.
+        Roles assigned to new users by default.
         """
         return pulumi.get(self, "default_roles")
 
@@ -61,7 +61,7 @@ class _DefaultRolesState:
                  realm_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DefaultRoles resources.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] default_roles: Realm level roles assigned to new users by default.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] default_roles: Roles assigned to new users by default.
         :param pulumi.Input[_builtins.str] realm_id: The realm this role exists within.
         """
         if default_roles is not None:
@@ -73,7 +73,7 @@ class _DefaultRolesState:
     @pulumi.getter(name="defaultRoles")
     def default_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        Realm level roles assigned to new users by default.
+        Roles assigned to new users by default.
         """
         return pulumi.get(self, "default_roles")
 
@@ -104,7 +104,7 @@ class DefaultRoles(pulumi.CustomResource):
                  realm_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        Allows managing default realm roles within Keycloak.
+        Allows managing default roles within Keycloak.
 
         Note: This feature was added in Keycloak v13, so this resource will not work on older versions of Keycloak.
 
@@ -122,6 +122,23 @@ class DefaultRoles(pulumi.CustomResource):
         default_roles = keycloak.DefaultRoles("default_roles",
             realm_id=realm.id,
             default_roles=["uma_authorization"])
+        ```
+
+        ### Client Roles)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        default_roles = keycloak.DefaultRoles("default_roles",
+            realm_id=realm.id,
+            default_roles=[
+                "account/manage-account",
+                "account/view-groups",
+            ])
         ```
 
         ## Import
@@ -142,7 +159,7 @@ class DefaultRoles(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] default_roles: Realm level roles assigned to new users by default.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] default_roles: Roles assigned to new users by default.
         :param pulumi.Input[_builtins.str] realm_id: The realm this role exists within.
         """
         ...
@@ -152,7 +169,7 @@ class DefaultRoles(pulumi.CustomResource):
                  args: DefaultRolesArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Allows managing default realm roles within Keycloak.
+        Allows managing default roles within Keycloak.
 
         Note: This feature was added in Keycloak v13, so this resource will not work on older versions of Keycloak.
 
@@ -170,6 +187,23 @@ class DefaultRoles(pulumi.CustomResource):
         default_roles = keycloak.DefaultRoles("default_roles",
             realm_id=realm.id,
             default_roles=["uma_authorization"])
+        ```
+
+        ### Client Roles)
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        default_roles = keycloak.DefaultRoles("default_roles",
+            realm_id=realm.id,
+            default_roles=[
+                "account/manage-account",
+                "account/view-groups",
+            ])
         ```
 
         ## Import
@@ -239,7 +273,7 @@ class DefaultRoles(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] default_roles: Realm level roles assigned to new users by default.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] default_roles: Roles assigned to new users by default.
         :param pulumi.Input[_builtins.str] realm_id: The realm this role exists within.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -254,7 +288,7 @@ class DefaultRoles(pulumi.CustomResource):
     @pulumi.getter(name="defaultRoles")
     def default_roles(self) -> pulumi.Output[Sequence[_builtins.str]]:
         """
-        Realm level roles assigned to new users by default.
+        Roles assigned to new users by default.
         """
         return pulumi.get(self, "default_roles")
 

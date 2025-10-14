@@ -18,6 +18,9 @@ import (
 type Provider struct {
 	pulumi.ProviderResourceState
 
+	AccessToken pulumi.StringPtrOutput `pulumi:"accessToken"`
+	// The admin URL of the Keycloak instance if different from the main URL, before `/auth`
+	AdminUrl     pulumi.StringPtrOutput `pulumi:"adminUrl"`
 	BasePath     pulumi.StringPtrOutput `pulumi:"basePath"`
 	ClientId     pulumi.StringPtrOutput `pulumi:"clientId"`
 	ClientSecret pulumi.StringPtrOutput `pulumi:"clientSecret"`
@@ -29,6 +32,10 @@ type Provider struct {
 	Realm         pulumi.StringPtrOutput `pulumi:"realm"`
 	// Allows x509 calls using an unknown CA certificate (for development purposes)
 	RootCaCertificate pulumi.StringPtrOutput `pulumi:"rootCaCertificate"`
+	// TLS client certificate as PEM string for mutual authentication
+	TlsClientCertificate pulumi.StringPtrOutput `pulumi:"tlsClientCertificate"`
+	// TLS client private key as PEM string for mutual authentication
+	TlsClientPrivateKey pulumi.StringPtrOutput `pulumi:"tlsClientPrivateKey"`
 	// The base URL of the Keycloak instance, before `/auth`
 	Url      pulumi.StringPtrOutput `pulumi:"url"`
 	Username pulumi.StringPtrOutput `pulumi:"username"`
@@ -63,10 +70,13 @@ func NewProvider(ctx *pulumi.Context,
 }
 
 type providerArgs struct {
+	AccessToken       *string           `pulumi:"accessToken"`
 	AdditionalHeaders map[string]string `pulumi:"additionalHeaders"`
-	BasePath          *string           `pulumi:"basePath"`
-	ClientId          *string           `pulumi:"clientId"`
-	ClientSecret      *string           `pulumi:"clientSecret"`
+	// The admin URL of the Keycloak instance if different from the main URL, before `/auth`
+	AdminUrl     *string `pulumi:"adminUrl"`
+	BasePath     *string `pulumi:"basePath"`
+	ClientId     *string `pulumi:"clientId"`
+	ClientSecret *string `pulumi:"clientSecret"`
 	// Timeout (in seconds) of the Keycloak client
 	ClientTimeout *int `pulumi:"clientTimeout"`
 	// Whether or not to login to Keycloak instance on provider initialization
@@ -81,6 +91,10 @@ type providerArgs struct {
 	RedHatSso *bool `pulumi:"redHatSso"`
 	// Allows x509 calls using an unknown CA certificate (for development purposes)
 	RootCaCertificate *string `pulumi:"rootCaCertificate"`
+	// TLS client certificate as PEM string for mutual authentication
+	TlsClientCertificate *string `pulumi:"tlsClientCertificate"`
+	// TLS client private key as PEM string for mutual authentication
+	TlsClientPrivateKey *string `pulumi:"tlsClientPrivateKey"`
 	// Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and should be avoided.
 	TlsInsecureSkipVerify *bool `pulumi:"tlsInsecureSkipVerify"`
 	// The base URL of the Keycloak instance, before `/auth`
@@ -90,10 +104,13 @@ type providerArgs struct {
 
 // The set of arguments for constructing a Provider resource.
 type ProviderArgs struct {
+	AccessToken       pulumi.StringPtrInput
 	AdditionalHeaders pulumi.StringMapInput
-	BasePath          pulumi.StringPtrInput
-	ClientId          pulumi.StringPtrInput
-	ClientSecret      pulumi.StringPtrInput
+	// The admin URL of the Keycloak instance if different from the main URL, before `/auth`
+	AdminUrl     pulumi.StringPtrInput
+	BasePath     pulumi.StringPtrInput
+	ClientId     pulumi.StringPtrInput
+	ClientSecret pulumi.StringPtrInput
 	// Timeout (in seconds) of the Keycloak client
 	ClientTimeout pulumi.IntPtrInput
 	// Whether or not to login to Keycloak instance on provider initialization
@@ -108,6 +125,10 @@ type ProviderArgs struct {
 	RedHatSso pulumi.BoolPtrInput
 	// Allows x509 calls using an unknown CA certificate (for development purposes)
 	RootCaCertificate pulumi.StringPtrInput
+	// TLS client certificate as PEM string for mutual authentication
+	TlsClientCertificate pulumi.StringPtrInput
+	// TLS client private key as PEM string for mutual authentication
+	TlsClientPrivateKey pulumi.StringPtrInput
 	// Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and should be avoided.
 	TlsInsecureSkipVerify pulumi.BoolPtrInput
 	// The base URL of the Keycloak instance, before `/auth`
@@ -175,6 +196,15 @@ func (o ProviderOutput) ToProviderOutputWithContext(ctx context.Context) Provide
 	return o
 }
 
+func (o ProviderOutput) AccessToken() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.AccessToken }).(pulumi.StringPtrOutput)
+}
+
+// The admin URL of the Keycloak instance if different from the main URL, before `/auth`
+func (o ProviderOutput) AdminUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.AdminUrl }).(pulumi.StringPtrOutput)
+}
+
 func (o ProviderOutput) BasePath() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.BasePath }).(pulumi.StringPtrOutput)
 }
@@ -208,6 +238,16 @@ func (o ProviderOutput) Realm() pulumi.StringPtrOutput {
 // Allows x509 calls using an unknown CA certificate (for development purposes)
 func (o ProviderOutput) RootCaCertificate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.RootCaCertificate }).(pulumi.StringPtrOutput)
+}
+
+// TLS client certificate as PEM string for mutual authentication
+func (o ProviderOutput) TlsClientCertificate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.TlsClientCertificate }).(pulumi.StringPtrOutput)
+}
+
+// TLS client private key as PEM string for mutual authentication
+func (o ProviderOutput) TlsClientPrivateKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.TlsClientPrivateKey }).(pulumi.StringPtrOutput)
 }
 
 // The base URL of the Keycloak instance, before `/auth`

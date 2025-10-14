@@ -14,7 +14,7 @@ namespace Pulumi.Keycloak.Outputs
     public sealed class RealmSmtpServer
     {
         /// <summary>
-        /// Enables authentication to the SMTP server.  This block supports the following arguments:
+        /// Enables authentication to the SMTP server. Cannot be set alongside `TokenAuth`. This block supports the following arguments:
         /// </summary>
         public readonly Outputs.RealmSmtpServerAuth? Auth;
         /// <summary>
@@ -53,6 +53,10 @@ namespace Pulumi.Keycloak.Outputs
         /// When `True`, enables StartTLS. Defaults to `False`.
         /// </summary>
         public readonly bool? Starttls;
+        /// <summary>
+        /// Enables authentication to the SMTP server through OAUTH2. Cannot be set alongside `Auth`. This block supports the following arguments:
+        /// </summary>
+        public readonly Outputs.RealmSmtpServerTokenAuth? TokenAuth;
 
         [OutputConstructor]
         private RealmSmtpServer(
@@ -74,7 +78,9 @@ namespace Pulumi.Keycloak.Outputs
 
             bool? ssl,
 
-            bool? starttls)
+            bool? starttls,
+
+            Outputs.RealmSmtpServerTokenAuth? tokenAuth)
         {
             Auth = auth;
             EnvelopeFrom = envelopeFrom;
@@ -86,6 +92,7 @@ namespace Pulumi.Keycloak.Outputs
             ReplyToDisplayName = replyToDisplayName;
             Ssl = ssl;
             Starttls = starttls;
+            TokenAuth = tokenAuth;
         }
     }
 }

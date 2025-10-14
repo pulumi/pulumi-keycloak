@@ -15,7 +15,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 /**
- * Allows managing default realm roles within Keycloak.
+ * Allows managing default roles within Keycloak.
  * 
  * Note: This feature was added in Keycloak v13, so this resource will not work on older versions of Keycloak.
  * 
@@ -62,6 +62,49 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * ### Client Roles)
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.keycloak.Realm;
+ * import com.pulumi.keycloak.RealmArgs;
+ * import com.pulumi.keycloak.DefaultRoles;
+ * import com.pulumi.keycloak.DefaultRolesArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var realm = new Realm("realm", RealmArgs.builder()
+ *             .realm("my-realm")
+ *             .enabled(true)
+ *             .build());
+ * 
+ *         var defaultRoles = new DefaultRoles("defaultRoles", DefaultRolesArgs.builder()
+ *             .realmId(realm.id())
+ *             .defaultRoles(            
+ *                 "account/manage-account",
+ *                 "account/view-groups")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ## Import
  * 
  * Default roles can be imported using the format `{{realm_id}}/{{default_role_id}}`, where `default_role_id` is the unique ID of the composite
@@ -82,14 +125,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="keycloak:index/defaultRoles:DefaultRoles")
 public class DefaultRoles extends com.pulumi.resources.CustomResource {
     /**
-     * Realm level roles assigned to new users by default.
+     * Roles assigned to new users by default.
      * 
      */
     @Export(name="defaultRoles", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> defaultRoles;
 
     /**
-     * @return Realm level roles assigned to new users by default.
+     * @return Roles assigned to new users by default.
      * 
      */
     public Output<List<String>> defaultRoles() {

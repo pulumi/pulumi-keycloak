@@ -2192,7 +2192,7 @@ func (o RealmSecurityDefensesHeadersPtrOutput) XXssProtection() pulumi.StringPtr
 }
 
 type RealmSmtpServer struct {
-	// Enables authentication to the SMTP server.  This block supports the following arguments:
+	// Enables authentication to the SMTP server. Cannot be set alongside `tokenAuth`. This block supports the following arguments:
 	Auth *RealmSmtpServerAuth `pulumi:"auth"`
 	// The email address uses for bounces.
 	EnvelopeFrom *string `pulumi:"envelopeFrom"`
@@ -2212,6 +2212,8 @@ type RealmSmtpServer struct {
 	Ssl *bool `pulumi:"ssl"`
 	// When `true`, enables StartTLS. Defaults to `false`.
 	Starttls *bool `pulumi:"starttls"`
+	// Enables authentication to the SMTP server through OAUTH2. Cannot be set alongside `auth`. This block supports the following arguments:
+	TokenAuth *RealmSmtpServerTokenAuth `pulumi:"tokenAuth"`
 }
 
 // RealmSmtpServerInput is an input type that accepts RealmSmtpServerArgs and RealmSmtpServerOutput values.
@@ -2226,7 +2228,7 @@ type RealmSmtpServerInput interface {
 }
 
 type RealmSmtpServerArgs struct {
-	// Enables authentication to the SMTP server.  This block supports the following arguments:
+	// Enables authentication to the SMTP server. Cannot be set alongside `tokenAuth`. This block supports the following arguments:
 	Auth RealmSmtpServerAuthPtrInput `pulumi:"auth"`
 	// The email address uses for bounces.
 	EnvelopeFrom pulumi.StringPtrInput `pulumi:"envelopeFrom"`
@@ -2246,6 +2248,8 @@ type RealmSmtpServerArgs struct {
 	Ssl pulumi.BoolPtrInput `pulumi:"ssl"`
 	// When `true`, enables StartTLS. Defaults to `false`.
 	Starttls pulumi.BoolPtrInput `pulumi:"starttls"`
+	// Enables authentication to the SMTP server through OAUTH2. Cannot be set alongside `auth`. This block supports the following arguments:
+	TokenAuth RealmSmtpServerTokenAuthPtrInput `pulumi:"tokenAuth"`
 }
 
 func (RealmSmtpServerArgs) ElementType() reflect.Type {
@@ -2325,7 +2329,7 @@ func (o RealmSmtpServerOutput) ToRealmSmtpServerPtrOutputWithContext(ctx context
 	}).(RealmSmtpServerPtrOutput)
 }
 
-// Enables authentication to the SMTP server.  This block supports the following arguments:
+// Enables authentication to the SMTP server. Cannot be set alongside `tokenAuth`. This block supports the following arguments:
 func (o RealmSmtpServerOutput) Auth() RealmSmtpServerAuthPtrOutput {
 	return o.ApplyT(func(v RealmSmtpServer) *RealmSmtpServerAuth { return v.Auth }).(RealmSmtpServerAuthPtrOutput)
 }
@@ -2375,6 +2379,11 @@ func (o RealmSmtpServerOutput) Starttls() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v RealmSmtpServer) *bool { return v.Starttls }).(pulumi.BoolPtrOutput)
 }
 
+// Enables authentication to the SMTP server through OAUTH2. Cannot be set alongside `auth`. This block supports the following arguments:
+func (o RealmSmtpServerOutput) TokenAuth() RealmSmtpServerTokenAuthPtrOutput {
+	return o.ApplyT(func(v RealmSmtpServer) *RealmSmtpServerTokenAuth { return v.TokenAuth }).(RealmSmtpServerTokenAuthPtrOutput)
+}
+
 type RealmSmtpServerPtrOutput struct{ *pulumi.OutputState }
 
 func (RealmSmtpServerPtrOutput) ElementType() reflect.Type {
@@ -2399,7 +2408,7 @@ func (o RealmSmtpServerPtrOutput) Elem() RealmSmtpServerOutput {
 	}).(RealmSmtpServerOutput)
 }
 
-// Enables authentication to the SMTP server.  This block supports the following arguments:
+// Enables authentication to the SMTP server. Cannot be set alongside `tokenAuth`. This block supports the following arguments:
 func (o RealmSmtpServerPtrOutput) Auth() RealmSmtpServerAuthPtrOutput {
 	return o.ApplyT(func(v *RealmSmtpServer) *RealmSmtpServerAuth {
 		if v == nil {
@@ -2499,10 +2508,19 @@ func (o RealmSmtpServerPtrOutput) Starttls() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
+// Enables authentication to the SMTP server through OAUTH2. Cannot be set alongside `auth`. This block supports the following arguments:
+func (o RealmSmtpServerPtrOutput) TokenAuth() RealmSmtpServerTokenAuthPtrOutput {
+	return o.ApplyT(func(v *RealmSmtpServer) *RealmSmtpServerTokenAuth {
+		if v == nil {
+			return nil
+		}
+		return v.TokenAuth
+	}).(RealmSmtpServerTokenAuthPtrOutput)
+}
+
 type RealmSmtpServerAuth struct {
 	// The SMTP server password.
 	Password string `pulumi:"password"`
-	// The SMTP server username.
 	Username string `pulumi:"username"`
 }
 
@@ -2520,7 +2538,6 @@ type RealmSmtpServerAuthInput interface {
 type RealmSmtpServerAuthArgs struct {
 	// The SMTP server password.
 	Password pulumi.StringInput `pulumi:"password"`
-	// The SMTP server username.
 	Username pulumi.StringInput `pulumi:"username"`
 }
 
@@ -2606,7 +2623,6 @@ func (o RealmSmtpServerAuthOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v RealmSmtpServerAuth) string { return v.Password }).(pulumi.StringOutput)
 }
 
-// The SMTP server username.
 func (o RealmSmtpServerAuthOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v RealmSmtpServerAuth) string { return v.Username }).(pulumi.StringOutput)
 }
@@ -2645,9 +2661,217 @@ func (o RealmSmtpServerAuthPtrOutput) Password() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The SMTP server username.
 func (o RealmSmtpServerAuthPtrOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RealmSmtpServerAuth) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Username
+	}).(pulumi.StringPtrOutput)
+}
+
+type RealmSmtpServerTokenAuth struct {
+	// The auth token client ID.
+	ClientId string `pulumi:"clientId"`
+	// The auth token client secret.
+	ClientSecret string `pulumi:"clientSecret"`
+	// The auth token scope.
+	Scope string `pulumi:"scope"`
+	// The auth token URL.
+	Url      string `pulumi:"url"`
+	Username string `pulumi:"username"`
+}
+
+// RealmSmtpServerTokenAuthInput is an input type that accepts RealmSmtpServerTokenAuthArgs and RealmSmtpServerTokenAuthOutput values.
+// You can construct a concrete instance of `RealmSmtpServerTokenAuthInput` via:
+//
+//	RealmSmtpServerTokenAuthArgs{...}
+type RealmSmtpServerTokenAuthInput interface {
+	pulumi.Input
+
+	ToRealmSmtpServerTokenAuthOutput() RealmSmtpServerTokenAuthOutput
+	ToRealmSmtpServerTokenAuthOutputWithContext(context.Context) RealmSmtpServerTokenAuthOutput
+}
+
+type RealmSmtpServerTokenAuthArgs struct {
+	// The auth token client ID.
+	ClientId pulumi.StringInput `pulumi:"clientId"`
+	// The auth token client secret.
+	ClientSecret pulumi.StringInput `pulumi:"clientSecret"`
+	// The auth token scope.
+	Scope pulumi.StringInput `pulumi:"scope"`
+	// The auth token URL.
+	Url      pulumi.StringInput `pulumi:"url"`
+	Username pulumi.StringInput `pulumi:"username"`
+}
+
+func (RealmSmtpServerTokenAuthArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RealmSmtpServerTokenAuth)(nil)).Elem()
+}
+
+func (i RealmSmtpServerTokenAuthArgs) ToRealmSmtpServerTokenAuthOutput() RealmSmtpServerTokenAuthOutput {
+	return i.ToRealmSmtpServerTokenAuthOutputWithContext(context.Background())
+}
+
+func (i RealmSmtpServerTokenAuthArgs) ToRealmSmtpServerTokenAuthOutputWithContext(ctx context.Context) RealmSmtpServerTokenAuthOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RealmSmtpServerTokenAuthOutput)
+}
+
+func (i RealmSmtpServerTokenAuthArgs) ToRealmSmtpServerTokenAuthPtrOutput() RealmSmtpServerTokenAuthPtrOutput {
+	return i.ToRealmSmtpServerTokenAuthPtrOutputWithContext(context.Background())
+}
+
+func (i RealmSmtpServerTokenAuthArgs) ToRealmSmtpServerTokenAuthPtrOutputWithContext(ctx context.Context) RealmSmtpServerTokenAuthPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RealmSmtpServerTokenAuthOutput).ToRealmSmtpServerTokenAuthPtrOutputWithContext(ctx)
+}
+
+// RealmSmtpServerTokenAuthPtrInput is an input type that accepts RealmSmtpServerTokenAuthArgs, RealmSmtpServerTokenAuthPtr and RealmSmtpServerTokenAuthPtrOutput values.
+// You can construct a concrete instance of `RealmSmtpServerTokenAuthPtrInput` via:
+//
+//	        RealmSmtpServerTokenAuthArgs{...}
+//
+//	or:
+//
+//	        nil
+type RealmSmtpServerTokenAuthPtrInput interface {
+	pulumi.Input
+
+	ToRealmSmtpServerTokenAuthPtrOutput() RealmSmtpServerTokenAuthPtrOutput
+	ToRealmSmtpServerTokenAuthPtrOutputWithContext(context.Context) RealmSmtpServerTokenAuthPtrOutput
+}
+
+type realmSmtpServerTokenAuthPtrType RealmSmtpServerTokenAuthArgs
+
+func RealmSmtpServerTokenAuthPtr(v *RealmSmtpServerTokenAuthArgs) RealmSmtpServerTokenAuthPtrInput {
+	return (*realmSmtpServerTokenAuthPtrType)(v)
+}
+
+func (*realmSmtpServerTokenAuthPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RealmSmtpServerTokenAuth)(nil)).Elem()
+}
+
+func (i *realmSmtpServerTokenAuthPtrType) ToRealmSmtpServerTokenAuthPtrOutput() RealmSmtpServerTokenAuthPtrOutput {
+	return i.ToRealmSmtpServerTokenAuthPtrOutputWithContext(context.Background())
+}
+
+func (i *realmSmtpServerTokenAuthPtrType) ToRealmSmtpServerTokenAuthPtrOutputWithContext(ctx context.Context) RealmSmtpServerTokenAuthPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RealmSmtpServerTokenAuthPtrOutput)
+}
+
+type RealmSmtpServerTokenAuthOutput struct{ *pulumi.OutputState }
+
+func (RealmSmtpServerTokenAuthOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RealmSmtpServerTokenAuth)(nil)).Elem()
+}
+
+func (o RealmSmtpServerTokenAuthOutput) ToRealmSmtpServerTokenAuthOutput() RealmSmtpServerTokenAuthOutput {
+	return o
+}
+
+func (o RealmSmtpServerTokenAuthOutput) ToRealmSmtpServerTokenAuthOutputWithContext(ctx context.Context) RealmSmtpServerTokenAuthOutput {
+	return o
+}
+
+func (o RealmSmtpServerTokenAuthOutput) ToRealmSmtpServerTokenAuthPtrOutput() RealmSmtpServerTokenAuthPtrOutput {
+	return o.ToRealmSmtpServerTokenAuthPtrOutputWithContext(context.Background())
+}
+
+func (o RealmSmtpServerTokenAuthOutput) ToRealmSmtpServerTokenAuthPtrOutputWithContext(ctx context.Context) RealmSmtpServerTokenAuthPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RealmSmtpServerTokenAuth) *RealmSmtpServerTokenAuth {
+		return &v
+	}).(RealmSmtpServerTokenAuthPtrOutput)
+}
+
+// The auth token client ID.
+func (o RealmSmtpServerTokenAuthOutput) ClientId() pulumi.StringOutput {
+	return o.ApplyT(func(v RealmSmtpServerTokenAuth) string { return v.ClientId }).(pulumi.StringOutput)
+}
+
+// The auth token client secret.
+func (o RealmSmtpServerTokenAuthOutput) ClientSecret() pulumi.StringOutput {
+	return o.ApplyT(func(v RealmSmtpServerTokenAuth) string { return v.ClientSecret }).(pulumi.StringOutput)
+}
+
+// The auth token scope.
+func (o RealmSmtpServerTokenAuthOutput) Scope() pulumi.StringOutput {
+	return o.ApplyT(func(v RealmSmtpServerTokenAuth) string { return v.Scope }).(pulumi.StringOutput)
+}
+
+// The auth token URL.
+func (o RealmSmtpServerTokenAuthOutput) Url() pulumi.StringOutput {
+	return o.ApplyT(func(v RealmSmtpServerTokenAuth) string { return v.Url }).(pulumi.StringOutput)
+}
+
+func (o RealmSmtpServerTokenAuthOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v RealmSmtpServerTokenAuth) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type RealmSmtpServerTokenAuthPtrOutput struct{ *pulumi.OutputState }
+
+func (RealmSmtpServerTokenAuthPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RealmSmtpServerTokenAuth)(nil)).Elem()
+}
+
+func (o RealmSmtpServerTokenAuthPtrOutput) ToRealmSmtpServerTokenAuthPtrOutput() RealmSmtpServerTokenAuthPtrOutput {
+	return o
+}
+
+func (o RealmSmtpServerTokenAuthPtrOutput) ToRealmSmtpServerTokenAuthPtrOutputWithContext(ctx context.Context) RealmSmtpServerTokenAuthPtrOutput {
+	return o
+}
+
+func (o RealmSmtpServerTokenAuthPtrOutput) Elem() RealmSmtpServerTokenAuthOutput {
+	return o.ApplyT(func(v *RealmSmtpServerTokenAuth) RealmSmtpServerTokenAuth {
+		if v != nil {
+			return *v
+		}
+		var ret RealmSmtpServerTokenAuth
+		return ret
+	}).(RealmSmtpServerTokenAuthOutput)
+}
+
+// The auth token client ID.
+func (o RealmSmtpServerTokenAuthPtrOutput) ClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RealmSmtpServerTokenAuth) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.ClientId
+	}).(pulumi.StringPtrOutput)
+}
+
+// The auth token client secret.
+func (o RealmSmtpServerTokenAuthPtrOutput) ClientSecret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RealmSmtpServerTokenAuth) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.ClientSecret
+	}).(pulumi.StringPtrOutput)
+}
+
+// The auth token scope.
+func (o RealmSmtpServerTokenAuthPtrOutput) Scope() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RealmSmtpServerTokenAuth) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Scope
+	}).(pulumi.StringPtrOutput)
+}
+
+// The auth token URL.
+func (o RealmSmtpServerTokenAuthPtrOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RealmSmtpServerTokenAuth) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Url
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o RealmSmtpServerTokenAuthPtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RealmSmtpServerTokenAuth) *string {
 		if v == nil {
 			return nil
 		}
@@ -6165,16 +6389,17 @@ func (o GetRealmSecurityDefenseHeaderArrayOutput) Index(i pulumi.IntInput) GetRe
 }
 
 type GetRealmSmtpServer struct {
-	Auths              []GetRealmSmtpServerAuth `pulumi:"auths"`
-	EnvelopeFrom       string                   `pulumi:"envelopeFrom"`
-	From               string                   `pulumi:"from"`
-	FromDisplayName    string                   `pulumi:"fromDisplayName"`
-	Host               string                   `pulumi:"host"`
-	Port               string                   `pulumi:"port"`
-	ReplyTo            string                   `pulumi:"replyTo"`
-	ReplyToDisplayName string                   `pulumi:"replyToDisplayName"`
-	Ssl                bool                     `pulumi:"ssl"`
-	Starttls           bool                     `pulumi:"starttls"`
+	Auths              []GetRealmSmtpServerAuth      `pulumi:"auths"`
+	EnvelopeFrom       string                        `pulumi:"envelopeFrom"`
+	From               string                        `pulumi:"from"`
+	FromDisplayName    string                        `pulumi:"fromDisplayName"`
+	Host               string                        `pulumi:"host"`
+	Port               string                        `pulumi:"port"`
+	ReplyTo            string                        `pulumi:"replyTo"`
+	ReplyToDisplayName string                        `pulumi:"replyToDisplayName"`
+	Ssl                bool                          `pulumi:"ssl"`
+	Starttls           bool                          `pulumi:"starttls"`
+	TokenAuths         []GetRealmSmtpServerTokenAuth `pulumi:"tokenAuths"`
 }
 
 // GetRealmSmtpServerInput is an input type that accepts GetRealmSmtpServerArgs and GetRealmSmtpServerOutput values.
@@ -6189,16 +6414,17 @@ type GetRealmSmtpServerInput interface {
 }
 
 type GetRealmSmtpServerArgs struct {
-	Auths              GetRealmSmtpServerAuthArrayInput `pulumi:"auths"`
-	EnvelopeFrom       pulumi.StringInput               `pulumi:"envelopeFrom"`
-	From               pulumi.StringInput               `pulumi:"from"`
-	FromDisplayName    pulumi.StringInput               `pulumi:"fromDisplayName"`
-	Host               pulumi.StringInput               `pulumi:"host"`
-	Port               pulumi.StringInput               `pulumi:"port"`
-	ReplyTo            pulumi.StringInput               `pulumi:"replyTo"`
-	ReplyToDisplayName pulumi.StringInput               `pulumi:"replyToDisplayName"`
-	Ssl                pulumi.BoolInput                 `pulumi:"ssl"`
-	Starttls           pulumi.BoolInput                 `pulumi:"starttls"`
+	Auths              GetRealmSmtpServerAuthArrayInput      `pulumi:"auths"`
+	EnvelopeFrom       pulumi.StringInput                    `pulumi:"envelopeFrom"`
+	From               pulumi.StringInput                    `pulumi:"from"`
+	FromDisplayName    pulumi.StringInput                    `pulumi:"fromDisplayName"`
+	Host               pulumi.StringInput                    `pulumi:"host"`
+	Port               pulumi.StringInput                    `pulumi:"port"`
+	ReplyTo            pulumi.StringInput                    `pulumi:"replyTo"`
+	ReplyToDisplayName pulumi.StringInput                    `pulumi:"replyToDisplayName"`
+	Ssl                pulumi.BoolInput                      `pulumi:"ssl"`
+	Starttls           pulumi.BoolInput                      `pulumi:"starttls"`
+	TokenAuths         GetRealmSmtpServerTokenAuthArrayInput `pulumi:"tokenAuths"`
 }
 
 func (GetRealmSmtpServerArgs) ElementType() reflect.Type {
@@ -6290,6 +6516,10 @@ func (o GetRealmSmtpServerOutput) Ssl() pulumi.BoolOutput {
 
 func (o GetRealmSmtpServerOutput) Starttls() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetRealmSmtpServer) bool { return v.Starttls }).(pulumi.BoolOutput)
+}
+
+func (o GetRealmSmtpServerOutput) TokenAuths() GetRealmSmtpServerTokenAuthArrayOutput {
+	return o.ApplyT(func(v GetRealmSmtpServer) []GetRealmSmtpServerTokenAuth { return v.TokenAuths }).(GetRealmSmtpServerTokenAuthArrayOutput)
 }
 
 type GetRealmSmtpServerArrayOutput struct{ *pulumi.OutputState }
@@ -6410,6 +6640,124 @@ func (o GetRealmSmtpServerAuthArrayOutput) Index(i pulumi.IntInput) GetRealmSmtp
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRealmSmtpServerAuth {
 		return vs[0].([]GetRealmSmtpServerAuth)[vs[1].(int)]
 	}).(GetRealmSmtpServerAuthOutput)
+}
+
+type GetRealmSmtpServerTokenAuth struct {
+	ClientId     string `pulumi:"clientId"`
+	ClientSecret string `pulumi:"clientSecret"`
+	Scope        string `pulumi:"scope"`
+	Url          string `pulumi:"url"`
+	Username     string `pulumi:"username"`
+}
+
+// GetRealmSmtpServerTokenAuthInput is an input type that accepts GetRealmSmtpServerTokenAuthArgs and GetRealmSmtpServerTokenAuthOutput values.
+// You can construct a concrete instance of `GetRealmSmtpServerTokenAuthInput` via:
+//
+//	GetRealmSmtpServerTokenAuthArgs{...}
+type GetRealmSmtpServerTokenAuthInput interface {
+	pulumi.Input
+
+	ToGetRealmSmtpServerTokenAuthOutput() GetRealmSmtpServerTokenAuthOutput
+	ToGetRealmSmtpServerTokenAuthOutputWithContext(context.Context) GetRealmSmtpServerTokenAuthOutput
+}
+
+type GetRealmSmtpServerTokenAuthArgs struct {
+	ClientId     pulumi.StringInput `pulumi:"clientId"`
+	ClientSecret pulumi.StringInput `pulumi:"clientSecret"`
+	Scope        pulumi.StringInput `pulumi:"scope"`
+	Url          pulumi.StringInput `pulumi:"url"`
+	Username     pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetRealmSmtpServerTokenAuthArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRealmSmtpServerTokenAuth)(nil)).Elem()
+}
+
+func (i GetRealmSmtpServerTokenAuthArgs) ToGetRealmSmtpServerTokenAuthOutput() GetRealmSmtpServerTokenAuthOutput {
+	return i.ToGetRealmSmtpServerTokenAuthOutputWithContext(context.Background())
+}
+
+func (i GetRealmSmtpServerTokenAuthArgs) ToGetRealmSmtpServerTokenAuthOutputWithContext(ctx context.Context) GetRealmSmtpServerTokenAuthOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRealmSmtpServerTokenAuthOutput)
+}
+
+// GetRealmSmtpServerTokenAuthArrayInput is an input type that accepts GetRealmSmtpServerTokenAuthArray and GetRealmSmtpServerTokenAuthArrayOutput values.
+// You can construct a concrete instance of `GetRealmSmtpServerTokenAuthArrayInput` via:
+//
+//	GetRealmSmtpServerTokenAuthArray{ GetRealmSmtpServerTokenAuthArgs{...} }
+type GetRealmSmtpServerTokenAuthArrayInput interface {
+	pulumi.Input
+
+	ToGetRealmSmtpServerTokenAuthArrayOutput() GetRealmSmtpServerTokenAuthArrayOutput
+	ToGetRealmSmtpServerTokenAuthArrayOutputWithContext(context.Context) GetRealmSmtpServerTokenAuthArrayOutput
+}
+
+type GetRealmSmtpServerTokenAuthArray []GetRealmSmtpServerTokenAuthInput
+
+func (GetRealmSmtpServerTokenAuthArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRealmSmtpServerTokenAuth)(nil)).Elem()
+}
+
+func (i GetRealmSmtpServerTokenAuthArray) ToGetRealmSmtpServerTokenAuthArrayOutput() GetRealmSmtpServerTokenAuthArrayOutput {
+	return i.ToGetRealmSmtpServerTokenAuthArrayOutputWithContext(context.Background())
+}
+
+func (i GetRealmSmtpServerTokenAuthArray) ToGetRealmSmtpServerTokenAuthArrayOutputWithContext(ctx context.Context) GetRealmSmtpServerTokenAuthArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRealmSmtpServerTokenAuthArrayOutput)
+}
+
+type GetRealmSmtpServerTokenAuthOutput struct{ *pulumi.OutputState }
+
+func (GetRealmSmtpServerTokenAuthOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRealmSmtpServerTokenAuth)(nil)).Elem()
+}
+
+func (o GetRealmSmtpServerTokenAuthOutput) ToGetRealmSmtpServerTokenAuthOutput() GetRealmSmtpServerTokenAuthOutput {
+	return o
+}
+
+func (o GetRealmSmtpServerTokenAuthOutput) ToGetRealmSmtpServerTokenAuthOutputWithContext(ctx context.Context) GetRealmSmtpServerTokenAuthOutput {
+	return o
+}
+
+func (o GetRealmSmtpServerTokenAuthOutput) ClientId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRealmSmtpServerTokenAuth) string { return v.ClientId }).(pulumi.StringOutput)
+}
+
+func (o GetRealmSmtpServerTokenAuthOutput) ClientSecret() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRealmSmtpServerTokenAuth) string { return v.ClientSecret }).(pulumi.StringOutput)
+}
+
+func (o GetRealmSmtpServerTokenAuthOutput) Scope() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRealmSmtpServerTokenAuth) string { return v.Scope }).(pulumi.StringOutput)
+}
+
+func (o GetRealmSmtpServerTokenAuthOutput) Url() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRealmSmtpServerTokenAuth) string { return v.Url }).(pulumi.StringOutput)
+}
+
+func (o GetRealmSmtpServerTokenAuthOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRealmSmtpServerTokenAuth) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetRealmSmtpServerTokenAuthArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRealmSmtpServerTokenAuthArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRealmSmtpServerTokenAuth)(nil)).Elem()
+}
+
+func (o GetRealmSmtpServerTokenAuthArrayOutput) ToGetRealmSmtpServerTokenAuthArrayOutput() GetRealmSmtpServerTokenAuthArrayOutput {
+	return o
+}
+
+func (o GetRealmSmtpServerTokenAuthArrayOutput) ToGetRealmSmtpServerTokenAuthArrayOutputWithContext(ctx context.Context) GetRealmSmtpServerTokenAuthArrayOutput {
+	return o
+}
+
+func (o GetRealmSmtpServerTokenAuthArrayOutput) Index(i pulumi.IntInput) GetRealmSmtpServerTokenAuthOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRealmSmtpServerTokenAuth {
+		return vs[0].([]GetRealmSmtpServerTokenAuth)[vs[1].(int)]
+	}).(GetRealmSmtpServerTokenAuthOutput)
 }
 
 type GetRealmWebAuthnPasswordlessPolicy struct {
@@ -7049,6 +7397,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RealmSmtpServerPtrInput)(nil)).Elem(), RealmSmtpServerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RealmSmtpServerAuthInput)(nil)).Elem(), RealmSmtpServerAuthArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RealmSmtpServerAuthPtrInput)(nil)).Elem(), RealmSmtpServerAuthArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RealmSmtpServerTokenAuthInput)(nil)).Elem(), RealmSmtpServerTokenAuthArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RealmSmtpServerTokenAuthPtrInput)(nil)).Elem(), RealmSmtpServerTokenAuthArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RealmUserProfileAttributeInput)(nil)).Elem(), RealmUserProfileAttributeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RealmUserProfileAttributeArrayInput)(nil)).Elem(), RealmUserProfileAttributeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RealmUserProfileAttributePermissionsInput)(nil)).Elem(), RealmUserProfileAttributePermissionsArgs{})
@@ -7097,6 +7447,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRealmSmtpServerArrayInput)(nil)).Elem(), GetRealmSmtpServerArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRealmSmtpServerAuthInput)(nil)).Elem(), GetRealmSmtpServerAuthArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRealmSmtpServerAuthArrayInput)(nil)).Elem(), GetRealmSmtpServerAuthArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRealmSmtpServerTokenAuthInput)(nil)).Elem(), GetRealmSmtpServerTokenAuthArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRealmSmtpServerTokenAuthArrayInput)(nil)).Elem(), GetRealmSmtpServerTokenAuthArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRealmWebAuthnPasswordlessPolicyInput)(nil)).Elem(), GetRealmWebAuthnPasswordlessPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRealmWebAuthnPasswordlessPolicyPtrInput)(nil)).Elem(), GetRealmWebAuthnPasswordlessPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRealmWebAuthnPolicyInput)(nil)).Elem(), GetRealmWebAuthnPolicyArgs{})
@@ -7131,6 +7483,8 @@ func init() {
 	pulumi.RegisterOutputType(RealmSmtpServerPtrOutput{})
 	pulumi.RegisterOutputType(RealmSmtpServerAuthOutput{})
 	pulumi.RegisterOutputType(RealmSmtpServerAuthPtrOutput{})
+	pulumi.RegisterOutputType(RealmSmtpServerTokenAuthOutput{})
+	pulumi.RegisterOutputType(RealmSmtpServerTokenAuthPtrOutput{})
 	pulumi.RegisterOutputType(RealmUserProfileAttributeOutput{})
 	pulumi.RegisterOutputType(RealmUserProfileAttributeArrayOutput{})
 	pulumi.RegisterOutputType(RealmUserProfileAttributePermissionsOutput{})
@@ -7179,6 +7533,8 @@ func init() {
 	pulumi.RegisterOutputType(GetRealmSmtpServerArrayOutput{})
 	pulumi.RegisterOutputType(GetRealmSmtpServerAuthOutput{})
 	pulumi.RegisterOutputType(GetRealmSmtpServerAuthArrayOutput{})
+	pulumi.RegisterOutputType(GetRealmSmtpServerTokenAuthOutput{})
+	pulumi.RegisterOutputType(GetRealmSmtpServerTokenAuthArrayOutput{})
 	pulumi.RegisterOutputType(GetRealmWebAuthnPasswordlessPolicyOutput{})
 	pulumi.RegisterOutputType(GetRealmWebAuthnPasswordlessPolicyPtrOutput{})
 	pulumi.RegisterOutputType(GetRealmWebAuthnPolicyOutput{})

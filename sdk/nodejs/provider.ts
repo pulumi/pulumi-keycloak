@@ -25,6 +25,11 @@ export class Provider extends pulumi.ProviderResource {
         return obj['__pulumiType'] === "pulumi:providers:" + Provider.__pulumiType;
     }
 
+    declare public readonly accessToken: pulumi.Output<string | undefined>;
+    /**
+     * The admin URL of the Keycloak instance if different from the main URL, before `/auth`
+     */
+    declare public readonly adminUrl: pulumi.Output<string | undefined>;
     declare public readonly basePath: pulumi.Output<string | undefined>;
     declare public readonly clientId: pulumi.Output<string | undefined>;
     declare public readonly clientSecret: pulumi.Output<string | undefined>;
@@ -43,6 +48,14 @@ export class Provider extends pulumi.ProviderResource {
      */
     declare public readonly rootCaCertificate: pulumi.Output<string | undefined>;
     /**
+     * TLS client certificate as PEM string for mutual authentication
+     */
+    declare public readonly tlsClientCertificate: pulumi.Output<string | undefined>;
+    /**
+     * TLS client private key as PEM string for mutual authentication
+     */
+    declare public readonly tlsClientPrivateKey: pulumi.Output<string | undefined>;
+    /**
      * The base URL of the Keycloak instance, before `/auth`
      */
     declare public readonly url: pulumi.Output<string | undefined>;
@@ -59,7 +72,9 @@ export class Provider extends pulumi.ProviderResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         {
+            resourceInputs["accessToken"] = args?.accessToken;
             resourceInputs["additionalHeaders"] = pulumi.output(args?.additionalHeaders).apply(JSON.stringify);
+            resourceInputs["adminUrl"] = args?.adminUrl;
             resourceInputs["basePath"] = args?.basePath;
             resourceInputs["clientId"] = args?.clientId;
             resourceInputs["clientSecret"] = args?.clientSecret;
@@ -71,6 +86,8 @@ export class Provider extends pulumi.ProviderResource {
             resourceInputs["realm"] = args?.realm;
             resourceInputs["redHatSso"] = pulumi.output(args?.redHatSso).apply(JSON.stringify);
             resourceInputs["rootCaCertificate"] = args?.rootCaCertificate;
+            resourceInputs["tlsClientCertificate"] = args?.tlsClientCertificate;
+            resourceInputs["tlsClientPrivateKey"] = args?.tlsClientPrivateKey;
             resourceInputs["tlsInsecureSkipVerify"] = pulumi.output(args?.tlsInsecureSkipVerify).apply(JSON.stringify);
             resourceInputs["url"] = args?.url;
             resourceInputs["username"] = args?.username;
@@ -95,7 +112,12 @@ export class Provider extends pulumi.ProviderResource {
  * The set of arguments for constructing a Provider resource.
  */
 export interface ProviderArgs {
+    accessToken?: pulumi.Input<string>;
     additionalHeaders?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The admin URL of the Keycloak instance if different from the main URL, before `/auth`
+     */
+    adminUrl?: pulumi.Input<string>;
     basePath?: pulumi.Input<string>;
     clientId?: pulumi.Input<string>;
     clientSecret?: pulumi.Input<string>;
@@ -125,6 +147,14 @@ export interface ProviderArgs {
      * Allows x509 calls using an unknown CA certificate (for development purposes)
      */
     rootCaCertificate?: pulumi.Input<string>;
+    /**
+     * TLS client certificate as PEM string for mutual authentication
+     */
+    tlsClientCertificate?: pulumi.Input<string>;
+    /**
+     * TLS client private key as PEM string for mutual authentication
+     */
+    tlsClientPrivateKey?: pulumi.Input<string>;
     /**
      * Allows ignoring insecure certificates when set to true. Defaults to false. Disabling security check is dangerous and should be avoided.
      */

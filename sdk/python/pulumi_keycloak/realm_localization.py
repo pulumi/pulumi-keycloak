@@ -24,9 +24,9 @@ class RealmLocalizationArgs:
                  texts: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a RealmLocalization resource.
-        :param pulumi.Input[_builtins.str] locale: The locale for the localization texts.
-        :param pulumi.Input[_builtins.str] realm_id: The realm in which the texts exists.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] texts: The mapping of localization texts keys to values.
+        :param pulumi.Input[_builtins.str] locale: The locale (language code) the texts apply to.
+        :param pulumi.Input[_builtins.str] realm_id: The ID of the realm the user profile applies to.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] texts: A map of translation keys to values.
         """
         pulumi.set(__self__, "locale", locale)
         pulumi.set(__self__, "realm_id", realm_id)
@@ -37,7 +37,7 @@ class RealmLocalizationArgs:
     @pulumi.getter
     def locale(self) -> pulumi.Input[_builtins.str]:
         """
-        The locale for the localization texts.
+        The locale (language code) the texts apply to.
         """
         return pulumi.get(self, "locale")
 
@@ -49,7 +49,7 @@ class RealmLocalizationArgs:
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Input[_builtins.str]:
         """
-        The realm in which the texts exists.
+        The ID of the realm the user profile applies to.
         """
         return pulumi.get(self, "realm_id")
 
@@ -61,7 +61,7 @@ class RealmLocalizationArgs:
     @pulumi.getter
     def texts(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
-        The mapping of localization texts keys to values.
+        A map of translation keys to values.
         """
         return pulumi.get(self, "texts")
 
@@ -78,9 +78,9 @@ class _RealmLocalizationState:
                  texts: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering RealmLocalization resources.
-        :param pulumi.Input[_builtins.str] locale: The locale for the localization texts.
-        :param pulumi.Input[_builtins.str] realm_id: The realm in which the texts exists.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] texts: The mapping of localization texts keys to values.
+        :param pulumi.Input[_builtins.str] locale: The locale (language code) the texts apply to.
+        :param pulumi.Input[_builtins.str] realm_id: The ID of the realm the user profile applies to.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] texts: A map of translation keys to values.
         """
         if locale is not None:
             pulumi.set(__self__, "locale", locale)
@@ -93,7 +93,7 @@ class _RealmLocalizationState:
     @pulumi.getter
     def locale(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The locale for the localization texts.
+        The locale (language code) the texts apply to.
         """
         return pulumi.get(self, "locale")
 
@@ -105,7 +105,7 @@ class _RealmLocalizationState:
     @pulumi.getter(name="realmId")
     def realm_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The realm in which the texts exists.
+        The ID of the realm the user profile applies to.
         """
         return pulumi.get(self, "realm_id")
 
@@ -117,7 +117,7 @@ class _RealmLocalizationState:
     @pulumi.getter
     def texts(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
-        The mapping of localization texts keys to values.
+        A map of translation keys to values.
         """
         return pulumi.get(self, "texts")
 
@@ -137,12 +137,36 @@ class RealmLocalization(pulumi.CustomResource):
                  texts: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
-        Create a RealmLocalization resource with the given unique name, props, and options.
+        Allows for managing Realm Localization Text overrides within Keycloak.
+
+        A localization resource defines a schema for representing a locale with a map of key/value pairs and how they are managed within a realm.
+
+        Note: whilst you can provide localization texts for unsupported locales, they will not take effect until they are defined within the realm resource.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm", realm="my-realm")
+        german_texts = keycloak.RealmLocalization("german_texts",
+            realm_id=my_realm["id"],
+            locale="de",
+            texts={
+                "Hello": "Hallo",
+            })
+        ```
+
+        ## Import
+
+        This resource does not currently support importing.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] locale: The locale for the localization texts.
-        :param pulumi.Input[_builtins.str] realm_id: The realm in which the texts exists.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] texts: The mapping of localization texts keys to values.
+        :param pulumi.Input[_builtins.str] locale: The locale (language code) the texts apply to.
+        :param pulumi.Input[_builtins.str] realm_id: The ID of the realm the user profile applies to.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] texts: A map of translation keys to values.
         """
         ...
     @overload
@@ -151,7 +175,31 @@ class RealmLocalization(pulumi.CustomResource):
                  args: RealmLocalizationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a RealmLocalization resource with the given unique name, props, and options.
+        Allows for managing Realm Localization Text overrides within Keycloak.
+
+        A localization resource defines a schema for representing a locale with a map of key/value pairs and how they are managed within a realm.
+
+        Note: whilst you can provide localization texts for unsupported locales, they will not take effect until they are defined within the realm resource.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm", realm="my-realm")
+        german_texts = keycloak.RealmLocalization("german_texts",
+            realm_id=my_realm["id"],
+            locale="de",
+            texts={
+                "Hello": "Hallo",
+            })
+        ```
+
+        ## Import
+
+        This resource does not currently support importing.
+
         :param str resource_name: The name of the resource.
         :param RealmLocalizationArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -206,9 +254,9 @@ class RealmLocalization(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] locale: The locale for the localization texts.
-        :param pulumi.Input[_builtins.str] realm_id: The realm in which the texts exists.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] texts: The mapping of localization texts keys to values.
+        :param pulumi.Input[_builtins.str] locale: The locale (language code) the texts apply to.
+        :param pulumi.Input[_builtins.str] realm_id: The ID of the realm the user profile applies to.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] texts: A map of translation keys to values.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -223,7 +271,7 @@ class RealmLocalization(pulumi.CustomResource):
     @pulumi.getter
     def locale(self) -> pulumi.Output[_builtins.str]:
         """
-        The locale for the localization texts.
+        The locale (language code) the texts apply to.
         """
         return pulumi.get(self, "locale")
 
@@ -231,7 +279,7 @@ class RealmLocalization(pulumi.CustomResource):
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Output[_builtins.str]:
         """
-        The realm in which the texts exists.
+        The ID of the realm the user profile applies to.
         """
         return pulumi.get(self, "realm_id")
 
@@ -239,7 +287,7 @@ class RealmLocalization(pulumi.CustomResource):
     @pulumi.getter
     def texts(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:
         """
-        The mapping of localization texts keys to values.
+        A map of translation keys to values.
         """
         return pulumi.get(self, "texts")
 
