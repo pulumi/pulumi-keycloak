@@ -140,6 +140,23 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Client Secret as write-only argument
+     * 
+     */
+    @Import(name="clientSecretWo")
+    private @Nullable Output<String> clientSecretWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Client Secret as write-only argument
+     * 
+     */
+    public Optional<Output<String>> clientSecretWo() {
+        return Optional.ofNullable(this.clientSecretWo);
+    }
+
+    /**
      * Version of the Client secret write-only argument
      * 
      */
@@ -562,6 +579,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         this.backchannelSupported = $.backchannelSupported;
         this.clientId = $.clientId;
         this.clientSecret = $.clientSecret;
+        this.clientSecretWo = $.clientSecretWo;
         this.clientSecretWoVersion = $.clientSecretWoVersion;
         this.defaultScopes = $.defaultScopes;
         this.disableTypeClaimCheck = $.disableTypeClaimCheck;
@@ -776,6 +794,29 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
          */
         public Builder clientSecret(String clientSecret) {
             return clientSecret(Output.of(clientSecret));
+        }
+
+        /**
+         * @param clientSecretWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Client Secret as write-only argument
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientSecretWo(@Nullable Output<String> clientSecretWo) {
+            $.clientSecretWo = clientSecretWo;
+            return this;
+        }
+
+        /**
+         * @param clientSecretWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Client Secret as write-only argument
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientSecretWo(String clientSecretWo) {
+            return clientSecretWo(Output.of(clientSecretWo));
         }
 
         /**

@@ -112,6 +112,11 @@ export class IdentityProvider extends pulumi.CustomResource {
      */
     declare public readonly clientSecret: pulumi.Output<string | undefined>;
     /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Client Secret as write-only argument
+     */
+    declare public readonly clientSecretWo: pulumi.Output<string | undefined>;
+    /**
      * Version of the Client secret write-only argument
      */
     declare public readonly clientSecretWoVersion: pulumi.Output<number | undefined>;
@@ -246,6 +251,7 @@ export class IdentityProvider extends pulumi.CustomResource {
             resourceInputs["backchannelSupported"] = state?.backchannelSupported;
             resourceInputs["clientId"] = state?.clientId;
             resourceInputs["clientSecret"] = state?.clientSecret;
+            resourceInputs["clientSecretWo"] = state?.clientSecretWo;
             resourceInputs["clientSecretWoVersion"] = state?.clientSecretWoVersion;
             resourceInputs["defaultScopes"] = state?.defaultScopes;
             resourceInputs["disableTypeClaimCheck"] = state?.disableTypeClaimCheck;
@@ -300,6 +306,7 @@ export class IdentityProvider extends pulumi.CustomResource {
             resourceInputs["backchannelSupported"] = args?.backchannelSupported;
             resourceInputs["clientId"] = args?.clientId;
             resourceInputs["clientSecret"] = args?.clientSecret ? pulumi.secret(args.clientSecret) : undefined;
+            resourceInputs["clientSecretWo"] = args?.clientSecretWo ? pulumi.secret(args.clientSecretWo) : undefined;
             resourceInputs["clientSecretWoVersion"] = args?.clientSecretWoVersion;
             resourceInputs["defaultScopes"] = args?.defaultScopes;
             resourceInputs["disableTypeClaimCheck"] = args?.disableTypeClaimCheck;
@@ -331,7 +338,7 @@ export class IdentityProvider extends pulumi.CustomResource {
             resourceInputs["internalId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["clientSecret"] };
+        const secretOpts = { additionalSecretOutputs: ["clientSecret", "clientSecretWo"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(IdentityProvider.__pulumiType, name, resourceInputs, opts);
     }
@@ -373,6 +380,11 @@ export interface IdentityProviderState {
      * The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `clientSecretWo` and `clientSecretWoVersion`.
      */
     clientSecret?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Client Secret as write-only argument
+     */
+    clientSecretWo?: pulumi.Input<string>;
     /**
      * Version of the Client secret write-only argument
      */
@@ -524,6 +536,11 @@ export interface IdentityProviderArgs {
      * The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `clientSecretWo` and `clientSecretWoVersion`.
      */
     clientSecret?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Client Secret as write-only argument
+     */
+    clientSecretWo?: pulumi.Input<string>;
     /**
      * Version of the Client secret write-only argument
      */
