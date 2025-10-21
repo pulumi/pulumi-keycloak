@@ -9719,6 +9719,11 @@
                     "description": "The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without \u003cspan pulumi-lang-nodejs=\"`clientSecretWo`\" pulumi-lang-dotnet=\"`ClientSecretWo`\" pulumi-lang-go=\"`clientSecretWo`\" pulumi-lang-python=\"`client_secret_wo`\" pulumi-lang-yaml=\"`clientSecretWo`\" pulumi-lang-java=\"`clientSecretWo`\"\u003e`client_secret_wo`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`clientSecretWoVersion`\" pulumi-lang-dotnet=\"`ClientSecretWoVersion`\" pulumi-lang-go=\"`clientSecretWoVersion`\" pulumi-lang-python=\"`client_secret_wo_version`\" pulumi-lang-yaml=\"`clientSecretWoVersion`\" pulumi-lang-java=\"`clientSecretWoVersion`\"\u003e`client_secret_wo_version`\u003c/span\u003e.\n",
                     "secret": true
                 },
+                "clientSecretWo": {
+                    "type": "string",
+                    "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nClient Secret as write-only argument",
+                    "secret": true
+                },
                 "clientSecretWoVersion": {
                     "type": "integer",
                     "description": "Version of the Client secret write-only argument"
@@ -9883,6 +9888,11 @@
                     "description": "The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without \u003cspan pulumi-lang-nodejs=\"`clientSecretWo`\" pulumi-lang-dotnet=\"`ClientSecretWo`\" pulumi-lang-go=\"`clientSecretWo`\" pulumi-lang-python=\"`client_secret_wo`\" pulumi-lang-yaml=\"`clientSecretWo`\" pulumi-lang-java=\"`clientSecretWo`\"\u003e`client_secret_wo`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`clientSecretWoVersion`\" pulumi-lang-dotnet=\"`ClientSecretWoVersion`\" pulumi-lang-go=\"`clientSecretWoVersion`\" pulumi-lang-python=\"`client_secret_wo_version`\" pulumi-lang-yaml=\"`clientSecretWoVersion`\" pulumi-lang-java=\"`clientSecretWoVersion`\"\u003e`client_secret_wo_version`\u003c/span\u003e.\n",
                     "secret": true
                 },
+                "clientSecretWo": {
+                    "type": "string",
+                    "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nClient Secret as write-only argument",
+                    "secret": true
+                },
                 "clientSecretWoVersion": {
                     "type": "integer",
                     "description": "Version of the Client secret write-only argument"
@@ -10042,6 +10052,11 @@
                     "clientSecret": {
                         "type": "string",
                         "description": "The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without \u003cspan pulumi-lang-nodejs=\"`clientSecretWo`\" pulumi-lang-dotnet=\"`ClientSecretWo`\" pulumi-lang-go=\"`clientSecretWo`\" pulumi-lang-python=\"`client_secret_wo`\" pulumi-lang-yaml=\"`clientSecretWo`\" pulumi-lang-java=\"`clientSecretWo`\"\u003e`client_secret_wo`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`clientSecretWoVersion`\" pulumi-lang-dotnet=\"`ClientSecretWoVersion`\" pulumi-lang-go=\"`clientSecretWoVersion`\" pulumi-lang-python=\"`client_secret_wo_version`\" pulumi-lang-yaml=\"`clientSecretWoVersion`\" pulumi-lang-java=\"`clientSecretWoVersion`\"\u003e`client_secret_wo_version`\u003c/span\u003e.\n",
+                        "secret": true
+                    },
+                    "clientSecretWo": {
+                        "type": "string",
+                        "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nClient Secret as write-only argument",
                         "secret": true
                     },
                     "clientSecretWoVersion": {
@@ -10445,6 +10460,11 @@
                     },
                     "description": "Arbitrary map of values that, when changed, will trigger rotation of the secret. NOTE! Conflicts with \u003cspan pulumi-lang-nodejs=\"`clientSecret`\" pulumi-lang-dotnet=\"`ClientSecret`\" pulumi-lang-go=\"`clientSecret`\" pulumi-lang-python=\"`client_secret`\" pulumi-lang-yaml=\"`clientSecret`\" pulumi-lang-java=\"`clientSecret`\"\u003e`client_secret`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`clientSecretWo`\" pulumi-lang-dotnet=\"`ClientSecretWo`\" pulumi-lang-go=\"`clientSecretWo`\" pulumi-lang-python=\"`client_secret_wo`\" pulumi-lang-yaml=\"`clientSecretWo`\" pulumi-lang-java=\"`clientSecretWo`\"\u003e`client_secret_wo`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`clientSecretWoVersion`\" pulumi-lang-dotnet=\"`ClientSecretWoVersion`\" pulumi-lang-go=\"`clientSecretWoVersion`\" pulumi-lang-python=\"`client_secret_wo_version`\" pulumi-lang-yaml=\"`clientSecretWoVersion`\" pulumi-lang-java=\"`clientSecretWoVersion`\"\u003e`client_secret_wo_version`\u003c/span\u003e attribute and can't be used together\n"
                 },
+                "clientSecretWo": {
+                    "type": "string",
+                    "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nClient Secret as write-only argument",
+                    "secret": true
+                },
                 "clientSecretWoVersion": {
                     "type": "integer",
                     "description": "Version of the Client secret write-only argument"
@@ -10701,6 +10721,11 @@
                     },
                     "description": "Arbitrary map of values that, when changed, will trigger rotation of the secret. NOTE! Conflicts with \u003cspan pulumi-lang-nodejs=\"`clientSecret`\" pulumi-lang-dotnet=\"`ClientSecret`\" pulumi-lang-go=\"`clientSecret`\" pulumi-lang-python=\"`client_secret`\" pulumi-lang-yaml=\"`clientSecret`\" pulumi-lang-java=\"`clientSecret`\"\u003e`client_secret`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`clientSecretWo`\" pulumi-lang-dotnet=\"`ClientSecretWo`\" pulumi-lang-go=\"`clientSecretWo`\" pulumi-lang-python=\"`client_secret_wo`\" pulumi-lang-yaml=\"`clientSecretWo`\" pulumi-lang-java=\"`clientSecretWo`\"\u003e`client_secret_wo`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`clientSecretWoVersion`\" pulumi-lang-dotnet=\"`ClientSecretWoVersion`\" pulumi-lang-go=\"`clientSecretWoVersion`\" pulumi-lang-python=\"`client_secret_wo_version`\" pulumi-lang-yaml=\"`clientSecretWoVersion`\" pulumi-lang-java=\"`clientSecretWoVersion`\"\u003e`client_secret_wo_version`\u003c/span\u003e attribute and can't be used together\n"
                 },
+                "clientSecretWo": {
+                    "type": "string",
+                    "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nClient Secret as write-only argument",
+                    "secret": true
+                },
                 "clientSecretWoVersion": {
                     "type": "integer",
                     "description": "Version of the Client secret write-only argument"
@@ -10925,6 +10950,11 @@
                             "type": "string"
                         },
                         "description": "Arbitrary map of values that, when changed, will trigger rotation of the secret. NOTE! Conflicts with \u003cspan pulumi-lang-nodejs=\"`clientSecret`\" pulumi-lang-dotnet=\"`ClientSecret`\" pulumi-lang-go=\"`clientSecret`\" pulumi-lang-python=\"`client_secret`\" pulumi-lang-yaml=\"`clientSecret`\" pulumi-lang-java=\"`clientSecret`\"\u003e`client_secret`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`clientSecretWo`\" pulumi-lang-dotnet=\"`ClientSecretWo`\" pulumi-lang-go=\"`clientSecretWo`\" pulumi-lang-python=\"`client_secret_wo`\" pulumi-lang-yaml=\"`clientSecretWo`\" pulumi-lang-java=\"`clientSecretWo`\"\u003e`client_secret_wo`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`clientSecretWoVersion`\" pulumi-lang-dotnet=\"`ClientSecretWoVersion`\" pulumi-lang-go=\"`clientSecretWoVersion`\" pulumi-lang-python=\"`client_secret_wo_version`\" pulumi-lang-yaml=\"`clientSecretWoVersion`\" pulumi-lang-java=\"`clientSecretWoVersion`\"\u003e`client_secret_wo_version`\u003c/span\u003e attribute and can't be used together\n"
+                    },
+                    "clientSecretWo": {
+                        "type": "string",
+                        "description": "**NOTE:** This field is write-only and its value will not be updated in state as part of read operations.\nClient Secret as write-only argument",
+                        "secret": true
                     },
                     "clientSecretWoVersion": {
                         "type": "integer",
