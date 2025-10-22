@@ -204,6 +204,22 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.clientSecret);
     }
     /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Client Secret as write-only argument
+     * 
+     */
+    @Export(name="clientSecretWo", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> clientSecretWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Client Secret as write-only argument
+     * 
+     */
+    public Output<Optional<String>> clientSecretWo() {
+        return Codegen.optional(this.clientSecretWo);
+    }
+    /**
      * Version of the Client secret write-only argument
      * 
      */
@@ -642,7 +658,8 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
-                "clientSecret"
+                "clientSecret",
+                "clientSecretWo"
             ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);

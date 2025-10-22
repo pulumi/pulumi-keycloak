@@ -29,6 +29,7 @@ class IdentityProviderArgs:
                  authenticate_by_default: Optional[pulumi.Input[_builtins.bool]] = None,
                  backchannel_supported: Optional[pulumi.Input[_builtins.bool]] = None,
                  client_secret: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
                  client_secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  default_scopes: Optional[pulumi.Input[_builtins.str]] = None,
                  disable_type_claim_check: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -67,6 +68,8 @@ class IdentityProviderArgs:
         :param pulumi.Input[_builtins.bool] authenticate_by_default: Enable/disable authenticate users by default.
         :param pulumi.Input[_builtins.bool] backchannel_supported: Does the external IDP support backchannel logout? Defaults to `true`.
         :param pulumi.Input[_builtins.str] client_secret: The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `client_secret_wo` and `client_secret_wo_version`.
+        :param pulumi.Input[_builtins.str] client_secret_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Client Secret as write-only argument
         :param pulumi.Input[_builtins.int] client_secret_wo_version: Version of the Client secret write-only argument
         :param pulumi.Input[_builtins.str] default_scopes: The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
         :param pulumi.Input[_builtins.bool] disable_type_claim_check: When `true`, disables the check for the `typ` claim of tokens received from the identity provider. Defaults to `false`.
@@ -108,6 +111,8 @@ class IdentityProviderArgs:
             pulumi.set(__self__, "backchannel_supported", backchannel_supported)
         if client_secret is not None:
             pulumi.set(__self__, "client_secret", client_secret)
+        if client_secret_wo is not None:
+            pulumi.set(__self__, "client_secret_wo", client_secret_wo)
         if client_secret_wo_version is not None:
             pulumi.set(__self__, "client_secret_wo_version", client_secret_wo_version)
         if default_scopes is not None:
@@ -280,6 +285,19 @@ class IdentityProviderArgs:
     @client_secret.setter
     def client_secret(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "client_secret", value)
+
+    @_builtins.property
+    @pulumi.getter(name="clientSecretWo")
+    def client_secret_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Client Secret as write-only argument
+        """
+        return pulumi.get(self, "client_secret_wo")
+
+    @client_secret_wo.setter
+    def client_secret_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "client_secret_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="clientSecretWoVersion")
@@ -602,6 +620,7 @@ class _IdentityProviderState:
                  backchannel_supported: Optional[pulumi.Input[_builtins.bool]] = None,
                  client_id: Optional[pulumi.Input[_builtins.str]] = None,
                  client_secret: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
                  client_secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  default_scopes: Optional[pulumi.Input[_builtins.str]] = None,
                  disable_type_claim_check: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -641,6 +660,8 @@ class _IdentityProviderState:
         :param pulumi.Input[_builtins.bool] backchannel_supported: Does the external IDP support backchannel logout? Defaults to `true`.
         :param pulumi.Input[_builtins.str] client_id: The client or client identifier registered within the identity provider.
         :param pulumi.Input[_builtins.str] client_secret: The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `client_secret_wo` and `client_secret_wo_version`.
+        :param pulumi.Input[_builtins.str] client_secret_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Client Secret as write-only argument
         :param pulumi.Input[_builtins.int] client_secret_wo_version: Version of the Client secret write-only argument
         :param pulumi.Input[_builtins.str] default_scopes: The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
         :param pulumi.Input[_builtins.bool] disable_type_claim_check: When `true`, disables the check for the `typ` claim of tokens received from the identity provider. Defaults to `false`.
@@ -686,6 +707,8 @@ class _IdentityProviderState:
             pulumi.set(__self__, "client_id", client_id)
         if client_secret is not None:
             pulumi.set(__self__, "client_secret", client_secret)
+        if client_secret_wo is not None:
+            pulumi.set(__self__, "client_secret_wo", client_secret_wo)
         if client_secret_wo_version is not None:
             pulumi.set(__self__, "client_secret_wo_version", client_secret_wo_version)
         if default_scopes is not None:
@@ -840,6 +863,19 @@ class _IdentityProviderState:
     @client_secret.setter
     def client_secret(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "client_secret", value)
+
+    @_builtins.property
+    @pulumi.getter(name="clientSecretWo")
+    def client_secret_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Client Secret as write-only argument
+        """
+        return pulumi.get(self, "client_secret_wo")
+
+    @client_secret_wo.setter
+    def client_secret_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "client_secret_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="clientSecretWoVersion")
@@ -1201,6 +1237,7 @@ class IdentityProvider(pulumi.CustomResource):
                  backchannel_supported: Optional[pulumi.Input[_builtins.bool]] = None,
                  client_id: Optional[pulumi.Input[_builtins.str]] = None,
                  client_secret: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
                  client_secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  default_scopes: Optional[pulumi.Input[_builtins.str]] = None,
                  disable_type_claim_check: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -1285,6 +1322,8 @@ class IdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] backchannel_supported: Does the external IDP support backchannel logout? Defaults to `true`.
         :param pulumi.Input[_builtins.str] client_id: The client or client identifier registered within the identity provider.
         :param pulumi.Input[_builtins.str] client_secret: The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `client_secret_wo` and `client_secret_wo_version`.
+        :param pulumi.Input[_builtins.str] client_secret_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Client Secret as write-only argument
         :param pulumi.Input[_builtins.int] client_secret_wo_version: Version of the Client secret write-only argument
         :param pulumi.Input[_builtins.str] default_scopes: The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
         :param pulumi.Input[_builtins.bool] disable_type_claim_check: When `true`, disables the check for the `typ` claim of tokens received from the identity provider. Defaults to `false`.
@@ -1387,6 +1426,7 @@ class IdentityProvider(pulumi.CustomResource):
                  backchannel_supported: Optional[pulumi.Input[_builtins.bool]] = None,
                  client_id: Optional[pulumi.Input[_builtins.str]] = None,
                  client_secret: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
                  client_secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  default_scopes: Optional[pulumi.Input[_builtins.str]] = None,
                  disable_type_claim_check: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -1438,6 +1478,7 @@ class IdentityProvider(pulumi.CustomResource):
                 raise TypeError("Missing required property 'client_id'")
             __props__.__dict__["client_id"] = client_id
             __props__.__dict__["client_secret"] = None if client_secret is None else pulumi.Output.secret(client_secret)
+            __props__.__dict__["client_secret_wo"] = None if client_secret_wo is None else pulumi.Output.secret(client_secret_wo)
             __props__.__dict__["client_secret_wo_version"] = client_secret_wo_version
             __props__.__dict__["default_scopes"] = default_scopes
             __props__.__dict__["disable_type_claim_check"] = disable_type_claim_check
@@ -1471,7 +1512,7 @@ class IdentityProvider(pulumi.CustomResource):
             __props__.__dict__["user_info_url"] = user_info_url
             __props__.__dict__["validate_signature"] = validate_signature
             __props__.__dict__["internal_id"] = None
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["clientSecret"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["clientSecret", "clientSecretWo"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(IdentityProvider, __self__).__init__(
             'keycloak:oidc/identityProvider:IdentityProvider',
@@ -1491,6 +1532,7 @@ class IdentityProvider(pulumi.CustomResource):
             backchannel_supported: Optional[pulumi.Input[_builtins.bool]] = None,
             client_id: Optional[pulumi.Input[_builtins.str]] = None,
             client_secret: Optional[pulumi.Input[_builtins.str]] = None,
+            client_secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
             client_secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
             default_scopes: Optional[pulumi.Input[_builtins.str]] = None,
             disable_type_claim_check: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -1535,6 +1577,8 @@ class IdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] backchannel_supported: Does the external IDP support backchannel logout? Defaults to `true`.
         :param pulumi.Input[_builtins.str] client_id: The client or client identifier registered within the identity provider.
         :param pulumi.Input[_builtins.str] client_secret: The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `client_secret_wo` and `client_secret_wo_version`.
+        :param pulumi.Input[_builtins.str] client_secret_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Client Secret as write-only argument
         :param pulumi.Input[_builtins.int] client_secret_wo_version: Version of the Client secret write-only argument
         :param pulumi.Input[_builtins.str] default_scopes: The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
         :param pulumi.Input[_builtins.bool] disable_type_claim_check: When `true`, disables the check for the `typ` claim of tokens received from the identity provider. Defaults to `false`.
@@ -1576,6 +1620,7 @@ class IdentityProvider(pulumi.CustomResource):
         __props__.__dict__["backchannel_supported"] = backchannel_supported
         __props__.__dict__["client_id"] = client_id
         __props__.__dict__["client_secret"] = client_secret
+        __props__.__dict__["client_secret_wo"] = client_secret_wo
         __props__.__dict__["client_secret_wo_version"] = client_secret_wo_version
         __props__.__dict__["default_scopes"] = default_scopes
         __props__.__dict__["disable_type_claim_check"] = disable_type_claim_check
@@ -1670,6 +1715,15 @@ class IdentityProvider(pulumi.CustomResource):
         The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `client_secret_wo` and `client_secret_wo_version`.
         """
         return pulumi.get(self, "client_secret")
+
+    @_builtins.property
+    @pulumi.getter(name="clientSecretWo")
+    def client_secret_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Client Secret as write-only argument
+        """
+        return pulumi.get(self, "client_secret_wo")
 
     @_builtins.property
     @pulumi.getter(name="clientSecretWoVersion")

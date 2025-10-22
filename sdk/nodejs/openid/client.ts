@@ -190,6 +190,11 @@ export class Client extends pulumi.CustomResource {
      */
     declare public readonly clientSecretRegenerateWhenChanged: pulumi.Output<{[key: string]: string} | undefined>;
     /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Client Secret as write-only argument
+     */
+    declare public readonly clientSecretWo: pulumi.Output<string | undefined>;
+    /**
      * Version of the Client secret write-only argument
      */
     declare public readonly clientSecretWoVersion: pulumi.Output<number | undefined>;
@@ -359,6 +364,7 @@ export class Client extends pulumi.CustomResource {
             resourceInputs["clientOfflineSessionMaxLifespan"] = state?.clientOfflineSessionMaxLifespan;
             resourceInputs["clientSecret"] = state?.clientSecret;
             resourceInputs["clientSecretRegenerateWhenChanged"] = state?.clientSecretRegenerateWhenChanged;
+            resourceInputs["clientSecretWo"] = state?.clientSecretWo;
             resourceInputs["clientSecretWoVersion"] = state?.clientSecretWoVersion;
             resourceInputs["clientSessionIdleTimeout"] = state?.clientSessionIdleTimeout;
             resourceInputs["clientSessionMaxLifespan"] = state?.clientSessionMaxLifespan;
@@ -419,6 +425,7 @@ export class Client extends pulumi.CustomResource {
             resourceInputs["clientOfflineSessionMaxLifespan"] = args?.clientOfflineSessionMaxLifespan;
             resourceInputs["clientSecret"] = args?.clientSecret ? pulumi.secret(args.clientSecret) : undefined;
             resourceInputs["clientSecretRegenerateWhenChanged"] = args?.clientSecretRegenerateWhenChanged;
+            resourceInputs["clientSecretWo"] = args?.clientSecretWo ? pulumi.secret(args.clientSecretWo) : undefined;
             resourceInputs["clientSecretWoVersion"] = args?.clientSecretWoVersion;
             resourceInputs["clientSessionIdleTimeout"] = args?.clientSessionIdleTimeout;
             resourceInputs["clientSessionMaxLifespan"] = args?.clientSessionMaxLifespan;
@@ -456,7 +463,7 @@ export class Client extends pulumi.CustomResource {
             resourceInputs["serviceAccountUserId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["clientSecret"] };
+        const secretOpts = { additionalSecretOutputs: ["clientSecret", "clientSecretWo"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(Client.__pulumiType, name, resourceInputs, opts);
     }
@@ -543,6 +550,11 @@ export interface ClientState {
      * Arbitrary map of values that, when changed, will trigger rotation of the secret. NOTE! Conflicts with `clientSecret`, `clientSecretWo` and `clientSecretWoVersion` attribute and can't be used together
      */
     clientSecretRegenerateWhenChanged?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Client Secret as write-only argument
+     */
+    clientSecretWo?: pulumi.Input<string>;
     /**
      * Version of the Client secret write-only argument
      */
@@ -765,6 +777,11 @@ export interface ClientArgs {
      * Arbitrary map of values that, when changed, will trigger rotation of the secret. NOTE! Conflicts with `clientSecret`, `clientSecretWo` and `clientSecretWoVersion` attribute and can't be used together
      */
     clientSecretRegenerateWhenChanged?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Client Secret as write-only argument
+     */
+    clientSecretWo?: pulumi.Input<string>;
     /**
      * Version of the Client secret write-only argument
      */
