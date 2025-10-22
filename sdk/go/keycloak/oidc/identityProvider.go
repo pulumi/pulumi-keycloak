@@ -95,6 +95,9 @@ type IdentityProvider struct {
 	ClientId pulumi.StringOutput `pulumi:"clientId"`
 	// The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `clientSecretWo` and `clientSecretWoVersion`.
 	ClientSecret pulumi.StringPtrOutput `pulumi:"clientSecret"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Client Secret as write-only argument
+	ClientSecretWo pulumi.StringPtrOutput `pulumi:"clientSecretWo"`
 	// Version of the Client secret write-only argument
 	ClientSecretWoVersion pulumi.IntPtrOutput `pulumi:"clientSecretWoVersion"`
 	// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
@@ -179,8 +182,12 @@ func NewIdentityProvider(ctx *pulumi.Context,
 	if args.ClientSecret != nil {
 		args.ClientSecret = pulumi.ToSecret(args.ClientSecret).(pulumi.StringPtrInput)
 	}
+	if args.ClientSecretWo != nil {
+		args.ClientSecretWo = pulumi.ToSecret(args.ClientSecretWo).(pulumi.StringPtrInput)
+	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"clientSecret",
+		"clientSecretWo",
 	})
 	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
@@ -222,6 +229,9 @@ type identityProviderState struct {
 	ClientId *string `pulumi:"clientId"`
 	// The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `clientSecretWo` and `clientSecretWoVersion`.
 	ClientSecret *string `pulumi:"clientSecret"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Client Secret as write-only argument
+	ClientSecretWo *string `pulumi:"clientSecretWo"`
 	// Version of the Client secret write-only argument
 	ClientSecretWoVersion *int `pulumi:"clientSecretWoVersion"`
 	// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
@@ -298,6 +308,9 @@ type IdentityProviderState struct {
 	ClientId pulumi.StringPtrInput
 	// The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `clientSecretWo` and `clientSecretWoVersion`.
 	ClientSecret pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Client Secret as write-only argument
+	ClientSecretWo pulumi.StringPtrInput
 	// Version of the Client secret write-only argument
 	ClientSecretWoVersion pulumi.IntPtrInput
 	// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
@@ -378,6 +391,9 @@ type identityProviderArgs struct {
 	ClientId string `pulumi:"clientId"`
 	// The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `clientSecretWo` and `clientSecretWoVersion`.
 	ClientSecret *string `pulumi:"clientSecret"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Client Secret as write-only argument
+	ClientSecretWo *string `pulumi:"clientSecretWo"`
 	// Version of the Client secret write-only argument
 	ClientSecretWoVersion *int `pulumi:"clientSecretWoVersion"`
 	// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
@@ -453,6 +469,9 @@ type IdentityProviderArgs struct {
 	ClientId pulumi.StringInput
 	// The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `clientSecretWo` and `clientSecretWoVersion`.
 	ClientSecret pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Client Secret as write-only argument
+	ClientSecretWo pulumi.StringPtrInput
 	// Version of the Client secret write-only argument
 	ClientSecretWoVersion pulumi.IntPtrInput
 	// The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
@@ -635,6 +654,12 @@ func (o IdentityProviderOutput) ClientId() pulumi.StringOutput {
 // The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `clientSecretWo` and `clientSecretWoVersion`.
 func (o IdentityProviderOutput) ClientSecret() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.ClientSecret }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Client Secret as write-only argument
+func (o IdentityProviderOutput) ClientSecretWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.StringPtrOutput { return v.ClientSecretWo }).(pulumi.StringPtrOutput)
 }
 
 // Version of the Client secret write-only argument

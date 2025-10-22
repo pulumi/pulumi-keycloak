@@ -229,6 +229,13 @@ namespace Pulumi.Keycloak.OpenId
         public Output<ImmutableDictionary<string, string>?> ClientSecretRegenerateWhenChanged { get; private set; } = null!;
 
         /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Client Secret as write-only argument
+        /// </summary>
+        [Output("clientSecretWo")]
+        public Output<string?> ClientSecretWo { get; private set; } = null!;
+
+        /// <summary>
         /// Version of the Client secret write-only argument
         /// </summary>
         [Output("clientSecretWoVersion")]
@@ -463,6 +470,7 @@ namespace Pulumi.Keycloak.OpenId
                 AdditionalSecretOutputs =
                 {
                     "clientSecret",
+                    "clientSecretWo",
                 },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
@@ -612,6 +620,23 @@ namespace Pulumi.Keycloak.OpenId
         {
             get => _clientSecretRegenerateWhenChanged ?? (_clientSecretRegenerateWhenChanged = new InputMap<string>());
             set => _clientSecretRegenerateWhenChanged = value;
+        }
+
+        [Input("clientSecretWo")]
+        private Input<string>? _clientSecretWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Client Secret as write-only argument
+        /// </summary>
+        public Input<string>? ClientSecretWo
+        {
+            get => _clientSecretWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _clientSecretWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
         }
 
         /// <summary>
@@ -967,6 +992,23 @@ namespace Pulumi.Keycloak.OpenId
         {
             get => _clientSecretRegenerateWhenChanged ?? (_clientSecretRegenerateWhenChanged = new InputMap<string>());
             set => _clientSecretRegenerateWhenChanged = value;
+        }
+
+        [Input("clientSecretWo")]
+        private Input<string>? _clientSecretWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Client Secret as write-only argument
+        /// </summary>
+        public Input<string>? ClientSecretWo
+        {
+            get => _clientSecretWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _clientSecretWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
         }
 
         /// <summary>

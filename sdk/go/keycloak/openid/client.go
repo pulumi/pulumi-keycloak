@@ -179,6 +179,9 @@ type Client struct {
 	ClientSecret pulumi.StringOutput `pulumi:"clientSecret"`
 	// Arbitrary map of values that, when changed, will trigger rotation of the secret. NOTE! Conflicts with `clientSecret`, `clientSecretWo` and `clientSecretWoVersion` attribute and can't be used together
 	ClientSecretRegenerateWhenChanged pulumi.StringMapOutput `pulumi:"clientSecretRegenerateWhenChanged"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Client Secret as write-only argument
+	ClientSecretWo pulumi.StringPtrOutput `pulumi:"clientSecretWo"`
 	// Version of the Client secret write-only argument
 	ClientSecretWoVersion pulumi.IntPtrOutput `pulumi:"clientSecretWoVersion"`
 	// Time a client offline session is allowed to be idle before it expires. Offline tokens are invalidated when a client offline session is expired. If not set it uses the Offline Session Idle value.
@@ -268,8 +271,12 @@ func NewClient(ctx *pulumi.Context,
 	if args.ClientSecret != nil {
 		args.ClientSecret = pulumi.ToSecret(args.ClientSecret).(pulumi.StringPtrInput)
 	}
+	if args.ClientSecretWo != nil {
+		args.ClientSecretWo = pulumi.ToSecret(args.ClientSecretWo).(pulumi.StringPtrInput)
+	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"clientSecret",
+		"clientSecretWo",
 	})
 	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
@@ -338,6 +345,9 @@ type clientState struct {
 	ClientSecret *string `pulumi:"clientSecret"`
 	// Arbitrary map of values that, when changed, will trigger rotation of the secret. NOTE! Conflicts with `clientSecret`, `clientSecretWo` and `clientSecretWoVersion` attribute and can't be used together
 	ClientSecretRegenerateWhenChanged map[string]string `pulumi:"clientSecretRegenerateWhenChanged"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Client Secret as write-only argument
+	ClientSecretWo *string `pulumi:"clientSecretWo"`
 	// Version of the Client secret write-only argument
 	ClientSecretWoVersion *int `pulumi:"clientSecretWoVersion"`
 	// Time a client offline session is allowed to be idle before it expires. Offline tokens are invalidated when a client offline session is expired. If not set it uses the Offline Session Idle value.
@@ -455,6 +465,9 @@ type ClientState struct {
 	ClientSecret pulumi.StringPtrInput
 	// Arbitrary map of values that, when changed, will trigger rotation of the secret. NOTE! Conflicts with `clientSecret`, `clientSecretWo` and `clientSecretWoVersion` attribute and can't be used together
 	ClientSecretRegenerateWhenChanged pulumi.StringMapInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Client Secret as write-only argument
+	ClientSecretWo pulumi.StringPtrInput
 	// Version of the Client secret write-only argument
 	ClientSecretWoVersion pulumi.IntPtrInput
 	// Time a client offline session is allowed to be idle before it expires. Offline tokens are invalidated when a client offline session is expired. If not set it uses the Offline Session Idle value.
@@ -576,6 +589,9 @@ type clientArgs struct {
 	ClientSecret *string `pulumi:"clientSecret"`
 	// Arbitrary map of values that, when changed, will trigger rotation of the secret. NOTE! Conflicts with `clientSecret`, `clientSecretWo` and `clientSecretWoVersion` attribute and can't be used together
 	ClientSecretRegenerateWhenChanged map[string]string `pulumi:"clientSecretRegenerateWhenChanged"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Client Secret as write-only argument
+	ClientSecretWo *string `pulumi:"clientSecretWo"`
 	// Version of the Client secret write-only argument
 	ClientSecretWoVersion *int `pulumi:"clientSecretWoVersion"`
 	// Time a client offline session is allowed to be idle before it expires. Offline tokens are invalidated when a client offline session is expired. If not set it uses the Offline Session Idle value.
@@ -690,6 +706,9 @@ type ClientArgs struct {
 	ClientSecret pulumi.StringPtrInput
 	// Arbitrary map of values that, when changed, will trigger rotation of the secret. NOTE! Conflicts with `clientSecret`, `clientSecretWo` and `clientSecretWoVersion` attribute and can't be used together
 	ClientSecretRegenerateWhenChanged pulumi.StringMapInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Client Secret as write-only argument
+	ClientSecretWo pulumi.StringPtrInput
 	// Version of the Client secret write-only argument
 	ClientSecretWoVersion pulumi.IntPtrInput
 	// Time a client offline session is allowed to be idle before it expires. Offline tokens are invalidated when a client offline session is expired. If not set it uses the Offline Session Idle value.
@@ -940,6 +959,12 @@ func (o ClientOutput) ClientSecret() pulumi.StringOutput {
 // Arbitrary map of values that, when changed, will trigger rotation of the secret. NOTE! Conflicts with `clientSecret`, `clientSecretWo` and `clientSecretWoVersion` attribute and can't be used together
 func (o ClientOutput) ClientSecretRegenerateWhenChanged() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *Client) pulumi.StringMapOutput { return v.ClientSecretRegenerateWhenChanged }).(pulumi.StringMapOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Client Secret as write-only argument
+func (o ClientOutput) ClientSecretWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Client) pulumi.StringPtrOutput { return v.ClientSecretWo }).(pulumi.StringPtrOutput)
 }
 
 // Version of the Client secret write-only argument

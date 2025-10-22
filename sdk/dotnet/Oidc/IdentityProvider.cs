@@ -118,6 +118,13 @@ namespace Pulumi.Keycloak.Oidc
         public Output<string?> ClientSecret { get; private set; } = null!;
 
         /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Client Secret as write-only argument
+        /// </summary>
+        [Output("clientSecretWo")]
+        public Output<string?> ClientSecretWo { get; private set; } = null!;
+
+        /// <summary>
         /// Version of the Client secret write-only argument
         /// </summary>
         [Output("clientSecretWoVersion")]
@@ -314,6 +321,7 @@ namespace Pulumi.Keycloak.Oidc
                 AdditionalSecretOutputs =
                 {
                     "clientSecret",
+                    "clientSecretWo",
                 },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
@@ -393,6 +401,23 @@ namespace Pulumi.Keycloak.Oidc
             {
                 var emptySecret = Output.CreateSecret(0);
                 _clientSecret = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("clientSecretWo")]
+        private Input<string>? _clientSecretWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Client Secret as write-only argument
+        /// </summary>
+        public Input<string>? ClientSecretWo
+        {
+            get => _clientSecretWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _clientSecretWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
 
@@ -629,6 +654,23 @@ namespace Pulumi.Keycloak.Oidc
             {
                 var emptySecret = Output.CreateSecret(0);
                 _clientSecret = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("clientSecretWo")]
+        private Input<string>? _clientSecretWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Client Secret as write-only argument
+        /// </summary>
+        public Input<string>? ClientSecretWo
+        {
+            get => _clientSecretWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _clientSecretWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
 
