@@ -17,6 +17,75 @@ import javax.annotation.Nullable;
 /**
  * ## Example Usage
  * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.keycloak.Realm;
+ * import com.pulumi.keycloak.RealmArgs;
+ * import com.pulumi.keycloak.saml.Client;
+ * import com.pulumi.keycloak.saml.ClientArgs;
+ * import com.pulumi.std.StdFunctions;
+ * import com.pulumi.keycloak.saml.ClientScope;
+ * import com.pulumi.keycloak.saml.ClientScopeArgs;
+ * import com.pulumi.keycloak.saml.ClientDefaultScope;
+ * import com.pulumi.keycloak.saml.ClientDefaultScopeArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var realm = new Realm("realm", RealmArgs.builder()
+ *             .realm("my-realm")
+ *             .enabled(true)
+ *             .build());
+ * 
+ *         var samlClient = new Client("samlClient", ClientArgs.builder()
+ *             .realmId(realm.id())
+ *             .clientId("saml-client")
+ *             .name("saml-client")
+ *             .signDocuments(false)
+ *             .signAssertions(true)
+ *             .includeAuthnStatement(true)
+ *             .signingCertificate(StdFunctions.file(Map.of("input", "saml-cert.pem")).result())
+ *             .signingPrivateKey(StdFunctions.file(Map.of("input", "saml-key.pem")).result())
+ *             .build());
+ * 
+ *         var clientScope = new ClientScope("clientScope", ClientScopeArgs.builder()
+ *             .realmId(realm.id())
+ *             .name("client-scope")
+ *             .build());
+ * 
+ *         var clientDefaultScopes = new ClientDefaultScope("clientDefaultScopes", ClientDefaultScopeArgs.builder()
+ *             .realmId(realm.id())
+ *             .clientId(client.id())
+ *             .defaultScopes(            
+ *                 "role_list",
+ *                 clientScope.name())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ## Import
+ * 
+ * This resource does not support import. Instead of importing, feel free to create this resource as if it did not already exist
+ * 
+ * on the server.
+ * 
  */
 @ResourceType(type="keycloak:saml/clientDefaultScope:ClientDefaultScope")
 public class ClientDefaultScope extends com.pulumi.resources.CustomResource {

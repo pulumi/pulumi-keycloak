@@ -24,6 +24,54 @@ import javax.annotation.Nullable;
  * Clients are entities that can use Keycloak for user authentication. Typically, clients are applications that redirect users
  * to Keycloak for authentication in order to take advantage of Keycloak&#39;s user sessions for SSO.
  * 
+ * ## Example Usage
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.keycloak.Realm;
+ * import com.pulumi.keycloak.RealmArgs;
+ * import com.pulumi.keycloak.saml.Client;
+ * import com.pulumi.keycloak.saml.ClientArgs;
+ * import com.pulumi.std.StdFunctions;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var realm = new Realm("realm", RealmArgs.builder()
+ *             .realm("my-realm")
+ *             .enabled(true)
+ *             .build());
+ * 
+ *         var samlClient = new Client("samlClient", ClientArgs.builder()
+ *             .realmId(realm.id())
+ *             .clientId("saml-client")
+ *             .name("saml-client")
+ *             .signDocuments(false)
+ *             .signAssertions(true)
+ *             .includeAuthnStatement(true)
+ *             .signingCertificate(StdFunctions.file(Map.of("input", "saml-cert.pem")).result())
+ *             .signingPrivateKey(StdFunctions.file(Map.of("input", "saml-key.pem")).result())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ## Import
  * 
  * Clients can be imported using the format `{{realm_id}}/{{client_keycloak_id}}`, where `client_keycloak_id` is the unique ID that Keycloak
