@@ -26,6 +26,124 @@ namespace Pulumi.Keycloak
     /// 
     /// ## Example Usage
     /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "my-realm",
+    ///     });
+    /// 
+    ///     var realmManagement = Keycloak.OpenId.GetClient.Invoke(new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = "realm-management",
+    ///     });
+    /// 
+    ///     // enable permissions for realm-management client
+    ///     var realmManagementPermission = new Keycloak.OpenId.ClientPermissions("realm_management_permission", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = realmManagement.Apply(getClientResult =&gt; getClientResult.Id),
+    ///         Enabled = true,
+    ///     });
+    /// 
+    ///     // creating a user to use with the keycloak_openid_client_user_policy resource
+    ///     var test = new Keycloak.User("test", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Username = "test-user",
+    ///         Email = "test-user@fakedomain.com",
+    ///         FirstName = "Testy",
+    ///         LastName = "Tester",
+    ///     });
+    /// 
+    ///     var testClientUserPolicy = new Keycloak.OpenId.ClientUserPolicy("test", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ResourceServerId = realmManagement.Apply(getClientResult =&gt; getClientResult.Id),
+    ///         Name = "client_user_policy_test",
+    ///         Users = new[]
+    ///         {
+    ///             test.Id,
+    ///         },
+    ///         Logic = "POSITIVE",
+    ///         DecisionStrategy = "UNANIMOUS",
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn =
+    ///         {
+    ///             realmManagementPermission,
+    ///         },
+    ///     });
+    /// 
+    ///     var usersPermissions = new Keycloak.UsersPermissions("users_permissions", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ViewScope = new Keycloak.Inputs.UsersPermissionsViewScopeArgs
+    ///         {
+    ///             Policies = new[]
+    ///             {
+    ///                 testClientUserPolicy.Id,
+    ///             },
+    ///             Description = "description",
+    ///             DecisionStrategy = "UNANIMOUS",
+    ///         },
+    ///         ManageScope = new Keycloak.Inputs.UsersPermissionsManageScopeArgs
+    ///         {
+    ///             Policies = new[]
+    ///             {
+    ///                 testClientUserPolicy.Id,
+    ///             },
+    ///             Description = "description",
+    ///             DecisionStrategy = "UNANIMOUS",
+    ///         },
+    ///         MapRolesScope = new Keycloak.Inputs.UsersPermissionsMapRolesScopeArgs
+    ///         {
+    ///             Policies = new[]
+    ///             {
+    ///                 testClientUserPolicy.Id,
+    ///             },
+    ///             Description = "description",
+    ///             DecisionStrategy = "UNANIMOUS",
+    ///         },
+    ///         ManageGroupMembershipScope = new Keycloak.Inputs.UsersPermissionsManageGroupMembershipScopeArgs
+    ///         {
+    ///             Policies = new[]
+    ///             {
+    ///                 testClientUserPolicy.Id,
+    ///             },
+    ///             Description = "description",
+    ///             DecisionStrategy = "UNANIMOUS",
+    ///         },
+    ///         ImpersonateScope = new Keycloak.Inputs.UsersPermissionsImpersonateScopeArgs
+    ///         {
+    ///             Policies = new[]
+    ///             {
+    ///                 testClientUserPolicy.Id,
+    ///             },
+    ///             Description = "description",
+    ///             DecisionStrategy = "UNANIMOUS",
+    ///         },
+    ///         UserImpersonatedScope = new Keycloak.Inputs.UsersPermissionsUserImpersonatedScopeArgs
+    ///         {
+    ///             Policies = new[]
+    ///             {
+    ///                 testClientUserPolicy.Id,
+    ///             },
+    ///             Description = "description",
+    ///             DecisionStrategy = "UNANIMOUS",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ### Argument Reference
     /// 
     /// The following arguments are supported:

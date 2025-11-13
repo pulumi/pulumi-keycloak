@@ -201,6 +201,34 @@ class HardcodedGroupIdentityProviderMapper(pulumi.CustomResource):
 
         ## Example Usage
 
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        oidc = keycloak.oidc.IdentityProvider("oidc",
+            realm=realm.id,
+            alias="my-idp",
+            authorization_url="https://authorizationurl.com",
+            client_id="clientID",
+            client_secret="clientSecret",
+            token_url="https://tokenurl.com")
+        realm_group = keycloak.Group("realm_group",
+            realm_id=realm.id,
+            name="my-realm-group",
+            description="My Realm Group")
+        oidc_hardcoded_group_identity_provider_mapper = keycloak.HardcodedGroupIdentityProviderMapper("oidc",
+            realm=realm.id,
+            name="hardcodedGroup",
+            identity_provider_alias=oidc.alias,
+            group="my-realm-group",
+            extra_config={
+                "syncMode": "INHERIT",
+            })
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] group: The name of the group which should be assigned to the users.
@@ -220,6 +248,34 @@ class HardcodedGroupIdentityProviderMapper(pulumi.CustomResource):
         The identity provider hardcoded group mapper grants a specified Keycloak group to each Keycloak user from the identity provider.
 
         ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        oidc = keycloak.oidc.IdentityProvider("oidc",
+            realm=realm.id,
+            alias="my-idp",
+            authorization_url="https://authorizationurl.com",
+            client_id="clientID",
+            client_secret="clientSecret",
+            token_url="https://tokenurl.com")
+        realm_group = keycloak.Group("realm_group",
+            realm_id=realm.id,
+            name="my-realm-group",
+            description="My Realm Group")
+        oidc_hardcoded_group_identity_provider_mapper = keycloak.HardcodedGroupIdentityProviderMapper("oidc",
+            realm=realm.id,
+            name="hardcodedGroup",
+            identity_provider_alias=oidc.alias,
+            group="my-realm-group",
+            extra_config={
+                "syncMode": "INHERIT",
+            })
+        ```
 
         :param str resource_name: The name of the resource.
         :param HardcodedGroupIdentityProviderMapperArgs args: The arguments to use to populate this resource's properties.

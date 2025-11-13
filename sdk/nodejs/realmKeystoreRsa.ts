@@ -11,6 +11,25 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {realm: "my-realm"});
+ * const keystoreRsa = new keycloak.RealmKeystoreRsa("keystore_rsa", {
+ *     name: "my-rsa-key",
+ *     realmId: realm.id,
+ *     enabled: true,
+ *     active: true,
+ *     privateKey: "<your rsa private key>",
+ *     certificate: "<your certificate>",
+ *     priority: 100,
+ *     algorithm: "RS256",
+ *     keystoreSize: 2048,
+ *     providerId: "rsa",
+ * });
+ * ```
+ *
  * ## Import
  *
  * Realm keys can be imported using realm name and keystore id, you can find it in web UI.

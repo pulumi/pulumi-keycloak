@@ -10,6 +10,38 @@ import * as utilities from "./utilities";
  * The identity provider hardcoded group mapper grants a specified Keycloak group to each Keycloak user from the identity provider.
  *
  * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * const oidc = new keycloak.oidc.IdentityProvider("oidc", {
+ *     realm: realm.id,
+ *     alias: "my-idp",
+ *     authorizationUrl: "https://authorizationurl.com",
+ *     clientId: "clientID",
+ *     clientSecret: "clientSecret",
+ *     tokenUrl: "https://tokenurl.com",
+ * });
+ * const realmGroup = new keycloak.Group("realm_group", {
+ *     realmId: realm.id,
+ *     name: "my-realm-group",
+ *     description: "My Realm Group",
+ * });
+ * const oidcHardcodedGroupIdentityProviderMapper = new keycloak.HardcodedGroupIdentityProviderMapper("oidc", {
+ *     realm: realm.id,
+ *     name: "hardcodedGroup",
+ *     identityProviderAlias: oidc.alias,
+ *     group: "my-realm-group",
+ *     extraConfig: {
+ *         syncMode: "INHERIT",
+ *     },
+ * });
+ * ```
  */
 export class HardcodedGroupIdentityProviderMapper extends pulumi.CustomResource {
     /**

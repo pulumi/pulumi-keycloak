@@ -16,6 +16,36 @@ namespace Pulumi.Keycloak
     /// 
     /// ## Example Usage
     /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "my-realm",
+    ///     });
+    /// 
+    ///     var keystoreRsa = new Keycloak.RealmKeystoreRsa("keystore_rsa", new()
+    ///     {
+    ///         Name = "my-rsa-key",
+    ///         RealmId = realm.Id,
+    ///         Enabled = true,
+    ///         Active = true,
+    ///         PrivateKey = "&lt;your rsa private key&gt;",
+    ///         Certificate = "&lt;your certificate&gt;",
+    ///         Priority = 100,
+    ///         Algorithm = "RS256",
+    ///         KeystoreSize = 2048,
+    ///         ProviderId = "rsa",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Realm keys can be imported using realm name and keystore id, you can find it in web UI.

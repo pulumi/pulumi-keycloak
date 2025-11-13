@@ -1273,6 +1273,27 @@ class Client(pulumi.CustomResource):
         Clients are entities that can use Keycloak for user authentication. Typically, clients are applications that redirect users
         to Keycloak for authentication in order to take advantage of Keycloak's user sessions for SSO.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+        import pulumi_std as std
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        saml_client = keycloak.saml.Client("saml_client",
+            realm_id=realm.id,
+            client_id="saml-client",
+            name="saml-client",
+            sign_documents=False,
+            sign_assertions=True,
+            include_authn_statement=True,
+            signing_certificate=std.index.file(input="saml-cert.pem")["result"],
+            signing_private_key=std.index.file(input="saml-key.pem")["result"])
+        ```
+
         ## Import
 
         Clients can be imported using the format `{{realm_id}}/{{client_keycloak_id}}`, where `client_keycloak_id` is the unique ID that Keycloak
@@ -1336,6 +1357,27 @@ class Client(pulumi.CustomResource):
 
         Clients are entities that can use Keycloak for user authentication. Typically, clients are applications that redirect users
         to Keycloak for authentication in order to take advantage of Keycloak's user sessions for SSO.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+        import pulumi_std as std
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        saml_client = keycloak.saml.Client("saml_client",
+            realm_id=realm.id,
+            client_id="saml-client",
+            name="saml-client",
+            sign_documents=False,
+            sign_assertions=True,
+            include_authn_statement=True,
+            signing_certificate=std.index.file(input="saml-cert.pem")["result"],
+            signing_private_key=std.index.file(input="saml-key.pem")["result"])
+        ```
 
         ## Import
 

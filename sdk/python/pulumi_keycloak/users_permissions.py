@@ -260,6 +260,67 @@ class UsersPermissions(pulumi.CustomResource):
 
         ## Example Usage
 
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm", realm="my-realm")
+        realm_management = keycloak.openid.get_client_output(realm_id=realm.id,
+            client_id="realm-management")
+        # enable permissions for realm-management client
+        realm_management_permission = keycloak.openid.ClientPermissions("realm_management_permission",
+            realm_id=realm.id,
+            client_id=realm_management.id,
+            enabled=True)
+        # creating a user to use with the keycloak_openid_client_user_policy resource
+        test = keycloak.User("test",
+            realm_id=realm.id,
+            username="test-user",
+            email="test-user@fakedomain.com",
+            first_name="Testy",
+            last_name="Tester")
+        test_client_user_policy = keycloak.openid.ClientUserPolicy("test",
+            realm_id=realm.id,
+            resource_server_id=realm_management.id,
+            name="client_user_policy_test",
+            users=[test.id],
+            logic="POSITIVE",
+            decision_strategy="UNANIMOUS",
+            opts = pulumi.ResourceOptions(depends_on=[realm_management_permission]))
+        users_permissions = keycloak.UsersPermissions("users_permissions",
+            realm_id=realm.id,
+            view_scope={
+                "policies": [test_client_user_policy.id],
+                "description": "description",
+                "decision_strategy": "UNANIMOUS",
+            },
+            manage_scope={
+                "policies": [test_client_user_policy.id],
+                "description": "description",
+                "decision_strategy": "UNANIMOUS",
+            },
+            map_roles_scope={
+                "policies": [test_client_user_policy.id],
+                "description": "description",
+                "decision_strategy": "UNANIMOUS",
+            },
+            manage_group_membership_scope={
+                "policies": [test_client_user_policy.id],
+                "description": "description",
+                "decision_strategy": "UNANIMOUS",
+            },
+            impersonate_scope={
+                "policies": [test_client_user_policy.id],
+                "description": "description",
+                "decision_strategy": "UNANIMOUS",
+            },
+            user_impersonated_scope={
+                "policies": [test_client_user_policy.id],
+                "description": "description",
+                "decision_strategy": "UNANIMOUS",
+            })
+        ```
+
         ### Argument Reference
 
         The following arguments are supported:
@@ -313,6 +374,67 @@ class UsersPermissions(pulumi.CustomResource):
         > This resource should only be created once per realm.
 
         ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm", realm="my-realm")
+        realm_management = keycloak.openid.get_client_output(realm_id=realm.id,
+            client_id="realm-management")
+        # enable permissions for realm-management client
+        realm_management_permission = keycloak.openid.ClientPermissions("realm_management_permission",
+            realm_id=realm.id,
+            client_id=realm_management.id,
+            enabled=True)
+        # creating a user to use with the keycloak_openid_client_user_policy resource
+        test = keycloak.User("test",
+            realm_id=realm.id,
+            username="test-user",
+            email="test-user@fakedomain.com",
+            first_name="Testy",
+            last_name="Tester")
+        test_client_user_policy = keycloak.openid.ClientUserPolicy("test",
+            realm_id=realm.id,
+            resource_server_id=realm_management.id,
+            name="client_user_policy_test",
+            users=[test.id],
+            logic="POSITIVE",
+            decision_strategy="UNANIMOUS",
+            opts = pulumi.ResourceOptions(depends_on=[realm_management_permission]))
+        users_permissions = keycloak.UsersPermissions("users_permissions",
+            realm_id=realm.id,
+            view_scope={
+                "policies": [test_client_user_policy.id],
+                "description": "description",
+                "decision_strategy": "UNANIMOUS",
+            },
+            manage_scope={
+                "policies": [test_client_user_policy.id],
+                "description": "description",
+                "decision_strategy": "UNANIMOUS",
+            },
+            map_roles_scope={
+                "policies": [test_client_user_policy.id],
+                "description": "description",
+                "decision_strategy": "UNANIMOUS",
+            },
+            manage_group_membership_scope={
+                "policies": [test_client_user_policy.id],
+                "description": "description",
+                "decision_strategy": "UNANIMOUS",
+            },
+            impersonate_scope={
+                "policies": [test_client_user_policy.id],
+                "description": "description",
+                "decision_strategy": "UNANIMOUS",
+            },
+            user_impersonated_scope={
+                "policies": [test_client_user_policy.id],
+                "description": "description",
+                "decision_strategy": "UNANIMOUS",
+            })
+        ```
 
         ### Argument Reference
 

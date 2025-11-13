@@ -17,6 +17,63 @@ import (
 // The identity provider hardcoded group mapper grants a specified Keycloak group to each Keycloak user from the identity provider.
 //
 // ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak/oidc"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			oidc, err := oidc.NewIdentityProvider(ctx, "oidc", &oidc.IdentityProviderArgs{
+//				Realm:            realm.ID(),
+//				Alias:            pulumi.String("my-idp"),
+//				AuthorizationUrl: pulumi.String("https://authorizationurl.com"),
+//				ClientId:         pulumi.String("clientID"),
+//				ClientSecret:     pulumi.String("clientSecret"),
+//				TokenUrl:         pulumi.String("https://tokenurl.com"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = keycloak.NewGroup(ctx, "realm_group", &keycloak.GroupArgs{
+//				RealmId:     realm.ID(),
+//				Name:        pulumi.String("my-realm-group"),
+//				Description: "My Realm Group",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = keycloak.NewHardcodedGroupIdentityProviderMapper(ctx, "oidc", &keycloak.HardcodedGroupIdentityProviderMapperArgs{
+//				Realm:                 realm.ID(),
+//				Name:                  pulumi.String("hardcodedGroup"),
+//				IdentityProviderAlias: oidc.Alias,
+//				Group:                 pulumi.String("my-realm-group"),
+//				ExtraConfig: pulumi.StringMap{
+//					"syncMode": pulumi.String("INHERIT"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type HardcodedGroupIdentityProviderMapper struct {
 	pulumi.CustomResourceState
 

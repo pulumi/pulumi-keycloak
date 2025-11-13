@@ -271,12 +271,142 @@ public final class SamlFunctions {
     /**
      * This data source can be used to retrieve Installation Provider of a SAML Client.
      * 
+     * ## Example Usage
+     * 
+     * In the example below, we extract the SAML metadata IDPSSODescriptor to pass it to the AWS IAM SAML Provider.
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.Realm;
+     * import com.pulumi.keycloak.RealmArgs;
+     * import com.pulumi.keycloak.saml.Client;
+     * import com.pulumi.keycloak.saml.ClientArgs;
+     * import com.pulumi.std.StdFunctions;
+     * import com.pulumi.keycloak.saml.SamlFunctions;
+     * import com.pulumi.keycloak.saml.inputs.GetClientInstallationProviderArgs;
+     * import com.pulumi.aws.IamSamlProvider;
+     * import com.pulumi.aws.IamSamlProviderArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var realm = new Realm("realm", RealmArgs.builder()
+     *             .realm("my-realm")
+     *             .enabled(true)
+     *             .build());
+     * 
+     *         var samlClient = new Client("samlClient", ClientArgs.builder()
+     *             .realmId(realm.id())
+     *             .clientId("test-saml-client")
+     *             .name("test-saml-client")
+     *             .signDocuments(false)
+     *             .signAssertions(true)
+     *             .includeAuthnStatement(true)
+     *             .signingCertificate(StdFunctions.file(Map.of("input", "saml-cert.pem")).result())
+     *             .signingPrivateKey(StdFunctions.file(Map.of("input", "saml-key.pem")).result())
+     *             .build());
+     * 
+     *         final var samlIdpDescriptor = SamlFunctions.getClientInstallationProvider(GetClientInstallationProviderArgs.builder()
+     *             .realmId(realm.id())
+     *             .clientId(samlClient.id())
+     *             .providerId("saml-idp-descriptor")
+     *             .build());
+     * 
+     *         var default_ = new IamSamlProvider("default", IamSamlProviderArgs.builder()
+     *             .name("myprovider")
+     *             .samlMetadataDocument(samlIdpDescriptor.value())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetClientInstallationProviderResult> getClientInstallationProvider(GetClientInstallationProviderArgs args) {
         return getClientInstallationProvider(args, InvokeOptions.Empty);
     }
     /**
      * This data source can be used to retrieve Installation Provider of a SAML Client.
+     * 
+     * ## Example Usage
+     * 
+     * In the example below, we extract the SAML metadata IDPSSODescriptor to pass it to the AWS IAM SAML Provider.
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.Realm;
+     * import com.pulumi.keycloak.RealmArgs;
+     * import com.pulumi.keycloak.saml.Client;
+     * import com.pulumi.keycloak.saml.ClientArgs;
+     * import com.pulumi.std.StdFunctions;
+     * import com.pulumi.keycloak.saml.SamlFunctions;
+     * import com.pulumi.keycloak.saml.inputs.GetClientInstallationProviderArgs;
+     * import com.pulumi.aws.IamSamlProvider;
+     * import com.pulumi.aws.IamSamlProviderArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var realm = new Realm("realm", RealmArgs.builder()
+     *             .realm("my-realm")
+     *             .enabled(true)
+     *             .build());
+     * 
+     *         var samlClient = new Client("samlClient", ClientArgs.builder()
+     *             .realmId(realm.id())
+     *             .clientId("test-saml-client")
+     *             .name("test-saml-client")
+     *             .signDocuments(false)
+     *             .signAssertions(true)
+     *             .includeAuthnStatement(true)
+     *             .signingCertificate(StdFunctions.file(Map.of("input", "saml-cert.pem")).result())
+     *             .signingPrivateKey(StdFunctions.file(Map.of("input", "saml-key.pem")).result())
+     *             .build());
+     * 
+     *         final var samlIdpDescriptor = SamlFunctions.getClientInstallationProvider(GetClientInstallationProviderArgs.builder()
+     *             .realmId(realm.id())
+     *             .clientId(samlClient.id())
+     *             .providerId("saml-idp-descriptor")
+     *             .build());
+     * 
+     *         var default_ = new IamSamlProvider("default", IamSamlProviderArgs.builder()
+     *             .name("myprovider")
+     *             .samlMetadataDocument(samlIdpDescriptor.value())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static CompletableFuture<GetClientInstallationProviderResult> getClientInstallationProviderPlain(GetClientInstallationProviderPlainArgs args) {
@@ -285,6 +415,71 @@ public final class SamlFunctions {
     /**
      * This data source can be used to retrieve Installation Provider of a SAML Client.
      * 
+     * ## Example Usage
+     * 
+     * In the example below, we extract the SAML metadata IDPSSODescriptor to pass it to the AWS IAM SAML Provider.
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.Realm;
+     * import com.pulumi.keycloak.RealmArgs;
+     * import com.pulumi.keycloak.saml.Client;
+     * import com.pulumi.keycloak.saml.ClientArgs;
+     * import com.pulumi.std.StdFunctions;
+     * import com.pulumi.keycloak.saml.SamlFunctions;
+     * import com.pulumi.keycloak.saml.inputs.GetClientInstallationProviderArgs;
+     * import com.pulumi.aws.IamSamlProvider;
+     * import com.pulumi.aws.IamSamlProviderArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var realm = new Realm("realm", RealmArgs.builder()
+     *             .realm("my-realm")
+     *             .enabled(true)
+     *             .build());
+     * 
+     *         var samlClient = new Client("samlClient", ClientArgs.builder()
+     *             .realmId(realm.id())
+     *             .clientId("test-saml-client")
+     *             .name("test-saml-client")
+     *             .signDocuments(false)
+     *             .signAssertions(true)
+     *             .includeAuthnStatement(true)
+     *             .signingCertificate(StdFunctions.file(Map.of("input", "saml-cert.pem")).result())
+     *             .signingPrivateKey(StdFunctions.file(Map.of("input", "saml-key.pem")).result())
+     *             .build());
+     * 
+     *         final var samlIdpDescriptor = SamlFunctions.getClientInstallationProvider(GetClientInstallationProviderArgs.builder()
+     *             .realmId(realm.id())
+     *             .clientId(samlClient.id())
+     *             .providerId("saml-idp-descriptor")
+     *             .build());
+     * 
+     *         var default_ = new IamSamlProvider("default", IamSamlProviderArgs.builder()
+     *             .name("myprovider")
+     *             .samlMetadataDocument(samlIdpDescriptor.value())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetClientInstallationProviderResult> getClientInstallationProvider(GetClientInstallationProviderArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("keycloak:saml/getClientInstallationProvider:getClientInstallationProvider", TypeShape.of(GetClientInstallationProviderResult.class), args, Utilities.withVersion(options));
@@ -292,12 +487,142 @@ public final class SamlFunctions {
     /**
      * This data source can be used to retrieve Installation Provider of a SAML Client.
      * 
+     * ## Example Usage
+     * 
+     * In the example below, we extract the SAML metadata IDPSSODescriptor to pass it to the AWS IAM SAML Provider.
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.Realm;
+     * import com.pulumi.keycloak.RealmArgs;
+     * import com.pulumi.keycloak.saml.Client;
+     * import com.pulumi.keycloak.saml.ClientArgs;
+     * import com.pulumi.std.StdFunctions;
+     * import com.pulumi.keycloak.saml.SamlFunctions;
+     * import com.pulumi.keycloak.saml.inputs.GetClientInstallationProviderArgs;
+     * import com.pulumi.aws.IamSamlProvider;
+     * import com.pulumi.aws.IamSamlProviderArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var realm = new Realm("realm", RealmArgs.builder()
+     *             .realm("my-realm")
+     *             .enabled(true)
+     *             .build());
+     * 
+     *         var samlClient = new Client("samlClient", ClientArgs.builder()
+     *             .realmId(realm.id())
+     *             .clientId("test-saml-client")
+     *             .name("test-saml-client")
+     *             .signDocuments(false)
+     *             .signAssertions(true)
+     *             .includeAuthnStatement(true)
+     *             .signingCertificate(StdFunctions.file(Map.of("input", "saml-cert.pem")).result())
+     *             .signingPrivateKey(StdFunctions.file(Map.of("input", "saml-key.pem")).result())
+     *             .build());
+     * 
+     *         final var samlIdpDescriptor = SamlFunctions.getClientInstallationProvider(GetClientInstallationProviderArgs.builder()
+     *             .realmId(realm.id())
+     *             .clientId(samlClient.id())
+     *             .providerId("saml-idp-descriptor")
+     *             .build());
+     * 
+     *         var default_ = new IamSamlProvider("default", IamSamlProviderArgs.builder()
+     *             .name("myprovider")
+     *             .samlMetadataDocument(samlIdpDescriptor.value())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetClientInstallationProviderResult> getClientInstallationProvider(GetClientInstallationProviderArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("keycloak:saml/getClientInstallationProvider:getClientInstallationProvider", TypeShape.of(GetClientInstallationProviderResult.class), args, Utilities.withVersion(options));
     }
     /**
      * This data source can be used to retrieve Installation Provider of a SAML Client.
+     * 
+     * ## Example Usage
+     * 
+     * In the example below, we extract the SAML metadata IDPSSODescriptor to pass it to the AWS IAM SAML Provider.
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.Realm;
+     * import com.pulumi.keycloak.RealmArgs;
+     * import com.pulumi.keycloak.saml.Client;
+     * import com.pulumi.keycloak.saml.ClientArgs;
+     * import com.pulumi.std.StdFunctions;
+     * import com.pulumi.keycloak.saml.SamlFunctions;
+     * import com.pulumi.keycloak.saml.inputs.GetClientInstallationProviderArgs;
+     * import com.pulumi.aws.IamSamlProvider;
+     * import com.pulumi.aws.IamSamlProviderArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var realm = new Realm("realm", RealmArgs.builder()
+     *             .realm("my-realm")
+     *             .enabled(true)
+     *             .build());
+     * 
+     *         var samlClient = new Client("samlClient", ClientArgs.builder()
+     *             .realmId(realm.id())
+     *             .clientId("test-saml-client")
+     *             .name("test-saml-client")
+     *             .signDocuments(false)
+     *             .signAssertions(true)
+     *             .includeAuthnStatement(true)
+     *             .signingCertificate(StdFunctions.file(Map.of("input", "saml-cert.pem")).result())
+     *             .signingPrivateKey(StdFunctions.file(Map.of("input", "saml-key.pem")).result())
+     *             .build());
+     * 
+     *         final var samlIdpDescriptor = SamlFunctions.getClientInstallationProvider(GetClientInstallationProviderArgs.builder()
+     *             .realmId(realm.id())
+     *             .clientId(samlClient.id())
+     *             .providerId("saml-idp-descriptor")
+     *             .build());
+     * 
+     *         var default_ = new IamSamlProvider("default", IamSamlProviderArgs.builder()
+     *             .name("myprovider")
+     *             .samlMetadataDocument(samlIdpDescriptor.value())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static CompletableFuture<GetClientInstallationProviderResult> getClientInstallationProviderPlain(GetClientInstallationProviderPlainArgs args, InvokeOptions options) {
