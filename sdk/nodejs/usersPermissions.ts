@@ -23,6 +23,74 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {realm: "my-realm"});
+ * const realmManagement = keycloak.openid.getClientOutput({
+ *     realmId: realm.id,
+ *     clientId: "realm-management",
+ * });
+ * // enable permissions for realm-management client
+ * const realmManagementPermission = new keycloak.openid.ClientPermissions("realm_management_permission", {
+ *     realmId: realm.id,
+ *     clientId: realmManagement.apply(realmManagement => realmManagement.id),
+ *     enabled: true,
+ * });
+ * // creating a user to use with the keycloak_openid_client_user_policy resource
+ * const test = new keycloak.User("test", {
+ *     realmId: realm.id,
+ *     username: "test-user",
+ *     email: "test-user@fakedomain.com",
+ *     firstName: "Testy",
+ *     lastName: "Tester",
+ * });
+ * const testClientUserPolicy = new keycloak.openid.ClientUserPolicy("test", {
+ *     realmId: realm.id,
+ *     resourceServerId: realmManagement.apply(realmManagement => realmManagement.id),
+ *     name: "client_user_policy_test",
+ *     users: [test.id],
+ *     logic: "POSITIVE",
+ *     decisionStrategy: "UNANIMOUS",
+ * }, {
+ *     dependsOn: [realmManagementPermission],
+ * });
+ * const usersPermissions = new keycloak.UsersPermissions("users_permissions", {
+ *     realmId: realm.id,
+ *     viewScope: {
+ *         policies: [testClientUserPolicy.id],
+ *         description: "description",
+ *         decisionStrategy: "UNANIMOUS",
+ *     },
+ *     manageScope: {
+ *         policies: [testClientUserPolicy.id],
+ *         description: "description",
+ *         decisionStrategy: "UNANIMOUS",
+ *     },
+ *     mapRolesScope: {
+ *         policies: [testClientUserPolicy.id],
+ *         description: "description",
+ *         decisionStrategy: "UNANIMOUS",
+ *     },
+ *     manageGroupMembershipScope: {
+ *         policies: [testClientUserPolicy.id],
+ *         description: "description",
+ *         decisionStrategy: "UNANIMOUS",
+ *     },
+ *     impersonateScope: {
+ *         policies: [testClientUserPolicy.id],
+ *         description: "description",
+ *         decisionStrategy: "UNANIMOUS",
+ *     },
+ *     userImpersonatedScope: {
+ *         policies: [testClientUserPolicy.id],
+ *         description: "description",
+ *         decisionStrategy: "UNANIMOUS",
+ *     },
+ * });
+ * ```
+ *
  * ### Argument Reference
  *
  * The following arguments are supported:

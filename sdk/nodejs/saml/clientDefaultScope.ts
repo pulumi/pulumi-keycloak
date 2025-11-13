@@ -6,6 +6,49 @@ import * as utilities from "../utilities";
 
 /**
  * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ * import * as std from "@pulumi/std";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * const samlClient = new keycloak.saml.Client("saml_client", {
+ *     realmId: realm.id,
+ *     clientId: "saml-client",
+ *     name: "saml-client",
+ *     signDocuments: false,
+ *     signAssertions: true,
+ *     includeAuthnStatement: true,
+ *     signingCertificate: std.index.file({
+ *         input: "saml-cert.pem",
+ *     }).result,
+ *     signingPrivateKey: std.index.file({
+ *         input: "saml-key.pem",
+ *     }).result,
+ * });
+ * const clientScope = new keycloak.saml.ClientScope("client_scope", {
+ *     realmId: realm.id,
+ *     name: "client-scope",
+ * });
+ * const clientDefaultScopes = new keycloak.saml.ClientDefaultScope("client_default_scopes", {
+ *     realmId: realm.id,
+ *     clientId: client.id,
+ *     defaultScopes: [
+ *         "role_list",
+ *         clientScope.name,
+ *     ],
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * This resource does not support import. Instead of importing, feel free to create this resource as if it did not already exist
+ *
+ * on the server.
  */
 export class ClientDefaultScope extends pulumi.CustomResource {
     /**

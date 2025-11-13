@@ -12,6 +12,75 @@ import (
 )
 
 // This data source can be used to retrieve Installation Provider of a SAML Client.
+//
+// ## Example Usage
+//
+// In the example below, we extract the SAML metadata IDPSSODescriptor to pass it to the AWS IAM SAML Provider.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-aws/sdk/v7/go/aws"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak/saml"
+//	"github.com/pulumi/pulumi-std/sdk/go/std"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			invokeFile, err := std.File(ctx, map[string]interface{}{
+//				"input": "saml-cert.pem",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			invokeFile1, err := std.File(ctx, map[string]interface{}{
+//				"input": "saml-key.pem",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			samlClient, err := saml.NewClient(ctx, "saml_client", &saml.ClientArgs{
+//				RealmId:               realm.ID(),
+//				ClientId:              pulumi.String("test-saml-client"),
+//				Name:                  pulumi.String("test-saml-client"),
+//				SignDocuments:         pulumi.Bool(false),
+//				SignAssertions:        pulumi.Bool(true),
+//				IncludeAuthnStatement: pulumi.Bool(true),
+//				SigningCertificate:    invokeFile.Result,
+//				SigningPrivateKey:     invokeFile1.Result,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			samlIdpDescriptor := saml.GetClientInstallationProviderOutput(ctx, saml.GetClientInstallationProviderOutputArgs{
+//				RealmId:    realm.ID(),
+//				ClientId:   samlClient.ID(),
+//				ProviderId: pulumi.String("saml-idp-descriptor"),
+//			}, nil)
+//			_, err = aws.NewIamSamlProvider(ctx, "default", &aws.IamSamlProviderArgs{
+//				Name:                 "myprovider",
+//				SamlMetadataDocument: samlIdpDescriptor.Value,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func GetClientInstallationProvider(ctx *pulumi.Context, args *GetClientInstallationProviderArgs, opts ...pulumi.InvokeOption) (*GetClientInstallationProviderResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetClientInstallationProviderResult

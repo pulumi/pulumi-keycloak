@@ -15,6 +15,44 @@ namespace Pulumi.Keycloak.Saml
     /// Clients are entities that can use Keycloak for user authentication. Typically, clients are applications that redirect users
     /// to Keycloak for authentication in order to take advantage of Keycloak's user sessions for SSO.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// using Std = Pulumi.Std;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
+    /// 
+    ///     var samlClient = new Keycloak.Saml.Client("saml_client", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         ClientId = "saml-client",
+    ///         Name = "saml-client",
+    ///         SignDocuments = false,
+    ///         SignAssertions = true,
+    ///         IncludeAuthnStatement = true,
+    ///         SigningCertificate = Std.Index.File.Invoke(new()
+    ///         {
+    ///             Input = "saml-cert.pem",
+    ///         }).Result,
+    ///         SigningPrivateKey = Std.Index.File.Invoke(new()
+    ///         {
+    ///             Input = "saml-key.pem",
+    ///         }).Result,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Clients can be imported using the format `{{realm_id}}/{{client_keycloak_id}}`, where `client_keycloak_id` is the unique ID that Keycloak
