@@ -116,6 +116,7 @@ type LookupClientResult struct {
 	Oauth2DevicePollingInterval           *string  `pulumi:"oauth2DevicePollingInterval"`
 	PkceCodeChallengeMethod               string   `pulumi:"pkceCodeChallengeMethod"`
 	RealmId                               string   `pulumi:"realmId"`
+	RequireDpopBoundTokens                bool     `pulumi:"requireDpopBoundTokens"`
 	ResourceServerId                      string   `pulumi:"resourceServerId"`
 	RootUrl                               string   `pulumi:"rootUrl"`
 	ServiceAccountUserId                  string   `pulumi:"serviceAccountUserId"`
@@ -329,6 +330,10 @@ func (o LookupClientResultOutput) PkceCodeChallengeMethod() pulumi.StringOutput 
 
 func (o LookupClientResultOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClientResult) string { return v.RealmId }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) RequireDpopBoundTokens() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupClientResult) bool { return v.RequireDpopBoundTokens }).(pulumi.BoolOutput)
 }
 
 func (o LookupClientResultOutput) ResourceServerId() pulumi.StringOutput {

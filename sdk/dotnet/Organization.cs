@@ -99,7 +99,7 @@ namespace Pulumi.Keycloak
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// A list of domains. At least one domain is required.
+        /// A list of domains.
         /// </summary>
         [Output("domains")]
         public Output<ImmutableArray<Outputs.OrganizationDomain>> Domains { get; private set; } = null!;
@@ -198,11 +198,11 @@ namespace Pulumi.Keycloak
         [Input("description")]
         public Input<string>? Description { get; set; }
 
-        [Input("domains", required: true)]
+        [Input("domains")]
         private InputList<Inputs.OrganizationDomainArgs>? _domains;
 
         /// <summary>
-        /// A list of domains. At least one domain is required.
+        /// A list of domains.
         /// </summary>
         public InputList<Inputs.OrganizationDomainArgs> Domains
         {
@@ -270,7 +270,7 @@ namespace Pulumi.Keycloak
         private InputList<Inputs.OrganizationDomainGetArgs>? _domains;
 
         /// <summary>
-        /// A list of domains. At least one domain is required.
+        /// A list of domains.
         /// </summary>
         public InputList<Inputs.OrganizationDomainGetArgs> Domains
         {

@@ -269,6 +269,7 @@ namespace Pulumi.Keycloak
         public readonly string AccountTheme;
         public readonly string ActionTokenGeneratedByAdminLifespan;
         public readonly string ActionTokenGeneratedByUserLifespan;
+        public readonly bool AdminPermissionsEnabled;
         public readonly string AdminTheme;
         public readonly ImmutableDictionary<string, string> Attributes;
         public readonly string BrowserFlow;
@@ -341,6 +342,8 @@ namespace Pulumi.Keycloak
             string actionTokenGeneratedByAdminLifespan,
 
             string actionTokenGeneratedByUserLifespan,
+
+            bool adminPermissionsEnabled,
 
             string adminTheme,
 
@@ -452,6 +455,7 @@ namespace Pulumi.Keycloak
             AccountTheme = accountTheme;
             ActionTokenGeneratedByAdminLifespan = actionTokenGeneratedByAdminLifespan;
             ActionTokenGeneratedByUserLifespan = actionTokenGeneratedByUserLifespan;
+            AdminPermissionsEnabled = adminPermissionsEnabled;
             AdminTheme = adminTheme;
             Attributes = attributes;
             BrowserFlow = browserFlow;

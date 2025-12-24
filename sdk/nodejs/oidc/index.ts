@@ -5,6 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export { FacebookIdentityProviderArgs, FacebookIdentityProviderState } from "./facebookIdentityProvider";
+export type FacebookIdentityProvider = import("./facebookIdentityProvider").FacebookIdentityProvider;
+export const FacebookIdentityProvider: typeof import("./facebookIdentityProvider").FacebookIdentityProvider = null as any;
+utilities.lazyLoad(exports, ["FacebookIdentityProvider"], () => require("./facebookIdentityProvider"));
+
 export { GithubIdentityProviderArgs, GithubIdentityProviderState } from "./githubIdentityProvider";
 export type GithubIdentityProvider = import("./githubIdentityProvider").GithubIdentityProvider;
 export const GithubIdentityProvider: typeof import("./githubIdentityProvider").GithubIdentityProvider = null as any;
@@ -25,6 +30,8 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "keycloak:oidc/facebookIdentityProvider:FacebookIdentityProvider":
+                return new FacebookIdentityProvider(name, <any>undefined, { urn })
             case "keycloak:oidc/githubIdentityProvider:GithubIdentityProvider":
                 return new GithubIdentityProvider(name, <any>undefined, { urn })
             case "keycloak:oidc/googleIdentityProvider:GoogleIdentityProvider":
@@ -36,6 +43,7 @@ const _module = {
         }
     },
 };
+pulumi.runtime.registerResourceModule("keycloak", "oidc/facebookIdentityProvider", _module)
 pulumi.runtime.registerResourceModule("keycloak", "oidc/githubIdentityProvider", _module)
 pulumi.runtime.registerResourceModule("keycloak", "oidc/googleIdentityProvider", _module)
 pulumi.runtime.registerResourceModule("keycloak", "oidc/identityProvider", _module)

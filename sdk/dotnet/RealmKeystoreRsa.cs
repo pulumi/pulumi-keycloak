@@ -41,6 +41,10 @@ namespace Pulumi.Keycloak
     ///         Algorithm = "RS256",
     ///         KeystoreSize = 2048,
     ///         ProviderId = "rsa",
+    ///         ExtraConfig = 
+    ///         {
+    ///             { "kid", "my-key-id" },
+    ///         },
     ///     });
     /// 
     /// });
@@ -84,6 +88,12 @@ namespace Pulumi.Keycloak
         /// </summary>
         [Output("enabled")]
         public Output<bool?> Enabled { get; private set; } = null!;
+
+        /// <summary>
+        /// Map of additional provider configuration options passed through to the Keycloak component config. For RSA keystores this can include keys like `Kid`.
+        /// </summary>
+        [Output("extraConfig")]
+        public Output<ImmutableDictionary<string, string>?> ExtraConfig { get; private set; } = null!;
 
         /// <summary>
         /// Display name of provider when linked in admin console.
@@ -185,6 +195,18 @@ namespace Pulumi.Keycloak
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
+        [Input("extraConfig")]
+        private InputMap<string>? _extraConfig;
+
+        /// <summary>
+        /// Map of additional provider configuration options passed through to the Keycloak component config. For RSA keystores this can include keys like `Kid`.
+        /// </summary>
+        public InputMap<string> ExtraConfig
+        {
+            get => _extraConfig ?? (_extraConfig = new InputMap<string>());
+            set => _extraConfig = value;
+        }
+
         /// <summary>
         /// Display name of provider when linked in admin console.
         /// </summary>
@@ -246,6 +268,18 @@ namespace Pulumi.Keycloak
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
+
+        [Input("extraConfig")]
+        private InputMap<string>? _extraConfig;
+
+        /// <summary>
+        /// Map of additional provider configuration options passed through to the Keycloak component config. For RSA keystores this can include keys like `Kid`.
+        /// </summary>
+        public InputMap<string> ExtraConfig
+        {
+            get => _extraConfig ?? (_extraConfig = new InputMap<string>());
+            set => _extraConfig = value;
+        }
 
         /// <summary>
         /// Display name of provider when linked in admin console.

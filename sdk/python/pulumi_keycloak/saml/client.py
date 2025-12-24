@@ -34,6 +34,7 @@ class ClientArgs:
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  encrypt_assertions: Optional[pulumi.Input[_builtins.bool]] = None,
+                 encryption_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
                  encryption_certificate: Optional[pulumi.Input[_builtins.str]] = None,
                  extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  force_name_id_format: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -72,6 +73,7 @@ class ClientArgs:
         :param pulumi.Input[_builtins.str] description: The description of this client in the GUI.
         :param pulumi.Input[_builtins.bool] enabled: When false, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
         :param pulumi.Input[_builtins.bool] encrypt_assertions: When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key. Defaults to `false`.
+        :param pulumi.Input[_builtins.str] encryption_algorithm: Algorithm used to encrypt SAML assertions. Allowed values: `AES_256_GCM`, `AES_192_GCM`, `AES_128_GCM`, `AES_256_CBC`, `AES_192_CBC`, or `AES_128_CBC`.
         :param pulumi.Input[_builtins.str] encryption_certificate: If assertions for the client are encrypted, this certificate will be used for encryption.
         :param pulumi.Input[_builtins.bool] force_name_id_format: Ignore requested NameID subject format and use the one defined in `name_id_format` instead. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] force_post_binding: When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding. Defaults to `true`.
@@ -119,6 +121,8 @@ class ClientArgs:
             pulumi.set(__self__, "enabled", enabled)
         if encrypt_assertions is not None:
             pulumi.set(__self__, "encrypt_assertions", encrypt_assertions)
+        if encryption_algorithm is not None:
+            pulumi.set(__self__, "encryption_algorithm", encryption_algorithm)
         if encryption_certificate is not None:
             pulumi.set(__self__, "encryption_certificate", encryption_certificate)
         if extra_config is not None:
@@ -321,6 +325,18 @@ class ClientArgs:
     @encrypt_assertions.setter
     def encrypt_assertions(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "encrypt_assertions", value)
+
+    @_builtins.property
+    @pulumi.getter(name="encryptionAlgorithm")
+    def encryption_algorithm(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Algorithm used to encrypt SAML assertions. Allowed values: `AES_256_GCM`, `AES_192_GCM`, `AES_128_GCM`, `AES_256_CBC`, `AES_192_CBC`, or `AES_128_CBC`.
+        """
+        return pulumi.get(self, "encryption_algorithm")
+
+    @encryption_algorithm.setter
+    def encryption_algorithm(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "encryption_algorithm", value)
 
     @_builtins.property
     @pulumi.getter(name="encryptionCertificate")
@@ -611,6 +627,7 @@ class _ClientState:
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  encrypt_assertions: Optional[pulumi.Input[_builtins.bool]] = None,
+                 encryption_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
                  encryption_certificate: Optional[pulumi.Input[_builtins.str]] = None,
                  encryption_certificate_sha1: Optional[pulumi.Input[_builtins.str]] = None,
                  extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
@@ -652,6 +669,7 @@ class _ClientState:
         :param pulumi.Input[_builtins.str] description: The description of this client in the GUI.
         :param pulumi.Input[_builtins.bool] enabled: When false, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
         :param pulumi.Input[_builtins.bool] encrypt_assertions: When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key. Defaults to `false`.
+        :param pulumi.Input[_builtins.str] encryption_algorithm: Algorithm used to encrypt SAML assertions. Allowed values: `AES_256_GCM`, `AES_192_GCM`, `AES_128_GCM`, `AES_256_CBC`, `AES_192_CBC`, or `AES_128_CBC`.
         :param pulumi.Input[_builtins.str] encryption_certificate: If assertions for the client are encrypted, this certificate will be used for encryption.
         :param pulumi.Input[_builtins.str] encryption_certificate_sha1: (Computed) The sha1sum fingerprint of the encryption certificate. If the encryption certificate is not in correct base64 format, this will be left empty.
         :param pulumi.Input[_builtins.bool] force_name_id_format: Ignore requested NameID subject format and use the one defined in `name_id_format` instead. Defaults to `false`.
@@ -703,6 +721,8 @@ class _ClientState:
             pulumi.set(__self__, "enabled", enabled)
         if encrypt_assertions is not None:
             pulumi.set(__self__, "encrypt_assertions", encrypt_assertions)
+        if encryption_algorithm is not None:
+            pulumi.set(__self__, "encryption_algorithm", encryption_algorithm)
         if encryption_certificate is not None:
             pulumi.set(__self__, "encryption_certificate", encryption_certificate)
         if encryption_certificate_sha1 is not None:
@@ -901,6 +921,18 @@ class _ClientState:
     @encrypt_assertions.setter
     def encrypt_assertions(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "encrypt_assertions", value)
+
+    @_builtins.property
+    @pulumi.getter(name="encryptionAlgorithm")
+    def encryption_algorithm(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Algorithm used to encrypt SAML assertions. Allowed values: `AES_256_GCM`, `AES_192_GCM`, `AES_128_GCM`, `AES_256_CBC`, `AES_192_CBC`, or `AES_128_CBC`.
+        """
+        return pulumi.get(self, "encryption_algorithm")
+
+    @encryption_algorithm.setter
+    def encryption_algorithm(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "encryption_algorithm", value)
 
     @_builtins.property
     @pulumi.getter(name="encryptionCertificate")
@@ -1242,6 +1274,7 @@ class Client(pulumi.CustomResource):
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  encrypt_assertions: Optional[pulumi.Input[_builtins.bool]] = None,
+                 encryption_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
                  encryption_certificate: Optional[pulumi.Input[_builtins.str]] = None,
                  extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  force_name_id_format: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -1322,6 +1355,7 @@ class Client(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] description: The description of this client in the GUI.
         :param pulumi.Input[_builtins.bool] enabled: When false, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
         :param pulumi.Input[_builtins.bool] encrypt_assertions: When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key. Defaults to `false`.
+        :param pulumi.Input[_builtins.str] encryption_algorithm: Algorithm used to encrypt SAML assertions. Allowed values: `AES_256_GCM`, `AES_192_GCM`, `AES_128_GCM`, `AES_256_CBC`, `AES_192_CBC`, or `AES_128_CBC`.
         :param pulumi.Input[_builtins.str] encryption_certificate: If assertions for the client are encrypted, this certificate will be used for encryption.
         :param pulumi.Input[_builtins.bool] force_name_id_format: Ignore requested NameID subject format and use the one defined in `name_id_format` instead. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] force_post_binding: When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding. Defaults to `true`.
@@ -1420,6 +1454,7 @@ class Client(pulumi.CustomResource):
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  encrypt_assertions: Optional[pulumi.Input[_builtins.bool]] = None,
+                 encryption_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
                  encryption_certificate: Optional[pulumi.Input[_builtins.str]] = None,
                  extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  force_name_id_format: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -1467,6 +1502,7 @@ class Client(pulumi.CustomResource):
             __props__.__dict__["description"] = description
             __props__.__dict__["enabled"] = enabled
             __props__.__dict__["encrypt_assertions"] = encrypt_assertions
+            __props__.__dict__["encryption_algorithm"] = encryption_algorithm
             __props__.__dict__["encryption_certificate"] = encryption_certificate
             __props__.__dict__["extra_config"] = extra_config
             __props__.__dict__["force_name_id_format"] = force_name_id_format
@@ -1518,6 +1554,7 @@ class Client(pulumi.CustomResource):
             description: Optional[pulumi.Input[_builtins.str]] = None,
             enabled: Optional[pulumi.Input[_builtins.bool]] = None,
             encrypt_assertions: Optional[pulumi.Input[_builtins.bool]] = None,
+            encryption_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
             encryption_certificate: Optional[pulumi.Input[_builtins.str]] = None,
             encryption_certificate_sha1: Optional[pulumi.Input[_builtins.str]] = None,
             extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
@@ -1564,6 +1601,7 @@ class Client(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] description: The description of this client in the GUI.
         :param pulumi.Input[_builtins.bool] enabled: When false, this client will not be able to initiate a login or obtain access tokens. Defaults to `true`.
         :param pulumi.Input[_builtins.bool] encrypt_assertions: When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key. Defaults to `false`.
+        :param pulumi.Input[_builtins.str] encryption_algorithm: Algorithm used to encrypt SAML assertions. Allowed values: `AES_256_GCM`, `AES_192_GCM`, `AES_128_GCM`, `AES_256_CBC`, `AES_192_CBC`, or `AES_128_CBC`.
         :param pulumi.Input[_builtins.str] encryption_certificate: If assertions for the client are encrypted, this certificate will be used for encryption.
         :param pulumi.Input[_builtins.str] encryption_certificate_sha1: (Computed) The sha1sum fingerprint of the encryption certificate. If the encryption certificate is not in correct base64 format, this will be left empty.
         :param pulumi.Input[_builtins.bool] force_name_id_format: Ignore requested NameID subject format and use the one defined in `name_id_format` instead. Defaults to `false`.
@@ -1607,6 +1645,7 @@ class Client(pulumi.CustomResource):
         __props__.__dict__["description"] = description
         __props__.__dict__["enabled"] = enabled
         __props__.__dict__["encrypt_assertions"] = encrypt_assertions
+        __props__.__dict__["encryption_algorithm"] = encryption_algorithm
         __props__.__dict__["encryption_certificate"] = encryption_certificate
         __props__.__dict__["encryption_certificate_sha1"] = encryption_certificate_sha1
         __props__.__dict__["extra_config"] = extra_config
@@ -1731,6 +1770,14 @@ class Client(pulumi.CustomResource):
         When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key. Defaults to `false`.
         """
         return pulumi.get(self, "encrypt_assertions")
+
+    @_builtins.property
+    @pulumi.getter(name="encryptionAlgorithm")
+    def encryption_algorithm(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Algorithm used to encrypt SAML assertions. Allowed values: `AES_256_GCM`, `AES_192_GCM`, `AES_128_GCM`, `AES_256_CBC`, `AES_192_CBC`, or `AES_128_CBC`.
+        """
+        return pulumi.get(self, "encryption_algorithm")
 
     @_builtins.property
     @pulumi.getter(name="encryptionCertificate")

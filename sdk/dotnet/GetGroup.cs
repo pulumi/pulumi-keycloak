@@ -159,6 +159,9 @@ namespace Pulumi.Keycloak
 
     public sealed class GetGroupArgs : global::Pulumi.InvokeArgs
     {
+        [Input("description")]
+        public string? Description { get; set; }
+
         /// <summary>
         /// The name of the group. If there are multiple groups match `Name`, the first result will be returned.
         /// </summary>
@@ -179,6 +182,9 @@ namespace Pulumi.Keycloak
 
     public sealed class GetGroupInvokeArgs : global::Pulumi.InvokeArgs
     {
+        [Input("description")]
+        public Input<string>? Description { get; set; }
+
         /// <summary>
         /// The name of the group. If there are multiple groups match `Name`, the first result will be returned.
         /// </summary>
@@ -202,6 +208,7 @@ namespace Pulumi.Keycloak
     public sealed class GetGroupResult
     {
         public readonly ImmutableDictionary<string, string> Attributes;
+        public readonly string? Description;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
@@ -215,6 +222,8 @@ namespace Pulumi.Keycloak
         private GetGroupResult(
             ImmutableDictionary<string, string> attributes,
 
+            string? description,
+
             string id,
 
             string name,
@@ -226,6 +235,7 @@ namespace Pulumi.Keycloak
             string realmId)
         {
             Attributes = attributes;
+            Description = description;
             Id = id;
             Name = name;
             ParentId = parentId;

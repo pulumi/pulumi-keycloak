@@ -66,18 +66,18 @@ public final class OrganizationArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * A list of domains. At least one domain is required.
+     * A list of domains.
      * 
      */
-    @Import(name="domains", required=true)
-    private Output<List<OrganizationDomainArgs>> domains;
+    @Import(name="domains")
+    private @Nullable Output<List<OrganizationDomainArgs>> domains;
 
     /**
-     * @return A list of domains. At least one domain is required.
+     * @return A list of domains.
      * 
      */
-    public Output<List<OrganizationDomainArgs>> domains() {
-        return this.domains;
+    public Optional<Output<List<OrganizationDomainArgs>>> domains() {
+        return Optional.ofNullable(this.domains);
     }
 
     /**
@@ -235,18 +235,18 @@ public final class OrganizationArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param domains A list of domains. At least one domain is required.
+         * @param domains A list of domains.
          * 
          * @return builder
          * 
          */
-        public Builder domains(Output<List<OrganizationDomainArgs>> domains) {
+        public Builder domains(@Nullable Output<List<OrganizationDomainArgs>> domains) {
             $.domains = domains;
             return this;
         }
 
         /**
-         * @param domains A list of domains. At least one domain is required.
+         * @param domains A list of domains.
          * 
          * @return builder
          * 
@@ -256,7 +256,7 @@ public final class OrganizationArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param domains A list of domains. At least one domain is required.
+         * @param domains A list of domains.
          * 
          * @return builder
          * 
@@ -350,9 +350,6 @@ public final class OrganizationArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public OrganizationArgs build() {
-            if ($.domains == null) {
-                throw new MissingRequiredPropertyException("OrganizationArgs", "domains");
-            }
             if ($.realm == null) {
                 throw new MissingRequiredPropertyException("OrganizationArgs", "realm");
             }

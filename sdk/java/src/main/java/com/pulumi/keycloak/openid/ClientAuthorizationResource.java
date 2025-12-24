@@ -17,6 +17,126 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * Allows you to manage openid Client Authorization Resources.
+ * 
+ * Authorization resources represent the protected resources in your application. Each resource can have associated scopes, URIs, and attributes.
+ * 
+ * ## Example Usage
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.keycloak.Realm;
+ * import com.pulumi.keycloak.RealmArgs;
+ * import com.pulumi.keycloak.openid.Client;
+ * import com.pulumi.keycloak.openid.ClientArgs;
+ * import com.pulumi.keycloak.openid.inputs.ClientAuthorizationArgs;
+ * import com.pulumi.keycloak.openid.ClientAuthorizationScope;
+ * import com.pulumi.keycloak.openid.ClientAuthorizationScopeArgs;
+ * import com.pulumi.keycloak.openid.ClientAuthorizationResource;
+ * import com.pulumi.keycloak.openid.ClientAuthorizationResourceArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var realm = new Realm("realm", RealmArgs.builder()
+ *             .realm("my-realm")
+ *             .enabled(true)
+ *             .build());
+ * 
+ *         var test = new Client("test", ClientArgs.builder()
+ *             .clientId("client_id")
+ *             .realmId(realm.id())
+ *             .accessType("CONFIDENTIAL")
+ *             .serviceAccountsEnabled(true)
+ *             .authorization(ClientAuthorizationArgs.builder()
+ *                 .policyEnforcementMode("ENFORCING")
+ *                 .build())
+ *             .build());
+ * 
+ *         var readScope = new ClientAuthorizationScope("readScope", ClientAuthorizationScopeArgs.builder()
+ *             .resourceServerId(test.resourceServerId())
+ *             .realmId(realm.id())
+ *             .name("read")
+ *             .build());
+ * 
+ *         var writeScope = new ClientAuthorizationScope("writeScope", ClientAuthorizationScopeArgs.builder()
+ *             .resourceServerId(test.resourceServerId())
+ *             .realmId(realm.id())
+ *             .name("write")
+ *             .build());
+ * 
+ *         var testClientAuthorizationResource = new ClientAuthorizationResource("testClientAuthorizationResource", ClientAuthorizationResourceArgs.builder()
+ *             .resourceServerId(test.resourceServerId())
+ *             .realmId(realm.id())
+ *             .name("my_resource")
+ *             .displayName("My Resource")
+ *             .uris(            
+ *                 "/api/resource/*",
+ *                 "/api/resource/**")
+ *             .scopes(            
+ *                 readScope.name(),
+ *                 writeScope.name())
+ *             .type("http://example.com/resource-type")
+ *             .attributes(Map.ofEntries(
+ *                 Map.entry("key1", "value1,value2"),
+ *                 Map.entry("key2", "value3")
+ *             ))
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ### Argument Reference
+ * 
+ * The following arguments are supported:
+ * 
+ * - `realmId` - (Required) The realm this resource exists in.
+ * - `resourceServerId` - (Required) The ID of the resource server.
+ * - `name` - (Required) The name of the resource.
+ * - `displayName` - (Optional) The display name of the resource.
+ * - `uris` - (Optional) A set of URIs that this resource represents.
+ * - `iconUri` - (Optional) An icon URI for the resource.
+ * - `ownerManagedAccess` - (Optional) When `true`, this resource supports user-managed access. Defaults to `false`.
+ * - `scopes` - (Optional) A set of scope names that this resource uses.
+ * - `type` - (Optional) The type of this resource (e.g., `urn:myapp:resources:default`).
+ * - `attributes` - (Optional) A map of attributes for the resource. Values can be comma-separated lists.
+ * 
+ * ### Attributes Reference
+ * 
+ * In addition to the arguments listed above, the following computed attributes are exported:
+ * 
+ * - `id` - Resource ID representing the authorization resource.
+ * 
+ * ## Import
+ * 
+ * Client authorization resources can be imported using the format: `{{realmId}}/{{resourceServerId}}/{{authorizationResourceId}}`.
+ * 
+ * Example:
+ * 
+ * bash
+ * 
+ * ```sh
+ * $ pulumi import keycloak:openid/clientAuthorizationResource:ClientAuthorizationResource test my-realm/3bd4a686-1062-4b59-97b8-e4e3f10b99da/63b3cde8-987d-4cd9-9306-1955579281d9
+ * ```
+ * 
+ */
 @ResourceType(type="keycloak:openid/clientAuthorizationResource:ClientAuthorizationResource")
 public class ClientAuthorizationResource extends com.pulumi.resources.CustomResource {
     @Export(name="attributes", refs={Map.class,String.class}, tree="[0,1,1]")

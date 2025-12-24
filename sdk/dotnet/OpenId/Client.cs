@@ -269,7 +269,7 @@ namespace Pulumi.Keycloak.OpenId
         /// The description of this client in the GUI.
         /// </summary>
         [Output("description")]
-        public Output<string> Description { get; private set; } = null!;
+        public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
         /// When `True`, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to `False`.
@@ -375,6 +375,12 @@ namespace Pulumi.Keycloak.OpenId
         /// </summary>
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable support for Demonstrating Proof-of-Possession (DPoP) bound tokens.
+        /// </summary>
+        [Output("requireDpopBoundTokens")]
+        public Output<bool> RequireDpopBoundTokens { get; private set; } = null!;
 
         /// <summary>
         /// (Computed) When authorization is enabled for this client, this attribute is the unique ID for the client (the same value as the `.id` attribute).
@@ -786,6 +792,12 @@ namespace Pulumi.Keycloak.OpenId
         public Input<string> RealmId { get; set; } = null!;
 
         /// <summary>
+        /// Enable support for Demonstrating Proof-of-Possession (DPoP) bound tokens.
+        /// </summary>
+        [Input("requireDpopBoundTokens")]
+        public Input<bool>? RequireDpopBoundTokens { get; set; }
+
+        /// <summary>
         /// When specified, this URL is prepended to any relative URLs found within `ValidRedirectUris`, `WebOrigins`, and `AdminUrl`. NOTE: Due to limitations in the Keycloak API, when the `RootUrl` attribute is used, the `ValidRedirectUris`, `WebOrigins`, and `AdminUrl` attributes will be required.
         /// </summary>
         [Input("rootUrl")]
@@ -1156,6 +1168,12 @@ namespace Pulumi.Keycloak.OpenId
         /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
+
+        /// <summary>
+        /// Enable support for Demonstrating Proof-of-Possession (DPoP) bound tokens.
+        /// </summary>
+        [Input("requireDpopBoundTokens")]
+        public Input<bool>? RequireDpopBoundTokens { get; set; }
 
         /// <summary>
         /// (Computed) When authorization is enabled for this client, this attribute is the unique ID for the client (the same value as the `.id` attribute).

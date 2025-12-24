@@ -1676,6 +1676,8 @@ type RealmSecurityDefensesBruteForceDetection struct {
 	MaxFailureWaitSeconds   *int `pulumi:"maxFailureWaitSeconds"`
 	// How many failures before wait is triggered.
 	MaxLoginFailures *int `pulumi:"maxLoginFailures"`
+	// How many temporary lockouts are permitted before a user is permanently locked out. `permanentLockout` needs to be `true`. Defaults to `0`
+	MaxTemporaryLockouts *int `pulumi:"maxTemporaryLockouts"`
 	// How long to wait after a quick login failure.
 	// - ` maxFailureWaitSeconds  ` - (Optional) Max. time a user will be locked out.
 	MinimumQuickLoginWaitSeconds *int `pulumi:"minimumQuickLoginWaitSeconds"`
@@ -1704,6 +1706,8 @@ type RealmSecurityDefensesBruteForceDetectionArgs struct {
 	MaxFailureWaitSeconds   pulumi.IntPtrInput `pulumi:"maxFailureWaitSeconds"`
 	// How many failures before wait is triggered.
 	MaxLoginFailures pulumi.IntPtrInput `pulumi:"maxLoginFailures"`
+	// How many temporary lockouts are permitted before a user is permanently locked out. `permanentLockout` needs to be `true`. Defaults to `0`
+	MaxTemporaryLockouts pulumi.IntPtrInput `pulumi:"maxTemporaryLockouts"`
 	// How long to wait after a quick login failure.
 	// - ` maxFailureWaitSeconds  ` - (Optional) Max. time a user will be locked out.
 	MinimumQuickLoginWaitSeconds pulumi.IntPtrInput `pulumi:"minimumQuickLoginWaitSeconds"`
@@ -1806,6 +1810,11 @@ func (o RealmSecurityDefensesBruteForceDetectionOutput) MaxLoginFailures() pulum
 	return o.ApplyT(func(v RealmSecurityDefensesBruteForceDetection) *int { return v.MaxLoginFailures }).(pulumi.IntPtrOutput)
 }
 
+// How many temporary lockouts are permitted before a user is permanently locked out. `permanentLockout` needs to be `true`. Defaults to `0`
+func (o RealmSecurityDefensesBruteForceDetectionOutput) MaxTemporaryLockouts() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v RealmSecurityDefensesBruteForceDetection) *int { return v.MaxTemporaryLockouts }).(pulumi.IntPtrOutput)
+}
+
 // How long to wait after a quick login failure.
 // - ` maxFailureWaitSeconds  ` - (Optional) Max. time a user will be locked out.
 func (o RealmSecurityDefensesBruteForceDetectionOutput) MinimumQuickLoginWaitSeconds() pulumi.IntPtrOutput {
@@ -1877,6 +1886,16 @@ func (o RealmSecurityDefensesBruteForceDetectionPtrOutput) MaxLoginFailures() pu
 			return nil
 		}
 		return v.MaxLoginFailures
+	}).(pulumi.IntPtrOutput)
+}
+
+// How many temporary lockouts are permitted before a user is permanently locked out. `permanentLockout` needs to be `true`. Defaults to `0`
+func (o RealmSecurityDefensesBruteForceDetectionPtrOutput) MaxTemporaryLockouts() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *RealmSecurityDefensesBruteForceDetection) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxTemporaryLockouts
 	}).(pulumi.IntPtrOutput)
 }
 
@@ -2192,6 +2211,7 @@ func (o RealmSecurityDefensesHeadersPtrOutput) XXssProtection() pulumi.StringPtr
 }
 
 type RealmSmtpServer struct {
+	AllowUtf8 *bool `pulumi:"allowUtf8"`
 	// Enables authentication to the SMTP server. Cannot be set alongside `tokenAuth`. This block supports the following arguments:
 	Auth *RealmSmtpServerAuth `pulumi:"auth"`
 	// The email address uses for bounces.
@@ -2228,6 +2248,7 @@ type RealmSmtpServerInput interface {
 }
 
 type RealmSmtpServerArgs struct {
+	AllowUtf8 pulumi.BoolPtrInput `pulumi:"allowUtf8"`
 	// Enables authentication to the SMTP server. Cannot be set alongside `tokenAuth`. This block supports the following arguments:
 	Auth RealmSmtpServerAuthPtrInput `pulumi:"auth"`
 	// The email address uses for bounces.
@@ -2329,6 +2350,10 @@ func (o RealmSmtpServerOutput) ToRealmSmtpServerPtrOutputWithContext(ctx context
 	}).(RealmSmtpServerPtrOutput)
 }
 
+func (o RealmSmtpServerOutput) AllowUtf8() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v RealmSmtpServer) *bool { return v.AllowUtf8 }).(pulumi.BoolPtrOutput)
+}
+
 // Enables authentication to the SMTP server. Cannot be set alongside `tokenAuth`. This block supports the following arguments:
 func (o RealmSmtpServerOutput) Auth() RealmSmtpServerAuthPtrOutput {
 	return o.ApplyT(func(v RealmSmtpServer) *RealmSmtpServerAuth { return v.Auth }).(RealmSmtpServerAuthPtrOutput)
@@ -2406,6 +2431,15 @@ func (o RealmSmtpServerPtrOutput) Elem() RealmSmtpServerOutput {
 		var ret RealmSmtpServer
 		return ret
 	}).(RealmSmtpServerOutput)
+}
+
+func (o RealmSmtpServerPtrOutput) AllowUtf8() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *RealmSmtpServer) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.AllowUtf8
+	}).(pulumi.BoolPtrOutput)
 }
 
 // Enables authentication to the SMTP server. Cannot be set alongside `tokenAuth`. This block supports the following arguments:
@@ -6126,6 +6160,7 @@ type GetRealmSecurityDefenseBruteForceDetection struct {
 	FailureResetTimeSeconds      int  `pulumi:"failureResetTimeSeconds"`
 	MaxFailureWaitSeconds        int  `pulumi:"maxFailureWaitSeconds"`
 	MaxLoginFailures             int  `pulumi:"maxLoginFailures"`
+	MaxTemporaryLockouts         int  `pulumi:"maxTemporaryLockouts"`
 	MinimumQuickLoginWaitSeconds int  `pulumi:"minimumQuickLoginWaitSeconds"`
 	PermanentLockout             bool `pulumi:"permanentLockout"`
 	QuickLoginCheckMilliSeconds  int  `pulumi:"quickLoginCheckMilliSeconds"`
@@ -6147,6 +6182,7 @@ type GetRealmSecurityDefenseBruteForceDetectionArgs struct {
 	FailureResetTimeSeconds      pulumi.IntInput  `pulumi:"failureResetTimeSeconds"`
 	MaxFailureWaitSeconds        pulumi.IntInput  `pulumi:"maxFailureWaitSeconds"`
 	MaxLoginFailures             pulumi.IntInput  `pulumi:"maxLoginFailures"`
+	MaxTemporaryLockouts         pulumi.IntInput  `pulumi:"maxTemporaryLockouts"`
 	MinimumQuickLoginWaitSeconds pulumi.IntInput  `pulumi:"minimumQuickLoginWaitSeconds"`
 	PermanentLockout             pulumi.BoolInput `pulumi:"permanentLockout"`
 	QuickLoginCheckMilliSeconds  pulumi.IntInput  `pulumi:"quickLoginCheckMilliSeconds"`
@@ -6214,6 +6250,10 @@ func (o GetRealmSecurityDefenseBruteForceDetectionOutput) MaxFailureWaitSeconds(
 
 func (o GetRealmSecurityDefenseBruteForceDetectionOutput) MaxLoginFailures() pulumi.IntOutput {
 	return o.ApplyT(func(v GetRealmSecurityDefenseBruteForceDetection) int { return v.MaxLoginFailures }).(pulumi.IntOutput)
+}
+
+func (o GetRealmSecurityDefenseBruteForceDetectionOutput) MaxTemporaryLockouts() pulumi.IntOutput {
+	return o.ApplyT(func(v GetRealmSecurityDefenseBruteForceDetection) int { return v.MaxTemporaryLockouts }).(pulumi.IntOutput)
 }
 
 func (o GetRealmSecurityDefenseBruteForceDetectionOutput) MinimumQuickLoginWaitSeconds() pulumi.IntOutput {

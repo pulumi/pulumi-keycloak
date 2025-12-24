@@ -65,6 +65,7 @@ export interface GetClientResult {
     readonly description: string;
     readonly enabled: boolean;
     readonly encryptAssertions: boolean;
+    readonly encryptionAlgorithm: string;
     readonly encryptionCertificate: string;
     readonly encryptionCertificateSha1: string;
     readonly extraConfig: {[key: string]: string};

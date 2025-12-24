@@ -33,14 +33,17 @@ class UserFederationArgs:
                  bind_dn: Optional[pulumi.Input[_builtins.str]] = None,
                  cache: Optional[pulumi.Input['UserFederationCacheArgs']] = None,
                  changed_sync_period: Optional[pulumi.Input[_builtins.int]] = None,
+                 connection_pooling: Optional[pulumi.Input[_builtins.bool]] = None,
                  connection_timeout: Optional[pulumi.Input[_builtins.str]] = None,
                  custom_user_search_filter: Optional[pulumi.Input[_builtins.str]] = None,
+                 debug: Optional[pulumi.Input[_builtins.str]] = None,
                  delete_default_mappers: Optional[pulumi.Input[_builtins.bool]] = None,
                  edit_mode: Optional[pulumi.Input[_builtins.str]] = None,
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  full_sync_period: Optional[pulumi.Input[_builtins.int]] = None,
                  import_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  kerberos: Optional[pulumi.Input['UserFederationKerberosArgs']] = None,
+                 krb_principal_attribute: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  pagination: Optional[pulumi.Input[_builtins.bool]] = None,
                  priority: Optional[pulumi.Input[_builtins.int]] = None,
@@ -67,14 +70,17 @@ class UserFederationArgs:
         :param pulumi.Input[_builtins.str] bind_dn: DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` is set.
         :param pulumi.Input['UserFederationCacheArgs'] cache: A block containing the cache settings.
         :param pulumi.Input[_builtins.int] changed_sync_period: How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
+        :param pulumi.Input[_builtins.bool] connection_pooling: When `true`, LDAP connection pooling is enabled. Defaults to `false`.
         :param pulumi.Input[_builtins.str] connection_timeout: LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
         :param pulumi.Input[_builtins.str] custom_user_search_filter: Additional LDAP filter for filtering searched users. Must begin with `(` and end with `)`.
+        :param pulumi.Input[_builtins.str] debug: Can be one of `true` or `false`. Will enable/disable logging for Kerberos Authentication. Defaults to `false`:
         :param pulumi.Input[_builtins.bool] delete_default_mappers: When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `false`.
         :param pulumi.Input[_builtins.str] edit_mode: Can be one of `READ_ONLY`, `WRITABLE`, or `UNSYNCED`. `UNSYNCED` allows user data to be imported but not synced back to LDAP. Defaults to `READ_ONLY`.
         :param pulumi.Input[_builtins.bool] enabled: When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
         :param pulumi.Input[_builtins.int] full_sync_period: How frequently Keycloak should sync all LDAP users, in seconds. Omit this property to disable periodic full sync.
         :param pulumi.Input[_builtins.bool] import_enabled: When `true`, LDAP users will be imported into the Keycloak database. Defaults to `true`.
         :param pulumi.Input['UserFederationKerberosArgs'] kerberos: A block containing the kerberos settings.
+        :param pulumi.Input[_builtins.str] krb_principal_attribute: Name of the LDAP attribute, which refers to Kerberos principal. This is used to lookup appropriate LDAP user after successful Kerberos/SPNEGO authentication in Keycloak. When this is empty, the LDAP user will be looked based on LDAP username corresponding to the first part of his Kerberos principal. For instance, for principal 'john@KEYCLOAK.ORG', it will assume that LDAP username is 'john'.
         :param pulumi.Input[_builtins.str] name: Display name of the provider when displayed in the console.
         :param pulumi.Input[_builtins.bool] pagination: When true, Keycloak assumes the LDAP server supports pagination. Defaults to `true`.
         :param pulumi.Input[_builtins.int] priority: Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
@@ -110,10 +116,14 @@ class UserFederationArgs:
             pulumi.set(__self__, "cache", cache)
         if changed_sync_period is not None:
             pulumi.set(__self__, "changed_sync_period", changed_sync_period)
+        if connection_pooling is not None:
+            pulumi.set(__self__, "connection_pooling", connection_pooling)
         if connection_timeout is not None:
             pulumi.set(__self__, "connection_timeout", connection_timeout)
         if custom_user_search_filter is not None:
             pulumi.set(__self__, "custom_user_search_filter", custom_user_search_filter)
+        if debug is not None:
+            pulumi.set(__self__, "debug", debug)
         if delete_default_mappers is not None:
             pulumi.set(__self__, "delete_default_mappers", delete_default_mappers)
         if edit_mode is not None:
@@ -126,6 +136,8 @@ class UserFederationArgs:
             pulumi.set(__self__, "import_enabled", import_enabled)
         if kerberos is not None:
             pulumi.set(__self__, "kerberos", kerberos)
+        if krb_principal_attribute is not None:
+            pulumi.set(__self__, "krb_principal_attribute", krb_principal_attribute)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if pagination is not None:
@@ -296,6 +308,18 @@ class UserFederationArgs:
         pulumi.set(self, "changed_sync_period", value)
 
     @_builtins.property
+    @pulumi.getter(name="connectionPooling")
+    def connection_pooling(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        When `true`, LDAP connection pooling is enabled. Defaults to `false`.
+        """
+        return pulumi.get(self, "connection_pooling")
+
+    @connection_pooling.setter
+    def connection_pooling(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "connection_pooling", value)
+
+    @_builtins.property
     @pulumi.getter(name="connectionTimeout")
     def connection_timeout(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -318,6 +342,18 @@ class UserFederationArgs:
     @custom_user_search_filter.setter
     def custom_user_search_filter(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "custom_user_search_filter", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def debug(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Can be one of `true` or `false`. Will enable/disable logging for Kerberos Authentication. Defaults to `false`:
+        """
+        return pulumi.get(self, "debug")
+
+    @debug.setter
+    def debug(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "debug", value)
 
     @_builtins.property
     @pulumi.getter(name="deleteDefaultMappers")
@@ -390,6 +426,18 @@ class UserFederationArgs:
     @kerberos.setter
     def kerberos(self, value: Optional[pulumi.Input['UserFederationKerberosArgs']]):
         pulumi.set(self, "kerberos", value)
+
+    @_builtins.property
+    @pulumi.getter(name="krbPrincipalAttribute")
+    def krb_principal_attribute(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Name of the LDAP attribute, which refers to Kerberos principal. This is used to lookup appropriate LDAP user after successful Kerberos/SPNEGO authentication in Keycloak. When this is empty, the LDAP user will be looked based on LDAP username corresponding to the first part of his Kerberos principal. For instance, for principal 'john@KEYCLOAK.ORG', it will assume that LDAP username is 'john'.
+        """
+        return pulumi.get(self, "krb_principal_attribute")
+
+    @krb_principal_attribute.setter
+    def krb_principal_attribute(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "krb_principal_attribute", value)
 
     @_builtins.property
     @pulumi.getter
@@ -549,15 +597,18 @@ class _UserFederationState:
                  bind_dn: Optional[pulumi.Input[_builtins.str]] = None,
                  cache: Optional[pulumi.Input['UserFederationCacheArgs']] = None,
                  changed_sync_period: Optional[pulumi.Input[_builtins.int]] = None,
+                 connection_pooling: Optional[pulumi.Input[_builtins.bool]] = None,
                  connection_timeout: Optional[pulumi.Input[_builtins.str]] = None,
                  connection_url: Optional[pulumi.Input[_builtins.str]] = None,
                  custom_user_search_filter: Optional[pulumi.Input[_builtins.str]] = None,
+                 debug: Optional[pulumi.Input[_builtins.str]] = None,
                  delete_default_mappers: Optional[pulumi.Input[_builtins.bool]] = None,
                  edit_mode: Optional[pulumi.Input[_builtins.str]] = None,
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  full_sync_period: Optional[pulumi.Input[_builtins.int]] = None,
                  import_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  kerberos: Optional[pulumi.Input['UserFederationKerberosArgs']] = None,
+                 krb_principal_attribute: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  pagination: Optional[pulumi.Input[_builtins.bool]] = None,
                  priority: Optional[pulumi.Input[_builtins.int]] = None,
@@ -583,15 +634,18 @@ class _UserFederationState:
         :param pulumi.Input[_builtins.str] bind_dn: DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` is set.
         :param pulumi.Input['UserFederationCacheArgs'] cache: A block containing the cache settings.
         :param pulumi.Input[_builtins.int] changed_sync_period: How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
+        :param pulumi.Input[_builtins.bool] connection_pooling: When `true`, LDAP connection pooling is enabled. Defaults to `false`.
         :param pulumi.Input[_builtins.str] connection_timeout: LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
         :param pulumi.Input[_builtins.str] connection_url: Connection URL to the LDAP server.
         :param pulumi.Input[_builtins.str] custom_user_search_filter: Additional LDAP filter for filtering searched users. Must begin with `(` and end with `)`.
+        :param pulumi.Input[_builtins.str] debug: Can be one of `true` or `false`. Will enable/disable logging for Kerberos Authentication. Defaults to `false`:
         :param pulumi.Input[_builtins.bool] delete_default_mappers: When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `false`.
         :param pulumi.Input[_builtins.str] edit_mode: Can be one of `READ_ONLY`, `WRITABLE`, or `UNSYNCED`. `UNSYNCED` allows user data to be imported but not synced back to LDAP. Defaults to `READ_ONLY`.
         :param pulumi.Input[_builtins.bool] enabled: When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
         :param pulumi.Input[_builtins.int] full_sync_period: How frequently Keycloak should sync all LDAP users, in seconds. Omit this property to disable periodic full sync.
         :param pulumi.Input[_builtins.bool] import_enabled: When `true`, LDAP users will be imported into the Keycloak database. Defaults to `true`.
         :param pulumi.Input['UserFederationKerberosArgs'] kerberos: A block containing the kerberos settings.
+        :param pulumi.Input[_builtins.str] krb_principal_attribute: Name of the LDAP attribute, which refers to Kerberos principal. This is used to lookup appropriate LDAP user after successful Kerberos/SPNEGO authentication in Keycloak. When this is empty, the LDAP user will be looked based on LDAP username corresponding to the first part of his Kerberos principal. For instance, for principal 'john@KEYCLOAK.ORG', it will assume that LDAP username is 'john'.
         :param pulumi.Input[_builtins.str] name: Display name of the provider when displayed in the console.
         :param pulumi.Input[_builtins.bool] pagination: When true, Keycloak assumes the LDAP server supports pagination. Defaults to `true`.
         :param pulumi.Input[_builtins.int] priority: Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
@@ -626,12 +680,16 @@ class _UserFederationState:
             pulumi.set(__self__, "cache", cache)
         if changed_sync_period is not None:
             pulumi.set(__self__, "changed_sync_period", changed_sync_period)
+        if connection_pooling is not None:
+            pulumi.set(__self__, "connection_pooling", connection_pooling)
         if connection_timeout is not None:
             pulumi.set(__self__, "connection_timeout", connection_timeout)
         if connection_url is not None:
             pulumi.set(__self__, "connection_url", connection_url)
         if custom_user_search_filter is not None:
             pulumi.set(__self__, "custom_user_search_filter", custom_user_search_filter)
+        if debug is not None:
+            pulumi.set(__self__, "debug", debug)
         if delete_default_mappers is not None:
             pulumi.set(__self__, "delete_default_mappers", delete_default_mappers)
         if edit_mode is not None:
@@ -644,6 +702,8 @@ class _UserFederationState:
             pulumi.set(__self__, "import_enabled", import_enabled)
         if kerberos is not None:
             pulumi.set(__self__, "kerberos", kerberos)
+        if krb_principal_attribute is not None:
+            pulumi.set(__self__, "krb_principal_attribute", krb_principal_attribute)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if pagination is not None:
@@ -742,6 +802,18 @@ class _UserFederationState:
         pulumi.set(self, "changed_sync_period", value)
 
     @_builtins.property
+    @pulumi.getter(name="connectionPooling")
+    def connection_pooling(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        When `true`, LDAP connection pooling is enabled. Defaults to `false`.
+        """
+        return pulumi.get(self, "connection_pooling")
+
+    @connection_pooling.setter
+    def connection_pooling(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "connection_pooling", value)
+
+    @_builtins.property
     @pulumi.getter(name="connectionTimeout")
     def connection_timeout(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -776,6 +848,18 @@ class _UserFederationState:
     @custom_user_search_filter.setter
     def custom_user_search_filter(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "custom_user_search_filter", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def debug(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Can be one of `true` or `false`. Will enable/disable logging for Kerberos Authentication. Defaults to `false`:
+        """
+        return pulumi.get(self, "debug")
+
+    @debug.setter
+    def debug(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "debug", value)
 
     @_builtins.property
     @pulumi.getter(name="deleteDefaultMappers")
@@ -848,6 +932,18 @@ class _UserFederationState:
     @kerberos.setter
     def kerberos(self, value: Optional[pulumi.Input['UserFederationKerberosArgs']]):
         pulumi.set(self, "kerberos", value)
+
+    @_builtins.property
+    @pulumi.getter(name="krbPrincipalAttribute")
+    def krb_principal_attribute(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Name of the LDAP attribute, which refers to Kerberos principal. This is used to lookup appropriate LDAP user after successful Kerberos/SPNEGO authentication in Keycloak. When this is empty, the LDAP user will be looked based on LDAP username corresponding to the first part of his Kerberos principal. For instance, for principal 'john@KEYCLOAK.ORG', it will assume that LDAP username is 'john'.
+        """
+        return pulumi.get(self, "krb_principal_attribute")
+
+    @krb_principal_attribute.setter
+    def krb_principal_attribute(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "krb_principal_attribute", value)
 
     @_builtins.property
     @pulumi.getter
@@ -1082,15 +1178,18 @@ class UserFederation(pulumi.CustomResource):
                  bind_dn: Optional[pulumi.Input[_builtins.str]] = None,
                  cache: Optional[pulumi.Input[Union['UserFederationCacheArgs', 'UserFederationCacheArgsDict']]] = None,
                  changed_sync_period: Optional[pulumi.Input[_builtins.int]] = None,
+                 connection_pooling: Optional[pulumi.Input[_builtins.bool]] = None,
                  connection_timeout: Optional[pulumi.Input[_builtins.str]] = None,
                  connection_url: Optional[pulumi.Input[_builtins.str]] = None,
                  custom_user_search_filter: Optional[pulumi.Input[_builtins.str]] = None,
+                 debug: Optional[pulumi.Input[_builtins.str]] = None,
                  delete_default_mappers: Optional[pulumi.Input[_builtins.bool]] = None,
                  edit_mode: Optional[pulumi.Input[_builtins.str]] = None,
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  full_sync_period: Optional[pulumi.Input[_builtins.int]] = None,
                  import_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  kerberos: Optional[pulumi.Input[Union['UserFederationKerberosArgs', 'UserFederationKerberosArgsDict']]] = None,
+                 krb_principal_attribute: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  pagination: Optional[pulumi.Input[_builtins.bool]] = None,
                  priority: Optional[pulumi.Input[_builtins.int]] = None,
@@ -1170,15 +1269,18 @@ class UserFederation(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] bind_dn: DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` is set.
         :param pulumi.Input[Union['UserFederationCacheArgs', 'UserFederationCacheArgsDict']] cache: A block containing the cache settings.
         :param pulumi.Input[_builtins.int] changed_sync_period: How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
+        :param pulumi.Input[_builtins.bool] connection_pooling: When `true`, LDAP connection pooling is enabled. Defaults to `false`.
         :param pulumi.Input[_builtins.str] connection_timeout: LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
         :param pulumi.Input[_builtins.str] connection_url: Connection URL to the LDAP server.
         :param pulumi.Input[_builtins.str] custom_user_search_filter: Additional LDAP filter for filtering searched users. Must begin with `(` and end with `)`.
+        :param pulumi.Input[_builtins.str] debug: Can be one of `true` or `false`. Will enable/disable logging for Kerberos Authentication. Defaults to `false`:
         :param pulumi.Input[_builtins.bool] delete_default_mappers: When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `false`.
         :param pulumi.Input[_builtins.str] edit_mode: Can be one of `READ_ONLY`, `WRITABLE`, or `UNSYNCED`. `UNSYNCED` allows user data to be imported but not synced back to LDAP. Defaults to `READ_ONLY`.
         :param pulumi.Input[_builtins.bool] enabled: When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
         :param pulumi.Input[_builtins.int] full_sync_period: How frequently Keycloak should sync all LDAP users, in seconds. Omit this property to disable periodic full sync.
         :param pulumi.Input[_builtins.bool] import_enabled: When `true`, LDAP users will be imported into the Keycloak database. Defaults to `true`.
         :param pulumi.Input[Union['UserFederationKerberosArgs', 'UserFederationKerberosArgsDict']] kerberos: A block containing the kerberos settings.
+        :param pulumi.Input[_builtins.str] krb_principal_attribute: Name of the LDAP attribute, which refers to Kerberos principal. This is used to lookup appropriate LDAP user after successful Kerberos/SPNEGO authentication in Keycloak. When this is empty, the LDAP user will be looked based on LDAP username corresponding to the first part of his Kerberos principal. For instance, for principal 'john@KEYCLOAK.ORG', it will assume that LDAP username is 'john'.
         :param pulumi.Input[_builtins.str] name: Display name of the provider when displayed in the console.
         :param pulumi.Input[_builtins.bool] pagination: When true, Keycloak assumes the LDAP server supports pagination. Defaults to `true`.
         :param pulumi.Input[_builtins.int] priority: Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
@@ -1282,15 +1384,18 @@ class UserFederation(pulumi.CustomResource):
                  bind_dn: Optional[pulumi.Input[_builtins.str]] = None,
                  cache: Optional[pulumi.Input[Union['UserFederationCacheArgs', 'UserFederationCacheArgsDict']]] = None,
                  changed_sync_period: Optional[pulumi.Input[_builtins.int]] = None,
+                 connection_pooling: Optional[pulumi.Input[_builtins.bool]] = None,
                  connection_timeout: Optional[pulumi.Input[_builtins.str]] = None,
                  connection_url: Optional[pulumi.Input[_builtins.str]] = None,
                  custom_user_search_filter: Optional[pulumi.Input[_builtins.str]] = None,
+                 debug: Optional[pulumi.Input[_builtins.str]] = None,
                  delete_default_mappers: Optional[pulumi.Input[_builtins.bool]] = None,
                  edit_mode: Optional[pulumi.Input[_builtins.str]] = None,
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  full_sync_period: Optional[pulumi.Input[_builtins.int]] = None,
                  import_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  kerberos: Optional[pulumi.Input[Union['UserFederationKerberosArgs', 'UserFederationKerberosArgsDict']]] = None,
+                 krb_principal_attribute: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  pagination: Optional[pulumi.Input[_builtins.bool]] = None,
                  priority: Optional[pulumi.Input[_builtins.int]] = None,
@@ -1323,17 +1428,20 @@ class UserFederation(pulumi.CustomResource):
             __props__.__dict__["bind_dn"] = bind_dn
             __props__.__dict__["cache"] = cache
             __props__.__dict__["changed_sync_period"] = changed_sync_period
+            __props__.__dict__["connection_pooling"] = connection_pooling
             __props__.__dict__["connection_timeout"] = connection_timeout
             if connection_url is None and not opts.urn:
                 raise TypeError("Missing required property 'connection_url'")
             __props__.__dict__["connection_url"] = connection_url
             __props__.__dict__["custom_user_search_filter"] = custom_user_search_filter
+            __props__.__dict__["debug"] = debug
             __props__.__dict__["delete_default_mappers"] = delete_default_mappers
             __props__.__dict__["edit_mode"] = edit_mode
             __props__.__dict__["enabled"] = enabled
             __props__.__dict__["full_sync_period"] = full_sync_period
             __props__.__dict__["import_enabled"] = import_enabled
             __props__.__dict__["kerberos"] = kerberos
+            __props__.__dict__["krb_principal_attribute"] = krb_principal_attribute
             __props__.__dict__["name"] = name
             __props__.__dict__["pagination"] = pagination
             __props__.__dict__["priority"] = priority
@@ -1381,15 +1489,18 @@ class UserFederation(pulumi.CustomResource):
             bind_dn: Optional[pulumi.Input[_builtins.str]] = None,
             cache: Optional[pulumi.Input[Union['UserFederationCacheArgs', 'UserFederationCacheArgsDict']]] = None,
             changed_sync_period: Optional[pulumi.Input[_builtins.int]] = None,
+            connection_pooling: Optional[pulumi.Input[_builtins.bool]] = None,
             connection_timeout: Optional[pulumi.Input[_builtins.str]] = None,
             connection_url: Optional[pulumi.Input[_builtins.str]] = None,
             custom_user_search_filter: Optional[pulumi.Input[_builtins.str]] = None,
+            debug: Optional[pulumi.Input[_builtins.str]] = None,
             delete_default_mappers: Optional[pulumi.Input[_builtins.bool]] = None,
             edit_mode: Optional[pulumi.Input[_builtins.str]] = None,
             enabled: Optional[pulumi.Input[_builtins.bool]] = None,
             full_sync_period: Optional[pulumi.Input[_builtins.int]] = None,
             import_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
             kerberos: Optional[pulumi.Input[Union['UserFederationKerberosArgs', 'UserFederationKerberosArgsDict']]] = None,
+            krb_principal_attribute: Optional[pulumi.Input[_builtins.str]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             pagination: Optional[pulumi.Input[_builtins.bool]] = None,
             priority: Optional[pulumi.Input[_builtins.int]] = None,
@@ -1420,15 +1531,18 @@ class UserFederation(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] bind_dn: DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` is set.
         :param pulumi.Input[Union['UserFederationCacheArgs', 'UserFederationCacheArgsDict']] cache: A block containing the cache settings.
         :param pulumi.Input[_builtins.int] changed_sync_period: How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
+        :param pulumi.Input[_builtins.bool] connection_pooling: When `true`, LDAP connection pooling is enabled. Defaults to `false`.
         :param pulumi.Input[_builtins.str] connection_timeout: LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
         :param pulumi.Input[_builtins.str] connection_url: Connection URL to the LDAP server.
         :param pulumi.Input[_builtins.str] custom_user_search_filter: Additional LDAP filter for filtering searched users. Must begin with `(` and end with `)`.
+        :param pulumi.Input[_builtins.str] debug: Can be one of `true` or `false`. Will enable/disable logging for Kerberos Authentication. Defaults to `false`:
         :param pulumi.Input[_builtins.bool] delete_default_mappers: When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `false`.
         :param pulumi.Input[_builtins.str] edit_mode: Can be one of `READ_ONLY`, `WRITABLE`, or `UNSYNCED`. `UNSYNCED` allows user data to be imported but not synced back to LDAP. Defaults to `READ_ONLY`.
         :param pulumi.Input[_builtins.bool] enabled: When `false`, this provider will not be used when performing queries for users. Defaults to `true`.
         :param pulumi.Input[_builtins.int] full_sync_period: How frequently Keycloak should sync all LDAP users, in seconds. Omit this property to disable periodic full sync.
         :param pulumi.Input[_builtins.bool] import_enabled: When `true`, LDAP users will be imported into the Keycloak database. Defaults to `true`.
         :param pulumi.Input[Union['UserFederationKerberosArgs', 'UserFederationKerberosArgsDict']] kerberos: A block containing the kerberos settings.
+        :param pulumi.Input[_builtins.str] krb_principal_attribute: Name of the LDAP attribute, which refers to Kerberos principal. This is used to lookup appropriate LDAP user after successful Kerberos/SPNEGO authentication in Keycloak. When this is empty, the LDAP user will be looked based on LDAP username corresponding to the first part of his Kerberos principal. For instance, for principal 'john@KEYCLOAK.ORG', it will assume that LDAP username is 'john'.
         :param pulumi.Input[_builtins.str] name: Display name of the provider when displayed in the console.
         :param pulumi.Input[_builtins.bool] pagination: When true, Keycloak assumes the LDAP server supports pagination. Defaults to `true`.
         :param pulumi.Input[_builtins.int] priority: Priority of this provider when looking up users. Lower values are first. Defaults to `0`.
@@ -1462,15 +1576,18 @@ class UserFederation(pulumi.CustomResource):
         __props__.__dict__["bind_dn"] = bind_dn
         __props__.__dict__["cache"] = cache
         __props__.__dict__["changed_sync_period"] = changed_sync_period
+        __props__.__dict__["connection_pooling"] = connection_pooling
         __props__.__dict__["connection_timeout"] = connection_timeout
         __props__.__dict__["connection_url"] = connection_url
         __props__.__dict__["custom_user_search_filter"] = custom_user_search_filter
+        __props__.__dict__["debug"] = debug
         __props__.__dict__["delete_default_mappers"] = delete_default_mappers
         __props__.__dict__["edit_mode"] = edit_mode
         __props__.__dict__["enabled"] = enabled
         __props__.__dict__["full_sync_period"] = full_sync_period
         __props__.__dict__["import_enabled"] = import_enabled
         __props__.__dict__["kerberos"] = kerberos
+        __props__.__dict__["krb_principal_attribute"] = krb_principal_attribute
         __props__.__dict__["name"] = name
         __props__.__dict__["pagination"] = pagination
         __props__.__dict__["priority"] = priority
@@ -1532,6 +1649,14 @@ class UserFederation(pulumi.CustomResource):
         return pulumi.get(self, "changed_sync_period")
 
     @_builtins.property
+    @pulumi.getter(name="connectionPooling")
+    def connection_pooling(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        When `true`, LDAP connection pooling is enabled. Defaults to `false`.
+        """
+        return pulumi.get(self, "connection_pooling")
+
+    @_builtins.property
     @pulumi.getter(name="connectionTimeout")
     def connection_timeout(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
@@ -1554,6 +1679,14 @@ class UserFederation(pulumi.CustomResource):
         Additional LDAP filter for filtering searched users. Must begin with `(` and end with `)`.
         """
         return pulumi.get(self, "custom_user_search_filter")
+
+    @_builtins.property
+    @pulumi.getter
+    def debug(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Can be one of `true` or `false`. Will enable/disable logging for Kerberos Authentication. Defaults to `false`:
+        """
+        return pulumi.get(self, "debug")
 
     @_builtins.property
     @pulumi.getter(name="deleteDefaultMappers")
@@ -1602,6 +1735,14 @@ class UserFederation(pulumi.CustomResource):
         A block containing the kerberos settings.
         """
         return pulumi.get(self, "kerberos")
+
+    @_builtins.property
+    @pulumi.getter(name="krbPrincipalAttribute")
+    def krb_principal_attribute(self) -> pulumi.Output[_builtins.str]:
+        """
+        Name of the LDAP attribute, which refers to Kerberos principal. This is used to lookup appropriate LDAP user after successful Kerberos/SPNEGO authentication in Keycloak. When this is empty, the LDAP user will be looked based on LDAP username corresponding to the first part of his Kerberos principal. For instance, for principal 'john@KEYCLOAK.ORG', it will assume that LDAP username is 'john'.
+        """
+        return pulumi.get(self, "krb_principal_attribute")
 
     @_builtins.property
     @pulumi.getter

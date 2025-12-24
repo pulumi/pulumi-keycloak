@@ -14,6 +14,7 @@ public final class GetRealmSecurityDefenseBruteForceDetection {
     private Integer failureResetTimeSeconds;
     private Integer maxFailureWaitSeconds;
     private Integer maxLoginFailures;
+    private Integer maxTemporaryLockouts;
     private Integer minimumQuickLoginWaitSeconds;
     private Boolean permanentLockout;
     private Integer quickLoginCheckMilliSeconds;
@@ -28,6 +29,9 @@ public final class GetRealmSecurityDefenseBruteForceDetection {
     }
     public Integer maxLoginFailures() {
         return this.maxLoginFailures;
+    }
+    public Integer maxTemporaryLockouts() {
+        return this.maxTemporaryLockouts;
     }
     public Integer minimumQuickLoginWaitSeconds() {
         return this.minimumQuickLoginWaitSeconds;
@@ -54,6 +58,7 @@ public final class GetRealmSecurityDefenseBruteForceDetection {
         private Integer failureResetTimeSeconds;
         private Integer maxFailureWaitSeconds;
         private Integer maxLoginFailures;
+        private Integer maxTemporaryLockouts;
         private Integer minimumQuickLoginWaitSeconds;
         private Boolean permanentLockout;
         private Integer quickLoginCheckMilliSeconds;
@@ -64,6 +69,7 @@ public final class GetRealmSecurityDefenseBruteForceDetection {
     	      this.failureResetTimeSeconds = defaults.failureResetTimeSeconds;
     	      this.maxFailureWaitSeconds = defaults.maxFailureWaitSeconds;
     	      this.maxLoginFailures = defaults.maxLoginFailures;
+    	      this.maxTemporaryLockouts = defaults.maxTemporaryLockouts;
     	      this.minimumQuickLoginWaitSeconds = defaults.minimumQuickLoginWaitSeconds;
     	      this.permanentLockout = defaults.permanentLockout;
     	      this.quickLoginCheckMilliSeconds = defaults.quickLoginCheckMilliSeconds;
@@ -92,6 +98,14 @@ public final class GetRealmSecurityDefenseBruteForceDetection {
               throw new MissingRequiredPropertyException("GetRealmSecurityDefenseBruteForceDetection", "maxLoginFailures");
             }
             this.maxLoginFailures = maxLoginFailures;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder maxTemporaryLockouts(Integer maxTemporaryLockouts) {
+            if (maxTemporaryLockouts == null) {
+              throw new MissingRequiredPropertyException("GetRealmSecurityDefenseBruteForceDetection", "maxTemporaryLockouts");
+            }
+            this.maxTemporaryLockouts = maxTemporaryLockouts;
             return this;
         }
         @CustomType.Setter
@@ -131,6 +145,7 @@ public final class GetRealmSecurityDefenseBruteForceDetection {
             _resultValue.failureResetTimeSeconds = failureResetTimeSeconds;
             _resultValue.maxFailureWaitSeconds = maxFailureWaitSeconds;
             _resultValue.maxLoginFailures = maxLoginFailures;
+            _resultValue.maxTemporaryLockouts = maxTemporaryLockouts;
             _resultValue.minimumQuickLoginWaitSeconds = minimumQuickLoginWaitSeconds;
             _resultValue.permanentLockout = permanentLockout;
             _resultValue.quickLoginCheckMilliSeconds = quickLoginCheckMilliSeconds;

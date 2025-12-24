@@ -126,14 +126,14 @@ public class ClientScope extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.guiOrder);
     }
     /**
-     * When `true`, the name of this client scope will be added to the access token property &#39;scope&#39; as well as to the Token Introspection Endpoint response.
+     * When `true`, the name of this client scope will be added to the access token property &#39;scope&#39; as well as to the Token Introspection Endpoint response. When `false`, this scope will be omitted from the token and from the Token Introspection Endpoint response. Defaults to `true`.
      * 
      */
     @Export(name="includeInTokenScope", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> includeInTokenScope;
 
     /**
-     * @return When `true`, the name of this client scope will be added to the access token property &#39;scope&#39; as well as to the Token Introspection Endpoint response.
+     * @return When `true`, the name of this client scope will be added to the access token property &#39;scope&#39; as well as to the Token Introspection Endpoint response. When `false`, this scope will be omitted from the token and from the Token Introspection Endpoint response. Defaults to `true`.
      * 
      */
     public Output<Optional<Boolean>> includeInTokenScope() {

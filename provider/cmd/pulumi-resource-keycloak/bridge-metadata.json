@@ -242,6 +242,10 @@
                     }
                 }
             },
+            "keycloak_oidc_facebook_identity_provider": {
+                "current": "keycloak:oidc/facebookIdentityProvider:FacebookIdentityProvider",
+                "majorVersion": 6
+            },
             "keycloak_oidc_github_identity_provider": {
                 "current": "keycloak:oidc/githubIdentityProvider:GithubIdentityProvider",
                 "majorVersion": 6
@@ -918,6 +922,10 @@
             },
             "keycloak_authentication_flow": {
                 "current": "keycloak:index/getAuthenticationFlow:getAuthenticationFlow",
+                "majorVersion": 6
+            },
+            "keycloak_authentication_subflow": {
+                "current": "keycloak:authentication/getSubflow:getSubflow",
                 "majorVersion": 6
             },
             "keycloak_client_description_converter": {

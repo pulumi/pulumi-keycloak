@@ -130,6 +130,10 @@ export class Client extends pulumi.CustomResource {
      */
     declare public readonly encryptAssertions: pulumi.Output<boolean | undefined>;
     /**
+     * Algorithm used to encrypt SAML assertions. Allowed values: `AES_256_GCM`, `AES_192_GCM`, `AES_128_GCM`, `AES_256_CBC`, `AES_192_CBC`, or `AES_128_CBC`.
+     */
+    declare public readonly encryptionAlgorithm: pulumi.Output<string | undefined>;
+    /**
      * If assertions for the client are encrypted, this certificate will be used for encryption.
      */
     declare public readonly encryptionCertificate: pulumi.Output<string>;
@@ -260,6 +264,7 @@ export class Client extends pulumi.CustomResource {
             resourceInputs["description"] = state?.description;
             resourceInputs["enabled"] = state?.enabled;
             resourceInputs["encryptAssertions"] = state?.encryptAssertions;
+            resourceInputs["encryptionAlgorithm"] = state?.encryptionAlgorithm;
             resourceInputs["encryptionCertificate"] = state?.encryptionCertificate;
             resourceInputs["encryptionCertificateSha1"] = state?.encryptionCertificateSha1;
             resourceInputs["extraConfig"] = state?.extraConfig;
@@ -307,6 +312,7 @@ export class Client extends pulumi.CustomResource {
             resourceInputs["description"] = args?.description;
             resourceInputs["enabled"] = args?.enabled;
             resourceInputs["encryptAssertions"] = args?.encryptAssertions;
+            resourceInputs["encryptionAlgorithm"] = args?.encryptionAlgorithm;
             resourceInputs["encryptionCertificate"] = args?.encryptionCertificate;
             resourceInputs["extraConfig"] = args?.extraConfig;
             resourceInputs["forceNameIdFormat"] = args?.forceNameIdFormat;
@@ -392,6 +398,10 @@ export interface ClientState {
      * When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key. Defaults to `false`.
      */
     encryptAssertions?: pulumi.Input<boolean>;
+    /**
+     * Algorithm used to encrypt SAML assertions. Allowed values: `AES_256_GCM`, `AES_192_GCM`, `AES_128_GCM`, `AES_256_CBC`, `AES_192_CBC`, or `AES_128_CBC`.
+     */
+    encryptionAlgorithm?: pulumi.Input<string>;
     /**
      * If assertions for the client are encrypted, this certificate will be used for encryption.
      */
@@ -551,6 +561,10 @@ export interface ClientArgs {
      * When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key. Defaults to `false`.
      */
     encryptAssertions?: pulumi.Input<boolean>;
+    /**
+     * Algorithm used to encrypt SAML assertions. Allowed values: `AES_256_GCM`, `AES_192_GCM`, `AES_128_GCM`, `AES_256_CBC`, `AES_192_CBC`, or `AES_128_CBC`.
+     */
+    encryptionAlgorithm?: pulumi.Input<string>;
     /**
      * If assertions for the client are encrypted, this certificate will be used for encryption.
      */

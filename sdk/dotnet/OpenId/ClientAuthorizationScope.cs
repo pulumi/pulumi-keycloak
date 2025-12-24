@@ -9,6 +9,95 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak.OpenId
 {
+    /// <summary>
+    /// Allows you to manage openid Client Authorization Scopes.
+    /// 
+    /// Authorization scopes represent the actions that can be performed on resources. They are used in permissions to define what operations are allowed.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
+    /// 
+    ///     var test = new Keycloak.OpenId.Client("test", new()
+    ///     {
+    ///         ClientId = "client_id",
+    ///         RealmId = realm.Id,
+    ///         AccessType = "CONFIDENTIAL",
+    ///         ServiceAccountsEnabled = true,
+    ///         Authorization = new Keycloak.OpenId.Inputs.ClientAuthorizationArgs
+    ///         {
+    ///             PolicyEnforcementMode = "ENFORCING",
+    ///         },
+    ///     });
+    /// 
+    ///     var read = new Keycloak.OpenId.ClientAuthorizationScope("read", new()
+    ///     {
+    ///         ResourceServerId = test.ResourceServerId,
+    ///         RealmId = realm.Id,
+    ///         Name = "read",
+    ///         DisplayName = "Read Access",
+    ///         IconUri = "https://example.com/icons/read.png",
+    ///     });
+    /// 
+    ///     var write = new Keycloak.OpenId.ClientAuthorizationScope("write", new()
+    ///     {
+    ///         ResourceServerId = test.ResourceServerId,
+    ///         RealmId = realm.Id,
+    ///         Name = "write",
+    ///         DisplayName = "Write Access",
+    ///     });
+    /// 
+    ///     var delete = new Keycloak.OpenId.ClientAuthorizationScope("delete", new()
+    ///     {
+    ///         ResourceServerId = test.ResourceServerId,
+    ///         RealmId = realm.Id,
+    ///         Name = "delete",
+    ///         DisplayName = "Delete Access",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Argument Reference
+    /// 
+    /// The following arguments are supported:
+    /// 
+    /// - `RealmId` - (Required) The realm this scope exists in.
+    /// - `ResourceServerId` - (Required) The ID of the resource server.
+    /// - `Name` - (Required) The name of the scope.
+    /// - `DisplayName` - (Optional) The display name of the scope.
+    /// - `IconUri` - (Optional) An icon URI for the scope.
+    /// 
+    /// ### Attributes Reference
+    /// 
+    /// In addition to the arguments listed above, the following computed attributes are exported:
+    /// 
+    /// - `Id` - Scope ID representing the authorization scope.
+    /// 
+    /// ## Import
+    /// 
+    /// Client authorization scopes can be imported using the format: `{{realmId}}/{{resourceServerId}}/{{authorizationScopeId}}`.
+    /// 
+    /// Example:
+    /// 
+    /// bash
+    /// 
+    /// ```sh
+    /// $ pulumi import keycloak:openid/clientAuthorizationScope:ClientAuthorizationScope test my-realm/3bd4a686-1062-4b59-97b8-e4e3f10b99da/63b3cde8-987d-4cd9-9306-1955579281d9
+    /// ```
+    /// </summary>
     [KeycloakResourceType("keycloak:openid/clientAuthorizationScope:ClientAuthorizationScope")]
     public partial class ClientAuthorizationScope : global::Pulumi.CustomResource
     {

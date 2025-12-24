@@ -29,6 +29,7 @@ class RealmArgs:
                  account_theme: Optional[pulumi.Input[_builtins.str]] = None,
                  action_token_generated_by_admin_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
                  action_token_generated_by_user_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
+                 admin_permissions_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  admin_theme: Optional[pulumi.Input[_builtins.str]] = None,
                  attributes: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  browser_flow: Optional[pulumi.Input[_builtins.str]] = None,
@@ -75,6 +76,7 @@ class RealmArgs:
                  sso_session_idle_timeout_remember_me: Optional[pulumi.Input[_builtins.str]] = None,
                  sso_session_max_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
                  sso_session_max_lifespan_remember_me: Optional[pulumi.Input[_builtins.str]] = None,
+                 terraform_deletion_protection: Optional[pulumi.Input[_builtins.bool]] = None,
                  user_managed_access: Optional[pulumi.Input[_builtins.bool]] = None,
                  verify_email: Optional[pulumi.Input[_builtins.bool]] = None,
                  web_authn_passwordless_policy: Optional[pulumi.Input['RealmWebAuthnPasswordlessPolicyArgs']] = None,
@@ -97,6 +99,7 @@ class RealmArgs:
         :param pulumi.Input[_builtins.str] registration_flow: Which flow should be used for RegistrationFlow
         :param pulumi.Input[_builtins.str] reset_credentials_flow: Which flow should be used for ResetCredentialsFlow
         :param pulumi.Input[_builtins.str] ssl_required: SSL Required: Values can be 'none', 'external' or 'all'.
+        :param pulumi.Input[_builtins.bool] terraform_deletion_protection: When set to true, the realm cannot be deleted. Defaults to false.
         :param pulumi.Input[_builtins.bool] user_managed_access: When `true`, users are allowed to manage their own resources. Defaults to `false`.
         """
         if access_code_lifespan is not None:
@@ -115,6 +118,8 @@ class RealmArgs:
             pulumi.set(__self__, "action_token_generated_by_admin_lifespan", action_token_generated_by_admin_lifespan)
         if action_token_generated_by_user_lifespan is not None:
             pulumi.set(__self__, "action_token_generated_by_user_lifespan", action_token_generated_by_user_lifespan)
+        if admin_permissions_enabled is not None:
+            pulumi.set(__self__, "admin_permissions_enabled", admin_permissions_enabled)
         if admin_theme is not None:
             pulumi.set(__self__, "admin_theme", admin_theme)
         if attributes is not None:
@@ -207,6 +212,8 @@ class RealmArgs:
             pulumi.set(__self__, "sso_session_max_lifespan", sso_session_max_lifespan)
         if sso_session_max_lifespan_remember_me is not None:
             pulumi.set(__self__, "sso_session_max_lifespan_remember_me", sso_session_max_lifespan_remember_me)
+        if terraform_deletion_protection is not None:
+            pulumi.set(__self__, "terraform_deletion_protection", terraform_deletion_protection)
         if user_managed_access is not None:
             pulumi.set(__self__, "user_managed_access", user_managed_access)
         if verify_email is not None:
@@ -287,6 +294,15 @@ class RealmArgs:
     @action_token_generated_by_user_lifespan.setter
     def action_token_generated_by_user_lifespan(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "action_token_generated_by_user_lifespan", value)
+
+    @_builtins.property
+    @pulumi.getter(name="adminPermissionsEnabled")
+    def admin_permissions_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        return pulumi.get(self, "admin_permissions_enabled")
+
+    @admin_permissions_enabled.setter
+    def admin_permissions_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "admin_permissions_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="adminTheme")
@@ -749,6 +765,18 @@ class RealmArgs:
     @sso_session_max_lifespan_remember_me.setter
     def sso_session_max_lifespan_remember_me(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "sso_session_max_lifespan_remember_me", value)
+
+    @_builtins.property
+    @pulumi.getter(name="terraformDeletionProtection")
+    def terraform_deletion_protection(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        When set to true, the realm cannot be deleted. Defaults to false.
+        """
+        return pulumi.get(self, "terraform_deletion_protection")
+
+    @terraform_deletion_protection.setter
+    def terraform_deletion_protection(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "terraform_deletion_protection", value)
 
     @_builtins.property
     @pulumi.getter(name="userManagedAccess")
@@ -801,6 +829,7 @@ class _RealmState:
                  account_theme: Optional[pulumi.Input[_builtins.str]] = None,
                  action_token_generated_by_admin_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
                  action_token_generated_by_user_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
+                 admin_permissions_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  admin_theme: Optional[pulumi.Input[_builtins.str]] = None,
                  attributes: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  browser_flow: Optional[pulumi.Input[_builtins.str]] = None,
@@ -847,6 +876,7 @@ class _RealmState:
                  sso_session_idle_timeout_remember_me: Optional[pulumi.Input[_builtins.str]] = None,
                  sso_session_max_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
                  sso_session_max_lifespan_remember_me: Optional[pulumi.Input[_builtins.str]] = None,
+                 terraform_deletion_protection: Optional[pulumi.Input[_builtins.bool]] = None,
                  user_managed_access: Optional[pulumi.Input[_builtins.bool]] = None,
                  verify_email: Optional[pulumi.Input[_builtins.bool]] = None,
                  web_authn_passwordless_policy: Optional[pulumi.Input['RealmWebAuthnPasswordlessPolicyArgs']] = None,
@@ -869,6 +899,7 @@ class _RealmState:
         :param pulumi.Input[_builtins.str] registration_flow: Which flow should be used for RegistrationFlow
         :param pulumi.Input[_builtins.str] reset_credentials_flow: Which flow should be used for ResetCredentialsFlow
         :param pulumi.Input[_builtins.str] ssl_required: SSL Required: Values can be 'none', 'external' or 'all'.
+        :param pulumi.Input[_builtins.bool] terraform_deletion_protection: When set to true, the realm cannot be deleted. Defaults to false.
         :param pulumi.Input[_builtins.bool] user_managed_access: When `true`, users are allowed to manage their own resources. Defaults to `false`.
         """
         if access_code_lifespan is not None:
@@ -887,6 +918,8 @@ class _RealmState:
             pulumi.set(__self__, "action_token_generated_by_admin_lifespan", action_token_generated_by_admin_lifespan)
         if action_token_generated_by_user_lifespan is not None:
             pulumi.set(__self__, "action_token_generated_by_user_lifespan", action_token_generated_by_user_lifespan)
+        if admin_permissions_enabled is not None:
+            pulumi.set(__self__, "admin_permissions_enabled", admin_permissions_enabled)
         if admin_theme is not None:
             pulumi.set(__self__, "admin_theme", admin_theme)
         if attributes is not None:
@@ -979,6 +1012,8 @@ class _RealmState:
             pulumi.set(__self__, "sso_session_max_lifespan", sso_session_max_lifespan)
         if sso_session_max_lifespan_remember_me is not None:
             pulumi.set(__self__, "sso_session_max_lifespan_remember_me", sso_session_max_lifespan_remember_me)
+        if terraform_deletion_protection is not None:
+            pulumi.set(__self__, "terraform_deletion_protection", terraform_deletion_protection)
         if user_managed_access is not None:
             pulumi.set(__self__, "user_managed_access", user_managed_access)
         if verify_email is not None:
@@ -1059,6 +1094,15 @@ class _RealmState:
     @action_token_generated_by_user_lifespan.setter
     def action_token_generated_by_user_lifespan(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "action_token_generated_by_user_lifespan", value)
+
+    @_builtins.property
+    @pulumi.getter(name="adminPermissionsEnabled")
+    def admin_permissions_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        return pulumi.get(self, "admin_permissions_enabled")
+
+    @admin_permissions_enabled.setter
+    def admin_permissions_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "admin_permissions_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="adminTheme")
@@ -1521,6 +1565,18 @@ class _RealmState:
     @sso_session_max_lifespan_remember_me.setter
     def sso_session_max_lifespan_remember_me(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "sso_session_max_lifespan_remember_me", value)
+
+    @_builtins.property
+    @pulumi.getter(name="terraformDeletionProtection")
+    def terraform_deletion_protection(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        When set to true, the realm cannot be deleted. Defaults to false.
+        """
+        return pulumi.get(self, "terraform_deletion_protection")
+
+    @terraform_deletion_protection.setter
+    def terraform_deletion_protection(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "terraform_deletion_protection", value)
 
     @_builtins.property
     @pulumi.getter(name="userManagedAccess")
@@ -1576,6 +1632,7 @@ class Realm(pulumi.CustomResource):
                  account_theme: Optional[pulumi.Input[_builtins.str]] = None,
                  action_token_generated_by_admin_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
                  action_token_generated_by_user_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
+                 admin_permissions_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  admin_theme: Optional[pulumi.Input[_builtins.str]] = None,
                  attributes: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  browser_flow: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1622,6 +1679,7 @@ class Realm(pulumi.CustomResource):
                  sso_session_idle_timeout_remember_me: Optional[pulumi.Input[_builtins.str]] = None,
                  sso_session_max_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
                  sso_session_max_lifespan_remember_me: Optional[pulumi.Input[_builtins.str]] = None,
+                 terraform_deletion_protection: Optional[pulumi.Input[_builtins.bool]] = None,
                  user_managed_access: Optional[pulumi.Input[_builtins.bool]] = None,
                  verify_email: Optional[pulumi.Input[_builtins.bool]] = None,
                  web_authn_passwordless_policy: Optional[pulumi.Input[Union['RealmWebAuthnPasswordlessPolicyArgs', 'RealmWebAuthnPasswordlessPolicyArgsDict']]] = None,
@@ -1732,6 +1790,7 @@ class Realm(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] registration_flow: Which flow should be used for RegistrationFlow
         :param pulumi.Input[_builtins.str] reset_credentials_flow: Which flow should be used for ResetCredentialsFlow
         :param pulumi.Input[_builtins.str] ssl_required: SSL Required: Values can be 'none', 'external' or 'all'.
+        :param pulumi.Input[_builtins.bool] terraform_deletion_protection: When set to true, the realm cannot be deleted. Defaults to false.
         :param pulumi.Input[_builtins.bool] user_managed_access: When `true`, users are allowed to manage their own resources. Defaults to `false`.
         """
         ...
@@ -1850,6 +1909,7 @@ class Realm(pulumi.CustomResource):
                  account_theme: Optional[pulumi.Input[_builtins.str]] = None,
                  action_token_generated_by_admin_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
                  action_token_generated_by_user_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
+                 admin_permissions_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  admin_theme: Optional[pulumi.Input[_builtins.str]] = None,
                  attributes: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  browser_flow: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1896,6 +1956,7 @@ class Realm(pulumi.CustomResource):
                  sso_session_idle_timeout_remember_me: Optional[pulumi.Input[_builtins.str]] = None,
                  sso_session_max_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
                  sso_session_max_lifespan_remember_me: Optional[pulumi.Input[_builtins.str]] = None,
+                 terraform_deletion_protection: Optional[pulumi.Input[_builtins.bool]] = None,
                  user_managed_access: Optional[pulumi.Input[_builtins.bool]] = None,
                  verify_email: Optional[pulumi.Input[_builtins.bool]] = None,
                  web_authn_passwordless_policy: Optional[pulumi.Input[Union['RealmWebAuthnPasswordlessPolicyArgs', 'RealmWebAuthnPasswordlessPolicyArgsDict']]] = None,
@@ -1917,6 +1978,7 @@ class Realm(pulumi.CustomResource):
             __props__.__dict__["account_theme"] = account_theme
             __props__.__dict__["action_token_generated_by_admin_lifespan"] = action_token_generated_by_admin_lifespan
             __props__.__dict__["action_token_generated_by_user_lifespan"] = action_token_generated_by_user_lifespan
+            __props__.__dict__["admin_permissions_enabled"] = admin_permissions_enabled
             __props__.__dict__["admin_theme"] = admin_theme
             __props__.__dict__["attributes"] = attributes
             __props__.__dict__["browser_flow"] = browser_flow
@@ -1963,6 +2025,7 @@ class Realm(pulumi.CustomResource):
             __props__.__dict__["sso_session_idle_timeout_remember_me"] = sso_session_idle_timeout_remember_me
             __props__.__dict__["sso_session_max_lifespan"] = sso_session_max_lifespan
             __props__.__dict__["sso_session_max_lifespan_remember_me"] = sso_session_max_lifespan_remember_me
+            __props__.__dict__["terraform_deletion_protection"] = terraform_deletion_protection
             __props__.__dict__["user_managed_access"] = user_managed_access
             __props__.__dict__["verify_email"] = verify_email
             __props__.__dict__["web_authn_passwordless_policy"] = web_authn_passwordless_policy
@@ -1985,6 +2048,7 @@ class Realm(pulumi.CustomResource):
             account_theme: Optional[pulumi.Input[_builtins.str]] = None,
             action_token_generated_by_admin_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
             action_token_generated_by_user_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
+            admin_permissions_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
             admin_theme: Optional[pulumi.Input[_builtins.str]] = None,
             attributes: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             browser_flow: Optional[pulumi.Input[_builtins.str]] = None,
@@ -2031,6 +2095,7 @@ class Realm(pulumi.CustomResource):
             sso_session_idle_timeout_remember_me: Optional[pulumi.Input[_builtins.str]] = None,
             sso_session_max_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
             sso_session_max_lifespan_remember_me: Optional[pulumi.Input[_builtins.str]] = None,
+            terraform_deletion_protection: Optional[pulumi.Input[_builtins.bool]] = None,
             user_managed_access: Optional[pulumi.Input[_builtins.bool]] = None,
             verify_email: Optional[pulumi.Input[_builtins.bool]] = None,
             web_authn_passwordless_policy: Optional[pulumi.Input[Union['RealmWebAuthnPasswordlessPolicyArgs', 'RealmWebAuthnPasswordlessPolicyArgsDict']]] = None,
@@ -2058,6 +2123,7 @@ class Realm(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] registration_flow: Which flow should be used for RegistrationFlow
         :param pulumi.Input[_builtins.str] reset_credentials_flow: Which flow should be used for ResetCredentialsFlow
         :param pulumi.Input[_builtins.str] ssl_required: SSL Required: Values can be 'none', 'external' or 'all'.
+        :param pulumi.Input[_builtins.bool] terraform_deletion_protection: When set to true, the realm cannot be deleted. Defaults to false.
         :param pulumi.Input[_builtins.bool] user_managed_access: When `true`, users are allowed to manage their own resources. Defaults to `false`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -2072,6 +2138,7 @@ class Realm(pulumi.CustomResource):
         __props__.__dict__["account_theme"] = account_theme
         __props__.__dict__["action_token_generated_by_admin_lifespan"] = action_token_generated_by_admin_lifespan
         __props__.__dict__["action_token_generated_by_user_lifespan"] = action_token_generated_by_user_lifespan
+        __props__.__dict__["admin_permissions_enabled"] = admin_permissions_enabled
         __props__.__dict__["admin_theme"] = admin_theme
         __props__.__dict__["attributes"] = attributes
         __props__.__dict__["browser_flow"] = browser_flow
@@ -2118,6 +2185,7 @@ class Realm(pulumi.CustomResource):
         __props__.__dict__["sso_session_idle_timeout_remember_me"] = sso_session_idle_timeout_remember_me
         __props__.__dict__["sso_session_max_lifespan"] = sso_session_max_lifespan
         __props__.__dict__["sso_session_max_lifespan_remember_me"] = sso_session_max_lifespan_remember_me
+        __props__.__dict__["terraform_deletion_protection"] = terraform_deletion_protection
         __props__.__dict__["user_managed_access"] = user_managed_access
         __props__.__dict__["verify_email"] = verify_email
         __props__.__dict__["web_authn_passwordless_policy"] = web_authn_passwordless_policy
@@ -2163,6 +2231,11 @@ class Realm(pulumi.CustomResource):
     @pulumi.getter(name="actionTokenGeneratedByUserLifespan")
     def action_token_generated_by_user_lifespan(self) -> pulumi.Output[_builtins.str]:
         return pulumi.get(self, "action_token_generated_by_user_lifespan")
+
+    @_builtins.property
+    @pulumi.getter(name="adminPermissionsEnabled")
+    def admin_permissions_enabled(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        return pulumi.get(self, "admin_permissions_enabled")
 
     @_builtins.property
     @pulumi.getter(name="adminTheme")
@@ -2441,6 +2514,14 @@ class Realm(pulumi.CustomResource):
     @pulumi.getter(name="ssoSessionMaxLifespanRememberMe")
     def sso_session_max_lifespan_remember_me(self) -> pulumi.Output[_builtins.str]:
         return pulumi.get(self, "sso_session_max_lifespan_remember_me")
+
+    @_builtins.property
+    @pulumi.getter(name="terraformDeletionProtection")
+    def terraform_deletion_protection(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        When set to true, the realm cannot be deleted. Defaults to false.
+        """
+        return pulumi.get(self, "terraform_deletion_protection")
 
     @_builtins.property
     @pulumi.getter(name="userManagedAccess")

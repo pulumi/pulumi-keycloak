@@ -15,6 +15,7 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class RealmSmtpServer {
+    private @Nullable Boolean allowUtf8;
     /**
      * @return Enables authentication to the SMTP server. Cannot be set alongside `tokenAuth`. This block supports the following arguments:
      * 
@@ -72,6 +73,9 @@ public final class RealmSmtpServer {
     private @Nullable RealmSmtpServerTokenAuth tokenAuth;
 
     private RealmSmtpServer() {}
+    public Optional<Boolean> allowUtf8() {
+        return Optional.ofNullable(this.allowUtf8);
+    }
     /**
      * @return Enables authentication to the SMTP server. Cannot be set alongside `tokenAuth`. This block supports the following arguments:
      * 
@@ -159,6 +163,7 @@ public final class RealmSmtpServer {
     }
     @CustomType.Builder
     public static final class Builder {
+        private @Nullable Boolean allowUtf8;
         private @Nullable RealmSmtpServerAuth auth;
         private @Nullable String envelopeFrom;
         private String from;
@@ -173,6 +178,7 @@ public final class RealmSmtpServer {
         public Builder() {}
         public Builder(RealmSmtpServer defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.allowUtf8 = defaults.allowUtf8;
     	      this.auth = defaults.auth;
     	      this.envelopeFrom = defaults.envelopeFrom;
     	      this.from = defaults.from;
@@ -186,6 +192,12 @@ public final class RealmSmtpServer {
     	      this.tokenAuth = defaults.tokenAuth;
         }
 
+        @CustomType.Setter
+        public Builder allowUtf8(@Nullable Boolean allowUtf8) {
+
+            this.allowUtf8 = allowUtf8;
+            return this;
+        }
         @CustomType.Setter
         public Builder auth(@Nullable RealmSmtpServerAuth auth) {
 
@@ -258,6 +270,7 @@ public final class RealmSmtpServer {
         }
         public RealmSmtpServer build() {
             final var _resultValue = new RealmSmtpServer();
+            _resultValue.allowUtf8 = allowUtf8;
             _resultValue.auth = auth;
             _resultValue.envelopeFrom = envelopeFrom;
             _resultValue.from = from;

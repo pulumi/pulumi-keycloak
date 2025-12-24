@@ -12,6 +12,9 @@ namespace Pulumi.Keycloak.Inputs
 
     public sealed class RealmSmtpServerArgs : global::Pulumi.ResourceArgs
     {
+        [Input("allowUtf8")]
+        public Input<bool>? AllowUtf8 { get; set; }
+
         /// <summary>
         /// Enables authentication to the SMTP server. Cannot be set alongside `TokenAuth`. This block supports the following arguments:
         /// </summary>

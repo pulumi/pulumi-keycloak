@@ -556,6 +556,8 @@ class RealmSecurityDefensesBruteForceDetection(dict):
             suggest = "max_failure_wait_seconds"
         elif key == "maxLoginFailures":
             suggest = "max_login_failures"
+        elif key == "maxTemporaryLockouts":
+            suggest = "max_temporary_lockouts"
         elif key == "minimumQuickLoginWaitSeconds":
             suggest = "minimum_quick_login_wait_seconds"
         elif key == "permanentLockout":
@@ -580,6 +582,7 @@ class RealmSecurityDefensesBruteForceDetection(dict):
                  failure_reset_time_seconds: Optional[_builtins.int] = None,
                  max_failure_wait_seconds: Optional[_builtins.int] = None,
                  max_login_failures: Optional[_builtins.int] = None,
+                 max_temporary_lockouts: Optional[_builtins.int] = None,
                  minimum_quick_login_wait_seconds: Optional[_builtins.int] = None,
                  permanent_lockout: Optional[_builtins.bool] = None,
                  quick_login_check_milli_seconds: Optional[_builtins.int] = None,
@@ -587,6 +590,7 @@ class RealmSecurityDefensesBruteForceDetection(dict):
         """
         :param _builtins.int failure_reset_time_seconds: When will failure count be reset?
         :param _builtins.int max_login_failures: How many failures before wait is triggered.
+        :param _builtins.int max_temporary_lockouts: How many temporary lockouts are permitted before a user is permanently locked out. `permanent_lockout` needs to be `true`. Defaults to `0`
         :param _builtins.int minimum_quick_login_wait_seconds: How long to wait after a quick login failure.
                - `max_failure_wait_seconds ` - (Optional) Max. time a user will be locked out.
         :param _builtins.bool permanent_lockout: When `true`, this will lock the user permanently when the user exceeds the maximum login failures.
@@ -599,6 +603,8 @@ class RealmSecurityDefensesBruteForceDetection(dict):
             pulumi.set(__self__, "max_failure_wait_seconds", max_failure_wait_seconds)
         if max_login_failures is not None:
             pulumi.set(__self__, "max_login_failures", max_login_failures)
+        if max_temporary_lockouts is not None:
+            pulumi.set(__self__, "max_temporary_lockouts", max_temporary_lockouts)
         if minimum_quick_login_wait_seconds is not None:
             pulumi.set(__self__, "minimum_quick_login_wait_seconds", minimum_quick_login_wait_seconds)
         if permanent_lockout is not None:
@@ -628,6 +634,14 @@ class RealmSecurityDefensesBruteForceDetection(dict):
         How many failures before wait is triggered.
         """
         return pulumi.get(self, "max_login_failures")
+
+    @_builtins.property
+    @pulumi.getter(name="maxTemporaryLockouts")
+    def max_temporary_lockouts(self) -> Optional[_builtins.int]:
+        """
+        How many temporary lockouts are permitted before a user is permanently locked out. `permanent_lockout` needs to be `true`. Defaults to `0`
+        """
+        return pulumi.get(self, "max_temporary_lockouts")
 
     @_builtins.property
     @pulumi.getter(name="minimumQuickLoginWaitSeconds")
@@ -804,6 +818,8 @@ class RealmSmtpServer(dict):
         suggest = None
         if key == "from":
             suggest = "from_"
+        elif key == "allowUtf8":
+            suggest = "allow_utf8"
         elif key == "envelopeFrom":
             suggest = "envelope_from"
         elif key == "fromDisplayName":
@@ -829,6 +845,7 @@ class RealmSmtpServer(dict):
     def __init__(__self__, *,
                  from_: _builtins.str,
                  host: _builtins.str,
+                 allow_utf8: Optional[_builtins.bool] = None,
                  auth: Optional['outputs.RealmSmtpServerAuth'] = None,
                  envelope_from: Optional[_builtins.str] = None,
                  from_display_name: Optional[_builtins.str] = None,
@@ -853,6 +870,8 @@ class RealmSmtpServer(dict):
         """
         pulumi.set(__self__, "from_", from_)
         pulumi.set(__self__, "host", host)
+        if allow_utf8 is not None:
+            pulumi.set(__self__, "allow_utf8", allow_utf8)
         if auth is not None:
             pulumi.set(__self__, "auth", auth)
         if envelope_from is not None:
@@ -887,6 +906,11 @@ class RealmSmtpServer(dict):
         The host of the SMTP server.
         """
         return pulumi.get(self, "host")
+
+    @_builtins.property
+    @pulumi.getter(name="allowUtf8")
+    def allow_utf8(self) -> Optional[_builtins.bool]:
+        return pulumi.get(self, "allow_utf8")
 
     @_builtins.property
     @pulumi.getter
@@ -2296,6 +2320,7 @@ class GetRealmSecurityDefenseBruteForceDetectionResult(dict):
                  failure_reset_time_seconds: _builtins.int,
                  max_failure_wait_seconds: _builtins.int,
                  max_login_failures: _builtins.int,
+                 max_temporary_lockouts: _builtins.int,
                  minimum_quick_login_wait_seconds: _builtins.int,
                  permanent_lockout: _builtins.bool,
                  quick_login_check_milli_seconds: _builtins.int,
@@ -2303,6 +2328,7 @@ class GetRealmSecurityDefenseBruteForceDetectionResult(dict):
         pulumi.set(__self__, "failure_reset_time_seconds", failure_reset_time_seconds)
         pulumi.set(__self__, "max_failure_wait_seconds", max_failure_wait_seconds)
         pulumi.set(__self__, "max_login_failures", max_login_failures)
+        pulumi.set(__self__, "max_temporary_lockouts", max_temporary_lockouts)
         pulumi.set(__self__, "minimum_quick_login_wait_seconds", minimum_quick_login_wait_seconds)
         pulumi.set(__self__, "permanent_lockout", permanent_lockout)
         pulumi.set(__self__, "quick_login_check_milli_seconds", quick_login_check_milli_seconds)
@@ -2322,6 +2348,11 @@ class GetRealmSecurityDefenseBruteForceDetectionResult(dict):
     @pulumi.getter(name="maxLoginFailures")
     def max_login_failures(self) -> _builtins.int:
         return pulumi.get(self, "max_login_failures")
+
+    @_builtins.property
+    @pulumi.getter(name="maxTemporaryLockouts")
+    def max_temporary_lockouts(self) -> _builtins.int:
+        return pulumi.get(self, "max_temporary_lockouts")
 
     @_builtins.property
     @pulumi.getter(name="minimumQuickLoginWaitSeconds")

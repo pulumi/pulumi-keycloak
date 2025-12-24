@@ -30,6 +30,7 @@ public final class GetRealmResult {
     private String accountTheme;
     private String actionTokenGeneratedByAdminLifespan;
     private String actionTokenGeneratedByUserLifespan;
+    private Boolean adminPermissionsEnabled;
     private String adminTheme;
     private Map<String,String> attributes;
     private String browserFlow;
@@ -110,6 +111,9 @@ public final class GetRealmResult {
     }
     public String actionTokenGeneratedByUserLifespan() {
         return this.actionTokenGeneratedByUserLifespan;
+    }
+    public Boolean adminPermissionsEnabled() {
+        return this.adminPermissionsEnabled;
     }
     public String adminTheme() {
         return this.adminTheme;
@@ -286,6 +290,7 @@ public final class GetRealmResult {
         private String accountTheme;
         private String actionTokenGeneratedByAdminLifespan;
         private String actionTokenGeneratedByUserLifespan;
+        private Boolean adminPermissionsEnabled;
         private String adminTheme;
         private Map<String,String> attributes;
         private String browserFlow;
@@ -348,6 +353,7 @@ public final class GetRealmResult {
     	      this.accountTheme = defaults.accountTheme;
     	      this.actionTokenGeneratedByAdminLifespan = defaults.actionTokenGeneratedByAdminLifespan;
     	      this.actionTokenGeneratedByUserLifespan = defaults.actionTokenGeneratedByUserLifespan;
+    	      this.adminPermissionsEnabled = defaults.adminPermissionsEnabled;
     	      this.adminTheme = defaults.adminTheme;
     	      this.attributes = defaults.attributes;
     	      this.browserFlow = defaults.browserFlow;
@@ -463,6 +469,14 @@ public final class GetRealmResult {
               throw new MissingRequiredPropertyException("GetRealmResult", "actionTokenGeneratedByUserLifespan");
             }
             this.actionTokenGeneratedByUserLifespan = actionTokenGeneratedByUserLifespan;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder adminPermissionsEnabled(Boolean adminPermissionsEnabled) {
+            if (adminPermissionsEnabled == null) {
+              throw new MissingRequiredPropertyException("GetRealmResult", "adminPermissionsEnabled");
+            }
+            this.adminPermissionsEnabled = adminPermissionsEnabled;
             return this;
         }
         @CustomType.Setter
@@ -896,6 +910,7 @@ public final class GetRealmResult {
             _resultValue.accountTheme = accountTheme;
             _resultValue.actionTokenGeneratedByAdminLifespan = actionTokenGeneratedByAdminLifespan;
             _resultValue.actionTokenGeneratedByUserLifespan = actionTokenGeneratedByUserLifespan;
+            _resultValue.adminPermissionsEnabled = adminPermissionsEnabled;
             _resultValue.adminTheme = adminTheme;
             _resultValue.attributes = attributes;
             _resultValue.browserFlow = browserFlow;

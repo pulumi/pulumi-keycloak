@@ -54,6 +54,21 @@ public final class RealmSecurityDefensesBruteForceDetectionArgs extends com.pulu
     }
 
     /**
+     * How many temporary lockouts are permitted before a user is permanently locked out. `permanentLockout` needs to be `true`. Defaults to `0`
+     * 
+     */
+    @Import(name="maxTemporaryLockouts")
+    private @Nullable Output<Integer> maxTemporaryLockouts;
+
+    /**
+     * @return How many temporary lockouts are permitted before a user is permanently locked out. `permanentLockout` needs to be `true`. Defaults to `0`
+     * 
+     */
+    public Optional<Output<Integer>> maxTemporaryLockouts() {
+        return Optional.ofNullable(this.maxTemporaryLockouts);
+    }
+
+    /**
      * How long to wait after a quick login failure.
      * - ` maxFailureWaitSeconds  ` - (Optional) Max. time a user will be locked out.
      * 
@@ -121,6 +136,7 @@ public final class RealmSecurityDefensesBruteForceDetectionArgs extends com.pulu
         this.failureResetTimeSeconds = $.failureResetTimeSeconds;
         this.maxFailureWaitSeconds = $.maxFailureWaitSeconds;
         this.maxLoginFailures = $.maxLoginFailures;
+        this.maxTemporaryLockouts = $.maxTemporaryLockouts;
         this.minimumQuickLoginWaitSeconds = $.minimumQuickLoginWaitSeconds;
         this.permanentLockout = $.permanentLockout;
         this.quickLoginCheckMilliSeconds = $.quickLoginCheckMilliSeconds;
@@ -194,6 +210,27 @@ public final class RealmSecurityDefensesBruteForceDetectionArgs extends com.pulu
          */
         public Builder maxLoginFailures(Integer maxLoginFailures) {
             return maxLoginFailures(Output.of(maxLoginFailures));
+        }
+
+        /**
+         * @param maxTemporaryLockouts How many temporary lockouts are permitted before a user is permanently locked out. `permanentLockout` needs to be `true`. Defaults to `0`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder maxTemporaryLockouts(@Nullable Output<Integer> maxTemporaryLockouts) {
+            $.maxTemporaryLockouts = maxTemporaryLockouts;
+            return this;
+        }
+
+        /**
+         * @param maxTemporaryLockouts How many temporary lockouts are permitted before a user is permanently locked out. `permanentLockout` needs to be `true`. Defaults to `0`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder maxTemporaryLockouts(Integer maxTemporaryLockouts) {
+            return maxTemporaryLockouts(Output.of(maxTemporaryLockouts));
         }
 
         /**

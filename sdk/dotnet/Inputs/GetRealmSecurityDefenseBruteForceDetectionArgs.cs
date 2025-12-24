@@ -21,6 +21,9 @@ namespace Pulumi.Keycloak.Inputs
         [Input("maxLoginFailures", required: true)]
         public Input<int> MaxLoginFailures { get; set; } = null!;
 
+        [Input("maxTemporaryLockouts", required: true)]
+        public Input<int> MaxTemporaryLockouts { get; set; } = null!;
+
         [Input("minimumQuickLoginWaitSeconds", required: true)]
         public Input<int> MinimumQuickLoginWaitSeconds { get; set; } = null!;
 

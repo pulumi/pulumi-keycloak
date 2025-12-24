@@ -77,7 +77,7 @@ type ClientScope struct {
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// Specify order of the client scope in GUI (such as in Consent page) as integer.
 	GuiOrder pulumi.IntPtrOutput `pulumi:"guiOrder"`
-	// When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response.
+	// When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response. When `false`, this scope will be omitted from the token and from the Token Introspection Endpoint response. Defaults to `true`.
 	IncludeInTokenScope pulumi.BoolPtrOutput `pulumi:"includeInTokenScope"`
 	// The display name of this client scope in the GUI.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -124,7 +124,7 @@ type clientScopeState struct {
 	Description *string `pulumi:"description"`
 	// Specify order of the client scope in GUI (such as in Consent page) as integer.
 	GuiOrder *int `pulumi:"guiOrder"`
-	// When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response.
+	// When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response. When `false`, this scope will be omitted from the token and from the Token Introspection Endpoint response. Defaults to `true`.
 	IncludeInTokenScope *bool `pulumi:"includeInTokenScope"`
 	// The display name of this client scope in the GUI.
 	Name *string `pulumi:"name"`
@@ -139,7 +139,7 @@ type ClientScopeState struct {
 	Description pulumi.StringPtrInput
 	// Specify order of the client scope in GUI (such as in Consent page) as integer.
 	GuiOrder pulumi.IntPtrInput
-	// When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response.
+	// When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response. When `false`, this scope will be omitted from the token and from the Token Introspection Endpoint response. Defaults to `true`.
 	IncludeInTokenScope pulumi.BoolPtrInput
 	// The display name of this client scope in the GUI.
 	Name pulumi.StringPtrInput
@@ -158,7 +158,7 @@ type clientScopeArgs struct {
 	Description *string `pulumi:"description"`
 	// Specify order of the client scope in GUI (such as in Consent page) as integer.
 	GuiOrder *int `pulumi:"guiOrder"`
-	// When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response.
+	// When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response. When `false`, this scope will be omitted from the token and from the Token Introspection Endpoint response. Defaults to `true`.
 	IncludeInTokenScope *bool `pulumi:"includeInTokenScope"`
 	// The display name of this client scope in the GUI.
 	Name *string `pulumi:"name"`
@@ -174,7 +174,7 @@ type ClientScopeArgs struct {
 	Description pulumi.StringPtrInput
 	// Specify order of the client scope in GUI (such as in Consent page) as integer.
 	GuiOrder pulumi.IntPtrInput
-	// When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response.
+	// When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response. When `false`, this scope will be omitted from the token and from the Token Introspection Endpoint response. Defaults to `true`.
 	IncludeInTokenScope pulumi.BoolPtrInput
 	// The display name of this client scope in the GUI.
 	Name pulumi.StringPtrInput
@@ -284,7 +284,7 @@ func (o ClientScopeOutput) GuiOrder() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ClientScope) pulumi.IntPtrOutput { return v.GuiOrder }).(pulumi.IntPtrOutput)
 }
 
-// When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response.
+// When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response. When `false`, this scope will be omitted from the token and from the Token Introspection Endpoint response. Defaults to `true`.
 func (o ClientScopeOutput) IncludeInTokenScope() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ClientScope) pulumi.BoolPtrOutput { return v.IncludeInTokenScope }).(pulumi.BoolPtrOutput)
 }

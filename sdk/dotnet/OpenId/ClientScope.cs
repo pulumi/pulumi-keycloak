@@ -79,7 +79,7 @@ namespace Pulumi.Keycloak.OpenId
         public Output<int?> GuiOrder { get; private set; } = null!;
 
         /// <summary>
-        /// When `True`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response.
+        /// When `True`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response. When `False`, this scope will be omitted from the token and from the Token Introspection Endpoint response. Defaults to `True`.
         /// </summary>
         [Output("includeInTokenScope")]
         public Output<bool?> IncludeInTokenScope { get; private set; } = null!;
@@ -161,7 +161,7 @@ namespace Pulumi.Keycloak.OpenId
         public Input<int>? GuiOrder { get; set; }
 
         /// <summary>
-        /// When `True`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response.
+        /// When `True`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response. When `False`, this scope will be omitted from the token and from the Token Introspection Endpoint response. Defaults to `True`.
         /// </summary>
         [Input("includeInTokenScope")]
         public Input<bool>? IncludeInTokenScope { get; set; }
@@ -205,7 +205,7 @@ namespace Pulumi.Keycloak.OpenId
         public Input<int>? GuiOrder { get; set; }
 
         /// <summary>
-        /// When `True`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response.
+        /// When `True`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response. When `False`, this scope will be omitted from the token and from the Token Introspection Endpoint response. Defaults to `True`.
         /// </summary>
         [Input("includeInTokenScope")]
         public Input<bool>? IncludeInTokenScope { get; set; }

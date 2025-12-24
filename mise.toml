@@ -1,3 +1,4 @@
 [tools]
 "vfox-pulumi:pulumi/pulumi-converter-terraform" = "latest"
 "vfox-pulumi:pulumi/pulumi-aws" = "latest"
+golangci-lint = "2.7.2"

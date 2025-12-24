@@ -110,6 +110,10 @@ export class UserFederation extends pulumi.CustomResource {
      */
     declare public readonly changedSyncPeriod: pulumi.Output<number | undefined>;
     /**
+     * When `true`, LDAP connection pooling is enabled. Defaults to `false`.
+     */
+    declare public readonly connectionPooling: pulumi.Output<boolean | undefined>;
+    /**
      * LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
      */
     declare public readonly connectionTimeout: pulumi.Output<string | undefined>;
@@ -121,6 +125,10 @@ export class UserFederation extends pulumi.CustomResource {
      * Additional LDAP filter for filtering searched users. Must begin with `(` and end with `)`.
      */
     declare public readonly customUserSearchFilter: pulumi.Output<string | undefined>;
+    /**
+     * Can be one of `true` or `false`. Will enable/disable logging for Kerberos Authentication. Defaults to `false`:
+     */
+    declare public readonly debug: pulumi.Output<string | undefined>;
     /**
      * When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `false`.
      */
@@ -145,6 +153,10 @@ export class UserFederation extends pulumi.CustomResource {
      * A block containing the kerberos settings.
      */
     declare public readonly kerberos: pulumi.Output<outputs.ldap.UserFederationKerberos | undefined>;
+    /**
+     * Name of the LDAP attribute, which refers to Kerberos principal. This is used to lookup appropriate LDAP user after successful Kerberos/SPNEGO authentication in Keycloak. When this is empty, the LDAP user will be looked based on LDAP username corresponding to the first part of his Kerberos principal. For instance, for principal 'john@KEYCLOAK.ORG', it will assume that LDAP username is 'john'.
+     */
+    declare public readonly krbPrincipalAttribute: pulumi.Output<string>;
     /**
      * Display name of the provider when displayed in the console.
      */
@@ -241,15 +253,18 @@ export class UserFederation extends pulumi.CustomResource {
             resourceInputs["bindDn"] = state?.bindDn;
             resourceInputs["cache"] = state?.cache;
             resourceInputs["changedSyncPeriod"] = state?.changedSyncPeriod;
+            resourceInputs["connectionPooling"] = state?.connectionPooling;
             resourceInputs["connectionTimeout"] = state?.connectionTimeout;
             resourceInputs["connectionUrl"] = state?.connectionUrl;
             resourceInputs["customUserSearchFilter"] = state?.customUserSearchFilter;
+            resourceInputs["debug"] = state?.debug;
             resourceInputs["deleteDefaultMappers"] = state?.deleteDefaultMappers;
             resourceInputs["editMode"] = state?.editMode;
             resourceInputs["enabled"] = state?.enabled;
             resourceInputs["fullSyncPeriod"] = state?.fullSyncPeriod;
             resourceInputs["importEnabled"] = state?.importEnabled;
             resourceInputs["kerberos"] = state?.kerberos;
+            resourceInputs["krbPrincipalAttribute"] = state?.krbPrincipalAttribute;
             resourceInputs["name"] = state?.name;
             resourceInputs["pagination"] = state?.pagination;
             resourceInputs["priority"] = state?.priority;
@@ -296,15 +311,18 @@ export class UserFederation extends pulumi.CustomResource {
             resourceInputs["bindDn"] = args?.bindDn;
             resourceInputs["cache"] = args?.cache;
             resourceInputs["changedSyncPeriod"] = args?.changedSyncPeriod;
+            resourceInputs["connectionPooling"] = args?.connectionPooling;
             resourceInputs["connectionTimeout"] = args?.connectionTimeout;
             resourceInputs["connectionUrl"] = args?.connectionUrl;
             resourceInputs["customUserSearchFilter"] = args?.customUserSearchFilter;
+            resourceInputs["debug"] = args?.debug;
             resourceInputs["deleteDefaultMappers"] = args?.deleteDefaultMappers;
             resourceInputs["editMode"] = args?.editMode;
             resourceInputs["enabled"] = args?.enabled;
             resourceInputs["fullSyncPeriod"] = args?.fullSyncPeriod;
             resourceInputs["importEnabled"] = args?.importEnabled;
             resourceInputs["kerberos"] = args?.kerberos;
+            resourceInputs["krbPrincipalAttribute"] = args?.krbPrincipalAttribute;
             resourceInputs["name"] = args?.name;
             resourceInputs["pagination"] = args?.pagination;
             resourceInputs["priority"] = args?.priority;
@@ -356,6 +374,10 @@ export interface UserFederationState {
      */
     changedSyncPeriod?: pulumi.Input<number>;
     /**
+     * When `true`, LDAP connection pooling is enabled. Defaults to `false`.
+     */
+    connectionPooling?: pulumi.Input<boolean>;
+    /**
      * LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
      */
     connectionTimeout?: pulumi.Input<string>;
@@ -367,6 +389,10 @@ export interface UserFederationState {
      * Additional LDAP filter for filtering searched users. Must begin with `(` and end with `)`.
      */
     customUserSearchFilter?: pulumi.Input<string>;
+    /**
+     * Can be one of `true` or `false`. Will enable/disable logging for Kerberos Authentication. Defaults to `false`:
+     */
+    debug?: pulumi.Input<string>;
     /**
      * When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `false`.
      */
@@ -391,6 +417,10 @@ export interface UserFederationState {
      * A block containing the kerberos settings.
      */
     kerberos?: pulumi.Input<inputs.ldap.UserFederationKerberos>;
+    /**
+     * Name of the LDAP attribute, which refers to Kerberos principal. This is used to lookup appropriate LDAP user after successful Kerberos/SPNEGO authentication in Keycloak. When this is empty, the LDAP user will be looked based on LDAP username corresponding to the first part of his Kerberos principal. For instance, for principal 'john@KEYCLOAK.ORG', it will assume that LDAP username is 'john'.
+     */
+    krbPrincipalAttribute?: pulumi.Input<string>;
     /**
      * Display name of the provider when displayed in the console.
      */
@@ -495,6 +525,10 @@ export interface UserFederationArgs {
      */
     changedSyncPeriod?: pulumi.Input<number>;
     /**
+     * When `true`, LDAP connection pooling is enabled. Defaults to `false`.
+     */
+    connectionPooling?: pulumi.Input<boolean>;
+    /**
      * LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
      */
     connectionTimeout?: pulumi.Input<string>;
@@ -506,6 +540,10 @@ export interface UserFederationArgs {
      * Additional LDAP filter for filtering searched users. Must begin with `(` and end with `)`.
      */
     customUserSearchFilter?: pulumi.Input<string>;
+    /**
+     * Can be one of `true` or `false`. Will enable/disable logging for Kerberos Authentication. Defaults to `false`:
+     */
+    debug?: pulumi.Input<string>;
     /**
      * When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `false`.
      */
@@ -530,6 +568,10 @@ export interface UserFederationArgs {
      * A block containing the kerberos settings.
      */
     kerberos?: pulumi.Input<inputs.ldap.UserFederationKerberos>;
+    /**
+     * Name of the LDAP attribute, which refers to Kerberos principal. This is used to lookup appropriate LDAP user after successful Kerberos/SPNEGO authentication in Keycloak. When this is empty, the LDAP user will be looked based on LDAP username corresponding to the first part of his Kerberos principal. For instance, for principal 'john@KEYCLOAK.ORG', it will assume that LDAP username is 'john'.
+     */
+    krbPrincipalAttribute?: pulumi.Input<string>;
     /**
      * Display name of the provider when displayed in the console.
      */

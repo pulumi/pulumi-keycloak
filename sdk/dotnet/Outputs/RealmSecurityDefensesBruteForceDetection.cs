@@ -23,6 +23,10 @@ namespace Pulumi.Keycloak.Outputs
         /// </summary>
         public readonly int? MaxLoginFailures;
         /// <summary>
+        /// How many temporary lockouts are permitted before a user is permanently locked out. `PermanentLockout` needs to be `True`. Defaults to `0`
+        /// </summary>
+        public readonly int? MaxTemporaryLockouts;
+        /// <summary>
         /// How long to wait after a quick login failure.
         /// - `MaxFailureWaitSeconds ` - (Optional) Max. time a user will be locked out.
         /// </summary>
@@ -48,6 +52,8 @@ namespace Pulumi.Keycloak.Outputs
 
             int? maxLoginFailures,
 
+            int? maxTemporaryLockouts,
+
             int? minimumQuickLoginWaitSeconds,
 
             bool? permanentLockout,
@@ -59,6 +65,7 @@ namespace Pulumi.Keycloak.Outputs
             FailureResetTimeSeconds = failureResetTimeSeconds;
             MaxFailureWaitSeconds = maxFailureWaitSeconds;
             MaxLoginFailures = maxLoginFailures;
+            MaxTemporaryLockouts = maxTemporaryLockouts;
             MinimumQuickLoginWaitSeconds = minimumQuickLoginWaitSeconds;
             PermanentLockout = permanentLockout;
             QuickLoginCheckMilliSeconds = quickLoginCheckMilliSeconds;

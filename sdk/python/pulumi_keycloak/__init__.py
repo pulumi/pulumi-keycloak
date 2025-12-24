@@ -544,6 +544,14 @@ _utilities.register(
  },
  {
   "pkg": "keycloak",
+  "mod": "oidc/facebookIdentityProvider",
+  "fqn": "pulumi_keycloak.oidc",
+  "classes": {
+   "keycloak:oidc/facebookIdentityProvider:FacebookIdentityProvider": "FacebookIdentityProvider"
+  }
+ },
+ {
+  "pkg": "keycloak",
   "mod": "oidc/githubIdentityProvider",
   "fqn": "pulumi_keycloak.oidc",
   "classes": {

@@ -96,6 +96,21 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
+     * When `true`, LDAP connection pooling is enabled. Defaults to `false`.
+     * 
+     */
+    @Import(name="connectionPooling")
+    private @Nullable Output<Boolean> connectionPooling;
+
+    /**
+     * @return When `true`, LDAP connection pooling is enabled. Defaults to `false`.
+     * 
+     */
+    public Optional<Output<Boolean>> connectionPooling() {
+        return Optional.ofNullable(this.connectionPooling);
+    }
+
+    /**
      * LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
      * 
      */
@@ -138,6 +153,21 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
      */
     public Optional<Output<String>> customUserSearchFilter() {
         return Optional.ofNullable(this.customUserSearchFilter);
+    }
+
+    /**
+     * Can be one of `true` or `false`. Will enable/disable logging for Kerberos Authentication. Defaults to `false`:
+     * 
+     */
+    @Import(name="debug")
+    private @Nullable Output<String> debug;
+
+    /**
+     * @return Can be one of `true` or `false`. Will enable/disable logging for Kerberos Authentication. Defaults to `false`:
+     * 
+     */
+    public Optional<Output<String>> debug() {
+        return Optional.ofNullable(this.debug);
     }
 
     /**
@@ -228,6 +258,21 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
      */
     public Optional<Output<UserFederationKerberosArgs>> kerberos() {
         return Optional.ofNullable(this.kerberos);
+    }
+
+    /**
+     * Name of the LDAP attribute, which refers to Kerberos principal. This is used to lookup appropriate LDAP user after successful Kerberos/SPNEGO authentication in Keycloak. When this is empty, the LDAP user will be looked based on LDAP username corresponding to the first part of his Kerberos principal. For instance, for principal &#39;john{@literal @}KEYCLOAK.ORG&#39;, it will assume that LDAP username is &#39;john&#39;.
+     * 
+     */
+    @Import(name="krbPrincipalAttribute")
+    private @Nullable Output<String> krbPrincipalAttribute;
+
+    /**
+     * @return Name of the LDAP attribute, which refers to Kerberos principal. This is used to lookup appropriate LDAP user after successful Kerberos/SPNEGO authentication in Keycloak. When this is empty, the LDAP user will be looked based on LDAP username corresponding to the first part of his Kerberos principal. For instance, for principal &#39;john{@literal @}KEYCLOAK.ORG&#39;, it will assume that LDAP username is &#39;john&#39;.
+     * 
+     */
+    public Optional<Output<String>> krbPrincipalAttribute() {
+        return Optional.ofNullable(this.krbPrincipalAttribute);
     }
 
     /**
@@ -518,15 +563,18 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
         this.bindDn = $.bindDn;
         this.cache = $.cache;
         this.changedSyncPeriod = $.changedSyncPeriod;
+        this.connectionPooling = $.connectionPooling;
         this.connectionTimeout = $.connectionTimeout;
         this.connectionUrl = $.connectionUrl;
         this.customUserSearchFilter = $.customUserSearchFilter;
+        this.debug = $.debug;
         this.deleteDefaultMappers = $.deleteDefaultMappers;
         this.editMode = $.editMode;
         this.enabled = $.enabled;
         this.fullSyncPeriod = $.fullSyncPeriod;
         this.importEnabled = $.importEnabled;
         this.kerberos = $.kerberos;
+        this.krbPrincipalAttribute = $.krbPrincipalAttribute;
         this.name = $.name;
         this.pagination = $.pagination;
         this.priority = $.priority;
@@ -671,6 +719,27 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
+         * @param connectionPooling When `true`, LDAP connection pooling is enabled. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder connectionPooling(@Nullable Output<Boolean> connectionPooling) {
+            $.connectionPooling = connectionPooling;
+            return this;
+        }
+
+        /**
+         * @param connectionPooling When `true`, LDAP connection pooling is enabled. Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder connectionPooling(Boolean connectionPooling) {
+            return connectionPooling(Output.of(connectionPooling));
+        }
+
+        /**
          * @param connectionTimeout LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
          * 
          * @return builder
@@ -731,6 +800,27 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
          */
         public Builder customUserSearchFilter(String customUserSearchFilter) {
             return customUserSearchFilter(Output.of(customUserSearchFilter));
+        }
+
+        /**
+         * @param debug Can be one of `true` or `false`. Will enable/disable logging for Kerberos Authentication. Defaults to `false`:
+         * 
+         * @return builder
+         * 
+         */
+        public Builder debug(@Nullable Output<String> debug) {
+            $.debug = debug;
+            return this;
+        }
+
+        /**
+         * @param debug Can be one of `true` or `false`. Will enable/disable logging for Kerberos Authentication. Defaults to `false`:
+         * 
+         * @return builder
+         * 
+         */
+        public Builder debug(String debug) {
+            return debug(Output.of(debug));
         }
 
         /**
@@ -857,6 +947,27 @@ public final class UserFederationState extends com.pulumi.resources.ResourceArgs
          */
         public Builder kerberos(UserFederationKerberosArgs kerberos) {
             return kerberos(Output.of(kerberos));
+        }
+
+        /**
+         * @param krbPrincipalAttribute Name of the LDAP attribute, which refers to Kerberos principal. This is used to lookup appropriate LDAP user after successful Kerberos/SPNEGO authentication in Keycloak. When this is empty, the LDAP user will be looked based on LDAP username corresponding to the first part of his Kerberos principal. For instance, for principal &#39;john{@literal @}KEYCLOAK.ORG&#39;, it will assume that LDAP username is &#39;john&#39;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder krbPrincipalAttribute(@Nullable Output<String> krbPrincipalAttribute) {
+            $.krbPrincipalAttribute = krbPrincipalAttribute;
+            return this;
+        }
+
+        /**
+         * @param krbPrincipalAttribute Name of the LDAP attribute, which refers to Kerberos principal. This is used to lookup appropriate LDAP user after successful Kerberos/SPNEGO authentication in Keycloak. When this is empty, the LDAP user will be looked based on LDAP username corresponding to the first part of his Kerberos principal. For instance, for principal &#39;john{@literal @}KEYCLOAK.ORG&#39;, it will assume that LDAP username is &#39;john&#39;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder krbPrincipalAttribute(String krbPrincipalAttribute) {
+            return krbPrincipalAttribute(Output.of(krbPrincipalAttribute));
         }
 
         /**

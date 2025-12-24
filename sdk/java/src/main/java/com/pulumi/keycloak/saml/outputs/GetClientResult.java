@@ -26,6 +26,7 @@ public final class GetClientResult {
     private String description;
     private Boolean enabled;
     private Boolean encryptAssertions;
+    private String encryptionAlgorithm;
     private String encryptionCertificate;
     private String encryptionCertificateSha1;
     private Map<String,String> extraConfig;
@@ -96,6 +97,9 @@ public final class GetClientResult {
     }
     public Boolean encryptAssertions() {
         return this.encryptAssertions;
+    }
+    public String encryptionAlgorithm() {
+        return this.encryptionAlgorithm;
     }
     public String encryptionCertificate() {
         return this.encryptionCertificate;
@@ -210,6 +214,7 @@ public final class GetClientResult {
         private String description;
         private Boolean enabled;
         private Boolean encryptAssertions;
+        private String encryptionAlgorithm;
         private String encryptionCertificate;
         private String encryptionCertificateSha1;
         private Map<String,String> extraConfig;
@@ -254,6 +259,7 @@ public final class GetClientResult {
     	      this.description = defaults.description;
     	      this.enabled = defaults.enabled;
     	      this.encryptAssertions = defaults.encryptAssertions;
+    	      this.encryptionAlgorithm = defaults.encryptionAlgorithm;
     	      this.encryptionCertificate = defaults.encryptionCertificate;
     	      this.encryptionCertificateSha1 = defaults.encryptionCertificateSha1;
     	      this.extraConfig = defaults.extraConfig;
@@ -382,6 +388,14 @@ public final class GetClientResult {
               throw new MissingRequiredPropertyException("GetClientResult", "encryptAssertions");
             }
             this.encryptAssertions = encryptAssertions;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder encryptionAlgorithm(String encryptionAlgorithm) {
+            if (encryptionAlgorithm == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "encryptionAlgorithm");
+            }
+            this.encryptionAlgorithm = encryptionAlgorithm;
             return this;
         }
         @CustomType.Setter
@@ -633,6 +647,7 @@ public final class GetClientResult {
             _resultValue.description = description;
             _resultValue.enabled = enabled;
             _resultValue.encryptAssertions = encryptAssertions;
+            _resultValue.encryptionAlgorithm = encryptionAlgorithm;
             _resultValue.encryptionCertificate = encryptionCertificate;
             _resultValue.encryptionCertificateSha1 = encryptionCertificateSha1;
             _resultValue.extraConfig = extraConfig;

@@ -65,14 +65,14 @@ public final class OrganizationState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * A list of domains. At least one domain is required.
+     * A list of domains.
      * 
      */
     @Import(name="domains")
     private @Nullable Output<List<OrganizationDomainArgs>> domains;
 
     /**
-     * @return A list of domains. At least one domain is required.
+     * @return A list of domains.
      * 
      */
     public Optional<Output<List<OrganizationDomainArgs>>> domains() {
@@ -234,7 +234,7 @@ public final class OrganizationState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param domains A list of domains. At least one domain is required.
+         * @param domains A list of domains.
          * 
          * @return builder
          * 
@@ -245,7 +245,7 @@ public final class OrganizationState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param domains A list of domains. At least one domain is required.
+         * @param domains A list of domains.
          * 
          * @return builder
          * 
@@ -255,7 +255,7 @@ public final class OrganizationState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param domains A list of domains. At least one domain is required.
+         * @param domains A list of domains.
          * 
          * @return builder
          * 

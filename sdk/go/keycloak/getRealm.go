@@ -83,6 +83,7 @@ type LookupRealmResult struct {
 	AccountTheme                        string            `pulumi:"accountTheme"`
 	ActionTokenGeneratedByAdminLifespan string            `pulumi:"actionTokenGeneratedByAdminLifespan"`
 	ActionTokenGeneratedByUserLifespan  string            `pulumi:"actionTokenGeneratedByUserLifespan"`
+	AdminPermissionsEnabled             bool              `pulumi:"adminPermissionsEnabled"`
 	AdminTheme                          string            `pulumi:"adminTheme"`
 	Attributes                          map[string]string `pulumi:"attributes"`
 	BrowserFlow                         string            `pulumi:"browserFlow"`
@@ -211,6 +212,10 @@ func (o LookupRealmResultOutput) ActionTokenGeneratedByAdminLifespan() pulumi.St
 
 func (o LookupRealmResultOutput) ActionTokenGeneratedByUserLifespan() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRealmResult) string { return v.ActionTokenGeneratedByUserLifespan }).(pulumi.StringOutput)
+}
+
+func (o LookupRealmResultOutput) AdminPermissionsEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupRealmResult) bool { return v.AdminPermissionsEnabled }).(pulumi.BoolOutput)
 }
 
 func (o LookupRealmResultOutput) AdminTheme() pulumi.StringOutput {

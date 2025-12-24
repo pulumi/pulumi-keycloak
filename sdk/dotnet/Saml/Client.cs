@@ -143,6 +143,12 @@ namespace Pulumi.Keycloak.Saml
         public Output<bool?> EncryptAssertions { get; private set; } = null!;
 
         /// <summary>
+        /// Algorithm used to encrypt SAML assertions. Allowed values: `AES_256_GCM`, `AES_192_GCM`, `AES_128_GCM`, `AES_256_CBC`, `AES_192_CBC`, or `AES_128_CBC`.
+        /// </summary>
+        [Output("encryptionAlgorithm")]
+        public Output<string?> EncryptionAlgorithm { get; private set; } = null!;
+
+        /// <summary>
         /// If assertions for the client are encrypted, this certificate will be used for encryption.
         /// </summary>
         [Output("encryptionCertificate")]
@@ -420,6 +426,12 @@ namespace Pulumi.Keycloak.Saml
         public Input<bool>? EncryptAssertions { get; set; }
 
         /// <summary>
+        /// Algorithm used to encrypt SAML assertions. Allowed values: `AES_256_GCM`, `AES_192_GCM`, `AES_128_GCM`, `AES_256_CBC`, `AES_192_CBC`, or `AES_128_CBC`.
+        /// </summary>
+        [Input("encryptionAlgorithm")]
+        public Input<string>? EncryptionAlgorithm { get; set; }
+
+        /// <summary>
         /// If assertions for the client are encrypted, this certificate will be used for encryption.
         /// </summary>
         [Input("encryptionCertificate")]
@@ -650,6 +662,12 @@ namespace Pulumi.Keycloak.Saml
         /// </summary>
         [Input("encryptAssertions")]
         public Input<bool>? EncryptAssertions { get; set; }
+
+        /// <summary>
+        /// Algorithm used to encrypt SAML assertions. Allowed values: `AES_256_GCM`, `AES_192_GCM`, `AES_128_GCM`, `AES_256_CBC`, `AES_192_CBC`, or `AES_128_CBC`.
+        /// </summary>
+        [Input("encryptionAlgorithm")]
+        public Input<string>? EncryptionAlgorithm { get; set; }
 
         /// <summary>
         /// If assertions for the client are encrypted, this certificate will be used for encryption.

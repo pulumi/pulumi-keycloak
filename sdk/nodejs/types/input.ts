@@ -47,6 +47,7 @@ export interface GetRealmSecurityDefenseBruteForceDetection {
     failureResetTimeSeconds?: number;
     maxFailureWaitSeconds?: number;
     maxLoginFailures?: number;
+    maxTemporaryLockouts?: number;
     minimumQuickLoginWaitSeconds?: number;
     permanentLockout?: boolean;
     quickLoginCheckMilliSeconds?: number;
@@ -57,6 +58,7 @@ export interface GetRealmSecurityDefenseBruteForceDetectionArgs {
     failureResetTimeSeconds?: pulumi.Input<number>;
     maxFailureWaitSeconds?: pulumi.Input<number>;
     maxLoginFailures?: pulumi.Input<number>;
+    maxTemporaryLockouts?: pulumi.Input<number>;
     minimumQuickLoginWaitSeconds?: pulumi.Input<number>;
     permanentLockout?: pulumi.Input<boolean>;
     quickLoginCheckMilliSeconds?: pulumi.Input<number>;
@@ -360,6 +362,10 @@ export interface RealmSecurityDefensesBruteForceDetection {
      */
     maxLoginFailures?: pulumi.Input<number>;
     /**
+     * How many temporary lockouts are permitted before a user is permanently locked out. `permanentLockout` needs to be `true`. Defaults to `0`
+     */
+    maxTemporaryLockouts?: pulumi.Input<number>;
+    /**
      * How long to wait after a quick login failure.
      * - `maxFailureWaitSeconds ` - (Optional) Max. time a user will be locked out.
      */
@@ -414,6 +420,7 @@ export interface RealmSecurityDefensesHeaders {
 }
 
 export interface RealmSmtpServer {
+    allowUtf8?: pulumi.Input<boolean>;
     /**
      * Enables authentication to the SMTP server. Cannot be set alongside `tokenAuth`. This block supports the following arguments:
      */

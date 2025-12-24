@@ -217,7 +217,7 @@ export class Client extends pulumi.CustomResource {
     /**
      * The description of this client in the GUI.
      */
-    declare public readonly description: pulumi.Output<string>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * When `true`, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to `false`.
      */
@@ -287,6 +287,10 @@ export class Client extends pulumi.CustomResource {
      * The realm this client is attached to.
      */
     declare public readonly realmId: pulumi.Output<string>;
+    /**
+     * Enable support for Demonstrating Proof-of-Possession (DPoP) bound tokens.
+     */
+    declare public readonly requireDpopBoundTokens: pulumi.Output<boolean>;
     /**
      * (Computed) When authorization is enabled for this client, this attribute is the unique ID for the client (the same value as the `.id` attribute).
      */
@@ -389,6 +393,7 @@ export class Client extends pulumi.CustomResource {
             resourceInputs["oauth2DevicePollingInterval"] = state?.oauth2DevicePollingInterval;
             resourceInputs["pkceCodeChallengeMethod"] = state?.pkceCodeChallengeMethod;
             resourceInputs["realmId"] = state?.realmId;
+            resourceInputs["requireDpopBoundTokens"] = state?.requireDpopBoundTokens;
             resourceInputs["resourceServerId"] = state?.resourceServerId;
             resourceInputs["rootUrl"] = state?.rootUrl;
             resourceInputs["serviceAccountUserId"] = state?.serviceAccountUserId;
@@ -450,6 +455,7 @@ export class Client extends pulumi.CustomResource {
             resourceInputs["oauth2DevicePollingInterval"] = args?.oauth2DevicePollingInterval;
             resourceInputs["pkceCodeChallengeMethod"] = args?.pkceCodeChallengeMethod;
             resourceInputs["realmId"] = args?.realmId;
+            resourceInputs["requireDpopBoundTokens"] = args?.requireDpopBoundTokens;
             resourceInputs["rootUrl"] = args?.rootUrl;
             resourceInputs["serviceAccountsEnabled"] = args?.serviceAccountsEnabled;
             resourceInputs["standardFlowEnabled"] = args?.standardFlowEnabled;
@@ -648,6 +654,10 @@ export interface ClientState {
      * The realm this client is attached to.
      */
     realmId?: pulumi.Input<string>;
+    /**
+     * Enable support for Demonstrating Proof-of-Possession (DPoP) bound tokens.
+     */
+    requireDpopBoundTokens?: pulumi.Input<boolean>;
     /**
      * (Computed) When authorization is enabled for this client, this attribute is the unique ID for the client (the same value as the `.id` attribute).
      */
@@ -875,6 +885,10 @@ export interface ClientArgs {
      * The realm this client is attached to.
      */
     realmId: pulumi.Input<string>;
+    /**
+     * Enable support for Demonstrating Proof-of-Possession (DPoP) bound tokens.
+     */
+    requireDpopBoundTokens?: pulumi.Input<boolean>;
     /**
      * When specified, this URL is prepended to any relative URLs found within `validRedirectUris`, `webOrigins`, and `adminUrl`. NOTE: Due to limitations in the Keycloak API, when the `rootUrl` attribute is used, the `validRedirectUris`, `webOrigins`, and `adminUrl` attributes will be required.
      */

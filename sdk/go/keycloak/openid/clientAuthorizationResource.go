@@ -12,6 +12,120 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Allows you to manage openid Client Authorization Resources.
+//
+// Authorization resources represent the protected resources in your application. Each resource can have associated scopes, URIs, and attributes.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak/openid"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			test, err := openid.NewClient(ctx, "test", &openid.ClientArgs{
+//				ClientId:               pulumi.String("client_id"),
+//				RealmId:                realm.ID(),
+//				AccessType:             pulumi.String("CONFIDENTIAL"),
+//				ServiceAccountsEnabled: pulumi.Bool(true),
+//				Authorization: &openid.ClientAuthorizationArgs{
+//					PolicyEnforcementMode: pulumi.String("ENFORCING"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			readScope, err := openid.NewClientAuthorizationScope(ctx, "read_scope", &openid.ClientAuthorizationScopeArgs{
+//				ResourceServerId: test.ResourceServerId,
+//				RealmId:          realm.ID(),
+//				Name:             pulumi.String("read"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			writeScope, err := openid.NewClientAuthorizationScope(ctx, "write_scope", &openid.ClientAuthorizationScopeArgs{
+//				ResourceServerId: test.ResourceServerId,
+//				RealmId:          realm.ID(),
+//				Name:             pulumi.String("write"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = openid.NewClientAuthorizationResource(ctx, "test", &openid.ClientAuthorizationResourceArgs{
+//				ResourceServerId: test.ResourceServerId,
+//				RealmId:          realm.ID(),
+//				Name:             pulumi.String("my_resource"),
+//				DisplayName:      pulumi.String("My Resource"),
+//				Uris: pulumi.StringArray{
+//					pulumi.String("/api/resource/*"),
+//					pulumi.String("/api/resource/**"),
+//				},
+//				Scopes: pulumi.StringArray{
+//					readScope.Name,
+//					writeScope.Name,
+//				},
+//				Type: pulumi.String("http://example.com/resource-type"),
+//				Attributes: pulumi.StringMap{
+//					"key1": pulumi.String("value1,value2"),
+//					"key2": pulumi.String("value3"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Argument Reference
+//
+// The following arguments are supported:
+//
+// - `realmId` - (Required) The realm this resource exists in.
+// - `resourceServerId` - (Required) The ID of the resource server.
+// - `name` - (Required) The name of the resource.
+// - `displayName` - (Optional) The display name of the resource.
+// - `uris` - (Optional) A set of URIs that this resource represents.
+// - `iconUri` - (Optional) An icon URI for the resource.
+// - `ownerManagedAccess` - (Optional) When `true`, this resource supports user-managed access. Defaults to `false`.
+// - `scopes` - (Optional) A set of scope names that this resource uses.
+// - `type` - (Optional) The type of this resource (e.g., `urn:myapp:resources:default`).
+// - `attributes` - (Optional) A map of attributes for the resource. Values can be comma-separated lists.
+//
+// ### Attributes Reference
+//
+// In addition to the arguments listed above, the following computed attributes are exported:
+//
+// - `id` - Resource ID representing the authorization resource.
+//
+// ## Import
+//
+// Client authorization resources can be imported using the format: `{{realmId}}/{{resourceServerId}}/{{authorizationResourceId}}`.
+//
+// Example:
+//
+// bash
+//
+// ```sh
+// $ pulumi import keycloak:openid/clientAuthorizationResource:ClientAuthorizationResource test my-realm/3bd4a686-1062-4b59-97b8-e4e3f10b99da/63b3cde8-987d-4cd9-9306-1955579281d9
+// ```
 type ClientAuthorizationResource struct {
 	pulumi.CustomResourceState
 

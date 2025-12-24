@@ -24,6 +24,11 @@ public final class RealmSecurityDefensesBruteForceDetection {
      */
     private @Nullable Integer maxLoginFailures;
     /**
+     * @return How many temporary lockouts are permitted before a user is permanently locked out. `permanentLockout` needs to be `true`. Defaults to `0`
+     * 
+     */
+    private @Nullable Integer maxTemporaryLockouts;
+    /**
      * @return How long to wait after a quick login failure.
      * - ` maxFailureWaitSeconds  ` - (Optional) Max. time a user will be locked out.
      * 
@@ -62,6 +67,13 @@ public final class RealmSecurityDefensesBruteForceDetection {
      */
     public Optional<Integer> maxLoginFailures() {
         return Optional.ofNullable(this.maxLoginFailures);
+    }
+    /**
+     * @return How many temporary lockouts are permitted before a user is permanently locked out. `permanentLockout` needs to be `true`. Defaults to `0`
+     * 
+     */
+    public Optional<Integer> maxTemporaryLockouts() {
+        return Optional.ofNullable(this.maxTemporaryLockouts);
     }
     /**
      * @return How long to wait after a quick login failure.
@@ -105,6 +117,7 @@ public final class RealmSecurityDefensesBruteForceDetection {
         private @Nullable Integer failureResetTimeSeconds;
         private @Nullable Integer maxFailureWaitSeconds;
         private @Nullable Integer maxLoginFailures;
+        private @Nullable Integer maxTemporaryLockouts;
         private @Nullable Integer minimumQuickLoginWaitSeconds;
         private @Nullable Boolean permanentLockout;
         private @Nullable Integer quickLoginCheckMilliSeconds;
@@ -115,6 +128,7 @@ public final class RealmSecurityDefensesBruteForceDetection {
     	      this.failureResetTimeSeconds = defaults.failureResetTimeSeconds;
     	      this.maxFailureWaitSeconds = defaults.maxFailureWaitSeconds;
     	      this.maxLoginFailures = defaults.maxLoginFailures;
+    	      this.maxTemporaryLockouts = defaults.maxTemporaryLockouts;
     	      this.minimumQuickLoginWaitSeconds = defaults.minimumQuickLoginWaitSeconds;
     	      this.permanentLockout = defaults.permanentLockout;
     	      this.quickLoginCheckMilliSeconds = defaults.quickLoginCheckMilliSeconds;
@@ -137,6 +151,12 @@ public final class RealmSecurityDefensesBruteForceDetection {
         public Builder maxLoginFailures(@Nullable Integer maxLoginFailures) {
 
             this.maxLoginFailures = maxLoginFailures;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder maxTemporaryLockouts(@Nullable Integer maxTemporaryLockouts) {
+
+            this.maxTemporaryLockouts = maxTemporaryLockouts;
             return this;
         }
         @CustomType.Setter
@@ -168,6 +188,7 @@ public final class RealmSecurityDefensesBruteForceDetection {
             _resultValue.failureResetTimeSeconds = failureResetTimeSeconds;
             _resultValue.maxFailureWaitSeconds = maxFailureWaitSeconds;
             _resultValue.maxLoginFailures = maxLoginFailures;
+            _resultValue.maxTemporaryLockouts = maxTemporaryLockouts;
             _resultValue.minimumQuickLoginWaitSeconds = minimumQuickLoginWaitSeconds;
             _resultValue.permanentLockout = permanentLockout;
             _resultValue.quickLoginCheckMilliSeconds = quickLoginCheckMilliSeconds;

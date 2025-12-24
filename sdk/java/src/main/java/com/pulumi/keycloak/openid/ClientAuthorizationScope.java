@@ -14,6 +14,111 @@ import java.lang.String;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * Allows you to manage openid Client Authorization Scopes.
+ * 
+ * Authorization scopes represent the actions that can be performed on resources. They are used in permissions to define what operations are allowed.
+ * 
+ * ## Example Usage
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.keycloak.Realm;
+ * import com.pulumi.keycloak.RealmArgs;
+ * import com.pulumi.keycloak.openid.Client;
+ * import com.pulumi.keycloak.openid.ClientArgs;
+ * import com.pulumi.keycloak.openid.inputs.ClientAuthorizationArgs;
+ * import com.pulumi.keycloak.openid.ClientAuthorizationScope;
+ * import com.pulumi.keycloak.openid.ClientAuthorizationScopeArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var realm = new Realm("realm", RealmArgs.builder()
+ *             .realm("my-realm")
+ *             .enabled(true)
+ *             .build());
+ * 
+ *         var test = new Client("test", ClientArgs.builder()
+ *             .clientId("client_id")
+ *             .realmId(realm.id())
+ *             .accessType("CONFIDENTIAL")
+ *             .serviceAccountsEnabled(true)
+ *             .authorization(ClientAuthorizationArgs.builder()
+ *                 .policyEnforcementMode("ENFORCING")
+ *                 .build())
+ *             .build());
+ * 
+ *         var read = new ClientAuthorizationScope("read", ClientAuthorizationScopeArgs.builder()
+ *             .resourceServerId(test.resourceServerId())
+ *             .realmId(realm.id())
+ *             .name("read")
+ *             .displayName("Read Access")
+ *             .iconUri("https://example.com/icons/read.png")
+ *             .build());
+ * 
+ *         var write = new ClientAuthorizationScope("write", ClientAuthorizationScopeArgs.builder()
+ *             .resourceServerId(test.resourceServerId())
+ *             .realmId(realm.id())
+ *             .name("write")
+ *             .displayName("Write Access")
+ *             .build());
+ * 
+ *         var delete = new ClientAuthorizationScope("delete", ClientAuthorizationScopeArgs.builder()
+ *             .resourceServerId(test.resourceServerId())
+ *             .realmId(realm.id())
+ *             .name("delete")
+ *             .displayName("Delete Access")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ### Argument Reference
+ * 
+ * The following arguments are supported:
+ * 
+ * - `realmId` - (Required) The realm this scope exists in.
+ * - `resourceServerId` - (Required) The ID of the resource server.
+ * - `name` - (Required) The name of the scope.
+ * - `displayName` - (Optional) The display name of the scope.
+ * - `iconUri` - (Optional) An icon URI for the scope.
+ * 
+ * ### Attributes Reference
+ * 
+ * In addition to the arguments listed above, the following computed attributes are exported:
+ * 
+ * - `id` - Scope ID representing the authorization scope.
+ * 
+ * ## Import
+ * 
+ * Client authorization scopes can be imported using the format: `{{realmId}}/{{resourceServerId}}/{{authorizationScopeId}}`.
+ * 
+ * Example:
+ * 
+ * bash
+ * 
+ * ```sh
+ * $ pulumi import keycloak:openid/clientAuthorizationScope:ClientAuthorizationScope test my-realm/3bd4a686-1062-4b59-97b8-e4e3f10b99da/63b3cde8-987d-4cd9-9306-1955579281d9
+ * ```
+ * 
+ */
 @ResourceType(type="keycloak:openid/clientAuthorizationScope:ClientAuthorizationScope")
 public class ClientAuthorizationScope extends com.pulumi.resources.CustomResource {
     @Export(name="displayName", refs={String.class}, tree="[0]")

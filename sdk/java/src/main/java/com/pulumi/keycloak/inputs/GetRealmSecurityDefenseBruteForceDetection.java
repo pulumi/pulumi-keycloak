@@ -35,6 +35,13 @@ public final class GetRealmSecurityDefenseBruteForceDetection extends com.pulumi
         return this.maxLoginFailures;
     }
 
+    @Import(name="maxTemporaryLockouts", required=true)
+    private Integer maxTemporaryLockouts;
+
+    public Integer maxTemporaryLockouts() {
+        return this.maxTemporaryLockouts;
+    }
+
     @Import(name="minimumQuickLoginWaitSeconds", required=true)
     private Integer minimumQuickLoginWaitSeconds;
 
@@ -69,6 +76,7 @@ public final class GetRealmSecurityDefenseBruteForceDetection extends com.pulumi
         this.failureResetTimeSeconds = $.failureResetTimeSeconds;
         this.maxFailureWaitSeconds = $.maxFailureWaitSeconds;
         this.maxLoginFailures = $.maxLoginFailures;
+        this.maxTemporaryLockouts = $.maxTemporaryLockouts;
         this.minimumQuickLoginWaitSeconds = $.minimumQuickLoginWaitSeconds;
         this.permanentLockout = $.permanentLockout;
         this.quickLoginCheckMilliSeconds = $.quickLoginCheckMilliSeconds;
@@ -108,6 +116,11 @@ public final class GetRealmSecurityDefenseBruteForceDetection extends com.pulumi
             return this;
         }
 
+        public Builder maxTemporaryLockouts(Integer maxTemporaryLockouts) {
+            $.maxTemporaryLockouts = maxTemporaryLockouts;
+            return this;
+        }
+
         public Builder minimumQuickLoginWaitSeconds(Integer minimumQuickLoginWaitSeconds) {
             $.minimumQuickLoginWaitSeconds = minimumQuickLoginWaitSeconds;
             return this;
@@ -137,6 +150,9 @@ public final class GetRealmSecurityDefenseBruteForceDetection extends com.pulumi
             }
             if ($.maxLoginFailures == null) {
                 throw new MissingRequiredPropertyException("GetRealmSecurityDefenseBruteForceDetection", "maxLoginFailures");
+            }
+            if ($.maxTemporaryLockouts == null) {
+                throw new MissingRequiredPropertyException("GetRealmSecurityDefenseBruteForceDetection", "maxTemporaryLockouts");
             }
             if ($.minimumQuickLoginWaitSeconds == null) {
                 throw new MissingRequiredPropertyException("GetRealmSecurityDefenseBruteForceDetection", "minimumQuickLoginWaitSeconds");

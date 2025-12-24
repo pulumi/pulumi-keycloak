@@ -123,6 +123,7 @@ type Realm struct {
 	AccountTheme                        pulumi.StringPtrOutput `pulumi:"accountTheme"`
 	ActionTokenGeneratedByAdminLifespan pulumi.StringOutput    `pulumi:"actionTokenGeneratedByAdminLifespan"`
 	ActionTokenGeneratedByUserLifespan  pulumi.StringOutput    `pulumi:"actionTokenGeneratedByUserLifespan"`
+	AdminPermissionsEnabled             pulumi.BoolPtrOutput   `pulumi:"adminPermissionsEnabled"`
 	AdminTheme                          pulumi.StringPtrOutput `pulumi:"adminTheme"`
 	// A map of custom attributes to add to the realm.
 	Attributes pulumi.StringMapOutput `pulumi:"attributes"`
@@ -185,6 +186,8 @@ type Realm struct {
 	SsoSessionIdleTimeoutRememberMe pulumi.StringOutput    `pulumi:"ssoSessionIdleTimeoutRememberMe"`
 	SsoSessionMaxLifespan           pulumi.StringOutput    `pulumi:"ssoSessionMaxLifespan"`
 	SsoSessionMaxLifespanRememberMe pulumi.StringOutput    `pulumi:"ssoSessionMaxLifespanRememberMe"`
+	// When set to true, the realm cannot be deleted. Defaults to false.
+	TerraformDeletionProtection pulumi.BoolPtrOutput `pulumi:"terraformDeletionProtection"`
 	// When `true`, users are allowed to manage their own resources. Defaults to `false`.
 	UserManagedAccess          pulumi.BoolPtrOutput                  `pulumi:"userManagedAccess"`
 	VerifyEmail                pulumi.BoolOutput                     `pulumi:"verifyEmail"`
@@ -230,6 +233,7 @@ type realmState struct {
 	AccountTheme                        *string `pulumi:"accountTheme"`
 	ActionTokenGeneratedByAdminLifespan *string `pulumi:"actionTokenGeneratedByAdminLifespan"`
 	ActionTokenGeneratedByUserLifespan  *string `pulumi:"actionTokenGeneratedByUserLifespan"`
+	AdminPermissionsEnabled             *bool   `pulumi:"adminPermissionsEnabled"`
 	AdminTheme                          *string `pulumi:"adminTheme"`
 	// A map of custom attributes to add to the realm.
 	Attributes map[string]string `pulumi:"attributes"`
@@ -292,6 +296,8 @@ type realmState struct {
 	SsoSessionIdleTimeoutRememberMe *string `pulumi:"ssoSessionIdleTimeoutRememberMe"`
 	SsoSessionMaxLifespan           *string `pulumi:"ssoSessionMaxLifespan"`
 	SsoSessionMaxLifespanRememberMe *string `pulumi:"ssoSessionMaxLifespanRememberMe"`
+	// When set to true, the realm cannot be deleted. Defaults to false.
+	TerraformDeletionProtection *bool `pulumi:"terraformDeletionProtection"`
 	// When `true`, users are allowed to manage their own resources. Defaults to `false`.
 	UserManagedAccess          *bool                            `pulumi:"userManagedAccess"`
 	VerifyEmail                *bool                            `pulumi:"verifyEmail"`
@@ -308,6 +314,7 @@ type RealmState struct {
 	AccountTheme                        pulumi.StringPtrInput
 	ActionTokenGeneratedByAdminLifespan pulumi.StringPtrInput
 	ActionTokenGeneratedByUserLifespan  pulumi.StringPtrInput
+	AdminPermissionsEnabled             pulumi.BoolPtrInput
 	AdminTheme                          pulumi.StringPtrInput
 	// A map of custom attributes to add to the realm.
 	Attributes pulumi.StringMapInput
@@ -370,6 +377,8 @@ type RealmState struct {
 	SsoSessionIdleTimeoutRememberMe pulumi.StringPtrInput
 	SsoSessionMaxLifespan           pulumi.StringPtrInput
 	SsoSessionMaxLifespanRememberMe pulumi.StringPtrInput
+	// When set to true, the realm cannot be deleted. Defaults to false.
+	TerraformDeletionProtection pulumi.BoolPtrInput
 	// When `true`, users are allowed to manage their own resources. Defaults to `false`.
 	UserManagedAccess          pulumi.BoolPtrInput
 	VerifyEmail                pulumi.BoolPtrInput
@@ -390,6 +399,7 @@ type realmArgs struct {
 	AccountTheme                        *string `pulumi:"accountTheme"`
 	ActionTokenGeneratedByAdminLifespan *string `pulumi:"actionTokenGeneratedByAdminLifespan"`
 	ActionTokenGeneratedByUserLifespan  *string `pulumi:"actionTokenGeneratedByUserLifespan"`
+	AdminPermissionsEnabled             *bool   `pulumi:"adminPermissionsEnabled"`
 	AdminTheme                          *string `pulumi:"adminTheme"`
 	// A map of custom attributes to add to the realm.
 	Attributes map[string]string `pulumi:"attributes"`
@@ -452,6 +462,8 @@ type realmArgs struct {
 	SsoSessionIdleTimeoutRememberMe *string `pulumi:"ssoSessionIdleTimeoutRememberMe"`
 	SsoSessionMaxLifespan           *string `pulumi:"ssoSessionMaxLifespan"`
 	SsoSessionMaxLifespanRememberMe *string `pulumi:"ssoSessionMaxLifespanRememberMe"`
+	// When set to true, the realm cannot be deleted. Defaults to false.
+	TerraformDeletionProtection *bool `pulumi:"terraformDeletionProtection"`
 	// When `true`, users are allowed to manage their own resources. Defaults to `false`.
 	UserManagedAccess          *bool                            `pulumi:"userManagedAccess"`
 	VerifyEmail                *bool                            `pulumi:"verifyEmail"`
@@ -469,6 +481,7 @@ type RealmArgs struct {
 	AccountTheme                        pulumi.StringPtrInput
 	ActionTokenGeneratedByAdminLifespan pulumi.StringPtrInput
 	ActionTokenGeneratedByUserLifespan  pulumi.StringPtrInput
+	AdminPermissionsEnabled             pulumi.BoolPtrInput
 	AdminTheme                          pulumi.StringPtrInput
 	// A map of custom attributes to add to the realm.
 	Attributes pulumi.StringMapInput
@@ -531,6 +544,8 @@ type RealmArgs struct {
 	SsoSessionIdleTimeoutRememberMe pulumi.StringPtrInput
 	SsoSessionMaxLifespan           pulumi.StringPtrInput
 	SsoSessionMaxLifespanRememberMe pulumi.StringPtrInput
+	// When set to true, the realm cannot be deleted. Defaults to false.
+	TerraformDeletionProtection pulumi.BoolPtrInput
 	// When `true`, users are allowed to manage their own resources. Defaults to `false`.
 	UserManagedAccess          pulumi.BoolPtrInput
 	VerifyEmail                pulumi.BoolPtrInput
@@ -655,6 +670,10 @@ func (o RealmOutput) ActionTokenGeneratedByAdminLifespan() pulumi.StringOutput {
 
 func (o RealmOutput) ActionTokenGeneratedByUserLifespan() pulumi.StringOutput {
 	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.ActionTokenGeneratedByUserLifespan }).(pulumi.StringOutput)
+}
+
+func (o RealmOutput) AdminPermissionsEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Realm) pulumi.BoolPtrOutput { return v.AdminPermissionsEnabled }).(pulumi.BoolPtrOutput)
 }
 
 func (o RealmOutput) AdminTheme() pulumi.StringPtrOutput {
@@ -855,6 +874,11 @@ func (o RealmOutput) SsoSessionMaxLifespan() pulumi.StringOutput {
 
 func (o RealmOutput) SsoSessionMaxLifespanRememberMe() pulumi.StringOutput {
 	return o.ApplyT(func(v *Realm) pulumi.StringOutput { return v.SsoSessionMaxLifespanRememberMe }).(pulumi.StringOutput)
+}
+
+// When set to true, the realm cannot be deleted. Defaults to false.
+func (o RealmOutput) TerraformDeletionProtection() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Realm) pulumi.BoolPtrOutput { return v.TerraformDeletionProtection }).(pulumi.BoolPtrOutput)
 }
 
 // When `true`, users are allowed to manage their own resources. Defaults to `false`.

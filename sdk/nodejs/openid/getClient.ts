@@ -109,6 +109,7 @@ export interface GetClientResult {
     readonly oauth2DevicePollingInterval?: string;
     readonly pkceCodeChallengeMethod: string;
     readonly realmId: string;
+    readonly requireDpopBoundTokens: boolean;
     readonly resourceServerId: string;
     readonly rootUrl: string;
     readonly serviceAccountUserId: string;

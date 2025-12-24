@@ -168,6 +168,7 @@ namespace Pulumi.Keycloak.Saml
         public readonly string Description;
         public readonly bool Enabled;
         public readonly bool EncryptAssertions;
+        public readonly string EncryptionAlgorithm;
         public readonly string EncryptionCertificate;
         public readonly string EncryptionCertificateSha1;
         public readonly ImmutableDictionary<string, string> ExtraConfig;
@@ -226,6 +227,8 @@ namespace Pulumi.Keycloak.Saml
             bool enabled,
 
             bool encryptAssertions,
+
+            string encryptionAlgorithm,
 
             string encryptionCertificate,
 
@@ -297,6 +300,7 @@ namespace Pulumi.Keycloak.Saml
             Description = description;
             Enabled = enabled;
             EncryptAssertions = encryptAssertions;
+            EncryptionAlgorithm = encryptionAlgorithm;
             EncryptionCertificate = encryptionCertificate;
             EncryptionCertificateSha1 = encryptionCertificateSha1;
             ExtraConfig = extraConfig;

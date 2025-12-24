@@ -200,6 +200,21 @@ public final class ClientState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Algorithm used to encrypt SAML assertions. Allowed values: `AES_256_GCM`, `AES_192_GCM`, `AES_128_GCM`, `AES_256_CBC`, `AES_192_CBC`, or `AES_128_CBC`.
+     * 
+     */
+    @Import(name="encryptionAlgorithm")
+    private @Nullable Output<String> encryptionAlgorithm;
+
+    /**
+     * @return Algorithm used to encrypt SAML assertions. Allowed values: `AES_256_GCM`, `AES_192_GCM`, `AES_128_GCM`, `AES_256_CBC`, `AES_192_CBC`, or `AES_128_CBC`.
+     * 
+     */
+    public Optional<Output<String>> encryptionAlgorithm() {
+        return Optional.ofNullable(this.encryptionAlgorithm);
+    }
+
+    /**
      * If assertions for the client are encrypted, this certificate will be used for encryption.
      * 
      */
@@ -611,6 +626,7 @@ public final class ClientState extends com.pulumi.resources.ResourceArgs {
         this.description = $.description;
         this.enabled = $.enabled;
         this.encryptAssertions = $.encryptAssertions;
+        this.encryptionAlgorithm = $.encryptionAlgorithm;
         this.encryptionCertificate = $.encryptionCertificate;
         this.encryptionCertificateSha1 = $.encryptionCertificateSha1;
         this.extraConfig = $.extraConfig;
@@ -908,6 +924,27 @@ public final class ClientState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder encryptAssertions(Boolean encryptAssertions) {
             return encryptAssertions(Output.of(encryptAssertions));
+        }
+
+        /**
+         * @param encryptionAlgorithm Algorithm used to encrypt SAML assertions. Allowed values: `AES_256_GCM`, `AES_192_GCM`, `AES_128_GCM`, `AES_256_CBC`, `AES_192_CBC`, or `AES_128_CBC`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder encryptionAlgorithm(@Nullable Output<String> encryptionAlgorithm) {
+            $.encryptionAlgorithm = encryptionAlgorithm;
+            return this;
+        }
+
+        /**
+         * @param encryptionAlgorithm Algorithm used to encrypt SAML assertions. Allowed values: `AES_256_GCM`, `AES_192_GCM`, `AES_128_GCM`, `AES_256_CBC`, `AES_192_CBC`, or `AES_128_CBC`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder encryptionAlgorithm(String encryptionAlgorithm) {
+            return encryptionAlgorithm(Output.of(encryptionAlgorithm));
         }
 
         /**

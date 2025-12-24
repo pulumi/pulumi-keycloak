@@ -36,6 +36,7 @@ import * as utilities from "./utilities";
 export function getGroup(args: GetGroupArgs, opts?: pulumi.InvokeOptions): Promise<GetGroupResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("keycloak:index/getGroup:getGroup", {
+        "description": args.description,
         "name": args.name,
         "realmId": args.realmId,
     }, opts);
@@ -45,6 +46,7 @@ export function getGroup(args: GetGroupArgs, opts?: pulumi.InvokeOptions): Promi
  * A collection of arguments for invoking getGroup.
  */
 export interface GetGroupArgs {
+    description?: string;
     /**
      * The name of the group. If there are multiple groups match `name`, the first result will be returned.
      */
@@ -60,6 +62,7 @@ export interface GetGroupArgs {
  */
 export interface GetGroupResult {
     readonly attributes: {[key: string]: string};
+    readonly description?: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
@@ -101,6 +104,7 @@ export interface GetGroupResult {
 export function getGroupOutput(args: GetGroupOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetGroupResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("keycloak:index/getGroup:getGroup", {
+        "description": args.description,
         "name": args.name,
         "realmId": args.realmId,
     }, opts);
@@ -110,6 +114,7 @@ export function getGroupOutput(args: GetGroupOutputArgs, opts?: pulumi.InvokeOut
  * A collection of arguments for invoking getGroup.
  */
 export interface GetGroupOutputArgs {
+    description?: pulumi.Input<string>;
     /**
      * The name of the group. If there are multiple groups match `name`, the first result will be returned.
      */

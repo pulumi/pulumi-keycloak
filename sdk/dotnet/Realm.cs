@@ -141,6 +141,9 @@ namespace Pulumi.Keycloak
         [Output("actionTokenGeneratedByUserLifespan")]
         public Output<string> ActionTokenGeneratedByUserLifespan { get; private set; } = null!;
 
+        [Output("adminPermissionsEnabled")]
+        public Output<bool?> AdminPermissionsEnabled { get; private set; } = null!;
+
         [Output("adminTheme")]
         public Output<string?> AdminTheme { get; private set; } = null!;
 
@@ -328,6 +331,12 @@ namespace Pulumi.Keycloak
         public Output<string> SsoSessionMaxLifespanRememberMe { get; private set; } = null!;
 
         /// <summary>
+        /// When set to true, the realm cannot be deleted. Defaults to false.
+        /// </summary>
+        [Output("terraformDeletionProtection")]
+        public Output<bool?> TerraformDeletionProtection { get; private set; } = null!;
+
+        /// <summary>
         /// When `True`, users are allowed to manage their own resources. Defaults to `False`.
         /// </summary>
         [Output("userManagedAccess")]
@@ -411,6 +420,9 @@ namespace Pulumi.Keycloak
 
         [Input("actionTokenGeneratedByUserLifespan")]
         public Input<string>? ActionTokenGeneratedByUserLifespan { get; set; }
+
+        [Input("adminPermissionsEnabled")]
+        public Input<bool>? AdminPermissionsEnabled { get; set; }
 
         [Input("adminTheme")]
         public Input<string>? AdminTheme { get; set; }
@@ -615,6 +627,12 @@ namespace Pulumi.Keycloak
         public Input<string>? SsoSessionMaxLifespanRememberMe { get; set; }
 
         /// <summary>
+        /// When set to true, the realm cannot be deleted. Defaults to false.
+        /// </summary>
+        [Input("terraformDeletionProtection")]
+        public Input<bool>? TerraformDeletionProtection { get; set; }
+
+        /// <summary>
         /// When `True`, users are allowed to manage their own resources. Defaults to `False`.
         /// </summary>
         [Input("userManagedAccess")]
@@ -660,6 +678,9 @@ namespace Pulumi.Keycloak
 
         [Input("actionTokenGeneratedByUserLifespan")]
         public Input<string>? ActionTokenGeneratedByUserLifespan { get; set; }
+
+        [Input("adminPermissionsEnabled")]
+        public Input<bool>? AdminPermissionsEnabled { get; set; }
 
         [Input("adminTheme")]
         public Input<string>? AdminTheme { get; set; }
@@ -862,6 +883,12 @@ namespace Pulumi.Keycloak
 
         [Input("ssoSessionMaxLifespanRememberMe")]
         public Input<string>? SsoSessionMaxLifespanRememberMe { get; set; }
+
+        /// <summary>
+        /// When set to true, the realm cannot be deleted. Defaults to false.
+        /// </summary>
+        [Input("terraformDeletionProtection")]
+        public Input<bool>? TerraformDeletionProtection { get; set; }
 
         /// <summary>
         /// When `True`, users are allowed to manage their own resources. Defaults to `False`.

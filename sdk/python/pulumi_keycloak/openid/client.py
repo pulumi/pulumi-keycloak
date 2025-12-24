@@ -63,6 +63,7 @@ class ClientArgs:
                  oauth2_device_code_lifespan: Optional[pulumi.Input[_builtins.str]] = None,
                  oauth2_device_polling_interval: Optional[pulumi.Input[_builtins.str]] = None,
                  pkce_code_challenge_method: Optional[pulumi.Input[_builtins.str]] = None,
+                 require_dpop_bound_tokens: Optional[pulumi.Input[_builtins.bool]] = None,
                  root_url: Optional[pulumi.Input[_builtins.str]] = None,
                  service_accounts_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  standard_flow_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -125,6 +126,7 @@ class ClientArgs:
         :param pulumi.Input[_builtins.str] oauth2_device_code_lifespan: The maximum amount of time a client has to finish the device code flow before it expires.
         :param pulumi.Input[_builtins.str] oauth2_device_polling_interval: The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
         :param pulumi.Input[_builtins.str] pkce_code_challenge_method: The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
+        :param pulumi.Input[_builtins.bool] require_dpop_bound_tokens: Enable support for Demonstrating Proof-of-Possession (DPoP) bound tokens.
         :param pulumi.Input[_builtins.str] root_url: When specified, this URL is prepended to any relative URLs found within `valid_redirect_uris`, `web_origins`, and `admin_url`. NOTE: Due to limitations in the Keycloak API, when the `root_url` attribute is used, the `valid_redirect_uris`, `web_origins`, and `admin_url` attributes will be required.
         :param pulumi.Input[_builtins.bool] service_accounts_enabled: When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] standard_flow_enabled: When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
@@ -219,6 +221,8 @@ class ClientArgs:
             pulumi.set(__self__, "oauth2_device_polling_interval", oauth2_device_polling_interval)
         if pkce_code_challenge_method is not None:
             pulumi.set(__self__, "pkce_code_challenge_method", pkce_code_challenge_method)
+        if require_dpop_bound_tokens is not None:
+            pulumi.set(__self__, "require_dpop_bound_tokens", require_dpop_bound_tokens)
         if root_url is not None:
             pulumi.set(__self__, "root_url", root_url)
         if service_accounts_enabled is not None:
@@ -750,6 +754,18 @@ class ClientArgs:
         pulumi.set(self, "pkce_code_challenge_method", value)
 
     @_builtins.property
+    @pulumi.getter(name="requireDpopBoundTokens")
+    def require_dpop_bound_tokens(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Enable support for Demonstrating Proof-of-Possession (DPoP) bound tokens.
+        """
+        return pulumi.get(self, "require_dpop_bound_tokens")
+
+    @require_dpop_bound_tokens.setter
+    def require_dpop_bound_tokens(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "require_dpop_bound_tokens", value)
+
+    @_builtins.property
     @pulumi.getter(name="rootUrl")
     def root_url(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -905,6 +921,7 @@ class _ClientState:
                  oauth2_device_polling_interval: Optional[pulumi.Input[_builtins.str]] = None,
                  pkce_code_challenge_method: Optional[pulumi.Input[_builtins.str]] = None,
                  realm_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 require_dpop_bound_tokens: Optional[pulumi.Input[_builtins.bool]] = None,
                  resource_server_id: Optional[pulumi.Input[_builtins.str]] = None,
                  root_url: Optional[pulumi.Input[_builtins.str]] = None,
                  service_account_user_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -969,6 +986,7 @@ class _ClientState:
         :param pulumi.Input[_builtins.str] oauth2_device_polling_interval: The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
         :param pulumi.Input[_builtins.str] pkce_code_challenge_method: The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
         :param pulumi.Input[_builtins.str] realm_id: The realm this client is attached to.
+        :param pulumi.Input[_builtins.bool] require_dpop_bound_tokens: Enable support for Demonstrating Proof-of-Possession (DPoP) bound tokens.
         :param pulumi.Input[_builtins.str] resource_server_id: (Computed) When authorization is enabled for this client, this attribute is the unique ID for the client (the same value as the `.id` attribute).
         :param pulumi.Input[_builtins.str] root_url: When specified, this URL is prepended to any relative URLs found within `valid_redirect_uris`, `web_origins`, and `admin_url`. NOTE: Due to limitations in the Keycloak API, when the `root_url` attribute is used, the `valid_redirect_uris`, `web_origins`, and `admin_url` attributes will be required.
         :param pulumi.Input[_builtins.str] service_account_user_id: (Computed) When service accounts are enabled for this client, this attribute is the unique ID for the Keycloak user that represents this service account.
@@ -1067,6 +1085,8 @@ class _ClientState:
             pulumi.set(__self__, "pkce_code_challenge_method", pkce_code_challenge_method)
         if realm_id is not None:
             pulumi.set(__self__, "realm_id", realm_id)
+        if require_dpop_bound_tokens is not None:
+            pulumi.set(__self__, "require_dpop_bound_tokens", require_dpop_bound_tokens)
         if resource_server_id is not None:
             pulumi.set(__self__, "resource_server_id", resource_server_id)
         if root_url is not None:
@@ -1602,6 +1622,18 @@ class _ClientState:
         pulumi.set(self, "realm_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="requireDpopBoundTokens")
+    def require_dpop_bound_tokens(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Enable support for Demonstrating Proof-of-Possession (DPoP) bound tokens.
+        """
+        return pulumi.get(self, "require_dpop_bound_tokens")
+
+    @require_dpop_bound_tokens.setter
+    def require_dpop_bound_tokens(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "require_dpop_bound_tokens", value)
+
+    @_builtins.property
     @pulumi.getter(name="resourceServerId")
     def resource_server_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -1784,6 +1816,7 @@ class Client(pulumi.CustomResource):
                  oauth2_device_polling_interval: Optional[pulumi.Input[_builtins.str]] = None,
                  pkce_code_challenge_method: Optional[pulumi.Input[_builtins.str]] = None,
                  realm_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 require_dpop_bound_tokens: Optional[pulumi.Input[_builtins.bool]] = None,
                  root_url: Optional[pulumi.Input[_builtins.str]] = None,
                  service_accounts_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  standard_flow_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -1921,6 +1954,7 @@ class Client(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] oauth2_device_polling_interval: The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
         :param pulumi.Input[_builtins.str] pkce_code_challenge_method: The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
         :param pulumi.Input[_builtins.str] realm_id: The realm this client is attached to.
+        :param pulumi.Input[_builtins.bool] require_dpop_bound_tokens: Enable support for Demonstrating Proof-of-Possession (DPoP) bound tokens.
         :param pulumi.Input[_builtins.str] root_url: When specified, this URL is prepended to any relative URLs found within `valid_redirect_uris`, `web_origins`, and `admin_url`. NOTE: Due to limitations in the Keycloak API, when the `root_url` attribute is used, the `valid_redirect_uris`, `web_origins`, and `admin_url` attributes will be required.
         :param pulumi.Input[_builtins.bool] service_accounts_enabled: When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] standard_flow_enabled: When `true`, the OAuth2 Authorization Code Grant will be enabled for this client. Defaults to `false`.
@@ -2070,6 +2104,7 @@ class Client(pulumi.CustomResource):
                  oauth2_device_polling_interval: Optional[pulumi.Input[_builtins.str]] = None,
                  pkce_code_challenge_method: Optional[pulumi.Input[_builtins.str]] = None,
                  realm_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 require_dpop_bound_tokens: Optional[pulumi.Input[_builtins.bool]] = None,
                  root_url: Optional[pulumi.Input[_builtins.str]] = None,
                  service_accounts_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  standard_flow_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -2134,6 +2169,7 @@ class Client(pulumi.CustomResource):
             if realm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'realm_id'")
             __props__.__dict__["realm_id"] = realm_id
+            __props__.__dict__["require_dpop_bound_tokens"] = require_dpop_bound_tokens
             __props__.__dict__["root_url"] = root_url
             __props__.__dict__["service_accounts_enabled"] = service_accounts_enabled
             __props__.__dict__["standard_flow_enabled"] = standard_flow_enabled
@@ -2199,6 +2235,7 @@ class Client(pulumi.CustomResource):
             oauth2_device_polling_interval: Optional[pulumi.Input[_builtins.str]] = None,
             pkce_code_challenge_method: Optional[pulumi.Input[_builtins.str]] = None,
             realm_id: Optional[pulumi.Input[_builtins.str]] = None,
+            require_dpop_bound_tokens: Optional[pulumi.Input[_builtins.bool]] = None,
             resource_server_id: Optional[pulumi.Input[_builtins.str]] = None,
             root_url: Optional[pulumi.Input[_builtins.str]] = None,
             service_account_user_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -2268,6 +2305,7 @@ class Client(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] oauth2_device_polling_interval: The minimum amount of time in seconds that the client should wait between polling requests to the token endpoint.
         :param pulumi.Input[_builtins.str] pkce_code_challenge_method: The challenge method to use for Proof Key for Code Exchange. Can be either `plain` or `S256` or set to empty value ``.
         :param pulumi.Input[_builtins.str] realm_id: The realm this client is attached to.
+        :param pulumi.Input[_builtins.bool] require_dpop_bound_tokens: Enable support for Demonstrating Proof-of-Possession (DPoP) bound tokens.
         :param pulumi.Input[_builtins.str] resource_server_id: (Computed) When authorization is enabled for this client, this attribute is the unique ID for the client (the same value as the `.id` attribute).
         :param pulumi.Input[_builtins.str] root_url: When specified, this URL is prepended to any relative URLs found within `valid_redirect_uris`, `web_origins`, and `admin_url`. NOTE: Due to limitations in the Keycloak API, when the `root_url` attribute is used, the `valid_redirect_uris`, `web_origins`, and `admin_url` attributes will be required.
         :param pulumi.Input[_builtins.str] service_account_user_id: (Computed) When service accounts are enabled for this client, this attribute is the unique ID for the Keycloak user that represents this service account.
@@ -2328,6 +2366,7 @@ class Client(pulumi.CustomResource):
         __props__.__dict__["oauth2_device_polling_interval"] = oauth2_device_polling_interval
         __props__.__dict__["pkce_code_challenge_method"] = pkce_code_challenge_method
         __props__.__dict__["realm_id"] = realm_id
+        __props__.__dict__["require_dpop_bound_tokens"] = require_dpop_bound_tokens
         __props__.__dict__["resource_server_id"] = resource_server_id
         __props__.__dict__["root_url"] = root_url
         __props__.__dict__["service_account_user_id"] = service_account_user_id
@@ -2537,7 +2576,7 @@ class Client(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> pulumi.Output[_builtins.str]:
+    def description(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         The description of this client in the GUI.
         """
@@ -2683,6 +2722,14 @@ class Client(pulumi.CustomResource):
         The realm this client is attached to.
         """
         return pulumi.get(self, "realm_id")
+
+    @_builtins.property
+    @pulumi.getter(name="requireDpopBoundTokens")
+    def require_dpop_bound_tokens(self) -> pulumi.Output[_builtins.bool]:
+        """
+        Enable support for Demonstrating Proof-of-Possession (DPoP) bound tokens.
+        """
+        return pulumi.get(self, "require_dpop_bound_tokens")
 
     @_builtins.property
     @pulumi.getter(name="resourceServerId")

@@ -21,6 +21,8 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "keycloak:oidc/facebookIdentityProvider:FacebookIdentityProvider":
+		r = &FacebookIdentityProvider{}
 	case "keycloak:oidc/githubIdentityProvider:GithubIdentityProvider":
 		r = &GithubIdentityProvider{}
 	case "keycloak:oidc/googleIdentityProvider:GoogleIdentityProvider":
@@ -40,6 +42,11 @@ func init() {
 	if err != nil {
 		version = semver.Version{Major: 1}
 	}
+	pulumi.RegisterResourceModule(
+		"keycloak",
+		"oidc/facebookIdentityProvider",
+		&module{version},
+	)
 	pulumi.RegisterResourceModule(
 		"keycloak",
 		"oidc/githubIdentityProvider",

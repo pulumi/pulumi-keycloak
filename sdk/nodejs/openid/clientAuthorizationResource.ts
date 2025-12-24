@@ -4,6 +4,94 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * Allows you to manage openid Client Authorization Resources.
+ *
+ * Authorization resources represent the protected resources in your application. Each resource can have associated scopes, URIs, and attributes.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * const test = new keycloak.openid.Client("test", {
+ *     clientId: "client_id",
+ *     realmId: realm.id,
+ *     accessType: "CONFIDENTIAL",
+ *     serviceAccountsEnabled: true,
+ *     authorization: {
+ *         policyEnforcementMode: "ENFORCING",
+ *     },
+ * });
+ * const readScope = new keycloak.openid.ClientAuthorizationScope("read_scope", {
+ *     resourceServerId: test.resourceServerId,
+ *     realmId: realm.id,
+ *     name: "read",
+ * });
+ * const writeScope = new keycloak.openid.ClientAuthorizationScope("write_scope", {
+ *     resourceServerId: test.resourceServerId,
+ *     realmId: realm.id,
+ *     name: "write",
+ * });
+ * const testClientAuthorizationResource = new keycloak.openid.ClientAuthorizationResource("test", {
+ *     resourceServerId: test.resourceServerId,
+ *     realmId: realm.id,
+ *     name: "my_resource",
+ *     displayName: "My Resource",
+ *     uris: [
+ *         "/api/resource/*",
+ *         "/api/resource/**",
+ *     ],
+ *     scopes: [
+ *         readScope.name,
+ *         writeScope.name,
+ *     ],
+ *     type: "http://example.com/resource-type",
+ *     attributes: {
+ *         key1: "value1,value2",
+ *         key2: "value3",
+ *     },
+ * });
+ * ```
+ *
+ * ### Argument Reference
+ *
+ * The following arguments are supported:
+ *
+ * - `realmId` - (Required) The realm this resource exists in.
+ * - `resourceServerId` - (Required) The ID of the resource server.
+ * - `name` - (Required) The name of the resource.
+ * - `displayName` - (Optional) The display name of the resource.
+ * - `uris` - (Optional) A set of URIs that this resource represents.
+ * - `iconUri` - (Optional) An icon URI for the resource.
+ * - `ownerManagedAccess` - (Optional) When `true`, this resource supports user-managed access. Defaults to `false`.
+ * - `scopes` - (Optional) A set of scope names that this resource uses.
+ * - `type` - (Optional) The type of this resource (e.g., `urn:myapp:resources:default`).
+ * - `attributes` - (Optional) A map of attributes for the resource. Values can be comma-separated lists.
+ *
+ * ### Attributes Reference
+ *
+ * In addition to the arguments listed above, the following computed attributes are exported:
+ *
+ * - `id` - Resource ID representing the authorization resource.
+ *
+ * ## Import
+ *
+ * Client authorization resources can be imported using the format: `{{realmId}}/{{resourceServerId}}/{{authorizationResourceId}}`.
+ *
+ * Example:
+ *
+ * bash
+ *
+ * ```sh
+ * $ pulumi import keycloak:openid/clientAuthorizationResource:ClientAuthorizationResource test my-realm/3bd4a686-1062-4b59-97b8-e4e3f10b99da/63b3cde8-987d-4cd9-9306-1955579281d9
+ * ```
+ */
 export class ClientAuthorizationResource extends pulumi.CustomResource {
     /**
      * Get an existing ClientAuthorizationResource resource's state with the given name, ID, and optional extra

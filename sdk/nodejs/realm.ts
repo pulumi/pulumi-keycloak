@@ -130,6 +130,7 @@ export class Realm extends pulumi.CustomResource {
     declare public readonly accountTheme: pulumi.Output<string | undefined>;
     declare public readonly actionTokenGeneratedByAdminLifespan: pulumi.Output<string>;
     declare public readonly actionTokenGeneratedByUserLifespan: pulumi.Output<string>;
+    declare public readonly adminPermissionsEnabled: pulumi.Output<boolean | undefined>;
     declare public readonly adminTheme: pulumi.Output<string | undefined>;
     /**
      * A map of custom attributes to add to the realm.
@@ -225,6 +226,10 @@ export class Realm extends pulumi.CustomResource {
     declare public readonly ssoSessionMaxLifespan: pulumi.Output<string>;
     declare public readonly ssoSessionMaxLifespanRememberMe: pulumi.Output<string>;
     /**
+     * When set to true, the realm cannot be deleted. Defaults to false.
+     */
+    declare public readonly terraformDeletionProtection: pulumi.Output<boolean | undefined>;
+    /**
      * When `true`, users are allowed to manage their own resources. Defaults to `false`.
      */
     declare public readonly userManagedAccess: pulumi.Output<boolean | undefined>;
@@ -253,6 +258,7 @@ export class Realm extends pulumi.CustomResource {
             resourceInputs["accountTheme"] = state?.accountTheme;
             resourceInputs["actionTokenGeneratedByAdminLifespan"] = state?.actionTokenGeneratedByAdminLifespan;
             resourceInputs["actionTokenGeneratedByUserLifespan"] = state?.actionTokenGeneratedByUserLifespan;
+            resourceInputs["adminPermissionsEnabled"] = state?.adminPermissionsEnabled;
             resourceInputs["adminTheme"] = state?.adminTheme;
             resourceInputs["attributes"] = state?.attributes;
             resourceInputs["browserFlow"] = state?.browserFlow;
@@ -299,6 +305,7 @@ export class Realm extends pulumi.CustomResource {
             resourceInputs["ssoSessionIdleTimeoutRememberMe"] = state?.ssoSessionIdleTimeoutRememberMe;
             resourceInputs["ssoSessionMaxLifespan"] = state?.ssoSessionMaxLifespan;
             resourceInputs["ssoSessionMaxLifespanRememberMe"] = state?.ssoSessionMaxLifespanRememberMe;
+            resourceInputs["terraformDeletionProtection"] = state?.terraformDeletionProtection;
             resourceInputs["userManagedAccess"] = state?.userManagedAccess;
             resourceInputs["verifyEmail"] = state?.verifyEmail;
             resourceInputs["webAuthnPasswordlessPolicy"] = state?.webAuthnPasswordlessPolicy;
@@ -313,6 +320,7 @@ export class Realm extends pulumi.CustomResource {
             resourceInputs["accountTheme"] = args?.accountTheme;
             resourceInputs["actionTokenGeneratedByAdminLifespan"] = args?.actionTokenGeneratedByAdminLifespan;
             resourceInputs["actionTokenGeneratedByUserLifespan"] = args?.actionTokenGeneratedByUserLifespan;
+            resourceInputs["adminPermissionsEnabled"] = args?.adminPermissionsEnabled;
             resourceInputs["adminTheme"] = args?.adminTheme;
             resourceInputs["attributes"] = args?.attributes;
             resourceInputs["browserFlow"] = args?.browserFlow;
@@ -359,6 +367,7 @@ export class Realm extends pulumi.CustomResource {
             resourceInputs["ssoSessionIdleTimeoutRememberMe"] = args?.ssoSessionIdleTimeoutRememberMe;
             resourceInputs["ssoSessionMaxLifespan"] = args?.ssoSessionMaxLifespan;
             resourceInputs["ssoSessionMaxLifespanRememberMe"] = args?.ssoSessionMaxLifespanRememberMe;
+            resourceInputs["terraformDeletionProtection"] = args?.terraformDeletionProtection;
             resourceInputs["userManagedAccess"] = args?.userManagedAccess;
             resourceInputs["verifyEmail"] = args?.verifyEmail;
             resourceInputs["webAuthnPasswordlessPolicy"] = args?.webAuthnPasswordlessPolicy;
@@ -381,6 +390,7 @@ export interface RealmState {
     accountTheme?: pulumi.Input<string>;
     actionTokenGeneratedByAdminLifespan?: pulumi.Input<string>;
     actionTokenGeneratedByUserLifespan?: pulumi.Input<string>;
+    adminPermissionsEnabled?: pulumi.Input<boolean>;
     adminTheme?: pulumi.Input<string>;
     /**
      * A map of custom attributes to add to the realm.
@@ -475,6 +485,10 @@ export interface RealmState {
     ssoSessionIdleTimeoutRememberMe?: pulumi.Input<string>;
     ssoSessionMaxLifespan?: pulumi.Input<string>;
     ssoSessionMaxLifespanRememberMe?: pulumi.Input<string>;
+    /**
+     * When set to true, the realm cannot be deleted. Defaults to false.
+     */
+    terraformDeletionProtection?: pulumi.Input<boolean>;
     /**
      * When `true`, users are allowed to manage their own resources. Defaults to `false`.
      */
@@ -496,6 +510,7 @@ export interface RealmArgs {
     accountTheme?: pulumi.Input<string>;
     actionTokenGeneratedByAdminLifespan?: pulumi.Input<string>;
     actionTokenGeneratedByUserLifespan?: pulumi.Input<string>;
+    adminPermissionsEnabled?: pulumi.Input<boolean>;
     adminTheme?: pulumi.Input<string>;
     /**
      * A map of custom attributes to add to the realm.
@@ -590,6 +605,10 @@ export interface RealmArgs {
     ssoSessionIdleTimeoutRememberMe?: pulumi.Input<string>;
     ssoSessionMaxLifespan?: pulumi.Input<string>;
     ssoSessionMaxLifespanRememberMe?: pulumi.Input<string>;
+    /**
+     * When set to true, the realm cannot be deleted. Defaults to false.
+     */
+    terraformDeletionProtection?: pulumi.Input<boolean>;
     /**
      * When `true`, users are allowed to manage their own resources. Defaults to `false`.
      */

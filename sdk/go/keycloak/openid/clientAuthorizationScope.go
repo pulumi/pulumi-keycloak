@@ -12,6 +12,105 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Allows you to manage openid Client Authorization Scopes.
+//
+// Authorization scopes represent the actions that can be performed on resources. They are used in permissions to define what operations are allowed.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak/openid"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			test, err := openid.NewClient(ctx, "test", &openid.ClientArgs{
+//				ClientId:               pulumi.String("client_id"),
+//				RealmId:                realm.ID(),
+//				AccessType:             pulumi.String("CONFIDENTIAL"),
+//				ServiceAccountsEnabled: pulumi.Bool(true),
+//				Authorization: &openid.ClientAuthorizationArgs{
+//					PolicyEnforcementMode: pulumi.String("ENFORCING"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = openid.NewClientAuthorizationScope(ctx, "read", &openid.ClientAuthorizationScopeArgs{
+//				ResourceServerId: test.ResourceServerId,
+//				RealmId:          realm.ID(),
+//				Name:             pulumi.String("read"),
+//				DisplayName:      pulumi.String("Read Access"),
+//				IconUri:          pulumi.String("https://example.com/icons/read.png"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = openid.NewClientAuthorizationScope(ctx, "write", &openid.ClientAuthorizationScopeArgs{
+//				ResourceServerId: test.ResourceServerId,
+//				RealmId:          realm.ID(),
+//				Name:             pulumi.String("write"),
+//				DisplayName:      pulumi.String("Write Access"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = openid.NewClientAuthorizationScope(ctx, "delete", &openid.ClientAuthorizationScopeArgs{
+//				ResourceServerId: test.ResourceServerId,
+//				RealmId:          realm.ID(),
+//				Name:             pulumi.String("delete"),
+//				DisplayName:      pulumi.String("Delete Access"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Argument Reference
+//
+// The following arguments are supported:
+//
+// - `realmId` - (Required) The realm this scope exists in.
+// - `resourceServerId` - (Required) The ID of the resource server.
+// - `name` - (Required) The name of the scope.
+// - `displayName` - (Optional) The display name of the scope.
+// - `iconUri` - (Optional) An icon URI for the scope.
+//
+// ### Attributes Reference
+//
+// In addition to the arguments listed above, the following computed attributes are exported:
+//
+// - `id` - Scope ID representing the authorization scope.
+//
+// ## Import
+//
+// Client authorization scopes can be imported using the format: `{{realmId}}/{{resourceServerId}}/{{authorizationScopeId}}`.
+//
+// Example:
+//
+// bash
+//
+// ```sh
+// $ pulumi import keycloak:openid/clientAuthorizationScope:ClientAuthorizationScope test my-realm/3bd4a686-1062-4b59-97b8-e4e3f10b99da/63b3cde8-987d-4cd9-9306-1955579281d9
+// ```
 type ClientAuthorizationScope struct {
 	pulumi.CustomResourceState
 

@@ -21,26 +21,25 @@ __all__ = ['OrganizationArgs', 'Organization']
 @pulumi.input_type
 class OrganizationArgs:
     def __init__(__self__, *,
-                 domains: pulumi.Input[Sequence[pulumi.Input['OrganizationDomainArgs']]],
                  realm: pulumi.Input[_builtins.str],
                  alias: Optional[pulumi.Input[_builtins.str]] = None,
                  attributes: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
+                 domains: Optional[pulumi.Input[Sequence[pulumi.Input['OrganizationDomainArgs']]]] = None,
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  redirect_url: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Organization resource.
-        :param pulumi.Input[Sequence[pulumi.Input['OrganizationDomainArgs']]] domains: A list of domains. At least one domain is required.
         :param pulumi.Input[_builtins.str] realm: The realm this organization exists in.
         :param pulumi.Input[_builtins.str] alias: The alias unique identifies the organization. Same as the name if not specified. The alias cannot be changed after the organization has been created.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] attributes: A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars.
         :param pulumi.Input[_builtins.str] description: The description of the organization.
+        :param pulumi.Input[Sequence[pulumi.Input['OrganizationDomainArgs']]] domains: A list of domains.
         :param pulumi.Input[_builtins.bool] enabled: Enable/disable this organization.
         :param pulumi.Input[_builtins.str] name: The name of the organization.
         :param pulumi.Input[_builtins.str] redirect_url: The landing page after user completes registration or accepts an invitation to the organization. If left empty, the user will be redirected to the account console by default.
         """
-        pulumi.set(__self__, "domains", domains)
         pulumi.set(__self__, "realm", realm)
         if alias is not None:
             pulumi.set(__self__, "alias", alias)
@@ -48,24 +47,14 @@ class OrganizationArgs:
             pulumi.set(__self__, "attributes", attributes)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if domains is not None:
+            pulumi.set(__self__, "domains", domains)
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if redirect_url is not None:
             pulumi.set(__self__, "redirect_url", redirect_url)
-
-    @_builtins.property
-    @pulumi.getter
-    def domains(self) -> pulumi.Input[Sequence[pulumi.Input['OrganizationDomainArgs']]]:
-        """
-        A list of domains. At least one domain is required.
-        """
-        return pulumi.get(self, "domains")
-
-    @domains.setter
-    def domains(self, value: pulumi.Input[Sequence[pulumi.Input['OrganizationDomainArgs']]]):
-        pulumi.set(self, "domains", value)
 
     @_builtins.property
     @pulumi.getter
@@ -114,6 +103,18 @@ class OrganizationArgs:
     @description.setter
     def description(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "description", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def domains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['OrganizationDomainArgs']]]]:
+        """
+        A list of domains.
+        """
+        return pulumi.get(self, "domains")
+
+    @domains.setter
+    def domains(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['OrganizationDomainArgs']]]]):
+        pulumi.set(self, "domains", value)
 
     @_builtins.property
     @pulumi.getter
@@ -168,7 +169,7 @@ class _OrganizationState:
         :param pulumi.Input[_builtins.str] alias: The alias unique identifies the organization. Same as the name if not specified. The alias cannot be changed after the organization has been created.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] attributes: A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars.
         :param pulumi.Input[_builtins.str] description: The description of the organization.
-        :param pulumi.Input[Sequence[pulumi.Input['OrganizationDomainArgs']]] domains: A list of domains. At least one domain is required.
+        :param pulumi.Input[Sequence[pulumi.Input['OrganizationDomainArgs']]] domains: A list of domains.
         :param pulumi.Input[_builtins.bool] enabled: Enable/disable this organization.
         :param pulumi.Input[_builtins.str] name: The name of the organization.
         :param pulumi.Input[_builtins.str] realm: The realm this organization exists in.
@@ -231,7 +232,7 @@ class _OrganizationState:
     @pulumi.getter
     def domains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['OrganizationDomainArgs']]]]:
         """
-        A list of domains. At least one domain is required.
+        A list of domains.
         """
         return pulumi.get(self, "domains")
 
@@ -358,7 +359,7 @@ class Organization(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] alias: The alias unique identifies the organization. Same as the name if not specified. The alias cannot be changed after the organization has been created.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] attributes: A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars.
         :param pulumi.Input[_builtins.str] description: The description of the organization.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['OrganizationDomainArgs', 'OrganizationDomainArgsDict']]]] domains: A list of domains. At least one domain is required.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['OrganizationDomainArgs', 'OrganizationDomainArgsDict']]]] domains: A list of domains.
         :param pulumi.Input[_builtins.bool] enabled: Enable/disable this organization.
         :param pulumi.Input[_builtins.str] name: The name of the organization.
         :param pulumi.Input[_builtins.str] realm: The realm this organization exists in.
@@ -455,8 +456,6 @@ class Organization(pulumi.CustomResource):
             __props__.__dict__["alias"] = alias
             __props__.__dict__["attributes"] = attributes
             __props__.__dict__["description"] = description
-            if domains is None and not opts.urn:
-                raise TypeError("Missing required property 'domains'")
             __props__.__dict__["domains"] = domains
             __props__.__dict__["enabled"] = enabled
             __props__.__dict__["name"] = name
@@ -492,7 +491,7 @@ class Organization(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] alias: The alias unique identifies the organization. Same as the name if not specified. The alias cannot be changed after the organization has been created.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] attributes: A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars.
         :param pulumi.Input[_builtins.str] description: The description of the organization.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['OrganizationDomainArgs', 'OrganizationDomainArgsDict']]]] domains: A list of domains. At least one domain is required.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['OrganizationDomainArgs', 'OrganizationDomainArgsDict']]]] domains: A list of domains.
         :param pulumi.Input[_builtins.bool] enabled: Enable/disable this organization.
         :param pulumi.Input[_builtins.str] name: The name of the organization.
         :param pulumi.Input[_builtins.str] realm: The realm this organization exists in.
@@ -538,9 +537,9 @@ class Organization(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def domains(self) -> pulumi.Output[Sequence['outputs.OrganizationDomain']]:
+    def domains(self) -> pulumi.Output[Optional[Sequence['outputs.OrganizationDomain']]]:
         """
-        A list of domains. At least one domain is required.
+        A list of domains.
         """
         return pulumi.get(self, "domains")
 

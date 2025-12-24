@@ -193,7 +193,7 @@ type Client struct {
 	// The text to display on the consent screen about permissions specific to this client. This is applicable only when `displayOnConsentScreen` is `true`.
 	ConsentScreenText pulumi.StringOutput `pulumi:"consentScreenText"`
 	// The description of this client in the GUI.
-	Description pulumi.StringOutput `pulumi:"description"`
+	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// When `true`, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to `false`.
 	DirectAccessGrantsEnabled pulumi.BoolOutput `pulumi:"directAccessGrantsEnabled"`
 	// When `true`, the consent screen will display information about the client itself. Defaults to `false`. This is applicable only when `consentRequired` is `true`.
@@ -229,6 +229,8 @@ type Client struct {
 	PkceCodeChallengeMethod pulumi.StringPtrOutput `pulumi:"pkceCodeChallengeMethod"`
 	// The realm this client is attached to.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
+	// Enable support for Demonstrating Proof-of-Possession (DPoP) bound tokens.
+	RequireDpopBoundTokens pulumi.BoolOutput `pulumi:"requireDpopBoundTokens"`
 	// (Computed) When authorization is enabled for this client, this attribute is the unique ID for the client (the same value as the `.id` attribute).
 	ResourceServerId pulumi.StringOutput `pulumi:"resourceServerId"`
 	// When specified, this URL is prepended to any relative URLs found within `validRedirectUris`, `webOrigins`, and `adminUrl`. NOTE: Due to limitations in the Keycloak API, when the `rootUrl` attribute is used, the `validRedirectUris`, `webOrigins`, and `adminUrl` attributes will be required.
@@ -395,6 +397,8 @@ type clientState struct {
 	PkceCodeChallengeMethod *string `pulumi:"pkceCodeChallengeMethod"`
 	// The realm this client is attached to.
 	RealmId *string `pulumi:"realmId"`
+	// Enable support for Demonstrating Proof-of-Possession (DPoP) bound tokens.
+	RequireDpopBoundTokens *bool `pulumi:"requireDpopBoundTokens"`
 	// (Computed) When authorization is enabled for this client, this attribute is the unique ID for the client (the same value as the `.id` attribute).
 	ResourceServerId *string `pulumi:"resourceServerId"`
 	// When specified, this URL is prepended to any relative URLs found within `validRedirectUris`, `webOrigins`, and `adminUrl`. NOTE: Due to limitations in the Keycloak API, when the `rootUrl` attribute is used, the `validRedirectUris`, `webOrigins`, and `adminUrl` attributes will be required.
@@ -515,6 +519,8 @@ type ClientState struct {
 	PkceCodeChallengeMethod pulumi.StringPtrInput
 	// The realm this client is attached to.
 	RealmId pulumi.StringPtrInput
+	// Enable support for Demonstrating Proof-of-Possession (DPoP) bound tokens.
+	RequireDpopBoundTokens pulumi.BoolPtrInput
 	// (Computed) When authorization is enabled for this client, this attribute is the unique ID for the client (the same value as the `.id` attribute).
 	ResourceServerId pulumi.StringPtrInput
 	// When specified, this URL is prepended to any relative URLs found within `validRedirectUris`, `webOrigins`, and `adminUrl`. NOTE: Due to limitations in the Keycloak API, when the `rootUrl` attribute is used, the `validRedirectUris`, `webOrigins`, and `adminUrl` attributes will be required.
@@ -639,6 +645,8 @@ type clientArgs struct {
 	PkceCodeChallengeMethod *string `pulumi:"pkceCodeChallengeMethod"`
 	// The realm this client is attached to.
 	RealmId string `pulumi:"realmId"`
+	// Enable support for Demonstrating Proof-of-Possession (DPoP) bound tokens.
+	RequireDpopBoundTokens *bool `pulumi:"requireDpopBoundTokens"`
 	// When specified, this URL is prepended to any relative URLs found within `validRedirectUris`, `webOrigins`, and `adminUrl`. NOTE: Due to limitations in the Keycloak API, when the `rootUrl` attribute is used, the `validRedirectUris`, `webOrigins`, and `adminUrl` attributes will be required.
 	RootUrl *string `pulumi:"rootUrl"`
 	// When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
@@ -756,6 +764,8 @@ type ClientArgs struct {
 	PkceCodeChallengeMethod pulumi.StringPtrInput
 	// The realm this client is attached to.
 	RealmId pulumi.StringInput
+	// Enable support for Demonstrating Proof-of-Possession (DPoP) bound tokens.
+	RequireDpopBoundTokens pulumi.BoolPtrInput
 	// When specified, this URL is prepended to any relative URLs found within `validRedirectUris`, `webOrigins`, and `adminUrl`. NOTE: Due to limitations in the Keycloak API, when the `rootUrl` attribute is used, the `validRedirectUris`, `webOrigins`, and `adminUrl` attributes will be required.
 	RootUrl pulumi.StringPtrInput
 	// When `true`, the OAuth2 Client Credentials grant will be enabled for this client. Defaults to `false`.
@@ -993,8 +1003,8 @@ func (o ClientOutput) ConsentScreenText() pulumi.StringOutput {
 }
 
 // The description of this client in the GUI.
-func (o ClientOutput) Description() pulumi.StringOutput {
-	return o.ApplyT(func(v *Client) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
+func (o ClientOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Client) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
 // When `true`, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to `false`.
@@ -1084,6 +1094,11 @@ func (o ClientOutput) PkceCodeChallengeMethod() pulumi.StringPtrOutput {
 // The realm this client is attached to.
 func (o ClientOutput) RealmId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Client) pulumi.StringOutput { return v.RealmId }).(pulumi.StringOutput)
+}
+
+// Enable support for Demonstrating Proof-of-Possession (DPoP) bound tokens.
+func (o ClientOutput) RequireDpopBoundTokens() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Client) pulumi.BoolOutput { return v.RequireDpopBoundTokens }).(pulumi.BoolOutput)
 }
 
 // (Computed) When authorization is enabled for this client, this attribute is the unique ID for the client (the same value as the `.id` attribute).

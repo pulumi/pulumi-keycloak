@@ -52,7 +52,7 @@ import (
 //			_, err = keycloak.NewGroup(ctx, "realm_group", &keycloak.GroupArgs{
 //				RealmId:     realm.ID(),
 //				Name:        pulumi.String("my-realm-group"),
-//				Description: "My Realm Group",
+//				Description: pulumi.String("My Realm Group"),
 //			})
 //			if err != nil {
 //				return err

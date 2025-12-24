@@ -664,6 +664,21 @@ public final class ClientState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Enable support for Demonstrating Proof-of-Possession (DPoP) bound tokens.
+     * 
+     */
+    @Import(name="requireDpopBoundTokens")
+    private @Nullable Output<Boolean> requireDpopBoundTokens;
+
+    /**
+     * @return Enable support for Demonstrating Proof-of-Possession (DPoP) bound tokens.
+     * 
+     */
+    public Optional<Output<Boolean>> requireDpopBoundTokens() {
+        return Optional.ofNullable(this.requireDpopBoundTokens);
+    }
+
+    /**
      * (Computed) When authorization is enabled for this client, this attribute is the unique ID for the client (the same value as the `.id` attribute).
      * 
      */
@@ -877,6 +892,7 @@ public final class ClientState extends com.pulumi.resources.ResourceArgs {
         this.oauth2DevicePollingInterval = $.oauth2DevicePollingInterval;
         this.pkceCodeChallengeMethod = $.pkceCodeChallengeMethod;
         this.realmId = $.realmId;
+        this.requireDpopBoundTokens = $.requireDpopBoundTokens;
         this.resourceServerId = $.resourceServerId;
         this.rootUrl = $.rootUrl;
         this.serviceAccountUserId = $.serviceAccountUserId;
@@ -1796,6 +1812,27 @@ public final class ClientState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder realmId(String realmId) {
             return realmId(Output.of(realmId));
+        }
+
+        /**
+         * @param requireDpopBoundTokens Enable support for Demonstrating Proof-of-Possession (DPoP) bound tokens.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder requireDpopBoundTokens(@Nullable Output<Boolean> requireDpopBoundTokens) {
+            $.requireDpopBoundTokens = requireDpopBoundTokens;
+            return this;
+        }
+
+        /**
+         * @param requireDpopBoundTokens Enable support for Demonstrating Proof-of-Possession (DPoP) bound tokens.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder requireDpopBoundTokens(Boolean requireDpopBoundTokens) {
+            return requireDpopBoundTokens(Output.of(requireDpopBoundTokens));
         }
 
         /**

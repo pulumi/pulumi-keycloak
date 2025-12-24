@@ -64,14 +64,14 @@ public final class ClientScopeArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * When `true`, the name of this client scope will be added to the access token property &#39;scope&#39; as well as to the Token Introspection Endpoint response.
+     * When `true`, the name of this client scope will be added to the access token property &#39;scope&#39; as well as to the Token Introspection Endpoint response. When `false`, this scope will be omitted from the token and from the Token Introspection Endpoint response. Defaults to `true`.
      * 
      */
     @Import(name="includeInTokenScope")
     private @Nullable Output<Boolean> includeInTokenScope;
 
     /**
-     * @return When `true`, the name of this client scope will be added to the access token property &#39;scope&#39; as well as to the Token Introspection Endpoint response.
+     * @return When `true`, the name of this client scope will be added to the access token property &#39;scope&#39; as well as to the Token Introspection Endpoint response. When `false`, this scope will be omitted from the token and from the Token Introspection Endpoint response. Defaults to `true`.
      * 
      */
     public Optional<Output<Boolean>> includeInTokenScope() {
@@ -201,7 +201,7 @@ public final class ClientScopeArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param includeInTokenScope When `true`, the name of this client scope will be added to the access token property &#39;scope&#39; as well as to the Token Introspection Endpoint response.
+         * @param includeInTokenScope When `true`, the name of this client scope will be added to the access token property &#39;scope&#39; as well as to the Token Introspection Endpoint response. When `false`, this scope will be omitted from the token and from the Token Introspection Endpoint response. Defaults to `true`.
          * 
          * @return builder
          * 
@@ -212,7 +212,7 @@ public final class ClientScopeArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param includeInTokenScope When `true`, the name of this client scope will be added to the access token property &#39;scope&#39; as well as to the Token Introspection Endpoint response.
+         * @param includeInTokenScope When `true`, the name of this client scope will be added to the access token property &#39;scope&#39; as well as to the Token Introspection Endpoint response. When `false`, this scope will be omitted from the token and from the Token Introspection Endpoint response. Defaults to `true`.
          * 
          * @return builder
          * 
