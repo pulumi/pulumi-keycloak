@@ -120,8 +120,8 @@ def get_client_installation_provider(client_id: Optional[_builtins.str] = None,
     saml_idp_descriptor = keycloak.saml.get_client_installation_provider_output(realm_id=realm.id,
         client_id=saml_client.id,
         provider_id="saml-idp-descriptor")
-    default = aws.index.IamSamlProvider("default",
-        name=myprovider,
+    default = aws.iam.SamlProvider("default",
+        name="myprovider",
         saml_metadata_document=saml_idp_descriptor.value)
     ```
 
@@ -175,8 +175,8 @@ def get_client_installation_provider_output(client_id: Optional[pulumi.Input[_bu
     saml_idp_descriptor = keycloak.saml.get_client_installation_provider_output(realm_id=realm.id,
         client_id=saml_client.id,
         provider_id="saml-idp-descriptor")
-    default = aws.index.IamSamlProvider("default",
-        name=myprovider,
+    default = aws.iam.SamlProvider("default",
+        name="myprovider",
         saml_metadata_document=saml_idp_descriptor.value)
     ```
 

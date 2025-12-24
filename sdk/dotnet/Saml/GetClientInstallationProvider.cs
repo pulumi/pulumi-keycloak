@@ -59,7 +59,7 @@ namespace Pulumi.Keycloak.Saml
         ///         ProviderId = "saml-idp-descriptor",
         ///     });
         /// 
-        ///     var @default = new Aws.Index.IamSamlProvider("default", new()
+        ///     var @default = new Aws.Iam.SamlProvider("default", new()
         ///     {
         ///         Name = "myprovider",
         ///         SamlMetadataDocument = samlIdpDescriptor.Apply(getClientInstallationProviderResult =&gt; getClientInstallationProviderResult.Value),
@@ -119,7 +119,7 @@ namespace Pulumi.Keycloak.Saml
         ///         ProviderId = "saml-idp-descriptor",
         ///     });
         /// 
-        ///     var @default = new Aws.Index.IamSamlProvider("default", new()
+        ///     var @default = new Aws.Iam.SamlProvider("default", new()
         ///     {
         ///         Name = "myprovider",
         ///         SamlMetadataDocument = samlIdpDescriptor.Apply(getClientInstallationProviderResult =&gt; getClientInstallationProviderResult.Value),
@@ -179,7 +179,7 @@ namespace Pulumi.Keycloak.Saml
         ///         ProviderId = "saml-idp-descriptor",
         ///     });
         /// 
-        ///     var @default = new Aws.Index.IamSamlProvider("default", new()
+        ///     var @default = new Aws.Iam.SamlProvider("default", new()
         ///     {
         ///         Name = "myprovider",
         ///         SamlMetadataDocument = samlIdpDescriptor.Apply(getClientInstallationProviderResult =&gt; getClientInstallationProviderResult.Value),
