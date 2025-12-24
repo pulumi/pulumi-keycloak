@@ -74,6 +74,7 @@ func LookupGroup(ctx *pulumi.Context, args *LookupGroupArgs, opts ...pulumi.Invo
 
 // A collection of arguments for invoking getGroup.
 type LookupGroupArgs struct {
+	Description *string `pulumi:"description"`
 	// The name of the group. If there are multiple groups match `name`, the first result will be returned.
 	Name string `pulumi:"name"`
 	// The realm this group exists within.
@@ -82,7 +83,8 @@ type LookupGroupArgs struct {
 
 // A collection of values returned by getGroup.
 type LookupGroupResult struct {
-	Attributes map[string]string `pulumi:"attributes"`
+	Attributes  map[string]string `pulumi:"attributes"`
+	Description *string           `pulumi:"description"`
 	// The provider-assigned unique ID for this managed resource.
 	Id       string `pulumi:"id"`
 	Name     string `pulumi:"name"`
@@ -102,6 +104,7 @@ func LookupGroupOutput(ctx *pulumi.Context, args LookupGroupOutputArgs, opts ...
 
 // A collection of arguments for invoking getGroup.
 type LookupGroupOutputArgs struct {
+	Description pulumi.StringPtrInput `pulumi:"description"`
 	// The name of the group. If there are multiple groups match `name`, the first result will be returned.
 	Name pulumi.StringInput `pulumi:"name"`
 	// The realm this group exists within.
@@ -129,6 +132,10 @@ func (o LookupGroupResultOutput) ToLookupGroupResultOutputWithContext(ctx contex
 
 func (o LookupGroupResultOutput) Attributes() pulumi.StringMapOutput {
 	return o.ApplyT(func(v LookupGroupResult) map[string]string { return v.Attributes }).(pulumi.StringMapOutput)
+}
+
+func (o LookupGroupResultOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupGroupResult) *string { return v.Description }).(pulumi.StringPtrOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.

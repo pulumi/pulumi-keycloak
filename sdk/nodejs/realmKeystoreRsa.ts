@@ -27,6 +27,9 @@ import * as utilities from "./utilities";
  *     algorithm: "RS256",
  *     keystoreSize: 2048,
  *     providerId: "rsa",
+ *     extraConfig: {
+ *         kid: "my-key-id",
+ *     },
  * });
  * ```
  *
@@ -87,6 +90,10 @@ export class RealmKeystoreRsa extends pulumi.CustomResource {
      */
     declare public readonly enabled: pulumi.Output<boolean | undefined>;
     /**
+     * Map of additional provider configuration options passed through to the Keycloak component config. For RSA keystores this can include keys like `kid`.
+     */
+    declare public readonly extraConfig: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
      * Display name of provider when linked in admin console.
      */
     declare public readonly name: pulumi.Output<string>;
@@ -124,6 +131,7 @@ export class RealmKeystoreRsa extends pulumi.CustomResource {
             resourceInputs["algorithm"] = state?.algorithm;
             resourceInputs["certificate"] = state?.certificate;
             resourceInputs["enabled"] = state?.enabled;
+            resourceInputs["extraConfig"] = state?.extraConfig;
             resourceInputs["name"] = state?.name;
             resourceInputs["priority"] = state?.priority;
             resourceInputs["privateKey"] = state?.privateKey;
@@ -144,6 +152,7 @@ export class RealmKeystoreRsa extends pulumi.CustomResource {
             resourceInputs["algorithm"] = args?.algorithm;
             resourceInputs["certificate"] = args?.certificate;
             resourceInputs["enabled"] = args?.enabled;
+            resourceInputs["extraConfig"] = args?.extraConfig;
             resourceInputs["name"] = args?.name;
             resourceInputs["priority"] = args?.priority;
             resourceInputs["privateKey"] = args?.privateKey;
@@ -175,6 +184,10 @@ export interface RealmKeystoreRsaState {
      * When `false`, key is not accessible in this realm. Defaults to `true`.
      */
     enabled?: pulumi.Input<boolean>;
+    /**
+     * Map of additional provider configuration options passed through to the Keycloak component config. For RSA keystores this can include keys like `kid`.
+     */
+    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Display name of provider when linked in admin console.
      */
@@ -217,6 +230,10 @@ export interface RealmKeystoreRsaArgs {
      * When `false`, key is not accessible in this realm. Defaults to `true`.
      */
     enabled?: pulumi.Input<boolean>;
+    /**
+     * Map of additional provider configuration options passed through to the Keycloak component config. For RSA keystores this can include keys like `kid`.
+     */
+    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Display name of provider when linked in admin console.
      */

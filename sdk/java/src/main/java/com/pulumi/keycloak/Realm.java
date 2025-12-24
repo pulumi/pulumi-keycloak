@@ -188,6 +188,12 @@ public class Realm extends com.pulumi.resources.CustomResource {
     public Output<String> actionTokenGeneratedByUserLifespan() {
         return this.actionTokenGeneratedByUserLifespan;
     }
+    @Export(name="adminPermissionsEnabled", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> adminPermissionsEnabled;
+
+    public Output<Optional<Boolean>> adminPermissionsEnabled() {
+        return Codegen.optional(this.adminPermissionsEnabled);
+    }
     @Export(name="adminTheme", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> adminTheme;
 
@@ -591,6 +597,20 @@ public class Realm extends com.pulumi.resources.CustomResource {
 
     public Output<String> ssoSessionMaxLifespanRememberMe() {
         return this.ssoSessionMaxLifespanRememberMe;
+    }
+    /**
+     * When set to true, the realm cannot be deleted. Defaults to false.
+     * 
+     */
+    @Export(name="terraformDeletionProtection", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> terraformDeletionProtection;
+
+    /**
+     * @return When set to true, the realm cannot be deleted. Defaults to false.
+     * 
+     */
+    public Output<Optional<Boolean>> terraformDeletionProtection() {
+        return Codegen.optional(this.terraformDeletionProtection);
     }
     /**
      * When `true`, users are allowed to manage their own resources. Defaults to `false`.

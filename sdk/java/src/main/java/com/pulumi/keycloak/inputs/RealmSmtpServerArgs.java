@@ -19,6 +19,13 @@ public final class RealmSmtpServerArgs extends com.pulumi.resources.ResourceArgs
 
     public static final RealmSmtpServerArgs Empty = new RealmSmtpServerArgs();
 
+    @Import(name="allowUtf8")
+    private @Nullable Output<Boolean> allowUtf8;
+
+    public Optional<Output<Boolean>> allowUtf8() {
+        return Optional.ofNullable(this.allowUtf8);
+    }
+
     /**
      * Enables authentication to the SMTP server. Cannot be set alongside `tokenAuth`. This block supports the following arguments:
      * 
@@ -187,6 +194,7 @@ public final class RealmSmtpServerArgs extends com.pulumi.resources.ResourceArgs
     private RealmSmtpServerArgs() {}
 
     private RealmSmtpServerArgs(RealmSmtpServerArgs $) {
+        this.allowUtf8 = $.allowUtf8;
         this.auth = $.auth;
         this.envelopeFrom = $.envelopeFrom;
         this.from = $.from;
@@ -216,6 +224,15 @@ public final class RealmSmtpServerArgs extends com.pulumi.resources.ResourceArgs
 
         public Builder(RealmSmtpServerArgs defaults) {
             $ = new RealmSmtpServerArgs(Objects.requireNonNull(defaults));
+        }
+
+        public Builder allowUtf8(@Nullable Output<Boolean> allowUtf8) {
+            $.allowUtf8 = allowUtf8;
+            return this;
+        }
+
+        public Builder allowUtf8(Boolean allowUtf8) {
+            return allowUtf8(Output.of(allowUtf8));
         }
 
         /**

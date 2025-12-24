@@ -8,6 +8,7 @@ import com.pulumi.core.annotations.Import;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -75,6 +76,21 @@ public final class RealmKeystoreRsaState extends com.pulumi.resources.ResourceAr
      */
     public Optional<Output<Boolean>> enabled() {
         return Optional.ofNullable(this.enabled);
+    }
+
+    /**
+     * Map of additional provider configuration options passed through to the Keycloak component config. For RSA keystores this can include keys like `kid`.
+     * 
+     */
+    @Import(name="extraConfig")
+    private @Nullable Output<Map<String,String>> extraConfig;
+
+    /**
+     * @return Map of additional provider configuration options passed through to the Keycloak component config. For RSA keystores this can include keys like `kid`.
+     * 
+     */
+    public Optional<Output<Map<String,String>>> extraConfig() {
+        return Optional.ofNullable(this.extraConfig);
     }
 
     /**
@@ -159,6 +175,7 @@ public final class RealmKeystoreRsaState extends com.pulumi.resources.ResourceAr
         this.algorithm = $.algorithm;
         this.certificate = $.certificate;
         this.enabled = $.enabled;
+        this.extraConfig = $.extraConfig;
         this.name = $.name;
         this.priority = $.priority;
         this.privateKey = $.privateKey;
@@ -266,6 +283,27 @@ public final class RealmKeystoreRsaState extends com.pulumi.resources.ResourceAr
          */
         public Builder enabled(Boolean enabled) {
             return enabled(Output.of(enabled));
+        }
+
+        /**
+         * @param extraConfig Map of additional provider configuration options passed through to the Keycloak component config. For RSA keystores this can include keys like `kid`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder extraConfig(@Nullable Output<Map<String,String>> extraConfig) {
+            $.extraConfig = extraConfig;
+            return this;
+        }
+
+        /**
+         * @param extraConfig Map of additional provider configuration options passed through to the Keycloak component config. For RSA keystores this can include keys like `kid`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder extraConfig(Map<String,String> extraConfig) {
+            return extraConfig(Output.of(extraConfig));
         }
 
         /**

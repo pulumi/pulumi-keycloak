@@ -81,6 +81,13 @@ public final class RealmState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.actionTokenGeneratedByUserLifespan);
     }
 
+    @Import(name="adminPermissionsEnabled")
+    private @Nullable Output<Boolean> adminPermissionsEnabled;
+
+    public Optional<Output<Boolean>> adminPermissionsEnabled() {
+        return Optional.ofNullable(this.adminPermissionsEnabled);
+    }
+
     @Import(name="adminTheme")
     private @Nullable Output<String> adminTheme;
 
@@ -532,6 +539,21 @@ public final class RealmState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * When set to true, the realm cannot be deleted. Defaults to false.
+     * 
+     */
+    @Import(name="terraformDeletionProtection")
+    private @Nullable Output<Boolean> terraformDeletionProtection;
+
+    /**
+     * @return When set to true, the realm cannot be deleted. Defaults to false.
+     * 
+     */
+    public Optional<Output<Boolean>> terraformDeletionProtection() {
+        return Optional.ofNullable(this.terraformDeletionProtection);
+    }
+
+    /**
      * When `true`, users are allowed to manage their own resources. Defaults to `false`.
      * 
      */
@@ -578,6 +600,7 @@ public final class RealmState extends com.pulumi.resources.ResourceArgs {
         this.accountTheme = $.accountTheme;
         this.actionTokenGeneratedByAdminLifespan = $.actionTokenGeneratedByAdminLifespan;
         this.actionTokenGeneratedByUserLifespan = $.actionTokenGeneratedByUserLifespan;
+        this.adminPermissionsEnabled = $.adminPermissionsEnabled;
         this.adminTheme = $.adminTheme;
         this.attributes = $.attributes;
         this.browserFlow = $.browserFlow;
@@ -624,6 +647,7 @@ public final class RealmState extends com.pulumi.resources.ResourceArgs {
         this.ssoSessionIdleTimeoutRememberMe = $.ssoSessionIdleTimeoutRememberMe;
         this.ssoSessionMaxLifespan = $.ssoSessionMaxLifespan;
         this.ssoSessionMaxLifespanRememberMe = $.ssoSessionMaxLifespanRememberMe;
+        this.terraformDeletionProtection = $.terraformDeletionProtection;
         this.userManagedAccess = $.userManagedAccess;
         this.verifyEmail = $.verifyEmail;
         this.webAuthnPasswordlessPolicy = $.webAuthnPasswordlessPolicy;
@@ -718,6 +742,15 @@ public final class RealmState extends com.pulumi.resources.ResourceArgs {
 
         public Builder actionTokenGeneratedByUserLifespan(String actionTokenGeneratedByUserLifespan) {
             return actionTokenGeneratedByUserLifespan(Output.of(actionTokenGeneratedByUserLifespan));
+        }
+
+        public Builder adminPermissionsEnabled(@Nullable Output<Boolean> adminPermissionsEnabled) {
+            $.adminPermissionsEnabled = adminPermissionsEnabled;
+            return this;
+        }
+
+        public Builder adminPermissionsEnabled(Boolean adminPermissionsEnabled) {
+            return adminPermissionsEnabled(Output.of(adminPermissionsEnabled));
         }
 
         public Builder adminTheme(@Nullable Output<String> adminTheme) {
@@ -1332,6 +1365,27 @@ public final class RealmState extends com.pulumi.resources.ResourceArgs {
 
         public Builder ssoSessionMaxLifespanRememberMe(String ssoSessionMaxLifespanRememberMe) {
             return ssoSessionMaxLifespanRememberMe(Output.of(ssoSessionMaxLifespanRememberMe));
+        }
+
+        /**
+         * @param terraformDeletionProtection When set to true, the realm cannot be deleted. Defaults to false.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder terraformDeletionProtection(@Nullable Output<Boolean> terraformDeletionProtection) {
+            $.terraformDeletionProtection = terraformDeletionProtection;
+            return this;
+        }
+
+        /**
+         * @param terraformDeletionProtection When set to true, the realm cannot be deleted. Defaults to false.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder terraformDeletionProtection(Boolean terraformDeletionProtection) {
+            return terraformDeletionProtection(Output.of(terraformDeletionProtection));
         }
 
         /**

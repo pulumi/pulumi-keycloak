@@ -8,11 +8,20 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class GetGroupArgs extends com.pulumi.resources.InvokeArgs {
 
     public static final GetGroupArgs Empty = new GetGroupArgs();
+
+    @Import(name="description")
+    private @Nullable Output<String> description;
+
+    public Optional<Output<String>> description() {
+        return Optional.ofNullable(this.description);
+    }
 
     /**
      * The name of the group. If there are multiple groups match `name`, the first result will be returned.
@@ -47,6 +56,7 @@ public final class GetGroupArgs extends com.pulumi.resources.InvokeArgs {
     private GetGroupArgs() {}
 
     private GetGroupArgs(GetGroupArgs $) {
+        this.description = $.description;
         this.name = $.name;
         this.realmId = $.realmId;
     }
@@ -67,6 +77,15 @@ public final class GetGroupArgs extends com.pulumi.resources.InvokeArgs {
 
         public Builder(GetGroupArgs defaults) {
             $ = new GetGroupArgs(Objects.requireNonNull(defaults));
+        }
+
+        public Builder description(@Nullable Output<String> description) {
+            $.description = description;
+            return this;
+        }
+
+        public Builder description(String description) {
+            return description(Output.of(description));
         }
 
         /**

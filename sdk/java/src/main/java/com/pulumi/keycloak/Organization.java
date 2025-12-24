@@ -146,18 +146,18 @@ public class Organization extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.description);
     }
     /**
-     * A list of domains. At least one domain is required.
+     * A list of domains.
      * 
      */
     @Export(name="domains", refs={List.class,OrganizationDomain.class}, tree="[0,1]")
-    private Output<List<OrganizationDomain>> domains;
+    private Output</* @Nullable */ List<OrganizationDomain>> domains;
 
     /**
-     * @return A list of domains. At least one domain is required.
+     * @return A list of domains.
      * 
      */
-    public Output<List<OrganizationDomain>> domains() {
-        return this.domains;
+    public Output<Optional<List<OrganizationDomain>>> domains() {
+        return Codegen.optional(this.domains);
     }
     /**
      * Enable/disable this organization.

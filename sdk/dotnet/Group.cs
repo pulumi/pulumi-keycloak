@@ -87,6 +87,9 @@ namespace Pulumi.Keycloak
         [Output("attributes")]
         public Output<ImmutableDictionary<string, string>?> Attributes { get; private set; } = null!;
 
+        [Output("description")]
+        public Output<string?> Description { get; private set; } = null!;
+
         /// <summary>
         /// The name of the group.
         /// </summary>
@@ -169,6 +172,9 @@ namespace Pulumi.Keycloak
             set => _attributes = value;
         }
 
+        [Input("description")]
+        public Input<string>? Description { get; set; }
+
         /// <summary>
         /// The name of the group.
         /// </summary>
@@ -206,6 +212,9 @@ namespace Pulumi.Keycloak
             get => _attributes ?? (_attributes = new InputMap<string>());
             set => _attributes = value;
         }
+
+        [Input("description")]
+        public Input<string>? Description { get; set; }
 
         /// <summary>
         /// The name of the group.

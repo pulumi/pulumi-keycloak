@@ -27,7 +27,7 @@ class GetClientResult:
     """
     A collection of values returned by getClient.
     """
-    def __init__(__self__, access_token_lifespan=None, access_type=None, admin_url=None, allow_refresh_token_in_standard_token_exchange=None, always_display_in_console=None, authentication_flow_binding_overrides=None, authorizations=None, backchannel_logout_revoke_offline_sessions=None, backchannel_logout_session_required=None, backchannel_logout_url=None, base_url=None, client_authenticator_type=None, client_id=None, client_offline_session_idle_timeout=None, client_offline_session_max_lifespan=None, client_secret=None, client_session_idle_timeout=None, client_session_max_lifespan=None, consent_required=None, consent_screen_text=None, description=None, direct_access_grants_enabled=None, display_on_consent_screen=None, enabled=None, exclude_issuer_from_auth_response=None, exclude_session_state_from_auth_response=None, extra_config=None, frontchannel_logout_enabled=None, frontchannel_logout_url=None, full_scope_allowed=None, id=None, implicit_flow_enabled=None, login_theme=None, name=None, oauth2_device_authorization_grant_enabled=None, oauth2_device_code_lifespan=None, oauth2_device_polling_interval=None, pkce_code_challenge_method=None, realm_id=None, resource_server_id=None, root_url=None, service_account_user_id=None, service_accounts_enabled=None, standard_flow_enabled=None, standard_token_exchange_enabled=None, use_refresh_tokens=None, use_refresh_tokens_client_credentials=None, valid_post_logout_redirect_uris=None, valid_redirect_uris=None, web_origins=None):
+    def __init__(__self__, access_token_lifespan=None, access_type=None, admin_url=None, allow_refresh_token_in_standard_token_exchange=None, always_display_in_console=None, authentication_flow_binding_overrides=None, authorizations=None, backchannel_logout_revoke_offline_sessions=None, backchannel_logout_session_required=None, backchannel_logout_url=None, base_url=None, client_authenticator_type=None, client_id=None, client_offline_session_idle_timeout=None, client_offline_session_max_lifespan=None, client_secret=None, client_session_idle_timeout=None, client_session_max_lifespan=None, consent_required=None, consent_screen_text=None, description=None, direct_access_grants_enabled=None, display_on_consent_screen=None, enabled=None, exclude_issuer_from_auth_response=None, exclude_session_state_from_auth_response=None, extra_config=None, frontchannel_logout_enabled=None, frontchannel_logout_url=None, full_scope_allowed=None, id=None, implicit_flow_enabled=None, login_theme=None, name=None, oauth2_device_authorization_grant_enabled=None, oauth2_device_code_lifespan=None, oauth2_device_polling_interval=None, pkce_code_challenge_method=None, realm_id=None, require_dpop_bound_tokens=None, resource_server_id=None, root_url=None, service_account_user_id=None, service_accounts_enabled=None, standard_flow_enabled=None, standard_token_exchange_enabled=None, use_refresh_tokens=None, use_refresh_tokens_client_credentials=None, valid_post_logout_redirect_uris=None, valid_redirect_uris=None, web_origins=None):
         if access_token_lifespan and not isinstance(access_token_lifespan, str):
             raise TypeError("Expected argument 'access_token_lifespan' to be a str")
         pulumi.set(__self__, "access_token_lifespan", access_token_lifespan)
@@ -145,6 +145,9 @@ class GetClientResult:
         if realm_id and not isinstance(realm_id, str):
             raise TypeError("Expected argument 'realm_id' to be a str")
         pulumi.set(__self__, "realm_id", realm_id)
+        if require_dpop_bound_tokens and not isinstance(require_dpop_bound_tokens, bool):
+            raise TypeError("Expected argument 'require_dpop_bound_tokens' to be a bool")
+        pulumi.set(__self__, "require_dpop_bound_tokens", require_dpop_bound_tokens)
         if resource_server_id and not isinstance(resource_server_id, str):
             raise TypeError("Expected argument 'resource_server_id' to be a str")
         pulumi.set(__self__, "resource_server_id", resource_server_id)
@@ -378,6 +381,11 @@ class GetClientResult:
         return pulumi.get(self, "realm_id")
 
     @_builtins.property
+    @pulumi.getter(name="requireDpopBoundTokens")
+    def require_dpop_bound_tokens(self) -> _builtins.bool:
+        return pulumi.get(self, "require_dpop_bound_tokens")
+
+    @_builtins.property
     @pulumi.getter(name="resourceServerId")
     def resource_server_id(self) -> _builtins.str:
         return pulumi.get(self, "resource_server_id")
@@ -478,6 +486,7 @@ class AwaitableGetClientResult(GetClientResult):
             oauth2_device_polling_interval=self.oauth2_device_polling_interval,
             pkce_code_challenge_method=self.pkce_code_challenge_method,
             realm_id=self.realm_id,
+            require_dpop_bound_tokens=self.require_dpop_bound_tokens,
             resource_server_id=self.resource_server_id,
             root_url=self.root_url,
             service_account_user_id=self.service_account_user_id,
@@ -575,6 +584,7 @@ def get_client(always_display_in_console: Optional[_builtins.bool] = None,
         oauth2_device_polling_interval=pulumi.get(__ret__, 'oauth2_device_polling_interval'),
         pkce_code_challenge_method=pulumi.get(__ret__, 'pkce_code_challenge_method'),
         realm_id=pulumi.get(__ret__, 'realm_id'),
+        require_dpop_bound_tokens=pulumi.get(__ret__, 'require_dpop_bound_tokens'),
         resource_server_id=pulumi.get(__ret__, 'resource_server_id'),
         root_url=pulumi.get(__ret__, 'root_url'),
         service_account_user_id=pulumi.get(__ret__, 'service_account_user_id'),
@@ -669,6 +679,7 @@ def get_client_output(always_display_in_console: Optional[pulumi.Input[Optional[
         oauth2_device_polling_interval=pulumi.get(__response__, 'oauth2_device_polling_interval'),
         pkce_code_challenge_method=pulumi.get(__response__, 'pkce_code_challenge_method'),
         realm_id=pulumi.get(__response__, 'realm_id'),
+        require_dpop_bound_tokens=pulumi.get(__response__, 'require_dpop_bound_tokens'),
         resource_server_id=pulumi.get(__response__, 'resource_server_id'),
         root_url=pulumi.get(__response__, 'root_url'),
         service_account_user_id=pulumi.get(__response__, 'service_account_user_id'),

@@ -60,6 +60,7 @@ public final class GetClientResult {
     private @Nullable String oauth2DevicePollingInterval;
     private String pkceCodeChallengeMethod;
     private String realmId;
+    private Boolean requireDpopBoundTokens;
     private String resourceServerId;
     private String rootUrl;
     private String serviceAccountUserId;
@@ -194,6 +195,9 @@ public final class GetClientResult {
     public String realmId() {
         return this.realmId;
     }
+    public Boolean requireDpopBoundTokens() {
+        return this.requireDpopBoundTokens;
+    }
     public String resourceServerId() {
         return this.resourceServerId;
     }
@@ -276,6 +280,7 @@ public final class GetClientResult {
         private @Nullable String oauth2DevicePollingInterval;
         private String pkceCodeChallengeMethod;
         private String realmId;
+        private Boolean requireDpopBoundTokens;
         private String resourceServerId;
         private String rootUrl;
         private String serviceAccountUserId;
@@ -329,6 +334,7 @@ public final class GetClientResult {
     	      this.oauth2DevicePollingInterval = defaults.oauth2DevicePollingInterval;
     	      this.pkceCodeChallengeMethod = defaults.pkceCodeChallengeMethod;
     	      this.realmId = defaults.realmId;
+    	      this.requireDpopBoundTokens = defaults.requireDpopBoundTokens;
     	      this.resourceServerId = defaults.resourceServerId;
     	      this.rootUrl = defaults.rootUrl;
     	      this.serviceAccountUserId = defaults.serviceAccountUserId;
@@ -649,6 +655,14 @@ public final class GetClientResult {
             return this;
         }
         @CustomType.Setter
+        public Builder requireDpopBoundTokens(Boolean requireDpopBoundTokens) {
+            if (requireDpopBoundTokens == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "requireDpopBoundTokens");
+            }
+            this.requireDpopBoundTokens = requireDpopBoundTokens;
+            return this;
+        }
+        @CustomType.Setter
         public Builder resourceServerId(String resourceServerId) {
             if (resourceServerId == null) {
               throw new MissingRequiredPropertyException("GetClientResult", "resourceServerId");
@@ -786,6 +800,7 @@ public final class GetClientResult {
             _resultValue.oauth2DevicePollingInterval = oauth2DevicePollingInterval;
             _resultValue.pkceCodeChallengeMethod = pkceCodeChallengeMethod;
             _resultValue.realmId = realmId;
+            _resultValue.requireDpopBoundTokens = requireDpopBoundTokens;
             _resultValue.resourceServerId = resourceServerId;
             _resultValue.rootUrl = rootUrl;
             _resultValue.serviceAccountUserId = serviceAccountUserId;

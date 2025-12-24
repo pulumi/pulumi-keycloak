@@ -114,6 +114,12 @@ public class Group extends com.pulumi.resources.CustomResource {
     public Output<Optional<Map<String,String>>> attributes() {
         return Codegen.optional(this.attributes);
     }
+    @Export(name="description", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> description;
+
+    public Output<Optional<String>> description() {
+        return Codegen.optional(this.description);
+    }
     /**
      * The name of the group.
      * 

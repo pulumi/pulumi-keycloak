@@ -258,6 +258,20 @@ public class Client extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.encryptAssertions);
     }
     /**
+     * Algorithm used to encrypt SAML assertions. Allowed values: `AES_256_GCM`, `AES_192_GCM`, `AES_128_GCM`, `AES_256_CBC`, `AES_192_CBC`, or `AES_128_CBC`.
+     * 
+     */
+    @Export(name="encryptionAlgorithm", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> encryptionAlgorithm;
+
+    /**
+     * @return Algorithm used to encrypt SAML assertions. Allowed values: `AES_256_GCM`, `AES_192_GCM`, `AES_128_GCM`, `AES_256_CBC`, `AES_192_CBC`, or `AES_128_CBC`.
+     * 
+     */
+    public Output<Optional<String>> encryptionAlgorithm() {
+        return Codegen.optional(this.encryptionAlgorithm);
+    }
+    /**
      * If assertions for the client are encrypted, this certificate will be used for encryption.
      * 
      */

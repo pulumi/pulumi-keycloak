@@ -26,10 +26,13 @@ class GetGroupResult:
     """
     A collection of values returned by getGroup.
     """
-    def __init__(__self__, attributes=None, id=None, name=None, parent_id=None, path=None, realm_id=None):
+    def __init__(__self__, attributes=None, description=None, id=None, name=None, parent_id=None, path=None, realm_id=None):
         if attributes and not isinstance(attributes, dict):
             raise TypeError("Expected argument 'attributes' to be a dict")
         pulumi.set(__self__, "attributes", attributes)
+        if description and not isinstance(description, str):
+            raise TypeError("Expected argument 'description' to be a str")
+        pulumi.set(__self__, "description", description)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -50,6 +53,11 @@ class GetGroupResult:
     @pulumi.getter
     def attributes(self) -> Mapping[str, _builtins.str]:
         return pulumi.get(self, "attributes")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "description")
 
     @_builtins.property
     @pulumi.getter
@@ -87,6 +95,7 @@ class AwaitableGetGroupResult(GetGroupResult):
             yield self
         return GetGroupResult(
             attributes=self.attributes,
+            description=self.description,
             id=self.id,
             name=self.name,
             parent_id=self.parent_id,
@@ -94,7 +103,8 @@ class AwaitableGetGroupResult(GetGroupResult):
             realm_id=self.realm_id)
 
 
-def get_group(name: Optional[_builtins.str] = None,
+def get_group(description: Optional[_builtins.str] = None,
+              name: Optional[_builtins.str] = None,
               realm_id: Optional[_builtins.str] = None,
               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetGroupResult:
     """
@@ -125,6 +135,7 @@ def get_group(name: Optional[_builtins.str] = None,
     :param _builtins.str realm_id: The realm this group exists within.
     """
     __args__ = dict()
+    __args__['description'] = description
     __args__['name'] = name
     __args__['realmId'] = realm_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -132,12 +143,14 @@ def get_group(name: Optional[_builtins.str] = None,
 
     return AwaitableGetGroupResult(
         attributes=pulumi.get(__ret__, 'attributes'),
+        description=pulumi.get(__ret__, 'description'),
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
         parent_id=pulumi.get(__ret__, 'parent_id'),
         path=pulumi.get(__ret__, 'path'),
         realm_id=pulumi.get(__ret__, 'realm_id'))
-def get_group_output(name: Optional[pulumi.Input[_builtins.str]] = None,
+def get_group_output(description: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+                     name: Optional[pulumi.Input[_builtins.str]] = None,
                      realm_id: Optional[pulumi.Input[_builtins.str]] = None,
                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetGroupResult]:
     """
@@ -168,12 +181,14 @@ def get_group_output(name: Optional[pulumi.Input[_builtins.str]] = None,
     :param _builtins.str realm_id: The realm this group exists within.
     """
     __args__ = dict()
+    __args__['description'] = description
     __args__['name'] = name
     __args__['realmId'] = realm_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('keycloak:index/getGroup:getGroup', __args__, opts=opts, typ=GetGroupResult)
     return __ret__.apply(lambda __response__: GetGroupResult(
         attributes=pulumi.get(__response__, 'attributes'),
+        description=pulumi.get(__response__, 'description'),
         id=pulumi.get(__response__, 'id'),
         name=pulumi.get(__response__, 'name'),
         parent_id=pulumi.get(__response__, 'parent_id'),

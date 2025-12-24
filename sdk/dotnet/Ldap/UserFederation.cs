@@ -109,6 +109,12 @@ namespace Pulumi.Keycloak.Ldap
         public Output<int?> ChangedSyncPeriod { get; private set; } = null!;
 
         /// <summary>
+        /// When `True`, LDAP connection pooling is enabled. Defaults to `False`.
+        /// </summary>
+        [Output("connectionPooling")]
+        public Output<bool?> ConnectionPooling { get; private set; } = null!;
+
+        /// <summary>
         /// LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
         /// </summary>
         [Output("connectionTimeout")]
@@ -125,6 +131,12 @@ namespace Pulumi.Keycloak.Ldap
         /// </summary>
         [Output("customUserSearchFilter")]
         public Output<string?> CustomUserSearchFilter { get; private set; } = null!;
+
+        /// <summary>
+        /// Can be one of `True` or `False`. Will enable/disable logging for Kerberos Authentication. Defaults to `False`:
+        /// </summary>
+        [Output("debug")]
+        public Output<string?> Debug { get; private set; } = null!;
 
         /// <summary>
         /// When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `False`.
@@ -161,6 +173,12 @@ namespace Pulumi.Keycloak.Ldap
         /// </summary>
         [Output("kerberos")]
         public Output<Outputs.UserFederationKerberos?> Kerberos { get; private set; } = null!;
+
+        /// <summary>
+        /// Name of the LDAP attribute, which refers to Kerberos principal. This is used to lookup appropriate LDAP user after successful Kerberos/SPNEGO authentication in Keycloak. When this is empty, the LDAP user will be looked based on LDAP username corresponding to the first part of his Kerberos principal. For instance, for principal 'john@KEYCLOAK.ORG', it will assume that LDAP username is 'john'.
+        /// </summary>
+        [Output("krbPrincipalAttribute")]
+        public Output<string> KrbPrincipalAttribute { get; private set; } = null!;
 
         /// <summary>
         /// Display name of the provider when displayed in the console.
@@ -366,6 +384,12 @@ namespace Pulumi.Keycloak.Ldap
         public Input<int>? ChangedSyncPeriod { get; set; }
 
         /// <summary>
+        /// When `True`, LDAP connection pooling is enabled. Defaults to `False`.
+        /// </summary>
+        [Input("connectionPooling")]
+        public Input<bool>? ConnectionPooling { get; set; }
+
+        /// <summary>
         /// LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
         /// </summary>
         [Input("connectionTimeout")]
@@ -382,6 +406,12 @@ namespace Pulumi.Keycloak.Ldap
         /// </summary>
         [Input("customUserSearchFilter")]
         public Input<string>? CustomUserSearchFilter { get; set; }
+
+        /// <summary>
+        /// Can be one of `True` or `False`. Will enable/disable logging for Kerberos Authentication. Defaults to `False`:
+        /// </summary>
+        [Input("debug")]
+        public Input<string>? Debug { get; set; }
 
         /// <summary>
         /// When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `False`.
@@ -418,6 +448,12 @@ namespace Pulumi.Keycloak.Ldap
         /// </summary>
         [Input("kerberos")]
         public Input<Inputs.UserFederationKerberosArgs>? Kerberos { get; set; }
+
+        /// <summary>
+        /// Name of the LDAP attribute, which refers to Kerberos principal. This is used to lookup appropriate LDAP user after successful Kerberos/SPNEGO authentication in Keycloak. When this is empty, the LDAP user will be looked based on LDAP username corresponding to the first part of his Kerberos principal. For instance, for principal 'john@KEYCLOAK.ORG', it will assume that LDAP username is 'john'.
+        /// </summary>
+        [Input("krbPrincipalAttribute")]
+        public Input<string>? KrbPrincipalAttribute { get; set; }
 
         /// <summary>
         /// Display name of the provider when displayed in the console.
@@ -587,6 +623,12 @@ namespace Pulumi.Keycloak.Ldap
         public Input<int>? ChangedSyncPeriod { get; set; }
 
         /// <summary>
+        /// When `True`, LDAP connection pooling is enabled. Defaults to `False`.
+        /// </summary>
+        [Input("connectionPooling")]
+        public Input<bool>? ConnectionPooling { get; set; }
+
+        /// <summary>
         /// LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
         /// </summary>
         [Input("connectionTimeout")]
@@ -603,6 +645,12 @@ namespace Pulumi.Keycloak.Ldap
         /// </summary>
         [Input("customUserSearchFilter")]
         public Input<string>? CustomUserSearchFilter { get; set; }
+
+        /// <summary>
+        /// Can be one of `True` or `False`. Will enable/disable logging for Kerberos Authentication. Defaults to `False`:
+        /// </summary>
+        [Input("debug")]
+        public Input<string>? Debug { get; set; }
 
         /// <summary>
         /// When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `False`.
@@ -639,6 +687,12 @@ namespace Pulumi.Keycloak.Ldap
         /// </summary>
         [Input("kerberos")]
         public Input<Inputs.UserFederationKerberosGetArgs>? Kerberos { get; set; }
+
+        /// <summary>
+        /// Name of the LDAP attribute, which refers to Kerberos principal. This is used to lookup appropriate LDAP user after successful Kerberos/SPNEGO authentication in Keycloak. When this is empty, the LDAP user will be looked based on LDAP username corresponding to the first part of his Kerberos principal. For instance, for principal 'john@KEYCLOAK.ORG', it will assume that LDAP username is 'john'.
+        /// </summary>
+        [Input("krbPrincipalAttribute")]
+        public Input<string>? KrbPrincipalAttribute { get; set; }
 
         /// <summary>
         /// Display name of the provider when displayed in the console.

@@ -694,6 +694,10 @@ if not MYPY:
         """
         How many failures before wait is triggered.
         """
+        max_temporary_lockouts: NotRequired[pulumi.Input[_builtins.int]]
+        """
+        How many temporary lockouts are permitted before a user is permanently locked out. `permanent_lockout` needs to be `true`. Defaults to `0`
+        """
         minimum_quick_login_wait_seconds: NotRequired[pulumi.Input[_builtins.int]]
         """
         How long to wait after a quick login failure.
@@ -720,6 +724,7 @@ class RealmSecurityDefensesBruteForceDetectionArgs:
                  failure_reset_time_seconds: Optional[pulumi.Input[_builtins.int]] = None,
                  max_failure_wait_seconds: Optional[pulumi.Input[_builtins.int]] = None,
                  max_login_failures: Optional[pulumi.Input[_builtins.int]] = None,
+                 max_temporary_lockouts: Optional[pulumi.Input[_builtins.int]] = None,
                  minimum_quick_login_wait_seconds: Optional[pulumi.Input[_builtins.int]] = None,
                  permanent_lockout: Optional[pulumi.Input[_builtins.bool]] = None,
                  quick_login_check_milli_seconds: Optional[pulumi.Input[_builtins.int]] = None,
@@ -727,6 +732,7 @@ class RealmSecurityDefensesBruteForceDetectionArgs:
         """
         :param pulumi.Input[_builtins.int] failure_reset_time_seconds: When will failure count be reset?
         :param pulumi.Input[_builtins.int] max_login_failures: How many failures before wait is triggered.
+        :param pulumi.Input[_builtins.int] max_temporary_lockouts: How many temporary lockouts are permitted before a user is permanently locked out. `permanent_lockout` needs to be `true`. Defaults to `0`
         :param pulumi.Input[_builtins.int] minimum_quick_login_wait_seconds: How long to wait after a quick login failure.
                - `max_failure_wait_seconds ` - (Optional) Max. time a user will be locked out.
         :param pulumi.Input[_builtins.bool] permanent_lockout: When `true`, this will lock the user permanently when the user exceeds the maximum login failures.
@@ -739,6 +745,8 @@ class RealmSecurityDefensesBruteForceDetectionArgs:
             pulumi.set(__self__, "max_failure_wait_seconds", max_failure_wait_seconds)
         if max_login_failures is not None:
             pulumi.set(__self__, "max_login_failures", max_login_failures)
+        if max_temporary_lockouts is not None:
+            pulumi.set(__self__, "max_temporary_lockouts", max_temporary_lockouts)
         if minimum_quick_login_wait_seconds is not None:
             pulumi.set(__self__, "minimum_quick_login_wait_seconds", minimum_quick_login_wait_seconds)
         if permanent_lockout is not None:
@@ -780,6 +788,18 @@ class RealmSecurityDefensesBruteForceDetectionArgs:
     @max_login_failures.setter
     def max_login_failures(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "max_login_failures", value)
+
+    @_builtins.property
+    @pulumi.getter(name="maxTemporaryLockouts")
+    def max_temporary_lockouts(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        How many temporary lockouts are permitted before a user is permanently locked out. `permanent_lockout` needs to be `true`. Defaults to `0`
+        """
+        return pulumi.get(self, "max_temporary_lockouts")
+
+    @max_temporary_lockouts.setter
+    def max_temporary_lockouts(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "max_temporary_lockouts", value)
 
     @_builtins.property
     @pulumi.getter(name="minimumQuickLoginWaitSeconds")
@@ -1013,6 +1033,7 @@ if not MYPY:
         """
         The host of the SMTP server.
         """
+        allow_utf8: NotRequired[pulumi.Input[_builtins.bool]]
         auth: NotRequired[pulumi.Input['RealmSmtpServerAuthArgsDict']]
         """
         Enables authentication to the SMTP server. Cannot be set alongside `token_auth`. This block supports the following arguments:
@@ -1057,6 +1078,7 @@ class RealmSmtpServerArgs:
     def __init__(__self__, *,
                  from_: pulumi.Input[_builtins.str],
                  host: pulumi.Input[_builtins.str],
+                 allow_utf8: Optional[pulumi.Input[_builtins.bool]] = None,
                  auth: Optional[pulumi.Input['RealmSmtpServerAuthArgs']] = None,
                  envelope_from: Optional[pulumi.Input[_builtins.str]] = None,
                  from_display_name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1081,6 +1103,8 @@ class RealmSmtpServerArgs:
         """
         pulumi.set(__self__, "from_", from_)
         pulumi.set(__self__, "host", host)
+        if allow_utf8 is not None:
+            pulumi.set(__self__, "allow_utf8", allow_utf8)
         if auth is not None:
             pulumi.set(__self__, "auth", auth)
         if envelope_from is not None:
@@ -1123,6 +1147,15 @@ class RealmSmtpServerArgs:
     @host.setter
     def host(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "host", value)
+
+    @_builtins.property
+    @pulumi.getter(name="allowUtf8")
+    def allow_utf8(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        return pulumi.get(self, "allow_utf8")
+
+    @allow_utf8.setter
+    def allow_utf8(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "allow_utf8", value)
 
     @_builtins.property
     @pulumi.getter
@@ -2777,6 +2810,7 @@ if not MYPY:
         failure_reset_time_seconds: _builtins.int
         max_failure_wait_seconds: _builtins.int
         max_login_failures: _builtins.int
+        max_temporary_lockouts: _builtins.int
         minimum_quick_login_wait_seconds: _builtins.int
         permanent_lockout: _builtins.bool
         quick_login_check_milli_seconds: _builtins.int
@@ -2790,6 +2824,7 @@ class GetRealmSecurityDefenseBruteForceDetectionArgs:
                  failure_reset_time_seconds: _builtins.int,
                  max_failure_wait_seconds: _builtins.int,
                  max_login_failures: _builtins.int,
+                 max_temporary_lockouts: _builtins.int,
                  minimum_quick_login_wait_seconds: _builtins.int,
                  permanent_lockout: _builtins.bool,
                  quick_login_check_milli_seconds: _builtins.int,
@@ -2797,6 +2832,7 @@ class GetRealmSecurityDefenseBruteForceDetectionArgs:
         pulumi.set(__self__, "failure_reset_time_seconds", failure_reset_time_seconds)
         pulumi.set(__self__, "max_failure_wait_seconds", max_failure_wait_seconds)
         pulumi.set(__self__, "max_login_failures", max_login_failures)
+        pulumi.set(__self__, "max_temporary_lockouts", max_temporary_lockouts)
         pulumi.set(__self__, "minimum_quick_login_wait_seconds", minimum_quick_login_wait_seconds)
         pulumi.set(__self__, "permanent_lockout", permanent_lockout)
         pulumi.set(__self__, "quick_login_check_milli_seconds", quick_login_check_milli_seconds)
@@ -2828,6 +2864,15 @@ class GetRealmSecurityDefenseBruteForceDetectionArgs:
     @max_login_failures.setter
     def max_login_failures(self, value: _builtins.int):
         pulumi.set(self, "max_login_failures", value)
+
+    @_builtins.property
+    @pulumi.getter(name="maxTemporaryLockouts")
+    def max_temporary_lockouts(self) -> _builtins.int:
+        return pulumi.get(self, "max_temporary_lockouts")
+
+    @max_temporary_lockouts.setter
+    def max_temporary_lockouts(self, value: _builtins.int):
+        pulumi.set(self, "max_temporary_lockouts", value)
 
     @_builtins.property
     @pulumi.getter(name="minimumQuickLoginWaitSeconds")

@@ -28,7 +28,7 @@ class GetRealmResult:
     """
     A collection of values returned by getRealm.
     """
-    def __init__(__self__, access_code_lifespan=None, access_code_lifespan_login=None, access_code_lifespan_user_action=None, access_token_lifespan=None, access_token_lifespan_for_implicit_flow=None, account_theme=None, action_token_generated_by_admin_lifespan=None, action_token_generated_by_user_lifespan=None, admin_theme=None, attributes=None, browser_flow=None, client_authentication_flow=None, client_session_idle_timeout=None, client_session_max_lifespan=None, default_default_client_scopes=None, default_optional_client_scopes=None, default_signature_algorithm=None, direct_grant_flow=None, display_name=None, display_name_html=None, docker_authentication_flow=None, duplicate_emails_allowed=None, edit_username_allowed=None, email_theme=None, enabled=None, first_broker_login_flow=None, id=None, internal_id=None, internationalizations=None, login_theme=None, login_with_email_allowed=None, oauth2_device_code_lifespan=None, oauth2_device_polling_interval=None, offline_session_idle_timeout=None, offline_session_max_lifespan=None, offline_session_max_lifespan_enabled=None, organizations_enabled=None, otp_policy=None, password_policy=None, realm=None, refresh_token_max_reuse=None, registration_allowed=None, registration_email_as_username=None, registration_flow=None, remember_me=None, reset_credentials_flow=None, reset_password_allowed=None, revoke_refresh_token=None, security_defenses=None, smtp_servers=None, ssl_required=None, sso_session_idle_timeout=None, sso_session_idle_timeout_remember_me=None, sso_session_max_lifespan=None, sso_session_max_lifespan_remember_me=None, user_managed_access=None, verify_email=None, web_authn_passwordless_policy=None, web_authn_policy=None):
+    def __init__(__self__, access_code_lifespan=None, access_code_lifespan_login=None, access_code_lifespan_user_action=None, access_token_lifespan=None, access_token_lifespan_for_implicit_flow=None, account_theme=None, action_token_generated_by_admin_lifespan=None, action_token_generated_by_user_lifespan=None, admin_permissions_enabled=None, admin_theme=None, attributes=None, browser_flow=None, client_authentication_flow=None, client_session_idle_timeout=None, client_session_max_lifespan=None, default_default_client_scopes=None, default_optional_client_scopes=None, default_signature_algorithm=None, direct_grant_flow=None, display_name=None, display_name_html=None, docker_authentication_flow=None, duplicate_emails_allowed=None, edit_username_allowed=None, email_theme=None, enabled=None, first_broker_login_flow=None, id=None, internal_id=None, internationalizations=None, login_theme=None, login_with_email_allowed=None, oauth2_device_code_lifespan=None, oauth2_device_polling_interval=None, offline_session_idle_timeout=None, offline_session_max_lifespan=None, offline_session_max_lifespan_enabled=None, organizations_enabled=None, otp_policy=None, password_policy=None, realm=None, refresh_token_max_reuse=None, registration_allowed=None, registration_email_as_username=None, registration_flow=None, remember_me=None, reset_credentials_flow=None, reset_password_allowed=None, revoke_refresh_token=None, security_defenses=None, smtp_servers=None, ssl_required=None, sso_session_idle_timeout=None, sso_session_idle_timeout_remember_me=None, sso_session_max_lifespan=None, sso_session_max_lifespan_remember_me=None, user_managed_access=None, verify_email=None, web_authn_passwordless_policy=None, web_authn_policy=None):
         if access_code_lifespan and not isinstance(access_code_lifespan, str):
             raise TypeError("Expected argument 'access_code_lifespan' to be a str")
         pulumi.set(__self__, "access_code_lifespan", access_code_lifespan)
@@ -53,6 +53,9 @@ class GetRealmResult:
         if action_token_generated_by_user_lifespan and not isinstance(action_token_generated_by_user_lifespan, str):
             raise TypeError("Expected argument 'action_token_generated_by_user_lifespan' to be a str")
         pulumi.set(__self__, "action_token_generated_by_user_lifespan", action_token_generated_by_user_lifespan)
+        if admin_permissions_enabled and not isinstance(admin_permissions_enabled, bool):
+            raise TypeError("Expected argument 'admin_permissions_enabled' to be a bool")
+        pulumi.set(__self__, "admin_permissions_enabled", admin_permissions_enabled)
         if admin_theme and not isinstance(admin_theme, str):
             raise TypeError("Expected argument 'admin_theme' to be a str")
         pulumi.set(__self__, "admin_theme", admin_theme)
@@ -246,6 +249,11 @@ class GetRealmResult:
     @pulumi.getter(name="actionTokenGeneratedByUserLifespan")
     def action_token_generated_by_user_lifespan(self) -> _builtins.str:
         return pulumi.get(self, "action_token_generated_by_user_lifespan")
+
+    @_builtins.property
+    @pulumi.getter(name="adminPermissionsEnabled")
+    def admin_permissions_enabled(self) -> _builtins.bool:
+        return pulumi.get(self, "admin_permissions_enabled")
 
     @_builtins.property
     @pulumi.getter(name="adminTheme")
@@ -520,6 +528,7 @@ class AwaitableGetRealmResult(GetRealmResult):
             account_theme=self.account_theme,
             action_token_generated_by_admin_lifespan=self.action_token_generated_by_admin_lifespan,
             action_token_generated_by_user_lifespan=self.action_token_generated_by_user_lifespan,
+            admin_permissions_enabled=self.admin_permissions_enabled,
             admin_theme=self.admin_theme,
             attributes=self.attributes,
             browser_flow=self.browser_flow,
@@ -629,6 +638,7 @@ def get_realm(attributes: Optional[Mapping[str, _builtins.str]] = None,
         account_theme=pulumi.get(__ret__, 'account_theme'),
         action_token_generated_by_admin_lifespan=pulumi.get(__ret__, 'action_token_generated_by_admin_lifespan'),
         action_token_generated_by_user_lifespan=pulumi.get(__ret__, 'action_token_generated_by_user_lifespan'),
+        admin_permissions_enabled=pulumi.get(__ret__, 'admin_permissions_enabled'),
         admin_theme=pulumi.get(__ret__, 'admin_theme'),
         attributes=pulumi.get(__ret__, 'attributes'),
         browser_flow=pulumi.get(__ret__, 'browser_flow'),
@@ -735,6 +745,7 @@ def get_realm_output(attributes: Optional[pulumi.Input[Optional[Mapping[str, _bu
         account_theme=pulumi.get(__response__, 'account_theme'),
         action_token_generated_by_admin_lifespan=pulumi.get(__response__, 'action_token_generated_by_admin_lifespan'),
         action_token_generated_by_user_lifespan=pulumi.get(__response__, 'action_token_generated_by_user_lifespan'),
+        admin_permissions_enabled=pulumi.get(__response__, 'admin_permissions_enabled'),
         admin_theme=pulumi.get(__response__, 'admin_theme'),
         attributes=pulumi.get(__response__, 'attributes'),
         browser_flow=pulumi.get(__response__, 'browser_flow'),

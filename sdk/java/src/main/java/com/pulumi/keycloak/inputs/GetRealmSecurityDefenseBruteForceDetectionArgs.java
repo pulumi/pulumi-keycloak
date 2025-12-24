@@ -36,6 +36,13 @@ public final class GetRealmSecurityDefenseBruteForceDetectionArgs extends com.pu
         return this.maxLoginFailures;
     }
 
+    @Import(name="maxTemporaryLockouts", required=true)
+    private Output<Integer> maxTemporaryLockouts;
+
+    public Output<Integer> maxTemporaryLockouts() {
+        return this.maxTemporaryLockouts;
+    }
+
     @Import(name="minimumQuickLoginWaitSeconds", required=true)
     private Output<Integer> minimumQuickLoginWaitSeconds;
 
@@ -70,6 +77,7 @@ public final class GetRealmSecurityDefenseBruteForceDetectionArgs extends com.pu
         this.failureResetTimeSeconds = $.failureResetTimeSeconds;
         this.maxFailureWaitSeconds = $.maxFailureWaitSeconds;
         this.maxLoginFailures = $.maxLoginFailures;
+        this.maxTemporaryLockouts = $.maxTemporaryLockouts;
         this.minimumQuickLoginWaitSeconds = $.minimumQuickLoginWaitSeconds;
         this.permanentLockout = $.permanentLockout;
         this.quickLoginCheckMilliSeconds = $.quickLoginCheckMilliSeconds;
@@ -121,6 +129,15 @@ public final class GetRealmSecurityDefenseBruteForceDetectionArgs extends com.pu
             return maxLoginFailures(Output.of(maxLoginFailures));
         }
 
+        public Builder maxTemporaryLockouts(Output<Integer> maxTemporaryLockouts) {
+            $.maxTemporaryLockouts = maxTemporaryLockouts;
+            return this;
+        }
+
+        public Builder maxTemporaryLockouts(Integer maxTemporaryLockouts) {
+            return maxTemporaryLockouts(Output.of(maxTemporaryLockouts));
+        }
+
         public Builder minimumQuickLoginWaitSeconds(Output<Integer> minimumQuickLoginWaitSeconds) {
             $.minimumQuickLoginWaitSeconds = minimumQuickLoginWaitSeconds;
             return this;
@@ -166,6 +183,9 @@ public final class GetRealmSecurityDefenseBruteForceDetectionArgs extends com.pu
             }
             if ($.maxLoginFailures == null) {
                 throw new MissingRequiredPropertyException("GetRealmSecurityDefenseBruteForceDetectionArgs", "maxLoginFailures");
+            }
+            if ($.maxTemporaryLockouts == null) {
+                throw new MissingRequiredPropertyException("GetRealmSecurityDefenseBruteForceDetectionArgs", "maxTemporaryLockouts");
             }
             if ($.minimumQuickLoginWaitSeconds == null) {
                 throw new MissingRequiredPropertyException("GetRealmSecurityDefenseBruteForceDetectionArgs", "minimumQuickLoginWaitSeconds");

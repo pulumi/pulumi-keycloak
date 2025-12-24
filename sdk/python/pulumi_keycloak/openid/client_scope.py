@@ -31,7 +31,7 @@ class ClientScopeArgs:
         :param pulumi.Input[_builtins.str] consent_screen_text: When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
         :param pulumi.Input[_builtins.str] description: The description of this client scope in the GUI.
         :param pulumi.Input[_builtins.int] gui_order: Specify order of the client scope in GUI (such as in Consent page) as integer.
-        :param pulumi.Input[_builtins.bool] include_in_token_scope: When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response.
+        :param pulumi.Input[_builtins.bool] include_in_token_scope: When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response. When `false`, this scope will be omitted from the token and from the Token Introspection Endpoint response. Defaults to `true`.
         :param pulumi.Input[_builtins.str] name: The display name of this client scope in the GUI.
         """
         pulumi.set(__self__, "realm_id", realm_id)
@@ -98,7 +98,7 @@ class ClientScopeArgs:
     @pulumi.getter(name="includeInTokenScope")
     def include_in_token_scope(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response.
+        When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response. When `false`, this scope will be omitted from the token and from the Token Introspection Endpoint response. Defaults to `true`.
         """
         return pulumi.get(self, "include_in_token_scope")
 
@@ -133,7 +133,7 @@ class _ClientScopeState:
         :param pulumi.Input[_builtins.str] consent_screen_text: When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
         :param pulumi.Input[_builtins.str] description: The description of this client scope in the GUI.
         :param pulumi.Input[_builtins.int] gui_order: Specify order of the client scope in GUI (such as in Consent page) as integer.
-        :param pulumi.Input[_builtins.bool] include_in_token_scope: When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response.
+        :param pulumi.Input[_builtins.bool] include_in_token_scope: When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response. When `false`, this scope will be omitted from the token and from the Token Introspection Endpoint response. Defaults to `true`.
         :param pulumi.Input[_builtins.str] name: The display name of this client scope in the GUI.
         :param pulumi.Input[_builtins.str] realm_id: The realm this client scope belongs to.
         """
@@ -190,7 +190,7 @@ class _ClientScopeState:
     @pulumi.getter(name="includeInTokenScope")
     def include_in_token_scope(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response.
+        When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response. When `false`, this scope will be omitted from the token and from the Token Introspection Endpoint response. Defaults to `true`.
         """
         return pulumi.get(self, "include_in_token_scope")
 
@@ -278,7 +278,7 @@ class ClientScope(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] consent_screen_text: When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
         :param pulumi.Input[_builtins.str] description: The description of this client scope in the GUI.
         :param pulumi.Input[_builtins.int] gui_order: Specify order of the client scope in GUI (such as in Consent page) as integer.
-        :param pulumi.Input[_builtins.bool] include_in_token_scope: When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response.
+        :param pulumi.Input[_builtins.bool] include_in_token_scope: When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response. When `false`, this scope will be omitted from the token and from the Token Introspection Endpoint response. Defaults to `true`.
         :param pulumi.Input[_builtins.str] name: The display name of this client scope in the GUI.
         :param pulumi.Input[_builtins.str] realm_id: The realm this client scope belongs to.
         """
@@ -389,7 +389,7 @@ class ClientScope(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] consent_screen_text: When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
         :param pulumi.Input[_builtins.str] description: The description of this client scope in the GUI.
         :param pulumi.Input[_builtins.int] gui_order: Specify order of the client scope in GUI (such as in Consent page) as integer.
-        :param pulumi.Input[_builtins.bool] include_in_token_scope: When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response.
+        :param pulumi.Input[_builtins.bool] include_in_token_scope: When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response. When `false`, this scope will be omitted from the token and from the Token Introspection Endpoint response. Defaults to `true`.
         :param pulumi.Input[_builtins.str] name: The display name of this client scope in the GUI.
         :param pulumi.Input[_builtins.str] realm_id: The realm this client scope belongs to.
         """
@@ -433,7 +433,7 @@ class ClientScope(pulumi.CustomResource):
     @pulumi.getter(name="includeInTokenScope")
     def include_in_token_scope(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
-        When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response.
+        When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response. When `false`, this scope will be omitted from the token and from the Token Introspection Endpoint response. Defaults to `true`.
         """
         return pulumi.get(self, "include_in_token_scope")
 

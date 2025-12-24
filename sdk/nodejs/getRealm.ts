@@ -75,6 +75,7 @@ export interface GetRealmResult {
     readonly accountTheme: string;
     readonly actionTokenGeneratedByAdminLifespan: string;
     readonly actionTokenGeneratedByUserLifespan: string;
+    readonly adminPermissionsEnabled: boolean;
     readonly adminTheme: string;
     readonly attributes: {[key: string]: string};
     readonly browserFlow: string;

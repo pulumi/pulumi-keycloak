@@ -173,6 +173,20 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.changedSyncPeriod);
     }
     /**
+     * When `true`, LDAP connection pooling is enabled. Defaults to `false`.
+     * 
+     */
+    @Export(name="connectionPooling", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> connectionPooling;
+
+    /**
+     * @return When `true`, LDAP connection pooling is enabled. Defaults to `false`.
+     * 
+     */
+    public Output<Optional<Boolean>> connectionPooling() {
+        return Codegen.optional(this.connectionPooling);
+    }
+    /**
      * LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
      * 
      */
@@ -213,6 +227,20 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> customUserSearchFilter() {
         return Codegen.optional(this.customUserSearchFilter);
+    }
+    /**
+     * Can be one of `true` or `false`. Will enable/disable logging for Kerberos Authentication. Defaults to `false`:
+     * 
+     */
+    @Export(name="debug", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> debug;
+
+    /**
+     * @return Can be one of `true` or `false`. Will enable/disable logging for Kerberos Authentication. Defaults to `false`:
+     * 
+     */
+    public Output<Optional<String>> debug() {
+        return Codegen.optional(this.debug);
     }
     /**
      * When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `false`.
@@ -297,6 +325,20 @@ public class UserFederation extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<UserFederationKerberos>> kerberos() {
         return Codegen.optional(this.kerberos);
+    }
+    /**
+     * Name of the LDAP attribute, which refers to Kerberos principal. This is used to lookup appropriate LDAP user after successful Kerberos/SPNEGO authentication in Keycloak. When this is empty, the LDAP user will be looked based on LDAP username corresponding to the first part of his Kerberos principal. For instance, for principal &#39;john{@literal @}KEYCLOAK.ORG&#39;, it will assume that LDAP username is &#39;john&#39;.
+     * 
+     */
+    @Export(name="krbPrincipalAttribute", refs={String.class}, tree="[0]")
+    private Output<String> krbPrincipalAttribute;
+
+    /**
+     * @return Name of the LDAP attribute, which refers to Kerberos principal. This is used to lookup appropriate LDAP user after successful Kerberos/SPNEGO authentication in Keycloak. When this is empty, the LDAP user will be looked based on LDAP username corresponding to the first part of his Kerberos principal. For instance, for principal &#39;john{@literal @}KEYCLOAK.ORG&#39;, it will assume that LDAP username is &#39;john&#39;.
+     * 
+     */
+    public Output<String> krbPrincipalAttribute() {
+        return this.krbPrincipalAttribute;
     }
     /**
      * Display name of the provider when displayed in the console.

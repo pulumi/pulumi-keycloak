@@ -27,7 +27,7 @@ class GetClientResult:
     """
     A collection of values returned by getClient.
     """
-    def __init__(__self__, always_display_in_console=None, assertion_consumer_post_url=None, assertion_consumer_redirect_url=None, authentication_flow_binding_overrides=None, base_url=None, canonicalization_method=None, client_id=None, client_signature_required=None, consent_required=None, description=None, enabled=None, encrypt_assertions=None, encryption_certificate=None, encryption_certificate_sha1=None, extra_config=None, force_name_id_format=None, force_post_binding=None, front_channel_logout=None, full_scope_allowed=None, id=None, idp_initiated_sso_relay_state=None, idp_initiated_sso_url_name=None, include_authn_statement=None, login_theme=None, logout_service_post_binding_url=None, logout_service_redirect_binding_url=None, master_saml_processing_url=None, name=None, name_id_format=None, realm_id=None, root_url=None, saml_signature_key_name=None, sign_assertions=None, sign_documents=None, signature_algorithm=None, signature_key_name=None, signing_certificate=None, signing_certificate_sha1=None, signing_private_key=None, signing_private_key_sha1=None, valid_redirect_uris=None):
+    def __init__(__self__, always_display_in_console=None, assertion_consumer_post_url=None, assertion_consumer_redirect_url=None, authentication_flow_binding_overrides=None, base_url=None, canonicalization_method=None, client_id=None, client_signature_required=None, consent_required=None, description=None, enabled=None, encrypt_assertions=None, encryption_algorithm=None, encryption_certificate=None, encryption_certificate_sha1=None, extra_config=None, force_name_id_format=None, force_post_binding=None, front_channel_logout=None, full_scope_allowed=None, id=None, idp_initiated_sso_relay_state=None, idp_initiated_sso_url_name=None, include_authn_statement=None, login_theme=None, logout_service_post_binding_url=None, logout_service_redirect_binding_url=None, master_saml_processing_url=None, name=None, name_id_format=None, realm_id=None, root_url=None, saml_signature_key_name=None, sign_assertions=None, sign_documents=None, signature_algorithm=None, signature_key_name=None, signing_certificate=None, signing_certificate_sha1=None, signing_private_key=None, signing_private_key_sha1=None, valid_redirect_uris=None):
         if always_display_in_console and not isinstance(always_display_in_console, bool):
             raise TypeError("Expected argument 'always_display_in_console' to be a bool")
         pulumi.set(__self__, "always_display_in_console", always_display_in_console)
@@ -64,6 +64,9 @@ class GetClientResult:
         if encrypt_assertions and not isinstance(encrypt_assertions, bool):
             raise TypeError("Expected argument 'encrypt_assertions' to be a bool")
         pulumi.set(__self__, "encrypt_assertions", encrypt_assertions)
+        if encryption_algorithm and not isinstance(encryption_algorithm, str):
+            raise TypeError("Expected argument 'encryption_algorithm' to be a str")
+        pulumi.set(__self__, "encryption_algorithm", encryption_algorithm)
         if encryption_certificate and not isinstance(encryption_certificate, str):
             raise TypeError("Expected argument 'encryption_certificate' to be a str")
         pulumi.set(__self__, "encryption_certificate", encryption_certificate)
@@ -211,6 +214,11 @@ class GetClientResult:
     @pulumi.getter(name="encryptAssertions")
     def encrypt_assertions(self) -> _builtins.bool:
         return pulumi.get(self, "encrypt_assertions")
+
+    @_builtins.property
+    @pulumi.getter(name="encryptionAlgorithm")
+    def encryption_algorithm(self) -> _builtins.str:
+        return pulumi.get(self, "encryption_algorithm")
 
     @_builtins.property
     @pulumi.getter(name="encryptionCertificate")
@@ -379,6 +387,7 @@ class AwaitableGetClientResult(GetClientResult):
             description=self.description,
             enabled=self.enabled,
             encrypt_assertions=self.encrypt_assertions,
+            encryption_algorithm=self.encryption_algorithm,
             encryption_certificate=self.encryption_certificate,
             encryption_certificate_sha1=self.encryption_certificate_sha1,
             extra_config=self.extra_config,
@@ -453,6 +462,7 @@ def get_client(client_id: Optional[_builtins.str] = None,
         description=pulumi.get(__ret__, 'description'),
         enabled=pulumi.get(__ret__, 'enabled'),
         encrypt_assertions=pulumi.get(__ret__, 'encrypt_assertions'),
+        encryption_algorithm=pulumi.get(__ret__, 'encryption_algorithm'),
         encryption_certificate=pulumi.get(__ret__, 'encryption_certificate'),
         encryption_certificate_sha1=pulumi.get(__ret__, 'encryption_certificate_sha1'),
         extra_config=pulumi.get(__ret__, 'extra_config'),
@@ -524,6 +534,7 @@ def get_client_output(client_id: Optional[pulumi.Input[_builtins.str]] = None,
         description=pulumi.get(__response__, 'description'),
         enabled=pulumi.get(__response__, 'enabled'),
         encrypt_assertions=pulumi.get(__response__, 'encrypt_assertions'),
+        encryption_algorithm=pulumi.get(__response__, 'encryption_algorithm'),
         encryption_certificate=pulumi.get(__response__, 'encryption_certificate'),
         encryption_certificate_sha1=pulumi.get(__response__, 'encryption_certificate_sha1'),
         extra_config=pulumi.get(__response__, 'extra_config'),

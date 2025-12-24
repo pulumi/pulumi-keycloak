@@ -250,6 +250,7 @@ namespace Pulumi.Keycloak.OpenId
         public readonly string? Oauth2DevicePollingInterval;
         public readonly string PkceCodeChallengeMethod;
         public readonly string RealmId;
+        public readonly bool RequireDpopBoundTokens;
         public readonly string ResourceServerId;
         public readonly string RootUrl;
         public readonly string ServiceAccountUserId;
@@ -342,6 +343,8 @@ namespace Pulumi.Keycloak.OpenId
 
             string realmId,
 
+            bool requireDpopBoundTokens,
+
             string resourceServerId,
 
             string rootUrl,
@@ -403,6 +406,7 @@ namespace Pulumi.Keycloak.OpenId
             Oauth2DevicePollingInterval = oauth2DevicePollingInterval;
             PkceCodeChallengeMethod = pkceCodeChallengeMethod;
             RealmId = realmId;
+            RequireDpopBoundTokens = requireDpopBoundTokens;
             ResourceServerId = resourceServerId;
             RootUrl = rootUrl;
             ServiceAccountUserId = serviceAccountUserId;

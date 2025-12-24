@@ -500,14 +500,14 @@ public class Client extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="description", refs={String.class}, tree="[0]")
-    private Output<String> description;
+    private Output</* @Nullable */ String> description;
 
     /**
      * @return The description of this client in the GUI.
      * 
      */
-    public Output<String> description() {
-        return this.description;
+    public Output<Optional<String>> description() {
+        return Codegen.optional(this.description);
     }
     /**
      * When `true`, the OAuth2 Resource Owner Password Grant will be enabled for this client. Defaults to `false`.
@@ -752,6 +752,20 @@ public class Client extends com.pulumi.resources.CustomResource {
      */
     public Output<String> realmId() {
         return this.realmId;
+    }
+    /**
+     * Enable support for Demonstrating Proof-of-Possession (DPoP) bound tokens.
+     * 
+     */
+    @Export(name="requireDpopBoundTokens", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> requireDpopBoundTokens;
+
+    /**
+     * @return Enable support for Demonstrating Proof-of-Possession (DPoP) bound tokens.
+     * 
+     */
+    public Output<Boolean> requireDpopBoundTokens() {
+        return this.requireDpopBoundTokens;
     }
     /**
      * (Computed) When authorization is enabled for this client, this attribute is the unique ID for the client (the same value as the `.id` attribute).

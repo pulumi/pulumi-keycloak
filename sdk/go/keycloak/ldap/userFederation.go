@@ -97,12 +97,16 @@ type UserFederation struct {
 	Cache UserFederationCachePtrOutput `pulumi:"cache"`
 	// How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
 	ChangedSyncPeriod pulumi.IntPtrOutput `pulumi:"changedSyncPeriod"`
+	// When `true`, LDAP connection pooling is enabled. Defaults to `false`.
+	ConnectionPooling pulumi.BoolPtrOutput `pulumi:"connectionPooling"`
 	// LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
 	ConnectionTimeout pulumi.StringPtrOutput `pulumi:"connectionTimeout"`
 	// Connection URL to the LDAP server.
 	ConnectionUrl pulumi.StringOutput `pulumi:"connectionUrl"`
 	// Additional LDAP filter for filtering searched users. Must begin with `(` and end with `)`.
 	CustomUserSearchFilter pulumi.StringPtrOutput `pulumi:"customUserSearchFilter"`
+	// Can be one of `true` or `false`. Will enable/disable logging for Kerberos Authentication. Defaults to `false`:
+	Debug pulumi.StringPtrOutput `pulumi:"debug"`
 	// When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `false`.
 	DeleteDefaultMappers pulumi.BoolPtrOutput `pulumi:"deleteDefaultMappers"`
 	// Can be one of `READ_ONLY`, `WRITABLE`, or `UNSYNCED`. `UNSYNCED` allows user data to be imported but not synced back to LDAP. Defaults to `READ_ONLY`.
@@ -115,6 +119,8 @@ type UserFederation struct {
 	ImportEnabled pulumi.BoolPtrOutput `pulumi:"importEnabled"`
 	// A block containing the kerberos settings.
 	Kerberos UserFederationKerberosPtrOutput `pulumi:"kerberos"`
+	// Name of the LDAP attribute, which refers to Kerberos principal. This is used to lookup appropriate LDAP user after successful Kerberos/SPNEGO authentication in Keycloak. When this is empty, the LDAP user will be looked based on LDAP username corresponding to the first part of his Kerberos principal. For instance, for principal 'john@KEYCLOAK.ORG', it will assume that LDAP username is 'john'.
+	KrbPrincipalAttribute pulumi.StringOutput `pulumi:"krbPrincipalAttribute"`
 	// Display name of the provider when displayed in the console.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// When true, Keycloak assumes the LDAP server supports pagination. Defaults to `true`.
@@ -226,12 +232,16 @@ type userFederationState struct {
 	Cache *UserFederationCache `pulumi:"cache"`
 	// How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
 	ChangedSyncPeriod *int `pulumi:"changedSyncPeriod"`
+	// When `true`, LDAP connection pooling is enabled. Defaults to `false`.
+	ConnectionPooling *bool `pulumi:"connectionPooling"`
 	// LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
 	ConnectionTimeout *string `pulumi:"connectionTimeout"`
 	// Connection URL to the LDAP server.
 	ConnectionUrl *string `pulumi:"connectionUrl"`
 	// Additional LDAP filter for filtering searched users. Must begin with `(` and end with `)`.
 	CustomUserSearchFilter *string `pulumi:"customUserSearchFilter"`
+	// Can be one of `true` or `false`. Will enable/disable logging for Kerberos Authentication. Defaults to `false`:
+	Debug *string `pulumi:"debug"`
 	// When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `false`.
 	DeleteDefaultMappers *bool `pulumi:"deleteDefaultMappers"`
 	// Can be one of `READ_ONLY`, `WRITABLE`, or `UNSYNCED`. `UNSYNCED` allows user data to be imported but not synced back to LDAP. Defaults to `READ_ONLY`.
@@ -244,6 +254,8 @@ type userFederationState struct {
 	ImportEnabled *bool `pulumi:"importEnabled"`
 	// A block containing the kerberos settings.
 	Kerberos *UserFederationKerberos `pulumi:"kerberos"`
+	// Name of the LDAP attribute, which refers to Kerberos principal. This is used to lookup appropriate LDAP user after successful Kerberos/SPNEGO authentication in Keycloak. When this is empty, the LDAP user will be looked based on LDAP username corresponding to the first part of his Kerberos principal. For instance, for principal 'john@KEYCLOAK.ORG', it will assume that LDAP username is 'john'.
+	KrbPrincipalAttribute *string `pulumi:"krbPrincipalAttribute"`
 	// Display name of the provider when displayed in the console.
 	Name *string `pulumi:"name"`
 	// When true, Keycloak assumes the LDAP server supports pagination. Defaults to `true`.
@@ -298,12 +310,16 @@ type UserFederationState struct {
 	Cache UserFederationCachePtrInput
 	// How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
 	ChangedSyncPeriod pulumi.IntPtrInput
+	// When `true`, LDAP connection pooling is enabled. Defaults to `false`.
+	ConnectionPooling pulumi.BoolPtrInput
 	// LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
 	ConnectionTimeout pulumi.StringPtrInput
 	// Connection URL to the LDAP server.
 	ConnectionUrl pulumi.StringPtrInput
 	// Additional LDAP filter for filtering searched users. Must begin with `(` and end with `)`.
 	CustomUserSearchFilter pulumi.StringPtrInput
+	// Can be one of `true` or `false`. Will enable/disable logging for Kerberos Authentication. Defaults to `false`:
+	Debug pulumi.StringPtrInput
 	// When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `false`.
 	DeleteDefaultMappers pulumi.BoolPtrInput
 	// Can be one of `READ_ONLY`, `WRITABLE`, or `UNSYNCED`. `UNSYNCED` allows user data to be imported but not synced back to LDAP. Defaults to `READ_ONLY`.
@@ -316,6 +332,8 @@ type UserFederationState struct {
 	ImportEnabled pulumi.BoolPtrInput
 	// A block containing the kerberos settings.
 	Kerberos UserFederationKerberosPtrInput
+	// Name of the LDAP attribute, which refers to Kerberos principal. This is used to lookup appropriate LDAP user after successful Kerberos/SPNEGO authentication in Keycloak. When this is empty, the LDAP user will be looked based on LDAP username corresponding to the first part of his Kerberos principal. For instance, for principal 'john@KEYCLOAK.ORG', it will assume that LDAP username is 'john'.
+	KrbPrincipalAttribute pulumi.StringPtrInput
 	// Display name of the provider when displayed in the console.
 	Name pulumi.StringPtrInput
 	// When true, Keycloak assumes the LDAP server supports pagination. Defaults to `true`.
@@ -374,12 +392,16 @@ type userFederationArgs struct {
 	Cache *UserFederationCache `pulumi:"cache"`
 	// How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
 	ChangedSyncPeriod *int `pulumi:"changedSyncPeriod"`
+	// When `true`, LDAP connection pooling is enabled. Defaults to `false`.
+	ConnectionPooling *bool `pulumi:"connectionPooling"`
 	// LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
 	ConnectionTimeout *string `pulumi:"connectionTimeout"`
 	// Connection URL to the LDAP server.
 	ConnectionUrl string `pulumi:"connectionUrl"`
 	// Additional LDAP filter for filtering searched users. Must begin with `(` and end with `)`.
 	CustomUserSearchFilter *string `pulumi:"customUserSearchFilter"`
+	// Can be one of `true` or `false`. Will enable/disable logging for Kerberos Authentication. Defaults to `false`:
+	Debug *string `pulumi:"debug"`
 	// When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `false`.
 	DeleteDefaultMappers *bool `pulumi:"deleteDefaultMappers"`
 	// Can be one of `READ_ONLY`, `WRITABLE`, or `UNSYNCED`. `UNSYNCED` allows user data to be imported but not synced back to LDAP. Defaults to `READ_ONLY`.
@@ -392,6 +414,8 @@ type userFederationArgs struct {
 	ImportEnabled *bool `pulumi:"importEnabled"`
 	// A block containing the kerberos settings.
 	Kerberos *UserFederationKerberos `pulumi:"kerberos"`
+	// Name of the LDAP attribute, which refers to Kerberos principal. This is used to lookup appropriate LDAP user after successful Kerberos/SPNEGO authentication in Keycloak. When this is empty, the LDAP user will be looked based on LDAP username corresponding to the first part of his Kerberos principal. For instance, for principal 'john@KEYCLOAK.ORG', it will assume that LDAP username is 'john'.
+	KrbPrincipalAttribute *string `pulumi:"krbPrincipalAttribute"`
 	// Display name of the provider when displayed in the console.
 	Name *string `pulumi:"name"`
 	// When true, Keycloak assumes the LDAP server supports pagination. Defaults to `true`.
@@ -447,12 +471,16 @@ type UserFederationArgs struct {
 	Cache UserFederationCachePtrInput
 	// How frequently Keycloak should sync changed LDAP users, in seconds. Omit this property to disable periodic changed users sync.
 	ChangedSyncPeriod pulumi.IntPtrInput
+	// When `true`, LDAP connection pooling is enabled. Defaults to `false`.
+	ConnectionPooling pulumi.BoolPtrInput
 	// LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
 	ConnectionTimeout pulumi.StringPtrInput
 	// Connection URL to the LDAP server.
 	ConnectionUrl pulumi.StringInput
 	// Additional LDAP filter for filtering searched users. Must begin with `(` and end with `)`.
 	CustomUserSearchFilter pulumi.StringPtrInput
+	// Can be one of `true` or `false`. Will enable/disable logging for Kerberos Authentication. Defaults to `false`:
+	Debug pulumi.StringPtrInput
 	// When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `false`.
 	DeleteDefaultMappers pulumi.BoolPtrInput
 	// Can be one of `READ_ONLY`, `WRITABLE`, or `UNSYNCED`. `UNSYNCED` allows user data to be imported but not synced back to LDAP. Defaults to `READ_ONLY`.
@@ -465,6 +493,8 @@ type UserFederationArgs struct {
 	ImportEnabled pulumi.BoolPtrInput
 	// A block containing the kerberos settings.
 	Kerberos UserFederationKerberosPtrInput
+	// Name of the LDAP attribute, which refers to Kerberos principal. This is used to lookup appropriate LDAP user after successful Kerberos/SPNEGO authentication in Keycloak. When this is empty, the LDAP user will be looked based on LDAP username corresponding to the first part of his Kerberos principal. For instance, for principal 'john@KEYCLOAK.ORG', it will assume that LDAP username is 'john'.
+	KrbPrincipalAttribute pulumi.StringPtrInput
 	// Display name of the provider when displayed in the console.
 	Name pulumi.StringPtrInput
 	// When true, Keycloak assumes the LDAP server supports pagination. Defaults to `true`.
@@ -620,6 +650,11 @@ func (o UserFederationOutput) ChangedSyncPeriod() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *UserFederation) pulumi.IntPtrOutput { return v.ChangedSyncPeriod }).(pulumi.IntPtrOutput)
 }
 
+// When `true`, LDAP connection pooling is enabled. Defaults to `false`.
+func (o UserFederationOutput) ConnectionPooling() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *UserFederation) pulumi.BoolPtrOutput { return v.ConnectionPooling }).(pulumi.BoolPtrOutput)
+}
+
 // LDAP connection timeout in the format of a [Go duration string](https://golang.org/pkg/time/#Duration.String).
 func (o UserFederationOutput) ConnectionTimeout() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *UserFederation) pulumi.StringPtrOutput { return v.ConnectionTimeout }).(pulumi.StringPtrOutput)
@@ -633,6 +668,11 @@ func (o UserFederationOutput) ConnectionUrl() pulumi.StringOutput {
 // Additional LDAP filter for filtering searched users. Must begin with `(` and end with `)`.
 func (o UserFederationOutput) CustomUserSearchFilter() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *UserFederation) pulumi.StringPtrOutput { return v.CustomUserSearchFilter }).(pulumi.StringPtrOutput)
+}
+
+// Can be one of `true` or `false`. Will enable/disable logging for Kerberos Authentication. Defaults to `false`:
+func (o UserFederationOutput) Debug() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserFederation) pulumi.StringPtrOutput { return v.Debug }).(pulumi.StringPtrOutput)
 }
 
 // When true, the provider will delete the default mappers which are normally created by Keycloak when creating an LDAP user federation provider. Defaults to `false`.
@@ -663,6 +703,11 @@ func (o UserFederationOutput) ImportEnabled() pulumi.BoolPtrOutput {
 // A block containing the kerberos settings.
 func (o UserFederationOutput) Kerberos() UserFederationKerberosPtrOutput {
 	return o.ApplyT(func(v *UserFederation) UserFederationKerberosPtrOutput { return v.Kerberos }).(UserFederationKerberosPtrOutput)
+}
+
+// Name of the LDAP attribute, which refers to Kerberos principal. This is used to lookup appropriate LDAP user after successful Kerberos/SPNEGO authentication in Keycloak. When this is empty, the LDAP user will be looked based on LDAP username corresponding to the first part of his Kerberos principal. For instance, for principal 'john@KEYCLOAK.ORG', it will assume that LDAP username is 'john'.
+func (o UserFederationOutput) KrbPrincipalAttribute() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserFederation) pulumi.StringOutput { return v.KrbPrincipalAttribute }).(pulumi.StringOutput)
 }
 
 // Display name of the provider when displayed in the console.

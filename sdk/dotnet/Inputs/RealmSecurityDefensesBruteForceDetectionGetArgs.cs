@@ -28,6 +28,12 @@ namespace Pulumi.Keycloak.Inputs
         public Input<int>? MaxLoginFailures { get; set; }
 
         /// <summary>
+        /// How many temporary lockouts are permitted before a user is permanently locked out. `PermanentLockout` needs to be `True`. Defaults to `0`
+        /// </summary>
+        [Input("maxTemporaryLockouts")]
+        public Input<int>? MaxTemporaryLockouts { get; set; }
+
+        /// <summary>
         /// How long to wait after a quick login failure.
         /// - `MaxFailureWaitSeconds ` - (Optional) Max. time a user will be locked out.
         /// </summary>

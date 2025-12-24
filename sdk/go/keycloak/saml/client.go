@@ -111,6 +111,8 @@ type Client struct {
 	Enabled pulumi.BoolPtrOutput `pulumi:"enabled"`
 	// When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key. Defaults to `false`.
 	EncryptAssertions pulumi.BoolPtrOutput `pulumi:"encryptAssertions"`
+	// Algorithm used to encrypt SAML assertions. Allowed values: `AES_256_GCM`, `AES_192_GCM`, `AES_128_GCM`, `AES_256_CBC`, `AES_192_CBC`, or `AES_128_CBC`.
+	EncryptionAlgorithm pulumi.StringPtrOutput `pulumi:"encryptionAlgorithm"`
 	// If assertions for the client are encrypted, this certificate will be used for encryption.
 	EncryptionCertificate pulumi.StringOutput `pulumi:"encryptionCertificate"`
 	// (Computed) The sha1sum fingerprint of the encryption certificate. If the encryption certificate is not in correct base64 format, this will be left empty.
@@ -226,6 +228,8 @@ type clientState struct {
 	Enabled *bool `pulumi:"enabled"`
 	// When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key. Defaults to `false`.
 	EncryptAssertions *bool `pulumi:"encryptAssertions"`
+	// Algorithm used to encrypt SAML assertions. Allowed values: `AES_256_GCM`, `AES_192_GCM`, `AES_128_GCM`, `AES_256_CBC`, `AES_192_CBC`, or `AES_128_CBC`.
+	EncryptionAlgorithm *string `pulumi:"encryptionAlgorithm"`
 	// If assertions for the client are encrypted, this certificate will be used for encryption.
 	EncryptionCertificate *string `pulumi:"encryptionCertificate"`
 	// (Computed) The sha1sum fingerprint of the encryption certificate. If the encryption certificate is not in correct base64 format, this will be left empty.
@@ -306,6 +310,8 @@ type ClientState struct {
 	Enabled pulumi.BoolPtrInput
 	// When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key. Defaults to `false`.
 	EncryptAssertions pulumi.BoolPtrInput
+	// Algorithm used to encrypt SAML assertions. Allowed values: `AES_256_GCM`, `AES_192_GCM`, `AES_128_GCM`, `AES_256_CBC`, `AES_192_CBC`, or `AES_128_CBC`.
+	EncryptionAlgorithm pulumi.StringPtrInput
 	// If assertions for the client are encrypted, this certificate will be used for encryption.
 	EncryptionCertificate pulumi.StringPtrInput
 	// (Computed) The sha1sum fingerprint of the encryption certificate. If the encryption certificate is not in correct base64 format, this will be left empty.
@@ -390,6 +396,8 @@ type clientArgs struct {
 	Enabled *bool `pulumi:"enabled"`
 	// When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key. Defaults to `false`.
 	EncryptAssertions *bool `pulumi:"encryptAssertions"`
+	// Algorithm used to encrypt SAML assertions. Allowed values: `AES_256_GCM`, `AES_192_GCM`, `AES_128_GCM`, `AES_256_CBC`, `AES_192_CBC`, or `AES_128_CBC`.
+	EncryptionAlgorithm *string `pulumi:"encryptionAlgorithm"`
 	// If assertions for the client are encrypted, this certificate will be used for encryption.
 	EncryptionCertificate *string           `pulumi:"encryptionCertificate"`
 	ExtraConfig           map[string]string `pulumi:"extraConfig"`
@@ -465,6 +473,8 @@ type ClientArgs struct {
 	Enabled pulumi.BoolPtrInput
 	// When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key. Defaults to `false`.
 	EncryptAssertions pulumi.BoolPtrInput
+	// Algorithm used to encrypt SAML assertions. Allowed values: `AES_256_GCM`, `AES_192_GCM`, `AES_128_GCM`, `AES_256_CBC`, `AES_192_CBC`, or `AES_128_CBC`.
+	EncryptionAlgorithm pulumi.StringPtrInput
 	// If assertions for the client are encrypted, this certificate will be used for encryption.
 	EncryptionCertificate pulumi.StringPtrInput
 	ExtraConfig           pulumi.StringMapInput
@@ -661,6 +671,11 @@ func (o ClientOutput) Enabled() pulumi.BoolPtrOutput {
 // When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key. Defaults to `false`.
 func (o ClientOutput) EncryptAssertions() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Client) pulumi.BoolPtrOutput { return v.EncryptAssertions }).(pulumi.BoolPtrOutput)
+}
+
+// Algorithm used to encrypt SAML assertions. Allowed values: `AES_256_GCM`, `AES_192_GCM`, `AES_128_GCM`, `AES_256_CBC`, `AES_192_CBC`, or `AES_128_CBC`.
+func (o ClientOutput) EncryptionAlgorithm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Client) pulumi.StringPtrOutput { return v.EncryptionAlgorithm }).(pulumi.StringPtrOutput)
 }
 
 // If assertions for the client are encrypted, this certificate will be used for encryption.

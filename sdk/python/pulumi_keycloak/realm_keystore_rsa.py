@@ -25,6 +25,7 @@ class RealmKeystoreRsaArgs:
                  active: Optional[pulumi.Input[_builtins.bool]] = None,
                  algorithm: Optional[pulumi.Input[_builtins.str]] = None,
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
+                 extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  priority: Optional[pulumi.Input[_builtins.int]] = None,
                  provider_id: Optional[pulumi.Input[_builtins.str]] = None):
@@ -36,6 +37,7 @@ class RealmKeystoreRsaArgs:
         :param pulumi.Input[_builtins.bool] active: When `false`, key in not used for signing. Defaults to `true`.
         :param pulumi.Input[_builtins.str] algorithm: Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
         :param pulumi.Input[_builtins.bool] enabled: When `false`, key is not accessible in this realm. Defaults to `true`.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: Map of additional provider configuration options passed through to the Keycloak component config. For RSA keystores this can include keys like `kid`.
         :param pulumi.Input[_builtins.str] name: Display name of provider when linked in admin console.
         :param pulumi.Input[_builtins.int] priority: Priority for the provider. Defaults to `0`
         :param pulumi.Input[_builtins.str] provider_id: Use `rsa` for signing keys, `rsa-enc` for encryption keys
@@ -49,6 +51,8 @@ class RealmKeystoreRsaArgs:
             pulumi.set(__self__, "algorithm", algorithm)
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
+        if extra_config is not None:
+            pulumi.set(__self__, "extra_config", extra_config)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if priority is not None:
@@ -129,6 +133,18 @@ class RealmKeystoreRsaArgs:
         pulumi.set(self, "enabled", value)
 
     @_builtins.property
+    @pulumi.getter(name="extraConfig")
+    def extra_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Map of additional provider configuration options passed through to the Keycloak component config. For RSA keystores this can include keys like `kid`.
+        """
+        return pulumi.get(self, "extra_config")
+
+    @extra_config.setter
+    def extra_config(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "extra_config", value)
+
+    @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -172,6 +188,7 @@ class _RealmKeystoreRsaState:
                  algorithm: Optional[pulumi.Input[_builtins.str]] = None,
                  certificate: Optional[pulumi.Input[_builtins.str]] = None,
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
+                 extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  priority: Optional[pulumi.Input[_builtins.int]] = None,
                  private_key: Optional[pulumi.Input[_builtins.str]] = None,
@@ -183,6 +200,7 @@ class _RealmKeystoreRsaState:
         :param pulumi.Input[_builtins.str] algorithm: Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
         :param pulumi.Input[_builtins.str] certificate: X509 Certificate encoded in PEM format.
         :param pulumi.Input[_builtins.bool] enabled: When `false`, key is not accessible in this realm. Defaults to `true`.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: Map of additional provider configuration options passed through to the Keycloak component config. For RSA keystores this can include keys like `kid`.
         :param pulumi.Input[_builtins.str] name: Display name of provider when linked in admin console.
         :param pulumi.Input[_builtins.int] priority: Priority for the provider. Defaults to `0`
         :param pulumi.Input[_builtins.str] private_key: Private RSA Key encoded in PEM format.
@@ -197,6 +215,8 @@ class _RealmKeystoreRsaState:
             pulumi.set(__self__, "certificate", certificate)
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
+        if extra_config is not None:
+            pulumi.set(__self__, "extra_config", extra_config)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if priority is not None:
@@ -255,6 +275,18 @@ class _RealmKeystoreRsaState:
     @enabled.setter
     def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "enabled", value)
+
+    @_builtins.property
+    @pulumi.getter(name="extraConfig")
+    def extra_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Map of additional provider configuration options passed through to the Keycloak component config. For RSA keystores this can include keys like `kid`.
+        """
+        return pulumi.get(self, "extra_config")
+
+    @extra_config.setter
+    def extra_config(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "extra_config", value)
 
     @_builtins.property
     @pulumi.getter
@@ -327,6 +359,7 @@ class RealmKeystoreRsa(pulumi.CustomResource):
                  algorithm: Optional[pulumi.Input[_builtins.str]] = None,
                  certificate: Optional[pulumi.Input[_builtins.str]] = None,
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
+                 extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  priority: Optional[pulumi.Input[_builtins.int]] = None,
                  private_key: Optional[pulumi.Input[_builtins.str]] = None,
@@ -355,7 +388,10 @@ class RealmKeystoreRsa(pulumi.CustomResource):
             priority=100,
             algorithm="RS256",
             keystore_size=2048,
-            provider_id="rsa")
+            provider_id="rsa",
+            extra_config={
+                "kid": "my-key-id",
+            })
         ```
 
         ## Import
@@ -376,6 +412,7 @@ class RealmKeystoreRsa(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] algorithm: Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
         :param pulumi.Input[_builtins.str] certificate: X509 Certificate encoded in PEM format.
         :param pulumi.Input[_builtins.bool] enabled: When `false`, key is not accessible in this realm. Defaults to `true`.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: Map of additional provider configuration options passed through to the Keycloak component config. For RSA keystores this can include keys like `kid`.
         :param pulumi.Input[_builtins.str] name: Display name of provider when linked in admin console.
         :param pulumi.Input[_builtins.int] priority: Priority for the provider. Defaults to `0`
         :param pulumi.Input[_builtins.str] private_key: Private RSA Key encoded in PEM format.
@@ -410,7 +447,10 @@ class RealmKeystoreRsa(pulumi.CustomResource):
             priority=100,
             algorithm="RS256",
             keystore_size=2048,
-            provider_id="rsa")
+            provider_id="rsa",
+            extra_config={
+                "kid": "my-key-id",
+            })
         ```
 
         ## Import
@@ -444,6 +484,7 @@ class RealmKeystoreRsa(pulumi.CustomResource):
                  algorithm: Optional[pulumi.Input[_builtins.str]] = None,
                  certificate: Optional[pulumi.Input[_builtins.str]] = None,
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
+                 extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  priority: Optional[pulumi.Input[_builtins.int]] = None,
                  private_key: Optional[pulumi.Input[_builtins.str]] = None,
@@ -464,6 +505,7 @@ class RealmKeystoreRsa(pulumi.CustomResource):
                 raise TypeError("Missing required property 'certificate'")
             __props__.__dict__["certificate"] = certificate
             __props__.__dict__["enabled"] = enabled
+            __props__.__dict__["extra_config"] = extra_config
             __props__.__dict__["name"] = name
             __props__.__dict__["priority"] = priority
             if private_key is None and not opts.urn:
@@ -487,6 +529,7 @@ class RealmKeystoreRsa(pulumi.CustomResource):
             algorithm: Optional[pulumi.Input[_builtins.str]] = None,
             certificate: Optional[pulumi.Input[_builtins.str]] = None,
             enabled: Optional[pulumi.Input[_builtins.bool]] = None,
+            extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             priority: Optional[pulumi.Input[_builtins.int]] = None,
             private_key: Optional[pulumi.Input[_builtins.str]] = None,
@@ -503,6 +546,7 @@ class RealmKeystoreRsa(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] algorithm: Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
         :param pulumi.Input[_builtins.str] certificate: X509 Certificate encoded in PEM format.
         :param pulumi.Input[_builtins.bool] enabled: When `false`, key is not accessible in this realm. Defaults to `true`.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: Map of additional provider configuration options passed through to the Keycloak component config. For RSA keystores this can include keys like `kid`.
         :param pulumi.Input[_builtins.str] name: Display name of provider when linked in admin console.
         :param pulumi.Input[_builtins.int] priority: Priority for the provider. Defaults to `0`
         :param pulumi.Input[_builtins.str] private_key: Private RSA Key encoded in PEM format.
@@ -517,6 +561,7 @@ class RealmKeystoreRsa(pulumi.CustomResource):
         __props__.__dict__["algorithm"] = algorithm
         __props__.__dict__["certificate"] = certificate
         __props__.__dict__["enabled"] = enabled
+        __props__.__dict__["extra_config"] = extra_config
         __props__.__dict__["name"] = name
         __props__.__dict__["priority"] = priority
         __props__.__dict__["private_key"] = private_key
@@ -555,6 +600,14 @@ class RealmKeystoreRsa(pulumi.CustomResource):
         When `false`, key is not accessible in this realm. Defaults to `true`.
         """
         return pulumi.get(self, "enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="extraConfig")
+    def extra_config(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:
+        """
+        Map of additional provider configuration options passed through to the Keycloak component config. For RSA keystores this can include keys like `kid`.
+        """
+        return pulumi.get(self, "extra_config")
 
     @_builtins.property
     @pulumi.getter

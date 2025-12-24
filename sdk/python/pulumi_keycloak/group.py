@@ -21,6 +21,7 @@ class GroupArgs:
     def __init__(__self__, *,
                  realm_id: pulumi.Input[_builtins.str],
                  attributes: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 description: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  parent_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
@@ -33,6 +34,8 @@ class GroupArgs:
         pulumi.set(__self__, "realm_id", realm_id)
         if attributes is not None:
             pulumi.set(__self__, "attributes", attributes)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if parent_id is not None:
@@ -64,6 +67,15 @@ class GroupArgs:
 
     @_builtins.property
     @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "description", value)
+
+    @_builtins.property
+    @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         The name of the group.
@@ -91,6 +103,7 @@ class GroupArgs:
 class _GroupState:
     def __init__(__self__, *,
                  attributes: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 description: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  parent_id: Optional[pulumi.Input[_builtins.str]] = None,
                  path: Optional[pulumi.Input[_builtins.str]] = None,
@@ -105,6 +118,8 @@ class _GroupState:
         """
         if attributes is not None:
             pulumi.set(__self__, "attributes", attributes)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if parent_id is not None:
@@ -125,6 +140,15 @@ class _GroupState:
     @attributes.setter
     def attributes(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "attributes", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
@@ -182,6 +206,7 @@ class Group(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  attributes: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 description: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  parent_id: Optional[pulumi.Input[_builtins.str]] = None,
                  realm_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -317,6 +342,7 @@ class Group(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  attributes: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 description: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  parent_id: Optional[pulumi.Input[_builtins.str]] = None,
                  realm_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -330,6 +356,7 @@ class Group(pulumi.CustomResource):
             __props__ = GroupArgs.__new__(GroupArgs)
 
             __props__.__dict__["attributes"] = attributes
+            __props__.__dict__["description"] = description
             __props__.__dict__["name"] = name
             __props__.__dict__["parent_id"] = parent_id
             if realm_id is None and not opts.urn:
@@ -347,6 +374,7 @@ class Group(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             attributes: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            description: Optional[pulumi.Input[_builtins.str]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             parent_id: Optional[pulumi.Input[_builtins.str]] = None,
             path: Optional[pulumi.Input[_builtins.str]] = None,
@@ -369,6 +397,7 @@ class Group(pulumi.CustomResource):
         __props__ = _GroupState.__new__(_GroupState)
 
         __props__.__dict__["attributes"] = attributes
+        __props__.__dict__["description"] = description
         __props__.__dict__["name"] = name
         __props__.__dict__["parent_id"] = parent_id
         __props__.__dict__["path"] = path
@@ -382,6 +411,11 @@ class Group(pulumi.CustomResource):
         A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars
         """
         return pulumi.get(self, "attributes")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> pulumi.Output[Optional[_builtins.str]]:
+        return pulumi.get(self, "description")
 
     @_builtins.property
     @pulumi.getter

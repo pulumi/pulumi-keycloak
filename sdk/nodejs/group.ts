@@ -91,6 +91,7 @@ export class Group extends pulumi.CustomResource {
      * A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars
      */
     declare public readonly attributes: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * The name of the group.
      */
@@ -122,6 +123,7 @@ export class Group extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as GroupState | undefined;
             resourceInputs["attributes"] = state?.attributes;
+            resourceInputs["description"] = state?.description;
             resourceInputs["name"] = state?.name;
             resourceInputs["parentId"] = state?.parentId;
             resourceInputs["path"] = state?.path;
@@ -132,6 +134,7 @@ export class Group extends pulumi.CustomResource {
                 throw new Error("Missing required property 'realmId'");
             }
             resourceInputs["attributes"] = args?.attributes;
+            resourceInputs["description"] = args?.description;
             resourceInputs["name"] = args?.name;
             resourceInputs["parentId"] = args?.parentId;
             resourceInputs["realmId"] = args?.realmId;
@@ -150,6 +153,7 @@ export interface GroupState {
      * A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars
      */
     attributes?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    description?: pulumi.Input<string>;
     /**
      * The name of the group.
      */
@@ -176,6 +180,7 @@ export interface GroupArgs {
      * A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars
      */
     attributes?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    description?: pulumi.Input<string>;
     /**
      * The name of the group.
      */

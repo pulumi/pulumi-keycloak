@@ -31,6 +31,13 @@ public final class GroupState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.attributes);
     }
 
+    @Import(name="description")
+    private @Nullable Output<String> description;
+
+    public Optional<Output<String>> description() {
+        return Optional.ofNullable(this.description);
+    }
+
     /**
      * The name of the group.
      * 
@@ -95,6 +102,7 @@ public final class GroupState extends com.pulumi.resources.ResourceArgs {
 
     private GroupState(GroupState $) {
         this.attributes = $.attributes;
+        this.description = $.description;
         this.name = $.name;
         this.parentId = $.parentId;
         this.path = $.path;
@@ -138,6 +146,15 @@ public final class GroupState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder attributes(Map<String,String> attributes) {
             return attributes(Output.of(attributes));
+        }
+
+        public Builder description(@Nullable Output<String> description) {
+            $.description = description;
+            return this;
+        }
+
+        public Builder description(String description) {
+            return description(Output.of(description));
         }
 
         /**

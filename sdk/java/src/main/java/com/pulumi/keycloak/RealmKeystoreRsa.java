@@ -13,6 +13,7 @@ import com.pulumi.keycloak.inputs.RealmKeystoreRsaState;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
@@ -62,6 +63,7 @@ import javax.annotation.Nullable;
  *             .algorithm("RS256")
  *             .keystoreSize(2048)
  *             .providerId("rsa")
+ *             .extraConfig(Map.of("kid", "my-key-id"))
  *             .build());
  * 
  *     }
@@ -139,6 +141,20 @@ public class RealmKeystoreRsa extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<Boolean>> enabled() {
         return Codegen.optional(this.enabled);
+    }
+    /**
+     * Map of additional provider configuration options passed through to the Keycloak component config. For RSA keystores this can include keys like `kid`.
+     * 
+     */
+    @Export(name="extraConfig", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output</* @Nullable */ Map<String,String>> extraConfig;
+
+    /**
+     * @return Map of additional provider configuration options passed through to the Keycloak component config. For RSA keystores this can include keys like `kid`.
+     * 
+     */
+    public Output<Optional<Map<String,String>>> extraConfig() {
+        return Codegen.optional(this.extraConfig);
     }
     /**
      * Display name of provider when linked in admin console.

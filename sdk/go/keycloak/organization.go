@@ -96,7 +96,7 @@ type Organization struct {
 	Attributes pulumi.StringMapOutput `pulumi:"attributes"`
 	// The description of the organization.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// A list of domains. At least one domain is required.
+	// A list of domains.
 	Domains OrganizationDomainArrayOutput `pulumi:"domains"`
 	// Enable/disable this organization.
 	Enabled pulumi.BoolPtrOutput `pulumi:"enabled"`
@@ -115,9 +115,6 @@ func NewOrganization(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.Domains == nil {
-		return nil, errors.New("invalid value for required argument 'Domains'")
-	}
 	if args.Realm == nil {
 		return nil, errors.New("invalid value for required argument 'Realm'")
 	}
@@ -150,7 +147,7 @@ type organizationState struct {
 	Attributes map[string]string `pulumi:"attributes"`
 	// The description of the organization.
 	Description *string `pulumi:"description"`
-	// A list of domains. At least one domain is required.
+	// A list of domains.
 	Domains []OrganizationDomain `pulumi:"domains"`
 	// Enable/disable this organization.
 	Enabled *bool `pulumi:"enabled"`
@@ -169,7 +166,7 @@ type OrganizationState struct {
 	Attributes pulumi.StringMapInput
 	// The description of the organization.
 	Description pulumi.StringPtrInput
-	// A list of domains. At least one domain is required.
+	// A list of domains.
 	Domains OrganizationDomainArrayInput
 	// Enable/disable this organization.
 	Enabled pulumi.BoolPtrInput
@@ -192,7 +189,7 @@ type organizationArgs struct {
 	Attributes map[string]string `pulumi:"attributes"`
 	// The description of the organization.
 	Description *string `pulumi:"description"`
-	// A list of domains. At least one domain is required.
+	// A list of domains.
 	Domains []OrganizationDomain `pulumi:"domains"`
 	// Enable/disable this organization.
 	Enabled *bool `pulumi:"enabled"`
@@ -212,7 +209,7 @@ type OrganizationArgs struct {
 	Attributes pulumi.StringMapInput
 	// The description of the organization.
 	Description pulumi.StringPtrInput
-	// A list of domains. At least one domain is required.
+	// A list of domains.
 	Domains OrganizationDomainArrayInput
 	// Enable/disable this organization.
 	Enabled pulumi.BoolPtrInput
@@ -326,7 +323,7 @@ func (o OrganizationOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Organization) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
-// A list of domains. At least one domain is required.
+// A list of domains.
 func (o OrganizationOutput) Domains() OrganizationDomainArrayOutput {
 	return o.ApplyT(func(v *Organization) OrganizationDomainArrayOutput { return v.Domains }).(OrganizationDomainArrayOutput)
 }

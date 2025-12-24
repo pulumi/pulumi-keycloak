@@ -13,6 +13,7 @@ namespace Pulumi.Keycloak.Outputs
     [OutputType]
     public sealed class RealmSmtpServer
     {
+        public readonly bool? AllowUtf8;
         /// <summary>
         /// Enables authentication to the SMTP server. Cannot be set alongside `TokenAuth`. This block supports the following arguments:
         /// </summary>
@@ -60,6 +61,8 @@ namespace Pulumi.Keycloak.Outputs
 
         [OutputConstructor]
         private RealmSmtpServer(
+            bool? allowUtf8,
+
             Outputs.RealmSmtpServerAuth? auth,
 
             string? envelopeFrom,
@@ -82,6 +85,7 @@ namespace Pulumi.Keycloak.Outputs
 
             Outputs.RealmSmtpServerTokenAuth? tokenAuth)
         {
+            AllowUtf8 = allowUtf8;
             Auth = auth;
             EnvelopeFrom = envelopeFrom;
             From = from;

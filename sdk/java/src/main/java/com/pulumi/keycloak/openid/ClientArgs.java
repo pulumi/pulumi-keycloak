@@ -665,6 +665,21 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Enable support for Demonstrating Proof-of-Possession (DPoP) bound tokens.
+     * 
+     */
+    @Import(name="requireDpopBoundTokens")
+    private @Nullable Output<Boolean> requireDpopBoundTokens;
+
+    /**
+     * @return Enable support for Demonstrating Proof-of-Possession (DPoP) bound tokens.
+     * 
+     */
+    public Optional<Output<Boolean>> requireDpopBoundTokens() {
+        return Optional.ofNullable(this.requireDpopBoundTokens);
+    }
+
+    /**
      * When specified, this URL is prepended to any relative URLs found within `validRedirectUris`, `webOrigins`, and `adminUrl`. NOTE: Due to limitations in the Keycloak API, when the `rootUrl` attribute is used, the `validRedirectUris`, `webOrigins`, and `adminUrl` attributes will be required.
      * 
      */
@@ -848,6 +863,7 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
         this.oauth2DevicePollingInterval = $.oauth2DevicePollingInterval;
         this.pkceCodeChallengeMethod = $.pkceCodeChallengeMethod;
         this.realmId = $.realmId;
+        this.requireDpopBoundTokens = $.requireDpopBoundTokens;
         this.rootUrl = $.rootUrl;
         this.serviceAccountsEnabled = $.serviceAccountsEnabled;
         this.standardFlowEnabled = $.standardFlowEnabled;
@@ -1765,6 +1781,27 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder realmId(String realmId) {
             return realmId(Output.of(realmId));
+        }
+
+        /**
+         * @param requireDpopBoundTokens Enable support for Demonstrating Proof-of-Possession (DPoP) bound tokens.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder requireDpopBoundTokens(@Nullable Output<Boolean> requireDpopBoundTokens) {
+            $.requireDpopBoundTokens = requireDpopBoundTokens;
+            return this;
+        }
+
+        /**
+         * @param requireDpopBoundTokens Enable support for Demonstrating Proof-of-Possession (DPoP) bound tokens.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder requireDpopBoundTokens(Boolean requireDpopBoundTokens) {
+            return requireDpopBoundTokens(Output.of(requireDpopBoundTokens));
         }
 
         /**

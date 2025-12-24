@@ -6,6 +6,7 @@ import builtins as _builtins
 from .. import _utilities
 import typing
 # Export this package's modules as members:
+from .facebook_identity_provider import *
 from .github_identity_provider import *
 from .google_identity_provider import *
 from .identity_provider import *

@@ -16,6 +16,7 @@ namespace Pulumi.Keycloak.Outputs
         public readonly int FailureResetTimeSeconds;
         public readonly int MaxFailureWaitSeconds;
         public readonly int MaxLoginFailures;
+        public readonly int MaxTemporaryLockouts;
         public readonly int MinimumQuickLoginWaitSeconds;
         public readonly bool PermanentLockout;
         public readonly int QuickLoginCheckMilliSeconds;
@@ -29,6 +30,8 @@ namespace Pulumi.Keycloak.Outputs
 
             int maxLoginFailures,
 
+            int maxTemporaryLockouts,
+
             int minimumQuickLoginWaitSeconds,
 
             bool permanentLockout,
@@ -40,6 +43,7 @@ namespace Pulumi.Keycloak.Outputs
             FailureResetTimeSeconds = failureResetTimeSeconds;
             MaxFailureWaitSeconds = maxFailureWaitSeconds;
             MaxLoginFailures = maxLoginFailures;
+            MaxTemporaryLockouts = maxTemporaryLockouts;
             MinimumQuickLoginWaitSeconds = minimumQuickLoginWaitSeconds;
             PermanentLockout = permanentLockout;
             QuickLoginCheckMilliSeconds = quickLoginCheckMilliSeconds;

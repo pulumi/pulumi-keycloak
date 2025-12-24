@@ -100,9 +100,9 @@ export class Organization extends pulumi.CustomResource {
      */
     declare public readonly description: pulumi.Output<string | undefined>;
     /**
-     * A list of domains. At least one domain is required.
+     * A list of domains.
      */
-    declare public readonly domains: pulumi.Output<outputs.OrganizationDomain[]>;
+    declare public readonly domains: pulumi.Output<outputs.OrganizationDomain[] | undefined>;
     /**
      * Enable/disable this organization.
      */
@@ -143,9 +143,6 @@ export class Organization extends pulumi.CustomResource {
             resourceInputs["redirectUrl"] = state?.redirectUrl;
         } else {
             const args = argsOrState as OrganizationArgs | undefined;
-            if (args?.domains === undefined && !opts.urn) {
-                throw new Error("Missing required property 'domains'");
-            }
             if (args?.realm === undefined && !opts.urn) {
                 throw new Error("Missing required property 'realm'");
             }
@@ -180,7 +177,7 @@ export interface OrganizationState {
      */
     description?: pulumi.Input<string>;
     /**
-     * A list of domains. At least one domain is required.
+     * A list of domains.
      */
     domains?: pulumi.Input<pulumi.Input<inputs.OrganizationDomain>[]>;
     /**
@@ -218,9 +215,9 @@ export interface OrganizationArgs {
      */
     description?: pulumi.Input<string>;
     /**
-     * A list of domains. At least one domain is required.
+     * A list of domains.
      */
-    domains: pulumi.Input<pulumi.Input<inputs.OrganizationDomain>[]>;
+    domains?: pulumi.Input<pulumi.Input<inputs.OrganizationDomain>[]>;
     /**
      * Enable/disable this organization.
      */

@@ -8,10 +8,13 @@ import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class GetGroupResult {
     private Map<String,String> attributes;
+    private @Nullable String description;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
@@ -25,6 +28,9 @@ public final class GetGroupResult {
     private GetGroupResult() {}
     public Map<String,String> attributes() {
         return this.attributes;
+    }
+    public Optional<String> description() {
+        return Optional.ofNullable(this.description);
     }
     /**
      * @return The provider-assigned unique ID for this managed resource.
@@ -56,6 +62,7 @@ public final class GetGroupResult {
     @CustomType.Builder
     public static final class Builder {
         private Map<String,String> attributes;
+        private @Nullable String description;
         private String id;
         private String name;
         private String parentId;
@@ -65,6 +72,7 @@ public final class GetGroupResult {
         public Builder(GetGroupResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.attributes = defaults.attributes;
+    	      this.description = defaults.description;
     	      this.id = defaults.id;
     	      this.name = defaults.name;
     	      this.parentId = defaults.parentId;
@@ -78,6 +86,12 @@ public final class GetGroupResult {
               throw new MissingRequiredPropertyException("GetGroupResult", "attributes");
             }
             this.attributes = attributes;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder description(@Nullable String description) {
+
+            this.description = description;
             return this;
         }
         @CustomType.Setter
@@ -123,6 +137,7 @@ public final class GetGroupResult {
         public GetGroupResult build() {
             final var _resultValue = new GetGroupResult();
             _resultValue.attributes = attributes;
+            _resultValue.description = description;
             _resultValue.id = id;
             _resultValue.name = name;
             _resultValue.parentId = parentId;

@@ -84,7 +84,7 @@ export class ClientScope extends pulumi.CustomResource {
      */
     declare public readonly guiOrder: pulumi.Output<number | undefined>;
     /**
-     * When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response.
+     * When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response. When `false`, this scope will be omitted from the token and from the Token Introspection Endpoint response. Defaults to `true`.
      */
     declare public readonly includeInTokenScope: pulumi.Output<boolean | undefined>;
     /**
@@ -149,7 +149,7 @@ export interface ClientScopeState {
      */
     guiOrder?: pulumi.Input<number>;
     /**
-     * When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response.
+     * When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response. When `false`, this scope will be omitted from the token and from the Token Introspection Endpoint response. Defaults to `true`.
      */
     includeInTokenScope?: pulumi.Input<boolean>;
     /**
@@ -179,7 +179,7 @@ export interface ClientScopeArgs {
      */
     guiOrder?: pulumi.Input<number>;
     /**
-     * When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response.
+     * When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response. When `false`, this scope will be omitted from the token and from the Token Introspection Endpoint response. Defaults to `true`.
      */
     includeInTokenScope?: pulumi.Input<boolean>;
     /**

@@ -25,6 +25,11 @@ export type Flow = import("./flow").Flow;
 export const Flow: typeof import("./flow").Flow = null as any;
 utilities.lazyLoad(exports, ["Flow"], () => require("./flow"));
 
+export { GetSubflowArgs, GetSubflowResult, GetSubflowOutputArgs } from "./getSubflow";
+export const getSubflow: typeof import("./getSubflow").getSubflow = null as any;
+export const getSubflowOutput: typeof import("./getSubflow").getSubflowOutput = null as any;
+utilities.lazyLoad(exports, ["getSubflow","getSubflowOutput"], () => require("./getSubflow"));
+
 export { SubflowArgs, SubflowState } from "./subflow";
 export type Subflow = import("./subflow").Subflow;
 export const Subflow: typeof import("./subflow").Subflow = null as any;

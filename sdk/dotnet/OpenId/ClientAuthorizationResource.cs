@@ -9,6 +9,113 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak.OpenId
 {
+    /// <summary>
+    /// Allows you to manage openid Client Authorization Resources.
+    /// 
+    /// Authorization resources represent the protected resources in your application. Each resource can have associated scopes, URIs, and attributes.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
+    /// 
+    ///     var test = new Keycloak.OpenId.Client("test", new()
+    ///     {
+    ///         ClientId = "client_id",
+    ///         RealmId = realm.Id,
+    ///         AccessType = "CONFIDENTIAL",
+    ///         ServiceAccountsEnabled = true,
+    ///         Authorization = new Keycloak.OpenId.Inputs.ClientAuthorizationArgs
+    ///         {
+    ///             PolicyEnforcementMode = "ENFORCING",
+    ///         },
+    ///     });
+    /// 
+    ///     var readScope = new Keycloak.OpenId.ClientAuthorizationScope("read_scope", new()
+    ///     {
+    ///         ResourceServerId = test.ResourceServerId,
+    ///         RealmId = realm.Id,
+    ///         Name = "read",
+    ///     });
+    /// 
+    ///     var writeScope = new Keycloak.OpenId.ClientAuthorizationScope("write_scope", new()
+    ///     {
+    ///         ResourceServerId = test.ResourceServerId,
+    ///         RealmId = realm.Id,
+    ///         Name = "write",
+    ///     });
+    /// 
+    ///     var testClientAuthorizationResource = new Keycloak.OpenId.ClientAuthorizationResource("test", new()
+    ///     {
+    ///         ResourceServerId = test.ResourceServerId,
+    ///         RealmId = realm.Id,
+    ///         Name = "my_resource",
+    ///         DisplayName = "My Resource",
+    ///         Uris = new[]
+    ///         {
+    ///             "/api/resource/*",
+    ///             "/api/resource/**",
+    ///         },
+    ///         Scopes = new[]
+    ///         {
+    ///             readScope.Name,
+    ///             writeScope.Name,
+    ///         },
+    ///         Type = "http://example.com/resource-type",
+    ///         Attributes = 
+    ///         {
+    ///             { "key1", "value1,value2" },
+    ///             { "key2", "value3" },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Argument Reference
+    /// 
+    /// The following arguments are supported:
+    /// 
+    /// - `RealmId` - (Required) The realm this resource exists in.
+    /// - `ResourceServerId` - (Required) The ID of the resource server.
+    /// - `Name` - (Required) The name of the resource.
+    /// - `DisplayName` - (Optional) The display name of the resource.
+    /// - `Uris` - (Optional) A set of URIs that this resource represents.
+    /// - `IconUri` - (Optional) An icon URI for the resource.
+    /// - `OwnerManagedAccess` - (Optional) When `True`, this resource supports user-managed access. Defaults to `False`.
+    /// - `Scopes` - (Optional) A set of scope names that this resource uses.
+    /// - `Type` - (Optional) The type of this resource (e.g., `urn:myapp:resources:default`).
+    /// - `Attributes` - (Optional) A map of attributes for the resource. Values can be comma-separated lists.
+    /// 
+    /// ### Attributes Reference
+    /// 
+    /// In addition to the arguments listed above, the following computed attributes are exported:
+    /// 
+    /// - `Id` - Resource ID representing the authorization resource.
+    /// 
+    /// ## Import
+    /// 
+    /// Client authorization resources can be imported using the format: `{{realmId}}/{{resourceServerId}}/{{authorizationResourceId}}`.
+    /// 
+    /// Example:
+    /// 
+    /// bash
+    /// 
+    /// ```sh
+    /// $ pulumi import keycloak:openid/clientAuthorizationResource:ClientAuthorizationResource test my-realm/3bd4a686-1062-4b59-97b8-e4e3f10b99da/63b3cde8-987d-4cd9-9306-1955579281d9
+    /// ```
+    /// </summary>
     [KeycloakResourceType("keycloak:openid/clientAuthorizationResource:ClientAuthorizationResource")]
     public partial class ClientAuthorizationResource : global::Pulumi.CustomResource
     {

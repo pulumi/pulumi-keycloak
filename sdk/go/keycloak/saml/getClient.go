@@ -81,6 +81,7 @@ type LookupClientResult struct {
 	Description                        string                                       `pulumi:"description"`
 	Enabled                            bool                                         `pulumi:"enabled"`
 	EncryptAssertions                  bool                                         `pulumi:"encryptAssertions"`
+	EncryptionAlgorithm                string                                       `pulumi:"encryptionAlgorithm"`
 	EncryptionCertificate              string                                       `pulumi:"encryptionCertificate"`
 	EncryptionCertificateSha1          string                                       `pulumi:"encryptionCertificateSha1"`
 	ExtraConfig                        map[string]string                            `pulumi:"extraConfig"`
@@ -197,6 +198,10 @@ func (o LookupClientResultOutput) Enabled() pulumi.BoolOutput {
 
 func (o LookupClientResultOutput) EncryptAssertions() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupClientResult) bool { return v.EncryptAssertions }).(pulumi.BoolOutput)
+}
+
+func (o LookupClientResultOutput) EncryptionAlgorithm() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.EncryptionAlgorithm }).(pulumi.StringOutput)
 }
 
 func (o LookupClientResultOutput) EncryptionCertificate() pulumi.StringOutput {

@@ -163,7 +163,73 @@ class ClientAuthorizationScope(pulumi.CustomResource):
                  resource_server_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        Create a ClientAuthorizationScope resource with the given unique name, props, and options.
+        Allows you to manage openid Client Authorization Scopes.
+
+        Authorization scopes represent the actions that can be performed on resources. They are used in permissions to define what operations are allowed.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        test = keycloak.openid.Client("test",
+            client_id="client_id",
+            realm_id=realm.id,
+            access_type="CONFIDENTIAL",
+            service_accounts_enabled=True,
+            authorization={
+                "policy_enforcement_mode": "ENFORCING",
+            })
+        read = keycloak.openid.ClientAuthorizationScope("read",
+            resource_server_id=test.resource_server_id,
+            realm_id=realm.id,
+            name="read",
+            display_name="Read Access",
+            icon_uri="https://example.com/icons/read.png")
+        write = keycloak.openid.ClientAuthorizationScope("write",
+            resource_server_id=test.resource_server_id,
+            realm_id=realm.id,
+            name="write",
+            display_name="Write Access")
+        delete = keycloak.openid.ClientAuthorizationScope("delete",
+            resource_server_id=test.resource_server_id,
+            realm_id=realm.id,
+            name="delete",
+            display_name="Delete Access")
+        ```
+
+        ### Argument Reference
+
+        The following arguments are supported:
+
+        - `realm_id` - (Required) The realm this scope exists in.
+        - `resource_server_id` - (Required) The ID of the resource server.
+        - `name` - (Required) The name of the scope.
+        - `display_name` - (Optional) The display name of the scope.
+        - `icon_uri` - (Optional) An icon URI for the scope.
+
+        ### Attributes Reference
+
+        In addition to the arguments listed above, the following computed attributes are exported:
+
+        - `id` - Scope ID representing the authorization scope.
+
+        ## Import
+
+        Client authorization scopes can be imported using the format: `{{realmId}}/{{resourceServerId}}/{{authorizationScopeId}}`.
+
+        Example:
+
+        bash
+
+        ```sh
+        $ pulumi import keycloak:openid/clientAuthorizationScope:ClientAuthorizationScope test my-realm/3bd4a686-1062-4b59-97b8-e4e3f10b99da/63b3cde8-987d-4cd9-9306-1955579281d9
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
@@ -174,7 +240,73 @@ class ClientAuthorizationScope(pulumi.CustomResource):
                  args: ClientAuthorizationScopeArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a ClientAuthorizationScope resource with the given unique name, props, and options.
+        Allows you to manage openid Client Authorization Scopes.
+
+        Authorization scopes represent the actions that can be performed on resources. They are used in permissions to define what operations are allowed.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        test = keycloak.openid.Client("test",
+            client_id="client_id",
+            realm_id=realm.id,
+            access_type="CONFIDENTIAL",
+            service_accounts_enabled=True,
+            authorization={
+                "policy_enforcement_mode": "ENFORCING",
+            })
+        read = keycloak.openid.ClientAuthorizationScope("read",
+            resource_server_id=test.resource_server_id,
+            realm_id=realm.id,
+            name="read",
+            display_name="Read Access",
+            icon_uri="https://example.com/icons/read.png")
+        write = keycloak.openid.ClientAuthorizationScope("write",
+            resource_server_id=test.resource_server_id,
+            realm_id=realm.id,
+            name="write",
+            display_name="Write Access")
+        delete = keycloak.openid.ClientAuthorizationScope("delete",
+            resource_server_id=test.resource_server_id,
+            realm_id=realm.id,
+            name="delete",
+            display_name="Delete Access")
+        ```
+
+        ### Argument Reference
+
+        The following arguments are supported:
+
+        - `realm_id` - (Required) The realm this scope exists in.
+        - `resource_server_id` - (Required) The ID of the resource server.
+        - `name` - (Required) The name of the scope.
+        - `display_name` - (Optional) The display name of the scope.
+        - `icon_uri` - (Optional) An icon URI for the scope.
+
+        ### Attributes Reference
+
+        In addition to the arguments listed above, the following computed attributes are exported:
+
+        - `id` - Scope ID representing the authorization scope.
+
+        ## Import
+
+        Client authorization scopes can be imported using the format: `{{realmId}}/{{resourceServerId}}/{{authorizationScopeId}}`.
+
+        Example:
+
+        bash
+
+        ```sh
+        $ pulumi import keycloak:openid/clientAuthorizationScope:ClientAuthorizationScope test my-realm/3bd4a686-1062-4b59-97b8-e4e3f10b99da/63b3cde8-987d-4cd9-9306-1955579281d9
+        ```
+
         :param str resource_name: The name of the resource.
         :param ClientAuthorizationScopeArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

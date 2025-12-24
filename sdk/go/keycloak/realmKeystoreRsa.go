@@ -47,6 +47,9 @@ import (
 //				Algorithm:    pulumi.String("RS256"),
 //				KeystoreSize: 2048,
 //				ProviderId:   pulumi.String("rsa"),
+//				ExtraConfig: pulumi.StringMap{
+//					"kid": pulumi.String("my-key-id"),
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -79,6 +82,8 @@ type RealmKeystoreRsa struct {
 	Certificate pulumi.StringOutput `pulumi:"certificate"`
 	// When `false`, key is not accessible in this realm. Defaults to `true`.
 	Enabled pulumi.BoolPtrOutput `pulumi:"enabled"`
+	// Map of additional provider configuration options passed through to the Keycloak component config. For RSA keystores this can include keys like `kid`.
+	ExtraConfig pulumi.StringMapOutput `pulumi:"extraConfig"`
 	// Display name of provider when linked in admin console.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Priority for the provider. Defaults to `0`
@@ -138,6 +143,8 @@ type realmKeystoreRsaState struct {
 	Certificate *string `pulumi:"certificate"`
 	// When `false`, key is not accessible in this realm. Defaults to `true`.
 	Enabled *bool `pulumi:"enabled"`
+	// Map of additional provider configuration options passed through to the Keycloak component config. For RSA keystores this can include keys like `kid`.
+	ExtraConfig map[string]string `pulumi:"extraConfig"`
 	// Display name of provider when linked in admin console.
 	Name *string `pulumi:"name"`
 	// Priority for the provider. Defaults to `0`
@@ -159,6 +166,8 @@ type RealmKeystoreRsaState struct {
 	Certificate pulumi.StringPtrInput
 	// When `false`, key is not accessible in this realm. Defaults to `true`.
 	Enabled pulumi.BoolPtrInput
+	// Map of additional provider configuration options passed through to the Keycloak component config. For RSA keystores this can include keys like `kid`.
+	ExtraConfig pulumi.StringMapInput
 	// Display name of provider when linked in admin console.
 	Name pulumi.StringPtrInput
 	// Priority for the provider. Defaults to `0`
@@ -184,6 +193,8 @@ type realmKeystoreRsaArgs struct {
 	Certificate string `pulumi:"certificate"`
 	// When `false`, key is not accessible in this realm. Defaults to `true`.
 	Enabled *bool `pulumi:"enabled"`
+	// Map of additional provider configuration options passed through to the Keycloak component config. For RSA keystores this can include keys like `kid`.
+	ExtraConfig map[string]string `pulumi:"extraConfig"`
 	// Display name of provider when linked in admin console.
 	Name *string `pulumi:"name"`
 	// Priority for the provider. Defaults to `0`
@@ -206,6 +217,8 @@ type RealmKeystoreRsaArgs struct {
 	Certificate pulumi.StringInput
 	// When `false`, key is not accessible in this realm. Defaults to `true`.
 	Enabled pulumi.BoolPtrInput
+	// Map of additional provider configuration options passed through to the Keycloak component config. For RSA keystores this can include keys like `kid`.
+	ExtraConfig pulumi.StringMapInput
 	// Display name of provider when linked in admin console.
 	Name pulumi.StringPtrInput
 	// Priority for the provider. Defaults to `0`
@@ -323,6 +336,11 @@ func (o RealmKeystoreRsaOutput) Certificate() pulumi.StringOutput {
 // When `false`, key is not accessible in this realm. Defaults to `true`.
 func (o RealmKeystoreRsaOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *RealmKeystoreRsa) pulumi.BoolPtrOutput { return v.Enabled }).(pulumi.BoolPtrOutput)
+}
+
+// Map of additional provider configuration options passed through to the Keycloak component config. For RSA keystores this can include keys like `kid`.
+func (o RealmKeystoreRsaOutput) ExtraConfig() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *RealmKeystoreRsa) pulumi.StringMapOutput { return v.ExtraConfig }).(pulumi.StringMapOutput)
 }
 
 // Display name of provider when linked in admin console.
