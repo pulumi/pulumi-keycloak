@@ -22,7 +22,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-aws/sdk/v7/go/aws/iam"
+//	"github.com/pulumi/pulumi-aws/sdk/v7/go/aws"
 //	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak"
 //	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak/saml"
 //	"github.com/pulumi/pulumi-std/sdk/go/std"
@@ -69,11 +69,9 @@ import (
 //				ClientId:   samlClient.ID(),
 //				ProviderId: pulumi.String("saml-idp-descriptor"),
 //			}, nil)
-//			_, err = iam.NewSamlProvider(ctx, "default", &iam.SamlProviderArgs{
-//				Name: pulumi.String("myprovider"),
-//				SamlMetadataDocument: pulumi.String(samlIdpDescriptor.ApplyT(func(samlIdpDescriptor saml.GetClientInstallationProviderResult) (*string, error) {
-//					return &samlIdpDescriptor.Value, nil
-//				}).(pulumi.StringPtrOutput)),
+//			_, err = aws.NewIamSamlProvider(ctx, "default", &aws.IamSamlProviderArgs{
+//				Name:                 "myprovider",
+//				SamlMetadataDocument: samlIdpDescriptor.Value,
 //			})
 //			if err != nil {
 //				return err
