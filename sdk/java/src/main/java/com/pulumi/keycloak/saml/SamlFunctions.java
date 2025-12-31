@@ -289,8 +289,8 @@ public final class SamlFunctions {
      * import com.pulumi.std.StdFunctions;
      * import com.pulumi.keycloak.saml.SamlFunctions;
      * import com.pulumi.keycloak.saml.inputs.GetClientInstallationProviderArgs;
-     * import com.pulumi.aws.iam.SamlProvider;
-     * import com.pulumi.aws.iam.SamlProviderArgs;
+     * import com.pulumi.aws.IamSamlProvider;
+     * import com.pulumi.aws.IamSamlProviderArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -326,9 +326,9 @@ public final class SamlFunctions {
      *             .providerId("saml-idp-descriptor")
      *             .build());
      * 
-     *         var default_ = new SamlProvider("default", SamlProviderArgs.builder()
+     *         var default_ = new IamSamlProvider("default", IamSamlProviderArgs.builder()
      *             .name("myprovider")
-     *             .samlMetadataDocument(samlIdpDescriptor.applyValue(_samlIdpDescriptor -> _samlIdpDescriptor.value()))
+     *             .samlMetadataDocument(samlIdpDescriptor.value())
      *             .build());
      * 
      *     }
@@ -361,8 +361,8 @@ public final class SamlFunctions {
      * import com.pulumi.std.StdFunctions;
      * import com.pulumi.keycloak.saml.SamlFunctions;
      * import com.pulumi.keycloak.saml.inputs.GetClientInstallationProviderArgs;
-     * import com.pulumi.aws.iam.SamlProvider;
-     * import com.pulumi.aws.iam.SamlProviderArgs;
+     * import com.pulumi.aws.IamSamlProvider;
+     * import com.pulumi.aws.IamSamlProviderArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -398,9 +398,9 @@ public final class SamlFunctions {
      *             .providerId("saml-idp-descriptor")
      *             .build());
      * 
-     *         var default_ = new SamlProvider("default", SamlProviderArgs.builder()
+     *         var default_ = new IamSamlProvider("default", IamSamlProviderArgs.builder()
      *             .name("myprovider")
-     *             .samlMetadataDocument(samlIdpDescriptor.applyValue(_samlIdpDescriptor -> _samlIdpDescriptor.value()))
+     *             .samlMetadataDocument(samlIdpDescriptor.value())
      *             .build());
      * 
      *     }
@@ -433,8 +433,8 @@ public final class SamlFunctions {
      * import com.pulumi.std.StdFunctions;
      * import com.pulumi.keycloak.saml.SamlFunctions;
      * import com.pulumi.keycloak.saml.inputs.GetClientInstallationProviderArgs;
-     * import com.pulumi.aws.iam.SamlProvider;
-     * import com.pulumi.aws.iam.SamlProviderArgs;
+     * import com.pulumi.aws.IamSamlProvider;
+     * import com.pulumi.aws.IamSamlProviderArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -470,9 +470,9 @@ public final class SamlFunctions {
      *             .providerId("saml-idp-descriptor")
      *             .build());
      * 
-     *         var default_ = new SamlProvider("default", SamlProviderArgs.builder()
+     *         var default_ = new IamSamlProvider("default", IamSamlProviderArgs.builder()
      *             .name("myprovider")
-     *             .samlMetadataDocument(samlIdpDescriptor.applyValue(_samlIdpDescriptor -> _samlIdpDescriptor.value()))
+     *             .samlMetadataDocument(samlIdpDescriptor.value())
      *             .build());
      * 
      *     }
@@ -505,8 +505,8 @@ public final class SamlFunctions {
      * import com.pulumi.std.StdFunctions;
      * import com.pulumi.keycloak.saml.SamlFunctions;
      * import com.pulumi.keycloak.saml.inputs.GetClientInstallationProviderArgs;
-     * import com.pulumi.aws.iam.SamlProvider;
-     * import com.pulumi.aws.iam.SamlProviderArgs;
+     * import com.pulumi.aws.IamSamlProvider;
+     * import com.pulumi.aws.IamSamlProviderArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -542,9 +542,9 @@ public final class SamlFunctions {
      *             .providerId("saml-idp-descriptor")
      *             .build());
      * 
-     *         var default_ = new SamlProvider("default", SamlProviderArgs.builder()
+     *         var default_ = new IamSamlProvider("default", IamSamlProviderArgs.builder()
      *             .name("myprovider")
-     *             .samlMetadataDocument(samlIdpDescriptor.applyValue(_samlIdpDescriptor -> _samlIdpDescriptor.value()))
+     *             .samlMetadataDocument(samlIdpDescriptor.value())
      *             .build());
      * 
      *     }
@@ -577,8 +577,8 @@ public final class SamlFunctions {
      * import com.pulumi.std.StdFunctions;
      * import com.pulumi.keycloak.saml.SamlFunctions;
      * import com.pulumi.keycloak.saml.inputs.GetClientInstallationProviderArgs;
-     * import com.pulumi.aws.iam.SamlProvider;
-     * import com.pulumi.aws.iam.SamlProviderArgs;
+     * import com.pulumi.aws.IamSamlProvider;
+     * import com.pulumi.aws.IamSamlProviderArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -614,9 +614,9 @@ public final class SamlFunctions {
      *             .providerId("saml-idp-descriptor")
      *             .build());
      * 
-     *         var default_ = new SamlProvider("default", SamlProviderArgs.builder()
+     *         var default_ = new IamSamlProvider("default", IamSamlProviderArgs.builder()
      *             .name("myprovider")
-     *             .samlMetadataDocument(samlIdpDescriptor.applyValue(_samlIdpDescriptor -> _samlIdpDescriptor.value()))
+     *             .samlMetadataDocument(samlIdpDescriptor.value())
      *             .build());
      * 
      *     }
