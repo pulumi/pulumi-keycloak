@@ -40,9 +40,9 @@ import * as utilities from "../utilities";
  *     clientId: samlClient.id,
  *     providerId: "saml-idp-descriptor",
  * });
- * const _default = new aws.iam.SamlProvider("default", {
+ * const _default = new aws.index.IamSamlProvider("default", {
  *     name: "myprovider",
- *     samlMetadataDocument: samlIdpDescriptor.apply(samlIdpDescriptor => samlIdpDescriptor.value),
+ *     samlMetadataDocument: samlIdpDescriptor.value,
  * });
  * ```
  */
@@ -125,9 +125,9 @@ export interface GetClientInstallationProviderResult {
  *     clientId: samlClient.id,
  *     providerId: "saml-idp-descriptor",
  * });
- * const _default = new aws.iam.SamlProvider("default", {
+ * const _default = new aws.index.IamSamlProvider("default", {
  *     name: "myprovider",
- *     samlMetadataDocument: samlIdpDescriptor.apply(samlIdpDescriptor => samlIdpDescriptor.value),
+ *     samlMetadataDocument: samlIdpDescriptor.value,
  * });
  * ```
  */

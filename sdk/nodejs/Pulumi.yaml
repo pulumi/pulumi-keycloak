@@ -1,0 +1,3 @@
+name: keycloak
+description: A Pulumi resource provider for keycloak.
+language: nodejs
