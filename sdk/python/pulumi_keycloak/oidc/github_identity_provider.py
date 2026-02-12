@@ -57,6 +57,7 @@ class GithubIdentityProviderArgs:
         :param pulumi.Input[_builtins.str] default_scopes: The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `user:email`.
         :param pulumi.Input[_builtins.str] display_name: Display name for the GitHub identity provider in the GUI.
         :param pulumi.Input[_builtins.bool] enabled: When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
         :param pulumi.Input[_builtins.str] first_broker_login_flow_alias: The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
         :param pulumi.Input[_builtins.bool] github_json_format: When `true`, GitHub API is told explicitly to accept JSON during token authentication requests. Defaults to `false`.
         :param pulumi.Input[_builtins.str] gui_order: A number defining the order of this identity provider in the GUI.
@@ -252,6 +253,9 @@ class GithubIdentityProviderArgs:
     @_builtins.property
     @pulumi.getter(name="extraConfig")
     def extra_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
+        """
         return pulumi.get(self, "extra_config")
 
     @extra_config.setter
@@ -450,6 +454,7 @@ class _GithubIdentityProviderState:
         :param pulumi.Input[_builtins.str] default_scopes: The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `user:email`.
         :param pulumi.Input[_builtins.str] display_name: Display name for the GitHub identity provider in the GUI.
         :param pulumi.Input[_builtins.bool] enabled: When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
         :param pulumi.Input[_builtins.str] first_broker_login_flow_alias: The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
         :param pulumi.Input[_builtins.bool] github_json_format: When `true`, GitHub API is told explicitly to accept JSON during token authentication requests. Defaults to `false`.
         :param pulumi.Input[_builtins.str] gui_order: A number defining the order of this identity provider in the GUI.
@@ -640,6 +645,9 @@ class _GithubIdentityProviderState:
     @_builtins.property
     @pulumi.getter(name="extraConfig")
     def extra_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
+        """
         return pulumi.get(self, "extra_config")
 
     @extra_config.setter
@@ -888,12 +896,6 @@ class GithubIdentityProvider(pulumi.CustomResource):
 
         Example:
 
-        bash
-
-        ```sh
-        $ pulumi import keycloak:oidc/githubIdentityProvider:GithubIdentityProvider github_identity_provider my-realm/my-github-idp
-        ```
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] add_read_token_role_on_create: When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
@@ -906,6 +908,7 @@ class GithubIdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] default_scopes: The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `user:email`.
         :param pulumi.Input[_builtins.str] display_name: Display name for the GitHub identity provider in the GUI.
         :param pulumi.Input[_builtins.bool] enabled: When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
         :param pulumi.Input[_builtins.str] first_broker_login_flow_alias: The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
         :param pulumi.Input[_builtins.bool] github_json_format: When `true`, GitHub API is told explicitly to accept JSON during token authentication requests. Defaults to `false`.
         :param pulumi.Input[_builtins.str] gui_order: A number defining the order of this identity provider in the GUI.
@@ -959,12 +962,6 @@ class GithubIdentityProvider(pulumi.CustomResource):
         GitHub Identity providers can be imported using the format {{realm_id}}/{{idp_alias}}, where idp_alias is the identity provider alias.
 
         Example:
-
-        bash
-
-        ```sh
-        $ pulumi import keycloak:oidc/githubIdentityProvider:GithubIdentityProvider github_identity_provider my-realm/my-github-idp
-        ```
 
         :param str resource_name: The name of the resource.
         :param GithubIdentityProviderArgs args: The arguments to use to populate this resource's properties.
@@ -1102,6 +1099,7 @@ class GithubIdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] default_scopes: The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `user:email`.
         :param pulumi.Input[_builtins.str] display_name: Display name for the GitHub identity provider in the GUI.
         :param pulumi.Input[_builtins.bool] enabled: When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
         :param pulumi.Input[_builtins.str] first_broker_login_flow_alias: The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
         :param pulumi.Input[_builtins.bool] github_json_format: When `true`, GitHub API is told explicitly to accept JSON during token authentication requests. Defaults to `false`.
         :param pulumi.Input[_builtins.str] gui_order: A number defining the order of this identity provider in the GUI.
@@ -1231,6 +1229,9 @@ class GithubIdentityProvider(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="extraConfig")
     def extra_config(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:
+        """
+        A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
+        """
         return pulumi.get(self, "extra_config")
 
     @_builtins.property

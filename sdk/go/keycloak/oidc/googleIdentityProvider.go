@@ -60,15 +60,9 @@ import (
 //
 // ## Import
 //
-// Google Identity providers can be imported using the format {{realm_id}}/{{idp_alias}}, where idp_alias is the identity provider alias.
+// Google Identity providers can be imported using the format {{realm_id}}/{{idp_alias}}, where idpAlias is the identity provider alias.
 //
 // Example:
-//
-// bash
-//
-// ```sh
-// $ pulumi import keycloak:oidc/googleIdentityProvider:GoogleIdentityProvider google_identity_provider my-realm/my-google-idp
-// ```
 type GoogleIdentityProvider struct {
 	pulumi.CustomResourceState
 
@@ -91,7 +85,8 @@ type GoogleIdentityProvider struct {
 	// Display name for the Google identity provider in the GUI.
 	DisplayName pulumi.StringOutput `pulumi:"displayName"`
 	// When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
-	Enabled     pulumi.BoolPtrOutput   `pulumi:"enabled"`
+	Enabled pulumi.BoolPtrOutput `pulumi:"enabled"`
+	// A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
 	ExtraConfig pulumi.StringMapOutput `pulumi:"extraConfig"`
 	// The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
 	FirstBrokerLoginFlowAlias pulumi.StringPtrOutput `pulumi:"firstBrokerLoginFlowAlias"`
@@ -189,7 +184,8 @@ type googleIdentityProviderState struct {
 	// Display name for the Google identity provider in the GUI.
 	DisplayName *string `pulumi:"displayName"`
 	// When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
-	Enabled     *bool             `pulumi:"enabled"`
+	Enabled *bool `pulumi:"enabled"`
+	// A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
 	ExtraConfig map[string]string `pulumi:"extraConfig"`
 	// The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
 	FirstBrokerLoginFlowAlias *string `pulumi:"firstBrokerLoginFlowAlias"`
@@ -245,7 +241,8 @@ type GoogleIdentityProviderState struct {
 	// Display name for the Google identity provider in the GUI.
 	DisplayName pulumi.StringPtrInput
 	// When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
-	Enabled     pulumi.BoolPtrInput
+	Enabled pulumi.BoolPtrInput
+	// A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
 	ExtraConfig pulumi.StringMapInput
 	// The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
 	FirstBrokerLoginFlowAlias pulumi.StringPtrInput
@@ -305,7 +302,8 @@ type googleIdentityProviderArgs struct {
 	// Display name for the Google identity provider in the GUI.
 	DisplayName *string `pulumi:"displayName"`
 	// When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
-	Enabled     *bool             `pulumi:"enabled"`
+	Enabled *bool `pulumi:"enabled"`
+	// A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
 	ExtraConfig map[string]string `pulumi:"extraConfig"`
 	// The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
 	FirstBrokerLoginFlowAlias *string `pulumi:"firstBrokerLoginFlowAlias"`
@@ -360,7 +358,8 @@ type GoogleIdentityProviderArgs struct {
 	// Display name for the Google identity provider in the GUI.
 	DisplayName pulumi.StringPtrInput
 	// When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
-	Enabled     pulumi.BoolPtrInput
+	Enabled pulumi.BoolPtrInput
+	// A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
 	ExtraConfig pulumi.StringMapInput
 	// The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
 	FirstBrokerLoginFlowAlias pulumi.StringPtrInput
@@ -531,6 +530,7 @@ func (o GoogleIdentityProviderOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *GoogleIdentityProvider) pulumi.BoolPtrOutput { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
 
+// A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
 func (o GoogleIdentityProviderOutput) ExtraConfig() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *GoogleIdentityProvider) pulumi.StringMapOutput { return v.ExtraConfig }).(pulumi.StringMapOutput)
 }

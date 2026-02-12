@@ -41,15 +41,9 @@ import * as utilities from "../utilities";
  *
  * ## Import
  *
- * Identity providers can be imported using the format `{{realm_id}}/{{idp_alias}}`, where `idp_alias` is the identity provider alias.
+ * Identity providers can be imported using the format `{{realm_id}}/{{idp_alias}}`, where `idpAlias` is the identity provider alias.
  *
  * Example:
- *
- * bash
- *
- * ```sh
- * $ pulumi import keycloak:oidc/identityProvider:IdentityProvider realm_identity_provider my-realm/my-idp
- * ```
  */
 export class IdentityProvider extends pulumi.CustomResource {
     /**
@@ -113,11 +107,11 @@ export class IdentityProvider extends pulumi.CustomResource {
     declare public readonly clientSecret: pulumi.Output<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * Client Secret as write-only argument
+     * The secret for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `clientSecret`.
      */
     declare public readonly clientSecretWo: pulumi.Output<string | undefined>;
     /**
-     * Version of the Client secret write-only argument
+     * Functions as a flag and/or trigger to indicate Terraform when to use the input value in `clientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `clientSecretWo`.
      */
     declare public readonly clientSecretWoVersion: pulumi.Output<number | undefined>;
     /**
@@ -140,6 +134,10 @@ export class IdentityProvider extends pulumi.CustomResource {
      * When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
      */
     declare public readonly enabled: pulumi.Output<boolean | undefined>;
+    /**
+     * A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
+     * - `clientAuthMethod` (Optional) The client authentication method. Since Keycloak 8, this is a required attribute if OIDC provider is created using the Keycloak GUI. It accepts the values `clientSecretPost` (Client secret sent as post), `clientSecretBasic` (Client secret sent as basic auth), `clientSecretJwt` (Client secret as jwt) and `privateKeyJwt ` (JTW signed with private key)
+     */
     declare public readonly extraConfig: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
@@ -382,11 +380,11 @@ export interface IdentityProviderState {
     clientSecret?: pulumi.Input<string>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * Client Secret as write-only argument
+     * The secret for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `clientSecret`.
      */
     clientSecretWo?: pulumi.Input<string>;
     /**
-     * Version of the Client secret write-only argument
+     * Functions as a flag and/or trigger to indicate Terraform when to use the input value in `clientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `clientSecretWo`.
      */
     clientSecretWoVersion?: pulumi.Input<number>;
     /**
@@ -409,6 +407,10 @@ export interface IdentityProviderState {
      * When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
      */
     enabled?: pulumi.Input<boolean>;
+    /**
+     * A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
+     * - `clientAuthMethod` (Optional) The client authentication method. Since Keycloak 8, this is a required attribute if OIDC provider is created using the Keycloak GUI. It accepts the values `clientSecretPost` (Client secret sent as post), `clientSecretBasic` (Client secret sent as basic auth), `clientSecretJwt` (Client secret as jwt) and `privateKeyJwt ` (JTW signed with private key)
+     */
     extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
@@ -538,11 +540,11 @@ export interface IdentityProviderArgs {
     clientSecret?: pulumi.Input<string>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * Client Secret as write-only argument
+     * The secret for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `clientSecret`.
      */
     clientSecretWo?: pulumi.Input<string>;
     /**
-     * Version of the Client secret write-only argument
+     * Functions as a flag and/or trigger to indicate Terraform when to use the input value in `clientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `clientSecretWo`.
      */
     clientSecretWoVersion?: pulumi.Input<number>;
     /**
@@ -565,6 +567,10 @@ export interface IdentityProviderArgs {
      * When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
      */
     enabled?: pulumi.Input<boolean>;
+    /**
+     * A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
+     * - `clientAuthMethod` (Optional) The client authentication method. Since Keycloak 8, this is a required attribute if OIDC provider is created using the Keycloak GUI. It accepts the values `clientSecretPost` (Client secret sent as post), `clientSecretBasic` (Client secret sent as basic auth), `clientSecretJwt` (Client secret as jwt) and `privateKeyJwt ` (JTW signed with private key)
+     */
     extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.

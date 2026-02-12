@@ -69,13 +69,15 @@ class IdentityProviderArgs:
         :param pulumi.Input[_builtins.bool] backchannel_supported: Does the external IDP support backchannel logout? Defaults to `true`.
         :param pulumi.Input[_builtins.str] client_secret: The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `client_secret_wo` and `client_secret_wo_version`.
         :param pulumi.Input[_builtins.str] client_secret_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-               Client Secret as write-only argument
-        :param pulumi.Input[_builtins.int] client_secret_wo_version: Version of the Client secret write-only argument
+               The secret for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `client_secret`.
+        :param pulumi.Input[_builtins.int] client_secret_wo_version: Functions as a flag and/or trigger to indicate Terraform when to use the input value in `client_secret_wo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `client_secret_wo`.
         :param pulumi.Input[_builtins.str] default_scopes: The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
         :param pulumi.Input[_builtins.bool] disable_type_claim_check: When `true`, disables the check for the `typ` claim of tokens received from the identity provider. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] disable_user_info: When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
         :param pulumi.Input[_builtins.str] display_name: Display name for the identity provider in the GUI.
         :param pulumi.Input[_builtins.bool] enabled: When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
+               - `clientAuthMethod` (Optional) The client authentication method. Since Keycloak 8, this is a required attribute if OIDC provider is created using the Keycloak GUI. It accepts the values `client_secret_post` (Client secret sent as post), `client_secret_basic` (Client secret sent as basic auth), `client_secret_jwt` (Client secret as jwt) and `private_key_jwt ` (JTW signed with private key)
         :param pulumi.Input[_builtins.str] first_broker_login_flow_alias: The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
         :param pulumi.Input[_builtins.str] gui_order: A number defining the order of this identity provider in the GUI.
         :param pulumi.Input[_builtins.bool] hide_on_login_page: When `true`, this provider will be hidden on the login page, and is only accessible when requested explicitly. Defaults to `false`.
@@ -291,7 +293,7 @@ class IdentityProviderArgs:
     def client_secret_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        Client Secret as write-only argument
+        The secret for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `client_secret`.
         """
         return pulumi.get(self, "client_secret_wo")
 
@@ -303,7 +305,7 @@ class IdentityProviderArgs:
     @pulumi.getter(name="clientSecretWoVersion")
     def client_secret_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Version of the Client secret write-only argument
+        Functions as a flag and/or trigger to indicate Terraform when to use the input value in `client_secret_wo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `client_secret_wo`.
         """
         return pulumi.get(self, "client_secret_wo_version")
 
@@ -374,6 +376,10 @@ class IdentityProviderArgs:
     @_builtins.property
     @pulumi.getter(name="extraConfig")
     def extra_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
+        - `clientAuthMethod` (Optional) The client authentication method. Since Keycloak 8, this is a required attribute if OIDC provider is created using the Keycloak GUI. It accepts the values `client_secret_post` (Client secret sent as post), `client_secret_basic` (Client secret sent as basic auth), `client_secret_jwt` (Client secret as jwt) and `private_key_jwt ` (JTW signed with private key)
+        """
         return pulumi.get(self, "extra_config")
 
     @extra_config.setter
@@ -661,13 +667,15 @@ class _IdentityProviderState:
         :param pulumi.Input[_builtins.str] client_id: The client or client identifier registered within the identity provider.
         :param pulumi.Input[_builtins.str] client_secret: The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `client_secret_wo` and `client_secret_wo_version`.
         :param pulumi.Input[_builtins.str] client_secret_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-               Client Secret as write-only argument
-        :param pulumi.Input[_builtins.int] client_secret_wo_version: Version of the Client secret write-only argument
+               The secret for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `client_secret`.
+        :param pulumi.Input[_builtins.int] client_secret_wo_version: Functions as a flag and/or trigger to indicate Terraform when to use the input value in `client_secret_wo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `client_secret_wo`.
         :param pulumi.Input[_builtins.str] default_scopes: The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
         :param pulumi.Input[_builtins.bool] disable_type_claim_check: When `true`, disables the check for the `typ` claim of tokens received from the identity provider. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] disable_user_info: When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
         :param pulumi.Input[_builtins.str] display_name: Display name for the identity provider in the GUI.
         :param pulumi.Input[_builtins.bool] enabled: When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
+               - `clientAuthMethod` (Optional) The client authentication method. Since Keycloak 8, this is a required attribute if OIDC provider is created using the Keycloak GUI. It accepts the values `client_secret_post` (Client secret sent as post), `client_secret_basic` (Client secret sent as basic auth), `client_secret_jwt` (Client secret as jwt) and `private_key_jwt ` (JTW signed with private key)
         :param pulumi.Input[_builtins.str] first_broker_login_flow_alias: The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
         :param pulumi.Input[_builtins.str] gui_order: A number defining the order of this identity provider in the GUI.
         :param pulumi.Input[_builtins.bool] hide_on_login_page: When `true`, this provider will be hidden on the login page, and is only accessible when requested explicitly. Defaults to `false`.
@@ -869,7 +877,7 @@ class _IdentityProviderState:
     def client_secret_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        Client Secret as write-only argument
+        The secret for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `client_secret`.
         """
         return pulumi.get(self, "client_secret_wo")
 
@@ -881,7 +889,7 @@ class _IdentityProviderState:
     @pulumi.getter(name="clientSecretWoVersion")
     def client_secret_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Version of the Client secret write-only argument
+        Functions as a flag and/or trigger to indicate Terraform when to use the input value in `client_secret_wo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `client_secret_wo`.
         """
         return pulumi.get(self, "client_secret_wo_version")
 
@@ -952,6 +960,10 @@ class _IdentityProviderState:
     @_builtins.property
     @pulumi.getter(name="extraConfig")
     def extra_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
+        - `clientAuthMethod` (Optional) The client authentication method. Since Keycloak 8, this is a required attribute if OIDC provider is created using the Keycloak GUI. It accepts the values `client_secret_post` (Client secret sent as post), `client_secret_basic` (Client secret sent as basic auth), `client_secret_jwt` (Client secret as jwt) and `private_key_jwt ` (JTW signed with private key)
+        """
         return pulumi.get(self, "extra_config")
 
     @extra_config.setter
@@ -1306,12 +1318,6 @@ class IdentityProvider(pulumi.CustomResource):
 
         Example:
 
-        bash
-
-        ```sh
-        $ pulumi import keycloak:oidc/identityProvider:IdentityProvider realm_identity_provider my-realm/my-idp
-        ```
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] accepts_prompt_none_forward_from_client: When `true`, the IDP will accept forwarded authentication requests that contain the `prompt=none` query parameter. Defaults to `false`.
@@ -1323,13 +1329,15 @@ class IdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] client_id: The client or client identifier registered within the identity provider.
         :param pulumi.Input[_builtins.str] client_secret: The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `client_secret_wo` and `client_secret_wo_version`.
         :param pulumi.Input[_builtins.str] client_secret_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-               Client Secret as write-only argument
-        :param pulumi.Input[_builtins.int] client_secret_wo_version: Version of the Client secret write-only argument
+               The secret for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `client_secret`.
+        :param pulumi.Input[_builtins.int] client_secret_wo_version: Functions as a flag and/or trigger to indicate Terraform when to use the input value in `client_secret_wo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `client_secret_wo`.
         :param pulumi.Input[_builtins.str] default_scopes: The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
         :param pulumi.Input[_builtins.bool] disable_type_claim_check: When `true`, disables the check for the `typ` claim of tokens received from the identity provider. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] disable_user_info: When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
         :param pulumi.Input[_builtins.str] display_name: Display name for the identity provider in the GUI.
         :param pulumi.Input[_builtins.bool] enabled: When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
+               - `clientAuthMethod` (Optional) The client authentication method. Since Keycloak 8, this is a required attribute if OIDC provider is created using the Keycloak GUI. It accepts the values `client_secret_post` (Client secret sent as post), `client_secret_basic` (Client secret sent as basic auth), `client_secret_jwt` (Client secret as jwt) and `private_key_jwt ` (JTW signed with private key)
         :param pulumi.Input[_builtins.str] first_broker_login_flow_alias: The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
         :param pulumi.Input[_builtins.str] gui_order: A number defining the order of this identity provider in the GUI.
         :param pulumi.Input[_builtins.bool] hide_on_login_page: When `true`, this provider will be hidden on the login page, and is only accessible when requested explicitly. Defaults to `false`.
@@ -1396,12 +1404,6 @@ class IdentityProvider(pulumi.CustomResource):
         Identity providers can be imported using the format `{{realm_id}}/{{idp_alias}}`, where `idp_alias` is the identity provider alias.
 
         Example:
-
-        bash
-
-        ```sh
-        $ pulumi import keycloak:oidc/identityProvider:IdentityProvider realm_identity_provider my-realm/my-idp
-        ```
 
         :param str resource_name: The name of the resource.
         :param IdentityProviderArgs args: The arguments to use to populate this resource's properties.
@@ -1578,13 +1580,15 @@ class IdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] client_id: The client or client identifier registered within the identity provider.
         :param pulumi.Input[_builtins.str] client_secret: The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format. Required without `client_secret_wo` and `client_secret_wo_version`.
         :param pulumi.Input[_builtins.str] client_secret_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-               Client Secret as write-only argument
-        :param pulumi.Input[_builtins.int] client_secret_wo_version: Version of the Client secret write-only argument
+               The secret for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `client_secret`.
+        :param pulumi.Input[_builtins.int] client_secret_wo_version: Functions as a flag and/or trigger to indicate Terraform when to use the input value in `client_secret_wo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `client_secret_wo`.
         :param pulumi.Input[_builtins.str] default_scopes: The scopes to be sent when asking for authorization. It can be a space-separated list of scopes. Defaults to `openid`.
         :param pulumi.Input[_builtins.bool] disable_type_claim_check: When `true`, disables the check for the `typ` claim of tokens received from the identity provider. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] disable_user_info: When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
         :param pulumi.Input[_builtins.str] display_name: Display name for the identity provider in the GUI.
         :param pulumi.Input[_builtins.bool] enabled: When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
+               - `clientAuthMethod` (Optional) The client authentication method. Since Keycloak 8, this is a required attribute if OIDC provider is created using the Keycloak GUI. It accepts the values `client_secret_post` (Client secret sent as post), `client_secret_basic` (Client secret sent as basic auth), `client_secret_jwt` (Client secret as jwt) and `private_key_jwt ` (JTW signed with private key)
         :param pulumi.Input[_builtins.str] first_broker_login_flow_alias: The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
         :param pulumi.Input[_builtins.str] gui_order: A number defining the order of this identity provider in the GUI.
         :param pulumi.Input[_builtins.bool] hide_on_login_page: When `true`, this provider will be hidden on the login page, and is only accessible when requested explicitly. Defaults to `false`.
@@ -1721,7 +1725,7 @@ class IdentityProvider(pulumi.CustomResource):
     def client_secret_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        Client Secret as write-only argument
+        The secret for clients with an `access_type` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `client_secret`.
         """
         return pulumi.get(self, "client_secret_wo")
 
@@ -1729,7 +1733,7 @@ class IdentityProvider(pulumi.CustomResource):
     @pulumi.getter(name="clientSecretWoVersion")
     def client_secret_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
         """
-        Version of the Client secret write-only argument
+        Functions as a flag and/or trigger to indicate Terraform when to use the input value in `client_secret_wo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `client_secret_wo`.
         """
         return pulumi.get(self, "client_secret_wo_version")
 
@@ -1776,6 +1780,10 @@ class IdentityProvider(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="extraConfig")
     def extra_config(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:
+        """
+        A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
+        - `clientAuthMethod` (Optional) The client authentication method. Since Keycloak 8, this is a required attribute if OIDC provider is created using the Keycloak GUI. It accepts the values `client_secret_post` (Client secret sent as post), `client_secret_basic` (Client secret sent as basic auth), `client_secret_jwt` (Client secret as jwt) and `private_key_jwt ` (JTW signed with private key)
+        """
         return pulumi.get(self, "extra_config")
 
     @_builtins.property

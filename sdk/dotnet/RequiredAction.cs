@@ -66,12 +66,6 @@ namespace Pulumi.Keycloak
     /// Authentication executions can be imported using the formats: `{{realm}}/{{alias}}`.
     /// 
     /// Example:
-    /// 
-    /// bash
-    /// 
-    /// ```sh
-    /// $ pulumi import keycloak:index/requiredAction:RequiredAction required_action my-realm/my-default-action-alias
-    /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:index/requiredAction:RequiredAction")]
     public partial class RequiredAction : global::Pulumi.CustomResource

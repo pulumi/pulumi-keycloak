@@ -112,12 +112,6 @@ import javax.annotation.Nullable;
  * 
  * Example:
  * 
- * bash
- * 
- * ```sh
- * $ pulumi import keycloak:openid/clientAuthorizationScope:ClientAuthorizationScope test my-realm/3bd4a686-1062-4b59-97b8-e4e3f10b99da/63b3cde8-987d-4cd9-9306-1955579281d9
- * ```
- * 
  */
 @ResourceType(type="keycloak:openid/clientAuthorizationScope:ClientAuthorizationScope")
 public class ClientAuthorizationScope extends com.pulumi.resources.CustomResource {

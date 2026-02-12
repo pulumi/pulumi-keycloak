@@ -102,17 +102,10 @@ namespace Pulumi.Keycloak.OpenId
     /// 
     /// ## Import
     /// 
-    /// Clients can be imported using the format `{{realm_id}}/{{client_keycloak_id}}`, where `client_keycloak_id` is the unique ID that Keycloak
-    /// 
+    /// Clients can be imported using the format `{{realm_id}}/{{client_keycloak_id}}`, where `ClientKeycloakId` is the unique ID that Keycloak
     /// assigns to the client upon creation. This value can be found in the URI when editing this client in the GUI, and is typically a GUID.
     /// 
     /// Example:
-    /// 
-    /// bash
-    /// 
-    /// ```sh
-    /// $ pulumi import keycloak:openid/client:Client openid_client my-realm/dcbc4c73-e478-4928-ae2e-d5e420223352
-    /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:openid/client:Client")]
     public partial class Client : global::Pulumi.CustomResource
@@ -230,13 +223,13 @@ namespace Pulumi.Keycloak.OpenId
 
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        /// Client Secret as write-only argument
+        /// The secret for clients with an `AccessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `ClientSecret`.
         /// </summary>
         [Output("clientSecretWo")]
         public Output<string?> ClientSecretWo { get; private set; } = null!;
 
         /// <summary>
-        /// Version of the Client secret write-only argument
+        /// Functions as a flag and/or trigger to indicate Terraform when to use the input value in `ClientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `ClientSecretWo`.
         /// </summary>
         [Output("clientSecretWoVersion")]
         public Output<int?> ClientSecretWoVersion { get; private set; } = null!;
@@ -301,6 +294,9 @@ namespace Pulumi.Keycloak.OpenId
         [Output("excludeSessionStateFromAuthResponse")]
         public Output<bool> ExcludeSessionStateFromAuthResponse { get; private set; } = null!;
 
+        /// <summary>
+        /// A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates. For example, the `ExtraConfig` map can be used to set Authentication Context Class Reference (ACR) to Level of Authentication (LoA) mapping
+        /// </summary>
         [Output("extraConfig")]
         public Output<ImmutableDictionary<string, string>?> ExtraConfig { get; private set; } = null!;
 
@@ -633,7 +629,7 @@ namespace Pulumi.Keycloak.OpenId
 
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        /// Client Secret as write-only argument
+        /// The secret for clients with an `AccessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `ClientSecret`.
         /// </summary>
         public Input<string>? ClientSecretWo
         {
@@ -646,7 +642,7 @@ namespace Pulumi.Keycloak.OpenId
         }
 
         /// <summary>
-        /// Version of the Client secret write-only argument
+        /// Functions as a flag and/or trigger to indicate Terraform when to use the input value in `ClientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `ClientSecretWo`.
         /// </summary>
         [Input("clientSecretWoVersion")]
         public Input<int>? ClientSecretWoVersion { get; set; }
@@ -713,6 +709,10 @@ namespace Pulumi.Keycloak.OpenId
 
         [Input("extraConfig")]
         private InputMap<string>? _extraConfig;
+
+        /// <summary>
+        /// A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates. For example, the `ExtraConfig` map can be used to set Authentication Context Class Reference (ACR) to Level of Authentication (LoA) mapping
+        /// </summary>
         public InputMap<string> ExtraConfig
         {
             get => _extraConfig ?? (_extraConfig = new InputMap<string>());
@@ -1011,7 +1011,7 @@ namespace Pulumi.Keycloak.OpenId
 
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        /// Client Secret as write-only argument
+        /// The secret for clients with an `AccessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `ClientSecret`.
         /// </summary>
         public Input<string>? ClientSecretWo
         {
@@ -1024,7 +1024,7 @@ namespace Pulumi.Keycloak.OpenId
         }
 
         /// <summary>
-        /// Version of the Client secret write-only argument
+        /// Functions as a flag and/or trigger to indicate Terraform when to use the input value in `ClientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `ClientSecretWo`.
         /// </summary>
         [Input("clientSecretWoVersion")]
         public Input<int>? ClientSecretWoVersion { get; set; }
@@ -1091,6 +1091,10 @@ namespace Pulumi.Keycloak.OpenId
 
         [Input("extraConfig")]
         private InputMap<string>? _extraConfig;
+
+        /// <summary>
+        /// A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates. For example, the `ExtraConfig` map can be used to set Authentication Context Class Reference (ACR) to Level of Authentication (LoA) mapping
+        /// </summary>
         public InputMap<string> ExtraConfig
         {
             get => _extraConfig ?? (_extraConfig = new InputMap<string>());

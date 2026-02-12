@@ -138,17 +138,10 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * Clients can be imported using the format `{{realm_id}}/{{client_keycloak_id}}`, where `client_keycloak_id` is the unique ID that Keycloak
- * 
+ * Clients can be imported using the format `{{realm_id}}/{{client_keycloak_id}}`, where `clientKeycloakId` is the unique ID that Keycloak
  * assigns to the client upon creation. This value can be found in the URI when editing this client in the GUI, and is typically a GUID.
  * 
  * Example:
- * 
- * bash
- * 
- * ```sh
- * $ pulumi import keycloak:openid/client:Client openid_client my-realm/dcbc4c73-e478-4928-ae2e-d5e420223352
- * ```
  * 
  */
 @ResourceType(type="keycloak:openid/client:Client")
@@ -411,7 +404,7 @@ public class Client extends com.pulumi.resources.CustomResource {
     }
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * Client Secret as write-only argument
+     * The secret for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `clientSecret`.
      * 
      */
     @Export(name="clientSecretWo", refs={String.class}, tree="[0]")
@@ -419,21 +412,21 @@ public class Client extends com.pulumi.resources.CustomResource {
 
     /**
      * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * Client Secret as write-only argument
+     * The secret for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `clientSecret`.
      * 
      */
     public Output<Optional<String>> clientSecretWo() {
         return Codegen.optional(this.clientSecretWo);
     }
     /**
-     * Version of the Client secret write-only argument
+     * Functions as a flag and/or trigger to indicate Terraform when to use the input value in `clientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `clientSecretWo`.
      * 
      */
     @Export(name="clientSecretWoVersion", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> clientSecretWoVersion;
 
     /**
-     * @return Version of the Client secret write-only argument
+     * @return Functions as a flag and/or trigger to indicate Terraform when to use the input value in `clientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `clientSecretWo`.
      * 
      */
     public Output<Optional<Integer>> clientSecretWoVersion() {
@@ -579,9 +572,17 @@ public class Client extends com.pulumi.resources.CustomResource {
     public Output<Boolean> excludeSessionStateFromAuthResponse() {
         return this.excludeSessionStateFromAuthResponse;
     }
+    /**
+     * A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates. For example, the `extraConfig` map can be used to set Authentication Context Class Reference (ACR) to Level of Authentication (LoA) mapping
+     * 
+     */
     @Export(name="extraConfig", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> extraConfig;
 
+    /**
+     * @return A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates. For example, the `extraConfig` map can be used to set Authentication Context Class Reference (ACR) to Level of Authentication (LoA) mapping
+     * 
+     */
     public Output<Optional<Map<String,String>>> extraConfig() {
         return Codegen.optional(this.extraConfig);
     }

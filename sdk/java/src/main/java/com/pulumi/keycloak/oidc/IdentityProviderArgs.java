@@ -141,7 +141,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
 
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * Client Secret as write-only argument
+     * The secret for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `clientSecret`.
      * 
      */
     @Import(name="clientSecretWo")
@@ -149,7 +149,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
 
     /**
      * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * Client Secret as write-only argument
+     * The secret for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `clientSecret`.
      * 
      */
     public Optional<Output<String>> clientSecretWo() {
@@ -157,14 +157,14 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Version of the Client secret write-only argument
+     * Functions as a flag and/or trigger to indicate Terraform when to use the input value in `clientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `clientSecretWo`.
      * 
      */
     @Import(name="clientSecretWoVersion")
     private @Nullable Output<Integer> clientSecretWoVersion;
 
     /**
-     * @return Version of the Client secret write-only argument
+     * @return Functions as a flag and/or trigger to indicate Terraform when to use the input value in `clientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `clientSecretWo`.
      * 
      */
     public Optional<Output<Integer>> clientSecretWoVersion() {
@@ -246,9 +246,19 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         return Optional.ofNullable(this.enabled);
     }
 
+    /**
+     * A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
+     * - `clientAuthMethod` (Optional) The client authentication method. Since Keycloak 8, this is a required attribute if OIDC provider is created using the Keycloak GUI. It accepts the values `clientSecretPost` (Client secret sent as post), `clientSecretBasic` (Client secret sent as basic auth), `clientSecretJwt` (Client secret as jwt) and ` privateKeyJwt  ` (JTW signed with private key)
+     * 
+     */
     @Import(name="extraConfig")
     private @Nullable Output<Map<String,String>> extraConfig;
 
+    /**
+     * @return A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
+     * - `clientAuthMethod` (Optional) The client authentication method. Since Keycloak 8, this is a required attribute if OIDC provider is created using the Keycloak GUI. It accepts the values `clientSecretPost` (Client secret sent as post), `clientSecretBasic` (Client secret sent as basic auth), `clientSecretJwt` (Client secret as jwt) and ` privateKeyJwt  ` (JTW signed with private key)
+     * 
+     */
     public Optional<Output<Map<String,String>>> extraConfig() {
         return Optional.ofNullable(this.extraConfig);
     }
@@ -798,7 +808,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
 
         /**
          * @param clientSecretWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-         * Client Secret as write-only argument
+         * The secret for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `clientSecret`.
          * 
          * @return builder
          * 
@@ -810,7 +820,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
 
         /**
          * @param clientSecretWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-         * Client Secret as write-only argument
+         * The secret for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `clientSecret`.
          * 
          * @return builder
          * 
@@ -820,7 +830,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param clientSecretWoVersion Version of the Client secret write-only argument
+         * @param clientSecretWoVersion Functions as a flag and/or trigger to indicate Terraform when to use the input value in `clientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `clientSecretWo`.
          * 
          * @return builder
          * 
@@ -831,7 +841,7 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param clientSecretWoVersion Version of the Client secret write-only argument
+         * @param clientSecretWoVersion Functions as a flag and/or trigger to indicate Terraform when to use the input value in `clientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `clientSecretWo`.
          * 
          * @return builder
          * 
@@ -945,11 +955,25 @@ public final class IdentityProviderArgs extends com.pulumi.resources.ResourceArg
             return enabled(Output.of(enabled));
         }
 
+        /**
+         * @param extraConfig A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
+         * - `clientAuthMethod` (Optional) The client authentication method. Since Keycloak 8, this is a required attribute if OIDC provider is created using the Keycloak GUI. It accepts the values `clientSecretPost` (Client secret sent as post), `clientSecretBasic` (Client secret sent as basic auth), `clientSecretJwt` (Client secret as jwt) and ` privateKeyJwt  ` (JTW signed with private key)
+         * 
+         * @return builder
+         * 
+         */
         public Builder extraConfig(@Nullable Output<Map<String,String>> extraConfig) {
             $.extraConfig = extraConfig;
             return this;
         }
 
+        /**
+         * @param extraConfig A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
+         * - `clientAuthMethod` (Optional) The client authentication method. Since Keycloak 8, this is a required attribute if OIDC provider is created using the Keycloak GUI. It accepts the values `clientSecretPost` (Client secret sent as post), `clientSecretBasic` (Client secret sent as basic auth), `clientSecretJwt` (Client secret as jwt) and ` privateKeyJwt  ` (JTW signed with private key)
+         * 
+         * @return builder
+         * 
+         */
         public Builder extraConfig(Map<String,String> extraConfig) {
             return extraConfig(Output.of(extraConfig));
         }

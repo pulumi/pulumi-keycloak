@@ -75,6 +75,7 @@ class ClientArgs:
         :param pulumi.Input[_builtins.bool] encrypt_assertions: When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key. Defaults to `false`.
         :param pulumi.Input[_builtins.str] encryption_algorithm: Algorithm used to encrypt SAML assertions. Allowed values: `AES_256_GCM`, `AES_192_GCM`, `AES_128_GCM`, `AES_256_CBC`, `AES_192_CBC`, or `AES_128_CBC`.
         :param pulumi.Input[_builtins.str] encryption_certificate: If assertions for the client are encrypted, this certificate will be used for encryption.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that is not yet supported by this Terraform provider. Use this attribute at your own risk, as s may conflict with top-level configuration attributes in future provider updates.
         :param pulumi.Input[_builtins.bool] force_name_id_format: Ignore requested NameID subject format and use the one defined in `name_id_format` instead. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] force_post_binding: When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding. Defaults to `true`.
         :param pulumi.Input[_builtins.bool] front_channel_logout: When `true`, this client will require a browser redirect in order to perform a logout. Defaults to `true`.
@@ -353,6 +354,9 @@ class ClientArgs:
     @_builtins.property
     @pulumi.getter(name="extraConfig")
     def extra_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that is not yet supported by this Terraform provider. Use this attribute at your own risk, as s may conflict with top-level configuration attributes in future provider updates.
+        """
         return pulumi.get(self, "extra_config")
 
     @extra_config.setter
@@ -672,6 +676,7 @@ class _ClientState:
         :param pulumi.Input[_builtins.str] encryption_algorithm: Algorithm used to encrypt SAML assertions. Allowed values: `AES_256_GCM`, `AES_192_GCM`, `AES_128_GCM`, `AES_256_CBC`, `AES_192_CBC`, or `AES_128_CBC`.
         :param pulumi.Input[_builtins.str] encryption_certificate: If assertions for the client are encrypted, this certificate will be used for encryption.
         :param pulumi.Input[_builtins.str] encryption_certificate_sha1: (Computed) The sha1sum fingerprint of the encryption certificate. If the encryption certificate is not in correct base64 format, this will be left empty.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that is not yet supported by this Terraform provider. Use this attribute at your own risk, as s may conflict with top-level configuration attributes in future provider updates.
         :param pulumi.Input[_builtins.bool] force_name_id_format: Ignore requested NameID subject format and use the one defined in `name_id_format` instead. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] force_post_binding: When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding. Defaults to `true`.
         :param pulumi.Input[_builtins.bool] front_channel_logout: When `true`, this client will require a browser redirect in order to perform a logout. Defaults to `true`.
@@ -961,6 +966,9 @@ class _ClientState:
     @_builtins.property
     @pulumi.getter(name="extraConfig")
     def extra_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that is not yet supported by this Terraform provider. Use this attribute at your own risk, as s may conflict with top-level configuration attributes in future provider updates.
+        """
         return pulumi.get(self, "extra_config")
 
     @extra_config.setter
@@ -1330,16 +1338,9 @@ class Client(pulumi.CustomResource):
         ## Import
 
         Clients can be imported using the format `{{realm_id}}/{{client_keycloak_id}}`, where `client_keycloak_id` is the unique ID that Keycloak
-
         assigns to the client upon creation. This value can be found in the URI when editing this client in the GUI, and is typically a GUID.
 
         Example:
-
-        bash
-
-        ```sh
-        $ pulumi import keycloak:saml/client:Client saml_client my-realm/dcbc4c73-e478-4928-ae2e-d5e420223352
-        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1357,6 +1358,7 @@ class Client(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] encrypt_assertions: When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key. Defaults to `false`.
         :param pulumi.Input[_builtins.str] encryption_algorithm: Algorithm used to encrypt SAML assertions. Allowed values: `AES_256_GCM`, `AES_192_GCM`, `AES_128_GCM`, `AES_256_CBC`, `AES_192_CBC`, or `AES_128_CBC`.
         :param pulumi.Input[_builtins.str] encryption_certificate: If assertions for the client are encrypted, this certificate will be used for encryption.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that is not yet supported by this Terraform provider. Use this attribute at your own risk, as s may conflict with top-level configuration attributes in future provider updates.
         :param pulumi.Input[_builtins.bool] force_name_id_format: Ignore requested NameID subject format and use the one defined in `name_id_format` instead. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] force_post_binding: When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding. Defaults to `true`.
         :param pulumi.Input[_builtins.bool] front_channel_logout: When `true`, this client will require a browser redirect in order to perform a logout. Defaults to `true`.
@@ -1416,16 +1418,9 @@ class Client(pulumi.CustomResource):
         ## Import
 
         Clients can be imported using the format `{{realm_id}}/{{client_keycloak_id}}`, where `client_keycloak_id` is the unique ID that Keycloak
-
         assigns to the client upon creation. This value can be found in the URI when editing this client in the GUI, and is typically a GUID.
 
         Example:
-
-        bash
-
-        ```sh
-        $ pulumi import keycloak:saml/client:Client saml_client my-realm/dcbc4c73-e478-4928-ae2e-d5e420223352
-        ```
 
         :param str resource_name: The name of the resource.
         :param ClientArgs args: The arguments to use to populate this resource's properties.
@@ -1604,6 +1599,7 @@ class Client(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] encryption_algorithm: Algorithm used to encrypt SAML assertions. Allowed values: `AES_256_GCM`, `AES_192_GCM`, `AES_128_GCM`, `AES_256_CBC`, `AES_192_CBC`, or `AES_128_CBC`.
         :param pulumi.Input[_builtins.str] encryption_certificate: If assertions for the client are encrypted, this certificate will be used for encryption.
         :param pulumi.Input[_builtins.str] encryption_certificate_sha1: (Computed) The sha1sum fingerprint of the encryption certificate. If the encryption certificate is not in correct base64 format, this will be left empty.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that is not yet supported by this Terraform provider. Use this attribute at your own risk, as s may conflict with top-level configuration attributes in future provider updates.
         :param pulumi.Input[_builtins.bool] force_name_id_format: Ignore requested NameID subject format and use the one defined in `name_id_format` instead. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] force_post_binding: When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding. Defaults to `true`.
         :param pulumi.Input[_builtins.bool] front_channel_logout: When `true`, this client will require a browser redirect in order to perform a logout. Defaults to `true`.
@@ -1798,6 +1794,9 @@ class Client(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="extraConfig")
     def extra_config(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:
+        """
+        A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that is not yet supported by this Terraform provider. Use this attribute at your own risk, as s may conflict with top-level configuration attributes in future provider updates.
+        """
         return pulumi.get(self, "extra_config")
 
     @_builtins.property

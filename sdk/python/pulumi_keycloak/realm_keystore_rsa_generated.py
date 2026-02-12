@@ -297,12 +297,6 @@ class RealmKeystoreRsaGenerated(pulumi.CustomResource):
 
         Example:
 
-        bash
-
-        ```sh
-        $ pulumi import keycloak:index/realmKeystoreRsaGenerated:RealmKeystoreRsaGenerated keystore_rsa_generated my-realm/618cfba7-49aa-4c09-9a19-2f699b576f0b
-        ```
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] active: When `false`, key in not used for signing. Defaults to `true`.
@@ -346,12 +340,6 @@ class RealmKeystoreRsaGenerated(pulumi.CustomResource):
         Realm keys can be imported using realm name and keystore id, you can find it in web UI.
 
         Example:
-
-        bash
-
-        ```sh
-        $ pulumi import keycloak:index/realmKeystoreRsaGenerated:RealmKeystoreRsaGenerated keystore_rsa_generated my-realm/618cfba7-49aa-4c09-9a19-2f699b576f0b
-        ```
 
         :param str resource_name: The name of the resource.
         :param RealmKeystoreRsaGeneratedArgs args: The arguments to use to populate this resource's properties.

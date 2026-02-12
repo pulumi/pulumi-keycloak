@@ -343,16 +343,9 @@ class Organization(pulumi.CustomResource):
         ## Import
 
         Organizations can be imported using the format `{{realm_id}}/{{organization_id}}`, where `organization_id` is the unique ID that Keycloak
-
         assigns to the organizations upon creation. This value can be found in the URI when editing this organization in the GUI, and is typically a GUID.
 
         Example:
-
-        bash
-
-        ```sh
-        $ pulumi import keycloak:index/organization:Organization this my-realm/cec54914-b702-4c7b-9431-b407817d059a
-        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -410,16 +403,9 @@ class Organization(pulumi.CustomResource):
         ## Import
 
         Organizations can be imported using the format `{{realm_id}}/{{organization_id}}`, where `organization_id` is the unique ID that Keycloak
-
         assigns to the organizations upon creation. This value can be found in the URI when editing this organization in the GUI, and is typically a GUID.
 
         Example:
-
-        bash
-
-        ```sh
-        $ pulumi import keycloak:index/organization:Organization this my-realm/cec54914-b702-4c7b-9431-b407817d059a
-        ```
 
         :param str resource_name: The name of the resource.
         :param OrganizationArgs args: The arguments to use to populate this resource's properties.

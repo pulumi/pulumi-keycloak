@@ -71,12 +71,6 @@ import javax.annotation.Nullable;
  * 
  * Example:
  * 
- * bash
- * 
- * ```sh
- * $ pulumi import keycloak:index/realmKeystoreEcdsaGenerated:RealmKeystoreEcdsaGenerated keystore_ecdsa_generated my-realm/618cfba7-49aa-4c09-9a19-2f699b576f0b
- * ```
- * 
  */
 @ResourceType(type="keycloak:index/realmKeystoreEcdsaGenerated:RealmKeystoreEcdsaGenerated")
 public class RealmKeystoreEcdsaGenerated extends com.pulumi.resources.CustomResource {

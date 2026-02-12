@@ -21,32 +21,27 @@ __all__ = [
     'UserFederationKerberosArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class UserFederationCacheArgsDict(TypedDict):
-        eviction_day: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Day of the week the entry will become invalid on
-        """
-        eviction_hour: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Hour of day the entry will become invalid on.
-        """
-        eviction_minute: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Minute of day the entry will become invalid on.
-        """
-        max_lifespan: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Max lifespan of cache entry (duration string).
-        """
-        policy: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
-        """
-elif False:
-    UserFederationCacheArgsDict: TypeAlias = Mapping[str, Any]
+class UserFederationCacheArgsDict(TypedDict):
+    eviction_day: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Day of the week the entry will become invalid on
+    """
+    eviction_hour: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Hour of day the entry will become invalid on.
+    """
+    eviction_minute: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Minute of day the entry will become invalid on.
+    """
+    max_lifespan: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Max lifespan of cache entry (duration string).
+    """
+    policy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Can be one of `DEFAULT`, `EVICT_DAILY`, `EVICT_WEEKLY`, `MAX_LIFESPAN`, or `NO_CACHE`. Defaults to `DEFAULT`.
+    """
 
 @pulumi.input_type
 class UserFederationCacheArgs:
@@ -135,26 +130,23 @@ class UserFederationCacheArgs:
         pulumi.set(self, "policy", value)
 
 
-if not MYPY:
-    class UserFederationKerberosArgsDict(TypedDict):
-        kerberos_realm: pulumi.Input[_builtins.str]
-        """
-        The name of the kerberos realm, e.g. FOO.LOCAL.
-        """
-        key_tab: pulumi.Input[_builtins.str]
-        """
-        Path to the kerberos keytab file on the server with credentials of the service principal.
-        """
-        server_principal: pulumi.Input[_builtins.str]
-        """
-        The kerberos server principal, e.g. 'HTTP/host.foo.com@FOO.LOCAL'.
-        """
-        use_kerberos_for_password_authentication: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Use kerberos login module instead of ldap service api. Defaults to `false`.
-        """
-elif False:
-    UserFederationKerberosArgsDict: TypeAlias = Mapping[str, Any]
+class UserFederationKerberosArgsDict(TypedDict):
+    kerberos_realm: pulumi.Input[_builtins.str]
+    """
+    The name of the kerberos realm, e.g. FOO.LOCAL.
+    """
+    key_tab: pulumi.Input[_builtins.str]
+    """
+    Path to the kerberos keytab file on the server with credentials of the service principal.
+    """
+    server_principal: pulumi.Input[_builtins.str]
+    """
+    The kerberos server principal, e.g. 'HTTP/host.foo.com@FOO.LOCAL'.
+    """
+    use_kerberos_for_password_authentication: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Use kerberos login module instead of ldap service api. Defaults to `false`.
+    """
 
 @pulumi.input_type
 class UserFederationKerberosArgs:

@@ -33,6 +33,7 @@ class HardcodedAttributeIdentityProviderMapperArgs:
         :param pulumi.Input[_builtins.bool] user_session: Is Attribute related to a User Session.
         :param pulumi.Input[_builtins.str] attribute_name: The name of the IDP attribute to set.
         :param pulumi.Input[_builtins.str] attribute_value: The value to set to the attribute. You can hardcode any value like 'foo'.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: A map of key/value pairs to add extra configuration attributes to this mapper. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
         :param pulumi.Input[_builtins.str] name: Display name of this mapper when displayed in the console.
         """
         pulumi.set(__self__, "identity_provider_alias", identity_provider_alias)
@@ -110,6 +111,9 @@ class HardcodedAttributeIdentityProviderMapperArgs:
     @_builtins.property
     @pulumi.getter(name="extraConfig")
     def extra_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        A map of key/value pairs to add extra configuration attributes to this mapper. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
+        """
         return pulumi.get(self, "extra_config")
 
     @extra_config.setter
@@ -143,6 +147,7 @@ class _HardcodedAttributeIdentityProviderMapperState:
         Input properties used for looking up and filtering HardcodedAttributeIdentityProviderMapper resources.
         :param pulumi.Input[_builtins.str] attribute_name: The name of the IDP attribute to set.
         :param pulumi.Input[_builtins.str] attribute_value: The value to set to the attribute. You can hardcode any value like 'foo'.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: A map of key/value pairs to add extra configuration attributes to this mapper. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
         :param pulumi.Input[_builtins.str] identity_provider_alias: The IDP alias of the attribute to set.
         :param pulumi.Input[_builtins.str] name: Display name of this mapper when displayed in the console.
         :param pulumi.Input[_builtins.str] realm: The realm ID that this mapper will exist in.
@@ -190,6 +195,9 @@ class _HardcodedAttributeIdentityProviderMapperState:
     @_builtins.property
     @pulumi.getter(name="extraConfig")
     def extra_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        A map of key/value pairs to add extra configuration attributes to this mapper. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
+        """
         return pulumi.get(self, "extra_config")
 
     @extra_config.setter
@@ -296,6 +304,7 @@ class HardcodedAttributeIdentityProviderMapper(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] attribute_name: The name of the IDP attribute to set.
         :param pulumi.Input[_builtins.str] attribute_value: The value to set to the attribute. You can hardcode any value like 'foo'.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: A map of key/value pairs to add extra configuration attributes to this mapper. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
         :param pulumi.Input[_builtins.str] identity_provider_alias: The IDP alias of the attribute to set.
         :param pulumi.Input[_builtins.str] name: Display name of this mapper when displayed in the console.
         :param pulumi.Input[_builtins.str] realm: The realm ID that this mapper will exist in.
@@ -410,6 +419,7 @@ class HardcodedAttributeIdentityProviderMapper(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] attribute_name: The name of the IDP attribute to set.
         :param pulumi.Input[_builtins.str] attribute_value: The value to set to the attribute. You can hardcode any value like 'foo'.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: A map of key/value pairs to add extra configuration attributes to this mapper. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
         :param pulumi.Input[_builtins.str] identity_provider_alias: The IDP alias of the attribute to set.
         :param pulumi.Input[_builtins.str] name: Display name of this mapper when displayed in the console.
         :param pulumi.Input[_builtins.str] realm: The realm ID that this mapper will exist in.
@@ -447,6 +457,9 @@ class HardcodedAttributeIdentityProviderMapper(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="extraConfig")
     def extra_config(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:
+        """
+        A map of key/value pairs to add extra configuration attributes to this mapper. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
+        """
         return pulumi.get(self, "extra_config")
 
     @_builtins.property

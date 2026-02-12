@@ -397,14 +397,7 @@ class CustomUserFederation(pulumi.CustomResource):
         ## Import
 
         Custom user federation providers can be imported using the format `{{realm_id}}/{{custom_user_federation_id}}`.
-
         The ID of the custom user federation provider can be found within the Keycloak GUI and is typically a GUID:
-
-        bash
-
-        ```sh
-        $ pulumi import keycloak:index/customUserFederation:CustomUserFederation custom_user_federation my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860
-        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -455,14 +448,7 @@ class CustomUserFederation(pulumi.CustomResource):
         ## Import
 
         Custom user federation providers can be imported using the format `{{realm_id}}/{{custom_user_federation_id}}`.
-
         The ID of the custom user federation provider can be found within the Keycloak GUI and is typically a GUID:
-
-        bash
-
-        ```sh
-        $ pulumi import keycloak:index/customUserFederation:CustomUserFederation custom_user_federation my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860
-        ```
 
         :param str resource_name: The name of the resource.
         :param CustomUserFederationArgs args: The arguments to use to populate this resource's properties.

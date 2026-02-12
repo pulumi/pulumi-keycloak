@@ -5,6 +5,19 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
+ * Allows for managing a Keycloak client's optional client scopes. An optional scope that is attached to a client using the
+ * OpenID Connect protocol will allow a client to request it using the OAuth 2.0 `scope` parameter. When requested, the scope's
+ * protocol mappers defined within that scope will be used to build claims for this client.
+ *
+ * Note that this resource attempts to be an **authoritative** source over optional scopes for a Keycloak client using the
+ * OpenID Connect protocol. This means that once Terraform controls a particular client's optional scopes, it will attempt
+ * to remove any optional scopes that were attached manually, and it will attempt to add any optional scopes that were detached
+ * manually.
+ *
+ * By default, Keycloak sets the `address`, `phone`, `offlineAccess`, and `microprofile-jwt` scopes as optional scopes for
+ * every newly created client. If you create this resource for the first time and do not include these scopes, a following
+ * run of `pulumi preview` will result in changes.
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -40,7 +53,6 @@ import * as utilities from "../utilities";
  * ## Import
  *
  * This resource does not support import. Instead of importing, feel free to create this resource
- *
  * as if it did not already exist on the server.
  */
 export class ClientOptionalScopes extends pulumi.CustomResource {

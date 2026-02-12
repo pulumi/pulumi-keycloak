@@ -106,19 +106,11 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * This resource can be imported using the format `{{realm_id}}/{{group_id}}`, where `group_id` is the unique ID that Keycloak
- *
+ * This resource can be imported using the format `{{realm_id}}/{{group_id}}`, where `groupId` is the unique ID that Keycloak
  * assigns to the group upon creation. This value can be found in the URI when editing this group in the GUI, and is typically
- *
  * a GUID.
  *
  * Example:
- *
- * bash
- *
- * ```sh
- * $ pulumi import keycloak:index/groupRoles:GroupRoles group_roles my-realm/18cc6b87-2ce7-4e59-bdc8-b9d49ec98a94
- * ```
  */
 export class GroupRoles extends pulumi.CustomResource {
     /**

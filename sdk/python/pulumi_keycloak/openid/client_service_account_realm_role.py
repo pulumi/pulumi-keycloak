@@ -170,12 +170,6 @@ class ClientServiceAccountRealmRole(pulumi.CustomResource):
 
         Example:
 
-        bash
-
-        ```sh
-        $ pulumi import keycloak:openid/clientServiceAccountRealmRole:ClientServiceAccountRealmRole client_service_account_role my-realm/489ba513-1ceb-49ba-ae0b-1ab1f5099ebf/c7230ab7-8e4e-4135-995d-e81b50696ad8
-        ```
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] realm_id: The realm that the client and role belong to.
@@ -222,12 +216,6 @@ class ClientServiceAccountRealmRole(pulumi.CustomResource):
         This resource can be imported using the format `{{realmId}}/{{serviceAccountUserId}}/{{roleId}}`.
 
         Example:
-
-        bash
-
-        ```sh
-        $ pulumi import keycloak:openid/clientServiceAccountRealmRole:ClientServiceAccountRealmRole client_service_account_role my-realm/489ba513-1ceb-49ba-ae0b-1ab1f5099ebf/c7230ab7-8e4e-4135-995d-e81b50696ad8
-        ```
 
         :param str resource_name: The name of the resource.
         :param ClientServiceAccountRealmRoleArgs args: The arguments to use to populate this resource's properties.

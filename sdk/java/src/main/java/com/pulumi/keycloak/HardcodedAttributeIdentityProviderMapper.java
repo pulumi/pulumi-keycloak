@@ -109,9 +109,17 @@ public class HardcodedAttributeIdentityProviderMapper extends com.pulumi.resourc
     public Output<Optional<String>> attributeValue() {
         return Codegen.optional(this.attributeValue);
     }
+    /**
+     * A map of key/value pairs to add extra configuration attributes to this mapper. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
+     * 
+     */
     @Export(name="extraConfig", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> extraConfig;
 
+    /**
+     * @return A map of key/value pairs to add extra configuration attributes to this mapper. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
+     * 
+     */
     public Output<Optional<Map<String,String>>> extraConfig() {
         return Codegen.optional(this.extraConfig);
     }

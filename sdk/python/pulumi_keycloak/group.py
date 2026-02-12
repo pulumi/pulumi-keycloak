@@ -251,16 +251,9 @@ class Group(pulumi.CustomResource):
         ## Import
 
         Groups can be imported using the format `{{realm_id}}/{{group_id}}`, where `group_id` is the unique ID that Keycloak
-
         assigns to the group upon creation. This value can be found in the URI when editing this group in the GUI, and is typically a GUID.
 
         Example:
-
-        bash
-
-        ```sh
-        $ pulumi import keycloak:index/group:Group child_group my-realm/934a4a4e-28bd-4703-a0fa-332df153aabd
-        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -315,16 +308,9 @@ class Group(pulumi.CustomResource):
         ## Import
 
         Groups can be imported using the format `{{realm_id}}/{{group_id}}`, where `group_id` is the unique ID that Keycloak
-
         assigns to the group upon creation. This value can be found in the URI when editing this group in the GUI, and is typically a GUID.
 
         Example:
-
-        bash
-
-        ```sh
-        $ pulumi import keycloak:index/group:Group child_group my-realm/934a4a4e-28bd-4703-a0fa-332df153aabd
-        ```
 
         :param str resource_name: The name of the resource.
         :param GroupArgs args: The arguments to use to populate this resource's properties.

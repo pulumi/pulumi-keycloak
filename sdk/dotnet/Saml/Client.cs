@@ -55,17 +55,10 @@ namespace Pulumi.Keycloak.Saml
     /// 
     /// ## Import
     /// 
-    /// Clients can be imported using the format `{{realm_id}}/{{client_keycloak_id}}`, where `client_keycloak_id` is the unique ID that Keycloak
-    /// 
+    /// Clients can be imported using the format `{{realm_id}}/{{client_keycloak_id}}`, where `ClientKeycloakId` is the unique ID that Keycloak
     /// assigns to the client upon creation. This value can be found in the URI when editing this client in the GUI, and is typically a GUID.
     /// 
     /// Example:
-    /// 
-    /// bash
-    /// 
-    /// ```sh
-    /// $ pulumi import keycloak:saml/client:Client saml_client my-realm/dcbc4c73-e478-4928-ae2e-d5e420223352
-    /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:saml/client:Client")]
     public partial class Client : global::Pulumi.CustomResource
@@ -160,6 +153,9 @@ namespace Pulumi.Keycloak.Saml
         [Output("encryptionCertificateSha1")]
         public Output<string> EncryptionCertificateSha1 { get; private set; } = null!;
 
+        /// <summary>
+        /// A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that is not yet supported by this Terraform provider. Use this attribute at your own risk, as s may conflict with top-level configuration attributes in future provider updates.
+        /// </summary>
         [Output("extraConfig")]
         public Output<ImmutableDictionary<string, string>?> ExtraConfig { get; private set; } = null!;
 
@@ -439,6 +435,10 @@ namespace Pulumi.Keycloak.Saml
 
         [Input("extraConfig")]
         private InputMap<string>? _extraConfig;
+
+        /// <summary>
+        /// A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that is not yet supported by this Terraform provider. Use this attribute at your own risk, as s may conflict with top-level configuration attributes in future provider updates.
+        /// </summary>
         public InputMap<string> ExtraConfig
         {
             get => _extraConfig ?? (_extraConfig = new InputMap<string>());
@@ -683,6 +683,10 @@ namespace Pulumi.Keycloak.Saml
 
         [Input("extraConfig")]
         private InputMap<string>? _extraConfig;
+
+        /// <summary>
+        /// A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that is not yet supported by this Terraform provider. Use this attribute at your own risk, as s may conflict with top-level configuration attributes in future provider updates.
+        /// </summary>
         public InputMap<string> ExtraConfig
         {
             get => _extraConfig ?? (_extraConfig = new InputMap<string>());

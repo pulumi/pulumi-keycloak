@@ -73,17 +73,10 @@ import (
 //
 // ## Import
 //
-// Clients can be imported using the format `{{realm_id}}/{{client_keycloak_id}}`, where `client_keycloak_id` is the unique ID that Keycloak
-//
+// Clients can be imported using the format `{{realm_id}}/{{client_keycloak_id}}`, where `clientKeycloakId` is the unique ID that Keycloak
 // assigns to the client upon creation. This value can be found in the URI when editing this client in the GUI, and is typically a GUID.
 //
 // Example:
-//
-// bash
-//
-// ```sh
-// $ pulumi import keycloak:saml/client:Client saml_client my-realm/dcbc4c73-e478-4928-ae2e-d5e420223352
-// ```
 type Client struct {
 	pulumi.CustomResourceState
 
@@ -116,8 +109,9 @@ type Client struct {
 	// If assertions for the client are encrypted, this certificate will be used for encryption.
 	EncryptionCertificate pulumi.StringOutput `pulumi:"encryptionCertificate"`
 	// (Computed) The sha1sum fingerprint of the encryption certificate. If the encryption certificate is not in correct base64 format, this will be left empty.
-	EncryptionCertificateSha1 pulumi.StringOutput    `pulumi:"encryptionCertificateSha1"`
-	ExtraConfig               pulumi.StringMapOutput `pulumi:"extraConfig"`
+	EncryptionCertificateSha1 pulumi.StringOutput `pulumi:"encryptionCertificateSha1"`
+	// A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that is not yet supported by this Terraform provider. Use this attribute at your own risk, as s may conflict with top-level configuration attributes in future provider updates.
+	ExtraConfig pulumi.StringMapOutput `pulumi:"extraConfig"`
 	// Ignore requested NameID subject format and use the one defined in `nameIdFormat` instead. Defaults to `false`.
 	ForceNameIdFormat pulumi.BoolPtrOutput `pulumi:"forceNameIdFormat"`
 	// When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding. Defaults to `true`.
@@ -233,8 +227,9 @@ type clientState struct {
 	// If assertions for the client are encrypted, this certificate will be used for encryption.
 	EncryptionCertificate *string `pulumi:"encryptionCertificate"`
 	// (Computed) The sha1sum fingerprint of the encryption certificate. If the encryption certificate is not in correct base64 format, this will be left empty.
-	EncryptionCertificateSha1 *string           `pulumi:"encryptionCertificateSha1"`
-	ExtraConfig               map[string]string `pulumi:"extraConfig"`
+	EncryptionCertificateSha1 *string `pulumi:"encryptionCertificateSha1"`
+	// A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that is not yet supported by this Terraform provider. Use this attribute at your own risk, as s may conflict with top-level configuration attributes in future provider updates.
+	ExtraConfig map[string]string `pulumi:"extraConfig"`
 	// Ignore requested NameID subject format and use the one defined in `nameIdFormat` instead. Defaults to `false`.
 	ForceNameIdFormat *bool `pulumi:"forceNameIdFormat"`
 	// When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding. Defaults to `true`.
@@ -316,7 +311,8 @@ type ClientState struct {
 	EncryptionCertificate pulumi.StringPtrInput
 	// (Computed) The sha1sum fingerprint of the encryption certificate. If the encryption certificate is not in correct base64 format, this will be left empty.
 	EncryptionCertificateSha1 pulumi.StringPtrInput
-	ExtraConfig               pulumi.StringMapInput
+	// A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that is not yet supported by this Terraform provider. Use this attribute at your own risk, as s may conflict with top-level configuration attributes in future provider updates.
+	ExtraConfig pulumi.StringMapInput
 	// Ignore requested NameID subject format and use the one defined in `nameIdFormat` instead. Defaults to `false`.
 	ForceNameIdFormat pulumi.BoolPtrInput
 	// When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding. Defaults to `true`.
@@ -399,8 +395,9 @@ type clientArgs struct {
 	// Algorithm used to encrypt SAML assertions. Allowed values: `AES_256_GCM`, `AES_192_GCM`, `AES_128_GCM`, `AES_256_CBC`, `AES_192_CBC`, or `AES_128_CBC`.
 	EncryptionAlgorithm *string `pulumi:"encryptionAlgorithm"`
 	// If assertions for the client are encrypted, this certificate will be used for encryption.
-	EncryptionCertificate *string           `pulumi:"encryptionCertificate"`
-	ExtraConfig           map[string]string `pulumi:"extraConfig"`
+	EncryptionCertificate *string `pulumi:"encryptionCertificate"`
+	// A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that is not yet supported by this Terraform provider. Use this attribute at your own risk, as s may conflict with top-level configuration attributes in future provider updates.
+	ExtraConfig map[string]string `pulumi:"extraConfig"`
 	// Ignore requested NameID subject format and use the one defined in `nameIdFormat` instead. Defaults to `false`.
 	ForceNameIdFormat *bool `pulumi:"forceNameIdFormat"`
 	// When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding. Defaults to `true`.
@@ -477,7 +474,8 @@ type ClientArgs struct {
 	EncryptionAlgorithm pulumi.StringPtrInput
 	// If assertions for the client are encrypted, this certificate will be used for encryption.
 	EncryptionCertificate pulumi.StringPtrInput
-	ExtraConfig           pulumi.StringMapInput
+	// A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that is not yet supported by this Terraform provider. Use this attribute at your own risk, as s may conflict with top-level configuration attributes in future provider updates.
+	ExtraConfig pulumi.StringMapInput
 	// Ignore requested NameID subject format and use the one defined in `nameIdFormat` instead. Defaults to `false`.
 	ForceNameIdFormat pulumi.BoolPtrInput
 	// When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding. Defaults to `true`.
@@ -688,6 +686,7 @@ func (o ClientOutput) EncryptionCertificateSha1() pulumi.StringOutput {
 	return o.ApplyT(func(v *Client) pulumi.StringOutput { return v.EncryptionCertificateSha1 }).(pulumi.StringOutput)
 }
 
+// A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that is not yet supported by this Terraform provider. Use this attribute at your own risk, as s may conflict with top-level configuration attributes in future provider updates.
 func (o ClientOutput) ExtraConfig() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *Client) pulumi.StringMapOutput { return v.ExtraConfig }).(pulumi.StringMapOutput)
 }

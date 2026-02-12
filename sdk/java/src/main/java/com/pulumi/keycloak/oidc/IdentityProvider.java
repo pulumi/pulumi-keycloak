@@ -78,15 +78,9 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * Identity providers can be imported using the format `{{realm_id}}/{{idp_alias}}`, where `idp_alias` is the identity provider alias.
+ * Identity providers can be imported using the format `{{realm_id}}/{{idp_alias}}`, where `idpAlias` is the identity provider alias.
  * 
  * Example:
- * 
- * bash
- * 
- * ```sh
- * $ pulumi import keycloak:oidc/identityProvider:IdentityProvider realm_identity_provider my-realm/my-idp
- * ```
  * 
  */
 @ResourceType(type="keycloak:oidc/identityProvider:IdentityProvider")
@@ -205,7 +199,7 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
     }
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * Client Secret as write-only argument
+     * The secret for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `clientSecret`.
      * 
      */
     @Export(name="clientSecretWo", refs={String.class}, tree="[0]")
@@ -213,21 +207,21 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
 
     /**
      * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * Client Secret as write-only argument
+     * The secret for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `clientSecret`.
      * 
      */
     public Output<Optional<String>> clientSecretWo() {
         return Codegen.optional(this.clientSecretWo);
     }
     /**
-     * Version of the Client secret write-only argument
+     * Functions as a flag and/or trigger to indicate Terraform when to use the input value in `clientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `clientSecretWo`.
      * 
      */
     @Export(name="clientSecretWoVersion", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> clientSecretWoVersion;
 
     /**
-     * @return Version of the Client secret write-only argument
+     * @return Functions as a flag and/or trigger to indicate Terraform when to use the input value in `clientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `clientSecretWo`.
      * 
      */
     public Output<Optional<Integer>> clientSecretWoVersion() {
@@ -303,9 +297,19 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
     public Output<Optional<Boolean>> enabled() {
         return Codegen.optional(this.enabled);
     }
+    /**
+     * A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
+     * - `clientAuthMethod` (Optional) The client authentication method. Since Keycloak 8, this is a required attribute if OIDC provider is created using the Keycloak GUI. It accepts the values `clientSecretPost` (Client secret sent as post), `clientSecretBasic` (Client secret sent as basic auth), `clientSecretJwt` (Client secret as jwt) and ` privateKeyJwt  ` (JTW signed with private key)
+     * 
+     */
     @Export(name="extraConfig", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> extraConfig;
 
+    /**
+     * @return A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
+     * - `clientAuthMethod` (Optional) The client authentication method. Since Keycloak 8, this is a required attribute if OIDC provider is created using the Keycloak GUI. It accepts the values `clientSecretPost` (Client secret sent as post), `clientSecretBasic` (Client secret sent as basic auth), `clientSecretJwt` (Client secret as jwt) and ` privateKeyJwt  ` (JTW signed with private key)
+     * 
+     */
     public Output<Optional<Map<String,String>>> extraConfig() {
         return Codegen.optional(this.extraConfig);
     }

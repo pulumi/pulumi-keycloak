@@ -73,15 +73,9 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * GitHub Identity providers can be imported using the format {{realm_id}}/{{idp_alias}}, where idp_alias is the identity provider alias.
+ * GitHub Identity providers can be imported using the format {{realm_id}}/{{idp_alias}}, where idpAlias is the identity provider alias.
  * 
  * Example:
- * 
- * bash
- * 
- * ```sh
- * $ pulumi import keycloak:oidc/githubIdentityProvider:GithubIdentityProvider github_identity_provider my-realm/my-github-idp
- * ```
  * 
  */
 @ResourceType(type="keycloak:oidc/githubIdentityProvider:GithubIdentityProvider")
@@ -226,9 +220,17 @@ public class GithubIdentityProvider extends com.pulumi.resources.CustomResource 
     public Output<Optional<Boolean>> enabled() {
         return Codegen.optional(this.enabled);
     }
+    /**
+     * A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
+     * 
+     */
     @Export(name="extraConfig", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> extraConfig;
 
+    /**
+     * @return A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
+     * 
+     */
     public Output<Optional<Map<String,String>>> extraConfig() {
         return Codegen.optional(this.extraConfig);
     }

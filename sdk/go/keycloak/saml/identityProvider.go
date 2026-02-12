@@ -63,15 +63,9 @@ import (
 //
 // ## Import
 //
-// Identity providers can be imported using the format `{{realm_id}}/{{idp_alias}}`, where `idp_alias` is the identity provider alias.
+// Identity providers can be imported using the format `{{realm_id}}/{{idp_alias}}`, where `idpAlias` is the identity provider alias.
 //
 // Example:
-//
-// bash
-//
-// ```sh
-// $ pulumi import keycloak:saml/identityProvider:IdentityProvider realm_saml_identity_provider my-realm/my-saml-idp
-// ```
 type IdentityProvider struct {
 	pulumi.CustomResourceState
 
@@ -94,7 +88,8 @@ type IdentityProvider struct {
 	// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
 	Enabled pulumi.BoolPtrOutput `pulumi:"enabled"`
 	// The Entity ID that will be used to uniquely identify this SAML Service Provider.
-	EntityId    pulumi.StringOutput    `pulumi:"entityId"`
+	EntityId pulumi.StringOutput `pulumi:"entityId"`
+	// A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
 	ExtraConfig pulumi.StringMapOutput `pulumi:"extraConfig"`
 	// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
 	FirstBrokerLoginFlowAlias pulumi.StringPtrOutput `pulumi:"firstBrokerLoginFlowAlias"`
@@ -219,7 +214,8 @@ type identityProviderState struct {
 	// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
 	Enabled *bool `pulumi:"enabled"`
 	// The Entity ID that will be used to uniquely identify this SAML Service Provider.
-	EntityId    *string           `pulumi:"entityId"`
+	EntityId *string `pulumi:"entityId"`
+	// A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
 	ExtraConfig map[string]string `pulumi:"extraConfig"`
 	// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
 	FirstBrokerLoginFlowAlias *string `pulumi:"firstBrokerLoginFlowAlias"`
@@ -303,7 +299,8 @@ type IdentityProviderState struct {
 	// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
 	Enabled pulumi.BoolPtrInput
 	// The Entity ID that will be used to uniquely identify this SAML Service Provider.
-	EntityId    pulumi.StringPtrInput
+	EntityId pulumi.StringPtrInput
+	// A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
 	ExtraConfig pulumi.StringMapInput
 	// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
 	FirstBrokerLoginFlowAlias pulumi.StringPtrInput
@@ -391,7 +388,8 @@ type identityProviderArgs struct {
 	// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
 	Enabled *bool `pulumi:"enabled"`
 	// The Entity ID that will be used to uniquely identify this SAML Service Provider.
-	EntityId    string            `pulumi:"entityId"`
+	EntityId string `pulumi:"entityId"`
+	// A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
 	ExtraConfig map[string]string `pulumi:"extraConfig"`
 	// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
 	FirstBrokerLoginFlowAlias *string `pulumi:"firstBrokerLoginFlowAlias"`
@@ -474,7 +472,8 @@ type IdentityProviderArgs struct {
 	// When `false`, users and clients will not be able to access this realm. Defaults to `true`.
 	Enabled pulumi.BoolPtrInput
 	// The Entity ID that will be used to uniquely identify this SAML Service Provider.
-	EntityId    pulumi.StringInput
+	EntityId pulumi.StringInput
+	// A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
 	ExtraConfig pulumi.StringMapInput
 	// Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
 	FirstBrokerLoginFlowAlias pulumi.StringPtrInput
@@ -673,6 +672,7 @@ func (o IdentityProviderOutput) EntityId() pulumi.StringOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.StringOutput { return v.EntityId }).(pulumi.StringOutput)
 }
 
+// A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
 func (o IdentityProviderOutput) ExtraConfig() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.StringMapOutput { return v.ExtraConfig }).(pulumi.StringMapOutput)
 }
