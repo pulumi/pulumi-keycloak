@@ -314,12 +314,6 @@ class RequiredAction(pulumi.CustomResource):
 
         Example:
 
-        bash
-
-        ```sh
-        $ pulumi import keycloak:index/requiredAction:RequiredAction required_action my-realm/my-default-action-alias
-        ```
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] alias: The alias of the action to attach as a required action. Case sensitive.
@@ -381,12 +375,6 @@ class RequiredAction(pulumi.CustomResource):
         Authentication executions can be imported using the formats: `{{realm}}/{{alias}}`.
 
         Example:
-
-        bash
-
-        ```sh
-        $ pulumi import keycloak:index/requiredAction:RequiredAction required_action my-realm/my-default-action-alias
-        ```
 
         :param str resource_name: The name of the resource.
         :param RequiredActionArgs args: The arguments to use to populate this resource's properties.

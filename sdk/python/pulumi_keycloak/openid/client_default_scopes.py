@@ -136,6 +136,19 @@ class ClientDefaultScopes(pulumi.CustomResource):
                  realm_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        Allows for managing a Keycloak client's default client scopes. A default scope that is attached to a client using the
+        OpenID Connect protocol will automatically use the protocol mappers defined within that scope to build claims for this
+        client regardless of the provided OAuth2.0 `scope` parameter.
+
+        Note that this resource attempts to be an **authoritative** source over default scopes for a Keycloak client using the
+        OpenID Connect protocol. This means that once Terraform controls a particular client's default scopes, it will attempt to
+        remove any default scopes that were attached manually, and it will attempt to add any default scopes that were detached
+        manually.
+
+        By default, Keycloak sets the `profile`, `email`, `roles`, and `web-origins` scopes as default scopes for every newly
+        created client. If you create this resource for the first time and do not include these scopes, a following run of
+        `pulumi preview` will result in changes.
+
         ## Example Usage
 
         ```python
@@ -167,7 +180,6 @@ class ClientDefaultScopes(pulumi.CustomResource):
         ## Import
 
         This resource does not support import. Instead of importing, feel free to create this resource
-
         as if it did not already exist on the server.
 
         :param str resource_name: The name of the resource.
@@ -183,6 +195,19 @@ class ClientDefaultScopes(pulumi.CustomResource):
                  args: ClientDefaultScopesArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Allows for managing a Keycloak client's default client scopes. A default scope that is attached to a client using the
+        OpenID Connect protocol will automatically use the protocol mappers defined within that scope to build claims for this
+        client regardless of the provided OAuth2.0 `scope` parameter.
+
+        Note that this resource attempts to be an **authoritative** source over default scopes for a Keycloak client using the
+        OpenID Connect protocol. This means that once Terraform controls a particular client's default scopes, it will attempt to
+        remove any default scopes that were attached manually, and it will attempt to add any default scopes that were detached
+        manually.
+
+        By default, Keycloak sets the `profile`, `email`, `roles`, and `web-origins` scopes as default scopes for every newly
+        created client. If you create this resource for the first time and do not include these scopes, a following run of
+        `pulumi preview` will result in changes.
+
         ## Example Usage
 
         ```python
@@ -214,7 +239,6 @@ class ClientDefaultScopes(pulumi.CustomResource):
         ## Import
 
         This resource does not support import. Instead of importing, feel free to create this resource
-
         as if it did not already exist on the server.
 
         :param str resource_name: The name of the resource.

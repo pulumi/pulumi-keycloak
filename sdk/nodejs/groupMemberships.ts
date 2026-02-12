@@ -49,7 +49,6 @@ import * as utilities from "./utilities";
  * ## Import
  *
  * This resource does not support import. Instead of importing, feel free to create this resource
- *
  * as if it did not already exist on the server.
  *
  * [1]: https://registry.terraform.io/providers/keycloak/keycloak/latest/docs/resources/group_memberships

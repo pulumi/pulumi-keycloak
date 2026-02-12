@@ -49,15 +49,9 @@ namespace Pulumi.Keycloak.Oidc
     /// 
     /// ## Import
     /// 
-    /// Facebook Identity providers can be imported using the format {{realm_id}}/{{idp_alias}}, where idp_alias is the identity provider alias.
+    /// Facebook Identity providers can be imported using the format {{realm_id}}/{{idp_alias}}, where IdpAlias is the identity provider alias.
     /// 
     /// Example:
-    /// 
-    /// bash
-    /// 
-    /// ```sh
-    /// $ pulumi import keycloak:oidc/facebookIdentityProvider:FacebookIdentityProvider facebook_identity_provider my-realm/my-facebook-idp
-    /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:oidc/facebookIdentityProvider:FacebookIdentityProvider")]
     public partial class FacebookIdentityProvider : global::Pulumi.CustomResource
@@ -122,6 +116,9 @@ namespace Pulumi.Keycloak.Oidc
         [Output("enabled")]
         public Output<bool?> Enabled { get; private set; } = null!;
 
+        /// <summary>
+        /// A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
+        /// </summary>
         [Output("extraConfig")]
         public Output<ImmutableDictionary<string, string>?> ExtraConfig { get; private set; } = null!;
 
@@ -331,6 +328,10 @@ namespace Pulumi.Keycloak.Oidc
 
         [Input("extraConfig")]
         private InputMap<string>? _extraConfig;
+
+        /// <summary>
+        /// A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
+        /// </summary>
         public InputMap<string> ExtraConfig
         {
             get => _extraConfig ?? (_extraConfig = new InputMap<string>());
@@ -495,6 +496,10 @@ namespace Pulumi.Keycloak.Oidc
 
         [Input("extraConfig")]
         private InputMap<string>? _extraConfig;
+
+        /// <summary>
+        /// A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
+        /// </summary>
         public InputMap<string> ExtraConfig
         {
             get => _extraConfig ?? (_extraConfig = new InputMap<string>());

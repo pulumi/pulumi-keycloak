@@ -28,6 +28,7 @@ class HardcodedRoleIdentityMapperArgs:
         The set of arguments for constructing a HardcodedRoleIdentityMapper resource.
         :param pulumi.Input[_builtins.str] identity_provider_alias: The IDP alias of the attribute to set.
         :param pulumi.Input[_builtins.str] realm: The realm ID that this mapper will exist in.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: A map of key/value pairs to add extra configuration attributes to this mapper. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
         :param pulumi.Input[_builtins.str] name: Display name of this mapper when displayed in the console.
         :param pulumi.Input[_builtins.str] role: The name of the role which should be assigned to the users.
         """
@@ -67,6 +68,9 @@ class HardcodedRoleIdentityMapperArgs:
     @_builtins.property
     @pulumi.getter(name="extraConfig")
     def extra_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        A map of key/value pairs to add extra configuration attributes to this mapper. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
+        """
         return pulumi.get(self, "extra_config")
 
     @extra_config.setter
@@ -108,6 +112,7 @@ class _HardcodedRoleIdentityMapperState:
                  role: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering HardcodedRoleIdentityMapper resources.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: A map of key/value pairs to add extra configuration attributes to this mapper. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
         :param pulumi.Input[_builtins.str] identity_provider_alias: The IDP alias of the attribute to set.
         :param pulumi.Input[_builtins.str] name: Display name of this mapper when displayed in the console.
         :param pulumi.Input[_builtins.str] realm: The realm ID that this mapper will exist in.
@@ -127,6 +132,9 @@ class _HardcodedRoleIdentityMapperState:
     @_builtins.property
     @pulumi.getter(name="extraConfig")
     def extra_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        A map of key/value pairs to add extra configuration attributes to this mapper. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
+        """
         return pulumi.get(self, "extra_config")
 
     @extra_config.setter
@@ -231,6 +239,7 @@ class HardcodedRoleIdentityMapper(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: A map of key/value pairs to add extra configuration attributes to this mapper. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
         :param pulumi.Input[_builtins.str] identity_provider_alias: The IDP alias of the attribute to set.
         :param pulumi.Input[_builtins.str] name: Display name of this mapper when displayed in the console.
         :param pulumi.Input[_builtins.str] realm: The realm ID that this mapper will exist in.
@@ -337,6 +346,7 @@ class HardcodedRoleIdentityMapper(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: A map of key/value pairs to add extra configuration attributes to this mapper. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
         :param pulumi.Input[_builtins.str] identity_provider_alias: The IDP alias of the attribute to set.
         :param pulumi.Input[_builtins.str] name: Display name of this mapper when displayed in the console.
         :param pulumi.Input[_builtins.str] realm: The realm ID that this mapper will exist in.
@@ -356,6 +366,9 @@ class HardcodedRoleIdentityMapper(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="extraConfig")
     def extra_config(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:
+        """
+        A map of key/value pairs to add extra configuration attributes to this mapper. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
+        """
         return pulumi.get(self, "extra_config")
 
     @_builtins.property

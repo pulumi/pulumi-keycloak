@@ -34,15 +34,9 @@ import * as utilities from "../utilities";
  *
  * ## Import
  *
- * Google Identity providers can be imported using the format {{realm_id}}/{{idp_alias}}, where idp_alias is the identity provider alias.
+ * Google Identity providers can be imported using the format {{realm_id}}/{{idp_alias}}, where idpAlias is the identity provider alias.
  *
  * Example:
- *
- * bash
- *
- * ```sh
- * $ pulumi import keycloak:oidc/googleIdentityProvider:GoogleIdentityProvider google_identity_provider my-realm/my-google-idp
- * ```
  */
 export class GoogleIdentityProvider extends pulumi.CustomResource {
     /**
@@ -112,6 +106,9 @@ export class GoogleIdentityProvider extends pulumi.CustomResource {
      * When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
      */
     declare public readonly enabled: pulumi.Output<boolean | undefined>;
+    /**
+     * A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
+     */
     declare public readonly extraConfig: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
@@ -305,6 +302,9 @@ export interface GoogleIdentityProviderState {
      * When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
      */
     enabled?: pulumi.Input<boolean>;
+    /**
+     * A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
+     */
     extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
@@ -414,6 +414,9 @@ export interface GoogleIdentityProviderArgs {
      * When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
      */
     enabled?: pulumi.Input<boolean>;
+    /**
+     * A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
+     */
     extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.

@@ -41,17 +41,10 @@ import * as utilities from "../utilities";
  *
  * ## Import
  *
- * Clients can be imported using the format `{{realm_id}}/{{client_keycloak_id}}`, where `client_keycloak_id` is the unique ID that Keycloak
- *
+ * Clients can be imported using the format `{{realm_id}}/{{client_keycloak_id}}`, where `clientKeycloakId` is the unique ID that Keycloak
  * assigns to the client upon creation. This value can be found in the URI when editing this client in the GUI, and is typically a GUID.
  *
  * Example:
- *
- * bash
- *
- * ```sh
- * $ pulumi import keycloak:saml/client:Client saml_client my-realm/dcbc4c73-e478-4928-ae2e-d5e420223352
- * ```
  */
 export class Client extends pulumi.CustomResource {
     /**
@@ -141,6 +134,9 @@ export class Client extends pulumi.CustomResource {
      * (Computed) The sha1sum fingerprint of the encryption certificate. If the encryption certificate is not in correct base64 format, this will be left empty.
      */
     declare public /*out*/ readonly encryptionCertificateSha1: pulumi.Output<string>;
+    /**
+     * A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that is not yet supported by this Terraform provider. Use this attribute at your own risk, as s may conflict with top-level configuration attributes in future provider updates.
+     */
     declare public readonly extraConfig: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * Ignore requested NameID subject format and use the one defined in `nameIdFormat` instead. Defaults to `false`.
@@ -410,6 +406,9 @@ export interface ClientState {
      * (Computed) The sha1sum fingerprint of the encryption certificate. If the encryption certificate is not in correct base64 format, this will be left empty.
      */
     encryptionCertificateSha1?: pulumi.Input<string>;
+    /**
+     * A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that is not yet supported by this Terraform provider. Use this attribute at your own risk, as s may conflict with top-level configuration attributes in future provider updates.
+     */
     extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Ignore requested NameID subject format and use the one defined in `nameIdFormat` instead. Defaults to `false`.
@@ -569,6 +568,9 @@ export interface ClientArgs {
      * If assertions for the client are encrypted, this certificate will be used for encryption.
      */
     encryptionCertificate?: pulumi.Input<string>;
+    /**
+     * A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that is not yet supported by this Terraform provider. Use this attribute at your own risk, as s may conflict with top-level configuration attributes in future provider updates.
+     */
     extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Ignore requested NameID subject format and use the one defined in `nameIdFormat` instead. Defaults to `false`.

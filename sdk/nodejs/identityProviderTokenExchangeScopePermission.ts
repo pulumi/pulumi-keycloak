@@ -5,6 +5,22 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * Allows you to manage Identity Provider "Token exchange" Scope Based Permissions.
+ *
+ * This is part of a preview keycloak feature. You need to enable this feature to be able to use this resource.
+ * More information about enabling the preview feature can be found here: https://www.keycloak.org/securing-apps/token-exchange
+ *
+ * When enabling Identity Provider Permissions, Keycloak does several things automatically:
+ * 1. Enable Authorization on build-in realm-management client
+ * 2. Create a "token-exchange" scope
+ * 3. Create a resource representing the identity provider
+ * 4. Create a scope based permission for the "token-exchange" scope and identity provider resource
+ *
+ * The only thing that is missing is a policy set on the permission.
+ * As the policy lives within the context of the realm-management client, you cannot create a policy resource and link to from with your _.tf_ file. This would also cause an implicit cycle dependency.
+ * Thus, the only way to manage this in terraform is to create and manage the policy internally from within this terraform resource itself.
+ * At the moment only a client policy type is supported. The client policy will automatically be created for the `clients` parameter.
+ *
  * ## Example Usage
  *
  * ```typescript
@@ -45,17 +61,10 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * This resource can be imported using the format `{{realm_id}}/{{provider_alias}}`, where `provider_alias` is the alias that
- *
+ * This resource can be imported using the format `{{realm_id}}/{{provider_alias}}`, where `providerAlias` is the alias that
  * you assign to the identity provider upon creation.
  *
  * Example:
- *
- * bash
- *
- * ```sh
- * $ pulumi import keycloak:index/identityProviderTokenExchangeScopePermission:IdentityProviderTokenExchangeScopePermission oidc_idp_permission my-realm/myIdp
- * ```
  */
 export class IdentityProviderTokenExchangeScopePermission extends pulumi.CustomResource {
     /**

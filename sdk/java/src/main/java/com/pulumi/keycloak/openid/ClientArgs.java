@@ -297,7 +297,7 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * Client Secret as write-only argument
+     * The secret for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `clientSecret`.
      * 
      */
     @Import(name="clientSecretWo")
@@ -305,7 +305,7 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * Client Secret as write-only argument
+     * The secret for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `clientSecret`.
      * 
      */
     public Optional<Output<String>> clientSecretWo() {
@@ -313,14 +313,14 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Version of the Client secret write-only argument
+     * Functions as a flag and/or trigger to indicate Terraform when to use the input value in `clientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `clientSecretWo`.
      * 
      */
     @Import(name="clientSecretWoVersion")
     private @Nullable Output<Integer> clientSecretWoVersion;
 
     /**
-     * @return Version of the Client secret write-only argument
+     * @return Functions as a flag and/or trigger to indicate Terraform when to use the input value in `clientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `clientSecretWo`.
      * 
      */
     public Optional<Output<Integer>> clientSecretWoVersion() {
@@ -477,9 +477,17 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.excludeSessionStateFromAuthResponse);
     }
 
+    /**
+     * A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates. For example, the `extraConfig` map can be used to set Authentication Context Class Reference (ACR) to Level of Authentication (LoA) mapping
+     * 
+     */
     @Import(name="extraConfig")
     private @Nullable Output<Map<String,String>> extraConfig;
 
+    /**
+     * @return A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates. For example, the `extraConfig` map can be used to set Authentication Context Class Reference (ACR) to Level of Authentication (LoA) mapping
+     * 
+     */
     public Optional<Output<Map<String,String>>> extraConfig() {
         return Optional.ofNullable(this.extraConfig);
     }
@@ -1270,7 +1278,7 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param clientSecretWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-         * Client Secret as write-only argument
+         * The secret for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `clientSecret`.
          * 
          * @return builder
          * 
@@ -1282,7 +1290,7 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param clientSecretWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-         * Client Secret as write-only argument
+         * The secret for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `clientSecret`.
          * 
          * @return builder
          * 
@@ -1292,7 +1300,7 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param clientSecretWoVersion Version of the Client secret write-only argument
+         * @param clientSecretWoVersion Functions as a flag and/or trigger to indicate Terraform when to use the input value in `clientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `clientSecretWo`.
          * 
          * @return builder
          * 
@@ -1303,7 +1311,7 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param clientSecretWoVersion Version of the Client secret write-only argument
+         * @param clientSecretWoVersion Functions as a flag and/or trigger to indicate Terraform when to use the input value in `clientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `clientSecretWo`.
          * 
          * @return builder
          * 
@@ -1522,11 +1530,23 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
             return excludeSessionStateFromAuthResponse(Output.of(excludeSessionStateFromAuthResponse));
         }
 
+        /**
+         * @param extraConfig A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates. For example, the `extraConfig` map can be used to set Authentication Context Class Reference (ACR) to Level of Authentication (LoA) mapping
+         * 
+         * @return builder
+         * 
+         */
         public Builder extraConfig(@Nullable Output<Map<String,String>> extraConfig) {
             $.extraConfig = extraConfig;
             return this;
         }
 
+        /**
+         * @param extraConfig A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates. For example, the `extraConfig` map can be used to set Authentication Context Class Reference (ACR) to Level of Authentication (LoA) mapping
+         * 
+         * @return builder
+         * 
+         */
         public Builder extraConfig(Map<String,String> extraConfig) {
             return extraConfig(Output.of(extraConfig));
         }

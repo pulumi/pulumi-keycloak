@@ -97,15 +97,10 @@ __all__ = [
     'GetRealmWebAuthnPolicyArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class GroupPermissionsManageMembersScopeArgsDict(TypedDict):
-        decision_strategy: NotRequired[pulumi.Input[_builtins.str]]
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-elif False:
-    GroupPermissionsManageMembersScopeArgsDict: TypeAlias = Mapping[str, Any]
+class GroupPermissionsManageMembersScopeArgsDict(TypedDict):
+    decision_strategy: NotRequired[pulumi.Input[_builtins.str]]
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class GroupPermissionsManageMembersScopeArgs:
@@ -148,13 +143,10 @@ class GroupPermissionsManageMembersScopeArgs:
         pulumi.set(self, "policies", value)
 
 
-if not MYPY:
-    class GroupPermissionsManageMembershipScopeArgsDict(TypedDict):
-        decision_strategy: NotRequired[pulumi.Input[_builtins.str]]
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-elif False:
-    GroupPermissionsManageMembershipScopeArgsDict: TypeAlias = Mapping[str, Any]
+class GroupPermissionsManageMembershipScopeArgsDict(TypedDict):
+    decision_strategy: NotRequired[pulumi.Input[_builtins.str]]
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class GroupPermissionsManageMembershipScopeArgs:
@@ -197,13 +189,10 @@ class GroupPermissionsManageMembershipScopeArgs:
         pulumi.set(self, "policies", value)
 
 
-if not MYPY:
-    class GroupPermissionsManageScopeArgsDict(TypedDict):
-        decision_strategy: NotRequired[pulumi.Input[_builtins.str]]
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-elif False:
-    GroupPermissionsManageScopeArgsDict: TypeAlias = Mapping[str, Any]
+class GroupPermissionsManageScopeArgsDict(TypedDict):
+    decision_strategy: NotRequired[pulumi.Input[_builtins.str]]
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class GroupPermissionsManageScopeArgs:
@@ -246,13 +235,10 @@ class GroupPermissionsManageScopeArgs:
         pulumi.set(self, "policies", value)
 
 
-if not MYPY:
-    class GroupPermissionsViewMembersScopeArgsDict(TypedDict):
-        decision_strategy: NotRequired[pulumi.Input[_builtins.str]]
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-elif False:
-    GroupPermissionsViewMembersScopeArgsDict: TypeAlias = Mapping[str, Any]
+class GroupPermissionsViewMembersScopeArgsDict(TypedDict):
+    decision_strategy: NotRequired[pulumi.Input[_builtins.str]]
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class GroupPermissionsViewMembersScopeArgs:
@@ -295,13 +281,10 @@ class GroupPermissionsViewMembersScopeArgs:
         pulumi.set(self, "policies", value)
 
 
-if not MYPY:
-    class GroupPermissionsViewScopeArgsDict(TypedDict):
-        decision_strategy: NotRequired[pulumi.Input[_builtins.str]]
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-elif False:
-    GroupPermissionsViewScopeArgsDict: TypeAlias = Mapping[str, Any]
+class GroupPermissionsViewScopeArgsDict(TypedDict):
+    decision_strategy: NotRequired[pulumi.Input[_builtins.str]]
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class GroupPermissionsViewScopeArgs:
@@ -344,18 +327,15 @@ class GroupPermissionsViewScopeArgs:
         pulumi.set(self, "policies", value)
 
 
-if not MYPY:
-    class OrganizationDomainArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        """
-        The name of the organization.
-        """
-        verified: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        Whether domain is verified or not. Default is false.
-        """
-elif False:
-    OrganizationDomainArgsDict: TypeAlias = Mapping[str, Any]
+class OrganizationDomainArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    The name of the organization.
+    """
+    verified: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    Whether domain is verified or not. Default is false.
+    """
 
 @pulumi.input_type
 class OrganizationDomainArgs:
@@ -395,12 +375,9 @@ class OrganizationDomainArgs:
         pulumi.set(self, "verified", value)
 
 
-if not MYPY:
-    class RealmClientPolicyProfileExecutorArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        configuration: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-elif False:
-    RealmClientPolicyProfileExecutorArgsDict: TypeAlias = Mapping[str, Any]
+class RealmClientPolicyProfileExecutorArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    configuration: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class RealmClientPolicyProfileExecutorArgs:
@@ -430,12 +407,9 @@ class RealmClientPolicyProfileExecutorArgs:
         pulumi.set(self, "configuration", value)
 
 
-if not MYPY:
-    class RealmClientPolicyProfilePolicyConditionArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        configuration: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-elif False:
-    RealmClientPolicyProfilePolicyConditionArgsDict: TypeAlias = Mapping[str, Any]
+class RealmClientPolicyProfilePolicyConditionArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    configuration: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class RealmClientPolicyProfilePolicyConditionArgs:
@@ -465,18 +439,15 @@ class RealmClientPolicyProfilePolicyConditionArgs:
         pulumi.set(self, "configuration", value)
 
 
-if not MYPY:
-    class RealmInternationalizationArgsDict(TypedDict):
-        default_locale: pulumi.Input[_builtins.str]
-        """
-        The locale to use by default. This locale code must be present within the `supported_locales` list.
-        """
-        supported_locales: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        A list of [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) locale codes that the realm should support.
-        """
-elif False:
-    RealmInternationalizationArgsDict: TypeAlias = Mapping[str, Any]
+class RealmInternationalizationArgsDict(TypedDict):
+    default_locale: pulumi.Input[_builtins.str]
+    """
+    The locale to use by default. This locale code must be present within the `supported_locales` list.
+    """
+    supported_locales: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    A list of [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) locale codes that the realm should support.
+    """
 
 @pulumi.input_type
 class RealmInternationalizationArgs:
@@ -515,34 +486,31 @@ class RealmInternationalizationArgs:
         pulumi.set(self, "supported_locales", value)
 
 
-if not MYPY:
-    class RealmOtpPolicyArgsDict(TypedDict):
-        algorithm: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        What hashing algorithm should be used to generate the OTP, Valid options are `HmacSHA1`,`HmacSHA256` and `HmacSHA512`. Defaults to `HmacSHA1`.
-        """
-        digits: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        How many digits the OTP have. Defaults to `6`.
-        """
-        initial_counter: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        What should the initial counter value be. Defaults to `2`.
-        """
-        look_ahead_window: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        How far ahead should the server look just in case the token generator and server are out of time sync or counter sync. Defaults to `1`.
-        """
-        period: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        How many seconds should an OTP token be valid. Defaults to `30`.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        One Time Password Type, supported Values are `totp` for Time-Based One Time Password and `hotp` for Counter Based. Defaults to `totp`.
-        """
-elif False:
-    RealmOtpPolicyArgsDict: TypeAlias = Mapping[str, Any]
+class RealmOtpPolicyArgsDict(TypedDict):
+    algorithm: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    What hashing algorithm should be used to generate the OTP, Valid options are `HmacSHA1`,`HmacSHA256` and `HmacSHA512`. Defaults to `HmacSHA1`.
+    """
+    digits: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    How many digits the OTP have. Defaults to `6`.
+    """
+    initial_counter: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    What should the initial counter value be. Defaults to `2`.
+    """
+    look_ahead_window: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    How far ahead should the server look just in case the token generator and server are out of time sync or counter sync. Defaults to `1`.
+    """
+    period: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    How many seconds should an OTP token be valid. Defaults to `30`.
+    """
+    type: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    One Time Password Type, supported Values are `totp` for Time-Based One Time Password and `hotp` for Counter Based. Defaults to `totp`.
+    """
 
 @pulumi.input_type
 class RealmOtpPolicyArgs:
@@ -647,12 +615,9 @@ class RealmOtpPolicyArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class RealmSecurityDefensesArgsDict(TypedDict):
-        brute_force_detection: NotRequired[pulumi.Input['RealmSecurityDefensesBruteForceDetectionArgsDict']]
-        headers: NotRequired[pulumi.Input['RealmSecurityDefensesHeadersArgsDict']]
-elif False:
-    RealmSecurityDefensesArgsDict: TypeAlias = Mapping[str, Any]
+class RealmSecurityDefensesArgsDict(TypedDict):
+    brute_force_detection: NotRequired[pulumi.Input['RealmSecurityDefensesBruteForceDetectionArgsDict']]
+    headers: NotRequired[pulumi.Input['RealmSecurityDefensesHeadersArgsDict']]
 
 @pulumi.input_type
 class RealmSecurityDefensesArgs:
@@ -683,40 +648,37 @@ class RealmSecurityDefensesArgs:
         pulumi.set(self, "headers", value)
 
 
-if not MYPY:
-    class RealmSecurityDefensesBruteForceDetectionArgsDict(TypedDict):
-        failure_reset_time_seconds: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        When will failure count be reset?
-        """
-        max_failure_wait_seconds: NotRequired[pulumi.Input[_builtins.int]]
-        max_login_failures: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        How many failures before wait is triggered.
-        """
-        max_temporary_lockouts: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        How many temporary lockouts are permitted before a user is permanently locked out. `permanent_lockout` needs to be `true`. Defaults to `0`
-        """
-        minimum_quick_login_wait_seconds: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        How long to wait after a quick login failure.
-        - `max_failure_wait_seconds ` - (Optional) Max. time a user will be locked out.
-        """
-        permanent_lockout: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        When `true`, this will lock the user permanently when the user exceeds the maximum login failures.
-        """
-        quick_login_check_milli_seconds: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Configures the amount of time, in milliseconds, for consecutive failures to lock a user out.
-        """
-        wait_increment_seconds: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        This represents the amount of time a user should be locked out when the login failure threshold has been met.
-        """
-elif False:
-    RealmSecurityDefensesBruteForceDetectionArgsDict: TypeAlias = Mapping[str, Any]
+class RealmSecurityDefensesBruteForceDetectionArgsDict(TypedDict):
+    failure_reset_time_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    When will failure count be reset?
+    """
+    max_failure_wait_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    max_login_failures: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    How many failures before wait is triggered.
+    """
+    max_temporary_lockouts: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    How many temporary lockouts are permitted before a user is permanently locked out. `permanent_lockout` needs to be `true`. Defaults to `0`
+    """
+    minimum_quick_login_wait_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    How long to wait after a quick login failure.
+    - `max_failure_wait_seconds ` - (Optional) Max. time a user will be locked out.
+    """
+    permanent_lockout: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    When `true`, this will lock the user permanently when the user exceeds the maximum login failures.
+    """
+    quick_login_check_milli_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    Configures the amount of time, in milliseconds, for consecutive failures to lock a user out.
+    """
+    wait_increment_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    This represents the amount of time a user should be locked out when the login failure threshold has been met.
+    """
 
 @pulumi.input_type
 class RealmSecurityDefensesBruteForceDetectionArgs:
@@ -851,42 +813,39 @@ class RealmSecurityDefensesBruteForceDetectionArgs:
         pulumi.set(self, "wait_increment_seconds", value)
 
 
-if not MYPY:
-    class RealmSecurityDefensesHeadersArgsDict(TypedDict):
-        content_security_policy: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Sets the Content Security Policy, which can be used for prevent pages from being included by non-origin iframes. More information can be found in the [W3C-CSP](https://www.w3.org/TR/CSP/) Abstract.
-        """
-        content_security_policy_report_only: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Used for testing Content Security Policies.
-        """
-        referrer_policy: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The Referrer-Policy HTTP header controls how much referrer information (sent with the Referer header) should be included with requests.
-        """
-        strict_transport_security: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The Script-Transport-Security HTTP header tells browsers to always use HTTPS.
-        """
-        x_content_type_options: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Sets the X-Content-Type-Options, which can be used for prevent MIME-sniffing a response away from the declared content-type
-        """
-        x_frame_options: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Sets the x-frame-option, which can be used to prevent pages from being included by non-origin iframes. More information can be found in the [RFC7034](https://tools.ietf.org/html/rfc7034)
-        """
-        x_robots_tag: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Prevent pages from appearing in search engines.
-        """
-        x_xss_protection: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        This header configures the Cross-site scripting (XSS) filter in your browser.
-        """
-elif False:
-    RealmSecurityDefensesHeadersArgsDict: TypeAlias = Mapping[str, Any]
+class RealmSecurityDefensesHeadersArgsDict(TypedDict):
+    content_security_policy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Sets the Content Security Policy, which can be used for prevent pages from being included by non-origin iframes. More information can be found in the [W3C-CSP](https://www.w3.org/TR/CSP/) Abstract.
+    """
+    content_security_policy_report_only: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Used for testing Content Security Policies.
+    """
+    referrer_policy: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The Referrer-Policy HTTP header controls how much referrer information (sent with the Referer header) should be included with requests.
+    """
+    strict_transport_security: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The Script-Transport-Security HTTP header tells browsers to always use HTTPS.
+    """
+    x_content_type_options: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Sets the X-Content-Type-Options, which can be used for prevent MIME-sniffing a response away from the declared content-type
+    """
+    x_frame_options: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Sets the x-frame-option, which can be used to prevent pages from being included by non-origin iframes. More information can be found in the [RFC7034](https://tools.ietf.org/html/rfc7034)
+    """
+    x_robots_tag: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Prevent pages from appearing in search engines.
+    """
+    x_xss_protection: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    This header configures the Cross-site scripting (XSS) filter in your browser.
+    """
 
 @pulumi.input_type
 class RealmSecurityDefensesHeadersArgs:
@@ -1023,55 +982,52 @@ class RealmSecurityDefensesHeadersArgs:
         pulumi.set(self, "x_xss_protection", value)
 
 
-if not MYPY:
-    class RealmSmtpServerArgsDict(TypedDict):
-        from_: pulumi.Input[_builtins.str]
-        """
-        The email address for the sender.
-        """
-        host: pulumi.Input[_builtins.str]
-        """
-        The host of the SMTP server.
-        """
-        allow_utf8: NotRequired[pulumi.Input[_builtins.bool]]
-        auth: NotRequired[pulumi.Input['RealmSmtpServerAuthArgsDict']]
-        """
-        Enables authentication to the SMTP server. Cannot be set alongside `token_auth`. This block supports the following arguments:
-        """
-        envelope_from: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The email address uses for bounces.
-        """
-        from_display_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The display name of the sender email address.
-        """
-        port: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The port of the SMTP server (defaults to 25).
-        """
-        reply_to: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The "reply to" email address.
-        """
-        reply_to_display_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The display name of the "reply to" email address.
-        """
-        ssl: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        When `true`, enables SSL. Defaults to `false`.
-        """
-        starttls: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        When `true`, enables StartTLS. Defaults to `false`.
-        """
-        token_auth: NotRequired[pulumi.Input['RealmSmtpServerTokenAuthArgsDict']]
-        """
-        Enables authentication to the SMTP server through OAUTH2. Cannot be set alongside `auth`. This block supports the following arguments:
-        """
-elif False:
-    RealmSmtpServerArgsDict: TypeAlias = Mapping[str, Any]
+class RealmSmtpServerArgsDict(TypedDict):
+    from_: pulumi.Input[_builtins.str]
+    """
+    The email address for the sender.
+    """
+    host: pulumi.Input[_builtins.str]
+    """
+    The host of the SMTP server.
+    """
+    allow_utf8: NotRequired[pulumi.Input[_builtins.bool]]
+    auth: NotRequired[pulumi.Input['RealmSmtpServerAuthArgsDict']]
+    """
+    Enables authentication to the SMTP server. Cannot be set alongside `token_auth`. This block supports the following arguments:
+    """
+    envelope_from: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The email address uses for bounces.
+    """
+    from_display_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The display name of the sender email address.
+    """
+    port: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The port of the SMTP server (defaults to 25).
+    """
+    reply_to: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The "reply to" email address.
+    """
+    reply_to_display_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The display name of the "reply to" email address.
+    """
+    ssl: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    When `true`, enables SSL. Defaults to `false`.
+    """
+    starttls: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    When `true`, enables StartTLS. Defaults to `false`.
+    """
+    token_auth: NotRequired[pulumi.Input['RealmSmtpServerTokenAuthArgsDict']]
+    """
+    Enables authentication to the SMTP server through OAUTH2. Cannot be set alongside `auth`. This block supports the following arguments:
+    """
 
 @pulumi.input_type
 class RealmSmtpServerArgs:
@@ -1266,15 +1222,12 @@ class RealmSmtpServerArgs:
         pulumi.set(self, "token_auth", value)
 
 
-if not MYPY:
-    class RealmSmtpServerAuthArgsDict(TypedDict):
-        password: pulumi.Input[_builtins.str]
-        """
-        The SMTP server password.
-        """
-        username: pulumi.Input[_builtins.str]
-elif False:
-    RealmSmtpServerAuthArgsDict: TypeAlias = Mapping[str, Any]
+class RealmSmtpServerAuthArgsDict(TypedDict):
+    password: pulumi.Input[_builtins.str]
+    """
+    The SMTP server password.
+    """
+    username: pulumi.Input[_builtins.str]
 
 @pulumi.input_type
 class RealmSmtpServerAuthArgs:
@@ -1309,27 +1262,24 @@ class RealmSmtpServerAuthArgs:
         pulumi.set(self, "username", value)
 
 
-if not MYPY:
-    class RealmSmtpServerTokenAuthArgsDict(TypedDict):
-        client_id: pulumi.Input[_builtins.str]
-        """
-        The auth token client ID.
-        """
-        client_secret: pulumi.Input[_builtins.str]
-        """
-        The auth token client secret.
-        """
-        scope: pulumi.Input[_builtins.str]
-        """
-        The auth token scope.
-        """
-        url: pulumi.Input[_builtins.str]
-        """
-        The auth token URL.
-        """
-        username: pulumi.Input[_builtins.str]
-elif False:
-    RealmSmtpServerTokenAuthArgsDict: TypeAlias = Mapping[str, Any]
+class RealmSmtpServerTokenAuthArgsDict(TypedDict):
+    client_id: pulumi.Input[_builtins.str]
+    """
+    The auth token client ID.
+    """
+    client_secret: pulumi.Input[_builtins.str]
+    """
+    The auth token client secret.
+    """
+    scope: pulumi.Input[_builtins.str]
+    """
+    The auth token scope.
+    """
+    url: pulumi.Input[_builtins.str]
+    """
+    The auth token URL.
+    """
+    username: pulumi.Input[_builtins.str]
 
 @pulumi.input_type
 class RealmSmtpServerTokenAuthArgs:
@@ -1409,44 +1359,41 @@ class RealmSmtpServerTokenAuthArgs:
         pulumi.set(self, "username", value)
 
 
-if not MYPY:
-    class RealmUserProfileAttributeArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        annotations: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        display_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The display name of the attribute.
-        """
-        enabled_when_scopes: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A list of scopes. The attribute will only be enabled when these scopes are requested by clients.
-        """
-        group: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        A list of groups.
-        """
-        multi_valued: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        If the attribute supports multiple values. Defaults to `false`.
-        """
-        permissions: NotRequired[pulumi.Input['RealmUserProfileAttributePermissionsArgsDict']]
-        """
-        The permissions configuration information.
-        """
-        required_for_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A list of roles for which the attribute will be required.
-        """
-        required_for_scopes: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A list of scopes for which the attribute will be required.
-        """
-        validators: NotRequired[pulumi.Input[Sequence[pulumi.Input['RealmUserProfileAttributeValidatorArgsDict']]]]
-        """
-        A list of validators for the attribute.
-        """
-elif False:
-    RealmUserProfileAttributeArgsDict: TypeAlias = Mapping[str, Any]
+class RealmUserProfileAttributeArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    annotations: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    display_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The display name of the attribute.
+    """
+    enabled_when_scopes: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A list of scopes. The attribute will only be enabled when these scopes are requested by clients.
+    """
+    group: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    A list of groups.
+    """
+    multi_valued: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    If the attribute supports multiple values. Defaults to `false`.
+    """
+    permissions: NotRequired[pulumi.Input['RealmUserProfileAttributePermissionsArgsDict']]
+    """
+    The permissions configuration information.
+    """
+    required_for_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A list of roles for which the attribute will be required.
+    """
+    required_for_scopes: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A list of scopes for which the attribute will be required.
+    """
+    validators: NotRequired[pulumi.Input[Sequence[pulumi.Input['RealmUserProfileAttributeValidatorArgsDict']]]]
+    """
+    A list of validators for the attribute.
+    """
 
 @pulumi.input_type
 class RealmUserProfileAttributeArgs:
@@ -1606,18 +1553,15 @@ class RealmUserProfileAttributeArgs:
         pulumi.set(self, "validators", value)
 
 
-if not MYPY:
-    class RealmUserProfileAttributePermissionsArgsDict(TypedDict):
-        edits: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        A list of profiles that will be able to edit the attribute. One of `admin`, `user`.
-        """
-        views: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
-        """
-        A list of profiles that will be able to view the attribute. One of `admin`, `user`.
-        """
-elif False:
-    RealmUserProfileAttributePermissionsArgsDict: TypeAlias = Mapping[str, Any]
+class RealmUserProfileAttributePermissionsArgsDict(TypedDict):
+    edits: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    A list of profiles that will be able to edit the attribute. One of `admin`, `user`.
+    """
+    views: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+    """
+    A list of profiles that will be able to view the attribute. One of `admin`, `user`.
+    """
 
 @pulumi.input_type
 class RealmUserProfileAttributePermissionsArgs:
@@ -1656,15 +1600,12 @@ class RealmUserProfileAttributePermissionsArgs:
         pulumi.set(self, "views", value)
 
 
-if not MYPY:
-    class RealmUserProfileAttributeValidatorArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        config: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        A map defining the configuration of the validator. Values can be a String or a json object.
-        """
-elif False:
-    RealmUserProfileAttributeValidatorArgsDict: TypeAlias = Mapping[str, Any]
+class RealmUserProfileAttributeValidatorArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    config: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    """
+    A map defining the configuration of the validator. Values can be a String or a json object.
+    """
 
 @pulumi.input_type
 class RealmUserProfileAttributeValidatorArgs:
@@ -1700,20 +1641,17 @@ class RealmUserProfileAttributeValidatorArgs:
         pulumi.set(self, "config", value)
 
 
-if not MYPY:
-    class RealmUserProfileGroupArgsDict(TypedDict):
-        name: pulumi.Input[_builtins.str]
-        annotations: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        display_description: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The display description of the group.
-        """
-        display_header: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The display header of the group.
-        """
-elif False:
-    RealmUserProfileGroupArgsDict: TypeAlias = Mapping[str, Any]
+class RealmUserProfileGroupArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    annotations: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    display_description: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The display description of the group.
+    """
+    display_header: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The display header of the group.
+    """
 
 @pulumi.input_type
 class RealmUserProfileGroupArgs:
@@ -1777,54 +1715,51 @@ class RealmUserProfileGroupArgs:
         pulumi.set(self, "display_header", value)
 
 
-if not MYPY:
-    class RealmWebAuthnPasswordlessPolicyArgsDict(TypedDict):
-        acceptable_aaguids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A set of AAGUIDs for which an authenticator can be registered.
-        """
-        attestation_conveyance_preference: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Either none, indirect or direct
-        """
-        authenticator_attachment: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Either platform or cross-platform
-        """
-        avoid_same_authenticator_register: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        When `true`, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to `false`.
-        """
-        create_timeout: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
-        """
-        extra_origins: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A set of extra origins for non-web applications.
-        """
-        relying_party_entity_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
-        """
-        relying_party_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The WebAuthn relying party ID.
-        """
-        require_resident_key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Either Yes or No
-        """
-        signature_algorithms: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Keycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing
-        """
-        user_verification_requirement: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Either required, preferred or discouraged
-        """
-elif False:
-    RealmWebAuthnPasswordlessPolicyArgsDict: TypeAlias = Mapping[str, Any]
+class RealmWebAuthnPasswordlessPolicyArgsDict(TypedDict):
+    acceptable_aaguids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A set of AAGUIDs for which an authenticator can be registered.
+    """
+    attestation_conveyance_preference: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Either none, indirect or direct
+    """
+    authenticator_attachment: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Either platform or cross-platform
+    """
+    avoid_same_authenticator_register: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    When `true`, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to `false`.
+    """
+    create_timeout: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
+    """
+    extra_origins: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A set of extra origins for non-web applications.
+    """
+    relying_party_entity_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
+    """
+    relying_party_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The WebAuthn relying party ID.
+    """
+    require_resident_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Either Yes or No
+    """
+    signature_algorithms: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Keycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing
+    """
+    user_verification_requirement: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Either required, preferred or discouraged
+    """
 
 @pulumi.input_type
 class RealmWebAuthnPasswordlessPolicyArgs:
@@ -2009,54 +1944,51 @@ class RealmWebAuthnPasswordlessPolicyArgs:
         pulumi.set(self, "user_verification_requirement", value)
 
 
-if not MYPY:
-    class RealmWebAuthnPolicyArgsDict(TypedDict):
-        acceptable_aaguids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A set of AAGUIDs for which an authenticator can be registered.
-        """
-        attestation_conveyance_preference: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Either none, indirect or direct
-        """
-        authenticator_attachment: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Either platform or cross-platform
-        """
-        avoid_same_authenticator_register: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        When `true`, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to `false`.
-        """
-        create_timeout: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
-        """
-        extra_origins: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        A set of extra origins for non-web applications.
-        """
-        relying_party_entity_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
-        """
-        relying_party_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The WebAuthn relying party ID.
-        """
-        require_resident_key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Either Yes or No
-        """
-        signature_algorithms: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Keycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing
-        """
-        user_verification_requirement: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Either required, preferred or discouraged
-        """
-elif False:
-    RealmWebAuthnPolicyArgsDict: TypeAlias = Mapping[str, Any]
+class RealmWebAuthnPolicyArgsDict(TypedDict):
+    acceptable_aaguids: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A set of AAGUIDs for which an authenticator can be registered.
+    """
+    attestation_conveyance_preference: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Either none, indirect or direct
+    """
+    authenticator_attachment: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Either platform or cross-platform
+    """
+    avoid_same_authenticator_register: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    When `true`, Keycloak will avoid registering the authenticator for WebAuthn if it has already been registered. Defaults to `false`.
+    """
+    create_timeout: NotRequired[pulumi.Input[_builtins.int]]
+    """
+    The timeout value for creating a user's public key credential in seconds. When set to `0`, this timeout option is not adapted. Defaults to `0`.
+    """
+    extra_origins: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    A set of extra origins for non-web applications.
+    """
+    relying_party_entity_name: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    A human-readable server name for the WebAuthn Relying Party. Defaults to `keycloak`.
+    """
+    relying_party_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The WebAuthn relying party ID.
+    """
+    require_resident_key: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Either Yes or No
+    """
+    signature_algorithms: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    """
+    Keycloak lists ES256, ES384, ES512, RS256, RS384, RS512, RS1 at the time of writing
+    """
+    user_verification_requirement: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Either required, preferred or discouraged
+    """
 
 @pulumi.input_type
 class RealmWebAuthnPolicyArgs:
@@ -2241,22 +2173,19 @@ class RealmWebAuthnPolicyArgs:
         pulumi.set(self, "user_verification_requirement", value)
 
 
-if not MYPY:
-    class UserFederatedIdentityArgsDict(TypedDict):
-        identity_provider: pulumi.Input[_builtins.str]
-        """
-        The name of the identity provider
-        """
-        user_id: pulumi.Input[_builtins.str]
-        """
-        The ID of the user defined in the identity provider
-        """
-        user_name: pulumi.Input[_builtins.str]
-        """
-        The username of the user defined in the identity provider
-        """
-elif False:
-    UserFederatedIdentityArgsDict: TypeAlias = Mapping[str, Any]
+class UserFederatedIdentityArgsDict(TypedDict):
+    identity_provider: pulumi.Input[_builtins.str]
+    """
+    The name of the identity provider
+    """
+    user_id: pulumi.Input[_builtins.str]
+    """
+    The ID of the user defined in the identity provider
+    """
+    user_name: pulumi.Input[_builtins.str]
+    """
+    The username of the user defined in the identity provider
+    """
 
 @pulumi.input_type
 class UserFederatedIdentityArgs:
@@ -2310,18 +2239,15 @@ class UserFederatedIdentityArgs:
         pulumi.set(self, "user_name", value)
 
 
-if not MYPY:
-    class UserInitialPasswordArgsDict(TypedDict):
-        value: pulumi.Input[_builtins.str]
-        """
-        The initial password.
-        """
-        temporary: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        If set to `true`, the initial password is set up for renewal on first use. Default to `false`.
-        """
-elif False:
-    UserInitialPasswordArgsDict: TypeAlias = Mapping[str, Any]
+class UserInitialPasswordArgsDict(TypedDict):
+    value: pulumi.Input[_builtins.str]
+    """
+    The initial password.
+    """
+    temporary: NotRequired[pulumi.Input[_builtins.bool]]
+    """
+    If set to `true`, the initial password is set up for renewal on first use. Default to `false`.
+    """
 
 @pulumi.input_type
 class UserInitialPasswordArgs:
@@ -2361,13 +2287,10 @@ class UserInitialPasswordArgs:
         pulumi.set(self, "temporary", value)
 
 
-if not MYPY:
-    class UsersPermissionsImpersonateScopeArgsDict(TypedDict):
-        decision_strategy: NotRequired[pulumi.Input[_builtins.str]]
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-elif False:
-    UsersPermissionsImpersonateScopeArgsDict: TypeAlias = Mapping[str, Any]
+class UsersPermissionsImpersonateScopeArgsDict(TypedDict):
+    decision_strategy: NotRequired[pulumi.Input[_builtins.str]]
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class UsersPermissionsImpersonateScopeArgs:
@@ -2410,13 +2333,10 @@ class UsersPermissionsImpersonateScopeArgs:
         pulumi.set(self, "policies", value)
 
 
-if not MYPY:
-    class UsersPermissionsManageGroupMembershipScopeArgsDict(TypedDict):
-        decision_strategy: NotRequired[pulumi.Input[_builtins.str]]
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-elif False:
-    UsersPermissionsManageGroupMembershipScopeArgsDict: TypeAlias = Mapping[str, Any]
+class UsersPermissionsManageGroupMembershipScopeArgsDict(TypedDict):
+    decision_strategy: NotRequired[pulumi.Input[_builtins.str]]
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class UsersPermissionsManageGroupMembershipScopeArgs:
@@ -2459,13 +2379,10 @@ class UsersPermissionsManageGroupMembershipScopeArgs:
         pulumi.set(self, "policies", value)
 
 
-if not MYPY:
-    class UsersPermissionsManageScopeArgsDict(TypedDict):
-        decision_strategy: NotRequired[pulumi.Input[_builtins.str]]
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-elif False:
-    UsersPermissionsManageScopeArgsDict: TypeAlias = Mapping[str, Any]
+class UsersPermissionsManageScopeArgsDict(TypedDict):
+    decision_strategy: NotRequired[pulumi.Input[_builtins.str]]
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class UsersPermissionsManageScopeArgs:
@@ -2508,13 +2425,10 @@ class UsersPermissionsManageScopeArgs:
         pulumi.set(self, "policies", value)
 
 
-if not MYPY:
-    class UsersPermissionsMapRolesScopeArgsDict(TypedDict):
-        decision_strategy: NotRequired[pulumi.Input[_builtins.str]]
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-elif False:
-    UsersPermissionsMapRolesScopeArgsDict: TypeAlias = Mapping[str, Any]
+class UsersPermissionsMapRolesScopeArgsDict(TypedDict):
+    decision_strategy: NotRequired[pulumi.Input[_builtins.str]]
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class UsersPermissionsMapRolesScopeArgs:
@@ -2557,13 +2471,10 @@ class UsersPermissionsMapRolesScopeArgs:
         pulumi.set(self, "policies", value)
 
 
-if not MYPY:
-    class UsersPermissionsUserImpersonatedScopeArgsDict(TypedDict):
-        decision_strategy: NotRequired[pulumi.Input[_builtins.str]]
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-elif False:
-    UsersPermissionsUserImpersonatedScopeArgsDict: TypeAlias = Mapping[str, Any]
+class UsersPermissionsUserImpersonatedScopeArgsDict(TypedDict):
+    decision_strategy: NotRequired[pulumi.Input[_builtins.str]]
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class UsersPermissionsUserImpersonatedScopeArgs:
@@ -2606,13 +2517,10 @@ class UsersPermissionsUserImpersonatedScopeArgs:
         pulumi.set(self, "policies", value)
 
 
-if not MYPY:
-    class UsersPermissionsViewScopeArgsDict(TypedDict):
-        decision_strategy: NotRequired[pulumi.Input[_builtins.str]]
-        description: NotRequired[pulumi.Input[_builtins.str]]
-        policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-elif False:
-    UsersPermissionsViewScopeArgsDict: TypeAlias = Mapping[str, Any]
+class UsersPermissionsViewScopeArgsDict(TypedDict):
+    decision_strategy: NotRequired[pulumi.Input[_builtins.str]]
+    description: NotRequired[pulumi.Input[_builtins.str]]
+    policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
 
 @pulumi.input_type
 class UsersPermissionsViewScopeArgs:
@@ -2655,12 +2563,9 @@ class UsersPermissionsViewScopeArgs:
         pulumi.set(self, "policies", value)
 
 
-if not MYPY:
-    class GetRealmInternationalizationArgsDict(TypedDict):
-        default_locale: _builtins.str
-        supported_locales: Sequence[_builtins.str]
-elif False:
-    GetRealmInternationalizationArgsDict: TypeAlias = Mapping[str, Any]
+class GetRealmInternationalizationArgsDict(TypedDict):
+    default_locale: _builtins.str
+    supported_locales: Sequence[_builtins.str]
 
 @pulumi.input_type
 class GetRealmInternationalizationArgs:
@@ -2689,16 +2594,13 @@ class GetRealmInternationalizationArgs:
         pulumi.set(self, "supported_locales", value)
 
 
-if not MYPY:
-    class GetRealmOtpPolicyArgsDict(TypedDict):
-        algorithm: _builtins.str
-        digits: _builtins.int
-        initial_counter: _builtins.int
-        look_ahead_window: _builtins.int
-        period: _builtins.int
-        type: _builtins.str
-elif False:
-    GetRealmOtpPolicyArgsDict: TypeAlias = Mapping[str, Any]
+class GetRealmOtpPolicyArgsDict(TypedDict):
+    algorithm: _builtins.str
+    digits: _builtins.int
+    initial_counter: _builtins.int
+    look_ahead_window: _builtins.int
+    period: _builtins.int
+    type: _builtins.str
 
 @pulumi.input_type
 class GetRealmOtpPolicyArgs:
@@ -2771,12 +2673,9 @@ class GetRealmOtpPolicyArgs:
         pulumi.set(self, "type", value)
 
 
-if not MYPY:
-    class GetRealmSecurityDefenseArgsDict(TypedDict):
-        brute_force_detections: Sequence['GetRealmSecurityDefenseBruteForceDetectionArgsDict']
-        headers: Sequence['GetRealmSecurityDefenseHeaderArgsDict']
-elif False:
-    GetRealmSecurityDefenseArgsDict: TypeAlias = Mapping[str, Any]
+class GetRealmSecurityDefenseArgsDict(TypedDict):
+    brute_force_detections: Sequence['GetRealmSecurityDefenseBruteForceDetectionArgsDict']
+    headers: Sequence['GetRealmSecurityDefenseHeaderArgsDict']
 
 @pulumi.input_type
 class GetRealmSecurityDefenseArgs:
@@ -2805,18 +2704,15 @@ class GetRealmSecurityDefenseArgs:
         pulumi.set(self, "headers", value)
 
 
-if not MYPY:
-    class GetRealmSecurityDefenseBruteForceDetectionArgsDict(TypedDict):
-        failure_reset_time_seconds: _builtins.int
-        max_failure_wait_seconds: _builtins.int
-        max_login_failures: _builtins.int
-        max_temporary_lockouts: _builtins.int
-        minimum_quick_login_wait_seconds: _builtins.int
-        permanent_lockout: _builtins.bool
-        quick_login_check_milli_seconds: _builtins.int
-        wait_increment_seconds: _builtins.int
-elif False:
-    GetRealmSecurityDefenseBruteForceDetectionArgsDict: TypeAlias = Mapping[str, Any]
+class GetRealmSecurityDefenseBruteForceDetectionArgsDict(TypedDict):
+    failure_reset_time_seconds: _builtins.int
+    max_failure_wait_seconds: _builtins.int
+    max_login_failures: _builtins.int
+    max_temporary_lockouts: _builtins.int
+    minimum_quick_login_wait_seconds: _builtins.int
+    permanent_lockout: _builtins.bool
+    quick_login_check_milli_seconds: _builtins.int
+    wait_increment_seconds: _builtins.int
 
 @pulumi.input_type
 class GetRealmSecurityDefenseBruteForceDetectionArgs:
@@ -2911,18 +2807,15 @@ class GetRealmSecurityDefenseBruteForceDetectionArgs:
         pulumi.set(self, "wait_increment_seconds", value)
 
 
-if not MYPY:
-    class GetRealmSecurityDefenseHeaderArgsDict(TypedDict):
-        content_security_policy: _builtins.str
-        content_security_policy_report_only: _builtins.str
-        referrer_policy: _builtins.str
-        strict_transport_security: _builtins.str
-        x_content_type_options: _builtins.str
-        x_frame_options: _builtins.str
-        x_robots_tag: _builtins.str
-        x_xss_protection: _builtins.str
-elif False:
-    GetRealmSecurityDefenseHeaderArgsDict: TypeAlias = Mapping[str, Any]
+class GetRealmSecurityDefenseHeaderArgsDict(TypedDict):
+    content_security_policy: _builtins.str
+    content_security_policy_report_only: _builtins.str
+    referrer_policy: _builtins.str
+    strict_transport_security: _builtins.str
+    x_content_type_options: _builtins.str
+    x_frame_options: _builtins.str
+    x_robots_tag: _builtins.str
+    x_xss_protection: _builtins.str
 
 @pulumi.input_type
 class GetRealmSecurityDefenseHeaderArgs:
@@ -3017,21 +2910,18 @@ class GetRealmSecurityDefenseHeaderArgs:
         pulumi.set(self, "x_xss_protection", value)
 
 
-if not MYPY:
-    class GetRealmSmtpServerArgsDict(TypedDict):
-        auths: Sequence['GetRealmSmtpServerAuthArgsDict']
-        envelope_from: _builtins.str
-        from_: _builtins.str
-        from_display_name: _builtins.str
-        host: _builtins.str
-        port: _builtins.str
-        reply_to: _builtins.str
-        reply_to_display_name: _builtins.str
-        ssl: _builtins.bool
-        starttls: _builtins.bool
-        token_auths: Sequence['GetRealmSmtpServerTokenAuthArgsDict']
-elif False:
-    GetRealmSmtpServerArgsDict: TypeAlias = Mapping[str, Any]
+class GetRealmSmtpServerArgsDict(TypedDict):
+    auths: Sequence['GetRealmSmtpServerAuthArgsDict']
+    envelope_from: _builtins.str
+    from_: _builtins.str
+    from_display_name: _builtins.str
+    host: _builtins.str
+    port: _builtins.str
+    reply_to: _builtins.str
+    reply_to_display_name: _builtins.str
+    ssl: _builtins.bool
+    starttls: _builtins.bool
+    token_auths: Sequence['GetRealmSmtpServerTokenAuthArgsDict']
 
 @pulumi.input_type
 class GetRealmSmtpServerArgs:
@@ -3159,12 +3049,9 @@ class GetRealmSmtpServerArgs:
         pulumi.set(self, "token_auths", value)
 
 
-if not MYPY:
-    class GetRealmSmtpServerAuthArgsDict(TypedDict):
-        password: _builtins.str
-        username: _builtins.str
-elif False:
-    GetRealmSmtpServerAuthArgsDict: TypeAlias = Mapping[str, Any]
+class GetRealmSmtpServerAuthArgsDict(TypedDict):
+    password: _builtins.str
+    username: _builtins.str
 
 @pulumi.input_type
 class GetRealmSmtpServerAuthArgs:
@@ -3193,15 +3080,12 @@ class GetRealmSmtpServerAuthArgs:
         pulumi.set(self, "username", value)
 
 
-if not MYPY:
-    class GetRealmSmtpServerTokenAuthArgsDict(TypedDict):
-        client_id: _builtins.str
-        client_secret: _builtins.str
-        scope: _builtins.str
-        url: _builtins.str
-        username: _builtins.str
-elif False:
-    GetRealmSmtpServerTokenAuthArgsDict: TypeAlias = Mapping[str, Any]
+class GetRealmSmtpServerTokenAuthArgsDict(TypedDict):
+    client_id: _builtins.str
+    client_secret: _builtins.str
+    scope: _builtins.str
+    url: _builtins.str
+    username: _builtins.str
 
 @pulumi.input_type
 class GetRealmSmtpServerTokenAuthArgs:
@@ -3263,36 +3147,33 @@ class GetRealmSmtpServerTokenAuthArgs:
         pulumi.set(self, "username", value)
 
 
-if not MYPY:
-    class GetRealmWebAuthnPasswordlessPolicyArgsDict(TypedDict):
-        acceptable_aaguids: Sequence[_builtins.str]
-        attestation_conveyance_preference: _builtins.str
-        """
-        Either none, indirect or direct
-        """
-        authenticator_attachment: _builtins.str
-        """
-        Either platform or cross-platform
-        """
-        avoid_same_authenticator_register: _builtins.bool
-        create_timeout: _builtins.int
-        extra_origins: Sequence[_builtins.str]
-        relying_party_entity_name: _builtins.str
-        relying_party_id: _builtins.str
-        require_resident_key: _builtins.str
-        """
-        Either Yes or No
-        """
-        signature_algorithms: Sequence[_builtins.str]
-        """
-        Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
-        """
-        user_verification_requirement: _builtins.str
-        """
-        Either required, preferred or discouraged
-        """
-elif False:
-    GetRealmWebAuthnPasswordlessPolicyArgsDict: TypeAlias = Mapping[str, Any]
+class GetRealmWebAuthnPasswordlessPolicyArgsDict(TypedDict):
+    acceptable_aaguids: Sequence[_builtins.str]
+    attestation_conveyance_preference: _builtins.str
+    """
+    Either none, indirect or direct
+    """
+    authenticator_attachment: _builtins.str
+    """
+    Either platform or cross-platform
+    """
+    avoid_same_authenticator_register: _builtins.bool
+    create_timeout: _builtins.int
+    extra_origins: Sequence[_builtins.str]
+    relying_party_entity_name: _builtins.str
+    relying_party_id: _builtins.str
+    require_resident_key: _builtins.str
+    """
+    Either Yes or No
+    """
+    signature_algorithms: Sequence[_builtins.str]
+    """
+    Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
+    """
+    user_verification_requirement: _builtins.str
+    """
+    Either required, preferred or discouraged
+    """
 
 @pulumi.input_type
 class GetRealmWebAuthnPasswordlessPolicyArgs:
@@ -3442,36 +3323,33 @@ class GetRealmWebAuthnPasswordlessPolicyArgs:
         pulumi.set(self, "user_verification_requirement", value)
 
 
-if not MYPY:
-    class GetRealmWebAuthnPolicyArgsDict(TypedDict):
-        acceptable_aaguids: Sequence[_builtins.str]
-        attestation_conveyance_preference: _builtins.str
-        """
-        Either none, indirect or direct
-        """
-        authenticator_attachment: _builtins.str
-        """
-        Either platform or cross-platform
-        """
-        avoid_same_authenticator_register: _builtins.bool
-        create_timeout: _builtins.int
-        extra_origins: Sequence[_builtins.str]
-        relying_party_entity_name: _builtins.str
-        relying_party_id: _builtins.str
-        require_resident_key: _builtins.str
-        """
-        Either Yes or No
-        """
-        signature_algorithms: Sequence[_builtins.str]
-        """
-        Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
-        """
-        user_verification_requirement: _builtins.str
-        """
-        Either required, preferred or discouraged
-        """
-elif False:
-    GetRealmWebAuthnPolicyArgsDict: TypeAlias = Mapping[str, Any]
+class GetRealmWebAuthnPolicyArgsDict(TypedDict):
+    acceptable_aaguids: Sequence[_builtins.str]
+    attestation_conveyance_preference: _builtins.str
+    """
+    Either none, indirect or direct
+    """
+    authenticator_attachment: _builtins.str
+    """
+    Either platform or cross-platform
+    """
+    avoid_same_authenticator_register: _builtins.bool
+    create_timeout: _builtins.int
+    extra_origins: Sequence[_builtins.str]
+    relying_party_entity_name: _builtins.str
+    relying_party_id: _builtins.str
+    require_resident_key: _builtins.str
+    """
+    Either Yes or No
+    """
+    signature_algorithms: Sequence[_builtins.str]
+    """
+    Keycloak lists ES256, ES384, ES512, RS256, ES384, ES512 at the time of writing
+    """
+    user_verification_requirement: _builtins.str
+    """
+    Either required, preferred or discouraged
+    """
 
 @pulumi.input_type
 class GetRealmWebAuthnPolicyArgs:

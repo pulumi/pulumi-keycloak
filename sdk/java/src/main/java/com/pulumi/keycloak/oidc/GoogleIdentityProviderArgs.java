@@ -168,9 +168,17 @@ public final class GoogleIdentityProviderArgs extends com.pulumi.resources.Resou
         return Optional.ofNullable(this.enabled);
     }
 
+    /**
+     * A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
+     * 
+     */
     @Import(name="extraConfig")
     private @Nullable Output<Map<String,String>> extraConfig;
 
+    /**
+     * @return A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
+     * 
+     */
     public Optional<Output<Map<String,String>>> extraConfig() {
         return Optional.ofNullable(this.extraConfig);
     }
@@ -659,11 +667,23 @@ public final class GoogleIdentityProviderArgs extends com.pulumi.resources.Resou
             return enabled(Output.of(enabled));
         }
 
+        /**
+         * @param extraConfig A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
+         * 
+         * @return builder
+         * 
+         */
         public Builder extraConfig(@Nullable Output<Map<String,String>> extraConfig) {
             $.extraConfig = extraConfig;
             return this;
         }
 
+        /**
+         * @param extraConfig A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
+         * 
+         * @return builder
+         * 
+         */
         public Builder extraConfig(Map<String,String> extraConfig) {
             return extraConfig(Output.of(extraConfig));
         }

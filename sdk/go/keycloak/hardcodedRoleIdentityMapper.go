@@ -77,6 +77,7 @@ import (
 type HardcodedRoleIdentityMapper struct {
 	pulumi.CustomResourceState
 
+	// A map of key/value pairs to add extra configuration attributes to this mapper. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
 	ExtraConfig pulumi.StringMapOutput `pulumi:"extraConfig"`
 	// The IDP alias of the attribute to set.
 	IdentityProviderAlias pulumi.StringOutput `pulumi:"identityProviderAlias"`
@@ -124,6 +125,7 @@ func GetHardcodedRoleIdentityMapper(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering HardcodedRoleIdentityMapper resources.
 type hardcodedRoleIdentityMapperState struct {
+	// A map of key/value pairs to add extra configuration attributes to this mapper. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
 	ExtraConfig map[string]string `pulumi:"extraConfig"`
 	// The IDP alias of the attribute to set.
 	IdentityProviderAlias *string `pulumi:"identityProviderAlias"`
@@ -136,6 +138,7 @@ type hardcodedRoleIdentityMapperState struct {
 }
 
 type HardcodedRoleIdentityMapperState struct {
+	// A map of key/value pairs to add extra configuration attributes to this mapper. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
 	ExtraConfig pulumi.StringMapInput
 	// The IDP alias of the attribute to set.
 	IdentityProviderAlias pulumi.StringPtrInput
@@ -152,6 +155,7 @@ func (HardcodedRoleIdentityMapperState) ElementType() reflect.Type {
 }
 
 type hardcodedRoleIdentityMapperArgs struct {
+	// A map of key/value pairs to add extra configuration attributes to this mapper. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
 	ExtraConfig map[string]string `pulumi:"extraConfig"`
 	// The IDP alias of the attribute to set.
 	IdentityProviderAlias string `pulumi:"identityProviderAlias"`
@@ -165,6 +169,7 @@ type hardcodedRoleIdentityMapperArgs struct {
 
 // The set of arguments for constructing a HardcodedRoleIdentityMapper resource.
 type HardcodedRoleIdentityMapperArgs struct {
+	// A map of key/value pairs to add extra configuration attributes to this mapper. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
 	ExtraConfig pulumi.StringMapInput
 	// The IDP alias of the attribute to set.
 	IdentityProviderAlias pulumi.StringInput
@@ -263,6 +268,7 @@ func (o HardcodedRoleIdentityMapperOutput) ToHardcodedRoleIdentityMapperOutputWi
 	return o
 }
 
+// A map of key/value pairs to add extra configuration attributes to this mapper. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
 func (o HardcodedRoleIdentityMapperOutput) ExtraConfig() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *HardcodedRoleIdentityMapper) pulumi.StringMapOutput { return v.ExtraConfig }).(pulumi.StringMapOutput)
 }

@@ -90,12 +90,6 @@ import javax.annotation.Nullable;
  * 
  * Example:
  * 
- * bash
- * 
- * ```sh
- * $ pulumi import keycloak:authentication/execution:Execution execution_one my-realm/my-flow-alias/30559fcf-6fb8-45ea-8c46-2b86f46ebc17
- * ```
- * 
  */
 @ResourceType(type="keycloak:authentication/execution:Execution")
 public class Execution extends com.pulumi.resources.CustomResource {

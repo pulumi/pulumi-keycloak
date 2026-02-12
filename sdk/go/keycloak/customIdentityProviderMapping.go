@@ -12,6 +12,14 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Allows for creating and managing custom identity provider mapper within Keycloak.
+//
+// The custom identity provider mapper can be used to define custom mapper type for the imported Keycloak user. This can be
+// useful for extending an existing Keycloak mapper with additional config that is not supported by this provider, or when
+// configuring a custom identity provider mapper via Terraform.
+//
+// > If you are using Keycloak 10 or higher, you will need to specify the `extraConfig` argument in order to define a `syncMode` for the mapper.
+//
 // ## Example Usage
 //
 // ```go
@@ -68,17 +76,10 @@ import (
 //
 // ## Import
 //
-// Identity provider mappers can be imported using the format `{{realm_id}}/{{idp_alias}}/{{idp_mapper_id}}`, where `idp_alias` is the identity provider alias, and `idp_mapper_id` is the unique ID that Keycloak
-//
+// Identity provider mappers can be imported using the format `{{realm_id}}/{{idp_alias}}/{{idp_mapper_id}}`, where `idpAlias` is the identity provider alias, and `idpMapperId` is the unique ID that Keycloak
 // assigns to the mapper upon creation. This value can be found in the URI when editing this mapper in the GUI, and is typically a GUID.
 //
 // Example:
-//
-// bash
-//
-// ```sh
-// $ pulumi import keycloak:index/customIdentityProviderMapping:CustomIdentityProviderMapping test_mapper my-realm/my-mapper/f446db98-7133-4e30-b18a-3d28fde7ca1b
-// ```
 type CustomIdentityProviderMapping struct {
 	pulumi.CustomResourceState
 

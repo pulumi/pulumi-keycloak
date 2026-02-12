@@ -71,6 +71,9 @@ export class HardcodedGroupIdentityProviderMapper extends pulumi.CustomResource 
         return obj['__pulumiType'] === HardcodedGroupIdentityProviderMapper.__pulumiType;
     }
 
+    /**
+     * A map of key/value pairs to add extra configuration attributes to this mapper. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
+     */
     declare public readonly extraConfig: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The name of the group which should be assigned to the users.
@@ -130,6 +133,9 @@ export class HardcodedGroupIdentityProviderMapper extends pulumi.CustomResource 
  * Input properties used for looking up and filtering HardcodedGroupIdentityProviderMapper resources.
  */
 export interface HardcodedGroupIdentityProviderMapperState {
+    /**
+     * A map of key/value pairs to add extra configuration attributes to this mapper. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
+     */
     extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The name of the group which should be assigned to the users.
@@ -153,6 +159,9 @@ export interface HardcodedGroupIdentityProviderMapperState {
  * The set of arguments for constructing a HardcodedGroupIdentityProviderMapper resource.
  */
 export interface HardcodedGroupIdentityProviderMapperArgs {
+    /**
+     * A map of key/value pairs to add extra configuration attributes to this mapper. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
+     */
     extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The name of the group which should be assigned to the users.

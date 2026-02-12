@@ -72,17 +72,10 @@ import * as utilities from "../utilities";
  *
  * ## Import
  *
- * Clients can be imported using the format `{{realm_id}}/{{client_keycloak_id}}`, where `client_keycloak_id` is the unique ID that Keycloak
- *
+ * Clients can be imported using the format `{{realm_id}}/{{client_keycloak_id}}`, where `clientKeycloakId` is the unique ID that Keycloak
  * assigns to the client upon creation. This value can be found in the URI when editing this client in the GUI, and is typically a GUID.
  *
  * Example:
- *
- * bash
- *
- * ```sh
- * $ pulumi import keycloak:openid/client:Client openid_client my-realm/dcbc4c73-e478-4928-ae2e-d5e420223352
- * ```
  */
 export class Client extends pulumi.CustomResource {
     /**
@@ -191,11 +184,11 @@ export class Client extends pulumi.CustomResource {
     declare public readonly clientSecretRegenerateWhenChanged: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * Client Secret as write-only argument
+     * The secret for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `clientSecret`.
      */
     declare public readonly clientSecretWo: pulumi.Output<string | undefined>;
     /**
-     * Version of the Client secret write-only argument
+     * Functions as a flag and/or trigger to indicate Terraform when to use the input value in `clientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `clientSecretWo`.
      */
     declare public readonly clientSecretWoVersion: pulumi.Output<number | undefined>;
     /**
@@ -238,6 +231,9 @@ export class Client extends pulumi.CustomResource {
      * When `true`, the parameter `sessionState` will not be included in OpenID Connect Authentication Response.
      */
     declare public readonly excludeSessionStateFromAuthResponse: pulumi.Output<boolean>;
+    /**
+     * A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates. For example, the `extraConfig` map can be used to set Authentication Context Class Reference (ACR) to Level of Authentication (LoA) mapping
+     */
     declare public readonly extraConfig: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * When `true`, frontchannel logout will be enabled for this client. Specify the url with `frontchannelLogoutUrl`. Defaults to `false`.
@@ -558,11 +554,11 @@ export interface ClientState {
     clientSecretRegenerateWhenChanged?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * Client Secret as write-only argument
+     * The secret for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `clientSecret`.
      */
     clientSecretWo?: pulumi.Input<string>;
     /**
-     * Version of the Client secret write-only argument
+     * Functions as a flag and/or trigger to indicate Terraform when to use the input value in `clientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `clientSecretWo`.
      */
     clientSecretWoVersion?: pulumi.Input<number>;
     /**
@@ -605,6 +601,9 @@ export interface ClientState {
      * When `true`, the parameter `sessionState` will not be included in OpenID Connect Authentication Response.
      */
     excludeSessionStateFromAuthResponse?: pulumi.Input<boolean>;
+    /**
+     * A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates. For example, the `extraConfig` map can be used to set Authentication Context Class Reference (ACR) to Level of Authentication (LoA) mapping
+     */
     extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * When `true`, frontchannel logout will be enabled for this client. Specify the url with `frontchannelLogoutUrl`. Defaults to `false`.
@@ -789,11 +788,11 @@ export interface ClientArgs {
     clientSecretRegenerateWhenChanged?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * Client Secret as write-only argument
+     * The secret for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `clientSecret`.
      */
     clientSecretWo?: pulumi.Input<string>;
     /**
-     * Version of the Client secret write-only argument
+     * Functions as a flag and/or trigger to indicate Terraform when to use the input value in `clientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `clientSecretWo`.
      */
     clientSecretWoVersion?: pulumi.Input<number>;
     /**
@@ -836,6 +835,9 @@ export interface ClientArgs {
      * When `true`, the parameter `sessionState` will not be included in OpenID Connect Authentication Response.
      */
     excludeSessionStateFromAuthResponse?: pulumi.Input<boolean>;
+    /**
+     * A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates. For example, the `extraConfig` map can be used to set Authentication Context Class Reference (ACR) to Level of Authentication (LoA) mapping
+     */
     extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * When `true`, frontchannel logout will be enabled for this client. Specify the url with `frontchannelLogoutUrl`. Defaults to `false`.

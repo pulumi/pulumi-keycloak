@@ -1766,12 +1766,6 @@ class Realm(pulumi.CustomResource):
 
         Example:
 
-        bash
-
-        ```sh
-        $ pulumi import keycloak:index/realm:Realm realm my-realm
-        ```
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] attributes: A map of custom attributes to add to the realm.
@@ -1879,12 +1873,6 @@ class Realm(pulumi.CustomResource):
         Realms can be imported using their name.
 
         Example:
-
-        bash
-
-        ```sh
-        $ pulumi import keycloak:index/realm:Realm realm my-realm
-        ```
 
         :param str resource_name: The name of the resource.
         :param RealmArgs args: The arguments to use to populate this resource's properties.

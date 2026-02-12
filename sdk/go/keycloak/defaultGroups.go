@@ -61,15 +61,9 @@ import (
 //
 // ## Import
 //
-// Default groups can be imported using the format `{{realm_id}}` where `realm_id` is the realm the group exists in.
+// Default groups can be imported using the format `{{realm_id}}` where `realmId` is the realm the group exists in.
 //
 // Example:
-//
-// bash
-//
-// ```sh
-// $ pulumi import keycloak:index/defaultGroups:DefaultGroups default my-realm
-// ```
 type DefaultGroups struct {
 	pulumi.CustomResourceState
 

@@ -17,9 +17,17 @@ public final class HardcodedGroupIdentityProviderMapperArgs extends com.pulumi.r
 
     public static final HardcodedGroupIdentityProviderMapperArgs Empty = new HardcodedGroupIdentityProviderMapperArgs();
 
+    /**
+     * A map of key/value pairs to add extra configuration attributes to this mapper. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
+     * 
+     */
     @Import(name="extraConfig")
     private @Nullable Output<Map<String,String>> extraConfig;
 
+    /**
+     * @return A map of key/value pairs to add extra configuration attributes to this mapper. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
+     * 
+     */
     public Optional<Output<Map<String,String>>> extraConfig() {
         return Optional.ofNullable(this.extraConfig);
     }
@@ -112,11 +120,23 @@ public final class HardcodedGroupIdentityProviderMapperArgs extends com.pulumi.r
             $ = new HardcodedGroupIdentityProviderMapperArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param extraConfig A map of key/value pairs to add extra configuration attributes to this mapper. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
+         * 
+         * @return builder
+         * 
+         */
         public Builder extraConfig(@Nullable Output<Map<String,String>> extraConfig) {
             $.extraConfig = extraConfig;
             return this;
         }
 
+        /**
+         * @param extraConfig A map of key/value pairs to add extra configuration attributes to this mapper. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
+         * 
+         * @return builder
+         * 
+         */
         public Builder extraConfig(Map<String,String> extraConfig) {
             return extraConfig(Output.of(extraConfig));
         }

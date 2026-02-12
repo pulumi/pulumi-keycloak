@@ -73,6 +73,7 @@ class IdentityProviderArgs:
         :param pulumi.Input[_builtins.bool] backchannel_supported: Does the external IDP support backchannel logout?. Defaults to `false`.
         :param pulumi.Input[_builtins.str] display_name: The display name for the realm that is shown when logging in to the admin console.
         :param pulumi.Input[_builtins.bool] enabled: When `false`, users and clients will not be able to access this realm. Defaults to `true`.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
         :param pulumi.Input[_builtins.str] first_broker_login_flow_alias: Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
         :param pulumi.Input[_builtins.bool] force_authn: Indicates whether the identity provider must authenticate the presenter directly rather than rely on a previous security context.
         :param pulumi.Input[_builtins.str] gui_order: A number defining the order of this identity provider in the GUI.
@@ -325,6 +326,9 @@ class IdentityProviderArgs:
     @_builtins.property
     @pulumi.getter(name="extraConfig")
     def extra_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
+        """
         return pulumi.get(self, "extra_config")
 
     @extra_config.setter
@@ -712,6 +716,7 @@ class _IdentityProviderState:
         :param pulumi.Input[_builtins.str] display_name: The display name for the realm that is shown when logging in to the admin console.
         :param pulumi.Input[_builtins.bool] enabled: When `false`, users and clients will not be able to access this realm. Defaults to `true`.
         :param pulumi.Input[_builtins.str] entity_id: The Entity ID that will be used to uniquely identify this SAML Service Provider.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
         :param pulumi.Input[_builtins.str] first_broker_login_flow_alias: Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
         :param pulumi.Input[_builtins.bool] force_authn: Indicates whether the identity provider must authenticate the presenter directly rather than rely on a previous security context.
         :param pulumi.Input[_builtins.str] gui_order: A number defining the order of this identity provider in the GUI.
@@ -949,6 +954,9 @@ class _IdentityProviderState:
     @_builtins.property
     @pulumi.getter(name="extraConfig")
     def extra_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
+        """
         return pulumi.get(self, "extra_config")
 
     @extra_config.setter
@@ -1398,12 +1406,6 @@ class IdentityProvider(pulumi.CustomResource):
 
         Example:
 
-        bash
-
-        ```sh
-        $ pulumi import keycloak:saml/identityProvider:IdentityProvider realm_saml_identity_provider my-realm/my-saml-idp
-        ```
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] add_read_token_role_on_create: When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
@@ -1416,6 +1418,7 @@ class IdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] display_name: The display name for the realm that is shown when logging in to the admin console.
         :param pulumi.Input[_builtins.bool] enabled: When `false`, users and clients will not be able to access this realm. Defaults to `true`.
         :param pulumi.Input[_builtins.str] entity_id: The Entity ID that will be used to uniquely identify this SAML Service Provider.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
         :param pulumi.Input[_builtins.str] first_broker_login_flow_alias: Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
         :param pulumi.Input[_builtins.bool] force_authn: Indicates whether the identity provider must authenticate the presenter directly rather than rely on a previous security context.
         :param pulumi.Input[_builtins.str] gui_order: A number defining the order of this identity provider in the GUI.
@@ -1486,12 +1489,6 @@ class IdentityProvider(pulumi.CustomResource):
         Identity providers can be imported using the format `{{realm_id}}/{{idp_alias}}`, where `idp_alias` is the identity provider alias.
 
         Example:
-
-        bash
-
-        ```sh
-        $ pulumi import keycloak:saml/identityProvider:IdentityProvider realm_saml_identity_provider my-realm/my-saml-idp
-        ```
 
         :param str resource_name: The name of the resource.
         :param IdentityProviderArgs args: The arguments to use to populate this resource's properties.
@@ -1674,6 +1671,7 @@ class IdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] display_name: The display name for the realm that is shown when logging in to the admin console.
         :param pulumi.Input[_builtins.bool] enabled: When `false`, users and clients will not be able to access this realm. Defaults to `true`.
         :param pulumi.Input[_builtins.str] entity_id: The Entity ID that will be used to uniquely identify this SAML Service Provider.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
         :param pulumi.Input[_builtins.str] first_broker_login_flow_alias: Alias of authentication flow, which is triggered after first login with this identity provider. Term 'First Login' means that there is not yet existing Keycloak account linked with the authenticated identity provider account. Defaults to `first broker login`.
         :param pulumi.Input[_builtins.bool] force_authn: Indicates whether the identity provider must authenticate the presenter directly rather than rely on a previous security context.
         :param pulumi.Input[_builtins.str] gui_order: A number defining the order of this identity provider in the GUI.
@@ -1835,6 +1833,9 @@ class IdentityProvider(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="extraConfig")
     def extra_config(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:
+        """
+        A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
+        """
         return pulumi.get(self, "extra_config")
 
     @_builtins.property

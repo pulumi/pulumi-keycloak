@@ -60,15 +60,9 @@ import (
 //
 // ## Import
 //
-// Facebook Identity providers can be imported using the format {{realm_id}}/{{idp_alias}}, where idp_alias is the identity provider alias.
+// Facebook Identity providers can be imported using the format {{realm_id}}/{{idp_alias}}, where idpAlias is the identity provider alias.
 //
 // Example:
-//
-// bash
-//
-// ```sh
-// $ pulumi import keycloak:oidc/facebookIdentityProvider:FacebookIdentityProvider facebook_identity_provider my-realm/my-facebook-idp
-// ```
 type FacebookIdentityProvider struct {
 	pulumi.CustomResourceState
 
@@ -91,7 +85,8 @@ type FacebookIdentityProvider struct {
 	// Display name for the Facebook identity provider in the GUI.
 	DisplayName pulumi.StringOutput `pulumi:"displayName"`
 	// When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
-	Enabled     pulumi.BoolPtrOutput   `pulumi:"enabled"`
+	Enabled pulumi.BoolPtrOutput `pulumi:"enabled"`
+	// A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
 	ExtraConfig pulumi.StringMapOutput `pulumi:"extraConfig"`
 	// Provide additional fields which would be fetched using the profile request. This will be appended to the default set of `id,name,email,first_name,last_name`.
 	FetchedFields pulumi.StringPtrOutput `pulumi:"fetchedFields"`
@@ -188,7 +183,8 @@ type facebookIdentityProviderState struct {
 	// Display name for the Facebook identity provider in the GUI.
 	DisplayName *string `pulumi:"displayName"`
 	// When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
-	Enabled     *bool             `pulumi:"enabled"`
+	Enabled *bool `pulumi:"enabled"`
+	// A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
 	ExtraConfig map[string]string `pulumi:"extraConfig"`
 	// Provide additional fields which would be fetched using the profile request. This will be appended to the default set of `id,name,email,first_name,last_name`.
 	FetchedFields *string `pulumi:"fetchedFields"`
@@ -240,7 +236,8 @@ type FacebookIdentityProviderState struct {
 	// Display name for the Facebook identity provider in the GUI.
 	DisplayName pulumi.StringPtrInput
 	// When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
-	Enabled     pulumi.BoolPtrInput
+	Enabled pulumi.BoolPtrInput
+	// A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
 	ExtraConfig pulumi.StringMapInput
 	// Provide additional fields which would be fetched using the profile request. This will be appended to the default set of `id,name,email,first_name,last_name`.
 	FetchedFields pulumi.StringPtrInput
@@ -296,7 +293,8 @@ type facebookIdentityProviderArgs struct {
 	// Display name for the Facebook identity provider in the GUI.
 	DisplayName *string `pulumi:"displayName"`
 	// When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
-	Enabled     *bool             `pulumi:"enabled"`
+	Enabled *bool `pulumi:"enabled"`
+	// A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
 	ExtraConfig map[string]string `pulumi:"extraConfig"`
 	// Provide additional fields which would be fetched using the profile request. This will be appended to the default set of `id,name,email,first_name,last_name`.
 	FetchedFields *string `pulumi:"fetchedFields"`
@@ -347,7 +345,8 @@ type FacebookIdentityProviderArgs struct {
 	// Display name for the Facebook identity provider in the GUI.
 	DisplayName pulumi.StringPtrInput
 	// When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
-	Enabled     pulumi.BoolPtrInput
+	Enabled pulumi.BoolPtrInput
+	// A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
 	ExtraConfig pulumi.StringMapInput
 	// Provide additional fields which would be fetched using the profile request. This will be appended to the default set of `id,name,email,first_name,last_name`.
 	FetchedFields pulumi.StringPtrInput
@@ -514,6 +513,7 @@ func (o FacebookIdentityProviderOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *FacebookIdentityProvider) pulumi.BoolPtrOutput { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
 
+// A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
 func (o FacebookIdentityProviderOutput) ExtraConfig() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *FacebookIdentityProvider) pulumi.StringMapOutput { return v.ExtraConfig }).(pulumi.StringMapOutput)
 }

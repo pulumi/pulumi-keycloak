@@ -76,6 +76,9 @@ export class HardcodedAttributeIdentityProviderMapper extends pulumi.CustomResou
      * The value to set to the attribute. You can hardcode any value like 'foo'.
      */
     declare public readonly attributeValue: pulumi.Output<string | undefined>;
+    /**
+     * A map of key/value pairs to add extra configuration attributes to this mapper. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
+     */
     declare public readonly extraConfig: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The IDP alias of the attribute to set.
@@ -150,6 +153,9 @@ export interface HardcodedAttributeIdentityProviderMapperState {
      * The value to set to the attribute. You can hardcode any value like 'foo'.
      */
     attributeValue?: pulumi.Input<string>;
+    /**
+     * A map of key/value pairs to add extra configuration attributes to this mapper. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
+     */
     extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The IDP alias of the attribute to set.
@@ -181,6 +187,9 @@ export interface HardcodedAttributeIdentityProviderMapperArgs {
      * The value to set to the attribute. You can hardcode any value like 'foo'.
      */
     attributeValue?: pulumi.Input<string>;
+    /**
+     * A map of key/value pairs to add extra configuration attributes to this mapper. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
+     */
     extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The IDP alias of the attribute to set.

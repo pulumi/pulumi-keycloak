@@ -45,17 +45,10 @@ namespace Pulumi.Keycloak.OpenId
     /// 
     /// ## Import
     /// 
-    /// Client scopes can be imported using the format `{{realm_id}}/{{client_scope_id}}`, where `client_scope_id` is the unique ID that Keycloak
-    /// 
+    /// Client scopes can be imported using the format `{{realm_id}}/{{client_scope_id}}`, where `ClientScopeId` is the unique ID that Keycloak
     /// assigns to the client scope upon creation. This value can be found in the URI when editing this client scope in the GUI, and is typically a GUID.
     /// 
     /// Example:
-    /// 
-    /// bash
-    /// 
-    /// ```sh
-    /// $ pulumi import keycloak:openid/clientScope:ClientScope openid_client_scope my-realm/8e8f7fe1-df9b-40ed-bed3-4597aa0dac52
-    /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:openid/clientScope:ClientScope")]
     public partial class ClientScope : global::Pulumi.CustomResource

@@ -50,15 +50,9 @@ namespace Pulumi.Keycloak
     /// 
     /// ## Import
     /// 
-    /// Default groups can be imported using the format `{{realm_id}}` where `realm_id` is the realm the group exists in.
+    /// Default groups can be imported using the format `{{realm_id}}` where `RealmId` is the realm the group exists in.
     /// 
     /// Example:
-    /// 
-    /// bash
-    /// 
-    /// ```sh
-    /// $ pulumi import keycloak:index/defaultGroups:DefaultGroups default my-realm
-    /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:index/defaultGroups:DefaultGroups")]
     public partial class DefaultGroups : global::Pulumi.CustomResource

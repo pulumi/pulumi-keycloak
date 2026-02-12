@@ -230,9 +230,17 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.encryptionCertificate);
     }
 
+    /**
+     * A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that is not yet supported by this Terraform provider. Use this attribute at your own risk, as s may conflict with top-level configuration attributes in future provider updates.
+     * 
+     */
     @Import(name="extraConfig")
     private @Nullable Output<Map<String,String>> extraConfig;
 
+    /**
+     * @return A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that is not yet supported by this Terraform provider. Use this attribute at your own risk, as s may conflict with top-level configuration attributes in future provider updates.
+     * 
+     */
     public Optional<Output<Map<String,String>>> extraConfig() {
         return Optional.ofNullable(this.extraConfig);
     }
@@ -921,11 +929,23 @@ public final class ClientArgs extends com.pulumi.resources.ResourceArgs {
             return encryptionCertificate(Output.of(encryptionCertificate));
         }
 
+        /**
+         * @param extraConfig A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that is not yet supported by this Terraform provider. Use this attribute at your own risk, as s may conflict with top-level configuration attributes in future provider updates.
+         * 
+         * @return builder
+         * 
+         */
         public Builder extraConfig(@Nullable Output<Map<String,String>> extraConfig) {
             $.extraConfig = extraConfig;
             return this;
         }
 
+        /**
+         * @param extraConfig A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that is not yet supported by this Terraform provider. Use this attribute at your own risk, as s may conflict with top-level configuration attributes in future provider updates.
+         * 
+         * @return builder
+         * 
+         */
         public Builder extraConfig(Map<String,String> extraConfig) {
             return extraConfig(Output.of(extraConfig));
         }

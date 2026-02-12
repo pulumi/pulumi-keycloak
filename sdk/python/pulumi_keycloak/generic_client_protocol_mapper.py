@@ -310,12 +310,6 @@ class GenericClientProtocolMapper(pulumi.CustomResource):
 
         Example:
 
-        bash
-
-        ```sh
-        $ pulumi import keycloak:index/genericClientProtocolMapper:GenericClientProtocolMapper saml_hardcode_attribute_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
-        ```
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] client_id: The client this protocol mapper is attached to.
@@ -375,12 +369,6 @@ class GenericClientProtocolMapper(pulumi.CustomResource):
         Protocol mappers can be imported using the following format: `{{realm_id}}/client/{{client_keycloak_id}}/{{protocol_mapper_id}}`
 
         Example:
-
-        bash
-
-        ```sh
-        $ pulumi import keycloak:index/genericClientProtocolMapper:GenericClientProtocolMapper saml_hardcode_attribute_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
-        ```
 
         :param str resource_name: The name of the resource.
         :param GenericClientProtocolMapperArgs args: The arguments to use to populate this resource's properties.

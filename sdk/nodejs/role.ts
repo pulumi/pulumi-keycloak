@@ -136,17 +136,10 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Roles can be imported using the format `{{realm_id}}/{{role_id}}`, where `role_id` is the unique ID that Keycloak assigns
- *
+ * Roles can be imported using the format `{{realm_id}}/{{role_id}}`, where `roleId` is the unique ID that Keycloak assigns
  * to the role. The ID is not easy to find in the GUI, but it appears in the URL when editing the role.
  *
  * Example:
- *
- * bash
- *
- * ```sh
- * $ pulumi import keycloak:index/role:Role role my-realm/7e8cf32a-8acb-4d34-89c4-04fb1d10ccad
- * ```
  */
 export class Role extends pulumi.CustomResource {
     /**

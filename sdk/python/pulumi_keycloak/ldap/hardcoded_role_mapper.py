@@ -239,7 +239,7 @@ class HardcodedRoleMapper(pulumi.CustomResource):
             id=realm.id,
             realm_management=realm_management
         ).apply(lambda resolved_outputs: keycloak.get_role_output(realm_id=resolved_outputs['id'],
-            client_id=resolved_outputs['realm_management'],
+            client_id=realm_management.id,
             name="create-client"))
 
         assign_admin_role_to_all_users = keycloak.ldap.HardcodedRoleMapper("assign_admin_role_to_all_users",
@@ -249,23 +249,16 @@ class HardcodedRoleMapper(pulumi.CustomResource):
             role=pulumi.Output.all(
                 realm_management=realm_management,
                 create_client=create_client
-        ).apply(lambda resolved_outputs: f"{resolved_outputs['realm_management']}.{resolved_outputs['create_client']}")
+        ).apply(lambda resolved_outputs: f"{realm_management.client_id}.{create_client.name}")
         )
         ```
 
         ## Import
 
         LDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`.
-
         The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs.
 
         Example:
-
-        bash
-
-        ```sh
-        $ pulumi import keycloak:ldap/hardcodedRoleMapper:HardcodedRoleMapper assign_admin_role_to_all_users my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
-        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -351,7 +344,7 @@ class HardcodedRoleMapper(pulumi.CustomResource):
             id=realm.id,
             realm_management=realm_management
         ).apply(lambda resolved_outputs: keycloak.get_role_output(realm_id=resolved_outputs['id'],
-            client_id=resolved_outputs['realm_management'],
+            client_id=realm_management.id,
             name="create-client"))
 
         assign_admin_role_to_all_users = keycloak.ldap.HardcodedRoleMapper("assign_admin_role_to_all_users",
@@ -361,23 +354,16 @@ class HardcodedRoleMapper(pulumi.CustomResource):
             role=pulumi.Output.all(
                 realm_management=realm_management,
                 create_client=create_client
-        ).apply(lambda resolved_outputs: f"{resolved_outputs['realm_management']}.{resolved_outputs['create_client']}")
+        ).apply(lambda resolved_outputs: f"{realm_management.client_id}.{create_client.name}")
         )
         ```
 
         ## Import
 
         LDAP mappers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}/{{ldap_mapper_id}}`.
-
         The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs.
 
         Example:
-
-        bash
-
-        ```sh
-        $ pulumi import keycloak:ldap/hardcodedRoleMapper:HardcodedRoleMapper assign_admin_role_to_all_users my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
-        ```
 
         :param str resource_name: The name of the resource.
         :param HardcodedRoleMapperArgs args: The arguments to use to populate this resource's properties.

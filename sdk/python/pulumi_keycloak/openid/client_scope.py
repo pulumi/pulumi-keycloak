@@ -262,16 +262,9 @@ class ClientScope(pulumi.CustomResource):
         ## Import
 
         Client scopes can be imported using the format `{{realm_id}}/{{client_scope_id}}`, where `client_scope_id` is the unique ID that Keycloak
-
         assigns to the client scope upon creation. This value can be found in the URI when editing this client scope in the GUI, and is typically a GUID.
 
         Example:
-
-        bash
-
-        ```sh
-        $ pulumi import keycloak:openid/clientScope:ClientScope openid_client_scope my-realm/8e8f7fe1-df9b-40ed-bed3-4597aa0dac52
-        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -314,16 +307,9 @@ class ClientScope(pulumi.CustomResource):
         ## Import
 
         Client scopes can be imported using the format `{{realm_id}}/{{client_scope_id}}`, where `client_scope_id` is the unique ID that Keycloak
-
         assigns to the client scope upon creation. This value can be found in the URI when editing this client scope in the GUI, and is typically a GUID.
 
         Example:
-
-        bash
-
-        ```sh
-        $ pulumi import keycloak:openid/clientScope:ClientScope openid_client_scope my-realm/8e8f7fe1-df9b-40ed-bed3-4597aa0dac52
-        ```
 
         :param str resource_name: The name of the resource.
         :param ClientScopeArgs args: The arguments to use to populate this resource's properties.

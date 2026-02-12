@@ -122,17 +122,10 @@ import (
 //
 // ## Import
 //
-// Clients can be imported using the format `{{realm_id}}/{{client_keycloak_id}}`, where `client_keycloak_id` is the unique ID that Keycloak
-//
+// Clients can be imported using the format `{{realm_id}}/{{client_keycloak_id}}`, where `clientKeycloakId` is the unique ID that Keycloak
 // assigns to the client upon creation. This value can be found in the URI when editing this client in the GUI, and is typically a GUID.
 //
 // Example:
-//
-// bash
-//
-// ```sh
-// $ pulumi import keycloak:openid/client:Client openid_client my-realm/dcbc4c73-e478-4928-ae2e-d5e420223352
-// ```
 type Client struct {
 	pulumi.CustomResourceState
 
@@ -180,9 +173,9 @@ type Client struct {
 	// Arbitrary map of values that, when changed, will trigger rotation of the secret. NOTE! Conflicts with `clientSecret`, `clientSecretWo` and `clientSecretWoVersion` attribute and can't be used together
 	ClientSecretRegenerateWhenChanged pulumi.StringMapOutput `pulumi:"clientSecretRegenerateWhenChanged"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-	// Client Secret as write-only argument
+	// The secret for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `clientSecret`.
 	ClientSecretWo pulumi.StringPtrOutput `pulumi:"clientSecretWo"`
-	// Version of the Client secret write-only argument
+	// Functions as a flag and/or trigger to indicate Terraform when to use the input value in `clientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `clientSecretWo`.
 	ClientSecretWoVersion pulumi.IntPtrOutput `pulumi:"clientSecretWoVersion"`
 	// Time a client offline session is allowed to be idle before it expires. Offline tokens are invalidated when a client offline session is expired. If not set it uses the Offline Session Idle value.
 	ClientSessionIdleTimeout pulumi.StringOutput `pulumi:"clientSessionIdleTimeout"`
@@ -203,8 +196,9 @@ type Client struct {
 	// When `true`, the parameter `iss` will not be included in OpenID Connect Authentication Response.
 	ExcludeIssuerFromAuthResponse pulumi.BoolOutput `pulumi:"excludeIssuerFromAuthResponse"`
 	// When `true`, the parameter `sessionState` will not be included in OpenID Connect Authentication Response.
-	ExcludeSessionStateFromAuthResponse pulumi.BoolOutput      `pulumi:"excludeSessionStateFromAuthResponse"`
-	ExtraConfig                         pulumi.StringMapOutput `pulumi:"extraConfig"`
+	ExcludeSessionStateFromAuthResponse pulumi.BoolOutput `pulumi:"excludeSessionStateFromAuthResponse"`
+	// A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates. For example, the `extraConfig` map can be used to set Authentication Context Class Reference (ACR) to Level of Authentication (LoA) mapping
+	ExtraConfig pulumi.StringMapOutput `pulumi:"extraConfig"`
 	// When `true`, frontchannel logout will be enabled for this client. Specify the url with `frontchannelLogoutUrl`. Defaults to `false`.
 	FrontchannelLogoutEnabled pulumi.BoolOutput `pulumi:"frontchannelLogoutEnabled"`
 	// The frontchannel logout url. This is applicable only when `frontchannelLogoutEnabled` is `true`.
@@ -348,9 +342,9 @@ type clientState struct {
 	// Arbitrary map of values that, when changed, will trigger rotation of the secret. NOTE! Conflicts with `clientSecret`, `clientSecretWo` and `clientSecretWoVersion` attribute and can't be used together
 	ClientSecretRegenerateWhenChanged map[string]string `pulumi:"clientSecretRegenerateWhenChanged"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-	// Client Secret as write-only argument
+	// The secret for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `clientSecret`.
 	ClientSecretWo *string `pulumi:"clientSecretWo"`
-	// Version of the Client secret write-only argument
+	// Functions as a flag and/or trigger to indicate Terraform when to use the input value in `clientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `clientSecretWo`.
 	ClientSecretWoVersion *int `pulumi:"clientSecretWoVersion"`
 	// Time a client offline session is allowed to be idle before it expires. Offline tokens are invalidated when a client offline session is expired. If not set it uses the Offline Session Idle value.
 	ClientSessionIdleTimeout *string `pulumi:"clientSessionIdleTimeout"`
@@ -371,8 +365,9 @@ type clientState struct {
 	// When `true`, the parameter `iss` will not be included in OpenID Connect Authentication Response.
 	ExcludeIssuerFromAuthResponse *bool `pulumi:"excludeIssuerFromAuthResponse"`
 	// When `true`, the parameter `sessionState` will not be included in OpenID Connect Authentication Response.
-	ExcludeSessionStateFromAuthResponse *bool             `pulumi:"excludeSessionStateFromAuthResponse"`
-	ExtraConfig                         map[string]string `pulumi:"extraConfig"`
+	ExcludeSessionStateFromAuthResponse *bool `pulumi:"excludeSessionStateFromAuthResponse"`
+	// A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates. For example, the `extraConfig` map can be used to set Authentication Context Class Reference (ACR) to Level of Authentication (LoA) mapping
+	ExtraConfig map[string]string `pulumi:"extraConfig"`
 	// When `true`, frontchannel logout will be enabled for this client. Specify the url with `frontchannelLogoutUrl`. Defaults to `false`.
 	FrontchannelLogoutEnabled *bool `pulumi:"frontchannelLogoutEnabled"`
 	// The frontchannel logout url. This is applicable only when `frontchannelLogoutEnabled` is `true`.
@@ -470,9 +465,9 @@ type ClientState struct {
 	// Arbitrary map of values that, when changed, will trigger rotation of the secret. NOTE! Conflicts with `clientSecret`, `clientSecretWo` and `clientSecretWoVersion` attribute and can't be used together
 	ClientSecretRegenerateWhenChanged pulumi.StringMapInput
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-	// Client Secret as write-only argument
+	// The secret for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `clientSecret`.
 	ClientSecretWo pulumi.StringPtrInput
-	// Version of the Client secret write-only argument
+	// Functions as a flag and/or trigger to indicate Terraform when to use the input value in `clientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `clientSecretWo`.
 	ClientSecretWoVersion pulumi.IntPtrInput
 	// Time a client offline session is allowed to be idle before it expires. Offline tokens are invalidated when a client offline session is expired. If not set it uses the Offline Session Idle value.
 	ClientSessionIdleTimeout pulumi.StringPtrInput
@@ -494,7 +489,8 @@ type ClientState struct {
 	ExcludeIssuerFromAuthResponse pulumi.BoolPtrInput
 	// When `true`, the parameter `sessionState` will not be included in OpenID Connect Authentication Response.
 	ExcludeSessionStateFromAuthResponse pulumi.BoolPtrInput
-	ExtraConfig                         pulumi.StringMapInput
+	// A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates. For example, the `extraConfig` map can be used to set Authentication Context Class Reference (ACR) to Level of Authentication (LoA) mapping
+	ExtraConfig pulumi.StringMapInput
 	// When `true`, frontchannel logout will be enabled for this client. Specify the url with `frontchannelLogoutUrl`. Defaults to `false`.
 	FrontchannelLogoutEnabled pulumi.BoolPtrInput
 	// The frontchannel logout url. This is applicable only when `frontchannelLogoutEnabled` is `true`.
@@ -596,9 +592,9 @@ type clientArgs struct {
 	// Arbitrary map of values that, when changed, will trigger rotation of the secret. NOTE! Conflicts with `clientSecret`, `clientSecretWo` and `clientSecretWoVersion` attribute and can't be used together
 	ClientSecretRegenerateWhenChanged map[string]string `pulumi:"clientSecretRegenerateWhenChanged"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-	// Client Secret as write-only argument
+	// The secret for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `clientSecret`.
 	ClientSecretWo *string `pulumi:"clientSecretWo"`
-	// Version of the Client secret write-only argument
+	// Functions as a flag and/or trigger to indicate Terraform when to use the input value in `clientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `clientSecretWo`.
 	ClientSecretWoVersion *int `pulumi:"clientSecretWoVersion"`
 	// Time a client offline session is allowed to be idle before it expires. Offline tokens are invalidated when a client offline session is expired. If not set it uses the Offline Session Idle value.
 	ClientSessionIdleTimeout *string `pulumi:"clientSessionIdleTimeout"`
@@ -619,8 +615,9 @@ type clientArgs struct {
 	// When `true`, the parameter `iss` will not be included in OpenID Connect Authentication Response.
 	ExcludeIssuerFromAuthResponse *bool `pulumi:"excludeIssuerFromAuthResponse"`
 	// When `true`, the parameter `sessionState` will not be included in OpenID Connect Authentication Response.
-	ExcludeSessionStateFromAuthResponse *bool             `pulumi:"excludeSessionStateFromAuthResponse"`
-	ExtraConfig                         map[string]string `pulumi:"extraConfig"`
+	ExcludeSessionStateFromAuthResponse *bool `pulumi:"excludeSessionStateFromAuthResponse"`
+	// A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates. For example, the `extraConfig` map can be used to set Authentication Context Class Reference (ACR) to Level of Authentication (LoA) mapping
+	ExtraConfig map[string]string `pulumi:"extraConfig"`
 	// When `true`, frontchannel logout will be enabled for this client. Specify the url with `frontchannelLogoutUrl`. Defaults to `false`.
 	FrontchannelLogoutEnabled *bool `pulumi:"frontchannelLogoutEnabled"`
 	// The frontchannel logout url. This is applicable only when `frontchannelLogoutEnabled` is `true`.
@@ -715,9 +712,9 @@ type ClientArgs struct {
 	// Arbitrary map of values that, when changed, will trigger rotation of the secret. NOTE! Conflicts with `clientSecret`, `clientSecretWo` and `clientSecretWoVersion` attribute and can't be used together
 	ClientSecretRegenerateWhenChanged pulumi.StringMapInput
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-	// Client Secret as write-only argument
+	// The secret for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `clientSecret`.
 	ClientSecretWo pulumi.StringPtrInput
-	// Version of the Client secret write-only argument
+	// Functions as a flag and/or trigger to indicate Terraform when to use the input value in `clientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `clientSecretWo`.
 	ClientSecretWoVersion pulumi.IntPtrInput
 	// Time a client offline session is allowed to be idle before it expires. Offline tokens are invalidated when a client offline session is expired. If not set it uses the Offline Session Idle value.
 	ClientSessionIdleTimeout pulumi.StringPtrInput
@@ -739,7 +736,8 @@ type ClientArgs struct {
 	ExcludeIssuerFromAuthResponse pulumi.BoolPtrInput
 	// When `true`, the parameter `sessionState` will not be included in OpenID Connect Authentication Response.
 	ExcludeSessionStateFromAuthResponse pulumi.BoolPtrInput
-	ExtraConfig                         pulumi.StringMapInput
+	// A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates. For example, the `extraConfig` map can be used to set Authentication Context Class Reference (ACR) to Level of Authentication (LoA) mapping
+	ExtraConfig pulumi.StringMapInput
 	// When `true`, frontchannel logout will be enabled for this client. Specify the url with `frontchannelLogoutUrl`. Defaults to `false`.
 	FrontchannelLogoutEnabled pulumi.BoolPtrInput
 	// The frontchannel logout url. This is applicable only when `frontchannelLogoutEnabled` is `true`.
@@ -972,12 +970,12 @@ func (o ClientOutput) ClientSecretRegenerateWhenChanged() pulumi.StringMapOutput
 }
 
 // **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-// Client Secret as write-only argument
+// The secret for clients with an `accessType` of `CONFIDENTIAL` or `BEARER-ONLY`. This is a write-only argument and Terraform does not store them in state or plan files. If omitted, this will fallback to use `clientSecret`.
 func (o ClientOutput) ClientSecretWo() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Client) pulumi.StringPtrOutput { return v.ClientSecretWo }).(pulumi.StringPtrOutput)
 }
 
-// Version of the Client secret write-only argument
+// Functions as a flag and/or trigger to indicate Terraform when to use the input value in `clientSecretWo` to execute a Create or Update operation. The value of this argument is stored in the state and plan files. Required when using `clientSecretWo`.
 func (o ClientOutput) ClientSecretWoVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *Client) pulumi.IntPtrOutput { return v.ClientSecretWoVersion }).(pulumi.IntPtrOutput)
 }
@@ -1032,6 +1030,7 @@ func (o ClientOutput) ExcludeSessionStateFromAuthResponse() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Client) pulumi.BoolOutput { return v.ExcludeSessionStateFromAuthResponse }).(pulumi.BoolOutput)
 }
 
+// A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates. For example, the `extraConfig` map can be used to set Authentication Context Class Reference (ACR) to Level of Authentication (LoA) mapping
 func (o ClientOutput) ExtraConfig() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *Client) pulumi.StringMapOutput { return v.ExtraConfig }).(pulumi.StringMapOutput)
 }

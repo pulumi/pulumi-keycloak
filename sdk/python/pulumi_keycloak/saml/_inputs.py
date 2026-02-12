@@ -19,20 +19,15 @@ __all__ = [
     'ClientAuthenticationFlowBindingOverridesArgsDict',
 ]
 
-MYPY = False
-
-if not MYPY:
-    class ClientAuthenticationFlowBindingOverridesArgsDict(TypedDict):
-        browser_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Browser flow id, (flow needs to exist)
-        """
-        direct_grant_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Direct grant flow id (flow needs to exist)
-        """
-elif False:
-    ClientAuthenticationFlowBindingOverridesArgsDict: TypeAlias = Mapping[str, Any]
+class ClientAuthenticationFlowBindingOverridesArgsDict(TypedDict):
+    browser_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Browser flow id, (flow needs to exist)
+    """
+    direct_grant_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Direct grant flow id (flow needs to exist)
+    """
 
 @pulumi.input_type
 class ClientAuthenticationFlowBindingOverridesArgs:

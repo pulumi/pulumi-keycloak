@@ -57,6 +57,7 @@ class FacebookIdentityProviderArgs:
         :param pulumi.Input[_builtins.bool] disable_user_info: When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
         :param pulumi.Input[_builtins.str] display_name: Display name for the Facebook identity provider in the GUI.
         :param pulumi.Input[_builtins.bool] enabled: When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
         :param pulumi.Input[_builtins.str] fetched_fields: Provide additional fields which would be fetched using the profile request. This will be appended to the default set of `id,name,email,first_name,last_name`.
         :param pulumi.Input[_builtins.str] first_broker_login_flow_alias: The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
         :param pulumi.Input[_builtins.str] gui_order: A number defining the order of this identity provider in the GUI.
@@ -252,6 +253,9 @@ class FacebookIdentityProviderArgs:
     @_builtins.property
     @pulumi.getter(name="extraConfig")
     def extra_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
+        """
         return pulumi.get(self, "extra_config")
 
     @extra_config.setter
@@ -450,6 +454,7 @@ class _FacebookIdentityProviderState:
         :param pulumi.Input[_builtins.bool] disable_user_info: When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
         :param pulumi.Input[_builtins.str] display_name: Display name for the Facebook identity provider in the GUI.
         :param pulumi.Input[_builtins.bool] enabled: When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
         :param pulumi.Input[_builtins.str] fetched_fields: Provide additional fields which would be fetched using the profile request. This will be appended to the default set of `id,name,email,first_name,last_name`.
         :param pulumi.Input[_builtins.str] first_broker_login_flow_alias: The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
         :param pulumi.Input[_builtins.str] gui_order: A number defining the order of this identity provider in the GUI.
@@ -640,6 +645,9 @@ class _FacebookIdentityProviderState:
     @_builtins.property
     @pulumi.getter(name="extraConfig")
     def extra_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
+        """
         return pulumi.get(self, "extra_config")
 
     @extra_config.setter
@@ -885,12 +893,6 @@ class FacebookIdentityProvider(pulumi.CustomResource):
 
         Example:
 
-        bash
-
-        ```sh
-        $ pulumi import keycloak:oidc/facebookIdentityProvider:FacebookIdentityProvider facebook_identity_provider my-realm/my-facebook-idp
-        ```
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] accepts_prompt_none_forward_from_client: When `true`, unauthenticated requests with `prompt=none` will be forwarded to Google instead of returning an error. Defaults to `false`.
@@ -903,6 +905,7 @@ class FacebookIdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] disable_user_info: When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
         :param pulumi.Input[_builtins.str] display_name: Display name for the Facebook identity provider in the GUI.
         :param pulumi.Input[_builtins.bool] enabled: When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
         :param pulumi.Input[_builtins.str] fetched_fields: Provide additional fields which would be fetched using the profile request. This will be appended to the default set of `id,name,email,first_name,last_name`.
         :param pulumi.Input[_builtins.str] first_broker_login_flow_alias: The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
         :param pulumi.Input[_builtins.str] gui_order: A number defining the order of this identity provider in the GUI.
@@ -953,12 +956,6 @@ class FacebookIdentityProvider(pulumi.CustomResource):
         Facebook Identity providers can be imported using the format {{realm_id}}/{{idp_alias}}, where idp_alias is the identity provider alias.
 
         Example:
-
-        bash
-
-        ```sh
-        $ pulumi import keycloak:oidc/facebookIdentityProvider:FacebookIdentityProvider facebook_identity_provider my-realm/my-facebook-idp
-        ```
 
         :param str resource_name: The name of the resource.
         :param FacebookIdentityProviderArgs args: The arguments to use to populate this resource's properties.
@@ -1096,6 +1093,7 @@ class FacebookIdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] disable_user_info: When `true`, disables the usage of the user info service to obtain additional user information. Defaults to `false`.
         :param pulumi.Input[_builtins.str] display_name: Display name for the Facebook identity provider in the GUI.
         :param pulumi.Input[_builtins.bool] enabled: When `true`, users will be able to log in to this realm using this identity provider. Defaults to `true`.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
         :param pulumi.Input[_builtins.str] fetched_fields: Provide additional fields which would be fetched using the profile request. This will be appended to the default set of `id,name,email,first_name,last_name`.
         :param pulumi.Input[_builtins.str] first_broker_login_flow_alias: The authentication flow to use when users log in for the first time through this identity provider. Defaults to `first broker login`.
         :param pulumi.Input[_builtins.str] gui_order: A number defining the order of this identity provider in the GUI.
@@ -1225,6 +1223,9 @@ class FacebookIdentityProvider(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="extraConfig")
     def extra_config(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:
+        """
+        A map of key/value pairs to add extra configuration to this identity provider. This can be used for custom oidc provider implementations, or to add configuration that is not yet supported by this Terraform provider. Use this attribute at your own risk, as custom attributes may conflict with top-level configuration attributes in future provider updates.
+        """
         return pulumi.get(self, "extra_config")
 
     @_builtins.property

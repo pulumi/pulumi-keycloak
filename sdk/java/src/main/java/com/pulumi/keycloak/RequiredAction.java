@@ -88,12 +88,6 @@ import javax.annotation.Nullable;
  * 
  * Example:
  * 
- * bash
- * 
- * ```sh
- * $ pulumi import keycloak:index/requiredAction:RequiredAction required_action my-realm/my-default-action-alias
- * ```
- * 
  */
 @ResourceType(type="keycloak:index/requiredAction:RequiredAction")
 public class RequiredAction extends com.pulumi.resources.CustomResource {
