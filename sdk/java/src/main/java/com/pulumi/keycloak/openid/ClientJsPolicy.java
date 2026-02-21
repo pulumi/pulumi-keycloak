@@ -14,6 +14,104 @@ import java.lang.String;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * Allows you to manage JavaScript policies.
+ * 
+ * JavaScript policies allow you to define conditions using JavaScript code. This provides maximum flexibility for implementing custom authorization logic.
+ * 
+ * ## Example Usage
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.keycloak.Realm;
+ * import com.pulumi.keycloak.RealmArgs;
+ * import com.pulumi.keycloak.openid.Client;
+ * import com.pulumi.keycloak.openid.ClientArgs;
+ * import com.pulumi.keycloak.openid.inputs.ClientAuthorizationArgs;
+ * import com.pulumi.keycloak.openid.ClientJsPolicy;
+ * import com.pulumi.keycloak.openid.ClientJsPolicyArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App }{{@code
+ *     public static void main(String[] args) }{{@code
+ *         Pulumi.run(App::stack);
+ *     }}{@code
+ * 
+ *     public static void stack(Context ctx) }{{@code
+ *         var realm = new Realm("realm", RealmArgs.builder()
+ *             .realm("my-realm")
+ *             .enabled(true)
+ *             .build());
+ * 
+ *         var test = new Client("test", ClientArgs.builder()
+ *             .clientId("client_id")
+ *             .realmId(realm.id())
+ *             .accessType("CONFIDENTIAL")
+ *             .serviceAccountsEnabled(true)
+ *             .authorization(ClientAuthorizationArgs.builder()
+ *                 .policyEnforcementMode("ENFORCING")
+ *                 .build())
+ *             .build());
+ * 
+ *         var testClientJsPolicy = new ClientJsPolicy("testClientJsPolicy", ClientJsPolicyArgs.builder()
+ *             .resourceServerId(test.resourceServerId())
+ *             .realmId(realm.id())
+ *             .name("js_policy")
+ *             .decisionStrategy("UNANIMOUS")
+ *             .logic("POSITIVE")
+ *             .code("""
+ * var context = $evaluation.getContext();
+ * var identity = context.getIdentity();
+ * var attributes = identity.getAttributes();
+ * var email = attributes.getValue('email').asString(0);
+ * 
+ * if (email.endsWith('}{@literal @}{@code example.com')) }{{@code
+ *   $evaluation.grant();
+ * }}{@code
+ *             """)
+ *             .build());
+ * 
+ *     }}{@code
+ * }}{@code
+ * }
+ * </pre>
+ * 
+ * ### Argument Reference
+ * 
+ * The following arguments are supported:
+ * 
+ * - `realmId` - (Required) The realm this policy exists in.
+ * - `resourceServerId` - (Required) The ID of the resource server.
+ * - `name` - (Required) The name of the policy.
+ * - `decisionStrategy` - (Required) The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`.
+ * - `code` - (Required) The JavaScript code to execute for this policy.
+ * - `logic` - (Optional) The logic, can be one of `POSITIVE` or `NEGATIVE`. Defaults to `POSITIVE`.
+ * - `type` - (Optional) The type of the policy. Defaults to `js`.
+ * - `description` - (Optional) A description for the authorization policy.
+ * 
+ * ### Attributes Reference
+ * 
+ * In addition to the arguments listed above, the following computed attributes are exported:
+ * 
+ * - `id` - Policy ID representing the JavaScript policy.
+ * 
+ * ## Import
+ * 
+ * JavaScript policies can be imported using the format: `{{realmId}}/{{resourceServerId}}/{{policyId}}`.
+ * 
+ * Example:
+ * 
+ */
 @ResourceType(type="keycloak:openid/clientJsPolicy:ClientJsPolicy")
 public class ClientJsPolicy extends com.pulumi.resources.CustomResource {
     @Export(name="code", refs={String.class}, tree="[0]")

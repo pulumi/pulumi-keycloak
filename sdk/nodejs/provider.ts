@@ -41,6 +41,14 @@ export class Provider extends pulumi.ProviderResource {
      * The PEM-formatted private key used to sign the JWT when client-jwt is used.
      */
     declare public readonly jwtSigningKey: pulumi.Output<string | undefined>;
+    /**
+     * A signed JWT token used for client authentication.
+     */
+    declare public readonly jwtToken: pulumi.Output<string | undefined>;
+    /**
+     * A path to a file containing a signed JWT token used for client authentication.
+     */
+    declare public readonly jwtTokenFile: pulumi.Output<string | undefined>;
     declare public readonly password: pulumi.Output<string | undefined>;
     declare public readonly realm: pulumi.Output<string | undefined>;
     /**
@@ -82,6 +90,8 @@ export class Provider extends pulumi.ProviderResource {
             resourceInputs["initialLogin"] = pulumi.output(args?.initialLogin).apply(JSON.stringify);
             resourceInputs["jwtSigningAlg"] = args?.jwtSigningAlg;
             resourceInputs["jwtSigningKey"] = args?.jwtSigningKey ? pulumi.secret(args.jwtSigningKey) : undefined;
+            resourceInputs["jwtToken"] = args?.jwtToken ? pulumi.secret(args.jwtToken) : undefined;
+            resourceInputs["jwtTokenFile"] = args?.jwtTokenFile;
             resourceInputs["password"] = args?.password;
             resourceInputs["realm"] = args?.realm;
             resourceInputs["redHatSso"] = pulumi.output(args?.redHatSso).apply(JSON.stringify);
@@ -93,7 +103,7 @@ export class Provider extends pulumi.ProviderResource {
             resourceInputs["username"] = args?.username;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["jwtSigningKey"] };
+        const secretOpts = { additionalSecretOutputs: ["jwtSigningKey", "jwtToken"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(Provider.__pulumiType, name, resourceInputs, opts);
     }
@@ -137,6 +147,14 @@ export interface ProviderArgs {
      * The PEM-formatted private key used to sign the JWT when client-jwt is used.
      */
     jwtSigningKey?: pulumi.Input<string>;
+    /**
+     * A signed JWT token used for client authentication.
+     */
+    jwtToken?: pulumi.Input<string>;
+    /**
+     * A path to a file containing a signed JWT token used for client authentication.
+     */
+    jwtTokenFile?: pulumi.Input<string>;
     password?: pulumi.Input<string>;
     realm?: pulumi.Input<string>;
     /**

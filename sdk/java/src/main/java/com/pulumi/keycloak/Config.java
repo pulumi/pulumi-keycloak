@@ -64,6 +64,20 @@ public final class Config {
     public Optional<String> jwtSigningKey() {
         return Codegen.stringProp("jwtSigningKey").config(config).get();
     }
+/**
+ * A signed JWT token used for client authentication.
+ * 
+ */
+    public Optional<String> jwtToken() {
+        return Codegen.stringProp("jwtToken").config(config).get();
+    }
+/**
+ * A path to a file containing a signed JWT token used for client authentication.
+ * 
+ */
+    public Optional<String> jwtTokenFile() {
+        return Codegen.stringProp("jwtTokenFile").config(config).get();
+    }
     public Optional<String> password() {
         return Codegen.stringProp("password").config(config).get();
     }

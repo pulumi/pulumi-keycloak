@@ -117,6 +117,14 @@ namespace Pulumi.Keycloak.OpenId
 
     public sealed class GetClientScopeArgs : global::Pulumi.InvokeArgs
     {
+        [Input("extraConfig")]
+        private Dictionary<string, string>? _extraConfig;
+        public Dictionary<string, string> ExtraConfig
+        {
+            get => _extraConfig ?? (_extraConfig = new Dictionary<string, string>());
+            set => _extraConfig = value;
+        }
+
         /// <summary>
         /// The name of the client scope.
         /// </summary>
@@ -137,6 +145,14 @@ namespace Pulumi.Keycloak.OpenId
 
     public sealed class GetClientScopeInvokeArgs : global::Pulumi.InvokeArgs
     {
+        [Input("extraConfig")]
+        private InputMap<string>? _extraConfig;
+        public InputMap<string> ExtraConfig
+        {
+            get => _extraConfig ?? (_extraConfig = new InputMap<string>());
+            set => _extraConfig = value;
+        }
+
         /// <summary>
         /// The name of the client scope.
         /// </summary>
@@ -161,6 +177,7 @@ namespace Pulumi.Keycloak.OpenId
     {
         public readonly string ConsentScreenText;
         public readonly string Description;
+        public readonly ImmutableDictionary<string, string> ExtraConfig;
         public readonly int GuiOrder;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
@@ -176,6 +193,8 @@ namespace Pulumi.Keycloak.OpenId
 
             string description,
 
+            ImmutableDictionary<string, string> extraConfig,
+
             int guiOrder,
 
             string id,
@@ -188,6 +207,7 @@ namespace Pulumi.Keycloak.OpenId
         {
             ConsentScreenText = consentScreenText;
             Description = description;
+            ExtraConfig = extraConfig;
             GuiOrder = guiOrder;
             Id = id;
             IncludeInTokenScope = includeInTokenScope;

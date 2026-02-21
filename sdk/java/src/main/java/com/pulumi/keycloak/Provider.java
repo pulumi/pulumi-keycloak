@@ -89,6 +89,34 @@ public class Provider extends com.pulumi.resources.ProviderResource {
     public Output<Optional<String>> jwtSigningKey() {
         return Codegen.optional(this.jwtSigningKey);
     }
+    /**
+     * A signed JWT token used for client authentication.
+     * 
+     */
+    @Export(name="jwtToken", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> jwtToken;
+
+    /**
+     * @return A signed JWT token used for client authentication.
+     * 
+     */
+    public Output<Optional<String>> jwtToken() {
+        return Codegen.optional(this.jwtToken);
+    }
+    /**
+     * A path to a file containing a signed JWT token used for client authentication.
+     * 
+     */
+    @Export(name="jwtTokenFile", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> jwtTokenFile;
+
+    /**
+     * @return A path to a file containing a signed JWT token used for client authentication.
+     * 
+     */
+    public Output<Optional<String>> jwtTokenFile() {
+        return Codegen.optional(this.jwtTokenFile);
+    }
     @Export(name="password", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> password;
 
@@ -200,7 +228,8 @@ public class Provider extends com.pulumi.resources.ProviderResource {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
-                "jwtSigningKey"
+                "jwtSigningKey",
+                "jwtToken"
             ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);

@@ -117,6 +117,26 @@ namespace Pulumi.Keycloak
             set => _jwtSigningKey.Set(value);
         }
 
+        private static readonly __Value<string?> _jwtToken = new __Value<string?>(() => __config.Get("jwtToken"));
+        /// <summary>
+        /// A signed JWT token used for client authentication.
+        /// </summary>
+        public static string? JwtToken
+        {
+            get => _jwtToken.Get();
+            set => _jwtToken.Set(value);
+        }
+
+        private static readonly __Value<string?> _jwtTokenFile = new __Value<string?>(() => __config.Get("jwtTokenFile"));
+        /// <summary>
+        /// A path to a file containing a signed JWT token used for client authentication.
+        /// </summary>
+        public static string? JwtTokenFile
+        {
+            get => _jwtTokenFile.Get();
+            set => _jwtTokenFile.Set(value);
+        }
+
         private static readonly __Value<string?> _password = new __Value<string?>(() => __config.Get("password"));
         public static string? Password
         {

@@ -12,6 +12,123 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Allows you to manage time policies.
+//
+// Time policies allow you to define conditions based on time ranges. You can specify when access should be granted using various time constraints including date, month, year, hour, and minute ranges.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak/openid"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			test, err := openid.NewClient(ctx, "test", &openid.ClientArgs{
+//				ClientId:               pulumi.String("client_id"),
+//				RealmId:                realm.ID(),
+//				AccessType:             pulumi.String("CONFIDENTIAL"),
+//				ServiceAccountsEnabled: pulumi.Bool(true),
+//				Authorization: &openid.ClientAuthorizationArgs{
+//					PolicyEnforcementMode: pulumi.String("ENFORCING"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// Policy for business hours only (9 AM - 5 PM)
+//			_, err = openid.NewClientTimePolicy(ctx, "business_hours", &openid.ClientTimePolicyArgs{
+//				ResourceServerId: test.ResourceServerId,
+//				RealmId:          realm.ID(),
+//				Name:             pulumi.String("business_hours_policy"),
+//				DecisionStrategy: pulumi.String("UNANIMOUS"),
+//				Logic:            pulumi.String("POSITIVE"),
+//				Hour:             pulumi.String("09"),
+//				HourEnd:          pulumi.String("17"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// Policy for specific date range
+//			_, err = openid.NewClientTimePolicy(ctx, "date_range", &openid.ClientTimePolicyArgs{
+//				ResourceServerId: test.ResourceServerId,
+//				RealmId:          realm.ID(),
+//				Name:             pulumi.String("date_range_policy"),
+//				DecisionStrategy: pulumi.String("UNANIMOUS"),
+//				Logic:            pulumi.String("POSITIVE"),
+//				NotBefore:        pulumi.String("2024-01-01 00:00:00"),
+//				NotOnOrAfter:     pulumi.String("2024-12-31 23:59:59"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// Policy for specific months (January to March)
+//			_, err = openid.NewClientTimePolicy(ctx, "quarter1", &openid.ClientTimePolicyArgs{
+//				ResourceServerId: test.ResourceServerId,
+//				RealmId:          realm.ID(),
+//				Name:             pulumi.String("q1_policy"),
+//				DecisionStrategy: pulumi.String("UNANIMOUS"),
+//				Logic:            pulumi.String("POSITIVE"),
+//				Month:            pulumi.String("1"),
+//				MonthEnd:         pulumi.String("3"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Argument Reference
+//
+// The following arguments are supported:
+//
+// - `realmId` - (Required) The realm this policy exists in.
+// - `resourceServerId` - (Required) The ID of the resource server.
+// - `name` - (Required) The name of the policy.
+// - `decisionStrategy` - (Required) The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`.
+// - `logic` - (Optional) The logic, can be one of `POSITIVE` or `NEGATIVE`. Defaults to `POSITIVE`.
+// - `notBefore` - (Optional) The policy is valid only after this date/time (format: `YYYY-MM-DD HH:MM:SS`).
+// - `notOnOrAfter` - (Optional) The policy is valid only before this date/time (format: `YYYY-MM-DD HH:MM:SS`).
+// - `dayMonth` - (Optional) Starting day of the month (1-31).
+// - `dayMonthEnd` - (Optional) Ending day of the month (1-31).
+// - `month` - (Optional) Starting month (1-12).
+// - `monthEnd` - (Optional) Ending month (1-12).
+// - `year` - (Optional) Starting year.
+// - `yearEnd` - (Optional) Ending year.
+// - `hour` - (Optional) Starting hour (0-23).
+// - `hourEnd` - (Optional) Ending hour (0-23).
+// - `minute` - (Optional) Starting minute (0-59).
+// - `minuteEnd` - (Optional) Ending minute (0-59).
+// - `description` - (Optional) A description for the authorization policy.
+//
+// ### Attributes Reference
+//
+// In addition to the arguments listed above, the following computed attributes are exported:
+//
+// - `id` - Policy ID representing the time policy.
+//
+// ## Import
+//
+// Time policies can be imported using the format: `{{realmId}}/{{resourceServerId}}/{{policyId}}`.
+//
+// Example:
 type ClientTimePolicy struct {
 	pulumi.CustomResourceState
 

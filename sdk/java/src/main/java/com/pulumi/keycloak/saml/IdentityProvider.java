@@ -643,6 +643,20 @@ public class IdentityProvider extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.wantAssertionsSigned);
     }
     /**
+     * Indicates whether this service provider expects authentication requests to be signed (defaults to `true` if `signatureAlgorithm` is set and this isn&#39;t).
+     * 
+     */
+    @Export(name="wantAuthnRequestsSigned", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> wantAuthnRequestsSigned;
+
+    /**
+     * @return Indicates whether this service provider expects authentication requests to be signed (defaults to `true` if `signatureAlgorithm` is set and this isn&#39;t).
+     * 
+     */
+    public Output<Optional<Boolean>> wantAuthnRequestsSigned() {
+        return Codegen.optional(this.wantAuthnRequestsSigned);
+    }
+    /**
      * The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.
      * 
      */

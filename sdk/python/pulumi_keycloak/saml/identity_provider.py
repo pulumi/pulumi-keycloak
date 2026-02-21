@@ -58,6 +58,7 @@ class IdentityProviderArgs:
                  validate_signature: Optional[pulumi.Input[_builtins.bool]] = None,
                  want_assertions_encrypted: Optional[pulumi.Input[_builtins.bool]] = None,
                  want_assertions_signed: Optional[pulumi.Input[_builtins.bool]] = None,
+                 want_authn_requests_signed: Optional[pulumi.Input[_builtins.bool]] = None,
                  xml_sign_key_info_key_name_transformer: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a IdentityProvider resource.
@@ -100,6 +101,7 @@ class IdentityProviderArgs:
         :param pulumi.Input[_builtins.bool] validate_signature: Enable/disable signature validation of SAML responses.
         :param pulumi.Input[_builtins.bool] want_assertions_encrypted: Indicates whether this service provider expects an encrypted Assertion.
         :param pulumi.Input[_builtins.bool] want_assertions_signed: Indicates whether this service provider expects a signed Assertion.
+        :param pulumi.Input[_builtins.bool] want_authn_requests_signed: Indicates whether this service provider expects authentication requests to be signed (defaults to `true` if `signature_algorithm` is set and this isn't).
         :param pulumi.Input[_builtins.str] xml_sign_key_info_key_name_transformer: The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.
         """
         pulumi.set(__self__, "alias", alias)
@@ -176,6 +178,8 @@ class IdentityProviderArgs:
             pulumi.set(__self__, "want_assertions_encrypted", want_assertions_encrypted)
         if want_assertions_signed is not None:
             pulumi.set(__self__, "want_assertions_signed", want_assertions_signed)
+        if want_authn_requests_signed is not None:
+            pulumi.set(__self__, "want_authn_requests_signed", want_authn_requests_signed)
         if xml_sign_key_info_key_name_transformer is not None:
             pulumi.set(__self__, "xml_sign_key_info_key_name_transformer", xml_sign_key_info_key_name_transformer)
 
@@ -648,6 +652,18 @@ class IdentityProviderArgs:
         pulumi.set(self, "want_assertions_signed", value)
 
     @_builtins.property
+    @pulumi.getter(name="wantAuthnRequestsSigned")
+    def want_authn_requests_signed(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Indicates whether this service provider expects authentication requests to be signed (defaults to `true` if `signature_algorithm` is set and this isn't).
+        """
+        return pulumi.get(self, "want_authn_requests_signed")
+
+    @want_authn_requests_signed.setter
+    def want_authn_requests_signed(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "want_authn_requests_signed", value)
+
+    @_builtins.property
     @pulumi.getter(name="xmlSignKeyInfoKeyNameTransformer")
     def xml_sign_key_info_key_name_transformer(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -703,6 +719,7 @@ class _IdentityProviderState:
                  validate_signature: Optional[pulumi.Input[_builtins.bool]] = None,
                  want_assertions_encrypted: Optional[pulumi.Input[_builtins.bool]] = None,
                  want_assertions_signed: Optional[pulumi.Input[_builtins.bool]] = None,
+                 want_authn_requests_signed: Optional[pulumi.Input[_builtins.bool]] = None,
                  xml_sign_key_info_key_name_transformer: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering IdentityProvider resources.
@@ -746,6 +763,7 @@ class _IdentityProviderState:
         :param pulumi.Input[_builtins.bool] validate_signature: Enable/disable signature validation of SAML responses.
         :param pulumi.Input[_builtins.bool] want_assertions_encrypted: Indicates whether this service provider expects an encrypted Assertion.
         :param pulumi.Input[_builtins.bool] want_assertions_signed: Indicates whether this service provider expects a signed Assertion.
+        :param pulumi.Input[_builtins.bool] want_authn_requests_signed: Indicates whether this service provider expects authentication requests to be signed (defaults to `true` if `signature_algorithm` is set and this isn't).
         :param pulumi.Input[_builtins.str] xml_sign_key_info_key_name_transformer: The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.
         """
         if add_read_token_role_on_create is not None:
@@ -828,6 +846,8 @@ class _IdentityProviderState:
             pulumi.set(__self__, "want_assertions_encrypted", want_assertions_encrypted)
         if want_assertions_signed is not None:
             pulumi.set(__self__, "want_assertions_signed", want_assertions_signed)
+        if want_authn_requests_signed is not None:
+            pulumi.set(__self__, "want_authn_requests_signed", want_authn_requests_signed)
         if xml_sign_key_info_key_name_transformer is not None:
             pulumi.set(__self__, "xml_sign_key_info_key_name_transformer", xml_sign_key_info_key_name_transformer)
 
@@ -1312,6 +1332,18 @@ class _IdentityProviderState:
         pulumi.set(self, "want_assertions_signed", value)
 
     @_builtins.property
+    @pulumi.getter(name="wantAuthnRequestsSigned")
+    def want_authn_requests_signed(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Indicates whether this service provider expects authentication requests to be signed (defaults to `true` if `signature_algorithm` is set and this isn't).
+        """
+        return pulumi.get(self, "want_authn_requests_signed")
+
+    @want_authn_requests_signed.setter
+    def want_authn_requests_signed(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "want_authn_requests_signed", value)
+
+    @_builtins.property
     @pulumi.getter(name="xmlSignKeyInfoKeyNameTransformer")
     def xml_sign_key_info_key_name_transformer(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -1369,6 +1401,7 @@ class IdentityProvider(pulumi.CustomResource):
                  validate_signature: Optional[pulumi.Input[_builtins.bool]] = None,
                  want_assertions_encrypted: Optional[pulumi.Input[_builtins.bool]] = None,
                  want_assertions_signed: Optional[pulumi.Input[_builtins.bool]] = None,
+                 want_authn_requests_signed: Optional[pulumi.Input[_builtins.bool]] = None,
                  xml_sign_key_info_key_name_transformer: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
@@ -1447,6 +1480,7 @@ class IdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] validate_signature: Enable/disable signature validation of SAML responses.
         :param pulumi.Input[_builtins.bool] want_assertions_encrypted: Indicates whether this service provider expects an encrypted Assertion.
         :param pulumi.Input[_builtins.bool] want_assertions_signed: Indicates whether this service provider expects a signed Assertion.
+        :param pulumi.Input[_builtins.bool] want_authn_requests_signed: Indicates whether this service provider expects authentication requests to be signed (defaults to `true` if `signature_algorithm` is set and this isn't).
         :param pulumi.Input[_builtins.str] xml_sign_key_info_key_name_transformer: The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.
         """
         ...
@@ -1544,6 +1578,7 @@ class IdentityProvider(pulumi.CustomResource):
                  validate_signature: Optional[pulumi.Input[_builtins.bool]] = None,
                  want_assertions_encrypted: Optional[pulumi.Input[_builtins.bool]] = None,
                  want_assertions_signed: Optional[pulumi.Input[_builtins.bool]] = None,
+                 want_authn_requests_signed: Optional[pulumi.Input[_builtins.bool]] = None,
                  xml_sign_key_info_key_name_transformer: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -1601,6 +1636,7 @@ class IdentityProvider(pulumi.CustomResource):
             __props__.__dict__["validate_signature"] = validate_signature
             __props__.__dict__["want_assertions_encrypted"] = want_assertions_encrypted
             __props__.__dict__["want_assertions_signed"] = want_assertions_signed
+            __props__.__dict__["want_authn_requests_signed"] = want_authn_requests_signed
             __props__.__dict__["xml_sign_key_info_key_name_transformer"] = xml_sign_key_info_key_name_transformer
             __props__.__dict__["internal_id"] = None
         super(IdentityProvider, __self__).__init__(
@@ -1653,6 +1689,7 @@ class IdentityProvider(pulumi.CustomResource):
             validate_signature: Optional[pulumi.Input[_builtins.bool]] = None,
             want_assertions_encrypted: Optional[pulumi.Input[_builtins.bool]] = None,
             want_assertions_signed: Optional[pulumi.Input[_builtins.bool]] = None,
+            want_authn_requests_signed: Optional[pulumi.Input[_builtins.bool]] = None,
             xml_sign_key_info_key_name_transformer: Optional[pulumi.Input[_builtins.str]] = None) -> 'IdentityProvider':
         """
         Get an existing IdentityProvider resource's state with the given name, id, and optional extra
@@ -1701,6 +1738,7 @@ class IdentityProvider(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] validate_signature: Enable/disable signature validation of SAML responses.
         :param pulumi.Input[_builtins.bool] want_assertions_encrypted: Indicates whether this service provider expects an encrypted Assertion.
         :param pulumi.Input[_builtins.bool] want_assertions_signed: Indicates whether this service provider expects a signed Assertion.
+        :param pulumi.Input[_builtins.bool] want_authn_requests_signed: Indicates whether this service provider expects authentication requests to be signed (defaults to `true` if `signature_algorithm` is set and this isn't).
         :param pulumi.Input[_builtins.str] xml_sign_key_info_key_name_transformer: The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -1747,6 +1785,7 @@ class IdentityProvider(pulumi.CustomResource):
         __props__.__dict__["validate_signature"] = validate_signature
         __props__.__dict__["want_assertions_encrypted"] = want_assertions_encrypted
         __props__.__dict__["want_assertions_signed"] = want_assertions_signed
+        __props__.__dict__["want_authn_requests_signed"] = want_authn_requests_signed
         __props__.__dict__["xml_sign_key_info_key_name_transformer"] = xml_sign_key_info_key_name_transformer
         return IdentityProvider(resource_name, opts=opts, __props__=__props__)
 
@@ -2069,6 +2108,14 @@ class IdentityProvider(pulumi.CustomResource):
         Indicates whether this service provider expects a signed Assertion.
         """
         return pulumi.get(self, "want_assertions_signed")
+
+    @_builtins.property
+    @pulumi.getter(name="wantAuthnRequestsSigned")
+    def want_authn_requests_signed(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        Indicates whether this service provider expects authentication requests to be signed (defaults to `true` if `signature_algorithm` is set and this isn't).
+        """
+        return pulumi.get(self, "want_authn_requests_signed")
 
     @_builtins.property
     @pulumi.getter(name="xmlSignKeyInfoKeyNameTransformer")

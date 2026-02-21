@@ -14,6 +14,129 @@ import java.lang.String;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * Allows you to manage time policies.
+ * 
+ * Time policies allow you to define conditions based on time ranges. You can specify when access should be granted using various time constraints including date, month, year, hour, and minute ranges.
+ * 
+ * ## Example Usage
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.keycloak.Realm;
+ * import com.pulumi.keycloak.RealmArgs;
+ * import com.pulumi.keycloak.openid.Client;
+ * import com.pulumi.keycloak.openid.ClientArgs;
+ * import com.pulumi.keycloak.openid.inputs.ClientAuthorizationArgs;
+ * import com.pulumi.keycloak.openid.ClientTimePolicy;
+ * import com.pulumi.keycloak.openid.ClientTimePolicyArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var realm = new Realm("realm", RealmArgs.builder()
+ *             .realm("my-realm")
+ *             .enabled(true)
+ *             .build());
+ * 
+ *         var test = new Client("test", ClientArgs.builder()
+ *             .clientId("client_id")
+ *             .realmId(realm.id())
+ *             .accessType("CONFIDENTIAL")
+ *             .serviceAccountsEnabled(true)
+ *             .authorization(ClientAuthorizationArgs.builder()
+ *                 .policyEnforcementMode("ENFORCING")
+ *                 .build())
+ *             .build());
+ * 
+ *         // Policy for business hours only (9 AM - 5 PM)
+ *         var businessHours = new ClientTimePolicy("businessHours", ClientTimePolicyArgs.builder()
+ *             .resourceServerId(test.resourceServerId())
+ *             .realmId(realm.id())
+ *             .name("business_hours_policy")
+ *             .decisionStrategy("UNANIMOUS")
+ *             .logic("POSITIVE")
+ *             .hour("09")
+ *             .hourEnd("17")
+ *             .build());
+ * 
+ *         // Policy for specific date range
+ *         var dateRange = new ClientTimePolicy("dateRange", ClientTimePolicyArgs.builder()
+ *             .resourceServerId(test.resourceServerId())
+ *             .realmId(realm.id())
+ *             .name("date_range_policy")
+ *             .decisionStrategy("UNANIMOUS")
+ *             .logic("POSITIVE")
+ *             .notBefore("2024-01-01 00:00:00")
+ *             .notOnOrAfter("2024-12-31 23:59:59")
+ *             .build());
+ * 
+ *         // Policy for specific months (January to March)
+ *         var quarter1 = new ClientTimePolicy("quarter1", ClientTimePolicyArgs.builder()
+ *             .resourceServerId(test.resourceServerId())
+ *             .realmId(realm.id())
+ *             .name("q1_policy")
+ *             .decisionStrategy("UNANIMOUS")
+ *             .logic("POSITIVE")
+ *             .month("1")
+ *             .monthEnd("3")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ### Argument Reference
+ * 
+ * The following arguments are supported:
+ * 
+ * - `realmId` - (Required) The realm this policy exists in.
+ * - `resourceServerId` - (Required) The ID of the resource server.
+ * - `name` - (Required) The name of the policy.
+ * - `decisionStrategy` - (Required) The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`.
+ * - `logic` - (Optional) The logic, can be one of `POSITIVE` or `NEGATIVE`. Defaults to `POSITIVE`.
+ * - `notBefore` - (Optional) The policy is valid only after this date/time (format: `YYYY-MM-DD HH:MM:SS`).
+ * - `notOnOrAfter` - (Optional) The policy is valid only before this date/time (format: `YYYY-MM-DD HH:MM:SS`).
+ * - `dayMonth` - (Optional) Starting day of the month (1-31).
+ * - `dayMonthEnd` - (Optional) Ending day of the month (1-31).
+ * - `month` - (Optional) Starting month (1-12).
+ * - `monthEnd` - (Optional) Ending month (1-12).
+ * - `year` - (Optional) Starting year.
+ * - `yearEnd` - (Optional) Ending year.
+ * - `hour` - (Optional) Starting hour (0-23).
+ * - `hourEnd` - (Optional) Ending hour (0-23).
+ * - `minute` - (Optional) Starting minute (0-59).
+ * - `minuteEnd` - (Optional) Ending minute (0-59).
+ * - `description` - (Optional) A description for the authorization policy.
+ * 
+ * ### Attributes Reference
+ * 
+ * In addition to the arguments listed above, the following computed attributes are exported:
+ * 
+ * - `id` - Policy ID representing the time policy.
+ * 
+ * ## Import
+ * 
+ * Time policies can be imported using the format: `{{realmId}}/{{resourceServerId}}/{{policyId}}`.
+ * 
+ * Example:
+ * 
+ */
 @ResourceType(type="keycloak:openid/clientTimePolicy:ClientTimePolicy")
 public class ClientTimePolicy extends com.pulumi.resources.CustomResource {
     @Export(name="dayMonth", refs={String.class}, tree="[0]")

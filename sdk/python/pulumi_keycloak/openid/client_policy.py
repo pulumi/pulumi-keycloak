@@ -28,13 +28,6 @@ class ClientPolicyArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ClientPolicy resource.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] clients: The clients allowed by this client policy.
-        :param pulumi.Input[_builtins.str] realm_id: The realm this client policy exists within.
-        :param pulumi.Input[_builtins.str] resource_server_id: The ID of the resource server this client policy is attached to.
-        :param pulumi.Input[_builtins.str] decision_strategy: (Computed) Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.
-        :param pulumi.Input[_builtins.str] description: The description of this client policy.
-        :param pulumi.Input[_builtins.str] logic: (Computed) Dictates how the policy decision should be made. Can be either `POSITIVE` or `NEGATIVE`. Applies to policies.
-        :param pulumi.Input[_builtins.str] name: The name of this client policy.
         """
         pulumi.set(__self__, "clients", clients)
         pulumi.set(__self__, "realm_id", realm_id)
@@ -51,9 +44,6 @@ class ClientPolicyArgs:
     @_builtins.property
     @pulumi.getter
     def clients(self) -> pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]:
-        """
-        The clients allowed by this client policy.
-        """
         return pulumi.get(self, "clients")
 
     @clients.setter
@@ -63,9 +53,6 @@ class ClientPolicyArgs:
     @_builtins.property
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Input[_builtins.str]:
-        """
-        The realm this client policy exists within.
-        """
         return pulumi.get(self, "realm_id")
 
     @realm_id.setter
@@ -75,9 +62,6 @@ class ClientPolicyArgs:
     @_builtins.property
     @pulumi.getter(name="resourceServerId")
     def resource_server_id(self) -> pulumi.Input[_builtins.str]:
-        """
-        The ID of the resource server this client policy is attached to.
-        """
         return pulumi.get(self, "resource_server_id")
 
     @resource_server_id.setter
@@ -87,9 +71,6 @@ class ClientPolicyArgs:
     @_builtins.property
     @pulumi.getter(name="decisionStrategy")
     def decision_strategy(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        (Computed) Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.
-        """
         return pulumi.get(self, "decision_strategy")
 
     @decision_strategy.setter
@@ -99,9 +80,6 @@ class ClientPolicyArgs:
     @_builtins.property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        The description of this client policy.
-        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -111,9 +89,6 @@ class ClientPolicyArgs:
     @_builtins.property
     @pulumi.getter
     def logic(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        (Computed) Dictates how the policy decision should be made. Can be either `POSITIVE` or `NEGATIVE`. Applies to policies.
-        """
         return pulumi.get(self, "logic")
 
     @logic.setter
@@ -123,9 +98,6 @@ class ClientPolicyArgs:
     @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        The name of this client policy.
-        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -145,13 +117,6 @@ class _ClientPolicyState:
                  resource_server_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ClientPolicy resources.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] clients: The clients allowed by this client policy.
-        :param pulumi.Input[_builtins.str] decision_strategy: (Computed) Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.
-        :param pulumi.Input[_builtins.str] description: The description of this client policy.
-        :param pulumi.Input[_builtins.str] logic: (Computed) Dictates how the policy decision should be made. Can be either `POSITIVE` or `NEGATIVE`. Applies to policies.
-        :param pulumi.Input[_builtins.str] name: The name of this client policy.
-        :param pulumi.Input[_builtins.str] realm_id: The realm this client policy exists within.
-        :param pulumi.Input[_builtins.str] resource_server_id: The ID of the resource server this client policy is attached to.
         """
         if clients is not None:
             pulumi.set(__self__, "clients", clients)
@@ -171,9 +136,6 @@ class _ClientPolicyState:
     @_builtins.property
     @pulumi.getter
     def clients(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
-        """
-        The clients allowed by this client policy.
-        """
         return pulumi.get(self, "clients")
 
     @clients.setter
@@ -183,9 +145,6 @@ class _ClientPolicyState:
     @_builtins.property
     @pulumi.getter(name="decisionStrategy")
     def decision_strategy(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        (Computed) Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.
-        """
         return pulumi.get(self, "decision_strategy")
 
     @decision_strategy.setter
@@ -195,9 +154,6 @@ class _ClientPolicyState:
     @_builtins.property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        The description of this client policy.
-        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -207,9 +163,6 @@ class _ClientPolicyState:
     @_builtins.property
     @pulumi.getter
     def logic(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        (Computed) Dictates how the policy decision should be made. Can be either `POSITIVE` or `NEGATIVE`. Applies to policies.
-        """
         return pulumi.get(self, "logic")
 
     @logic.setter
@@ -219,9 +172,6 @@ class _ClientPolicyState:
     @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        The name of this client policy.
-        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -231,9 +181,6 @@ class _ClientPolicyState:
     @_builtins.property
     @pulumi.getter(name="realmId")
     def realm_id(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        The realm this client policy exists within.
-        """
         return pulumi.get(self, "realm_id")
 
     @realm_id.setter
@@ -243,9 +190,6 @@ class _ClientPolicyState:
     @_builtins.property
     @pulumi.getter(name="resourceServerId")
     def resource_server_id(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        The ID of the resource server this client policy is attached to.
-        """
         return pulumi.get(self, "resource_server_id")
 
     @resource_server_id.setter
@@ -268,11 +212,11 @@ class ClientPolicy(pulumi.CustomResource):
                  resource_server_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        This resource can be used to create client policy.
+        Allows you to manage client policies.
+
+        Client policies allow you to define conditions based on which clients are accessing the resource. This is useful for restricting access to specific clients within your realm.
 
         ## Example Usage
-
-        In this example, we'll create a new OpenID client, then enabled permissions for the client. A client without permissions disabled cannot be assigned by a client policy. We'll use the `openid.ClientPolicy` resource to create a new client policy, which could be applied to many clients, for a realm and a resource_server_id.
 
         ```python
         import pulumi
@@ -281,35 +225,62 @@ class ClientPolicy(pulumi.CustomResource):
         realm = keycloak.Realm("realm",
             realm="my-realm",
             enabled=True)
-        openid_client = keycloak.openid.Client("openid_client",
-            client_id="openid_client",
-            name="openid_client",
+        test = keycloak.openid.Client("test",
+            client_id="client_id",
+            realm_id=realm.id,
+            access_type="CONFIDENTIAL",
+            service_accounts_enabled=True,
+            authorization={
+                "policy_enforcement_mode": "ENFORCING",
+            })
+        client1 = keycloak.openid.Client("client1",
+            client_id="client1",
             realm_id=realm.id,
             access_type="CONFIDENTIAL",
             service_accounts_enabled=True)
-        my_permission = keycloak.openid.ClientPermissions("my_permission",
+        client2 = keycloak.openid.Client("client2",
+            client_id="client2",
             realm_id=realm.id,
-            client_id=openid_client.id)
-        realm_management = keycloak.openid.get_client(realm_id="my-realm",
-            client_id="realm-management")
-        token_exchange = keycloak.openid.ClientPolicy("token_exchange",
-            resource_server_id=realm_management.id,
+            access_type="CONFIDENTIAL",
+            service_accounts_enabled=True)
+        test_client_policy = keycloak.openid.ClientPolicy("test",
+            resource_server_id=test.resource_server_id,
             realm_id=realm.id,
-            name="my-policy",
-            logic="POSITIVE",
+            name="client_policy",
             decision_strategy="UNANIMOUS",
-            clients=[openid_client.id])
+            logic="POSITIVE",
+            clients=[
+                client1.id,
+                client2.id,
+            ])
         ```
+
+        ### Argument Reference
+
+        The following arguments are supported:
+
+        - `realm_id` - (Required) The realm this policy exists in.
+        - `resource_server_id` - (Required) The ID of the resource server.
+        - `name` - (Required) The name of the policy.
+        - `clients` - (Required) A list of client IDs that this policy applies to.
+        - `decision_strategy` - (Optional) The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`.
+        - `logic` - (Optional) The logic, can be one of `POSITIVE` or `NEGATIVE`. Defaults to `POSITIVE`.
+        - `description` - (Optional) A description for the authorization policy.
+
+        ### Attributes Reference
+
+        In addition to the arguments listed above, the following computed attributes are exported:
+
+        - `id` - Policy ID representing the client policy.
+
+        ## Import
+
+        Client policies can be imported using the format: `{{realmId}}/{{resourceServerId}}/{{policyId}}`.
+
+        Example:
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] clients: The clients allowed by this client policy.
-        :param pulumi.Input[_builtins.str] decision_strategy: (Computed) Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.
-        :param pulumi.Input[_builtins.str] description: The description of this client policy.
-        :param pulumi.Input[_builtins.str] logic: (Computed) Dictates how the policy decision should be made. Can be either `POSITIVE` or `NEGATIVE`. Applies to policies.
-        :param pulumi.Input[_builtins.str] name: The name of this client policy.
-        :param pulumi.Input[_builtins.str] realm_id: The realm this client policy exists within.
-        :param pulumi.Input[_builtins.str] resource_server_id: The ID of the resource server this client policy is attached to.
         """
         ...
     @overload
@@ -318,11 +289,11 @@ class ClientPolicy(pulumi.CustomResource):
                  args: ClientPolicyArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        This resource can be used to create client policy.
+        Allows you to manage client policies.
+
+        Client policies allow you to define conditions based on which clients are accessing the resource. This is useful for restricting access to specific clients within your realm.
 
         ## Example Usage
-
-        In this example, we'll create a new OpenID client, then enabled permissions for the client. A client without permissions disabled cannot be assigned by a client policy. We'll use the `openid.ClientPolicy` resource to create a new client policy, which could be applied to many clients, for a realm and a resource_server_id.
 
         ```python
         import pulumi
@@ -331,25 +302,59 @@ class ClientPolicy(pulumi.CustomResource):
         realm = keycloak.Realm("realm",
             realm="my-realm",
             enabled=True)
-        openid_client = keycloak.openid.Client("openid_client",
-            client_id="openid_client",
-            name="openid_client",
+        test = keycloak.openid.Client("test",
+            client_id="client_id",
+            realm_id=realm.id,
+            access_type="CONFIDENTIAL",
+            service_accounts_enabled=True,
+            authorization={
+                "policy_enforcement_mode": "ENFORCING",
+            })
+        client1 = keycloak.openid.Client("client1",
+            client_id="client1",
             realm_id=realm.id,
             access_type="CONFIDENTIAL",
             service_accounts_enabled=True)
-        my_permission = keycloak.openid.ClientPermissions("my_permission",
+        client2 = keycloak.openid.Client("client2",
+            client_id="client2",
             realm_id=realm.id,
-            client_id=openid_client.id)
-        realm_management = keycloak.openid.get_client(realm_id="my-realm",
-            client_id="realm-management")
-        token_exchange = keycloak.openid.ClientPolicy("token_exchange",
-            resource_server_id=realm_management.id,
+            access_type="CONFIDENTIAL",
+            service_accounts_enabled=True)
+        test_client_policy = keycloak.openid.ClientPolicy("test",
+            resource_server_id=test.resource_server_id,
             realm_id=realm.id,
-            name="my-policy",
-            logic="POSITIVE",
+            name="client_policy",
             decision_strategy="UNANIMOUS",
-            clients=[openid_client.id])
+            logic="POSITIVE",
+            clients=[
+                client1.id,
+                client2.id,
+            ])
         ```
+
+        ### Argument Reference
+
+        The following arguments are supported:
+
+        - `realm_id` - (Required) The realm this policy exists in.
+        - `resource_server_id` - (Required) The ID of the resource server.
+        - `name` - (Required) The name of the policy.
+        - `clients` - (Required) A list of client IDs that this policy applies to.
+        - `decision_strategy` - (Optional) The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`.
+        - `logic` - (Optional) The logic, can be one of `POSITIVE` or `NEGATIVE`. Defaults to `POSITIVE`.
+        - `description` - (Optional) A description for the authorization policy.
+
+        ### Attributes Reference
+
+        In addition to the arguments listed above, the following computed attributes are exported:
+
+        - `id` - Policy ID representing the client policy.
+
+        ## Import
+
+        Client policies can be imported using the format: `{{realmId}}/{{resourceServerId}}/{{policyId}}`.
+
+        Example:
 
         :param str resource_name: The name of the resource.
         :param ClientPolicyArgs args: The arguments to use to populate this resource's properties.
@@ -419,13 +424,6 @@ class ClientPolicy(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] clients: The clients allowed by this client policy.
-        :param pulumi.Input[_builtins.str] decision_strategy: (Computed) Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.
-        :param pulumi.Input[_builtins.str] description: The description of this client policy.
-        :param pulumi.Input[_builtins.str] logic: (Computed) Dictates how the policy decision should be made. Can be either `POSITIVE` or `NEGATIVE`. Applies to policies.
-        :param pulumi.Input[_builtins.str] name: The name of this client policy.
-        :param pulumi.Input[_builtins.str] realm_id: The realm this client policy exists within.
-        :param pulumi.Input[_builtins.str] resource_server_id: The ID of the resource server this client policy is attached to.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -443,56 +441,35 @@ class ClientPolicy(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter
     def clients(self) -> pulumi.Output[Sequence[_builtins.str]]:
-        """
-        The clients allowed by this client policy.
-        """
         return pulumi.get(self, "clients")
 
     @_builtins.property
     @pulumi.getter(name="decisionStrategy")
     def decision_strategy(self) -> pulumi.Output[Optional[_builtins.str]]:
-        """
-        (Computed) Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.
-        """
         return pulumi.get(self, "decision_strategy")
 
     @_builtins.property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[_builtins.str]]:
-        """
-        The description of this client policy.
-        """
         return pulumi.get(self, "description")
 
     @_builtins.property
     @pulumi.getter
     def logic(self) -> pulumi.Output[Optional[_builtins.str]]:
-        """
-        (Computed) Dictates how the policy decision should be made. Can be either `POSITIVE` or `NEGATIVE`. Applies to policies.
-        """
         return pulumi.get(self, "logic")
 
     @_builtins.property
     @pulumi.getter
     def name(self) -> pulumi.Output[_builtins.str]:
-        """
-        The name of this client policy.
-        """
         return pulumi.get(self, "name")
 
     @_builtins.property
     @pulumi.getter(name="realmId")
     def realm_id(self) -> pulumi.Output[_builtins.str]:
-        """
-        The realm this client policy exists within.
-        """
         return pulumi.get(self, "realm_id")
 
     @_builtins.property
     @pulumi.getter(name="resourceServerId")
     def resource_server_id(self) -> pulumi.Output[_builtins.str]:
-        """
-        The ID of the resource server this client policy is attached to.
-        """
         return pulumi.get(self, "resource_server_id")
 

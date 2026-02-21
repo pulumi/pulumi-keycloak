@@ -15,6 +15,116 @@ import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * Allows you to manage user policies.
+ * 
+ * User policies allow you to define conditions based on specific users. This is useful when you need to grant access to individual users rather than based on roles or groups.
+ * 
+ * ## Example Usage
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.keycloak.Realm;
+ * import com.pulumi.keycloak.RealmArgs;
+ * import com.pulumi.keycloak.openid.Client;
+ * import com.pulumi.keycloak.openid.ClientArgs;
+ * import com.pulumi.keycloak.openid.inputs.ClientAuthorizationArgs;
+ * import com.pulumi.keycloak.User;
+ * import com.pulumi.keycloak.UserArgs;
+ * import com.pulumi.keycloak.openid.ClientUserPolicy;
+ * import com.pulumi.keycloak.openid.ClientUserPolicyArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App }{{@code
+ *     public static void main(String[] args) }{{@code
+ *         Pulumi.run(App::stack);
+ *     }}{@code
+ * 
+ *     public static void stack(Context ctx) }{{@code
+ *         var realm = new Realm("realm", RealmArgs.builder()
+ *             .realm("my-realm")
+ *             .enabled(true)
+ *             .build());
+ * 
+ *         var test = new Client("test", ClientArgs.builder()
+ *             .clientId("client_id")
+ *             .realmId(realm.id())
+ *             .accessType("CONFIDENTIAL")
+ *             .serviceAccountsEnabled(true)
+ *             .authorization(ClientAuthorizationArgs.builder()
+ *                 .policyEnforcementMode("ENFORCING")
+ *                 .build())
+ *             .build());
+ * 
+ *         var alice = new User("alice", UserArgs.builder()
+ *             .realmId(realm.id())
+ *             .username("alice")
+ *             .enabled(true)
+ *             .email("alice}{@literal @}{@code example.com")
+ *             .firstName("Alice")
+ *             .lastName("Smith")
+ *             .build());
+ * 
+ *         var bob = new User("bob", UserArgs.builder()
+ *             .realmId(realm.id())
+ *             .username("bob")
+ *             .enabled(true)
+ *             .email("bob}{@literal @}{@code example.com")
+ *             .firstName("Bob")
+ *             .lastName("Jones")
+ *             .build());
+ * 
+ *         var testClientUserPolicy = new ClientUserPolicy("testClientUserPolicy", ClientUserPolicyArgs.builder()
+ *             .resourceServerId(test.resourceServerId())
+ *             .realmId(realm.id())
+ *             .name("user_policy")
+ *             .decisionStrategy("UNANIMOUS")
+ *             .logic("POSITIVE")
+ *             .users(            
+ *                 alice.id(),
+ *                 bob.id())
+ *             .build());
+ * 
+ *     }}{@code
+ * }}{@code
+ * }
+ * </pre>
+ * 
+ * ### Argument Reference
+ * 
+ * The following arguments are supported:
+ * 
+ * - `realmId` - (Required) The realm this policy exists in.
+ * - `resourceServerId` - (Required) The ID of the resource server.
+ * - `name` - (Required) The name of the policy.
+ * - `decisionStrategy` - (Required) The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`.
+ * - `users` - (Required) A list of user IDs that this policy applies to.
+ * - `logic` - (Optional) The logic, can be one of `POSITIVE` or `NEGATIVE`. Defaults to `POSITIVE`.
+ * - `description` - (Optional) A description for the authorization policy.
+ * 
+ * ### Attributes Reference
+ * 
+ * In addition to the arguments listed above, the following computed attributes are exported:
+ * 
+ * - `id` - Policy ID representing the user policy.
+ * 
+ * ## Import
+ * 
+ * User policies can be imported using the format: `{{realmId}}/{{resourceServerId}}/{{policyId}}`.
+ * 
+ * Example:
+ * 
+ */
 @ResourceType(type="keycloak:openid/clientUserPolicy:ClientUserPolicy")
 public class ClientUserPolicy extends com.pulumi.resources.CustomResource {
     @Export(name="decisionStrategy", refs={String.class}, tree="[0]")

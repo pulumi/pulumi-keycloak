@@ -154,6 +154,24 @@ namespace Pulumi.Keycloak.Saml
         public Output<string> EncryptionCertificateSha1 { get; private set; } = null!;
 
         /// <summary>
+        /// Digest method used with SAML encryption. Allowed values: `SHA-512`, `SHA-256`, or `SHA-1`. Only valid when `EncryptionKeyAlgorithm` is `RSA-OAEP-11` or `RSA-OAEP-MGF1P`. Default is `SHA-256`.
+        /// </summary>
+        [Output("encryptionDigestMethod")]
+        public Output<string> EncryptionDigestMethod { get; private set; } = null!;
+
+        /// <summary>
+        /// Key transport algorithm used by the client to encrypt the secret key for SAML assertion encryption. Allowed values: `RSA-OAEP-11`, `RSA-OAEP-MGF1P`, or `RSA1_5`. Default is `RSA-OAEP-11`.
+        /// </summary>
+        [Output("encryptionKeyAlgorithm")]
+        public Output<string> EncryptionKeyAlgorithm { get; private set; } = null!;
+
+        /// <summary>
+        /// Mask generation function used with SAML encryption. Allowed values: `Mgf1sha1`, `Mgf1sha224`, `Mgf1sha256`, `Mgf1sha384`, or `Mgf1sha512`. Only valid when `EncryptionKeyAlgorithm` is `RSA-OAEP-11`. Default is `Mgf1sha256`.
+        /// </summary>
+        [Output("encryptionMaskGenerationFunction")]
+        public Output<string> EncryptionMaskGenerationFunction { get; private set; } = null!;
+
+        /// <summary>
         /// A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that is not yet supported by this Terraform provider. Use this attribute at your own risk, as s may conflict with top-level configuration attributes in future provider updates.
         /// </summary>
         [Output("extraConfig")]
@@ -265,7 +283,7 @@ namespace Pulumi.Keycloak.Saml
         /// The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA256_MGF1, "RSA_SHA512", "RSA_SHA512_MGF1" or "DSA_SHA1".
         /// </summary>
         [Output("signatureAlgorithm")]
-        public Output<string?> SignatureAlgorithm { get; private set; } = null!;
+        public Output<string> SignatureAlgorithm { get; private set; } = null!;
 
         /// <summary>
         /// The value of the `KeyName` element within the signed SAML document. Should be one of "NONE", "KEY_ID", or "CERT_SUBJECT". Defaults to "KEY_ID".
@@ -432,6 +450,24 @@ namespace Pulumi.Keycloak.Saml
         /// </summary>
         [Input("encryptionCertificate")]
         public Input<string>? EncryptionCertificate { get; set; }
+
+        /// <summary>
+        /// Digest method used with SAML encryption. Allowed values: `SHA-512`, `SHA-256`, or `SHA-1`. Only valid when `EncryptionKeyAlgorithm` is `RSA-OAEP-11` or `RSA-OAEP-MGF1P`. Default is `SHA-256`.
+        /// </summary>
+        [Input("encryptionDigestMethod")]
+        public Input<string>? EncryptionDigestMethod { get; set; }
+
+        /// <summary>
+        /// Key transport algorithm used by the client to encrypt the secret key for SAML assertion encryption. Allowed values: `RSA-OAEP-11`, `RSA-OAEP-MGF1P`, or `RSA1_5`. Default is `RSA-OAEP-11`.
+        /// </summary>
+        [Input("encryptionKeyAlgorithm")]
+        public Input<string>? EncryptionKeyAlgorithm { get; set; }
+
+        /// <summary>
+        /// Mask generation function used with SAML encryption. Allowed values: `Mgf1sha1`, `Mgf1sha224`, `Mgf1sha256`, `Mgf1sha384`, or `Mgf1sha512`. Only valid when `EncryptionKeyAlgorithm` is `RSA-OAEP-11`. Default is `Mgf1sha256`.
+        /// </summary>
+        [Input("encryptionMaskGenerationFunction")]
+        public Input<string>? EncryptionMaskGenerationFunction { get; set; }
 
         [Input("extraConfig")]
         private InputMap<string>? _extraConfig;
@@ -680,6 +716,24 @@ namespace Pulumi.Keycloak.Saml
         /// </summary>
         [Input("encryptionCertificateSha1")]
         public Input<string>? EncryptionCertificateSha1 { get; set; }
+
+        /// <summary>
+        /// Digest method used with SAML encryption. Allowed values: `SHA-512`, `SHA-256`, or `SHA-1`. Only valid when `EncryptionKeyAlgorithm` is `RSA-OAEP-11` or `RSA-OAEP-MGF1P`. Default is `SHA-256`.
+        /// </summary>
+        [Input("encryptionDigestMethod")]
+        public Input<string>? EncryptionDigestMethod { get; set; }
+
+        /// <summary>
+        /// Key transport algorithm used by the client to encrypt the secret key for SAML assertion encryption. Allowed values: `RSA-OAEP-11`, `RSA-OAEP-MGF1P`, or `RSA1_5`. Default is `RSA-OAEP-11`.
+        /// </summary>
+        [Input("encryptionKeyAlgorithm")]
+        public Input<string>? EncryptionKeyAlgorithm { get; set; }
+
+        /// <summary>
+        /// Mask generation function used with SAML encryption. Allowed values: `Mgf1sha1`, `Mgf1sha224`, `Mgf1sha256`, `Mgf1sha384`, or `Mgf1sha512`. Only valid when `EncryptionKeyAlgorithm` is `RSA-OAEP-11`. Default is `Mgf1sha256`.
+        /// </summary>
+        [Input("encryptionMaskGenerationFunction")]
+        public Input<string>? EncryptionMaskGenerationFunction { get; set; }
 
         [Input("extraConfig")]
         private InputMap<string>? _extraConfig;

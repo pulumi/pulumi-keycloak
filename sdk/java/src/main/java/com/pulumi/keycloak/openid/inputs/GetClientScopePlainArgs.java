@@ -6,12 +6,22 @@ package com.pulumi.keycloak.openid.inputs;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
+import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class GetClientScopePlainArgs extends com.pulumi.resources.InvokeArgs {
 
     public static final GetClientScopePlainArgs Empty = new GetClientScopePlainArgs();
+
+    @Import(name="extraConfig")
+    private @Nullable Map<String,String> extraConfig;
+
+    public Optional<Map<String,String>> extraConfig() {
+        return Optional.ofNullable(this.extraConfig);
+    }
 
     /**
      * The name of the client scope.
@@ -46,6 +56,7 @@ public final class GetClientScopePlainArgs extends com.pulumi.resources.InvokeAr
     private GetClientScopePlainArgs() {}
 
     private GetClientScopePlainArgs(GetClientScopePlainArgs $) {
+        this.extraConfig = $.extraConfig;
         this.name = $.name;
         this.realmId = $.realmId;
     }
@@ -66,6 +77,11 @@ public final class GetClientScopePlainArgs extends com.pulumi.resources.InvokeAr
 
         public Builder(GetClientScopePlainArgs defaults) {
             $ = new GetClientScopePlainArgs(Objects.requireNonNull(defaults));
+        }
+
+        public Builder extraConfig(@Nullable Map<String,String> extraConfig) {
+            $.extraConfig = extraConfig;
+            return this;
         }
 
         /**

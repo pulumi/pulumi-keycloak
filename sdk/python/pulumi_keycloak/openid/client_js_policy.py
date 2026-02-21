@@ -236,7 +236,69 @@ class ClientJsPolicy(pulumi.CustomResource):
                  type: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        Create a ClientJsPolicy resource with the given unique name, props, and options.
+        Allows you to manage JavaScript policies.
+
+        JavaScript policies allow you to define conditions using JavaScript code. This provides maximum flexibility for implementing custom authorization logic.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        test = keycloak.openid.Client("test",
+            client_id="client_id",
+            realm_id=realm.id,
+            access_type="CONFIDENTIAL",
+            service_accounts_enabled=True,
+            authorization={
+                "policy_enforcement_mode": "ENFORCING",
+            })
+        test_client_js_policy = keycloak.openid.ClientJsPolicy("test",
+            resource_server_id=test.resource_server_id,
+            realm_id=realm.id,
+            name="js_policy",
+            decision_strategy="UNANIMOUS",
+            logic="POSITIVE",
+            code=\"\"\"var context = $evaluation.getContext();
+        var identity = context.getIdentity();
+        var attributes = identity.getAttributes();
+        var email = attributes.getValue('email').asString(0);
+
+        if (email.endsWith('@example.com')) {
+          $evaluation.grant();
+        }
+        \"\"\")
+        ```
+
+        ### Argument Reference
+
+        The following arguments are supported:
+
+        - `realm_id` - (Required) The realm this policy exists in.
+        - `resource_server_id` - (Required) The ID of the resource server.
+        - `name` - (Required) The name of the policy.
+        - `decision_strategy` - (Required) The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`.
+        - `code` - (Required) The JavaScript code to execute for this policy.
+        - `logic` - (Optional) The logic, can be one of `POSITIVE` or `NEGATIVE`. Defaults to `POSITIVE`.
+        - `type` - (Optional) The type of the policy. Defaults to `js`.
+        - `description` - (Optional) A description for the authorization policy.
+
+        ### Attributes Reference
+
+        In addition to the arguments listed above, the following computed attributes are exported:
+
+        - `id` - Policy ID representing the JavaScript policy.
+
+        ## Import
+
+        JavaScript policies can be imported using the format: `{{realmId}}/{{resourceServerId}}/{{policyId}}`.
+
+        Example:
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
@@ -247,7 +309,69 @@ class ClientJsPolicy(pulumi.CustomResource):
                  args: ClientJsPolicyArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a ClientJsPolicy resource with the given unique name, props, and options.
+        Allows you to manage JavaScript policies.
+
+        JavaScript policies allow you to define conditions using JavaScript code. This provides maximum flexibility for implementing custom authorization logic.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        test = keycloak.openid.Client("test",
+            client_id="client_id",
+            realm_id=realm.id,
+            access_type="CONFIDENTIAL",
+            service_accounts_enabled=True,
+            authorization={
+                "policy_enforcement_mode": "ENFORCING",
+            })
+        test_client_js_policy = keycloak.openid.ClientJsPolicy("test",
+            resource_server_id=test.resource_server_id,
+            realm_id=realm.id,
+            name="js_policy",
+            decision_strategy="UNANIMOUS",
+            logic="POSITIVE",
+            code=\"\"\"var context = $evaluation.getContext();
+        var identity = context.getIdentity();
+        var attributes = identity.getAttributes();
+        var email = attributes.getValue('email').asString(0);
+
+        if (email.endsWith('@example.com')) {
+          $evaluation.grant();
+        }
+        \"\"\")
+        ```
+
+        ### Argument Reference
+
+        The following arguments are supported:
+
+        - `realm_id` - (Required) The realm this policy exists in.
+        - `resource_server_id` - (Required) The ID of the resource server.
+        - `name` - (Required) The name of the policy.
+        - `decision_strategy` - (Required) The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`.
+        - `code` - (Required) The JavaScript code to execute for this policy.
+        - `logic` - (Optional) The logic, can be one of `POSITIVE` or `NEGATIVE`. Defaults to `POSITIVE`.
+        - `type` - (Optional) The type of the policy. Defaults to `js`.
+        - `description` - (Optional) A description for the authorization policy.
+
+        ### Attributes Reference
+
+        In addition to the arguments listed above, the following computed attributes are exported:
+
+        - `id` - Policy ID representing the JavaScript policy.
+
+        ## Import
+
+        JavaScript policies can be imported using the format: `{{realmId}}/{{resourceServerId}}/{{policyId}}`.
+
+        Example:
+
         :param str resource_name: The name of the resource.
         :param ClientJsPolicyArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -149,6 +149,8 @@ type IdentityProvider struct {
 	WantAssertionsEncrypted pulumi.BoolPtrOutput `pulumi:"wantAssertionsEncrypted"`
 	// Indicates whether this service provider expects a signed Assertion.
 	WantAssertionsSigned pulumi.BoolPtrOutput `pulumi:"wantAssertionsSigned"`
+	// Indicates whether this service provider expects authentication requests to be signed (defaults to `true` if `signatureAlgorithm` is set and this isn't).
+	WantAuthnRequestsSigned pulumi.BoolPtrOutput `pulumi:"wantAuthnRequestsSigned"`
 	// The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.
 	XmlSignKeyInfoKeyNameTransformer pulumi.StringPtrOutput `pulumi:"xmlSignKeyInfoKeyNameTransformer"`
 }
@@ -275,6 +277,8 @@ type identityProviderState struct {
 	WantAssertionsEncrypted *bool `pulumi:"wantAssertionsEncrypted"`
 	// Indicates whether this service provider expects a signed Assertion.
 	WantAssertionsSigned *bool `pulumi:"wantAssertionsSigned"`
+	// Indicates whether this service provider expects authentication requests to be signed (defaults to `true` if `signatureAlgorithm` is set and this isn't).
+	WantAuthnRequestsSigned *bool `pulumi:"wantAuthnRequestsSigned"`
 	// The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.
 	XmlSignKeyInfoKeyNameTransformer *string `pulumi:"xmlSignKeyInfoKeyNameTransformer"`
 }
@@ -360,6 +364,8 @@ type IdentityProviderState struct {
 	WantAssertionsEncrypted pulumi.BoolPtrInput
 	// Indicates whether this service provider expects a signed Assertion.
 	WantAssertionsSigned pulumi.BoolPtrInput
+	// Indicates whether this service provider expects authentication requests to be signed (defaults to `true` if `signatureAlgorithm` is set and this isn't).
+	WantAuthnRequestsSigned pulumi.BoolPtrInput
 	// The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.
 	XmlSignKeyInfoKeyNameTransformer pulumi.StringPtrInput
 }
@@ -447,6 +453,8 @@ type identityProviderArgs struct {
 	WantAssertionsEncrypted *bool `pulumi:"wantAssertionsEncrypted"`
 	// Indicates whether this service provider expects a signed Assertion.
 	WantAssertionsSigned *bool `pulumi:"wantAssertionsSigned"`
+	// Indicates whether this service provider expects authentication requests to be signed (defaults to `true` if `signatureAlgorithm` is set and this isn't).
+	WantAuthnRequestsSigned *bool `pulumi:"wantAuthnRequestsSigned"`
 	// The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.
 	XmlSignKeyInfoKeyNameTransformer *string `pulumi:"xmlSignKeyInfoKeyNameTransformer"`
 }
@@ -531,6 +539,8 @@ type IdentityProviderArgs struct {
 	WantAssertionsEncrypted pulumi.BoolPtrInput
 	// Indicates whether this service provider expects a signed Assertion.
 	WantAssertionsSigned pulumi.BoolPtrInput
+	// Indicates whether this service provider expects authentication requests to be signed (defaults to `true` if `signatureAlgorithm` is set and this isn't).
+	WantAuthnRequestsSigned pulumi.BoolPtrInput
 	// The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.
 	XmlSignKeyInfoKeyNameTransformer pulumi.StringPtrInput
 }
@@ -820,6 +830,11 @@ func (o IdentityProviderOutput) WantAssertionsEncrypted() pulumi.BoolPtrOutput {
 // Indicates whether this service provider expects a signed Assertion.
 func (o IdentityProviderOutput) WantAssertionsSigned() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.WantAssertionsSigned }).(pulumi.BoolPtrOutput)
+}
+
+// Indicates whether this service provider expects authentication requests to be signed (defaults to `true` if `signatureAlgorithm` is set and this isn't).
+func (o IdentityProviderOutput) WantAuthnRequestsSigned() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *IdentityProvider) pulumi.BoolPtrOutput { return v.WantAuthnRequestsSigned }).(pulumi.BoolPtrOutput)
 }
 
 // The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.

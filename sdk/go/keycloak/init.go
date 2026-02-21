@@ -59,6 +59,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &HardcodedRoleIdentityMapper{}
 	case "keycloak:index/identityProviderTokenExchangeScopePermission:IdentityProviderTokenExchangeScopePermission":
 		r = &IdentityProviderTokenExchangeScopePermission{}
+	case "keycloak:index/kubernetesIdentityProvider:KubernetesIdentityProvider":
+		r = &KubernetesIdentityProvider{}
 	case "keycloak:index/organization:Organization":
 		r = &Organization{}
 	case "keycloak:index/realm:Realm":
@@ -227,6 +229,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"keycloak",
 		"index/identityProviderTokenExchangeScopePermission",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"keycloak",
+		"index/kubernetesIdentityProvider",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

@@ -71,6 +71,10 @@ export class ClientScope extends pulumi.CustomResource {
      */
     declare public readonly description: pulumi.Output<string | undefined>;
     /**
+     * A map of key/value pairs to add extra configuration attributes to this client scope. This can be used for custom attributes or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
+     */
+    declare public readonly extraConfig: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
      * Specify order of the client scope in GUI (such as in Consent page) as integer.
      */
     declare public readonly guiOrder: pulumi.Output<number | undefined>;
@@ -98,6 +102,7 @@ export class ClientScope extends pulumi.CustomResource {
             const state = argsOrState as ClientScopeState | undefined;
             resourceInputs["consentScreenText"] = state?.consentScreenText;
             resourceInputs["description"] = state?.description;
+            resourceInputs["extraConfig"] = state?.extraConfig;
             resourceInputs["guiOrder"] = state?.guiOrder;
             resourceInputs["name"] = state?.name;
             resourceInputs["realmId"] = state?.realmId;
@@ -108,6 +113,7 @@ export class ClientScope extends pulumi.CustomResource {
             }
             resourceInputs["consentScreenText"] = args?.consentScreenText;
             resourceInputs["description"] = args?.description;
+            resourceInputs["extraConfig"] = args?.extraConfig;
             resourceInputs["guiOrder"] = args?.guiOrder;
             resourceInputs["name"] = args?.name;
             resourceInputs["realmId"] = args?.realmId;
@@ -129,6 +135,10 @@ export interface ClientScopeState {
      * The description of this client scope in the GUI.
      */
     description?: pulumi.Input<string>;
+    /**
+     * A map of key/value pairs to add extra configuration attributes to this client scope. This can be used for custom attributes or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
+     */
+    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Specify order of the client scope in GUI (such as in Consent page) as integer.
      */
@@ -155,6 +165,10 @@ export interface ClientScopeArgs {
      * The description of this client scope in the GUI.
      */
     description?: pulumi.Input<string>;
+    /**
+     * A map of key/value pairs to add extra configuration attributes to this client scope. This can be used for custom attributes or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
+     */
+    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Specify order of the client scope in GUI (such as in Consent page) as integer.
      */

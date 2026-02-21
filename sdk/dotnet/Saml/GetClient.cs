@@ -171,6 +171,9 @@ namespace Pulumi.Keycloak.Saml
         public readonly string EncryptionAlgorithm;
         public readonly string EncryptionCertificate;
         public readonly string EncryptionCertificateSha1;
+        public readonly string EncryptionDigestMethod;
+        public readonly string EncryptionKeyAlgorithm;
+        public readonly string EncryptionMaskGenerationFunction;
         public readonly ImmutableDictionary<string, string> ExtraConfig;
         public readonly bool ForceNameIdFormat;
         public readonly bool ForcePostBinding;
@@ -233,6 +236,12 @@ namespace Pulumi.Keycloak.Saml
             string encryptionCertificate,
 
             string encryptionCertificateSha1,
+
+            string encryptionDigestMethod,
+
+            string encryptionKeyAlgorithm,
+
+            string encryptionMaskGenerationFunction,
 
             ImmutableDictionary<string, string> extraConfig,
 
@@ -303,6 +312,9 @@ namespace Pulumi.Keycloak.Saml
             EncryptionAlgorithm = encryptionAlgorithm;
             EncryptionCertificate = encryptionCertificate;
             EncryptionCertificateSha1 = encryptionCertificateSha1;
+            EncryptionDigestMethod = encryptionDigestMethod;
+            EncryptionKeyAlgorithm = encryptionKeyAlgorithm;
+            EncryptionMaskGenerationFunction = encryptionMaskGenerationFunction;
             ExtraConfig = extraConfig;
             ForceNameIdFormat = forceNameIdFormat;
             ForcePostBinding = forcePostBinding;

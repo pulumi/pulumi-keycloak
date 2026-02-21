@@ -299,6 +299,12 @@ namespace Pulumi.Keycloak.Saml
         public Output<bool?> WantAssertionsSigned { get; private set; } = null!;
 
         /// <summary>
+        /// Indicates whether this service provider expects authentication requests to be signed (defaults to `True` if `SignatureAlgorithm` is set and this isn't).
+        /// </summary>
+        [Output("wantAuthnRequestsSigned")]
+        public Output<bool?> WantAuthnRequestsSigned { get; private set; } = null!;
+
+        /// <summary>
         /// The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.
         /// </summary>
         [Output("xmlSignKeyInfoKeyNameTransformer")]
@@ -603,6 +609,12 @@ namespace Pulumi.Keycloak.Saml
         public Input<bool>? WantAssertionsSigned { get; set; }
 
         /// <summary>
+        /// Indicates whether this service provider expects authentication requests to be signed (defaults to `True` if `SignatureAlgorithm` is set and this isn't).
+        /// </summary>
+        [Input("wantAuthnRequestsSigned")]
+        public Input<bool>? WantAuthnRequestsSigned { get; set; }
+
+        /// <summary>
         /// The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.
         /// </summary>
         [Input("xmlSignKeyInfoKeyNameTransformer")]
@@ -873,6 +885,12 @@ namespace Pulumi.Keycloak.Saml
         /// </summary>
         [Input("wantAssertionsSigned")]
         public Input<bool>? WantAssertionsSigned { get; set; }
+
+        /// <summary>
+        /// Indicates whether this service provider expects authentication requests to be signed (defaults to `True` if `SignatureAlgorithm` is set and this isn't).
+        /// </summary>
+        [Input("wantAuthnRequestsSigned")]
+        public Input<bool>? WantAuthnRequestsSigned { get; set; }
 
         /// <summary>
         /// The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.

@@ -9,6 +9,110 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak.OpenId
 {
+    /// <summary>
+    /// Allows you to manage aggregate policies.
+    /// 
+    /// Aggregate policies combine multiple policies into a single policy, allowing you to reuse existing policies to build more complex authorization logic.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
+    /// 
+    ///     var test = new Keycloak.OpenId.Client("test", new()
+    ///     {
+    ///         ClientId = "client_id",
+    ///         RealmId = realm.Id,
+    ///         AccessType = "CONFIDENTIAL",
+    ///         ServiceAccountsEnabled = true,
+    ///         Authorization = new Keycloak.OpenId.Inputs.ClientAuthorizationArgs
+    ///         {
+    ///             PolicyEnforcementMode = "ENFORCING",
+    ///         },
+    ///     });
+    /// 
+    ///     var rolePolicy = new Keycloak.OpenId.ClientRolePolicy("role_policy", new()
+    ///     {
+    ///         ResourceServerId = test.ResourceServerId,
+    ///         RealmId = realm.Id,
+    ///         Name = "role_policy",
+    ///         DecisionStrategy = "UNANIMOUS",
+    ///         Logic = "POSITIVE",
+    ///         Roles = new[]
+    ///         {
+    ///             new Keycloak.OpenId.Inputs.ClientRolePolicyRoleArgs
+    ///             {
+    ///                 Id = testKeycloakRole.Id,
+    ///                 Required = true,
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var userPolicy = new Keycloak.OpenId.ClientUserPolicy("user_policy", new()
+    ///     {
+    ///         ResourceServerId = test.ResourceServerId,
+    ///         RealmId = realm.Id,
+    ///         Name = "user_policy",
+    ///         DecisionStrategy = "UNANIMOUS",
+    ///         Logic = "POSITIVE",
+    ///         Users = new[]
+    ///         {
+    ///             testKeycloakUser.Id,
+    ///         },
+    ///     });
+    /// 
+    ///     var testClientAggregatePolicy = new Keycloak.OpenId.ClientAggregatePolicy("test", new()
+    ///     {
+    ///         ResourceServerId = test.ResourceServerId,
+    ///         RealmId = realm.Id,
+    ///         Name = "aggregate_policy",
+    ///         DecisionStrategy = "AFFIRMATIVE",
+    ///         Logic = "POSITIVE",
+    ///         Policies = new[]
+    ///         {
+    ///             rolePolicy.Id,
+    ///             userPolicy.Id,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Argument Reference
+    /// 
+    /// The following arguments are supported:
+    /// 
+    /// - `RealmId` - (Required) The realm this policy exists in.
+    /// - `ResourceServerId` - (Required) The ID of the resource server.
+    /// - `Name` - (Required) The name of the policy.
+    /// - `DecisionStrategy` - (Required) The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`.
+    /// - `Logic` - (Optional) The logic, can be one of `POSITIVE` or `NEGATIVE`. Defaults to `POSITIVE`.
+    /// - `Policies` - (Required) A list of policy IDs to aggregate.
+    /// - `Description` - (Optional) A description for the authorization policy.
+    /// 
+    /// ### Attributes Reference
+    /// 
+    /// In addition to the arguments listed above, the following computed attributes are exported:
+    /// 
+    /// - `Id` - Policy ID representing the aggregate policy.
+    /// 
+    /// ## Import
+    /// 
+    /// Aggregate policies can be imported using the format: `{{realmId}}/{{resourceServerId}}/{{policyId}}`.
+    /// 
+    /// Example:
+    /// </summary>
     [KeycloakResourceType("keycloak:openid/clientAggregatePolicy:ClientAggregatePolicy")]
     public partial class ClientAggregatePolicy : global::Pulumi.CustomResource
     {

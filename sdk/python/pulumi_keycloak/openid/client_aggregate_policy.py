@@ -211,7 +211,80 @@ class ClientAggregatePolicy(pulumi.CustomResource):
                  resource_server_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        Create a ClientAggregatePolicy resource with the given unique name, props, and options.
+        Allows you to manage aggregate policies.
+
+        Aggregate policies combine multiple policies into a single policy, allowing you to reuse existing policies to build more complex authorization logic.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        test = keycloak.openid.Client("test",
+            client_id="client_id",
+            realm_id=realm.id,
+            access_type="CONFIDENTIAL",
+            service_accounts_enabled=True,
+            authorization={
+                "policy_enforcement_mode": "ENFORCING",
+            })
+        role_policy = keycloak.openid.ClientRolePolicy("role_policy",
+            resource_server_id=test.resource_server_id,
+            realm_id=realm.id,
+            name="role_policy",
+            decision_strategy="UNANIMOUS",
+            logic="POSITIVE",
+            roles=[{
+                "id": test_keycloak_role["id"],
+                "required": True,
+            }])
+        user_policy = keycloak.openid.ClientUserPolicy("user_policy",
+            resource_server_id=test.resource_server_id,
+            realm_id=realm.id,
+            name="user_policy",
+            decision_strategy="UNANIMOUS",
+            logic="POSITIVE",
+            users=[test_keycloak_user["id"]])
+        test_client_aggregate_policy = keycloak.openid.ClientAggregatePolicy("test",
+            resource_server_id=test.resource_server_id,
+            realm_id=realm.id,
+            name="aggregate_policy",
+            decision_strategy="AFFIRMATIVE",
+            logic="POSITIVE",
+            policies=[
+                role_policy.id,
+                user_policy.id,
+            ])
+        ```
+
+        ### Argument Reference
+
+        The following arguments are supported:
+
+        - `realm_id` - (Required) The realm this policy exists in.
+        - `resource_server_id` - (Required) The ID of the resource server.
+        - `name` - (Required) The name of the policy.
+        - `decision_strategy` - (Required) The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`.
+        - `logic` - (Optional) The logic, can be one of `POSITIVE` or `NEGATIVE`. Defaults to `POSITIVE`.
+        - `policies` - (Required) A list of policy IDs to aggregate.
+        - `description` - (Optional) A description for the authorization policy.
+
+        ### Attributes Reference
+
+        In addition to the arguments listed above, the following computed attributes are exported:
+
+        - `id` - Policy ID representing the aggregate policy.
+
+        ## Import
+
+        Aggregate policies can be imported using the format: `{{realmId}}/{{resourceServerId}}/{{policyId}}`.
+
+        Example:
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
@@ -222,7 +295,80 @@ class ClientAggregatePolicy(pulumi.CustomResource):
                  args: ClientAggregatePolicyArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a ClientAggregatePolicy resource with the given unique name, props, and options.
+        Allows you to manage aggregate policies.
+
+        Aggregate policies combine multiple policies into a single policy, allowing you to reuse existing policies to build more complex authorization logic.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        test = keycloak.openid.Client("test",
+            client_id="client_id",
+            realm_id=realm.id,
+            access_type="CONFIDENTIAL",
+            service_accounts_enabled=True,
+            authorization={
+                "policy_enforcement_mode": "ENFORCING",
+            })
+        role_policy = keycloak.openid.ClientRolePolicy("role_policy",
+            resource_server_id=test.resource_server_id,
+            realm_id=realm.id,
+            name="role_policy",
+            decision_strategy="UNANIMOUS",
+            logic="POSITIVE",
+            roles=[{
+                "id": test_keycloak_role["id"],
+                "required": True,
+            }])
+        user_policy = keycloak.openid.ClientUserPolicy("user_policy",
+            resource_server_id=test.resource_server_id,
+            realm_id=realm.id,
+            name="user_policy",
+            decision_strategy="UNANIMOUS",
+            logic="POSITIVE",
+            users=[test_keycloak_user["id"]])
+        test_client_aggregate_policy = keycloak.openid.ClientAggregatePolicy("test",
+            resource_server_id=test.resource_server_id,
+            realm_id=realm.id,
+            name="aggregate_policy",
+            decision_strategy="AFFIRMATIVE",
+            logic="POSITIVE",
+            policies=[
+                role_policy.id,
+                user_policy.id,
+            ])
+        ```
+
+        ### Argument Reference
+
+        The following arguments are supported:
+
+        - `realm_id` - (Required) The realm this policy exists in.
+        - `resource_server_id` - (Required) The ID of the resource server.
+        - `name` - (Required) The name of the policy.
+        - `decision_strategy` - (Required) The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`.
+        - `logic` - (Optional) The logic, can be one of `POSITIVE` or `NEGATIVE`. Defaults to `POSITIVE`.
+        - `policies` - (Required) A list of policy IDs to aggregate.
+        - `description` - (Optional) A description for the authorization policy.
+
+        ### Attributes Reference
+
+        In addition to the arguments listed above, the following computed attributes are exported:
+
+        - `id` - Policy ID representing the aggregate policy.
+
+        ## Import
+
+        Aggregate policies can be imported using the format: `{{realmId}}/{{resourceServerId}}/{{policyId}}`.
+
+        Example:
+
         :param str resource_name: The name of the resource.
         :param ClientAggregatePolicyArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

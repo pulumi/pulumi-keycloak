@@ -26,13 +26,16 @@ class GetClientScopeResult:
     """
     A collection of values returned by getClientScope.
     """
-    def __init__(__self__, consent_screen_text=None, description=None, gui_order=None, id=None, include_in_token_scope=None, name=None, realm_id=None):
+    def __init__(__self__, consent_screen_text=None, description=None, extra_config=None, gui_order=None, id=None, include_in_token_scope=None, name=None, realm_id=None):
         if consent_screen_text and not isinstance(consent_screen_text, str):
             raise TypeError("Expected argument 'consent_screen_text' to be a str")
         pulumi.set(__self__, "consent_screen_text", consent_screen_text)
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
+        if extra_config and not isinstance(extra_config, dict):
+            raise TypeError("Expected argument 'extra_config' to be a dict")
+        pulumi.set(__self__, "extra_config", extra_config)
         if gui_order and not isinstance(gui_order, int):
             raise TypeError("Expected argument 'gui_order' to be a int")
         pulumi.set(__self__, "gui_order", gui_order)
@@ -58,6 +61,11 @@ class GetClientScopeResult:
     @pulumi.getter
     def description(self) -> _builtins.str:
         return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="extraConfig")
+    def extra_config(self) -> Mapping[str, _builtins.str]:
+        return pulumi.get(self, "extra_config")
 
     @_builtins.property
     @pulumi.getter(name="guiOrder")
@@ -96,6 +104,7 @@ class AwaitableGetClientScopeResult(GetClientScopeResult):
         return GetClientScopeResult(
             consent_screen_text=self.consent_screen_text,
             description=self.description,
+            extra_config=self.extra_config,
             gui_order=self.gui_order,
             id=self.id,
             include_in_token_scope=self.include_in_token_scope,
@@ -103,7 +112,8 @@ class AwaitableGetClientScopeResult(GetClientScopeResult):
             realm_id=self.realm_id)
 
 
-def get_client_scope(name: Optional[_builtins.str] = None,
+def get_client_scope(extra_config: Optional[Mapping[str, _builtins.str]] = None,
+                     name: Optional[_builtins.str] = None,
                      realm_id: Optional[_builtins.str] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetClientScopeResult:
     """
@@ -130,6 +140,7 @@ def get_client_scope(name: Optional[_builtins.str] = None,
     :param _builtins.str realm_id: The realm id.
     """
     __args__ = dict()
+    __args__['extraConfig'] = extra_config
     __args__['name'] = name
     __args__['realmId'] = realm_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -138,12 +149,14 @@ def get_client_scope(name: Optional[_builtins.str] = None,
     return AwaitableGetClientScopeResult(
         consent_screen_text=pulumi.get(__ret__, 'consent_screen_text'),
         description=pulumi.get(__ret__, 'description'),
+        extra_config=pulumi.get(__ret__, 'extra_config'),
         gui_order=pulumi.get(__ret__, 'gui_order'),
         id=pulumi.get(__ret__, 'id'),
         include_in_token_scope=pulumi.get(__ret__, 'include_in_token_scope'),
         name=pulumi.get(__ret__, 'name'),
         realm_id=pulumi.get(__ret__, 'realm_id'))
-def get_client_scope_output(name: Optional[pulumi.Input[_builtins.str]] = None,
+def get_client_scope_output(extra_config: Optional[pulumi.Input[Optional[Mapping[str, _builtins.str]]]] = None,
+                            name: Optional[pulumi.Input[_builtins.str]] = None,
                             realm_id: Optional[pulumi.Input[_builtins.str]] = None,
                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetClientScopeResult]:
     """
@@ -170,6 +183,7 @@ def get_client_scope_output(name: Optional[pulumi.Input[_builtins.str]] = None,
     :param _builtins.str realm_id: The realm id.
     """
     __args__ = dict()
+    __args__['extraConfig'] = extra_config
     __args__['name'] = name
     __args__['realmId'] = realm_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -177,6 +191,7 @@ def get_client_scope_output(name: Optional[pulumi.Input[_builtins.str]] = None,
     return __ret__.apply(lambda __response__: GetClientScopeResult(
         consent_screen_text=pulumi.get(__response__, 'consent_screen_text'),
         description=pulumi.get(__response__, 'description'),
+        extra_config=pulumi.get(__response__, 'extra_config'),
         gui_order=pulumi.get(__response__, 'gui_order'),
         id=pulumi.get(__response__, 'id'),
         include_in_token_scope=pulumi.get(__response__, 'include_in_token_scope'),

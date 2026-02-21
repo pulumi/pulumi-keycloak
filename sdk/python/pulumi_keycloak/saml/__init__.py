@@ -11,6 +11,7 @@ from .client_default_scope import *
 from .client_scope import *
 from .get_client import *
 from .get_client_installation_provider import *
+from .get_client_scope import *
 from .identity_provider import *
 from .script_protocol_mapper import *
 from .user_attribute_protocol_mapper import *

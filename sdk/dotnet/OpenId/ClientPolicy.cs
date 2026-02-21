@@ -10,11 +10,11 @@ using Pulumi.Serialization;
 namespace Pulumi.Keycloak.OpenId
 {
     /// <summary>
-    /// This resource can be used to create client policy.
+    /// Allows you to manage client policies.
+    /// 
+    /// Client policies allow you to define conditions based on which clients are accessing the resource. This is useful for restricting access to specific clients within your realm.
     /// 
     /// ## Example Usage
-    /// 
-    /// In this example, we'll create a new OpenID client, then enabled permissions for the client. A client without permissions disabled cannot be assigned by a client policy. We'll use the `keycloak.openid.ClientPolicy` resource to create a new client policy, which could be applied to many clients, for a realm and a resource_server_id.
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -30,85 +30,96 @@ namespace Pulumi.Keycloak.OpenId
     ///         Enabled = true,
     ///     });
     /// 
-    ///     var openidClient = new Keycloak.OpenId.Client("openid_client", new()
+    ///     var test = new Keycloak.OpenId.Client("test", new()
     ///     {
-    ///         ClientId = "openid_client",
-    ///         Name = "openid_client",
+    ///         ClientId = "client_id",
+    ///         RealmId = realm.Id,
+    ///         AccessType = "CONFIDENTIAL",
+    ///         ServiceAccountsEnabled = true,
+    ///         Authorization = new Keycloak.OpenId.Inputs.ClientAuthorizationArgs
+    ///         {
+    ///             PolicyEnforcementMode = "ENFORCING",
+    ///         },
+    ///     });
+    /// 
+    ///     var client1 = new Keycloak.OpenId.Client("client1", new()
+    ///     {
+    ///         ClientId = "client1",
     ///         RealmId = realm.Id,
     ///         AccessType = "CONFIDENTIAL",
     ///         ServiceAccountsEnabled = true,
     ///     });
     /// 
-    ///     var myPermission = new Keycloak.OpenId.ClientPermissions("my_permission", new()
+    ///     var client2 = new Keycloak.OpenId.Client("client2", new()
     ///     {
+    ///         ClientId = "client2",
     ///         RealmId = realm.Id,
-    ///         ClientId = openidClient.Id,
+    ///         AccessType = "CONFIDENTIAL",
+    ///         ServiceAccountsEnabled = true,
     ///     });
     /// 
-    ///     var realmManagement = Keycloak.OpenId.GetClient.Invoke(new()
+    ///     var testClientPolicy = new Keycloak.OpenId.ClientPolicy("test", new()
     ///     {
-    ///         RealmId = "my-realm",
-    ///         ClientId = "realm-management",
-    ///     });
-    /// 
-    ///     var tokenExchange = new Keycloak.OpenId.ClientPolicy("token_exchange", new()
-    ///     {
-    ///         ResourceServerId = realmManagement.Apply(getClientResult =&gt; getClientResult.Id),
+    ///         ResourceServerId = test.ResourceServerId,
     ///         RealmId = realm.Id,
-    ///         Name = "my-policy",
-    ///         Logic = "POSITIVE",
+    ///         Name = "client_policy",
     ///         DecisionStrategy = "UNANIMOUS",
+    ///         Logic = "POSITIVE",
     ///         Clients = new[]
     ///         {
-    ///             openidClient.Id,
+    ///             client1.Id,
+    ///             client2.Id,
     ///         },
     ///     });
     /// 
     /// });
     /// ```
+    /// 
+    /// ### Argument Reference
+    /// 
+    /// The following arguments are supported:
+    /// 
+    /// - `RealmId` - (Required) The realm this policy exists in.
+    /// - `ResourceServerId` - (Required) The ID of the resource server.
+    /// - `Name` - (Required) The name of the policy.
+    /// - `Clients` - (Required) A list of client IDs that this policy applies to.
+    /// - `DecisionStrategy` - (Optional) The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`.
+    /// - `Logic` - (Optional) The logic, can be one of `POSITIVE` or `NEGATIVE`. Defaults to `POSITIVE`.
+    /// - `Description` - (Optional) A description for the authorization policy.
+    /// 
+    /// ### Attributes Reference
+    /// 
+    /// In addition to the arguments listed above, the following computed attributes are exported:
+    /// 
+    /// - `Id` - Policy ID representing the client policy.
+    /// 
+    /// ## Import
+    /// 
+    /// Client policies can be imported using the format: `{{realmId}}/{{resourceServerId}}/{{policyId}}`.
+    /// 
+    /// Example:
     /// </summary>
     [KeycloakResourceType("keycloak:openid/clientPolicy:ClientPolicy")]
     public partial class ClientPolicy : global::Pulumi.CustomResource
     {
-        /// <summary>
-        /// The clients allowed by this client policy.
-        /// </summary>
         [Output("clients")]
         public Output<ImmutableArray<string>> Clients { get; private set; } = null!;
 
-        /// <summary>
-        /// (Computed) Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.
-        /// </summary>
         [Output("decisionStrategy")]
         public Output<string?> DecisionStrategy { get; private set; } = null!;
 
-        /// <summary>
-        /// The description of this client policy.
-        /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
-        /// <summary>
-        /// (Computed) Dictates how the policy decision should be made. Can be either `POSITIVE` or `NEGATIVE`. Applies to policies.
-        /// </summary>
         [Output("logic")]
         public Output<string?> Logic { get; private set; } = null!;
 
-        /// <summary>
-        /// The name of this client policy.
-        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
-        /// <summary>
-        /// The realm this client policy exists within.
-        /// </summary>
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
 
-        /// <summary>
-        /// The ID of the resource server this client policy is attached to.
-        /// </summary>
         [Output("resourceServerId")]
         public Output<string> ResourceServerId { get; private set; } = null!;
 
@@ -160,49 +171,27 @@ namespace Pulumi.Keycloak.OpenId
     {
         [Input("clients", required: true)]
         private InputList<string>? _clients;
-
-        /// <summary>
-        /// The clients allowed by this client policy.
-        /// </summary>
         public InputList<string> Clients
         {
             get => _clients ?? (_clients = new InputList<string>());
             set => _clients = value;
         }
 
-        /// <summary>
-        /// (Computed) Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.
-        /// </summary>
         [Input("decisionStrategy")]
         public Input<string>? DecisionStrategy { get; set; }
 
-        /// <summary>
-        /// The description of this client policy.
-        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
-        /// <summary>
-        /// (Computed) Dictates how the policy decision should be made. Can be either `POSITIVE` or `NEGATIVE`. Applies to policies.
-        /// </summary>
         [Input("logic")]
         public Input<string>? Logic { get; set; }
 
-        /// <summary>
-        /// The name of this client policy.
-        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        /// <summary>
-        /// The realm this client policy exists within.
-        /// </summary>
         [Input("realmId", required: true)]
         public Input<string> RealmId { get; set; } = null!;
 
-        /// <summary>
-        /// The ID of the resource server this client policy is attached to.
-        /// </summary>
         [Input("resourceServerId", required: true)]
         public Input<string> ResourceServerId { get; set; } = null!;
 
@@ -216,49 +205,27 @@ namespace Pulumi.Keycloak.OpenId
     {
         [Input("clients")]
         private InputList<string>? _clients;
-
-        /// <summary>
-        /// The clients allowed by this client policy.
-        /// </summary>
         public InputList<string> Clients
         {
             get => _clients ?? (_clients = new InputList<string>());
             set => _clients = value;
         }
 
-        /// <summary>
-        /// (Computed) Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.
-        /// </summary>
         [Input("decisionStrategy")]
         public Input<string>? DecisionStrategy { get; set; }
 
-        /// <summary>
-        /// The description of this client policy.
-        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
-        /// <summary>
-        /// (Computed) Dictates how the policy decision should be made. Can be either `POSITIVE` or `NEGATIVE`. Applies to policies.
-        /// </summary>
         [Input("logic")]
         public Input<string>? Logic { get; set; }
 
-        /// <summary>
-        /// The name of this client policy.
-        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        /// <summary>
-        /// The realm this client policy exists within.
-        /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
 
-        /// <summary>
-        /// The ID of the resource server this client policy is attached to.
-        /// </summary>
         [Input("resourceServerId")]
         public Input<string>? ResourceServerId { get; set; }
 

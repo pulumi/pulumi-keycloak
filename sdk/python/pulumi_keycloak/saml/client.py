@@ -36,6 +36,9 @@ class ClientArgs:
                  encrypt_assertions: Optional[pulumi.Input[_builtins.bool]] = None,
                  encryption_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
                  encryption_certificate: Optional[pulumi.Input[_builtins.str]] = None,
+                 encryption_digest_method: Optional[pulumi.Input[_builtins.str]] = None,
+                 encryption_key_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
+                 encryption_mask_generation_function: Optional[pulumi.Input[_builtins.str]] = None,
                  extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  force_name_id_format: Optional[pulumi.Input[_builtins.bool]] = None,
                  force_post_binding: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -75,6 +78,9 @@ class ClientArgs:
         :param pulumi.Input[_builtins.bool] encrypt_assertions: When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key. Defaults to `false`.
         :param pulumi.Input[_builtins.str] encryption_algorithm: Algorithm used to encrypt SAML assertions. Allowed values: `AES_256_GCM`, `AES_192_GCM`, `AES_128_GCM`, `AES_256_CBC`, `AES_192_CBC`, or `AES_128_CBC`.
         :param pulumi.Input[_builtins.str] encryption_certificate: If assertions for the client are encrypted, this certificate will be used for encryption.
+        :param pulumi.Input[_builtins.str] encryption_digest_method: Digest method used with SAML encryption. Allowed values: `SHA-512`, `SHA-256`, or `SHA-1`. Only valid when `encryption_key_algorithm` is `RSA-OAEP-11` or `RSA-OAEP-MGF1P`. Default is `SHA-256`.
+        :param pulumi.Input[_builtins.str] encryption_key_algorithm: Key transport algorithm used by the client to encrypt the secret key for SAML assertion encryption. Allowed values: `RSA-OAEP-11`, `RSA-OAEP-MGF1P`, or `RSA1_5`. Default is `RSA-OAEP-11`.
+        :param pulumi.Input[_builtins.str] encryption_mask_generation_function: Mask generation function used with SAML encryption. Allowed values: `mgf1sha1`, `mgf1sha224`, `mgf1sha256`, `mgf1sha384`, or `mgf1sha512`. Only valid when `encryption_key_algorithm` is `RSA-OAEP-11`. Default is `mgf1sha256`.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that is not yet supported by this Terraform provider. Use this attribute at your own risk, as s may conflict with top-level configuration attributes in future provider updates.
         :param pulumi.Input[_builtins.bool] force_name_id_format: Ignore requested NameID subject format and use the one defined in `name_id_format` instead. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] force_post_binding: When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding. Defaults to `true`.
@@ -126,6 +132,12 @@ class ClientArgs:
             pulumi.set(__self__, "encryption_algorithm", encryption_algorithm)
         if encryption_certificate is not None:
             pulumi.set(__self__, "encryption_certificate", encryption_certificate)
+        if encryption_digest_method is not None:
+            pulumi.set(__self__, "encryption_digest_method", encryption_digest_method)
+        if encryption_key_algorithm is not None:
+            pulumi.set(__self__, "encryption_key_algorithm", encryption_key_algorithm)
+        if encryption_mask_generation_function is not None:
+            pulumi.set(__self__, "encryption_mask_generation_function", encryption_mask_generation_function)
         if extra_config is not None:
             pulumi.set(__self__, "extra_config", extra_config)
         if force_name_id_format is not None:
@@ -350,6 +362,42 @@ class ClientArgs:
     @encryption_certificate.setter
     def encryption_certificate(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "encryption_certificate", value)
+
+    @_builtins.property
+    @pulumi.getter(name="encryptionDigestMethod")
+    def encryption_digest_method(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Digest method used with SAML encryption. Allowed values: `SHA-512`, `SHA-256`, or `SHA-1`. Only valid when `encryption_key_algorithm` is `RSA-OAEP-11` or `RSA-OAEP-MGF1P`. Default is `SHA-256`.
+        """
+        return pulumi.get(self, "encryption_digest_method")
+
+    @encryption_digest_method.setter
+    def encryption_digest_method(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "encryption_digest_method", value)
+
+    @_builtins.property
+    @pulumi.getter(name="encryptionKeyAlgorithm")
+    def encryption_key_algorithm(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Key transport algorithm used by the client to encrypt the secret key for SAML assertion encryption. Allowed values: `RSA-OAEP-11`, `RSA-OAEP-MGF1P`, or `RSA1_5`. Default is `RSA-OAEP-11`.
+        """
+        return pulumi.get(self, "encryption_key_algorithm")
+
+    @encryption_key_algorithm.setter
+    def encryption_key_algorithm(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "encryption_key_algorithm", value)
+
+    @_builtins.property
+    @pulumi.getter(name="encryptionMaskGenerationFunction")
+    def encryption_mask_generation_function(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Mask generation function used with SAML encryption. Allowed values: `mgf1sha1`, `mgf1sha224`, `mgf1sha256`, `mgf1sha384`, or `mgf1sha512`. Only valid when `encryption_key_algorithm` is `RSA-OAEP-11`. Default is `mgf1sha256`.
+        """
+        return pulumi.get(self, "encryption_mask_generation_function")
+
+    @encryption_mask_generation_function.setter
+    def encryption_mask_generation_function(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "encryption_mask_generation_function", value)
 
     @_builtins.property
     @pulumi.getter(name="extraConfig")
@@ -634,6 +682,9 @@ class _ClientState:
                  encryption_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
                  encryption_certificate: Optional[pulumi.Input[_builtins.str]] = None,
                  encryption_certificate_sha1: Optional[pulumi.Input[_builtins.str]] = None,
+                 encryption_digest_method: Optional[pulumi.Input[_builtins.str]] = None,
+                 encryption_key_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
+                 encryption_mask_generation_function: Optional[pulumi.Input[_builtins.str]] = None,
                  extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  force_name_id_format: Optional[pulumi.Input[_builtins.bool]] = None,
                  force_post_binding: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -676,6 +727,9 @@ class _ClientState:
         :param pulumi.Input[_builtins.str] encryption_algorithm: Algorithm used to encrypt SAML assertions. Allowed values: `AES_256_GCM`, `AES_192_GCM`, `AES_128_GCM`, `AES_256_CBC`, `AES_192_CBC`, or `AES_128_CBC`.
         :param pulumi.Input[_builtins.str] encryption_certificate: If assertions for the client are encrypted, this certificate will be used for encryption.
         :param pulumi.Input[_builtins.str] encryption_certificate_sha1: (Computed) The sha1sum fingerprint of the encryption certificate. If the encryption certificate is not in correct base64 format, this will be left empty.
+        :param pulumi.Input[_builtins.str] encryption_digest_method: Digest method used with SAML encryption. Allowed values: `SHA-512`, `SHA-256`, or `SHA-1`. Only valid when `encryption_key_algorithm` is `RSA-OAEP-11` or `RSA-OAEP-MGF1P`. Default is `SHA-256`.
+        :param pulumi.Input[_builtins.str] encryption_key_algorithm: Key transport algorithm used by the client to encrypt the secret key for SAML assertion encryption. Allowed values: `RSA-OAEP-11`, `RSA-OAEP-MGF1P`, or `RSA1_5`. Default is `RSA-OAEP-11`.
+        :param pulumi.Input[_builtins.str] encryption_mask_generation_function: Mask generation function used with SAML encryption. Allowed values: `mgf1sha1`, `mgf1sha224`, `mgf1sha256`, `mgf1sha384`, or `mgf1sha512`. Only valid when `encryption_key_algorithm` is `RSA-OAEP-11`. Default is `mgf1sha256`.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that is not yet supported by this Terraform provider. Use this attribute at your own risk, as s may conflict with top-level configuration attributes in future provider updates.
         :param pulumi.Input[_builtins.bool] force_name_id_format: Ignore requested NameID subject format and use the one defined in `name_id_format` instead. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] force_post_binding: When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding. Defaults to `true`.
@@ -732,6 +786,12 @@ class _ClientState:
             pulumi.set(__self__, "encryption_certificate", encryption_certificate)
         if encryption_certificate_sha1 is not None:
             pulumi.set(__self__, "encryption_certificate_sha1", encryption_certificate_sha1)
+        if encryption_digest_method is not None:
+            pulumi.set(__self__, "encryption_digest_method", encryption_digest_method)
+        if encryption_key_algorithm is not None:
+            pulumi.set(__self__, "encryption_key_algorithm", encryption_key_algorithm)
+        if encryption_mask_generation_function is not None:
+            pulumi.set(__self__, "encryption_mask_generation_function", encryption_mask_generation_function)
         if extra_config is not None:
             pulumi.set(__self__, "extra_config", extra_config)
         if force_name_id_format is not None:
@@ -962,6 +1022,42 @@ class _ClientState:
     @encryption_certificate_sha1.setter
     def encryption_certificate_sha1(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "encryption_certificate_sha1", value)
+
+    @_builtins.property
+    @pulumi.getter(name="encryptionDigestMethod")
+    def encryption_digest_method(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Digest method used with SAML encryption. Allowed values: `SHA-512`, `SHA-256`, or `SHA-1`. Only valid when `encryption_key_algorithm` is `RSA-OAEP-11` or `RSA-OAEP-MGF1P`. Default is `SHA-256`.
+        """
+        return pulumi.get(self, "encryption_digest_method")
+
+    @encryption_digest_method.setter
+    def encryption_digest_method(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "encryption_digest_method", value)
+
+    @_builtins.property
+    @pulumi.getter(name="encryptionKeyAlgorithm")
+    def encryption_key_algorithm(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Key transport algorithm used by the client to encrypt the secret key for SAML assertion encryption. Allowed values: `RSA-OAEP-11`, `RSA-OAEP-MGF1P`, or `RSA1_5`. Default is `RSA-OAEP-11`.
+        """
+        return pulumi.get(self, "encryption_key_algorithm")
+
+    @encryption_key_algorithm.setter
+    def encryption_key_algorithm(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "encryption_key_algorithm", value)
+
+    @_builtins.property
+    @pulumi.getter(name="encryptionMaskGenerationFunction")
+    def encryption_mask_generation_function(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Mask generation function used with SAML encryption. Allowed values: `mgf1sha1`, `mgf1sha224`, `mgf1sha256`, `mgf1sha384`, or `mgf1sha512`. Only valid when `encryption_key_algorithm` is `RSA-OAEP-11`. Default is `mgf1sha256`.
+        """
+        return pulumi.get(self, "encryption_mask_generation_function")
+
+    @encryption_mask_generation_function.setter
+    def encryption_mask_generation_function(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "encryption_mask_generation_function", value)
 
     @_builtins.property
     @pulumi.getter(name="extraConfig")
@@ -1284,6 +1380,9 @@ class Client(pulumi.CustomResource):
                  encrypt_assertions: Optional[pulumi.Input[_builtins.bool]] = None,
                  encryption_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
                  encryption_certificate: Optional[pulumi.Input[_builtins.str]] = None,
+                 encryption_digest_method: Optional[pulumi.Input[_builtins.str]] = None,
+                 encryption_key_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
+                 encryption_mask_generation_function: Optional[pulumi.Input[_builtins.str]] = None,
                  extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  force_name_id_format: Optional[pulumi.Input[_builtins.bool]] = None,
                  force_post_binding: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -1358,6 +1457,9 @@ class Client(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] encrypt_assertions: When `true`, the SAML assertions will be encrypted by Keycloak using the client's public key. Defaults to `false`.
         :param pulumi.Input[_builtins.str] encryption_algorithm: Algorithm used to encrypt SAML assertions. Allowed values: `AES_256_GCM`, `AES_192_GCM`, `AES_128_GCM`, `AES_256_CBC`, `AES_192_CBC`, or `AES_128_CBC`.
         :param pulumi.Input[_builtins.str] encryption_certificate: If assertions for the client are encrypted, this certificate will be used for encryption.
+        :param pulumi.Input[_builtins.str] encryption_digest_method: Digest method used with SAML encryption. Allowed values: `SHA-512`, `SHA-256`, or `SHA-1`. Only valid when `encryption_key_algorithm` is `RSA-OAEP-11` or `RSA-OAEP-MGF1P`. Default is `SHA-256`.
+        :param pulumi.Input[_builtins.str] encryption_key_algorithm: Key transport algorithm used by the client to encrypt the secret key for SAML assertion encryption. Allowed values: `RSA-OAEP-11`, `RSA-OAEP-MGF1P`, or `RSA1_5`. Default is `RSA-OAEP-11`.
+        :param pulumi.Input[_builtins.str] encryption_mask_generation_function: Mask generation function used with SAML encryption. Allowed values: `mgf1sha1`, `mgf1sha224`, `mgf1sha256`, `mgf1sha384`, or `mgf1sha512`. Only valid when `encryption_key_algorithm` is `RSA-OAEP-11`. Default is `mgf1sha256`.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that is not yet supported by this Terraform provider. Use this attribute at your own risk, as s may conflict with top-level configuration attributes in future provider updates.
         :param pulumi.Input[_builtins.bool] force_name_id_format: Ignore requested NameID subject format and use the one defined in `name_id_format` instead. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] force_post_binding: When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding. Defaults to `true`.
@@ -1451,6 +1553,9 @@ class Client(pulumi.CustomResource):
                  encrypt_assertions: Optional[pulumi.Input[_builtins.bool]] = None,
                  encryption_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
                  encryption_certificate: Optional[pulumi.Input[_builtins.str]] = None,
+                 encryption_digest_method: Optional[pulumi.Input[_builtins.str]] = None,
+                 encryption_key_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
+                 encryption_mask_generation_function: Optional[pulumi.Input[_builtins.str]] = None,
                  extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  force_name_id_format: Optional[pulumi.Input[_builtins.bool]] = None,
                  force_post_binding: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -1499,6 +1604,9 @@ class Client(pulumi.CustomResource):
             __props__.__dict__["encrypt_assertions"] = encrypt_assertions
             __props__.__dict__["encryption_algorithm"] = encryption_algorithm
             __props__.__dict__["encryption_certificate"] = encryption_certificate
+            __props__.__dict__["encryption_digest_method"] = encryption_digest_method
+            __props__.__dict__["encryption_key_algorithm"] = encryption_key_algorithm
+            __props__.__dict__["encryption_mask_generation_function"] = encryption_mask_generation_function
             __props__.__dict__["extra_config"] = extra_config
             __props__.__dict__["force_name_id_format"] = force_name_id_format
             __props__.__dict__["force_post_binding"] = force_post_binding
@@ -1552,6 +1660,9 @@ class Client(pulumi.CustomResource):
             encryption_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
             encryption_certificate: Optional[pulumi.Input[_builtins.str]] = None,
             encryption_certificate_sha1: Optional[pulumi.Input[_builtins.str]] = None,
+            encryption_digest_method: Optional[pulumi.Input[_builtins.str]] = None,
+            encryption_key_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
+            encryption_mask_generation_function: Optional[pulumi.Input[_builtins.str]] = None,
             extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             force_name_id_format: Optional[pulumi.Input[_builtins.bool]] = None,
             force_post_binding: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -1599,6 +1710,9 @@ class Client(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] encryption_algorithm: Algorithm used to encrypt SAML assertions. Allowed values: `AES_256_GCM`, `AES_192_GCM`, `AES_128_GCM`, `AES_256_CBC`, `AES_192_CBC`, or `AES_128_CBC`.
         :param pulumi.Input[_builtins.str] encryption_certificate: If assertions for the client are encrypted, this certificate will be used for encryption.
         :param pulumi.Input[_builtins.str] encryption_certificate_sha1: (Computed) The sha1sum fingerprint of the encryption certificate. If the encryption certificate is not in correct base64 format, this will be left empty.
+        :param pulumi.Input[_builtins.str] encryption_digest_method: Digest method used with SAML encryption. Allowed values: `SHA-512`, `SHA-256`, or `SHA-1`. Only valid when `encryption_key_algorithm` is `RSA-OAEP-11` or `RSA-OAEP-MGF1P`. Default is `SHA-256`.
+        :param pulumi.Input[_builtins.str] encryption_key_algorithm: Key transport algorithm used by the client to encrypt the secret key for SAML assertion encryption. Allowed values: `RSA-OAEP-11`, `RSA-OAEP-MGF1P`, or `RSA1_5`. Default is `RSA-OAEP-11`.
+        :param pulumi.Input[_builtins.str] encryption_mask_generation_function: Mask generation function used with SAML encryption. Allowed values: `mgf1sha1`, `mgf1sha224`, `mgf1sha256`, `mgf1sha384`, or `mgf1sha512`. Only valid when `encryption_key_algorithm` is `RSA-OAEP-11`. Default is `mgf1sha256`.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that is not yet supported by this Terraform provider. Use this attribute at your own risk, as s may conflict with top-level configuration attributes in future provider updates.
         :param pulumi.Input[_builtins.bool] force_name_id_format: Ignore requested NameID subject format and use the one defined in `name_id_format` instead. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] force_post_binding: When `true`, Keycloak will always respond to an authentication request via the SAML POST Binding. Defaults to `true`.
@@ -1644,6 +1758,9 @@ class Client(pulumi.CustomResource):
         __props__.__dict__["encryption_algorithm"] = encryption_algorithm
         __props__.__dict__["encryption_certificate"] = encryption_certificate
         __props__.__dict__["encryption_certificate_sha1"] = encryption_certificate_sha1
+        __props__.__dict__["encryption_digest_method"] = encryption_digest_method
+        __props__.__dict__["encryption_key_algorithm"] = encryption_key_algorithm
+        __props__.__dict__["encryption_mask_generation_function"] = encryption_mask_generation_function
         __props__.__dict__["extra_config"] = extra_config
         __props__.__dict__["force_name_id_format"] = force_name_id_format
         __props__.__dict__["force_post_binding"] = force_post_binding
@@ -1792,6 +1909,30 @@ class Client(pulumi.CustomResource):
         return pulumi.get(self, "encryption_certificate_sha1")
 
     @_builtins.property
+    @pulumi.getter(name="encryptionDigestMethod")
+    def encryption_digest_method(self) -> pulumi.Output[_builtins.str]:
+        """
+        Digest method used with SAML encryption. Allowed values: `SHA-512`, `SHA-256`, or `SHA-1`. Only valid when `encryption_key_algorithm` is `RSA-OAEP-11` or `RSA-OAEP-MGF1P`. Default is `SHA-256`.
+        """
+        return pulumi.get(self, "encryption_digest_method")
+
+    @_builtins.property
+    @pulumi.getter(name="encryptionKeyAlgorithm")
+    def encryption_key_algorithm(self) -> pulumi.Output[_builtins.str]:
+        """
+        Key transport algorithm used by the client to encrypt the secret key for SAML assertion encryption. Allowed values: `RSA-OAEP-11`, `RSA-OAEP-MGF1P`, or `RSA1_5`. Default is `RSA-OAEP-11`.
+        """
+        return pulumi.get(self, "encryption_key_algorithm")
+
+    @_builtins.property
+    @pulumi.getter(name="encryptionMaskGenerationFunction")
+    def encryption_mask_generation_function(self) -> pulumi.Output[_builtins.str]:
+        """
+        Mask generation function used with SAML encryption. Allowed values: `mgf1sha1`, `mgf1sha224`, `mgf1sha256`, `mgf1sha384`, or `mgf1sha512`. Only valid when `encryption_key_algorithm` is `RSA-OAEP-11`. Default is `mgf1sha256`.
+        """
+        return pulumi.get(self, "encryption_mask_generation_function")
+
+    @_builtins.property
     @pulumi.getter(name="extraConfig")
     def extra_config(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:
         """
@@ -1937,7 +2078,7 @@ class Client(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="signatureAlgorithm")
-    def signature_algorithm(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def signature_algorithm(self) -> pulumi.Output[_builtins.str]:
         """
         The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA256_MGF1, "RSA_SHA512", "RSA_SHA512_MGF1" or "DSA_SHA1".
         """

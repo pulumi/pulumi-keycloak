@@ -68,6 +68,9 @@ export interface GetClientResult {
     readonly encryptionAlgorithm: string;
     readonly encryptionCertificate: string;
     readonly encryptionCertificateSha1: string;
+    readonly encryptionDigestMethod: string;
+    readonly encryptionKeyAlgorithm: string;
+    readonly encryptionMaskGenerationFunction: string;
     readonly extraConfig: {[key: string]: string};
     readonly forceNameIdFormat: boolean;
     readonly forcePostBinding: boolean;

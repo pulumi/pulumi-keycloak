@@ -15,6 +15,122 @@ import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * Allows you to manage aggregate policies.
+ * 
+ * Aggregate policies combine multiple policies into a single policy, allowing you to reuse existing policies to build more complex authorization logic.
+ * 
+ * ## Example Usage
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.keycloak.Realm;
+ * import com.pulumi.keycloak.RealmArgs;
+ * import com.pulumi.keycloak.openid.Client;
+ * import com.pulumi.keycloak.openid.ClientArgs;
+ * import com.pulumi.keycloak.openid.inputs.ClientAuthorizationArgs;
+ * import com.pulumi.keycloak.openid.ClientRolePolicy;
+ * import com.pulumi.keycloak.openid.ClientRolePolicyArgs;
+ * import com.pulumi.keycloak.openid.inputs.ClientRolePolicyRoleArgs;
+ * import com.pulumi.keycloak.openid.ClientUserPolicy;
+ * import com.pulumi.keycloak.openid.ClientUserPolicyArgs;
+ * import com.pulumi.keycloak.openid.ClientAggregatePolicy;
+ * import com.pulumi.keycloak.openid.ClientAggregatePolicyArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var realm = new Realm("realm", RealmArgs.builder()
+ *             .realm("my-realm")
+ *             .enabled(true)
+ *             .build());
+ * 
+ *         var test = new Client("test", ClientArgs.builder()
+ *             .clientId("client_id")
+ *             .realmId(realm.id())
+ *             .accessType("CONFIDENTIAL")
+ *             .serviceAccountsEnabled(true)
+ *             .authorization(ClientAuthorizationArgs.builder()
+ *                 .policyEnforcementMode("ENFORCING")
+ *                 .build())
+ *             .build());
+ * 
+ *         var rolePolicy = new ClientRolePolicy("rolePolicy", ClientRolePolicyArgs.builder()
+ *             .resourceServerId(test.resourceServerId())
+ *             .realmId(realm.id())
+ *             .name("role_policy")
+ *             .decisionStrategy("UNANIMOUS")
+ *             .logic("POSITIVE")
+ *             .roles(ClientRolePolicyRoleArgs.builder()
+ *                 .id(testKeycloakRole.id())
+ *                 .required(true)
+ *                 .build())
+ *             .build());
+ * 
+ *         var userPolicy = new ClientUserPolicy("userPolicy", ClientUserPolicyArgs.builder()
+ *             .resourceServerId(test.resourceServerId())
+ *             .realmId(realm.id())
+ *             .name("user_policy")
+ *             .decisionStrategy("UNANIMOUS")
+ *             .logic("POSITIVE")
+ *             .users(testKeycloakUser.id())
+ *             .build());
+ * 
+ *         var testClientAggregatePolicy = new ClientAggregatePolicy("testClientAggregatePolicy", ClientAggregatePolicyArgs.builder()
+ *             .resourceServerId(test.resourceServerId())
+ *             .realmId(realm.id())
+ *             .name("aggregate_policy")
+ *             .decisionStrategy("AFFIRMATIVE")
+ *             .logic("POSITIVE")
+ *             .policies(            
+ *                 rolePolicy.id(),
+ *                 userPolicy.id())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ### Argument Reference
+ * 
+ * The following arguments are supported:
+ * 
+ * - `realmId` - (Required) The realm this policy exists in.
+ * - `resourceServerId` - (Required) The ID of the resource server.
+ * - `name` - (Required) The name of the policy.
+ * - `decisionStrategy` - (Required) The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`.
+ * - `logic` - (Optional) The logic, can be one of `POSITIVE` or `NEGATIVE`. Defaults to `POSITIVE`.
+ * - `policies` - (Required) A list of policy IDs to aggregate.
+ * - `description` - (Optional) A description for the authorization policy.
+ * 
+ * ### Attributes Reference
+ * 
+ * In addition to the arguments listed above, the following computed attributes are exported:
+ * 
+ * - `id` - Policy ID representing the aggregate policy.
+ * 
+ * ## Import
+ * 
+ * Aggregate policies can be imported using the format: `{{realmId}}/{{resourceServerId}}/{{policyId}}`.
+ * 
+ * Example:
+ * 
+ */
 @ResourceType(type="keycloak:openid/clientAggregatePolicy:ClientAggregatePolicy")
 public class ClientAggregatePolicy extends com.pulumi.resources.CustomResource {
     @Export(name="decisionStrategy", refs={String.class}, tree="[0]")

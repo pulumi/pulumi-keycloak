@@ -61,6 +61,7 @@ func LookupClientScope(ctx *pulumi.Context, args *LookupClientScopeArgs, opts ..
 
 // A collection of arguments for invoking getClientScope.
 type LookupClientScopeArgs struct {
+	ExtraConfig map[string]string `pulumi:"extraConfig"`
 	// The name of the client scope.
 	Name string `pulumi:"name"`
 	// The realm id.
@@ -69,9 +70,10 @@ type LookupClientScopeArgs struct {
 
 // A collection of values returned by getClientScope.
 type LookupClientScopeResult struct {
-	ConsentScreenText string `pulumi:"consentScreenText"`
-	Description       string `pulumi:"description"`
-	GuiOrder          int    `pulumi:"guiOrder"`
+	ConsentScreenText string            `pulumi:"consentScreenText"`
+	Description       string            `pulumi:"description"`
+	ExtraConfig       map[string]string `pulumi:"extraConfig"`
+	GuiOrder          int               `pulumi:"guiOrder"`
 	// The provider-assigned unique ID for this managed resource.
 	Id                  string `pulumi:"id"`
 	IncludeInTokenScope bool   `pulumi:"includeInTokenScope"`
@@ -90,6 +92,7 @@ func LookupClientScopeOutput(ctx *pulumi.Context, args LookupClientScopeOutputAr
 
 // A collection of arguments for invoking getClientScope.
 type LookupClientScopeOutputArgs struct {
+	ExtraConfig pulumi.StringMapInput `pulumi:"extraConfig"`
 	// The name of the client scope.
 	Name pulumi.StringInput `pulumi:"name"`
 	// The realm id.
@@ -121,6 +124,10 @@ func (o LookupClientScopeResultOutput) ConsentScreenText() pulumi.StringOutput {
 
 func (o LookupClientScopeResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClientScopeResult) string { return v.Description }).(pulumi.StringOutput)
+}
+
+func (o LookupClientScopeResultOutput) ExtraConfig() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LookupClientScopeResult) map[string]string { return v.ExtraConfig }).(pulumi.StringMapOutput)
 }
 
 func (o LookupClientScopeResultOutput) GuiOrder() pulumi.IntOutput {

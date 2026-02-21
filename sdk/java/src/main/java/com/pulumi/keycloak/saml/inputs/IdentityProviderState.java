@@ -619,6 +619,21 @@ public final class IdentityProviderState extends com.pulumi.resources.ResourceAr
     }
 
     /**
+     * Indicates whether this service provider expects authentication requests to be signed (defaults to `true` if `signatureAlgorithm` is set and this isn&#39;t).
+     * 
+     */
+    @Import(name="wantAuthnRequestsSigned")
+    private @Nullable Output<Boolean> wantAuthnRequestsSigned;
+
+    /**
+     * @return Indicates whether this service provider expects authentication requests to be signed (defaults to `true` if `signatureAlgorithm` is set and this isn&#39;t).
+     * 
+     */
+    public Optional<Output<Boolean>> wantAuthnRequestsSigned() {
+        return Optional.ofNullable(this.wantAuthnRequestsSigned);
+    }
+
+    /**
      * The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.
      * 
      */
@@ -676,6 +691,7 @@ public final class IdentityProviderState extends com.pulumi.resources.ResourceAr
         this.validateSignature = $.validateSignature;
         this.wantAssertionsEncrypted = $.wantAssertionsEncrypted;
         this.wantAssertionsSigned = $.wantAssertionsSigned;
+        this.wantAuthnRequestsSigned = $.wantAuthnRequestsSigned;
         this.xmlSignKeyInfoKeyNameTransformer = $.xmlSignKeyInfoKeyNameTransformer;
     }
 
@@ -1555,6 +1571,27 @@ public final class IdentityProviderState extends com.pulumi.resources.ResourceAr
          */
         public Builder wantAssertionsSigned(Boolean wantAssertionsSigned) {
             return wantAssertionsSigned(Output.of(wantAssertionsSigned));
+        }
+
+        /**
+         * @param wantAuthnRequestsSigned Indicates whether this service provider expects authentication requests to be signed (defaults to `true` if `signatureAlgorithm` is set and this isn&#39;t).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder wantAuthnRequestsSigned(@Nullable Output<Boolean> wantAuthnRequestsSigned) {
+            $.wantAuthnRequestsSigned = wantAuthnRequestsSigned;
+            return this;
+        }
+
+        /**
+         * @param wantAuthnRequestsSigned Indicates whether this service provider expects authentication requests to be signed (defaults to `true` if `signatureAlgorithm` is set and this isn&#39;t).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder wantAuthnRequestsSigned(Boolean wantAuthnRequestsSigned) {
+            return wantAuthnRequestsSigned(Output.of(wantAuthnRequestsSigned));
         }
 
         /**

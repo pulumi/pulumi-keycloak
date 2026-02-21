@@ -293,6 +293,48 @@ public class Client extends com.pulumi.resources.CustomResource {
         return this.encryptionCertificateSha1;
     }
     /**
+     * Digest method used with SAML encryption. Allowed values: `SHA-512`, `SHA-256`, or `SHA-1`. Only valid when `encryptionKeyAlgorithm` is `RSA-OAEP-11` or `RSA-OAEP-MGF1P`. Default is `SHA-256`.
+     * 
+     */
+    @Export(name="encryptionDigestMethod", refs={String.class}, tree="[0]")
+    private Output<String> encryptionDigestMethod;
+
+    /**
+     * @return Digest method used with SAML encryption. Allowed values: `SHA-512`, `SHA-256`, or `SHA-1`. Only valid when `encryptionKeyAlgorithm` is `RSA-OAEP-11` or `RSA-OAEP-MGF1P`. Default is `SHA-256`.
+     * 
+     */
+    public Output<String> encryptionDigestMethod() {
+        return this.encryptionDigestMethod;
+    }
+    /**
+     * Key transport algorithm used by the client to encrypt the secret key for SAML assertion encryption. Allowed values: `RSA-OAEP-11`, `RSA-OAEP-MGF1P`, or `RSA1_5`. Default is `RSA-OAEP-11`.
+     * 
+     */
+    @Export(name="encryptionKeyAlgorithm", refs={String.class}, tree="[0]")
+    private Output<String> encryptionKeyAlgorithm;
+
+    /**
+     * @return Key transport algorithm used by the client to encrypt the secret key for SAML assertion encryption. Allowed values: `RSA-OAEP-11`, `RSA-OAEP-MGF1P`, or `RSA1_5`. Default is `RSA-OAEP-11`.
+     * 
+     */
+    public Output<String> encryptionKeyAlgorithm() {
+        return this.encryptionKeyAlgorithm;
+    }
+    /**
+     * Mask generation function used with SAML encryption. Allowed values: `mgf1sha1`, `mgf1sha224`, `mgf1sha256`, `mgf1sha384`, or `mgf1sha512`. Only valid when `encryptionKeyAlgorithm` is `RSA-OAEP-11`. Default is `mgf1sha256`.
+     * 
+     */
+    @Export(name="encryptionMaskGenerationFunction", refs={String.class}, tree="[0]")
+    private Output<String> encryptionMaskGenerationFunction;
+
+    /**
+     * @return Mask generation function used with SAML encryption. Allowed values: `mgf1sha1`, `mgf1sha224`, `mgf1sha256`, `mgf1sha384`, or `mgf1sha512`. Only valid when `encryptionKeyAlgorithm` is `RSA-OAEP-11`. Default is `mgf1sha256`.
+     * 
+     */
+    public Output<String> encryptionMaskGenerationFunction() {
+        return this.encryptionMaskGenerationFunction;
+    }
+    /**
      * A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that is not yet supported by this Terraform provider. Use this attribute at your own risk, as s may conflict with top-level configuration attributes in future provider updates.
      * 
      */
@@ -549,14 +591,14 @@ public class Client extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="signatureAlgorithm", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> signatureAlgorithm;
+    private Output<String> signatureAlgorithm;
 
     /**
      * @return The signature algorithm used to sign documents. Should be one of &#34;RSA_SHA1&#34;, &#34;RSA_SHA256&#34;, &#34;RSA_SHA256_MGF1, &#34;RSA_SHA512&#34;, &#34;RSA_SHA512_MGF1&#34; or &#34;DSA_SHA1&#34;.
      * 
      */
-    public Output<Optional<String>> signatureAlgorithm() {
-        return Codegen.optional(this.signatureAlgorithm);
+    public Output<String> signatureAlgorithm() {
+        return this.signatureAlgorithm;
     }
     /**
      * The value of the `KeyName` element within the signed SAML document. Should be one of &#34;NONE&#34;, &#34;KEY_ID&#34;, or &#34;CERT_SUBJECT&#34;. Defaults to &#34;KEY_ID&#34;.

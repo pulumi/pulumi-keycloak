@@ -35,6 +35,7 @@ from .hardcoded_attribute_mapper import *
 from .hardcoded_group_identity_provider_mapper import *
 from .hardcoded_role_identity_mapper import *
 from .identity_provider_token_exchange_scope_permission import *
+from .kubernetes_identity_provider import *
 from .organization import *
 from .provider import *
 from .realm import *
@@ -276,6 +277,14 @@ _utilities.register(
   "fqn": "pulumi_keycloak",
   "classes": {
    "keycloak:index/identityProviderTokenExchangeScopePermission:IdentityProviderTokenExchangeScopePermission": "IdentityProviderTokenExchangeScopePermission"
+  }
+ },
+ {
+  "pkg": "keycloak",
+  "mod": "index/kubernetesIdentityProvider",
+  "fqn": "pulumi_keycloak",
+  "classes": {
+   "keycloak:index/kubernetesIdentityProvider:KubernetesIdentityProvider": "KubernetesIdentityProvider"
   }
  },
  {

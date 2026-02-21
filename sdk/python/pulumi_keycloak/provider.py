@@ -29,6 +29,8 @@ class ProviderArgs:
                  initial_login: Optional[pulumi.Input[_builtins.bool]] = None,
                  jwt_signing_alg: Optional[pulumi.Input[_builtins.str]] = None,
                  jwt_signing_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 jwt_token: Optional[pulumi.Input[_builtins.str]] = None,
+                 jwt_token_file: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
                  realm: Optional[pulumi.Input[_builtins.str]] = None,
                  red_hat_sso: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -45,6 +47,8 @@ class ProviderArgs:
         :param pulumi.Input[_builtins.bool] initial_login: Whether or not to login to Keycloak instance on provider initialization
         :param pulumi.Input[_builtins.str] jwt_signing_alg: The algorithm used to sign the JWT when client-jwt is used. Defaults to RS256.
         :param pulumi.Input[_builtins.str] jwt_signing_key: The PEM-formatted private key used to sign the JWT when client-jwt is used.
+        :param pulumi.Input[_builtins.str] jwt_token: A signed JWT token used for client authentication.
+        :param pulumi.Input[_builtins.str] jwt_token_file: A path to a file containing a signed JWT token used for client authentication.
         :param pulumi.Input[_builtins.bool] red_hat_sso: When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version returned from the /serverinfo API endpoint.
         :param pulumi.Input[_builtins.str] root_ca_certificate: Allows x509 calls using an unknown CA certificate (for development purposes)
         :param pulumi.Input[_builtins.str] tls_client_certificate: TLS client certificate as PEM string for mutual authentication
@@ -74,6 +78,10 @@ class ProviderArgs:
             pulumi.set(__self__, "jwt_signing_alg", jwt_signing_alg)
         if jwt_signing_key is not None:
             pulumi.set(__self__, "jwt_signing_key", jwt_signing_key)
+        if jwt_token is not None:
+            pulumi.set(__self__, "jwt_token", jwt_token)
+        if jwt_token_file is not None:
+            pulumi.set(__self__, "jwt_token_file", jwt_token_file)
         if password is not None:
             pulumi.set(__self__, "password", password)
         if realm is not None:
@@ -199,6 +207,30 @@ class ProviderArgs:
         pulumi.set(self, "jwt_signing_key", value)
 
     @_builtins.property
+    @pulumi.getter(name="jwtToken")
+    def jwt_token(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        A signed JWT token used for client authentication.
+        """
+        return pulumi.get(self, "jwt_token")
+
+    @jwt_token.setter
+    def jwt_token(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "jwt_token", value)
+
+    @_builtins.property
+    @pulumi.getter(name="jwtTokenFile")
+    def jwt_token_file(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        A path to a file containing a signed JWT token used for client authentication.
+        """
+        return pulumi.get(self, "jwt_token_file")
+
+    @jwt_token_file.setter
+    def jwt_token_file(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "jwt_token_file", value)
+
+    @_builtins.property
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[_builtins.str]]:
         return pulumi.get(self, "password")
@@ -314,6 +346,8 @@ class Provider(pulumi.ProviderResource):
                  initial_login: Optional[pulumi.Input[_builtins.bool]] = None,
                  jwt_signing_alg: Optional[pulumi.Input[_builtins.str]] = None,
                  jwt_signing_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 jwt_token: Optional[pulumi.Input[_builtins.str]] = None,
+                 jwt_token_file: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
                  realm: Optional[pulumi.Input[_builtins.str]] = None,
                  red_hat_sso: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -337,6 +371,8 @@ class Provider(pulumi.ProviderResource):
         :param pulumi.Input[_builtins.bool] initial_login: Whether or not to login to Keycloak instance on provider initialization
         :param pulumi.Input[_builtins.str] jwt_signing_alg: The algorithm used to sign the JWT when client-jwt is used. Defaults to RS256.
         :param pulumi.Input[_builtins.str] jwt_signing_key: The PEM-formatted private key used to sign the JWT when client-jwt is used.
+        :param pulumi.Input[_builtins.str] jwt_token: A signed JWT token used for client authentication.
+        :param pulumi.Input[_builtins.str] jwt_token_file: A path to a file containing a signed JWT token used for client authentication.
         :param pulumi.Input[_builtins.bool] red_hat_sso: When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version returned from the /serverinfo API endpoint.
         :param pulumi.Input[_builtins.str] root_ca_certificate: Allows x509 calls using an unknown CA certificate (for development purposes)
         :param pulumi.Input[_builtins.str] tls_client_certificate: TLS client certificate as PEM string for mutual authentication
@@ -381,6 +417,8 @@ class Provider(pulumi.ProviderResource):
                  initial_login: Optional[pulumi.Input[_builtins.bool]] = None,
                  jwt_signing_alg: Optional[pulumi.Input[_builtins.str]] = None,
                  jwt_signing_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 jwt_token: Optional[pulumi.Input[_builtins.str]] = None,
+                 jwt_token_file: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
                  realm: Optional[pulumi.Input[_builtins.str]] = None,
                  red_hat_sso: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -411,6 +449,8 @@ class Provider(pulumi.ProviderResource):
             __props__.__dict__["initial_login"] = pulumi.Output.from_input(initial_login).apply(pulumi.runtime.to_json) if initial_login is not None else None
             __props__.__dict__["jwt_signing_alg"] = jwt_signing_alg
             __props__.__dict__["jwt_signing_key"] = None if jwt_signing_key is None else pulumi.Output.secret(jwt_signing_key)
+            __props__.__dict__["jwt_token"] = None if jwt_token is None else pulumi.Output.secret(jwt_token)
+            __props__.__dict__["jwt_token_file"] = jwt_token_file
             __props__.__dict__["password"] = password
             __props__.__dict__["realm"] = realm
             __props__.__dict__["red_hat_sso"] = pulumi.Output.from_input(red_hat_sso).apply(pulumi.runtime.to_json) if red_hat_sso is not None else None
@@ -420,7 +460,7 @@ class Provider(pulumi.ProviderResource):
             __props__.__dict__["tls_insecure_skip_verify"] = pulumi.Output.from_input(tls_insecure_skip_verify).apply(pulumi.runtime.to_json) if tls_insecure_skip_verify is not None else None
             __props__.__dict__["url"] = url
             __props__.__dict__["username"] = username
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["jwtSigningKey"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["jwtSigningKey", "jwtToken"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Provider, __self__).__init__(
             'keycloak',
@@ -471,6 +511,22 @@ class Provider(pulumi.ProviderResource):
         The PEM-formatted private key used to sign the JWT when client-jwt is used.
         """
         return pulumi.get(self, "jwt_signing_key")
+
+    @_builtins.property
+    @pulumi.getter(name="jwtToken")
+    def jwt_token(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        A signed JWT token used for client authentication.
+        """
+        return pulumi.get(self, "jwt_token")
+
+    @_builtins.property
+    @pulumi.getter(name="jwtTokenFile")
+    def jwt_token_file(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        A path to a file containing a signed JWT token used for client authentication.
+        """
+        return pulumi.get(self, "jwt_token_file")
 
     @_builtins.property
     @pulumi.getter

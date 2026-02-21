@@ -5,11 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * This resource can be used to create client policy.
+ * Allows you to manage client policies.
+ *
+ * Client policies allow you to define conditions based on which clients are accessing the resource. This is useful for restricting access to specific clients within your realm.
  *
  * ## Example Usage
- *
- * In this example, we'll create a new OpenID client, then enabled permissions for the client. A client without permissions disabled cannot be assigned by a client policy. We'll use the `keycloak.openid.ClientPolicy` resource to create a new client policy, which could be applied to many clients, for a realm and a resource_server_id.
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -19,30 +19,63 @@ import * as utilities from "../utilities";
  *     realm: "my-realm",
  *     enabled: true,
  * });
- * const openidClient = new keycloak.openid.Client("openid_client", {
- *     clientId: "openid_client",
- *     name: "openid_client",
+ * const test = new keycloak.openid.Client("test", {
+ *     clientId: "client_id",
+ *     realmId: realm.id,
+ *     accessType: "CONFIDENTIAL",
+ *     serviceAccountsEnabled: true,
+ *     authorization: {
+ *         policyEnforcementMode: "ENFORCING",
+ *     },
+ * });
+ * const client1 = new keycloak.openid.Client("client1", {
+ *     clientId: "client1",
  *     realmId: realm.id,
  *     accessType: "CONFIDENTIAL",
  *     serviceAccountsEnabled: true,
  * });
- * const myPermission = new keycloak.openid.ClientPermissions("my_permission", {
+ * const client2 = new keycloak.openid.Client("client2", {
+ *     clientId: "client2",
  *     realmId: realm.id,
- *     clientId: openidClient.id,
+ *     accessType: "CONFIDENTIAL",
+ *     serviceAccountsEnabled: true,
  * });
- * const realmManagement = keycloak.openid.getClient({
- *     realmId: "my-realm",
- *     clientId: "realm-management",
- * });
- * const tokenExchange = new keycloak.openid.ClientPolicy("token_exchange", {
- *     resourceServerId: realmManagement.then(realmManagement => realmManagement.id),
+ * const testClientPolicy = new keycloak.openid.ClientPolicy("test", {
+ *     resourceServerId: test.resourceServerId,
  *     realmId: realm.id,
- *     name: "my-policy",
- *     logic: "POSITIVE",
+ *     name: "client_policy",
  *     decisionStrategy: "UNANIMOUS",
- *     clients: [openidClient.id],
+ *     logic: "POSITIVE",
+ *     clients: [
+ *         client1.id,
+ *         client2.id,
+ *     ],
  * });
  * ```
+ *
+ * ### Argument Reference
+ *
+ * The following arguments are supported:
+ *
+ * - `realmId` - (Required) The realm this policy exists in.
+ * - `resourceServerId` - (Required) The ID of the resource server.
+ * - `name` - (Required) The name of the policy.
+ * - `clients` - (Required) A list of client IDs that this policy applies to.
+ * - `decisionStrategy` - (Optional) The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`.
+ * - `logic` - (Optional) The logic, can be one of `POSITIVE` or `NEGATIVE`. Defaults to `POSITIVE`.
+ * - `description` - (Optional) A description for the authorization policy.
+ *
+ * ### Attributes Reference
+ *
+ * In addition to the arguments listed above, the following computed attributes are exported:
+ *
+ * - `id` - Policy ID representing the client policy.
+ *
+ * ## Import
+ *
+ * Client policies can be imported using the format: `{{realmId}}/{{resourceServerId}}/{{policyId}}`.
+ *
+ * Example:
  */
 export class ClientPolicy extends pulumi.CustomResource {
     /**
@@ -72,33 +105,12 @@ export class ClientPolicy extends pulumi.CustomResource {
         return obj['__pulumiType'] === ClientPolicy.__pulumiType;
     }
 
-    /**
-     * The clients allowed by this client policy.
-     */
     declare public readonly clients: pulumi.Output<string[]>;
-    /**
-     * (Computed) Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.
-     */
     declare public readonly decisionStrategy: pulumi.Output<string | undefined>;
-    /**
-     * The description of this client policy.
-     */
     declare public readonly description: pulumi.Output<string | undefined>;
-    /**
-     * (Computed) Dictates how the policy decision should be made. Can be either `POSITIVE` or `NEGATIVE`. Applies to policies.
-     */
     declare public readonly logic: pulumi.Output<string | undefined>;
-    /**
-     * The name of this client policy.
-     */
     declare public readonly name: pulumi.Output<string>;
-    /**
-     * The realm this client policy exists within.
-     */
     declare public readonly realmId: pulumi.Output<string>;
-    /**
-     * The ID of the resource server this client policy is attached to.
-     */
     declare public readonly resourceServerId: pulumi.Output<string>;
 
     /**
@@ -149,33 +161,12 @@ export class ClientPolicy extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ClientPolicy resources.
  */
 export interface ClientPolicyState {
-    /**
-     * The clients allowed by this client policy.
-     */
     clients?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * (Computed) Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.
-     */
     decisionStrategy?: pulumi.Input<string>;
-    /**
-     * The description of this client policy.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * (Computed) Dictates how the policy decision should be made. Can be either `POSITIVE` or `NEGATIVE`. Applies to policies.
-     */
     logic?: pulumi.Input<string>;
-    /**
-     * The name of this client policy.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * The realm this client policy exists within.
-     */
     realmId?: pulumi.Input<string>;
-    /**
-     * The ID of the resource server this client policy is attached to.
-     */
     resourceServerId?: pulumi.Input<string>;
 }
 
@@ -183,32 +174,11 @@ export interface ClientPolicyState {
  * The set of arguments for constructing a ClientPolicy resource.
  */
 export interface ClientPolicyArgs {
-    /**
-     * The clients allowed by this client policy.
-     */
     clients: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * (Computed) Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.
-     */
     decisionStrategy?: pulumi.Input<string>;
-    /**
-     * The description of this client policy.
-     */
     description?: pulumi.Input<string>;
-    /**
-     * (Computed) Dictates how the policy decision should be made. Can be either `POSITIVE` or `NEGATIVE`. Applies to policies.
-     */
     logic?: pulumi.Input<string>;
-    /**
-     * The name of this client policy.
-     */
     name?: pulumi.Input<string>;
-    /**
-     * The realm this client policy exists within.
-     */
     realmId: pulumi.Input<string>;
-    /**
-     * The ID of the resource server this client policy is attached to.
-     */
     resourceServerId: pulumi.Input<string>;
 }

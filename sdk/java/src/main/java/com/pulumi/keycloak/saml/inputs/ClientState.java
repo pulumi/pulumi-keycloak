@@ -245,6 +245,51 @@ public final class ClientState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Digest method used with SAML encryption. Allowed values: `SHA-512`, `SHA-256`, or `SHA-1`. Only valid when `encryptionKeyAlgorithm` is `RSA-OAEP-11` or `RSA-OAEP-MGF1P`. Default is `SHA-256`.
+     * 
+     */
+    @Import(name="encryptionDigestMethod")
+    private @Nullable Output<String> encryptionDigestMethod;
+
+    /**
+     * @return Digest method used with SAML encryption. Allowed values: `SHA-512`, `SHA-256`, or `SHA-1`. Only valid when `encryptionKeyAlgorithm` is `RSA-OAEP-11` or `RSA-OAEP-MGF1P`. Default is `SHA-256`.
+     * 
+     */
+    public Optional<Output<String>> encryptionDigestMethod() {
+        return Optional.ofNullable(this.encryptionDigestMethod);
+    }
+
+    /**
+     * Key transport algorithm used by the client to encrypt the secret key for SAML assertion encryption. Allowed values: `RSA-OAEP-11`, `RSA-OAEP-MGF1P`, or `RSA1_5`. Default is `RSA-OAEP-11`.
+     * 
+     */
+    @Import(name="encryptionKeyAlgorithm")
+    private @Nullable Output<String> encryptionKeyAlgorithm;
+
+    /**
+     * @return Key transport algorithm used by the client to encrypt the secret key for SAML assertion encryption. Allowed values: `RSA-OAEP-11`, `RSA-OAEP-MGF1P`, or `RSA1_5`. Default is `RSA-OAEP-11`.
+     * 
+     */
+    public Optional<Output<String>> encryptionKeyAlgorithm() {
+        return Optional.ofNullable(this.encryptionKeyAlgorithm);
+    }
+
+    /**
+     * Mask generation function used with SAML encryption. Allowed values: `mgf1sha1`, `mgf1sha224`, `mgf1sha256`, `mgf1sha384`, or `mgf1sha512`. Only valid when `encryptionKeyAlgorithm` is `RSA-OAEP-11`. Default is `mgf1sha256`.
+     * 
+     */
+    @Import(name="encryptionMaskGenerationFunction")
+    private @Nullable Output<String> encryptionMaskGenerationFunction;
+
+    /**
+     * @return Mask generation function used with SAML encryption. Allowed values: `mgf1sha1`, `mgf1sha224`, `mgf1sha256`, `mgf1sha384`, or `mgf1sha512`. Only valid when `encryptionKeyAlgorithm` is `RSA-OAEP-11`. Default is `mgf1sha256`.
+     * 
+     */
+    public Optional<Output<String>> encryptionMaskGenerationFunction() {
+        return Optional.ofNullable(this.encryptionMaskGenerationFunction);
+    }
+
+    /**
      * A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that is not yet supported by this Terraform provider. Use this attribute at your own risk, as s may conflict with top-level configuration attributes in future provider updates.
      * 
      */
@@ -637,6 +682,9 @@ public final class ClientState extends com.pulumi.resources.ResourceArgs {
         this.encryptionAlgorithm = $.encryptionAlgorithm;
         this.encryptionCertificate = $.encryptionCertificate;
         this.encryptionCertificateSha1 = $.encryptionCertificateSha1;
+        this.encryptionDigestMethod = $.encryptionDigestMethod;
+        this.encryptionKeyAlgorithm = $.encryptionKeyAlgorithm;
+        this.encryptionMaskGenerationFunction = $.encryptionMaskGenerationFunction;
         this.extraConfig = $.extraConfig;
         this.forceNameIdFormat = $.forceNameIdFormat;
         this.forcePostBinding = $.forcePostBinding;
@@ -995,6 +1043,69 @@ public final class ClientState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder encryptionCertificateSha1(String encryptionCertificateSha1) {
             return encryptionCertificateSha1(Output.of(encryptionCertificateSha1));
+        }
+
+        /**
+         * @param encryptionDigestMethod Digest method used with SAML encryption. Allowed values: `SHA-512`, `SHA-256`, or `SHA-1`. Only valid when `encryptionKeyAlgorithm` is `RSA-OAEP-11` or `RSA-OAEP-MGF1P`. Default is `SHA-256`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder encryptionDigestMethod(@Nullable Output<String> encryptionDigestMethod) {
+            $.encryptionDigestMethod = encryptionDigestMethod;
+            return this;
+        }
+
+        /**
+         * @param encryptionDigestMethod Digest method used with SAML encryption. Allowed values: `SHA-512`, `SHA-256`, or `SHA-1`. Only valid when `encryptionKeyAlgorithm` is `RSA-OAEP-11` or `RSA-OAEP-MGF1P`. Default is `SHA-256`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder encryptionDigestMethod(String encryptionDigestMethod) {
+            return encryptionDigestMethod(Output.of(encryptionDigestMethod));
+        }
+
+        /**
+         * @param encryptionKeyAlgorithm Key transport algorithm used by the client to encrypt the secret key for SAML assertion encryption. Allowed values: `RSA-OAEP-11`, `RSA-OAEP-MGF1P`, or `RSA1_5`. Default is `RSA-OAEP-11`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder encryptionKeyAlgorithm(@Nullable Output<String> encryptionKeyAlgorithm) {
+            $.encryptionKeyAlgorithm = encryptionKeyAlgorithm;
+            return this;
+        }
+
+        /**
+         * @param encryptionKeyAlgorithm Key transport algorithm used by the client to encrypt the secret key for SAML assertion encryption. Allowed values: `RSA-OAEP-11`, `RSA-OAEP-MGF1P`, or `RSA1_5`. Default is `RSA-OAEP-11`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder encryptionKeyAlgorithm(String encryptionKeyAlgorithm) {
+            return encryptionKeyAlgorithm(Output.of(encryptionKeyAlgorithm));
+        }
+
+        /**
+         * @param encryptionMaskGenerationFunction Mask generation function used with SAML encryption. Allowed values: `mgf1sha1`, `mgf1sha224`, `mgf1sha256`, `mgf1sha384`, or `mgf1sha512`. Only valid when `encryptionKeyAlgorithm` is `RSA-OAEP-11`. Default is `mgf1sha256`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder encryptionMaskGenerationFunction(@Nullable Output<String> encryptionMaskGenerationFunction) {
+            $.encryptionMaskGenerationFunction = encryptionMaskGenerationFunction;
+            return this;
+        }
+
+        /**
+         * @param encryptionMaskGenerationFunction Mask generation function used with SAML encryption. Allowed values: `mgf1sha1`, `mgf1sha224`, `mgf1sha256`, `mgf1sha384`, or `mgf1sha512`. Only valid when `encryptionKeyAlgorithm` is `RSA-OAEP-11`. Default is `mgf1sha256`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder encryptionMaskGenerationFunction(String encryptionMaskGenerationFunction) {
+            return encryptionMaskGenerationFunction(Output.of(encryptionMaskGenerationFunction));
         }
 
         /**

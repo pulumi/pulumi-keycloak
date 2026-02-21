@@ -102,6 +102,28 @@ Object.defineProperty(exports, "jwtSigningKey", {
     enumerable: true,
 });
 
+/**
+ * A signed JWT token used for client authentication.
+ */
+export declare const jwtToken: string | undefined;
+Object.defineProperty(exports, "jwtToken", {
+    get() {
+        return __config.get("jwtToken");
+    },
+    enumerable: true,
+});
+
+/**
+ * A path to a file containing a signed JWT token used for client authentication.
+ */
+export declare const jwtTokenFile: string | undefined;
+Object.defineProperty(exports, "jwtTokenFile", {
+    get() {
+        return __config.get("jwtTokenFile");
+    },
+    enumerable: true,
+});
+
 export declare const password: string | undefined;
 Object.defineProperty(exports, "password", {
     get() {

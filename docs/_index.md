@@ -74,6 +74,7 @@ The Pulumi Provider currently supports the following authentication methods:
 - Client-Credentials Grant (client_id + client_secret)
 - Password Grant (client_id (+client_secret), username, password)
 - Signed JWT (Private Key JWT)
+- Signed JWT provided (Private Key JWT provided as a token)
 - Provided Access Token (pre-provisioned Keycloak Access Token)
 
 Additionally, the Pulumi Provider also supports using an mTLS client certificate to access Keycloak.
@@ -92,7 +93,40 @@ config:
         value: http://localhost:8080
 
 ```
-### Example Usage (client credentials grant - private key signed JWT)
+### Example Usage (client credentials grant - signed JWT token)
+
+There are three ways of providing a signed JWT token:
+- As a string literal (using `jwtToken`)
+- As a path to a file containing the token (using `jwtTokenFile`)
+- As a dynamically generated token (using `jwtSigningAlg` and `jwtSigningKey`)
+
+```yaml
+# Pulumi.yaml provider configuration file
+name: configuration-example
+runtime:
+config:
+    keycloak:clientId:
+        value: pulumi
+    keycloak:jwtToken:
+        value: <signed-jwt-token>
+    keycloak:url:
+        value: http://localhost:8080
+
+```
+
+```yaml
+# Pulumi.yaml provider configuration file
+name: configuration-example
+runtime:
+config:
+    keycloak:clientId:
+        value: pulumi
+    keycloak:jwtTokenFile:
+        value: /path/to/signed-jwt-token
+    keycloak:url:
+        value: http://localhost:8080
+
+```
 
 ```yaml
 # Pulumi.yaml provider configuration file
@@ -107,6 +141,10 @@ config:
         value: http://localhost:8080
 
 ```
+
+This type of configuration can be either used with the "Signed JWT" or with "Signed JWT - Federated" Client Authenticators, such as [Kubernetes Service Accounts Tokens](https://www.keycloak.org/docs/latest/server_admin/index.html#_identity_broker_kubernetes). Check the [Confidential client credentials](https://www.keycloak.org/docs/latest/server_admin/index.html#_client-credentials) Keycloak Admin Guide for more details.
+
+Note: If a Signed JWT Token is provided, it will be used for authentication even if a clientSecret or privateKey is also configured.
 ### Example Usage (password grant)
 
 ```yaml
@@ -172,6 +210,8 @@ The following configuration inputs are supported:
 - `username` - (Optional) The username of the user used by the provider for authentication via the password grant. Defaults to the environment variable `KEYCLOAK_USER`. This attribute is required when using the password grant, and cannot be set when using the client credentials grant.
 - `password` - (Optional) The password of the user used by the provider for authentication via the password grant. Defaults to the environment variable `KEYCLOAK_PASSWORD`. This attribute is required when using the password grant, and cannot be set when using the client credentials grant.
 - `accessToken` - (Optional) The access token that should be used by the provider for authentication via token. Defaults to the environment variable `KEYCLOAK_ACCESS_TOKEN`.
+- `jwtToken` - (Optional) A signed JWT token used for client authentication. Defaults to the environment variable `KEYCLOAK_JWT_TOKEN`.
+- `jwtTokenFile` - (Optional) A path to a file containing a signed JWT token used for client authentication. Defaults to the environment variable `KEYCLOAK_JWT_TOKEN_FILE`.
 - `jwtSigningKey` - (Optional) The PEM-formatted private key used by provider to generate a signed JWT for authentication.
 - `jwtSigningAlg` - (Optional) The signing algorithm used by provider to generate a signed JWT for authentication. Defaults to `RS256`.
 - `realm` - (Optional) The realm used by the provider for authentication. Defaults to the environment variable `KEYCLOAK_REALM`, or `master` if the environment variable is not specified.
