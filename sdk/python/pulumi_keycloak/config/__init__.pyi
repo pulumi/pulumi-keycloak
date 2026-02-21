@@ -49,6 +49,16 @@ jwtSigningKey: Optional[str]
 The PEM-formatted private key used to sign the JWT when client-jwt is used.
 """
 
+jwtToken: Optional[str]
+"""
+A signed JWT token used for client authentication.
+"""
+
+jwtTokenFile: Optional[str]
+"""
+A path to a file containing a signed JWT token used for client authentication.
+"""
+
 password: Optional[str]
 
 realm: Optional[str]

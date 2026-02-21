@@ -22,6 +22,7 @@ class ClientScopeArgs:
                  realm_id: pulumi.Input[_builtins.str],
                  consent_screen_text: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
+                 extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  gui_order: Optional[pulumi.Input[_builtins.int]] = None,
                  include_in_token_scope: Optional[pulumi.Input[_builtins.bool]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None):
@@ -30,6 +31,7 @@ class ClientScopeArgs:
         :param pulumi.Input[_builtins.str] realm_id: The realm this client scope belongs to.
         :param pulumi.Input[_builtins.str] consent_screen_text: When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
         :param pulumi.Input[_builtins.str] description: The description of this client scope in the GUI.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: A map of key/value pairs to add extra configuration attributes to this client scope. This can be used for custom attributes or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
         :param pulumi.Input[_builtins.int] gui_order: Specify order of the client scope in GUI (such as in Consent page) as integer.
         :param pulumi.Input[_builtins.bool] include_in_token_scope: When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response. When `false`, this scope will be omitted from the token and from the Token Introspection Endpoint response. Defaults to `true`.
         :param pulumi.Input[_builtins.str] name: The display name of this client scope in the GUI.
@@ -39,6 +41,8 @@ class ClientScopeArgs:
             pulumi.set(__self__, "consent_screen_text", consent_screen_text)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if extra_config is not None:
+            pulumi.set(__self__, "extra_config", extra_config)
         if gui_order is not None:
             pulumi.set(__self__, "gui_order", gui_order)
         if include_in_token_scope is not None:
@@ -83,6 +87,18 @@ class ClientScopeArgs:
         pulumi.set(self, "description", value)
 
     @_builtins.property
+    @pulumi.getter(name="extraConfig")
+    def extra_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        A map of key/value pairs to add extra configuration attributes to this client scope. This can be used for custom attributes or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
+        """
+        return pulumi.get(self, "extra_config")
+
+    @extra_config.setter
+    def extra_config(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "extra_config", value)
+
+    @_builtins.property
     @pulumi.getter(name="guiOrder")
     def gui_order(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
@@ -124,6 +140,7 @@ class _ClientScopeState:
     def __init__(__self__, *,
                  consent_screen_text: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
+                 extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  gui_order: Optional[pulumi.Input[_builtins.int]] = None,
                  include_in_token_scope: Optional[pulumi.Input[_builtins.bool]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -132,6 +149,7 @@ class _ClientScopeState:
         Input properties used for looking up and filtering ClientScope resources.
         :param pulumi.Input[_builtins.str] consent_screen_text: When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
         :param pulumi.Input[_builtins.str] description: The description of this client scope in the GUI.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: A map of key/value pairs to add extra configuration attributes to this client scope. This can be used for custom attributes or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
         :param pulumi.Input[_builtins.int] gui_order: Specify order of the client scope in GUI (such as in Consent page) as integer.
         :param pulumi.Input[_builtins.bool] include_in_token_scope: When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response. When `false`, this scope will be omitted from the token and from the Token Introspection Endpoint response. Defaults to `true`.
         :param pulumi.Input[_builtins.str] name: The display name of this client scope in the GUI.
@@ -141,6 +159,8 @@ class _ClientScopeState:
             pulumi.set(__self__, "consent_screen_text", consent_screen_text)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if extra_config is not None:
+            pulumi.set(__self__, "extra_config", extra_config)
         if gui_order is not None:
             pulumi.set(__self__, "gui_order", gui_order)
         if include_in_token_scope is not None:
@@ -173,6 +193,18 @@ class _ClientScopeState:
     @description.setter
     def description(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "description", value)
+
+    @_builtins.property
+    @pulumi.getter(name="extraConfig")
+    def extra_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        A map of key/value pairs to add extra configuration attributes to this client scope. This can be used for custom attributes or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
+        """
+        return pulumi.get(self, "extra_config")
+
+    @extra_config.setter
+    def extra_config(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "extra_config", value)
 
     @_builtins.property
     @pulumi.getter(name="guiOrder")
@@ -231,6 +263,7 @@ class ClientScope(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  consent_screen_text: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
+                 extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  gui_order: Optional[pulumi.Input[_builtins.int]] = None,
                  include_in_token_scope: Optional[pulumi.Input[_builtins.bool]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -270,6 +303,7 @@ class ClientScope(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] consent_screen_text: When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
         :param pulumi.Input[_builtins.str] description: The description of this client scope in the GUI.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: A map of key/value pairs to add extra configuration attributes to this client scope. This can be used for custom attributes or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
         :param pulumi.Input[_builtins.int] gui_order: Specify order of the client scope in GUI (such as in Consent page) as integer.
         :param pulumi.Input[_builtins.bool] include_in_token_scope: When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response. When `false`, this scope will be omitted from the token and from the Token Introspection Endpoint response. Defaults to `true`.
         :param pulumi.Input[_builtins.str] name: The display name of this client scope in the GUI.
@@ -328,6 +362,7 @@ class ClientScope(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  consent_screen_text: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
+                 extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  gui_order: Optional[pulumi.Input[_builtins.int]] = None,
                  include_in_token_scope: Optional[pulumi.Input[_builtins.bool]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -343,6 +378,7 @@ class ClientScope(pulumi.CustomResource):
 
             __props__.__dict__["consent_screen_text"] = consent_screen_text
             __props__.__dict__["description"] = description
+            __props__.__dict__["extra_config"] = extra_config
             __props__.__dict__["gui_order"] = gui_order
             __props__.__dict__["include_in_token_scope"] = include_in_token_scope
             __props__.__dict__["name"] = name
@@ -361,6 +397,7 @@ class ClientScope(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             consent_screen_text: Optional[pulumi.Input[_builtins.str]] = None,
             description: Optional[pulumi.Input[_builtins.str]] = None,
+            extra_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             gui_order: Optional[pulumi.Input[_builtins.int]] = None,
             include_in_token_scope: Optional[pulumi.Input[_builtins.bool]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -374,6 +411,7 @@ class ClientScope(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] consent_screen_text: When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
         :param pulumi.Input[_builtins.str] description: The description of this client scope in the GUI.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: A map of key/value pairs to add extra configuration attributes to this client scope. This can be used for custom attributes or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
         :param pulumi.Input[_builtins.int] gui_order: Specify order of the client scope in GUI (such as in Consent page) as integer.
         :param pulumi.Input[_builtins.bool] include_in_token_scope: When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response. When `false`, this scope will be omitted from the token and from the Token Introspection Endpoint response. Defaults to `true`.
         :param pulumi.Input[_builtins.str] name: The display name of this client scope in the GUI.
@@ -385,6 +423,7 @@ class ClientScope(pulumi.CustomResource):
 
         __props__.__dict__["consent_screen_text"] = consent_screen_text
         __props__.__dict__["description"] = description
+        __props__.__dict__["extra_config"] = extra_config
         __props__.__dict__["gui_order"] = gui_order
         __props__.__dict__["include_in_token_scope"] = include_in_token_scope
         __props__.__dict__["name"] = name
@@ -406,6 +445,14 @@ class ClientScope(pulumi.CustomResource):
         The description of this client scope in the GUI.
         """
         return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="extraConfig")
+    def extra_config(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:
+        """
+        A map of key/value pairs to add extra configuration attributes to this client scope. This can be used for custom attributes or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
+        """
+        return pulumi.get(self, "extra_config")
 
     @_builtins.property
     @pulumi.getter(name="guiOrder")

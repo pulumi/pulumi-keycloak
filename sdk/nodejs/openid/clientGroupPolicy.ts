@@ -6,6 +6,90 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
+/**
+ * Allows you to manage group policies.
+ *
+ * Group policies allow you to define conditions based on group membership. You can specify whether child groups should be included in the evaluation.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * const test = new keycloak.openid.Client("test", {
+ *     clientId: "client_id",
+ *     realmId: realm.id,
+ *     accessType: "CONFIDENTIAL",
+ *     serviceAccountsEnabled: true,
+ *     authorization: {
+ *         policyEnforcementMode: "ENFORCING",
+ *     },
+ * });
+ * const group1 = new keycloak.Group("group1", {
+ *     realmId: realm.id,
+ *     name: "group1",
+ * });
+ * const group2 = new keycloak.Group("group2", {
+ *     realmId: realm.id,
+ *     name: "group2",
+ * });
+ * const testClientGroupPolicy = new keycloak.openid.ClientGroupPolicy("test", {
+ *     resourceServerId: test.resourceServerId,
+ *     realmId: realm.id,
+ *     name: "group_policy",
+ *     decisionStrategy: "UNANIMOUS",
+ *     logic: "POSITIVE",
+ *     groups: [
+ *         {
+ *             id: group1.id,
+ *             path: group1.path,
+ *             extendChildren: false,
+ *         },
+ *         {
+ *             id: group2.id,
+ *             path: group2.path,
+ *             extendChildren: true,
+ *         },
+ *     ],
+ * });
+ * ```
+ *
+ * ### Argument Reference
+ *
+ * The following arguments are supported:
+ *
+ * - `realmId` - (Required) The realm this policy exists in.
+ * - `resourceServerId` - (Required) The ID of the resource server.
+ * - `name` - (Required) The name of the policy.
+ * - `decisionStrategy` - (Required) The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`.
+ * - `logic` - (Optional) The logic, can be one of `POSITIVE` or `NEGATIVE`. Defaults to `POSITIVE`.
+ * - `groups` - (Required) A list of groups group. At least one group must be defined.
+ * - `groupsClaim` - (Optional) The name of the claim in the token that contains the group information.
+ * - `description` - (Optional) A description for the authorization policy.
+ *
+ * ### Group Arguments
+ *
+ * - `id` - (Required) The ID of the group.
+ * - `path` - (Required) The path of the group.
+ * - `extendChildren` - (Required) When `true`, the policy will also apply to all child groups of this group.
+ *
+ * ### Attributes Reference
+ *
+ * In addition to the arguments listed above, the following computed attributes are exported:
+ *
+ * - `id` - Policy ID representing the group policy.
+ *
+ * ## Import
+ *
+ * Group policies can be imported using the format: `{{realmId}}/{{resourceServerId}}/{{policyId}}`.
+ *
+ * Example:
+ */
 export class ClientGroupPolicy extends pulumi.CustomResource {
     /**
      * Get an existing ClientGroupPolicy resource's state with the given name, ID, and optional extra

@@ -13,8 +13,11 @@ import com.pulumi.keycloak.saml.inputs.GetClientArgs;
 import com.pulumi.keycloak.saml.inputs.GetClientInstallationProviderArgs;
 import com.pulumi.keycloak.saml.inputs.GetClientInstallationProviderPlainArgs;
 import com.pulumi.keycloak.saml.inputs.GetClientPlainArgs;
+import com.pulumi.keycloak.saml.inputs.GetClientScopeArgs;
+import com.pulumi.keycloak.saml.inputs.GetClientScopePlainArgs;
 import com.pulumi.keycloak.saml.outputs.GetClientInstallationProviderResult;
 import com.pulumi.keycloak.saml.outputs.GetClientResult;
+import com.pulumi.keycloak.saml.outputs.GetClientScopeResult;
 import java.util.concurrent.CompletableFuture;
 
 public final class SamlFunctions {
@@ -627,5 +630,290 @@ public final class SamlFunctions {
      */
     public static CompletableFuture<GetClientInstallationProviderResult> getClientInstallationProviderPlain(GetClientInstallationProviderPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("keycloak:saml/getClientInstallationProvider:getClientInstallationProvider", TypeShape.of(GetClientInstallationProviderResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * This data source can be used to fetch properties of a Keycloak SAML client scope for usage with other resources.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.saml.SamlFunctions;
+     * import com.pulumi.keycloak.saml.inputs.GetClientScopeArgs;
+     * import com.pulumi.keycloak.saml.Client;
+     * import com.pulumi.keycloak.saml.ClientArgs;
+     * import com.pulumi.keycloak.saml.ClientDefaultScope;
+     * import com.pulumi.keycloak.saml.ClientDefaultScopeArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var mysamlscope = SamlFunctions.getClientScope(GetClientScopeArgs.builder()
+     *             .realmId("my-realm")
+     *             .name("mysamlscope")
+     *             .build());
+     * 
+     *         var samlClient = new Client("samlClient", ClientArgs.builder()
+     *             .realmId("my-realm")
+     *             .clientId("saml-client")
+     *             .build());
+     * 
+     *         // use the data source
+     *         var default_ = new ClientDefaultScope("default", ClientDefaultScopeArgs.builder()
+     *             .realmId("my-realm")
+     *             .clientId(samlClient.id())
+     *             .defaultScopes(mysamlscope.name())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetClientScopeResult> getClientScope(GetClientScopeArgs args) {
+        return getClientScope(args, InvokeOptions.Empty);
+    }
+    /**
+     * This data source can be used to fetch properties of a Keycloak SAML client scope for usage with other resources.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.saml.SamlFunctions;
+     * import com.pulumi.keycloak.saml.inputs.GetClientScopeArgs;
+     * import com.pulumi.keycloak.saml.Client;
+     * import com.pulumi.keycloak.saml.ClientArgs;
+     * import com.pulumi.keycloak.saml.ClientDefaultScope;
+     * import com.pulumi.keycloak.saml.ClientDefaultScopeArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var mysamlscope = SamlFunctions.getClientScope(GetClientScopeArgs.builder()
+     *             .realmId("my-realm")
+     *             .name("mysamlscope")
+     *             .build());
+     * 
+     *         var samlClient = new Client("samlClient", ClientArgs.builder()
+     *             .realmId("my-realm")
+     *             .clientId("saml-client")
+     *             .build());
+     * 
+     *         // use the data source
+     *         var default_ = new ClientDefaultScope("default", ClientDefaultScopeArgs.builder()
+     *             .realmId("my-realm")
+     *             .clientId(samlClient.id())
+     *             .defaultScopes(mysamlscope.name())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetClientScopeResult> getClientScopePlain(GetClientScopePlainArgs args) {
+        return getClientScopePlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * This data source can be used to fetch properties of a Keycloak SAML client scope for usage with other resources.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.saml.SamlFunctions;
+     * import com.pulumi.keycloak.saml.inputs.GetClientScopeArgs;
+     * import com.pulumi.keycloak.saml.Client;
+     * import com.pulumi.keycloak.saml.ClientArgs;
+     * import com.pulumi.keycloak.saml.ClientDefaultScope;
+     * import com.pulumi.keycloak.saml.ClientDefaultScopeArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var mysamlscope = SamlFunctions.getClientScope(GetClientScopeArgs.builder()
+     *             .realmId("my-realm")
+     *             .name("mysamlscope")
+     *             .build());
+     * 
+     *         var samlClient = new Client("samlClient", ClientArgs.builder()
+     *             .realmId("my-realm")
+     *             .clientId("saml-client")
+     *             .build());
+     * 
+     *         // use the data source
+     *         var default_ = new ClientDefaultScope("default", ClientDefaultScopeArgs.builder()
+     *             .realmId("my-realm")
+     *             .clientId(samlClient.id())
+     *             .defaultScopes(mysamlscope.name())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetClientScopeResult> getClientScope(GetClientScopeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("keycloak:saml/getClientScope:getClientScope", TypeShape.of(GetClientScopeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * This data source can be used to fetch properties of a Keycloak SAML client scope for usage with other resources.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.saml.SamlFunctions;
+     * import com.pulumi.keycloak.saml.inputs.GetClientScopeArgs;
+     * import com.pulumi.keycloak.saml.Client;
+     * import com.pulumi.keycloak.saml.ClientArgs;
+     * import com.pulumi.keycloak.saml.ClientDefaultScope;
+     * import com.pulumi.keycloak.saml.ClientDefaultScopeArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var mysamlscope = SamlFunctions.getClientScope(GetClientScopeArgs.builder()
+     *             .realmId("my-realm")
+     *             .name("mysamlscope")
+     *             .build());
+     * 
+     *         var samlClient = new Client("samlClient", ClientArgs.builder()
+     *             .realmId("my-realm")
+     *             .clientId("saml-client")
+     *             .build());
+     * 
+     *         // use the data source
+     *         var default_ = new ClientDefaultScope("default", ClientDefaultScopeArgs.builder()
+     *             .realmId("my-realm")
+     *             .clientId(samlClient.id())
+     *             .defaultScopes(mysamlscope.name())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetClientScopeResult> getClientScope(GetClientScopeArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("keycloak:saml/getClientScope:getClientScope", TypeShape.of(GetClientScopeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * This data source can be used to fetch properties of a Keycloak SAML client scope for usage with other resources.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.keycloak.saml.SamlFunctions;
+     * import com.pulumi.keycloak.saml.inputs.GetClientScopeArgs;
+     * import com.pulumi.keycloak.saml.Client;
+     * import com.pulumi.keycloak.saml.ClientArgs;
+     * import com.pulumi.keycloak.saml.ClientDefaultScope;
+     * import com.pulumi.keycloak.saml.ClientDefaultScopeArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var mysamlscope = SamlFunctions.getClientScope(GetClientScopeArgs.builder()
+     *             .realmId("my-realm")
+     *             .name("mysamlscope")
+     *             .build());
+     * 
+     *         var samlClient = new Client("samlClient", ClientArgs.builder()
+     *             .realmId("my-realm")
+     *             .clientId("saml-client")
+     *             .build());
+     * 
+     *         // use the data source
+     *         var default_ = new ClientDefaultScope("default", ClientDefaultScopeArgs.builder()
+     *             .realmId("my-realm")
+     *             .clientId(samlClient.id())
+     *             .defaultScopes(mysamlscope.name())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetClientScopeResult> getClientScopePlain(GetClientScopePlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("keycloak:saml/getClientScope:getClientScope", TypeShape.of(GetClientScopeResult.class), args, Utilities.withVersion(options));
     }
 }

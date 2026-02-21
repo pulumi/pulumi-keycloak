@@ -135,6 +135,18 @@ export class Client extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly encryptionCertificateSha1: pulumi.Output<string>;
     /**
+     * Digest method used with SAML encryption. Allowed values: `SHA-512`, `SHA-256`, or `SHA-1`. Only valid when `encryptionKeyAlgorithm` is `RSA-OAEP-11` or `RSA-OAEP-MGF1P`. Default is `SHA-256`.
+     */
+    declare public readonly encryptionDigestMethod: pulumi.Output<string>;
+    /**
+     * Key transport algorithm used by the client to encrypt the secret key for SAML assertion encryption. Allowed values: `RSA-OAEP-11`, `RSA-OAEP-MGF1P`, or `RSA1_5`. Default is `RSA-OAEP-11`.
+     */
+    declare public readonly encryptionKeyAlgorithm: pulumi.Output<string>;
+    /**
+     * Mask generation function used with SAML encryption. Allowed values: `mgf1sha1`, `mgf1sha224`, `mgf1sha256`, `mgf1sha384`, or `mgf1sha512`. Only valid when `encryptionKeyAlgorithm` is `RSA-OAEP-11`. Default is `mgf1sha256`.
+     */
+    declare public readonly encryptionMaskGenerationFunction: pulumi.Output<string>;
+    /**
      * A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that is not yet supported by this Terraform provider. Use this attribute at your own risk, as s may conflict with top-level configuration attributes in future provider updates.
      */
     declare public readonly extraConfig: pulumi.Output<{[key: string]: string} | undefined>;
@@ -209,7 +221,7 @@ export class Client extends pulumi.CustomResource {
     /**
      * The signature algorithm used to sign documents. Should be one of "RSA_SHA1", "RSA_SHA256", "RSA_SHA256_MGF1, "RSA_SHA512", "RSA_SHA512_MGF1" or "DSA_SHA1".
      */
-    declare public readonly signatureAlgorithm: pulumi.Output<string | undefined>;
+    declare public readonly signatureAlgorithm: pulumi.Output<string>;
     /**
      * The value of the `KeyName` element within the signed SAML document. Should be one of "NONE", "KEY_ID", or "CERT_SUBJECT". Defaults to "KEY_ID".
      */
@@ -263,6 +275,9 @@ export class Client extends pulumi.CustomResource {
             resourceInputs["encryptionAlgorithm"] = state?.encryptionAlgorithm;
             resourceInputs["encryptionCertificate"] = state?.encryptionCertificate;
             resourceInputs["encryptionCertificateSha1"] = state?.encryptionCertificateSha1;
+            resourceInputs["encryptionDigestMethod"] = state?.encryptionDigestMethod;
+            resourceInputs["encryptionKeyAlgorithm"] = state?.encryptionKeyAlgorithm;
+            resourceInputs["encryptionMaskGenerationFunction"] = state?.encryptionMaskGenerationFunction;
             resourceInputs["extraConfig"] = state?.extraConfig;
             resourceInputs["forceNameIdFormat"] = state?.forceNameIdFormat;
             resourceInputs["forcePostBinding"] = state?.forcePostBinding;
@@ -310,6 +325,9 @@ export class Client extends pulumi.CustomResource {
             resourceInputs["encryptAssertions"] = args?.encryptAssertions;
             resourceInputs["encryptionAlgorithm"] = args?.encryptionAlgorithm;
             resourceInputs["encryptionCertificate"] = args?.encryptionCertificate;
+            resourceInputs["encryptionDigestMethod"] = args?.encryptionDigestMethod;
+            resourceInputs["encryptionKeyAlgorithm"] = args?.encryptionKeyAlgorithm;
+            resourceInputs["encryptionMaskGenerationFunction"] = args?.encryptionMaskGenerationFunction;
             resourceInputs["extraConfig"] = args?.extraConfig;
             resourceInputs["forceNameIdFormat"] = args?.forceNameIdFormat;
             resourceInputs["forcePostBinding"] = args?.forcePostBinding;
@@ -406,6 +424,18 @@ export interface ClientState {
      * (Computed) The sha1sum fingerprint of the encryption certificate. If the encryption certificate is not in correct base64 format, this will be left empty.
      */
     encryptionCertificateSha1?: pulumi.Input<string>;
+    /**
+     * Digest method used with SAML encryption. Allowed values: `SHA-512`, `SHA-256`, or `SHA-1`. Only valid when `encryptionKeyAlgorithm` is `RSA-OAEP-11` or `RSA-OAEP-MGF1P`. Default is `SHA-256`.
+     */
+    encryptionDigestMethod?: pulumi.Input<string>;
+    /**
+     * Key transport algorithm used by the client to encrypt the secret key for SAML assertion encryption. Allowed values: `RSA-OAEP-11`, `RSA-OAEP-MGF1P`, or `RSA1_5`. Default is `RSA-OAEP-11`.
+     */
+    encryptionKeyAlgorithm?: pulumi.Input<string>;
+    /**
+     * Mask generation function used with SAML encryption. Allowed values: `mgf1sha1`, `mgf1sha224`, `mgf1sha256`, `mgf1sha384`, or `mgf1sha512`. Only valid when `encryptionKeyAlgorithm` is `RSA-OAEP-11`. Default is `mgf1sha256`.
+     */
+    encryptionMaskGenerationFunction?: pulumi.Input<string>;
     /**
      * A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that is not yet supported by this Terraform provider. Use this attribute at your own risk, as s may conflict with top-level configuration attributes in future provider updates.
      */
@@ -568,6 +598,18 @@ export interface ClientArgs {
      * If assertions for the client are encrypted, this certificate will be used for encryption.
      */
     encryptionCertificate?: pulumi.Input<string>;
+    /**
+     * Digest method used with SAML encryption. Allowed values: `SHA-512`, `SHA-256`, or `SHA-1`. Only valid when `encryptionKeyAlgorithm` is `RSA-OAEP-11` or `RSA-OAEP-MGF1P`. Default is `SHA-256`.
+     */
+    encryptionDigestMethod?: pulumi.Input<string>;
+    /**
+     * Key transport algorithm used by the client to encrypt the secret key for SAML assertion encryption. Allowed values: `RSA-OAEP-11`, `RSA-OAEP-MGF1P`, or `RSA1_5`. Default is `RSA-OAEP-11`.
+     */
+    encryptionKeyAlgorithm?: pulumi.Input<string>;
+    /**
+     * Mask generation function used with SAML encryption. Allowed values: `mgf1sha1`, `mgf1sha224`, `mgf1sha256`, `mgf1sha384`, or `mgf1sha512`. Only valid when `encryptionKeyAlgorithm` is `RSA-OAEP-11`. Default is `mgf1sha256`.
+     */
+    encryptionMaskGenerationFunction?: pulumi.Input<string>;
     /**
      * A map of key/value pairs to add extra configuration attributes to this client. This can be used for custom attributes, or to add configuration attributes that is not yet supported by this Terraform provider. Use this attribute at your own risk, as s may conflict with top-level configuration attributes in future provider updates.
      */

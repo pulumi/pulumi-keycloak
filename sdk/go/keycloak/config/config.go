@@ -59,6 +59,16 @@ func GetJwtSigningAlg(ctx *pulumi.Context) string {
 func GetJwtSigningKey(ctx *pulumi.Context) string {
 	return config.Get(ctx, "keycloak:jwtSigningKey")
 }
+
+// A signed JWT token used for client authentication.
+func GetJwtToken(ctx *pulumi.Context) string {
+	return config.Get(ctx, "keycloak:jwtToken")
+}
+
+// A path to a file containing a signed JWT token used for client authentication.
+func GetJwtTokenFile(ctx *pulumi.Context) string {
+	return config.Get(ctx, "keycloak:jwtTokenFile")
+}
 func GetPassword(ctx *pulumi.Context) string {
 	return config.Get(ctx, "keycloak:password")
 }

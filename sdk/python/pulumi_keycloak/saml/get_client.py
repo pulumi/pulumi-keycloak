@@ -27,7 +27,7 @@ class GetClientResult:
     """
     A collection of values returned by getClient.
     """
-    def __init__(__self__, always_display_in_console=None, assertion_consumer_post_url=None, assertion_consumer_redirect_url=None, authentication_flow_binding_overrides=None, base_url=None, canonicalization_method=None, client_id=None, client_signature_required=None, consent_required=None, description=None, enabled=None, encrypt_assertions=None, encryption_algorithm=None, encryption_certificate=None, encryption_certificate_sha1=None, extra_config=None, force_name_id_format=None, force_post_binding=None, front_channel_logout=None, full_scope_allowed=None, id=None, idp_initiated_sso_relay_state=None, idp_initiated_sso_url_name=None, include_authn_statement=None, login_theme=None, logout_service_post_binding_url=None, logout_service_redirect_binding_url=None, master_saml_processing_url=None, name=None, name_id_format=None, realm_id=None, root_url=None, saml_signature_key_name=None, sign_assertions=None, sign_documents=None, signature_algorithm=None, signature_key_name=None, signing_certificate=None, signing_certificate_sha1=None, signing_private_key=None, signing_private_key_sha1=None, valid_redirect_uris=None):
+    def __init__(__self__, always_display_in_console=None, assertion_consumer_post_url=None, assertion_consumer_redirect_url=None, authentication_flow_binding_overrides=None, base_url=None, canonicalization_method=None, client_id=None, client_signature_required=None, consent_required=None, description=None, enabled=None, encrypt_assertions=None, encryption_algorithm=None, encryption_certificate=None, encryption_certificate_sha1=None, encryption_digest_method=None, encryption_key_algorithm=None, encryption_mask_generation_function=None, extra_config=None, force_name_id_format=None, force_post_binding=None, front_channel_logout=None, full_scope_allowed=None, id=None, idp_initiated_sso_relay_state=None, idp_initiated_sso_url_name=None, include_authn_statement=None, login_theme=None, logout_service_post_binding_url=None, logout_service_redirect_binding_url=None, master_saml_processing_url=None, name=None, name_id_format=None, realm_id=None, root_url=None, saml_signature_key_name=None, sign_assertions=None, sign_documents=None, signature_algorithm=None, signature_key_name=None, signing_certificate=None, signing_certificate_sha1=None, signing_private_key=None, signing_private_key_sha1=None, valid_redirect_uris=None):
         if always_display_in_console and not isinstance(always_display_in_console, bool):
             raise TypeError("Expected argument 'always_display_in_console' to be a bool")
         pulumi.set(__self__, "always_display_in_console", always_display_in_console)
@@ -73,6 +73,15 @@ class GetClientResult:
         if encryption_certificate_sha1 and not isinstance(encryption_certificate_sha1, str):
             raise TypeError("Expected argument 'encryption_certificate_sha1' to be a str")
         pulumi.set(__self__, "encryption_certificate_sha1", encryption_certificate_sha1)
+        if encryption_digest_method and not isinstance(encryption_digest_method, str):
+            raise TypeError("Expected argument 'encryption_digest_method' to be a str")
+        pulumi.set(__self__, "encryption_digest_method", encryption_digest_method)
+        if encryption_key_algorithm and not isinstance(encryption_key_algorithm, str):
+            raise TypeError("Expected argument 'encryption_key_algorithm' to be a str")
+        pulumi.set(__self__, "encryption_key_algorithm", encryption_key_algorithm)
+        if encryption_mask_generation_function and not isinstance(encryption_mask_generation_function, str):
+            raise TypeError("Expected argument 'encryption_mask_generation_function' to be a str")
+        pulumi.set(__self__, "encryption_mask_generation_function", encryption_mask_generation_function)
         if extra_config and not isinstance(extra_config, dict):
             raise TypeError("Expected argument 'extra_config' to be a dict")
         pulumi.set(__self__, "extra_config", extra_config)
@@ -229,6 +238,21 @@ class GetClientResult:
     @pulumi.getter(name="encryptionCertificateSha1")
     def encryption_certificate_sha1(self) -> _builtins.str:
         return pulumi.get(self, "encryption_certificate_sha1")
+
+    @_builtins.property
+    @pulumi.getter(name="encryptionDigestMethod")
+    def encryption_digest_method(self) -> _builtins.str:
+        return pulumi.get(self, "encryption_digest_method")
+
+    @_builtins.property
+    @pulumi.getter(name="encryptionKeyAlgorithm")
+    def encryption_key_algorithm(self) -> _builtins.str:
+        return pulumi.get(self, "encryption_key_algorithm")
+
+    @_builtins.property
+    @pulumi.getter(name="encryptionMaskGenerationFunction")
+    def encryption_mask_generation_function(self) -> _builtins.str:
+        return pulumi.get(self, "encryption_mask_generation_function")
 
     @_builtins.property
     @pulumi.getter(name="extraConfig")
@@ -390,6 +414,9 @@ class AwaitableGetClientResult(GetClientResult):
             encryption_algorithm=self.encryption_algorithm,
             encryption_certificate=self.encryption_certificate,
             encryption_certificate_sha1=self.encryption_certificate_sha1,
+            encryption_digest_method=self.encryption_digest_method,
+            encryption_key_algorithm=self.encryption_key_algorithm,
+            encryption_mask_generation_function=self.encryption_mask_generation_function,
             extra_config=self.extra_config,
             force_name_id_format=self.force_name_id_format,
             force_post_binding=self.force_post_binding,
@@ -465,6 +492,9 @@ def get_client(client_id: Optional[_builtins.str] = None,
         encryption_algorithm=pulumi.get(__ret__, 'encryption_algorithm'),
         encryption_certificate=pulumi.get(__ret__, 'encryption_certificate'),
         encryption_certificate_sha1=pulumi.get(__ret__, 'encryption_certificate_sha1'),
+        encryption_digest_method=pulumi.get(__ret__, 'encryption_digest_method'),
+        encryption_key_algorithm=pulumi.get(__ret__, 'encryption_key_algorithm'),
+        encryption_mask_generation_function=pulumi.get(__ret__, 'encryption_mask_generation_function'),
         extra_config=pulumi.get(__ret__, 'extra_config'),
         force_name_id_format=pulumi.get(__ret__, 'force_name_id_format'),
         force_post_binding=pulumi.get(__ret__, 'force_post_binding'),
@@ -537,6 +567,9 @@ def get_client_output(client_id: Optional[pulumi.Input[_builtins.str]] = None,
         encryption_algorithm=pulumi.get(__response__, 'encryption_algorithm'),
         encryption_certificate=pulumi.get(__response__, 'encryption_certificate'),
         encryption_certificate_sha1=pulumi.get(__response__, 'encryption_certificate_sha1'),
+        encryption_digest_method=pulumi.get(__response__, 'encryption_digest_method'),
+        encryption_key_algorithm=pulumi.get(__response__, 'encryption_key_algorithm'),
+        encryption_mask_generation_function=pulumi.get(__response__, 'encryption_mask_generation_function'),
         extra_config=pulumi.get(__response__, 'extra_config'),
         force_name_id_format=pulumi.get(__response__, 'force_name_id_format'),
         force_post_binding=pulumi.get(__response__, 'force_post_binding'),

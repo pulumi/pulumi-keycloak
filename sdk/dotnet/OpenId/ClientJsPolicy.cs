@@ -9,6 +9,85 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak.OpenId
 {
+    /// <summary>
+    /// Allows you to manage JavaScript policies.
+    /// 
+    /// JavaScript policies allow you to define conditions using JavaScript code. This provides maximum flexibility for implementing custom authorization logic.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
+    /// 
+    ///     var test = new Keycloak.OpenId.Client("test", new()
+    ///     {
+    ///         ClientId = "client_id",
+    ///         RealmId = realm.Id,
+    ///         AccessType = "CONFIDENTIAL",
+    ///         ServiceAccountsEnabled = true,
+    ///         Authorization = new Keycloak.OpenId.Inputs.ClientAuthorizationArgs
+    ///         {
+    ///             PolicyEnforcementMode = "ENFORCING",
+    ///         },
+    ///     });
+    /// 
+    ///     var testClientJsPolicy = new Keycloak.OpenId.ClientJsPolicy("test", new()
+    ///     {
+    ///         ResourceServerId = test.ResourceServerId,
+    ///         RealmId = realm.Id,
+    ///         Name = "js_policy",
+    ///         DecisionStrategy = "UNANIMOUS",
+    ///         Logic = "POSITIVE",
+    ///         Code = @"var context = $evaluation.getContext();
+    /// var identity = context.getIdentity();
+    /// var attributes = identity.getAttributes();
+    /// var email = attributes.getValue('email').asString(0);
+    /// 
+    /// if (email.endsWith('@example.com')) {
+    ///   $evaluation.grant();
+    /// }
+    /// ",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Argument Reference
+    /// 
+    /// The following arguments are supported:
+    /// 
+    /// - `RealmId` - (Required) The realm this policy exists in.
+    /// - `ResourceServerId` - (Required) The ID of the resource server.
+    /// - `Name` - (Required) The name of the policy.
+    /// - `DecisionStrategy` - (Required) The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`.
+    /// - `Code` - (Required) The JavaScript code to execute for this policy.
+    /// - `Logic` - (Optional) The logic, can be one of `POSITIVE` or `NEGATIVE`. Defaults to `POSITIVE`.
+    /// - `Type` - (Optional) The type of the policy. Defaults to `Js`.
+    /// - `Description` - (Optional) A description for the authorization policy.
+    /// 
+    /// ### Attributes Reference
+    /// 
+    /// In addition to the arguments listed above, the following computed attributes are exported:
+    /// 
+    /// - `Id` - Policy ID representing the JavaScript policy.
+    /// 
+    /// ## Import
+    /// 
+    /// JavaScript policies can be imported using the format: `{{realmId}}/{{resourceServerId}}/{{policyId}}`.
+    /// 
+    /// Example:
+    /// </summary>
     [KeycloakResourceType("keycloak:openid/clientJsPolicy:ClientJsPolicy")]
     public partial class ClientJsPolicy : global::Pulumi.CustomResource
     {

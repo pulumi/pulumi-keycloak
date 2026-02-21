@@ -12,6 +12,115 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Allows you to manage role policies.
+//
+// Role policies allow you to define conditions based on user role assignments. You can specify whether all roles must be present or just one.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak/openid"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			test, err := openid.NewClient(ctx, "test", &openid.ClientArgs{
+//				ClientId:               pulumi.String("client_id"),
+//				RealmId:                realm.ID(),
+//				AccessType:             pulumi.String("CONFIDENTIAL"),
+//				ServiceAccountsEnabled: pulumi.Bool(true),
+//				Authorization: &openid.ClientAuthorizationArgs{
+//					PolicyEnforcementMode: pulumi.String("ENFORCING"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			adminRole, err := keycloak.NewRole(ctx, "admin_role", &keycloak.RoleArgs{
+//				RealmId: realm.ID(),
+//				Name:    pulumi.String("admin"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			userRole, err := keycloak.NewRole(ctx, "user_role", &keycloak.RoleArgs{
+//				RealmId: realm.ID(),
+//				Name:    pulumi.String("user"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = openid.NewClientRolePolicy(ctx, "test", &openid.ClientRolePolicyArgs{
+//				ResourceServerId: test.ResourceServerId,
+//				RealmId:          realm.ID(),
+//				Name:             pulumi.String("role_policy"),
+//				DecisionStrategy: pulumi.String("UNANIMOUS"),
+//				Logic:            pulumi.String("POSITIVE"),
+//				Type:             pulumi.String("role"),
+//				Roles: openid.ClientRolePolicyRoleArray{
+//					&openid.ClientRolePolicyRoleArgs{
+//						Id:       adminRole.ID(),
+//						Required: pulumi.Bool(true),
+//					},
+//					&openid.ClientRolePolicyRoleArgs{
+//						Id:       userRole.ID(),
+//						Required: pulumi.Bool(false),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Argument Reference
+//
+// The following arguments are supported:
+//
+// - `realmId` - (Required) The realm this policy exists in.
+// - `resourceServerId` - (Required) The ID of the resource server.
+// - `name` - (Required) The name of the policy.
+// - `type` - (Required) The type of policy. Must be `role`.
+// - `role` - (Required) A list of roles role. At least one role must be defined.
+// - `decisionStrategy` - (Optional) The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`.
+// - `logic` - (Optional) The logic, can be one of `POSITIVE` or `NEGATIVE`. Defaults to `POSITIVE`.
+// - `fetchRoles` - (Optional) When `true`, roles will be fetched from the user's claims. Available in Keycloak 25+.
+// - `description` - (Optional) A description for the authorization policy.
+//
+// ### Role Arguments
+//
+// - `id` - (Required) The ID of the role.
+// - `required` - (Required) When `true`, this role must be present for the policy to grant access.
+//
+// ### Attributes Reference
+//
+// In addition to the arguments listed above, the following computed attributes are exported:
+//
+// - `id` - Policy ID representing the role policy.
+//
+// ## Import
+//
+// Role policies can be imported using the format: `{{realmId}}/{{resourceServerId}}/{{policyId}}`.
+//
+// Example:
 type ClientRolePolicy struct {
 	pulumi.CustomResourceState
 

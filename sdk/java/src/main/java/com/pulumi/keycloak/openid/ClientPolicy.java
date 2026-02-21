@@ -16,11 +16,11 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * This resource can be used to create client policy.
+ * Allows you to manage client policies.
+ * 
+ * Client policies allow you to define conditions based on which clients are accessing the resource. This is useful for restricting access to specific clients within your realm.
  * 
  * ## Example Usage
- * 
- * In this example, we&#39;ll create a new OpenID client, then enabled permissions for the client. A client without permissions disabled cannot be assigned by a client policy. We&#39;ll use the `keycloak.openid.ClientPolicy` resource to create a new client policy, which could be applied to many clients, for a realm and a resource_server_id.
  * 
  * <pre>
  * {@code
@@ -33,10 +33,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.keycloak.RealmArgs;
  * import com.pulumi.keycloak.openid.Client;
  * import com.pulumi.keycloak.openid.ClientArgs;
- * import com.pulumi.keycloak.openid.ClientPermissions;
- * import com.pulumi.keycloak.openid.ClientPermissionsArgs;
- * import com.pulumi.keycloak.openid.OpenidFunctions;
- * import com.pulumi.keycloak.openid.inputs.GetClientArgs;
+ * import com.pulumi.keycloak.openid.inputs.ClientAuthorizationArgs;
  * import com.pulumi.keycloak.openid.ClientPolicy;
  * import com.pulumi.keycloak.openid.ClientPolicyArgs;
  * import java.util.List;
@@ -57,31 +54,39 @@ import javax.annotation.Nullable;
  *             .enabled(true)
  *             .build());
  * 
- *         var openidClient = new Client("openidClient", ClientArgs.builder()
- *             .clientId("openid_client")
- *             .name("openid_client")
+ *         var test = new Client("test", ClientArgs.builder()
+ *             .clientId("client_id")
+ *             .realmId(realm.id())
+ *             .accessType("CONFIDENTIAL")
+ *             .serviceAccountsEnabled(true)
+ *             .authorization(ClientAuthorizationArgs.builder()
+ *                 .policyEnforcementMode("ENFORCING")
+ *                 .build())
+ *             .build());
+ * 
+ *         var client1 = new Client("client1", ClientArgs.builder()
+ *             .clientId("client1")
  *             .realmId(realm.id())
  *             .accessType("CONFIDENTIAL")
  *             .serviceAccountsEnabled(true)
  *             .build());
  * 
- *         var myPermission = new ClientPermissions("myPermission", ClientPermissionsArgs.builder()
+ *         var client2 = new Client("client2", ClientArgs.builder()
+ *             .clientId("client2")
  *             .realmId(realm.id())
- *             .clientId(openidClient.id())
+ *             .accessType("CONFIDENTIAL")
+ *             .serviceAccountsEnabled(true)
  *             .build());
  * 
- *         final var realmManagement = OpenidFunctions.getClient(GetClientArgs.builder()
- *             .realmId("my-realm")
- *             .clientId("realm-management")
- *             .build());
- * 
- *         var tokenExchange = new ClientPolicy("tokenExchange", ClientPolicyArgs.builder()
- *             .resourceServerId(realmManagement.id())
+ *         var testClientPolicy = new ClientPolicy("testClientPolicy", ClientPolicyArgs.builder()
+ *             .resourceServerId(test.resourceServerId())
  *             .realmId(realm.id())
- *             .name("my-policy")
- *             .logic("POSITIVE")
+ *             .name("client_policy")
  *             .decisionStrategy("UNANIMOUS")
- *             .clients(openidClient.id())
+ *             .logic("POSITIVE")
+ *             .clients(            
+ *                 client1.id(),
+ *                 client2.id())
  *             .build());
  * 
  *     }
@@ -89,104 +94,72 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * ### Argument Reference
+ * 
+ * The following arguments are supported:
+ * 
+ * - `realmId` - (Required) The realm this policy exists in.
+ * - `resourceServerId` - (Required) The ID of the resource server.
+ * - `name` - (Required) The name of the policy.
+ * - `clients` - (Required) A list of client IDs that this policy applies to.
+ * - `decisionStrategy` - (Optional) The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`.
+ * - `logic` - (Optional) The logic, can be one of `POSITIVE` or `NEGATIVE`. Defaults to `POSITIVE`.
+ * - `description` - (Optional) A description for the authorization policy.
+ * 
+ * ### Attributes Reference
+ * 
+ * In addition to the arguments listed above, the following computed attributes are exported:
+ * 
+ * - `id` - Policy ID representing the client policy.
+ * 
+ * ## Import
+ * 
+ * Client policies can be imported using the format: `{{realmId}}/{{resourceServerId}}/{{policyId}}`.
+ * 
+ * Example:
+ * 
  */
 @ResourceType(type="keycloak:openid/clientPolicy:ClientPolicy")
 public class ClientPolicy extends com.pulumi.resources.CustomResource {
-    /**
-     * The clients allowed by this client policy.
-     * 
-     */
     @Export(name="clients", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> clients;
 
-    /**
-     * @return The clients allowed by this client policy.
-     * 
-     */
     public Output<List<String>> clients() {
         return this.clients;
     }
-    /**
-     * (Computed) Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.
-     * 
-     */
     @Export(name="decisionStrategy", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> decisionStrategy;
 
-    /**
-     * @return (Computed) Dictates how the policies associated with a given permission are evaluated and how a final decision is obtained. Could be one of `AFFIRMATIVE`, `CONSENSUS`, or `UNANIMOUS`. Applies to permissions.
-     * 
-     */
     public Output<Optional<String>> decisionStrategy() {
         return Codegen.optional(this.decisionStrategy);
     }
-    /**
-     * The description of this client policy.
-     * 
-     */
     @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
-    /**
-     * @return The description of this client policy.
-     * 
-     */
     public Output<Optional<String>> description() {
         return Codegen.optional(this.description);
     }
-    /**
-     * (Computed) Dictates how the policy decision should be made. Can be either `POSITIVE` or `NEGATIVE`. Applies to policies.
-     * 
-     */
     @Export(name="logic", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> logic;
 
-    /**
-     * @return (Computed) Dictates how the policy decision should be made. Can be either `POSITIVE` or `NEGATIVE`. Applies to policies.
-     * 
-     */
     public Output<Optional<String>> logic() {
         return Codegen.optional(this.logic);
     }
-    /**
-     * The name of this client policy.
-     * 
-     */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
-    /**
-     * @return The name of this client policy.
-     * 
-     */
     public Output<String> name() {
         return this.name;
     }
-    /**
-     * The realm this client policy exists within.
-     * 
-     */
     @Export(name="realmId", refs={String.class}, tree="[0]")
     private Output<String> realmId;
 
-    /**
-     * @return The realm this client policy exists within.
-     * 
-     */
     public Output<String> realmId() {
         return this.realmId;
     }
-    /**
-     * The ID of the resource server this client policy is attached to.
-     * 
-     */
     @Export(name="resourceServerId", refs={String.class}, tree="[0]")
     private Output<String> resourceServerId;
 
-    /**
-     * @return The ID of the resource server this client policy is attached to.
-     * 
-     */
     public Output<String> resourceServerId() {
         return this.resourceServerId;
     }

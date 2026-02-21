@@ -68,6 +68,8 @@ type ClientScope struct {
 	ConsentScreenText pulumi.StringPtrOutput `pulumi:"consentScreenText"`
 	// The description of this client scope in the GUI.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// A map of key/value pairs to add extra configuration attributes to this client scope. This can be used for custom attributes or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
+	ExtraConfig pulumi.StringMapOutput `pulumi:"extraConfig"`
 	// Specify order of the client scope in GUI (such as in Consent page) as integer.
 	GuiOrder pulumi.IntPtrOutput `pulumi:"guiOrder"`
 	// When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response. When `false`, this scope will be omitted from the token and from the Token Introspection Endpoint response. Defaults to `true`.
@@ -115,6 +117,8 @@ type clientScopeState struct {
 	ConsentScreenText *string `pulumi:"consentScreenText"`
 	// The description of this client scope in the GUI.
 	Description *string `pulumi:"description"`
+	// A map of key/value pairs to add extra configuration attributes to this client scope. This can be used for custom attributes or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
+	ExtraConfig map[string]string `pulumi:"extraConfig"`
 	// Specify order of the client scope in GUI (such as in Consent page) as integer.
 	GuiOrder *int `pulumi:"guiOrder"`
 	// When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response. When `false`, this scope will be omitted from the token and from the Token Introspection Endpoint response. Defaults to `true`.
@@ -130,6 +134,8 @@ type ClientScopeState struct {
 	ConsentScreenText pulumi.StringPtrInput
 	// The description of this client scope in the GUI.
 	Description pulumi.StringPtrInput
+	// A map of key/value pairs to add extra configuration attributes to this client scope. This can be used for custom attributes or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
+	ExtraConfig pulumi.StringMapInput
 	// Specify order of the client scope in GUI (such as in Consent page) as integer.
 	GuiOrder pulumi.IntPtrInput
 	// When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response. When `false`, this scope will be omitted from the token and from the Token Introspection Endpoint response. Defaults to `true`.
@@ -149,6 +155,8 @@ type clientScopeArgs struct {
 	ConsentScreenText *string `pulumi:"consentScreenText"`
 	// The description of this client scope in the GUI.
 	Description *string `pulumi:"description"`
+	// A map of key/value pairs to add extra configuration attributes to this client scope. This can be used for custom attributes or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
+	ExtraConfig map[string]string `pulumi:"extraConfig"`
 	// Specify order of the client scope in GUI (such as in Consent page) as integer.
 	GuiOrder *int `pulumi:"guiOrder"`
 	// When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response. When `false`, this scope will be omitted from the token and from the Token Introspection Endpoint response. Defaults to `true`.
@@ -165,6 +173,8 @@ type ClientScopeArgs struct {
 	ConsentScreenText pulumi.StringPtrInput
 	// The description of this client scope in the GUI.
 	Description pulumi.StringPtrInput
+	// A map of key/value pairs to add extra configuration attributes to this client scope. This can be used for custom attributes or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
+	ExtraConfig pulumi.StringMapInput
 	// Specify order of the client scope in GUI (such as in Consent page) as integer.
 	GuiOrder pulumi.IntPtrInput
 	// When `true`, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response. When `false`, this scope will be omitted from the token and from the Token Introspection Endpoint response. Defaults to `true`.
@@ -270,6 +280,11 @@ func (o ClientScopeOutput) ConsentScreenText() pulumi.StringPtrOutput {
 // The description of this client scope in the GUI.
 func (o ClientScopeOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ClientScope) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// A map of key/value pairs to add extra configuration attributes to this client scope. This can be used for custom attributes or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
+func (o ClientScopeOutput) ExtraConfig() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ClientScope) pulumi.StringMapOutput { return v.ExtraConfig }).(pulumi.StringMapOutput)
 }
 
 // Specify order of the client scope in GUI (such as in Consent page) as integer.

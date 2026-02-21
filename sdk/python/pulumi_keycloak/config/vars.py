@@ -76,6 +76,20 @@ class _ExportableConfig(types.ModuleType):
         return __config__.get('jwtSigningKey')
 
     @_builtins.property
+    def jwt_token(self) -> Optional[str]:
+        """
+        A signed JWT token used for client authentication.
+        """
+        return __config__.get('jwtToken')
+
+    @_builtins.property
+    def jwt_token_file(self) -> Optional[str]:
+        """
+        A path to a file containing a signed JWT token used for client authentication.
+        """
+        return __config__.get('jwtTokenFile')
+
+    @_builtins.property
     def password(self) -> Optional[str]:
         return __config__.get('password')
 

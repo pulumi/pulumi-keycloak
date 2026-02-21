@@ -84,6 +84,9 @@ type LookupClientResult struct {
 	EncryptionAlgorithm                string                                       `pulumi:"encryptionAlgorithm"`
 	EncryptionCertificate              string                                       `pulumi:"encryptionCertificate"`
 	EncryptionCertificateSha1          string                                       `pulumi:"encryptionCertificateSha1"`
+	EncryptionDigestMethod             string                                       `pulumi:"encryptionDigestMethod"`
+	EncryptionKeyAlgorithm             string                                       `pulumi:"encryptionKeyAlgorithm"`
+	EncryptionMaskGenerationFunction   string                                       `pulumi:"encryptionMaskGenerationFunction"`
 	ExtraConfig                        map[string]string                            `pulumi:"extraConfig"`
 	ForceNameIdFormat                  bool                                         `pulumi:"forceNameIdFormat"`
 	ForcePostBinding                   bool                                         `pulumi:"forcePostBinding"`
@@ -210,6 +213,18 @@ func (o LookupClientResultOutput) EncryptionCertificate() pulumi.StringOutput {
 
 func (o LookupClientResultOutput) EncryptionCertificateSha1() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClientResult) string { return v.EncryptionCertificateSha1 }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) EncryptionDigestMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.EncryptionDigestMethod }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) EncryptionKeyAlgorithm() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.EncryptionKeyAlgorithm }).(pulumi.StringOutput)
+}
+
+func (o LookupClientResultOutput) EncryptionMaskGenerationFunction() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClientResult) string { return v.EncryptionMaskGenerationFunction }).(pulumi.StringOutput)
 }
 
 func (o LookupClientResultOutput) ExtraConfig() pulumi.StringMapOutput {

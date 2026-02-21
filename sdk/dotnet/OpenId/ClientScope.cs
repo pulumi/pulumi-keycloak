@@ -66,6 +66,12 @@ namespace Pulumi.Keycloak.OpenId
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
+        /// A map of key/value pairs to add extra configuration attributes to this client scope. This can be used for custom attributes or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
+        /// </summary>
+        [Output("extraConfig")]
+        public Output<ImmutableDictionary<string, string>?> ExtraConfig { get; private set; } = null!;
+
+        /// <summary>
         /// Specify order of the client scope in GUI (such as in Consent page) as integer.
         /// </summary>
         [Output("guiOrder")]
@@ -147,6 +153,18 @@ namespace Pulumi.Keycloak.OpenId
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        [Input("extraConfig")]
+        private InputMap<string>? _extraConfig;
+
+        /// <summary>
+        /// A map of key/value pairs to add extra configuration attributes to this client scope. This can be used for custom attributes or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
+        /// </summary>
+        public InputMap<string> ExtraConfig
+        {
+            get => _extraConfig ?? (_extraConfig = new InputMap<string>());
+            set => _extraConfig = value;
+        }
+
         /// <summary>
         /// Specify order of the client scope in GUI (such as in Consent page) as integer.
         /// </summary>
@@ -190,6 +208,18 @@ namespace Pulumi.Keycloak.OpenId
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
+
+        [Input("extraConfig")]
+        private InputMap<string>? _extraConfig;
+
+        /// <summary>
+        /// A map of key/value pairs to add extra configuration attributes to this client scope. This can be used for custom attributes or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
+        /// </summary>
+        public InputMap<string> ExtraConfig
+        {
+            get => _extraConfig ?? (_extraConfig = new InputMap<string>());
+            set => _extraConfig = value;
+        }
 
         /// <summary>
         /// Specify order of the client scope in GUI (such as in Consent page) as integer.

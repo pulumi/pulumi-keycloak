@@ -150,6 +150,11 @@ export type IdentityProviderTokenExchangeScopePermission = import("./identityPro
 export const IdentityProviderTokenExchangeScopePermission: typeof import("./identityProviderTokenExchangeScopePermission").IdentityProviderTokenExchangeScopePermission = null as any;
 utilities.lazyLoad(exports, ["IdentityProviderTokenExchangeScopePermission"], () => require("./identityProviderTokenExchangeScopePermission"));
 
+export { KubernetesIdentityProviderArgs, KubernetesIdentityProviderState } from "./kubernetesIdentityProvider";
+export type KubernetesIdentityProvider = import("./kubernetesIdentityProvider").KubernetesIdentityProvider;
+export const KubernetesIdentityProvider: typeof import("./kubernetesIdentityProvider").KubernetesIdentityProvider = null as any;
+utilities.lazyLoad(exports, ["KubernetesIdentityProvider"], () => require("./kubernetesIdentityProvider"));
+
 export { OrganizationArgs, OrganizationState } from "./organization";
 export type Organization = import("./organization").Organization;
 export const Organization: typeof import("./organization").Organization = null as any;
@@ -325,6 +330,8 @@ const _module = {
                 return new HardcodedRoleIdentityMapper(name, <any>undefined, { urn })
             case "keycloak:index/identityProviderTokenExchangeScopePermission:IdentityProviderTokenExchangeScopePermission":
                 return new IdentityProviderTokenExchangeScopePermission(name, <any>undefined, { urn })
+            case "keycloak:index/kubernetesIdentityProvider:KubernetesIdentityProvider":
+                return new KubernetesIdentityProvider(name, <any>undefined, { urn })
             case "keycloak:index/organization:Organization":
                 return new Organization(name, <any>undefined, { urn })
             case "keycloak:index/realm:Realm":
@@ -393,6 +400,7 @@ pulumi.runtime.registerResourceModule("keycloak", "index/hardcodedAttributeMappe
 pulumi.runtime.registerResourceModule("keycloak", "index/hardcodedGroupIdentityProviderMapper", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/hardcodedRoleIdentityMapper", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/identityProviderTokenExchangeScopePermission", _module)
+pulumi.runtime.registerResourceModule("keycloak", "index/kubernetesIdentityProvider", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/organization", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/realm", _module)
 pulumi.runtime.registerResourceModule("keycloak", "index/realmClientPolicyProfile", _module)

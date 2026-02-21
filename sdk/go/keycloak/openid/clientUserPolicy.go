@@ -12,6 +12,109 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Allows you to manage user policies.
+//
+// User policies allow you to define conditions based on specific users. This is useful when you need to grant access to individual users rather than based on roles or groups.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak/openid"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			test, err := openid.NewClient(ctx, "test", &openid.ClientArgs{
+//				ClientId:               pulumi.String("client_id"),
+//				RealmId:                realm.ID(),
+//				AccessType:             pulumi.String("CONFIDENTIAL"),
+//				ServiceAccountsEnabled: pulumi.Bool(true),
+//				Authorization: &openid.ClientAuthorizationArgs{
+//					PolicyEnforcementMode: pulumi.String("ENFORCING"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			alice, err := keycloak.NewUser(ctx, "alice", &keycloak.UserArgs{
+//				RealmId:   realm.ID(),
+//				Username:  pulumi.String("alice"),
+//				Enabled:   pulumi.Bool(true),
+//				Email:     pulumi.String("alice@example.com"),
+//				FirstName: pulumi.String("Alice"),
+//				LastName:  pulumi.String("Smith"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			bob, err := keycloak.NewUser(ctx, "bob", &keycloak.UserArgs{
+//				RealmId:   realm.ID(),
+//				Username:  pulumi.String("bob"),
+//				Enabled:   pulumi.Bool(true),
+//				Email:     pulumi.String("bob@example.com"),
+//				FirstName: pulumi.String("Bob"),
+//				LastName:  pulumi.String("Jones"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = openid.NewClientUserPolicy(ctx, "test", &openid.ClientUserPolicyArgs{
+//				ResourceServerId: test.ResourceServerId,
+//				RealmId:          realm.ID(),
+//				Name:             pulumi.String("user_policy"),
+//				DecisionStrategy: pulumi.String("UNANIMOUS"),
+//				Logic:            pulumi.String("POSITIVE"),
+//				Users: pulumi.StringArray{
+//					alice.ID(),
+//					bob.ID(),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Argument Reference
+//
+// The following arguments are supported:
+//
+// - `realmId` - (Required) The realm this policy exists in.
+// - `resourceServerId` - (Required) The ID of the resource server.
+// - `name` - (Required) The name of the policy.
+// - `decisionStrategy` - (Required) The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`.
+// - `users` - (Required) A list of user IDs that this policy applies to.
+// - `logic` - (Optional) The logic, can be one of `POSITIVE` or `NEGATIVE`. Defaults to `POSITIVE`.
+// - `description` - (Optional) A description for the authorization policy.
+//
+// ### Attributes Reference
+//
+// In addition to the arguments listed above, the following computed attributes are exported:
+//
+// - `id` - Policy ID representing the user policy.
+//
+// ## Import
+//
+// User policies can be imported using the format: `{{realmId}}/{{resourceServerId}}/{{policyId}}`.
+//
+// Example:
 type ClientUserPolicy struct {
 	pulumi.CustomResourceState
 

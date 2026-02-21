@@ -9,6 +9,108 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak.OpenId
 {
+    /// <summary>
+    /// Allows you to manage role policies.
+    /// 
+    /// Role policies allow you to define conditions based on user role assignments. You can specify whether all roles must be present or just one.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
+    /// 
+    ///     var test = new Keycloak.OpenId.Client("test", new()
+    ///     {
+    ///         ClientId = "client_id",
+    ///         RealmId = realm.Id,
+    ///         AccessType = "CONFIDENTIAL",
+    ///         ServiceAccountsEnabled = true,
+    ///         Authorization = new Keycloak.OpenId.Inputs.ClientAuthorizationArgs
+    ///         {
+    ///             PolicyEnforcementMode = "ENFORCING",
+    ///         },
+    ///     });
+    /// 
+    ///     var adminRole = new Keycloak.Role("admin_role", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Name = "admin",
+    ///     });
+    /// 
+    ///     var userRole = new Keycloak.Role("user_role", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Name = "user",
+    ///     });
+    /// 
+    ///     var testClientRolePolicy = new Keycloak.OpenId.ClientRolePolicy("test", new()
+    ///     {
+    ///         ResourceServerId = test.ResourceServerId,
+    ///         RealmId = realm.Id,
+    ///         Name = "role_policy",
+    ///         DecisionStrategy = "UNANIMOUS",
+    ///         Logic = "POSITIVE",
+    ///         Type = "role",
+    ///         Roles = new[]
+    ///         {
+    ///             new Keycloak.OpenId.Inputs.ClientRolePolicyRoleArgs
+    ///             {
+    ///                 Id = adminRole.Id,
+    ///                 Required = true,
+    ///             },
+    ///             new Keycloak.OpenId.Inputs.ClientRolePolicyRoleArgs
+    ///             {
+    ///                 Id = userRole.Id,
+    ///                 Required = false,
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Argument Reference
+    /// 
+    /// The following arguments are supported:
+    /// 
+    /// - `RealmId` - (Required) The realm this policy exists in.
+    /// - `ResourceServerId` - (Required) The ID of the resource server.
+    /// - `Name` - (Required) The name of the policy.
+    /// - `Type` - (Required) The type of policy. Must be `Role`.
+    /// - `Role` - (Required) A list of roles role. At least one role must be defined.
+    /// - `DecisionStrategy` - (Optional) The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`.
+    /// - `Logic` - (Optional) The logic, can be one of `POSITIVE` or `NEGATIVE`. Defaults to `POSITIVE`.
+    /// - `FetchRoles` - (Optional) When `True`, roles will be fetched from the user's claims. Available in Keycloak 25+.
+    /// - `Description` - (Optional) A description for the authorization policy.
+    /// 
+    /// ### Role Arguments
+    /// 
+    /// - `Id` - (Required) The ID of the role.
+    /// - `Required` - (Required) When `True`, this role must be present for the policy to grant access.
+    /// 
+    /// ### Attributes Reference
+    /// 
+    /// In addition to the arguments listed above, the following computed attributes are exported:
+    /// 
+    /// - `Id` - Policy ID representing the role policy.
+    /// 
+    /// ## Import
+    /// 
+    /// Role policies can be imported using the format: `{{realmId}}/{{resourceServerId}}/{{policyId}}`.
+    /// 
+    /// Example:
+    /// </summary>
     [KeycloakResourceType("keycloak:openid/clientRolePolicy:ClientRolePolicy")]
     public partial class ClientRolePolicy : global::Pulumi.CustomResource
     {

@@ -8,12 +8,14 @@ import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.Map;
 import java.util.Objects;
 
 @CustomType
 public final class GetClientScopeResult {
     private String consentScreenText;
     private String description;
+    private Map<String,String> extraConfig;
     private Integer guiOrder;
     /**
      * @return The provider-assigned unique ID for this managed resource.
@@ -30,6 +32,9 @@ public final class GetClientScopeResult {
     }
     public String description() {
         return this.description;
+    }
+    public Map<String,String> extraConfig() {
+        return this.extraConfig;
     }
     public Integer guiOrder() {
         return this.guiOrder;
@@ -62,6 +67,7 @@ public final class GetClientScopeResult {
     public static final class Builder {
         private String consentScreenText;
         private String description;
+        private Map<String,String> extraConfig;
         private Integer guiOrder;
         private String id;
         private Boolean includeInTokenScope;
@@ -72,6 +78,7 @@ public final class GetClientScopeResult {
     	      Objects.requireNonNull(defaults);
     	      this.consentScreenText = defaults.consentScreenText;
     	      this.description = defaults.description;
+    	      this.extraConfig = defaults.extraConfig;
     	      this.guiOrder = defaults.guiOrder;
     	      this.id = defaults.id;
     	      this.includeInTokenScope = defaults.includeInTokenScope;
@@ -93,6 +100,14 @@ public final class GetClientScopeResult {
               throw new MissingRequiredPropertyException("GetClientScopeResult", "description");
             }
             this.description = description;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder extraConfig(Map<String,String> extraConfig) {
+            if (extraConfig == null) {
+              throw new MissingRequiredPropertyException("GetClientScopeResult", "extraConfig");
+            }
+            this.extraConfig = extraConfig;
             return this;
         }
         @CustomType.Setter
@@ -139,6 +154,7 @@ public final class GetClientScopeResult {
             final var _resultValue = new GetClientScopeResult();
             _resultValue.consentScreenText = consentScreenText;
             _resultValue.description = description;
+            _resultValue.extraConfig = extraConfig;
             _resultValue.guiOrder = guiOrder;
             _resultValue.id = id;
             _resultValue.includeInTokenScope = includeInTokenScope;

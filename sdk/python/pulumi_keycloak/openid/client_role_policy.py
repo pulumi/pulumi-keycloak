@@ -263,7 +263,83 @@ class ClientRolePolicy(pulumi.CustomResource):
                  type: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        Create a ClientRolePolicy resource with the given unique name, props, and options.
+        Allows you to manage role policies.
+
+        Role policies allow you to define conditions based on user role assignments. You can specify whether all roles must be present or just one.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        test = keycloak.openid.Client("test",
+            client_id="client_id",
+            realm_id=realm.id,
+            access_type="CONFIDENTIAL",
+            service_accounts_enabled=True,
+            authorization={
+                "policy_enforcement_mode": "ENFORCING",
+            })
+        admin_role = keycloak.Role("admin_role",
+            realm_id=realm.id,
+            name="admin")
+        user_role = keycloak.Role("user_role",
+            realm_id=realm.id,
+            name="user")
+        test_client_role_policy = keycloak.openid.ClientRolePolicy("test",
+            resource_server_id=test.resource_server_id,
+            realm_id=realm.id,
+            name="role_policy",
+            decision_strategy="UNANIMOUS",
+            logic="POSITIVE",
+            type="role",
+            roles=[
+                {
+                    "id": admin_role.id,
+                    "required": True,
+                },
+                {
+                    "id": user_role.id,
+                    "required": False,
+                },
+            ])
+        ```
+
+        ### Argument Reference
+
+        The following arguments are supported:
+
+        - `realm_id` - (Required) The realm this policy exists in.
+        - `resource_server_id` - (Required) The ID of the resource server.
+        - `name` - (Required) The name of the policy.
+        - `type` - (Required) The type of policy. Must be `role`.
+        - `role` - (Required) A list of roles role. At least one role must be defined.
+        - `decision_strategy` - (Optional) The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`.
+        - `logic` - (Optional) The logic, can be one of `POSITIVE` or `NEGATIVE`. Defaults to `POSITIVE`.
+        - `fetch_roles` - (Optional) When `true`, roles will be fetched from the user's claims. Available in Keycloak 25+.
+        - `description` - (Optional) A description for the authorization policy.
+
+        ### Role Arguments
+
+        - `id` - (Required) The ID of the role.
+        - `required` - (Required) When `true`, this role must be present for the policy to grant access.
+
+        ### Attributes Reference
+
+        In addition to the arguments listed above, the following computed attributes are exported:
+
+        - `id` - Policy ID representing the role policy.
+
+        ## Import
+
+        Role policies can be imported using the format: `{{realmId}}/{{resourceServerId}}/{{policyId}}`.
+
+        Example:
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
@@ -274,7 +350,83 @@ class ClientRolePolicy(pulumi.CustomResource):
                  args: ClientRolePolicyArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a ClientRolePolicy resource with the given unique name, props, and options.
+        Allows you to manage role policies.
+
+        Role policies allow you to define conditions based on user role assignments. You can specify whether all roles must be present or just one.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        test = keycloak.openid.Client("test",
+            client_id="client_id",
+            realm_id=realm.id,
+            access_type="CONFIDENTIAL",
+            service_accounts_enabled=True,
+            authorization={
+                "policy_enforcement_mode": "ENFORCING",
+            })
+        admin_role = keycloak.Role("admin_role",
+            realm_id=realm.id,
+            name="admin")
+        user_role = keycloak.Role("user_role",
+            realm_id=realm.id,
+            name="user")
+        test_client_role_policy = keycloak.openid.ClientRolePolicy("test",
+            resource_server_id=test.resource_server_id,
+            realm_id=realm.id,
+            name="role_policy",
+            decision_strategy="UNANIMOUS",
+            logic="POSITIVE",
+            type="role",
+            roles=[
+                {
+                    "id": admin_role.id,
+                    "required": True,
+                },
+                {
+                    "id": user_role.id,
+                    "required": False,
+                },
+            ])
+        ```
+
+        ### Argument Reference
+
+        The following arguments are supported:
+
+        - `realm_id` - (Required) The realm this policy exists in.
+        - `resource_server_id` - (Required) The ID of the resource server.
+        - `name` - (Required) The name of the policy.
+        - `type` - (Required) The type of policy. Must be `role`.
+        - `role` - (Required) A list of roles role. At least one role must be defined.
+        - `decision_strategy` - (Optional) The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`.
+        - `logic` - (Optional) The logic, can be one of `POSITIVE` or `NEGATIVE`. Defaults to `POSITIVE`.
+        - `fetch_roles` - (Optional) When `true`, roles will be fetched from the user's claims. Available in Keycloak 25+.
+        - `description` - (Optional) A description for the authorization policy.
+
+        ### Role Arguments
+
+        - `id` - (Required) The ID of the role.
+        - `required` - (Required) When `true`, this role must be present for the policy to grant access.
+
+        ### Attributes Reference
+
+        In addition to the arguments listed above, the following computed attributes are exported:
+
+        - `id` - Policy ID representing the role policy.
+
+        ## Import
+
+        Role policies can be imported using the format: `{{realmId}}/{{resourceServerId}}/{{policyId}}`.
+
+        Example:
+
         :param str resource_name: The name of the resource.
         :param ClientRolePolicyArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

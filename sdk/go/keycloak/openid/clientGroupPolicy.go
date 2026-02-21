@@ -12,6 +12,116 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Allows you to manage group policies.
+//
+// Group policies allow you to define conditions based on group membership. You can specify whether child groups should be included in the evaluation.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak"
+//	"github.com/pulumi/pulumi-keycloak/sdk/v6/go/keycloak/openid"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			realm, err := keycloak.NewRealm(ctx, "realm", &keycloak.RealmArgs{
+//				Realm:   pulumi.String("my-realm"),
+//				Enabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			test, err := openid.NewClient(ctx, "test", &openid.ClientArgs{
+//				ClientId:               pulumi.String("client_id"),
+//				RealmId:                realm.ID(),
+//				AccessType:             pulumi.String("CONFIDENTIAL"),
+//				ServiceAccountsEnabled: pulumi.Bool(true),
+//				Authorization: &openid.ClientAuthorizationArgs{
+//					PolicyEnforcementMode: pulumi.String("ENFORCING"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			group1, err := keycloak.NewGroup(ctx, "group1", &keycloak.GroupArgs{
+//				RealmId: realm.ID(),
+//				Name:    pulumi.String("group1"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			group2, err := keycloak.NewGroup(ctx, "group2", &keycloak.GroupArgs{
+//				RealmId: realm.ID(),
+//				Name:    pulumi.String("group2"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = openid.NewClientGroupPolicy(ctx, "test", &openid.ClientGroupPolicyArgs{
+//				ResourceServerId: test.ResourceServerId,
+//				RealmId:          realm.ID(),
+//				Name:             pulumi.String("group_policy"),
+//				DecisionStrategy: pulumi.String("UNANIMOUS"),
+//				Logic:            pulumi.String("POSITIVE"),
+//				Groups: openid.ClientGroupPolicyGroupArray{
+//					&openid.ClientGroupPolicyGroupArgs{
+//						Id:             group1.ID(),
+//						Path:           group1.Path,
+//						ExtendChildren: pulumi.Bool(false),
+//					},
+//					&openid.ClientGroupPolicyGroupArgs{
+//						Id:             group2.ID(),
+//						Path:           group2.Path,
+//						ExtendChildren: pulumi.Bool(true),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Argument Reference
+//
+// The following arguments are supported:
+//
+// - `realmId` - (Required) The realm this policy exists in.
+// - `resourceServerId` - (Required) The ID of the resource server.
+// - `name` - (Required) The name of the policy.
+// - `decisionStrategy` - (Required) The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`.
+// - `logic` - (Optional) The logic, can be one of `POSITIVE` or `NEGATIVE`. Defaults to `POSITIVE`.
+// - `groups` - (Required) A list of groups group. At least one group must be defined.
+// - `groupsClaim` - (Optional) The name of the claim in the token that contains the group information.
+// - `description` - (Optional) A description for the authorization policy.
+//
+// ### Group Arguments
+//
+// - `id` - (Required) The ID of the group.
+// - `path` - (Required) The path of the group.
+// - `extendChildren` - (Required) When `true`, the policy will also apply to all child groups of this group.
+//
+// ### Attributes Reference
+//
+// In addition to the arguments listed above, the following computed attributes are exported:
+//
+// - `id` - Policy ID representing the group policy.
+//
+// ## Import
+//
+// Group policies can be imported using the format: `{{realmId}}/{{resourceServerId}}/{{policyId}}`.
+//
+// Example:
 type ClientGroupPolicy struct {
 	pulumi.CustomResourceState
 

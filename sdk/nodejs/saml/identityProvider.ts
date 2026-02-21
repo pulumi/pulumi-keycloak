@@ -230,6 +230,10 @@ export class IdentityProvider extends pulumi.CustomResource {
      */
     declare public readonly wantAssertionsSigned: pulumi.Output<boolean | undefined>;
     /**
+     * Indicates whether this service provider expects authentication requests to be signed (defaults to `true` if `signatureAlgorithm` is set and this isn't).
+     */
+    declare public readonly wantAuthnRequestsSigned: pulumi.Output<boolean | undefined>;
+    /**
      * The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.
      */
     declare public readonly xmlSignKeyInfoKeyNameTransformer: pulumi.Output<string | undefined>;
@@ -287,6 +291,7 @@ export class IdentityProvider extends pulumi.CustomResource {
             resourceInputs["validateSignature"] = state?.validateSignature;
             resourceInputs["wantAssertionsEncrypted"] = state?.wantAssertionsEncrypted;
             resourceInputs["wantAssertionsSigned"] = state?.wantAssertionsSigned;
+            resourceInputs["wantAuthnRequestsSigned"] = state?.wantAuthnRequestsSigned;
             resourceInputs["xmlSignKeyInfoKeyNameTransformer"] = state?.xmlSignKeyInfoKeyNameTransformer;
         } else {
             const args = argsOrState as IdentityProviderArgs | undefined;
@@ -341,6 +346,7 @@ export class IdentityProvider extends pulumi.CustomResource {
             resourceInputs["validateSignature"] = args?.validateSignature;
             resourceInputs["wantAssertionsEncrypted"] = args?.wantAssertionsEncrypted;
             resourceInputs["wantAssertionsSigned"] = args?.wantAssertionsSigned;
+            resourceInputs["wantAuthnRequestsSigned"] = args?.wantAuthnRequestsSigned;
             resourceInputs["xmlSignKeyInfoKeyNameTransformer"] = args?.xmlSignKeyInfoKeyNameTransformer;
             resourceInputs["internalId"] = undefined /*out*/;
         }
@@ -514,6 +520,10 @@ export interface IdentityProviderState {
      */
     wantAssertionsSigned?: pulumi.Input<boolean>;
     /**
+     * Indicates whether this service provider expects authentication requests to be signed (defaults to `true` if `signatureAlgorithm` is set and this isn't).
+     */
+    wantAuthnRequestsSigned?: pulumi.Input<boolean>;
+    /**
      * The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.
      */
     xmlSignKeyInfoKeyNameTransformer?: pulumi.Input<string>;
@@ -679,6 +689,10 @@ export interface IdentityProviderArgs {
      * Indicates whether this service provider expects a signed Assertion.
      */
     wantAssertionsSigned?: pulumi.Input<boolean>;
+    /**
+     * Indicates whether this service provider expects authentication requests to be signed (defaults to `true` if `signatureAlgorithm` is set and this isn't).
+     */
+    wantAuthnRequestsSigned?: pulumi.Input<boolean>;
     /**
      * The SAML signature key name. Can be one of `NONE`, `KEY_ID`, or `CERT_SUBJECT`.
      */

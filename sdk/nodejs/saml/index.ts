@@ -30,6 +30,11 @@ export const getClientInstallationProvider: typeof import("./getClientInstallati
 export const getClientInstallationProviderOutput: typeof import("./getClientInstallationProvider").getClientInstallationProviderOutput = null as any;
 utilities.lazyLoad(exports, ["getClientInstallationProvider","getClientInstallationProviderOutput"], () => require("./getClientInstallationProvider"));
 
+export { GetClientScopeArgs, GetClientScopeResult, GetClientScopeOutputArgs } from "./getClientScope";
+export const getClientScope: typeof import("./getClientScope").getClientScope = null as any;
+export const getClientScopeOutput: typeof import("./getClientScope").getClientScopeOutput = null as any;
+utilities.lazyLoad(exports, ["getClientScope","getClientScopeOutput"], () => require("./getClientScope"));
+
 export { IdentityProviderArgs, IdentityProviderState } from "./identityProvider";
 export type IdentityProvider = import("./identityProvider").IdentityProvider;
 export const IdentityProvider: typeof import("./identityProvider").IdentityProvider = null as any;

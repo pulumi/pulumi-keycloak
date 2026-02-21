@@ -12,6 +12,7 @@ import com.pulumi.keycloak.saml.ClientScopeArgs;
 import com.pulumi.keycloak.saml.inputs.ClientScopeState;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
@@ -100,6 +101,20 @@ public class ClientScope extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> description() {
         return Codegen.optional(this.description);
+    }
+    /**
+     * A map of key/value pairs to add extra configuration attributes to this client scope. This can be used for custom attributes or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
+     * 
+     */
+    @Export(name="extraConfig", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output</* @Nullable */ Map<String,String>> extraConfig;
+
+    /**
+     * @return A map of key/value pairs to add extra configuration attributes to this client scope. This can be used for custom attributes or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
+     * 
+     */
+    public Output<Optional<Map<String,String>>> extraConfig() {
+        return Codegen.optional(this.extraConfig);
     }
     /**
      * Specify order of the client scope in GUI (such as in Consent page) as integer.

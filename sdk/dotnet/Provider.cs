@@ -48,6 +48,18 @@ namespace Pulumi.Keycloak
         [Output("jwtSigningKey")]
         public Output<string?> JwtSigningKey { get; private set; } = null!;
 
+        /// <summary>
+        /// A signed JWT token used for client authentication.
+        /// </summary>
+        [Output("jwtToken")]
+        public Output<string?> JwtToken { get; private set; } = null!;
+
+        /// <summary>
+        /// A path to a file containing a signed JWT token used for client authentication.
+        /// </summary>
+        [Output("jwtTokenFile")]
+        public Output<string?> JwtTokenFile { get; private set; } = null!;
+
         [Output("password")]
         public Output<string?> Password { get; private set; } = null!;
 
@@ -102,6 +114,7 @@ namespace Pulumi.Keycloak
                 AdditionalSecretOutputs =
                 {
                     "jwtSigningKey",
+                    "jwtToken",
                 },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
@@ -178,6 +191,28 @@ namespace Pulumi.Keycloak
                 _jwtSigningKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("jwtToken")]
+        private Input<string>? _jwtToken;
+
+        /// <summary>
+        /// A signed JWT token used for client authentication.
+        /// </summary>
+        public Input<string>? JwtToken
+        {
+            get => _jwtToken;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _jwtToken = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// A path to a file containing a signed JWT token used for client authentication.
+        /// </summary>
+        [Input("jwtTokenFile")]
+        public Input<string>? JwtTokenFile { get; set; }
 
         [Input("password")]
         public Input<string>? Password { get; set; }

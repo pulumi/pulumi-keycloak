@@ -17,6 +17,123 @@ import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * Allows you to manage role policies.
+ * 
+ * Role policies allow you to define conditions based on user role assignments. You can specify whether all roles must be present or just one.
+ * 
+ * ## Example Usage
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.keycloak.Realm;
+ * import com.pulumi.keycloak.RealmArgs;
+ * import com.pulumi.keycloak.openid.Client;
+ * import com.pulumi.keycloak.openid.ClientArgs;
+ * import com.pulumi.keycloak.openid.inputs.ClientAuthorizationArgs;
+ * import com.pulumi.keycloak.Role;
+ * import com.pulumi.keycloak.RoleArgs;
+ * import com.pulumi.keycloak.openid.ClientRolePolicy;
+ * import com.pulumi.keycloak.openid.ClientRolePolicyArgs;
+ * import com.pulumi.keycloak.openid.inputs.ClientRolePolicyRoleArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var realm = new Realm("realm", RealmArgs.builder()
+ *             .realm("my-realm")
+ *             .enabled(true)
+ *             .build());
+ * 
+ *         var test = new Client("test", ClientArgs.builder()
+ *             .clientId("client_id")
+ *             .realmId(realm.id())
+ *             .accessType("CONFIDENTIAL")
+ *             .serviceAccountsEnabled(true)
+ *             .authorization(ClientAuthorizationArgs.builder()
+ *                 .policyEnforcementMode("ENFORCING")
+ *                 .build())
+ *             .build());
+ * 
+ *         var adminRole = new Role("adminRole", RoleArgs.builder()
+ *             .realmId(realm.id())
+ *             .name("admin")
+ *             .build());
+ * 
+ *         var userRole = new Role("userRole", RoleArgs.builder()
+ *             .realmId(realm.id())
+ *             .name("user")
+ *             .build());
+ * 
+ *         var testClientRolePolicy = new ClientRolePolicy("testClientRolePolicy", ClientRolePolicyArgs.builder()
+ *             .resourceServerId(test.resourceServerId())
+ *             .realmId(realm.id())
+ *             .name("role_policy")
+ *             .decisionStrategy("UNANIMOUS")
+ *             .logic("POSITIVE")
+ *             .type("role")
+ *             .roles(            
+ *                 ClientRolePolicyRoleArgs.builder()
+ *                     .id(adminRole.id())
+ *                     .required(true)
+ *                     .build(),
+ *                 ClientRolePolicyRoleArgs.builder()
+ *                     .id(userRole.id())
+ *                     .required(false)
+ *                     .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ### Argument Reference
+ * 
+ * The following arguments are supported:
+ * 
+ * - `realmId` - (Required) The realm this policy exists in.
+ * - `resourceServerId` - (Required) The ID of the resource server.
+ * - `name` - (Required) The name of the policy.
+ * - `type` - (Required) The type of policy. Must be `role`.
+ * - `role` - (Required) A list of roles role. At least one role must be defined.
+ * - `decisionStrategy` - (Optional) The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`.
+ * - `logic` - (Optional) The logic, can be one of `POSITIVE` or `NEGATIVE`. Defaults to `POSITIVE`.
+ * - `fetchRoles` - (Optional) When `true`, roles will be fetched from the user&#39;s claims. Available in Keycloak 25+.
+ * - `description` - (Optional) A description for the authorization policy.
+ * 
+ * ### Role Arguments
+ * 
+ * - `id` - (Required) The ID of the role.
+ * - `required` - (Required) When `true`, this role must be present for the policy to grant access.
+ * 
+ * ### Attributes Reference
+ * 
+ * In addition to the arguments listed above, the following computed attributes are exported:
+ * 
+ * - `id` - Policy ID representing the role policy.
+ * 
+ * ## Import
+ * 
+ * Role policies can be imported using the format: `{{realmId}}/{{resourceServerId}}/{{policyId}}`.
+ * 
+ * Example:
+ * 
+ */
 @ResourceType(type="keycloak:openid/clientRolePolicy:ClientRolePolicy")
 public class ClientRolePolicy extends com.pulumi.resources.CustomResource {
     @Export(name="decisionStrategy", refs={String.class}, tree="[0]")

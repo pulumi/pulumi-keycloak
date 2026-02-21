@@ -9,6 +9,109 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak.OpenId
 {
+    /// <summary>
+    /// Allows you to manage group policies.
+    /// 
+    /// Group policies allow you to define conditions based on group membership. You can specify whether child groups should be included in the evaluation.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
+    /// 
+    ///     var test = new Keycloak.OpenId.Client("test", new()
+    ///     {
+    ///         ClientId = "client_id",
+    ///         RealmId = realm.Id,
+    ///         AccessType = "CONFIDENTIAL",
+    ///         ServiceAccountsEnabled = true,
+    ///         Authorization = new Keycloak.OpenId.Inputs.ClientAuthorizationArgs
+    ///         {
+    ///             PolicyEnforcementMode = "ENFORCING",
+    ///         },
+    ///     });
+    /// 
+    ///     var group1 = new Keycloak.Group("group1", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Name = "group1",
+    ///     });
+    /// 
+    ///     var group2 = new Keycloak.Group("group2", new()
+    ///     {
+    ///         RealmId = realm.Id,
+    ///         Name = "group2",
+    ///     });
+    /// 
+    ///     var testClientGroupPolicy = new Keycloak.OpenId.ClientGroupPolicy("test", new()
+    ///     {
+    ///         ResourceServerId = test.ResourceServerId,
+    ///         RealmId = realm.Id,
+    ///         Name = "group_policy",
+    ///         DecisionStrategy = "UNANIMOUS",
+    ///         Logic = "POSITIVE",
+    ///         Groups = new[]
+    ///         {
+    ///             new Keycloak.OpenId.Inputs.ClientGroupPolicyGroupArgs
+    ///             {
+    ///                 Id = group1.Id,
+    ///                 Path = group1.Path,
+    ///                 ExtendChildren = false,
+    ///             },
+    ///             new Keycloak.OpenId.Inputs.ClientGroupPolicyGroupArgs
+    ///             {
+    ///                 Id = group2.Id,
+    ///                 Path = group2.Path,
+    ///                 ExtendChildren = true,
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Argument Reference
+    /// 
+    /// The following arguments are supported:
+    /// 
+    /// - `RealmId` - (Required) The realm this policy exists in.
+    /// - `ResourceServerId` - (Required) The ID of the resource server.
+    /// - `Name` - (Required) The name of the policy.
+    /// - `DecisionStrategy` - (Required) The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`.
+    /// - `Logic` - (Optional) The logic, can be one of `POSITIVE` or `NEGATIVE`. Defaults to `POSITIVE`.
+    /// - `Groups` - (Required) A list of groups group. At least one group must be defined.
+    /// - `GroupsClaim` - (Optional) The name of the claim in the token that contains the group information.
+    /// - `Description` - (Optional) A description for the authorization policy.
+    /// 
+    /// ### Group Arguments
+    /// 
+    /// - `Id` - (Required) The ID of the group.
+    /// - `Path` - (Required) The path of the group.
+    /// - `ExtendChildren` - (Required) When `True`, the policy will also apply to all child groups of this group.
+    /// 
+    /// ### Attributes Reference
+    /// 
+    /// In addition to the arguments listed above, the following computed attributes are exported:
+    /// 
+    /// - `Id` - Policy ID representing the group policy.
+    /// 
+    /// ## Import
+    /// 
+    /// Group policies can be imported using the format: `{{realmId}}/{{resourceServerId}}/{{policyId}}`.
+    /// 
+    /// Example:
+    /// </summary>
     [KeycloakResourceType("keycloak:openid/clientGroupPolicy:ClientGroupPolicy")]
     public partial class ClientGroupPolicy : global::Pulumi.CustomResource
     {

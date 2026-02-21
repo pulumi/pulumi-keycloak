@@ -7,12 +7,22 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
+import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class GetClientScopeArgs extends com.pulumi.resources.InvokeArgs {
 
     public static final GetClientScopeArgs Empty = new GetClientScopeArgs();
+
+    @Import(name="extraConfig")
+    private @Nullable Output<Map<String,String>> extraConfig;
+
+    public Optional<Output<Map<String,String>>> extraConfig() {
+        return Optional.ofNullable(this.extraConfig);
+    }
 
     /**
      * The name of the client scope.
@@ -47,6 +57,7 @@ public final class GetClientScopeArgs extends com.pulumi.resources.InvokeArgs {
     private GetClientScopeArgs() {}
 
     private GetClientScopeArgs(GetClientScopeArgs $) {
+        this.extraConfig = $.extraConfig;
         this.name = $.name;
         this.realmId = $.realmId;
     }
@@ -67,6 +78,15 @@ public final class GetClientScopeArgs extends com.pulumi.resources.InvokeArgs {
 
         public Builder(GetClientScopeArgs defaults) {
             $ = new GetClientScopeArgs(Objects.requireNonNull(defaults));
+        }
+
+        public Builder extraConfig(@Nullable Output<Map<String,String>> extraConfig) {
+            $.extraConfig = extraConfig;
+            return this;
+        }
+
+        public Builder extraConfig(Map<String,String> extraConfig) {
+            return extraConfig(Output.of(extraConfig));
         }
 
         /**

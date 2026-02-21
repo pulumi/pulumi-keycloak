@@ -29,6 +29,9 @@ public final class GetClientResult {
     private String encryptionAlgorithm;
     private String encryptionCertificate;
     private String encryptionCertificateSha1;
+    private String encryptionDigestMethod;
+    private String encryptionKeyAlgorithm;
+    private String encryptionMaskGenerationFunction;
     private Map<String,String> extraConfig;
     private Boolean forceNameIdFormat;
     private Boolean forcePostBinding;
@@ -106,6 +109,15 @@ public final class GetClientResult {
     }
     public String encryptionCertificateSha1() {
         return this.encryptionCertificateSha1;
+    }
+    public String encryptionDigestMethod() {
+        return this.encryptionDigestMethod;
+    }
+    public String encryptionKeyAlgorithm() {
+        return this.encryptionKeyAlgorithm;
+    }
+    public String encryptionMaskGenerationFunction() {
+        return this.encryptionMaskGenerationFunction;
     }
     public Map<String,String> extraConfig() {
         return this.extraConfig;
@@ -217,6 +229,9 @@ public final class GetClientResult {
         private String encryptionAlgorithm;
         private String encryptionCertificate;
         private String encryptionCertificateSha1;
+        private String encryptionDigestMethod;
+        private String encryptionKeyAlgorithm;
+        private String encryptionMaskGenerationFunction;
         private Map<String,String> extraConfig;
         private Boolean forceNameIdFormat;
         private Boolean forcePostBinding;
@@ -262,6 +277,9 @@ public final class GetClientResult {
     	      this.encryptionAlgorithm = defaults.encryptionAlgorithm;
     	      this.encryptionCertificate = defaults.encryptionCertificate;
     	      this.encryptionCertificateSha1 = defaults.encryptionCertificateSha1;
+    	      this.encryptionDigestMethod = defaults.encryptionDigestMethod;
+    	      this.encryptionKeyAlgorithm = defaults.encryptionKeyAlgorithm;
+    	      this.encryptionMaskGenerationFunction = defaults.encryptionMaskGenerationFunction;
     	      this.extraConfig = defaults.extraConfig;
     	      this.forceNameIdFormat = defaults.forceNameIdFormat;
     	      this.forcePostBinding = defaults.forcePostBinding;
@@ -412,6 +430,30 @@ public final class GetClientResult {
               throw new MissingRequiredPropertyException("GetClientResult", "encryptionCertificateSha1");
             }
             this.encryptionCertificateSha1 = encryptionCertificateSha1;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder encryptionDigestMethod(String encryptionDigestMethod) {
+            if (encryptionDigestMethod == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "encryptionDigestMethod");
+            }
+            this.encryptionDigestMethod = encryptionDigestMethod;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder encryptionKeyAlgorithm(String encryptionKeyAlgorithm) {
+            if (encryptionKeyAlgorithm == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "encryptionKeyAlgorithm");
+            }
+            this.encryptionKeyAlgorithm = encryptionKeyAlgorithm;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder encryptionMaskGenerationFunction(String encryptionMaskGenerationFunction) {
+            if (encryptionMaskGenerationFunction == null) {
+              throw new MissingRequiredPropertyException("GetClientResult", "encryptionMaskGenerationFunction");
+            }
+            this.encryptionMaskGenerationFunction = encryptionMaskGenerationFunction;
             return this;
         }
         @CustomType.Setter
@@ -650,6 +692,9 @@ public final class GetClientResult {
             _resultValue.encryptionAlgorithm = encryptionAlgorithm;
             _resultValue.encryptionCertificate = encryptionCertificate;
             _resultValue.encryptionCertificateSha1 = encryptionCertificateSha1;
+            _resultValue.encryptionDigestMethod = encryptionDigestMethod;
+            _resultValue.encryptionKeyAlgorithm = encryptionKeyAlgorithm;
+            _resultValue.encryptionMaskGenerationFunction = encryptionMaskGenerationFunction;
             _resultValue.extraConfig = extraConfig;
             _resultValue.forceNameIdFormat = forceNameIdFormat;
             _resultValue.forcePostBinding = forcePostBinding;

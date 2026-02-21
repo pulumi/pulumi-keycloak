@@ -29,6 +29,7 @@ import * as utilities from "../utilities";
 export function getClientScope(args: GetClientScopeArgs, opts?: pulumi.InvokeOptions): Promise<GetClientScopeResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("keycloak:openid/getClientScope:getClientScope", {
+        "extraConfig": args.extraConfig,
         "name": args.name,
         "realmId": args.realmId,
     }, opts);
@@ -38,6 +39,7 @@ export function getClientScope(args: GetClientScopeArgs, opts?: pulumi.InvokeOpt
  * A collection of arguments for invoking getClientScope.
  */
 export interface GetClientScopeArgs {
+    extraConfig?: {[key: string]: string};
     /**
      * The name of the client scope.
      */
@@ -54,6 +56,7 @@ export interface GetClientScopeArgs {
 export interface GetClientScopeResult {
     readonly consentScreenText: string;
     readonly description: string;
+    readonly extraConfig: {[key: string]: string};
     readonly guiOrder: number;
     /**
      * The provider-assigned unique ID for this managed resource.
@@ -88,6 +91,7 @@ export interface GetClientScopeResult {
 export function getClientScopeOutput(args: GetClientScopeOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetClientScopeResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("keycloak:openid/getClientScope:getClientScope", {
+        "extraConfig": args.extraConfig,
         "name": args.name,
         "realmId": args.realmId,
     }, opts);
@@ -97,6 +101,7 @@ export function getClientScopeOutput(args: GetClientScopeOutputArgs, opts?: pulu
  * A collection of arguments for invoking getClientScope.
  */
 export interface GetClientScopeOutputArgs {
+    extraConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The name of the client scope.
      */

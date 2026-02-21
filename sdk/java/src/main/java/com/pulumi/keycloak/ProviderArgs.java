@@ -129,6 +129,36 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.jwtSigningKey);
     }
 
+    /**
+     * A signed JWT token used for client authentication.
+     * 
+     */
+    @Import(name="jwtToken")
+    private @Nullable Output<String> jwtToken;
+
+    /**
+     * @return A signed JWT token used for client authentication.
+     * 
+     */
+    public Optional<Output<String>> jwtToken() {
+        return Optional.ofNullable(this.jwtToken);
+    }
+
+    /**
+     * A path to a file containing a signed JWT token used for client authentication.
+     * 
+     */
+    @Import(name="jwtTokenFile")
+    private @Nullable Output<String> jwtTokenFile;
+
+    /**
+     * @return A path to a file containing a signed JWT token used for client authentication.
+     * 
+     */
+    public Optional<Output<String>> jwtTokenFile() {
+        return Optional.ofNullable(this.jwtTokenFile);
+    }
+
     @Import(name="password")
     private @Nullable Output<String> password;
 
@@ -253,6 +283,8 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         this.initialLogin = $.initialLogin;
         this.jwtSigningAlg = $.jwtSigningAlg;
         this.jwtSigningKey = $.jwtSigningKey;
+        this.jwtToken = $.jwtToken;
+        this.jwtTokenFile = $.jwtTokenFile;
         this.password = $.password;
         this.realm = $.realm;
         this.redHatSso = $.redHatSso;
@@ -430,6 +462,48 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder jwtSigningKey(String jwtSigningKey) {
             return jwtSigningKey(Output.of(jwtSigningKey));
+        }
+
+        /**
+         * @param jwtToken A signed JWT token used for client authentication.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder jwtToken(@Nullable Output<String> jwtToken) {
+            $.jwtToken = jwtToken;
+            return this;
+        }
+
+        /**
+         * @param jwtToken A signed JWT token used for client authentication.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder jwtToken(String jwtToken) {
+            return jwtToken(Output.of(jwtToken));
+        }
+
+        /**
+         * @param jwtTokenFile A path to a file containing a signed JWT token used for client authentication.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder jwtTokenFile(@Nullable Output<String> jwtTokenFile) {
+            $.jwtTokenFile = jwtTokenFile;
+            return this;
+        }
+
+        /**
+         * @param jwtTokenFile A path to a file containing a signed JWT token used for client authentication.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder jwtTokenFile(String jwtTokenFile) {
+            return jwtTokenFile(Output.of(jwtTokenFile));
         }
 
         public Builder password(@Nullable Output<String> password) {

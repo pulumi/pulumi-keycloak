@@ -211,7 +211,77 @@ class ClientUserPolicy(pulumi.CustomResource):
                  users: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
-        Create a ClientUserPolicy resource with the given unique name, props, and options.
+        Allows you to manage user policies.
+
+        User policies allow you to define conditions based on specific users. This is useful when you need to grant access to individual users rather than based on roles or groups.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        test = keycloak.openid.Client("test",
+            client_id="client_id",
+            realm_id=realm.id,
+            access_type="CONFIDENTIAL",
+            service_accounts_enabled=True,
+            authorization={
+                "policy_enforcement_mode": "ENFORCING",
+            })
+        alice = keycloak.User("alice",
+            realm_id=realm.id,
+            username="alice",
+            enabled=True,
+            email="alice@example.com",
+            first_name="Alice",
+            last_name="Smith")
+        bob = keycloak.User("bob",
+            realm_id=realm.id,
+            username="bob",
+            enabled=True,
+            email="bob@example.com",
+            first_name="Bob",
+            last_name="Jones")
+        test_client_user_policy = keycloak.openid.ClientUserPolicy("test",
+            resource_server_id=test.resource_server_id,
+            realm_id=realm.id,
+            name="user_policy",
+            decision_strategy="UNANIMOUS",
+            logic="POSITIVE",
+            users=[
+                alice.id,
+                bob.id,
+            ])
+        ```
+
+        ### Argument Reference
+
+        The following arguments are supported:
+
+        - `realm_id` - (Required) The realm this policy exists in.
+        - `resource_server_id` - (Required) The ID of the resource server.
+        - `name` - (Required) The name of the policy.
+        - `decision_strategy` - (Required) The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`.
+        - `users` - (Required) A list of user IDs that this policy applies to.
+        - `logic` - (Optional) The logic, can be one of `POSITIVE` or `NEGATIVE`. Defaults to `POSITIVE`.
+        - `description` - (Optional) A description for the authorization policy.
+
+        ### Attributes Reference
+
+        In addition to the arguments listed above, the following computed attributes are exported:
+
+        - `id` - Policy ID representing the user policy.
+
+        ## Import
+
+        User policies can be imported using the format: `{{realmId}}/{{resourceServerId}}/{{policyId}}`.
+
+        Example:
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
@@ -222,7 +292,77 @@ class ClientUserPolicy(pulumi.CustomResource):
                  args: ClientUserPolicyArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a ClientUserPolicy resource with the given unique name, props, and options.
+        Allows you to manage user policies.
+
+        User policies allow you to define conditions based on specific users. This is useful when you need to grant access to individual users rather than based on roles or groups.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_keycloak as keycloak
+
+        realm = keycloak.Realm("realm",
+            realm="my-realm",
+            enabled=True)
+        test = keycloak.openid.Client("test",
+            client_id="client_id",
+            realm_id=realm.id,
+            access_type="CONFIDENTIAL",
+            service_accounts_enabled=True,
+            authorization={
+                "policy_enforcement_mode": "ENFORCING",
+            })
+        alice = keycloak.User("alice",
+            realm_id=realm.id,
+            username="alice",
+            enabled=True,
+            email="alice@example.com",
+            first_name="Alice",
+            last_name="Smith")
+        bob = keycloak.User("bob",
+            realm_id=realm.id,
+            username="bob",
+            enabled=True,
+            email="bob@example.com",
+            first_name="Bob",
+            last_name="Jones")
+        test_client_user_policy = keycloak.openid.ClientUserPolicy("test",
+            resource_server_id=test.resource_server_id,
+            realm_id=realm.id,
+            name="user_policy",
+            decision_strategy="UNANIMOUS",
+            logic="POSITIVE",
+            users=[
+                alice.id,
+                bob.id,
+            ])
+        ```
+
+        ### Argument Reference
+
+        The following arguments are supported:
+
+        - `realm_id` - (Required) The realm this policy exists in.
+        - `resource_server_id` - (Required) The ID of the resource server.
+        - `name` - (Required) The name of the policy.
+        - `decision_strategy` - (Required) The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`.
+        - `users` - (Required) A list of user IDs that this policy applies to.
+        - `logic` - (Optional) The logic, can be one of `POSITIVE` or `NEGATIVE`. Defaults to `POSITIVE`.
+        - `description` - (Optional) A description for the authorization policy.
+
+        ### Attributes Reference
+
+        In addition to the arguments listed above, the following computed attributes are exported:
+
+        - `id` - Policy ID representing the user policy.
+
+        ## Import
+
+        User policies can be imported using the format: `{{realmId}}/{{resourceServerId}}/{{policyId}}`.
+
+        Example:
+
         :param str resource_name: The name of the resource.
         :param ClientUserPolicyArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

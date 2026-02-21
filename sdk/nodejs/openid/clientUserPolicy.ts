@@ -4,6 +4,83 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
+/**
+ * Allows you to manage user policies.
+ *
+ * User policies allow you to define conditions based on specific users. This is useful when you need to grant access to individual users rather than based on roles or groups.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as keycloak from "@pulumi/keycloak";
+ *
+ * const realm = new keycloak.Realm("realm", {
+ *     realm: "my-realm",
+ *     enabled: true,
+ * });
+ * const test = new keycloak.openid.Client("test", {
+ *     clientId: "client_id",
+ *     realmId: realm.id,
+ *     accessType: "CONFIDENTIAL",
+ *     serviceAccountsEnabled: true,
+ *     authorization: {
+ *         policyEnforcementMode: "ENFORCING",
+ *     },
+ * });
+ * const alice = new keycloak.User("alice", {
+ *     realmId: realm.id,
+ *     username: "alice",
+ *     enabled: true,
+ *     email: "alice@example.com",
+ *     firstName: "Alice",
+ *     lastName: "Smith",
+ * });
+ * const bob = new keycloak.User("bob", {
+ *     realmId: realm.id,
+ *     username: "bob",
+ *     enabled: true,
+ *     email: "bob@example.com",
+ *     firstName: "Bob",
+ *     lastName: "Jones",
+ * });
+ * const testClientUserPolicy = new keycloak.openid.ClientUserPolicy("test", {
+ *     resourceServerId: test.resourceServerId,
+ *     realmId: realm.id,
+ *     name: "user_policy",
+ *     decisionStrategy: "UNANIMOUS",
+ *     logic: "POSITIVE",
+ *     users: [
+ *         alice.id,
+ *         bob.id,
+ *     ],
+ * });
+ * ```
+ *
+ * ### Argument Reference
+ *
+ * The following arguments are supported:
+ *
+ * - `realmId` - (Required) The realm this policy exists in.
+ * - `resourceServerId` - (Required) The ID of the resource server.
+ * - `name` - (Required) The name of the policy.
+ * - `decisionStrategy` - (Required) The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`.
+ * - `users` - (Required) A list of user IDs that this policy applies to.
+ * - `logic` - (Optional) The logic, can be one of `POSITIVE` or `NEGATIVE`. Defaults to `POSITIVE`.
+ * - `description` - (Optional) A description for the authorization policy.
+ *
+ * ### Attributes Reference
+ *
+ * In addition to the arguments listed above, the following computed attributes are exported:
+ *
+ * - `id` - Policy ID representing the user policy.
+ *
+ * ## Import
+ *
+ * User policies can be imported using the format: `{{realmId}}/{{resourceServerId}}/{{policyId}}`.
+ *
+ * Example:
+ */
 export class ClientUserPolicy extends pulumi.CustomResource {
     /**
      * Get an existing ClientUserPolicy resource's state with the given name, ID, and optional extra

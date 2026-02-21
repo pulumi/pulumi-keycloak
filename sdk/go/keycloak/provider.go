@@ -28,8 +28,12 @@ type Provider struct {
 	JwtSigningAlg pulumi.StringPtrOutput `pulumi:"jwtSigningAlg"`
 	// The PEM-formatted private key used to sign the JWT when client-jwt is used.
 	JwtSigningKey pulumi.StringPtrOutput `pulumi:"jwtSigningKey"`
-	Password      pulumi.StringPtrOutput `pulumi:"password"`
-	Realm         pulumi.StringPtrOutput `pulumi:"realm"`
+	// A signed JWT token used for client authentication.
+	JwtToken pulumi.StringPtrOutput `pulumi:"jwtToken"`
+	// A path to a file containing a signed JWT token used for client authentication.
+	JwtTokenFile pulumi.StringPtrOutput `pulumi:"jwtTokenFile"`
+	Password     pulumi.StringPtrOutput `pulumi:"password"`
+	Realm        pulumi.StringPtrOutput `pulumi:"realm"`
 	// Allows x509 calls using an unknown CA certificate (for development purposes)
 	RootCaCertificate pulumi.StringPtrOutput `pulumi:"rootCaCertificate"`
 	// TLS client certificate as PEM string for mutual authentication
@@ -56,8 +60,12 @@ func NewProvider(ctx *pulumi.Context,
 	if args.JwtSigningKey != nil {
 		args.JwtSigningKey = pulumi.ToSecret(args.JwtSigningKey).(pulumi.StringPtrInput)
 	}
+	if args.JwtToken != nil {
+		args.JwtToken = pulumi.ToSecret(args.JwtToken).(pulumi.StringPtrInput)
+	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"jwtSigningKey",
+		"jwtToken",
 	})
 	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
@@ -85,8 +93,12 @@ type providerArgs struct {
 	JwtSigningAlg *string `pulumi:"jwtSigningAlg"`
 	// The PEM-formatted private key used to sign the JWT when client-jwt is used.
 	JwtSigningKey *string `pulumi:"jwtSigningKey"`
-	Password      *string `pulumi:"password"`
-	Realm         *string `pulumi:"realm"`
+	// A signed JWT token used for client authentication.
+	JwtToken *string `pulumi:"jwtToken"`
+	// A path to a file containing a signed JWT token used for client authentication.
+	JwtTokenFile *string `pulumi:"jwtTokenFile"`
+	Password     *string `pulumi:"password"`
+	Realm        *string `pulumi:"realm"`
 	// When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version returned from the /serverinfo API endpoint.
 	RedHatSso *bool `pulumi:"redHatSso"`
 	// Allows x509 calls using an unknown CA certificate (for development purposes)
@@ -119,8 +131,12 @@ type ProviderArgs struct {
 	JwtSigningAlg pulumi.StringPtrInput
 	// The PEM-formatted private key used to sign the JWT when client-jwt is used.
 	JwtSigningKey pulumi.StringPtrInput
-	Password      pulumi.StringPtrInput
-	Realm         pulumi.StringPtrInput
+	// A signed JWT token used for client authentication.
+	JwtToken pulumi.StringPtrInput
+	// A path to a file containing a signed JWT token used for client authentication.
+	JwtTokenFile pulumi.StringPtrInput
+	Password     pulumi.StringPtrInput
+	Realm        pulumi.StringPtrInput
 	// When true, the provider will treat the Keycloak instance as a Red Hat SSO server, specifically when parsing the version returned from the /serverinfo API endpoint.
 	RedHatSso pulumi.BoolPtrInput
 	// Allows x509 calls using an unknown CA certificate (for development purposes)
@@ -225,6 +241,16 @@ func (o ProviderOutput) JwtSigningAlg() pulumi.StringPtrOutput {
 // The PEM-formatted private key used to sign the JWT when client-jwt is used.
 func (o ProviderOutput) JwtSigningKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.JwtSigningKey }).(pulumi.StringPtrOutput)
+}
+
+// A signed JWT token used for client authentication.
+func (o ProviderOutput) JwtToken() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.JwtToken }).(pulumi.StringPtrOutput)
+}
+
+// A path to a file containing a signed JWT token used for client authentication.
+func (o ProviderOutput) JwtTokenFile() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.JwtTokenFile }).(pulumi.StringPtrOutput)
 }
 
 func (o ProviderOutput) Password() pulumi.StringPtrOutput {

@@ -9,6 +9,113 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Keycloak.OpenId
 {
+    /// <summary>
+    /// Allows you to manage time policies.
+    /// 
+    /// Time policies allow you to define conditions based on time ranges. You can specify when access should be granted using various time constraints including date, month, year, hour, and minute ranges.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Keycloak = Pulumi.Keycloak;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     {
+    ///         RealmName = "my-realm",
+    ///         Enabled = true,
+    ///     });
+    /// 
+    ///     var test = new Keycloak.OpenId.Client("test", new()
+    ///     {
+    ///         ClientId = "client_id",
+    ///         RealmId = realm.Id,
+    ///         AccessType = "CONFIDENTIAL",
+    ///         ServiceAccountsEnabled = true,
+    ///         Authorization = new Keycloak.OpenId.Inputs.ClientAuthorizationArgs
+    ///         {
+    ///             PolicyEnforcementMode = "ENFORCING",
+    ///         },
+    ///     });
+    /// 
+    ///     // Policy for business hours only (9 AM - 5 PM)
+    ///     var businessHours = new Keycloak.OpenId.ClientTimePolicy("business_hours", new()
+    ///     {
+    ///         ResourceServerId = test.ResourceServerId,
+    ///         RealmId = realm.Id,
+    ///         Name = "business_hours_policy",
+    ///         DecisionStrategy = "UNANIMOUS",
+    ///         Logic = "POSITIVE",
+    ///         Hour = "09",
+    ///         HourEnd = "17",
+    ///     });
+    /// 
+    ///     // Policy for specific date range
+    ///     var dateRange = new Keycloak.OpenId.ClientTimePolicy("date_range", new()
+    ///     {
+    ///         ResourceServerId = test.ResourceServerId,
+    ///         RealmId = realm.Id,
+    ///         Name = "date_range_policy",
+    ///         DecisionStrategy = "UNANIMOUS",
+    ///         Logic = "POSITIVE",
+    ///         NotBefore = "2024-01-01 00:00:00",
+    ///         NotOnOrAfter = "2024-12-31 23:59:59",
+    ///     });
+    /// 
+    ///     // Policy for specific months (January to March)
+    ///     var quarter1 = new Keycloak.OpenId.ClientTimePolicy("quarter1", new()
+    ///     {
+    ///         ResourceServerId = test.ResourceServerId,
+    ///         RealmId = realm.Id,
+    ///         Name = "q1_policy",
+    ///         DecisionStrategy = "UNANIMOUS",
+    ///         Logic = "POSITIVE",
+    ///         Month = "1",
+    ///         MonthEnd = "3",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Argument Reference
+    /// 
+    /// The following arguments are supported:
+    /// 
+    /// - `RealmId` - (Required) The realm this policy exists in.
+    /// - `ResourceServerId` - (Required) The ID of the resource server.
+    /// - `Name` - (Required) The name of the policy.
+    /// - `DecisionStrategy` - (Required) The decision strategy, can be one of `UNANIMOUS`, `AFFIRMATIVE`, or `CONSENSUS`.
+    /// - `Logic` - (Optional) The logic, can be one of `POSITIVE` or `NEGATIVE`. Defaults to `POSITIVE`.
+    /// - `NotBefore` - (Optional) The policy is valid only after this date/time (format: `YYYY-MM-DD HH:MM:SS`).
+    /// - `NotOnOrAfter` - (Optional) The policy is valid only before this date/time (format: `YYYY-MM-DD HH:MM:SS`).
+    /// - `DayMonth` - (Optional) Starting day of the month (1-31).
+    /// - `DayMonthEnd` - (Optional) Ending day of the month (1-31).
+    /// - `Month` - (Optional) Starting month (1-12).
+    /// - `MonthEnd` - (Optional) Ending month (1-12).
+    /// - `Year` - (Optional) Starting year.
+    /// - `YearEnd` - (Optional) Ending year.
+    /// - `Hour` - (Optional) Starting hour (0-23).
+    /// - `HourEnd` - (Optional) Ending hour (0-23).
+    /// - `Minute` - (Optional) Starting minute (0-59).
+    /// - `MinuteEnd` - (Optional) Ending minute (0-59).
+    /// - `Description` - (Optional) A description for the authorization policy.
+    /// 
+    /// ### Attributes Reference
+    /// 
+    /// In addition to the arguments listed above, the following computed attributes are exported:
+    /// 
+    /// - `Id` - Policy ID representing the time policy.
+    /// 
+    /// ## Import
+    /// 
+    /// Time policies can be imported using the format: `{{realmId}}/{{resourceServerId}}/{{policyId}}`.
+    /// 
+    /// Example:
+    /// </summary>
     [KeycloakResourceType("keycloak:openid/clientTimePolicy:ClientTimePolicy")]
     public partial class ClientTimePolicy : global::Pulumi.CustomResource
     {
