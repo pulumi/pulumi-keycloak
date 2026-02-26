@@ -8,6 +8,7 @@ env: # these are in plaintext in the setup script
     KEYCLOAK_USER: "keycloak"
 makeTemplate: bridged
 pulumiConvert: 1
+renovateCmd: make tfgen schema build_sdks
 registryDocs: true
 esc:
     enabled: true
