@@ -31,6 +31,7 @@ class RealmKeystoreRsaArgs:
                  provider_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RealmKeystoreRsa resource.
+
         :param pulumi.Input[_builtins.str] certificate: X509 Certificate encoded in PEM format.
         :param pulumi.Input[_builtins.str] private_key: Private RSA Key encoded in PEM format.
         :param pulumi.Input[_builtins.str] realm_id: The realm this keystore exists in.
@@ -196,6 +197,7 @@ class _RealmKeystoreRsaState:
                  realm_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RealmKeystoreRsa resources.
+
         :param pulumi.Input[_builtins.bool] active: When `false`, key in not used for signing. Defaults to `true`.
         :param pulumi.Input[_builtins.str] algorithm: Intended algorithm for the key. Defaults to `RS256`. Use `RSA-OAEP` for encryption keys
         :param pulumi.Input[_builtins.str] certificate: X509 Certificate encoded in PEM format.
@@ -400,6 +402,11 @@ class RealmKeystoreRsa(pulumi.CustomResource):
 
         Example:
 
+        ```sh
+        $ pulumi import keycloak:index/realmKeystoreRsa:RealmKeystoreRsa keystore_rsa my-realm/618cfba7-49aa-4c09-9a19-2f699b576f0b
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] active: When `false`, key in not used for signing. Defaults to `true`.
@@ -452,6 +459,11 @@ class RealmKeystoreRsa(pulumi.CustomResource):
         Realm keys can be imported using realm name and keystore id, you can find it in web UI.
 
         Example:
+
+        ```sh
+        $ pulumi import keycloak:index/realmKeystoreRsa:RealmKeystoreRsa keystore_rsa my-realm/618cfba7-49aa-4c09-9a19-2f699b576f0b
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param RealmKeystoreRsaArgs args: The arguments to use to populate this resource's properties.

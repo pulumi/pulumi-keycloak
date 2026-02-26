@@ -26,6 +26,7 @@ class GroupArgs:
                  parent_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Group resource.
+
         :param pulumi.Input[_builtins.str] realm_id: The realm this group exists in.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] attributes: A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars
         :param pulumi.Input[_builtins.str] name: The name of the group.
@@ -110,6 +111,7 @@ class _GroupState:
                  realm_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Group resources.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] attributes: A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars
         :param pulumi.Input[_builtins.str] name: The name of the group.
         :param pulumi.Input[_builtins.str] parent_id: The ID of this group's parent. If omitted, this group will be defined at the root level.
@@ -255,6 +257,11 @@ class Group(pulumi.CustomResource):
 
         Example:
 
+        ```sh
+        $ pulumi import keycloak:index/group:Group child_group my-realm/934a4a4e-28bd-4703-a0fa-332df153aabd
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] attributes: A map representing attributes for the group. In order to add multivalued attributes, use `##` to separate the values. Max length for each value is 255 chars
@@ -311,6 +318,11 @@ class Group(pulumi.CustomResource):
         assigns to the group upon creation. This value can be found in the URI when editing this group in the GUI, and is typically a GUID.
 
         Example:
+
+        ```sh
+        $ pulumi import keycloak:index/group:Group child_group my-realm/934a4a4e-28bd-4703-a0fa-332df153aabd
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param GroupArgs args: The arguments to use to populate this resource's properties.

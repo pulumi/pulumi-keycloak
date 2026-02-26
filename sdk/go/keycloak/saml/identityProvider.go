@@ -66,6 +66,10 @@ import (
 // Identity providers can be imported using the format `{{realm_id}}/{{idp_alias}}`, where `idpAlias` is the identity provider alias.
 //
 // Example:
+//
+// ```sh
+// $ pulumi import keycloak:saml/identityProvider:IdentityProvider realm_saml_identity_provider my-realm/my-saml-idp
+// ```
 type IdentityProvider struct {
 	pulumi.CustomResourceState
 

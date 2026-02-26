@@ -201,6 +201,10 @@ namespace Pulumi.Keycloak
     /// to the role. The ID is not easy to find in the GUI, but it appears in the URL when editing the role.
     /// 
     /// Example:
+    /// 
+    /// ```sh
+    /// $ pulumi import keycloak:index/role:Role role my-realm/7e8cf32a-8acb-4d34-89c4-04fb1d10ccad
+    /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:index/role:Role")]
     public partial class Role : global::Pulumi.CustomResource

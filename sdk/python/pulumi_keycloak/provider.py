@@ -42,6 +42,7 @@ class ProviderArgs:
                  username: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Provider resource.
+
         :param pulumi.Input[_builtins.str] admin_url: The admin URL of the Keycloak instance if different from the main URL, before `/auth`
         :param pulumi.Input[_builtins.int] client_timeout: Timeout (in seconds) of the Keycloak client
         :param pulumi.Input[_builtins.bool] initial_login: Whether or not to login to Keycloak instance on provider initialization
@@ -364,6 +365,7 @@ class Provider(pulumi.ProviderResource):
         construction to achieve fine-grained programmatic control over provider settings. See the
         [documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] admin_url: The admin URL of the Keycloak instance if different from the main URL, before `/auth`
@@ -391,6 +393,7 @@ class Provider(pulumi.ProviderResource):
         settings, however an explicit `Provider` instance may be created and passed during resource
         construction to achieve fine-grained programmatic control over provider settings. See the
         [documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.
+
 
         :param str resource_name: The name of the resource.
         :param ProviderArgs args: The arguments to use to populate this resource's properties.

@@ -82,6 +82,10 @@ import javax.annotation.Nullable;
  * 
  * Example:
  * 
+ * ```sh
+ * $ pulumi import keycloak:authentication/flow:Flow flow my-realm/e9a5641e-778c-4daf-89c0-f4ef617987d1
+ * ```
+ * 
  */
 @ResourceType(type="keycloak:authentication/flow:Flow")
 public class Flow extends com.pulumi.resources.CustomResource {

@@ -25,6 +25,7 @@ class MsadUserAccountControlMapperArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a MsadUserAccountControlMapper resource.
+
         :param pulumi.Input[_builtins.str] ldap_user_federation_id: The ID of the LDAP user federation provider to attach this mapper to.
         :param pulumi.Input[_builtins.str] realm_id: The realm that this LDAP mapper will exist in.
         :param pulumi.Input[_builtins.bool] ldap_password_policy_hints_enabled: When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
@@ -95,6 +96,7 @@ class _MsadUserAccountControlMapperState:
                  realm_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MsadUserAccountControlMapper resources.
+
         :param pulumi.Input[_builtins.bool] ldap_password_policy_hints_enabled: When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
         :param pulumi.Input[_builtins.str] ldap_user_federation_id: The ID of the LDAP user federation provider to attach this mapper to.
         :param pulumi.Input[_builtins.str] name: Display name of this mapper when displayed in the console.
@@ -215,6 +217,11 @@ class MsadUserAccountControlMapper(pulumi.CustomResource):
 
         Example:
 
+        ```sh
+        $ pulumi import keycloak:ldap/msadUserAccountControlMapper:MsadUserAccountControlMapper msad_user_account_control_mapper my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] ldap_password_policy_hints_enabled: When `true`, advanced password policies, such as password hints and previous password history will be used when writing new passwords to AD. Defaults to `false`.
@@ -273,6 +280,11 @@ class MsadUserAccountControlMapper(pulumi.CustomResource):
         The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs.
 
         Example:
+
+        ```sh
+        $ pulumi import keycloak:ldap/msadUserAccountControlMapper:MsadUserAccountControlMapper msad_user_account_control_mapper my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param MsadUserAccountControlMapperArgs args: The arguments to use to populate this resource's properties.

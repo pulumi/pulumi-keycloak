@@ -25,6 +25,7 @@ class UserGroupsArgs:
                  exhaustive: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a UserGroups resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] group_ids: A list of group IDs that the user is member of.
         :param pulumi.Input[_builtins.str] realm_id: The realm this group exists in.
         :param pulumi.Input[_builtins.str] user_id: The ID of the user this resource should manage groups for.
@@ -94,6 +95,7 @@ class _UserGroupsState:
                  user_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering UserGroups resources.
+
         :param pulumi.Input[_builtins.bool] exhaustive: Indicates if the list of the user's groups is exhaustive. In this case, groups that are manually added to the user will be removed. Defaults to `true`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] group_ids: A list of group IDs that the user is member of.
         :param pulumi.Input[_builtins.str] realm_id: The realm this group exists in.
@@ -196,6 +198,7 @@ class UserGroups(pulumi.CustomResource):
             group_ids=[group.id])
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] exhaustive: Indicates if the list of the user's groups is exhaustive. In this case, groups that are manually added to the user will be removed. Defaults to `true`.
@@ -236,6 +239,7 @@ class UserGroups(pulumi.CustomResource):
             user_id=user.id,
             group_ids=[group.id])
         ```
+
 
         :param str resource_name: The name of the resource.
         :param UserGroupsArgs args: The arguments to use to populate this resource's properties.

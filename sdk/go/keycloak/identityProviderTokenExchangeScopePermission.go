@@ -102,6 +102,10 @@ import (
 // you assign to the identity provider upon creation.
 //
 // Example:
+//
+// ```sh
+// $ pulumi import keycloak:index/identityProviderTokenExchangeScopePermission:IdentityProviderTokenExchangeScopePermission oidc_idp_permission my-realm/myIdp
+// ```
 type IdentityProviderTokenExchangeScopePermission struct {
 	pulumi.CustomResourceState
 

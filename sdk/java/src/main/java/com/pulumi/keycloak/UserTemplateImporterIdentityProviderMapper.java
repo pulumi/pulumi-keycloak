@@ -87,6 +87,10 @@ import javax.annotation.Nullable;
  * 
  * Example:
  * 
+ * ```sh
+ * $ pulumi import keycloak:index/userTemplateImporterIdentityProviderMapper:UserTemplateImporterIdentityProviderMapper username_importer my-realm/my-mapper/f446db98-7133-4e30-b18a-3d28fde7ca1b
+ * ```
+ * 
  */
 @ResourceType(type="keycloak:index/userTemplateImporterIdentityProviderMapper:UserTemplateImporterIdentityProviderMapper")
 public class UserTemplateImporterIdentityProviderMapper extends com.pulumi.resources.CustomResource {

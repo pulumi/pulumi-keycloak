@@ -34,6 +34,10 @@ import * as utilities from "./utilities";
  * Default groups can be imported using the format `{{realm_id}}` where `realmId` is the realm the group exists in.
  *
  * Example:
+ *
+ * ```sh
+ * $ pulumi import keycloak:index/defaultGroups:DefaultGroups default my-realm
+ * ```
  */
 export class DefaultGroups extends pulumi.CustomResource {
     /**

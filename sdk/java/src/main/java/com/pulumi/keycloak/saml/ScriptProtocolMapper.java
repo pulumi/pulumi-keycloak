@@ -84,6 +84,11 @@ import javax.annotation.Nullable;
  * 
  * Example:
  * 
+ * ```sh
+ * $ pulumi import keycloak:saml/scriptProtocolMapper:ScriptProtocolMapper saml_script_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+ * $ pulumi import keycloak:saml/scriptProtocolMapper:ScriptProtocolMapper saml_script_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+ * ```
+ * 
  */
 @ResourceType(type="keycloak:saml/scriptProtocolMapper:ScriptProtocolMapper")
 public class ScriptProtocolMapper extends com.pulumi.resources.CustomResource {

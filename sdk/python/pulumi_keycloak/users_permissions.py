@@ -123,6 +123,7 @@ class _UsersPermissionsState:
                  view_scope: Optional[pulumi.Input['UsersPermissionsViewScopeArgs']] = None):
         """
         Input properties used for looking up and filtering UsersPermissions resources.
+
         :param pulumi.Input[_builtins.str] authorization_resource_server_id: Resource server id representing the realm management client on which this permission is managed
         """
         if authorization_resource_server_id is not None:
@@ -349,6 +350,7 @@ class UsersPermissions(pulumi.CustomResource):
         - `enabled` - When true, this indicates that fine-grained user permissions are enabled. This will always be `true`.
         - `authorization_resource_server_id` - Resource server id representing the realm management client on which these permissions are managed.
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
@@ -463,6 +465,7 @@ class UsersPermissions(pulumi.CustomResource):
 
         - `enabled` - When true, this indicates that fine-grained user permissions are enabled. This will always be `true`.
         - `authorization_resource_server_id` - Resource server id representing the realm management client on which these permissions are managed.
+
 
         :param str resource_name: The name of the resource.
         :param UsersPermissionsArgs args: The arguments to use to populate this resource's properties.

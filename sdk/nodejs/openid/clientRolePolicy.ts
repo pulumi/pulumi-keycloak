@@ -88,6 +88,10 @@ import * as utilities from "../utilities";
  * Role policies can be imported using the format: `{{realmId}}/{{resourceServerId}}/{{policyId}}`.
  *
  * Example:
+ *
+ * ```sh
+ * $ pulumi import keycloak:openid/clientRolePolicy:ClientRolePolicy test my-realm/3bd4a686-1062-4b59-97b8-e4e3f10b99da/63b3cde8-987d-4cd9-9306-1955579281d9
+ * ```
  */
 export class ClientRolePolicy extends pulumi.CustomResource {
     /**

@@ -26,6 +26,7 @@ class ExecutionArgs:
                  requirement: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Execution resource.
+
         :param pulumi.Input[_builtins.str] authenticator: The name of the authenticator. This can be found by experimenting with the GUI and looking at HTTP requests within the network tab of your browser's development tools.
         :param pulumi.Input[_builtins.str] parent_flow_alias: The alias of the flow this execution is attached to.
         :param pulumi.Input[_builtins.str] realm_id: The realm the authentication execution exists in.
@@ -111,6 +112,7 @@ class _ExecutionState:
                  requirement: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Execution resources.
+
         :param pulumi.Input[_builtins.str] authenticator: The name of the authenticator. This can be found by experimenting with the GUI and looking at HTTP requests within the network tab of your browser's development tools.
         :param pulumi.Input[_builtins.str] parent_flow_alias: The alias of the flow this execution is attached to.
         :param pulumi.Input[_builtins.int] priority: The authenticator priority. Lower values will be executed prior higher values (Only supported by Keycloak >= 25).
@@ -243,6 +245,11 @@ class Execution(pulumi.CustomResource):
 
         Example:
 
+        ```sh
+        $ pulumi import keycloak:authentication/execution:Execution execution_one my-realm/my-flow-alias/30559fcf-6fb8-45ea-8c46-2b86f46ebc17
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] authenticator: The name of the authenticator. This can be found by experimenting with the GUI and looking at HTTP requests within the network tab of your browser's development tools.
@@ -298,6 +305,11 @@ class Execution(pulumi.CustomResource):
         Authentication executions can be imported using the formats: `{{realmId}}/{{parentFlowAlias}}/{{authenticationExecutionId}}`.
 
         Example:
+
+        ```sh
+        $ pulumi import keycloak:authentication/execution:Execution execution_one my-realm/my-flow-alias/30559fcf-6fb8-45ea-8c46-2b86f46ebc17
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param ExecutionArgs args: The arguments to use to populate this resource's properties.

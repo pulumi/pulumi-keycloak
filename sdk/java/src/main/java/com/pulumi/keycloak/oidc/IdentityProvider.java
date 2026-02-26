@@ -82,6 +82,10 @@ import javax.annotation.Nullable;
  * 
  * Example:
  * 
+ * ```sh
+ * $ pulumi import keycloak:oidc/identityProvider:IdentityProvider realm_identity_provider my-realm/my-idp
+ * ```
+ * 
  */
 @ResourceType(type="keycloak:oidc/identityProvider:IdentityProvider")
 public class IdentityProvider extends com.pulumi.resources.CustomResource {

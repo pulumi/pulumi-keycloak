@@ -36,6 +36,7 @@ class RoleMapperArgs:
                  user_roles_retrieve_strategy: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RoleMapper resource.
+
         :param pulumi.Input[_builtins.str] ldap_roles_dn: The LDAP DN where roles can be found.
         :param pulumi.Input[_builtins.str] ldap_user_federation_id: The ID of the LDAP user federation provider to attach this mapper to.
         :param pulumi.Input[_builtins.str] membership_ldap_attribute: The name of the LDAP attribute that is used for membership mappings.
@@ -277,6 +278,7 @@ class _RoleMapperState:
                  user_roles_retrieve_strategy: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RoleMapper resources.
+
         :param pulumi.Input[_builtins.str] client_id: When specified, LDAP role mappings will be mapped to client role mappings tied to this client ID. Can only be set if `use_realm_roles_mapping` is `false`.
         :param pulumi.Input[_builtins.str] ldap_roles_dn: The LDAP DN where roles can be found.
         :param pulumi.Input[_builtins.str] ldap_user_federation_id: The ID of the LDAP user federation provider to attach this mapper to.
@@ -576,6 +578,11 @@ class RoleMapper(pulumi.CustomResource):
 
         Example:
 
+        ```sh
+        $ pulumi import keycloak:ldap/roleMapper:RoleMapper ldap_role_mapper my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] client_id: When specified, LDAP role mappings will be mapped to client role mappings tied to this client ID. Can only be set if `use_realm_roles_mapping` is `false`.
@@ -648,6 +655,11 @@ class RoleMapper(pulumi.CustomResource):
         The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs.
 
         Example:
+
+        ```sh
+        $ pulumi import keycloak:ldap/roleMapper:RoleMapper ldap_role_mapper my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param RoleMapperArgs args: The arguments to use to populate this resource's properties.

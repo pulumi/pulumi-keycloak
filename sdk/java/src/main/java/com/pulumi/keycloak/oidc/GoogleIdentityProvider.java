@@ -74,6 +74,10 @@ import javax.annotation.Nullable;
  * 
  * Example:
  * 
+ * ```sh
+ * $ pulumi import keycloak:oidc/googleIdentityProvider:GoogleIdentityProvider google.google_identity_provider my-realm/my-google-idp
+ * ```
+ * 
  */
 @ResourceType(type="keycloak:oidc/googleIdentityProvider:GoogleIdentityProvider")
 public class GoogleIdentityProvider extends com.pulumi.resources.CustomResource {

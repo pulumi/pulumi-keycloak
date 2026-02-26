@@ -58,6 +58,7 @@ class UserFederationArgs:
                  vendor: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a UserFederation resource.
+
         :param pulumi.Input[_builtins.str] connection_url: Connection URL to the LDAP server.
         :param pulumi.Input[_builtins.str] rdn_ldap_attribute: Name of the LDAP attribute to use as the relative distinguished name.
         :param pulumi.Input[_builtins.str] realm_id: The realm that this provider will provide user federation for.
@@ -629,6 +630,7 @@ class _UserFederationState:
                  vendor: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering UserFederation resources.
+
         :param pulumi.Input[_builtins.int] batch_size_for_sync: The number of users to sync within a single transaction. Defaults to `1000`.
         :param pulumi.Input[_builtins.str] bind_credential: Password of LDAP admin. This attribute must be set if `bind_dn` is set.
         :param pulumi.Input[_builtins.str] bind_dn: DN of LDAP admin, which will be used by Keycloak to access LDAP server. This attribute must be set if `bind_credential` is set.
@@ -1255,6 +1257,11 @@ class UserFederation(pulumi.CustomResource):
         LDAP user federation providers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}`.
         The ID of the LDAP user federation provider can be found within the Keycloak GUI and is typically a GUID:
 
+        ```sh
+        $ pulumi import keycloak:ldap/userFederation:UserFederation ldap_user_federation my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] batch_size_for_sync: The number of users to sync within a single transaction. Defaults to `1000`.
@@ -1349,6 +1356,11 @@ class UserFederation(pulumi.CustomResource):
 
         LDAP user federation providers can be imported using the format `{{realm_id}}/{{ldap_user_federation_id}}`.
         The ID of the LDAP user federation provider can be found within the Keycloak GUI and is typically a GUID:
+
+        ```sh
+        $ pulumi import keycloak:ldap/userFederation:UserFederation ldap_user_federation my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param UserFederationArgs args: The arguments to use to populate this resource's properties.

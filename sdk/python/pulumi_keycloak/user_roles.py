@@ -25,6 +25,7 @@ class UserRolesArgs:
                  exhaustive: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a UserRoles resource.
+
         :param pulumi.Input[_builtins.str] realm_id: The realm this user exists in.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] role_ids: A list of role IDs to map to the user
         :param pulumi.Input[_builtins.str] user_id: The ID of the user this resource should manage roles for.
@@ -94,6 +95,7 @@ class _UserRolesState:
                  user_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering UserRoles resources.
+
         :param pulumi.Input[_builtins.bool] exhaustive: Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the user will be removed. Defaults to `true`.
         :param pulumi.Input[_builtins.str] realm_id: The realm this user exists in.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] role_ids: A list of role IDs to map to the user
@@ -227,6 +229,11 @@ class UserRoles(pulumi.CustomResource):
 
         Example:
 
+        ```sh
+        $ pulumi import keycloak:index/userRoles:UserRoles user_roles my-realm/b0ae6924-1bd5-4655-9e38-dae7c5e42924
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] exhaustive: Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the user will be removed. Defaults to `true`.
@@ -298,6 +305,11 @@ class UserRoles(pulumi.CustomResource):
         assigns to the user upon creation. This value can be found in the GUI when editing the user, and is typically a GUID.
 
         Example:
+
+        ```sh
+        $ pulumi import keycloak:index/userRoles:UserRoles user_roles my-realm/b0ae6924-1bd5-4655-9e38-dae7c5e42924
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param UserRolesArgs args: The arguments to use to populate this resource's properties.

@@ -28,6 +28,7 @@ class RealmEventsArgs:
                  events_listeners: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a RealmEvents resource.
+
         :param pulumi.Input[_builtins.str] realm_id: The name of the realm the event settings apply to.
         :param pulumi.Input[_builtins.bool] admin_events_details_enabled: When `true`, saved admin events will included detailed information for create/update requests. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] admin_events_enabled: When `true`, admin events are saved to the database, making them available through the admin console. Defaults to `false`.
@@ -147,6 +148,7 @@ class _RealmEventsState:
                  realm_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RealmEvents resources.
+
         :param pulumi.Input[_builtins.bool] admin_events_details_enabled: When `true`, saved admin events will included detailed information for create/update requests. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] admin_events_enabled: When `true`, admin events are saved to the database, making them available through the admin console. Defaults to `false`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] enabled_event_types: The event types that will be saved to the database. Omitting this field enables all event types. Defaults to `[]` or all event types.
@@ -298,6 +300,7 @@ class RealmEvents(pulumi.CustomResource):
 
         This resource currently does not support importing.
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] admin_events_details_enabled: When `true`, saved admin events will included detailed information for create/update requests. Defaults to `false`.
@@ -342,6 +345,7 @@ class RealmEvents(pulumi.CustomResource):
         ## Import
 
         This resource currently does not support importing.
+
 
         :param str resource_name: The name of the resource.
         :param RealmEventsArgs args: The arguments to use to populate this resource's properties.

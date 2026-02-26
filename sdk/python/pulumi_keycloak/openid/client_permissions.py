@@ -148,6 +148,7 @@ class _ClientPermissionsState:
                  view_scope: Optional[pulumi.Input['ClientPermissionsViewScopeArgs']] = None):
         """
         Input properties used for looking up and filtering ClientPermissions resources.
+
         :param pulumi.Input[_builtins.str] authorization_resource_server_id: Resource server id representing the realm management client on which this permission is managed
         """
         if authorization_resource_server_id is not None:
@@ -310,6 +311,7 @@ class ClientPermissions(pulumi.CustomResource):
         If the realm-management Authorization is not enable, you have to ceate a dependency (`depends_on`) with the policy and
         the openid client.
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
@@ -336,6 +338,7 @@ class ClientPermissions(pulumi.CustomResource):
 
         If the realm-management Authorization is not enable, you have to ceate a dependency (`depends_on`) with the policy and
         the openid client.
+
 
         :param str resource_name: The name of the resource.
         :param ClientPermissionsArgs args: The arguments to use to populate this resource's properties.

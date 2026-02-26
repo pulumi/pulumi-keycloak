@@ -26,6 +26,7 @@ class HardcodedGroupIdentityProviderMapperArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a HardcodedGroupIdentityProviderMapper resource.
+
         :param pulumi.Input[_builtins.str] identity_provider_alias: The IDP alias of the attribute to set.
         :param pulumi.Input[_builtins.str] realm: The realm ID that this mapper will exist in.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: A map of key/value pairs to add extra configuration attributes to this mapper. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
@@ -112,6 +113,7 @@ class _HardcodedGroupIdentityProviderMapperState:
                  realm: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering HardcodedGroupIdentityProviderMapper resources.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: A map of key/value pairs to add extra configuration attributes to this mapper. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
         :param pulumi.Input[_builtins.str] group: The name of the group which should be assigned to the users.
         :param pulumi.Input[_builtins.str] identity_provider_alias: The IDP alias of the attribute to set.
@@ -237,6 +239,7 @@ class HardcodedGroupIdentityProviderMapper(pulumi.CustomResource):
             })
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: A map of key/value pairs to add extra configuration attributes to this mapper. This can be used for custom attributes, or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
@@ -285,6 +288,7 @@ class HardcodedGroupIdentityProviderMapper(pulumi.CustomResource):
                 "syncMode": "INHERIT",
             })
         ```
+
 
         :param str resource_name: The name of the resource.
         :param HardcodedGroupIdentityProviderMapperArgs args: The arguments to use to populate this resource's properties.

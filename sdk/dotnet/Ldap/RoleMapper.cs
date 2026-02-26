@@ -75,6 +75,10 @@ namespace Pulumi.Keycloak.Ldap
     /// The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs.
     /// 
     /// Example:
+    /// 
+    /// ```sh
+    /// $ pulumi import keycloak:ldap/roleMapper:RoleMapper ldap_role_mapper my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
+    /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:ldap/roleMapper:RoleMapper")]
     public partial class RoleMapper : global::Pulumi.CustomResource

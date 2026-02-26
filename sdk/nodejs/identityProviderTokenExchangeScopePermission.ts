@@ -65,6 +65,10 @@ import * as utilities from "./utilities";
  * you assign to the identity provider upon creation.
  *
  * Example:
+ *
+ * ```sh
+ * $ pulumi import keycloak:index/identityProviderTokenExchangeScopePermission:IdentityProviderTokenExchangeScopePermission oidc_idp_permission my-realm/myIdp
+ * ```
  */
 export class IdentityProviderTokenExchangeScopePermission extends pulumi.CustomResource {
     /**

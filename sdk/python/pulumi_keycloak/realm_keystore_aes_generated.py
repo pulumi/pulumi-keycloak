@@ -27,6 +27,7 @@ class RealmKeystoreAesGeneratedArgs:
                  secret_size: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a RealmKeystoreAesGenerated resource.
+
         :param pulumi.Input[_builtins.str] realm_id: The realm this keystore exists in.
         :param pulumi.Input[_builtins.bool] active: When `false`, key in not used for signing. Defaults to `true`.
         :param pulumi.Input[_builtins.bool] enabled: When `false`, key is not accessible in this realm. Defaults to `true`.
@@ -130,6 +131,7 @@ class _RealmKeystoreAesGeneratedState:
                  secret_size: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering RealmKeystoreAesGenerated resources.
+
         :param pulumi.Input[_builtins.bool] active: When `false`, key in not used for signing. Defaults to `true`.
         :param pulumi.Input[_builtins.bool] enabled: When `false`, key is not accessible in this realm. Defaults to `true`.
         :param pulumi.Input[_builtins.str] name: Display name of provider when linked in admin console.
@@ -263,6 +265,11 @@ class RealmKeystoreAesGenerated(pulumi.CustomResource):
 
         Example:
 
+        ```sh
+        $ pulumi import keycloak:index/realmKeystoreAesGenerated:RealmKeystoreAesGenerated keystore_aes_generated my-realm/618cfba7-49aa-4c09-9a19-2f699b576f0b
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] active: When `false`, key in not used for signing. Defaults to `true`.
@@ -304,6 +311,11 @@ class RealmKeystoreAesGenerated(pulumi.CustomResource):
         Realm keys can be imported using realm name and keystore id, you can find it in web UI.
 
         Example:
+
+        ```sh
+        $ pulumi import keycloak:index/realmKeystoreAesGenerated:RealmKeystoreAesGenerated keystore_aes_generated my-realm/618cfba7-49aa-4c09-9a19-2f699b576f0b
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param RealmKeystoreAesGeneratedArgs args: The arguments to use to populate this resource's properties.

@@ -90,6 +90,10 @@ import javax.annotation.Nullable;
  * 
  * Example:
  * 
+ * ```sh
+ * $ pulumi import keycloak:index/genericClientProtocolMapper:GenericClientProtocolMapper saml_hardcode_attribute_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+ * ```
+ * 
  */
 @ResourceType(type="keycloak:index/genericClientProtocolMapper:GenericClientProtocolMapper")
 public class GenericClientProtocolMapper extends com.pulumi.resources.CustomResource {

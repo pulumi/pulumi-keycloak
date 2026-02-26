@@ -85,6 +85,10 @@ import * as utilities from "../utilities";
  * Client authorization resources can be imported using the format: `{{realmId}}/{{resourceServerId}}/{{authorizationResourceId}}`.
  *
  * Example:
+ *
+ * ```sh
+ * $ pulumi import keycloak:openid/clientAuthorizationResource:ClientAuthorizationResource test my-realm/3bd4a686-1062-4b59-97b8-e4e3f10b99da/63b3cde8-987d-4cd9-9306-1955579281d9
+ * ```
  */
 export class ClientAuthorizationResource extends pulumi.CustomResource {
     /**

@@ -77,6 +77,10 @@ import javax.annotation.Nullable;
  * 
  * Example:
  * 
+ * ```sh
+ * $ pulumi import keycloak:oidc/githubIdentityProvider:GithubIdentityProvider github.github_identity_provider my-realm/my-github-idp
+ * ```
+ * 
  */
 @ResourceType(type="keycloak:oidc/githubIdentityProvider:GithubIdentityProvider")
 public class GithubIdentityProvider extends com.pulumi.resources.CustomResource {

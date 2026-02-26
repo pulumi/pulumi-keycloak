@@ -63,6 +63,7 @@ class ClientArgs:
                  valid_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Client resource.
+
         :param pulumi.Input[_builtins.str] client_id: The unique ID of this client, referenced in the URI during authentication and in issued tokens.
         :param pulumi.Input[_builtins.str] realm_id: The realm this client is attached to.
         :param pulumi.Input[_builtins.bool] always_display_in_console: Always list this client in the Account UI, even if the user does not have an active session.
@@ -712,6 +713,7 @@ class _ClientState:
                  valid_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering Client resources.
+
         :param pulumi.Input[_builtins.bool] always_display_in_console: Always list this client in the Account UI, even if the user does not have an active session.
         :param pulumi.Input[_builtins.str] assertion_consumer_post_url: SAML POST Binding URL for the client's assertion consumer service (login responses).
         :param pulumi.Input[_builtins.str] assertion_consumer_redirect_url: SAML Redirect Binding URL for the client's assertion consumer service (login responses).
@@ -1441,6 +1443,11 @@ class Client(pulumi.CustomResource):
 
         Example:
 
+        ```sh
+        $ pulumi import keycloak:saml/client:Client saml_client my-realm/dcbc4c73-e478-4928-ae2e-d5e420223352
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] always_display_in_console: Always list this client in the Account UI, even if the user does not have an active session.
@@ -1523,6 +1530,11 @@ class Client(pulumi.CustomResource):
         assigns to the client upon creation. This value can be found in the URI when editing this client in the GUI, and is typically a GUID.
 
         Example:
+
+        ```sh
+        $ pulumi import keycloak:saml/client:Client saml_client my-realm/dcbc4c73-e478-4928-ae2e-d5e420223352
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param ClientArgs args: The arguments to use to populate this resource's properties.

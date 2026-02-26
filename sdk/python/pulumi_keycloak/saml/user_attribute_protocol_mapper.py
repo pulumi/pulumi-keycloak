@@ -30,6 +30,7 @@ class UserAttributeProtocolMapperArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a UserAttributeProtocolMapper resource.
+
         :param pulumi.Input[_builtins.str] realm_id: The realm this protocol mapper exists within.
         :param pulumi.Input[_builtins.str] saml_attribute_name: The name of the SAML attribute.
         :param pulumi.Input[_builtins.str] saml_attribute_name_format: The SAML attribute Name Format. Can be one of `Unspecified`, `Basic`, or `URI Reference`.
@@ -178,6 +179,7 @@ class _UserAttributeProtocolMapperState:
                  user_attribute: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering UserAttributeProtocolMapper resources.
+
         :param pulumi.Input[_builtins.bool] aggregate_attributes: Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
         :param pulumi.Input[_builtins.str] client_id: The client this protocol mapper should be attached to. Conflicts with `client_scope_id`. One of `client_id` or `client_scope_id` must be specified.
         :param pulumi.Input[_builtins.str] client_scope_id: The client scope this protocol mapper should be attached to. Conflicts with `client_id`. One of `client_id` or `client_scope_id` must be specified.
@@ -371,6 +373,12 @@ class UserAttributeProtocolMapper(pulumi.CustomResource):
 
         Example:
 
+        ```sh
+        $ pulumi import keycloak:saml/userAttributeProtocolMapper:UserAttributeProtocolMapper saml_user_attribute_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+        $ pulumi import keycloak:saml/userAttributeProtocolMapper:UserAttributeProtocolMapper saml_user_attribute_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] aggregate_attributes: Indicates whether this attribute is a single value or an array of values. Defaults to `false`.
@@ -427,6 +435,12 @@ class UserAttributeProtocolMapper(pulumi.CustomResource):
         - Client Scope: `{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}`
 
         Example:
+
+        ```sh
+        $ pulumi import keycloak:saml/userAttributeProtocolMapper:UserAttributeProtocolMapper saml_user_attribute_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+        $ pulumi import keycloak:saml/userAttributeProtocolMapper:UserAttributeProtocolMapper saml_user_attribute_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param UserAttributeProtocolMapperArgs args: The arguments to use to populate this resource's properties.

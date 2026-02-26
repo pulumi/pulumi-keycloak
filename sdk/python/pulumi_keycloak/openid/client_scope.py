@@ -28,6 +28,7 @@ class ClientScopeArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ClientScope resource.
+
         :param pulumi.Input[_builtins.str] realm_id: The realm this client scope belongs to.
         :param pulumi.Input[_builtins.str] consent_screen_text: When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
         :param pulumi.Input[_builtins.str] description: The description of this client scope in the GUI.
@@ -147,6 +148,7 @@ class _ClientScopeState:
                  realm_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ClientScope resources.
+
         :param pulumi.Input[_builtins.str] consent_screen_text: When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
         :param pulumi.Input[_builtins.str] description: The description of this client scope in the GUI.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: A map of key/value pairs to add extra configuration attributes to this client scope. This can be used for custom attributes or to add configuration attributes that are not yet supported by this Terraform provider. Use this attribute at your own risk, as it may conflict with top-level configuration attributes in future provider updates.
@@ -299,6 +301,11 @@ class ClientScope(pulumi.CustomResource):
 
         Example:
 
+        ```sh
+        $ pulumi import keycloak:openid/clientScope:ClientScope openid_client_scope my-realm/8e8f7fe1-df9b-40ed-bed3-4597aa0dac52
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] consent_screen_text: When set, a consent screen will be displayed to users authenticating to clients with this scope attached. The consent screen will display the string value of this attribute.
@@ -344,6 +351,11 @@ class ClientScope(pulumi.CustomResource):
         assigns to the client scope upon creation. This value can be found in the URI when editing this client scope in the GUI, and is typically a GUID.
 
         Example:
+
+        ```sh
+        $ pulumi import keycloak:openid/clientScope:ClientScope openid_client_scope my-realm/8e8f7fe1-df9b-40ed-bed3-4597aa0dac52
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param ClientScopeArgs args: The arguments to use to populate this resource's properties.

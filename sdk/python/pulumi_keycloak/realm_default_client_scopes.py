@@ -23,6 +23,7 @@ class RealmDefaultClientScopesArgs:
                  realm_id: pulumi.Input[_builtins.str]):
         """
         The set of arguments for constructing a RealmDefaultClientScopes resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] default_scopes: An array of default client scope names that should be used when creating new Keycloak clients.
         :param pulumi.Input[_builtins.str] realm_id: The realm this client and scopes exists in.
         """
@@ -61,6 +62,7 @@ class _RealmDefaultClientScopesState:
                  realm_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RealmDefaultClientScopes resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] default_scopes: An array of default client scope names that should be used when creating new Keycloak clients.
         :param pulumi.Input[_builtins.str] realm_id: The realm this client and scopes exists in.
         """
@@ -137,6 +139,7 @@ class RealmDefaultClientScopes(pulumi.CustomResource):
         This resource does not support import. Instead of importing, feel free to create this resource
         as if it did not already exist on the server.
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] default_scopes: An array of default client scope names that should be used when creating new Keycloak clients.
@@ -181,6 +184,7 @@ class RealmDefaultClientScopes(pulumi.CustomResource):
 
         This resource does not support import. Instead of importing, feel free to create this resource
         as if it did not already exist on the server.
+
 
         :param str resource_name: The name of the resource.
         :param RealmDefaultClientScopesArgs args: The arguments to use to populate this resource's properties.

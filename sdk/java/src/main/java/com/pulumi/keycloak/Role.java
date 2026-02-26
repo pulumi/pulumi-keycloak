@@ -225,6 +225,10 @@ import javax.annotation.Nullable;
  * 
  * Example:
  * 
+ * ```sh
+ * $ pulumi import keycloak:index/role:Role role my-realm/7e8cf32a-8acb-4d34-89c4-04fb1d10ccad
+ * ```
+ * 
  */
 @ResourceType(type="keycloak:index/role:Role")
 public class Role extends com.pulumi.resources.CustomResource {

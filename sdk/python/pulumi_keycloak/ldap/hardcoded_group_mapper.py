@@ -25,6 +25,7 @@ class HardcodedGroupMapperArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a HardcodedGroupMapper resource.
+
         :param pulumi.Input[_builtins.str] group: The name of the group which should be assigned to the users.
         :param pulumi.Input[_builtins.str] ldap_user_federation_id: The ID of the LDAP user federation provider to attach this mapper to.
         :param pulumi.Input[_builtins.str] realm_id: The realm that this LDAP mapper will exist in.
@@ -94,6 +95,7 @@ class _HardcodedGroupMapperState:
                  realm_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering HardcodedGroupMapper resources.
+
         :param pulumi.Input[_builtins.str] group: The name of the group which should be assigned to the users.
         :param pulumi.Input[_builtins.str] ldap_user_federation_id: The ID of the LDAP user federation provider to attach this mapper to.
         :param pulumi.Input[_builtins.str] name: Display name of this mapper when displayed in the console.
@@ -213,6 +215,11 @@ class HardcodedGroupMapper(pulumi.CustomResource):
 
         Example:
 
+        ```sh
+        $ pulumi import keycloak:ldap/hardcodedGroupMapper:HardcodedGroupMapper assign_group_to_users my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] group: The name of the group which should be assigned to the users.
@@ -270,6 +277,11 @@ class HardcodedGroupMapper(pulumi.CustomResource):
         The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs.
 
         Example:
+
+        ```sh
+        $ pulumi import keycloak:ldap/hardcodedGroupMapper:HardcodedGroupMapper assign_group_to_users my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param HardcodedGroupMapperArgs args: The arguments to use to populate this resource's properties.

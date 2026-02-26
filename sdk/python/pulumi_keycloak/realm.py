@@ -83,6 +83,7 @@ class RealmArgs:
                  web_authn_policy: Optional[pulumi.Input['RealmWebAuthnPolicyArgs']] = None):
         """
         The set of arguments for constructing a Realm resource.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] attributes: A map of custom attributes to add to the realm.
         :param pulumi.Input[_builtins.str] browser_flow: Which flow should be used for BrowserFlow
         :param pulumi.Input[_builtins.str] client_authentication_flow: Which flow should be used for ClientAuthenticationFlow
@@ -883,6 +884,7 @@ class _RealmState:
                  web_authn_policy: Optional[pulumi.Input['RealmWebAuthnPolicyArgs']] = None):
         """
         Input properties used for looking up and filtering Realm resources.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] attributes: A map of custom attributes to add to the realm.
         :param pulumi.Input[_builtins.str] browser_flow: Which flow should be used for BrowserFlow
         :param pulumi.Input[_builtins.str] client_authentication_flow: Which flow should be used for ClientAuthenticationFlow
@@ -1766,6 +1768,11 @@ class Realm(pulumi.CustomResource):
 
         Example:
 
+        ```sh
+        $ pulumi import keycloak:index/realm:Realm realm my-realm
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] attributes: A map of custom attributes to add to the realm.
@@ -1873,6 +1880,11 @@ class Realm(pulumi.CustomResource):
         Realms can be imported using their name.
 
         Example:
+
+        ```sh
+        $ pulumi import keycloak:index/realm:Realm realm my-realm
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param RealmArgs args: The arguments to use to populate this resource's properties.

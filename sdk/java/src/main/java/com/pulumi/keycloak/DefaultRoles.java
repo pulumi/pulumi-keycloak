@@ -113,6 +113,10 @@ import javax.annotation.Nullable;
  * 
  * Example:
  * 
+ * ```sh
+ * $ pulumi import keycloak:index/defaultRoles:DefaultRoles default_roles my-realm/a04c35c2-e95a-4dc5-bd32-e83a21be9e7d
+ * ```
+ * 
  */
 @ResourceType(type="keycloak:index/defaultRoles:DefaultRoles")
 public class DefaultRoles extends com.pulumi.resources.CustomResource {

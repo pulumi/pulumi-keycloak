@@ -85,6 +85,10 @@ import javax.annotation.Nullable;
  * 
  * Example:
  * 
+ * ```sh
+ * $ terraform import keycloak_authentication_subflow.subflow my-realm/&#34;Parent Flow&#34;/3bad1172-bb5c-4a77-9615-c2606eb03081
+ * ```
+ * 
  */
 @ResourceType(type="keycloak:authentication/subflow:Subflow")
 public class Subflow extends com.pulumi.resources.CustomResource {

@@ -45,6 +45,10 @@ import * as utilities from "../utilities";
  * __The subflow ID is contained in the `flowID` field__ (not, as one could guess, the `id` field).
  *
  * Example:
+ *
+ * ```sh
+ * $ terraform import keycloak_authentication_subflow.subflow my-realm/"Parent Flow"/3bad1172-bb5c-4a77-9615-c2606eb03081
+ * ```
  */
 export class Subflow extends pulumi.CustomResource {
     /**

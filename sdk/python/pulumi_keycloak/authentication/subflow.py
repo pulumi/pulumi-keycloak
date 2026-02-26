@@ -29,6 +29,7 @@ class SubflowArgs:
                  requirement: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Subflow resource.
+
         :param pulumi.Input[_builtins.str] parent_flow_alias: The alias for the parent authentication flow.
         :param pulumi.Input[_builtins.str] realm_id: The realm that the authentication subflow exists in.
         :param pulumi.Input[_builtins.str] alias: The alias for this authentication subflow.
@@ -169,6 +170,7 @@ class _SubflowState:
                  requirement: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Subflow resources.
+
         :param pulumi.Input[_builtins.str] alias: The alias for this authentication subflow.
         :param pulumi.Input[_builtins.str] authenticator: The name of the authenticator. Might be needed to be set with certain custom subflows with specific
                authenticators. In general this will remain empty.
@@ -352,6 +354,11 @@ class Subflow(pulumi.CustomResource):
 
         Example:
 
+        ```sh
+        $ terraform import keycloak_authentication_subflow.subflow my-realm/"Parent Flow"/3bad1172-bb5c-4a77-9615-c2606eb03081
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] alias: The alias for this authentication subflow.
@@ -410,6 +417,11 @@ class Subflow(pulumi.CustomResource):
         __The subflow ID is contained in the `flowID` field__ (not, as one could guess, the `id` field).
 
         Example:
+
+        ```sh
+        $ terraform import keycloak_authentication_subflow.subflow my-realm/"Parent Flow"/3bad1172-bb5c-4a77-9615-c2606eb03081
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param SubflowArgs args: The arguments to use to populate this resource's properties.

@@ -90,6 +90,10 @@ import javax.annotation.Nullable;
  * 
  * Example:
  * 
+ * ```sh
+ * $ pulumi import keycloak:index/group:Group child_group my-realm/934a4a4e-28bd-4703-a0fa-332df153aabd
+ * ```
+ * 
  */
 @ResourceType(type="keycloak:index/group:Group")
 public class Group extends com.pulumi.resources.CustomResource {

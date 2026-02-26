@@ -25,6 +25,7 @@ class ExecutionConfigArgs:
                  alias: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ExecutionConfig resource.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] config: The configuration. Keys are specific to each configurable authentication execution and not checked when applying.
         :param pulumi.Input[_builtins.str] execution_id: The authentication execution this configuration is attached to.
         :param pulumi.Input[_builtins.str] realm_id: The realm the authentication execution exists in.
@@ -94,6 +95,7 @@ class _ExecutionConfigState:
                  realm_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ExecutionConfig resources.
+
         :param pulumi.Input[_builtins.str] alias: The name of the configuration.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] config: The configuration. Keys are specific to each configurable authentication execution and not checked when applying.
         :param pulumi.Input[_builtins.str] execution_id: The authentication execution this configuration is attached to.
@@ -205,6 +207,11 @@ class ExecutionConfig(pulumi.CustomResource):
 
         Example:
 
+        ```sh
+        $ pulumi import keycloak:authentication/executionConfig:ExecutionConfig config my-realm/be081463-ddbf-4b42-9eff-9c97886f24ff/30559fcf-6fb8-45ea-8c46-2b86f46ebc17
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] alias: The name of the configuration.
@@ -254,6 +261,11 @@ class ExecutionConfig(pulumi.CustomResource):
         A subsequent apply will change the `authenticationExecutionId` to the correct one, which causes the configuration to be replaced.
 
         Example:
+
+        ```sh
+        $ pulumi import keycloak:authentication/executionConfig:ExecutionConfig config my-realm/be081463-ddbf-4b42-9eff-9c97886f24ff/30559fcf-6fb8-45ea-8c46-2b86f46ebc17
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param ExecutionConfigArgs args: The arguments to use to populate this resource's properties.

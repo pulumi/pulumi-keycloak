@@ -29,6 +29,7 @@ class AttributeImporterIdentityProviderMapperArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AttributeImporterIdentityProviderMapper resource.
+
         :param pulumi.Input[_builtins.str] identity_provider_alias: The alias of the associated identity provider.
         :param pulumi.Input[_builtins.str] realm: The name of the realm.
         :param pulumi.Input[_builtins.str] user_attribute: The user attribute or property name to store the mapped result.
@@ -162,6 +163,7 @@ class _AttributeImporterIdentityProviderMapperState:
                  user_attribute: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AttributeImporterIdentityProviderMapper resources.
+
         :param pulumi.Input[_builtins.str] attribute_friendly_name: For SAML based providers, this is the friendly name of the attribute to search for in the assertion. Conflicts with `attribute_name`.
         :param pulumi.Input[_builtins.str] attribute_name: For SAML based providers, this is the name of the attribute to search for in the assertion. Conflicts with `attribute_friendly_name`.
         :param pulumi.Input[_builtins.str] claim_name: For OIDC based providers, this is the name of the claim to use.
@@ -345,6 +347,11 @@ class AttributeImporterIdentityProviderMapper(pulumi.CustomResource):
 
         Example:
 
+        ```sh
+        $ pulumi import keycloak:index/attributeImporterIdentityProviderMapper:AttributeImporterIdentityProviderMapper test_mapper my-realm/my-mapper/f446db98-7133-4e30-b18a-3d28fde7ca1b
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] attribute_friendly_name: For SAML based providers, this is the friendly name of the attribute to search for in the assertion. Conflicts with `attribute_name`.
@@ -406,6 +413,11 @@ class AttributeImporterIdentityProviderMapper(pulumi.CustomResource):
         assigns to the mapper upon creation. This value can be found in the URI when editing this mapper in the GUI, and is typically a GUID.
 
         Example:
+
+        ```sh
+        $ pulumi import keycloak:index/attributeImporterIdentityProviderMapper:AttributeImporterIdentityProviderMapper test_mapper my-realm/my-mapper/f446db98-7133-4e30-b18a-3d28fde7ca1b
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param AttributeImporterIdentityProviderMapperArgs args: The arguments to use to populate this resource's properties.

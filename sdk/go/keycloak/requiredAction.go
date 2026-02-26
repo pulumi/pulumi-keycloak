@@ -76,6 +76,10 @@ import (
 // Authentication executions can be imported using the formats: `{{realm}}/{{alias}}`.
 //
 // Example:
+//
+// ```sh
+// $ pulumi import keycloak:index/requiredAction:RequiredAction required_action my-realm/my-default-action-alias
+// ```
 type RequiredAction struct {
 	pulumi.CustomResourceState
 

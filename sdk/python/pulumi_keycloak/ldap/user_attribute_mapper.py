@@ -32,6 +32,7 @@ class UserAttributeMapperArgs:
                  read_only: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a UserAttributeMapper resource.
+
         :param pulumi.Input[_builtins.str] ldap_attribute: Name of the mapped attribute on the LDAP object.
         :param pulumi.Input[_builtins.str] ldap_user_federation_id: The ID of the LDAP user federation provider to attach this mapper to.
         :param pulumi.Input[_builtins.str] realm_id: The realm that this LDAP mapper will exist in.
@@ -212,6 +213,7 @@ class _UserAttributeMapperState:
                  user_model_attribute: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering UserAttributeMapper resources.
+
         :param pulumi.Input[_builtins.bool] always_read_value_from_ldap: When `true`, the value fetched from LDAP will override the value stored in Keycloak. Defaults to `false`.
         :param pulumi.Input[_builtins.str] attribute_default_value: Default value to set in LDAP if `is_mandatory_in_ldap` is true and the value is empty.
         :param pulumi.Input[_builtins.bool] attribute_force_default: When `true`, an empty default value is forced for mandatory attributes even when a default value is not specified. Defaults to `true`.
@@ -443,6 +445,11 @@ class UserAttributeMapper(pulumi.CustomResource):
 
         Example:
 
+        ```sh
+        $ pulumi import keycloak:ldap/userAttributeMapper:UserAttributeMapper ldap_user_attribute_mapper my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] always_read_value_from_ldap: When `true`, the value fetched from LDAP will override the value stored in Keycloak. Defaults to `false`.
@@ -507,6 +514,11 @@ class UserAttributeMapper(pulumi.CustomResource):
         The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs.
 
         Example:
+
+        ```sh
+        $ pulumi import keycloak:ldap/userAttributeMapper:UserAttributeMapper ldap_user_attribute_mapper my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param UserAttributeMapperArgs args: The arguments to use to populate this resource's properties.

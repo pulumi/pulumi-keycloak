@@ -62,6 +62,7 @@ class IdentityProviderArgs:
                  xml_sign_key_info_key_name_transformer: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a IdentityProvider resource.
+
         :param pulumi.Input[_builtins.str] alias: The unique name of identity provider.
         :param pulumi.Input[_builtins.str] entity_id: The Entity ID that will be used to uniquely identify this SAML Service Provider.
         :param pulumi.Input[_builtins.str] realm: The name of the realm. This is unique across Keycloak.
@@ -723,6 +724,7 @@ class _IdentityProviderState:
                  xml_sign_key_info_key_name_transformer: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering IdentityProvider resources.
+
         :param pulumi.Input[_builtins.bool] add_read_token_role_on_create: When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
         :param pulumi.Input[_builtins.str] alias: The unique name of identity provider.
         :param pulumi.Input[_builtins.bool] authenticate_by_default: Authenticate users by default. Defaults to `false`.
@@ -1439,6 +1441,11 @@ class IdentityProvider(pulumi.CustomResource):
 
         Example:
 
+        ```sh
+        $ pulumi import keycloak:saml/identityProvider:IdentityProvider realm_saml_identity_provider my-realm/my-saml-idp
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] add_read_token_role_on_create: When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
@@ -1523,6 +1530,11 @@ class IdentityProvider(pulumi.CustomResource):
         Identity providers can be imported using the format `{{realm_id}}/{{idp_alias}}`, where `idp_alias` is the identity provider alias.
 
         Example:
+
+        ```sh
+        $ pulumi import keycloak:saml/identityProvider:IdentityProvider realm_saml_identity_provider my-realm/my-saml-idp
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param IdentityProviderArgs args: The arguments to use to populate this resource's properties.

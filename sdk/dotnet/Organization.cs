@@ -69,6 +69,10 @@ namespace Pulumi.Keycloak
     /// assigns to the organizations upon creation. This value can be found in the URI when editing this organization in the GUI, and is typically a GUID.
     /// 
     /// Example:
+    /// 
+    /// ```sh
+    /// $ pulumi import keycloak:index/organization:Organization this my-realm/cec54914-b702-4c7b-9431-b407817d059a
+    /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:index/organization:Organization")]
     public partial class Organization : global::Pulumi.CustomResource

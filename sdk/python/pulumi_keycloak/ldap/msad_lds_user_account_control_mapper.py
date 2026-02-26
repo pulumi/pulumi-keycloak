@@ -24,6 +24,7 @@ class MsadLdsUserAccountControlMapperArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a MsadLdsUserAccountControlMapper resource.
+
         :param pulumi.Input[_builtins.str] ldap_user_federation_id: The ID of the LDAP user federation provider to attach this mapper to.
         :param pulumi.Input[_builtins.str] realm_id: The realm that this LDAP mapper will exist in.
         :param pulumi.Input[_builtins.str] name: Display name of this mapper when displayed in the console.
@@ -78,6 +79,7 @@ class _MsadLdsUserAccountControlMapperState:
                  realm_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MsadLdsUserAccountControlMapper resources.
+
         :param pulumi.Input[_builtins.str] ldap_user_federation_id: The ID of the LDAP user federation provider to attach this mapper to.
         :param pulumi.Input[_builtins.str] name: Display name of this mapper when displayed in the console.
         :param pulumi.Input[_builtins.str] realm_id: The realm that this LDAP mapper will exist in.
@@ -182,6 +184,11 @@ class MsadLdsUserAccountControlMapper(pulumi.CustomResource):
 
         Example:
 
+        ```sh
+        $ pulumi import keycloak:ldap/msadLdsUserAccountControlMapper:MsadLdsUserAccountControlMapper msad_lds_user_account_control_mapper my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] ldap_user_federation_id: The ID of the LDAP user federation provider to attach this mapper to.
@@ -239,6 +246,11 @@ class MsadLdsUserAccountControlMapper(pulumi.CustomResource):
         The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs.
 
         Example:
+
+        ```sh
+        $ pulumi import keycloak:ldap/msadLdsUserAccountControlMapper:MsadLdsUserAccountControlMapper msad_lds_user_account_control_mapper my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param MsadLdsUserAccountControlMapperArgs args: The arguments to use to populate this resource's properties.

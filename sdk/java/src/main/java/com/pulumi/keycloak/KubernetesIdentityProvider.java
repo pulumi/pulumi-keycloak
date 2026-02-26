@@ -51,6 +51,10 @@ import javax.annotation.Nullable;
  * 
  * Example:
  * 
+ * ```sh
+ * $ pulumi import keycloak:index/kubernetesIdentityProvider:KubernetesIdentityProvider realm_identity_provider my-realm/my-idp
+ * ```
+ * 
  */
 @ResourceType(type="keycloak:index/kubernetesIdentityProvider:KubernetesIdentityProvider")
 public class KubernetesIdentityProvider extends com.pulumi.resources.CustomResource {

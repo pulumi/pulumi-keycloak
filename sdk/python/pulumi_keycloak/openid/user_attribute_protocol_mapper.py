@@ -33,6 +33,7 @@ class UserAttributeProtocolMapperArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a UserAttributeProtocolMapper resource.
+
         :param pulumi.Input[_builtins.str] claim_name: The name of the claim to insert into a token.
         :param pulumi.Input[_builtins.str] realm_id: The realm this protocol mapper exists within.
         :param pulumi.Input[_builtins.str] user_attribute: The custom user attribute to map a claim for.
@@ -230,6 +231,7 @@ class _UserAttributeProtocolMapperState:
                  user_attribute: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering UserAttributeProtocolMapper resources.
+
         :param pulumi.Input[_builtins.bool] add_to_access_token: Indicates if the attribute should be added as a claim to the access token. Defaults to `true`.
         :param pulumi.Input[_builtins.bool] add_to_id_token: Indicates if the attribute should be added as a claim to the id token. Defaults to `true`.
         :param pulumi.Input[_builtins.bool] add_to_userinfo: Indicates if the attribute should be added as a claim to the UserInfo response body. Defaults to `true`.
@@ -494,6 +496,12 @@ class UserAttributeProtocolMapper(pulumi.CustomResource):
 
         Example:
 
+        ```sh
+        $ pulumi import keycloak:openid/userAttributeProtocolMapper:UserAttributeProtocolMapper user_attribute_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+        $ pulumi import keycloak:openid/userAttributeProtocolMapper:UserAttributeProtocolMapper user_attribute_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] add_to_access_token: Indicates if the attribute should be added as a claim to the access token. Defaults to `true`.
@@ -576,6 +584,12 @@ class UserAttributeProtocolMapper(pulumi.CustomResource):
         - Client Scope: `{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}`
 
         Example:
+
+        ```sh
+        $ pulumi import keycloak:openid/userAttributeProtocolMapper:UserAttributeProtocolMapper user_attribute_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+        $ pulumi import keycloak:openid/userAttributeProtocolMapper:UserAttributeProtocolMapper user_attribute_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param UserAttributeProtocolMapperArgs args: The arguments to use to populate this resource's properties.

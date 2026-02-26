@@ -35,6 +35,7 @@ class UserArgs:
                  required_actions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a User resource.
+
         :param pulumi.Input[_builtins.str] realm_id: The realm this user belongs to.
         :param pulumi.Input[_builtins.str] username: The unique username of this user.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] attributes: A map representing attributes for the user. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
@@ -233,6 +234,7 @@ class _UserState:
                  username: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering User resources.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] attributes: A map representing attributes for the user. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
         :param pulumi.Input[_builtins.str] email: The user's email.
         :param pulumi.Input[_builtins.bool] email_verified: Whether the email address was validated or not. Default to `false`.
@@ -482,6 +484,11 @@ class User(pulumi.CustomResource):
 
         Example:
 
+        ```sh
+        $ pulumi import keycloak:index/user:User user my-realm/60c3f971-b1d3-4b3a-9035-d16d7540a5e4
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] attributes: A map representing attributes for the user. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
@@ -549,6 +556,11 @@ class User(pulumi.CustomResource):
         assigns to the user upon creation. This value can be found in the GUI when editing the user.
 
         Example:
+
+        ```sh
+        $ pulumi import keycloak:index/user:User user my-realm/60c3f971-b1d3-4b3a-9035-d16d7540a5e4
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param UserArgs args: The arguments to use to populate this resource's properties.

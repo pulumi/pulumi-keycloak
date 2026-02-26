@@ -84,6 +84,10 @@ import javax.annotation.Nullable;
  * 
  * Example:
  * 
+ * ```sh
+ * $ pulumi import keycloak:authentication/executionConfig:ExecutionConfig config my-realm/be081463-ddbf-4b42-9eff-9c97886f24ff/30559fcf-6fb8-45ea-8c46-2b86f46ebc17
+ * ```
+ * 
  */
 @ResourceType(type="keycloak:authentication/executionConfig:ExecutionConfig")
 public class ExecutionConfig extends com.pulumi.resources.CustomResource {

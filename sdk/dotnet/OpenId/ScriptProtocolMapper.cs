@@ -103,6 +103,11 @@ namespace Pulumi.Keycloak.OpenId
     /// - Client Scope: `{{realm_id}}/client-scope/{{client_scope_keycloak_id}}/{{protocol_mapper_id}}`
     /// 
     /// Example:
+    /// 
+    /// ```sh
+    /// $ pulumi import keycloak:openid/scriptProtocolMapper:ScriptProtocolMapper script_mapper my-realm/client/a7202154-8793-4656-b655-1dd18c181e14/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+    /// $ pulumi import keycloak:openid/scriptProtocolMapper:ScriptProtocolMapper script_mapper my-realm/client-scope/b799ea7e-73ee-4a73-990a-1eafebe8e20a/71602afa-f7d1-4788-8c49-ef8fd00af0f4
+    /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:openid/scriptProtocolMapper:ScriptProtocolMapper")]
     public partial class ScriptProtocolMapper : global::Pulumi.CustomResource

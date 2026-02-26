@@ -23,6 +23,7 @@ class DefaultGroupsArgs:
                  realm_id: pulumi.Input[_builtins.str]):
         """
         The set of arguments for constructing a DefaultGroups resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] group_ids: A set of group ids that should be default groups on the realm referenced by `realm_id`.
         :param pulumi.Input[_builtins.str] realm_id: The realm this group exists in.
         """
@@ -61,6 +62,7 @@ class _DefaultGroupsState:
                  realm_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DefaultGroups resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] group_ids: A set of group ids that should be default groups on the realm referenced by `realm_id`.
         :param pulumi.Input[_builtins.str] realm_id: The realm this group exists in.
         """
@@ -131,6 +133,11 @@ class DefaultGroups(pulumi.CustomResource):
 
         Example:
 
+        ```sh
+        $ pulumi import keycloak:index/defaultGroups:DefaultGroups default my-realm
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] group_ids: A set of group ids that should be default groups on the realm referenced by `realm_id`.
@@ -169,6 +176,11 @@ class DefaultGroups(pulumi.CustomResource):
         Default groups can be imported using the format `{{realm_id}}` where `realm_id` is the realm the group exists in.
 
         Example:
+
+        ```sh
+        $ pulumi import keycloak:index/defaultGroups:DefaultGroups default my-realm
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param DefaultGroupsArgs args: The arguments to use to populate this resource's properties.

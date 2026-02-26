@@ -73,6 +73,10 @@ import javax.annotation.Nullable;
  * 
  * Example:
  * 
+ * ```sh
+ * $ pulumi import keycloak:index/defaultGroups:DefaultGroups default my-realm
+ * ```
+ * 
  */
 @ResourceType(type="keycloak:index/defaultGroups:DefaultGroups")
 public class DefaultGroups extends com.pulumi.resources.CustomResource {

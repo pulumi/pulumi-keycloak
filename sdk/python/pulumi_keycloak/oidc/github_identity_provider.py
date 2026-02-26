@@ -46,6 +46,7 @@ class GithubIdentityProviderArgs:
                  trust_email: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a GithubIdentityProvider resource.
+
         :param pulumi.Input[_builtins.str] client_id: The client or client identifier registered within the identity provider.
         :param pulumi.Input[_builtins.str] client_secret: The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
         :param pulumi.Input[_builtins.str] realm: The name of the realm. This is unique across Keycloak.
@@ -444,6 +445,7 @@ class _GithubIdentityProviderState:
                  trust_email: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering GithubIdentityProvider resources.
+
         :param pulumi.Input[_builtins.bool] add_read_token_role_on_create: When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
         :param pulumi.Input[_builtins.str] alias: The alias for the GitHub identity provider.
         :param pulumi.Input[_builtins.str] api_url: The GitHub API URL, defaults to `https://api.github.com`.
@@ -896,6 +898,11 @@ class GithubIdentityProvider(pulumi.CustomResource):
 
         Example:
 
+        ```sh
+        $ pulumi import keycloak:oidc/githubIdentityProvider:GithubIdentityProvider github.github_identity_provider my-realm/my-github-idp
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] add_read_token_role_on_create: When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
@@ -962,6 +969,11 @@ class GithubIdentityProvider(pulumi.CustomResource):
         GitHub Identity providers can be imported using the format {{realm_id}}/{{idp_alias}}, where idp_alias is the identity provider alias.
 
         Example:
+
+        ```sh
+        $ pulumi import keycloak:oidc/githubIdentityProvider:GithubIdentityProvider github.github_identity_provider my-realm/my-github-idp
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param GithubIdentityProviderArgs args: The arguments to use to populate this resource's properties.
