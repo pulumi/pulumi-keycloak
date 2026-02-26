@@ -28,6 +28,7 @@ class RealmKeystoreHmacGeneratedArgs:
                  secret_size: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a RealmKeystoreHmacGenerated resource.
+
         :param pulumi.Input[_builtins.str] realm_id: The realm this keystore exists in.
         :param pulumi.Input[_builtins.bool] active: When `false`, key in not used for signing. Defaults to `true`.
         :param pulumi.Input[_builtins.str] algorithm: Intended algorithm for the key. Defaults to `HS256`
@@ -147,6 +148,7 @@ class _RealmKeystoreHmacGeneratedState:
                  secret_size: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering RealmKeystoreHmacGenerated resources.
+
         :param pulumi.Input[_builtins.bool] active: When `false`, key in not used for signing. Defaults to `true`.
         :param pulumi.Input[_builtins.str] algorithm: Intended algorithm for the key. Defaults to `HS256`
         :param pulumi.Input[_builtins.bool] enabled: When `false`, key is not accessible in this realm. Defaults to `true`.
@@ -297,6 +299,11 @@ class RealmKeystoreHmacGenerated(pulumi.CustomResource):
 
         Example:
 
+        ```sh
+        $ pulumi import keycloak:index/realmKeystoreHmacGenerated:RealmKeystoreHmacGenerated keystore_hmac_generated my-realm/618cfba7-49aa-4c09-9a19-2f699b576f0b
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] active: When `false`, key in not used for signing. Defaults to `true`.
@@ -340,6 +347,11 @@ class RealmKeystoreHmacGenerated(pulumi.CustomResource):
         Realm keys can be imported using realm name and keystore id, you can find it in web UI.
 
         Example:
+
+        ```sh
+        $ pulumi import keycloak:index/realmKeystoreHmacGenerated:RealmKeystoreHmacGenerated keystore_hmac_generated my-realm/618cfba7-49aa-4c09-9a19-2f699b576f0b
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param RealmKeystoreHmacGeneratedArgs args: The arguments to use to populate this resource's properties.

@@ -72,6 +72,10 @@ import (
 // which will be a list of authentication flows.
 //
 // Example:
+//
+// ```sh
+// $ pulumi import keycloak:authentication/flow:Flow flow my-realm/e9a5641e-778c-4daf-89c0-f4ef617987d1
+// ```
 type Flow struct {
 	pulumi.CustomResourceState
 

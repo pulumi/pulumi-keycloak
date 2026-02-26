@@ -63,6 +63,10 @@ import (
 // Facebook Identity providers can be imported using the format {{realm_id}}/{{idp_alias}}, where idpAlias is the identity provider alias.
 //
 // Example:
+//
+// ```sh
+// $ pulumi import keycloak:oidc/facebookIdentityProvider:FacebookIdentityProvider facebook.facebook_identity_provider my-realm/my-facebook-idp
+// ```
 type FacebookIdentityProvider struct {
 	pulumi.CustomResourceState
 

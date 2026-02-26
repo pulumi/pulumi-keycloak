@@ -131,6 +131,10 @@ import javax.annotation.Nullable;
  * 
  * Example:
  * 
+ * ```sh
+ * $ pulumi import keycloak:index/realm:Realm realm my-realm
+ * ```
+ * 
  */
 @ResourceType(type="keycloak:index/realm:Realm")
 public class Realm extends com.pulumi.resources.CustomResource {

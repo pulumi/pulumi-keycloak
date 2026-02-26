@@ -25,6 +25,7 @@ class GroupRolesArgs:
                  exhaustive: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a GroupRoles resource.
+
         :param pulumi.Input[_builtins.str] group_id: The ID of the group this resource should manage roles for.
         :param pulumi.Input[_builtins.str] realm_id: The realm this group exists in.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] role_ids: A list of role IDs to map to the group.
@@ -94,6 +95,7 @@ class _GroupRolesState:
                  role_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering GroupRoles resources.
+
         :param pulumi.Input[_builtins.bool] exhaustive: Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `true`.
         :param pulumi.Input[_builtins.str] group_id: The ID of the group this resource should manage roles for.
         :param pulumi.Input[_builtins.str] realm_id: The realm this group exists in.
@@ -263,6 +265,11 @@ class GroupRoles(pulumi.CustomResource):
 
         Example:
 
+        ```sh
+        $ pulumi import keycloak:index/groupRoles:GroupRoles group_roles my-realm/18cc6b87-2ce7-4e59-bdc8-b9d49ec98a94
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] exhaustive: Indicates if the list of roles is exhaustive. In this case, roles that are manually added to the group will be removed. Defaults to `true`.
@@ -370,6 +377,11 @@ class GroupRoles(pulumi.CustomResource):
         a GUID.
 
         Example:
+
+        ```sh
+        $ pulumi import keycloak:index/groupRoles:GroupRoles group_roles my-realm/18cc6b87-2ce7-4e59-bdc8-b9d49ec98a94
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param GroupRolesArgs args: The arguments to use to populate this resource's properties.

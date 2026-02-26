@@ -29,6 +29,7 @@ class BindingsArgs:
                  reset_credentials_flow: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Bindings resource.
+
         :param pulumi.Input[_builtins.str] realm_id: The realm the authentication flow binding exists in.
         :param pulumi.Input[_builtins.str] browser_flow: The alias of the flow to assign to the realm BrowserFlow.
         :param pulumi.Input[_builtins.str] client_authentication_flow: The alias of the flow to assign to the realm ClientAuthenticationFlow.
@@ -164,6 +165,7 @@ class _BindingsState:
                  reset_credentials_flow: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Bindings resources.
+
         :param pulumi.Input[_builtins.str] browser_flow: The alias of the flow to assign to the realm BrowserFlow.
         :param pulumi.Input[_builtins.str] client_authentication_flow: The alias of the flow to assign to the realm ClientAuthenticationFlow.
         :param pulumi.Input[_builtins.str] direct_grant_flow: The alias of the flow to assign to the realm DirectGrantFlow.
@@ -347,6 +349,7 @@ class Bindings(pulumi.CustomResource):
             browser_flow=flow.alias)
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] browser_flow: The alias of the flow to assign to the realm BrowserFlow.
@@ -408,6 +411,7 @@ class Bindings(pulumi.CustomResource):
             realm_id=realm.id,
             browser_flow=flow.alias)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param BindingsArgs args: The arguments to use to populate this resource's properties.

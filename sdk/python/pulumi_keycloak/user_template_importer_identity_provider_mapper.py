@@ -26,6 +26,7 @@ class UserTemplateImporterIdentityProviderMapperArgs:
                  template: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a UserTemplateImporterIdentityProviderMapper resource.
+
         :param pulumi.Input[_builtins.str] identity_provider_alias: The alias of the associated identity provider.
         :param pulumi.Input[_builtins.str] realm: The name of the realm.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
@@ -112,6 +113,7 @@ class _UserTemplateImporterIdentityProviderMapperState:
                  template: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering UserTemplateImporterIdentityProviderMapper resources.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
         :param pulumi.Input[_builtins.str] identity_provider_alias: The alias of the associated identity provider.
         :param pulumi.Input[_builtins.str] name: The name of the mapper.
@@ -245,6 +247,11 @@ class UserTemplateImporterIdentityProviderMapper(pulumi.CustomResource):
 
         Example:
 
+        ```sh
+        $ pulumi import keycloak:index/userTemplateImporterIdentityProviderMapper:UserTemplateImporterIdentityProviderMapper username_importer my-realm/my-mapper/f446db98-7133-4e30-b18a-3d28fde7ca1b
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] extra_config: Key/value attributes to add to the identity provider mapper model that is persisted to Keycloak. This can be used to extend the base model with new Keycloak features.
@@ -301,6 +308,11 @@ class UserTemplateImporterIdentityProviderMapper(pulumi.CustomResource):
         assigns to the mapper upon creation. This value can be found in the URI when editing this mapper in the GUI, and is typically a GUID.
 
         Example:
+
+        ```sh
+        $ pulumi import keycloak:index/userTemplateImporterIdentityProviderMapper:UserTemplateImporterIdentityProviderMapper username_importer my-realm/my-mapper/f446db98-7133-4e30-b18a-3d28fde7ca1b
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param UserTemplateImporterIdentityProviderMapperArgs args: The arguments to use to populate this resource's properties.

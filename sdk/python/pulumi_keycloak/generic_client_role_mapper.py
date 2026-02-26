@@ -25,6 +25,7 @@ class GenericClientRoleMapperArgs:
                  client_scope_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a GenericClientRoleMapper resource.
+
         :param pulumi.Input[_builtins.str] realm_id: The realm this role mapper exists within.
         :param pulumi.Input[_builtins.str] role_id: The ID of the role to be added to this role mapper.
         :param pulumi.Input[_builtins.str] client_id: The ID of the client this role mapper should be added to. Conflicts with `client_scope_id`. This argument is required if `client_scope_id` is not set.
@@ -95,6 +96,7 @@ class _GenericClientRoleMapperState:
                  role_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering GenericClientRoleMapper resources.
+
         :param pulumi.Input[_builtins.str] client_id: The ID of the client this role mapper should be added to. Conflicts with `client_scope_id`. This argument is required if `client_scope_id` is not set.
         :param pulumi.Input[_builtins.str] client_scope_id: The ID of the client scope this role mapper should be added to. Conflicts with `client_id`. This argument is required if `client_id` is not set.
         :param pulumi.Input[_builtins.str] realm_id: The realm this role mapper exists within.
@@ -303,6 +305,11 @@ class GenericClientRoleMapper(pulumi.CustomResource):
 
         Example:
 
+        ```sh
+        $ pulumi import keycloak:index/genericClientRoleMapper:GenericClientRoleMapper client_role_mapper my-realm/client/23888550-5dcd-41f6-85ba-554233021e9c/scope-mappings/ce51f004-bdfb-4dd5-a963-c4487d2dec5b/ff3aa49f-bc07-4030-8783-41918c3614a3
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] client_id: The ID of the client this role mapper should be added to. Conflicts with `client_scope_id`. This argument is required if `client_scope_id` is not set.
@@ -449,6 +456,11 @@ class GenericClientRoleMapper(pulumi.CustomResource):
         - When mapping a role to a client scope, use the format `{{realmId}}/client-scope/{{clientScopeId}}/scope-mappings/{{roleClientId}}/{{roleId}}`
 
         Example:
+
+        ```sh
+        $ pulumi import keycloak:index/genericClientRoleMapper:GenericClientRoleMapper client_role_mapper my-realm/client/23888550-5dcd-41f6-85ba-554233021e9c/scope-mappings/ce51f004-bdfb-4dd5-a963-c4487d2dec5b/ff3aa49f-bc07-4030-8783-41918c3614a3
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param GenericClientRoleMapperArgs args: The arguments to use to populate this resource's properties.

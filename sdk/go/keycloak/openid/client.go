@@ -126,6 +126,10 @@ import (
 // assigns to the client upon creation. This value can be found in the URI when editing this client in the GUI, and is typically a GUID.
 //
 // Example:
+//
+// ```sh
+// $ pulumi import keycloak:openid/client:Client openid_client my-realm/dcbc4c73-e478-4928-ae2e-d5e420223352
+// ```
 type Client struct {
 	pulumi.CustomResourceState
 

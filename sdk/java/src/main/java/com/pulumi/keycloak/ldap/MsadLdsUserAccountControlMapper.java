@@ -89,6 +89,10 @@ import javax.annotation.Nullable;
  * 
  * Example:
  * 
+ * ```sh
+ * $ pulumi import keycloak:ldap/msadLdsUserAccountControlMapper:MsadLdsUserAccountControlMapper msad_lds_user_account_control_mapper my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
+ * ```
+ * 
  */
 @ResourceType(type="keycloak:ldap/msadLdsUserAccountControlMapper:MsadLdsUserAccountControlMapper")
 public class MsadLdsUserAccountControlMapper extends com.pulumi.resources.CustomResource {

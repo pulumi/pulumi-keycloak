@@ -47,6 +47,10 @@ namespace Pulumi.Keycloak.Saml
     /// assigns to the client scope upon creation. This value can be found in the URI when editing this client scope in the GUI, and is typically a GUID.
     /// 
     /// Example:
+    /// 
+    /// ```sh
+    /// $ pulumi import keycloak:saml/clientScope:ClientScope saml_client_scope my-realm/e8a5d115-6985-4de3-a0f5-732e1be4525e
+    /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:saml/clientScope:ClientScope")]
     public partial class ClientScope : global::Pulumi.CustomResource

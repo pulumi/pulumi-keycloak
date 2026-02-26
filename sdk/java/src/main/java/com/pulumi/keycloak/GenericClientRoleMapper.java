@@ -296,6 +296,10 @@ import javax.annotation.Nullable;
  * 
  * Example:
  * 
+ * ```sh
+ * $ pulumi import keycloak:index/genericClientRoleMapper:GenericClientRoleMapper client_role_mapper my-realm/client/23888550-5dcd-41f6-85ba-554233021e9c/scope-mappings/ce51f004-bdfb-4dd5-a963-c4487d2dec5b/ff3aa49f-bc07-4030-8783-41918c3614a3
+ * ```
+ * 
  */
 @ResourceType(type="keycloak:index/genericClientRoleMapper:GenericClientRoleMapper")
 public class GenericClientRoleMapper extends com.pulumi.resources.CustomResource {

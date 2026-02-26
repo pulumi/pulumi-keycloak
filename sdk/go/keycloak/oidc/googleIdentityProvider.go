@@ -63,6 +63,10 @@ import (
 // Google Identity providers can be imported using the format {{realm_id}}/{{idp_alias}}, where idpAlias is the identity provider alias.
 //
 // Example:
+//
+// ```sh
+// $ pulumi import keycloak:oidc/googleIdentityProvider:GoogleIdentityProvider google.google_identity_provider my-realm/my-google-idp
+// ```
 type GoogleIdentityProvider struct {
 	pulumi.CustomResourceState
 

@@ -296,6 +296,11 @@ class ClientAuthorizationPermission(pulumi.CustomResource):
 
         Example:
 
+        ```sh
+        $ pulumi import keycloak:openid/clientAuthorizationPermission:ClientAuthorizationPermission test my-realm/3bd4a686-1062-4b59-97b8-e4e3f10b99da/63b3cde8-987d-4cd9-9306-1955579281d9
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
@@ -313,6 +318,11 @@ class ClientAuthorizationPermission(pulumi.CustomResource):
         Client authorization permissions can be imported using the format: `{{realmId}}/{{resourceServerId}}/{{permissionId}}`.
 
         Example:
+
+        ```sh
+        $ pulumi import keycloak:openid/clientAuthorizationPermission:ClientAuthorizationPermission test my-realm/3bd4a686-1062-4b59-97b8-e4e3f10b99da/63b3cde8-987d-4cd9-9306-1955579281d9
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param ClientAuthorizationPermissionArgs args: The arguments to use to populate this resource's properties.

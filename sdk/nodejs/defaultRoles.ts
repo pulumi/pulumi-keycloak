@@ -53,6 +53,10 @@ import * as utilities from "./utilities";
  * the default roles.
  *
  * Example:
+ *
+ * ```sh
+ * $ pulumi import keycloak:index/defaultRoles:DefaultRoles default_roles my-realm/a04c35c2-e95a-4dc5-bd32-e83a21be9e7d
+ * ```
  */
 export class DefaultRoles extends pulumi.CustomResource {
     /**

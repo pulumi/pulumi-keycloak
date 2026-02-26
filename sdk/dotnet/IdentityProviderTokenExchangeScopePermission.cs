@@ -89,6 +89,10 @@ namespace Pulumi.Keycloak
     /// you assign to the identity provider upon creation.
     /// 
     /// Example:
+    /// 
+    /// ```sh
+    /// $ pulumi import keycloak:index/identityProviderTokenExchangeScopePermission:IdentityProviderTokenExchangeScopePermission oidc_idp_permission my-realm/myIdp
+    /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:index/identityProviderTokenExchangeScopePermission:IdentityProviderTokenExchangeScopePermission")]
     public partial class IdentityProviderTokenExchangeScopePermission : global::Pulumi.CustomResource

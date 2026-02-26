@@ -74,6 +74,10 @@ import javax.annotation.Nullable;
  * 
  * Example:
  * 
+ * ```sh
+ * $ pulumi import keycloak:openid/clientScope:ClientScope openid_client_scope my-realm/8e8f7fe1-df9b-40ed-bed3-4597aa0dac52
+ * ```
+ * 
  */
 @ResourceType(type="keycloak:openid/clientScope:ClientScope")
 public class ClientScope extends com.pulumi.resources.CustomResource {

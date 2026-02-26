@@ -40,6 +40,10 @@ import * as utilities from "../utilities";
  * GitHub Identity providers can be imported using the format {{realm_id}}/{{idp_alias}}, where idpAlias is the identity provider alias.
  *
  * Example:
+ *
+ * ```sh
+ * $ pulumi import keycloak:oidc/githubIdentityProvider:GithubIdentityProvider github.github_identity_provider my-realm/my-github-idp
+ * ```
  */
 export class GithubIdentityProvider extends pulumi.CustomResource {
     /**

@@ -122,6 +122,7 @@ class _GroupPermissionsState:
                  view_scope: Optional[pulumi.Input['GroupPermissionsViewScopeArgs']] = None):
         """
         Input properties used for looking up and filtering GroupPermissions resources.
+
         :param pulumi.Input[_builtins.str] authorization_resource_server_id: Resource server id representing the realm management client on which this permission is managed
         """
         if authorization_resource_server_id is not None:
@@ -255,6 +256,7 @@ class GroupPermissions(pulumi.CustomResource):
         3. Create scopes `view`, `manage`, `view-members`, `manage-members`, `manage-membership`.
         4. Create all scope based permission for the scopes and role resource
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
@@ -276,6 +278,7 @@ class GroupPermissions(pulumi.CustomResource):
         2. Create a resource representing the role permissions.
         3. Create scopes `view`, `manage`, `view-members`, `manage-members`, `manage-membership`.
         4. Create all scope based permission for the scopes and role resource
+
 
         :param str resource_name: The name of the resource.
         :param GroupPermissionsArgs args: The arguments to use to populate this resource's properties.

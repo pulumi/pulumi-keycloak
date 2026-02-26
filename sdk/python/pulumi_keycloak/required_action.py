@@ -28,6 +28,7 @@ class RequiredActionArgs:
                  priority: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a RequiredAction resource.
+
         :param pulumi.Input[_builtins.str] alias: The alias of the action to attach as a required action. Case sensitive.
         :param pulumi.Input[_builtins.str] realm_id: The realm the required action exists in.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] config: The configuration. Keys are specific to each configurable required action and not checked when applying.
@@ -146,6 +147,7 @@ class _RequiredActionState:
                  realm_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RequiredAction resources.
+
         :param pulumi.Input[_builtins.str] alias: The alias of the action to attach as a required action. Case sensitive.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] config: The configuration. Keys are specific to each configurable required action and not checked when applying.
         :param pulumi.Input[_builtins.bool] default_action: When `true`, the required action is set as the default action for new users. Defaults to `false`.
@@ -314,6 +316,11 @@ class RequiredAction(pulumi.CustomResource):
 
         Example:
 
+        ```sh
+        $ pulumi import keycloak:index/requiredAction:RequiredAction required_action my-realm/my-default-action-alias
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] alias: The alias of the action to attach as a required action. Case sensitive.
@@ -375,6 +382,11 @@ class RequiredAction(pulumi.CustomResource):
         Authentication executions can be imported using the formats: `{{realm}}/{{alias}}`.
 
         Example:
+
+        ```sh
+        $ pulumi import keycloak:index/requiredAction:RequiredAction required_action my-realm/my-default-action-alias
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param RequiredActionArgs args: The arguments to use to populate this resource's properties.

@@ -58,6 +58,7 @@ class IdentityProviderArgs:
                  validate_signature: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a IdentityProvider resource.
+
         :param pulumi.Input[_builtins.str] alias: The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
         :param pulumi.Input[_builtins.str] authorization_url: The Authorization Url.
         :param pulumi.Input[_builtins.str] client_id: The client or client identifier registered within the identity provider.
@@ -658,6 +659,7 @@ class _IdentityProviderState:
                  validate_signature: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering IdentityProvider resources.
+
         :param pulumi.Input[_builtins.bool] accepts_prompt_none_forward_from_client: When `true`, the IDP will accept forwarded authentication requests that contain the `prompt=none` query parameter. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] add_read_token_role_on_create: When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
         :param pulumi.Input[_builtins.str] alias: The alias uniquely identifies an identity provider, and it is also used to build the redirect uri.
@@ -1318,6 +1320,11 @@ class IdentityProvider(pulumi.CustomResource):
 
         Example:
 
+        ```sh
+        $ pulumi import keycloak:oidc/identityProvider:IdentityProvider realm_identity_provider my-realm/my-idp
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] accepts_prompt_none_forward_from_client: When `true`, the IDP will accept forwarded authentication requests that contain the `prompt=none` query parameter. Defaults to `false`.
@@ -1404,6 +1411,11 @@ class IdentityProvider(pulumi.CustomResource):
         Identity providers can be imported using the format `{{realm_id}}/{{idp_alias}}`, where `idp_alias` is the identity provider alias.
 
         Example:
+
+        ```sh
+        $ pulumi import keycloak:oidc/identityProvider:IdentityProvider realm_identity_provider my-realm/my-idp
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param IdentityProviderArgs args: The arguments to use to populate this resource's properties.

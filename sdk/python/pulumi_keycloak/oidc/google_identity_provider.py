@@ -48,6 +48,7 @@ class GoogleIdentityProviderArgs:
                  use_user_ip_param: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a GoogleIdentityProvider resource.
+
         :param pulumi.Input[_builtins.str] client_secret: The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
         :param pulumi.Input[_builtins.str] realm: The name of the realm. This is unique across Keycloak.
         :param pulumi.Input[_builtins.bool] accepts_prompt_none_forward_from_client: When `true`, unauthenticated requests with `prompt=none` will be forwarded to Google instead of returning an error. Defaults to `false`.
@@ -479,6 +480,7 @@ class _GoogleIdentityProviderState:
                  use_user_ip_param: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering GoogleIdentityProvider resources.
+
         :param pulumi.Input[_builtins.bool] accepts_prompt_none_forward_from_client: When `true`, unauthenticated requests with `prompt=none` will be forwarded to Google instead of returning an error. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] add_read_token_role_on_create: When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
         :param pulumi.Input[_builtins.str] alias: The alias for the Google identity provider.
@@ -960,6 +962,11 @@ class GoogleIdentityProvider(pulumi.CustomResource):
 
         Example:
 
+        ```sh
+        $ pulumi import keycloak:oidc/googleIdentityProvider:GoogleIdentityProvider google.google_identity_provider my-realm/my-google-idp
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] accepts_prompt_none_forward_from_client: When `true`, unauthenticated requests with `prompt=none` will be forwarded to Google instead of returning an error. Defaults to `false`.
@@ -1025,6 +1032,11 @@ class GoogleIdentityProvider(pulumi.CustomResource):
         Google Identity providers can be imported using the format {{realm_id}}/{{idp_alias}}, where idp_alias is the identity provider alias.
 
         Example:
+
+        ```sh
+        $ pulumi import keycloak:oidc/googleIdentityProvider:GoogleIdentityProvider google.google_identity_provider my-realm/my-google-idp
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param GoogleIdentityProviderArgs args: The arguments to use to populate this resource's properties.

@@ -25,6 +25,7 @@ class FlowArgs:
                  provider_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Flow resource.
+
         :param pulumi.Input[_builtins.str] realm_id: The realm that the authentication flow exists in.
         :param pulumi.Input[_builtins.str] alias: The alias for this authentication flow.
         :param pulumi.Input[_builtins.str] description: A description for the authentication flow.
@@ -96,6 +97,7 @@ class _FlowState:
                  realm_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Flow resources.
+
         :param pulumi.Input[_builtins.str] alias: The alias for this authentication flow.
         :param pulumi.Input[_builtins.str] description: A description for the authentication flow.
         :param pulumi.Input[_builtins.str] provider_id: The type of authentication flow to create. Valid choices include `basic-flow` and `client-flow`. Defaults to `basic-flow`.
@@ -207,6 +209,11 @@ class Flow(pulumi.CustomResource):
 
         Example:
 
+        ```sh
+        $ pulumi import keycloak:authentication/flow:Flow flow my-realm/e9a5641e-778c-4daf-89c0-f4ef617987d1
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] alias: The alias for this authentication flow.
@@ -256,6 +263,11 @@ class Flow(pulumi.CustomResource):
         which will be a list of authentication flows.
 
         Example:
+
+        ```sh
+        $ pulumi import keycloak:authentication/flow:Flow flow my-realm/e9a5641e-778c-4daf-89c0-f4ef617987d1
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param FlowArgs args: The arguments to use to populate this resource's properties.

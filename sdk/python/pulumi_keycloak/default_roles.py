@@ -23,6 +23,7 @@ class DefaultRolesArgs:
                  realm_id: pulumi.Input[_builtins.str]):
         """
         The set of arguments for constructing a DefaultRoles resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] default_roles: Roles assigned to new users by default.
         :param pulumi.Input[_builtins.str] realm_id: The realm this role exists within.
         """
@@ -61,6 +62,7 @@ class _DefaultRolesState:
                  realm_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DefaultRoles resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] default_roles: Roles assigned to new users by default.
         :param pulumi.Input[_builtins.str] realm_id: The realm this role exists within.
         """
@@ -149,6 +151,11 @@ class DefaultRoles(pulumi.CustomResource):
 
         Example:
 
+        ```sh
+        $ pulumi import keycloak:index/defaultRoles:DefaultRoles default_roles my-realm/a04c35c2-e95a-4dc5-bd32-e83a21be9e7d
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] default_roles: Roles assigned to new users by default.
@@ -205,6 +212,11 @@ class DefaultRoles(pulumi.CustomResource):
         the default roles.
 
         Example:
+
+        ```sh
+        $ pulumi import keycloak:index/defaultRoles:DefaultRoles default_roles my-realm/a04c35c2-e95a-4dc5-bd32-e83a21be9e7d
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param DefaultRolesArgs args: The arguments to use to populate this resource's properties.

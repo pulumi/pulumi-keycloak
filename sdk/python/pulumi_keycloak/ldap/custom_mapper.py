@@ -27,6 +27,7 @@ class CustomMapperArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a CustomMapper resource.
+
         :param pulumi.Input[_builtins.str] ldap_user_federation_id: The ID of the LDAP user federation provider to attach this mapper to.
         :param pulumi.Input[_builtins.str] provider_id: The id of the LDAP mapper implemented in MapperFactory.
         :param pulumi.Input[_builtins.str] provider_type: The fully-qualified Java class name of the custom LDAP mapper.
@@ -127,6 +128,7 @@ class _CustomMapperState:
                  realm_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CustomMapper resources.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] config: A map with key / value pairs for configuring the LDAP mapper. The supported keys depend on the protocol mapper.
         :param pulumi.Input[_builtins.str] ldap_user_federation_id: The ID of the LDAP user federation provider to attach this mapper to.
         :param pulumi.Input[_builtins.str] name: Display name of this mapper when displayed in the console.
@@ -284,6 +286,11 @@ class CustomMapper(pulumi.CustomResource):
 
         Example:
 
+        ```sh
+        $ pulumi import keycloak:ldap/customMapper:CustomMapper custom_mapper my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] config: A map with key / value pairs for configuring the LDAP mapper. The supported keys depend on the protocol mapper.
@@ -349,6 +356,11 @@ class CustomMapper(pulumi.CustomResource):
         The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs.
 
         Example:
+
+        ```sh
+        $ pulumi import keycloak:ldap/customMapper:CustomMapper custom_mapper my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param CustomMapperArgs args: The arguments to use to populate this resource's properties.

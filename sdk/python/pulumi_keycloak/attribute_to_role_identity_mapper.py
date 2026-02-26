@@ -31,6 +31,7 @@ class AttributeToRoleIdentityMapperArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AttributeToRoleIdentityMapper resource.
+
         :param pulumi.Input[_builtins.str] identity_provider_alias: The alias of the associated identity provider.
         :param pulumi.Input[_builtins.str] realm: The name of the realm.
         :param pulumi.Input[_builtins.str] role: Role Name.
@@ -196,6 +197,7 @@ class _AttributeToRoleIdentityMapperState:
                  role: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AttributeToRoleIdentityMapper resources.
+
         :param pulumi.Input[_builtins.str] attribute_friendly_name: Attribute Friendly Name. Conflicts with `attribute_name`.
         :param pulumi.Input[_builtins.str] attribute_name: Attribute Name.
         :param pulumi.Input[_builtins.str] attribute_value: Attribute Value.
@@ -411,6 +413,11 @@ class AttributeToRoleIdentityMapper(pulumi.CustomResource):
 
         Example:
 
+        ```sh
+        $ pulumi import keycloak:index/attributeToRoleIdentityMapper:AttributeToRoleIdentityMapper test_mapper my-realm/my-mapper/f446db98-7133-4e30-b18a-3d28fde7ca1b
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] attribute_friendly_name: Attribute Friendly Name. Conflicts with `attribute_name`.
@@ -474,6 +481,11 @@ class AttributeToRoleIdentityMapper(pulumi.CustomResource):
         assigns to the mapper upon creation. This value can be found in the URI when editing this mapper in the GUI, and is typically a GUID.
 
         Example:
+
+        ```sh
+        $ pulumi import keycloak:index/attributeToRoleIdentityMapper:AttributeToRoleIdentityMapper test_mapper my-realm/my-mapper/f446db98-7133-4e30-b18a-3d28fde7ca1b
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param AttributeToRoleIdentityMapperArgs args: The arguments to use to populate this resource's properties.

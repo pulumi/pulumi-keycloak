@@ -27,6 +27,7 @@ class RealmUserProfileArgs:
                  unmanaged_attribute_policy: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RealmUserProfile resource.
+
         :param pulumi.Input[_builtins.str] realm_id: The ID of the realm the user profile applies to.
         :param pulumi.Input[Sequence[pulumi.Input['RealmUserProfileAttributeArgs']]] attributes: An ordered list of attributes.
         :param pulumi.Input[Sequence[pulumi.Input['RealmUserProfileGroupArgs']]] groups: A list of groups.
@@ -98,6 +99,7 @@ class _RealmUserProfileState:
                  unmanaged_attribute_policy: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RealmUserProfile resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['RealmUserProfileAttributeArgs']]] attributes: An ordered list of attributes.
         :param pulumi.Input[Sequence[pulumi.Input['RealmUserProfileGroupArgs']]] groups: A list of groups.
         :param pulumi.Input[_builtins.str] realm_id: The ID of the realm the user profile applies to.
@@ -264,6 +266,7 @@ class RealmUserProfile(pulumi.CustomResource):
 
         This resource currently does not support importing.
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['RealmUserProfileAttributeArgs', 'RealmUserProfileAttributeArgsDict']]]] attributes: An ordered list of attributes.
@@ -368,6 +371,7 @@ class RealmUserProfile(pulumi.CustomResource):
         ## Import
 
         This resource currently does not support importing.
+
 
         :param str resource_name: The name of the resource.
         :param RealmUserProfileArgs args: The arguments to use to populate this resource's properties.

@@ -143,6 +143,10 @@ import javax.annotation.Nullable;
  * 
  * Example:
  * 
+ * ```sh
+ * $ pulumi import keycloak:openid/client:Client openid_client my-realm/dcbc4c73-e478-4928-ae2e-d5e420223352
+ * ```
+ * 
  */
 @ResourceType(type="keycloak:openid/client:Client")
 public class Client extends com.pulumi.resources.CustomResource {

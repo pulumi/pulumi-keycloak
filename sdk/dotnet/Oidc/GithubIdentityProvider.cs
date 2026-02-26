@@ -55,6 +55,10 @@ namespace Pulumi.Keycloak.Oidc
     /// GitHub Identity providers can be imported using the format {{realm_id}}/{{idp_alias}}, where IdpAlias is the identity provider alias.
     /// 
     /// Example:
+    /// 
+    /// ```sh
+    /// $ pulumi import keycloak:oidc/githubIdentityProvider:GithubIdentityProvider github.github_identity_provider my-realm/my-github-idp
+    /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:oidc/githubIdentityProvider:GithubIdentityProvider")]
     public partial class GithubIdentityProvider : global::Pulumi.CustomResource

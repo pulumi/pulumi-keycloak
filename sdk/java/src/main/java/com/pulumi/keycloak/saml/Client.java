@@ -79,6 +79,10 @@ import javax.annotation.Nullable;
  * 
  * Example:
  * 
+ * ```sh
+ * $ pulumi import keycloak:saml/client:Client saml_client my-realm/dcbc4c73-e478-4928-ae2e-d5e420223352
+ * ```
+ * 
  */
 @ResourceType(type="keycloak:saml/client:Client")
 public class Client extends com.pulumi.resources.CustomResource {

@@ -46,6 +46,7 @@ class FacebookIdentityProviderArgs:
                  trust_email: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a FacebookIdentityProvider resource.
+
         :param pulumi.Input[_builtins.str] client_id: The client or client identifier registered within the identity provider.
         :param pulumi.Input[_builtins.str] client_secret: The client or client secret registered within the identity provider. This field is able to obtain its value from vault, use $${vault.ID} format.
         :param pulumi.Input[_builtins.str] realm: The name of the realm. This is unique across Keycloak.
@@ -444,6 +445,7 @@ class _FacebookIdentityProviderState:
                  trust_email: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering FacebookIdentityProvider resources.
+
         :param pulumi.Input[_builtins.bool] accepts_prompt_none_forward_from_client: When `true`, unauthenticated requests with `prompt=none` will be forwarded to Google instead of returning an error. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] add_read_token_role_on_create: When `true`, new users will be able to read stored tokens. This will automatically assign the `broker.read-token` role. Defaults to `false`.
         :param pulumi.Input[_builtins.str] alias: The alias for the Facebook identity provider.
@@ -893,6 +895,11 @@ class FacebookIdentityProvider(pulumi.CustomResource):
 
         Example:
 
+        ```sh
+        $ pulumi import keycloak:oidc/facebookIdentityProvider:FacebookIdentityProvider facebook.facebook_identity_provider my-realm/my-facebook-idp
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] accepts_prompt_none_forward_from_client: When `true`, unauthenticated requests with `prompt=none` will be forwarded to Google instead of returning an error. Defaults to `false`.
@@ -956,6 +963,11 @@ class FacebookIdentityProvider(pulumi.CustomResource):
         Facebook Identity providers can be imported using the format {{realm_id}}/{{idp_alias}}, where idp_alias is the identity provider alias.
 
         Example:
+
+        ```sh
+        $ pulumi import keycloak:oidc/facebookIdentityProvider:FacebookIdentityProvider facebook.facebook_identity_provider my-realm/my-facebook-idp
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param FacebookIdentityProviderArgs args: The arguments to use to populate this resource's properties.

@@ -26,6 +26,7 @@ class HardcodedAttributeMapperArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a HardcodedAttributeMapper resource.
+
         :param pulumi.Input[_builtins.str] attribute_name: The name of the LDAP attribute to set.
         :param pulumi.Input[_builtins.str] attribute_value: The value to set to the LDAP attribute. You can hardcode any value like 'foo'.
         :param pulumi.Input[_builtins.str] ldap_user_federation_id: The ID of the LDAP user federation provider to attach this mapper to.
@@ -110,6 +111,7 @@ class _HardcodedAttributeMapperState:
                  realm_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering HardcodedAttributeMapper resources.
+
         :param pulumi.Input[_builtins.str] attribute_name: The name of the LDAP attribute to set.
         :param pulumi.Input[_builtins.str] attribute_value: The value to set to the LDAP attribute. You can hardcode any value like 'foo'.
         :param pulumi.Input[_builtins.str] ldap_user_federation_id: The ID of the LDAP user federation provider to attach this mapper to.
@@ -246,6 +248,11 @@ class HardcodedAttributeMapper(pulumi.CustomResource):
 
         Example:
 
+        ```sh
+        $ pulumi import keycloak:ldap/hardcodedAttributeMapper:HardcodedAttributeMapper assign_bar_to_foo my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] attribute_name: The name of the LDAP attribute to set.
@@ -305,6 +312,11 @@ class HardcodedAttributeMapper(pulumi.CustomResource):
         The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs.
 
         Example:
+
+        ```sh
+        $ pulumi import keycloak:ldap/hardcodedAttributeMapper:HardcodedAttributeMapper assign_bar_to_foo my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param HardcodedAttributeMapperArgs args: The arguments to use to populate this resource's properties.

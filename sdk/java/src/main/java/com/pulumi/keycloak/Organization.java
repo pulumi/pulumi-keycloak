@@ -93,6 +93,10 @@ import javax.annotation.Nullable;
  * 
  * Example:
  * 
+ * ```sh
+ * $ pulumi import keycloak:index/organization:Organization this my-realm/cec54914-b702-4c7b-9431-b407817d059a
+ * ```
+ * 
  */
 @ResourceType(type="keycloak:index/organization:Organization")
 public class Organization extends com.pulumi.resources.CustomResource {

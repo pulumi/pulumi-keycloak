@@ -81,6 +81,10 @@ import (
 // assigns to the user upon creation. This value can be found in the GUI when editing the user.
 //
 // Example:
+//
+// ```sh
+// $ pulumi import keycloak:index/user:User user my-realm/60c3f971-b1d3-4b3a-9035-d16d7540a5e4
+// ```
 type User struct {
 	pulumi.CustomResourceState
 

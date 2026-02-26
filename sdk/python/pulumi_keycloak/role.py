@@ -28,6 +28,7 @@ class RoleArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Role resource.
+
         :param pulumi.Input[_builtins.str] realm_id: The realm this role exists within.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] attributes: A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
         :param pulumi.Input[_builtins.str] client_id: When specified, this role will be created as a client role attached to the client with the provided ID
@@ -147,6 +148,7 @@ class _RoleState:
                  realm_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Role resources.
+
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] attributes: A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
         :param pulumi.Input[_builtins.str] client_id: When specified, this role will be created as a client role attached to the client with the provided ID
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] composite_roles: When specified, this role will be a composite role, composed of all roles that have an ID present within this list.
@@ -393,6 +395,11 @@ class Role(pulumi.CustomResource):
 
         Example:
 
+        ```sh
+        $ pulumi import keycloak:index/role:Role role my-realm/7e8cf32a-8acb-4d34-89c4-04fb1d10ccad
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] attributes: A map representing attributes for the role. In order to add multivalue attributes, use `##` to seperate the values. Max length for each value is 255 chars
@@ -532,6 +539,11 @@ class Role(pulumi.CustomResource):
         to the role. The ID is not easy to find in the GUI, but it appears in the URL when editing the role.
 
         Example:
+
+        ```sh
+        $ pulumi import keycloak:index/role:Role role my-realm/7e8cf32a-8acb-4d34-89c4-04fb1d10ccad
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param RoleArgs args: The arguments to use to populate this resource's properties.

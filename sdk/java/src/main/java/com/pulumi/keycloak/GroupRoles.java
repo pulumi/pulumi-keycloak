@@ -194,6 +194,10 @@ import javax.annotation.Nullable;
  * 
  * Example:
  * 
+ * ```sh
+ * $ pulumi import keycloak:index/groupRoles:GroupRoles group_roles my-realm/18cc6b87-2ce7-4e59-bdc8-b9d49ec98a94
+ * ```
+ * 
  */
 @ResourceType(type="keycloak:index/groupRoles:GroupRoles")
 public class GroupRoles extends com.pulumi.resources.CustomResource {

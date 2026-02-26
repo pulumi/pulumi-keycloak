@@ -108,6 +108,10 @@ import javax.annotation.Nullable;
  * 
  * Example:
  * 
+ * ```sh
+ * $ pulumi import keycloak:index/identityProviderTokenExchangeScopePermission:IdentityProviderTokenExchangeScopePermission oidc_idp_permission my-realm/myIdp
+ * ```
+ * 
  */
 @ResourceType(type="keycloak:index/identityProviderTokenExchangeScopePermission:IdentityProviderTokenExchangeScopePermission")
 public class IdentityProviderTokenExchangeScopePermission extends com.pulumi.resources.CustomResource {

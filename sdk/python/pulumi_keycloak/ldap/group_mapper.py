@@ -39,6 +39,7 @@ class GroupMapperArgs:
                  user_roles_retrieve_strategy: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a GroupMapper resource.
+
         :param pulumi.Input[_builtins.str] group_name_ldap_attribute: The name of the LDAP attribute that is used in group objects for the name and RDN of the group. Typically `cn`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] group_object_classes: List of strings representing the object classes for the group. Must contain at least one.
         :param pulumi.Input[_builtins.str] ldap_groups_dn: The LDAP DN where groups can be found.
@@ -328,6 +329,7 @@ class _GroupMapperState:
                  user_roles_retrieve_strategy: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering GroupMapper resources.
+
         :param pulumi.Input[_builtins.bool] drop_non_existing_groups_during_sync: When `true`, groups that no longer exist within LDAP will be dropped in Keycloak during sync. Defaults to `false`.
         :param pulumi.Input[_builtins.str] group_name_ldap_attribute: The name of the LDAP attribute that is used in group objects for the name and RDN of the group. Typically `cn`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] group_object_classes: List of strings representing the object classes for the group. Must contain at least one.
@@ -675,6 +677,11 @@ class GroupMapper(pulumi.CustomResource):
 
         Example:
 
+        ```sh
+        $ pulumi import keycloak:ldap/groupMapper:GroupMapper ldap_group_mapper my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] drop_non_existing_groups_during_sync: When `true`, groups that no longer exist within LDAP will be dropped in Keycloak during sync. Defaults to `false`.
@@ -750,6 +757,11 @@ class GroupMapper(pulumi.CustomResource):
         The ID of the LDAP user federation provider and the mapper can be found within the Keycloak GUI, and they are typically GUIDs.
 
         Example:
+
+        ```sh
+        $ pulumi import keycloak:ldap/groupMapper:GroupMapper ldap_group_mapper my-realm/af2a6ca3-e4d7-49c3-b08b-1b3c70b4b860/3d923ece-1a91-4bf7-adaf-3b82f2a12b67
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param GroupMapperArgs args: The arguments to use to populate this resource's properties.

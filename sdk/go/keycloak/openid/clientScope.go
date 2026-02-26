@@ -61,6 +61,10 @@ import (
 // assigns to the client scope upon creation. This value can be found in the URI when editing this client scope in the GUI, and is typically a GUID.
 //
 // Example:
+//
+// ```sh
+// $ pulumi import keycloak:openid/clientScope:ClientScope openid_client_scope my-realm/8e8f7fe1-df9b-40ed-bed3-4597aa0dac52
+// ```
 type ClientScope struct {
 	pulumi.CustomResourceState
 

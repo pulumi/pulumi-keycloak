@@ -66,6 +66,10 @@ namespace Pulumi.Keycloak
     /// assigns to the mapper upon creation. This value can be found in the URI when editing this mapper in the GUI, and is typically a GUID.
     /// 
     /// Example:
+    /// 
+    /// ```sh
+    /// $ pulumi import keycloak:index/userTemplateImporterIdentityProviderMapper:UserTemplateImporterIdentityProviderMapper username_importer my-realm/my-mapper/f446db98-7133-4e30-b18a-3d28fde7ca1b
+    /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:index/userTemplateImporterIdentityProviderMapper:UserTemplateImporterIdentityProviderMapper")]
     public partial class UserTemplateImporterIdentityProviderMapper : global::Pulumi.CustomResource

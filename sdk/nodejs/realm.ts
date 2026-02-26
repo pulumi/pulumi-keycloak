@@ -87,6 +87,10 @@ import * as utilities from "./utilities";
  * Realms can be imported using their name.
  *
  * Example:
+ *
+ * ```sh
+ * $ pulumi import keycloak:index/realm:Realm realm my-realm
+ * ```
  */
 export class Realm extends pulumi.CustomResource {
     /**

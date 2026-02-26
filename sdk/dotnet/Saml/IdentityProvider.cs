@@ -54,6 +54,10 @@ namespace Pulumi.Keycloak.Saml
     /// Identity providers can be imported using the format `{{realm_id}}/{{idp_alias}}`, where `IdpAlias` is the identity provider alias.
     /// 
     /// Example:
+    /// 
+    /// ```sh
+    /// $ pulumi import keycloak:saml/identityProvider:IdentityProvider realm_saml_identity_provider my-realm/my-saml-idp
+    /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:saml/identityProvider:IdentityProvider")]
     public partial class IdentityProvider : global::Pulumi.CustomResource

@@ -24,6 +24,7 @@ class RealmLocalizationArgs:
                  texts: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a RealmLocalization resource.
+
         :param pulumi.Input[_builtins.str] locale: The locale (language code) the texts apply to.
         :param pulumi.Input[_builtins.str] realm_id: The ID of the realm the user profile applies to.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] texts: A map of translation keys to values.
@@ -78,6 +79,7 @@ class _RealmLocalizationState:
                  texts: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering RealmLocalization resources.
+
         :param pulumi.Input[_builtins.str] locale: The locale (language code) the texts apply to.
         :param pulumi.Input[_builtins.str] realm_id: The ID of the realm the user profile applies to.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] texts: A map of translation keys to values.
@@ -162,6 +164,7 @@ class RealmLocalization(pulumi.CustomResource):
 
         This resource does not currently support importing.
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] locale: The locale (language code) the texts apply to.
@@ -199,6 +202,7 @@ class RealmLocalization(pulumi.CustomResource):
         ## Import
 
         This resource does not currently support importing.
+
 
         :param str resource_name: The name of the resource.
         :param RealmLocalizationArgs args: The arguments to use to populate this resource's properties.

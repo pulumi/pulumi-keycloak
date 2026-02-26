@@ -24,6 +24,7 @@ class GroupMembershipsArgs:
                  group_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a GroupMemberships resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] members: A list of usernames that belong to this group.
         :param pulumi.Input[_builtins.str] realm_id: The realm this group exists in.
         :param pulumi.Input[_builtins.str] group_id: The ID of the group this resource should manage memberships for.
@@ -78,6 +79,7 @@ class _GroupMembershipsState:
                  realm_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering GroupMemberships resources.
+
         :param pulumi.Input[_builtins.str] group_id: The ID of the group this resource should manage memberships for.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] members: A list of usernames that belong to this group.
         :param pulumi.Input[_builtins.str] realm_id: The realm this group exists in.
@@ -181,6 +183,7 @@ class GroupMemberships(pulumi.CustomResource):
 
         [1]: https://registry.terraform.io/providers/keycloak/keycloak/latest/docs/resources/group_memberships
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] group_id: The ID of the group this resource should manage memberships for.
@@ -237,6 +240,7 @@ class GroupMemberships(pulumi.CustomResource):
         as if it did not already exist on the server.
 
         [1]: https://registry.terraform.io/providers/keycloak/keycloak/latest/docs/resources/group_memberships
+
 
         :param str resource_name: The name of the resource.
         :param GroupMembershipsArgs args: The arguments to use to populate this resource's properties.

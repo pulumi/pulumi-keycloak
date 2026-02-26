@@ -25,6 +25,7 @@ class IdentityProviderTokenExchangeScopePermissionArgs:
                  policy_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a IdentityProviderTokenExchangeScopePermission resource.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] clients: A list of IDs of the clients for which a policy will be created and set on scope based token exchange permission.
         :param pulumi.Input[_builtins.str] provider_alias: Alias of the identity provider.
         :param pulumi.Input[_builtins.str] realm_id: The realm that the identity provider exists in.
@@ -98,6 +99,7 @@ class _IdentityProviderTokenExchangeScopePermissionState:
                  realm_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering IdentityProviderTokenExchangeScopePermission resources.
+
         :param pulumi.Input[_builtins.str] authorization_idp_resource_id: (Computed) Resource ID representing the identity provider, this automatically created by keycloak.
         :param pulumi.Input[_builtins.str] authorization_resource_server_id: (Computed) Resource server ID representing the realm management client on which this permission is managed.
         :param pulumi.Input[_builtins.str] authorization_token_exchange_scope_permission_id: (Computed) Permission ID representing the Permission with scope 'Token Exchange' and the resource 'authorization_idp_resource_id', this automatically created by keycloak, the policy ID will be set on this permission.
@@ -290,6 +292,11 @@ class IdentityProviderTokenExchangeScopePermission(pulumi.CustomResource):
 
         Example:
 
+        ```sh
+        $ pulumi import keycloak:index/identityProviderTokenExchangeScopePermission:IdentityProviderTokenExchangeScopePermission oidc_idp_permission my-realm/myIdp
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] clients: A list of IDs of the clients for which a policy will be created and set on scope based token exchange permission.
@@ -360,6 +367,11 @@ class IdentityProviderTokenExchangeScopePermission(pulumi.CustomResource):
         you assign to the identity provider upon creation.
 
         Example:
+
+        ```sh
+        $ pulumi import keycloak:index/identityProviderTokenExchangeScopePermission:IdentityProviderTokenExchangeScopePermission oidc_idp_permission my-realm/myIdp
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param IdentityProviderTokenExchangeScopePermissionArgs args: The arguments to use to populate this resource's properties.

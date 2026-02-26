@@ -51,6 +51,10 @@ import * as utilities from "./utilities";
  * assigns to the group upon creation. This value can be found in the URI when editing this group in the GUI, and is typically a GUID.
  *
  * Example:
+ *
+ * ```sh
+ * $ pulumi import keycloak:index/group:Group child_group my-realm/934a4a4e-28bd-4703-a0fa-332df153aabd
+ * ```
  */
 export class Group extends pulumi.CustomResource {
     /**

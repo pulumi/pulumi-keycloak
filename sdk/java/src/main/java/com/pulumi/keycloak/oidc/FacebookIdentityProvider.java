@@ -74,6 +74,10 @@ import javax.annotation.Nullable;
  * 
  * Example:
  * 
+ * ```sh
+ * $ pulumi import keycloak:oidc/facebookIdentityProvider:FacebookIdentityProvider facebook.facebook_identity_provider my-realm/my-facebook-idp
+ * ```
+ * 
  */
 @ResourceType(type="keycloak:oidc/facebookIdentityProvider:FacebookIdentityProvider")
 public class FacebookIdentityProvider extends com.pulumi.resources.CustomResource {

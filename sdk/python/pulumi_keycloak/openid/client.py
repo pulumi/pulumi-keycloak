@@ -75,6 +75,7 @@ class ClientArgs:
                  web_origins: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Client resource.
+
         :param pulumi.Input[_builtins.str] access_type: Specifies the type of client, which can be one of the following:
                - `CONFIDENTIAL` - Used for server-side clients that require both client ID and secret when authenticating.
                This client should be used for applications using the Authorization Code or Client Credentials grant flows.
@@ -939,6 +940,7 @@ class _ClientState:
                  web_origins: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering Client resources.
+
         :param pulumi.Input[_builtins.str] access_token_lifespan: The amount of time in seconds before an access token expires. This will override the default for the realm.
         :param pulumi.Input[_builtins.str] access_type: Specifies the type of client, which can be one of the following:
                - `CONFIDENTIAL` - Used for server-side clients that require both client ID and secret when authenticating.
@@ -1902,6 +1904,11 @@ class Client(pulumi.CustomResource):
 
         Example:
 
+        ```sh
+        $ pulumi import keycloak:openid/client:Client openid_client my-realm/dcbc4c73-e478-4928-ae2e-d5e420223352
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] access_token_lifespan: The amount of time in seconds before an access token expires. This will override the default for the realm.
@@ -2041,6 +2048,11 @@ class Client(pulumi.CustomResource):
         assigns to the client upon creation. This value can be found in the URI when editing this client in the GUI, and is typically a GUID.
 
         Example:
+
+        ```sh
+        $ pulumi import keycloak:openid/client:Client openid_client my-realm/dcbc4c73-e478-4928-ae2e-d5e420223352
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param ClientArgs args: The arguments to use to populate this resource's properties.

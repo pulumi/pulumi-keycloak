@@ -61,6 +61,10 @@ namespace Pulumi.Keycloak.Authentication
     /// __The subflow ID is contained in the `flowID` field__ (not, as one could guess, the `Id` field).
     /// 
     /// Example:
+    /// 
+    /// ```sh
+    /// $ terraform import keycloak_authentication_subflow.subflow my-realm/"Parent Flow"/3bad1172-bb5c-4a77-9615-c2606eb03081
+    /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:authentication/subflow:Subflow")]
     public partial class Subflow : global::Pulumi.CustomResource

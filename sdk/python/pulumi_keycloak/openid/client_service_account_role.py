@@ -25,6 +25,7 @@ class ClientServiceAccountRoleArgs:
                  service_account_user_id: pulumi.Input[_builtins.str]):
         """
         The set of arguments for constructing a ClientServiceAccountRole resource.
+
         :param pulumi.Input[_builtins.str] client_id: The id of the client that provides the role.
         :param pulumi.Input[_builtins.str] realm_id: The realm the clients and roles belong to.
         :param pulumi.Input[_builtins.str] role: The name of the role that is assigned.
@@ -93,6 +94,7 @@ class _ClientServiceAccountRoleState:
                  service_account_user_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ClientServiceAccountRole resources.
+
         :param pulumi.Input[_builtins.str] client_id: The id of the client that provides the role.
         :param pulumi.Input[_builtins.str] realm_id: The realm the clients and roles belong to.
         :param pulumi.Input[_builtins.str] role: The name of the role that is assigned.
@@ -210,6 +212,11 @@ class ClientServiceAccountRole(pulumi.CustomResource):
 
         Example:
 
+        ```sh
+        $ pulumi import keycloak:openid/clientServiceAccountRole:ClientServiceAccountRole client2_service_account_role my-realm/489ba513-1ceb-49ba-ae0b-1ab1f5099ebf/baf01820-0f8b-4494-9be2-fb3bc8a397a4/c7230ab7-8e4e-4135-995d-e81b50696ad8
+        ```
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] client_id: The id of the client that provides the role.
@@ -265,6 +272,11 @@ class ClientServiceAccountRole(pulumi.CustomResource):
         This resource can be imported using the format `{{realmId}}/{{serviceAccountUserId}}/{{clientId}}/{{roleId}}`.
 
         Example:
+
+        ```sh
+        $ pulumi import keycloak:openid/clientServiceAccountRole:ClientServiceAccountRole client2_service_account_role my-realm/489ba513-1ceb-49ba-ae0b-1ab1f5099ebf/baf01820-0f8b-4494-9be2-fb3bc8a397a4/c7230ab7-8e4e-4135-995d-e81b50696ad8
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param ClientServiceAccountRoleArgs args: The arguments to use to populate this resource's properties.

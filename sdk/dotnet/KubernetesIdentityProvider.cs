@@ -43,6 +43,10 @@ namespace Pulumi.Keycloak
     /// Identity providers can be imported using the format `{{realm_id}}/{{idp_alias}}`, where `IdpAlias` is the identity provider alias.
     /// 
     /// Example:
+    /// 
+    /// ```sh
+    /// $ pulumi import keycloak:index/kubernetesIdentityProvider:KubernetesIdentityProvider realm_identity_provider my-realm/my-idp
+    /// ```
     /// </summary>
     [KeycloakResourceType("keycloak:index/kubernetesIdentityProvider:KubernetesIdentityProvider")]
     public partial class KubernetesIdentityProvider : global::Pulumi.CustomResource
