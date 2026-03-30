@@ -88,7 +88,7 @@ import (
 //						Name: pulumi.String("client-attributes"),
 //						Configuration: pulumi.StringMap{
 //							"is-negative-logic": pulumi.String("false"),
-//							"attributes":        pulumi.String(json0),
+//							"attributes":        pulumi.String(pulumi.String(json0)),
 //						},
 //					},
 //				},

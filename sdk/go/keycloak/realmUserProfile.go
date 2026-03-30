@@ -113,12 +113,12 @@ import (
 //							&keycloak.RealmUserProfileAttributeValidatorArgs{
 //								Name: pulumi.String("options"),
 //								Config: pulumi.StringMap{
-//									"options": pulumi.String(json0),
+//									"options": pulumi.String(pulumi.String(json0)),
 //								},
 //							},
 //						},
 //						Annotations: pulumi.StringMap{
-//							"foo": pulumi.String(json1),
+//							"foo": pulumi.String(pulumi.String(json1)),
 //						},
 //					},
 //				},
@@ -129,7 +129,7 @@ import (
 //						DisplayDescription: pulumi.String("A first group"),
 //						Annotations: pulumi.StringMap{
 //							"foo":  pulumi.String("bar"),
-//							"foo2": pulumi.String(json2),
+//							"foo2": pulumi.String(pulumi.String(json2)),
 //						},
 //					},
 //					&keycloak.RealmUserProfileGroupArgs{

@@ -134,7 +134,7 @@ import (
 //				realmManagement := _args[1].(openid.GetClientResult)
 //				return keycloak.GetRoleResult(interface{}(keycloak.LookupRole(ctx, &keycloak.LookupRoleArgs{
 //					RealmId:  id,
-//					ClientId: pulumi.StringRef(pulumi.StringRef(realmManagement.Id)),
+//					ClientId: pulumi.StringRef(pulumi.StringRef(pulumi.String(realmManagement.Id))),
 //					Name:     "create-client",
 //				}, nil))), nil
 //			}).(keycloak.GetRoleResultOutput)
