@@ -36,7 +36,7 @@ import (
 //			}
 //			// use the data source
 //			_, err = keycloak.NewRole(ctx, "group", &keycloak.RoleArgs{
-//				RealmId: pulumi.String(realm.Id),
+//				RealmId: pulumi.String(pulumi.String(realm.Id)),
 //				Name:    pulumi.String("group"),
 //			})
 //			if err != nil {

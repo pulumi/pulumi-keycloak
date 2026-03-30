@@ -44,13 +44,13 @@ import (
 //			}
 //			// use the data source
 //			_, err = oidc.NewIdentityProvider(ctx, "realm_identity_provider", &oidc.IdentityProviderArgs{
-//				Realm:            pulumi.String(realm.Id),
+//				Realm:            pulumi.String(pulumi.String(realm.Id)),
 //				Alias:            pulumi.String("my-idp"),
 //				AuthorizationUrl: pulumi.String("https://authorizationurl.com"),
 //				ClientId:         pulumi.String("clientID"),
 //				ClientSecret:     pulumi.String("clientSecret"),
 //				TokenUrl:         pulumi.String("https://tokenurl.com"),
-//				OrganizationId:   pulumi.String(organization.Id),
+//				OrganizationId:   pulumi.String(pulumi.String(organization.Id)),
 //			})
 //			if err != nil {
 //				return err

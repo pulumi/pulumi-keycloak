@@ -46,7 +46,7 @@ import (
 //				RealmId:  pulumi.String("my-realm"),
 //				ClientId: samlClient.ID(),
 //				DefaultScopes: pulumi.StringArray{
-//					pulumi.String(mysamlscope.Name),
+//					pulumi.String(pulumi.String(mysamlscope.Name)),
 //				},
 //			})
 //			if err != nil {
