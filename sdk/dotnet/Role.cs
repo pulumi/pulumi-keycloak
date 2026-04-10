@@ -26,13 +26,13 @@ namespace Pulumi.Keycloak
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     var realm = new Keycloak.Index.Realm("realm", new()
     ///     {
     ///         RealmName = "my-realm",
     ///         Enabled = true,
     ///     });
     /// 
-    ///     var realmRole = new Keycloak.Role("realm_role", new()
+    ///     var realmRole = new Keycloak.Index.Role("realm_role", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         Name = "my-realm-role",
@@ -57,7 +57,7 @@ namespace Pulumi.Keycloak
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     var realm = new Keycloak.Index.Realm("realm", new()
     ///     {
     ///         RealmName = "my-realm",
     ///         Enabled = true,
@@ -76,7 +76,7 @@ namespace Pulumi.Keycloak
     ///         },
     ///     });
     /// 
-    ///     var clientRole = new Keycloak.Role("client_role", new()
+    ///     var clientRole = new Keycloak.Index.Role("client_role", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         ClientId = openidClientKeycloakClient.Id,
@@ -101,14 +101,14 @@ namespace Pulumi.Keycloak
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     var realm = new Keycloak.Index.Realm("realm", new()
     ///     {
     ///         RealmName = "my-realm",
     ///         Enabled = true,
     ///     });
     /// 
     ///     // realm roles
-    ///     var createRole = new Keycloak.Role("create_role", new()
+    ///     var createRole = new Keycloak.Index.Role("create_role", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         Name = "create",
@@ -118,7 +118,7 @@ namespace Pulumi.Keycloak
     ///         },
     ///     });
     /// 
-    ///     var readRole = new Keycloak.Role("read_role", new()
+    ///     var readRole = new Keycloak.Index.Role("read_role", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         Name = "read",
@@ -128,7 +128,7 @@ namespace Pulumi.Keycloak
     ///         },
     ///     });
     /// 
-    ///     var updateRole = new Keycloak.Role("update_role", new()
+    ///     var updateRole = new Keycloak.Index.Role("update_role", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         Name = "update",
@@ -138,7 +138,7 @@ namespace Pulumi.Keycloak
     ///         },
     ///     });
     /// 
-    ///     var deleteRole = new Keycloak.Role("delete_role", new()
+    ///     var deleteRole = new Keycloak.Index.Role("delete_role", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         Name = "delete",
@@ -162,7 +162,7 @@ namespace Pulumi.Keycloak
     ///         },
     ///     });
     /// 
-    ///     var clientRole = new Keycloak.Role("client_role", new()
+    ///     var clientRole = new Keycloak.Index.Role("client_role", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         ClientId = openidClientKeycloakClient.Id,
@@ -174,7 +174,7 @@ namespace Pulumi.Keycloak
     ///         },
     ///     });
     /// 
-    ///     var adminRole = new Keycloak.Role("admin_role", new()
+    ///     var adminRole = new Keycloak.Index.Role("admin_role", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         Name = "admin",

@@ -24,13 +24,13 @@ namespace Pulumi.Keycloak
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var realm = new Keycloak.Realm("realm", new()
+        ///     var realm = new Keycloak.Index.Realm("realm", new()
         ///     {
         ///         RealmName = "my-realm",
         ///         Enabled = true,
         ///     });
         /// 
-        ///     var browserAuthCookie = Keycloak.GetAuthenticationFlow.Invoke(new()
+        ///     var browserAuthCookie = Keycloak.Index.GetAuthenticationFlow.Invoke(new()
         ///     {
         ///         RealmId = realm.Id,
         ///         Alias = "browser",
@@ -55,13 +55,13 @@ namespace Pulumi.Keycloak
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var realm = new Keycloak.Realm("realm", new()
+        ///     var realm = new Keycloak.Index.Realm("realm", new()
         ///     {
         ///         RealmName = "my-realm",
         ///         Enabled = true,
         ///     });
         /// 
-        ///     var browserAuthCookie = Keycloak.GetAuthenticationFlow.Invoke(new()
+        ///     var browserAuthCookie = Keycloak.Index.GetAuthenticationFlow.Invoke(new()
         ///     {
         ///         RealmId = realm.Id,
         ///         Alias = "browser",
@@ -86,13 +86,13 @@ namespace Pulumi.Keycloak
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var realm = new Keycloak.Realm("realm", new()
+        ///     var realm = new Keycloak.Index.Realm("realm", new()
         ///     {
         ///         RealmName = "my-realm",
         ///         Enabled = true,
         ///     });
         /// 
-        ///     var browserAuthCookie = Keycloak.GetAuthenticationFlow.Invoke(new()
+        ///     var browserAuthCookie = Keycloak.Index.GetAuthenticationFlow.Invoke(new()
         ///     {
         ///         RealmId = realm.Id,
         ///         Alias = "browser",

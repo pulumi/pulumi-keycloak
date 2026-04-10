@@ -30,10 +30,10 @@ import * as utilities from "../utilities";
  *     signDocuments: false,
  *     signAssertions: true,
  *     includeAuthnStatement: true,
- *     signingCertificate: std.index.file({
+ *     signingCertificate: std.file({
  *         input: "saml-cert.pem",
  *     }).result,
- *     signingPrivateKey: std.index.file({
+ *     signingPrivateKey: std.file({
  *         input: "saml-key.pem",
  *     }).result,
  * });

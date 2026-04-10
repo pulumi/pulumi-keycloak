@@ -24,12 +24,12 @@ namespace Pulumi.Keycloak
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     var realm = new Keycloak.Index.Realm("realm", new()
     ///     {
     ///         RealmName = "my-realm",
     ///     });
     /// 
-    ///     var keystoreAesGenerated = new Keycloak.RealmKeystoreAesGenerated("keystore_aes_generated", new()
+    ///     var keystoreAesGenerated = new Keycloak.Index.RealmKeystoreAesGenerated("keystore_aes_generated", new()
     ///     {
     ///         Name = "my-aes-generated-key",
     ///         RealmId = realm.Id,

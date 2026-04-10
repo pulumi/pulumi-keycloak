@@ -24,19 +24,19 @@ namespace Pulumi.Keycloak
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     var realm = new Keycloak.Index.Realm("realm", new()
     ///     {
     ///         RealmName = "my-realm",
     ///         Enabled = true,
     ///     });
     /// 
-    ///     var @group = new Keycloak.Group("group", new()
+    ///     var @group = new Keycloak.Index.Group("group", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         Name = "my-group",
     ///     });
     /// 
-    ///     var @default = new Keycloak.DefaultGroups("default", new()
+    ///     var @default = new Keycloak.Index.DefaultGroups("default", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         GroupIds = new[]

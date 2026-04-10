@@ -23,12 +23,12 @@ namespace Pulumi.Keycloak
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     var realm = new Keycloak.Index.Realm("realm", new()
     ///     {
     ///         RealmName = "my-realm",
     ///     });
     /// 
-    ///     var profile = new Keycloak.RealmClientPolicyProfile("profile", new()
+    ///     var profile = new Keycloak.Index.RealmClientPolicyProfile("profile", new()
     ///     {
     ///         Name = "my-profile",
     ///         RealmId = realm.Id,
@@ -56,7 +56,7 @@ namespace Pulumi.Keycloak
     ///         },
     ///     });
     /// 
-    ///     var policy = new Keycloak.RealmClientPolicyProfilePolicy("policy", new()
+    ///     var policy = new Keycloak.Index.RealmClientPolicyProfilePolicy("policy", new()
     ///     {
     ///         Name = "my-profile",
     ///         RealmId = realm.Id,

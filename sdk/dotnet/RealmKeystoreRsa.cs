@@ -24,12 +24,12 @@ namespace Pulumi.Keycloak
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     var realm = new Keycloak.Index.Realm("realm", new()
     ///     {
     ///         RealmName = "my-realm",
     ///     });
     /// 
-    ///     var keystoreRsa = new Keycloak.RealmKeystoreRsa("keystore_rsa", new()
+    ///     var keystoreRsa = new Keycloak.Index.RealmKeystoreRsa("keystore_rsa", new()
     ///     {
     ///         Name = "my-rsa-key",
     ///         RealmId = realm.Id,

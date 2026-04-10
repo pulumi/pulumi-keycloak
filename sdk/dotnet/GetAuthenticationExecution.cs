@@ -24,13 +24,13 @@ namespace Pulumi.Keycloak
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var realm = new Keycloak.Realm("realm", new()
+        ///     var realm = new Keycloak.Index.Realm("realm", new()
         ///     {
         ///         RealmName = "my-realm",
         ///         Enabled = true,
         ///     });
         /// 
-        ///     var browserAuthCookie = Keycloak.GetAuthenticationExecution.Invoke(new()
+        ///     var browserAuthCookie = Keycloak.Index.GetAuthenticationExecution.Invoke(new()
         ///     {
         ///         RealmId = realm.Id,
         ///         ParentFlowAlias = "browser",
@@ -56,13 +56,13 @@ namespace Pulumi.Keycloak
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var realm = new Keycloak.Realm("realm", new()
+        ///     var realm = new Keycloak.Index.Realm("realm", new()
         ///     {
         ///         RealmName = "my-realm",
         ///         Enabled = true,
         ///     });
         /// 
-        ///     var browserAuthCookie = Keycloak.GetAuthenticationExecution.Invoke(new()
+        ///     var browserAuthCookie = Keycloak.Index.GetAuthenticationExecution.Invoke(new()
         ///     {
         ///         RealmId = realm.Id,
         ///         ParentFlowAlias = "browser",
@@ -88,13 +88,13 @@ namespace Pulumi.Keycloak
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var realm = new Keycloak.Realm("realm", new()
+        ///     var realm = new Keycloak.Index.Realm("realm", new()
         ///     {
         ///         RealmName = "my-realm",
         ///         Enabled = true,
         ///     });
         /// 
-        ///     var browserAuthCookie = Keycloak.GetAuthenticationExecution.Invoke(new()
+        ///     var browserAuthCookie = Keycloak.Index.GetAuthenticationExecution.Invoke(new()
         ///     {
         ///         RealmId = realm.Id,
         ///         ParentFlowAlias = "browser",

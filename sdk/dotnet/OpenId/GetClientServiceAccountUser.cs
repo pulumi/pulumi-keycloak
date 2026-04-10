@@ -29,7 +29,7 @@ namespace Pulumi.Keycloak.OpenId
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var realm = new Keycloak.Realm("realm", new()
+        ///     var realm = new Keycloak.Index.Realm("realm", new()
         ///     {
         ///         RealmName = "my-realm",
         ///         Enabled = true,
@@ -50,13 +50,13 @@ namespace Pulumi.Keycloak.OpenId
         ///         ClientId = client.Id,
         ///     });
         /// 
-        ///     var offlineAccess = Keycloak.GetRole.Invoke(new()
+        ///     var offlineAccess = Keycloak.Index.GetRole.Invoke(new()
         ///     {
         ///         RealmId = realm.Id,
         ///         Name = "offline_access",
         ///     });
         /// 
-        ///     var serviceAccountUserRoles = new Keycloak.UserRoles("service_account_user_roles", new()
+        ///     var serviceAccountUserRoles = new Keycloak.Index.UserRoles("service_account_user_roles", new()
         ///     {
         ///         RealmId = realm.Id,
         ///         UserId = serviceAccountUser.Apply(getClientServiceAccountUserResult =&gt; getClientServiceAccountUserResult.Id),
@@ -90,7 +90,7 @@ namespace Pulumi.Keycloak.OpenId
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var realm = new Keycloak.Realm("realm", new()
+        ///     var realm = new Keycloak.Index.Realm("realm", new()
         ///     {
         ///         RealmName = "my-realm",
         ///         Enabled = true,
@@ -111,13 +111,13 @@ namespace Pulumi.Keycloak.OpenId
         ///         ClientId = client.Id,
         ///     });
         /// 
-        ///     var offlineAccess = Keycloak.GetRole.Invoke(new()
+        ///     var offlineAccess = Keycloak.Index.GetRole.Invoke(new()
         ///     {
         ///         RealmId = realm.Id,
         ///         Name = "offline_access",
         ///     });
         /// 
-        ///     var serviceAccountUserRoles = new Keycloak.UserRoles("service_account_user_roles", new()
+        ///     var serviceAccountUserRoles = new Keycloak.Index.UserRoles("service_account_user_roles", new()
         ///     {
         ///         RealmId = realm.Id,
         ///         UserId = serviceAccountUser.Apply(getClientServiceAccountUserResult =&gt; getClientServiceAccountUserResult.Id),
@@ -151,7 +151,7 @@ namespace Pulumi.Keycloak.OpenId
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var realm = new Keycloak.Realm("realm", new()
+        ///     var realm = new Keycloak.Index.Realm("realm", new()
         ///     {
         ///         RealmName = "my-realm",
         ///         Enabled = true,
@@ -172,13 +172,13 @@ namespace Pulumi.Keycloak.OpenId
         ///         ClientId = client.Id,
         ///     });
         /// 
-        ///     var offlineAccess = Keycloak.GetRole.Invoke(new()
+        ///     var offlineAccess = Keycloak.Index.GetRole.Invoke(new()
         ///     {
         ///         RealmId = realm.Id,
         ///         Name = "offline_access",
         ///     });
         /// 
-        ///     var serviceAccountUserRoles = new Keycloak.UserRoles("service_account_user_roles", new()
+        ///     var serviceAccountUserRoles = new Keycloak.Index.UserRoles("service_account_user_roles", new()
         ///     {
         ///         RealmId = realm.Id,
         ///         UserId = serviceAccountUser.Apply(getClientServiceAccountUserResult =&gt; getClientServiceAccountUserResult.Id),

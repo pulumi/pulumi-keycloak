@@ -27,14 +27,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			masterRealm, err := keycloak.LookupRealm(ctx, &keycloak.LookupRealmArgs{
+//			masterRealm, err := keycloak.GetRealm(ctx, &keycloak.LookupRealmArgs{
 //				Realm: "master",
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
 //			// use the keycloak_user data source to grab the admin user's ID
-//			defaultAdminUser, err := keycloak.LookupUser(ctx, &keycloak.LookupUserArgs{
+//			defaultAdminUser, err := keycloak.GetUser(ctx, &keycloak.LookupUserArgs{
 //				RealmId:  masterRealm.Id,
 //				Username: "keycloak",
 //			}, nil)

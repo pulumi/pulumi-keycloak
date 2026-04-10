@@ -31,7 +31,7 @@ namespace Pulumi.Keycloak
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     var realm = new Keycloak.Index.Realm("realm", new()
     ///     {
     ///         RealmName = "my-realm",
     ///         Enabled = true,
@@ -43,7 +43,7 @@ namespace Pulumi.Keycloak
     ///         ClientId = "test-client",
     ///     });
     /// 
-    ///     var samlHardcodeAttributeMapper = new Keycloak.GenericClientProtocolMapper("saml_hardcode_attribute_mapper", new()
+    ///     var samlHardcodeAttributeMapper = new Keycloak.Index.GenericClientProtocolMapper("saml_hardcode_attribute_mapper", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         ClientId = samlClient.Id,

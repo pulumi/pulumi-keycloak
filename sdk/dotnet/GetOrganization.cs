@@ -25,12 +25,12 @@ namespace Pulumi.Keycloak
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var realm = Keycloak.GetRealm.Invoke(new()
+        ///     var realm = Keycloak.Index.GetRealm.Invoke(new()
         ///     {
         ///         Realm = "my-realm",
         ///     });
         /// 
-        ///     var organization = Keycloak.GetOrganization.Invoke(new()
+        ///     var organization = Keycloak.Index.GetOrganization.Invoke(new()
         ///     {
         ///         Realm = realm.Apply(getRealmResult =&gt; getRealmResult.Id),
         ///         Name = "my-org",
@@ -68,12 +68,12 @@ namespace Pulumi.Keycloak
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var realm = Keycloak.GetRealm.Invoke(new()
+        ///     var realm = Keycloak.Index.GetRealm.Invoke(new()
         ///     {
         ///         Realm = "my-realm",
         ///     });
         /// 
-        ///     var organization = Keycloak.GetOrganization.Invoke(new()
+        ///     var organization = Keycloak.Index.GetOrganization.Invoke(new()
         ///     {
         ///         Realm = realm.Apply(getRealmResult =&gt; getRealmResult.Id),
         ///         Name = "my-org",
@@ -111,12 +111,12 @@ namespace Pulumi.Keycloak
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var realm = Keycloak.GetRealm.Invoke(new()
+        ///     var realm = Keycloak.Index.GetRealm.Invoke(new()
         ///     {
         ///         Realm = "my-realm",
         ///     });
         /// 
-        ///     var organization = Keycloak.GetOrganization.Invoke(new()
+        ///     var organization = Keycloak.Index.GetOrganization.Invoke(new()
         ///     {
         ///         Realm = realm.Apply(getRealmResult =&gt; getRealmResult.Id),
         ///         Name = "my-org",

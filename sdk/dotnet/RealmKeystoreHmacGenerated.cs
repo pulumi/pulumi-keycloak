@@ -24,12 +24,12 @@ namespace Pulumi.Keycloak
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     var realm = new Keycloak.Index.Realm("realm", new()
     ///     {
     ///         RealmName = "my-realm",
     ///     });
     /// 
-    ///     var keystoreHmacGenerated = new Keycloak.RealmKeystoreHmacGenerated("keystore_hmac_generated", new()
+    ///     var keystoreHmacGenerated = new Keycloak.Index.RealmKeystoreHmacGenerated("keystore_hmac_generated", new()
     ///     {
     ///         Name = "my-hmac-generated-key",
     ///         RealmId = realm.Id,

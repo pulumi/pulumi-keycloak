@@ -1885,7 +1885,7 @@ class Client(pulumi.CustomResource):
         realm = keycloak.Realm("realm",
             realm="my-realm",
             enabled=True)
-        rotate = time.index.Rotating("rotate", rotation_days=10)
+        rotate = time.Rotating("rotate", rotation_days=10)
         openid_client = keycloak.openid.Client("openid_client",
             realm_id=realm.id,
             client_id="test-client",
@@ -2030,7 +2030,7 @@ class Client(pulumi.CustomResource):
         realm = keycloak.Realm("realm",
             realm="my-realm",
             enabled=True)
-        rotate = time.index.Rotating("rotate", rotation_days=10)
+        rotate = time.Rotating("rotate", rotation_days=10)
         openid_client = keycloak.openid.Client("openid_client",
             realm_id=realm.id,
             client_id="test-client",

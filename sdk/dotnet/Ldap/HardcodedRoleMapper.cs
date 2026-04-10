@@ -26,7 +26,7 @@ namespace Pulumi.Keycloak.Ldap
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     var realm = new Keycloak.Index.Realm("realm", new()
     ///     {
     ///         RealmName = "my-realm",
     ///         Enabled = true,
@@ -50,7 +50,7 @@ namespace Pulumi.Keycloak.Ldap
     ///         BindCredential = "admin",
     ///     });
     /// 
-    ///     var realmAdminRole = new Keycloak.Role("realm_admin_role", new()
+    ///     var realmAdminRole = new Keycloak.Index.Role("realm_admin_role", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         Name = "my-admin-role",
@@ -78,7 +78,7 @@ namespace Pulumi.Keycloak.Ldap
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     var realm = new Keycloak.Index.Realm("realm", new()
     ///     {
     ///         RealmName = "my-realm",
     ///         Enabled = true,
@@ -109,7 +109,7 @@ namespace Pulumi.Keycloak.Ldap
     ///         ClientId = "realm-management",
     ///     });
     /// 
-    ///     var createClient = Keycloak.GetRole.Invoke(new()
+    ///     var createClient = Keycloak.Index.GetRole.Invoke(new()
     ///     {
     ///         RealmId = realm.Id,
     ///         ClientId = realmManagement.Apply(getClientResult =&gt; getClientResult.Id),

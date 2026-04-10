@@ -24,7 +24,7 @@ namespace Pulumi.Keycloak.Ldap
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     var realm = new Keycloak.Index.Realm("realm", new()
     ///     {
     ///         RealmName = "my-realm",
     ///         Enabled = true,
@@ -48,7 +48,7 @@ namespace Pulumi.Keycloak.Ldap
     ///         BindCredential = "admin",
     ///     });
     /// 
-    ///     var realmGroup = new Keycloak.Group("realm_group", new()
+    ///     var realmGroup = new Keycloak.Index.Group("realm_group", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         Name = "my-group",

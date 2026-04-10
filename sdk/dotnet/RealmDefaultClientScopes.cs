@@ -25,7 +25,7 @@ namespace Pulumi.Keycloak
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     var realm = new Keycloak.Index.Realm("realm", new()
     ///     {
     ///         RealmName = "my-realm",
     ///         Enabled = true,
@@ -37,7 +37,7 @@ namespace Pulumi.Keycloak
     ///         Name = "test-client-scope",
     ///     });
     /// 
-    ///     var defaultScopes = new Keycloak.RealmDefaultClientScopes("default_scopes", new()
+    ///     var defaultScopes = new Keycloak.Index.RealmDefaultClientScopes("default_scopes", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         DefaultScopes = new[]
