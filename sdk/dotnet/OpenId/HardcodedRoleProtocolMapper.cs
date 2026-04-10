@@ -29,13 +29,13 @@ namespace Pulumi.Keycloak.OpenId
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     var realm = new Keycloak.Index.Realm("realm", new()
     ///     {
     ///         RealmName = "my-realm",
     ///         Enabled = true,
     ///     });
     /// 
-    ///     var role = new Keycloak.Role("role", new()
+    ///     var role = new Keycloak.Index.Role("role", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         Name = "my-role",
@@ -75,13 +75,13 @@ namespace Pulumi.Keycloak.OpenId
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     var realm = new Keycloak.Index.Realm("realm", new()
     ///     {
     ///         RealmName = "my-realm",
     ///         Enabled = true,
     ///     });
     /// 
-    ///     var role = new Keycloak.Role("role", new()
+    ///     var role = new Keycloak.Index.Role("role", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         Name = "my-role",

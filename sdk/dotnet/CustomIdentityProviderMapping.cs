@@ -28,7 +28,7 @@ namespace Pulumi.Keycloak
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     var realm = new Keycloak.Index.Realm("realm", new()
     ///     {
     ///         RealmName = "my-realm",
     ///         Enabled = true,
@@ -45,7 +45,7 @@ namespace Pulumi.Keycloak
     ///         DefaultScopes = "openid random profile",
     ///     });
     /// 
-    ///     var oidcCustomIdentityProviderMapping = new Keycloak.CustomIdentityProviderMapping("oidc", new()
+    ///     var oidcCustomIdentityProviderMapping = new Keycloak.Index.CustomIdentityProviderMapping("oidc", new()
     ///     {
     ///         Realm = realm.Id,
     ///         Name = "email-attribute-importer",

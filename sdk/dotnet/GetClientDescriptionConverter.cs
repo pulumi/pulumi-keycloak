@@ -25,13 +25,13 @@ namespace Pulumi.Keycloak
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var realm = new Keycloak.Realm("realm", new()
+        ///     var realm = new Keycloak.Index.Realm("realm", new()
         ///     {
         ///         RealmName = "my-realm",
         ///         Enabled = true,
         ///     });
         /// 
-        ///     var samlClient = Keycloak.GetClientDescriptionConverter.Invoke(new()
+        ///     var samlClient = Keycloak.Index.GetClientDescriptionConverter.Invoke(new()
         ///     {
         ///         RealmId = realm.Id,
         ///         Body = @"\t&lt;md:EntityDescriptor xmlns:md=\""urn:oasis:names:tc:SAML:2.0:metadata\"" validUntil=\""2021-04-17T12:41:46Z\"" cacheDuration=\""PT604800S\"" entityID=\""FakeEntityId\""&gt;
@@ -90,13 +90,13 @@ namespace Pulumi.Keycloak
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var realm = new Keycloak.Realm("realm", new()
+        ///     var realm = new Keycloak.Index.Realm("realm", new()
         ///     {
         ///         RealmName = "my-realm",
         ///         Enabled = true,
         ///     });
         /// 
-        ///     var samlClient = Keycloak.GetClientDescriptionConverter.Invoke(new()
+        ///     var samlClient = Keycloak.Index.GetClientDescriptionConverter.Invoke(new()
         ///     {
         ///         RealmId = realm.Id,
         ///         Body = @"\t&lt;md:EntityDescriptor xmlns:md=\""urn:oasis:names:tc:SAML:2.0:metadata\"" validUntil=\""2021-04-17T12:41:46Z\"" cacheDuration=\""PT604800S\"" entityID=\""FakeEntityId\""&gt;
@@ -155,13 +155,13 @@ namespace Pulumi.Keycloak
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var realm = new Keycloak.Realm("realm", new()
+        ///     var realm = new Keycloak.Index.Realm("realm", new()
         ///     {
         ///         RealmName = "my-realm",
         ///         Enabled = true,
         ///     });
         /// 
-        ///     var samlClient = Keycloak.GetClientDescriptionConverter.Invoke(new()
+        ///     var samlClient = Keycloak.Index.GetClientDescriptionConverter.Invoke(new()
         ///     {
         ///         RealmId = realm.Id,
         ///         Body = @"\t&lt;md:EntityDescriptor xmlns:md=\""urn:oasis:names:tc:SAML:2.0:metadata\"" validUntil=\""2021-04-17T12:41:46Z\"" cacheDuration=\""PT604800S\"" entityID=\""FakeEntityId\""&gt;

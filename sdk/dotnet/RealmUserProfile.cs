@@ -29,12 +29,12 @@ namespace Pulumi.Keycloak
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     var realm = new Keycloak.Index.Realm("realm", new()
     ///     {
     ///         RealmName = "my-realm",
     ///     });
     /// 
-    ///     var userprofile = new Keycloak.RealmUserProfile("userprofile", new()
+    ///     var userprofile = new Keycloak.Index.RealmUserProfile("userprofile", new()
     ///     {
     ///         RealmId = myRealm.Id,
     ///         UnmanagedAttributePolicy = "ENABLED",

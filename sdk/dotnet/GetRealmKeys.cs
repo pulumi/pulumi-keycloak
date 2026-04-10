@@ -30,13 +30,13 @@ namespace Pulumi.Keycloak
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var realm = new Keycloak.Realm("realm", new()
+        ///     var realm = new Keycloak.Index.Realm("realm", new()
         ///     {
         ///         RealmName = "my-realm",
         ///         Enabled = true,
         ///     });
         /// 
-        ///     var realmKeys = Keycloak.GetRealmKeys.Invoke(new()
+        ///     var realmKeys = Keycloak.Index.GetRealmKeys.Invoke(new()
         ///     {
         ///         RealmId = realm.Id,
         ///         Algorithms = new[]
@@ -80,13 +80,13 @@ namespace Pulumi.Keycloak
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var realm = new Keycloak.Realm("realm", new()
+        ///     var realm = new Keycloak.Index.Realm("realm", new()
         ///     {
         ///         RealmName = "my-realm",
         ///         Enabled = true,
         ///     });
         /// 
-        ///     var realmKeys = Keycloak.GetRealmKeys.Invoke(new()
+        ///     var realmKeys = Keycloak.Index.GetRealmKeys.Invoke(new()
         ///     {
         ///         RealmId = realm.Id,
         ///         Algorithms = new[]
@@ -130,13 +130,13 @@ namespace Pulumi.Keycloak
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var realm = new Keycloak.Realm("realm", new()
+        ///     var realm = new Keycloak.Index.Realm("realm", new()
         ///     {
         ///         RealmName = "my-realm",
         ///         Enabled = true,
         ///     });
         /// 
-        ///     var realmKeys = Keycloak.GetRealmKeys.Invoke(new()
+        ///     var realmKeys = Keycloak.Index.GetRealmKeys.Invoke(new()
         ///     {
         ///         RealmId = realm.Id,
         ///         Algorithms = new[]

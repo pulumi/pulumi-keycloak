@@ -26,13 +26,13 @@ namespace Pulumi.Keycloak
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     var realm = new Keycloak.Index.Realm("realm", new()
     ///     {
     ///         RealmName = "my-realm",
     ///         Enabled = true,
     ///     });
     /// 
-    ///     var @this = new Keycloak.Organization("this", new()
+    ///     var @this = new Keycloak.Index.Organization("this", new()
     ///     {
     ///         Realm = realm.Name,
     ///         Name = "org",

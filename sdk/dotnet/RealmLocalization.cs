@@ -26,12 +26,12 @@ namespace Pulumi.Keycloak
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     var realm = new Keycloak.Index.Realm("realm", new()
     ///     {
     ///         RealmName = "my-realm",
     ///     });
     /// 
-    ///     var germanTexts = new Keycloak.RealmLocalization("german_texts", new()
+    ///     var germanTexts = new Keycloak.Index.RealmLocalization("german_texts", new()
     ///     {
     ///         RealmId = myRealm.Id,
     ///         Locale = "de",

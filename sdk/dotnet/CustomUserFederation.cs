@@ -25,13 +25,13 @@ namespace Pulumi.Keycloak
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     var realm = new Keycloak.Index.Realm("realm", new()
     ///     {
     ///         RealmName = "test",
     ///         Enabled = true,
     ///     });
     /// 
-    ///     var customUserFederation = new Keycloak.CustomUserFederation("custom_user_federation", new()
+    ///     var customUserFederation = new Keycloak.Index.CustomUserFederation("custom_user_federation", new()
     ///     {
     ///         Name = "custom",
     ///         RealmId = realm.Id,

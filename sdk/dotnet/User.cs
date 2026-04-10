@@ -26,13 +26,13 @@ namespace Pulumi.Keycloak
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     var realm = new Keycloak.Index.Realm("realm", new()
     ///     {
     ///         RealmName = "my-realm",
     ///         Enabled = true,
     ///     });
     /// 
-    ///     var user = new Keycloak.User("user", new()
+    ///     var user = new Keycloak.Index.User("user", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         Username = "bob",
@@ -42,7 +42,7 @@ namespace Pulumi.Keycloak
     ///         LastName = "Bobson",
     ///     });
     /// 
-    ///     var userWithInitialPassword = new Keycloak.User("user_with_initial_password", new()
+    ///     var userWithInitialPassword = new Keycloak.Index.User("user_with_initial_password", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         Username = "alice",

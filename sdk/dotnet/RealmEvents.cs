@@ -22,13 +22,13 @@ namespace Pulumi.Keycloak
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     var realm = new Keycloak.Index.Realm("realm", new()
     ///     {
     ///         RealmName = "my-realm",
     ///         Enabled = true,
     ///     });
     /// 
-    ///     var realmEvents = new Keycloak.RealmEvents("realm_events", new()
+    ///     var realmEvents = new Keycloak.Index.RealmEvents("realm_events", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         EventsEnabled = true,

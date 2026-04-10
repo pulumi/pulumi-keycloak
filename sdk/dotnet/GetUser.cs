@@ -24,13 +24,13 @@ namespace Pulumi.Keycloak
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var masterRealm = Keycloak.GetRealm.Invoke(new()
+        ///     var masterRealm = Keycloak.Index.GetRealm.Invoke(new()
         ///     {
         ///         Realm = "master",
         ///     });
         /// 
         ///     // use the keycloak_user data source to grab the admin user's ID
-        ///     var defaultAdminUser = Keycloak.GetUser.Invoke(new()
+        ///     var defaultAdminUser = Keycloak.Index.GetUser.Invoke(new()
         ///     {
         ///         RealmId = masterRealm.Apply(getRealmResult =&gt; getRealmResult.Id),
         ///         Username = "keycloak",
@@ -59,13 +59,13 @@ namespace Pulumi.Keycloak
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var masterRealm = Keycloak.GetRealm.Invoke(new()
+        ///     var masterRealm = Keycloak.Index.GetRealm.Invoke(new()
         ///     {
         ///         Realm = "master",
         ///     });
         /// 
         ///     // use the keycloak_user data source to grab the admin user's ID
-        ///     var defaultAdminUser = Keycloak.GetUser.Invoke(new()
+        ///     var defaultAdminUser = Keycloak.Index.GetUser.Invoke(new()
         ///     {
         ///         RealmId = masterRealm.Apply(getRealmResult =&gt; getRealmResult.Id),
         ///         Username = "keycloak",
@@ -94,13 +94,13 @@ namespace Pulumi.Keycloak
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var masterRealm = Keycloak.GetRealm.Invoke(new()
+        ///     var masterRealm = Keycloak.Index.GetRealm.Invoke(new()
         ///     {
         ///         Realm = "master",
         ///     });
         /// 
         ///     // use the keycloak_user data source to grab the admin user's ID
-        ///     var defaultAdminUser = Keycloak.GetUser.Invoke(new()
+        ///     var defaultAdminUser = Keycloak.Index.GetUser.Invoke(new()
         ///     {
         ///         RealmId = masterRealm.Apply(getRealmResult =&gt; getRealmResult.Id),
         ///         Username = "keycloak",

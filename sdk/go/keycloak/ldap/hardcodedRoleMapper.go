@@ -132,7 +132,7 @@ import (
 //			createClient := pulumi.All(realm.ID(), realmManagement).ApplyT(func(_args []interface{}) (keycloak.GetRoleResult, error) {
 //				id := _args[0].(string)
 //				realmManagement := _args[1].(openid.GetClientResult)
-//				return keycloak.GetRoleResult(interface{}(keycloak.LookupRole(ctx, &keycloak.LookupRoleArgs{
+//				return keycloak.GetRoleResult(interface{}(keycloak.GetRole(ctx, &keycloak.LookupRoleArgs{
 //					RealmId:  id,
 //					ClientId: pulumi.StringRef(pulumi.StringRef(pulumi.String(realmManagement.Id))),
 //					Name:     "create-client",

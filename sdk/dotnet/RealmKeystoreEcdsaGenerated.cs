@@ -24,12 +24,12 @@ namespace Pulumi.Keycloak
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     var realm = new Keycloak.Index.Realm("realm", new()
     ///     {
     ///         RealmName = "my-realm",
     ///     });
     /// 
-    ///     var keystoreEcdsaGenerated = new Keycloak.RealmKeystoreEcdsaGenerated("keystore_ecdsa_generated", new()
+    ///     var keystoreEcdsaGenerated = new Keycloak.Index.RealmKeystoreEcdsaGenerated("keystore_ecdsa_generated", new()
     ///     {
     ///         Name = "my-ecdsa-generated-key",
     ///         RealmId = realm.Id,

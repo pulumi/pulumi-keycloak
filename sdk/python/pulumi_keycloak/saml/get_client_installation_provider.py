@@ -115,12 +115,12 @@ def get_client_installation_provider(client_id: Optional[_builtins.str] = None,
         sign_documents=False,
         sign_assertions=True,
         include_authn_statement=True,
-        signing_certificate=std.index.file(input="saml-cert.pem")["result"],
-        signing_private_key=std.index.file(input="saml-key.pem")["result"])
+        signing_certificate=std.file(input="saml-cert.pem")["result"],
+        signing_private_key=std.file(input="saml-key.pem")["result"])
     saml_idp_descriptor = keycloak.saml.get_client_installation_provider_output(realm_id=realm.id,
         client_id=saml_client.id,
         provider_id="saml-idp-descriptor")
-    default = aws.index.IamSamlProvider("default",
+    default = aws.IamSamlProvider("default",
         name=myprovider,
         saml_metadata_document=saml_idp_descriptor.value)
     ```
@@ -170,12 +170,12 @@ def get_client_installation_provider_output(client_id: Optional[pulumi.Input[_bu
         sign_documents=False,
         sign_assertions=True,
         include_authn_statement=True,
-        signing_certificate=std.index.file(input="saml-cert.pem")["result"],
-        signing_private_key=std.index.file(input="saml-key.pem")["result"])
+        signing_certificate=std.file(input="saml-cert.pem")["result"],
+        signing_private_key=std.file(input="saml-key.pem")["result"])
     saml_idp_descriptor = keycloak.saml.get_client_installation_provider_output(realm_id=realm.id,
         client_id=saml_client.id,
         provider_id="saml-idp-descriptor")
-    default = aws.index.IamSamlProvider("default",
+    default = aws.IamSamlProvider("default",
         name=myprovider,
         saml_metadata_document=saml_idp_descriptor.value)
     ```

@@ -36,7 +36,7 @@ namespace Pulumi.Keycloak
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var tokenExchangeRealm = new Keycloak.Realm("token_exchange_realm", new()
+    ///     var tokenExchangeRealm = new Keycloak.Index.Realm("token_exchange_realm", new()
     ///     {
     ///         RealmName = "token-exchange_destination_realm",
     ///         Enabled = true,
@@ -69,7 +69,7 @@ namespace Pulumi.Keycloak
     ///     });
     /// 
     ///     //relevant part
-    ///     var oidcIdpPermission = new Keycloak.IdentityProviderTokenExchangeScopePermission("oidc_idp_permission", new()
+    ///     var oidcIdpPermission = new Keycloak.Index.IdentityProviderTokenExchangeScopePermission("oidc_idp_permission", new()
     ///     {
     ///         RealmId = tokenExchangeRealm.Id,
     ///         ProviderAlias = tokenExchangeMyOidcIdp.Alias,

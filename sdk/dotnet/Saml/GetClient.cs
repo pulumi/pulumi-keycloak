@@ -31,7 +31,7 @@ namespace Pulumi.Keycloak.Saml
         ///     });
         /// 
         ///     // use the data source
-        ///     var admin = Keycloak.GetRole.Invoke(new()
+        ///     var admin = Keycloak.Index.GetRole.Invoke(new()
         ///     {
         ///         RealmId = "my-realm",
         ///         ClientId = realmManagement.Apply(getClientResult =&gt; getClientResult.Id),
@@ -64,7 +64,7 @@ namespace Pulumi.Keycloak.Saml
         ///     });
         /// 
         ///     // use the data source
-        ///     var admin = Keycloak.GetRole.Invoke(new()
+        ///     var admin = Keycloak.Index.GetRole.Invoke(new()
         ///     {
         ///         RealmId = "my-realm",
         ///         ClientId = realmManagement.Apply(getClientResult =&gt; getClientResult.Id),
@@ -97,7 +97,7 @@ namespace Pulumi.Keycloak.Saml
         ///     });
         /// 
         ///     // use the data source
-        ///     var admin = Keycloak.GetRole.Invoke(new()
+        ///     var admin = Keycloak.Index.GetRole.Invoke(new()
         ///     {
         ///         RealmId = "my-realm",
         ///         ClientId = realmManagement.Apply(getClientResult =&gt; getClientResult.Id),

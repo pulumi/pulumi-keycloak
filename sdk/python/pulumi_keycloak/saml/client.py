@@ -1432,8 +1432,8 @@ class Client(pulumi.CustomResource):
             sign_documents=False,
             sign_assertions=True,
             include_authn_statement=True,
-            signing_certificate=std.index.file(input="saml-cert.pem")["result"],
-            signing_private_key=std.index.file(input="saml-key.pem")["result"])
+            signing_certificate=std.file(input="saml-cert.pem")["result"],
+            signing_private_key=std.file(input="saml-key.pem")["result"])
         ```
 
         ## Import
@@ -1520,8 +1520,8 @@ class Client(pulumi.CustomResource):
             sign_documents=False,
             sign_assertions=True,
             include_authn_statement=True,
-            signing_certificate=std.index.file(input="saml-cert.pem")["result"],
-            signing_private_key=std.index.file(input="saml-key.pem")["result"])
+            signing_certificate=std.file(input="saml-cert.pem")["result"],
+            signing_private_key=std.file(input="saml-key.pem")["result"])
         ```
 
         ## Import

@@ -165,8 +165,8 @@ class ClientDefaultScope(pulumi.CustomResource):
             sign_documents=False,
             sign_assertions=True,
             include_authn_statement=True,
-            signing_certificate=std.index.file(input="saml-cert.pem")["result"],
-            signing_private_key=std.index.file(input="saml-key.pem")["result"])
+            signing_certificate=std.file(input="saml-cert.pem")["result"],
+            signing_private_key=std.file(input="saml-key.pem")["result"])
         client_scope = keycloak.saml.ClientScope("client_scope",
             realm_id=realm.id,
             name="client-scope")
@@ -225,8 +225,8 @@ class ClientDefaultScope(pulumi.CustomResource):
             sign_documents=False,
             sign_assertions=True,
             include_authn_statement=True,
-            signing_certificate=std.index.file(input="saml-cert.pem")["result"],
-            signing_private_key=std.index.file(input="saml-key.pem")["result"])
+            signing_certificate=std.file(input="saml-cert.pem")["result"],
+            signing_private_key=std.file(input="saml-key.pem")["result"])
         client_scope = keycloak.saml.ClientScope("client_scope",
             realm_id=realm.id,
             name="client-scope")

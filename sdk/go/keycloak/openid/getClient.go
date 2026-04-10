@@ -36,7 +36,7 @@ import (
 //				return err
 //			}
 //			// use the data source
-//			_, err = keycloak.LookupRole(ctx, &keycloak.LookupRoleArgs{
+//			_, err = keycloak.GetRole(ctx, &keycloak.LookupRoleArgs{
 //				RealmId:  "my-realm",
 //				ClientId: pulumi.StringRef(realmManagement.Id),
 //				Name:     "realm-admin",

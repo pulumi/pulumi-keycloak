@@ -54,7 +54,7 @@ import (
 //				RealmId:  realm.ID(),
 //				ClientId: client.ID(),
 //			}, nil)
-//			offlineAccess := keycloak.LookupRoleOutput(ctx, keycloak.GetRoleOutputArgs{
+//			offlineAccess := keycloak.GetRoleOutput(ctx, keycloak.GetRoleOutputArgs{
 //				RealmId: realm.ID(),
 //				Name:    pulumi.String("offline_access"),
 //			}, nil)

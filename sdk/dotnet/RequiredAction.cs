@@ -24,13 +24,13 @@ namespace Pulumi.Keycloak
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     var realm = new Keycloak.Index.Realm("realm", new()
     ///     {
     ///         RealmName = "my-realm",
     ///         Enabled = true,
     ///     });
     /// 
-    ///     var requiredAction = new Keycloak.RequiredAction("required_action", new()
+    ///     var requiredAction = new Keycloak.Index.RequiredAction("required_action", new()
     ///     {
     ///         RealmId = realm.RealmName,
     ///         Alias = "UPDATE_PASSWORD",

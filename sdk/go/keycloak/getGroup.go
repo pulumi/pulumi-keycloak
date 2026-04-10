@@ -35,11 +35,11 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			offlineAccess := keycloak.LookupRoleOutput(ctx, keycloak.GetRoleOutputArgs{
+//			offlineAccess := keycloak.GetRoleOutput(ctx, keycloak.GetRoleOutputArgs{
 //				RealmId: realm.ID(),
 //				Name:    pulumi.String("offline_access"),
 //			}, nil)
-//			group := keycloak.LookupGroupOutput(ctx, keycloak.GetGroupOutputArgs{
+//			group := keycloak.GetGroupOutput(ctx, keycloak.GetGroupOutputArgs{
 //				RealmId: realm.ID(),
 //				Name:    pulumi.String("group"),
 //			}, nil)

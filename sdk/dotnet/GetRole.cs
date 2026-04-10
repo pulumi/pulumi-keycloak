@@ -25,26 +25,26 @@ namespace Pulumi.Keycloak
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var realm = new Keycloak.Realm("realm", new()
+        ///     var realm = new Keycloak.Index.Realm("realm", new()
         ///     {
         ///         RealmName = "my-realm",
         ///         Enabled = true,
         ///     });
         /// 
-        ///     var offlineAccess = Keycloak.GetRole.Invoke(new()
+        ///     var offlineAccess = Keycloak.Index.GetRole.Invoke(new()
         ///     {
         ///         RealmId = realm.Id,
         ///         Name = "offline_access",
         ///     });
         /// 
         ///     // use the data source
-        ///     var @group = new Keycloak.Group("group", new()
+        ///     var @group = new Keycloak.Index.Group("group", new()
         ///     {
         ///         RealmId = realm.Id,
         ///         Name = "group",
         ///     });
         /// 
-        ///     var groupRoles = new Keycloak.GroupRoles("group_roles", new()
+        ///     var groupRoles = new Keycloak.Index.GroupRoles("group_roles", new()
         ///     {
         ///         RealmId = realm.Id,
         ///         GroupId = @group.Id,
@@ -74,26 +74,26 @@ namespace Pulumi.Keycloak
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var realm = new Keycloak.Realm("realm", new()
+        ///     var realm = new Keycloak.Index.Realm("realm", new()
         ///     {
         ///         RealmName = "my-realm",
         ///         Enabled = true,
         ///     });
         /// 
-        ///     var offlineAccess = Keycloak.GetRole.Invoke(new()
+        ///     var offlineAccess = Keycloak.Index.GetRole.Invoke(new()
         ///     {
         ///         RealmId = realm.Id,
         ///         Name = "offline_access",
         ///     });
         /// 
         ///     // use the data source
-        ///     var @group = new Keycloak.Group("group", new()
+        ///     var @group = new Keycloak.Index.Group("group", new()
         ///     {
         ///         RealmId = realm.Id,
         ///         Name = "group",
         ///     });
         /// 
-        ///     var groupRoles = new Keycloak.GroupRoles("group_roles", new()
+        ///     var groupRoles = new Keycloak.Index.GroupRoles("group_roles", new()
         ///     {
         ///         RealmId = realm.Id,
         ///         GroupId = @group.Id,
@@ -123,26 +123,26 @@ namespace Pulumi.Keycloak
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var realm = new Keycloak.Realm("realm", new()
+        ///     var realm = new Keycloak.Index.Realm("realm", new()
         ///     {
         ///         RealmName = "my-realm",
         ///         Enabled = true,
         ///     });
         /// 
-        ///     var offlineAccess = Keycloak.GetRole.Invoke(new()
+        ///     var offlineAccess = Keycloak.Index.GetRole.Invoke(new()
         ///     {
         ///         RealmId = realm.Id,
         ///         Name = "offline_access",
         ///     });
         /// 
         ///     // use the data source
-        ///     var @group = new Keycloak.Group("group", new()
+        ///     var @group = new Keycloak.Index.Group("group", new()
         ///     {
         ///         RealmId = realm.Id,
         ///         Name = "group",
         ///     });
         /// 
-        ///     var groupRoles = new Keycloak.GroupRoles("group_roles", new()
+        ///     var groupRoles = new Keycloak.Index.GroupRoles("group_roles", new()
         ///     {
         ///         RealmId = realm.Id,
         ///         GroupId = @group.Id,

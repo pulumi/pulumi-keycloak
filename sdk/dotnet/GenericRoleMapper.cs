@@ -28,7 +28,7 @@ namespace Pulumi.Keycloak
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     var realm = new Keycloak.Index.Realm("realm", new()
     ///     {
     ///         RealmName = "my-realm",
     ///         Enabled = true,
@@ -43,14 +43,14 @@ namespace Pulumi.Keycloak
     ///         AccessType = "BEARER-ONLY",
     ///     });
     /// 
-    ///     var realmRole = new Keycloak.Role("realm_role", new()
+    ///     var realmRole = new Keycloak.Index.Role("realm_role", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         Name = "my-realm-role",
     ///         Description = "My Realm Role",
     ///     });
     /// 
-    ///     var clientRoleMapper = new Keycloak.GenericRoleMapper("client_role_mapper", new()
+    ///     var clientRoleMapper = new Keycloak.Index.GenericRoleMapper("client_role_mapper", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         ClientId = client.Id,
@@ -70,7 +70,7 @@ namespace Pulumi.Keycloak
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     var realm = new Keycloak.Index.Realm("realm", new()
     ///     {
     ///         RealmName = "my-realm",
     ///         Enabled = true,
@@ -86,7 +86,7 @@ namespace Pulumi.Keycloak
     ///         FullScopeAllowed = false,
     ///     });
     /// 
-    ///     var clientRoleA = new Keycloak.Role("client_role_a", new()
+    ///     var clientRoleA = new Keycloak.Index.Role("client_role_a", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         ClientId = clientA.Id,
@@ -103,7 +103,7 @@ namespace Pulumi.Keycloak
     ///         AccessType = "BEARER-ONLY",
     ///     });
     /// 
-    ///     var clientRoleB = new Keycloak.Role("client_role_b", new()
+    ///     var clientRoleB = new Keycloak.Index.Role("client_role_b", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         ClientId = clientB.Id,
@@ -111,7 +111,7 @@ namespace Pulumi.Keycloak
     ///         Description = "My Client Role",
     ///     });
     /// 
-    ///     var clientBRoleMapper = new Keycloak.GenericRoleMapper("client_b_role_mapper", new()
+    ///     var clientBRoleMapper = new Keycloak.Index.GenericRoleMapper("client_b_role_mapper", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         ClientId = clientB.Id,
@@ -131,7 +131,7 @@ namespace Pulumi.Keycloak
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     var realm = new Keycloak.Index.Realm("realm", new()
     ///     {
     ///         RealmName = "my-realm",
     ///         Enabled = true,
@@ -143,14 +143,14 @@ namespace Pulumi.Keycloak
     ///         Name = "my-client-scope",
     ///     });
     /// 
-    ///     var realmRole = new Keycloak.Role("realm_role", new()
+    ///     var realmRole = new Keycloak.Index.Role("realm_role", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         Name = "my-realm-role",
     ///         Description = "My Realm Role",
     ///     });
     /// 
-    ///     var clientRoleMapper = new Keycloak.GenericRoleMapper("client_role_mapper", new()
+    ///     var clientRoleMapper = new Keycloak.Index.GenericRoleMapper("client_role_mapper", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         ClientScopeId = clientScope.Id,
@@ -170,7 +170,7 @@ namespace Pulumi.Keycloak
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var realm = new Keycloak.Realm("realm", new()
+    ///     var realm = new Keycloak.Index.Realm("realm", new()
     ///     {
     ///         RealmName = "my-realm",
     ///         Enabled = true,
@@ -185,7 +185,7 @@ namespace Pulumi.Keycloak
     ///         AccessType = "BEARER-ONLY",
     ///     });
     /// 
-    ///     var clientRole = new Keycloak.Role("client_role", new()
+    ///     var clientRole = new Keycloak.Index.Role("client_role", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         ClientId = client.Id,
@@ -199,7 +199,7 @@ namespace Pulumi.Keycloak
     ///         Name = "my-client-scope",
     ///     });
     /// 
-    ///     var clientBRoleMapper = new Keycloak.GenericRoleMapper("client_b_role_mapper", new()
+    ///     var clientBRoleMapper = new Keycloak.Index.GenericRoleMapper("client_b_role_mapper", new()
     ///     {
     ///         RealmId = realm.Id,
     ///         ClientScopeId = clientScope.Id,
