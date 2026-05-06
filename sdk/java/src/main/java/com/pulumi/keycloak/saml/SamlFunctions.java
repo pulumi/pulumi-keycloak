@@ -37,8 +37,8 @@ public final class SamlFunctions {
      * import com.pulumi.keycloak.saml.inputs.GetClientArgs;
      * import com.pulumi.keycloak.KeycloakFunctions;
      * import com.pulumi.keycloak.inputs.GetRoleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -87,8 +87,8 @@ public final class SamlFunctions {
      * import com.pulumi.keycloak.saml.inputs.GetClientArgs;
      * import com.pulumi.keycloak.KeycloakFunctions;
      * import com.pulumi.keycloak.inputs.GetRoleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -137,8 +137,8 @@ public final class SamlFunctions {
      * import com.pulumi.keycloak.saml.inputs.GetClientArgs;
      * import com.pulumi.keycloak.KeycloakFunctions;
      * import com.pulumi.keycloak.inputs.GetRoleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -187,8 +187,8 @@ public final class SamlFunctions {
      * import com.pulumi.keycloak.saml.inputs.GetClientArgs;
      * import com.pulumi.keycloak.KeycloakFunctions;
      * import com.pulumi.keycloak.inputs.GetRoleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -237,8 +237,8 @@ public final class SamlFunctions {
      * import com.pulumi.keycloak.saml.inputs.GetClientArgs;
      * import com.pulumi.keycloak.KeycloakFunctions;
      * import com.pulumi.keycloak.inputs.GetRoleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -294,8 +294,8 @@ public final class SamlFunctions {
      * import com.pulumi.keycloak.saml.inputs.GetClientInstallationProviderArgs;
      * import com.pulumi.aws.IamSamlProvider;
      * import com.pulumi.aws.IamSamlProviderArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -366,8 +366,8 @@ public final class SamlFunctions {
      * import com.pulumi.keycloak.saml.inputs.GetClientInstallationProviderArgs;
      * import com.pulumi.aws.IamSamlProvider;
      * import com.pulumi.aws.IamSamlProviderArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -438,8 +438,8 @@ public final class SamlFunctions {
      * import com.pulumi.keycloak.saml.inputs.GetClientInstallationProviderArgs;
      * import com.pulumi.aws.IamSamlProvider;
      * import com.pulumi.aws.IamSamlProviderArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -510,8 +510,8 @@ public final class SamlFunctions {
      * import com.pulumi.keycloak.saml.inputs.GetClientInstallationProviderArgs;
      * import com.pulumi.aws.IamSamlProvider;
      * import com.pulumi.aws.IamSamlProviderArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -582,8 +582,8 @@ public final class SamlFunctions {
      * import com.pulumi.keycloak.saml.inputs.GetClientInstallationProviderArgs;
      * import com.pulumi.aws.IamSamlProvider;
      * import com.pulumi.aws.IamSamlProviderArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -649,8 +649,8 @@ public final class SamlFunctions {
      * import com.pulumi.keycloak.saml.ClientArgs;
      * import com.pulumi.keycloak.saml.ClientDefaultScope;
      * import com.pulumi.keycloak.saml.ClientDefaultScopeArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -706,8 +706,8 @@ public final class SamlFunctions {
      * import com.pulumi.keycloak.saml.ClientArgs;
      * import com.pulumi.keycloak.saml.ClientDefaultScope;
      * import com.pulumi.keycloak.saml.ClientDefaultScopeArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -763,8 +763,8 @@ public final class SamlFunctions {
      * import com.pulumi.keycloak.saml.ClientArgs;
      * import com.pulumi.keycloak.saml.ClientDefaultScope;
      * import com.pulumi.keycloak.saml.ClientDefaultScopeArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -820,8 +820,8 @@ public final class SamlFunctions {
      * import com.pulumi.keycloak.saml.ClientArgs;
      * import com.pulumi.keycloak.saml.ClientDefaultScope;
      * import com.pulumi.keycloak.saml.ClientDefaultScopeArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -877,8 +877,8 @@ public final class SamlFunctions {
      * import com.pulumi.keycloak.saml.ClientArgs;
      * import com.pulumi.keycloak.saml.ClientDefaultScope;
      * import com.pulumi.keycloak.saml.ClientDefaultScopeArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;

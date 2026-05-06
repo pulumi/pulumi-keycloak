@@ -42,7 +42,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			oidc, err := oidc.NewIdentityProvider(ctx, "oidc", &oidc.IdentityProviderArgs{
+//			oidc2, err := oidc.NewIdentityProvider(ctx, "oidc", &oidc.IdentityProviderArgs{
 //				Realm:            realm.ID(),
 //				Alias:            pulumi.String("oidc"),
 //				AuthorizationUrl: pulumi.String("https://example.com/auth"),
@@ -57,7 +57,7 @@ import (
 //			_, err = keycloak.NewUserTemplateImporterIdentityProviderMapper(ctx, "username_importer", &keycloak.UserTemplateImporterIdentityProviderMapperArgs{
 //				Realm:                 realm.ID(),
 //				Name:                  pulumi.String("username-template-importer"),
-//				IdentityProviderAlias: oidc.Alias,
+//				IdentityProviderAlias: oidc2.Alias,
 //				Template:              pulumi.String("${ALIAS}.${CLAIM.email}"),
 //				ExtraConfig: pulumi.StringMap{
 //					"syncMode": pulumi.String("INHERIT"),

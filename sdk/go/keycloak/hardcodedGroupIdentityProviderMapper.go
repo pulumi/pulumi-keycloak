@@ -38,7 +38,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			oidc, err := oidc.NewIdentityProvider(ctx, "oidc", &oidc.IdentityProviderArgs{
+//			oidc2, err := oidc.NewIdentityProvider(ctx, "oidc", &oidc.IdentityProviderArgs{
 //				Realm:            realm.ID(),
 //				Alias:            pulumi.String("my-idp"),
 //				AuthorizationUrl: pulumi.String("https://authorizationurl.com"),
@@ -60,7 +60,7 @@ import (
 //			_, err = keycloak.NewHardcodedGroupIdentityProviderMapper(ctx, "oidc", &keycloak.HardcodedGroupIdentityProviderMapperArgs{
 //				Realm:                 realm.ID(),
 //				Name:                  pulumi.String("hardcodedGroup"),
-//				IdentityProviderAlias: oidc.Alias,
+//				IdentityProviderAlias: oidc2.Alias,
 //				Group:                 pulumi.String("my-realm-group"),
 //				ExtraConfig: pulumi.StringMap{
 //					"syncMode": pulumi.String("INHERIT"),
